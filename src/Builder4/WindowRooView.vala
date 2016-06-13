@@ -1459,7 +1459,9 @@ public class Xcls_WindowRooView : Object
                  Gtk.TextIter end;     
                 this.el.get_bounds (out start, out end);
         
-                this.el.remove_source_marks (start, end, null);
+                this.el.remove_source_marks (start, end, "WARN");
+                this.el.remove_source_marks (start, end, "ERR");        
+        
             }
             
             if (str.length < 1) {
