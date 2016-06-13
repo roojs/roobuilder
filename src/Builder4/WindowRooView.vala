@@ -1397,9 +1397,12 @@ public class Xcls_WindowRooView : Object
             		return;
             	}		
                 
-               // what are we editing??
-               
-            
+            	// what are we editing??
+            	if (null == _this.sourceview.node_selected || _this.sourceview.prop_selected.length  < 1) {
+            		return;
+            	}
+            	
+            	// find the colon on the first line...
             
             
             
