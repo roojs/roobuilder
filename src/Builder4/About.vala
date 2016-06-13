@@ -24,10 +24,10 @@ public class About : Object
         // my vars (dec)
 
         // set gobject values
-        this.el.program_name = "app.Builder.js";
+        this.el.program_name = "roobuilder";
         this.el.license = "LGPL";
         this.el.authors = { "Alan Knowles" };
-        this.el.website = "http://www.roojs.org/blog.php";
+        this.el.website = "https://github.com/roojs/roobuilder";
         this.el.modal = true;
         this.el.copyright = "LGPL";
 
