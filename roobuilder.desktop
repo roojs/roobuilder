@@ -2,8 +2,8 @@
 Version=1.0
 Encoding=UTF-8
 Name=Roo JS Builder
-Comment=Vala and Javascript Application Biuilder
-Exec=builder4
+Comment=Vala and Javascript Application Builder
+Exec=roobuilder
 Icon=roobuilder
 Terminal=false
 Type=Application
