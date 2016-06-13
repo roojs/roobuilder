@@ -180,7 +180,7 @@ public class Xcls_WindowRooView : Object
             child_1.ref();
             var child_2 = new Xcls_paned( _this );
             child_2.ref();
-            this.el.add (  child_2.el  );
+            this.el.append_page (  child_2.el , _this.label_preview.el );
             var child_3 = new Xcls_ScrolledWindow14( _this );
             child_3.ref();
             this.el.append_page (  child_3.el , _this.label_code.el );

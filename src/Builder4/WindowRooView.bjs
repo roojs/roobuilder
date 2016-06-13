@@ -49,7 +49,7 @@
       },
       {
        "id" : "paned",
-       "* pack" : "add",
+       "* pack" : "append_page,_this.label_preview.el",
        "xtype" : "Paned",
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
