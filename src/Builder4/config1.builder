@@ -77,7 +77,7 @@
         "execute_args" : "",
         "target_bin" : "",
         "sources" : [
-            "../../../app.Builder.js",
+            "../../../roobuilder",
             "../Builder4",
             "../../src",
             "../JsRender",
