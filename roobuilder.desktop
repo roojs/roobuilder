@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
-Name=Roo JS Builder
+Name=Roo Application Builder
 Comment=Vala and Javascript Application Builder
 Exec=roobuilder
 Icon=roobuilder
