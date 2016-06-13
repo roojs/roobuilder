@@ -2,7 +2,7 @@
  "name" : "WindowRooView",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/WindowRooView.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/WindowRooView.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
@@ -29,43 +29,43 @@
    "items" : [
     {
      "id" : "notebook",
-     "xtype" : "Notebook",
      "* pack" : "pack_start,true,true,0",
+     "xtype" : "Notebook",
      "$ xns" : "Gtk",
      "items" : [
       {
        "id" : "label_preview",
-       "xtype" : "Label",
        "* pack" : false,
+       "xtype" : "Label",
        "$ xns" : "Gtk",
        "utf8 label" : "Preview"
       },
       {
        "id" : "label_code",
-       "* pack" : false,
        "xtype" : "Label",
+       "* pack" : false,
        "$ xns" : "Gtk",
        "utf8 label" : "Preview Generated Code"
       },
       {
        "id" : "paned",
-       "xtype" : "Paned",
        "* pack" : "add",
+       "xtype" : "Paned",
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "items" : [
         {
          "id" : "viewbox",
-         "xtype" : "Box",
          "* pack" : "pack1,true,true",
+         "xtype" : "Box",
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "$ homogeneous" : false,
          "items" : [
           {
            "$ vexpand" : false,
-           "* pack" : "pack_start,false,true,0",
            "$ height_request" : 20,
+           "* pack" : "pack_start,false,true,0",
            "xtype" : "Box",
            "$ xns" : "Gtk",
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
@@ -76,8 +76,8 @@
               "clicked" : "( ) => {\n    _this.view.renderJS(  true);\n}"
              },
              "label" : "Redraw",
-             "* pack" : "pack_start,false,false,0",
              "xtype" : "Button",
+             "* pack" : "pack_start,false,false,0",
              "$ xns" : "Gtk"
             },
             {
@@ -96,16 +96,16 @@
               "clicked" : " () => {\n  _this.view.redraws = 99;\n    _this.view.el.web_context.clear_cache();  \n  //_this.view.renderJS(true);\n  FakeServerCache.clear();\n  _this.view.reInit();\n\n}"
              },
              "label" : "Full Redraw",
-             "* pack" : "pack_start,false,false,0",
              "xtype" : "Button",
+             "* pack" : "pack_start,false,false,0",
              "$ xns" : "Gtk"
             }
            ]
           },
           {
            "id" : "viewcontainer",
-           "$ shadow_type" : "Gtk.ShadowType.IN",
            "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n",
+           "$ shadow_type" : "Gtk.ShadowType.IN",
            "* pack" : "pack_end,true,true,0",
            "xtype" : "ScrolledWindow",
            "$ xns" : "Gtk",
@@ -142,8 +142,8 @@
         },
         {
          "id" : "inspectorcontainer",
-         "$ shadow_type" : "Gtk.ShadowType.IN",
          "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n",
+         "$ shadow_type" : "Gtk.ShadowType.IN",
          "xtype" : "ScrolledWindow",
          "* pack" : "pack2,true,true",
          "$ xns" : "Gtk"
@@ -161,8 +161,8 @@
           "key_press_event" : "() => {\n\tthis.onCursorChanged();\n\treturn false; \n}"
          },
          "gboolean show_line_marks" : true,
-         "| void onCursorChanged" : "(/*ParamSpec ps*/) {\n\t  if (this.loading) {\n            return;\n        }\n       // if (ps.name != \"cursor-position\") {\n       //     return;\n       // }\n\n        var buf = this.el.get_buffer();\n        print(\"cursor changed : %d\\n\", buf.cursor_position);\n        Gtk.TextIter cpos;\n        buf.get_iter_at_offset(out cpos, buf.cursor_position);\n        \n        var ln = cpos.get_line();\n\t\tprint(\"cursor changed line : %d\\n\", ln);\n        var node = _this.file.lineToNode(ln+1);\n \n        if (node == null) {\n            print(\"can not find node\\n\");\n            return;\n        }\n        var prop = node.lineToProp(ln+1);\n        print(\"prop : %s\", prop == null ? \"???\" : prop);\n        \n        \n        \n        \n        // ---------- this selects the tree's node...\n        \n        var ltree = _this.main_window.windowstate.left_tree;\n        var tp = ltree.model.treePathFromNode(node);\n        print(\"got tree path %s\\n\", tp);\n        if (tp != \"\") {\n\t       this.allow_node_scroll = false; /// block node scrolling..\n\t       \n\t       \n\t        //print(\"changing cursor on tree..\\n\");\n\t       \n \n            \n            // let's try allowing editing on the methods.\n            // a little klunky at present..\n            this.prop_selected = \"\";\n            if (prop != null) {\n        \t\t//see if we can find it..\n        \t\tvar kv = prop.split(\":\");\n        \t\tif (kv[0] == \"p\") {\n        \t\t\n\t        \t\t//var k = prop.get_key(kv[1]);\n\t        \t\t// fixme -- need to determine if it's an editable property...\n\t        \t\tthis.prop_selected = prop;\n\t        \t\t\n        \t\t} else if (kv[0] == \"l\") {\n        \t\t\t this.prop_selected = prop;\n        \t\t\t\n        \t\t}\n            }\n            ltree.view.setCursor(tp, \"editor\");\n           // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); \n           this.nodeSelected(node,false);\n            \n            // scrolling is disabled... as node selection calls scroll 10ms after it changes.\n            GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {\n\t            this.allow_node_scroll = true;\n\t            return false;\n            });\n        }\n        \n        // highlight the node..\n}\n ",
          "id" : "sourceview",
+         "| void onCursorChanged" : "(/*ParamSpec ps*/) {\n\t  if (this.loading) {\n            return;\n        }\n       // if (ps.name != \"cursor-position\") {\n       //     return;\n       // }\n\n        var buf = this.el.get_buffer();\n        print(\"cursor changed : %d\\n\", buf.cursor_position);\n        Gtk.TextIter cpos;\n        buf.get_iter_at_offset(out cpos, buf.cursor_position);\n        \n        var ln = cpos.get_line();\n\t\tprint(\"cursor changed line : %d\\n\", ln);\n        var node = _this.file.lineToNode(ln+1);\n \n        if (node == null) {\n            print(\"can not find node\\n\");\n            return;\n        }\n        var prop = node.lineToProp(ln+1);\n        print(\"prop : %s\", prop == null ? \"???\" : prop);\n        \n        \n        \n        \n        // ---------- this selects the tree's node...\n        \n        var ltree = _this.main_window.windowstate.left_tree;\n        var tp = ltree.model.treePathFromNode(node);\n        print(\"got tree path %s\\n\", tp);\n        if (tp != \"\") {\n\t       this.allow_node_scroll = false; /// block node scrolling..\n\t       \n\t       \n\t        //print(\"changing cursor on tree..\\n\");\n\t       \n \n            \n            // let's try allowing editing on the methods.\n            // a little klunky at present..\n            this.prop_selected = \"\";\n            if (prop != null) {\n        \t\t//see if we can find it..\n        \t\tvar kv = prop.split(\":\");\n        \t\tif (kv[0] == \"p\") {\n        \t\t\n\t        \t\t//var k = prop.get_key(kv[1]);\n\t        \t\t// fixme -- need to determine if it's an editable property...\n\t        \t\tthis.prop_selected = prop;\n\t        \t\t\n        \t\t} else if (kv[0] == \"l\") {\n        \t\t\t this.prop_selected = prop;\n        \t\t\t\n        \t\t}\n            }\n            ltree.view.setCursor(tp, \"editor\");\n           // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); \n           this.nodeSelected(node,false);\n            \n            // scrolling is disabled... as node selection calls scroll 10ms after it changes.\n            GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {\n\t            this.allow_node_scroll = true;\n\t            return false;\n            });\n        }\n        \n        // highlight the node..\n}\n ",
          "| void clearGreySelection" : "() {\n // clear all the marks..\n    var sbuf = (Gtk.SourceBuffer)this.el.buffer;\n    \n    Gtk.TextIter start;\n    Gtk.TextIter end;     \n        \n    sbuf.get_bounds (out start, out end);\n    sbuf.remove_source_marks (start, end, \"grey\");\n    \n    \n}\n",
          "* init" : "{\n   \n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(8000);\n    this.el.override_font(description);\n\n    this.loading = true;\n    //var buf = this.el.get_buffer();\n    //buf.notify.connect(this.onCursorChanged);\n  \n  \n  \n    var attrs = new Gtk.SourceMarkAttributes();\n    var  pink =   Gdk.RGBA();\n    pink.parse ( \"pink\");\n    attrs.set_background ( pink);\n    attrs.set_icon_name ( \"process-stop\");    \n    attrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"ERR\", attrs, 1);\n    \n     var wattrs = new Gtk.SourceMarkAttributes();\n    var  blue =   Gdk.RGBA();\n    blue.parse ( \"#ABF4EB\");\n    wattrs.set_background ( blue);\n    wattrs.set_icon_name ( \"process-stop\");    \n    wattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"WARN\", wattrs, 1);\n    \n \n    \n     var dattrs = new Gtk.SourceMarkAttributes();\n    var  purple =   Gdk.RGBA();\n    purple.parse ( \"#EEA9FF\");\n    dattrs.set_background ( purple);\n    dattrs.set_icon_name ( \"process-stop\");    \n    dattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"DEPR\", dattrs, 1);\n    \n    \n    var gattrs = new Gtk.SourceMarkAttributes();\n    var  grey =   Gdk.RGBA();\n    grey.parse ( \"#ccc\");\n    gattrs.set_background ( grey);\n \n    \n    this.el.set_mark_attributes (\"grey\", gattrs, 1);\n    \n    \n    \n    \n    \n    \n}\n ",
          "| void nodeSelected" : "(JsRender.Node? sel, bool scroll ) {\n  \n    \n\t\n    // this is connected in widnowstate\n\n\n\t// not sure why....   \n    while(Gtk.events_pending()) {\n        Gtk.main_iteration();\n    }\n    \n    this.node_selected = sel;\n    \n    this.updateGreySelection(scroll);\n    \n    \n    \n}\n\n   \n",
@@ -185,8 +185,8 @@
             "changed" : " () => {\n    // check syntax??\n    // ??needed..??\n   // _this.save_button.el.sensitive = true;\n    ///?? has changed occured during loading?\n    if (_this.sourceview.loading) {\n\t\treturn;\n\t}\n\t\n    print(\"- PREVIEW EDITOR CHANGED--\");\n\n    this.dirty = true;    \n    if (!this.checkSyntax()) {\n\t\treturn;\n\t}\t\t\n    \n   // what are we editing??\n   \n\n\n\n\n    return ;\n}\n\n \n"
            },
            "bool dirty" : false,
-           "int error_line" : "-1",
            "id" : "buffer",
+           "int error_line" : "-1",
            "| bool highlightErrors" : "( Gee.HashMap<int,string> validate_res) {\n         \n    this.error_line = validate_res.size;\n\t\n    if (this.error_line < 1) {\n          return true;\n    }\n    var tlines = this.el.get_line_count ();\n    Gtk.TextIter iter;\n    var valiter = validate_res.map_iterator();\n    while (valiter.next()) {\n    \n//        print(\"get inter\\n\");\n        var eline = valiter.get_key();\n        if (eline > tlines) {\n            continue;\n        }\n        this.el.get_iter_at_line( out iter, eline);\n        //print(\"mark line\\n\");\n        this.el.create_source_mark(valiter.get_value(), \"ERR\", iter);\n    }   \n    return false;\n}",
            "|   string toString" : "  () {\n    \n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    this.el.get_start_iter(out s);\n    this.el.get_end_iter(out e);\n    var ret = this.el.get_text(s,e,true);\n    //print(\"TO STRING? \" + ret);\n    return ret;\n}\n ",
            "|   bool checkSyntax" : " () {\n \n   \n    var str = this.toString();\n    \n    // needed???\n    if (this.error_line > 0) {\n         Gtk.TextIter start;\n         Gtk.TextIter end;     \n        this.el.get_bounds (out start, out end);\n\n        this.el.remove_source_marks (start, end, null);\n    }\n    \n    if (str.length < 1) {\n        print(\"checkSyntax - empty string?\\n\");\n        return false;\n    }\n    \n   if (_this.file == null) {\n       return false;\n   }\n    var p = Palete.factory(_this.file.xtype);  // returns Roo | Gtk  | PlainFile \n    \n \n    if (_this.file.language != \"js\") {\n\t\treturn false; // fake syntax error.\n\t}\n\t\n    //Gee.HashMap<int,string> ret_x;\n\n\treturn p.javascriptHasErrors(\n\t\t_this.main_window.windowstate,\n        str, \n         \"\", // _this.key, \n        \"file\", //_this.ptype,\n        _this.file, \n        null\n    );    \n     \n}\n",
