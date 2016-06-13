@@ -1,0 +1,102 @@
+{
+ "name" : "GtkView",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/GtkView.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "listeners" : {
+    "size_allocate" : "(aloc) => {\n \n    this.width = aloc.width;\n    this.height =aloc.height;\n}\n "
+   },
+   "| void scroll_to_line" : "(int line) {\n   this.notebook.el.page = 1;// code preview...\n   \n   GLib.Timeout.add(500, () => {\n   \n   \n\t   \n\t   \n\t\t  var buf = this.sourceview.el.get_buffer();\n\t \n\t\tvar sbuf = (Gtk.SourceBuffer) buf;\n\n\n\t\tGtk.TextIter iter;   \n\t\tsbuf.get_iter_at_line(out iter,  line);\n\t\tthis.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);\n\t\treturn false;\n\t});   \n\n   \n}\n",
+   "id" : "GtkView",
+   "# Gtk.Widget lastObj" : "null",
+   "| void createThumb" : "() {\n    \n    \n    if (this.file == null) {\n        return;\n    }\n    // only screenshot the gtk preview..\n    if (this.notebook.el.page > 0 ) {\n        return;\n    }\n    \n    \n    var filename = this.file.getIconFileName(false);\n    \n    var  win = this.el.get_parent_window();\n    var width = win.get_width();\n    var height = win.get_height();\n    try {\n         Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?\n         screenshot.save(filename,\"png\");\n    } catch (Error e) {\n        \n    }\n\n   \n    return;\n    \n    \n     \n     \n    \n    // should we hold until it's printed...\n    \n      \n\n    \n    \n\n\n    \n     \n}\n",
+   "| void loadFile" : "(JsRender.JsRender file) \n{\n        this.file = null;\n        \n        if (file.tree == null) {\n            return;\n        }\n        this.notebook.el.page = 0;// gtk preview \n   \n  \n        \n       this.file = file;     \n        this.sourceview.loadFile();\n        this.searchcontext = null;\n        \n\n        if (this.lastObj != null) {\n            this.container.el.remove(this.lastObj);\n        }\n        \n        // hide the compile view at present..\n          \n        \n        var w = this.width;\n        var h = this.height;\n        \n        print(\"ALLOC SET SIZES %d, %d\\n\", w,h); \n        \n        // set the container size min to 500/500 or 20 px less than max..\n        w = int.max (w-20, 500);\n        h = int.max (h-20, 500); \n        \n        print(\"SET SIZES %d, %d\\n\", w,h);       \n        _this.container.el.set_size_request(w,h);\n        \n        _this.view_layout.el.set_size(w,h); // should be baded on calc.. -- see update_scrolled.\n        var rgba = Gdk.RGBA ();\n        rgba.parse (\"#ccc\");\n        _this.view_layout.el.override_background_color(Gtk.StateFlags.NORMAL, rgba);\n        \n        \n\tvar x = new JsRender.NodeToGtk(file.tree);\n        var obj = x.munge() as Gtk.Widget;\n        this.lastObj = null;\n\tif (obj == null) {\n        \treturn;\n\t}\n\tthis.lastObj = obj;\n        \n        this.container.el.add(obj);\n        obj.show_all();\n        \n         \n        \n}\n ",
+   "int width" : 0,
+   "bool hexpand" : true,
+   "| int search" : "(string txt) {\n\tthis.notebook.el.page = 1;\n \tvar s = new Gtk.SourceSearchSettings();\n\tvar buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();\n\tthis.searchcontext = new Gtk.SourceSearchContext(buf,s);\n\tthis.searchcontext.set_highlight(true);\n\ts.set_search_text(txt);\n\t\n\tGtk.TextIter beg, st,en;\n\t \n\tbuf.get_start_iter(out beg);\n\tthis.searchcontext.forward(beg, out st, out en);\n\tthis.last_search_end  = 0;\n\treturn this.searchcontext.get_occurrences_count();\n\n   \n}\n",
+   "int last_search_end" : 0,
+   "xtype" : "Box",
+   "Gtk.SourceSearchContext searchcontext" : "",
+   "# JsRender.JsRender file" : "null",
+   "int height" : 0,
+   "$ xns" : "Gtk",
+   "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+   "# Xcls_MainWindow main_window" : "",
+   "| void forwardSearch" : "(bool change_focus) {\n\n\tif (this.searchcontext == null) {\n\t\treturn;\n\t}\n\tthis.notebook.el.page = 1;\n\tGtk.TextIter beg, st,en, stl;\n\t\n\tvar buf = this.sourceview.el.get_buffer();\n\tbuf.get_iter_at_offset(out beg, this.last_search_end);\n\tif (!this.searchcontext.forward(beg, out st, out en)) {\n\t\tthis.last_search_end = 0;\n\t} else { \n\t\tthis.last_search_end = en.get_offset();\n\t\tif (change_focus) {\n\t\t\tthis.sourceview.el.grab_focus();\t\n\t\t}\n\t\tbuf.place_cursor(st);\n\t\tvar ln = st.get_line();\n\t\tbuf.get_iter_at_line(out stl,ln);\n\t\t \n\t\tthis.sourceview.el.scroll_to_iter(stl,  0.0f, true, 0.0f, 0.5f);\n\t}\n\n}\n",
+   "items" : [
+    {
+     "id" : "notebook",
+     "* pack" : "pack_start,true,true,0",
+     "xtype" : "Notebook",
+     "$ xns" : "Gtk",
+     "items" : [
+      {
+       "id" : "label_preview",
+       "* pack" : false,
+       "xtype" : "Label",
+       "$ xns" : "Gtk",
+       "utf8 label" : "Preview"
+      },
+      {
+       "id" : "label_code",
+       "xtype" : "Label",
+       "* pack" : false,
+       "$ xns" : "Gtk",
+       "utf8 label" : "Preview Generated Code"
+      },
+      {
+       "* pack" : "append_page,_this.label_preview.el",
+       "xtype" : "ScrolledWindow",
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "id" : "view_layout",
+         "xtype" : "Layout",
+         "* pack" : "add",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "id" : "container",
+           "* pack" : "put,10,10",
+           "xtype" : "Box",
+           "$ xns" : "Gtk",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "xtype" : "ScrolledWindow",
+       "* pack" : "append_page,_this.label_code.el",
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "gboolean show_line_marks" : true,
+         "id" : "sourceview",
+         "* init" : "{\n   \n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(8000);\n    this.el.override_font(description);\n\n    this.loading = true;\n    var buf = this.el.get_buffer();\n    buf.notify.connect((ps) => {\n        if (this.loading) {\n            return;\n        }\n        if (ps.name != \"cursor-position\") {\n            return;\n        }\n        print(\"cursor changed : %d\\n\", buf.cursor_position);\n        Gtk.TextIter cpos;\n        buf.get_iter_at_offset(out cpos, buf.cursor_position);\n        \n        var ln = cpos.get_line();\n \n        var node = _this.file.lineToNode(ln);\n \n        if (node == null) {\n            print(\"can not find node\\n\");\n            return;\n        }\n        var ltree = _this.main_window.windowstate.left_tree;\n        var tp = ltree.model.treePathFromNode(node);\n        print(\"got tree path %s\\n\", tp);\n        if (tp != \"\") {\n\t       this.allow_node_scroll = false;        \n\t       print(\"changing cursor on tree..\\n\");\n            ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false);\n            // scrolling is disabled... as node selection calls scroll 10ms after it changes.\n            GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {\n\t            this.allow_node_scroll = true;\n\t            return false;\n            });\n        }\n        \n        // highlight the node..\n        \n    });\n  \n  \n  \n    var attrs = new Gtk.SourceMarkAttributes();\n    var  pink =   Gdk.RGBA();\n    pink.parse ( \"pink\");\n    attrs.set_background ( pink);\n    attrs.set_icon_name ( \"process-stop\");    \n    attrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"ERR\", attrs, 1);\n    \n     var wattrs = new Gtk.SourceMarkAttributes();\n    var  blue =   Gdk.RGBA();\n    blue.parse ( \"#ABF4EB\");\n    wattrs.set_background ( blue);\n    wattrs.set_icon_name ( \"process-stop\");    \n    wattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"WARN\", wattrs, 1);\n    \n \n    \n     var dattrs = new Gtk.SourceMarkAttributes();\n    var  purple =   Gdk.RGBA();\n    purple.parse ( \"#EEA9FF\");\n    dattrs.set_background ( purple);\n    dattrs.set_icon_name ( \"process-stop\");    \n    dattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"DEPR\", dattrs, 1);\n    \n    \n    var gattrs = new Gtk.SourceMarkAttributes();\n    var  grey =   Gdk.RGBA();\n    grey.parse ( \"#ccc\");\n    gattrs.set_background ( grey);\n \n    \n    this.el.set_mark_attributes (\"grey\", gattrs, 1);\n    \n    \n    \n    \n    \n    \n}\n ",
+         "| void nodeSelected" : "(JsRender.Node? sel) {\n  \n    \n  \n    // this is connected in widnowstate\n    print(\"Roo-view - node selected\\n\");\n    var buf = this.el.get_buffer();\n \n    var sbuf = (Gtk.SourceBuffer) buf;\n\n   \n    while(Gtk.events_pending()) {\n        Gtk.main_iteration();\n    }\n    \n   \n    // clear all the marks..\n     Gtk.TextIter start;\n    Gtk.TextIter end;     \n        \n    sbuf.get_bounds (out start, out end);\n    sbuf.remove_source_marks (start, end, \"grey\");\n    \n    \n     if (sel == null) {\n        // no highlighting..\n        return;\n    }\n    Gtk.TextIter iter;   \n    sbuf.get_iter_at_line(out iter,  sel.line_start);\n    \n    \n    Gtk.TextIter cur_iter;\n    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);\n    \n    //var cur_line = cur_iter.get_line();\n    //if (cur_line > sel.line_start && cur_line < sel.line_end) {\n    \n    //} else {\n    if (this.allow_node_scroll) {\n\t\t \n    \tthis.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);\n\t}\n    \n     \n    \n    for (var i = 0; i < buf.get_line_count();i++) {\n        if (i < sel.line_start || i > sel.line_end) {\n           \n            sbuf.get_iter_at_line(out iter, i);\n            sbuf.create_source_mark(null, \"grey\", iter);\n            \n        }\n    \n    }\n    \n\n}\n",
+         "bool loading" : true,
+         "| string toString" : "() {\n   Gtk.TextIter s;\n    Gtk.TextIter e;\n    this.el.get_buffer().get_start_iter(out s);\n    this.el.get_buffer().get_end_iter(out e);\n    var ret = this.el.get_buffer().get_text(s,e,true);\n    //print(\"TO STRING? \" + ret);\n    return ret;\n}\n",
+         "| void loadFile" : "( ) {\n    this.loading = true;\n    var buf = this.el.get_buffer();\n    buf.set_text(\"\",0);\n    var sbuf = (Gtk.SourceBuffer) buf;\n\n    \n\n    if (_this.file == null || _this.file.xtype != \"Gtk\") {\n        print(\"xtype != Gtk\");\n        this.loading = false;\n        return;\n    }\n    \n    var valafn = \"\";\n      try {             \n           var  regex = new Regex(\"\\\\.bjs$\");\n        \n         \n            valafn = regex.replace(_this.file.path,_this.file.path.length , 0 , \".vala\");\n         } catch (GLib.RegexError e) {\n             this.loading = false;\n            return;\n        }   \n    \n\n   if (!FileUtils.test(valafn,FileTest.IS_REGULAR) ) {\n        print(\"File path has no errors\\n\");\n        this.loading = false;\n        return  ;\n    }\n    \n    string str;\n    try {\n    \n        GLib.FileUtils.get_contents (valafn, out str);\n    } catch (Error e) {\n        this.loading = false;\n        return  ;\n    }\n\n//    print(\"setting str %d\\n\", str.length);\n    buf.set_text(str, str.length);\n    var lm = Gtk.SourceLanguageManager.get_default();\n     \n    //?? is javascript going to work as js?\n    \n    ((Gtk.SourceBuffer)(buf)) .set_language(lm.get_language(_this.file.language));\n  \n    \n    Gtk.TextIter start;\n    Gtk.TextIter end;     \n        \n    sbuf.get_bounds (out start, out end);\n    sbuf.remove_source_marks (start, end, null); // remove all marks..\n    \n    \n    if (_this.main_window.windowstate.last_compile_result != null) {\n        var obj = _this.main_window.windowstate.last_compile_result;\n        this.highlightErrorsJson(\"ERR\", obj);\n        this.highlightErrorsJson(\"WARN\", obj);\n        this.highlightErrorsJson(\"DEPR\", obj);\t\t\t\n    }\n    //while (Gtk.events_pending()) {\n     //   Gtk.main_iteration();\n   // }\n    \n    this.loading = false; \n}\n",
+         "* pack" : "add",
+         "xtype" : "SourceView",
+         "bool allow_node_scroll" : true,
+         "| void highlightErrorsJson" : " (string type, Json.Object obj) {\n      Gtk.TextIter start;\n     Gtk.TextIter end;   \n     \n     var buf =  this.el.get_buffer();\n       var sbuf = (Gtk.SourceBuffer)buf;\n        buf.get_bounds (out start, out end);\n        \n        sbuf.remove_source_marks (start, end, type);\n                 \n     \n     // we should highlight other types of errors..\n    \n    if (!obj.has_member(type)) {\n        print(\"Return has no errors\\n\");\n        return  ;\n    }\n    var err = obj.get_object_member(type);\n    \n    if (_this.file == null) { \n        return; // just in case the file has not loaded yet?\n    }\n \n\n    var valafn = \"\";\n      try {             \n           var  regex = new Regex(\"\\\\.bjs$\");\n        \n         \n            valafn = regex.replace(_this.file.path,_this.file.path.length , 0 , \".vala\");\n         } catch (GLib.RegexError e) {\n            return;\n        }   \n\n   if (!err.has_member(valafn)) {\n        print(\"File path has no errors\\n\");\n        return  ;\n    }\n    var lines = err.get_object_member(valafn);\n    \n   \n    \n    var tlines = buf.get_line_count () +1;\n    \n    lines.foreach_member((obj, line, node) => {\n        \n             Gtk.TextIter iter;\n    //        print(\"get inter\\n\");\n            var eline = int.parse(line) -1  ;\n            print(\"GOT ERROR on line %s -- converted to %d\\n\", line,eline);\n            \n            \n            if (eline > tlines || eline < 0) {\n                return;\n            }\n            sbuf.get_iter_at_line( out iter, eline);\n            //print(\"mark line\\n\");\n            var msg  = type + \" on line: %d - %s\".printf(eline+1, valafn);\n            var ar = lines.get_array_member(line);\n            for (var i = 0 ; i < ar.get_length(); i++) {\n\t\t    msg += (msg.length > 0) ? \"\\n\" : \"\";\n\t\t    msg += ar.get_string_element(i);\n\t    }\n            \n            \n            sbuf.create_source_mark(msg, type, iter);\n        } );\n        return  ;\n    \n \n\n\n}",
+         "$ xns" : "Gtk",
+         "gboolean show_line_numbers" : true,
+         "gboolean editable" : false
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

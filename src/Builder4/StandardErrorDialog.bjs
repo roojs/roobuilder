@@ -1,0 +1,25 @@
+{
+    "id": "file-gtk-14",
+    "name": "StandardErrorDialog",
+    "parent": "",
+    "title": false,
+    "path": "/home/alan/gitlive/app.Builder.js/Builder4/StandardErrorDialog.bjs",
+    "items": [
+        {
+            "listeners": {
+                "delete_event": "  (self, event)  => {\n    this.el.hide();\n    return true;\n    \n} \n",
+                "response": "  (self, response_id) => {\n   this.el.hide();\n}"
+            },
+            "text": "fixme",
+            "xtype": "MessageDialog",
+            "|buttons": "Gtk.ButtonsType.OK",
+            "|message_type": "Gtk.MessageType.ERROR",
+            "|modal": "true",
+            "|use_markup": "true",
+            "|void:show": " (Gtk.Window win, string msg) {\n\n    this.el.set_transient_for(win);\n    this.el.modal = true;\n    this.el.text =  msg;\n    this.el.show_all();\n}\n",
+            "|xns": "Gtk"
+        }
+    ],
+    "permname": "",
+    "modOrder": ""
+}

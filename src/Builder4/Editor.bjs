@@ -1,0 +1,111 @@
+{
+ "name" : "Editor",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/Editor.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "# Xcls_MainWindow window" : "null",
+   "|   bool saveContents" : "  ()  {\n    \n    \n    if (_this.file == null) {\n        return true;\n    }\n    \n    \n   \n   \n     \n     var str = _this.buffer.toString();\n     \n     _this.buffer.checkSyntax();\n     \n     \n     \n     // LeftPanel.model.changed(  str , false);\n     _this.dirty = false;\n     _this.save_button.el.sensitive = false;\n     \n    // find the text for the node..\n    if (_this.file.xtype != \"PlainFile\") {\n        if (ptype == \"listener\") {\n            this.node.listeners.set(key,str);\n        \n        } else {\n             this.node.props.set(key,str);\n        }\n    } else {\n        _this.file.setSource(  str );\n     }\n    \n    // call the signal..\n    this.save();\n    \n    return true;\n\n} ",
+   "# string activeEditor" : "\"\"",
+   "| void scroll_to_line" : "(int line) {\n\n\tGLib.Timeout.add(500, () => {\n   \n\t\tvar buf = this.view.el.get_buffer();\n\n\t\tvar sbuf = (Gtk.SourceBuffer) buf;\n\n\n\t\tGtk.TextIter iter;   \n\t\tsbuf.get_iter_at_line(out iter,  line);\n\t\tthis.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);\n\t\treturn false;\n\t});   \n}\n",
+   "# int pos_root_x" : "",
+   "# int pos_root_y" : "",
+   "# string ptype" : "\"\"",
+   "bool hexpand" : true,
+   "| int search" : "(string txt) {\n\n\tvar s = new Gtk.SourceSearchSettings();\n\t\n\tthis.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);\n\tthis.searchcontext .set_highlight(true);\n\ts.set_search_text(txt);\n\tGtk.TextIter beg, st,en;\n\t \n\tthis.buffer.el.get_start_iter(out beg);\n\tthis.searchcontext.forward(beg, out st, out en);\n\tthis.last_search_end = 0;\n\t\n\treturn this.searchcontext.get_occurrences_count();\n\n \n   \n\n}\n",
+   "int last_search_end" : 0,
+   "# string key" : "\"\"",
+   "* pack" : "add",
+   "xtype" : "Box",
+   "Gtk.SourceSearchContext searchcontext" : "null",
+   "|   void show" : "(JsRender.JsRender file, JsRender.Node? node, string ptype, string key)\n{\n    this.file = file;    \n    this.ptype = \"\";\n    this.key  = \"\";\n    this.node = null;\n\tthis.searchcontext = null;\n    \n    if (file.xtype != \"PlainFile\") {\n    \n        this.ptype = ptype;\n        this.key  = key;\n        this.node = node;\n         string val = \"\";\n        // find the text for the node..\n        if (ptype == \"listener\") {\n            val = node.listeners.get(key);\n        \n        } else {\n            val = node.props.get(key);\n        }\n        this.view.load(val);\n        this.key_edit.el.show();\n        this.key_edit.el.text = key;  \n    \n    } else {\n        this.view.load(        file.toSource() );\n        this.key_edit.el.hide();\n    }\n\n       \n}",
+   "# JsRender.JsRender file" : "null",
+   "# bool pos" : false,
+   "string id" : "Editor",
+   "# bool dirty" : false,
+   "$ xns" : "Gtk",
+   "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+   "@ void save" : "()",
+   "$ homogeneous" : false,
+   "| void forwardSearch" : "(bool change_focus) {\n\n\tif (this.searchcontext == null) {\n\t\treturn;\n\t}\n\t\n\tGtk.TextIter beg, st,en;\n\t \n\tthis.buffer.el.get_iter_at_offset(out beg, this.last_search_end);\n\tif (!this.searchcontext.forward(beg, out st, out en)) {\n\t\n\t\tthis.last_search_end = 0;\n\t} else {\n\t\tthis.last_search_end = en.get_offset();\n\t\tif (change_focus) {\n\t\t\tthis.view.el.grab_focus();\n\t\t}\n\t\tthis.buffer.el.place_cursor(st);\n\t\tthis.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);\n\t}\n\n}\n",
+   "# JsRender.Node node" : "null",
+   "items" : [
+    {
+     "* pack" : "pack_start,false,true",
+     "xtype" : "Box",
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "$ homogeneous" : false,
+     "items" : [
+      {
+       "listeners" : {
+        "clicked" : " () => { \n    _this.saveContents();\n}\n  "
+       },
+       "label" : "Save",
+       "id" : "save_button",
+       "* pack" : "pack_start,false,false",
+       "xtype" : "Button",
+       "$ xns" : "Gtk"
+      },
+      {
+       "id" : "key_edit",
+       "* pack" : "pack_end,true,true",
+       "xtype" : "Entry",
+       "$ xns" : "Gtk"
+      }
+     ]
+    },
+    {
+     "id" : "RightEditor",
+     "* init" : "this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+     "xtype" : "ScrolledWindow",
+     "* pack" : "pack_end,true,true",
+     "$ xns" : "Gtk",
+     "items" : [
+      {
+       "listeners" : {
+        "key_release_event" : " (event) => {\n    \n    if (event.keyval == 115 && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {\n        print(\"SAVE: ctrl-S  pressed\");\n        _this.saveContents();\n        return false;\n    }\n   // print(event.key.keyval)\n    \n    return false;\n\n} \n\n "
+       },
+       "gboolean show_line_marks" : true,
+       "id" : "view",
+       "* init" : " \n\n\t\tvar description =   Pango.FontDescription.from_string(\"monospace\");\n\t\tdescription.set_size(8000);\n\n\t\t this.el.override_font(description);\n\n\ttry {        \n\t\tthis.el.completion.add_provider(new Palete.CompletionProvider(_this));\n    } catch (GLib.Error  e) {}\n    \n\tthis.el.completion.unblock_interactive();\n\tthis.el.completion.select_on_show\t\t\t= true; // select\n\tthis.el.completion.show_headers\t\t\t= false;\n\tthis.el.completion.remember_info_visibility\t\t= true;\n    \n  \n    var attrs = new Gtk.SourceMarkAttributes();\n    var  pink =   Gdk.RGBA();\n    pink.parse ( \"pink\");\n    attrs.set_background ( pink);\n    attrs.set_icon_name ( \"process-stop\");    \n    attrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"ERR\", attrs, 1);\n    \n     var wattrs = new Gtk.SourceMarkAttributes();\n    var  blue =   Gdk.RGBA();\n    blue.parse ( \"#ABF4EB\");\n    wattrs.set_background ( blue);\n    wattrs.set_icon_name ( \"process-stop\");    \n    wattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"WARN\", wattrs, 1);\n    \n \n    \n     var dattrs = new Gtk.SourceMarkAttributes();\n    var  purple =   Gdk.RGBA();\n    purple.parse ( \"#EEA9FF\");\n    dattrs.set_background ( purple);\n    dattrs.set_icon_name ( \"process-stop\");    \n    dattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"DEPR\", dattrs, 1);\n    \n    ",
+       "uint tab_width" : 4,
+       "$ Gtk.SourceDrawSpacesFlags draw_spaces" : "Gtk.SourceDrawSpacesFlags.LEADING + Gtk.SourceDrawSpacesFlags.TRAILING + Gtk.SourceDrawSpacesFlags.TAB + Gtk.SourceDrawSpacesFlags.SPACE",
+       "* pack" : "add",
+       "xtype" : "SourceView",
+       "gboolean highlight_current_line" : true,
+       "$ gboolean auto_indent" : true,
+       "$ xns" : "Gtk",
+       "|   void load" : " (string str) {\n\n// show the help page for the active node..\n   //this.get('/Help').show();\n\n\n  // this.get('/BottomPane').el.set_current_page(0);\n    var buf = (Gtk.SourceBuffer)this.el.get_buffer();\n    buf.set_text(str, str.length);\n    buf.set_undo_manager(null);\n    \n    var lm = Gtk.SourceLanguageManager.get_default();\n    var lang = \"vala\";\n    if (_this.file != null) {\n         lang = _this.file.language;\n    }\n    print(\"lang=%s, content_type = %s\\n\", lang, _this.file.content_type);\n    var lg = _this.file.content_type.length > 0  ?\n            lm.guess_language(_this.file.path, _this.file.content_type) :\n            lm.get_language(lang);\n     \n   \n    ((Gtk.SourceBuffer)(this.el.get_buffer())) .set_language(lg); \n\n    this.el.insert_spaces_instead_of_tabs = true;\n    if (lg != null) {\n\t\tprint(\"sourcelanguage  = %s\\n\", lg.name);\n\t\tif (lg.name == \"Vala\") {\n\t\t    this.el.insert_spaces_instead_of_tabs = false;\n\t\t}\n     }\n    _this.dirty = false;\n    this.el.grab_focus();\n    _this.save_button.el.sensitive = false;\n}",
+       "bool insert_spaces_instead_of_tabs" : true,
+       "indent_width" : 4,
+       "$ show_line_numbers" : true,
+       "items" : [
+        {
+         "listeners" : {
+          "changed" : " () => {\n    // check syntax??\n    // ??needed..??\n    _this.save_button.el.sensitive = true;\n    print(\"EDITOR CHANGED\");\n    this.checkSyntax();\n   \n    _this.dirty = true;\n\n    // this.get('/LeftPanel.model').changed(  str , false);\n    return ;\n}\n\n \n"
+         },
+         "bool check_queued" : false,
+         "int error_line" : "-1",
+         "id" : "buffer",
+         "| bool highlightErrors" : "( Gee.HashMap<int,string> validate_res) {\n         \n        this.error_line = validate_res.size;\n\n        if (this.error_line < 1) {\n              return true;\n        }\n        var tlines = this.el.get_line_count ();\n        Gtk.TextIter iter;\n        var valiter = validate_res.map_iterator();\n        while (valiter.next()) {\n        \n    //        print(\"get inter\\n\");\n            var eline = valiter.get_key();\n            if (eline > tlines) {\n                continue;\n            }\n            this.el.get_iter_at_line( out iter, eline);\n            //print(\"mark line\\n\");\n            this.el.create_source_mark(valiter.get_value(), \"ERR\", iter);\n        }   \n        return false;\n    }",
+         "|   string toString" : "  () {\n    \n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    this.el.get_start_iter(out s);\n    this.el.get_end_iter(out e);\n    var ret = this.el.get_text(s,e,true);\n    //print(\"TO STRING? \" + ret);\n    return ret;\n}\n ",
+         "|   bool checkSyntax" : " () {\n \n    if (this.check_running) {\n        print(\"Check is running\\n\");\n        if (this.check_queued) { \n            print(\"Check is already queued\");\n            return true;\n        }\n        this.check_queued = true;\n        print(\"Adding queued Check \");\n        GLib.Timeout.add_seconds(1, () => {\n            this.check_queued = false;\n            \n            this.checkSyntax();\n            return false;\n        });\n    \n\n        return true;\n    }\n    var str = this.toString();\n    \n    // needed???\n    if (this.error_line > 0) {\n         Gtk.TextIter start;\n         Gtk.TextIter end;     \n        this.el.get_bounds (out start, out end);\n\n        this.el.remove_source_marks (start, end, null);\n    }\n    if (str.length < 1) {\n        print(\"checkSyntax - empty string?\\n\");\n        return true;\n    }\n    \n    if (_this.file.xtype == \"PlainFile\") {\n    \n        // assume it's gtk...\n           this.check_running = true;\n \n         if (!_this.window.windowstate.valasource.checkPlainFileSpawn(\n\t   _this.file,\n\t    str\n\t )) {\n            this.check_running = false;\n        }\n\t\n        return true;\n    \n    }\n   if (_this.file == null) {\n       return true;\n   }\n    var p = Palete.factory(_this.file.xtype);   \n    \n\n     \n    this.check_running = true;\n    \n    \n    if (_this.file.language == \"js\") {\n        this.check_running = false;\n        print(\"calling validate javascript\\n\"); \n        Gee.HashMap<int,string> errors;\n        p.javascriptHasErrors(\n    \t\t_this.window.windowstate,\n            str, \n             _this.key, \n            _this.ptype,\n            _this.file,\n \n            out errors\n        );\n        return this.highlightErrors(errors);    \n        \n    }\n        \n        \n    print(\"calling validate vala\\n\");    \n    // clear the buttons.\n \n    \n   if (! _this.window.windowstate.valasource.checkFileWithNodePropChange(\n        _this.file,\n        _this.node,\n         _this.key,        \n         _this.ptype,\n            str\n        )) {\n        this.check_running = false;\n    } \n     \n    \n    \n    //print(\"done mark line\\n\");\n     \n    return true; // at present allow saving - even if it's invalid..\n}\n",
+         "* pack" : "set_buffer",
+         "xtype" : "SourceBuffer",
+         "bool check_running" : false,
+         "$ xns" : "Gtk",
+         "| bool highlightErrorsJson" : "(string type, Json.Object obj) {\n      Gtk.TextIter start;\n     Gtk.TextIter end;     \n        this.el.get_bounds (out start, out end);\n        \n        this.el.remove_source_marks (start, end, type);\n                 \n     \n     // we should highlight other types of errors..\n    \n    if (!obj.has_member(type)) {\n        print(\"Return has no errors\\n\");\n        return true;\n    }\n    \n    if (_this.window.windowstate.state != WindowState.State.CODEONLY && \n        _this.window.windowstate.state != WindowState.State.CODE\n        ) {\n        return true;\n    } \n    \n    \n    var err = obj.get_object_member(type);\n    \n    \n    if (_this.file == null) {\n        return true;\n    \n    }\n    var valafn = _this.file.path;\n \n    if (_this.file.xtype != \"PlainFile\") {\n\n\n        \n        \n         valafn = \"\";\n          try {             \n               var  regex = new Regex(\"\\\\.bjs$\");\n               // should not happen\n              \n             \n                valafn = regex.replace(_this.file.path,_this.file.path.length , 0 , \".vala\");\n             } catch (GLib.RegexError e) {\n                return true;\n            }   \n\n\n\n      }\n       if (!err.has_member(valafn)) {\n            print(\"File path has no errors\\n\");\n            return  true;\n        }\n\n        var lines = err.get_object_member(valafn);\n        \n        var offset = 1;\n        if (obj.has_member(\"line_offset\")) {\n            offset = (int)obj.get_int_member(\"line_offset\") + 1;\n        }\n    \n\n     \n    \n    var tlines = this.el.get_line_count () +1;\n    \n    lines.foreach_member((obj, line, node) => {\n        \n             Gtk.TextIter iter;\n    //        print(\"get inter\\n\");\n            var eline = int.parse(line) - offset;\n            print(\"GOT ERROR on line %s -- converted to %d\\n\", line,eline);\n            \n            \n            if (eline > tlines || eline < 0) {\n                return;\n            }\n            this.el.get_iter_at_line( out iter, eline);\n            //print(\"mark line\\n\");\n            var msg  = \"Line: %d\".printf(eline+1);\n            var ar = lines.get_array_member(line);\n            for (var i = 0 ; i < ar.get_length(); i++) {\n\t\t    msg += (msg.length > 0) ? \"\\n\" : \"\";\n\t\t    msg += ar.get_string_element(i);\n\t    }\n            \n            \n            this.el.create_source_mark(msg, type, iter);\n        } );\n        return false;\n    \n\n\n\n\n}\n"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

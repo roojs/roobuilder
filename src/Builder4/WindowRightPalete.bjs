@@ -1,0 +1,84 @@
+{
+ "name" : "WindowRightPalete",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/WindowRightPalete.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "id" : "RightPalete",
+   "@ void after_node_change(JsRender.Node? node)" : "",
+   "* pack" : "add",
+   "xtype" : "Box",
+   "@ void before_node_change(JsRender.Node? node)" : "",
+   "| void load" : " (Palete.Palete pal, string cls ) {\n   \n   // this.get('model').expanded();\n    \n    var tr = pal.getChildList(cls);\n    this.model.el.clear();\n\n\n    Gtk.TreeIter citer;\n\n    for(var i =0 ; i < tr.length; i++) {\n         this.model.el.append(out citer);   \n         \n        this.model.el.set_value(citer, 0,   tr[i] ); // title \n        \n    }\n    this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);\n    \n} \n\n",
+   "@ void drag_end()" : "",
+   "$ xns" : "Gtk",
+   "| void clear" : "() {\n   this.model.el.clear();\n} ",
+   "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+   "items" : [
+    {
+     "id" : "viewbox",
+     "* pack" : "pack_start,true,true,0",
+     "xtype" : "Box",
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "items" : [
+      {
+       "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n   this.el.set_size_request(-1,200);\n \n",
+       "$ shadow_type" : "Gtk.ShadowType.IN",
+       "* pack" : "pack_start,true,true,0",
+       "xtype" : "ScrolledWindow",
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "listeners" : {
+          "button_press_event" : " ( event) => {\n\n //\tif (!this.get('/Editor').save()) {\n //\t    // popup!! - click handled.. \n// \t    return true;\n//        }\n    return false;\n}",
+          "drag_begin" : "  ( ctx) => {\n    // we could fill this in now...\n//        Seed.print('SOURCE: drag-begin');\n        \n        \n        \n        Gtk.TreeIter iter;\n        var s = this.el.get_selection();\n        \n        Gtk.TreeModel mod;\n        s.get_selected(out mod, out iter);\n        var path = mod.get_path(iter);\n        \n        /// pix is a surface..\n        var pix = this.el.create_row_drag_icon ( path);\n            \n                \n        Gtk.drag_set_icon_surface (ctx, pix);\n        GLib.Value value;\n        \n\n        _this.model.el.get_value(iter, 0, out value);\n        \n        this.dragData = (string) value;\n         \n        \n        return;\n}",
+          "drag_end" : "( drag_context)  => {\n \t print(\"SOURCE: drag-end\\n\");\n\t\n\tthis.dragData = \"\";\n\t//this.dropList = null;\n\t_this.drag_end(); // call signal..\n\t//this.get('/LeftTree.view').highlight(false);\n\t \n}",
+          "drag_data_get" : "(drag_context, selection_data, info, time) => {\n \t//Seed.print('Palete: drag-data-get: ' + target_type);\n    if (this.dragData.length < 1 ) {\n        return; \n    }\n    \n    print(\"setting drag data to %s\\n\", this.dragData);\n   // selection_data.set_text(this.dragData ,this.dragData.length);\n   selection_data.set (selection_data.get_target (), 8, (uchar[]) this.dragData.to_utf8 ());\n\n        //this.el.dragData = \"TEST from source widget\";\n        \n        \n}"
+         },
+         "# string dragData" : "",
+         "* init" : " {\n    this.el.set_size_request(150,-1);\n                          //  set_reorderable: [1]\n                                  \n    var description = new Pango.FontDescription();\n    description.set_size(8000);\n    this.el.override_font(description);\n    \n    var selection = this.el.get_selection();\n    selection.set_mode( Gtk.SelectionMode.SINGLE);\n   // this.selection.signal['changed'].connect(function() {\n    //    _view.listeners['cursor-changed'].apply(_view, [ _view, '']);\n    //});\n    // see: http://live.gnome.org/GnomeLove/DragNDropTutorial\n     \n    Gtk.drag_source_set (\n            this.el,            /* widget will be drag-able */\n            Gdk.ModifierType.BUTTON1_MASK,       /* modifier that will start a drag */\n            BuilderApplication.targetList,            /* lists of target to support */\n            Gdk.DragAction.COPY         /* what to do with data after dropped */\n    );\n    //Gtk.drag_source_set_target_list(this.el, LeftTree.targetList);\n   \n   // Gtk.drag_source_set_target_list(this.el, Application.targetList);\n   // Gtk.drag_source_add_text_targets(this.el); \n \n}\n",
+         "xtype" : "TreeView",
+         "* pack" : "add",
+         "$ enable_tree_lines" : true,
+         "$ headers_visible" : true,
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "| string getValue" : " (Gtk.TreeIter iter, int col)  {\n    GLib.Value gval;\n     this.el.get_value(iter, col , out gval);\n    return  (string)gval;\n    \n    \n}",
+           "id" : "model",
+           "* pack" : "set_model",
+           "xtype" : "ListStore",
+           "$ columns" : "typeof(string),typeof(string)",
+           "n_columns" : 2,
+           "$ xns" : "Gtk"
+          },
+          {
+           "utf8 title" : "Drag to add Object",
+           "* init" : " this.el.add_attribute(_this.txtrender.el , \"markup\", 0 );\n \n",
+           "* pack" : "append_column",
+           "xtype" : "TreeViewColumn",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "id" : "txtrender",
+             "xtype" : "CellRendererText",
+             "* pack" : "pack_start,true",
+             "$ xns" : "Gtk"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,206 @@
+{
+ "name" : "WindowRooView",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/WindowRooView.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "| void scroll_to_line" : "(int line) {\n   this.notebook.el.page = 1;// code preview...\n   \n   GLib.Timeout.add(500, () => {\n   \n   \n\t   \n\t   \n\t\t  var buf = this.sourceview.el.get_buffer();\n\t \n\t\tvar sbuf = (Gtk.SourceBuffer) buf;\n\n\n\t\tGtk.TextIter iter;   \n\t\tsbuf.get_iter_at_line(out iter,  line);\n\t\tthis.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);\n\t\treturn false;\n\t});   \n\n   \n}\n",
+   "id" : "WindowRooView",
+   "# Gtk.Widget lastObj" : "null",
+   "| void createThumb" : "() {\n    \n    \n    if (this.file == null) {\n        return;\n    }\n\tif (this.notebook.el.page > 0 ) {\n        return;\n    }\n    \n    var filename = this.file.getIconFileName(false);\n    \n    var  win = this.el.get_parent_window();\n    var width = win.get_width();\n  //  var height = win.get_height();\n    try { \n        Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, this.paned.el.position);\n        screenshot.save(filename,\"png\");\n    } catch(Error e) {\n        //noop\n    }\n\n    \n     \n    \n     \n}\n",
+   "| void loadFile" : "\n(JsRender.JsRender file)\n{\n    this.file = file;\n    this.view.renderJS(true);\n    this.notebook.el.page = 0;// gtk preview \n    this.sourceview.loadFile();   \n    \n}\n \n ",
+   "int width" : 0,
+   "bool hexpand" : true,
+   "| int search" : "(string txt) {\n\tthis.notebook.el.page = 1;\n \tvar s = new Gtk.SourceSearchSettings();\n\tvar buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();\n\tthis.searchcontext = new Gtk.SourceSearchContext(buf,s);\n\tthis.searchcontext.set_highlight(true);\n\ts.set_search_text(txt);\n\t\n\tGtk.TextIter beg, st,en;\n\t \n\tbuf.get_start_iter(out beg);\n\tthis.searchcontext.forward(beg, out st, out en);\n\tthis.last_search_end  = 0;\n\treturn this.searchcontext.get_occurrences_count();\n\n   \n}\n",
+   "int last_search_end" : 0,
+   "xtype" : "Box",
+   "Gtk.SourceSearchContext searchcontext" : "",
+   "# JsRender.JsRender file" : "null",
+   "int height" : 0,
+   "| void requestRedraw" : "() {\n    this.view.renderJS(false);\n    this.sourceview.loadFile();   \n}",
+   "$ xns" : "Gtk",
+   "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+   "# Xcls_MainWindow main_window" : "",
+   "| void forwardSearch" : "(bool change_focus) {\n\n\tif (this.searchcontext == null) {\n\t\treturn;\n\t}\n\tthis.notebook.el.page = 1;\n\tGtk.TextIter beg, st,en, stl;\n\t\n\tvar buf = this.sourceview.el.get_buffer();\n\tbuf.get_iter_at_offset(out beg, this.last_search_end);\n\tif (!this.searchcontext.forward(beg, out st, out en)) {\n\t\tthis.last_search_end = 0;\n\t} else { \n\t\tthis.last_search_end = en.get_offset();\n\t\tif (change_focus) {\n\t\t\tthis.sourceview.el.grab_focus();\n\t\t}\n\t\tbuf.place_cursor(st);\n\t\tvar ln = st.get_line();\n\t\tbuf.get_iter_at_line(out stl,ln);\n\t\t \n\t\tthis.sourceview.el.scroll_to_iter(stl,  0.0f, true, 0.0f, 0.5f);\n\t}\n\n}\n",
+   "items" : [
+    {
+     "id" : "notebook",
+     "xtype" : "Notebook",
+     "* pack" : "pack_start,true,true,0",
+     "$ xns" : "Gtk",
+     "items" : [
+      {
+       "id" : "label_preview",
+       "xtype" : "Label",
+       "* pack" : false,
+       "$ xns" : "Gtk",
+       "utf8 label" : "Preview"
+      },
+      {
+       "id" : "label_code",
+       "* pack" : false,
+       "xtype" : "Label",
+       "$ xns" : "Gtk",
+       "utf8 label" : "Preview Generated Code"
+      },
+      {
+       "id" : "paned",
+       "xtype" : "Paned",
+       "* pack" : "add",
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "items" : [
+        {
+         "id" : "viewbox",
+         "xtype" : "Box",
+         "* pack" : "pack1,true,true",
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "$ homogeneous" : false,
+         "items" : [
+          {
+           "$ vexpand" : false,
+           "* pack" : "pack_start,false,true,0",
+           "$ height_request" : 20,
+           "xtype" : "Box",
+           "$ xns" : "Gtk",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "$ homogeneous" : true,
+           "items" : [
+            {
+             "listeners" : {
+              "clicked" : "( ) => {\n    _this.view.renderJS(  true);\n}"
+             },
+             "label" : "Redraw",
+             "* pack" : "pack_start,false,false,0",
+             "xtype" : "Button",
+             "$ xns" : "Gtk"
+            },
+            {
+             "listeners" : {
+              "toggled" : " (state) => {\n    this.el.set_label(this.el.active  ? \"Auto Redraw On\" : \"Auto Redraw Off\");\n}"
+             },
+             "label" : "Auto Redraw On",
+             "id" : "AutoRedraw",
+             "$ active" : true,
+             "* pack" : "pack_start,false,false,0",
+             "xtype" : "CheckButton",
+             "$ xns" : "Gtk"
+            },
+            {
+             "listeners" : {
+              "clicked" : " () => {\n  _this.view.redraws = 99;\n    _this.view.el.web_context.clear_cache();  \n  //_this.view.renderJS(true);\n  FakeServerCache.clear();\n  _this.view.reInit();\n\n}"
+             },
+             "label" : "Full Redraw",
+             "* pack" : "pack_start,false,false,0",
+             "xtype" : "Button",
+             "$ xns" : "Gtk"
+            }
+           ]
+          },
+          {
+           "id" : "viewcontainer",
+           "$ shadow_type" : "Gtk.ShadowType.IN",
+           "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n",
+           "* pack" : "pack_end,true,true,0",
+           "xtype" : "ScrolledWindow",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "listeners" : {
+              "script_dialog" : " (dialog) => {\n    if (this.el == null) {\n        return true;\n    }\n    \n     var msg = dialog.get_message();\n     if (msg.length < 4) {\n        return false;\n     }\n     if (msg.substring(0,4) != \"IPC:\") {\n         return false;\n     }\n     var ar = msg.split(\":\", 3);\n    if (ar.length < 3) {\n        return false;\n    }\n    switch(ar[1]) {\n        case \"SAVEHTML\":\n            _this.file.saveHTML(ar[2]);\n            return true;\n        default:\n            return false;\n    }\n    \n}",
+              "show" : "  ( ) => {\n    this.initInspector();;\n}",
+              "drag_drop" : "  ( ctx, x, y,time, ud) => {\n    return false;\n    /*\n\tprint(\"TARGET: drag-drop\");\n        var is_valid_drop_site = true;\n        \n         \n        Gtk.drag_get_data\n        (\n                w,         // will receive 'drag-data-received' signal \n                ctx,        /* represents the current state of the DnD \n                this.get('/Window').atoms[\"STRING\"],    /* the target type we want \n                time            /* time stamp \n        );\n                        \n                        \n                        /* No target offered by source => error \n                       \n\n\treturn  is_valid_drop_site;\n\t*/\n}",
+              "load_changed" : "(le) => {\n    if (le != WebKit.LoadEvent.FINISHED) {\n        return;\n    }\n    if (this.runjs.length < 1) {\n        return;\n    }\n  //  this.el.run_javascript(this.runjs, null);\n     FakeServerCache.remove(    this.runjs);\n    this.runjs = \"\";\n}"
+             },
+             "# string renderedData" : "\"\"",
+             "id" : "view",
+             "# bool refreshRequired" : false,
+             "* init" : " {\n    // this may not work!?\n    var settings =  this.el.get_settings();\n    settings.enable_developer_extras = true;\n    \n    \n    var fs= new FakeServer(this.el);\n    fs.ref();\n    // this was an attempt to change the url perms.. did not work..\n    // settings.enable_file_access_from_file_uris = true;\n    // settings.enable_offline_web_application_cache - true;\n    // settings.enable_universal_access_from_file_uris = true;\n   \n     \n    \n    \n    \n\n     // FIXME - base url of script..\n     // we need it so some of the database features work.\n    this.el.load_html( \"Render not ready\" , \n            //fixme - should be a config option!\n            // or should we catch stuff and fix it up..\n            \"http://localhost/app.Builder/\"\n    );\n        \n        \n   //this.el.open('file:///' + __script_path__ + '/../builder.html');\n    /*\n    Gtk.drag_dest_set\n    (\n            this.el,              //\n            Gtk.DestDefaults.MOTION  | Gtk.DestDefaults.HIGHLIGHT,\n            null,            // list of targets\n            Gdk.DragAction.COPY         // what to do with data after dropped \n    );\n                            \n   // print(\"RB: TARGETS : \" + LeftTree.atoms[\"STRING\"]);\n    Gtk.drag_dest_set_target_list(this.el, this.get('/Window').targetList);\n    */\n    GLib.Timeout.add_seconds(1,  ()  =>{\n         //print(\"run refresh?\");\n         if (this.el == null) {\n            return false;\n         }\n         this.runRefresh(); \n         return true;\n     });\n    \n    \n}\n",
+             "| void reInit" : "() {\n   print(\"reInit?\");\n         // if this happens destroy the webkit..\n         // recreate it..\n     this.el.stop_loading();\n         \n     if (_this.viewbox.el.get_parent() == null) {\n        return;\n     }\n         \n         \n    _this.viewbox.el.remove(_this.viewcontainer.el);\n    _this.paned.el.remove(_this.inspectorcontainer.el);        \n         \n         // destory seems to cause problems.\n         //this.el.destroy();\n        //_this.viewcontainer.el.destroy();\n         //_this.inspectorcontainer.el.destroy();\n     var  inv =new Xcls_inspectorcontainer(_this);\n      inv.ref();\n      _this.paned.el.pack2(inv.el,true,true);\n      \n      \n     this.el = null;         \n     var nv =new Xcls_viewcontainer(_this);\n     nv.ref();\n     _this.viewbox.el.pack_end(nv.el,true,true,0);\n         \n         \n     inv.el.show_all();\n     nv.el.show_all();\n         //while(Gtk.events_pending ()) Gtk.main_iteration ();\n         //_this.view.renderJS(true); \n     _this.view.refreshRequired  = true;\n}\n",
+             "* pack" : "add",
+             "redraws" : 0,
+             "xtype" : "WebView",
+             "# WebKit.WebInspector inspector" : "",
+             "# string runjs" : "\"\"",
+             "# int redraws" : 0,
+             "| void runRefresh" : " () \n{\n    // this is run every 2 seconds from the init..\n\n  \n    \n    if (!this.refreshRequired) {\n       // print(\"no refresh required\");\n        return;\n    }\n\n    if (this.lastRedraw != null) {\n       // do not redraw if last redraw was less that 5 seconds ago.\n       if ((int64)(new DateTime.now_local()).difference(this.lastRedraw) < 5000 ) {\n            return;\n        }\n    }\n    \n    if (_this.file == null) {\n        return;\n    }\n    \n    \n     this.refreshRequired = false;\n   //  print(\"HTML RENDERING\");\n     \n     \n     //this.get('/BottomPane').el.show();\n     //this.get('/BottomPane').el.set_current_page(2);// webkit inspector\n    _this.file.webkit_page_id  = this.el.get_page_id();\n    \n    var js = _this.file.toSourcePreview();\n\n    if (js.length < 1) {\n        print(\"no data\");\n        return;\n    }\n//    var  data = js[0];\n    this.redraws++;\n  \n    var project = _this.file.project;  \n\n     //print (project.fn);\n     // set it to non-empty.\n     \n//     runhtml = runhtml.length ?  runhtml : '<script type=\"text/javascript\"></script>'; \n\n\n//   this.runhtml  = this.runhtml || '';\n \n \n    // then we need to reload the browser using\n    // load_html_string..\n\n    // then trigger a redraw once it's loaded..\n    this.pendingRedraw = true;\n\n    var runhtml = \"<script type=\\\"text/javascript\\\">\\n\" ;\n    string builderhtml;\n    \n    try {\n        GLib.FileUtils.get_contents(BuilderApplication.configDirectory() + \"/resources/roo.builder.js\", out builderhtml);\n    } catch (Error e) {\n        builderhtml = \"\";\n    }\n\n    runhtml += builderhtml + \"\\n\";\n    runhtml += \"</script>\\n\" ;\n\n    // fix to make sure they are the same..\n    this.runhtml = project.runhtml;\n    // need to modify paths\n\n    string inhtml;\n    var base_template = _this.file.project.base_template;\n    \n    if (base_template.length > 0 && !FileUtils.test(\n        BuilderApplication.configDirectory() + \"/resources/\" +  base_template, FileTest.EXISTS)  \n        ) {\n           print(\"invalid base_template name - using default:  %s\\n\", base_template);\n           base_template = \"\";\n    \n    }\n    try {\n        GLib.FileUtils.get_contents(\n            BuilderApplication.configDirectory() + \"/resources/\" + \n                (base_template.length > 0 ? base_template :  \"roo.builder.html\")\n                , out inhtml);\n    \n    } catch (Error e) {\n        inhtml = \"\";\n    }    \n    this.renderedData = js;\n\n\n    string js_src = js + \"\\n\" +\n\t\"Roo.onReady(function() {\\n\" +\n\t\"if (\" + _this.file.name +\".show) \" +  _this.file.name +\".show({});\\n\" +\n\t\"Roo.XComponent.build();\\n\" +\n\t\"});\\n\";\n\t\n   // print(\"render js: \" + js);\n    //if (!this.ready) {\n  //      console.log('not loaded yet');\n    //}\n    this.lastRedraw = new DateTime.now_local();\n\n\n    //this.runjs = js_src;\n    var fc =    FakeServerCache.factory_with_data(js_src);\n    this.runjs = fc.fname;\n    \n        var html = inhtml.replace(\"</head>\", runhtml + this.runhtml + \n            \"<script type=\\\"text/javascript\\\" src=\\\"xhttp://localhost\" + fc.fname + \"\\\"></script>\" +   \n              //  \"<script type=\\\"text/javascript\\\">\\n\" +\n              //  js_src + \"\\n\" + \n              //  \"</script>\" + \n                        \n        \"</head>\");\n        //print(\"LOAD HTML \" + html);\n        \n         var rootURL = _this.file.project.rootURL;\n   \n        \n        \n        this.el.load_html( html , \n            //fixme - should be a config option!\n            (rootURL.length > 0 ? rootURL : \"xhttp://localhost/app.Builder.js/\")\n        );\n        \n    // force the inspector...        \n       //   this.initInspector();\n        \n        // - no need for this, the builder javascript will call it when build is complete\n        //GLib.Timeout.add_seconds(1, () => {\n        //    this.el.run_javascript(\"Builder.saveHTML()\",null);\n        //    return false;\n        //});\n//     print( \"before render\" +    this.lastRedraw);\n//    print( \"after render\" +    (new Date()));\n    \n}\n                                                                                                                                                                                                                        ",
+             "$ xns" : "WebKit",
+             "| void initInspector" : "() {\n    \n   /* if (this.inspector == this.el.get_inspector()) {\n        this.inspector.show();\n        this.inspector.open_window();        \n        print(\"init inspecter called, and inspector is the same as existing\\n\");\n        return;\n    }\n    print(\"new inspector?\\n\");\n*/\n    this.inspector = this.el.get_inspector();\n    this.inspector.ref();\n    \n    // got a new inspector...\n        \n    this.inspector.open_window.connect(() => {\n         this.inspector = this.el.get_inspector();\n        print(\"inspector attach\\n\");\n        var wv = this.inspector.get_web_view();\n        if (wv != null) {\n            print(\"got inspector web view\\n\");\n            \n            var cn = _this.inspectorcontainer.el.get_child();\n            if (cn != null) {\n                 _this.inspectorcontainer.el.remove(cn);\n             }\n            \n            _this.inspectorcontainer.el.add(wv);\n            wv.show();\n        } else {\n            //this.inspector.close();\n            \n            //this.inspector = null;\n           \n \n        }\n        return true;\n       \n    });\n    /*\n    this.inspector.closed.connect(() => {\n         print(\"inspector closed?!?\");\n         // if this happens destroy the webkit..\n         // recreate it..\n         this.el.stop_loading();\n         \n         if (_this.viewbox.el.get_parent() == null) {\n            return;\n         }\n         \n         \n        _this.viewbox.el.remove(_this.viewcontainer.el);\n        _this.el.remove(_this.inspectorcontainer.el);        \n         \n         // destory seems to cause problems.\n         //this.el.destroy();\n        //_this.viewcontainer.el.destroy();\n         //_this.inspectorcontainer.el.destroy();\n\n         this.el = null;         \n         var nv =new Xcls_viewcontainer(_this);\n         nv.ref();\n         _this.viewbox.el.pack_end(nv.el,true,true,0);\n         \n          var  inv =new Xcls_inspectorcontainer(_this);\n          inv.ref();\n          _this.el.pack2(inv.el,true,true);\n         \n         inv.el.show_all();\n         nv.el.show_all();\n         //while(Gtk.events_pending ()) Gtk.main_iteration ();\n         //_this.view.renderJS(true); \n         _this.view.refreshRequired  = true;\n       \n    }); \n    */\n    \n    this.inspector.show();\n}\n",
+             "# GLib.DateTime lastRedraw" : "null",
+             "# string runhtml" : "\"\"",
+             "# bool pendingRedraw" : false,
+             "| void renderJS" : "(bool force) {\n\n    // this is the public redraw call..\n    // we refresh in a loop privately..\n    var autodraw = _this.AutoRedraw.el.active;\n    if (!autodraw && !force) {\n        print(\"Skipping redraw - no force, and autodraw off\");\n        return;\n    }\n     \n    this.refreshRequired  = true;\n}\n"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id" : "inspectorcontainer",
+         "$ shadow_type" : "Gtk.ShadowType.IN",
+         "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n",
+         "xtype" : "ScrolledWindow",
+         "* pack" : "pack2,true,true",
+         "$ xns" : "Gtk"
+        }
+       ]
+      },
+      {
+       "xtype" : "ScrolledWindow",
+       "* pack" : "append_page,_this.label_code.el",
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "listeners" : {
+          "button_release_event" : "() => {\n\tthis.onCursorChanged();\n\n\treturn false;\n}",
+          "key_press_event" : "() => {\n\tthis.onCursorChanged();\n\treturn false; \n}"
+         },
+         "gboolean show_line_marks" : true,
+         "| void onCursorChanged" : "(/*ParamSpec ps*/) {\n\t  if (this.loading) {\n            return;\n        }\n       // if (ps.name != \"cursor-position\") {\n       //     return;\n       // }\n\n        var buf = this.el.get_buffer();\n        print(\"cursor changed : %d\\n\", buf.cursor_position);\n        Gtk.TextIter cpos;\n        buf.get_iter_at_offset(out cpos, buf.cursor_position);\n        \n        var ln = cpos.get_line();\n\t\tprint(\"cursor changed line : %d\\n\", ln);\n        var node = _this.file.lineToNode(ln+1);\n \n        if (node == null) {\n            print(\"can not find node\\n\");\n            return;\n        }\n        var prop = node.lineToProp(ln+1);\n        print(\"prop : %s\", prop == null ? \"???\" : prop);\n        \n        \n        \n        \n        // ---------- this selects the tree's node...\n        \n        var ltree = _this.main_window.windowstate.left_tree;\n        var tp = ltree.model.treePathFromNode(node);\n        print(\"got tree path %s\\n\", tp);\n        if (tp != \"\") {\n\t       this.allow_node_scroll = false; /// block node scrolling..\n\t       \n\t       \n\t        //print(\"changing cursor on tree..\\n\");\n\t       \n \n            \n            // let's try allowing editing on the methods.\n            // a little klunky at present..\n            this.prop_selected = \"\";\n            if (prop != null) {\n        \t\t//see if we can find it..\n        \t\tvar kv = prop.split(\":\");\n        \t\tif (kv[0] == \"p\") {\n        \t\t\n\t        \t\t//var k = prop.get_key(kv[1]);\n\t        \t\t// fixme -- need to determine if it's an editable property...\n\t        \t\tthis.prop_selected = prop;\n\t        \t\t\n        \t\t} else if (kv[0] == \"l\") {\n        \t\t\t this.prop_selected = prop;\n        \t\t\t\n        \t\t}\n            }\n            ltree.view.setCursor(tp, \"editor\");\n           // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); \n           this.nodeSelected(node,false);\n            \n            // scrolling is disabled... as node selection calls scroll 10ms after it changes.\n            GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {\n\t            this.allow_node_scroll = true;\n\t            return false;\n            });\n        }\n        \n        // highlight the node..\n}\n ",
+         "id" : "sourceview",
+         "| void clearGreySelection" : "() {\n // clear all the marks..\n    var sbuf = (Gtk.SourceBuffer)this.el.buffer;\n    \n    Gtk.TextIter start;\n    Gtk.TextIter end;     \n        \n    sbuf.get_bounds (out start, out end);\n    sbuf.remove_source_marks (start, end, \"grey\");\n    \n    \n}\n",
+         "* init" : "{\n   \n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(8000);\n    this.el.override_font(description);\n\n    this.loading = true;\n    //var buf = this.el.get_buffer();\n    //buf.notify.connect(this.onCursorChanged);\n  \n  \n  \n    var attrs = new Gtk.SourceMarkAttributes();\n    var  pink =   Gdk.RGBA();\n    pink.parse ( \"pink\");\n    attrs.set_background ( pink);\n    attrs.set_icon_name ( \"process-stop\");    \n    attrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"ERR\", attrs, 1);\n    \n     var wattrs = new Gtk.SourceMarkAttributes();\n    var  blue =   Gdk.RGBA();\n    blue.parse ( \"#ABF4EB\");\n    wattrs.set_background ( blue);\n    wattrs.set_icon_name ( \"process-stop\");    \n    wattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"WARN\", wattrs, 1);\n    \n \n    \n     var dattrs = new Gtk.SourceMarkAttributes();\n    var  purple =   Gdk.RGBA();\n    purple.parse ( \"#EEA9FF\");\n    dattrs.set_background ( purple);\n    dattrs.set_icon_name ( \"process-stop\");    \n    dattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"DEPR\", dattrs, 1);\n    \n    \n    var gattrs = new Gtk.SourceMarkAttributes();\n    var  grey =   Gdk.RGBA();\n    grey.parse ( \"#ccc\");\n    gattrs.set_background ( grey);\n \n    \n    this.el.set_mark_attributes (\"grey\", gattrs, 1);\n    \n    \n    \n    \n    \n    \n}\n ",
+         "| void nodeSelected" : "(JsRender.Node? sel, bool scroll ) {\n  \n    \n\t\n    // this is connected in widnowstate\n\n\n\t// not sure why....   \n    while(Gtk.events_pending()) {\n        Gtk.main_iteration();\n    }\n    \n    this.node_selected = sel;\n    \n    this.updateGreySelection(scroll);\n    \n    \n    \n}\n\n   \n",
+         "bool loading" : true,
+         "| string toString" : "() {\n   Gtk.TextIter s;\n    Gtk.TextIter e;\n    this.el.get_buffer().get_start_iter(out s);\n    this.el.get_buffer().get_end_iter(out e);\n    var ret = this.el.get_buffer().get_text(s,e,true);\n    //print(\"TO STRING? \" + ret);\n    return ret;\n}\n",
+         "| void loadFile" : "( ) {\n    this.loading = true;\n    \n    \n    // get the cursor and scroll position....\n    var buf = this.el.get_buffer();\n\tvar cpos = buf.cursor_position;\n    \n   print(\"BEFORE LOAD cursor = %d\\n\", cpos);\n   \n    var vadj_pos = this.el.get_vadjustment().get_value();\n   \n    \n \n    buf.set_text(\"\",0);\n    var sbuf = (Gtk.SourceBuffer) buf;\n\n    \n\n    if (_this.file == null || _this.file.xtype != \"Roo\") {\n        print(\"xtype != Roo\");\n        this.loading = false;\n        return;\n    }\n    \n    // get the string from the rendered tree...\n     \n     var str = _this.file.toSource();\n     \n//    print(\"setting str %d\\n\", str.length);\n    buf.set_text(str, str.length);\n    var lm = Gtk.SourceLanguageManager.get_default();\n     \n    //?? is javascript going to work as js?\n    \n    ((Gtk.SourceBuffer)(buf)) .set_language(lm.get_language(_this.file.language));\n  \n    \n    Gtk.TextIter start;\n    Gtk.TextIter end;     \n        \n    sbuf.get_bounds (out start, out end);\n    sbuf.remove_source_marks (start, end, null); // remove all marks..\n    \n     GLib.Timeout.add(500, () => {\n\n        print(\"RESORTING cursor to = %d\\n\", cpos);\n\t\tGtk.TextIter cpos_iter;\n\t\tbuf.get_iter_at_offset(out cpos_iter, cpos);\n\t\tbuf.place_cursor(cpos_iter); \n\t\t\n\t\tthis.el.get_vadjustment().set_value(vadj_pos);;\n\t\t\n\n\t\tthis.onCursorChanged();\n\t\t\n\t\t\n\t\t_this.buffer.checkSyntax();\n\t\treturn false;\n\t});\n\t\t\n    this.loading = false; \n    _this.buffer.dirty = false;\n}\n",
+         "* pack" : "add",
+         "xtype" : "SourceView",
+         "bool allow_node_scroll" : true,
+         "$ string prop_selected" : "\"\"",
+         "| void updateGreySelection" : "(bool scroll) { \n\tvar sel = this.node_selected;\n\tprint(\"node selected\\n\");\n    var buf = this.el.get_buffer();\n    var sbuf = (Gtk.SourceBuffer) buf;\n\n   \n   this.clearGreySelection();\n   \n   \n   \n     if (sel == null) {\n\t     print(\"no selected node\\n\");\n        // no highlighting..\n        return;\n    }\n    \n    print(\"highlight region %d to %d\\n\", sel.line_start,sel.line_end);\n    Gtk.TextIter iter;   \n    sbuf.get_iter_at_line(out iter,  sel.line_start);\n    \n    \n    Gtk.TextIter cur_iter;\n    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);\n   \n    var cursor_at_line = cur_iter.get_line();\n    \n    \n    //var cur_line = cur_iter.get_line();\n    //if (cur_line > sel.line_start && cur_line < sel.line_end) {\n    \n    //} else {\n    if (scroll) {\n\t\tprint(\"scrolling to node -- should occur on node picking.\\n\");\n    \tthis.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);\n\t}\n    \n    var start_line = sel.line_start;\n    var end_line = sel.line_end;\n    \n    \n    this.el.editable = false;\n    \n    var colon_pos = 0;\n    \n    // now if we have selected a property...\n    if (this.prop_selected.length> 0 ) {\n\n\t\tint nstart, nend;\n\t\tif (sel.getPropertyRange(this.prop_selected, out nstart, out nend) && nend > nstart) {\n\t\t\tstart_line = nstart;\n\t\t\tend_line = nend;\n\t\t\tthis.el.editable = true;\n\t\t\tprint(\"start line = %d, end line = %d\\n\", start_line, end_line);\n\t\t\t\n\t\t\t\t// see if we are 'right of ':'\n\t\t\t\t// get an iter for the start of the line.\n\t\t\tGtk.TextIter start_line_iter,end_line_iter;\n\t\t\tthis.el.buffer.get_iter_at_line(out start_line_iter, start_line -1);\n\t\t\tthis.el.buffer.get_iter_at_line(out end_line_iter, start_line -1);\n\t\t\t \n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\tif (end_line_iter.forward_to_line_end()) {\n\t\t\t\tvar first_line  = this.el.buffer.get_text(start_line_iter, end_line_iter, false);\n\t\t\t\tprint(\"first line = %s\\n\", first_line);\n\t\t\t\tif (first_line.contains(\":\")) {\n\t\t\t\t\tcolon_pos = start_line_iter.get_offset() + first_line.index_of(\":\") + 1;\n\t\t\t\t}\n\t\t\t\tprint(\"colon_pos  = %d\\n\", colon_pos);\n\t\t\t}\n\t\t\tprint(\"is cursor at line? %d ?= %d\\n\", start_line -1 , cursor_at_line);\n\t\t\tif (start_line - 1 == cursor_at_line) {\n\t\t\t\tprint(\"cursor is on current line.\\n\");\n\t\t\t\tvar before_cursor_string = this.el.buffer.get_text(start_line_iter, cur_iter, false);\n\t\t\t\tprint(\"before cursor string =  %s\\n\", before_cursor_string);\n\t\t\t\tif (!before_cursor_string.contains(\":\")) {\n\t\t\t\t\tthis.el.editable = false;\n\t\t\t\t}\n\t\t\t\t\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t}\n\t\tprint(\"propSelected = %s range  %d -> %d\\n\", this.prop_selected, start_line, end_line);\t\t\n\t\t\n\t\t\n    }\n    \n\tprint(\"checking selection\\n\");\n    \n    \n    // check selection - if it's out of 'bounds'\n    if (this.el.editable && sbuf.get_has_selection()) {\n\t\tGtk.TextIter sel_start_iter, sel_end_iter;\n\t\tsbuf.get_selection_bounds(out sel_start_iter, out sel_end_iter);\n\t\t\n\t\tif (sel_start_iter.get_line() < start_line || sel_end_iter.get_line() > end_line ||\n\t\t\tsel_start_iter.get_line() > end_line   || sel_end_iter.get_line() < start_line\t\t\t) {\n\t\t\t// save?\n\t\t\tthis.el.editable = false;\n\t\t}\n\t\tif (colon_pos > 0 &&\n\t\t\t(sel_start_iter.get_offset() < colon_pos || sel_end_iter.get_offset() < colon_pos)\n\t\t\t\n\t\t) {\n\t\t\tthis.el.editable = false;\n\t\t}\n\t\t\n\t\t \n    \n    }\n    \n    \n    \n    \n    for (var i = 0; i < buf.get_line_count();i++) {\n        if (i < (start_line -1) || i > (end_line -1)) {\n           \n            sbuf.get_iter_at_line(out iter, i);\n            sbuf.create_source_mark(null, \"grey\", iter);\n            \n        }\n    \n    }\n    if (scroll && (cursor_at_line > end_line || cursor_at_line < start_line)) {\n\t    Gtk.TextIter cpos_iter;\n\t\tbuf.get_iter_at_line(out cpos_iter, start_line);\n\t\t\n\t\tbuf.place_cursor(cpos_iter); \n\t}\n\n\n}",
+         "| void highlightErrorsJson" : " (string type, Json.Object obj) {\n       // this is a hook for the vala code - it has no value in javascript \n       // as we only have one error ususally....\n        return  ;\n    \n \n\n\n}",
+         "JsRender.Node? node_selected" : "null",
+         "$ xns" : "Gtk",
+         "gboolean show_line_numbers" : true,
+         "gboolean editable" : false,
+         "items" : [
+          {
+           "listeners" : {
+            "changed" : " () => {\n    // check syntax??\n    // ??needed..??\n   // _this.save_button.el.sensitive = true;\n    ///?? has changed occured during loading?\n    if (_this.sourceview.loading) {\n\t\treturn;\n\t}\n\t\n    print(\"- PREVIEW EDITOR CHANGED--\");\n\n    this.dirty = true;    \n    if (!this.checkSyntax()) {\n\t\treturn;\n\t}\t\t\n    \n   // what are we editing??\n   \n\n\n\n\n    return ;\n}\n\n \n"
+           },
+           "bool dirty" : false,
+           "int error_line" : "-1",
+           "id" : "buffer",
+           "| bool highlightErrors" : "( Gee.HashMap<int,string> validate_res) {\n         \n    this.error_line = validate_res.size;\n\t\n    if (this.error_line < 1) {\n          return true;\n    }\n    var tlines = this.el.get_line_count ();\n    Gtk.TextIter iter;\n    var valiter = validate_res.map_iterator();\n    while (valiter.next()) {\n    \n//        print(\"get inter\\n\");\n        var eline = valiter.get_key();\n        if (eline > tlines) {\n            continue;\n        }\n        this.el.get_iter_at_line( out iter, eline);\n        //print(\"mark line\\n\");\n        this.el.create_source_mark(valiter.get_value(), \"ERR\", iter);\n    }   \n    return false;\n}",
+           "|   string toString" : "  () {\n    \n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    this.el.get_start_iter(out s);\n    this.el.get_end_iter(out e);\n    var ret = this.el.get_text(s,e,true);\n    //print(\"TO STRING? \" + ret);\n    return ret;\n}\n ",
+           "|   bool checkSyntax" : " () {\n \n   \n    var str = this.toString();\n    \n    // needed???\n    if (this.error_line > 0) {\n         Gtk.TextIter start;\n         Gtk.TextIter end;     \n        this.el.get_bounds (out start, out end);\n\n        this.el.remove_source_marks (start, end, null);\n    }\n    \n    if (str.length < 1) {\n        print(\"checkSyntax - empty string?\\n\");\n        return false;\n    }\n    \n   if (_this.file == null) {\n       return false;\n   }\n    var p = Palete.factory(_this.file.xtype);  // returns Roo | Gtk  | PlainFile \n    \n \n    if (_this.file.language != \"js\") {\n\t\treturn false; // fake syntax error.\n\t}\n\t\n    //Gee.HashMap<int,string> ret_x;\n\n\treturn p.javascriptHasErrors(\n\t\t_this.main_window.windowstate,\n        str, \n         \"\", // _this.key, \n        \"file\", //_this.ptype,\n        _this.file, \n        null\n    );    \n     \n}\n",
+           "* pack" : "set_buffer",
+           "xtype" : "SourceBuffer",
+           "$ xns" : "Gtk"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

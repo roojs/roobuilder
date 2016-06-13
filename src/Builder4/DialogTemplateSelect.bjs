@@ -1,0 +1,129 @@
+{
+ "name" : "DialogTemplateSelect",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/DialogTemplateSelect.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "listeners" : {
+    "delete_event" : "  (self, event)  =>{\n    this.el.hide();\n    return true;\n} "
+   },
+   "default_width" : 400,
+   "title" : "Add an Object",
+   "xtype" : "Dialog",
+   "default_height" : 200,
+   "$ modal" : true,
+   "$ xns" : "Gtk",
+   "| JsRender.Node? show" : " (Xcls_MainWindow mwindow, Palete.Palete pal, JsRender.Node node, Project.Project project) {\n    \n    this.el.show_all();\n    var opts = pal.listTemplates(node);\n    if (opts.length() < 1) {\n        this.el.hide();\n        return node;\n    }\n    this.el.set_attached_to( mwindow.el);\n    this.el.set_transient_for( mwindow.el);\n    \n    //opts.unshift({ path: '' , name :'Just add Element' });\n     _this.model.loadData(opts);\n     _this.combo.el.set_active(-1);\n     \n     \n     var db =  new Palete.RooDatabase.from_project(project);\n     _this.dbmodel.loadData(db.readTablesGee());\n     \n     var plug = mwindow.windowstate.webkit_plugin;\n     \n     _this.dbcombo.el.set_active(-1);\n     \n     \n   \n    var res = this.el.run();\n    this.el.hide();    \n    //var ix = _this.combo.el.get_active();\n    if (res < 1 ) {\n        return null; // 0 = cancel.\n    }\n    if (res < 2 ) {\n        return node; // 1 = just add it..\n    }\n    \n    // have they selected a table??\n    \n   Gtk.TreeIter iter; \n    Value vfname;   \n    if (_this.dbcombo.el.get_active_iter (out iter)) {    \n         this.dbmodel.el.get_value (iter, 0, out vfname);\n         if (((string)vfname).length > 0 && plug.has_plugin(node.fqn())) {\n            var json_str = plug.show(mwindow.el, project, node.fqn(), (string)vfname);\n            print(\"json_str = %s\\n\", json_str);\n            if (json_str.length < 1) {\n\n                return node;\n            }\n            var pa = new Json.Parser();\n            try {\n\n\t        pa.load_from_data(json_str);\n\t    } catch(Error e) {\n\t        return node;\n\t    }\n\t    var new_node = pa.get_root();\n    \n\t    if (new_node.get_node_type () != Json.NodeType.OBJECT) {\n\t\t    return node;\n\t    }\n\t    var obj = new_node.get_object ();\n\n\t    var ret = new JsRender.Node();\n\n\t    ret.loadFromJson(obj, 1);\n\t    return ret;\n         }\n        \n    }\n\n    if (!_this.combo.el.get_active_iter (out iter)) {\n\n        return node; // nothing selected...\n    }\n   \n    this.model.el.get_value (iter, 0, out vfname);\n    \n    \n    return pal.loadTemplate((string)vfname);\n\n}\n",
+   "items" : [
+    {
+     "xtype" : "Box",
+     "$ pack" : "get_content_area().add ",
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "items" : [
+      {
+       "* pack" : "pack_start,false,false,0",
+       "xtype" : "Box",
+       "gint margin" : 3,
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "items" : [
+        {
+         "label" : "Select Template : ",
+         "xtype" : "Label",
+         "* pack" : "pack_start,false,false",
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "combo",
+         "* init" : "this.el.add_attribute(_this.cellrenderer.el , \"markup\", 1 );",
+         "xtype" : "ComboBox",
+         "* pack" : "add",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "id" : "cellrenderer",
+           "xtype" : "CellRendererText",
+           "* pack" : "pack_start,true",
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "model",
+           "* pack" : "set_model",
+           "xtype" : "ListStore",
+           "$ columns" : "typeof(string),typeof(string)",
+           "n_columns" : 2,
+           "$ xns" : "Gtk",
+           "| void loadData" : "  (GLib.List<string> data) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n    \n    for (var i = 0; i < data.length();i++) {\n    \n\n        el.append(out iter);\n        var str = data.nth_data(i);\n        var fn = Path.get_basename (str);\n        fn.replace(\".json\", \"\");\n        \n        el.set_value(iter, 0, str);\n        el.set_value(iter, 1, fn);\n        \n    }\n    this.el.set_sort_column_id(1, Gtk.SortType.ASCENDING);          \n                                     \n}\n"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "* pack" : "pack_start,false,false,0",
+       "xtype" : "Box",
+       "gint margin" : 3,
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "items" : [
+        {
+         "label" : "Select Database Table : ",
+         "xtype" : "Label",
+         "* pack" : "pack_start,false,false",
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "dbcombo",
+         "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
+         "xtype" : "ComboBox",
+         "* pack" : "add",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "id" : "dbcellrenderer",
+           "xtype" : "CellRendererText",
+           "* pack" : "pack_start,true",
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "dbmodel",
+           "* pack" : "set_model",
+           "xtype" : "ListStore",
+           "$ columns" : "typeof(string),typeof(string)",
+           "n_columns" : 2,
+           "$ xns" : "Gtk",
+           "| void loadData" : "  (Gee.ArrayList<string> data) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"\");\n    el.set_value(iter, 1, \"-- select a table --\");\n    \n    \n    for (var i = 0; i < data.size;i++) {\n    \n\n        el.append(out iter);\n        \n        el.set_value(iter, 0, data.get(i));\n        el.set_value(iter, 1, data.get(i));\n        \n    }\n     this.el.set_sort_column_id(0, Gtk.SortType.ASCENDING);          \n                                     \n}\n"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "label" : "Cancel",
+     "xtype" : "Button",
+     "* pack" : "add_action_widget,0",
+     "$ xns" : "Gtk"
+    },
+    {
+     "label" : "Just add it",
+     "* pack" : "add_action_widget,1",
+     "xtype" : "Button",
+     "$ xns" : "Gtk"
+    },
+    {
+     "label" : "OK",
+     "xtype" : "Button",
+     "* pack" : "add_action_widget,2",
+     "$ xns" : "Gtk"
+    }
+   ]
+  }
+ ]
+}

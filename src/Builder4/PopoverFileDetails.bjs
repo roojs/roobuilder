@@ -1,0 +1,297 @@
+{
+ "name" : "PopoverFileDetails",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/PopoverFileDetails.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "listeners" : {
+    "closed" : "() => {\n  if (!this.done) {\n    _this.el.show();\n  \n  }\n} "
+   },
+   "|   void updateFileFromEntry" : "() {\n\n        _this.file.title = _this.title.el.get_text();\n        _this.file.region = _this.region.el.get_text();            \n        _this.file.parent = _this.parent.el.get_text();                        \n        _this.file.permname = _this.permname.el.get_text();                                    \n        _this.file.modOrder = _this.modOrder.el.get_text();\n        \n        if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {\n            _this.file.renameTo(_this.name.el.get_text());\n        }\n        // store the module...\n        _this.file.build_module = \"\";        \n         Gtk.TreeIter iter; \n        if (_this.build_module.el.get_active_iter (out iter)) {\n             Value vfname;\n             this.dbmodel.el.get_value (iter, 0, out vfname);\n             if (((string)vfname).length > 0) {\n                 _this.file.build_module = (string)vfname;\n             }\n    \n        }\n        \n        \n\n                                                    \n}    ",
+   "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
+   "id" : "PopoverFileDetails",
+   "| void show" : "(JsRender.JsRender c, Gtk.Widget btn) \n{\n    this.project = c.project;\n    this.done = false;\n    \n    \n    //if (!this.el) {\n        //this.init();\n     //}\n    \n    _this.name.el.set_text(c.name);\n    _this.title.el.set_text(c.title);\n    _this.parent.el.set_text(c.parent);    \n    _this.region.el.set_text(c.region);\n    _this.modOrder.el.set_text(c.modOrder);\n     _this.permname.el.set_text(c.permname);\n    \n    \n    \n    \n    \n    \n    \n    \n     var ar = new Gee.ArrayList<string>();\n     _this.dbmodel.loadData(ar,\"\");\n    // load the modules... if relivant..\n    if (this.project.xtype == \"Gtk\") {\n        var p = (Project.Gtk)c.project;\n          var cg = p.compilegroups;\n\n        var iter = cg.map_iterator();\n       while(iter.next()) {\n            var key = iter.get_key();\n            if (key == \"_default_\") {\n                continue;\n            }\n            ar.add(key);\n        };\n        _this.dbmodel.loadData(ar, c.build_module);\n\n    }\n    \n     \n    _this.file = c;\n    //console.log('show all');\n   this.el.set_modal(true);\n    this.el.set_relative_to(btn);\n\n    this.el.set_position(Gtk.PositionType.RIGHT);\n    \n    // window + header?\n     print(\"SHOWALL - POPIP\\n\");\n    this.el.show_all();\n    this.name.el.grab_focus();\n    \n    \n    \n    if (c.path.length > 0) {\n\t    this.save_btn.el.set_label(\"Save\");\n\t\t_this.filetype.el.hide();\n\t\t_this.filetypelbl.el.hide();\n\t\t_this.filetype.showhide(true); // as we only work on bjs files currently\n    } else {\n        this.save_btn.el.set_label(\"Create\");\n        _this.ftdbmodel.loadData(\"bjs\"); // fixme - need to determine type..\n\t    _this.filetype.el.show();\n\t    _this.filetypelbl.el.show();\n    }\n    \n    \n    //this.success = c.success;\n    \n    \n}",
+   "bool done" : false,
+   "# Project.Project project" : "",
+   "xtype" : "Popover",
+   "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
+   "# JsRender.JsRender file" : "null",
+   "$ xns" : "Gtk",
+   "Xcls_MainWindow mainwindow" : "null",
+   "bool modal" : true,
+   "uint border_width" : 0,
+   "items" : [
+    {
+     "bool homogeneous" : false,
+     "xtype" : "Box",
+     "$ pack" : "add",
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "items" : [
+      {
+       "* pack" : "pack_start,false,true,0",
+       "xtype" : "HeaderBar",
+       "$ xns" : "Gtk",
+       "string title" : "Add / Edit File"
+      },
+      {
+       "id" : "grid",
+       "int margin_right" : 4,
+       "* pack" : "pack_start,false,false,4",
+       "xtype" : "Grid",
+       "uint row_spacing" : 2,
+       "n_columns" : 2,
+       "$ xns" : "Gtk",
+       "n_rows" : 7,
+       "$ homogeneous" : true,
+       "int margin_left" : 4,
+       "items" : [
+        {
+         "label" : "File type",
+         "id" : "filetypelbl",
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,0,1,1",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "listeners" : {
+          "changed" : "() => {\n\tGtk.TreeIter iter;\n\tbool is_bjs = true;\n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.ftdbmodel.el.get_value (iter, 0, out vfname);\n\t\t is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n    this.showhide(is_bjs);\n\n\n}\n"
+         },
+         "id" : "filetype",
+         "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
+         "* pack" : "attach,1,0,1,1",
+         "xtype" : "ComboBox",
+         "| void showhide" : "(bool is_bjs) {\n\tfor (var i = 2; i < 9;i++) {\n\t\tvar el = _this.grid.el.get_child_at(0,i);\n\t\t\n\t\tvar showhide= is_bjs;\n\t\tif (i> 7) {\n\t\t\tshowhide = !showhide;\n\t\t}\n\t\t\n\t\tif (showhide) {\n\t\t   el.show();\n\t\t} else {\n\t\t\tel.hide();\n\t\t}\n\t\t el = _this.grid.el.get_child_at(1,i);\n\t\tif (showhide) {\n\t\t   el.show();\n\t\t} else {\n\t\t\tel.hide();\n\t\t}     \n    }\n    // load up the directories\n    //??? why can we not create bjs files in other directories??\n\tif (!is_bjs && _this.file.path.length < 1) {\n\t\t_this.dirmodel.loadData();\n\t\t\n\t\t\n\t}\n   \n    \n}\n",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "id" : "ftdbcellrenderer",
+           "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "ftdbmodel",
+           "* pack" : "set_model",
+           "xtype" : "ListStore",
+           "$ columns" : "typeof(string),typeof(string)",
+           "n_columns" : 2,
+           "$ xns" : "Gtk",
+           "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"bjs\");\n    el.set_value(iter, 1, \"User Interface File (bjs)\");\n    _this.filetype.el.set_active_iter(iter);\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"vala\");\n    el.set_value(iter, 1, \"Vala\");\n\tif (cur == \"vala\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"js\");\n    el.set_value(iter, 1, \"Javascript\");\n\n\tif (cur == \"js\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"css\");\n    el.set_value(iter, 1, \"CSS\");\n\n\tif (cur == \"css\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n                                     \n}\n"
+          }
+         ]
+        },
+        {
+         "label" : "Component Name",
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,1,1,1",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "name",
+         "$ visible" : true,
+         "xtype" : "Entry",
+         "* pack" : "attach,1,1,1,1",
+         "$ xns" : "Gtk"
+        },
+        {
+         "label" : "Title",
+         "$ visible" : true,
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,2,1,1",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "title",
+         "$ visible" : true,
+         "xtype" : "Entry",
+         "* pack" : "attach,1,2,1,1",
+         "$ xns" : "Gtk"
+        },
+        {
+         "label" : "Region",
+         "$ visible" : true,
+         "tooltip_text" : "center, north, south, east, west",
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,3,1,1",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "region",
+         "$ visible" : true,
+         "xtype" : "Entry",
+         "* pack" : "attach,1,3,1,1",
+         "$ xns" : "Gtk"
+        },
+        {
+         "label" : "Parent Name",
+         "$ visible" : true,
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,4,1,1",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "parent",
+         "$ visible" : true,
+         "xtype" : "Entry",
+         "* pack" : "attach,1,4,1,1",
+         "$ xns" : "Gtk"
+        },
+        {
+         "label" : "Permission Name",
+         "$ visible" : true,
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,5,1,1",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "permname",
+         "$ visible" : true,
+         "xtype" : "Entry",
+         "* pack" : "attach,1,5,1,1",
+         "$ xns" : "Gtk"
+        },
+        {
+         "label" : "Order (for tabs)",
+         "$ visible" : true,
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,6,1,1",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "modOrder",
+         "$ visible" : true,
+         "xtype" : "Entry",
+         "* pack" : "attach,1,6,1,1",
+         "$ xns" : "Gtk"
+        },
+        {
+         "label" : "Module to build (Vala only)",
+         "$ visible" : true,
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,7,1,1",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "build_module",
+         "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
+         "* pack" : "attach,1,7,1,1",
+         "xtype" : "ComboBox",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "id" : "dbcellrenderer",
+           "xtype" : "CellRendererText",
+           "* pack" : "pack_start,true",
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "dbmodel",
+           "xtype" : "ListStore",
+           "* pack" : "set_model",
+           "$ columns" : "typeof(string),typeof(string)",
+           "n_columns" : 2,
+           "$ xns" : "Gtk",
+           "| void loadData" : "  (Gee.ArrayList<string> data, string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"\");\n    el.set_value(iter, 1, \"-- select a module --\");\n    _this.build_module.el.set_active_iter(iter);\n    \n    for (var i = 0; i < data.size;i++) {\n    \n\n        el.append(out iter);\n        \n        el.set_value(iter, 0, data.get(i));\n        el.set_value(iter, 1, data.get(i));\n        \n        if (data.get(i) == cur) {\n            _this.build_module.el.set_active_iter(iter);\n        }\n        \n    }\n     this.el.set_sort_column_id(0, Gtk.SortType.ASCENDING);          \n                                     \n}\n"
+          }
+         ]
+        },
+        {
+         "label" : "Directory",
+         "$ visible" : true,
+         "xalign" : 0.90000000000000002,
+         "* pack" : "attach,0,8",
+         "xtype" : "Label",
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "x_options" : 4,
+         "$ xns" : "Gtk"
+        },
+        {
+         "id" : "dir",
+         "* init" : "this.el.add_attribute(_this.dircellrenderer.el , \"markup\", 1 );",
+         "* pack" : "attach,1,8",
+         "xtype" : "ComboBox",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "id" : "dircellrenderer",
+           "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "dirmodel",
+           "* pack" : "set_model",
+           "xtype" : "ListStore",
+           "$ columns" : "typeof(string),typeof(string)",
+           "n_columns" : 2,
+           "$ xns" : "Gtk",
+           "| void loadData" : "  () {\n\t\n\t\n  \n    this.el.clear();                                    \n    \n    if (!(_this.project is Project.Gtk)) {\n\t\treturn;\n\t}\n    var sd = ((Project.Gtk)_this.project).sourcedirs();\n    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n//    el.append(out iter);\n\n    \n//    el.set_value(iter, 0, \"\");\n  //  el.set_value(iter, 1, \"-- select a directoyr --\");\n    //_this.build_module.el.set_active_iter(iter);\n    \n    for (var i = 0; i < sd.length;i++) {\n    \n\n        el.append(out iter);\n        \n        el.set_value(iter, 0, sd[i]);\n        el.set_value(iter, 1, sd[i]);\n        \n        //if (data.get(i) == cur) {\n        //    _this.build_module.el.set_active_iter(iter);\n       // }\n        \n    }\n  //  this.el.set_sort_column_id(0, Gtk.SortType.ASCENDING);          \n                                     \n}\n"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "int margin_bottom" : 4,
+       "int margin_right" : 4,
+       "* pack" : "pack_end,false,true,0",
+       "xtype" : "HButtonBox",
+       "$ xns" : "Gtk",
+       "int margin_left" : 4,
+       "items" : [
+        {
+         "listeners" : {
+          "clicked" : "() => { \n\n  _this.done = true;\n    _this.el.hide(); \n}"
+         },
+         "string label" : "Cancel",
+         "* pack" : "add",
+         "xtype" : "Button",
+         "$ xns" : "Gtk"
+        },
+        {
+         "listeners" : {
+          "clicked" : "( ) =>  { \n\n \n\n\n\tif (_this.name.el.get_text().length  < 1) {\n\t    StandardErrorDialog.show(\n\t        _this.mainwindow.el,\n\t        \"You have to set Component name \"\n\t    );\n\t     \n\t    return;\n\t}\n\t// what does this do?\n\t\n\tvar isNew = _this.file.name.length  > 0 ? false : true;\n\t/*\n\tif (!isNew && this.file.name != _this.name.el.get_text()) {\n\t    Xcls_StandardErrorDialog.singleton().show(\n\t        this.el,\n\t        \"Sorry changing names does not work yet. \"\n\t    );\n\t     \n\t    return;\n\t}\n\t*/\n\t \n\t\n  \n\t// FIXME - this may be more complicated...\n\t//for (var i in this.def) {\n\t//    this.file[i] =  this.get(i).el.get_text();\n\t//}\n\n\tif (!isNew) {\n\t    try {\n\t         _this.updateFileFromEntry();\n\t     } catch( JsRender.Error.RENAME_FILE_EXISTS er) {\n\t          Xcls_StandardErrorDialog.singleton().show(\n\t            _this.mainwindow.el,\n\t            \"The name you used already exists \"\n\t        );\n\t        return;\n\t         \n\t     }\n\n\t      _this.done = true;\n\t    _this.file.save();\n\t    _this.el.hide();\n\t    return;\n\t}\n\t\n\t// ---------------- NEW FILES...\n\tGtk.TreeIter iter;\n\n\tif (!_this.filetype.el.get_active_iter(out iter)) {\n\t\t// should not happen...\n\t\t// so we are jut going to return without \n\t\tStandardErrorDialog.show(\n\t        _this.mainwindow.el,\n\t        \"You must select a file type. \"\n\t    );\n\t    return;\n\t\t \n\t}\n\t\n\t\n\tvar fn = _this.name.el.get_text();\n\t\n\tValue ftypename;\n\t_this.ftdbmodel.el.get_value (iter, 0, out ftypename);\n\tvar ext = ((string)ftypename);\n\tvar dir = _this.project.firstPath(); \n\tif (ext != \"bjs\") {\n\t \n\t\tif (!_this.dir.el.get_active_iter(out iter)) {\n\t\t\t// should not happen...\n\t\t\t// so we are jut going to return without \n\t\t\tStandardErrorDialog.show(\n\t\t\t    _this.mainwindow.el,\n\t\t\t    \"You must select a directory \"\n\t\t\t);\n\t\t\treturn;\n\t\t}\n\t\tValue vdir;\n\t\t_this.dirmodel.el.get_value (iter, 0, out vdir);\n\t\tdir = (string)vdir;\n\t}\n\t\n\tvar targetfile = dir + \"/\" + fn;\n\t\n\t// strip the file type off the end..\n\t\n\t\n    var rx = new GLib.Regex(\"\\\\.\" + ext + \"$\",GLib.RegexCompileFlags.CASELESS);\n    targetfile = rx.replace(targetfile, targetfile.length, 0, \"\"); \n   \n\tif (GLib.FileUtils.test(targetfile + \".\" + ext, GLib.FileTest.EXISTS)) {\n\t    Xcls_StandardErrorDialog.singleton().show(\n\t        _this.mainwindow.el,\n\t        \"That file already exists\"\n\t    ); \n\t    return;\n\t}\n   \n   var f =  JsRender.JsRender.factory(\n\t\text == \"bjs\" ? _this.file.project.xtype : \"PlainFile\",  \n\t\t_this.file.project, \n\t\ttargetfile + \".\" + ext);\n\n\t_this.file = f;\n\t\n\n\t\n\t_this.updateFileFromEntry();\n\t_this.file.loaded = true;\n\t_this.file.save();\n\tif (ext == \"bjs\") {\n\t\t_this.file.project.addFile(_this.file);\n\t}\n\t\n \n\t// what about .js ?\n   _this.done = true;\n\t_this.el.hide();\n\n// hopefull this will work with bjs files..\n\t\n\t_this.success(_this.project, _this.file);\n   \n}"
+         },
+         "id" : "save_btn",
+         "xtype" : "Button",
+         "* pack" : "add",
+         "string label" : "Save",
+         "$ xns" : "Gtk"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "name" : "RooProjectProperties",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/RooProjectProperties.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "",
+ "items" : [
+  {
+   "listeners" : {
+    "delete_event" : "  (self, event) => {\n    this.el.hide();\n     return true;\n}",
+    "response" : "  (self, response_id)  => {\n   //print(response_id);\n   if (response_id< 1 ) {\n      this.el.hide();\n    \n      return;\n   }\n   \n   var buf =    view.el.get_buffer();\n   Gtk.TextIter s;\n     Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n    var str = buf.get_text(s,e,true);\n    // ideally we should syntax check it.. but it's html!?\n    \n   //var project = this.get('/Window.LeftTree').getActiveFile().project;\n   \n   \n   _this.project.runhtml = str;\n   _this.project.save();\n   \n  // imports.Builder.Provider.ProjectManager.ProjectManager.saveConfig();\n//   print (str);\n   //    this.get('view').el.get_buffer().get_text(project.runjs, project.runjs.length);\n   // ok pressed..\n   this.el.hide();\n}"
+   },
+   "default_width" : 500,
+   "| void show" : " (Project.Project project) {\n    _this.project = project;\n    // get the active project.\n    \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n    this.el.show_all();\n}\n",
+   "# Project.Project project" : "",
+   "xtype" : "Dialog",
+   "$ modal" : true,
+   "$ xns" : "Gtk",
+   "items" : [
+    {
+     "$ pack" : " get_content_area().add\n",
+     "xtype" : "Box",
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "border_width" : 5,
+     "items" : [
+      {
+       "label" : "HTML To insert at end of <HEAD>",
+       "* pack" : "pack_start,false,false,0",
+       "xtype" : "Label",
+       "$ xns" : "Gtk"
+      },
+      {
+       "* pack" : "pack_end,true,true,0",
+       "xtype" : "ScrolledWindow",
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "id" : "view",
+         "* pack" : "add",
+         "xtype" : "SourceView",
+         "$ xns" : "Gtk"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "label" : "OK",
+     "* pack" : "add_action_widget,1",
+     "xtype" : "Button",
+     "$ xns" : "Gtk"
+    },
+    {
+     "label" : "Cancel",
+     "* pack" : "add_action_widget,0",
+     "xtype" : "Button",
+     "$ xns" : "Gtk"
+    }
+   ]
+  }
+ ]
+}

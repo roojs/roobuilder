@@ -1,0 +1,54 @@
+{
+ "name" : "ValaCompileResults",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/ValaCompileResults.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "int height_request" : 400,
+   "id" : "ValaCompileResults",
+   "| void show" : "( Gtk.Widget onbtn, bool reset) {\n\tint w, h;\n \n\tthis.window.el.get_size(out w, out h);\n    \n    // left tree = 250, editor area = 500?\n    \n    var new_w = int.min(750, w-100);\n    if (new_w > (w-100)) {\n        new_w = w-100;\n    }\n    this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));\n \n\n    if (this.el.relative_to == null) {\n        this.el.set_relative_to(onbtn);\n    }\n    this.el.show_all();\n   // not sure why..\n   \n   if (reset) {\n\t\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();\n\t\tbuf.set_text(\"\",0);\n\t}\n   \n    while(Gtk.events_pending()) { \n            Gtk.main_iteration();\n    }\n    \n    \n    \n}\n",
+   "Xcls_MainWindow window" : "",
+   "xtype" : "Popover",
+   "Gtk.PositionType position" : "Gtk.PositionType.TOP",
+   "bool active" : true,
+   "int width_request" : 600,
+   "$ xns" : "Gtk",
+   "| void addLine" : "(string str) {\n\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();\n\tGtk.TextIter iter;\n\tbuf.get_end_iter (out  iter);\n\tbuf.insert(ref iter, str, str.length);\n\t/// scroll..\n\tbuf.get_end_iter (out  iter);\n\tthis.sourceview.el.scroll_to_iter(iter, 0.0f, true, 0.0f, 1.0f);\n\t\n\n}\n",
+   "bool modal" : true,
+   "items" : [
+    {
+     "id" : "compile_view",
+     "* pack" : "add",
+     "xtype" : "Box",
+     "gboolean homogeneous" : false,
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "items" : [
+      {
+       "* init" : "{\n this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n\n}\n",
+       "bool hexpand" : true,
+       "* pack" : "pack_end,true,true,0",
+       "xtype" : "ScrolledWindow",
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "id" : "sourceview",
+         "* init" : "{\n\n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(8000);\n    this.el.override_font(description);\n\n\n}\n",
+         "xtype" : "SourceView",
+         "* pack" : "add",
+         "bool editable" : false,
+         "$ xns" : "Gtk",
+         "bool show_line_numbers" : false
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

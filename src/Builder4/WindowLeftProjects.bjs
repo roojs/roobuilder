@@ -1,0 +1,78 @@
+{
+ "name" : "WindowLeftProjects",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/WindowLeftProjects.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "listeners" : {
+    "show" : "  ( ) => {\n    this.load();\n}"
+   },
+   "@ void project_selected" : "(Project.Project project)",
+   "id" : "WindowLeftProjects",
+   "|  void load" : "() {\n     // clear list...\n    \n     if (_this.is_loaded) {\n         return;\n     }\n     _this.is_loading = true;\n        \n     _this.is_loaded = true;\n     \n     Project.Project.loadAll();\n     var projects = Project.Project.allProjectsByName();\n     \n     Gtk.TreeIter iter;\n     var m = this.model.el;\n     m.clear();\n          \n     for (var i = 0; i < projects.size; i++) {\n        m.append(out iter);\n        m.set(iter,   0,projects.get(i).name );\n        \n        var o =  GLib.Value(typeof(Object));\n        o.set_object((Object)projects.get(i));\n                   \n        m.set_value(iter, 1, o);\n     \n     }\n     m.set_sort_column_id(0, Gtk.SortType.ASCENDING);\n     _this.is_loading = false;     \n}\n",
+   "# bool is_loaded" : false,
+   "* pack" : "add",
+   "xtype" : "Box",
+   "|  Project.Project? getSelectedProject" : "() {    \n    Gtk.TreeIter iter;\n    Gtk.TreeModel mod;\n            \n    var s = this.view.el.get_selection();\n    if (!s.get_selected(out mod, out iter)) {\n        return null;\n    }\n    \n    GLib.Value gval;\n\n    mod.get_value(iter, 1 , out gval);\n    var project = (Project.Project)gval.get_object();\n    \n    return project;\n}",
+   "|  void selectProject" : "(Project.Project project) {\n    \n    var sel = _this.view.el.get_selection();\n    \n    sel.unselect_all();\n    \n    var found = false;\n    _this.model.el.foreach((mod, path, iter) => {\n        GLib.Value val;\n    \n        mod.get_value(iter, 1, out val);\n        if ( ( (Project.Project)val.get_object()).fn != project.fn) {\n            print(\"SKIP %s != %s\\n\", ((Project.Project)val.get_object()).name , project.name);\n            return false;//continue\n        }\n        sel.select_iter(iter);\n        this.project_selected(project);\n        found = true;\n        return true;\n        \n    \n    });\n     if (!found) {\n\t    print(\"tried to select %s, could not find it\", project.name);\n    }\n}\n",
+   "# bool is_loading" : false,
+   "$ xns" : "Gtk",
+   "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+   "$ homogeneous" : false,
+   "@ void show_new_project" : "()",
+   "items" : [
+    {
+     "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n",
+     "$ shadow_type" : "Gtk.ShadowType.IN",
+     "* pack" : "pack_end,true,true,0",
+     "xtype" : "ScrolledWindow",
+     "$ xns" : "Gtk",
+     "items" : [
+      {
+       "listeners" : {
+        "cursor_changed" : " () => {\n    if (_this.is_loading) {\n        return;\n    }\n    \n    Gtk.TreeIter iter;\n    Gtk.TreeModel mod;\n            \n    var s = this.el.get_selection();\n    if (!s.get_selected(out mod, out iter)) {\n        return;\n    }\n    \n    GLib.Value gval;\n\n    mod.get_value(iter, 1 , out gval);\n    var project = (Project.Project)gval.get_object();\n    \n    _this.project_selected(project);\n    \n}  "
+       },
+       "id" : "view",
+       "* init" : "  var description = new Pango.FontDescription();\n     description.set_size(8000);\n    this.el.override_font(description);     \n                    \n    var selection = this.el.get_selection();\n    selection.set_mode( Gtk.SelectionMode.SINGLE);\n \n\n    \n   \n ",
+       "xtype" : "TreeView",
+       "* pack" : "add",
+       "$ enable_tree_lines" : true,
+       "$ headers_visible" : true,
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "id" : "model",
+         "* init" : "{\n   this.el.set_sort_func(0, (mod,a,b) => {\n       GLib.Value ga, gb;\n       mod.get_value(a,0, out ga);\n       mod.get_value(b,0, out gb);\n        \n        if ((string)ga == (string)gb) {\n            return 0;\n        }\n        return (string)ga > (string)gb ? 1 : -1;\n   }); \n\n\n}\n",
+         "* pack" : "set_model",
+         "xtype" : "ListStore",
+         "$ columns" : "typeof(string), typeof(Object)",
+         "n_columns" : 2,
+         "$ xns" : "Gtk"
+        },
+        {
+         "utf8 title" : "Projects",
+         "* init" : "\n    this.el.add_attribute(_this.namecol.el , \"markup\", 0  );\n ",
+         "* pack" : "append_column",
+         "xtype" : "TreeViewColumn",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "id" : "namecol",
+           "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
+           "$ xns" : "Gtk"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

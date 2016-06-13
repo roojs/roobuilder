@@ -1,0 +1,147 @@
+{
+ "name" : "Editor.Roo.GridPanel",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/edward/gitlive/app.Builder.js/resources/Editors/Editor.Roo.GridPanel.bjs",
+ "permname" : "",
+ "modOrder" : "001",
+ "strings" : {
+  "4ce58cbe362a5d7b156992a496d55bf3" : "Database Column",
+  "b78a3223503896721cca1303f776159b" : "Title",
+  "2f616612593df62aeed112de4f03110e" : "Edit a Grid",
+  "0ccc2bf3fb98387c23b6ca5500244d6e" : "Use ",
+  "c671c787b49f50a3ace9fdc5bd597825" : "core_enum",
+  "32954654ac8fe66a1d09be19001de2d4" : "Width",
+  "a1fa27779242b4902f7ae3bdd5c6d508" : "Type",
+  "6e7376dca68a2386a8737944196ab491" : "Create / Edit Grid"
+ },
+ "items" : [
+  {
+   "listeners" : {
+    "|activate" : "function() {\n    _this.panel = this;\n    if (_this.grid) {\n        _this.grid.footer.onClick('first');\n    }\n}"
+   },
+   "| function loadData" : "function(data) { \n\n     alert(\"IPC:TEST:\" + JSON.stringify(data,null,4));\n    var ar = [];\n    for (var k in data) { \n        var r = data[k];\n        var has_s = typeof(r.relates_to_schema) != 'undefined'\n        ar.push([ !has_s , r.Field, r.Type,  r.Field, 100] );\n        if (!has_s) {\n            continue;\n        }\n        for (var kk in r.relates_to_schema) {         \n            var rr = r.relates_to_schema[kk];\n            if (rr.Field == r.relates_to_col) {\n                continue;\n            }\n            ar.push([ false, r.Field + '_'+ rr.Field, rr.Type,  rr.Field, 100] );\n        }\n    }\n    \n    alert(\"IPC:TEST:\" + JSON.stringify(ar));\n    this.grid.dataSource.loadData(ar);\n}",
+   "| function toBJS" : "function() { \n\n// convert the selected cells into a BJS data ready to send back to the UI..\n   \n    this.table = \"XXX\";\n    this.firstTxtCol = \"XXX\";\n   \n    \n    var jreader = {};\n    var     colmodel = [];\n    this.grid.dataSource.each(function(rec) {\n        if (!rec.data.active) {\n            return;\n        }\n        \n        \n        \n        colmodel.push({\n            \"xtype\": \"ColumnModel\",\n            \"header\": rec.data.title,\n            \"width\":  rec.data.width * 1,\n            \"dataIndex\": rec.data.dataIndex,\n            \"|renderer\": !rec.data.type.match(/date/i) ? \n                    \"function(v) { return String.format('{0}', v); }\" :\n                    \"function(v) { return String.format('{0}', v ? v.format('d/M/Y') : ''); }\" , // special for date\n            \"|xns\": \"Roo.grid\",\n            \"*prop\": \"cm[]\"\n        });\n    });\n    \n    \n    \n\n    alert(\"IPC:OUT:\" + JSON.stringify({\n        '|xns' : 'Roo',\n        xtype : \"GridPanel\",\n        \"title\": this.table,\n        \"fitToframe\": true,\n        \"fitContainer\": true,\n        \"tableName\": this.table,\n        \"background\": true,\n        \"region\" : 'center',\n        \"listeners\": {\n            \"|activate\": \"function() {\\n    _this.panel = this;\\n    if (_this.grid) {\\n        _this.grid.footer.onClick('first');\\n    }\\n}\"\n        },\n        \"items\": [\n            {\n                \"*prop\": \"grid\",\n                \"xtype\": \"Grid\",\n                \"autoExpandColumn\": this.firstTxtCol,\n                \"loadMask\": true,\n                \"listeners\": {\n                    \"|render\": \"function() \\n\" +\n                        \"{\\n\" +\n                        \"    _this.grid = this; \\n\" +\n                        \"    //_this.dialog = Pman.Dialog.FILL_IN\\n\" +\n                        \"    if (_this.panel.active) {\\n\" +\n                        \"       this.footer.onClick('first');\\n\" +\n                        \"    }\\n\" +\n                        \"}\",\n                    \"|rowdblclick\": \"function (_self, rowIndex, e)\\n\" + \n                        \"{\\n\" + \n                        \"    if (!_this.dialog) return;\\n\" + \n                        \"    _this.dialog.show( this.getDataSource().getAt(rowIndex).data, function() {\\n\" + \n                        \"        _this.grid.footer.onClick('first');\\n\" + \n                        \"    }); \\n\" + \n                        \"}\\n\"\n                },\n                \"|xns\": \"Roo.grid\",\n\n                \"items\": [\n                    {\n                        \"*prop\": \"dataSource\",\n                        \"xtype\": \"Store\",\n                         remoteSort : true,\n                        '|sortInfo' : \"{ field : '\" + this.firstTxtCol  +  \"', direction: 'ASC' }\", \n                        \"|xns\": \"Roo.data\",\n                        \"items\": [\n                            \n                            {\n                                \"*prop\": \"proxy\",\n                                \"xtype\": \"HttpProxy\",\n                                \"method\": \"GET\",\n                                \"|url\": \"baseURL + '/Roo/\" + this.table + \".php'\",\n                                \"|xns\": \"Roo.data\"\n                            },\n                            {\n                                '*prop' : 'reader',\n                                'xtype' : 'JsonReader',\n                                '|xns' : 'Roo.data',\n                                'id' : 'id',\n                                'root' : 'data',\n                                'totalProperty' : 'total'\n                            }\n                        ]\n                    },\n                    {\n                        \"*prop\": \"footer\",\n                        \"xtype\": \"PagingToolbar\",\n                        \"pageSize\": 25,\n                        \"displayInfo\": true,\n                        \"displayMsg\": \"Displaying \" + this.table + \"{0} - {1} of {2}\",\n                        \"emptyMsg\": \"No \" + this.table + \" found\",\n                        \"|xns\": \"Roo\"\n                    },\n                    {\n                        \"*prop\": \"toolbar\",\n                        \"xtype\": \"Toolbar\",\n                        \"|xns\": \"Roo\",\n                        \"items\": [\n                            {\n                                \"text\": \"Add\",\n                                \"xtype\": \"Button\",\n                                \"cls\": \"x-btn-text-icon\",\n                                \"|icon\": \"Roo.rootURL + 'images/default/dd/drop-add.gif'\",\n                                \"listeners\": {\n                                    \"|click\": \"function()\\n\"+\n                                        \"{\\n\"+\n                                        \"    if (!_this.dialog) return;\\n\" +\n                                        \"    _this.dialog.show( { id : 0 } , function() {\\n\"+\n                                        \"        _this.grid.footer.onClick('first');\\n\"+\n                                        \"   }); \\n\"+\n                                        \"}\\n\"\n                                },\n                                \"|xns\": \"Roo.Toolbar\"\n                            },\n                             // fill ????\n                            {\n                                \"text\": \"Delete\",\n                                \"cls\": \"x-btn-text-icon\",\n                                \"|icon\": \"rootURL + '/Pman/templates/images/trash.gif'\",\n                                \"xtype\": \"Button\",\n                                \"listeners\": {\n                                    \"|click\": \"function()\\n\"+\n                                        \"{\\n\"+\n                                        \"     Pman.genericDelete(_this, '\" + this.table + \"'); \\n\"+\n                                        \"}\\n\"+\n                                        \"        \"\n                                },\n                                \"|xns\": \"Roo.Toolbar\"\n                            }\n                        ]\n                    }, // end toolbar\n                ].concat( colmodel)\n            }\n        ]\n        \n        \n    }, null, 4));\n\n}",
+   "fitToframe" : true,
+   "background" : false,
+   "region" : "center",
+   "title" : "core_enum",
+   "xtype" : "GridPanel",
+   "$ xns" : "Roo",
+   "fitContainer" : true,
+   "String title" : "Create / Edit Grid",
+   "tableName" : "core_enum",
+   "items" : [
+    {
+     "listeners" : {
+      "|rowdblclick" : "function (_self, rowIndex, e)\n{\n    if (!_this.dialog) return;\n  \n}\n",
+      "cellclick" : "function (_self, rowIndex, columnIndex, e)\n{\n\n        var di = this.colModel.getDataIndex(columnIndex);\n        if (di != 'active') {\n            return;\n        }\n         \n        var rec = _this.grid.ds.getAt(rowIndex);\n        \n        rec.set('active', rec.data.active * 1 ? 0 : 1);\n        rec.commit();\n         \n        \n}",
+      "|render" : "function() \n{\n    _this.grid = this; \n    //_this.dialog = Pman.Dialog.FILL_IN\n\n}"
+     },
+     "Number clicksToEdit" : 1,
+     "autoExpandColumn" : "title",
+     "xtype" : "EditorGrid",
+     "loadMask" : true,
+     "$ xns" : "Roo.grid",
+     "* prop" : "grid",
+     "items" : [
+      {
+       "$ Array fields" : "[ 'active', 'dataIndex', 'type','title', 'width' ]",
+       "$ Array data" : "[\n  [ 1, 'test', 'test', 110 ]\n  \n\n]",
+       "Number id" : "'dataIndex'",
+       "xtype" : "SimpleStore",
+       "$ xns" : "Roo.data",
+       "* prop" : "ds"
+      },
+      {
+       "xtype" : "Toolbar",
+       "$ xns" : "Roo",
+       "* prop" : "toolbar",
+       "items" : [
+        {
+         "string text" : "Edit a Grid",
+         "xtype" : "TextItem",
+         "$ xns" : "Roo.Toolbar"
+        }
+       ]
+      },
+      {
+       "xtype" : "ColumnModel",
+       "header" : "Use ",
+       "width" : 75,
+       "$ renderer" : "function(v) {  \n    var state = v *1 > 0 ?  '-checked' : '';\n\n    return '<img class=\"x-grid-check-icon' + state + '\" src=\"' + Roo.BLANK_IMAGE_URL + '\"/>';\n                \n }",
+       "$ xns" : "Roo.grid",
+       "* prop" : "cm[]",
+       "dataIndex" : "active"
+      },
+      {
+       "xtype" : "ColumnModel",
+       "width" : 150,
+       "header" : "Database Column",
+       "$ renderer" : "function(v) { return String.format('{0}', v); }",
+       "$ xns" : "Roo.grid",
+       "* prop" : "cm[]",
+       "dataIndex" : "dataIndex"
+      },
+      {
+       "xtype" : "ColumnModel",
+       "header" : "Type",
+       "width" : 100,
+       "$ renderer" : "function(v) { return String.format('{0}', v); }",
+       "$ xns" : "Roo.grid",
+       "* prop" : "cm[]",
+       "dataIndex" : "type"
+      },
+      {
+       "xtype" : "ColumnModel",
+       "width" : 75,
+       "header" : "Title",
+       "$ renderer" : "function(v) { return String.format('{0}', v); }",
+       "$ xns" : "Roo.grid",
+       "* prop" : "cm[]",
+       "dataIndex" : "title",
+       "items" : [
+        {
+         "xtype" : "GridEditor",
+         "$ xns" : "Roo.grid",
+         "* prop" : "editor",
+         "items" : [
+          {
+           "xtype" : "TextField",
+           "$ xns" : "Roo.form",
+           "* prop" : "field"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "xtype" : "ColumnModel",
+       "header" : "Width",
+       "width" : 75,
+       "$ renderer" : "function(v) { return String.format('{0}', v); }",
+       "$ xns" : "Roo.grid",
+       "* prop" : "cm[]",
+       "dataIndex" : "width",
+       "items" : [
+        {
+         "xtype" : "GridEditor",
+         "$ xns" : "Roo.grid",
+         "* prop" : "editor",
+         "items" : [
+          {
+           "xtype" : "NumberField",
+           "Number decimalPrecision" : 0,
+           "$ xns" : "Roo.form",
+           "* prop" : "field"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

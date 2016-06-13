@@ -1,0 +1,755 @@
+{
+ "name" : "MainWindow",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/MainWindow.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "listeners" : {
+    "delete_event" : "  (   event) => {\n    return false;\n} ",
+    "destroy" : "() =>  {\n Xcls_MainWindow.singleton().no_windows--;\n \n Resources.singleton().disconnect(_this.statusbar.handler_id);\n \n \n if (Xcls_MainWindow.singleton().no_windows < 1) {\n\n     Gtk.main_quit();\n }\n}",
+    "show" : "  ( ) => {\n    // hide the file editing..\n   \n    //this.hideViewEditing();\n    _this.statusbar.el.hide();\n     _this.statusbar_errors.el.hide();\n    _this.statusbar_warnings.el.hide();\n    _this.statusbar_depricated.el.hide();\n    \n  \n    Resources.singleton().checkResources();\n\n}",
+    "key_release_event" : " (event) => {\n    \n    if (this.search_entry.el.is_visible()) {\n\t\tif (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {\n\t\t    print(\"SAVE: ctrl-f  pressed\");\n\t\t\tthis.search_entry.el.grab_focus();\n\t\t    return false;\n\t\t}\n\t\t\n\t\tif (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {\n\t\t    print(\"SAVE: ctrl-g  pressed\");\n\t\t\tthis.search_entry.forwardSearch(true);\n\t\t    return false;\n\t\t}\n\t\t\n\t}    \n\t\n\tif (event.keyval == Gdk.Key.n && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {\n\t\tprint(\"SAVE: ctrl-n  pressed\");\n\t\tthis.openNewWindow();\n\t\treturn false;\n\t}\n\t\n   // print(event.key.keyval)\n    \n    return false;\n\n} \n\n"
+   },
+   "id" : "MainWindow",
+   "default_width" : 800,
+   "* init" : " \n\t  \n    //this.el.show_all();\n    //try {\n         this.el.set_icon_name(\"roobuilder\");\n\t//} catch (Exception e) {\n\t//\tprint(\"no icon found\");\n//\t}",
+   "| void openNewWindow" : "() {\n\tXcls_MainWindow.singleton().no_windows++;\n        var w = new Xcls_MainWindow();\n        w.ref();\n\n        w.el.show_all();\n        w.initChildren();\n        w.windowstate.switchState(WindowState.State.FILES);\n}\n",
+   "# Project.Project project" : "null",
+   "# string title" : "\"Application Builder\"",
+   "xtype" : "Window",
+   "# int no_windows" : 1,
+   "default_height" : 500,
+   "|        void initChildren" : " () {\n    // this needs putting in a better place..\n    this.windowstate = new WindowState(this);\n     \n\n    //w.el.show_all();\n    var tl = new Clutter.Timeline(6000);\n    tl.set_repeat_count(-1);\n    tl.start();\n    tl.ref();\n\n    \n\n\n\n}\n",
+   "$ xns" : "Gtk",
+   "|             void show" : "() {\n   \n    this.el.show_all();\n\n}",
+   "# WindowState windowstate" : "null",
+   "border_width" : 0,
+   "$ type" : "Gtk.WindowType.TOPLEVEL",
+   "|             void setTitle" : " (string str) {\n    this.headerbar.el.set_title(this.title + \" - \" + str);\n} \n",
+   "items" : [
+    {
+     "id" : "headerbar",
+     "xtype" : "HeaderBar",
+     "* pack" : "set_titlebar",
+     "bool show_close_button" : true,
+     "$ xns" : "Gtk",
+     "string title" : "Application Builder",
+     "items" : [
+      {
+       "* pack" : "pack_start",
+       "xtype" : "Box",
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "items" : [
+        {
+         "bool use_popover" : false,
+         "xtype" : "MenuButton",
+         "* pack" : "add",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "id" : "topbarmenu",
+           "* init" : "{\n    this.el.show_all();\n}\n",
+           "xtype" : "Menu",
+           "* pack" : "set_popup",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "listeners" : {
+              "activate" : "( ) => {\n       _this.openNewWindow();\n}"
+             },
+             "string label" : "Open a new Window",
+             "* pack" : "append",
+             "xtype" : "MenuItem",
+             "$ xns" : "Gtk"
+            },
+            {
+             "* pack" : "append",
+             "xtype" : "SeparatorMenuItem",
+             "$ xns" : "Gtk"
+            },
+            {
+             "listeners" : {
+              "activate" : " ( ) => {\n         Resources.singleton().fetchStart();\n}"
+             },
+             "xtype" : "MenuItem",
+             "string label" : "Download updated Resources",
+             "* pack" : "append",
+             "$ xns" : "Gtk"
+            },
+            {
+             "listeners" : {
+              "activate" : "() => {\n    About.singleton().el.show();\n    }"
+             },
+             "* pack" : "append",
+             "xtype" : "MenuItem",
+             "string label" : "About the Builder",
+             "$ xns" : "Gtk"
+            }
+           ]
+          },
+          {
+           "utf8 icon_name" : "help-about",
+           "* pack" : "set_image",
+           "xtype" : "Image",
+           "$ xns" : "Gtk"
+          }
+         ]
+        },
+        {
+         "listeners" : {
+          "clicked" : "  ( ) => {\n   _this.windowstate.switchState(WindowState.State.FILES);\n      \n\n}"
+         },
+         "id" : "openbtn",
+         "* pack" : "add",
+         "xtype" : "Button",
+         "$ xns" : "Gtk",
+         "$ tooltop_text" : "\"Open File\"",
+         "items" : [
+          {
+           "xtype" : "Image",
+           "utf8 icon_name" : "document-open",
+           "* pack" : "set_image",
+           "$ xns" : "Gtk"
+          }
+         ]
+        },
+        {
+         "listeners" : {
+          "clicked" : "  ( ) => {\n  \n    _this.windowstate.switchState(WindowState.State.PREVIEW);\n    \n\n}"
+         },
+         "id" : "openbackbtn",
+         "utf8 tooltip_text" : "Back",
+         "xtype" : "Button",
+         "* pack" : "add",
+         "$ xns" : "Gtk",
+         "bool visible" : false,
+         "items" : [
+          {
+           "* pack" : "set_image",
+           "xtype" : "Image",
+           "utf8 icon_name" : "go-previous",
+           "$ xns" : "Gtk"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id" : "vbox",
+     "* pack" : "add",
+     "xtype" : "Box",
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "$ homogeneous" : false,
+     "items" : [
+      {
+       "id" : "mainpane",
+       "position" : 400,
+       "* pack" : "pack_start,true,true,0",
+       "# int lastWidth" : 0,
+       "xtype" : "Paned",
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "items" : [
+        {
+         "id" : "leftpane",
+         "xtype" : "Box",
+         "* pack" : "add1",
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "items" : [
+          {
+           "id" : "editpane",
+           "xtype" : "Paned",
+           "* pack" : "pack_start,true,true,0",
+           "$ xns" : "Gtk",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "items" : [
+            {
+             "id" : "tree",
+             "xtype" : "Box",
+             "* pack" : "add1",
+             "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL"
+            },
+            {
+             "id" : "props",
+             "xtype" : "Box",
+             "* pack" : "add2",
+             "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "* pack" : "add2",
+         "xtype" : "Box",
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "items" : [
+          {
+           "listeners" : {
+            "size_allocate" : "  (  alloc) => {\n    if (_this.windowstate == null) {\n        return;\n    }\n    _this.windowstate.resizeCanvas(); \n        \n}"
+           },
+           "id" : "clutterembed",
+           "* init" : "    var stage = this.el.get_stage();\n    stage.set_background_color(  Clutter.Color.from_string(\"#000\"));\n    \n    \n",
+           "xtype" : "Embed",
+           "* pack" : "pack_start,true,true,0",
+           "$ xns" : "GtkClutter",
+           "items" : [
+            {
+             "id" : "rooview",
+             "* init" : "{\n   \n   \n    this.el.add_constraint(\n        new Clutter.AlignConstraint(\n            _this.clutterembed.el.get_stage(), \n            Clutter.AlignAxis.X_AXIS,\n            1.0f\n        )\n    );\n        \n    //this.el.set_position(100,100);\n    this.el.set_pivot_point(1.0f,1.0f);\n    \n    this.el.set_size(_this.clutterembed.el.get_stage().width-50,\n            _this.clutterembed.el.get_stage().height);\n            \n}",
+             "xtype" : "Actor",
+             "* pack" : "get_stage().add_child",
+             "$ xns" : "GtkClutter"
+            },
+            {
+             "id" : "objectview",
+             "* init" : "{\n   \n   /*\n    this.el.add_constraint(\n        new Clutter.AlignConstraint(\n            _this.clutterembed.el.get_stage(), \n            Clutter.AlignAxis.X_AXIS,\n            0.0f\n        )\n    );\n    */\n    this.el.fixed_x = 50.0f;\n    this.el.fixed_y = 0.0f;\n    //this.el.set_position(100,100);\n    this.el.set_pivot_point(0.0f,0.0f);\n    this.el.set_scale(0.0f,1.0f);\n    this.el.set_size((_this.clutterembed.el.get_stage().width-50)/2,\n            _this.clutterembed.el.get_stage().height);\n            \n}",
+             "xtype" : "Actor",
+             "* pack" : "get_stage().add_child",
+             "$ xns" : "GtkClutter"
+            },
+            {
+             "id" : "codeeditview",
+             "* init" : "{\n   \n   /*\n    this.el.add_constraint(\n        new Clutter.AlignConstraint(\n            _this.clutterembed.el.get_stage(), \n            Clutter.AlignAxis.X_AXIS,\n            0.0f\n        )\n    );\n    */\n    this.el.fixed_x = 50.0f;\n    this.el.fixed_y = 0.0f;\n    //this.el.set_position(100,100);\n    this.el.set_pivot_point(0.0f,0.0f);\n    this.el.set_scale(0.0f,1.0f);\n    this.el.set_size((_this.clutterembed.el.get_stage().width-50)/2,\n            _this.clutterembed.el.get_stage().height);\n            \n}",
+             "xtype" : "Actor",
+             "* pack" : "get_stage().add_child",
+             "$ xns" : "GtkClutter"
+            },
+            {
+             "id" : "addpropsview",
+             "* init" : "{\n   \n   /*\n    this.el.add_constraint(\n        new Clutter.AlignConstraint(\n            _this.clutterembed.el.get_stage(), \n            Clutter.AlignAxis.X_AXIS,\n            0.0f\n        )\n    );\n    */\n    this.el.fixed_x = 50.0f;\n    this.el.fixed_y = 0.0f;\n    //this.el.set_position(100,100);\n    this.el.set_pivot_point(0.0f,0.0f);\n    this.el.set_scale(0.0f,1.0f);\n    this.el.set_size((_this.clutterembed.el.get_stage().width-50)/2,\n            _this.clutterembed.el.get_stage().height);\n            \n}",
+             "xtype" : "Actor",
+             "* pack" : "get_stage().add_child",
+             "$ xns" : "GtkClutter"
+            },
+            {
+             "id" : "projecteditview",
+             "* init" : "{\n   \n   \n    this.el.add_constraint(\n        new Clutter.AlignConstraint(\n            _this.clutterembed.el.get_stage(), \n            Clutter.AlignAxis.X_AXIS,\n            1.0f\n        )\n    );\n        \n    //this.el.set_position(100,100);\n    this.el.set_pivot_point(0.0f,0.0f);\n    this.el.set_scale(1.0f,0.0f);\n    this.el.set_size(_this.clutterembed.el.get_stage().width-50,\n            _this.clutterembed.el.get_stage().height /2);\n            \n}",
+             "xtype" : "Actor",
+             "* pack" : "get_stage().add_child",
+             "$ xns" : "GtkClutter"
+            },
+            {
+             "id" : "buttonlayout",
+             "* init" : "{\n    \n    this.el.add_constraint(\n        new Clutter.AlignConstraint(\n            _this.clutterembed.el.get_stage(), \n            Clutter.AlignAxis.X_AXIS,\n            0.0f\n        )\n    );\n     \n    \n    //this.el.set_position(100,100);\n    this.el.set_pivot_point(0.5f,0.5f);\n     this.el.set_size(50,\n           _this.clutterembed.el.get_stage().height);\n     \n}",
+             "xtype" : "Actor",
+             "* pack" : "get_stage().add_child",
+             "$ xns" : "Clutter",
+             "items" : [
+              {
+               "$ orientation" : "Clutter.Orientation.VERTICAL",
+               "xtype" : "BoxLayout",
+               "$ xns" : "Clutter",
+               "* prop" : "layout_manager"
+              },
+              {
+               "id" : "backbutton",
+               "* init" : "this.el.set_size(50,50);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "xtype" : "Actor",
+                 "* pack" : "add_child",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : "  ( ) => {\n   if (_this.windowstate.state == WindowState.State.FILEPROJECT) {\n    \n\t     _this.windowstate.switchState(WindowState.State.FILES);\n     } else { \n\t    _this.windowstate.switchState(WindowState.State.PREVIEW);\n    }\n    \n\n}"
+                   },
+                   "utf8 tooltip_text" : "Back",
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "xtype" : "Image",
+                     "utf8 icon_name" : "go-previous",
+                     "* pack" : "set_image",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id" : "editfilebutton",
+               "* init" : "this.el.set_size(50.0f,50.0f);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "* pack" : "add_child",
+                 "xtype" : "Actor",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : "  ( ) => {\n  \n    // create a new file in project..\n    if (_this.project == null || _this.windowstate.file == null) {\n        return  ;\n    }\n     _this.windowstate.file_details.show(\n        _this.windowstate.file, this.el\n    );\n     \n    return  ;    \n\n\n}"
+                   },
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "$ tooltip_text" : "\"File Details\"",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "utf8 icon_name" : "document-properties",
+                     "* pack" : "set_image",
+                     "xtype" : "Image",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id" : "projecteditbutton",
+               "* init" : "this.el.set_size(50,50);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "* pack" : "add_child",
+                 "xtype" : "Actor",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : "  ( ) => {\n     \n     if (_this.windowstate.state == WindowState.State.FILES) {\n     \n\t     _this.windowstate.switchState(WindowState.State.FILEPROJECT);\n     } else {\n \t     _this.windowstate.switchState(WindowState.State.PROJECT);\n\t }     \n   \n\n\n}"
+                   },
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "$ tooltip_text" : "\"Project Details\"",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "xtype" : "Image",
+                     "utf8 icon_name" : "emblem-system",
+                     "* pack" : "set_image",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "listeners" : {
+                "enter_event" : "(  event)  => {\n    this.el.background_color =   Clutter.Color.from_string(\"#333\");\n        return false;\n}",
+                "leave_event" : "(  event)  => {\n    this.el.background_color =   Clutter.Color.from_string(\"#000\");\n    return false;\n}"
+               },
+               "id" : "objectshowbutton",
+               "* init" : "this.el.set_size(50,50);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "* pack" : "add_child",
+                 "xtype" : "Actor",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : "  ( ) => {\n    \n     _this.windowstate.switchState(WindowState.State.OBJECT);\n  \n \n}"
+                   },
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "$ tooltip_text" : "\"Add Child Element\"",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "* pack" : "set_image",
+                     "xtype" : "Image",
+                     "utf8 icon_name" : "list-add",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id" : "addpropbutton",
+               "* init" : "this.el.set_size(50,50);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "* pack" : "add_child",
+                 "xtype" : "Actor",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : "  ( ) => {\n    \n     _this.windowstate.switchState(WindowState.State.PROP);\n \n\n}"
+                   },
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "$ tooltip_text" : "\"Add Property\"",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "utf8 icon_name" : "format-justify-left",
+                     "* pack" : "set_image",
+                     "xtype" : "Image",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id" : "addlistenerbutton",
+               "* init" : "this.el.set_size(50,50);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "* pack" : "add_child",
+                 "xtype" : "Actor",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : "  ( ) => {\n    \n    _this.windowstate.switchState(WindowState.State.LISTENER);\n  \n\n\n}"
+                   },
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "$ tooltip_text" : "\"Add Event Code\"",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "xtype" : "Image",
+                     "utf8 icon_name" : "appointment-new",
+                     "* pack" : "set_image",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id" : "addprojectbutton",
+               "* init" : "this.el.set_size(50.0f,50.0f);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "* pack" : "add_child",
+                 "xtype" : "Actor",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : "  ( ) => {\n  \n    // create a new file in project..\n    //Xcls_DialogNewComponent.singleton().show(\n   var  pe =      EditProject.singleton();\n    pe.el.set_transient_for(_this.el);\n    pe.el.set_modal(true);   \n   \n    var p  = pe.show();\n\n    if (p == null) {\n        return;\n    }\n    \n    \n    _this.windowstate.left_projects.is_loaded = false;    \n    _this.windowstate.left_projects.load();\n    _this.windowstate.left_projects.selectProject(p);\n    return  ;    \n\n\n}"
+                   },
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "$ tooltip_text" : "\"New\\nProj.\"",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "utf8 icon_name" : "folder-new",
+                     "* pack" : "set_image",
+                     "xtype" : "Image",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id" : "addfilebutton",
+               "* init" : "this.el.set_size(50.0f,50.0f);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "* pack" : "add_child",
+                 "xtype" : "Actor",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : " () => {\n    // create a new file in project..\n    print(\"add file selected\\n\");\n    // what's the currently selected project...\n    var proj = _this.windowstate.left_projects.getSelectedProject();\n    \n    if (proj == null) {\n\t\tprint(\"no project selected?\\n\");\n        return  ;\n    }\n    \n    print(\"creating file?\");\n    \n    var f = JsRender.JsRender.factory(proj.xtype,  proj, \"\");\n    _this.project = proj;\n        print(\"showing popup?\");\n     _this.windowstate.file_details.show(\n       f, this.el\n    );\n    \n    \n    return  ;    \n}"
+                   },
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "$ tooltip_text" : "\"Add File\"",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "* pack" : "set_image",
+                     "xtype" : "Image",
+                     "utf8 icon_name" : "document-new",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id" : "delprojectbutton",
+               "* init" : "this.el.set_size(50,50);",
+               "xtype" : "Actor",
+               "* pack" : "add_child",
+               "$ xns" : "Clutter",
+               "items" : [
+                {
+                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
+                 "* pack" : "add_child",
+                 "xtype" : "Actor",
+                 "$ xns" : "GtkClutter",
+                 "items" : [
+                  {
+                   "listeners" : {
+                    "clicked" : "  ( ) => {\n     \n     var cd = DialogConfirm.singleton();\n     cd.el.set_transient_for(_this.el);\n    cd.el.set_modal(true);\n\n     var project =   _this.windowstate.left_projects.getSelectedProject();\n    if (project == null) {\n        print(\"SKIP - no project\\n\");\n        return;\n    }\n    \n        \n     if (Gtk.ResponseType.YES != cd.show(\"Confirm\", \n        \"Are you sure you want to delete project %s\".printf(project.name))) {\n        return;\n    }\n     \n\n    // confirm?\n    Project.Project.remove(project);\n    _this.project = null;\n    \n    _this.windowstate.left_projects.is_loaded =  false;\n    _this.windowstate.left_projects.load();\n    _this.windowstate.clutterfiles.clearFiles();\n\n}"
+                   },
+                   "* pack" : false,
+                   "xtype" : "Button",
+                   "width_request" : 50,
+                   "$ xns" : "Gtk",
+                   "$ tooltip_text" : "\"Delete Project\"",
+                   "height_request" : 50,
+                   "items" : [
+                    {
+                     "utf8 icon_name" : "user-trash",
+                     "* pack" : "set_image",
+                     "xtype" : "Image",
+                     "$ xns" : "Gtk"
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "bool homogeneous" : false,
+       "xtype" : "Box",
+       "* pack" : "pack_end,false,true,0",
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "items" : [
+        {
+         "* pack" : "pack_start,true,true,0",
+         "xtype" : "Label",
+         "string label" : "   ",
+         "$ xns" : "Gtk"
+        },
+        {
+         "bool show_text" : true,
+         "id" : "statusbar",
+         "ulong handler_id" : "-1",
+         "* init" : "{\n     this.handler_id = Resources.singleton().updateProgress.connect((pos,total) => {\n        if (pos < 1) {\n            this.el.hide();\n            _this.mainpane.el.set_sensitive(true);\n            \n            return;\n        }\n         _this.mainpane.el.set_sensitive(false);\n         this.el.show();\n         this.el.set_fraction ((1.0f * pos) / (1.0f * total));\n         this.el.set_text(\"Fetching Resource : %s/%s\".printf(pos.to_string(), total.to_string()));\n       \n     });\n}\n",
+         "xtype" : "ProgressBar",
+         "* pack" : "pack_start,true,true,0",
+         "$ xns" : "Gtk"
+        },
+        {
+         "listeners" : {
+          "key_press_event" : "(event) => {\n    \n \tif (event.keyval == Gdk.Key.Return) {\n\t\tthis.forwardSearch(false);\n\t    return true;\n\n\t}    \n   // print(event.key.keyval)\n    \n    return false;\n\n} ",
+          "changed" : "() => {\n\tif (this.el.text == \"\") {\n\t\t_this.search_results.el.hide();\n\t\treturn;\n\t}\n\tvar res = 0;\n\tswitch(_this.windowstate.state) {\n\t\tcase WindowState.State.CODEONLY:\n\t\tcase WindowState.State.CODE:\n\t\t\t// search the code being edited..\n\t\t\tres = _this.windowstate.code_editor.search(this.el.text);\n\t\t\t\n\t\t\tbreak;\n\t\tcase WindowState.State.PREVIEW:\n\t\t\tif (_this.windowstate.file.xtype == \"Gtk\") {\n\t\t\t\t res = _this.windowstate.window_gladeview.search(this.el.text);\n\t\t\t} else { \n\t\t\t\t res = _this.windowstate.window_rooview.search(this.el.text);\t\t\t\n\t\t\t}\n\t\t\n\t\t\n\t\t\tbreak;\n\t}\n\t_this.search_results.el.show();\n\tif (res > 0) {\n\t\t_this.search_results.el.label = \"%d Matches\".printf(res);\n\t} else {\n\t\t_this.search_results.el.label = \"No Matches\";\n\t}\n\t\t\n\t\n\t\n}\n"
+         },
+         "id" : "search_entry",
+         "* init" : "var description =   Pango.FontDescription.from_string(\"monospace\");\n\tdescription.set_size(8000);\n\t this.el.override_font(description);\n\n",
+         "* pack" : "pack_start,false,true,0",
+         "xtype" : "SearchEntry",
+         "$ xns" : "Gtk",
+         "| void forwardSearch" : "(bool change_focus) {\n\tswitch(_this.windowstate.state) {\n\t\tcase WindowState.State.CODEONLY:\n\t\tcase WindowState.State.CODE:\n\t\t\t// search the code being edited..\n\t\t\t_this.windowstate.code_editor.forwardSearch(change_focus);\n\t\t\t\n\t\t\tbreak;\n\t\tcase WindowState.State.PREVIEW:\n\t\t\tif (_this.windowstate.file.xtype == \"Gtk\") {\n\t\t\t\t_this.windowstate.window_gladeview.forwardSearch(change_focus);\n\t\t\t} else { \n\t\t\t\t _this.windowstate.window_rooview.forwardSearch(change_focus);\n\t\t\t}\n\t\t\n\t\t\tbreak;\n\t}\n\t\n}\n"
+        },
+        {
+         "* pack" : "pack_end,false,true,0",
+         "xtype" : "MenuBar",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "listeners" : {
+            "button_press_event" : "() => {\n/*\n    if (this.popup == null) {\n        this.popup = new Xcls_ValaCompileErrors();\n        this.popup.window = _this;\n    }\n   \n    \n    this.popup.show(this.notices, this.el);\n    */\n    return true;\n}"
+           },
+           "bool always_show_image" : true,
+           "id" : "search_results",
+           "Xcls_ValaCompileErrors popup" : "",
+           "string label" : "Matches",
+           "* pack" : "add",
+           "xtype" : "ImageMenuItem",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "* pack" : "set_image",
+             "xtype" : "Image",
+             "utf8 icon_name" : "system-search",
+             "bool sensitive" : false,
+             "$ xns" : "Gtk"
+            }
+           ]
+          },
+          {
+           "id" : "statusbar_compilestatus_label",
+           "* pack" : "add",
+           "xtype" : "MenuItem",
+           "string label" : "Compile Status:",
+           "$ xns" : "Gtk"
+          },
+          {
+           "listeners" : {
+            "button_press_event" : "() => {\n    if (this.popup == null) {\n        this.popup = new Xcls_ValaCompileErrors();\n        this.popup.window = _this;\n    }\n   \n    \n    this.popup.show(this.notices, this.el);\n    return true;\n}"
+           },
+           "bool always_show_image" : true,
+           "id" : "statusbar_errors",
+           "| void setNotices" : "(Json.Object nots, int qty) {\n    this.el.show();\n    this.el.label = qty.to_string() + \" Errors\";\n    this.notices = nots;\n\n}\n",
+           "Xcls_ValaCompileErrors popup" : "",
+           "string label" : "Errors",
+           "* pack" : "add",
+           "xtype" : "ImageMenuItem",
+           "# Json.Object notices" : "new Json.Object() ",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "xtype" : "Image",
+             "utf8 icon_name" : "dialog-error",
+             "* pack" : "set_image",
+             "$ xns" : "Gtk"
+            }
+           ]
+          },
+          {
+           "listeners" : {
+            "button_press_event" : "() => {\n    if (this.popup == null) {\n        this.popup = new Xcls_ValaCompileErrors();\n        this.popup.window = _this;\n    }\n    \n    this.popup.show(this.notices, this.el);\n    return true;\n}"
+           },
+           "bool always_show_image" : true,
+           "id" : "statusbar_warnings",
+           "| void setNotices" : "(Json.Object nots, int qty) {\n    this.el.show();\n    this.el.label = qty.to_string() + \" Warnings\";\n    this.notices = nots;\n\n}\n",
+           "Xcls_ValaCompileErrors popup" : "",
+           "* pack" : "add",
+           "string label" : "Warnings",
+           "xtype" : "ImageMenuItem",
+           "# Json.Object notices" : "new Json.Object()",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "* pack" : "set_image",
+             "xtype" : "Image",
+             "utf8 icon_name" : "dialog-warning",
+             "$ xns" : "Gtk"
+            }
+           ]
+          },
+          {
+           "listeners" : {
+            "button_press_event" : "() => {\n    if (this.popup == null) {\n        this.popup = new Xcls_ValaCompileErrors();\n        this.popup.window = _this;\n    }\n    \n    \n    this.popup.show(this.notices, this.el);\n    return true;\n}"
+           },
+           "bool always_show_image" : true,
+           "id" : "statusbar_depricated",
+           "| void setNotices" : "(Json.Object nots, int qty) {\n    this.el.show();\n    this.el.label = qty.to_string() + \" Depricated\";\n    this.notices = nots;\n\n}\n",
+           "Xcls_ValaCompileErrors popup" : "",
+           "string label" : "Depricated",
+           "* pack" : "add",
+           "xtype" : "ImageMenuItem",
+           "# Json.Object notices" : "new Json.Object()",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "utf8 icon_name" : "dialog-information",
+             "* pack" : "set_image",
+             "xtype" : "Image",
+             "$ xns" : "Gtk"
+            }
+           ]
+          },
+          {
+           "listeners" : {
+            "button_press_event" : "() => {\n\tif (_this.windowstate.file == null) {\n\t\treturn true;\n\t}\n\t_this.windowstate.valasource.spawnExecute(_this.windowstate.file);\n\t\n\t_this.windowstate.compile_results.show(this.el,true);\n\t\n\treturn true;\n}"
+           },
+           "bool always_show_image" : true,
+           "id" : "statusbar_run",
+           "Xcls_ValaCompileErrors popup" : "",
+           "string label" : "Run",
+           "* pack" : "add",
+           "xtype" : "ImageMenuItem",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "* pack" : "set_image",
+             "xtype" : "Image",
+             "utf8 icon_name" : "media-playback-start",
+             "$ xns" : "Gtk"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

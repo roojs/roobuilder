@@ -1,0 +1,24 @@
+
+
+apt-cache search '^valac-[0-9.]+$' | sort -n -r | head -n 1 | awk ' { print "sudo apt-get install -y " $1  }' | sh
+apt-cache search '^valac-[0-9.]+-vapi$' | sort -n -r | head -n 1 | awk ' { print "sudo apt-get install -y " $1  }' | sh
+apt-cache search '^libvala-[0-9.]+-dev$' | sort -n -r | head -n1 | awk ' { print "sudo apt-get install -y " $1  }' | sh
+
+ 
+apt-cache search '^libvte-[0-9.]+-dev$' | sort -n -r | head -n1 | awk ' { print "sudo apt-get install -y " $1  }' | sh
+
+
+sudo  apt-get install libgtk-3-dev  libgtksourceview-3.0-dev libxml2-dev libjson-glib-dev libgee-dev \
+	libgirepository1.0-dev
+
+# not sure why we are not using 4 yet?
+
+sudo apt-get install libwebkit2gtk-3.0-dev
+sudo apt-get install libwebkit2gtk-4.0-dev
+sudo apt-get install  libclutter-gtk-1.0-dev libgladeui-dev libsoup2.4-dev \
+	libjavascriptcoregtk-3.0-dev
+ 
+// test
+
+
+ 

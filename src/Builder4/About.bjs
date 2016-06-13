@@ -1,0 +1,25 @@
+{
+ "name" : "About",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/About.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "listeners" : {
+    "response" : "(rid) => {\n    this.el.hide();\n}\n "
+   },
+   "|    void show" : "(Gtk.Window parent) {\n    this.el.set_transient_for(parent);\n    this.el.modal = true;\n    this.el.show();\n}\n ",
+   "xtype" : "AboutDialog",
+   "program_name" : "app.Builder.js",
+   "$ modal" : true,
+   "$ authors" : "{ \"Alan Knowles\" }",
+   "$ xns" : "Gtk",
+   "website" : "http://www.roojs.org/blog.php",
+   "string copyright" : "LGPL",
+   "string license" : "LGPL"
+  }
+ ]
+}

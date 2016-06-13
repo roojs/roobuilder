@@ -1,0 +1,97 @@
+{
+ "name" : "ValaCompileErrors",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/ValaCompileErrors.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+  {
+   "int height_request" : 800,
+   "id" : "ValaCompileErrors",
+   "Xcls_MainWindow window" : "",
+   "| void show" : "(Json.Object tree, Gtk.Widget onbtn) {\n\n        \n        this.file = null;\n        this.notices = tree;\n       \n         //print(\"looking for %s\\n\", id);\n        // loop through parent childnre\n          \n        \n        var store = this.compile_result_store.el;    \n        \n        store.clear();\n     \n        \n        tree.foreach_member((obj, file, node) => {\n            // id line \"display text\", file\n            \n            var title = GLib.Path.get_basename(GLib.Path.get_dirname( file)) + \"/\" +  GLib.Path.get_basename( file) ;\n            Gtk.TreeIter iter;\n            print(\"Add file %s\", title);\n            store.append(out iter, null);\n            var lines = tree.get_object_member(file);\n            title += \" (\" + lines.get_size().to_string() + \")\";\n            store.set(iter, 0, file, 1, -1, 2, title, 3, file,-1);\n            \n            lines.foreach_member((obja, line, nodea) => {\n                var msg  = \"\";\n                var ar = lines.get_array_member(line);\n                for (var i = 0 ; i < ar.get_length(); i++) {\n    \t\t    msg += (msg.length > 0) ? \"\\n\" : \"\";\n    \t\t    msg += ar.get_string_element(i);\n\t        }\n                Gtk.TreeIter citer;  \n                print(\"Add line %s\", line);\n                store.append(out citer, iter);\n                store.set(citer, \n                    0, file + \":\" + line, \n                    1, int.parse(line), \n                    2, GLib.Markup.escape_text(line + \": \" + msg), \n                    3, file,-1);\n            \n            });\n            \n            \n        \n        });\n        \n    int w,h;\n    this.window.el.get_size(out w, out h);\n    \n    // left tree = 250, editor area = 500?\n    \n    var new_w = int.min(250, w-100);\n    if (new_w > (w-100)) {\n        new_w = w-100;\n    }\n    this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));\n\n    \n\n    if (this.el.relative_to == null) {\n        this.el.set_relative_to(onbtn);\n    }\n    this.el.show_all();\n   \n    while(Gtk.events_pending()) { \n            Gtk.main_iteration();\n    }       \n //   this.hpane.el.set_position( 0);\n}\n",
+   "bool hexpand" : false,
+   "xtype" : "Popover",
+   "Gtk.PositionType position" : "Gtk.PositionType.TOP",
+   "bool active" : false,
+   "int width_request" : 900,
+   "$ xns" : "Gtk",
+   "JsRender.JsRender? file" : "",
+   "Json.Object notices" : "",
+   "bool modal" : true,
+   "items" : [
+    {
+     "id" : "compile_view",
+     "bool hexpand" : false,
+     "xtype" : "Box",
+     "* pack" : "add",
+     "gboolean homogeneous" : false,
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "items" : [
+      {
+       "xtype" : "Box",
+       "* pack" : "pack_start,false,false,0",
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "items" : [
+        {
+         "* pack" : "pack_start,true,true,0",
+         "xtype" : "Button",
+         "$ xns" : "Gtk",
+         "utf8 label" : "Compile and Run "
+        }
+       ]
+      },
+      {
+       "* init" : "{\n this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n\n}\n",
+       "xtype" : "ScrolledWindow",
+       "* pack" : "pack_end,true,true,0",
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "listeners" : {
+          "button_press_event" : "  ( ev)  => {\n \n    Gtk.TreeViewColumn col;\n    int cell_x;\n    int cell_y;\n    Gtk.TreePath path;\n    if (!this.el.get_path_at_pos((int)ev.x, (int) ev.y, out path, out col, out cell_x, out cell_y )) {\n        print(\"nothing selected on click\");\n        \n        return false; //not on a element.\n    }\n    \n     \n     // right click.\n     if (ev.type != Gdk.EventType.2BUTTON_PRESS  || ev.button != 1  ) {    \n        // show popup!.   \n            \n         \n        return false;\n    }\n    Gtk.TreeIter iter;\n     var mod = _this.compile_result_store.el;\n    mod.get_iter (out iter, path);\n    \n      \n    \n    // var val = \"\";\n    GLib.Value value;\n    _this.compile_result_store.el.get_value(iter, 3, out value);\n    var fname = (string)value;\n    GLib.Value lvalue;\n    _this.compile_result_store.el.get_value(iter, 1, out lvalue);\n    var line = (int) lvalue;\n    \n    print(\"open %s @ %d\\n\", fname, line);\n    \n    \n   var  bjsf = \"\";\n    try {             \n       var  regex = new Regex(\"\\\\.vala$\");\n    \n     \n        bjsf = regex.replace(fname,fname.length , 0 , \".bjs\");\n     } catch (GLib.RegexError e) {\n        return false;\n    }   \n    var p = _this.window.project;\n        \n        \n        \n    var jsr = p.getByPath(bjsf);\n    if (jsr != null) {\n        _this.window.windowstate.fileViewOpen(jsr, line);\n        \n        return false;\n    \n    }\n    \n    var pf = JsRender.JsRender.factory(\"PlainFile\", p, fname);\n    _this.window.windowstate.fileViewOpen(pf,line);\n    \n    // try hiding the left nav..\n \n    return false;\n    \n  }\n    "
+         },
+         "id" : "compile_tree",
+         "* init" : "{\n var description = new Pango.FontDescription();\n    description.set_size(8000);\n    this.el.override_font(description);\n\n}\n",
+         "* pack" : "add",
+         "xtype" : "TreeView",
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "gint n_columns" : 4,
+           "id" : "compile_result_store",
+           "columns" : "  typeof(string), typeof(int), typeof(string), typeof(string) ",
+           "* pack" : "set_model",
+           "xtype" : "TreeStore",
+           "$ xns" : "Gtk"
+          },
+          {
+           "utf8 title" : "Compile output",
+           "* init" : "{\n  this.el.add_attribute(_this.renderer.el , \"markup\", 2 );\n \n}\n",
+           "xtype" : "TreeViewColumn",
+           "* pack" : "append_column",
+           "string id" : "column",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "id" : "renderer",
+             "* pack" : "pack_start,true",
+             "xtype" : "CellRendererText",
+             "$ xns" : "Gtk"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

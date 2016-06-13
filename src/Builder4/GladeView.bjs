@@ -1,0 +1,19 @@
+{
+    "name" : "GladeView",
+    "parent" : "",
+    "title" : "",
+    "path" : "/home/alan/gitlive/app.Builder.js/Builder4/GladeView.bjs",
+    "permname" : "",
+    "modOrder" : "",
+    "items" : [
+        {
+            "* ctor" : "new Glade.DesignView(new Glade.Project())",
+            "id" : "GladeView",
+            "| void createThumb" : "() {\n    \n    \n    if (this.file == null) {\n        return;\n    }\n    var filename = this.file.getIconFileName(false);\n    \n    var  win = this.el.get_parent_window();\n    var width = win.get_width();\n    var height = win.get_height();\n\n    Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?\n\n    screenshot.save(filename,\"png\");\n    return;\n    \n    \n    \n    \n    \n     \n    \n    // should we hold until it's printed...\n    \n      \n\n    \n    \n\n\n    \n     \n}\n",
+            "| void loadFile" : "(JsRender.JsRender file)\n{\n    \n\n    this.file = file;\n    \n\n        // clear existing elements from project?\n        \n        var  p = this.el.get_project();\n        var    li = p.get_objects().copy();\n        // should remove all..\n        for (var i =0;    i < li.length(); i++) {   \n            p.remove_object(li.nth_data(i)); \n        }\n\n        if (file.tree == null) {\n            return;\n        }\n\n//        print(\"%s\\n\",tf.tree.toJsonString());\n\tvar x = new JsRender.NodeToGlade(file.tree,  \"\");\n\n\t \n\tFileIOStream iostream;\n\tvar  f = File.new_tmp (\"tpl-XXXXXX.glade\", out iostream);\n\tvar ostream = iostream.output_stream;\n\tvar dostream = new DataOutputStream (ostream);\n\tdostream.put_string (x.munge());\n\tthis.el.show();\n\t print(\"LOADING %s\\n\",f.get_path ());\n        p.load_from_file(f.get_path ());\n        \n \n\n}",
+            "xtype" : "DesignView",
+            "# JsRender.JsRender file" : "null",
+            "$ xns" : "Glade"
+        }
+    ]
+}
