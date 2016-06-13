@@ -1284,8 +1284,8 @@ public class Xcls_WindowRooView : Object
         				}
         				print("colon_pos  = %d\n", colon_pos);
         				Gtk.TextIter colon_pos;
-        				_this.buffer.get_iter_at_offset (out colon_iter, colon_pos);
-        				_this.buffer.create_source_mark("start", "active_text", colon_iter);
+        				sbuf.get_iter_at_offset (out colon_iter, colon_pos);
+        				sbuf.buffer.create_source_mark("start", "active_text", colon_iter);
         			}
         			
         			print("is cursor at line? %d ?= %d\n", start_line -1 , cursor_at_line);
