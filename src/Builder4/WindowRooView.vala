@@ -1386,10 +1386,16 @@ public class Xcls_WindowRooView : Object
 
             //listeners
             this.el.changed.connect( () => {
+             
+            
                 // check syntax??
                 // ??needed..??
                // _this.save_button.el.sensitive = true;
                 ///?? has changed occured during loading?
+                
+                // only trigger this if 
+                
+                
                 if (_this.sourceview.loading) {
             		return;
             	}
