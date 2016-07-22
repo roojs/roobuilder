@@ -1027,6 +1027,7 @@ public class Xcls_WindowRooView : Object
 
             //listeners
             this.el.button_release_event.connect( () => {
+            	print("BUTTON RELEASE EVENT\n");
             	this.onCursorChanged();
             
             	return false;

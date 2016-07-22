@@ -157,7 +157,7 @@
        "items" : [
         {
          "listeners" : {
-          "button_release_event" : "() => {\n\tthis.onCursorChanged();\n\n\treturn false;\n}",
+          "button_release_event" : "() => {\n\tprint(\"BUTTON RELEASE EVENT\\n\");\n\tthis.onCursorChanged();\n\n\treturn false;\n}",
           "key_press_event" : "() => {\n\tthis.onCursorChanged();\n\treturn false; \n}"
          },
          "gboolean show_line_marks" : true,
