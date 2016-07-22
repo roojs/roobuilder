@@ -1033,6 +1033,7 @@ public class Xcls_WindowRooView : Object
             	return false;
             });
             this.el.key_press_event.connect( () => {
+            	print("KEY PRESS EVENT \n");
             	this.onCursorChanged();
             	return false; 
             });
