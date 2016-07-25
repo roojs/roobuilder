@@ -1033,6 +1033,12 @@ public class Xcls_WindowRooView : Object
             	return false;
             });
             this.el.key_press_event.connect( () => {
+            	this.key_is_pressed = true;
+            	// is it ctrl-G -- find next?
+            	// which will will still ignore..
+            	
+            	
+            	
             	print("KEY PRESS EVENT \n");
             	this.onCursorChanged();
             	return false; 
