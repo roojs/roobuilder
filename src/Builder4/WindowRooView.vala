@@ -999,7 +999,6 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
         public bool loading;
         public bool button_is_pressed;
-        public bool allow_node_scroll;
         public string prop_selected;
         public bool key_is_pressed;
         public JsRender.Node? node_selected;
@@ -1014,7 +1013,6 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
             this.loading = true;
             this.button_is_pressed = false;
-            this.allow_node_scroll = true;
             this.prop_selected = "";
             this.key_is_pressed = false;
             this.node_selected = null;
