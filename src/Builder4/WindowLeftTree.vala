@@ -511,11 +511,11 @@ public class Xcls_WindowLeftTree : Object
                            //  print("return " + tp);
                         });
             this.el.key_press_event.connect( (ev) => {
-                print("KEY DOWN\n");
+               this.key_is_pressed = true;
                 return false;
             });
             this.el.key_release_event.connect( (ev) => {
-                print("KEY UP\n");
+                   this.key_is_pressed = false;
                   return false;
             });
             this.el.drag_data_received.connect( (ctx, x, y, sel, info, time)  => {
