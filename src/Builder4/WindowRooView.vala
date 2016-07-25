@@ -176,7 +176,7 @@ public class Xcls_WindowRooView : Object
         if (tp == "") {
     		return;
     	}
-        _this.sourceview.allow_node_scroll = false; /// block node scrolling..
+        //_this.sourceview.allow_node_scroll = false; /// block node scrolling..
     	       
        
         //print("changing cursor on tree..\n");
