@@ -1074,12 +1074,15 @@ public class Xcls_WindowRooView : Object
                // }
         
                 var buf = this.el.get_buffer();
-                print("cursor changed : %d\n", buf.cursor_position);
+                //print("cursor changed : %d\n", buf.cursor_position);
                 Gtk.TextIter cpos;
                 buf.get_iter_at_offset(out cpos, buf.cursor_position);
                 
                 var ln = cpos.get_line();
-        		print("cursor changed line : %d\n", ln);
+                
+                
+                // --- select node at line....
+                
                 var node = _this.file.lineToNode(ln+1);
          
                 if (node == null) {
@@ -1088,8 +1091,6 @@ public class Xcls_WindowRooView : Object
                 }
                 var prop = node.lineToProp(ln+1);
                 print("prop : %s", prop == null ? "???" : prop);
-                
-                
                 
                 
                 // ---------- this selects the tree's node...
