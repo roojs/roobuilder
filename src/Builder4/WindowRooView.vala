@@ -1062,7 +1062,9 @@ public class Xcls_WindowRooView : Object
         // user defined functions
         public void onCursorChanged (/*ParamSpec ps*/) {
         
-        
+        		if (!this.key_is_pressed && !this.button_is_pressed) {
+        			return;
+        		}
         
         	   if (this.loading) {
                     return;
