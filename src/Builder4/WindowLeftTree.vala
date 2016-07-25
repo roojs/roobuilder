@@ -82,6 +82,7 @@ public class Xcls_WindowLeftTree : Object
         public int drag_y;
         public bool button_is_pressed;
         public string lastEventSource;
+        public bool key_is_pressed;
         public bool drag_in_motion;
         public bool blockChanges;
 
@@ -95,6 +96,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
             this.button_is_pressed = false;
             this.lastEventSource = "";
+            this.key_is_pressed = false;
             this.blockChanges = false;
 
             // set gobject values

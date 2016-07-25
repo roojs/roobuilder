@@ -52,6 +52,7 @@
      "bool button_is_pressed" : false,
      "|           void highlightDropPath" : " ( string treepath, Gtk.TreeViewDropPosition pos) {\n\n        // highlighting for drag/drop\n        if (treepath.length > 0) {\n            this.el.set_drag_dest_row(  new  Gtk.TreePath.from_string( treepath ), pos);\n          } else {\n            this.el.set_drag_dest_row(null, Gtk.TreeViewDropPosition.INTO_OR_AFTER);\n         }\n             \n}",
      "$ string lastEventSource" : "\"\"",
+     "bool key_is_pressed" : false,
      "# bool drag_in_motion" : "",
      "# bool blockChanges" : false,
      "$ xns" : "Gtk",
