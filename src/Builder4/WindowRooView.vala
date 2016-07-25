@@ -1061,7 +1061,10 @@ public class Xcls_WindowRooView : Object
 
         // user defined functions
         public void onCursorChanged (/*ParamSpec ps*/) {
-        	  if (this.loading) {
+        
+        
+        
+        	   if (this.loading) {
                     return;
                 }
                // if (ps.name != "cursor-position") {
