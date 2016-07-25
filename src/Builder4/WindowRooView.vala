@@ -1027,12 +1027,16 @@ public class Xcls_WindowRooView : Object
 
             //listeners
             this.el.button_release_event.connect( () => {
+            	this.button_is_pressed = true;
             	print("BUTTON RELEASE EVENT\n");
             	this.onCursorChanged();
             
             	return false;
             });
-            this.el.button_press_event.connect( );
+            this.el.button_press_event.connect( () => {
+            	this.button_is_pressed = true;
+            	return false;
+            });
             this.el.key_press_event.connect( (src, key) => {
             	this.key_is_pressed = true;
             	// is it ctrl-G -- find next?
