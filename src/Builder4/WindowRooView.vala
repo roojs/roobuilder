@@ -1163,8 +1163,7 @@ public class Xcls_WindowRooView : Object
                 var tp = ltree.model.treePathFromNode(node);
                 print("got tree path %s\n", tp);
                 if (tp != "") {
-        	       this.allow_node_scroll = false; /// block node scrolling..
-        	       
+        	         
         	       
         	        //print("changing cursor on tree..\n");
         	       
@@ -1192,10 +1191,7 @@ public class Xcls_WindowRooView : Object
                    this.nodeSelected(node,false);
                     
                     // scrolling is disabled... as node selection calls scroll 10ms after it changes.
-                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
-        	            this.allow_node_scroll = true;
-        	            return false;
-                    });
+                     
                 }
                 
                 // highlight the node..
