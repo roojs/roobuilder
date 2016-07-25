@@ -1046,7 +1046,7 @@ public class Xcls_WindowRooView : Object
             	// is it ctrl-G -- find next?
             	// which will will still ignore..
             	 
-            	if 	(key.str = "g" && key.state == Gdk.ModifierType.CONTROL_MASK) {
+            	if 	(key.str == "g" && key.state == Gdk.ModifierType.CONTROL_MASK) {
             		this.key_is_pressed = false;
             	}
             	print("KEY PRESS EVENT \n");
