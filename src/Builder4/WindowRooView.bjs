@@ -158,7 +158,7 @@
         {
          "listeners" : {
           "button_release_event" : "() => {\n\tprint(\"BUTTON RELEASE EVENT\\n\");\n\tthis.onCursorChanged();\n\n\treturn false;\n}",
-          "key_press_event" : "() => {\n\tthis.key_is_pressed = true;\n\t// is it ctrl-G -- find next?\n\t// which will will still ignore..\n\t\n\t\n\t\n\tprint(\"KEY PRESS EVENT \\n\");\n\tthis.onCursorChanged();\n\treturn false; \n}",
+          "key_press_event" : "(src, key) => {\n\tthis.key_is_pressed = true;\n\t// is it ctrl-G -- find next?\n\t// which will will still ignore..\n\t \n\tif \t(key.str = \"g\" && key.state == Gdk.ModifierType.CONTROL_MASK) {\n\t\tthis.key_is_pressed = false;\n\t}\n\tprint(\"KEY PRESS EVENT \\n\");\n\tthis.onCursorChanged();\n\treturn false; \n}",
           "key_release_event" : "() => { \n\tthis.key_is_pressed = false;\n\treturn false;\n}\n"
          },
          "gboolean show_line_marks" : true,

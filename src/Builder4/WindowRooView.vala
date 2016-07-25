@@ -1032,13 +1032,14 @@ public class Xcls_WindowRooView : Object
             
             	return false;
             });
-            this.el.key_press_event.connect( () => {
+            this.el.key_press_event.connect( (src, key) => {
             	this.key_is_pressed = true;
             	// is it ctrl-G -- find next?
             	// which will will still ignore..
-            	
-            	
-            	
+            	 
+            	if 	(key.str = "g" && key.state == Gdk.ModifierType.CONTROL_MASK) {
+            		this.key_is_pressed = false;
+            	}
             	print("KEY PRESS EVENT \n");
             	this.onCursorChanged();
             	return false; 
