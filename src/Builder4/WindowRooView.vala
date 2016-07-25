@@ -1037,6 +1037,10 @@ public class Xcls_WindowRooView : Object
             	this.onCursorChanged();
             	return false; 
             });
+            this.el.key_release_event.connect( () => { 
+            	this.key_is_pressed = false;
+            	return false;
+            });
         }
 
         // user defined functions
