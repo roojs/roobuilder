@@ -154,12 +154,12 @@ public class Xcls_WindowLeftTree : Object
 
             //listeners
             this.el.button_release_event.connect( (ev) => { 
-                print("BUTTON UP\n");
+                this.button_is_pressed = false;
               return false;
             });
             this.el.button_press_event.connect( ( ev) => {
                 //console.log("button press?");
-                
+                this.button_is_pressed = true;
                 print("BUTTON DOWN\n");
                 
                 this.lastEventSource = "tree";
