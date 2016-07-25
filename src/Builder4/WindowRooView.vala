@@ -935,6 +935,7 @@ public class Xcls_WindowRooView : Object
         public bool allow_node_scroll;
         public string prop_selected;
         public JsRender.Node? node_selected;
+        public bool XXX;
 
         // ctor
         public Xcls_sourceview(Xcls_WindowRooView _owner )
@@ -948,6 +949,7 @@ public class Xcls_WindowRooView : Object
             this.allow_node_scroll = true;
             this.prop_selected = "";
             this.node_selected = null;
+            this.XXX = true;
 
             // set gobject values
             this.el.editable = false;

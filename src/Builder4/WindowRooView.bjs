@@ -180,6 +180,7 @@
          "JsRender.Node? node_selected" : "null",
          "$ xns" : "Gtk",
          "gboolean show_line_numbers" : true,
+         "bool XXX" : true,
          "gboolean editable" : false,
          "items" : [
           {
