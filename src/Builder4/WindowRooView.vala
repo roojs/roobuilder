@@ -1032,6 +1032,7 @@ public class Xcls_WindowRooView : Object
             
             	return false;
             });
+            this.el.button_press_event.connect( );
             this.el.key_press_event.connect( (src, key) => {
             	this.key_is_pressed = true;
             	// is it ctrl-G -- find next?
