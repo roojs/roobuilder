@@ -1484,6 +1484,8 @@ public class Xcls_WindowRooView : Object
                 // only trigger this if 
                 
                 
+                
+                
                 if (_this.sourceview.loading) {
             		return;
             	}
