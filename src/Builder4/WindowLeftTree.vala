@@ -192,7 +192,13 @@ public class Xcls_WindowLeftTree : Object
                   return true;
             });
             this.el.cursor_changed.connect( ( ) => {
-            	print("CURSOR CHANGED\n");
+            	 
+            	if (!this.button_is_pressed && !this.key_is_pressed) {
+            		// then event was started by some other action
+            		// which should manually trigger all the events..
+            		return false;
+            	}
+            
             
                  if (this.blockChanges) { // probably not needed.. 
                    return  ;
