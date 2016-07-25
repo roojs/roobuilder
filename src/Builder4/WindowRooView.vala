@@ -1027,10 +1027,10 @@ public class Xcls_WindowRooView : Object
 
             //listeners
             this.el.button_release_event.connect( () => {
-            	this.button_is_pressed = true;
+            
             	print("BUTTON RELEASE EVENT\n");
             	this.onCursorChanged();
-            
+            	this.button_is_pressed = false;
             	return false;
             });
             this.el.button_press_event.connect( () => {
