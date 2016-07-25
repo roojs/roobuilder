@@ -935,6 +935,7 @@ public class Xcls_WindowRooView : Object
         public bool button_is_pressed;
         public bool allow_node_scroll;
         public string prop_selected;
+        public bool key_is_pressed;
         public JsRender.Node? node_selected;
 
         // ctor
@@ -949,6 +950,7 @@ public class Xcls_WindowRooView : Object
             this.button_is_pressed = false;
             this.allow_node_scroll = true;
             this.prop_selected = "";
+            this.key_is_pressed = false;
             this.node_selected = null;
 
             // set gobject values
