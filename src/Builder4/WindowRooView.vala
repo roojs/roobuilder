@@ -997,6 +997,7 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
+        public int XXX;
         public bool loading;
         public bool button_is_pressed;
         public string prop_selected;
@@ -1011,6 +1012,7 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
+            this.XXX = 0;
             this.loading = true;
             this.button_is_pressed = false;
             this.prop_selected = "";
