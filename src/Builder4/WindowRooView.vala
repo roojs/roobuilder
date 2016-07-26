@@ -1001,7 +1001,6 @@ public class Xcls_WindowRooView : Object
         public bool button_is_pressed;
         public string prop_selected;
         public bool key_is_pressed;
-        public int editable_end_pos;
         public JsRender.Node? node_selected;
         public int editable_start_pos;
 
@@ -1017,7 +1016,6 @@ public class Xcls_WindowRooView : Object
             this.button_is_pressed = false;
             this.prop_selected = "";
             this.key_is_pressed = false;
-            this.editable_end_pos = -1;
             this.node_selected = null;
             this.editable_start_pos = -1;
 
