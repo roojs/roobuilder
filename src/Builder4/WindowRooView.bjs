@@ -158,7 +158,7 @@
         {
          "listeners" : {
           "button_release_event" : "() => {\n\n\tprint(\"BUTTON RELEASE EVENT\\n\");\n\tthis.onCursorChanged();\n\tthis.button_is_pressed = false;\n\treturn false;\n}",
-          "button_press_event" : "() => {\n\t\n\t\n\t// if cursor postion is 'at start' of editing range, \n\t// and backspace is pressed...\n\t// block it..\n\t\n\tthis.button_is_pressed = true;\n\treturn false;\n}\t \n",
+          "button_press_event" : "() => {\n\t\n\t\n\t// if cursor postion is 'at start' of editing range, \n\t// and backspace is pressed...\n\t// block it..\n\t\n\t var buf = this.el.get_buffer();\n    //print(\"cursor changed : %d\\n\", buf.cursor_position);\n    Gtk.TextIter cpos;\n    buf.get_iter_at_offset(out cpos, buf.cursor_position);\n        \n\t\n\t\n\tthis.button_is_pressed = true;\n\treturn false;\n}\t \n",
           "key_press_event" : "(src, key) => {\n\tthis.key_is_pressed = true;\n\t// is it ctrl-G -- find next?\n\t// which will will still ignore..\n\t \n\tif \t(key.str == \"g\" && key.state == Gdk.ModifierType.CONTROL_MASK) {\n\t\tthis.key_is_pressed = false;\n\t}\n\tprint(\"KEY PRESS EVENT \\n\");\n\tthis.onCursorChanged();\n\treturn false; \n}",
           "key_release_event" : "() => { \n\tthis.key_is_pressed = false;\n\treturn false;\n}\n"
          },
