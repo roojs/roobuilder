@@ -1360,7 +1360,7 @@ public class Xcls_WindowRooView : Object
             
             this.el.editable = false;
             
-            var colon_pos = 0;
+            //var colon_pos = 0;
             
             this.editable_start_pos = -1;
             
