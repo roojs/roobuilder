@@ -1362,6 +1362,8 @@ public class Xcls_WindowRooView : Object
             
             var colon_pos = 0;
             
+            this.editable_start_pos = -1;
+            
             // now if we have selected a property...
             if (this.prop_selected.length> 0 ) {
         
@@ -1388,9 +1390,10 @@ public class Xcls_WindowRooView : Object
         					colon_pos = start_line_iter.get_offset() + first_line.index_of(":") + 1;
         				}
         				print("colon_pos  = %d\n", colon_pos);
-        				Gtk.TextIter colon_iter;
-        				sbuf.get_iter_at_offset (out colon_iter, colon_pos);
-        				sbuf.create_source_mark(null, "active_text", colon_iter);
+        				this.editable_start_pos = colon_pos;
+        				//Gtk.TextIter colon_iter;
+        				//sbuf.get_iter_at_offset (out colon_iter, colon_pos);
+        				//sbuf.create_source_mark(null, "active_text", colon_iter);
         			}
         			
         			print("is cursor at line? %d ?= %d\n", start_line -1 , cursor_at_line);
