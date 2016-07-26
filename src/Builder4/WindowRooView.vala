@@ -1388,7 +1388,7 @@ public class Xcls_WindowRooView : Object
         				
         				print("first line = %s\n", first_line);
         				if (first_line.contains(":")) {
-        					this.editable_start_pos = start_line_iter.get_offset() + first_line.index_of(":") + 1;
+        					this.editable_start_pos = start_first_line_iter.get_offset() + first_line.index_of(":") + 1;
         					print("colon_pos  = %d\n", this.editable_start_pos);
         				}
         				
@@ -1398,14 +1398,18 @@ public class Xcls_WindowRooView : Object
         				//sbuf.create_source_mark(null, "active_text", colon_iter);
         			}
         			
+        			
+        			
         			print("is cursor at line? %d ?= %d\n", start_line -1 , cursor_at_line);
-        			if (start_line - 1 == cursor_at_line) {
+        			//if (start_line - 1 == cursor_at_line) {
+        			if (sbuf.cursor_position <= this.editable_start_pos) {
+        			
         				print("cursor is on current line.\n");
-        				var before_cursor_string = this.el.buffer.get_text(start_line_iter, cur_iter, false);
-        				print("before cursor string =  %s\n", before_cursor_string);
-        				if (!before_cursor_string.contains(":")) {
+        				//var before_cursor_string = this.el.buffer.get_text(start_line_iter, cur_iter, false);
+        				//print("before cursor string =  %s\n", before_cursor_string);
+        				//if (!before_cursor_string.contains(":")) {
         					this.el.editable = false;
-        				}
+        				//}
         				
         			}
         			
