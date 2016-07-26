@@ -1387,10 +1387,11 @@ public class Xcls_WindowRooView : Object
         				var first_line  = this.el.buffer.get_text(start_line_iter, end_line_iter, false);
         				print("first line = %s\n", first_line);
         				if (first_line.contains(":")) {
-        					colon_pos = start_line_iter.get_offset() + first_line.index_of(":") + 1;
+        					this.editable_start_pos = start_line_iter.get_offset() + first_line.index_of(":") + 1;
+        					print("colon_pos  = %d\n", this.editable_start_pos);
         				}
-        				print("colon_pos  = %d\n", colon_pos);
-        				this.editable_start_pos = colon_pos;
+        				
+        
         				//Gtk.TextIter colon_iter;
         				//sbuf.get_iter_at_offset (out colon_iter, colon_pos);
         				//sbuf.create_source_mark(null, "active_text", colon_iter);
