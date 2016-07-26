@@ -1407,7 +1407,7 @@ public class Xcls_WindowRooView : Object
         			//print("is cursor at line? %d ?= %d\n", start_line -1 , cursor_at_line);
         			//if (start_line - 1 == cursor_at_line) {
         			// should be ok - current_posssion can not be less than '-1'...
-        			if (sbuf.cursor_position <= this.editable_start_pos) {
+        			if (sbuf.cursor_position < this.editable_start_pos) {
         			
         				print("cursor is before start pos.. - turn off editable...\n");
         				//var before_cursor_string = this.el.buffer.get_text(start_line_iter, cur_iter, false);

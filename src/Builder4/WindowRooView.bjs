@@ -29,43 +29,43 @@
    "items" : [
     {
      "id" : "notebook",
-     "* pack" : "pack_start,true,true,0",
      "xtype" : "Notebook",
+     "* pack" : "pack_start,true,true,0",
      "$ xns" : "Gtk",
      "items" : [
       {
        "id" : "label_preview",
-       "* pack" : false,
        "xtype" : "Label",
+       "* pack" : false,
        "$ xns" : "Gtk",
        "utf8 label" : "Preview"
       },
       {
        "id" : "label_code",
-       "xtype" : "Label",
        "* pack" : false,
+       "xtype" : "Label",
        "$ xns" : "Gtk",
        "utf8 label" : "Preview Generated Code"
       },
       {
        "id" : "paned",
-       "* pack" : "append_page,_this.label_preview.el",
        "xtype" : "Paned",
+       "* pack" : "append_page,_this.label_preview.el",
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "items" : [
         {
          "id" : "viewbox",
-         "* pack" : "pack1,true,true",
          "xtype" : "Box",
+         "* pack" : "pack1,true,true",
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "$ homogeneous" : false,
          "items" : [
           {
            "$ vexpand" : false,
-           "$ height_request" : 20,
            "* pack" : "pack_start,false,true,0",
+           "$ height_request" : 20,
            "xtype" : "Box",
            "$ xns" : "Gtk",
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
@@ -76,8 +76,8 @@
               "clicked" : "( ) => {\n    _this.view.renderJS(  true);\n}"
              },
              "label" : "Redraw",
-             "xtype" : "Button",
              "* pack" : "pack_start,false,false,0",
+             "xtype" : "Button",
              "$ xns" : "Gtk"
             },
             {
@@ -96,16 +96,16 @@
               "clicked" : " () => {\n  _this.view.redraws = 99;\n    _this.view.el.web_context.clear_cache();  \n  //_this.view.renderJS(true);\n  FakeServerCache.clear();\n  _this.view.reInit();\n\n}"
              },
              "label" : "Full Redraw",
-             "xtype" : "Button",
              "* pack" : "pack_start,false,false,0",
+             "xtype" : "Button",
              "$ xns" : "Gtk"
             }
            ]
           },
           {
            "id" : "viewcontainer",
-           "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n",
            "$ shadow_type" : "Gtk.ShadowType.IN",
+           "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n",
            "* pack" : "pack_end,true,true,0",
            "xtype" : "ScrolledWindow",
            "$ xns" : "Gtk",
@@ -142,8 +142,8 @@
         },
         {
          "id" : "inspectorcontainer",
-         "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n",
          "$ shadow_type" : "Gtk.ShadowType.IN",
+         "* init" : "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n",
          "xtype" : "ScrolledWindow",
          "* pack" : "pack2,true,true",
          "$ xns" : "Gtk"
@@ -163,8 +163,8 @@
           "key_release_event" : "() => { \n\tthis.key_is_pressed = false;\n\treturn false;\n}\n"
          },
          "gboolean show_line_marks" : true,
-         "id" : "sourceview",
          "| void onCursorChanged" : "(/*ParamSpec ps*/) {\n\n\t\tif (!this.key_is_pressed && !this.button_is_pressed) {\n\t\t\treturn;\n\t\t}\n\n\t   if (this.loading) {\n            return;\n        }\n       // if (ps.name != \"cursor-position\") {\n       //     return;\n       // }\n\n        var buf = this.el.get_buffer();\n        //print(\"cursor changed : %d\\n\", buf.cursor_position);\n        Gtk.TextIter cpos;\n        buf.get_iter_at_offset(out cpos, buf.cursor_position);\n        \n        var ln = cpos.get_line();\n        \n        \n        // --- select node at line....\n        \n        var node = _this.file.lineToNode(ln+1);\n \n        if (node == null) {\n            print(\"can not find node\\n\");\n            return;\n        }\n        var prop = node.lineToProp(ln+1);\n        print(\"prop : %s\", prop == null ? \"???\" : prop);\n        \n        \n        // ---------- this selects the tree's node...\n        \n        var ltree = _this.main_window.windowstate.left_tree;\n        var tp = ltree.model.treePathFromNode(node);\n        print(\"got tree path %s\\n\", tp);\n        if (tp != \"\") {\n\t         \n\t       \n\t        //print(\"changing cursor on tree..\\n\");\n\t       \n \n            \n            // let's try allowing editing on the methods.\n            // a little klunky at present..\n            this.prop_selected = \"\";\n            if (prop != null) {\n        \t\t//see if we can find it..\n        \t\tvar kv = prop.split(\":\");\n        \t\tif (kv[0] == \"p\") {\n        \t\t\n\t        \t\t//var k = prop.get_key(kv[1]);\n\t        \t\t// fixme -- need to determine if it's an editable property...\n\t        \t\tthis.prop_selected = prop;\n\t        \t\t\n        \t\t} else if (kv[0] == \"l\") {\n        \t\t\t this.prop_selected = prop;\n        \t\t\t\n        \t\t}\n            }\n            ltree.view.setCursor(tp, \"editor\");\n           // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); \n           this.nodeSelected(node,false);\n            \n            // scrolling is disabled... as node selection calls scroll 10ms after it changes.\n             \n        }\n        \n        // highlight the node..\n}\n ",
+         "id" : "sourceview",
          "| void clearGreySelection" : "() {\n // clear all the marks..\n    var sbuf = (Gtk.SourceBuffer)this.el.buffer;\n    \n    Gtk.TextIter start;\n    Gtk.TextIter end;     \n        \n    sbuf.get_bounds (out start, out end);\n    sbuf.remove_source_marks (start, end, \"grey\");\n    \n    \n}\n",
          "* init" : "{\n   \n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(8000);\n    this.el.override_font(description);\n\n    this.loading = true;\n    //var buf = this.el.get_buffer();\n    //buf.notify.connect(this.onCursorChanged);\n  \n  \n  \n    var attrs = new Gtk.SourceMarkAttributes();\n    var  pink =   Gdk.RGBA();\n    pink.parse ( \"pink\");\n    attrs.set_background ( pink);\n    attrs.set_icon_name ( \"process-stop\");    \n    attrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"ERR\", attrs, 1);\n    \n     var wattrs = new Gtk.SourceMarkAttributes();\n    var  blue =   Gdk.RGBA();\n    blue.parse ( \"#ABF4EB\");\n    wattrs.set_background ( blue);\n    wattrs.set_icon_name ( \"process-stop\");    \n    wattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"WARN\", wattrs, 1);\n    \n \n    \n     var dattrs = new Gtk.SourceMarkAttributes();\n    var  purple =   Gdk.RGBA();\n    purple.parse ( \"#EEA9FF\");\n    dattrs.set_background ( purple);\n    dattrs.set_icon_name ( \"process-stop\");    \n    dattrs.query_tooltip_text.connect(( mark) => {\n        //print(\"tooltip query? %s\\n\", mark.name);\n        return mark.name;\n    });\n    \n    this.el.set_mark_attributes (\"DEPR\", dattrs, 1);\n    \n    \n    var gattrs = new Gtk.SourceMarkAttributes();\n    var  grey =   Gdk.RGBA();\n    grey.parse ( \"#ccc\");\n    gattrs.set_background ( grey);\n \n    \n    this.el.set_mark_attributes (\"grey\", gattrs, 1);\n    \n    \n    \n    \n    \n    \n}\n ",
          "| void nodeSelected" : "(JsRender.Node? sel, bool scroll ) {\n  \n    \n\t\n    // this is connected in widnowstate\n\n\n\t// not sure why....   \n    while(Gtk.events_pending()) {\n        Gtk.main_iteration();\n    }\n    \n    this.node_selected = sel;\n    \n    this.updateGreySelection(scroll);\n    \n    \n    \n}\n\n   \n",
@@ -175,7 +175,7 @@
          "xtype" : "SourceView",
          "bool button_is_pressed" : false,
          "$ string prop_selected" : "\"\"",
-         "| void updateGreySelection" : "(bool scroll) { \n\tvar sel = this.node_selected;\n\tprint(\"node selected\\n\");\n    var buf = this.el.get_buffer();\n    var sbuf = (Gtk.SourceBuffer) buf;\n\n   \n   this.clearGreySelection();\n   \n   \n   \n     if (sel == null) {\n\t     print(\"no selected node\\n\");\n        // no highlighting..\n        return;\n    }\n    \n    print(\"highlight region %d to %d\\n\", sel.line_start,sel.line_end);\n    Gtk.TextIter iter;   \n    sbuf.get_iter_at_line(out iter,  sel.line_start);\n    \n    \n    Gtk.TextIter cur_iter;\n    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);\n   \n    var cursor_at_line = cur_iter.get_line();\n    \n    \n    //var cur_line = cur_iter.get_line();\n    //if (cur_line > sel.line_start && cur_line < sel.line_end) {\n    \n    //} else {\n    if (scroll) {\n\t\tprint(\"scrolling to node -- should occur on node picking.\\n\");\n    \tthis.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);\n\t}\n    \n    var start_line = sel.line_start;\n    var end_line = sel.line_end;\n    \n    \n    this.el.editable = false;\n    \n    //var colon_pos = 0;\n    \n    this.editable_start_pos = -1;\n    \n    // now if we have selected a property...\n    if (this.prop_selected.length> 0 ) {\n\n\t\tint nstart, nend;\n\t\tif (sel.getPropertyRange(this.prop_selected, out nstart, out nend) && nend > nstart) {\n\t\t\tstart_line = nstart;\n\t\t\tend_line = nend;\n\t\t\tthis.el.editable = true;\n\t\t\tprint(\"start line = %d, end line = %d\\n\", start_line, end_line);\n\t\t\t\n\t\t\t\t// see if we are 'right of ':'\n\t\t\t\t// get an iter for the start of the line.\n\t\t\tGtk.TextIter start_first_line_iter,end_first_line_iter;\n\t\t\tthis.el.buffer.get_iter_at_line(out start_first_line_iter, start_line -1);\n\t\t\tthis.el.buffer.get_iter_at_line(out end_first_line_iter, start_line -1);\n\t\t\t \n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\tif (end_first_line_iter.forward_to_line_end()) {\n\t\t\t\tvar first_line  = this.el.buffer.get_text(start_first_line_iter, end_first_line_iter, false);\n\t\t\t\t\n\t\t\t\tprint(\"first line = %s\\n\", first_line);\n\t\t\t\tif (first_line.contains(\":\")) {\n\t\t\t\t\tthis.editable_start_pos = start_first_line_iter.get_offset() + first_line.index_of(\":\") + 1;\n\t\t\t\t\tprint(\"colon_pos  = %d\\n\", this.editable_start_pos);\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t//Gtk.TextIter colon_iter;\n\t\t\t\t//sbuf.get_iter_at_offset (out colon_iter, colon_pos);\n\t\t\t\t//sbuf.create_source_mark(null, \"active_text\", colon_iter);\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t//print(\"is cursor at line? %d ?= %d\\n\", start_line -1 , cursor_at_line);\n\t\t\t//if (start_line - 1 == cursor_at_line) {\n\t\t\t// should be ok - current_posssion can not be less than '-1'...\n\t\t\tif (sbuf.cursor_position <= this.editable_start_pos) {\n\t\t\t\n\t\t\t\tprint(\"cursor is before start pos.. - turn off editable...\\n\");\n\t\t\t\t//var before_cursor_string = this.el.buffer.get_text(start_line_iter, cur_iter, false);\n\t\t\t\t//print(\"before cursor string =  %s\\n\", before_cursor_string);\n\t\t\t\t//if (!before_cursor_string.contains(\":\")) {\n\t\t\t\t\tthis.el.editable = false;\n\t\t\t\t//}\n\t\t\t\t\n\t\t\t}\n\t\t\t \n\t\t\t \n\n\t\t\t \n\t\t}\n\t\tprint(\"propSelected = %s range  %d -> %d\\n\", this.prop_selected, start_line, end_line);\t\t\n\t\t\n\t\t\n    }\n    \n\tprint(\"checking selection\\n\");\n    \n    \n    // check selection - if it's out of 'bounds'\n    if (this.el.editable && sbuf.get_has_selection()) {\n\t\tGtk.TextIter sel_start_iter, sel_end_iter;\n\t\tsbuf.get_selection_bounds(out sel_start_iter, out sel_end_iter);\n\t\t\n\t\tif (sel_start_iter.get_line() < start_line || sel_end_iter.get_line() > end_line ||\n\t\t\tsel_start_iter.get_line() > end_line   || sel_end_iter.get_line() < start_line\t\t\t) {\n\t\t\t// save?\n\t\t\tthis.el.editable = false;\n\t\t}\n\t\tif (this.editable_start_pos > 0 &&\n\t\t\t(sel_start_iter.get_offset() < this.editable_start_pos || sel_end_iter.get_offset() < this.editable_start_pos)\n\t\t\t\n\t\t) {\n\t\t\tthis.el.editable = false;\n\t\t}\n\t\t\n\t\t \n    \n    }\n    \n    \n    \n    \n    for (var i = 0; i < buf.get_line_count();i++) {\n        if (i < (start_line -1) || i > (end_line -1)) {\n           \n            sbuf.get_iter_at_line(out iter, i);\n            sbuf.create_source_mark(null, \"grey\", iter);\n            \n        }\n    \n    }\n    if (scroll && (cursor_at_line > end_line || cursor_at_line < start_line)) {\n\t    Gtk.TextIter cpos_iter;\n\t\tbuf.get_iter_at_line(out cpos_iter, start_line);\n\t\t\n\t\tbuf.place_cursor(cpos_iter); \n\t}\n\n\n}",
+         "| void updateGreySelection" : "(bool scroll) { \n\tvar sel = this.node_selected;\n\tprint(\"node selected\\n\");\n    var buf = this.el.get_buffer();\n    var sbuf = (Gtk.SourceBuffer) buf;\n\n   \n   this.clearGreySelection();\n   \n   \n   \n     if (sel == null) {\n\t     print(\"no selected node\\n\");\n        // no highlighting..\n        return;\n    }\n    \n    print(\"highlight region %d to %d\\n\", sel.line_start,sel.line_end);\n    Gtk.TextIter iter;   \n    sbuf.get_iter_at_line(out iter,  sel.line_start);\n    \n    \n    Gtk.TextIter cur_iter;\n    sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);\n   \n    var cursor_at_line = cur_iter.get_line();\n    \n    \n    //var cur_line = cur_iter.get_line();\n    //if (cur_line > sel.line_start && cur_line < sel.line_end) {\n    \n    //} else {\n    if (scroll) {\n\t\tprint(\"scrolling to node -- should occur on node picking.\\n\");\n    \tthis.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);\n\t}\n    \n    var start_line = sel.line_start;\n    var end_line = sel.line_end;\n    \n    \n    this.el.editable = false;\n    \n    //var colon_pos = 0;\n    \n    this.editable_start_pos = -1;\n    \n    // now if we have selected a property...\n    if (this.prop_selected.length> 0 ) {\n\n\t\tint nstart, nend;\n\t\tif (sel.getPropertyRange(this.prop_selected, out nstart, out nend) && nend > nstart) {\n\t\t\tstart_line = nstart;\n\t\t\tend_line = nend;\n\t\t\tthis.el.editable = true;\n\t\t\tprint(\"start line = %d, end line = %d\\n\", start_line, end_line);\n\t\t\t\n\t\t\t\t// see if we are 'right of ':'\n\t\t\t\t// get an iter for the start of the line.\n\t\t\tGtk.TextIter start_first_line_iter,end_first_line_iter;\n\t\t\tthis.el.buffer.get_iter_at_line(out start_first_line_iter, start_line -1);\n\t\t\tthis.el.buffer.get_iter_at_line(out end_first_line_iter, start_line -1);\n\t\t\t \n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\tif (end_first_line_iter.forward_to_line_end()) {\n\t\t\t\tvar first_line  = this.el.buffer.get_text(start_first_line_iter, end_first_line_iter, false);\n\t\t\t\t\n\t\t\t\tprint(\"first line = %s\\n\", first_line);\n\t\t\t\tif (first_line.contains(\":\")) {\n\t\t\t\t\tthis.editable_start_pos = start_first_line_iter.get_offset() + first_line.index_of(\":\") + 1;\n\t\t\t\t\tprint(\"colon_pos  = %d\\n\", this.editable_start_pos);\n\t\t\t\t}\n\t\t\t\t\n\n\t\t\t\t//Gtk.TextIter colon_iter;\n\t\t\t\t//sbuf.get_iter_at_offset (out colon_iter, colon_pos);\n\t\t\t\t//sbuf.create_source_mark(null, \"active_text\", colon_iter);\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t//print(\"is cursor at line? %d ?= %d\\n\", start_line -1 , cursor_at_line);\n\t\t\t//if (start_line - 1 == cursor_at_line) {\n\t\t\t// should be ok - current_posssion can not be less than '-1'...\n\t\t\tif (sbuf.cursor_position < this.editable_start_pos) {\n\t\t\t\n\t\t\t\tprint(\"cursor is before start pos.. - turn off editable...\\n\");\n\t\t\t\t//var before_cursor_string = this.el.buffer.get_text(start_line_iter, cur_iter, false);\n\t\t\t\t//print(\"before cursor string =  %s\\n\", before_cursor_string);\n\t\t\t\t//if (!before_cursor_string.contains(\":\")) {\n\t\t\t\t\tthis.el.editable = false;\n\t\t\t\t//}\n\t\t\t\t\n\t\t\t}\n\t\t\t \n\t\t\t \n\n\t\t\t \n\t\t}\n\t\tprint(\"propSelected = %s range  %d -> %d\\n\", this.prop_selected, start_line, end_line);\t\t\n\t\t\n\t\t\n    }\n    \n\tprint(\"checking selection\\n\");\n    \n    \n    // check selection - if it's out of 'bounds'\n    if (this.el.editable && sbuf.get_has_selection()) {\n\t\tGtk.TextIter sel_start_iter, sel_end_iter;\n\t\tsbuf.get_selection_bounds(out sel_start_iter, out sel_end_iter);\n\t\t\n\t\tif (sel_start_iter.get_line() < start_line || sel_end_iter.get_line() > end_line ||\n\t\t\tsel_start_iter.get_line() > end_line   || sel_end_iter.get_line() < start_line\t\t\t) {\n\t\t\t// save?\n\t\t\tthis.el.editable = false;\n\t\t}\n\t\tif (this.editable_start_pos > 0 &&\n\t\t\t(sel_start_iter.get_offset() < this.editable_start_pos || sel_end_iter.get_offset() < this.editable_start_pos)\n\t\t\t\n\t\t) {\n\t\t\tthis.el.editable = false;\n\t\t}\n\t\t\n\t\t \n    \n    }\n    \n    \n    \n    \n    for (var i = 0; i < buf.get_line_count();i++) {\n        if (i < (start_line -1) || i > (end_line -1)) {\n           \n            sbuf.get_iter_at_line(out iter, i);\n            sbuf.create_source_mark(null, \"grey\", iter);\n            \n        }\n    \n    }\n    if (scroll && (cursor_at_line > end_line || cursor_at_line < start_line)) {\n\t    Gtk.TextIter cpos_iter;\n\t\tbuf.get_iter_at_line(out cpos_iter, start_line);\n\t\t\n\t\tbuf.place_cursor(cpos_iter); \n\t}\n\n\n}",
          "bool key_is_pressed" : false,
          "| void highlightErrorsJson" : " (string type, Json.Object obj) {\n       // this is a hook for the vala code - it has no value in javascript \n       // as we only have one error ususally....\n        return  ;\n    \n \n\n\n}",
          "JsRender.Node? node_selected" : "null",
@@ -189,8 +189,8 @@
             "changed" : " () => {\n \n\n    // check syntax??\n    // ??needed..??\n   // _this.save_button.el.sensitive = true;\n    ///?? has changed occured during loading?\n    \n    // only trigger this if \n    \n    \n    \n    \n    if (_this.sourceview.loading) {\n\t\treturn;\n\t}\n\t\n    print(\"- PREVIEW EDITOR CHANGED--\");\n\n    this.dirty = true;    \n    if (!this.checkSyntax()) {\n\t\treturn;\n\t}\t\t\n    \n\t// what are we editing??\n\tif (null == _this.sourceview.node_selected || _this.sourceview.prop_selected.length  < 1) {\n\t\treturn;\n\t}\n\t\n\t// find the colon on the first line...\n\n\n\n    return ;\n}\n\n \n"
            },
            "bool dirty" : false,
-           "id" : "buffer",
            "int error_line" : "-1",
+           "id" : "buffer",
            "| bool highlightErrors" : "( Gee.HashMap<int,string> validate_res) {\n         \n    this.error_line = validate_res.size;\n\t\n    if (this.error_line < 1) {\n          return true;\n    }\n    var tlines = this.el.get_line_count ();\n    Gtk.TextIter iter;\n    var valiter = validate_res.map_iterator();\n    while (valiter.next()) {\n    \n//        print(\"get inter\\n\");\n        var eline = valiter.get_key();\n        if (eline > tlines) {\n            continue;\n        }\n        this.el.get_iter_at_line( out iter, eline);\n        //print(\"mark line\\n\");\n        this.el.create_source_mark(valiter.get_value(), \"ERR\", iter);\n    }   \n    return false;\n}",
            "|   string toString" : "  () {\n    \n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    this.el.get_start_iter(out s);\n    this.el.get_end_iter(out e);\n    var ret = this.el.get_text(s,e,true);\n    //print(\"TO STRING? \" + ret);\n    return ret;\n}\n ",
            "|   bool checkSyntax" : " () {\n \n   \n    var str = this.toString();\n    \n    // needed???\n    if (this.error_line > 0) {\n         Gtk.TextIter start;\n         Gtk.TextIter end;     \n        this.el.get_bounds (out start, out end);\n\n        this.el.remove_source_marks (start, end, \"WARN\");\n        this.el.remove_source_marks (start, end, \"ERR\");        \n\n    }\n    \n    if (str.length < 1) {\n        print(\"checkSyntax - empty string?\\n\");\n        return false;\n    }\n    \n   if (_this.file == null) {\n       return false;\n   }\n    var p = Palete.factory(_this.file.xtype);  // returns Roo | Gtk  | PlainFile \n    \n \n    if (_this.file.language != \"js\") {\n\t\treturn false; // fake syntax error.\n\t}\n\t\n    //Gee.HashMap<int,string> ret_x;\n\n\treturn p.javascriptHasErrors(\n\t\t_this.main_window.windowstate,\n        str, \n         \"\", // _this.key, \n        \"file\", //_this.ptype,\n        _this.file, \n        null\n    );    \n     \n}\n",
