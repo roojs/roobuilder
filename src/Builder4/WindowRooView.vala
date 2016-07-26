@@ -1523,12 +1523,20 @@ public class Xcls_WindowRooView : Object
             		return;
             	}
             	
+            
+            	
                 print("- PREVIEW EDITOR CHANGED--");
             
                 this.dirty = true;    
                 if (!this.checkSyntax()) {
             		return;
             	}		
+            
+            	if (!_this.sourceview.button_is_pressed && !_this.sourceview.key_is_pressed) {
+            		print("button or key not pressed to generate change?!\n");
+            		return;
+            	}
+            		
                 
             	// what are we editing??
             	if (null == _this.sourceview.node_selected || _this.sourceview.prop_selected.length  < 1) {
