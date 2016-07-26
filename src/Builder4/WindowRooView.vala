@@ -1129,8 +1129,9 @@ public class Xcls_WindowRooView : Object
                    
             	if (buf.cursor_position <= this.editable_start_pos && key.keyval == Gdk.Key.BackSpace) {
             		return true; // block...
-            	
             	}
+            	// what about 'last line of 'grey...'
+            	
             	
             	
             	print("KEY PRESS EVENT \n");
