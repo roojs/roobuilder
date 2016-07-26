@@ -1433,8 +1433,8 @@ public class Xcls_WindowRooView : Object
         			// save?
         			this.el.editable = false;
         		}
-        		if (colon_pos > 0 &&
-        			(sel_start_iter.get_offset() < colon_pos || sel_end_iter.get_offset() < colon_pos)
+        		if (this.editable_start_pos > 0 &&
+        			(sel_start_iter.get_offset() < this.editable_start_pos || sel_end_iter.get_offset() < this.editable_start_pos)
         			
         		) {
         			this.el.editable = false;
