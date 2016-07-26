@@ -1119,6 +1119,20 @@ public class Xcls_WindowRooView : Object
             	if 	(key.str == "g" && key.state == Gdk.ModifierType.CONTROL_MASK) {
             		this.key_is_pressed = false;
             	}
+            	
+            	// if cursor postion is 'at start' of editing range, 
+            	// and backspace is pressed...
+            	// block it..
+            	
+            	 var buf = this.el.get_buffer();
+                //print("cursor changed : %d\n", buf.cursor_position);
+                   
+            	if (buf.cursor_position <= this.editable_start_pos && key.keyval == Gdk.Key.BackSpace) {
+            		return true; // block...
+            	
+            	}
+            	
+            	
             	print("KEY PRESS EVENT \n");
             	this.onCursorChanged();
             	return false; 
