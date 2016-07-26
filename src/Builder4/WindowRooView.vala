@@ -1106,15 +1106,6 @@ public class Xcls_WindowRooView : Object
             this.el.button_press_event.connect( () => {
             	
             	
-            	// if cursor postion is 'at start' of editing range, 
-            	// and backspace is pressed...
-            	// block it..
-            	
-            	 var buf = this.el.get_buffer();
-                //print("cursor changed : %d\n", buf.cursor_position);
-                Gtk.TextIter cpos;
-                buf.get_iter_at_offset(out cpos, buf.cursor_position);
-                    
             	
             	
             	this.button_is_pressed = true;
