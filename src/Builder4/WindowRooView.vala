@@ -1102,6 +1102,12 @@ public class Xcls_WindowRooView : Object
             	return false;
             });
             this.el.button_press_event.connect( () => {
+            	
+            	
+            	// if cursor postion is 'at start' of editing range, 
+            	// and backspace is pressed...
+            	// block it..
+            	
             	this.button_is_pressed = true;
             	return false;
             });
