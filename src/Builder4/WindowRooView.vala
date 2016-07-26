@@ -997,12 +997,12 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public int XXX;
         public bool loading;
         public bool button_is_pressed;
         public string prop_selected;
         public bool key_is_pressed;
         public JsRender.Node? node_selected;
+        public int editable_start_pos;
 
         // ctor
         public Xcls_sourceview(Xcls_WindowRooView _owner )
@@ -1012,12 +1012,12 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
-            this.XXX = 0;
             this.loading = true;
             this.button_is_pressed = false;
             this.prop_selected = "";
             this.key_is_pressed = false;
             this.node_selected = null;
+            this.editable_start_pos = 0;
 
             // set gobject values
             this.el.editable = false;
