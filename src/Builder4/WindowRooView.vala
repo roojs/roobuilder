@@ -1131,7 +1131,7 @@ public class Xcls_WindowRooView : Object
             		return true; // block...
             	}
             	// what about 'last line of 'grey...'
-            	
+            	// get the buffer - find the line, find the next line ?? see if it's grey?
             	
             	
             	print("KEY PRESS EVENT \n");
