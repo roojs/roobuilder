@@ -1552,21 +1552,22 @@ public class Xcls_WindowRooView : Object
                     //print("cursor changed : %d\n", buf.cursor_position);
                     Gtk.TextIter spos,epos;
                     buf.get_iter_at_offset(out spos, _this.sourceview.editable_start_pos);
-                    buf.get_iter_at_offset(out epos, _this.sourceview.editable_start_pos);
-             		print("Start Offset = %d/%d\n", spos.get_line(), spos.get_offset());
-            		var gotit= false;
-            		for (var i =0; i < 10; i++) {
-            			if (!buf.forward_iter_to_source_mark (epos, "grey")) {		
-            				break;
-            			}
-            			if (epos.get_offset() == spos.get_offset()) {
-            				continue;
-            			}
-            			gotit= true;
-            			break;
+                    buf.get_iter_at_offset(out epos, _this.sourceview.editable_start_pos); // initialize epos..
+                    
+                    var gotit= false;
+                    var line = spos.get_line();
+                    var endline = buf.get_line_count();
+                    while (line < endline) {
+                		line++;
+            	        buf.get_iter_at_line(out epos, line);
+            	        if (buf.get_source_marks_at_line(line, "grey")) {
+            		        buf.get_iter_at_line(out epos, line);	    		
+            	    		gotit=true;
+            	    		break;
+                		}
             		}
-            	
-            		if (gotit) {
+                    
+             		if (gotit) {
             	 		print("End Offset = %d/%d\n", epos.get_line(), epos.get_offset());
             			// get the pos...
             			// in theory the last char will be '}' or '},' .. or ','
