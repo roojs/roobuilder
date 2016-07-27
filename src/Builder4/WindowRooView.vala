@@ -1559,7 +1559,8 @@ public class Xcls_WindowRooView : Object
             			// get the pos...
             			// in theory the last char will be '}' or '},' .. or ','
             			// we should chop the ',' of the end...
-            			
+            			var str = buf.get_text(spos, epos, false);
+            			print("got string\n%s\n", str);
             		
             		}
             	}
