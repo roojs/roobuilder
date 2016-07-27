@@ -1555,7 +1555,7 @@ public class Xcls_WindowRooView : Object
                     buf.get_iter_at_offset(out epos, _this.sourceview.editable_start_pos);
              	
             	
-            		if (buf.forward_iter_to_source_mark (spos, "grey")) {
+            		if (buf.forward_iter_to_source_mark (epos, "grey")) {
             			// get the pos...
             			// in theory the last char will be '}' or '},' .. or ','
             			// we should chop the ',' of the end...
