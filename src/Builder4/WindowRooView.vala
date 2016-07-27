@@ -1527,10 +1527,10 @@ public class Xcls_WindowRooView : Object
             	
                 print("- PREVIEW EDITOR CHANGED--");
             
-                this.dirty = true;    
-                if (!this.checkSyntax()) {
-            		return;
-            	}		
+                this.dirty = true;  
+                this.checkSyntax(); // this calls backs and highlights errors.. in theory...  
+            
+            
             
             	if (!_this.sourceview.button_is_pressed && !_this.sourceview.key_is_pressed) {
             		print("button or key not pressed to generate change?!\n");
