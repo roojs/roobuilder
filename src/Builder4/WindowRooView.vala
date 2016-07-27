@@ -1554,8 +1554,19 @@ public class Xcls_WindowRooView : Object
                     buf.get_iter_at_offset(out spos, _this.sourceview.editable_start_pos);
                     buf.get_iter_at_offset(out epos, _this.sourceview.editable_start_pos);
              		print("Start Offset = %d/%d\n", spos.get_line(), spos.get_offset());
+            		var gotit= false;
+            		for (var i =0; i < 10; i++) {
+            			if (!buf.forward_iter_to_source_mark (epos, "grey")) {		
+            				break;
+            			}
+            			if (epos.get_offset() == spos.get_offset()) {
+            				continue;
+            			}
+            			gotit= true;
+            			break;
+            		}
             	
-            		if (buf.forward_iter_to_source_mark (epos, "grey")) {
+            		if (gotit) {
             	 		print("End Offset = %d/%d\n", epos.get_line(), epos.get_offset());
             			// get the pos...
             			// in theory the last char will be '}' or '},' .. or ','
