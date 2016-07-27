@@ -1547,11 +1547,18 @@ public class Xcls_WindowRooView : Object
             	
             	if (_this.sourceview.editable_start_pos > -1) {
             		
+            		 var buf = this.sourceview.el.get_buffer();
+                    //print("cursor changed : %d\n", buf.cursor_position);
+                    Gtk.TextIter spos,epos;
+                    buf.get_iter_at_offset(out spos, _this.sourceview.editable_start_pos);
+                    buf.get_iter_at_offset(out epos, _this.sourceview.editable_start_pos);
+             	
             	
-            	
-            	
-            		if (_this.sourceview.buffer.forward_iter_to_source_mark (TextIter iter, "grey")) {
+            		if (buf.forward_iter_to_source_mark (spos, "grey")) {
             			// get the pos...
+            			// in theory the last char will be '}' or '},' .. or ','
+            			// we should chop the ',' of the end...
+            			
             		
             		}
             	}
