@@ -1553,9 +1553,10 @@ public class Xcls_WindowRooView : Object
                     Gtk.TextIter spos,epos;
                     buf.get_iter_at_offset(out spos, _this.sourceview.editable_start_pos);
                     buf.get_iter_at_offset(out epos, _this.sourceview.editable_start_pos);
-             	
+             		print("Start Offset = %d", spos.get_offset());
             	
             		if (buf.forward_iter_to_source_mark (epos, "grey")) {
+            	 		print("End Offset = %d", epos.get_offset());
             			// get the pos...
             			// in theory the last char will be '}' or '},' .. or ','
             			// we should chop the ',' of the end...
