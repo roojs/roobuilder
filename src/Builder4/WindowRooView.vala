@@ -1545,7 +1545,9 @@ public class Xcls_WindowRooView : Object
             	
             	// find the colon on the first line...
             	
-            
+            	
+            	
+            	_this.sourceview.buffer.forward_iter_to_source_mark (TextIter iter, "grey")
             
                 return ;
             });
