@@ -1545,8 +1545,8 @@ public class Xcls_WindowRooView : Object
             	
             	// find the colon on the first line...
             	
-            	if (_this.sourceview.start_pos > -1) {
-            	
+            	if (_this.sourceview.editable_start_pos > -1) {
+            		
             	
             	
             	
