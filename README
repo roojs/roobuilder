@@ -1,1 +1,16 @@
-readme
+The acutal readme is in readme.md -- so it renders on github...
+
+This is my brainfart of a plan for this...
+
+* Editing source inline
+ -- curently when you edit a method, you find the node, and click on the property (relating to the element)
+ -- it would be better edit in the 'full code preview' mode -- so you can see all the context.
+ -- most of the work to make this happen has been done.
+ * after keyup change
+   * save the content. in the node.
+   * recalculate the tree (with locations etc.) but do not rende
+ * split the 'editing view' so it's more dynamic? rather than another tab -- eg. zoom out the image preview box right
+ * make the text view a bit like a mini-nav area (but when you click it zooms in...)
+ 
+ 
+ 
