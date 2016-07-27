@@ -1545,10 +1545,16 @@ public class Xcls_WindowRooView : Object
             	
             	// find the colon on the first line...
             	
+            	if (_this.sourceview.start_pos > -1) {
             	
             	
-            	_this.sourceview.buffer.forward_iter_to_source_mark (TextIter iter, "grey")
-            
+            	
+            	
+            		if (_this.sourceview.buffer.forward_iter_to_source_mark (TextIter iter, "grey")) {
+            			// get the pos...
+            		
+            		}
+            	}
                 return ;
             });
         }
