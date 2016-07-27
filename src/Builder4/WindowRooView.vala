@@ -1547,7 +1547,8 @@ public class Xcls_WindowRooView : Object
             	
             	if (_this.sourceview.editable_start_pos > -1) {
             		
-            		 var buf = this.sourceview.el.get_buffer();
+            		var buf = (Gtk.SourceBuffer)_this.sourceview.el.get_buffer();
+            		
                     //print("cursor changed : %d\n", buf.cursor_position);
                     Gtk.TextIter spos,epos;
                     buf.get_iter_at_offset(out spos, _this.sourceview.editable_start_pos);
