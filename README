@@ -26,4 +26,6 @@ Known issues:
   ** it would be usefull to know this... in the UI..
   
   
-  
+Properties box.
+ - should we restrict to 50% the size that it can expand to.. currently its' based on calculation (that based on wrong font size)
+   
