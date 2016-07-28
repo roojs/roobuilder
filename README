@@ -13,4 +13,10 @@ This is my brainfart of a plan for this...
  * make the text view a bit like a mini-nav area (but when you click it zooms in...)
  
  
- 
+Known issues:
+- I'm building....
+  ** when you edit it's compiling in the background.. so the 'errors' may be out of date..
+  ** it would be usefull to know this... in the UI..
+  
+  
+  
