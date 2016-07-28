@@ -1560,7 +1560,7 @@ public class Xcls_WindowRooView : Object
                     while (line < endline) {
                 		line++;
             	        buf.get_iter_at_line(out epos, line);
-            	        if (buf.get_source_marks_at_line(line, "grey")) {
+            	        if (buf.get_source_marks_at_line(line, "grey").length() > 0) {
             		        buf.get_iter_at_line(out epos, line);	    		
             	    		gotit=true;
             	    		break;
