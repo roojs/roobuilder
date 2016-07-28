@@ -11,6 +11,11 @@ This is my brainfart of a plan for this...
    * recalculate the tree (with locations etc.) but do not rende
  * split the 'editing view' so it's more dynamic? rather than another tab -- eg. zoom out the image preview box right
  * make the text view a bit like a mini-nav area (but when you click it zooms in...)
+
+Plain File editing..
+ * recently opened files?
+ * tree?
+ * (
  
  
 Known issues:
