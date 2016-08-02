@@ -8,6 +8,7 @@
  "build_module" : "builder",
  "items" : [
   {
+   "id" : "ProjectSettings",
    "xtype" : "Popover",
    "$ xns" : "Gtk",
    "items" : [
