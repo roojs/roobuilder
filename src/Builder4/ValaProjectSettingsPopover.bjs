@@ -9,7 +9,7 @@
  "items" : [
   {
    "id" : "ValaProjectSettingsPopover",
-   "| void show" : "(Gtk.Widget btn, Project.Gtk project) {\n     \n    //print(\"ValaProjectSettings show\\n\");\n    \n    this.project=  project;\n\n    this.compile_flags.el.text = _this.project.compilegroups.get(\"_default_\").compile_flags;\n    \n    this.default_directory_tree_store.load();    \n    this.default_packages_tree_store.load();            \n    this.targets_tree_store.load();\n    this.files_tree_store.load();\n\n\n\tthis.el.set_modal(true);\n\tthis.el.set_relative_to(btn);\n\n\tthis.el.set_position(Gtk.PositionType.RIGHT);\n\n\t// window + header?\n\t// print(\"SHOWALL - POPIP\\n\");\n\tthis.el.show_all();\n\t//this.view.el.grab_focus();\n\n}\n",
+   "| void show" : "(Gtk.Widget btn, Project.Gtk project) {\n     \n    //print(\"ValaProjectSettings show\\n\");\n    \n    this.project=  project;\n\n    this.compile_flags.el.text = _this.project.compilegroups.get(\"_default_\").compile_flags;\n    \n    this.default_directory_tree_store.load();    \n    this.default_packages_tree_store.load();            \n    this.targets_tree_store.load();\n    this.files_tree_store.load();\n\n\n\tthis.el.set_modal(true);\n\tthis.el.set_relative_to(btn);\n\n\tthis.el.set_position(Gtk.PositionType.RIGHT);\n\n\t// window + header?\n\t// print(\"SHOWALL - POPIP\\n\");\n\tthis.el.set_size_request(800,500);\n\tthis.el.show_all();\n\t//this.view.el.grab_focus();\n\n}\n",
    "Xcls_MainWindow window" : "null",
    "Project.Gtk project" : "null",
    "xtype" : "Popover",
@@ -22,6 +22,7 @@
     {
      "bool hexpand" : true,
      "xtype" : "Box",
+     "* pack" : "add",
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "items" : [

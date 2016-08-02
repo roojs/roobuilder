@@ -54,6 +54,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
+        this.el.add (  child_0.el  );
     }
 
     // user defined functions
@@ -78,6 +79,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
     
     	// window + header?
     	// print("SHOWALL - POPIP\n");
+    	this.el.set_size_request(800,500);
     	this.el.show_all();
     	//this.view.el.grab_focus();
     
