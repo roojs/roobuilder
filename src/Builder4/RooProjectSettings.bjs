@@ -7,5 +7,9 @@
  "modOrder" : "",
  "build_module" : "builder",
  "items" : [
+  {
+   "xtype" : "Popover",
+   "$ xns" : "Gtk"
+  }
  ]
 }
