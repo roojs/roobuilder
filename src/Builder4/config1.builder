@@ -17,10 +17,8 @@
             "../Builder4/FakeServer.vala",
             "../Builder4/GtkView.vala",
             "../Builder4/MainWindow.vala",
-            "../Builder4/ProjectSettings.vala",
             "../Builder4/RooProjectProperties.vala",
             "../Builder4/StandardErrorDialog.vala",
-            "../Builder4/ValaProjectSettings.vala",
             "../Builder4/WindowAddProp.vala",
             "../Builder4/WindowLeftProjects.vala",
             "../Builder4/WindowLeftProps.vala",
@@ -66,7 +64,9 @@
             "../JsRender/PlainFile.vala",
             "../Builder4/ValaCompileResults.vala",
             "../Palete/CompletionProvider.vala",
-            "../Builder4/PopoverProperty.vala"
+            "../Builder4/PopoverProperty.vala",
+            "../Builder4/ValaProjectSettingsPopover.vala",
+            "../Builder4/RooProjectSettings.vala"
         ],
         "packages" : [
         ]
