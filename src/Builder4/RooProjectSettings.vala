@@ -46,25 +46,7 @@ public class Xcls_ProjectSettings : Object
     }
 
     // user defined functions
-    public void show ( 
-    
-    	//this.success = c.success;
-     
-    } 
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-    (Gtk.Widget btn, Project.Project project) {
+    public void show (Gtk.Widget btn, Project.Project project) {
         _this.project = project;
         _this.path.el.label = project.firstPath();
         // get the active project.
