@@ -224,7 +224,7 @@
        ]
       },
       {
-       "* pack" : "pack_start,false,false,0",
+       "* pack" : "pack_end,true,true,0",
        "xtype" : "Box",
        "gboolean expand" : false,
        "$ xns" : "Gtk",

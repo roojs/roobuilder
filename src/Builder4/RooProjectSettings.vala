@@ -131,7 +131,7 @@ public class Xcls_ProjectSettings : Object
             this.el.pack_start (  child_0.el , false,false,0 );
             var child_1 = new Xcls_Box28( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , false,false,0 );
+            this.el.pack_end (  child_1.el , true,true,0 );
         }
 
         // user defined functions
