@@ -37,6 +37,7 @@ public class Xcls_ProjectSettings : Object
         // my vars (dec)
 
         // set gobject values
+        this.el.border_width = 0;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
