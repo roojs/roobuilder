@@ -17,10 +17,11 @@ public class WindowState : Object
 		LISTENER,
 		CODE,    // code editor.
 		CODEONLY,
-		FILES,
-		PROJECT, // project settings..
-		FILEPROJECT, // project when in file mode
-		PROJECTCODEONLY // when editing code...
+		FILES //,
+		// PROJECTCODEONLY // when editing code...		??
+		//PROJECT, // project settings..
+		//FILEPROJECT, // project when in file mode
+
 	}
 
 	public State state = State.NONE;
@@ -35,8 +36,8 @@ public class WindowState : Object
 	public Xcls_WindowLeftTree  left_tree;
 	public Xcls_WindowAddProp   add_props;
 	public Xcls_LeftProps       left_props;
-	public Xcls_ProjectSettings projectsettings;
-	public ValaProjectSettings  vala_projectsettings;
+	public Xcls_RooProjectSettings roo_projectsettings_pop;
+	public Xcls_ValaProjectSettingsPopover  vala_projectsettings_pop;
 	public Xcls_RightPalete     rightpalete;
 	public Editor               code_editor;    
 	public Xcls_WindowRooView   window_rooview;
@@ -127,7 +128,7 @@ public class WindowState : Object
 			return this.leftTreeBeforeChange();
 
 		});
-		
+		// node selected -- only by clicking?
 		this.left_tree.node_selected.connect((sel, source) => {
 			if (source == "editor") {
 				return;
@@ -277,23 +278,22 @@ public class WindowState : Object
 
 	public void projectEditInit()
 	{
-		this.projectsettings  =new Xcls_ProjectSettings();
-		this.projectsettings.ref();  /// really?
+		this.roo_projectsettings_pop  =new Xcls_RooProjectSettings();
+		this.roo_projectsettings_pop.ref();  /// really?
 	
-		this.vala_projectsettings  =new ValaProjectSettings();
-		this.vala_projectsettings.ref();
-		this.vala_projectsettings.window = this.win;
+		this.vala_projectsettings_pop  =new Xcls_ValaProjectSettingsPopover();
+		this.vala_projectsettings_pop.ref();
+		this.vala_projectsettings_pop.window = this.win;
 	
-		((Gtk.Container)(this.win.projecteditview.el.get_widget())).add(this.projectsettings.el);
-		//this.projectsettings.el.show_all();
-
-		var stage = this.win.projecteditview.el.get_stage();
-		stage.set_background_color(  Clutter.Color.from_string("#000"));
-	
-		this.projectsettings.buttonPressed.connect((btn) => {
+		//((Gtk.Container)(this.win.projecteditview.el.get_widget())).add(this.projectsettings.el);
+ 
+ 
+		this.roo_projectsettings_pop.buttonPressed.connect((btn) => {
+			// in theory active file can only be rooo...
 			 if (this.left_tree.getActiveFile().xtype == "Roo" ) {
 				if (btn == "save") {
 					this.window_rooview.view.renderJS(true);
+					this.roo_projectsettings_pop.el.hide();
 				}
 				if (btn == "apply") {
 					this.window_rooview.view.renderJS(true);
@@ -306,11 +306,23 @@ public class WindowState : Object
 				this.win.project.save();
 		 
 			}
-			this.switchState (State.PREVIEW); 
+			//this.switchState (State.PREVIEW); 
 			 
 		 });
 
 	}
+	public void projectPopoverShow(Gtk.Widget btn)
+	{
+		if (this.left_tree.getActiveFile().xtype == "Roo" ) {
+			this.roo_projectsettings_pop.show(btn,this.project);
+			return;
+		}
+		// gtk..
+		this.vala_projectsettings_pop.show(btn,(Project.Gtk)this.project);
+	
+	}
+	
+	
 	// ----------- object adding
 	public void objectAddInit()
 	{
@@ -318,7 +330,7 @@ public class WindowState : Object
 		this.rightpalete  = new Xcls_RightPalete();
 		this.rightpalete.ref();  /// really?
 		((Gtk.Container)(this.win.objectview.el.get_widget())).add(this.rightpalete.el);
-		//this.projectsettings.el.show_all();
+ 
 
 		var stage = this.win.objectview.el.get_stage();
 		stage.set_background_color(  Clutter.Color.from_string("#000"));
@@ -333,7 +345,7 @@ public class WindowState : Object
 		this.add_props  = new Xcls_WindowAddProp();
 		this.add_props.ref();  /// really?
 		((Gtk.Container)(this.win.addpropsview.el.get_widget())).add(this.add_props.el);
-		//this.projectsettings.el.show_all();
+ 
 
 		var  stage = this.win.addpropsview.el.get_stage();
 		stage.set_background_color(  Clutter.Color.from_string("#000"));
@@ -377,7 +389,7 @@ public class WindowState : Object
 		((Gtk.Container)(this.win.codeeditview.el.get_widget())).add(this.code_editor.el);
 		
 		this.code_editor.window = this.win;
-		//this.projectsettings.el.show_all();
+ 
 
 		var stage = this.win.codeeditview.el.get_stage();
 		stage.set_background_color(  Clutter.Color.from_string("#000"));
@@ -479,30 +491,30 @@ public class WindowState : Object
 	
 	
 		var ctr= ((Gtk.Container)(this.win.rooview.el.get_widget()));
-		var ctr_p= ((Gtk.Container)(this.win.projecteditview.el.get_widget()));
+ 
 	
 		if (file.project.xtype == "Roo" ) { 
 			ctr.foreach( (w) => { ctr.remove(w); });
-			ctr_p.foreach( (w) => { ctr_p.remove(w); });
+ 
 			ctr.add(this.window_rooview.el);
-			ctr_p.add(this.projectsettings.el);
+ 
 			if (file.xtype != "PlainFile") {       
 				this.window_rooview.loadFile(file);
 				this.window_rooview.el.show_all();
 			}
-			this.projectsettings.el.show_all();            
+ 
 			
 
 		} else {
 			ctr.foreach( (w) => { ctr.remove(w); });
-			ctr_p.foreach( (w) => { ctr_p.remove(w); });            
+
 			ctr.add(this.window_gladeview.el);
-			ctr_p.add(this.vala_projectsettings.el);
+ 
 			if (file.xtype != "PlainFile") {    
 				this.window_gladeview.loadFile(file);
 				this.window_gladeview.el.show_all();
 			}
-			this.vala_projectsettings.el.show_all();
+ 
 		}
 		print("OPEN : " + file.name);
 		if (file.xtype != "PlainFile") {    
@@ -513,23 +525,7 @@ public class WindowState : Object
 
 	}
  
-	// our project properties is different for Roo and Gtk
-	// it would be better to change the above code to use this, 
-	public void attachProjectSettings() {
-	
-		var ctr_p= ((Gtk.Container)(this.win.projecteditview.el.get_widget()));
-		
-		if (this.win.project.xtype == "Roo" ) { 
-			ctr_p.foreach( (w) => { ctr_p.remove(w); });
-			ctr_p.add(this.projectsettings.el);
-			this.projectsettings.el.show_all();            
-
-		} else {
-			ctr_p.foreach( (w) => { ctr_p.remove(w); });            
-			ctr_p.add(this.vala_projectsettings.el);
-			this.vala_projectsettings.el.show_all();
-		}
-    }
+ 
 	 /*
 	public void fileViewOpenPlain(string fname)
 	{
@@ -566,7 +562,6 @@ public class WindowState : Object
 		this.win.addpropsview.el.save_easing_state();
 		this.win.codeeditview.el.save_easing_state();
 		this.win.objectview.el.save_easing_state();
-		this.win.projecteditview.el.save_easing_state();
 		this.win.rooview.el.save_easing_state();
 		this.clutterfiles.el.save_easing_state();
 		 
@@ -576,7 +571,6 @@ public class WindowState : Object
 		this.win.addpropsview.el.restore_easing_state();
 		this.win.codeeditview.el.restore_easing_state();
 		this.win.objectview.el.restore_easing_state();
-		this.win.projecteditview.el.restore_easing_state();
 		this.win.rooview.el.restore_easing_state();
 		this.clutterfiles.el.restore_easing_state();
 		
@@ -593,7 +587,7 @@ public class WindowState : Object
 		// stop werid stuff happening
 		
 		if (this.state == State.FILES 
-			&& new_state == State.FILEPROJECT 
+			//&& new_state == State.FILEPROJECT 
 			&& this.left_projects.getSelectedProject() == null) {
 			return;
 		}
@@ -634,14 +628,15 @@ public class WindowState : Object
 				// enable re-calc of canvas..
 
 				//this.code_editor.saveContents(); << not yet...
-				if (new_state != State.PROJECTCODEONLY) {
-					this.win.rooview.el.show(); 
-					this.win.leftpane.el.show();
-					this.win.codeeditview.el.set_scale(0.0f,0.0f);
-				} else {
+				//if (new_state != State.PROJECTCODEONLY) {
+				//	this.win.rooview.el.show(); 
+				//	this.win.leftpane.el.show();
+				//	this.win.codeeditview.el.set_scale(0.0f,0.0f);
+				//} else {
 					this.win.codeeditview.el.set_pivot_point(0.0f,1.0f); // bottom left
 				    this.win.codeeditview.el.set_scale(0.5f,0.5f);
-				}	
+				//}	
+				
 			    while (Gtk.events_pending()) { 
 					Gtk.main_iteration();
 				}
@@ -655,9 +650,9 @@ public class WindowState : Object
 				this.win.objectview.el.set_scale(0.0f,0.0f);
 				 break;
 
-			case State.FILEPROJECT:
-			case State.PROJECT:
-			case State.PROJECTCODEONLY:
+			/*case State.FILEPROJECT:
+			//case State.PROJECT:
+			//case State.PROJECTCODEONLY:
 				if (this.win.project.xtype == "Gtk") {
 					this.vala_projectsettings.save();
 				} 
@@ -667,18 +662,19 @@ public class WindowState : Object
 				}
 				this.win.projecteditview.el.set_scale(0.0f,0.0f);
 				break;
-
+			*/
 		  case State.FILES: // goes to preview or codeonly...
 				// hide files...
 				
 				
-				if (new_state == State.FILEPROJECT) {
+				/*if (new_state == State.FILEPROJECT) {
 				
 					this.clutterfiles.el.set_easing_duration(1000);
 					this.clutterfiles.el.set_pivot_point(0.5f,1.0f);
 					this.clutterfiles.el.set_scale(0.5f,0.5f);
 					break;
 				}
+				*/
  
 				if (new_state == State.CODEONLY) {
 					this.win.rooview.el.hide();
@@ -820,7 +816,7 @@ public class WindowState : Object
 				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
 				break;
 
-			case State.PROJECTCODEONLY:
+			/*case State.PROJECTCODEONLY:
 			    // going to project edit (when in code only)
 
 				
@@ -872,7 +868,7 @@ public class WindowState : Object
 				this.win.projecteditview.el.set_scale(1.0f,1.0f);
 				 
 				break;
-				
+			*/
 		   case State.FILES:  // can only get here from PREVIEW (or code-only) state.. in theory..
 				
    
@@ -983,7 +979,7 @@ public class WindowState : Object
 				this.clutterfiles.set_size(alloc.width-50, alloc.height);
 				break;
 
-			case State.PROJECT:
+			/*case State.PROJECT:
 		 
 				this.win.projecteditview.el.set_size(alloc.width-50, alloc.height / 2.0f);
 		
@@ -993,7 +989,7 @@ public class WindowState : Object
 				this.win.rooview.el.set_scale(0.5f, 0.5f);
 				//this.win.rooview.el.restore_easing_state();
 				break;
-
+		*/
 			case State.CODE: 
 				this.win.codeeditview.el.set_size(codesize, alloc.height);
 				var scale = avail > 0.0f ? (avail - codesize -10 ) / avail : 0.0f;
@@ -1099,7 +1095,7 @@ public class WindowState : Object
 				this.win.addpropbutton.el.show();  
 				this.win.addlistenerbutton.el.show(); 
 				break;
-			
+			/*
 			case State.PROJECT: 
 			case State.FILEPROJECT:
 			case State.PROJECTCODEONLY:
@@ -1107,7 +1103,7 @@ public class WindowState : Object
 				this.win.backbutton.el.show();
 				
 				break;
-			
+			*/
 	
 			case State.FILES:
 				if (this.left_projects.getSelectedProject() != null ) {
@@ -1173,7 +1169,8 @@ public class WindowState : Object
 			} else {
 				this.win.statusbar_depricated.setNotices( new Json.Object(),0);
 			}
-			if (this.state == State.CODE || this.state == State.PROJECTCODEONLY) {
+			//if (this.state == State.CODE || this.state == State.PROJECTCODEONLY) {
+			if (this.state == State.CODE) {
 				buf.highlightErrorsJson("ERR", obj); 
 				buf.highlightErrorsJson("WARN", obj);
 				buf.highlightErrorsJson("DEPR", obj);
