@@ -78,7 +78,7 @@ public class Xcls_ProjectSettings : Object
     	// window + header?
     	 print("SHOWALL - POPIP\n");
     	this.el.show_all();
-    	this.kname.el.grab_focus();
+    	this.view.el.grab_focus();
     
         
         //this.el.show_all();
