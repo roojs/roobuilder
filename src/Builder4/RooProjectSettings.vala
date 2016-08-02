@@ -46,7 +46,25 @@ public class Xcls_ProjectSettings : Object
     }
 
     // user defined functions
-    public void show (Project.Project project) {
+    public void show ( 
+    
+    	//this.success = c.success;
+     
+    } 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    (Gtk.Widget btn, Project.Project project) {
         _this.project = project;
         _this.path.el.label = project.firstPath();
         // get the active project.
@@ -68,6 +86,19 @@ public class Xcls_ProjectSettings : Object
         _this.database_DBNAME.el.set_text(    js.get_string_member("DBNAME") );
         _this.database_DBUSERNAME.el.set_text(    js.get_string_member("DBUSERNAME") );
         _this.database_DBPASSWORD.el.set_text(    js.get_string_member("DBPASSWORD") );
+        
+        	//console.log('show all');
+    	this.el.set_modal(true);
+    	this.el.set_relative_to(btn);
+    
+    	this.el.set_position(Gtk.PositionType.RIGHT);
+    
+    	// window + header?
+    	 print("SHOWALL - POPIP\n");
+    	this.el.show_all();
+    	this.kname.el.grab_focus();
+    
+        
         //this.el.show_all();
     }
     public void save () {
