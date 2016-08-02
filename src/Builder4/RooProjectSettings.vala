@@ -78,7 +78,7 @@ public class Xcls_RooProjectSettings : Object
     	// window + header?
     	 print("SHOWALL - POPIP\n");
     	this.el.show_all();
-    	this.el.set_size_request(500,500);
+    	this.el.set_size_request(800,500);
     	this.view.el.grab_focus();
     	
         
