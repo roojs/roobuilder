@@ -28,7 +28,7 @@
      "$ homogeneous" : false,
      "items" : [
       {
-       "* pack" : "pack_end,true,true,0",
+       "* pack" : "pack_start,false,false,0",
        "xtype" : "Notebook",
        "$ xns" : "Gtk",
        "items" : [
