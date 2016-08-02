@@ -2,7 +2,7 @@
  "name" : "PopoverProperty",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/PopoverProperty.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/PopoverProperty.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
@@ -12,8 +12,8 @@
     "closed" : "() => {\n \n  \n  var newtext = \"\";\n  Gtk.TreeIter citer;\n  GLib.Value gval;\n  this.kflag.el.get_active_iter(out citer);\n  this.dbmodel.el.get_value(citer, 0, out  gval);\n  \n  var ktype = this.ktype.el.get_text().strip(); \n  var kname = this.kname.el.get_text().strip(); \n  newtext += ((string)gval).strip();  \n  newtext += ktype.length > 0 && newtext.length > 0 ? \" \" :\"\";\n  newtext += ktype;\n  newtext += kname.length > 0 && newtext.length > 0 ? \" \" :\"\";\n  newtext += kname;\n  \n  \n   var lp =  _this.mainwindow.windowstate.left_props;\n    \n    switch(this.key_type) {\n        case \"listener\":\n            var ov = _this.node.listeners.get(this.old_keyname);\n            _this.node.listeners.set(newtext, ov);\n            if (this.old_keyname != newtext) { \n\t            _this.node.listeners.unset(this.old_keyname);\n            }\n            \n            \n            lp.updateKey(this.old_keyname, this.key_type, newtext);\n            \n            break;\n        case \"props\":\n            var ov = _this.node.props.get(this.old_keyname);\n            _this.node.props.set(newtext, ov);\n\t\t\tif (this.old_keyname != newtext) { \n\t            _this.node.props.unset(this.old_keyname);\n            }\n            lp.updateKey(this.old_keyname, this.key_type, newtext);\n            break;\n     }\n   \n  \n  \n} "
    },
    "string old_keyname" : "",
-   "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "id" : "PopoverProperty",
+   "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "| void show" : "(Gtk.Widget btn, JsRender.Node node, string key_type,  string key) \n\t{\n\t\n\tstring kname = \"\", kflag = \"\", ktype = \"\";\n\tif (key.length > 0) {\n\t\tnode.normalize_key( key, out  kname, out  kflag, out ktype);\n\t}\n\n\tif (key_type == \"listener\") {\n\t\tthis.header.el.title = \"Modify Event Listener\";\n\t} else {\n\t\tthis.header.el.title = \"Modify Property\";\n\t}\n\t\n\tthis.key_type = key_type;\n\tthis.old_keyname = key;\n\tthis.node = node;\n\t\n\t_this.kname.el.set_text(kname);\n\t_this.ktype.el.set_text(ktype);\n\t\n\t_this.dbmodel.loadData(kflag);\n\t// does node have this property...\n\n\n\t \n\n\t_this.node = node;\n\t//console.log('show all');\n\tthis.el.set_modal(true);\n\tthis.el.set_relative_to(btn);\n\n\tthis.el.set_position(Gtk.PositionType.TOP);\n\n\t// window + header?\n\t print(\"SHOWALL - POPIP\\n\");\n\tthis.el.show_all();\n\tthis.kname.el.grab_focus();\n\n\t//this.success = c.success;\n \n}",
    "bool done" : false,
    "|   void updateNodeFromValues" : "() {\n\n     /*   _this.file.title = _this.title.el.get_text();\n        _this.file.region = _this.region.el.get_text();            \n        _this.file.parent = _this.parent.el.get_text();                        \n        _this.file.permname = _this.permname.el.get_text();                                    \n        _this.file.modOrder = _this.modOrder.el.get_text();\n        \n        if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {\n            _this.file.renameTo(_this.name.el.get_text());\n        }\n        // store the module...\n        _this.file.build_module = \"\";        \n         Gtk.TreeIter iter; \n        if (_this.build_module.el.get_active_iter (out iter)) {\n             Value vfname;\n             this.dbmodel.el.get_value (iter, 0, out vfname);\n             if (((string)vfname).length > 0) {\n                 _this.file.build_module = (string)vfname;\n             }\n    \n        }\n        */\n        \n        \n\n                                                    \n}    ",
@@ -28,22 +28,22 @@
    "items" : [
     {
      "bool homogeneous" : false,
-     "$ pack" : "add",
      "xtype" : "Box",
+     "$ pack" : "add",
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "items" : [
       {
        "id" : "header",
-       "* pack" : "pack_start,false,true,0",
        "xtype" : "HeaderBar",
+       "* pack" : "pack_start,false,true,0",
        "$ xns" : "Gtk",
        "string title" : "Modify / Create Property"
       },
       {
        "int margin_right" : 4,
-       "* pack" : "pack_start,false,false,4",
        "xtype" : "Table",
+       "* pack" : "pack_start,false,false,4",
        "uint row_spacing" : 2,
        "n_columns" : 2,
        "$ xns" : "Gtk",
@@ -69,14 +69,14 @@
          "items" : [
           {
            "id" : "dbcellrenderer",
-           "xtype" : "CellRendererText",
            "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
            "$ xns" : "Gtk"
           },
           {
            "id" : "dbmodel",
-           "xtype" : "ListStore",
            "* pack" : "set_model",
+           "xtype" : "ListStore",
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
@@ -103,8 +103,8 @@
         },
         {
          "label" : "Name",
-         "tooltip_text" : "center, north, south, east, west",
          "$ visible" : true,
+         "tooltip_text" : "center, north, south, east, west",
          "xalign" : 0.90000000000000002,
          "* pack" : "attach_defaults,0,1,2,3",
          "xtype" : "Label",
