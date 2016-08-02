@@ -65,6 +65,30 @@ public class Xcls_ProjectSettings : Object
         _this.database_DBPASSWORD.el.set_text(    js.get_string_member("DBPASSWORD") );
         //this.el.show_all();
     }
+    public void save () {
+       var buf =    _this.view.el.get_buffer();
+       Gtk.TextIter s;
+         Gtk.TextIter e;
+        buf.get_start_iter(out s);
+        buf.get_end_iter(out e);
+          _this.project.runhtml = buf.get_text(s,e,true);
+          
+        _this.project.rootURL = _this.rootURL.el.get_text();
+        _this.project.base_template = _this.base_template.el.get_text();    
+        
+        var js = _this.project.json_project_data;
+        js.set_string_member("DBTYPE", _this.database_DBTYPE.el.get_text());
+       js.set_string_member("DBNAME", _this.database_DBNAME.el.get_text());
+        js.set_string_member("DBUSERNAME", _this.database_DBUSERNAME.el.get_text());
+        js.set_string_member("DBPASSWORD", _this.database_DBPASSWORD.el.get_text());
+    //    _this.project.set_string_member("DBHOST", _this.DBTYPE.el.get_text());    
+        
+        // need to re-init the database 
+        
+        _this.project.initRooDatabase();
+         
+        
+    }
     public class Xcls_ProjectSettings : Object
     {
         public Gtk.Box el;
