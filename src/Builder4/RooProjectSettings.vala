@@ -12,7 +12,6 @@ public class Xcls_ProjectSettings : Object
         }
         return _ProjectSettings;
     }
-    public Xcls_ProjectSettings ProjectSettings;
     public Xcls_label_global label_global;
     public Xcls_label_database label_database;
     public Xcls_path path;
@@ -38,7 +37,7 @@ public class Xcls_ProjectSettings : Object
         // my vars (dec)
 
         // set gobject values
-        var child_0 = new Xcls_ProjectSettings( _this );
+        var child_0 = new Xcls_Box2( _this );
         child_0.ref();
     }
 
@@ -91,21 +90,18 @@ public class Xcls_ProjectSettings : Object
          
         
     }
-    public class Xcls_ProjectSettings : Object
+    public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
         private Xcls_ProjectSettings  _this;
 
 
             // my vars (def)
-        public signal void buttonPressed (string btn);
-        public Project.Project project;
 
         // ctor
-        public Xcls_ProjectSettings(Xcls_ProjectSettings _owner )
+        public Xcls_Box2(Xcls_ProjectSettings _owner )
         {
             _this = _owner;
-            _this.ProjectSettings = this;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
@@ -122,54 +118,6 @@ public class Xcls_ProjectSettings : Object
         }
 
         // user defined functions
-        public void show (Project.Project project) {
-            _this.project = project;
-            _this.path.el.label = project.firstPath();
-            // get the active project.
-             var lm = Gtk.SourceLanguageManager.get_default();
-                        
-            ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(
-            
-                lm.get_language("html"));
-          
-            //print (project.fn);
-            //project.runhtml = project.runhtml || '';
-            _this.view.el.get_buffer().set_text(project.runhtml);
-            
-               
-            _this.rootURL.el.set_text( _this.project.rootURL );
-            _this.base_template.el.set_text(_this.project.base_template);    
-             var js = _this.project;
-            _this.database_DBTYPE.el.set_text(     js.get_string_member("DBTYPE") );
-            _this.database_DBNAME.el.set_text(    js.get_string_member("DBNAME") );
-            _this.database_DBUSERNAME.el.set_text(    js.get_string_member("DBUSERNAME") );
-            _this.database_DBPASSWORD.el.set_text(    js.get_string_member("DBPASSWORD") );
-            //this.el.show_all();
-        }
-        public void save () {
-           var buf =    _this.view.el.get_buffer();
-           Gtk.TextIter s;
-             Gtk.TextIter e;
-            buf.get_start_iter(out s);
-            buf.get_end_iter(out e);
-              _this.project.runhtml = buf.get_text(s,e,true);
-              
-            _this.project.rootURL = _this.rootURL.el.get_text();
-            _this.project.base_template = _this.base_template.el.get_text();    
-            
-            var js = _this.project.json_project_data;
-            js.set_string_member("DBTYPE", _this.database_DBTYPE.el.get_text());
-           js.set_string_member("DBNAME", _this.database_DBNAME.el.get_text());
-            js.set_string_member("DBUSERNAME", _this.database_DBUSERNAME.el.get_text());
-            js.set_string_member("DBPASSWORD", _this.database_DBPASSWORD.el.get_text());
-        //    _this.project.set_string_member("DBHOST", _this.DBTYPE.el.get_text());    
-            
-            // need to re-init the database 
-            
-            _this.project.initRooDatabase();
-             
-            
-        }
     }
     public class Xcls_Box3 : Object
     {
