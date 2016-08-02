@@ -28,35 +28,6 @@
      "$ homogeneous" : false,
      "items" : [
       {
-       "* pack" : "pack_start,false,false,0",
-       "xtype" : "Box",
-       "gboolean expand" : false,
-       "$ xns" : "Gtk",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "$ homogeneous" : true,
-       "gboolean vexpand" : false,
-       "items" : [
-        {
-         "listeners" : {
-          "button_press_event" : "() => {\n    _this.save();\n          \n    _this.buttonPressed(\"apply\");\n        return false;\n}"
-         },
-         "label" : "Apply",
-         "* pack" : "add",
-         "xtype" : "Button",
-         "$ xns" : "Gtk"
-        },
-        {
-         "listeners" : {
-          "button_press_event" : "() => {\n       _this.save();\n          \n    _this.buttonPressed(\"save\");\n        return false;\n}"
-         },
-         "label" : "Save",
-         "* pack" : "add",
-         "xtype" : "Button",
-         "$ xns" : "Gtk"
-        }
-       ]
-      },
-      {
        "* pack" : "pack_end,true,true,0",
        "xtype" : "Notebook",
        "$ xns" : "Gtk",
@@ -249,6 +220,35 @@
            "$ xns" : "Gtk"
           }
          ]
+        }
+       ]
+      },
+      {
+       "* pack" : "pack_start,false,false,0",
+       "xtype" : "Box",
+       "gboolean expand" : false,
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "$ homogeneous" : true,
+       "gboolean vexpand" : false,
+       "items" : [
+        {
+         "listeners" : {
+          "button_press_event" : "() => {\n    _this.save();\n          \n    _this.buttonPressed(\"apply\");\n        return false;\n}"
+         },
+         "label" : "Apply",
+         "* pack" : "add",
+         "xtype" : "Button",
+         "$ xns" : "Gtk"
+        },
+        {
+         "listeners" : {
+          "button_press_event" : "() => {\n       _this.save();\n          \n    _this.buttonPressed(\"save\");\n        return false;\n}"
+         },
+         "label" : "Save",
+         "* pack" : "add",
+         "xtype" : "Button",
+         "$ xns" : "Gtk"
         }
        ]
       }
