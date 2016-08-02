@@ -39,6 +39,7 @@ public class Xcls_ProjectSettings : Object
         // set gobject values
         this.el.border_width = 0;
         this.el.modal = true;
+        this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
