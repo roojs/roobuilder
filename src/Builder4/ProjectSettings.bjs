@@ -2,14 +2,14 @@
  "name" : "ProjectSettings",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/ProjectSettings.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/ProjectSettings.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
  "items" : [
   {
    "@ void buttonPressed" : "(string btn)",
-   "id" : "ProjectSettings",
+   "id" : "RooProjectSettings",
    "| void show" : " (Project.Project project) {\n    _this.project = project;\n    _this.path.el.label = project.firstPath();\n    // get the active project.\n     var lm = Gtk.SourceLanguageManager.get_default();\n                \n    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(\n    \n        lm.get_language(\"html\"));\n  \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n       \n    _this.rootURL.el.set_text( _this.project.rootURL );\n    _this.base_template.el.set_text(_this.project.base_template);    \n     var js = _this.project;\n    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );\n    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );\n    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );\n    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );\n    //this.el.show_all();\n}\n",
    "# Project.Project project" : "",
    "xtype" : "Box",
@@ -33,8 +33,8 @@
         "button_press_event" : "() => {\n    _this.save();\n          \n    _this.buttonPressed(\"apply\");\n        return false;\n}"
        },
        "label" : "Apply",
-       "* pack" : "add",
        "xtype" : "Button",
+       "* pack" : "add",
        "$ xns" : "Gtk"
       },
       {
@@ -42,8 +42,8 @@
         "button_press_event" : "() => {\n       _this.save();\n          \n    _this.buttonPressed(\"save\");\n        return false;\n}"
        },
        "label" : "Save",
-       "* pack" : "add",
        "xtype" : "Button",
+       "* pack" : "add",
        "$ xns" : "Gtk"
       }
      ]
@@ -55,15 +55,15 @@
      "items" : [
       {
        "id" : "label_global",
-       "xtype" : "Label",
        "* pack" : false,
+       "xtype" : "Label",
        "$ xns" : "Gtk",
        "utf8 label" : "Global"
       },
       {
        "id" : "label_database",
-       "* pack" : false,
        "xtype" : "Label",
+       "* pack" : false,
        "$ xns" : "Gtk",
        "utf8 label" : "Database"
       },
@@ -93,15 +93,15 @@
          "items" : [
           {
            "label" : "HTML template file",
-           "xtype" : "Label",
            "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
            "gint margin" : 3,
            "$ xns" : "Gtk"
           },
           {
            "id" : "base_template",
-           "xtype" : "Entry",
            "* pack" : "add",
+           "xtype" : "Entry",
            "$ xns" : "Gtk"
           }
          ]
@@ -116,23 +116,23 @@
          "items" : [
           {
            "label" : "root URL",
-           "xtype" : "Label",
            "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
            "gint margin" : 3,
            "$ xns" : "Gtk"
           },
           {
            "id" : "rootURL",
-           "xtype" : "Entry",
            "* pack" : "add",
+           "xtype" : "Entry",
            "$ xns" : "Gtk"
           }
          ]
         },
         {
          "label" : "HTML To insert at end of <HEAD>",
-         "xtype" : "Label",
          "* pack" : "pack_start,false,false,0",
+         "xtype" : "Label",
          "$ xns" : "Gtk"
         },
         {
@@ -173,8 +173,8 @@
           "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
          },
          "id" : "database_DBTYPE",
-         "* pack" : "pack_start,false,false,0",
          "xtype" : "Entry",
+         "* pack" : "pack_start,false,false,0",
          "$ xns" : "Gtk"
         },
         {
@@ -189,8 +189,8 @@
           "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBUSERNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
          },
          "id" : "database_DBNAME",
-         "xtype" : "Entry",
          "* pack" : "pack_start,false,false,0",
+         "xtype" : "Entry",
          "$ xns" : "Gtk"
         },
         {
@@ -205,8 +205,8 @@
           "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBPASSWORD.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
          },
          "id" : "database_DBUSERNAME",
-         "* pack" : "pack_start,false,false,0",
          "xtype" : "Entry",
+         "* pack" : "pack_start,false,false,0",
          "$ xns" : "Gtk"
         },
         {
@@ -218,8 +218,8 @@
         },
         {
          "id" : "database_DBPASSWORD",
-         "xtype" : "Entry",
          "* pack" : "pack_start,false,false,0",
+         "xtype" : "Entry",
          "$ xns" : "Gtk"
         },
         {
