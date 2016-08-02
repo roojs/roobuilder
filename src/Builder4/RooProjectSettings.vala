@@ -26,6 +26,7 @@ public class Xcls_ProjectSettings : Object
     public Xcls_database_ERROR database_ERROR;
 
         // my vars (def)
+    public signal void buttonPressed ();
 
     // ctor
     public Xcls_ProjectSettings()
