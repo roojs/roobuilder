@@ -120,8 +120,7 @@ public class Xcls_ProjectSettings : Object
             _this.database_DBPASSWORD.el.set_text(    js.get_string_member("DBPASSWORD") );
             //this.el.show_all();
         }
-        public void save ()
-        {
+        public void save () {
            var buf =    _this.view.el.get_buffer();
            Gtk.TextIter s;
              Gtk.TextIter e;
