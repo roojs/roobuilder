@@ -18,7 +18,7 @@
    "items" : [
     {
      "xtype" : "Box",
-     "* pack" : "pack_start,false,false,0",
+     "* pack" : "add",
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "border_width" : 5,
