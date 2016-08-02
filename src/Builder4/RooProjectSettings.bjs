@@ -1,0 +1,11 @@
+{
+ "name" : "RooProjectSettings",
+ "parent" : "",
+ "title" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/RooProjectSettings.bjs",
+ "permname" : "",
+ "modOrder" : "",
+ "build_module" : "builder",
+ "items" : [
+ ]
+}
