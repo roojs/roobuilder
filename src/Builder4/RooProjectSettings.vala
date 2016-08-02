@@ -38,32 +38,6 @@ public class Xcls_ProjectSettings : Object
         // set gobject values
         var child_0 = new Xcls_ProjectSettings( _this );
         child_0.ref();
-
-        //listeners
-        this.el.show.connect( (Project.Project project) {
-            _this.project = project;
-            _this.path.el.label = project.firstPath();
-            // get the active project.
-             var lm = Gtk.SourceLanguageManager.get_default();
-                        
-            ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(
-            
-                lm.get_language("html"));
-          
-            //print (project.fn);
-            //project.runhtml = project.runhtml || '';
-            _this.view.el.get_buffer().set_text(project.runhtml);
-            
-               
-            _this.rootURL.el.set_text( _this.project.rootURL );
-            _this.base_template.el.set_text(_this.project.base_template);    
-             var js = _this.project;
-            _this.database_DBTYPE.el.set_text(     js.get_string_member("DBTYPE") );
-            _this.database_DBNAME.el.set_text(    js.get_string_member("DBNAME") );
-            _this.database_DBUSERNAME.el.set_text(    js.get_string_member("DBUSERNAME") );
-            _this.database_DBPASSWORD.el.set_text(    js.get_string_member("DBPASSWORD") );
-            //this.el.show_all();
-        });
     }
 
     // user defined functions

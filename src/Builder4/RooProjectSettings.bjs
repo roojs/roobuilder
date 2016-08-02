@@ -8,9 +8,6 @@
  "build_module" : "builder",
  "items" : [
   {
-   "listeners" : {
-    "show" : " (Project.Project project) {\n    _this.project = project;\n    _this.path.el.label = project.firstPath();\n    // get the active project.\n     var lm = Gtk.SourceLanguageManager.get_default();\n                \n    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(\n    \n        lm.get_language(\"html\"));\n  \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n       \n    _this.rootURL.el.set_text( _this.project.rootURL );\n    _this.base_template.el.set_text(_this.project.base_template);    \n     var js = _this.project;\n    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );\n    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );\n    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );\n    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );\n    //this.el.show_all();\n}\n"
-   },
    "id" : "ProjectSettings",
    "xtype" : "Popover",
    "$ xns" : "Gtk",
