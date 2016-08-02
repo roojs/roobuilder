@@ -9,7 +9,248 @@
  "items" : [
   {
    "xtype" : "Popover",
-   "$ xns" : "Gtk"
+   "$ xns" : "Gtk",
+   "items" : [
+    {
+     "@ void buttonPressed" : "(string btn)",
+     "id" : "ProjectSettings",
+     "| void show" : " (Project.Project project) {\n    _this.project = project;\n    _this.path.el.label = project.firstPath();\n    // get the active project.\n     var lm = Gtk.SourceLanguageManager.get_default();\n                \n    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(\n    \n        lm.get_language(\"html\"));\n  \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n       \n    _this.rootURL.el.set_text( _this.project.rootURL );\n    _this.base_template.el.set_text(_this.project.base_template);    \n     var js = _this.project;\n    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );\n    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );\n    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );\n    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );\n    //this.el.show_all();\n}\n",
+     "# Project.Project project" : "",
+     "xtype" : "Box",
+     "| void save" : "()\n{\n   var buf =    _this.view.el.get_buffer();\n   Gtk.TextIter s;\n     Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n      _this.project.runhtml = buf.get_text(s,e,true);\n      \n    _this.project.rootURL = _this.rootURL.el.get_text();\n    _this.project.base_template = _this.base_template.el.get_text();    \n    \n    var js = _this.project.json_project_data;\n    js.set_string_member(\"DBTYPE\", _this.database_DBTYPE.el.get_text());\n   js.set_string_member(\"DBNAME\", _this.database_DBNAME.el.get_text());\n    js.set_string_member(\"DBUSERNAME\", _this.database_DBUSERNAME.el.get_text());\n    js.set_string_member(\"DBPASSWORD\", _this.database_DBPASSWORD.el.get_text());\n//    _this.project.set_string_member(\"DBHOST\", _this.DBTYPE.el.get_text());    \n    \n    // need to re-init the database \n    \n    _this.project.initRooDatabase();\n     \n    \n}",
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "border_width" : 5,
+     "$ homogeneous" : false,
+     "items" : [
+      {
+       "* pack" : "pack_start,false,false,0",
+       "xtype" : "Box",
+       "gboolean expand" : false,
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "$ homogeneous" : true,
+       "gboolean vexpand" : false,
+       "items" : [
+        {
+         "listeners" : {
+          "button_press_event" : "() => {\n    _this.save();\n          \n    _this.buttonPressed(\"apply\");\n        return false;\n}"
+         },
+         "label" : "Apply",
+         "* pack" : "add",
+         "xtype" : "Button",
+         "$ xns" : "Gtk"
+        },
+        {
+         "listeners" : {
+          "button_press_event" : "() => {\n       _this.save();\n          \n    _this.buttonPressed(\"save\");\n        return false;\n}"
+         },
+         "label" : "Save",
+         "* pack" : "add",
+         "xtype" : "Button",
+         "$ xns" : "Gtk"
+        }
+       ]
+      },
+      {
+       "* pack" : "pack_end,true,true,0",
+       "xtype" : "Notebook",
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "id" : "label_global",
+         "xtype" : "Label",
+         "* pack" : false,
+         "$ xns" : "Gtk",
+         "utf8 label" : "Global"
+        },
+        {
+         "id" : "label_database",
+         "* pack" : false,
+         "xtype" : "Label",
+         "$ xns" : "Gtk",
+         "utf8 label" : "Database"
+        },
+        {
+         "* pack" : "append_page,_this.label_global.el",
+         "xtype" : "Box",
+         "gboolean homogeneous" : false,
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "items" : [
+          {
+           "label" : "filename",
+           "id" : "path",
+           "xalign" : 0,
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
+           "gint margin" : 3,
+           "$ xns" : "Gtk"
+          },
+          {
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Box",
+           "gboolean expand" : false,
+           "$ xns" : "Gtk",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "$ homogeneous" : false,
+           "items" : [
+            {
+             "label" : "HTML template file",
+             "xtype" : "Label",
+             "* pack" : "pack_start,false,false,0",
+             "gint margin" : 3,
+             "$ xns" : "Gtk"
+            },
+            {
+             "id" : "base_template",
+             "xtype" : "Entry",
+             "* pack" : "add",
+             "$ xns" : "Gtk"
+            }
+           ]
+          },
+          {
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Box",
+           "gboolean expand" : false,
+           "$ xns" : "Gtk",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "$ homogeneous" : false,
+           "items" : [
+            {
+             "label" : "root URL",
+             "xtype" : "Label",
+             "* pack" : "pack_start,false,false,0",
+             "gint margin" : 3,
+             "$ xns" : "Gtk"
+            },
+            {
+             "id" : "rootURL",
+             "xtype" : "Entry",
+             "* pack" : "add",
+             "$ xns" : "Gtk"
+            }
+           ]
+          },
+          {
+           "label" : "HTML To insert at end of <HEAD>",
+           "xtype" : "Label",
+           "* pack" : "pack_start,false,false,0",
+           "$ xns" : "Gtk"
+          },
+          {
+           "* pack" : "pack_start,true,true,0",
+           "xtype" : "ScrolledWindow",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "listeners" : {
+              "key_release_event" : " ( event) =>{\n    if (event.keyval != 115) {\n        return false;\n         \n    }\n    if   ( (event.state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {\n        return false;\n    }\n     var buf =    this.el.get_buffer();\n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n    _this.project.runhtml = buf.get_text(s,e,true);\n    \n          \n    _this.buttonPressed(\"save\");\n     \n    return false;\n         \n}"
+             },
+             "id" : "view",
+             "* init" : " \n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(9000);\n    this.el.override_font(description);",
+             "xtype" : "View",
+             "* pack" : "add",
+             "$ xns" : "GtkSource"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "* pack" : "append_page,_this.label_database.el",
+         "xtype" : "Box",
+         "gboolean homogeneous" : false,
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "items" : [
+          {
+           "label" : "Type (eg. MySQL or PostgreSQL)",
+           "xalign" : 0,
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
+           "$ xns" : "Gtk"
+          },
+          {
+           "listeners" : {
+            "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
+           },
+           "id" : "database_DBTYPE",
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Entry",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Name",
+           "xalign" : 0,
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
+           "$ xns" : "Gtk"
+          },
+          {
+           "listeners" : {
+            "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBUSERNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
+           },
+           "id" : "database_DBNAME",
+           "xtype" : "Entry",
+           "* pack" : "pack_start,false,false,0",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Username",
+           "xalign" : 0,
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
+           "$ xns" : "Gtk"
+          },
+          {
+           "listeners" : {
+            "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBPASSWORD.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
+           },
+           "id" : "database_DBUSERNAME",
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Entry",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Password",
+           "xalign" : 0,
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "database_DBPASSWORD",
+           "xtype" : "Entry",
+           "* pack" : "pack_start,false,false,0",
+           "$ xns" : "Gtk"
+          },
+          {
+           "listeners" : {
+            "clicked" : "() => {\n\n\n  _this.database_ERROR.el.label    = \"\";\n    Gda.Connection cnc;\n    try {\n        // assumes localhost...\n         cnc = Gda.Connection.open_from_string (\n\t\t\t_this.database_DBTYPE.el.get_text(),\n\t\t\t\"DB_NAME=\" + _this.database_DBNAME.el.get_text(), \n\t\t\t\"USERNAME=\" + _this.database_DBUSERNAME.el.get_text() + \n\t\t\t\";PASSWORD=\" + _this.database_DBPASSWORD.el.get_text(),\n\t\t\tGda.ConnectionOptions.NONE\n\t\t);\n   //} catch (Gda.ConnectionError ce) { \n   //   _this.database_ERROR.el.label = ce.message;        \n   } catch(Gda.ConnectionError ue) {\n      _this.database_ERROR.el.label = ue.message;\n        return;\n   }  catch(Gda.ConfigError ue) {\n      _this.database_ERROR.el.label = ue.message;\n        return;\n   }\n  _this.database_ERROR.el.label = \"Connection Succeeded\";\n   cnc.close();\n}"
+           },
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Button",
+           "$ xns" : "Gtk",
+           "utf8 label" : "Check Connection"
+          },
+          {
+           "label" : " ",
+           "id" : "database_ERROR",
+           "xalign" : 0,
+           "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
+           "gint margin" : 3,
+           "$ xns" : "Gtk"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
   }
  ]
 }
