@@ -634,7 +634,7 @@ public class WindowState : Object
 				//	this.win.codeeditview.el.set_scale(0.0f,0.0f);
 				//} else {
 					this.win.codeeditview.el.set_pivot_point(0.0f,1.0f); // bottom left
-				    this.win.codeeditview.el.set_scale(0.5f,0.5f);
+				    this.win.codeeditview.el.set_scale(0.0f,0.0f);
 				//}	
 				
 			    while (Gtk.events_pending()) { 
