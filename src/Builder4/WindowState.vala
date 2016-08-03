@@ -628,15 +628,11 @@ public class WindowState : Object
 				// enable re-calc of canvas..
 
 				//this.code_editor.saveContents(); << not yet...
-				//if (new_state != State.PROJECTCODEONLY) {
-				//	this.win.rooview.el.show(); 
-				//	this.win.leftpane.el.show();
-				//	this.win.codeeditview.el.set_scale(0.0f,0.0f);
-				//} else {
-					this.win.codeeditview.el.set_pivot_point(0.0f,1.0f); // bottom left
-				    this.win.codeeditview.el.set_scale(0.0f,0.0f);
-				//}	
-				
+
+				this.win.rooview.el.show(); 
+				this.win.leftpane.el.show();
+				this.win.codeeditview.el.set_scale(0.0f,0.0f);
+			
 			    while (Gtk.events_pending()) { 
 					Gtk.main_iteration();
 				}
