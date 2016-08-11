@@ -62,9 +62,9 @@
              "listeners" : {
               "activate" : "( ) => {\n       _this.openNewWindow();\n}"
              },
-             "xtype" : "MenuItem",
              "string label" : "Open a new Window",
              "* pack" : "append",
+             "xtype" : "MenuItem",
              "$ xns" : "Gtk"
             },
             {
@@ -76,26 +76,26 @@
              "listeners" : {
               "activate" : " ( ) => {\n         Resources.singleton().fetchStart();\n}"
              },
-             "* pack" : "append",
              "xtype" : "MenuItem",
              "string label" : "Download updated Resources",
+             "* pack" : "append",
              "$ xns" : "Gtk"
             },
             {
              "listeners" : {
               "activate" : "() => {\n    About.singleton().el.show();\n    }"
              },
-             "string label" : "About the Builder",
              "* pack" : "append",
              "xtype" : "MenuItem",
+             "string label" : "About the Builder",
              "$ xns" : "Gtk"
             }
            ]
           },
           {
-           "xtype" : "Image",
            "utf8 icon_name" : "help-about",
            "* pack" : "set_image",
+           "xtype" : "Image",
            "$ xns" : "Gtk"
           }
          ]
@@ -111,9 +111,9 @@
          "$ tooltop_text" : "\"Open File\"",
          "items" : [
           {
-           "* pack" : "set_image",
            "xtype" : "Image",
            "utf8 icon_name" : "document-open",
+           "* pack" : "set_image",
            "$ xns" : "Gtk"
           }
          ]
@@ -130,9 +130,9 @@
          "bool visible" : false,
          "items" : [
           {
-           "utf8 icon_name" : "go-previous",
            "* pack" : "set_image",
            "xtype" : "Image",
+           "utf8 icon_name" : "go-previous",
            "$ xns" : "Gtk"
           }
          ]
@@ -235,13 +235,6 @@
              "$ xns" : "GtkClutter"
             },
             {
-             "id" : "projecteditview",
-             "* init" : "{\n   \n   \n    this.el.add_constraint(\n        new Clutter.AlignConstraint(\n            _this.clutterembed.el.get_stage(), \n            Clutter.AlignAxis.X_AXIS,\n            1.0f\n        )\n    );\n        \n    //this.el.set_position(100,100);\n    this.el.set_pivot_point(0.0f,0.0f);\n    this.el.set_scale(1.0f,0.0f);\n    this.el.set_size(_this.clutterembed.el.get_stage().width-50,\n            _this.clutterembed.el.get_stage().height /2);\n            \n}",
-             "xtype" : "Actor",
-             "* pack" : "get_stage().add_child",
-             "$ xns" : "GtkClutter"
-            },
-            {
              "id" : "buttonlayout",
              "* init" : "{\n    \n    this.el.add_constraint(\n        new Clutter.AlignConstraint(\n            _this.clutterembed.el.get_stage(), \n            Clutter.AlignAxis.X_AXIS,\n            0.0f\n        )\n    );\n     \n    \n    //this.el.set_position(100,100);\n    this.el.set_pivot_point(0.5f,0.5f);\n     this.el.set_size(50,\n           _this.clutterembed.el.get_stage().height);\n     \n}",
              "xtype" : "Actor",
@@ -269,7 +262,7 @@
                  "items" : [
                   {
                    "listeners" : {
-                    "clicked" : "  ( ) => {\n   if (_this.windowstate.state == WindowState.State.FILEPROJECT) {\n    \n\t     _this.windowstate.switchState(WindowState.State.FILES);\n     } else { \n\t    _this.windowstate.switchState(WindowState.State.PREVIEW);\n    }\n    \n\n}"
+                    "clicked" : "  ( ) => {\n //  if (_this.windowstate.state == WindowState.State.FILEPROJECT) {\n    \n//\t     _this.windowstate.switchState(WindowState.State.FILES);\n  //   } else { \n\t    _this.windowstate.switchState(WindowState.State.PREVIEW);\n  //  }\n    \n\n}"
                    },
                    "utf8 tooltip_text" : "Back",
                    "xtype" : "Button",
@@ -279,9 +272,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "* pack" : "set_image",
                      "xtype" : "Image",
                      "utf8 icon_name" : "go-previous",
+                     "* pack" : "set_image",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -315,9 +308,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "xtype" : "Image",
                      "utf8 icon_name" : "document-properties",
                      "* pack" : "set_image",
+                     "xtype" : "Image",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -341,7 +334,7 @@
                  "items" : [
                   {
                    "listeners" : {
-                    "clicked" : "  ( ) => {\n     \n     if (_this.windowstate.state == WindowState.State.FILES) {\n     \n\t     _this.windowstate.switchState(WindowState.State.FILEPROJECT);\n     } else {\n \t     _this.windowstate.switchState(WindowState.State.PROJECT);\n\t }     \n   \n\n\n}"
+                    "clicked" : "  ( ) => {\n     \n     _this.windowstate.projectPopoverShow(this.el);\n   \n \n}"
                    },
                    "* pack" : false,
                    "xtype" : "Button",
@@ -351,9 +344,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "* pack" : "set_image",
                      "xtype" : "Image",
                      "utf8 icon_name" : "emblem-system",
+                     "* pack" : "set_image",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -391,9 +384,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "utf8 icon_name" : "list-add",
                      "* pack" : "set_image",
                      "xtype" : "Image",
+                     "utf8 icon_name" : "list-add",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -427,9 +420,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "xtype" : "Image",
                      "utf8 icon_name" : "format-justify-left",
                      "* pack" : "set_image",
+                     "xtype" : "Image",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -463,9 +456,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "* pack" : "set_image",
                      "xtype" : "Image",
                      "utf8 icon_name" : "appointment-new",
+                     "* pack" : "set_image",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -499,9 +492,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "xtype" : "Image",
                      "utf8 icon_name" : "folder-new",
                      "* pack" : "set_image",
+                     "xtype" : "Image",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -535,9 +528,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "utf8 icon_name" : "document-new",
                      "* pack" : "set_image",
                      "xtype" : "Image",
+                     "utf8 icon_name" : "document-new",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -571,9 +564,9 @@
                    "height_request" : 50,
                    "items" : [
                     {
-                     "xtype" : "Image",
                      "utf8 icon_name" : "user-trash",
                      "* pack" : "set_image",
+                     "xtype" : "Image",
                      "$ xns" : "Gtk"
                     }
                    ]
@@ -598,9 +591,9 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
-         "string label" : "   ",
          "* pack" : "pack_start,true,true,0",
          "xtype" : "Label",
+         "string label" : "   ",
          "$ xns" : "Gtk"
         },
         {
@@ -642,9 +635,9 @@
            "$ xns" : "Gtk",
            "items" : [
             {
-             "utf8 icon_name" : "system-search",
              "* pack" : "set_image",
              "xtype" : "Image",
+             "utf8 icon_name" : "system-search",
              "bool sensitive" : false,
              "$ xns" : "Gtk"
             }
@@ -672,9 +665,9 @@
            "$ xns" : "Gtk",
            "items" : [
             {
-             "* pack" : "set_image",
              "xtype" : "Image",
              "utf8 icon_name" : "dialog-error",
+             "* pack" : "set_image",
              "$ xns" : "Gtk"
             }
            ]
@@ -694,9 +687,9 @@
            "$ xns" : "Gtk",
            "items" : [
             {
-             "utf8 icon_name" : "dialog-warning",
              "* pack" : "set_image",
              "xtype" : "Image",
+             "utf8 icon_name" : "dialog-warning",
              "$ xns" : "Gtk"
             }
            ]
@@ -716,9 +709,9 @@
            "$ xns" : "Gtk",
            "items" : [
             {
-             "xtype" : "Image",
              "utf8 icon_name" : "dialog-information",
              "* pack" : "set_image",
+             "xtype" : "Image",
              "$ xns" : "Gtk"
             }
            ]
@@ -736,9 +729,9 @@
            "$ xns" : "Gtk",
            "items" : [
             {
-             "utf8 icon_name" : "media-playback-start",
              "* pack" : "set_image",
              "xtype" : "Image",
+             "utf8 icon_name" : "media-playback-start",
              "$ xns" : "Gtk"
             }
            ]

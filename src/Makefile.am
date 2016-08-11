@@ -73,8 +73,7 @@ roobuilder_PKGS = \
 		--pkg json-glib-1.0 \
 		--pkg gee-1.0 \
 		--pkg gobject-introspection-1.0 \
-		--pkg clutter-gtk-1.0 \
-		--pkg gladeui-2.0 \
+		--pkg clutter-gtk-1.0 \ 
 		--pkg libsoup-2.4 \
  		--pkg javascriptcore \
 		--pkg roojspacker-1.0 \
@@ -127,7 +126,7 @@ BUIDERUI = \
 		Builder4/DialogTemplateSelect.vala \
 		Builder4/EditProject.vala \
 		Builder4/Editor.vala \
-		Builder4/ProjectSettings.vala \
+		Builder4/RooProjectSettings.vala \
 		Builder4/WindowRightPalete.vala \
 		Builder4/WindowLeftTree.vala \
 		Builder4/WindowRooView.vala \
@@ -136,7 +135,7 @@ BUIDERUI = \
 		Builder4/WindowLeftProjects.vala \
 		Builder4/WindowAddProp.vala \
 		Builder4/GtkView.vala \
-		Builder4/ValaProjectSettings.vala \
+		Builder4/ValaProjectSettingsPopover.vala \
 		Builder4/MainWindow.vala \
 		Builder4/WindowState.vala \
 		Builder4/FakeServer.vala \
