@@ -397,7 +397,7 @@ namespace Palete {
 			//gir_parser.parse (context);
 			if (context.report.get_errors () > 0) {
 				
-				throw new VapiParserError.PARSE_FAILED("failed parse VAPIS, so we can not write file correctly");
+				//throw new VapiParserError.PARSE_FAILED("failed parse VAPIS, so we can not write file correctly");
 				
 				print("parse got errors");
 				 
@@ -412,7 +412,7 @@ namespace Palete {
 			context.check ();
 			if (context.report.get_errors () > 0) {
 				print("check got errors");
-				 throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
+				// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
 				Vala.CodeContext.pop ();
 				 
 				return;
