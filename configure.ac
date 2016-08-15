@@ -25,13 +25,12 @@ PKG_CHECK_MODULES(ROOBUILDER, [
 		 glib-2.0 >= 2.24.1
 		 gobject-2.0 >= 2.24.1
 		 gtk+-3.0 >= 3.11.3
-		 gtksourceview-3.0 
-		 json-glib-1.0 		 
-		 gee-1.0 
- 		 libxml-2.0 
+		 gtksourceview-3.0
+		 json-glib-1.0
+		 gee-0.8
+ 		 libxml-2.0
 		 libsoup-2.4,
 		 roojspacker-1.0
-		  
 ])
 
 dnl --- libvala -- needs to find matching really..
