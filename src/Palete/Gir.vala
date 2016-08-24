@@ -135,7 +135,7 @@ namespace Palete {
 		public static  Gee.HashMap<string,Gir> cache = null;
 
 		
-		public static Gir?  factory(Gtk.Project project, string ns) 
+		public static Gir?  factory(Project.Gtk project, string ns) 
 		{
 			if (cache == null) {
 				cache = new Gee.HashMap<string,Gir>();
