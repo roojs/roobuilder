@@ -77,10 +77,13 @@ namespace Palete
 		public Gee.ArrayList<Usage> map;
 
 		public Gee.HashMap<string,GirObject> classes; // used in roo.. 
+		
+		public Project.Project project
 	
-        public Palete()
+        public Palete(Project.Project project)
         {
 				// nothing?
+			this.project = project;
 			this.map = null;
 			this.classes = null;
         }
