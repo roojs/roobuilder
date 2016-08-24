@@ -424,11 +424,11 @@ namespace Palete {
 
 			
 		}
-		public string XXXfqtype() {
-			return Gir.fqtypeLookup(this.type, this.ns);
+		//public string fqtype() {
+		//	return Gir.fqtypeLookup(this.type, this.ns);
 			
 			/* return Gir.fqtypeLookup(this.type, this.ns); */
-		}
+		//}
 	}
 	    
 }
