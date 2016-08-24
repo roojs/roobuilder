@@ -272,6 +272,8 @@ public class Resources : Object
             
             switch (item.target) {
 				case "Gir.overides":
+					// clear all the project caches....
+					
 					Palete.Gir.factory("Gtk").loadOverrides(true);
 					break;
 					
