@@ -297,7 +297,7 @@ public class JsRender.NodeToVala : Object {
 			
 
  
-		var cls = Palete.Gir.factoryFqn(this.node.fqn());
+		var cls = Palete.Gir.factoryFqn(this.file.project, this.node.fqn());
 		   
 		if (cls == null) {
 			return;
