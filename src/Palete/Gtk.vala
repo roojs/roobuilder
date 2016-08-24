@@ -24,13 +24,10 @@ namespace Palete {
 		
 		public Gee.ArrayList<string> package_cache;
 		
-		public Gtk()
+		public Gtk(Project.Project project)
 		{
 
-
-		    
-		    base();
-		    this.project = project
+		    base(project);
 		    this.name = "Gtk";
 		    var context = new Vala.CodeContext ();
 			 
