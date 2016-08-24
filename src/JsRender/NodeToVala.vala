@@ -185,7 +185,7 @@ public class JsRender.NodeToVala : Object {
 	} 
 	public string mungeChild(  Node cnode)
 	{
-		var x = new  NodeToVala(cnode,  this.depth+1, this);
+		var x = new  NodeToVala(this.file, cnode,  this.depth+1, this);
 		return x.munge();
 	}
 	public void addLine(string str= "")
