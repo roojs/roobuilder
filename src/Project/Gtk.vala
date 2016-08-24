@@ -29,13 +29,13 @@ namespace Project {
 		* Gir cache - it's local as we might want clear it if we modify the packages...
 		*
 		*/
-		Gee.HashMap<string,Palate.Gir> cache = null;
+		Gee.HashMap<string,Palete.Gir> cache = null;
 	  
 		public Gtk(string path) {
 		  
 		  
 	  		base(path);
-	  		this.cache = new Gee.HashMap<string,Palate.Gir>();
+	  		this.cache = new Gee.HashMap<string,Palete.Gir>();
 			this.xtype = "Gtk";
 	  		var gid = "project-gtk-%d".printf(gtk_id++);
 	  		this.id = gid;
