@@ -47,7 +47,7 @@ namespace Palete {
 			
 			var g = new GirObject("Package",element.name) ;
 			if (parent == null) {
-				Gir.cache.set(element.name, (Gir)g);
+				this.project.gir_cache.set(element.name, (Gir)g);
 			} else {
 				// we add it as a class of the package.. even though its a namespace..
 				parent.classes.set(element.name, g);
