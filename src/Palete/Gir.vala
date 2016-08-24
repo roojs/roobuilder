@@ -143,7 +143,7 @@ namespace Palete {
 			}
 			var cache = global_cache;
 			if (project != null) {
-				cache = project.cache;
+				cache = project.gir_cache;
 			}
 			
 			var ret = cache.get(ns);
