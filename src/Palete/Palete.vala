@@ -46,7 +46,8 @@ namespace Palete
 
     static Gee.HashMap<string,Palete>? cache = null;
     
-    public static Palete factory(string xtype)
+    /*
+    public static Palete factory(project)
     {
         if (cache == null) {
             cache = new Gee.HashMap<string,Palete>();
@@ -66,7 +67,7 @@ namespace Palete
         }
         return cache.get(xtype);
     }
-       
+     */ 
 
     public abstract class Palete : Object 
     {
