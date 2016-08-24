@@ -135,7 +135,7 @@ namespace Palete {
 		public static  Gee.HashMap<string,Gir> cache = null;
 
 		
-		public static Gir?  factory(Project.Gtk project, string ns) 
+		public static Gir?  factory(Project.Gtk? project, string ns) 
 		{
 			if (cache == null) {
 				cache = new Gee.HashMap<string,Gir>();
@@ -147,8 +147,7 @@ namespace Palete {
 			var ret = cache.get(ns);
 			
 			
-
-			if (ret == null) {
+			if (ret == null && project != null) {
 
 				var a = new VapiParser(project );
 				a.create_valac_tree();
