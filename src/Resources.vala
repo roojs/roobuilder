@@ -273,8 +273,12 @@ public class Resources : Object
             switch (item.target) {
 				case "Gir.overides":
 					// clear all the project caches....
-					
-					Palete.Gir.factory("Gtk").loadOverrides(true);
+					foreach(var p in Projects...) { 
+						if p is Project.Gtk) 
+							((Project.Gtk)p).gir_cache = new Gee.HashMap<string,Palete.Gee>();
+						}
+					}
+
 					break;
 					
 				case "GtkUsage.txt":
