@@ -389,7 +389,7 @@ namespace Palete {
 				//if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
 				//	GLib.debug("Skip vapi '%s' - does not exist", dcg.packages.get(i));
 			//		continue;
-			v	}
+			// }
 				
 				context.add_external_package (dcg.packages.get(i));
 			}			
