@@ -297,7 +297,7 @@ public class JsRender.NodeToVala : Object {
 			
 
  
-		var cls = Palete.Gir.factoryFqn(this.file.project, this.node.fqn());
+		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		   
 		if (cls == null) {
 			return;
@@ -468,7 +468,7 @@ public class JsRender.NodeToVala : Object {
 			return;
 		}
 		 
-		var  default_ctor = Palete.Gir.factoryFqn(this.node.fqn() + ".new");
+		var  default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ".new");
 
 		 
 		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
