@@ -137,13 +137,15 @@ namespace Palete {
 		
 		public static Gir?  factory(Project.Gtk? project, string ns) 
 		{
-			if (cache == null) {
-				cache = new Gee.HashMap<string,Gir>();
-				// this assumes we try and generate the tree once ...
-				// but if we 'add' more vapi's it will not adjust...
-
-				  
+			if (global_cache == null) {
+				global_cache = new Gee.HashMap<string,Gir>();
+				 
 			}
+			var cache = global_cache;
+			if (project != null) {
+				cache = project.cache;
+			}
+			
 			var ret = cache.get(ns);
 			
 			
