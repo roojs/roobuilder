@@ -35,7 +35,7 @@ namespace Project {
 		  
 		  
 	  		base(path);
-	  		this.cache = new Gee.HashMap<string,Palate.Gir>()
+	  		this.cache = new Gee.HashMap<string,Palate.Gir>();
 			this.xtype = "Gtk";
 	  		var gid = "project-gtk-%d".printf(gtk_id++);
 	  		this.id = gid;
