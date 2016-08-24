@@ -136,11 +136,11 @@ namespace Palete {
 		public static  Gee.HashMap<string,Gir> cache = null;
 
 		
-		public static Gir?  factory(string ns) 
+		public static Gir?  factory(Gtk.Project project, string ns) 
 		{
 			if (cache == null) {
 				cache = new Gee.HashMap<string,Gir>();
-				var a = new VapiParser( );
+				var a = new VapiParser(project );
 				a.create_valac_tree();
 				  
 			}
