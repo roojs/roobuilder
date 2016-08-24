@@ -39,7 +39,7 @@ public class JsRender.NodeToVala : Object {
 	 * ctor - just initializes things
 	 * - wraps a render node 
 	 */
-	public NodeToVala( Node node,  int depth, NodeToVala? parent) 
+	public NodeToVala( JsRender file,  Node node,  int depth, NodeToVala? parent) 
 	{
 
 		
@@ -59,7 +59,7 @@ public class JsRender.NodeToVala : Object {
 		this.ignoreWrappedList  = new Gee.ArrayList<string>();
 		this.myvars = new Gee.ArrayList<string>();
 		this.vitems = new Gee.ArrayList<Node>();
-		this.file = null;
+		this.file = file;
 		
 		// initialize line data..
 		node.line_start = this.cur_line;
