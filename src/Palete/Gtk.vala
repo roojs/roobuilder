@@ -55,7 +55,7 @@ namespace Palete {
 		
 		public string doc(string what) {
 	    		var ns = what.split(".")[0];
-	    		var gir =  Gir.factory(ns);
+	    		var gir =  Gir.factory(this,ns);
 			return   gir.doc(what);
 			
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
@@ -66,7 +66,7 @@ namespace Palete {
 		{
 
 			var es = ename.split(".");
-			var gir = Gir.factory(es[0]);
+			var gir = Gir.factory(this,es[0]);
 		
 			return gir.classes.get(es[1]);
 		
@@ -85,7 +85,7 @@ namespace Palete {
 			// use introspection to get lists..
 	 
 			var es = ename.split(".");
-			var gir = Gir.factory(es[0]);
+			var gir = Gir.factory(this,es[0]);
 			if (gir == null) {
 				print("WARNING = could not load vapi for %s  (%s)\n", ename , es[0]);
 				return new Gee.HashMap<string,GirObject>();
@@ -131,7 +131,7 @@ namespace Palete {
 		{
 			string[] ret = {};
 			 
-			var cls = Gir.factoryFqn(ename);
+			var cls = Gir.factoryFqn(this,ename);
 			 
 			if (cls == null || cls.nodetype != "Class") {
 				print("getInheritsFor:could not find cls: %s\n", ename);
@@ -273,7 +273,7 @@ namespace Palete {
 				opts = { "true", "false" };
 				return true;
 			}
-			var gir= Gir.factoryFqn(type) ;
+			var gir= Gir.factoryFqn(this,type) ;
 			if (gir == null) {
 				print("could not find Gir data for %s\n", key);
 				return false;
@@ -311,7 +311,7 @@ namespace Palete {
 			// completion rules??
 			
 			// make sure data is loaded
-			Gir.factory("Gtk");
+			Gir.factory(this,"Gtk");
 			
 			// Roo......
 			
