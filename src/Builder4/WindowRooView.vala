@@ -1639,7 +1639,7 @@ public class Xcls_WindowRooView : Object
            if (_this.file == null) {
                return false;
            }
-            var p = Palete.factory(_this.file.xtype);  // returns Roo | Gtk  | PlainFile 
+            var p = _this.file.project.palete;
             
          
             if (_this.file.language != "js") {

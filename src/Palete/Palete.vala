@@ -44,7 +44,7 @@ namespace Palete
 
 	
 
-    static Gee.HashMap<string,Palete>? cache = null;
+   //static Gee.HashMap<string,Palete>? cache = null;
     
     /*
     public static Palete factory(project)

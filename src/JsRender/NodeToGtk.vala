@@ -35,10 +35,14 @@ public class JsRender.NodeToGtk : Object {
         //Gee.ArrayList<string> skip;
 	Gee.HashMap<string,string> ar_props;
 	public static int vcnt = 0; 
+	
+	Project.Gtk project;
 
-	public NodeToGtk( Node node , NodeToGtk? parent_obj = null) 
+	public NodeToGtk(  Project.Gtk project,  Node node , NodeToGtk? parent_obj = null) 
 	{
 		this.node = node;
+		this.project = project;
+		
  		this.els = new Gee.ArrayList<string>(); 
  		this.children = new Gee.ArrayList<NodeToGtk>(); 
 		//this.skip = new Gee.ArrayList<string>();
@@ -73,9 +77,9 @@ public class JsRender.NodeToGtk : Object {
 		
 	}
 	
-	public Object? munge ( )
+	public Object? munge (  )
 	{
-		var ret = this.mungeNode();
+		var ret = this.mungeNode( );
 		if (ret == null) {
 			return null;
 		}
@@ -83,9 +87,9 @@ public class JsRender.NodeToGtk : Object {
 		return ret.wrapped_object;
 		      
 	}
-	public NodeToGtk? mungeChild(  Node cnode)
+	public NodeToGtk? mungeChild (   Node cnode)
 	{
-		var x = new  NodeToGtk(cnode, this);
+		var x = new  NodeToGtk(  this.project, cnode, this);
 		
 		return x.mungeNode();
 		
@@ -152,7 +156,7 @@ public class JsRender.NodeToGtk : Object {
 			this.packContainerParams();
 		}
 		
-		var cls_gir =Palete.Gir.factoryFqn(this.node.fqn()); 
+		var cls_gir =Palete.Gir.factoryFqn(this.project, this.node.fqn()); 
 		if (cls_gir == null) {
 			return null;
 		}
@@ -173,7 +177,7 @@ public class JsRender.NodeToGtk : Object {
 			}
 			// find out the type of the property...
 			var type = pviter.get_value().type;
-			type = Palete.Gir.fqtypeLookup(type, ns);
+			type = Palete.Gir.fqtypeLookup(this.project, type, ns);
 
 			var  ocl = (ObjectClass) cls_gtype.class_ref ();
 			var ps = ocl.find_property(k);
@@ -433,7 +437,7 @@ public class JsRender.NodeToGtk : Object {
 			return;
 		}
 		
-		var parent_gir = Palete.Gir.factoryFqn(this.parentObj.node.fqn());
+		var parent_gir = Palete.Gir.factoryFqn(this.project, this.parentObj.node.fqn());
 
 		var parent = this.parentObj.wrapped_object;
 		
@@ -472,7 +476,7 @@ public class JsRender.NodeToGtk : Object {
 				Value cur_val;
 				 
 				var type = mparams.get(i).type;
-				type = Palete.Gir.fqtypeLookup(type, ns);
+				type = Palete.Gir.fqtypeLookup(this.project, type, ns);
 
 				var val = this.toValue(pack[i].strip(), type);
 				if (val == null) {

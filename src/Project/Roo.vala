@@ -10,6 +10,7 @@ public class Project.Roo : Project {
 
 		
         base(path);
+  		this.palete = new Palete.Roo(this);
         this.xtype = "Roo";
         // various loader methods..
         this.id = "project-roo-%d".printf(rid++);

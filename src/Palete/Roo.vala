@@ -23,12 +23,12 @@ namespace Palete {
     public class Roo : Palete {
 		
 		
-        public Roo()
+        public Roo(Project.Project project)
         {
 
 
             
-            base();
+            base(project);
             this.name = "Roo";
 			  
         }

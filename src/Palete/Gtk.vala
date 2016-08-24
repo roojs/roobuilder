@@ -53,7 +53,7 @@ namespace Palete {
 		
 		public string doc(string what) {
 	    		var ns = what.split(".")[0];
-	    		var gir =  Gir.factory(this,ns);
+	    		var gir =  Gir.factory(this.project,ns);
 			return   gir.doc(what);
 			
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
@@ -101,7 +101,7 @@ namespace Palete {
 			//cls.parseMethods(); // ?? needed for ??..
 			//cls.parseConstructors(); // ?? needed for ??..
 
-			cls.overlayParent();
+			cls.overlayParent(this.project);
 
 			switch  (type) {
 				case "props":
@@ -129,7 +129,7 @@ namespace Palete {
 		{
 			string[] ret = {};
 			 
-			var cls = Gir.factoryFqn(this,ename);
+			var cls = Gir.factoryFqn(this.project,ename);
 			 
 			if (cls == null || cls.nodetype != "Class") {
 				print("getInheritsFor:could not find cls: %s\n", ename);
@@ -166,7 +166,7 @@ namespace Palete {
 				}
 				var fp = meth.paramset.params.get(0);
 				
-				var type = Gir.fqtypeLookup(fp.type, meth.ns);
+				var type = Gir.fqtypeLookup(this.project, fp.type, meth.ns);
 				print ("fillPack:first param type is %s\n", type);
 
 				
@@ -177,7 +177,7 @@ namespace Palete {
 				
 				var pack = meth.name;
 				for(var i =1; i < meth.paramset.params.size; i++) {
-					var ty = Gir.fqtypeLookup(meth.paramset.params.get(i).type, meth.ns);
+					var ty = Gir.fqtypeLookup(this.project,meth.paramset.params.get(i).type, meth.ns);
 					pack += "," + Gir.guessDefaultValueForType(ty);
 				}
 
@@ -271,7 +271,7 @@ namespace Palete {
 				opts = { "true", "false" };
 				return true;
 			}
-			var gir= Gir.factoryFqn(this,type) ;
+			var gir= Gir.factoryFqn(this.project,type) ;
 			if (gir == null) {
 				print("could not find Gir data for %s\n", key);
 				return false;
@@ -309,7 +309,7 @@ namespace Palete {
 			// completion rules??
 			
 			// make sure data is loaded
-			Gir.factory(this,"Gtk");
+			Gir.factory(this.project,"Gtk");
 			
 			// Roo......
 			
@@ -330,7 +330,7 @@ namespace Palete {
 						ret.append(new SourceCompletionItem (ss, ss, null, "vala : " + ss));
 					}
 				}
-				var miter = Gir.cache.map_iterator();
+				var miter = ((Project.Gtk)this.project).gir_cache.map_iterator();
 				while (miter.next()) {
 					var ss = miter.get_key();
 					
@@ -362,7 +362,7 @@ namespace Palete {
 				curtype = "*" +  node.fqn();
 				cur_instance = true;
 			} else {
-				 if (Gir.cache.get(parts[0]) == null) {
+				 if (((Project.Gtk)this.project).gir_cache.get(parts[0]) == null) {
 					return ret;
 				}
 				curtype = parts[0];
@@ -383,7 +383,7 @@ namespace Palete {
 				
 				 
 				// look up all the properties of the type...
-				var cls = Gir.factoryFqn(curtype);
+				var cls = Gir.factoryFqn(this.project,curtype);
 				if (cls == null && curtype[0] != '*') {
 					print("could not get class of curtype %s\n", curtype);
 					return ret;
@@ -419,7 +419,7 @@ namespace Palete {
 						return ret;	 //no idea...
 					}
 					var look = prevbits + parts[i];
-					var scls = Gir.factoryFqn(look);
+					var scls = Gir.factoryFqn(this.project,look);
 					if (scls == null) {
 						return ret;
 					}

@@ -19,7 +19,8 @@
  */
  
 
-namespace Project {
+namespace Project 
+{
 	static int gtk_id = 1;
  
 
@@ -30,11 +31,15 @@ namespace Project {
 		*
 		*/
 		public Gee.HashMap<string,Palete.Gir> gir_cache = null;
+		
+ 
 	  
 		public Gtk(string path) {
 		  
 		  
 	  		base(path);
+	  		this.palete = new Palete.Gtk(this);
+	  		
 	  		this.gir_cache = new Gee.HashMap<string,Palete.Gir>();
 			this.xtype = "Gtk";
 	  		var gid = "project-gtk-%d".printf(gtk_id++);

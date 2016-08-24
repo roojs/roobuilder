@@ -49,7 +49,7 @@ public class JsRender.NodeToGlade : Object {
 	Gee.HashMap<string,string> ar_props;
 	public static int vcnt = 0; 
 
-	public NodeToGlade( Node node,   string pad) 
+	public NodeToGlade( Project.Gtk, Node node,   string pad) 
 	{
 		this.node = node;
  		this.pad = pad;
@@ -152,7 +152,7 @@ public class JsRender.NodeToGlade : Object {
 		var id = this.node.uid();
 		var ret = @"$pad<object class=\"$cls\" id=\"$id\">\n";
 		// properties..
-		var props = Palete.Gir.factoryFqn(this.node.fqn()).props;
+		var props = Palete.Gir.factoryFqn(this.project, this.node.fqn()).props;
 		//var props =  Palete.factory("Gtk").getPropertiesFor(this.node.fqn(), "props");
               
     		var pviter = props.map_iterator();
@@ -238,7 +238,7 @@ public class JsRender.NodeToGlade : Object {
 
  
 		var ns = p_parts[0];
-    		var gir =  Palete.Gir.factory(ns);
+    		var gir =  Palete.Gir.factory(this.project, ns);
 		var cls = gir.classes.get(p_parts[1]);
 		var mdef = cls.methods.get(pk[0]);
 		if (mdef == null) {

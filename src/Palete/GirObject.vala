@@ -105,7 +105,7 @@ namespace Palete {
 		}
 
 		
-		public void  overlayParent()
+		public void  overlayParent(Project.Project project)
 		{
 			
 			if (this.parent.length < 1 || this.is_overlaid) {
@@ -115,18 +115,18 @@ namespace Palete {
 			 
 			//print("Overlaying " +this.name + " with " + this.parent + "\n");
 
-			var pcls = this.clsToObject( this.parent);
+			var pcls = this.clsToObject( project, this.parent);
 			if (pcls == null) {
 				return;
 				//throw new GirError.INVALID_VALUE("Could not find class : " + 
 				//	this.parent + " of " + this.name  + " in " + this.ns);
 			}
 			
-			pcls.overlayParent( );
+			pcls.overlayParent( project );
 			this.copyFrom(pcls,false);
 			for(var i=0; i < this.implements.size; i++) {
 				var clsname = this.implements.get(i);
-				var picls = this.clsToObject(clsname);
+				var picls = this.clsToObject(project, clsname);
 				this.copyFrom(picls,true);
 			}
 			this.is_overlaid = true;
@@ -399,23 +399,15 @@ namespace Palete {
 		 *  code relating to the structure loader ....
 		 * 
 		 */
-		 
-		public GirObject clsToObject(string in_pn)
+
+		public GirObject clsToObject(Project.Project project , string in_pn)
 		{
 			var pn = in_pn;
-			/*
+		  
 			
-			
-			var gir = Gir.factory (this.ns);
+			var gir = Gir.factory (project, this.ns);
 			if (in_pn.contains(".")) {
-				gir =  Gir.factory(in_pn.split(".")[0]);
-				pn = in_pn.split(".")[1];
-			}
-			*/
-			
-			var gir = Gir.factory (this.ns);
-			if (in_pn.contains(".")) {
-				gir =  Gir.factory(in_pn.split(".")[0]);
+				gir =  Gir.factory(project, in_pn.split(".")[0]);
 				pn = in_pn.split(".")[1];
 			}
 			
@@ -424,6 +416,7 @@ namespace Palete {
 
 			
 		}
+		/*
 		//public string fqtype() {
 		//	return Gir.fqtypeLookup(this.type, this.ns);
 			

@@ -744,12 +744,12 @@ public class WindowState : Object
 				}
 				this.add_props.el.show_all();
 				this.add_props.show(
-					Palete.factory(this.win.project.xtype), 
+					this.win.project.palete, //Palete.factory(this.win.project.xtype), 
 					this.state == State.LISTENER ? "signals" : "props",
 					ae.fqn()
 				);
  
-					
+					 
  
 				
 				// -- FIXME? this needs to be State aware?

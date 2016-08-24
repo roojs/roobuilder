@@ -393,7 +393,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
             var items  = def.packages;
             
             this.el.clear();
-            var pal = (Palete.Gtk) Palete.factory("Gtk");
+            var pal = (Palete.Gtk) _this.project.palete;
             var pkgs = pal.packages(_this.project);
             print("ValaProjectSettings:packages load %d\n", pkgs.size);
         

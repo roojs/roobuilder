@@ -23,6 +23,7 @@ namespace Project {
 	public Gee.HashMap<string,Project>  projects;
 	
 	
+	
 	public bool  projects_loaded = false;
 
 	
@@ -43,6 +44,7 @@ namespace Project {
 		
 		public Json.Object json_project_data;
 		public Palete.RooDatabase roo_database;
+		public Palete.Palete palete;
 		 
 		bool is_scanned; 
 	   

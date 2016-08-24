@@ -135,15 +135,15 @@ namespace Palete {
 
 		public static  Gee.HashMap<string,Gir> global_cache = null;
 		
-		public static Gir?  factory(Project.Gtk? project, string ns) 
+		public static Gir?  factory(Project.Project  project, string ns) 
 		{
 			if (global_cache == null) {
 				global_cache = new Gee.HashMap<string,Gir>();
 				 
 			}
 			var cache = global_cache;
-			if (project != null) {
-				cache = project.gir_cache;
+			if (project != null && project is Project.Gtk) {
+				cache = ((Project.Gtk)project).gir_cache;
 			}
 			
 			var ret = cache.get(ns);
@@ -151,7 +151,7 @@ namespace Palete {
 			
 			if (ret == null && project != null) {
 
-				var a = new VapiParser(project );
+				var a = new VapiParser( (Project.Gtk)project );
 				a.create_valac_tree();
 				ret = cache.get(ns);
 			}
@@ -160,7 +160,7 @@ namespace Palete {
 				ret.is_overlaid = true;
 				var iter = ret.classes.map_iterator();
 				while(iter.next()) {
-					iter.get_value().overlayParent();
+					iter.get_value().overlayParent(project);
 				}
 				// loop again and add the ctor properties.
 				iter = ret.classes.map_iterator();
@@ -178,7 +178,7 @@ namespace Palete {
 		
 		
 		
-		public static GirObject?  factoryFqn(Project.Gtk project, string fqn)  
+		public static GirObject?  factoryFqn(Project.Project project, string fqn)  
 		{       
 			var bits = fqn.split(".");
 			if (bits.length < 1) {
@@ -199,7 +199,7 @@ namespace Palete {
 		/**
 		 * guess the fqn of a type == eg. gboolean or Widget etc...
 		 */
-		public static string fqtypeLookup(Project.Gtk project, string type, string ns) {
+		public static string fqtypeLookup(Project.Project project, string type, string ns) {
 			var g = factory(project, ns);
 			if (g.classes.has_key(type)) {
 				return ns + "." + type;

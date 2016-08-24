@@ -282,12 +282,22 @@ public class Resources : Object
 					break;
 					
 				case "GtkUsage.txt":
-					Palete.factory("Gtk").load();
+				foreach(var p in Project.Project.allProjectsByName()) { 
+						if (p is Project.Gtk) {
+							p.palete = new Palete.Gtk(p);
+							p.palete.load();
+						}
+					}
+
 					break;
 					
 				case "roodata.json":
-					Palete.factory("Roo").classes  = null;
-					Palete.factory("Roo").load();
+					foreach(var p in Project.Project.allProjectsByName()) { 
+						if (p is Project.Roo) {
+							p.palete = new Palete.Roo(p);
+							p.palete.load();
+						}
+					}
 					break;
 					
 				default:

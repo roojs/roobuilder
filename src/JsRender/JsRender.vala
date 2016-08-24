@@ -304,7 +304,7 @@ namespace JsRender {
 		public Palete.Palete palete()
 		{
 			// error on plainfile?
-			return Palete.factory(this.project.xtype);
+			return this.project.palete;
 
 		}
 		

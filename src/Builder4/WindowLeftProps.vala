@@ -134,7 +134,7 @@ public class Xcls_LeftProps : Object
          // 
         this.before_edit();
     }
-    public              bool startEditingValue ( Gtk.TreePath path) {
+    public bool startEditingValue ( Gtk.TreePath path) {
     
          // ONLY return true if editing is allowed - eg. combo..
     
@@ -211,7 +211,7 @@ public class Xcls_LeftProps : Object
             return false;
         }
         
-         var pal = Palete.factory(this.file.project.xtype);
+         var pal = this.file.project.palete;
         
         string[] opts;
         var has_opts = pal.typeOptions(this.node.fqn(), kname, ktype, out opts);
