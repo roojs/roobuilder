@@ -274,7 +274,7 @@ public class Resources : Object
 				case "Gir.overides":
 					// clear all the project caches....
 					foreach(var p in Project.Project.allProjectsByName()) { 
-						if (p is Project.Gtk) 
+						if (p is Project.Gtk) {
 							((Project.Gtk)p).gir_cache = new Gee.HashMap<string,Palete.Gee>();
 						}
 					}
