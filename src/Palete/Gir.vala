@@ -132,7 +132,7 @@ namespace Palete {
 		 *  == all static below here...
 		 * 
 		 */
-		public static  Gee.HashMap<string,Gir> cache = null;
+
 
 		
 		public static Gir?  factory(Project.Gtk? project, string ns) 
