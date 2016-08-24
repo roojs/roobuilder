@@ -210,7 +210,7 @@ namespace Palete {
 		 * guess the fqn of a type == eg. gboolean or Widget etc...
 		 */
 		public static string fqtypeLookup(Project.Gtk project, string type, string ns) {
-			var g = factory(ns);
+			var g = factory(project, ns);
 			if (g.classes.has_key(type)) {
 				return ns + "." + type;
 			}
