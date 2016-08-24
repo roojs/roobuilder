@@ -188,14 +188,14 @@ namespace Palete {
 			return ret;
 			
 		}
-		public static GirObject?  factoryFqn(string fqn)  
+		public static GirObject?  factoryFqn(Project.gtk project, string fqn)  
 		{       
 			var bits = fqn.split(".");
 			if (bits.length < 1) {
 				return null;
 			}
 			
-			var f = (GirObject)factory(bits[0]);
+			var f = (GirObject)factory(project , bits[0]);
 
 			if (bits.length == 1 || f ==null) {
 				return f;
