@@ -13,8 +13,11 @@ namespace Palete {
 		
 		Vala.CodeContext context;
 		 
-  		public VapiParser() {
+		Project.Gtk project;
+		
+  		public VapiParser(Project.Gtk project) {
 			base();
+			this.project = project;
 			// should not really happen..
 			if (Gir.cache == null) {
 				Gir.cache =  new Gee.HashMap<string,Gir>();
@@ -368,6 +371,30 @@ namespace Palete {
  			 
 			var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
 			context.root.add_using_directive (ns_ref);
+			
+			
+			context.add_external_package ("glib-2.0"); 
+			context.add_external_package ("gobject-2.0");
+			// user defined ones..
+			
+	    	var dcg = this.project.compilegroups.get("_default_");
+	    	for (var i = 0; i < dcg.packages.size; i++) {
+	    	
+	    		var pkg = dcg.packages.get(i);
+	    		// do not add libvala versions except the one that matches the one we are compiled against..
+	    		if (Regex.match_simple("^libvala", pkg) && pkg != ("libvala-0." + ver.to_string())) {
+	    			continue;
+    			}
+				//valac += " --pkg " + dcg.packages.get(i);
+				//if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
+				//	GLib.debug("Skip vapi '%s' - does not exist", dcg.packages.get(i));
+			//		continue;
+			v	}
+				
+				context.add_external_package (dcg.packages.get(i));
+			}			
+			
+			
 			
 			context.add_external_package ("glib-2.0"); 
 			context.add_external_package ("gobject-2.0");
