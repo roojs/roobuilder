@@ -135,7 +135,7 @@ public class JsRender.NodeToVala : Object {
 			return "";
 		}
 
-		var n = new NodeToVala(file.tree, 0, null);
+		var n = new NodeToVala(file, file.tree, 0, null);
 		n.file = file;
 		n.vcnt = 0;
 		
