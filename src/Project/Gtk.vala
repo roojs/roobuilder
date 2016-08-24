@@ -29,7 +29,7 @@ namespace Project {
 		* Gir cache - it's local as we might want clear it if we modify the packages...
 		*
 		*/
-		Gee.HashMap<string,Palete.Gir> gir_cache = null;
+		public Gee.HashMap<string,Palete.Gir> gir_cache = null;
 	  
 		public Gtk(string path) {
 		  
