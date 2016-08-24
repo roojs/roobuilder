@@ -139,34 +139,22 @@ namespace Palete {
 		{
 			if (cache == null) {
 				cache = new Gee.HashMap<string,Gir>();
-				var a = new VapiParser(project );
-				a.create_valac_tree();
+				// this assumes we try and generate the tree once ...
+				// but if we 'add' more vapi's it will not adjust...
+
 				  
 			}
 			var ret = cache.get(ns);
 			
 			
-			/*
+
 			if (ret == null) {
 
-				var add = new Gir(ns);
-				
-				cache.set(ns, add);
-			
-				var iter = add.classes.map_iterator();
-				while(iter.next()) {
-					iter.get_value().overlayParent();
-				}
-				// loop again and add the ctor properties.
-				iter = add.classes.map_iterator();
-				while(iter.next()) {
-					iter.get_value().overlayCtorProperties();
-				}	
-
-				
+				var a = new VapiParser(project );
+				a.create_valac_tree();
 				ret = cache.get(ns);
 			}
-			*/
+			
 			if (ret != null && !ret.is_overlaid) {
 				ret.is_overlaid = true;
 				var iter = ret.classes.map_iterator();
@@ -181,13 +169,14 @@ namespace Palete {
 				
 				
 			}
-			
-			
 			 
-
 			return ret;
 			
 		}
+		
+		
+		
+		
 		public static GirObject?  factoryFqn(Project.Gtk project, string fqn)  
 		{       
 			var bits = fqn.split(".");
