@@ -55,6 +55,12 @@ public class Xcls_ValaProjectSettingsPopover : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
+
+        //listeners
+        this.el.hide.connect( () => {
+        	_this.project.writeConfig();
+        
+        });
     }
 
     // user defined functions

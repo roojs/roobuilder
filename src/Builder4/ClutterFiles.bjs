@@ -2,7 +2,7 @@
  "name" : "ClutterFiles",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/ClutterFiles.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/ClutterFiles.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
@@ -12,7 +12,7 @@
    "|  void clearFiles" : "() {\n    \n    this.filelayout.el.remove_all_children();\n    // we need to unref all the chidren that we loaded though...\n    \n}\n ",
    "Clutter.ScrollMode scroll_mode" : "Clutter.ScrollMode.VERTICALLY",
    "xtype" : "Actor",
-   "|  void loadProject" : "(Project.Project pr) {\n    // list all the files, and create new Xcls_fileitem for each one.\n    \n    this.project = pr;\n    \n    \n    // LEAK --- we should unref all the chilren...\n    this.filelayout.el.y = 0;\n    this.clearFiles();\n    \n    print(\"clutter files - load project: \" + pr.name +\"\\n\");\n    // should unref.. them hopefully.\n    \n    this.project_title_name.el.text = pr.name;\n    this.project_title_path.el.text = pr.firstPath();\n    \n    // file items contains a reference until we reload ...\n    this.fileitems = new Gee.ArrayList<Object>();\n\n    \n\n    var fiter = pr.sortedFiles().list_iterator();\n    while (fiter.next()) {\n        var a = new Xcls_fileitem(this,fiter.get());\n        this.fileitems.add(a);\n\n//        a.ref();\n        print(\"add to clutter file view: \" + fiter.get().name + \"\\n\");\n        this.filelayout.el.add_child(a.el);\n    }\n    \n    // folders...\n    \n    if (!(pr is Project.Gtk)) {\n        print (\"not gtk... skipping files\");\n        return;\n    }\n    var gpr = (Project.Gtk)pr;\n     var def = gpr.compilegroups.get(\"_default_\");\n     var items  = def.sources;\n     \n     \n     \n    for(var i =0 ; i < items.size; i++) {\n        print (\"cheking folder %s\\n\", items.get(i));\n         var files = gpr.filesForOpen(items.get(i));\n         if (files.size < 1) {\n            continue;\n         }\n\n        // add the directory... items.get(i);\n        var x = new Xcls_folderitem(this,items.get(i));\n        this.fileitems.add(x);\n        this.filelayout.el.add_child(x.el);\n        \n        for(var j =0 ; j < files.size; j++) {\n            print (\"adding file %s\\n\", files.get(j));\n        \n            var y = new Xcls_folderfile(this, files.get(j));\n            this.fileitems.add(y);\n            x.el.add_child(y.el);\n\n            // add file to files.get(j);\n            \n        }\n        \n        \n        //this.el.set_value(citer, 1,   items.get(i) );\n    }\n    \n   \n    \n    this.el.show();\n}\n",
+   "|  void loadProject" : "(Project.Project pr) {\n    // list all the files, and create new Xcls_fileitem for each one.\n    \n    this.project = pr;\n    \n    \n    // LEAK --- we should unref all the chilren...\n    this.filelayout.el.y = 0;\n    this.clearFiles();\n    \n    print(\"clutter files - load project: \" + pr.name +\"\\n\");\n    // should unref.. them hopefully.\n    \n    this.project_title_name.el.text = pr.name;\n    this.project_title_path.el.text = pr.firstPath();\n    \n    // file items contains a reference until we reload ...\n    this.fileitems = new Gee.ArrayList<Object>();\n\n    \n\n    var fiter = pr.sortedFiles().list_iterator();\n    while (fiter.next()) {\n        var a = new Xcls_fileitem(this,fiter.get());\n        this.fileitems.add(a);\n\n//        a.ref();\n        print(\"add to clutter file view: \" + fiter.get().name + \"\\n\");\n        this.filelayout.el.add_child(a.el);\n    }\n    \n    // folders...\n    \n    if (!(pr is Project.Gtk)) {\n        print (\"not gtk... skipping files\");\n        return;\n    }\n    var gpr = (Project.Gtk)pr;\n     var def = gpr.compilegroups.get(\"_default_\");\n     // not sure why the above is returng null!??\n     if (def == null) {\n \t\tdef = new Project.GtkValaSettings(\"_default_\"); \n \t\tgpr.compilegroups.set(\"_default_\", def);\n     }\n\t var items  = def.sources;\n\t\t \n\t\t \n\t \n\tfor(var i =0 ; i < items.size; i++) {\n\t    print (\"cheking folder %s\\n\", items.get(i));\n\t     var files = gpr.filesForOpen(items.get(i));\n\t     if (files.size < 1) {\n\t        continue;\n\t     }\n\n\t    // add the directory... items.get(i);\n\t    var x = new Xcls_folderitem(this,items.get(i));\n\t    this.fileitems.add(x);\n\t    this.filelayout.el.add_child(x.el);\n\t    \n\t    for(var j =0 ; j < files.size; j++) {\n\t        print (\"adding file %s\\n\", files.get(j));\n\t    \n\t        var y = new Xcls_folderfile(this, files.get(j));\n\t        this.fileitems.add(y);\n\t        x.el.add_child(y.el);\n\n\t        // add file to files.get(j);\n\t        \n\t    }\n\t    \n\t    \n\t    //this.el.set_value(citer, 1,   items.get(i) );\n\t}\n     \n   \n    \n    this.el.show();\n}\n",
    "# Gdk.Pixbuf missing_thumb_pixbuf" : "null",
    "@ void open" : "(JsRender.JsRender file)",
    "$ xns" : "Clutter",
@@ -88,8 +88,8 @@
        "items" : [
         {
          "id" : "filelayout_manager",
-         "bool homogeneous" : false,
          "$ orientation" : "Clutter.FlowOrientation.HORIZONTAL",
+         "bool homogeneous" : false,
          "xtype" : "FlowLayout",
          "float max_column_width" : "100.0f",
          "$ xns" : "Clutter",
@@ -136,8 +136,8 @@
           },
           {
            "* ctor" : "new Clutter.Text.full(\"Sans 10px\", file.nickType(),  Clutter.Color.from_string(\"#fff\"))",
-           "* args" : "JsRender.JsRender file",
            "id" : "+typetitle",
+           "* args" : "JsRender.JsRender file",
            "* pack" : "add_child",
            "xtype" : "Text",
            "bool x_expand" : false,
@@ -148,8 +148,8 @@
           },
           {
            "* ctor" : "new Clutter.Text.full(\"Sans 10px\", file.nickName(),  Clutter.Color.from_string(\"#fff\"))",
-           "* args" : "JsRender.JsRender file",
            "id" : "+title",
+           "* args" : "JsRender.JsRender file",
            "* pack" : "add_child",
            "xtype" : "Text",
            "bool x_expand" : false,
@@ -178,8 +178,8 @@
           },
           {
            "* ctor" : "new Clutter.Text.full(\"Sans bold 14px\", GLib.Path.get_basename(folderpath),  Clutter.Color.from_string(\"#fff\"))",
-           "id" : "+foldertitle",
            "* args" : "string folderpath",
+           "id" : "+foldertitle",
            "$ x_expand" : true,
            "* pack" : "add_child",
            "xtype" : "Text",
@@ -195,8 +195,8 @@
             "leave_event" : "(  event)  => {\n    this.el.background_color =   Clutter.Color.from_string(\"#000\");\n     this.el.color =   Clutter.Color.from_string(\"#fff\");\n    return false;\n}"
            },
            "* ctor" : "new Clutter.Text.full(\"Sans 10px\", GLib.Path.get_basename(filepath),  Clutter.Color.from_string(\"#fff\"))",
-           "* args" : "string filepath",
            "id" : "*folderfile",
+           "* args" : "string filepath",
            "* init" : "{\n\tthis.filepath = filepath;\n}\n",
            "xtype" : "Text",
            "bool x_expand" : true,

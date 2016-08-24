@@ -94,37 +94,42 @@ public class Xcls_ClutterFiles : Object
         }
         var gpr = (Project.Gtk)pr;
          var def = gpr.compilegroups.get("_default_");
-         var items  = def.sources;
-         
-         
-         
-        for(var i =0 ; i < items.size; i++) {
-            print ("cheking folder %s\n", items.get(i));
-             var files = gpr.filesForOpen(items.get(i));
-             if (files.size < 1) {
-                continue;
-             }
+         // not sure why the above is returng null!??
+         if (def == null) {
+     		def = new Project.GtkValaSettings("_default_"); 
+     		gpr.compilegroups.set("_default_", def);
+         }
+    	 var items  = def.sources;
+    		 
+    		 
+    	 
+    	for(var i =0 ; i < items.size; i++) {
+    	    print ("cheking folder %s\n", items.get(i));
+    	     var files = gpr.filesForOpen(items.get(i));
+    	     if (files.size < 1) {
+    	        continue;
+    	     }
     
-            // add the directory... items.get(i);
-            var x = new Xcls_folderitem(this,items.get(i));
-            this.fileitems.add(x);
-            this.filelayout.el.add_child(x.el);
-            
-            for(var j =0 ; j < files.size; j++) {
-                print ("adding file %s\n", files.get(j));
-            
-                var y = new Xcls_folderfile(this, files.get(j));
-                this.fileitems.add(y);
-                x.el.add_child(y.el);
+    	    // add the directory... items.get(i);
+    	    var x = new Xcls_folderitem(this,items.get(i));
+    	    this.fileitems.add(x);
+    	    this.filelayout.el.add_child(x.el);
+    	    
+    	    for(var j =0 ; j < files.size; j++) {
+    	        print ("adding file %s\n", files.get(j));
+    	    
+    	        var y = new Xcls_folderfile(this, files.get(j));
+    	        this.fileitems.add(y);
+    	        x.el.add_child(y.el);
     
-                // add file to files.get(j);
-                
-            }
-            
-            
-            //this.el.set_value(citer, 1,   items.get(i) );
-        }
-        
+    	        // add file to files.get(j);
+    	        
+    	    }
+    	    
+    	    
+    	    //this.el.set_value(citer, 1,   items.get(i) );
+    	}
+         
        
         
         this.el.show();

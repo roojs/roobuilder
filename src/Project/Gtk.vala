@@ -70,6 +70,10 @@ namespace Project {
 			for(var i= 0;i<obj.get_length();i++) {
 				var el = obj.get_object_element(i);
 				var vs = new GtkValaSettings.from_json(el);
+                if (vs == null) {
+                    print("problem loading json file");
+                    continue;
+                }
 				if (vs.name != "_default_") {
 					vs.parent = this.compilegroups.get("_default_");
 				}
@@ -120,7 +124,7 @@ namespace Project {
 			var iter = this.compilegroups.map_iterator();
 			while(iter.next()) {
 				 
-				 if (iter.get_value().name == "__default__") {
+				 if (iter.get_value().name == "_default_") {
 					 continue;
 				 }
 				 
