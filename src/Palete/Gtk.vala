@@ -62,11 +62,11 @@ namespace Palete {
 		}
 
 			// does not handle implements...
-		public override GirObject? getClass(string ename)
+		public override GirObject? getClass(Project.Project project string ename)
 		{
 
 			var es = ename.split(".");
-			var gir = Gir.factory(this,es[0]);
+			var gir = Gir.factory(project,es[0]);
 		
 			return gir.classes.get(es[1]);
 		
