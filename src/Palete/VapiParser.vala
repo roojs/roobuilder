@@ -19,8 +19,8 @@ namespace Palete {
 			base();
 			this.project = project;
 			// should not really happen..
-			if (Gir.cache == null) {
-				Gir.cache =  new Gee.HashMap<string,Gir>();
+			if (project.gir_cache == null) {
+				project.gir_cache =	  new Gee.HashMap<string,Gir>();
 			}
 		}
 		
