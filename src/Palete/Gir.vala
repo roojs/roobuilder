@@ -209,7 +209,7 @@ namespace Palete {
 		/**
 		 * guess the fqn of a type == eg. gboolean or Widget etc...
 		 */
-		public static string fqtypeLookup(string type, string ns) {
+		public static string fqtypeLookup(Project.Gtk project, string type, string ns) {
 			var g = factory(ns);
 			if (g.classes.has_key(type)) {
 				return ns + "." + type;
@@ -227,7 +227,7 @@ namespace Palete {
 				if ( iter.get_key() == "") {
 					continue;
 				}
-				var ret = fqtypeLookup(type, iter.get_key());
+				var ret = fqtypeLookup(project, type, iter.get_key());
 				if (ret != type) {
 					return ret;
 				}
