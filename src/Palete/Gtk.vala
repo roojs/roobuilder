@@ -86,7 +86,10 @@ namespace Palete {
 	 
 			var es = ename.split(".");
 			var gir = Gir.factory(es[0]);
-		
+			if (gir == null) {
+				print("WARNING = could not load vapi for %s  (%s)\n", ename , es[0]);
+				return new Gee.HashMap<string,GirObject>();
+			}
 			var cls = gir.classes.get(es[1]);
 			if (cls == null) {
 				var ret = new Gee.HashMap<string,GirObject>();
