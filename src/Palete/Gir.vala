@@ -124,8 +124,7 @@ namespace Palete {
 			});
 	
 			overrides_loaded = true;
-
-		
+ 
 
 		}
 		
