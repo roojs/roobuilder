@@ -566,7 +566,7 @@ public class JsRender.NodeToVala : Object {
 	
 	void addWrappedProperties()
 	{
-		var cls = Palete.Gir.factoryFqn(this.node.fqn());
+		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (cls == null) {
 			return;
 		}
