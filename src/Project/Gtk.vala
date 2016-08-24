@@ -27,6 +27,7 @@ namespace Project {
 	{
 		/**
 		* Gir cache - it's local as we might want clear it if we modify the packages...
+		*
 		*/
 		Gee.HashMap<string,Gir> cache = null;
 	  
