@@ -156,12 +156,7 @@ namespace Palete {
 			
 			var ret = cache.get(ns);
 			
-			
-			if (ret == null && project != null) {
-
-				
-				ret = cache.get(ns);
-			}
+			 
 			
 			if (ret != null && !ret.is_overlaid) {
 				ret.is_overlaid = true;
