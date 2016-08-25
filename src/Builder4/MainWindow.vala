@@ -45,6 +45,7 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar_warnings statusbar_warnings;
     public Xcls_statusbar_depricated statusbar_depricated;
     public Xcls_statusbar_run statusbar_run;
+    public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 
         // my vars (def)
     public Project.Project project;
@@ -2228,7 +2229,7 @@ public class Xcls_MainWindow : Object
             var child_3 = new Xcls_MenuBar69( _this );
             child_3.ref();
             this.el.pack_end (  child_3.el , false,true,0 );
-            var child_4 = new Xcls_Spinner80( _this );
+            var child_4 = new Xcls_statusbar_compile_spinner( _this );
             child_4.ref();
             this.el.add (  child_4.el  );
         }
@@ -2779,7 +2780,7 @@ public class Xcls_MainWindow : Object
 
 
 
-    public class Xcls_Spinner80 : Object
+    public class Xcls_statusbar_compile_spinner : Object
     {
         public Gtk.Spinner el;
         private Xcls_MainWindow  _this;
@@ -2788,9 +2789,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Spinner80(Xcls_MainWindow _owner )
+        public Xcls_statusbar_compile_spinner(Xcls_MainWindow _owner )
         {
             _this = _owner;
+            _this.statusbar_compile_spinner = this;
             this.el = new Gtk.Spinner();
 
             // my vars (dec)
