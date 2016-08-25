@@ -1137,6 +1137,9 @@ public class WindowState : Object
 		{
 			// vala has finished compiling...
 			print("vala compiled");
+			// stop the spinner...
+			this.win.statusbar_compile_spinner.el.stop();
+			
 			var generator = new Json.Generator ();
 			var n  = new Json.Node(Json.NodeType.OBJECT);
 			n.init_object(obj);
