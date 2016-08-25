@@ -2402,6 +2402,7 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
+        public string label;
 
         // ctor
         public Xcls_MenuBar69(Xcls_MainWindow _owner )
@@ -2410,6 +2411,7 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.MenuBar();
 
             // my vars (dec)
+            this.label = "Compile Status:;
 
             // set gobject values
             var child_0 = new Xcls_search_results( _this );
