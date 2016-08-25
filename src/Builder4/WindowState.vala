@@ -18,9 +18,7 @@ public class WindowState : Object
 		CODE,    // code editor.
 		CODEONLY,
 		FILES //,
-		// PROJECTCODEONLY // when editing code...		??
-		//PROJECT, // project settings..
-		//FILEPROJECT, // project when in file mode
+		 
 
 	}
 
@@ -1201,7 +1199,7 @@ public class WindowState : Object
 			
 		   }
 		   
-		   if (this.file.xtype == "Gtk") {
+		   if (this.file.xtype == "Roo") {
 				// not sure how this is working ok? - as highlighting is happening on the vala files at present..
 				var gbuf =   this.window_rooview.sourceview;
 				gbuf.highlightErrorsJson("ERR", obj);
