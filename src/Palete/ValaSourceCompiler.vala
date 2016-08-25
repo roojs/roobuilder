@@ -433,8 +433,9 @@ namespace Palete {
 		
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
+			this.outputResult();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
-			//this.outputResult();
+			
 		
 		}
 		public bool has_vapi(string[] dirs,  string vapi) 
