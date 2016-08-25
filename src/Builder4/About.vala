@@ -34,6 +34,7 @@ public class About : Object
         //listeners
         this.el.response.connect( (rid) => {
             this.el.hide();
+            
         });
     }
 
