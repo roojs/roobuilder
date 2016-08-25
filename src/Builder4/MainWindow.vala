@@ -2800,7 +2800,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
         public void start () {
-        
+          this.el.show
         }
     }
 
