@@ -127,6 +127,7 @@ namespace Palete {
 		public string executeFile(string fname, string call_method, string js_data)
 				throws JavascriptError
 		{
+			
 			string file_data;
 			if (!FileUtils.test (fname, FileTest.EXISTS)) {
 				throw new JavascriptError.MISSING_FILE("Plugin: file not found %s", fname);
