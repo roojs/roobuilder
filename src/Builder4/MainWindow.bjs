@@ -618,6 +618,7 @@
          "| void forwardSearch" : "(bool change_focus) {\n\tswitch(_this.windowstate.state) {\n\t\tcase WindowState.State.CODEONLY:\n\t\tcase WindowState.State.CODE:\n\t\t\t// search the code being edited..\n\t\t\t_this.windowstate.code_editor.forwardSearch(change_focus);\n\t\t\t\n\t\t\tbreak;\n\t\tcase WindowState.State.PREVIEW:\n\t\t\tif (_this.windowstate.file.xtype == \"Gtk\") {\n\t\t\t\t_this.windowstate.window_gladeview.forwardSearch(change_focus);\n\t\t\t} else { \n\t\t\t\t _this.windowstate.window_rooview.forwardSearch(change_focus);\n\t\t\t}\n\t\t\n\t\t\tbreak;\n\t}\n\t\n}\n"
         },
         {
+         "id" : "statusbar_compilestatus_label",
          "* pack" : "add",
          "xtype" : "MenuBar",
          "string label" : "Compile Status:",
