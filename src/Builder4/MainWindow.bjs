@@ -730,6 +730,11 @@
            ]
           }
          ]
+        },
+        {
+         "* pack" : "pack_start,?bool?,?bool?,?uint?",
+         "xtype" : "Spinner",
+         "$ xns" : "Gtk"
         }
        ]
       }

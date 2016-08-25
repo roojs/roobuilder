@@ -2226,6 +2226,9 @@ public class Xcls_MainWindow : Object
             var child_3 = new Xcls_MenuBar69( _this );
             child_3.ref();
             this.el.pack_end (  child_3.el , false,true,0 );
+            var child_4 = new Xcls_Spinner80( _this );
+            child_4.ref();
+            this.el.pack_start (  child_4.el , ?bool?,?bool?,?uint? );
         }
 
         // user defined functions
@@ -2773,6 +2776,28 @@ public class Xcls_MainWindow : Object
     }
 
 
+
+    public class Xcls_Spinner80 : Object
+    {
+        public Gtk.Spinner el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Spinner80(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Spinner();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
 
