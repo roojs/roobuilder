@@ -2802,7 +2802,8 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
         public void stop () {
-        
+         this.el.stop();
+          this.el.hide();
         }
         public void start () {
           this.el.show();
