@@ -107,7 +107,7 @@ public class Xcls_MainWindow : Object
              _this.statusbar_errors.el.hide();
             _this.statusbar_warnings.el.hide();
             _this.statusbar_depricated.el.hide();
-            
+            _this.statusbar_compile_spinner.el.hide();
           
             Resources.singleton().checkResources();
         
