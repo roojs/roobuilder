@@ -735,6 +735,7 @@
         {
          "* pack" : "add",
          "xtype" : "Spinner",
+         "| void stop" : "() {\n\n}\n",
          "$ xns" : "Gtk",
          "| void start" : "() {\n  this.el.show();\n  this.el.start();  \n}\n"
         }
