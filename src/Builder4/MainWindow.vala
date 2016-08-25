@@ -2226,7 +2226,7 @@ public class Xcls_MainWindow : Object
             this.el.pack_start (  child_2.el , false,true,0 );
             var child_3 = new Xcls_MenuBar69( _this );
             child_3.ref();
-            this.el.pack_end (  child_3.el , false,true,0 );
+            this.el.add (  child_3.el  );
             var child_4 = new Xcls_statusbar_compile_spinner( _this );
             child_4.ref();
             this.el.add (  child_4.el  );
