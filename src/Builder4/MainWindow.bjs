@@ -733,7 +733,7 @@
          ]
         },
         {
-         "* pack" : "pack_start,?bool?,?bool?,?uint?",
+         "* pack" : "add",
          "xtype" : "Spinner",
          "$ xns" : "Gtk",
          "| void start" : "() {\n  this.el.show();\n  this.el.start();  \n}\n"

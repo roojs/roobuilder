@@ -2230,7 +2230,7 @@ public class Xcls_MainWindow : Object
             this.el.pack_end (  child_3.el , false,true,0 );
             var child_4 = new Xcls_Spinner80( _this );
             child_4.ref();
-            this.el.pack_start (  child_4.el , ?bool?,?bool?,?uint? );
+            this.el.add (  child_4.el  );
         }
 
         // user defined functions
