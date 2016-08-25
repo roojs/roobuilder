@@ -584,6 +584,7 @@
        ]
       },
       {
+       "id" : "statusbar_compile_spinner",
        "bool homogeneous" : false,
        "xtype" : "Box",
        "* pack" : "pack_end,false,true,0",

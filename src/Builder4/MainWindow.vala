@@ -37,6 +37,7 @@ public class Xcls_MainWindow : Object
     public Xcls_addprojectbutton addprojectbutton;
     public Xcls_addfilebutton addfilebutton;
     public Xcls_delprojectbutton delprojectbutton;
+    public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
     public Xcls_statusbar statusbar;
     public Xcls_search_entry search_entry;
     public Xcls_search_results search_results;
@@ -570,7 +571,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_mainpane( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true,true,0 );
-            var child_1 = new Xcls_Box65( _this );
+            var child_1 = new Xcls_statusbar_compile_spinner( _this );
             child_1.ref();
             this.el.pack_end (  child_1.el , false,true,0 );
         }
@@ -2196,7 +2197,7 @@ public class Xcls_MainWindow : Object
 
 
 
-    public class Xcls_Box65 : Object
+    public class Xcls_statusbar_compile_spinner : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -2205,9 +2206,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box65(Xcls_MainWindow _owner )
+        public Xcls_statusbar_compile_spinner(Xcls_MainWindow _owner )
         {
             _this = _owner;
+            _this.statusbar_compile_spinner = this;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
