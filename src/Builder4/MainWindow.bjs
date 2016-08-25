@@ -710,7 +710,7 @@
            ]
           },
           {
-           "id" : "statusbar_compilestatus_label",
+           "id" : "statusbar_compile_spinner",
            "* pack" : "add",
            "xtype" : "MenuItem",
            "$ xns" : "Gtk"
