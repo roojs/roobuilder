@@ -2417,7 +2417,7 @@ public class Xcls_MainWindow : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_MenuItem72( _this );
             child_1.ref();
-            this.el.composite_name (  child_1.el  );
+            this.el.add (  child_1.el  );
             var child_2 = new Xcls_statusbar_errors( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
@@ -2518,6 +2518,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.label = "";
         }
 
         // user defined functions

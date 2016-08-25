@@ -644,8 +644,9 @@
            ]
           },
           {
-           "* pack" : "composite_name",
+           "* pack" : "add",
            "xtype" : "MenuItem",
+           "string label" : "",
            "$ xns" : "Gtk"
           },
           {
