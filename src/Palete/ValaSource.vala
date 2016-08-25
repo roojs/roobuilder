@@ -149,7 +149,7 @@ namespace Palete {
 			
 			this.compiler = new Spawn("/tmp", args);
 			this.compiler.complete.connect(spawnResult);
-			this.win.statusbar_compile_spinner.el.start();
+			this.window.statusbar_compile_spinner.el.start();
 			try {
 				this.compiler.run(); 
 			} catch (GLib.SpawnError e) {
