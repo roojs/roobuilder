@@ -646,7 +646,7 @@
           {
            "* pack" : "add",
            "xtype" : "MenuItem",
-           "string label" : "",
+           "string label" : "Compile Status:",
            "$ xns" : "Gtk"
           },
           {
