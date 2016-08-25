@@ -143,7 +143,15 @@ namespace Palete {
 			}
 			var cache = global_cache;
 			if (project != null && project is Project.Gtk) {
-				cache = ((Project.Gtk)project).gir_cache;
+				var gproj = ((Project.Gtk)project);
+				if (!gproj.gir_cache_loaded) {
+					var a = new VapiParser( (Project.Gtk)project );
+					a.create_valac_tree();
+					gproj.gir_cache_loaded = true;
+				}
+				cache = gproj.gir_cache;
+				
+				
 			}
 			
 			var ret = cache.get(ns);
@@ -151,8 +159,7 @@ namespace Palete {
 			
 			if (ret == null && project != null) {
 
-				var a = new VapiParser( (Project.Gtk)project );
-				a.create_valac_tree();
+				
 				ret = cache.get(ns);
 			}
 			
