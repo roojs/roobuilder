@@ -743,7 +743,7 @@
          "xtype" : "Spinner",
          "* pack" : "add",
          "| void stop" : "() {\n this.el.stop();\n  this.el.hide();\n}\n",
-         "string tooltip_text" : "",
+         "string tooltip_text" : "Compiling",
          "$ xns" : "Gtk",
          "| void start" : "() {\n  this.el.show();\n  this.el.start();  \n}\n"
         }
