@@ -29,15 +29,16 @@ namespace Palete {
 		
 		public signal void compiled(Json.Object res);
 		public signal void compile_output(string str);
-		public Xcls_MainWindow win;
+		public Xcls_MainWindow window;
 		
 		JsRender.JsRender file;
   		public int line_offset = 0;
 		
 		public Gee.ArrayList<Spawn> children;
- 		public ValaSource( ) 
+ 		public ValaSource( Xcls_MainWindow window ) 
  		{
 			base();
+			this.window  = window;
 			this.compiler = null;
 			this.children = new Gee.ArrayList<Spawn>();
 			
