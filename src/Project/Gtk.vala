@@ -31,7 +31,7 @@ namespace Project
 		*
 		*/
 		public Gee.HashMap<string,Palete.Gir> gir_cache = null;
-		
+		public bool gir_cache_loaded = false;
  
 	  
 		public Gtk(string path) {
