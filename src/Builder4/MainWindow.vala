@@ -2731,7 +2731,6 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Compile Status:";
         }
 
         // user defined functions

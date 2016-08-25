@@ -713,7 +713,6 @@
            "id" : "statusbar_compilestatus_label",
            "* pack" : "add",
            "xtype" : "MenuItem",
-           "string label" : "Compile Status:",
            "$ xns" : "Gtk"
           },
           {
