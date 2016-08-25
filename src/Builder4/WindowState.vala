@@ -94,8 +94,8 @@ public class WindowState : Object
 		this.children_loaded = true;
 		
 		
-		this.valasource = new Palete.ValaSource();
-		this.valasource.window = this.win;
+		this.valasource = new Palete.ValaSource(this.win);
+
 		this.valasource.compiled.connect(this.showCompileResult);
 		
 		this.compile_results = new  Xcls_ValaCompileResults();
