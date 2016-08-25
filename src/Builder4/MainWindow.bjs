@@ -710,12 +710,6 @@
            ]
           },
           {
-           "id" : "statusbar_compile_spinner",
-           "* pack" : "add",
-           "xtype" : "MenuItem",
-           "$ xns" : "Gtk"
-          },
-          {
            "listeners" : {
             "button_press_event" : "() => {\n\tif (_this.windowstate.file == null) {\n\t\treturn true;\n\t}\n\t_this.windowstate.valasource.spawnExecute(_this.windowstate.file);\n\t\n\t_this.windowstate.compile_results.show(this.el,true);\n\t\n\treturn true;\n}"
            },
