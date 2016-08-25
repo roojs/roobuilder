@@ -149,12 +149,12 @@ namespace Palete {
 			
 			this.compiler = new Spawn("/tmp", args);
 			this.compiler.complete.connect(spawnResult);
-			this.window.statusbar_compile_spinner.el.start();
+			this.window.statusbar_compile_spinner.start();
 			try {
 				this.compiler.run(); 
 			} catch (GLib.SpawnError e) {
 			        GLib.debug(e.message);
-	    			this.window.statusbar_compile_spinner.el.stop();
+	    			this.window.statusbar_compile_spinner.stop();
          			this.compiler = null;
 			        return false;
 
@@ -186,13 +186,13 @@ namespace Palete {
 			try {
 			    this.compiler = new Spawn("/tmp", args);
 			    this.compiler.complete.connect(spawnResult);
-				this.window.statusbar_compile_spinner.el.start();
+				this.window.statusbar_compile_spinner.start();
 			    this.compiler.run(); 
 			
 			 
 			} catch (GLib.Error e) {
 			    GLib.debug(e.message);
-			    this.window.statusbar_compile_spinner.el.stop();
+			    this.window.statusbar_compile_spinner.stop();
 			    this.compiler = null;
 			    return false;
 		        }
@@ -237,12 +237,12 @@ namespace Palete {
 			    this.compiler = new Spawn( GLib.Environment.get_home_dir(), args);
 			    this.compiler.output_line.connect(compile_output_line);
 			    this.compiler.complete.connect(runResult);
-			    this.window.statusbar_compile_spinner.el.start();
+			    this.window.statusbar_compile_spinner.start();
 			    this.compiler.run(); 
 				this.children.add(this.compiler); //keep a reference...
 			 
 			} catch (GLib.Error e) {
-				this.window.statusbar_compile_spinner.el.stop();
+				this.window.statusbar_compile_spinner.stop();
 			    GLib.debug(e.message);
 			    this.compiler = null;
 
@@ -323,10 +323,10 @@ namespace Palete {
 			try {
 			    this.compiler = new Spawn("/tmp", args);
 			    this.compiler.complete.connect(spawnResult);
-			    this.window.statusbar_compile_spinner.el.start();
+			    this.window.statusbar_compile_spinner.start();
 			    this.compiler.run(); 
 			} catch (GLib.Error e) {
-			    this.window.statusbar_compile_spinner.el.stop();
+			    this.window.statusbar_compile_spinner.stop();
 			    this.compiler = null;
 			    return false;
 			}
@@ -338,7 +338,7 @@ namespace Palete {
 		public void spawnResult(int res, string output, string stderr)
 		{
 			 
-			this.window.statusbar_compile_spinner.el.stop();	
+			this.window.statusbar_compile_spinner.stop();	
 			try { 
 				//GLib.debug("GOT output %s", output);
 				
