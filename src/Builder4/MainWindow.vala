@@ -40,6 +40,7 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar statusbar;
     public Xcls_search_entry search_entry;
     public Xcls_search_results search_results;
+    public Xcls_statusbar_compilestatus_label statusbar_compilestatus_label;
     public Xcls_statusbar_errors statusbar_errors;
     public Xcls_statusbar_warnings statusbar_warnings;
     public Xcls_statusbar_depricated statusbar_depricated;
@@ -2415,7 +2416,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_MenuItem72( _this );
+            var child_1 = new Xcls_statusbar_compilestatus_label( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_statusbar_errors( _this );
@@ -2501,7 +2502,7 @@ public class Xcls_MainWindow : Object
     }
 
 
-    public class Xcls_MenuItem72 : Object
+    public class Xcls_statusbar_compilestatus_label : Object
     {
         public Gtk.MenuItem el;
         private Xcls_MainWindow  _this;
@@ -2510,9 +2511,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem72(Xcls_MainWindow _owner )
+        public Xcls_statusbar_compilestatus_label(Xcls_MainWindow _owner )
         {
             _this = _owner;
+            _this.statusbar_compilestatus_label = this;
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
