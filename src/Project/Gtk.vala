@@ -123,7 +123,7 @@ namespace Project
 			);
 			data_out.put_string(this.configToString(), null);
 			data_out.close(null);
-			
+			this.gir_cache_loaded = false; // force a reload.
 			return ;
 			 
 		}
