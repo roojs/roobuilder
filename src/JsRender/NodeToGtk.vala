@@ -76,7 +76,7 @@ public class JsRender.NodeToGtk : Object {
 		}
 		
 	}
-	
+	   
 	public Object? munge (  )
 	{
 		var ret = this.mungeNode( );
