@@ -620,7 +620,7 @@
         {
          "* pack" : "add",
          "xtype" : "MenuBar",
-         "string label" : "\"Compile Status:",
+         "string label" : "Compile Status:",
          "$ xns" : "Gtk",
          "items" : [
           {

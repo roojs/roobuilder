@@ -2411,7 +2411,7 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.MenuBar();
 
             // my vars (dec)
-            this.label = "Compile Status:;
+            this.label = Compile Status:;
 
             // set gobject values
             var child_0 = new Xcls_search_results( _this );
