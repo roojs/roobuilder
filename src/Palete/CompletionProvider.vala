@@ -68,7 +68,7 @@ namespace Palete {
 			    this.editor.ptype,
 			    this.editor.key,
 			    search
-		    );
+		    ); 
 		
 		    print("GOT %d results\n", (int) filtered_proposals.length()); 
 		
