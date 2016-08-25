@@ -39,7 +39,6 @@ public class Xcls_MainWindow : Object
     public Xcls_delprojectbutton delprojectbutton;
     public Xcls_statusbar statusbar;
     public Xcls_search_entry search_entry;
-    public Xcls_statusbar_compilestatus_label statusbar_compilestatus_label;
     public Xcls_search_results search_results;
     public Xcls_statusbar_errors statusbar_errors;
     public Xcls_statusbar_warnings statusbar_warnings;
@@ -2225,7 +2224,7 @@ public class Xcls_MainWindow : Object
             var child_2 = new Xcls_search_entry( _this );
             child_2.ref();
             this.el.pack_start (  child_2.el , false,true,0 );
-            var child_3 = new Xcls_statusbar_compilestatus_label( _this );
+            var child_3 = new Xcls_MenuBar69( _this );
             child_3.ref();
             this.el.add (  child_3.el  );
             var child_4 = new Xcls_statusbar_compile_spinner( _this );
@@ -2396,24 +2395,21 @@ public class Xcls_MainWindow : Object
         }
     }
 
-    public class Xcls_statusbar_compilestatus_label : Object
+    public class Xcls_MenuBar69 : Object
     {
         public Gtk.MenuBar el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
-        public string label;
 
         // ctor
-        public Xcls_statusbar_compilestatus_label(Xcls_MainWindow _owner )
+        public Xcls_MenuBar69(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.statusbar_compilestatus_label = this;
             this.el = new Gtk.MenuBar();
 
             // my vars (dec)
-            this.label = Compile Status:;
 
             // set gobject values
             var child_0 = new Xcls_search_results( _this );
