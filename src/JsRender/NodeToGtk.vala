@@ -28,7 +28,7 @@ public class JsRender.NodeToGtk : Object {
 	Node node;
  	Object wrapped_object; 
 	NodeToGtk parentObj;
-	
+	 
 	Gee.ArrayList<NodeToGtk> children;
 	
 	Gee.ArrayList<string> els;
