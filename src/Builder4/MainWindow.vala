@@ -2824,6 +2824,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.tooltip_text = "";
         }
 
         // user defined functions
