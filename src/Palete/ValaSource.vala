@@ -29,7 +29,7 @@ namespace Palete {
 		
 		public signal void compiled(Json.Object res);
 		public signal void compile_output(string str);
-
+		public Xcls_MainWindow win;
 		
 		JsRender.JsRender file;
   		public int line_offset = 0;
