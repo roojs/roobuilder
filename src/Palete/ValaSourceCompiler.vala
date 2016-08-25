@@ -431,7 +431,7 @@ namespace Palete {
 			ccompiler.compile (context, cc_command, cc_options);
 #endif
 		
-			print("%s\n", valac);
+			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 			//this.outputResult();
