@@ -620,25 +620,25 @@ right:
 // docbook!!!
 
 left:
-    Roo.doc.entry
+    Roo.doc.Entry
 right:
-    Roo.doc.synopsis
-    Roo.doc.section
+    Roo.doc.Synopsis
+    Roo.doc.Section
 
 left:
-    Roo.doc.synopsis
+    Roo.doc.Synopsis
 right:
-    Roo.doc.param
+    Roo.doc.Param
     
 left:
-    Roo.doc.section
+    Roo.doc.Section
 right:
-    Roo.doc.para    
-    Roo.doc.list
-    Roo.doc.example
+    Roo.doc.Para    
+    Roo.doc.List
+    Roo.doc.Example
     
 left:
-    Roo.doc.list
+    Roo.doc.List
 right:
-    Roo.doc.param
-    Roo.doc.para
+    Roo.doc.Param
+    Roo.doc.Para
