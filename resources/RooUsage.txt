@@ -634,11 +634,7 @@ left:
     Roo.doc.Section
 right:
     Roo.doc.Para    
-    Roo.doc.List
+    Roo.doc.Param
     Roo.doc.Example
     
-left:
-    Roo.doc.List
-right:
-    Roo.doc.Param
-    Roo.doc.Para
+ 
