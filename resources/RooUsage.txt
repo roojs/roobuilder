@@ -13,7 +13,7 @@ right:
  Roo.bootstrap.Modal
  Roo.bootstrap.Container
  Roo.mailer.Body
- Roo.doc.entry
+ Roo.doc.Entry
  
  
   
