@@ -1364,9 +1364,10 @@ public class Xcls_WindowLeftTree : Object
                 this.activePath = this.el.get_path(n_iter).to_string();
         
         
-                
-                
+                // pretend button was pressed, so that we can trigger select node...
+                _this.view.button_is_pressed = true;
                 _this.view.el.set_cursor(this.el.get_path(n_iter), null, false);
+                _this.view.button_is_pressed = false;
                 _this.changed();
              
                 
