@@ -483,7 +483,8 @@ public class Xcls_LeftProps : Object
             }
             this.node.listeners.set(key,value);
         } else  {
-        
+             assert(this.node != null);
+             assert(this.node.props != null);
             if (this.node.props.has_key(fkey)) {
                 return;
             }
