@@ -187,7 +187,7 @@ namespace JsRender {
 		var top = this.tree.fqn();
 		GLib.debug ("TOP = " + top + "\n" );
 		if (top.index_of("Roo.bootstrap.") < 0 &&
-	    top.index_of("Roo.mailer.") < 0
+				 top.index_of("Roo.mailer.") < 0
 	        ) {
     		return;
 		}
@@ -215,7 +215,7 @@ namespace JsRender {
 			print("Skip save - templates folder does not exist : %s\n", targetdir);
 			return;
 		}
-		//print("SAVE HTML -- %s\n%s\n",targetdir + "/" +  bn, html);
+	   print("SAVE HTML (%d) -- %s\n",html.length, targetdir + "/" +  bn);
 		try {
 			this.writeFile(targetdir + "/" +  bn , html);            
 		} catch (FileError e ) {
