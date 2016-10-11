@@ -602,6 +602,8 @@ public class Xcls_WindowRooView : Object
 
             //listeners
             this.el.script_dialog.connect( (dialog) => {
+                
+                print("GOT alert?\n");
                 if (this.el == null) {
                     return true;
                 }
