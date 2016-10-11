@@ -619,6 +619,7 @@ public class Xcls_WindowRooView : Object
                 if (ar.length < 3) {
                     return false;
                 }
+            
                 switch(ar[1]) {
                     case "SAVEHTML":
                         _this.file.saveHTML(ar[2]);
