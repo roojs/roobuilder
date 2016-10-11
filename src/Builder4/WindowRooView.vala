@@ -603,7 +603,7 @@ public class Xcls_WindowRooView : Object
             //listeners
             this.el.script_dialog.connect( (dialog) => {
                 
-                print("GOT alert?\n");
+                
                 if (this.el == null) {
                     return true;
                 }
@@ -622,6 +622,7 @@ public class Xcls_WindowRooView : Object
             
                 switch(ar[1]) {
                     case "SAVEHTML":
+            	        print("GOT saveHTML?\n");
                         _this.file.saveHTML(ar[2]);
                         return true;
                     default:
