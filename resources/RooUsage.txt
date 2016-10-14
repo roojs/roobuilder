@@ -619,6 +619,19 @@ right:
     
 // docbook!!!
 
+// top level ? - fake body??? - not sure yet..
+left:
+    Roo.bootstrap.Body
+right:
+    Roo.doc.Entry
+    Roo.doc.Book
+
+left
+    Roo.doc.Book
+right:
+    Roo.doc.Entry
+
+
 left:
     Roo.doc.Entry
 right:
@@ -636,5 +649,14 @@ right:
     Roo.doc.Para    
     Roo.doc.Param
     Roo.doc.Example
-    
+
+left:
+    Roo.bootstrap.Column
+right:
+    Roo.doc.NavCategory
  
+
+left:
+    Roo.doc.NavCategory
+right:
+    Roo.bootstrap.Link
