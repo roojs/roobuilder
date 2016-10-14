@@ -659,4 +659,4 @@ right:
 left:
     Roo.doc.NavCategory
 right:
-    Roo.bootstrap.Link
+    Roo.bootstrap.NavGroup
