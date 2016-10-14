@@ -196,20 +196,24 @@ public class Xcls_WindowLeftTree : Object
             	if (!this.button_is_pressed && !this.key_is_pressed) {
             		// then event was started by some other action
             		// which should manually trigger all the events..
+            		print("SKIPPING select - no button or key pressed\n");
             		return;
             	}
             
             
                  if (this.blockChanges) { // probably not needed.. 
+            		print("SKIPPING select - blockchanges set..\n");     
                    return  ;
                  }
                   if (!_this.before_node_change( ) ) {
             	     this.blockChanges = true;
             	     this.el.get_selection().unselect_all();
             	     this.blockChanges = false;
+            	     
             	     return;
                  }
                  if (_this.main_window.windowstate.file == null) {
+               		print("SKIPPING select windowstate file is not set...\n");     
                      return;
                  } 
                  
