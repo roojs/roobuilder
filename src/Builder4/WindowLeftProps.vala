@@ -304,8 +304,7 @@ public class Xcls_LeftProps : Object
          //typeof(string),  // 4 value (display)
          //typeof(string),  // 5 both (tooltip)
         
-        
-        
+         
         
         // really need a way to sort the hashmap...
         var m = this.model.el;
