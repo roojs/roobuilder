@@ -283,9 +283,9 @@ public class Resources : Object
 					
 				case "GtkUsage.txt":
 				foreach(var p in Project.Project.allProjectsByName()) { 
-						if (p is Project.Gtk) {
+						if (p is Project.Gtk && p.palete.classes != null) {
 							p.palete = new Palete.Gtk(p);
-							p.palete.load();
+							//p.palete.load();
 						}
 					}
 
@@ -293,9 +293,9 @@ public class Resources : Object
 					
 				case "roodata.json":
 					foreach(var p in Project.Project.allProjectsByName()) { 
-						if (p is Project.Roo) {
+						if (p is Project.Roo && p.palete.classes != null) {
 							p.palete = new Palete.Roo(p);
-							p.palete.load();
+							//p.palete.load();
 						}
 					}
 					break;
