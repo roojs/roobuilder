@@ -620,6 +620,7 @@ right:
 // docbook!!!
 
 // top level ? - fake body??? - not sure yet..
+
 left:
     Roo.bootstrap.Body
 right:
@@ -651,7 +652,7 @@ right:
     Roo.doc.Example
 
 left:
-    Roo.bootstrap.Column
+    Roo.bootstrap.NavSidebar
 right:
     Roo.doc.NavCategory
  
