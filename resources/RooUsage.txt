@@ -627,7 +627,7 @@ right:
     Roo.doc.Entry
     Roo.doc.Book
 
-left
+left:
     Roo.doc.Book
 right:
     Roo.doc.Entry
