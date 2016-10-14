@@ -192,7 +192,7 @@ public class Xcls_WindowLeftTree : Object
                   return true;
             });
             this.el.cursor_changed.connect( ( ) => {
-            	 
+                print("LEFT TREE Cursor Changed\n");
             	if (!this.button_is_pressed && !this.key_is_pressed) {
             		// then event was started by some other action
             		// which should manually trigger all the events..
@@ -224,7 +224,7 @@ public class Xcls_WindowLeftTree : Object
                 // -- it appears that the selection is not updated.
                   
                 GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                     
+                     print("LEFT TREE -> view -> selection changed TIMEOUT CALLED\n");
             
                         if (this.el.get_selection().count_selected_rows() < 1) {
             
@@ -248,6 +248,7 @@ public class Xcls_WindowLeftTree : Object
                         _this.model.activePath = mod.get_path(iter).to_string();
                         
                         var node = (JsRender.Node)value.dup_object();
+                        print ("calling left_tree.node_selected\n");
                         _this.node_selected(node, this.lastEventSource);
                         while (Gtk.events_pending()) {
                             Gtk.main_iteration();
