@@ -77,8 +77,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public string dragData;
-        public int drag_x;
         public string[] dropList;
+        public int drag_x;
         public int drag_y;
         public bool button_is_pressed;
         public string lastEventSource;
@@ -1370,7 +1370,7 @@ public class Xcls_WindowLeftTree : Object
         
                 // pretend button was pressed, so that we can trigger select node...
                 _this.view.button_is_pressed = true;
-                _this.lastEventSource = "";
+                _this.view.lastEventSource = "";
                 _this.view.el.set_cursor(this.el.get_path(n_iter), null, false);
                 _this.view.button_is_pressed = false;
                 _this.changed();
