@@ -166,11 +166,11 @@ namespace JsRender {
 		{
 			var n = this.nickName();
 			var ret = "";
-			for (var i = 0; i < n.length;n++) {
-				if (i!=0 && n.get(i).isUpper()) {
+			for (var i = 0; i < n.length; i++) {
+				if (i!=0 && n.get(i).isupper()) {
 					ret +="\n";
 				}
-				ret += n.get(i);
+				ret += n.get(i).to_string();
 			}
 			
 
