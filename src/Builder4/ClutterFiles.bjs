@@ -147,7 +147,7 @@
            "$ x_align" : "Clutter.ActorAlign.START"
           },
           {
-           "* ctor" : "new Clutter.Text.full(\"Sans 10px\", file.nickName(),  Clutter.Color.from_string(\"#fff\"))",
+           "* ctor" : "new Clutter.Text.full(\"Sans 10px\", file.nickNameSplit(),  Clutter.Color.from_string(\"#fff\"))",
            "* args" : "JsRender.JsRender file",
            "id" : "+title",
            "* pack" : "add_child",
