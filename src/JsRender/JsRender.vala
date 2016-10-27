@@ -167,7 +167,7 @@ namespace JsRender {
 			var n = this.nickName();
 			var ret = "";
 			for (var i = 0; i < n.length; i++) {
-				if (i!=0 && n.get(i).isupper()) {
+				if (i!=0 && n.get(i).isupper() && ret.length > 10) {
 					ret +="\n";
 				}
 				ret += n.get(i).to_string();
