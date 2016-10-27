@@ -161,6 +161,23 @@ namespace JsRender {
 			return ar[ar.length-1];
 			
 		}
+		
+		public string nickNameSplit()
+		{
+			var n = this.nickName();
+			var ret = "";
+			for (var i = 0; i < n.length;n++) {
+				if (i!=0 && n.get(i).isUpper()) {
+					ret +="\n";
+				}
+				ret += n.get(i);
+			}
+			
+
+			
+			return ret;
+		
+		}
 
 		
 		public string getIconFileName(bool return_default)
