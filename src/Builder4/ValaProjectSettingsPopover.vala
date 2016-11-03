@@ -1765,7 +1765,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
                 this.el.set_value(citer, 3,   active ); // checked 
             }
         
-             _this.files_tree.set_sensitive(true);
+             _this.files_tree.el.set_sensitive(true);
         }
     }
 
