@@ -1216,7 +1216,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
                    _this.files_tree_store.update();
                    
                    // load the srouces
-                   
+            
             
               });
         }
