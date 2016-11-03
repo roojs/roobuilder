@@ -1741,7 +1741,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
             }
             this.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);
             if (_this.set_vbox.cgroup == null) {
-        		_this.files_tree.set_sensitive(false);
+        		_this.files_tree.el.set_sensitive(false);
             
             }
         }
