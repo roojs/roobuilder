@@ -93,7 +93,7 @@ public class FakeServerCache : Object
 	{
 		this.fname = "/" + GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, data, data.length) + ".js";
 		this.data = data.data;
-		this.content_type = "text/javascript";
+		this.content_type = "text/javascript;charset=UTF-8";
 		this.size= data.length;
 	 
 	  
