@@ -449,7 +449,7 @@ public class Xcls_RooProjectSettings : Object
             el.set_value(iter, 0, "mailer.builder.html");
         
         	if (cur == "mailer.builder.html") {
-        	    _this.filetype.el.set_active_iter(iter);
+        	    _this.base_template.el.set_active_iter(iter);
             }
         
                                              
