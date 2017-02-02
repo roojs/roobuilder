@@ -97,7 +97,7 @@
                "id" : "base_template_model",
                "xtype" : "ListStore",
                "* pack" : "set_model",
-               "$ columns" : "typeof(string),typeof(string)",
+               "$ columns" : "typeof(string)",
                "n_columns" : 2,
                "$ xns" : "Gtk",
                "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"roo.builder.html\");\n    _this.base_template.el.set_active_iter(iter);\n\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap.builder.html\");\n    if (cur == \"bootstrap.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n   }\n\n\tel.append(out iter);\n    el.set_value(iter, 0, \"mailer.builder.html\");\n\n\tif (cur == \"mailer.builder.html\") {\n\t    _this.base_template.el.set_active_iter(iter);\n    }\n\n                                     \n}\n"
