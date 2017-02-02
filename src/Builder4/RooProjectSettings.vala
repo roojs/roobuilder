@@ -366,7 +366,7 @@ public class Xcls_RooProjectSettings : Object
             	if (this.el.get_active_iter(out iter)) {
             		Value vfname;
             		_this.base_template_model.el.get_value (iter, 0, out vfname);
-            		 is_bjs = ((string)vfname) == "bjs";
+             
             	}
                 
               
