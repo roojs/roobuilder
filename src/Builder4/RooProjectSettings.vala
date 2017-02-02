@@ -97,7 +97,8 @@ public class Xcls_RooProjectSettings : Object
           _this.project.runhtml = buf.get_text(s,e,true);
           
         _this.project.rootURL = _this.rootURL.el.get_text();
-        _this.project.base_template = _this.base_template.el.get_text();    
+        // set by event changed...
+        //_this.project.base_template = _this.base_template.el.get_text();    
         
         var js = _this.project.json_project_data;
         js.set_string_member("DBTYPE", _this.database_DBTYPE.el.get_text());
