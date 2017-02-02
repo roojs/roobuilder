@@ -360,7 +360,7 @@ public class Xcls_RooProjectSettings : Object
 
             // init method
 
-            this.el.add_attribute(_this.base_template_cellrenderer.el , "markup", 1 );
+            this.el.add_attribute(_this.base_template_cellrenderer.el , "markup", 0 );
 
             //listeners
             this.el.changed.connect( () => {
