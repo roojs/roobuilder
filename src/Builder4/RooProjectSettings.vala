@@ -65,7 +65,7 @@ public class Xcls_RooProjectSettings : Object
            
         _this.rootURL.el.set_text( _this.project.rootURL );
         
-        _this.base_template_model.loadData(_this.project.base_template);    
+        _this.base_template_model.loadData(_this.project.base_template);
         
          var js = _this.project;
         _this.database_DBTYPE.el.set_text(     js.get_string_member("DBTYPE") );
