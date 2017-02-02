@@ -81,7 +81,7 @@
              "listeners" : {
               "changed" : "() => {\n\tGtk.TreeIter iter;\n\tbool is_bjs = true;\n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.ftdbmodel.el.get_value (iter, 0, out vfname);\n\t\t is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n    this.showhide(is_bjs);\n\n\n}\n"
              },
-             "id" : "filetype",
+             "id" : "base_template",
              "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
              "* pack" : "attach,1,0,1,1",
              "xtype" : "ComboBox",
@@ -104,12 +104,6 @@
                "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"bjs\");\n    el.set_value(iter, 1, \"User Interface File (bjs)\");\n    _this.filetype.el.set_active_iter(iter);\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"vala\");\n    el.set_value(iter, 1, \"Vala\");\n\tif (cur == \"vala\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"js\");\n    el.set_value(iter, 1, \"Javascript\");\n\n\tif (cur == \"js\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"css\");\n    el.set_value(iter, 1, \"CSS\");\n\n\tif (cur == \"css\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n                                     \n}\n"
               }
              ]
-            },
-            {
-             "id" : "base_template",
-             "* pack" : "add",
-             "xtype" : "Entry",
-             "$ xns" : "Gtk"
             }
            ]
           },
