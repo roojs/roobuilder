@@ -434,14 +434,13 @@ public class Xcls_RooProjectSettings : Object
            // el.set_value(iter, 0, "");
            // el.set_value(iter, 1, "aaa  - Just add Element - aaa");
         
-            el.append(out iter);
+        ///    el.append(out iter);
         
             
             el.set_value(iter, 0, "roo.builder.html");
             _this.filetype.el.set_active_iter(iter);
+        
             el.append(out iter);
-            
-            
             el.set_value(iter, 0, "bootstrap.builder.html");
             if (cur == "bootstrap.builder.html") {
         	   _this.base_template.el.set_active_iter(iter);
