@@ -16,8 +16,8 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_label_database label_database;
     public Xcls_path path;
     public Xcls_base_template base_template;
-    public Xcls_ftdbcellrenderer ftdbcellrenderer;
-    public Xcls_ftdbmodel ftdbmodel;
+    public Xcls_base_template_cellrenderer base_template_cellrenderer;
+    public Xcls_base_template_model base_template_model;
     public Xcls_rootURL rootURL;
     public Xcls_view view;
     public Xcls_database_DBTYPE database_DBTYPE;
@@ -348,10 +348,10 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ftdbcellrenderer( _this );
+            var child_0 = new Xcls_base_template_cellrenderer( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
-            var child_1 = new Xcls_ftdbmodel( _this );
+            var child_1 = new Xcls_base_template_model( _this );
             child_1.ref();
             this.el.set_model (  child_1.el  );
 
@@ -410,7 +410,7 @@ public class Xcls_RooProjectSettings : Object
             
         }
     }
-    public class Xcls_ftdbcellrenderer : Object
+    public class Xcls_base_template_cellrenderer : Object
     {
         public Gtk.CellRendererText el;
         private Xcls_RooProjectSettings  _this;
@@ -419,10 +419,10 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ftdbcellrenderer(Xcls_RooProjectSettings _owner )
+        public Xcls_base_template_cellrenderer(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            _this.ftdbcellrenderer = this;
+            _this.base_template_cellrenderer = this;
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
@@ -433,7 +433,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_ftdbmodel : Object
+    public class Xcls_base_template_model : Object
     {
         public Gtk.ListStore el;
         private Xcls_RooProjectSettings  _this;
@@ -442,10 +442,10 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ftdbmodel(Xcls_RooProjectSettings _owner )
+        public Xcls_base_template_model(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            _this.ftdbmodel = this;
+            _this.base_template_model = this;
             this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
