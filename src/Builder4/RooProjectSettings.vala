@@ -436,7 +436,7 @@ public class Xcls_RooProjectSettings : Object
         
             el.append(out iter);
             el.set_value(iter, 0, "roo.builder.html");
-            _this.filetype.el.set_active_iter(iter);
+            _this.base_template.el.set_active_iter(iter);
         
         
             el.append(out iter);
