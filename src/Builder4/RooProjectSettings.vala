@@ -437,21 +437,18 @@ public class Xcls_RooProjectSettings : Object
             el.append(out iter);
         
             
-            el.set_value(iter, 0, "bjs");
-            el.set_value(iter, 1, "User Interface File (bjs)");
+            
+            el.set_value(iter, 0, "roo.builder.html");
             _this.filetype.el.set_active_iter(iter);
-        
             el.append(out iter);
             
-            el.set_value(iter, 0, "vala");
-            el.set_value(iter, 1, "Vala");
-        	if (cur == "vala") {
-        	    _this.filetype.el.set_active_iter(iter);
-            }
+            
+            el.set_value(iter, 0, "bootstrap.builder.html");
+            if (cur == "bootstrap.builder.html") {
+        	   _this.base_template.el.set_active_iter(iter);
+           }
+        	el.append(out iter);
         
-        
-        
-            el.append(out iter);
             
             el.set_value(iter, 0, "js");
             el.set_value(iter, 1, "Javascript");
