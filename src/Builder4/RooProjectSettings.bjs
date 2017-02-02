@@ -79,7 +79,7 @@
             },
             {
              "listeners" : {
-              "changed" : "() => {\n\tGtk.TreeIter iter;\n \n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);\n\t\t// is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n \n\n\n}\n"
+              "changed" : "() => {\n\tGtk.TreeIter iter;\n \n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);\n\t\t_this.project.base_template = ((string)vfname) ;\n\t\t// is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n \n\n\n}\n"
              },
              "id" : "base_template",
              "* init" : "this.el.add_attribute(_this.base_template_cellrenderer.el , \"markup\", 1 );",
