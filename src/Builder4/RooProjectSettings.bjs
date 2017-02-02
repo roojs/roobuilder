@@ -83,7 +83,7 @@
              },
              "id" : "base_template",
              "* init" : "this.el.add_attribute(_this.base_template_cellrenderer.el , \"markup\", 1 );",
-             "* pack" : "attach,1,0,1,1",
+             "* pack" : "add",
              "xtype" : "ComboBox",
              "$ xns" : "Gtk",
              "items" : [

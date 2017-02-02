@@ -305,7 +305,7 @@ public class Xcls_RooProjectSettings : Object
             this.el.pack_start (  child_0.el , false,false,0 );
             var child_1 = new Xcls_base_template( _this );
             child_1.ref();
-            this.el.attach (  child_1.el , 1,0,1,1 );
+            this.el.add (  child_1.el  );
         }
 
         // user defined functions
