@@ -720,7 +720,7 @@ public class JsRender.Node : Object {
 		txt += for_tip || fqn.length < 1 ? fqn : fqn_ar[fqn_ar.length -1];
 		
 		if (fqn == "Roo.bootstrap.Element" && this.has("tag")) {
-		   txt = GLib.Markup.escape_text(this.get("tag").upper());
+		   txt = GLib.Markup.escape_text(this.get("tag").up());
 		}
 		
 		//if (c.xtype)	  { txt.push(c.xtype); }
