@@ -751,6 +751,14 @@ public class JsRender.Node : Object {
 		// class is quite important on bootstrap..
 		if (this.has("cls")){ txt += ("<b>[cls=" + GLib.Markup.escape_text(this.get("cls")) + "]</b>"); }		
 		
+		// other 'specials?'
+		if (fqn == "Roo.bootstrap.Link") {
+			txt += ("<b>href=" + (this.has("name") ?  GLib.Markup.escape_text(this.get("name")) : "?" ) + "</b>");
+			if (this.has("fa")){ txt += ("<b>[fa=" + GLib.Markup.escape_text(this.get("fa")) + "]</b>"); }					
+		}
+
+
+
 		// for flat classes...
 		//if (typeof(c["*class"]"))!= "undefined")  { txt += ("<b>" +  c["*class"]+  "</b>"); }
 		//if (typeof(c["*extends"]"))!= "undefined")  { txt += (": <i>" +  c["*extends"]+  "</i>"); }
