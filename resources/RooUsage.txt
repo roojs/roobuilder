@@ -616,6 +616,7 @@ left:
 right:
     Roo.bootstrap.Element
     Roo.bootstrap.Image
+    Roo.bootstrap.MasonryBrick
 
     
     
