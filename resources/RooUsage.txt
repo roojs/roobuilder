@@ -392,6 +392,7 @@ right:
     Roo.bootstrap.NavProgressBar
     Roo.bootstrap.FieldLabel
     Roo.bootstrap.DateSplitField
+    Roo.bootstrap.MasonryBrick
 
 left:
     Roo.bootstrap.TabGroup
