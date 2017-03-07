@@ -419,7 +419,7 @@ public class Xcls_RooProjectSettings : Object
         {
             _this = _owner;
             _this.base_template_model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string) );
+            this.el = new Gtk.ListStore( 1, typeof(string) );
 
             // my vars (dec)
 
