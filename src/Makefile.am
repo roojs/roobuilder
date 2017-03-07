@@ -24,6 +24,10 @@ if HAVE_LIBVALA32
 roobuilder_LIBVALA = --pkg libvala-0.32
 endif
 
+if HAVE_LIBVALA34
+roobuilder_LIBVALA = --pkg libvala-0.34
+endif
+
 # gda
 
 
