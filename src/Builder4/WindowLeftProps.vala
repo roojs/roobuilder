@@ -1572,7 +1572,7 @@ public class Xcls_LeftProps : Object
                     ((Gtk.Entry)editable).set_text(val);                 
             });
             this.el.edited.connect( (path, newtext) => {
-                    print("Keyrender  - signal:edited\n");
+                    GLib.debug("Keyrender  - signal:edited\n");
                 
                 this.el.editable = false;
               
@@ -1595,7 +1595,7 @@ public class Xcls_LeftProps : Object
                     }
                     
                     
-                    print("ktype: %s\n",ktype);
+                    GLib.debug("ktype: %s\n",ktype);
                     switch(ktype) {
                         case "listener":
                             var ov = _this.node.listeners.get(oldval);
