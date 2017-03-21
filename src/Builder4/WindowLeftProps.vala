@@ -510,12 +510,12 @@ public class Xcls_LeftProps : Object
         
             this.model.el.get_value(iter, 0 , out gval);
             if ((string)gval != type) {
-                print("not type: %s = %s\n", (string)gval , type);
+                GLib.debug("not type: %s = %s\n", (string)gval , type);
                 return false;
             }
             this.model.el.get_value(iter, 1 , out gval);
             if ((string)gval != fkey) {
-                print("not key: %s = %s\n", (string)gval , fkey);
+                GLib.debug("not key: %s = %s\n", (string)gval , fkey);
                 return false;
             }
             // delay this?
