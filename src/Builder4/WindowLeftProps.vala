@@ -198,7 +198,7 @@ public class Xcls_LeftProps : Object
         
         
         if (use_textarea) {
-            print("Call show editor\n");
+            GLib.debug("Call show editor\n");
             GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
                 this.view.el.get_selection().select_path(path);
                 
@@ -219,7 +219,7 @@ public class Xcls_LeftProps : Object
         
         
         // others... - fill in options for true/false?
-        print("turn on editing %s \n" , mod.get_path(iter).to_string());
+        GLib.debug("turn on editing %s \n" , mod.get_path(iter).to_string());
        
            print (ktype.up());
         if (has_opts) {
