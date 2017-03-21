@@ -1438,7 +1438,7 @@ public class Xcls_LeftProps : Object
                 
                  
                 if (col.title != "Value") {
-                    print("col title != Value");
+                    GLib.debug("col title != Value");
                     
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
                         this.el.get_selection().select_path(path);
