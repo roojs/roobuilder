@@ -279,7 +279,7 @@ public class Xcls_LeftProps : Object
     }
     public              void load (JsRender.JsRender file, JsRender.Node? node) 
     {
-        print("load leftprops\n");
+        GLib.debug("load leftprops\n");
         this.before_edit();
         this.node = node;
         this.file = file;
@@ -331,7 +331,7 @@ public class Xcls_LeftProps : Object
              this.updateIter(iter,  "prop", miter.get_key(), miter.get_value());
              
        }
-       print("clear selection\n");
+       GLib.debug("clear selection\n");
        // clear selection?
        this.model.el.set_sort_column_id(6,Gtk.SortType.ASCENDING); // sort by real key..
        
