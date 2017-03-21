@@ -138,9 +138,9 @@ public class Xcls_LeftProps : Object
     
          // ONLY return true if editing is allowed - eg. combo..
     
-        print("start editing?\n");
+        GLib.debug("start editing?\n");
         if (!this.stop_editor()) {
-            print("stop editor failed\n");
+            GLib.debug("stop editor failed\n");
             return false;
         }
         
