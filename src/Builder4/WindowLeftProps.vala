@@ -345,7 +345,7 @@ public class Xcls_LeftProps : Object
     		     ((try_size * 1.0f) /  (pane.max_position * 1.0f))  > 0.8f  ? 
     		    (int) (pane.max_position * 0.2f) :
     		    pane.max_position-try_size);
-    	    return true;
+    	    return GLib.Source.REMOVE;
     	});
        
     }
