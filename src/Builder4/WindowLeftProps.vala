@@ -89,7 +89,7 @@ public class Xcls_LeftProps : Object
     public              void before_edit ()
     {
     
-        print("before edit - stop editing\n");
+        GLib.debug("before edit - stop editing\n");
         
       // these do not appear to trigger save...
         _this.keyrender.el.stop_editing(false);
