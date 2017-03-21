@@ -1728,7 +1728,7 @@ public class Xcls_LeftProps : Object
                
             });
             this.el.edited.connect( (path, newtext) => {
-                print("Valrender  - signal:edited\n");
+                GLib.debug("Valrender  - signal:edited\n");
               
                     this.el.editable = false;
             /*  
