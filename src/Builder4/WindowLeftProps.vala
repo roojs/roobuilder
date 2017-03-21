@@ -503,7 +503,7 @@ public class Xcls_LeftProps : Object
         var s = this.view.el.get_selection();
         s.unselect_all();
         
-        print("trying to find new iter");
+        GLib.debug("trying to find new iter");
       
         this.model.el.foreach((model, path, iter) => {
             GLib.Value gval;
