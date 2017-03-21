@@ -339,13 +339,13 @@ public class Xcls_LeftProps : Object
        
        var pane = _this.main_window.editpane.el;
         var try_size = (i * 25) + 60; // est. 20px per line + 40px header
-        
-        // max 80%...
-        pane.set_position( 
-             ((try_size * 1.0f) /  (pane.max_position * 1.0f))  > 0.8f  ? 
-            (int) (pane.max_position * 0.2f) :
-            pane.max_position-try_size);
-        
+        GLib.Timeout.add_seconds(1, () => { 
+    		// max 80%...
+    		pane.set_position( 
+    		     ((try_size * 1.0f) /  (pane.max_position * 1.0f))  > 0.8f  ? 
+    		    (int) (pane.max_position * 0.2f) :
+    		    pane.max_position-try_size);
+    	});
        
     }
     public              string keyFormat (string val, string type) {
