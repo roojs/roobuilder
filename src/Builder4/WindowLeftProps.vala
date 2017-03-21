@@ -1363,7 +1363,7 @@ public class Xcls_LeftProps : Object
                 int cell_y;
                 Gtk.TreePath path;
                 if (!this.el.get_path_at_pos((int)ev.x, (int) ev.y, out path, out col, out cell_x, out cell_y )) {
-                    print("nothing selected on click");
+                    GLib.debug("nothing selected on click");
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
                         this.el.get_selection().unselect_all();
             
