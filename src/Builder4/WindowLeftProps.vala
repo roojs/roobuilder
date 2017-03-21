@@ -223,7 +223,7 @@ public class Xcls_LeftProps : Object
        
            GLib.debug (ktype.up());
         if (has_opts) {
-                print("start editing try/false)???");
+                GLib.debug("start editing try/false)???");
                 this.valrender.el.has_entry = false;
               
                 this.valrender.setOptions(opts);
