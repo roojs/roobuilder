@@ -112,7 +112,8 @@ int main (string[] args) {
 	 
 	GtkClutter.init (ref args);
 
-	GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR | LogLevelFlags.LEVEL_CRITICAL); 
+	//GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR | LogLevelFlags.LEVEL_CRITICAL); 
+	GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR ); 
 	
     
     
