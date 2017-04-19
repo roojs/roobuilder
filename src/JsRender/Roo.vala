@@ -699,7 +699,7 @@ namespace JsRender {
 		        "  permname : '" + (this.permname.length > 0 ? this.permname : "") +"', \n" +
 		            
 		       // "    tree : function() { return this._tree(); },\n" +   //BC
-		        "  _tree : function(_values)\n" +
+		        "  _tree : function(_data)\n" +
 		        "  {\n" +
 		        "   var _this = this;\n" + // bc
 		        "   var MODULE = this;\n" + /// this looks like a better name.
