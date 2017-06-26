@@ -9,8 +9,8 @@
  "items" : [
   {
    "# Xcls_MainWindow window" : "null",
-   "# string activeEditor" : "\"\"",
    "|   bool saveContents" : "  ()  {\n    \n    \n    if (_this.file == null) {\n        return true;\n    }\n    \n    \n   \n   \n     \n     var str = _this.buffer.toString();\n     \n     _this.buffer.checkSyntax();\n     \n     \n     \n     // LeftPanel.model.changed(  str , false);\n     _this.dirty = false;\n     _this.save_button.el.sensitive = false;\n     \n    // find the text for the node..\n    if (_this.file.xtype != \"PlainFile\") {\n        if (ptype == \"listener\") {\n            this.node.listeners.set(key,str);\n        \n        } else {\n             this.node.props.set(key,str);\n        }\n    } else {\n        _this.file.setSource(  str );\n     }\n    \n    // call the signal..\n    this.save();\n    \n    return true;\n\n} ",
+   "# string activeEditor" : "\"\"",
    "| void scroll_to_line" : "(int line) {\n\n\tGLib.Timeout.add(500, () => {\n   \n\t\tvar buf = this.view.el.get_buffer();\n\n\t\tvar sbuf = (Gtk.SourceBuffer) buf;\n\n\n\t\tGtk.TextIter iter;   \n\t\tsbuf.get_iter_at_line(out iter,  line);\n\t\tthis.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);\n\t\treturn false;\n\t});   \n}\n",
    "# int pos_root_x" : "",
    "# int pos_root_y" : "",
@@ -53,9 +53,24 @@
       },
       {
        "id" : "key_edit",
+       "* pack" : "pack_start,true,true",
        "xtype" : "Entry",
-       "* pack" : "pack_end,true,true",
+       "int width_request" : 100,
        "$ xns" : "Gtk"
+      },
+      {
+       "listeners" : {
+        "change_value" : "(st, val ) => {\n\t \n\t  var description =   Pango.FontDescription.from_string(\"monospace\");\n\t  print(\"resize to %d\", (int)val*1000);\n      description.set_size((int)val*1000);\n      _this.view.el.override_font(description);\n      return false;\n}"
+       },
+       "* ctor" : "new Gtk.HScale.with_range (6, 30, 1)",
+       "* init" : "{\n\tthis.el.set_range(6,30);\n\tthis.el.set_value(8);\n}\n",
+       "* pack" : "pack_end,true,true",
+       "int digits" : 0,
+       "xtype" : "HScale",
+       "bool has_origin" : true,
+       "bool sensitive" : true,
+       "$ xns" : "Gtk",
+       "bool draw_value" : true
       }
      ]
     },
@@ -90,8 +105,8 @@
           "changed" : " () => {\n    // check syntax??\n    // ??needed..??\n    _this.save_button.el.sensitive = true;\n    print(\"EDITOR CHANGED\");\n    this.checkSyntax();\n   \n    _this.dirty = true;\n\n    // this.get('/LeftPanel.model').changed(  str , false);\n    return ;\n}\n\n \n"
          },
          "bool check_queued" : false,
-         "id" : "buffer",
          "int error_line" : "-1",
+         "id" : "buffer",
          "| bool highlightErrors" : "( Gee.HashMap<int,string> validate_res) {\n         \n        this.error_line = validate_res.size;\n\n        if (this.error_line < 1) {\n              return true;\n        }\n        var tlines = this.el.get_line_count ();\n        Gtk.TextIter iter;\n        var valiter = validate_res.map_iterator();\n        while (valiter.next()) {\n        \n    //        print(\"get inter\\n\");\n            var eline = valiter.get_key();\n            if (eline > tlines) {\n                continue;\n            }\n            this.el.get_iter_at_line( out iter, eline);\n            //print(\"mark line\\n\");\n            this.el.create_source_mark(valiter.get_value(), \"ERR\", iter);\n        }   \n        return false;\n    }",
          "|   string toString" : "  () {\n    \n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    this.el.get_start_iter(out s);\n    this.el.get_end_iter(out e);\n    var ret = this.el.get_text(s,e,true);\n    //print(\"TO STRING? \" + ret);\n    return ret;\n}\n ",
          "|   bool checkSyntax" : " () {\n \n    if (this.check_running) {\n        print(\"Check is running\\n\");\n        if (this.check_queued) { \n            print(\"Check is already queued\");\n            return true;\n        }\n        this.check_queued = true;\n        print(\"Adding queued Check \");\n        GLib.Timeout.add_seconds(1, () => {\n            this.check_queued = false;\n            \n            this.checkSyntax();\n            return false;\n        });\n    \n\n        return true;\n    }\n    var str = this.toString();\n    \n    // needed???\n    if (this.error_line > 0) {\n         Gtk.TextIter start;\n         Gtk.TextIter end;     \n        this.el.get_bounds (out start, out end);\n\n        this.el.remove_source_marks (start, end, null);\n    }\n    if (str.length < 1) {\n        print(\"checkSyntax - empty string?\\n\");\n        return true;\n    }\n    \n    if (_this.file.xtype == \"PlainFile\") {\n    \n        // assume it's gtk...\n           this.check_running = true;\n \n         if (!_this.window.windowstate.valasource.checkPlainFileSpawn(\n\t   _this.file,\n\t    str\n\t )) {\n            this.check_running = false;\n        }\n\t\n        return true;\n    \n    }\n   if (_this.file == null) {\n       return true;\n   }\n    var p = _this.file.project.palete;\n    \n\n     \n    this.check_running = true;\n    \n    \n    if (_this.file.language == \"js\") {\n        this.check_running = false;\n        print(\"calling validate javascript\\n\"); \n        Gee.HashMap<int,string> errors;\n        p.javascriptHasErrors(\n    \t\t_this.window.windowstate,\n            str, \n             _this.key, \n            _this.ptype,\n            _this.file,\n \n            out errors\n        );\n        return this.highlightErrors(errors);    \n        \n    }\n        \n        \n    print(\"calling validate vala\\n\");    \n    // clear the buttons.\n \n    \n   if (! _this.window.windowstate.valasource.checkFileWithNodePropChange(\n        _this.file,\n        _this.node,\n         _this.key,        \n         _this.ptype,\n            str\n        )) {\n        this.check_running = false;\n    } \n     \n    \n    \n    //print(\"done mark line\\n\");\n     \n    return true; // at present allow saving - even if it's invalid..\n}\n",

@@ -213,7 +213,10 @@ public class Editor : Object
             this.el.pack_start (  child_0.el , false,false );
             var child_1 = new Xcls_key_edit( _this );
             child_1.ref();
-            this.el.pack_end (  child_1.el , true,true );
+            this.el.pack_start (  child_1.el , true,true );
+            var child_2 = new Xcls_HScale5( _this );
+            child_2.ref();
+            this.el.pack_end (  child_2.el , true,true );
         }
 
         // user defined functions
@@ -265,6 +268,50 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.width_request = 100;
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_HScale5 : Object
+    {
+        public Gtk.HScale el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_HScale5(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.HScale.with_range (6, 30, 1);
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.has_origin = true;
+            this.el.draw_value = true;
+            this.el.digits = 0;
+            this.el.sensitive = true;
+
+            // init method
+
+            {
+            	this.el.set_range(6,30);
+            	this.el.set_value(8);
+            }
+
+            //listeners
+            this.el.change_value.connect( (st, val ) => {
+            	 
+            	  var description =   Pango.FontDescription.from_string("monospace");
+            	  print("resize to %d", (int)val*1000);
+                  description.set_size((int)val*1000);
+                  _this.view.el.override_font(description);
+                  return false;
+            });
         }
 
         // user defined functions

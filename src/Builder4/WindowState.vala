@@ -311,12 +311,28 @@ public class WindowState : Object
 	}
 	public void projectPopoverShow(Gtk.Widget btn)
 	{
-		if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-			this.roo_projectsettings_pop.show(btn,this.project);
+		var xtype = "";
+        var  pr = this.project;
+        var active_file = this.left_tree.getActiveFile() ;
+        if (active_file != null) {
+            xtype = active_file.xtype;
+        } else {
+            // we might be on the file brower..
+            pr = this.left_projects.getSelectedProject();        
+            if (pr != null) {
+                xtype = pr.xtype;
+            }
+        }   
+        if (xtype == "") {
+            return;
+        }
+        if (xtype == "Roo" ) {
+			this.roo_projectsettings_pop.show(btn,pr);
 			return;
 		}
+
 		// gtk..
-		this.vala_projectsettings_pop.show(btn,(Project.Gtk)this.project);
+		this.vala_projectsettings_pop.show(btn,(Project.Gtk)pr);
 	
 	}
 	
