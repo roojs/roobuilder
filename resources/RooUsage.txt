@@ -12,6 +12,8 @@ right:
  Roo.bootstrap.Body
  Roo.bootstrap.Modal
  Roo.bootstrap.layout.Border
+ Roo.bootstrap.panel.Content
+ Roo.bootstrap.panel.Nest
  Roo.bootstrap.Container
  Roo.mailer.Body
  Roo.doc.Entry
@@ -693,6 +695,7 @@ left:
     Roo.doc.NavCategory
 right:
     Roo.bootstrap.NavGroup
+    
     
     
     
