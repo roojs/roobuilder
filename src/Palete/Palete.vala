@@ -431,12 +431,16 @@ namespace Palete
 			// it should highlight errors before we actually push live the code.
 			
 			// standard error format:  file %s, line %s, Error 
+			
+			var cfg = new JSDOC.PackerRun();
+			cfg.opt_keep_whitespace = false;
+			cfg.opt_skip_scope = false;
+			cfg.opt_dump_tokens = false;			
+			cfg.opt_clean_cache = false;
+			
 
-		 	var p = new JSDOC.Packer();
-			p.keepWhite = false;
-			p.skipScope = false;
-			p.dumpTokens = false;
-			p.cleanup = false; 
+		 	var p = new JSDOC.Packer(cfg);
+			 
 		 
 			 
 			p.packFile(code, file.path,"");
