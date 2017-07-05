@@ -628,18 +628,17 @@ left:
  Roo.bootstrap.layout.Border:east
  Roo.bootstrap.layout.Border:west
  Roo.bootstrap.layout.Border:south
- Roo.bootstrap.layout.Border:north
- 
+ Roo.bootstrap.layout.Border:north 
 right:
  Roo.bootstrap.layout.Region
-
-
+ 
  
 left:
   Roo.bootstrap.layout.Border
 right:
   Roo.bootstrap.panel.Content
   Roo.bootstrap.panel.Nest
+
 
 left:
   Roo.bootstrap.panel.Nest:layout 
