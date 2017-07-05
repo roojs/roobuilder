@@ -631,6 +631,7 @@ left:
  Roo.bootstrap.layout.Border:north 
 right:
  Roo.bootstrap.layout.Region
+
  
  
 left:
