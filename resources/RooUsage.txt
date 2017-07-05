@@ -636,25 +636,15 @@ right:
 
  
 left:
-  Roo.LayoutDialog
-  Roo.BorderLayout
+  Roo.bootstrap.layout.Border
 right:
-  Roo.ContentPanel         
-  Roo.NestedLayoutPanel
-  Roo.GridPanel
-  Roo.TreePanel
-  
-// should probably look like this
-//  Roo.ContentPanel:region=center         
-//  Roo.NestedLayoutPanel:region=center
-// Roo.GridPanel:region=center
-// Roo.TreePanel:region=center
+  Roo.bootstrap.panel.Content
+  Roo.bootstrap.panel.Nest
 
-           
 left:
-  Roo.NestedLayoutPanel:layout 
+  Roo.bootstrap.panel.Nest:layout 
 right: 
-  Roo.BorderLayout         
+  Roo.bootstrap.layout.Border
            
   
     
