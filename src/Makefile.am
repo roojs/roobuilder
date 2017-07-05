@@ -80,7 +80,7 @@ roobuilder_PKGS = \
 		--pkg clutter-gtk-1.0 \ 
 		--pkg libsoup-2.4 \
  		--pkg javascriptcore \
-		--pkg roojspacker-1.0 \
+		--pkg roojspacker-1.1 \
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
