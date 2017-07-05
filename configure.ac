@@ -30,7 +30,7 @@ PKG_CHECK_MODULES(ROOBUILDER, [
 		 gee-0.8
  		 libxml-2.0
 		 libsoup-2.4,
-		 roojspacker-1.0
+		 roojspacker-1.1
 ])
 
 dnl --- libvala -- needs to find matching really..
