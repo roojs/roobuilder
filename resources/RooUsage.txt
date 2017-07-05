@@ -11,6 +11,7 @@ right:
  Roo.TreePanel
  Roo.bootstrap.Body
  Roo.bootstrap.Modal
+ Roo.bootstrap.layout.Border
  Roo.bootstrap.Container
  Roo.mailer.Body
  Roo.doc.Entry
