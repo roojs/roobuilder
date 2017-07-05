@@ -621,7 +621,42 @@ right:
     Roo.bootstrap.MasonryBrick
 
     
+// bootstrap layout 
     
+left: 
+ Roo.bootstrap.layout.Border:center
+ Roo.bootstrap.layout.Border:east
+ Roo.bootstrap.layout.Border:west
+ Roo.bootstrap.layout.Border:south
+ Roo.bootstrap.layout.Border:north
+ 
+right:
+ Roo.bootstrap.layout.Region
+
+
+ 
+left:
+  Roo.LayoutDialog
+  Roo.BorderLayout
+right:
+  Roo.ContentPanel         
+  Roo.NestedLayoutPanel
+  Roo.GridPanel
+  Roo.TreePanel
+  
+// should probably look like this
+//  Roo.ContentPanel:region=center         
+//  Roo.NestedLayoutPanel:region=center
+// Roo.GridPanel:region=center
+// Roo.TreePanel:region=center
+
+           
+left:
+  Roo.NestedLayoutPanel:layout 
+right: 
+  Roo.BorderLayout         
+           
+  
     
     
 // docbook!!!
@@ -668,3 +703,20 @@ left:
     Roo.doc.NavCategory
 right:
     Roo.bootstrap.NavGroup
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
