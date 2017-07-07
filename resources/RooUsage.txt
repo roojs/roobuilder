@@ -648,8 +648,11 @@ left:
   Roo.bootstrap.panel.Nest:layout 
 right: 
   Roo.bootstrap.layout.Border
-           
-  
+
+left:           
+  Roo.bootstrap.panel.Grid:grid
+right: 
+  Roo.bootstrap.Table
     
     
 // docbook!!!
