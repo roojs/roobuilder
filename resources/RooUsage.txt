@@ -653,6 +653,12 @@ left:
   Roo.bootstrap.panel.Grid:grid
 right: 
   Roo.bootstrap.Table
+
+left:           
+  Roo.bootstrap.panel.Grid:toolbar
+right: 
+  Roo.bootstrap.NavSimplebar
+  
     
     
 // docbook!!!
