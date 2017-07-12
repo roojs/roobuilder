@@ -643,7 +643,6 @@ right:
   Roo.bootstrap.panel.Nest
   Roo.bootstrap.panel.Grid
 
-
 left:
   Roo.bootstrap.panel.Nest:layout 
 right: 
