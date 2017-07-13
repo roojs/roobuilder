@@ -14,6 +14,7 @@ right:
  Roo.bootstrap.layout.Border
  Roo.bootstrap.panel.Content
  Roo.bootstrap.panel.Nest
+ Roo.bootstrap.panel.Grid
  Roo.bootstrap.Container
  Roo.mailer.Body
  Roo.doc.Entry
