@@ -142,7 +142,7 @@ public class Xcls_DialogPluginWebkit : Object
             
             this.webview.el.load_html( html , 
                 //fixme - should be a config option!
-                "xhttp://localhost/app.Builder.js/"
+                "xhttp://localhost/roobuilder/"
             );
         
             
@@ -293,7 +293,7 @@ public class Xcls_DialogPluginWebkit : Object
                 this.el.load_html( "Render not ready" , 
                         //fixme - should be a config option!
                         // or should we catch stuff and fix it up..
-                        "xhttp://localhost/app.Builder/"
+                        "xhttp://localhost/roobuilder/"
                 );
                     
                     
