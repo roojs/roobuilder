@@ -12,6 +12,7 @@ src/*.c
 src/*.o
 src/builder4
 src/builder
+src/roobuilder
 src/*.stamp
 src/*.stamp-t
 tests/*.c
