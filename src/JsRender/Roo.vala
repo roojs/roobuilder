@@ -589,7 +589,7 @@ namespace JsRender {
             
             */
             
-            string[] adda = { " = {",
+            string[] adda = { "{",
                 "",
                 this.transStringsToJs() ,
                 "",
