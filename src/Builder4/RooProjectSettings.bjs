@@ -100,7 +100,7 @@
                "$ columns" : "typeof(string)",
                "n_columns" : 1,
                "$ xns" : "Gtk",
-               "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n   \n    el.append(out iter);\n    el.set_value(iter, 0, \"roo.builder.html\");\n    _this.base_template.el.set_active_iter(iter);\n\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap.builder.html\");\n    if (cur == \"bootstrap.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n   }\n\n\tel.append(out iter);\n    el.set_value(iter, 0, \"mailer.builder.html\");\n\n\tif (cur == \"mailer.builder.html\") {\n\t    _this.base_template.el.set_active_iter(iter);\n    }\n\n                                     \n}\n"
+               "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n   \n    el.append(out iter);\n    el.set_value(iter, 0, \"roo.builder.html\");\n    _this.base_template.el.set_active_iter(iter);\n\tif (cur == \"roo.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap.builder.html\");\n    if (cur == \"bootstrap.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n\tel.append(out iter);\n    el.set_value(iter, 0, \"mailer.builder.html\");\n\n\tif (cur == \"mailer.builder.html\") {\n\t    _this.base_template.el.set_active_iter(iter);\n    }\n\n                                     \n}\n"
               }
              ]
             }
