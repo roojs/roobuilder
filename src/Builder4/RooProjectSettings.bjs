@@ -10,7 +10,7 @@
   {
    "@ void buttonPressed" : "(string btn)",
    "id" : "RooProjectSettings",
-   "| void show" : " (Gtk.Widget btn, Project.Project project) {\n    _this.project = project;\n    _this.path.el.label = project.firstPath();\n    // get the active project.\n     var lm = Gtk.SourceLanguageManager.get_default();\n                \n    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(\n    \n        lm.get_language(\"html\"));\n  \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n       \n    _this.rootURL.el.set_text( _this.project.rootURL );\n    \n    _this.base_template_model.loadData(_this.project.base_template);\n    \n     var js = _this.project;\n    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );\n    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );\n    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );\n    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );\n    \n    \t//console.log('show all');\n\tthis.el.set_modal(true);\n\tthis.el.set_relative_to(btn);\n\n\tthis.el.set_position(Gtk.PositionType.RIGHT);\n\n\t// window + header?\n\t print(\"SHOWALL - POPIP\\n\");\n\tthis.el.show_all();\n\tthis.el.set_size_request(800,500);\n\tthis.view.el.grab_focus();\n\t\n    \n    //this.el.show_all();\n}\n",
+   "| void show" : " (Gtk.Widget btn, Project.Project project) {\n    _this.project = project;\n    _this.path.el.label = project.firstPath();\n    // get the active project.\n     var lm = Gtk.SourceLanguageManager.get_default();\n                \n    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(\n        lm.get_language(\"html\")\n    );\n  \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n       \n    _this.rootURL.el.set_text( _this.project.rootURL );\n    \n    _this.base_template_model.loadData(_this.project.base_template);\n    \n     var js = _this.project;\n    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );\n    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );\n    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );\n    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );\n    \n    \t//console.log('show all');\n\tthis.el.set_modal(true);\n\tthis.el.set_relative_to(btn);\n\n\tthis.el.set_position(Gtk.PositionType.RIGHT);\n\n\t// window + header?\n\t print(\"SHOWALL - POPIP\\n\");\n\tthis.el.show_all();\n\tthis.el.set_size_request(800,500);\n\tthis.view.el.grab_focus();\n\t\n    \n    //this.el.show_all();\n}\n",
    "xtype" : "Popover",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "| void save" : "() {\n   var buf =    _this.view.el.get_buffer();\n   Gtk.TextIter s;\n     Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n      _this.project.runhtml = buf.get_text(s,e,true);\n      \n    _this.project.rootURL = _this.rootURL.el.get_text();\n    // set by event changed...\n    //_this.project.base_template = _this.base_template.el.get_text();    \n    \n    var js = _this.project.json_project_data;\n    js.set_string_member(\"DBTYPE\", _this.database_DBTYPE.el.get_text());\n   js.set_string_member(\"DBNAME\", _this.database_DBNAME.el.get_text());\n    js.set_string_member(\"DBUSERNAME\", _this.database_DBUSERNAME.el.get_text());\n    js.set_string_member(\"DBPASSWORD\", _this.database_DBPASSWORD.el.get_text());\n//    _this.project.set_string_member(\"DBHOST\", _this.DBTYPE.el.get_text());    \n    \n    // need to re-init the database \n    \n    _this.project.initRooDatabase();\n     \n    \n}",
@@ -34,15 +34,15 @@
        "items" : [
         {
          "id" : "label_global",
-         "* pack" : false,
          "xtype" : "Label",
+         "* pack" : false,
          "$ xns" : "Gtk",
          "utf8 label" : "Global"
         },
         {
          "id" : "label_database",
-         "xtype" : "Label",
          "* pack" : false,
+         "xtype" : "Label",
          "$ xns" : "Gtk",
          "utf8 label" : "Database"
         },
@@ -72,8 +72,8 @@
            "items" : [
             {
              "label" : "HTML template file",
-             "* pack" : "pack_start,false,false,0",
              "xtype" : "Label",
+             "* pack" : "pack_start,false,false,0",
              "gint margin" : 3,
              "$ xns" : "Gtk"
             },
@@ -89,14 +89,14 @@
              "items" : [
               {
                "id" : "base_template_cellrenderer",
-               "xtype" : "CellRendererText",
                "* pack" : "pack_start,true",
+               "xtype" : "CellRendererText",
                "$ xns" : "Gtk"
               },
               {
                "id" : "base_template_model",
-               "xtype" : "ListStore",
                "* pack" : "set_model",
+               "xtype" : "ListStore",
                "$ columns" : "typeof(string)",
                "n_columns" : 1,
                "$ xns" : "Gtk",
@@ -116,23 +116,23 @@
            "items" : [
             {
              "label" : "root URL",
-             "* pack" : "pack_start,false,false,0",
              "xtype" : "Label",
+             "* pack" : "pack_start,false,false,0",
              "gint margin" : 3,
              "$ xns" : "Gtk"
             },
             {
              "id" : "rootURL",
-             "* pack" : "add",
              "xtype" : "Entry",
+             "* pack" : "add",
              "$ xns" : "Gtk"
             }
            ]
           },
           {
            "label" : "HTML To insert at end of <HEAD>",
-           "* pack" : "pack_start,false,false,0",
            "xtype" : "Label",
+           "* pack" : "pack_start,false,false,0",
            "$ xns" : "Gtk"
           },
           {
@@ -173,8 +173,8 @@
             "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
            },
            "id" : "database_DBTYPE",
-           "xtype" : "Entry",
            "* pack" : "pack_start,false,false,0",
+           "xtype" : "Entry",
            "$ xns" : "Gtk"
           },
           {
@@ -189,8 +189,8 @@
             "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBUSERNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
            },
            "id" : "database_DBNAME",
-           "* pack" : "pack_start,false,false,0",
            "xtype" : "Entry",
+           "* pack" : "pack_start,false,false,0",
            "$ xns" : "Gtk"
           },
           {
@@ -205,8 +205,8 @@
             "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBPASSWORD.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
            },
            "id" : "database_DBUSERNAME",
-           "xtype" : "Entry",
            "* pack" : "pack_start,false,false,0",
+           "xtype" : "Entry",
            "$ xns" : "Gtk"
           },
           {
@@ -218,8 +218,8 @@
           },
           {
            "id" : "database_DBPASSWORD",
-           "* pack" : "pack_start,false,false,0",
            "xtype" : "Entry",
+           "* pack" : "pack_start,false,false,0",
            "$ xns" : "Gtk"
           },
           {
@@ -258,8 +258,8 @@
           "button_press_event" : "() => {\n    _this.save();\n          \n    _this.buttonPressed(\"apply\");\n        return false;\n}"
          },
          "label" : "Apply",
-         "xtype" : "Button",
          "* pack" : "add",
+         "xtype" : "Button",
          "$ xns" : "Gtk"
         },
         {
@@ -267,8 +267,8 @@
           "button_press_event" : "() => {\n       _this.save();\n          \n    _this.buttonPressed(\"save\");\n        return false;\n}"
          },
          "label" : "Save",
-         "xtype" : "Button",
          "* pack" : "add",
+         "xtype" : "Button",
          "$ xns" : "Gtk"
         }
        ]

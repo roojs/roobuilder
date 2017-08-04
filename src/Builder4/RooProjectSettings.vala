@@ -55,8 +55,8 @@ public class Xcls_RooProjectSettings : Object
          var lm = Gtk.SourceLanguageManager.get_default();
                     
         ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(
-        
-            lm.get_language("html"));
+            lm.get_language("html")
+        );
       
         //print (project.fn);
         //project.runhtml = project.runhtml || '';
