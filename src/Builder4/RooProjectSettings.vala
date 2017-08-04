@@ -439,8 +439,6 @@ public class Xcls_RooProjectSettings : Object
             el.set_value(iter, 0, "roo.builder.html");
             _this.base_template.el.set_active_iter(iter);
         	if (cur == "roo.builder.html") {
-        	
-        		
         	   _this.base_template.el.set_active_iter(iter);
             }
         
