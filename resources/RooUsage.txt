@@ -538,6 +538,10 @@ right:
     Roo.XTemplate
     Roo.DomTemplate
 
+left:    
+    Roo.bootstrap.Modal
+right:
+    Roo.bootstrap.layout.Border
 
 left:    
     Roo.bootstrap.Header
