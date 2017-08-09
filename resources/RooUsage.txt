@@ -651,7 +651,7 @@ right:
 left:  
     Roo.bootstrap.panel.Content
 right:
-    Roo.bootstrap.form
+    Roo.bootstrap.Form
 
 left:
   Roo.bootstrap.panel.Nest:layout 
