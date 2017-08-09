@@ -647,6 +647,11 @@ right:
   Roo.bootstrap.panel.Content
   Roo.bootstrap.panel.Nest
   Roo.bootstrap.panel.Grid
+  
+left:  
+    Roo.bootstrap.panel.Content
+right:
+    Roo.bootstrap.form
 
 left:
   Roo.bootstrap.panel.Nest:layout 
