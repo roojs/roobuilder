@@ -266,12 +266,17 @@ namespace Palete {
  			if (this.compiler != null) { 
 				return false;
 			}
+            i
 			var pr = (Project.Gtk)(file.project);
  			
 			var m = pr.firstBuildModule();
 			var cg = pr.compilegroups.get(m);
 			var foundit = false;
-			for (var i = 0; i < cg.sources.size; i++) {
+			
+            if (cg.sources is null) {
+                return false;
+            }
+            for (var i = 0; i < cg.sources.size; i++) {
 			    var path = pr.resolve_path(
 				    pr.resolve_path_combine_path(pr.firstPath(),cg.sources.get(i)));
 		            if (path == file.path) {
