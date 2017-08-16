@@ -270,6 +270,9 @@ namespace Palete {
  			
 			var m = pr.firstBuildModule();
 			var cg = pr.compilegroups.get(m);
+      if (cg == null) {
+          return false;
+      }
 			var foundit = false;
 			for (var i = 0; i < cg.sources.size; i++) {
 			    var path = pr.resolve_path(
