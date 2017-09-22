@@ -243,6 +243,10 @@ namespace Project {
 					proj.rootURL  = obj.get_string_member("rootURL"); 
 			}
 			
+			if (obj.has_member("html_gen")) {
+					proj.html_gen  = obj.get_string_member("html_gen"); 
+			}
+			
 			proj.name = obj.get_string_member("name");
 
 			 
