@@ -108,6 +108,7 @@ public class Xcls_RooProjectSettings : Object
         
         Gtk.TreeIter iter;
         Value html_gen_val;
+        _this.html_gen.el.get_active_iter(out iter);
         _this.html_gen_model.el.get_value (iter, 0, out html_gen_val);
         
         _this.project.html_gen = (string)html_gen_val;
