@@ -684,14 +684,14 @@ public class Xcls_RooProjectSettings : Object
             
             el.set_value(iter, 0, "");
             el.set_value(iter, 1, "Do not Generate");
-            _this.filetype.el.set_active_iter(iter);
+            _this.html_gen.el.set_active_iter(iter);
         
             el.append(out iter);
             
             el.set_value(iter, 0, "same directory as BJS file");
             el.set_value(iter, 1, "bjs");
         	if (cur == "bjs") {
-        	    _this.filetype.el.set_active_iter(iter);
+        	    _this.html_gen.el.set_active_iter(iter);
             }
         
         
@@ -702,7 +702,7 @@ public class Xcls_RooProjectSettings : Object
             el.set_value(iter, 1, "in template subdirectory");
         
         	if (cur == "template") {
-        	    _this.filetype.el.set_active_iter(iter);
+        	    _this.html_gen.el.set_active_iter(iter);
             }
         
                                              
