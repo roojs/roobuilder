@@ -635,37 +635,6 @@ public class Xcls_RooProjectSettings : Object
         }
 
         // user defined functions
-        public void showhide (bool is_bjs) {
-        	for (var i = 2; i < 9;i++) {
-        		var el = _this.grid.el.get_child_at(0,i);
-        		
-        		var showhide= is_bjs;
-        		if (i> 7) {
-        			showhide = !showhide;
-        		}
-        		
-        		if (showhide) {
-        		   el.show();
-        		} else {
-        			el.hide();
-        		}
-        		 el = _this.grid.el.get_child_at(1,i);
-        		if (showhide) {
-        		   el.show();
-        		} else {
-        			el.hide();
-        		}     
-            }
-            // load up the directories
-            //??? why can we not create bjs files in other directories??
-        	if (!is_bjs && _this.file.path.length < 1) {
-        		_this.dirmodel.loadData();
-        		
-        		
-        	}
-           
-            
-        }
     }
     public class Xcls_ftdbcellrenderer : Object
     {
