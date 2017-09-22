@@ -138,6 +138,12 @@
              "$ xns" : "Gtk"
             },
             {
+             "label" : "HTML To insert at end of <HEAD>",
+             "* pack" : "pack_start,false,false,0",
+             "xtype" : "Label",
+             "$ xns" : "Gtk"
+            },
+            {
              "listeners" : {
               "changed" : "() => {\n\tGtk.TreeIter iter;\n\tbool is_bjs = true;\n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.ftdbmodel.el.get_value (iter, 0, out vfname);\n\t\t is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n    this.showhide(is_bjs);\n\n\n}\n"
              },
@@ -166,12 +172,6 @@
              ]
             }
            ]
-          },
-          {
-           "label" : "HTML To insert at end of <HEAD>",
-           "xtype" : "Label",
-           "* pack" : "pack_start,false,false,0",
-           "$ xns" : "Gtk"
           },
           {
            "* pack" : "pack_start,true,true,0",
