@@ -296,7 +296,7 @@ public class Xcls_RooProjectSettings : Object
             this.el.attach (  child_5.el , 1,2,1,1 );
             var child_6 = new Xcls_Label16( _this );
             child_6.ref();
-            this.el.attach (  child_6.el , 0,1,1,1 );
+            this.el.attach (  child_6.el , 0,3,1,1 );
             var child_7 = new Xcls_filetype( _this );
             child_7.ref();
             this.el.attach (  child_7.el , 1,0,1,1 );
