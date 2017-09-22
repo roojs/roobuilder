@@ -338,6 +338,7 @@ namespace Project {
 			this.json_project_data.set_string_member("rootURL", this.rootURL);
 			this.json_project_data.set_string_member("base_template", this.base_template);
 			this.json_project_data.set_string_member("rootURL", this.rootURL);
+			this.json_project_data.set_string_member("html_gen", this.html_gen);			
  
 			var paths = new Json.Object(); 
 
