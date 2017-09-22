@@ -129,6 +129,13 @@
              "xtype" : "Entry",
              "* pack" : "attach,1,2,1,1",
              "$ xns" : "Gtk"
+            },
+            {
+             "label" : "Generate HTML in",
+             "* pack" : "attach,0,1,1,1",
+             "xtype" : "Label",
+             "gint margin" : 3,
+             "$ xns" : "Gtk"
             }
            ]
           },
