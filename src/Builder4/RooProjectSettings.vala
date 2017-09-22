@@ -20,7 +20,7 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_base_template_cellrenderer base_template_cellrenderer;
     public Xcls_base_template_model base_template_model;
     public Xcls_rootURL rootURL;
-    public Xcls_filetype filetype;
+    public Xcls_html_gen html_gen;
     public Xcls_ftdbcellrenderer ftdbcellrenderer;
     public Xcls_ftdbmodel ftdbmodel;
     public Xcls_view view;
@@ -297,9 +297,9 @@ public class Xcls_RooProjectSettings : Object
             var child_6 = new Xcls_Label16( _this );
             child_6.ref();
             this.el.attach (  child_6.el , 0,3,1,1 );
-            var child_7 = new Xcls_filetype( _this );
+            var child_7 = new Xcls_html_gen( _this );
             child_7.ref();
-            this.el.attach (  child_7.el , 1,0,1,1 );
+            this.el.attach (  child_7.el , 1,3,1,1 );
         }
 
         // user defined functions
@@ -587,7 +587,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_filetype : Object
+    public class Xcls_html_gen : Object
     {
         public Gtk.ComboBox el;
         private Xcls_RooProjectSettings  _this;
@@ -596,10 +596,10 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_filetype(Xcls_RooProjectSettings _owner )
+        public Xcls_html_gen(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            _this.filetype = this;
+            _this.html_gen = this;
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
