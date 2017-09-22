@@ -120,14 +120,14 @@
             {
              "label" : "root URL",
              "xtype" : "Label",
-             "* pack" : "pack_start,false,false,0",
+             "* pack" : "attach,0,2,1,1",
              "gint margin" : 3,
              "$ xns" : "Gtk"
             },
             {
              "id" : "rootURL",
              "xtype" : "Entry",
-             "* pack" : "add",
+             "* pack" : "attach,1,2,1,1",
              "$ xns" : "Gtk"
             }
            ]

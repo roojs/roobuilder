@@ -287,10 +287,10 @@ public class Xcls_RooProjectSettings : Object
             this.el.attach (  child_3.el , 1,1,1,1 );
             var child_4 = new Xcls_Label14( _this );
             child_4.ref();
-            this.el.pack_start (  child_4.el , false,false,0 );
+            this.el.attach (  child_4.el , 0,2,1,1 );
             var child_5 = new Xcls_rootURL( _this );
             child_5.ref();
-            this.el.add (  child_5.el  );
+            this.el.attach (  child_5.el , 1,2,1,1 );
         }
 
         // user defined functions
