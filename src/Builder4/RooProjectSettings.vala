@@ -699,8 +699,8 @@ public class Xcls_RooProjectSettings : Object
         
             el.append(out iter);
             
-            el.set_value(iter, 0, "template");
-            el.set_value(iter, 1, "in template subdirectory");
+            el.set_value(iter, 0, "templates");
+            el.set_value(iter, 1, "in templates subdirectory");
         
         	if (cur == "template") {
         	    _this.html_gen.el.set_active_iter(iter);
