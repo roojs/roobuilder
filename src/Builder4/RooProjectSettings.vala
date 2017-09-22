@@ -614,7 +614,7 @@ public class Xcls_RooProjectSettings : Object
 
             // init method
 
-            this.el.add_attribute(_this.ftdbcellrenderer.el , "markup", 1 );
+            this.el.add_attribute(_this.html_gen_cellrenderer.el , "markup", 1 );
         }
 
         // user defined functions
@@ -668,24 +668,19 @@ public class Xcls_RooProjectSettings : Object
             Gtk.TreeIter iter;
             var el = this.el;
             
-           /// el.append(out iter);
-            
-             
-           // el.set_value(iter, 0, "");
-           // el.set_value(iter, 1, "aaa  - Just add Element - aaa");
-        
+         
             el.append(out iter);
         
             
-            el.set_value(iter, 0, "bjs");
-            el.set_value(iter, 1, "User Interface File (bjs)");
+            el.set_value(iter, 0, "");
+            el.set_value(iter, 1, "Do not Generate");
             _this.filetype.el.set_active_iter(iter);
         
             el.append(out iter);
             
-            el.set_value(iter, 0, "vala");
-            el.set_value(iter, 1, "Vala");
-        	if (cur == "vala") {
+            el.set_value(iter, 0, "same directory as BJS file");
+            el.set_value(iter, 1, "bjs");
+        	if (cur == "bjs") {
         	    _this.filetype.el.set_active_iter(iter);
             }
         
@@ -693,21 +688,13 @@ public class Xcls_RooProjectSettings : Object
         
             el.append(out iter);
             
-            el.set_value(iter, 0, "js");
-            el.set_value(iter, 1, "Javascript");
+            el.set_value(iter, 0, "template");
+            el.set_value(iter, 1, "in template subdirectory");
         
-        	if (cur == "js") {
+        	if (cur == "template") {
         	    _this.filetype.el.set_active_iter(iter);
             }
         
-            el.append(out iter);
-            
-            el.set_value(iter, 0, "css");
-            el.set_value(iter, 1, "CSS");
-        
-        	if (cur == "css") {
-        	    _this.filetype.el.set_active_iter(iter);
-            }
                                              
         }
     }

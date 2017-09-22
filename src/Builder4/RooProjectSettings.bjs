@@ -139,7 +139,7 @@
             },
             {
              "id" : "html_gen",
-             "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
+             "* init" : "this.el.add_attribute(_this.html_gen_cellrenderer.el , \"markup\", 1 );",
              "* pack" : "attach,1,3,1,1",
              "xtype" : "ComboBox",
              "$ xns" : "Gtk",
@@ -157,7 +157,7 @@
                "$ columns" : "typeof(string),typeof(string)",
                "n_columns" : 2,
                "$ xns" : "Gtk",
-               "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"bjs\");\n    el.set_value(iter, 1, \"User Interface File (bjs)\");\n    _this.filetype.el.set_active_iter(iter);\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"vala\");\n    el.set_value(iter, 1, \"Vala\");\n\tif (cur == \"vala\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"js\");\n    el.set_value(iter, 1, \"Javascript\");\n\n\tif (cur == \"js\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"css\");\n    el.set_value(iter, 1, \"CSS\");\n\n\tif (cur == \"css\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n                                     \n}\n"
+               "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n \n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"\");\n    el.set_value(iter, 1, \"Do not Generate\");\n    _this.filetype.el.set_active_iter(iter);\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"same directory as BJS file\");\n    el.set_value(iter, 1, \"bjs\");\n\tif (cur == \"bjs\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"template\");\n    el.set_value(iter, 1, \"in template subdirectory\");\n\n\tif (cur == \"template\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n                                     \n}\n"
               }
              ]
             }
