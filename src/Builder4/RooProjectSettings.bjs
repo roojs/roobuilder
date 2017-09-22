@@ -240,9 +240,37 @@
             {
              "label" : "HTML template file",
              "xtype" : "Label",
-             "* pack" : "pack_start,false,false,0",
+             "* pack" : "attach,0,8,1,1",
              "gint margin" : 3,
              "$ xns" : "Gtk"
+            },
+            {
+             "listeners" : {
+              "changed" : "() => {\n\tGtk.TreeIter iter;\n \n\t// this get's called when we are filling in the data... ???\n\tif (this.loading) {\n\t\treturn;\n\t}\n\t\n \n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);\n\t\t_this.project.base_template = ((string)vfname) ;\n\t\t\n\t\t print(\"\\nSET base template to %s\\n\", _this.project.base_template );\n\t\t// is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n \n\n\n}\n"
+             },
+             "id" : "base_template",
+             "* init" : "this.el.add_attribute(_this.base_template_cellrenderer.el , \"markup\", 0 );",
+             "bool loading" : false,
+             "* pack" : "add",
+             "xtype" : "ComboBox",
+             "$ xns" : "Gtk",
+             "items" : [
+              {
+               "id" : "base_template_cellrenderer",
+               "* pack" : "pack_start,true",
+               "xtype" : "CellRendererText",
+               "$ xns" : "Gtk"
+              },
+              {
+               "id" : "base_template_model",
+               "* pack" : "set_model",
+               "xtype" : "ListStore",
+               "$ columns" : "typeof(string)",
+               "n_columns" : 1,
+               "$ xns" : "Gtk",
+               "| void loadData" : "  () {\n\t_this.base_template.loading = true;\n  \n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n   \n    el.append(out iter);\n    el.set_value(iter, 0, \"roo.builder.html\");\n    _this.base_template.el.set_active_iter(iter);\n\tif (_this.project.base_template == \"roo.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap.builder.html\");\n \n\tprint(\"\\ncur template = %s\\n\", _this.project.base_template);\n \n    if (_this.project.base_template == \"bootstrap.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n\tel.append(out iter);\n    el.set_value(iter, 0, \"mailer.builder.html\");\n\n\tif (_this.project.base_template == \"mailer.builder.html\") {\n\t    _this.base_template.el.set_active_iter(iter);\n    }\n\t_this.base_template.loading = false;\n                                     \n}\n"
+              }
+             ]
             }
            ]
           },
