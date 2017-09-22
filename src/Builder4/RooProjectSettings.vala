@@ -99,9 +99,16 @@ public class Xcls_RooProjectSettings : Object
          Gtk.TextIter e;
         buf.get_start_iter(out s);
         buf.get_end_iter(out e);
-          _this.project.runhtml = buf.get_text(s,e,true);
+    	_this.project.runhtml = buf.get_text(s,e,true);
           
         _this.project.rootURL = _this.rootURL.el.get_text();
+        
+        
+        Gtk.TreeIter iter;
+        Value html_gen_val;
+        _this.html_gen_model.el.get_value (iter, 0, out html_gen_val);
+        
+        _this.project.html_gen = (string)html_gen_val;
         // set by event changed...
         //_this.project.base_template = _this.base_template.el.get_text();    
         
