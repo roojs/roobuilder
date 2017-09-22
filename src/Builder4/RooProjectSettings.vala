@@ -689,8 +689,8 @@ public class Xcls_RooProjectSettings : Object
         
             el.append(out iter);
             
-            el.set_value(iter, 0, "same directory as BJS file");
-            el.set_value(iter, 1, "bjs");
+            el.set_value(iter, 0, "bjs");
+            el.set_value(iter, 1, "same directory as BJS file");
         	if (cur == "bjs") {
         	    _this.html_gen.el.set_active_iter(iter);
             }
