@@ -54,15 +54,6 @@
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "items" : [
           {
-           "label" : "filename",
-           "id" : "path",
-           "xalign" : 0,
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Label",
-           "gint margin" : 3,
-           "$ xns" : "Gtk"
-          },
-          {
            "* pack" : "pack_start,false,false,0",
            "xtype" : "Box",
            "gboolean expand" : false,
@@ -251,7 +242,7 @@
              "id" : "base_template",
              "* init" : "this.el.add_attribute(_this.base_template_cellrenderer.el , \"markup\", 0 );",
              "bool loading" : false,
-             "* pack" : "attach,1,8,1,1",
+             "* pack" : "attach,1,1,1,1",
              "xtype" : "ComboBox",
              "$ xns" : "Gtk",
              "items" : [

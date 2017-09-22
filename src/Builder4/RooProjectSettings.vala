@@ -14,7 +14,6 @@ public class Xcls_RooProjectSettings : Object
     }
     public Xcls_label_global label_global;
     public Xcls_label_database label_database;
-    public Xcls_path path;
     public Xcls_base_template base_template;
     public Xcls_base_template_cellrenderer base_template_cellrenderer;
     public Xcls_base_template_model base_template_model;
@@ -148,7 +147,7 @@ public class Xcls_RooProjectSettings : Object
             var child_0 = new Xcls_Notebook3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true,true,0 );
-            var child_1 = new Xcls_Box45( _this );
+            var child_1 = new Xcls_Box44( _this );
             child_1.ref();
             this.el.pack_end (  child_1.el , false,false,0 );
         }
@@ -179,7 +178,7 @@ public class Xcls_RooProjectSettings : Object
             var child_2 = new Xcls_Box6( _this );
             child_2.ref();
             this.el.append_page (  child_2.el , _this.label_global.el );
-            var child_3 = new Xcls_Box34( _this );
+            var child_3 = new Xcls_Box33( _this );
             child_3.ref();
             this.el.append_page (  child_3.el , _this.label_database.el );
         }
@@ -250,54 +249,26 @@ public class Xcls_RooProjectSettings : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            var child_0 = new Xcls_path( _this );
+            var child_0 = new Xcls_Box7( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,0 );
-            var child_1 = new Xcls_Box8( _this );
+            var child_1 = new Xcls_Box12( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , false,false,0 );
-            var child_2 = new Xcls_Box13( _this );
+            var child_2 = new Xcls_Label15( _this );
             child_2.ref();
             this.el.pack_start (  child_2.el , false,false,0 );
-            var child_3 = new Xcls_Label16( _this );
+            var child_3 = new Xcls_grid( _this );
             child_3.ref();
-            this.el.pack_start (  child_3.el , false,false,0 );
-            var child_4 = new Xcls_grid( _this );
+            this.el.pack_start (  child_3.el , false,false,4 );
+            var child_4 = new Xcls_ScrolledWindow31( _this );
             child_4.ref();
-            this.el.pack_start (  child_4.el , false,false,4 );
-            var child_5 = new Xcls_ScrolledWindow32( _this );
-            child_5.ref();
-            this.el.pack_start (  child_5.el , true,true,0 );
+            this.el.pack_start (  child_4.el , true,true,0 );
         }
 
         // user defined functions
     }
-    public class Xcls_path : Object
-    {
-        public Gtk.Label el;
-        private Xcls_RooProjectSettings  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_path(Xcls_RooProjectSettings _owner )
-        {
-            _this = _owner;
-            _this.path = this;
-            this.el = new Gtk.Label( "filename" );
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.margin = 3;
-            this.el.xalign = 0f;
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_Box8 : Object
+    public class Xcls_Box7 : Object
     {
         public Gtk.Box el;
         private Xcls_RooProjectSettings  _this;
@@ -306,7 +277,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box8(Xcls_RooProjectSettings _owner )
+        public Xcls_Box7(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -316,7 +287,7 @@ public class Xcls_RooProjectSettings : Object
             // set gobject values
             this.el.homogeneous = false;
             this.el.expand = false;
-            var child_0 = new Xcls_Label9( _this );
+            var child_0 = new Xcls_Label8( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,0 );
             var child_1 = new Xcls_base_template( _this );
@@ -326,7 +297,7 @@ public class Xcls_RooProjectSettings : Object
 
         // user defined functions
     }
-    public class Xcls_Label9 : Object
+    public class Xcls_Label8 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -335,7 +306,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label9(Xcls_RooProjectSettings _owner )
+        public Xcls_Label8(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "HTML template file" );
@@ -492,7 +463,7 @@ public class Xcls_RooProjectSettings : Object
 
 
 
-    public class Xcls_Box13 : Object
+    public class Xcls_Box12 : Object
     {
         public Gtk.Box el;
         private Xcls_RooProjectSettings  _this;
@@ -501,7 +472,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box13(Xcls_RooProjectSettings _owner )
+        public Xcls_Box12(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -511,7 +482,7 @@ public class Xcls_RooProjectSettings : Object
             // set gobject values
             this.el.homogeneous = false;
             this.el.expand = false;
-            var child_0 = new Xcls_Label14( _this );
+            var child_0 = new Xcls_Label13( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,0 );
             var child_1 = new Xcls_rootURL( _this );
@@ -521,7 +492,7 @@ public class Xcls_RooProjectSettings : Object
 
         // user defined functions
     }
-    public class Xcls_Label14 : Object
+    public class Xcls_Label13 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -530,7 +501,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label14(Xcls_RooProjectSettings _owner )
+        public Xcls_Label13(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "root URL" );
@@ -568,7 +539,7 @@ public class Xcls_RooProjectSettings : Object
     }
 
 
-    public class Xcls_Label16 : Object
+    public class Xcls_Label15 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -577,7 +548,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label16(Xcls_RooProjectSettings _owner )
+        public Xcls_Label15(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "HTML To insert at end of <HEAD>" );
@@ -617,24 +588,24 @@ public class Xcls_RooProjectSettings : Object
             var child_1 = new Xcls_filetype( _this );
             child_1.ref();
             this.el.attach (  child_1.el , 1,0,1,1 );
-            var child_2 = new Xcls_Label22( _this );
+            var child_2 = new Xcls_Label21( _this );
             child_2.ref();
             this.el.attach (  child_2.el , 0,8,1,1 );
             var child_3 = new Xcls_dir( _this );
             child_3.ref();
             this.el.attach (  child_3.el , 1,8,1,1 );
-            var child_4 = new Xcls_Label26( _this );
+            var child_4 = new Xcls_Label25( _this );
             child_4.ref();
             this.el.attach (  child_4.el , 0,0,1,1 );
             var child_5 = new Xcls_path( _this );
             child_5.ref();
             this.el.attach (  child_5.el , 1,0,1,1 );
-            var child_6 = new Xcls_Label28( _this );
+            var child_6 = new Xcls_Label27( _this );
             child_6.ref();
             this.el.attach (  child_6.el , 0,1,1,1 );
             var child_7 = new Xcls_base_template( _this );
             child_7.ref();
-            this.el.attach (  child_7.el , 1,8,1,1 );
+            this.el.attach (  child_7.el , 1,1,1,1 );
         }
 
         // user defined functions
@@ -838,7 +809,7 @@ public class Xcls_RooProjectSettings : Object
     }
 
 
-    public class Xcls_Label22 : Object
+    public class Xcls_Label21 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -847,7 +818,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label22(Xcls_RooProjectSettings _owner )
+        public Xcls_Label21(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Directory" );
@@ -985,7 +956,7 @@ public class Xcls_RooProjectSettings : Object
     }
 
 
-    public class Xcls_Label26 : Object
+    public class Xcls_Label25 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -994,7 +965,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label26(Xcls_RooProjectSettings _owner )
+        public Xcls_Label25(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Filename" );
@@ -1034,7 +1005,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_Label28 : Object
+    public class Xcls_Label27 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -1043,7 +1014,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label28(Xcls_RooProjectSettings _owner )
+        public Xcls_Label27(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "HTML template file" );
@@ -1200,7 +1171,7 @@ public class Xcls_RooProjectSettings : Object
 
 
 
-    public class Xcls_ScrolledWindow32 : Object
+    public class Xcls_ScrolledWindow31 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_RooProjectSettings  _this;
@@ -1209,7 +1180,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow32(Xcls_RooProjectSettings _owner )
+        public Xcls_ScrolledWindow31(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -1276,7 +1247,7 @@ public class Xcls_RooProjectSettings : Object
 
 
 
-    public class Xcls_Box34 : Object
+    public class Xcls_Box33 : Object
     {
         public Gtk.Box el;
         private Xcls_RooProjectSettings  _this;
@@ -1285,7 +1256,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box34(Xcls_RooProjectSettings _owner )
+        public Xcls_Box33(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1294,31 +1265,31 @@ public class Xcls_RooProjectSettings : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            var child_0 = new Xcls_Label35( _this );
+            var child_0 = new Xcls_Label34( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,0 );
             var child_1 = new Xcls_database_DBTYPE( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , false,false,0 );
-            var child_2 = new Xcls_Label37( _this );
+            var child_2 = new Xcls_Label36( _this );
             child_2.ref();
             this.el.pack_start (  child_2.el , false,false,0 );
             var child_3 = new Xcls_database_DBNAME( _this );
             child_3.ref();
             this.el.pack_start (  child_3.el , false,false,0 );
-            var child_4 = new Xcls_Label39( _this );
+            var child_4 = new Xcls_Label38( _this );
             child_4.ref();
             this.el.pack_start (  child_4.el , false,false,0 );
             var child_5 = new Xcls_database_DBUSERNAME( _this );
             child_5.ref();
             this.el.pack_start (  child_5.el , false,false,0 );
-            var child_6 = new Xcls_Label41( _this );
+            var child_6 = new Xcls_Label40( _this );
             child_6.ref();
             this.el.pack_start (  child_6.el , false,false,0 );
             var child_7 = new Xcls_database_DBPASSWORD( _this );
             child_7.ref();
             this.el.pack_start (  child_7.el , false,false,0 );
-            var child_8 = new Xcls_Button43( _this );
+            var child_8 = new Xcls_Button42( _this );
             child_8.ref();
             this.el.pack_start (  child_8.el , false,false,0 );
             var child_9 = new Xcls_database_ERROR( _this );
@@ -1328,7 +1299,7 @@ public class Xcls_RooProjectSettings : Object
 
         // user defined functions
     }
-    public class Xcls_Label35 : Object
+    public class Xcls_Label34 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -1337,7 +1308,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label35(Xcls_RooProjectSettings _owner )
+        public Xcls_Label34(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Type (eg. MySQL or PostgreSQL)" );
@@ -1386,7 +1357,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_Label37 : Object
+    public class Xcls_Label36 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -1395,7 +1366,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label37(Xcls_RooProjectSettings _owner )
+        public Xcls_Label36(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Name" );
@@ -1444,7 +1415,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_Label39 : Object
+    public class Xcls_Label38 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -1453,7 +1424,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label39(Xcls_RooProjectSettings _owner )
+        public Xcls_Label38(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Username" );
@@ -1502,7 +1473,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_Label41 : Object
+    public class Xcls_Label40 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -1511,7 +1482,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label41(Xcls_RooProjectSettings _owner )
+        public Xcls_Label40(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Password" );
@@ -1548,7 +1519,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_Button43 : Object
+    public class Xcls_Button42 : Object
     {
         public Gtk.Button el;
         private Xcls_RooProjectSettings  _this;
@@ -1557,7 +1528,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button43(Xcls_RooProjectSettings _owner )
+        public Xcls_Button42(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1626,7 +1597,7 @@ public class Xcls_RooProjectSettings : Object
 
 
 
-    public class Xcls_Box45 : Object
+    public class Xcls_Box44 : Object
     {
         public Gtk.Box el;
         private Xcls_RooProjectSettings  _this;
@@ -1635,7 +1606,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box45(Xcls_RooProjectSettings _owner )
+        public Xcls_Box44(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1646,17 +1617,17 @@ public class Xcls_RooProjectSettings : Object
             this.el.homogeneous = true;
             this.el.expand = false;
             this.el.vexpand = false;
-            var child_0 = new Xcls_Button46( _this );
+            var child_0 = new Xcls_Button45( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_Button47( _this );
+            var child_1 = new Xcls_Button46( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Button46 : Object
+    public class Xcls_Button45 : Object
     {
         public Gtk.Button el;
         private Xcls_RooProjectSettings  _this;
@@ -1665,7 +1636,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button46(Xcls_RooProjectSettings _owner )
+        public Xcls_Button45(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1687,7 +1658,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_Button47 : Object
+    public class Xcls_Button46 : Object
     {
         public Gtk.Button el;
         private Xcls_RooProjectSettings  _this;
@@ -1696,7 +1667,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button47(Xcls_RooProjectSettings _owner )
+        public Xcls_Button46(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
