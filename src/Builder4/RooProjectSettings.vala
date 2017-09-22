@@ -264,7 +264,7 @@ public class Xcls_RooProjectSettings : Object
             this.el.pack_start (  child_4.el , false,false,4 );
             var child_5 = new Xcls_path( _this );
             child_5.ref();
-            this.el.pack_start (  child_5.el , false,false,0 );
+            this.el.attach (  child_5.el , 0,0,1,1 );
             var child_6 = new Xcls_ScrolledWindow27( _this );
             child_6.ref();
             this.el.pack_start (  child_6.el , true,true,0 );

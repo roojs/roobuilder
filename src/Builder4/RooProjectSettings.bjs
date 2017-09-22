@@ -226,7 +226,7 @@
            "label" : "filename",
            "id" : "path",
            "xalign" : 0,
-           "* pack" : "pack_start,false,false,0",
+           "* pack" : "attach,0,0,1,1",
            "xtype" : "Label",
            "gint margin" : 3,
            "$ xns" : "Gtk"
