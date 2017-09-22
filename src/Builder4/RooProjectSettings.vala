@@ -245,9 +245,12 @@ public class Xcls_RooProjectSettings : Object
             var child_0 = new Xcls_grid( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,4 );
-            var child_1 = new Xcls_ScrolledWindow21( _this );
+            var child_1 = new Xcls_Label20( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , true,true,0 );
+            this.el.pack_start (  child_1.el , false,false,0 );
+            var child_2 = new Xcls_ScrolledWindow21( _this );
+            child_2.ref();
+            this.el.pack_start (  child_2.el , true,true,0 );
         }
 
         // user defined functions
@@ -294,12 +297,9 @@ public class Xcls_RooProjectSettings : Object
             var child_6 = new Xcls_Label16( _this );
             child_6.ref();
             this.el.attach (  child_6.el , 0,1,1,1 );
-            var child_7 = new Xcls_Label17( _this );
+            var child_7 = new Xcls_filetype( _this );
             child_7.ref();
-            this.el.pack_start (  child_7.el , false,false,0 );
-            var child_8 = new Xcls_filetype( _this );
-            child_8.ref();
-            this.el.attach (  child_8.el , 1,0,1,1 );
+            this.el.attach (  child_7.el , 1,0,1,1 );
         }
 
         // user defined functions
@@ -587,28 +587,6 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_Label17 : Object
-    {
-        public Gtk.Label el;
-        private Xcls_RooProjectSettings  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Label17(Xcls_RooProjectSettings _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Label( "HTML To insert at end of <HEAD>" );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
     public class Xcls_filetype : Object
     {
         public Gtk.ComboBox el;
@@ -783,6 +761,28 @@ public class Xcls_RooProjectSettings : Object
     }
 
 
+
+    public class Xcls_Label20 : Object
+    {
+        public Gtk.Label el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label20(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( "HTML To insert at end of <HEAD>" );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
     public class Xcls_ScrolledWindow21 : Object
     {
