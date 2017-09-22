@@ -54,80 +54,6 @@
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "items" : [
           {
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Box",
-           "gboolean expand" : false,
-           "$ xns" : "Gtk",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "$ homogeneous" : false,
-           "items" : [
-            {
-             "label" : "HTML template file",
-             "* pack" : "pack_start,false,false,0",
-             "xtype" : "Label",
-             "gint margin" : 3,
-             "$ xns" : "Gtk"
-            },
-            {
-             "listeners" : {
-              "changed" : "() => {\n\tGtk.TreeIter iter;\n \n\t// this get's called when we are filling in the data... ???\n\tif (this.loading) {\n\t\treturn;\n\t}\n\t\n \n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);\n\t\t_this.project.base_template = ((string)vfname) ;\n\t\t\n\t\t print(\"\\nSET base template to %s\\n\", _this.project.base_template );\n\t\t// is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n \n\n\n}\n"
-             },
-             "id" : "base_template",
-             "bool loading" : false,
-             "* init" : "this.el.add_attribute(_this.base_template_cellrenderer.el , \"markup\", 0 );",
-             "* pack" : "add",
-             "xtype" : "ComboBox",
-             "$ xns" : "Gtk",
-             "items" : [
-              {
-               "id" : "base_template_cellrenderer",
-               "xtype" : "CellRendererText",
-               "* pack" : "pack_start,true",
-               "$ xns" : "Gtk"
-              },
-              {
-               "id" : "base_template_model",
-               "xtype" : "ListStore",
-               "* pack" : "set_model",
-               "$ columns" : "typeof(string)",
-               "n_columns" : 1,
-               "$ xns" : "Gtk",
-               "| void loadData" : "  () {\n\t_this.base_template.loading = true;\n  \n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n   \n    el.append(out iter);\n    el.set_value(iter, 0, \"roo.builder.html\");\n    _this.base_template.el.set_active_iter(iter);\n\tif (_this.project.base_template == \"roo.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap.builder.html\");\n \n\tprint(\"\\ncur template = %s\\n\", _this.project.base_template);\n \n    if (_this.project.base_template == \"bootstrap.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n\tel.append(out iter);\n    el.set_value(iter, 0, \"mailer.builder.html\");\n\n\tif (_this.project.base_template == \"mailer.builder.html\") {\n\t    _this.base_template.el.set_active_iter(iter);\n    }\n\t_this.base_template.loading = false;\n                                     \n}\n"
-              }
-             ]
-            }
-           ]
-          },
-          {
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Box",
-           "gboolean expand" : false,
-           "$ xns" : "Gtk",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "$ homogeneous" : false,
-           "items" : [
-            {
-             "label" : "root URL",
-             "* pack" : "pack_start,false,false,0",
-             "xtype" : "Label",
-             "gint margin" : 3,
-             "$ xns" : "Gtk"
-            },
-            {
-             "id" : "rootURL",
-             "* pack" : "add",
-             "xtype" : "Entry",
-             "$ xns" : "Gtk"
-            }
-           ]
-          },
-          {
-           "label" : "HTML To insert at end of <HEAD>",
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Label",
-           "$ xns" : "Gtk"
-          },
-          {
            "id" : "grid",
            "int margin_right" : 4,
            "* pack" : "pack_start,false,false,4",
@@ -277,6 +203,12 @@
              "$ xns" : "Gtk"
             }
            ]
+          },
+          {
+           "label" : "HTML To insert at end of <HEAD>",
+           "xtype" : "Label",
+           "* pack" : "pack_start,false,false,0",
+           "$ xns" : "Gtk"
           },
           {
            "* pack" : "pack_start,true,true,0",
