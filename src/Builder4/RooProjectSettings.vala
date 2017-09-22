@@ -21,8 +21,8 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_base_template_model base_template_model;
     public Xcls_rootURL rootURL;
     public Xcls_html_gen html_gen;
-    public Xcls_ftdbcellrenderer ftdbcellrenderer;
-    public Xcls_ftdbmodel ftdbmodel;
+    public Xcls_html_gen_cellrenderer html_gen_cellrenderer;
+    public Xcls_html_gen_model html_gen_model;
     public Xcls_view view;
     public Xcls_database_DBTYPE database_DBTYPE;
     public Xcls_database_DBNAME database_DBNAME;
@@ -605,10 +605,10 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ftdbcellrenderer( _this );
+            var child_0 = new Xcls_html_gen_cellrenderer( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
-            var child_1 = new Xcls_ftdbmodel( _this );
+            var child_1 = new Xcls_html_gen_model( _this );
             child_1.ref();
             this.el.set_model (  child_1.el  );
 
@@ -636,7 +636,7 @@ public class Xcls_RooProjectSettings : Object
 
         // user defined functions
     }
-    public class Xcls_ftdbcellrenderer : Object
+    public class Xcls_html_gen_cellrenderer : Object
     {
         public Gtk.CellRendererText el;
         private Xcls_RooProjectSettings  _this;
@@ -645,10 +645,10 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ftdbcellrenderer(Xcls_RooProjectSettings _owner )
+        public Xcls_html_gen_cellrenderer(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            _this.ftdbcellrenderer = this;
+            _this.html_gen_cellrenderer = this;
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
@@ -659,7 +659,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_ftdbmodel : Object
+    public class Xcls_html_gen_model : Object
     {
         public Gtk.ListStore el;
         private Xcls_RooProjectSettings  _this;
@@ -668,10 +668,10 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ftdbmodel(Xcls_RooProjectSettings _owner )
+        public Xcls_html_gen_model(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            _this.ftdbmodel = this;
+            _this.html_gen_model = this;
             this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
