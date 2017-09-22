@@ -19,7 +19,6 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_base_template_cellrenderer base_template_cellrenderer;
     public Xcls_base_template_model base_template_model;
     public Xcls_rootURL rootURL;
-    public Xcls_view view;
     public Xcls_grid grid;
     public Xcls_filetypelbl filetypelbl;
     public Xcls_filetype filetype;
@@ -29,6 +28,7 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_dircellrenderer dircellrenderer;
     public Xcls_dirmodel dirmodel;
     public Xcls_path path;
+    public Xcls_view view;
     public Xcls_database_DBTYPE database_DBTYPE;
     public Xcls_database_DBNAME database_DBNAME;
     public Xcls_database_DBUSERNAME database_DBUSERNAME;
@@ -259,15 +259,15 @@ public class Xcls_RooProjectSettings : Object
             var child_3 = new Xcls_Label16( _this );
             child_3.ref();
             this.el.pack_start (  child_3.el , false,false,0 );
-            var child_4 = new Xcls_ScrolledWindow17( _this );
+            var child_4 = new Xcls_grid( _this );
             child_4.ref();
-            this.el.pack_start (  child_4.el , true,true,0 );
-            var child_5 = new Xcls_grid( _this );
+            this.el.pack_start (  child_4.el , false,false,4 );
+            var child_5 = new Xcls_path( _this );
             child_5.ref();
-            this.el.pack_start (  child_5.el , false,false,4 );
-            var child_6 = new Xcls_path( _this );
+            this.el.pack_start (  child_5.el , false,false,0 );
+            var child_6 = new Xcls_ScrolledWindow27( _this );
             child_6.ref();
-            this.el.pack_start (  child_6.el , false,false,0 );
+            this.el.pack_start (  child_6.el , true,true,0 );
         }
 
         // user defined functions
@@ -590,81 +590,6 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_ScrolledWindow17 : Object
-    {
-        public Gtk.ScrolledWindow el;
-        private Xcls_RooProjectSettings  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ScrolledWindow17(Xcls_RooProjectSettings _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_view( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_view : Object
-    {
-        public Gtk.SourceView el;
-        private Xcls_RooProjectSettings  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_view(Xcls_RooProjectSettings _owner )
-        {
-            _this = _owner;
-            _this.view = this;
-            this.el = new Gtk.SourceView();
-
-            // my vars (dec)
-
-            // init method
-
-            var description =   Pango.FontDescription.from_string("monospace");
-                description.set_size(9000);
-                this.el.override_font(description);
-
-            //listeners
-            this.el.key_release_event.connect( ( event) =>{
-                if (event.keyval != 115) {
-                    return false;
-                     
-                }
-                if   ( (event.state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {
-                    return false;
-                }
-                 var buf =    this.el.get_buffer();
-                Gtk.TextIter s;
-                Gtk.TextIter e;
-                buf.get_start_iter(out s);
-                buf.get_end_iter(out e);
-                _this.project.runhtml = buf.get_text(s,e,true);
-                
-                      
-                _this.buttonPressed("save");
-                 
-                return false;
-                     
-            });
-        }
-
-        // user defined functions
-    }
-
-
     public class Xcls_grid : Object
     {
         public Gtk.Grid el;
@@ -692,7 +617,7 @@ public class Xcls_RooProjectSettings : Object
             var child_1 = new Xcls_filetype( _this );
             child_1.ref();
             this.el.attach (  child_1.el , 1,0,1,1 );
-            var child_2 = new Xcls_Label24( _this );
+            var child_2 = new Xcls_Label22( _this );
             child_2.ref();
             this.el.attach (  child_2.el , 0,8,1,1 );
             var child_3 = new Xcls_dir( _this );
@@ -901,7 +826,7 @@ public class Xcls_RooProjectSettings : Object
     }
 
 
-    public class Xcls_Label24 : Object
+    public class Xcls_Label22 : Object
     {
         public Gtk.Label el;
         private Xcls_RooProjectSettings  _this;
@@ -910,7 +835,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label24(Xcls_RooProjectSettings _owner )
+        public Xcls_Label22(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Directory" );
@@ -1073,6 +998,81 @@ public class Xcls_RooProjectSettings : Object
 
         // user defined functions
     }
+
+    public class Xcls_ScrolledWindow27 : Object
+    {
+        public Gtk.ScrolledWindow el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ScrolledWindow27(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ScrolledWindow( null, null );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_view( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_view : Object
+    {
+        public Gtk.SourceView el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_view(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            _this.view = this;
+            this.el = new Gtk.SourceView();
+
+            // my vars (dec)
+
+            // init method
+
+            var description =   Pango.FontDescription.from_string("monospace");
+                description.set_size(9000);
+                this.el.override_font(description);
+
+            //listeners
+            this.el.key_release_event.connect( ( event) =>{
+                if (event.keyval != 115) {
+                    return false;
+                     
+                }
+                if   ( (event.state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {
+                    return false;
+                }
+                 var buf =    this.el.get_buffer();
+                Gtk.TextIter s;
+                Gtk.TextIter e;
+                buf.get_start_iter(out s);
+                buf.get_end_iter(out e);
+                _this.project.runhtml = buf.get_text(s,e,true);
+                
+                      
+                _this.buttonPressed("save");
+                 
+                return false;
+                     
+            });
+        }
+
+        // user defined functions
+    }
+
 
 
     public class Xcls_Box29 : Object

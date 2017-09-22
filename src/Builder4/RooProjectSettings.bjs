@@ -137,23 +137,6 @@
            "$ xns" : "Gtk"
           },
           {
-           "* pack" : "pack_start,true,true,0",
-           "xtype" : "ScrolledWindow",
-           "$ xns" : "Gtk",
-           "items" : [
-            {
-             "listeners" : {
-              "key_release_event" : " ( event) =>{\n    if (event.keyval != 115) {\n        return false;\n         \n    }\n    if   ( (event.state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {\n        return false;\n    }\n     var buf =    this.el.get_buffer();\n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n    _this.project.runhtml = buf.get_text(s,e,true);\n    \n          \n    _this.buttonPressed(\"save\");\n     \n    return false;\n         \n}"
-             },
-             "id" : "view",
-             "* init" : " \n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(9000);\n    this.el.override_font(description);",
-             "xtype" : "View",
-             "* pack" : "add",
-             "$ xns" : "GtkSource"
-            }
-           ]
-          },
-          {
            "id" : "grid",
            "int margin_right" : 4,
            "* pack" : "pack_start,false,false,4",
@@ -247,6 +230,23 @@
            "xtype" : "Label",
            "gint margin" : 3,
            "$ xns" : "Gtk"
+          },
+          {
+           "* pack" : "pack_start,true,true,0",
+           "xtype" : "ScrolledWindow",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "listeners" : {
+              "key_release_event" : " ( event) =>{\n    if (event.keyval != 115) {\n        return false;\n         \n    }\n    if   ( (event.state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {\n        return false;\n    }\n     var buf =    this.el.get_buffer();\n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n    _this.project.runhtml = buf.get_text(s,e,true);\n    \n          \n    _this.buttonPressed(\"save\");\n     \n    return false;\n         \n}"
+             },
+             "id" : "view",
+             "* init" : " \n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(9000);\n    this.el.override_font(description);",
+             "xtype" : "View",
+             "* pack" : "add",
+             "$ xns" : "GtkSource"
+            }
+           ]
           }
          ]
         },
