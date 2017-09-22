@@ -27,6 +27,7 @@ namespace Project {
 	public bool  projects_loaded = false;
 
 	
+	
 	public class Project : Object {
 		
 		public signal void on_changed (); 
@@ -37,6 +38,8 @@ namespace Project {
 		public string runhtml = "";
 		public string base_template = "";
 		public string rootURL = "";
+		public string html_gen = "";
+		
 		public Gee.HashMap<string,string> paths;
 		public Gee.HashMap<string,JsRender.JsRender> files ;
 		//tree : false,
