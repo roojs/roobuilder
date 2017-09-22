@@ -622,7 +622,7 @@ public class Xcls_RooProjectSettings : Object
             	bool is_bjs = true;
             	if (this.el.get_active_iter(out iter)) {
             		Value vfname;
-            		_this.ftdbmodel.el.get_value (iter, 0, out vfname);
+            		_this.html_gen_model.el.get_value (iter, 0, out vfname);
             		 is_bjs = ((string)vfname) == "bjs";
             	}
                 
