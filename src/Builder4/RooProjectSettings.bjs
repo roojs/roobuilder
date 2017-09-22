@@ -10,7 +10,7 @@
   {
    "@ void buttonPressed" : "(string btn)",
    "id" : "RooProjectSettings",
-   "| void show" : " (Gtk.Widget btn, Project.Project project) {\n    _this.project = project;\n    _this.path.el.label = project.firstPath();\n    // get the active project.\n     var lm = Gtk.SourceLanguageManager.get_default();\n                \n    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(\n        lm.get_language(\"html\")\n    );\n  \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n       \n    _this.rootURL.el.set_text( _this.project.rootURL );\n    \n    print(\"\\nbase tempalte=%s\", _this.project.base_template);\n    _this.base_template_model.loadData(_this.project.base_template);\n    \n     var js = _this.project;\n    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );\n    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );\n    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );\n    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );\n    \n    \t//console.log('show all');\n\tthis.el.set_modal(true);\n\tthis.el.set_relative_to(btn);\n\n\tthis.el.set_position(Gtk.PositionType.RIGHT);\n\n\t// window + header?\n\t print(\"SHOWALL - POPIP\\n\");\n\tthis.el.show_all();\n\tthis.el.set_size_request(800,500);\n\tthis.view.el.grab_focus();\n\t\n    \n    //this.el.show_all();\n}\n",
+   "| void show" : " (Gtk.Widget btn, Project.Project project) {\n    _this.project = project;\n    _this.path.el.label = project.firstPath();\n    // get the active project.\n     var lm = Gtk.SourceLanguageManager.get_default();\n                \n    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(\n        lm.get_language(\"html\")\n    );\n  \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n       \n    _this.rootURL.el.set_text( _this.project.rootURL );\n    \n\n    _this.base_template_model.loadData();\n    \n     var js = _this.project;\n    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );\n    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );\n    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );\n    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );\n    \n    \t//console.log('show all');\n\tthis.el.set_modal(true);\n\tthis.el.set_relative_to(btn);\n\n\tthis.el.set_position(Gtk.PositionType.RIGHT);\n\n\t// window + header?\n\t print(\"SHOWALL - POPIP\\n\");\n\tthis.el.show_all();\n\tthis.el.set_size_request(800,500);\n\tthis.view.el.grab_focus();\n\t\n    \n    //this.el.show_all();\n}\n",
    "xtype" : "Popover",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "| void save" : "() {\n   var buf =    _this.view.el.get_buffer();\n   Gtk.TextIter s;\n     Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n      _this.project.runhtml = buf.get_text(s,e,true);\n      \n    _this.project.rootURL = _this.rootURL.el.get_text();\n    // set by event changed...\n    //_this.project.base_template = _this.base_template.el.get_text();    \n    \n    var js = _this.project.json_project_data;\n    js.set_string_member(\"DBTYPE\", _this.database_DBTYPE.el.get_text());\n   js.set_string_member(\"DBNAME\", _this.database_DBNAME.el.get_text());\n    js.set_string_member(\"DBUSERNAME\", _this.database_DBUSERNAME.el.get_text());\n    js.set_string_member(\"DBPASSWORD\", _this.database_DBPASSWORD.el.get_text());\n//    _this.project.set_string_member(\"DBHOST\", _this.DBTYPE.el.get_text());    \n    \n    // need to re-init the database \n    \n    _this.project.initRooDatabase();\n     \n    \n}",
@@ -34,15 +34,15 @@
        "items" : [
         {
          "id" : "label_global",
-         "xtype" : "Label",
          "* pack" : false,
+         "xtype" : "Label",
          "$ xns" : "Gtk",
          "utf8 label" : "Global"
         },
         {
          "id" : "label_database",
-         "* pack" : false,
          "xtype" : "Label",
+         "* pack" : false,
          "$ xns" : "Gtk",
          "utf8 label" : "Database"
         },
@@ -72,16 +72,17 @@
            "items" : [
             {
              "label" : "HTML template file",
-             "xtype" : "Label",
              "* pack" : "pack_start,false,false,0",
+             "xtype" : "Label",
              "gint margin" : 3,
              "$ xns" : "Gtk"
             },
             {
              "listeners" : {
-              "changed" : "() => {\n\tGtk.TreeIter iter;\n \n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);\n\t\t_this.project.base_template = ((string)vfname) ;\n\t\t// is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n \n\n\n}\n"
+              "changed" : "() => {\n\tGtk.TreeIter iter;\n \n\t// this get's called when we are filling in the data... ???\n\tif (this.loading) {\n\t\treturn;\n\t}\n\t\n \n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);\n\t\t_this.project.base_template = ((string)vfname) ;\n\t\t\n\t\t print(\"\\nSET base template to %s\\n\", _this.project.base_template );\n\t\t// is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n \n\n\n}\n"
              },
              "id" : "base_template",
+             "bool loading" : false,
              "* init" : "this.el.add_attribute(_this.base_template_cellrenderer.el , \"markup\", 0 );",
              "* pack" : "add",
              "xtype" : "ComboBox",
@@ -89,18 +90,18 @@
              "items" : [
               {
                "id" : "base_template_cellrenderer",
-               "* pack" : "pack_start,true",
                "xtype" : "CellRendererText",
+               "* pack" : "pack_start,true",
                "$ xns" : "Gtk"
               },
               {
                "id" : "base_template_model",
-               "* pack" : "set_model",
                "xtype" : "ListStore",
+               "* pack" : "set_model",
                "$ columns" : "typeof(string)",
                "n_columns" : 1,
                "$ xns" : "Gtk",
-               "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n   \n    el.append(out iter);\n    el.set_value(iter, 0, \"roo.builder.html\");\n    _this.base_template.el.set_active_iter(iter);\n\tif (cur == \"roo.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap.builder.html\");\n    print(\"CUR = %s\\n\", cur);\n    if (cur == \"bootstrap.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n\tel.append(out iter);\n    el.set_value(iter, 0, \"mailer.builder.html\");\n\n\tif (cur == \"mailer.builder.html\") {\n\t    _this.base_template.el.set_active_iter(iter);\n    }\n\n                                     \n}\n"
+               "| void loadData" : "  () {\n\t_this.base_template.loading = true;\n  \n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n   \n    el.append(out iter);\n    el.set_value(iter, 0, \"roo.builder.html\");\n    _this.base_template.el.set_active_iter(iter);\n\tif (_this.project.base_template == \"roo.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap.builder.html\");\n \n\tprint(\"\\ncur template = %s\\n\", _this.project.base_template);\n \n    if (_this.project.base_template == \"bootstrap.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n\tel.append(out iter);\n    el.set_value(iter, 0, \"mailer.builder.html\");\n\n\tif (_this.project.base_template == \"mailer.builder.html\") {\n\t    _this.base_template.el.set_active_iter(iter);\n    }\n\t_this.base_template.loading = false;\n                                     \n}\n"
               }
              ]
             }
@@ -116,23 +117,23 @@
            "items" : [
             {
              "label" : "root URL",
-             "xtype" : "Label",
              "* pack" : "pack_start,false,false,0",
+             "xtype" : "Label",
              "gint margin" : 3,
              "$ xns" : "Gtk"
             },
             {
              "id" : "rootURL",
-             "xtype" : "Entry",
              "* pack" : "add",
+             "xtype" : "Entry",
              "$ xns" : "Gtk"
             }
            ]
           },
           {
            "label" : "HTML To insert at end of <HEAD>",
-           "xtype" : "Label",
            "* pack" : "pack_start,false,false,0",
+           "xtype" : "Label",
            "$ xns" : "Gtk"
           },
           {
@@ -149,6 +150,228 @@
              "xtype" : "View",
              "* pack" : "add",
              "$ xns" : "GtkSource"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id" : "grid",
+         "int margin_right" : 4,
+         "* pack" : "pack_start,false,false,4",
+         "xtype" : "Grid",
+         "uint row_spacing" : 2,
+         "n_columns" : 2,
+         "$ xns" : "Gtk",
+         "n_rows" : 7,
+         "$ homogeneous" : true,
+         "int margin_left" : 4,
+         "items" : [
+          {
+           "label" : "File type",
+           "id" : "filetypelbl",
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,0,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "listeners" : {
+            "changed" : "() => {\n\tGtk.TreeIter iter;\n\tbool is_bjs = true;\n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.ftdbmodel.el.get_value (iter, 0, out vfname);\n\t\t is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n    this.showhide(is_bjs);\n\n\n}\n"
+           },
+           "id" : "filetype",
+           "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
+           "* pack" : "attach,1,0,1,1",
+           "xtype" : "ComboBox",
+           "| void showhide" : "(bool is_bjs) {\n\tfor (var i = 2; i < 9;i++) {\n\t\tvar el = _this.grid.el.get_child_at(0,i);\n\t\t\n\t\tvar showhide= is_bjs;\n\t\tif (i> 7) {\n\t\t\tshowhide = !showhide;\n\t\t}\n\t\t\n\t\tif (showhide) {\n\t\t   el.show();\n\t\t} else {\n\t\t\tel.hide();\n\t\t}\n\t\t el = _this.grid.el.get_child_at(1,i);\n\t\tif (showhide) {\n\t\t   el.show();\n\t\t} else {\n\t\t\tel.hide();\n\t\t}     \n    }\n    // load up the directories\n    //??? why can we not create bjs files in other directories??\n\tif (!is_bjs && _this.file.path.length < 1) {\n\t\t_this.dirmodel.loadData();\n\t\t\n\t\t\n\t}\n   \n    \n}\n",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "id" : "ftdbcellrenderer",
+             "xtype" : "CellRendererText",
+             "* pack" : "pack_start,true",
+             "$ xns" : "Gtk"
+            },
+            {
+             "id" : "ftdbmodel",
+             "xtype" : "ListStore",
+             "* pack" : "set_model",
+             "$ columns" : "typeof(string),typeof(string)",
+             "n_columns" : 2,
+             "$ xns" : "Gtk",
+             "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"bjs\");\n    el.set_value(iter, 1, \"User Interface File (bjs)\");\n    _this.filetype.el.set_active_iter(iter);\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"vala\");\n    el.set_value(iter, 1, \"Vala\");\n\tif (cur == \"vala\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"js\");\n    el.set_value(iter, 1, \"Javascript\");\n\n\tif (cur == \"js\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"css\");\n    el.set_value(iter, 1, \"CSS\");\n\n\tif (cur == \"css\") {\n\t    _this.filetype.el.set_active_iter(iter);\n    }\n                                     \n}\n"
+            }
+           ]
+          },
+          {
+           "label" : "Component Name",
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,1,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "name",
+           "$ visible" : true,
+           "xtype" : "Entry",
+           "* pack" : "attach,1,1,1,1",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Title",
+           "$ visible" : true,
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,2,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "title",
+           "$ visible" : true,
+           "xtype" : "Entry",
+           "* pack" : "attach,1,2,1,1",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Region",
+           "tooltip_text" : "center, north, south, east, west",
+           "$ visible" : true,
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,3,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "region",
+           "$ visible" : true,
+           "xtype" : "Entry",
+           "* pack" : "attach,1,3,1,1",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Parent Name",
+           "$ visible" : true,
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,4,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "parent",
+           "$ visible" : true,
+           "xtype" : "Entry",
+           "* pack" : "attach,1,4,1,1",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Permission Name",
+           "$ visible" : true,
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,5,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "permname",
+           "$ visible" : true,
+           "xtype" : "Entry",
+           "* pack" : "attach,1,5,1,1",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Order (for tabs)",
+           "$ visible" : true,
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,6,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "modOrder",
+           "$ visible" : true,
+           "xtype" : "Entry",
+           "* pack" : "attach,1,6,1,1",
+           "$ xns" : "Gtk"
+          },
+          {
+           "label" : "Module to build (Vala only)",
+           "$ visible" : true,
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,7,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "build_module",
+           "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
+           "* pack" : "attach,1,7,1,1",
+           "xtype" : "ComboBox",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "id" : "dbcellrenderer",
+             "* pack" : "pack_start,true",
+             "xtype" : "CellRendererText",
+             "$ xns" : "Gtk"
+            },
+            {
+             "id" : "dbmodel",
+             "* pack" : "set_model",
+             "xtype" : "ListStore",
+             "$ columns" : "typeof(string),typeof(string)",
+             "n_columns" : 2,
+             "$ xns" : "Gtk",
+             "| void loadData" : "  (Gee.ArrayList<string> data, string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"\");\n    el.set_value(iter, 1, \"-- select a module --\");\n    _this.build_module.el.set_active_iter(iter);\n    \n    for (var i = 0; i < data.size;i++) {\n    \n\n        el.append(out iter);\n        \n        el.set_value(iter, 0, data.get(i));\n        el.set_value(iter, 1, data.get(i));\n        \n        if (data.get(i) == cur) {\n            _this.build_module.el.set_active_iter(iter);\n        }\n        \n    }\n     this.el.set_sort_column_id(0, Gtk.SortType.ASCENDING);          \n                                     \n}\n"
+            }
+           ]
+          },
+          {
+           "label" : "Directory",
+           "$ visible" : true,
+           "xalign" : 0.90000000000000002,
+           "* pack" : "attach,0,8,1,1",
+           "xtype" : "Label",
+           "$ justify" : "Gtk.Justification.RIGHT",
+           "x_options" : 4,
+           "$ xns" : "Gtk"
+          },
+          {
+           "id" : "dir",
+           "* init" : "this.el.add_attribute(_this.dircellrenderer.el , \"markup\", 1 );",
+           "* pack" : "attach,1,8,1,1",
+           "xtype" : "ComboBox",
+           "$ xns" : "Gtk",
+           "items" : [
+            {
+             "id" : "dircellrenderer",
+             "xtype" : "CellRendererText",
+             "* pack" : "pack_start,true",
+             "$ xns" : "Gtk"
+            },
+            {
+             "id" : "dirmodel",
+             "xtype" : "ListStore",
+             "* pack" : "set_model",
+             "$ columns" : "typeof(string),typeof(string)",
+             "n_columns" : 2,
+             "$ xns" : "Gtk",
+             "| void loadData" : "  () {\n\t\n\t\n  \n    this.el.clear();                                    \n    \n    if (!(_this.project is Project.Gtk)) {\n\t\treturn;\n\t}\n    var sd = ((Project.Gtk)_this.project).sourcedirs();\n    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n//    el.append(out iter);\n\n    \n//    el.set_value(iter, 0, \"\");\n  //  el.set_value(iter, 1, \"-- select a directoyr --\");\n    //_this.build_module.el.set_active_iter(iter);\n    \n    for (var i = 0; i < sd.length;i++) {\n    \n\n        el.append(out iter);\n        \n        el.set_value(iter, 0, sd[i]);\n        el.set_value(iter, 1, sd[i]);\n        \n        //if (data.get(i) == cur) {\n        //    _this.build_module.el.set_active_iter(iter);\n       // }\n        \n    }\n  //  this.el.set_sort_column_id(0, Gtk.SortType.ASCENDING);          \n                                     \n}\n"
             }
            ]
           }
@@ -173,8 +396,8 @@
             "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
            },
            "id" : "database_DBTYPE",
-           "* pack" : "pack_start,false,false,0",
            "xtype" : "Entry",
+           "* pack" : "pack_start,false,false,0",
            "$ xns" : "Gtk"
           },
           {
@@ -189,8 +412,8 @@
             "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBUSERNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
            },
            "id" : "database_DBNAME",
-           "xtype" : "Entry",
            "* pack" : "pack_start,false,false,0",
+           "xtype" : "Entry",
            "$ xns" : "Gtk"
           },
           {
@@ -205,8 +428,8 @@
             "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBPASSWORD.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
            },
            "id" : "database_DBUSERNAME",
-           "* pack" : "pack_start,false,false,0",
            "xtype" : "Entry",
+           "* pack" : "pack_start,false,false,0",
            "$ xns" : "Gtk"
           },
           {
@@ -218,8 +441,8 @@
           },
           {
            "id" : "database_DBPASSWORD",
-           "xtype" : "Entry",
            "* pack" : "pack_start,false,false,0",
+           "xtype" : "Entry",
            "$ xns" : "Gtk"
           },
           {
@@ -258,8 +481,8 @@
           "button_press_event" : "() => {\n    _this.save();\n          \n    _this.buttonPressed(\"apply\");\n        return false;\n}"
          },
          "label" : "Apply",
-         "* pack" : "add",
          "xtype" : "Button",
+         "* pack" : "add",
          "$ xns" : "Gtk"
         },
         {
@@ -267,8 +490,8 @@
           "button_press_event" : "() => {\n       _this.save();\n          \n    _this.buttonPressed(\"save\");\n        return false;\n}"
          },
          "label" : "Save",
-         "* pack" : "add",
          "xtype" : "Button",
+         "* pack" : "add",
          "$ xns" : "Gtk"
         }
        ]
