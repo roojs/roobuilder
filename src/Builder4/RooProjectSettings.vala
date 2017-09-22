@@ -631,10 +631,10 @@ public class Xcls_RooProjectSettings : Object
             this.el.attach (  child_5.el , 1,0,1,1 );
             var child_6 = new Xcls_Label28( _this );
             child_6.ref();
-            this.el.attach (  child_6.el , 0,8,1,1 );
+            this.el.attach (  child_6.el , 0,1,1,1 );
             var child_7 = new Xcls_base_template( _this );
             child_7.ref();
-            this.el.add (  child_7.el  );
+            this.el.attach (  child_7.el , 1,8,1,1 );
         }
 
         // user defined functions
