@@ -219,17 +219,17 @@
                "| void loadData" : "  () {\n\t\n\t\n  \n    this.el.clear();                                    \n    \n    if (!(_this.project is Project.Gtk)) {\n\t\treturn;\n\t}\n    var sd = ((Project.Gtk)_this.project).sourcedirs();\n    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n     \n   // el.set_value(iter, 0, \"\");\n   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");\n\n//    el.append(out iter);\n\n    \n//    el.set_value(iter, 0, \"\");\n  //  el.set_value(iter, 1, \"-- select a directoyr --\");\n    //_this.build_module.el.set_active_iter(iter);\n    \n    for (var i = 0; i < sd.length;i++) {\n    \n\n        el.append(out iter);\n        \n        el.set_value(iter, 0, sd[i]);\n        el.set_value(iter, 1, sd[i]);\n        \n        //if (data.get(i) == cur) {\n        //    _this.build_module.el.set_active_iter(iter);\n       // }\n        \n    }\n  //  this.el.set_sort_column_id(0, Gtk.SortType.ASCENDING);          \n                                     \n}\n"
               }
              ]
+            },
+            {
+             "label" : "filename",
+             "id" : "path",
+             "xalign" : 0,
+             "* pack" : "attach,0,0,1,1",
+             "xtype" : "Label",
+             "gint margin" : 3,
+             "$ xns" : "Gtk"
             }
            ]
-          },
-          {
-           "label" : "filename",
-           "id" : "path",
-           "xalign" : 0,
-           "* pack" : "attach,0,0,1,1",
-           "xtype" : "Label",
-           "gint margin" : 3,
-           "$ xns" : "Gtk"
           },
           {
            "* pack" : "pack_start,true,true,0",

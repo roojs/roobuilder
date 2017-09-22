@@ -262,12 +262,9 @@ public class Xcls_RooProjectSettings : Object
             var child_4 = new Xcls_grid( _this );
             child_4.ref();
             this.el.pack_start (  child_4.el , false,false,4 );
-            var child_5 = new Xcls_path( _this );
+            var child_5 = new Xcls_ScrolledWindow27( _this );
             child_5.ref();
-            this.el.attach (  child_5.el , 0,0,1,1 );
-            var child_6 = new Xcls_ScrolledWindow27( _this );
-            child_6.ref();
-            this.el.pack_start (  child_6.el , true,true,0 );
+            this.el.pack_start (  child_5.el , true,true,0 );
         }
 
         // user defined functions
@@ -623,6 +620,9 @@ public class Xcls_RooProjectSettings : Object
             var child_3 = new Xcls_dir( _this );
             child_3.ref();
             this.el.attach (  child_3.el , 1,8,1,1 );
+            var child_4 = new Xcls_path( _this );
+            child_4.ref();
+            this.el.attach (  child_4.el , 0,0,1,1 );
         }
 
         // user defined functions
@@ -973,7 +973,6 @@ public class Xcls_RooProjectSettings : Object
     }
 
 
-
     public class Xcls_path : Object
     {
         public Gtk.Label el;
@@ -998,6 +997,7 @@ public class Xcls_RooProjectSettings : Object
 
         // user defined functions
     }
+
 
     public class Xcls_ScrolledWindow27 : Object
     {
