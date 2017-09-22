@@ -66,9 +66,11 @@ public class Xcls_RooProjectSettings : Object
         //project.runhtml = project.runhtml || '';
         _this.view.el.get_buffer().set_text(project.runhtml);
         
-           
+          
+          
         _this.rootURL.el.set_text( _this.project.rootURL );
         
+        _this.html_gen_model.loadData(_this.project.html_gen);
     
         _this.base_template_model.loadData();
         
