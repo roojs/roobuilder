@@ -271,6 +271,10 @@ namespace Palete {
  			
 			var m = pr.firstBuildModule();
 			var cg = pr.compilegroups.get(m);
+
+      if (cg == null) {
+          return false;
+      }
 			var foundit = false;
 			
             if (cg.sources is null) {
@@ -283,8 +287,8 @@ namespace Palete {
 		                foundit = true;
 		                break;
 					}
-			
 			}
+
 			if (!foundit) {
     			  
 			    this.compiler = null;

@@ -515,7 +515,7 @@ namespace JsRender {
             
             //var items = JSON.parse(JSON.stringify(this.items[0]));
             
-            
+    
            
  
             string[] adda = { " = {",
@@ -574,9 +574,22 @@ namespace JsRender {
             
             
             //var items = JSON.parse(JSON.stringify(this.items[0]));
-             
+                     /*
             
-            string[] adda = { " = {",
+            old caller:
+            
+            xxxxxx.show({});
+            
+            a = new xxxxxx();
+            a.show();
+            
+            XXXX = function() {};
+            Roo.apply(XXXX.prototype, { .... });
+            Roo.apply(XXXX, XXX.prototype);            
+            
+            */
+            
+            string[] adda = { "{",
                 "",
                 this.transStringsToJs() ,
                 "",
@@ -608,12 +621,15 @@ namespace JsRender {
             string[] addb =  {
                 "  );",
                 " }",
-                "};",
-                ""
+                "}"
             };
 			return this.mungeToStringWrap("    ",   
-        		this.outputHeader() + "\n" +  this.name + string.joinv("\n", adda), // header
-        		string.joinv("\n", addb) // footer
+				this.outputHeader() + "\n" +  
+        		this.name + "= function() {}\n" + 
+        		"Roo.apply("+this.name + ".prototype, " + string.joinv("\n", adda), // header
+        		// body goes here from the function..
+        		string.joinv("\n", addb) + ");\n" + // footer
+        		"Roo.apply("+this.name +", " + this.name + ".prototype);\n"
     		);
              
              

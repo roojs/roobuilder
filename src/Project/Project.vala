@@ -27,6 +27,7 @@ namespace Project {
 	public bool  projects_loaded = false;
 
 	
+	
 	public class Project : Object {
 		
 		public signal void on_changed (); 
@@ -37,6 +38,8 @@ namespace Project {
 		public string runhtml = "";
 		public string base_template = "";
 		public string rootURL = "";
+		public string html_gen = "";
+		
 		public Gee.HashMap<string,string> paths;
 		public Gee.HashMap<string,JsRender.JsRender> files ;
 		//tree : false,
@@ -240,6 +243,10 @@ namespace Project {
 					proj.rootURL  = obj.get_string_member("rootURL"); 
 			}
 			
+			if (obj.has_member("html_gen")) {
+					proj.html_gen  = obj.get_string_member("html_gen"); 
+			}
+			
 			proj.name = obj.get_string_member("name");
 
 			 
@@ -331,6 +338,7 @@ namespace Project {
 			this.json_project_data.set_string_member("rootURL", this.rootURL);
 			this.json_project_data.set_string_member("base_template", this.base_template);
 			this.json_project_data.set_string_member("rootURL", this.rootURL);
+			this.json_project_data.set_string_member("html_gen", this.html_gen);			
  
 			var paths = new Json.Object(); 
 

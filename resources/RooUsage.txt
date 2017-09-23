@@ -538,6 +538,10 @@ right:
     Roo.XTemplate
     Roo.DomTemplate
 
+left:    
+    Roo.bootstrap.Modal
+right:
+    Roo.bootstrap.layout.Border
 
 left:    
     Roo.bootstrap.Header
@@ -643,6 +647,11 @@ right:
   Roo.bootstrap.panel.Content
   Roo.bootstrap.panel.Nest
   Roo.bootstrap.panel.Grid
+  
+left:  
+    Roo.bootstrap.panel.Content
+right:
+    Roo.bootstrap.Form
 
 left:
   Roo.bootstrap.panel.Nest:layout 
