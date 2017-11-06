@@ -398,6 +398,7 @@ right:
     Roo.bootstrap.FieldLabel
     Roo.bootstrap.DateSplitField
     Roo.bootstrap.Brick
+    Roo.bootstrap.NumberField
 
 left:
     Roo.bootstrap.TabGroup
