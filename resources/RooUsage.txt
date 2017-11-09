@@ -399,6 +399,7 @@ right:
     Roo.bootstrap.DateSplitField
     Roo.bootstrap.Brick
     Roo.bootstrap.NumberField
+    Roo.bootstrap.DocumentSlider
 
 left:
     Roo.bootstrap.TabGroup
