@@ -377,7 +377,6 @@ right:
     Roo.bootstrap.MonthField
     Roo.bootstrap.TimeField
     Roo.bootstrap.CheckBox
-    Roo.bootstrap.Radio
     Roo.bootstrap.ComboBox
     Roo.bootstrap.Element
     Roo.bootstrap.HtmlEditor
@@ -410,7 +409,7 @@ right:
 left:
     Roo.bootstrap.RadioSet
 right:
-    Roo.bootstrap.RadioItem
+    Roo.bootstrap.Radio
         
 
 left:
