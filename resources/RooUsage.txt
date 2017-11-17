@@ -406,6 +406,11 @@ left:
     Roo.bootstrap.TabGroup
 right:
     Roo.bootstrap.TabPanel
+
+left:
+    Roo.bootstrap.RadioSet
+right:
+    Roo.bootstrap.RadioItem
         
 
 left:
