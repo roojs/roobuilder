@@ -350,6 +350,7 @@ left:
     Roo.bootstrap.Popover
     Roo.bootstrap.Link
     Roo.bootstrap.panel.Content
+    Roo.bootstrap.RadioSet
 right:
     Roo.bootstrap.Container
     Roo.bootstrap.Button
@@ -400,17 +401,12 @@ right:
     Roo.bootstrap.NumberField
     Roo.bootstrap.DocumentSlider
     Roo.bootstrap.RadioSet
+    Roo.bootstrap.Radio
 
 left:
     Roo.bootstrap.TabGroup
 right:
     Roo.bootstrap.TabPanel
-
-left:
-    Roo.bootstrap.RadioSet
-right:
-    Roo.bootstrap.Radio
-        
 
 left:
     Roo.bootstrap.Progress
