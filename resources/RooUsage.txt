@@ -400,6 +400,7 @@ right:
     Roo.bootstrap.NumberField
     Roo.bootstrap.DocumentSlider
     Roo.bootstrap.RadioSet
+    Roo.bootstrap.SecurePass
 
 left:
     Roo.bootstrap.TabGroup
