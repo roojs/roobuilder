@@ -183,6 +183,10 @@ namespace JsRender {
 	 
 	public override void saveHTML ( string html )
 	{
+		GLib.debug ("SAVEHTML %s\n",  this.project.runhtml);		 
+		if (this.project.runhtml == "") {
+			return;
+		}
 		 
 		var top = this.tree.fqn();
 		GLib.debug ("TOP = " + top + "\n" );
