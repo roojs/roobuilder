@@ -296,6 +296,7 @@ left:
   Roo.bootstrap.ComboBox:store
   Roo.bootstrap.Calendar:store
   Roo.bootstrap.Table:store
+  Roo.bootstrap.PhoneInput
 right: 
   Roo.data.Store
   Roo.data.SimpleStore
