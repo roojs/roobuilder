@@ -2,7 +2,7 @@
  "name" : "DialogConfirm",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/DialogConfirm.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogConfirm.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
@@ -12,7 +12,7 @@
     "delete_event" : " (event) => {\n    this.el.response(Gtk.ResponseType.CANCEL);\n    this.el.hide();\n    return true;\n    \n}\n \n\n\n"
    },
    "$ message_type" : "Gtk.MessageType.QUESTION",
-   "text" : "Tests",
+   "text" : "Tests %s",
    "title" : "Please Confirm d",
    "xtype" : "MessageDialog",
    "$ modal" : true,
