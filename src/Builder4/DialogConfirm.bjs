@@ -12,7 +12,7 @@
     "delete_event" : " (event) => {\n    this.el.response(Gtk.ResponseType.CANCEL);\n    this.el.hide();\n    return true;\n    \n}\n \n\n\n"
    },
    "$ message_type" : "Gtk.MessageType.QUESTION",
-   "text" : "Tests %s",
+   "text" : "Tests",
    "title" : "Please Confirm d",
    "xtype" : "MessageDialog",
    "$ modal" : true,
