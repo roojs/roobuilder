@@ -319,7 +319,9 @@ namespace Palete {
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
-#if VALA_0_34
+#if VALA_0_36
+			var ver=36;			
+#elif VALA_0_34
 			var ver=34;			
 #elif VALA_0_32
 			var ver=32;			
@@ -355,7 +357,7 @@ namespace Palete {
 			context.report.enable_warnings = true;
 			context.metadata_directories = { };
 			context.gir_directories = {};
-			context.thread = true;
+			//context.thread = true;
 			
 			
 			//this.report = new ValaSourceReport(this.file);
