@@ -1,6 +1,6 @@
 static DialogConfirm  _DialogConfirm;
 
-public class DialogConfirm : Object 
+public class DialogConfirm : Object
 {
     public Gtk.MessageDialog el;
     private DialogConfirm  _this;
@@ -15,7 +15,7 @@ public class DialogConfirm : Object
 
         // my vars (def)
 
-    // ctor 
+    // ctor
     public DialogConfirm()
     {
         _this = this;
@@ -29,7 +29,7 @@ public class DialogConfirm : Object
         this.el.modal = true;
         this.el.use_markup = true;
 
-        // listeners 
+        //listeners
         this.el.delete_event.connect( (event) => {
             this.el.response(Gtk.ResponseType.CANCEL);
             this.el.hide();
@@ -38,7 +38,7 @@ public class DialogConfirm : Object
         });
     }
 
-    // user defined functions 
+    // user defined functions
     public   int show (string title, string msg) {
          //if (!this.el) { this.init(); } 
          //this.success = success;
