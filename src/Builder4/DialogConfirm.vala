@@ -24,7 +24,7 @@ public class DialogConfirm : Object
         // my vars (dec)
 
         // set gobject values
-        this.el.title = "Please Confirmed";
+        this.el.title = "Please Confirm ";
         this.el.name = "DialogConfirm";
         this.el.modal = true;
         this.el.use_markup = true;
