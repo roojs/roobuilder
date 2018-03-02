@@ -190,7 +190,10 @@ namespace Palete {
 				var c = new GirObject("Param",n);
 				c.gparent = parent;
 				c.ns = this.ns;
-				parent.params.add(c);
+				
+				if (c.name != "...") { // skip varargs?
+					parent.params.add(c);
+				}
 				parent = c;
 				this.checkParamOverride(c);   
 			    break;
