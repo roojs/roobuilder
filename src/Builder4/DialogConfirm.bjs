@@ -13,7 +13,7 @@
    },
    "$ message_type" : "Gtk.MessageType.QUESTION",
    "text" : "Test",
-   "title" : "Please Confirm d",
+   "title" : "Please Confirm",
    "xtype" : "MessageDialog",
    "$ modal" : true,
    "|   int show" : "  (string title, string msg) {\n     //if (!this.el) { this.init(); } \n     //this.success = success;\n     this.el.title = title;\n    this.el.text =  msg;\n    this.el.show_all();\n    var ret =   this.el.run();\n    //print(\"ret got %d\", ret);\n    this.el.hide();\n    return ret;\n    \n\n}\n \n\n\n\n",
