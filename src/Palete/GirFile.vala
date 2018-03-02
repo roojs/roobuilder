@@ -191,9 +191,9 @@ namespace Palete {
 				c.gparent = parent;
 				c.ns = this.ns;
 				
-				if (c.name != "...") { // skip varargs?
-					parent.params.add(c);
-				}
+				 
+				parent.params.add(c);
+				 
 				parent = c;
 				this.checkParamOverride(c);   
 			    break;
