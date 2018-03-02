@@ -49,7 +49,6 @@ public class DialogConfirm : Object
         //print("ret got %d", ret);
         this.el.hide();
         return ret;
-        
-    
+         
     }
 }
