@@ -19,7 +19,7 @@ public class DialogConfirm : Object
     public DialogConfirm()
     {
         _this = this;
-        this.el = new Gtk.MessageDialog( null, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Tests" );
+        this.el = new Gtk.MessageDialog( null, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Test", null );
 
         // my vars (dec)
 
