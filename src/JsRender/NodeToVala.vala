@@ -473,9 +473,14 @@ public class JsRender.NodeToVala : Object {
 		 
 		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
 			string[] args  = {};
-			var iter =default_ctor.paramset.params.list_iterator();
+			var iter = default_ctor.paramset.params.list_iterator();
 			while (iter.next()) {
 				var n = iter.get().name;
+				if (n == "...") {
+				   // varchars - hopefully at end - applies to messagedialog
+				   continue;
+			   }
+				
 				if (!this.node.has(n)) {
 
 					if (iter.get().type.contains("int")) {
