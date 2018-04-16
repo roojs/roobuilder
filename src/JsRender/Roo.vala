@@ -61,6 +61,9 @@ namespace JsRender {
                 "header",
                 "placeholder",
                 "fieldLabel",
+                "emptyTitle",
+                "dialogTitle",
+                "modalTitle",
                 
                 };
             for (var i=0;i<dsp.length;i++) {
