@@ -401,6 +401,7 @@ right:
     Roo.bootstrap.DocumentSlider
     Roo.bootstrap.RadioSet
     Roo.bootstrap.SecurePass
+    Roo.bootstrap.PhoneInput
 
 left:
     Roo.bootstrap.TabGroup
