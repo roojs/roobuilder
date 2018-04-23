@@ -402,6 +402,7 @@ right:
     Roo.bootstrap.RadioSet
     Roo.bootstrap.SecurePass
     Roo.bootstrap.PhoneInput
+    Roo.bootstrap.MoneyField
 
 left:
     Roo.bootstrap.TabGroup
