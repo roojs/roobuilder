@@ -403,6 +403,7 @@ right:
     Roo.bootstrap.RadioSet
     Roo.bootstrap.SecurePass
     Roo.bootstrap.PhoneInput
+    Roo.bootstrap.MoneyField
 
 left:
     Roo.bootstrap.TabGroup
@@ -721,20 +722,7 @@ left:
 right:
     Roo.bootstrap.NavGroup
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+left:
+    Roo.bootstrap.MoneyField:store
+right:  
+    Roo.data.Store
