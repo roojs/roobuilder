@@ -142,6 +142,7 @@ namespace JsRender {
 		GLib.debug("--- JsRender.Roo.save");
 		GLib.debug("save() - reset transStrings\n");
 		this.transStrings = new Gee.HashMap<string,string>();
+		this.namedStrings = new Gee.HashMap<string,string>();
 		this.findTransStrings(this.tree);
 		
 		this.saveBJS();
@@ -353,7 +354,7 @@ namespace JsRender {
         {
 			print("toSourcePreview() - reset transStrings\n");
 			this.transStrings = new Gee.HashMap<string,string>();
-			
+			this.namedStrings = new Gee.HashMap<string,string>();
 		
 			print("to source preview\n");
 			if (this.tree == null) {
@@ -422,6 +423,7 @@ namespace JsRender {
         public override string toSourceCode() 
         {
 			this.transStrings = new Gee.HashMap<string,string>();
+			this.namedStrings = new Gee.HashMap<string,string>();
 			this.findTransStrings(this.tree);
 			return this.toSource();
 		}
@@ -446,6 +448,7 @@ namespace JsRender {
             
             // get the translatable strings.. = we reload them again so calling methods get the right data...
             this.transStrings = new Gee.HashMap<string,string>();
+            this.namedStrings = new Gee.HashMap<string,string>();
 			this.findTransStrings(this.tree);
             
             
