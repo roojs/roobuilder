@@ -262,6 +262,8 @@ namespace JsRender {
 				return;
 			}		
 			
+			var named = new Gee.HashMap<string,string>();
+			
 			var iter = node.props.map_iterator();
 			while (iter.next()) {
 				// key formats : XXXX
@@ -280,8 +282,13 @@ namespace JsRender {
 				if (kname == "html" && node.has("cms-id")) { 
 					continue;
 				}
+				var str = iter.get_value();				
+				if (kname == "name") {
+					name_prefix = str;
+				}
 				
-				var str = iter.get_value();
+				
+
 				if (this.doubleStringProps.index_of(kname) > -1) {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
 					this.transStrings.set(str,  
