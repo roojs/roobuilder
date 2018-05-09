@@ -301,14 +301,16 @@ namespace JsRender {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
 					this.transStrings.set(str,   chksum);
 					named.set(kname, chksum);
-					);
 					continue;
 				}
 				
 			}
-			 
-			foreach( 
-			 
+			if (name_prefix != "") {
+				var niter = named.map_iterator();
+				while (niter.next()) {
+					this.namedStrings.set(name_prefix + niter.get_key(),niter.get_value());
+				}
+			 }
 
 			
 			// iterate children..
