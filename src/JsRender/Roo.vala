@@ -344,9 +344,13 @@ namespace JsRender {
 			string[] ns = {};
 			var niter = this.namedStrings.map_iterator();
 			while (niter.next()) {
-				ns +=  ("  '" + niter.get_key() + "' : '" + niter.get_value() + "'"); 
+				var otext = 	
+				var com = " /* " + (otext.replace("*/", "* - /") + " */ ")
+
+			
+				ns +=  ("  '" + niter.get_key() + "' : '" + niter.get_value() + "'  /*" + ); 
 			}
-			if (ns.length) {
+			if (ns.length > 0 ) {
 				ret += "\n _named_strings : {\n" + string.joinv(",\n", ns) + "\n },";
 			}
 			return ret;
