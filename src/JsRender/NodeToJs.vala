@@ -618,10 +618,7 @@ public class JsRender.NodeToJs : Object {
 			
 			
 			// strings..
-			//if (this.doubleStringProps.size < 1) {
-			//	this.els.add(left + this.node.quoteString(v));
-			//	continue;
-			//}
+		 	// doubleStringProps is a list of keys like 'name' 'title' etc.. that we know can be translated..
 		   
 			if ((this.doubleStringProps.index_of(k) > -1) || 
 				(ktype.down() == "string" && k[0] == '_')
@@ -639,11 +636,11 @@ public class JsRender.NodeToJs : Object {
 				//	GLib.Checksum.compute_for_string (ChecksumType.MD5, v) +
 				//	"']"
 				//);
-				var  kname = GLib.Checksum.compute_for_string (ChecksumType.MD5, v.strip());
 				
-				this.out_props.set(left, "_this._strings['" + 
-					GLib.Checksum.compute_for_string (ChecksumType.MD5, v.strip()) +
-					"']" + com);
+				// string is stored in Roo.vala
+				var  kname = GLib.Checksum.compute_for_string (ChecksumType.MD5, v.strip());
+
+				this.out_props.set(left, "_this._strings['" + kname + "']" + com);
 				continue;
 			}
 		 
