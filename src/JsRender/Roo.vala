@@ -263,6 +263,7 @@ namespace JsRender {
 			}		
 			
 			var named = new Gee.HashMap<string,string>();
+			var name_prefix = "";
 			
 			var iter = node.props.map_iterator();
 			while (iter.next()) {
@@ -287,20 +288,19 @@ namespace JsRender {
 					name_prefix = str;
 				}
 				
+				var chksum = GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip();
 				
-
 				if (this.doubleStringProps.index_of(kname) > -1) {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
-					this.transStrings.set(str,  
-						GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip())
+					this.transStrings.set(str,  chksum)
 					);
+					named.set(kname, 
 					continue;
 				}
 				
 				if (ktype.down() == "string" && kname[0] == '_') {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
-					this.transStrings.set(str,  
-						GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip())
+					this.transStrings.set(str,   chksum)
 					);
 					continue;
 				}
