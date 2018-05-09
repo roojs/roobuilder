@@ -332,23 +332,27 @@ namespace JsRender {
 			}
 			 
 			string[] kvs = {};
+			
+			var hash = new Gee.HashMap<string,string>();
 			var iter = this.transStrings.map_iterator();
 			while (iter.next()) {
+				hash.set(iter.get_value(), iter.get_key());
 				kvs +=  ("  '" + iter.get_value() + "' :" + 
 					this.tree.quoteString(iter.get_key())
 					);
 			}
 			
 			var ret = " _strings : {\n" + string.joinv(",\n", kvs) + "\n },";
+
 			
 			string[] ns = {};
 			var niter = this.namedStrings.map_iterator();
 			while (niter.next()) {
-				var otext = 	
-				var com = " /* " + (otext.replace("*/", "* - /") + " */ ")
+				var otext = hash.get(niter.get_value());
+				var com = " /* " + (otext.replace("*/", "* - /") + " */ ");
 
 			
-				ns +=  ("  '" + niter.get_key() + "' : '" + niter.get_value() + "'  /*" + ); 
+				ns +=  ("  '" + niter.get_key() + "' : '" + niter.get_value() + "'" + com); 
 			}
 			if (ns.length > 0 ) {
 				ret += "\n _named_strings : {\n" + string.joinv(",\n", ns) + "\n },";
