@@ -338,14 +338,21 @@ namespace JsRender {
 					this.tree.quoteString(iter.get_key())
 					);
 			}
-			return " _strings : {\n" + string.joinv(",\n", kvs) + "\n" + 
-				" },";
-				
-                
-              
 			
-		}
-		  
+			var ret = " _strings : {\n" + string.joinv(",\n", kvs) + "\n },";
+			
+			var ns = {};
+			var niter = this.namedStrings.map_iterator();
+			while (niter.next()) {
+				ns +=  ("  '" + niter.get_key() + "' : '" + niter.get_value() + "'"); 
+			}
+			if (ns.length) {
+				ret += "\n _named_strings : {\n" + string.joinv(",\n", ns) + "\n },";
+			}
+			return ret;
+		}	
+                
+             
         /**
 	 * javascript used in Webkit preview 
          */
