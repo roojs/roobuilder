@@ -341,7 +341,7 @@ namespace JsRender {
 			
 			var ret = " _strings : {\n" + string.joinv(",\n", kvs) + "\n },";
 			
-			var ns = {};
+			string[] ns = {};
 			var niter = this.namedStrings.map_iterator();
 			while (niter.next()) {
 				ns +=  ("  '" + niter.get_key() + "' : '" + niter.get_value() + "'"); 
