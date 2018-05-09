@@ -288,7 +288,7 @@ namespace JsRender {
 					name_prefix = str;
 				}
 				
-				var chksum = GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip();
+				var chksum = GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip());
 				
 				if (this.doubleStringProps.index_of(kname) > -1) {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
@@ -306,6 +306,8 @@ namespace JsRender {
 				}
 				
 			}
+			 
+			foreach( 
 			 
 
 			
