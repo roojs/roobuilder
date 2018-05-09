@@ -292,15 +292,15 @@ namespace JsRender {
 				
 				if (this.doubleStringProps.index_of(kname) > -1) {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
-					this.transStrings.set(str,  chksum)
-					);
-					named.set(kname, 
+					this.transStrings.set(str,  chksum);
+					named.set("_" + kname, chksum);
 					continue;
 				}
 				
 				if (ktype.down() == "string" && kname[0] == '_') {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
-					this.transStrings.set(str,   chksum)
+					this.transStrings.set(str,   chksum);
+					named.set(kname, chksum);
 					);
 					continue;
 				}
