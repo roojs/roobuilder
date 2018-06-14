@@ -419,7 +419,7 @@ namespace Palete {
 			}
 			
 // none of this works on vala-40 as the API is not publicly visible
-#if HAVE_LIBVALA22 || HAVE_LIBVALA24 || HAVE_LIBVALA26 || VALA_0_28 || VALA_0_30 || VALA_0_32 || VALA_0_34  || VALA_0_36
+#if VALA_22 || VALA_24 || VALA_26 || VALA_0_28 || VALA_0_30 || VALA_0_32 || VALA_0_34  || VALA_0_36
 			 
 			context.codegen = new Vala.GDBusServerModule ();
 			 
