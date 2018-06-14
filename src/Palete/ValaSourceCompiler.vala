@@ -418,7 +418,7 @@ namespace Palete {
 				return;
 			}
 			
-// none of this works on vala-40 as it's not publicly available.
+// none of this works on vala-40 as the API is not publicly visible
 #if HAVE_LIBVALA22 || HAVE_LIBVALA24 || HAVE_LIBVALA26 || VALA_0_28 || VALA_0_30 || VALA_0_32 || VALA_0_34  || VALA_0_36
 			 
 			context.codegen = new Vala.GDBusServerModule ();
@@ -442,9 +442,10 @@ namespace Palete {
 		
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
+#endif		
+			
 			this.outputResult();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
-#endif		
 		
 		}
 		public bool has_vapi(string[] dirs,  string vapi) 
