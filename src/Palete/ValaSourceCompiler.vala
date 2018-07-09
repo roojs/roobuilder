@@ -227,7 +227,11 @@ namespace Palete {
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
-#if VALA_0_34
+#if VALA_0_40
+			var ver=40;
+#elif VALA_0_36
+			var ver=36;
+#elif VALA_0_34
 			var ver=34;
 #elif VALA_0_32
 			var ver=32;
@@ -264,7 +268,7 @@ namespace Palete {
 			context.report.enable_warnings = true;
 			context.metadata_directories = { };
 			context.gir_directories = {};
-			context.thread = true;
+			//context.thread = true;
 			valac += " --thread ";
 			
 			// we should parse the compilegroup to find out the flags..
@@ -413,7 +417,11 @@ namespace Palete {
 				this.outputResult();
 				return;
 			}
-			 
+			
+// none of this works on vala-40 as the API is not publicly visible
+#if VALA_0_40
+
+#else
 			context.codegen = new Vala.GDBusServerModule ();
 			 
 			
@@ -426,7 +434,7 @@ namespace Palete {
 			string [] cc_options = { "-lm", "-pg" };
 			valac += " -X -lm -X -pg";
 			
-#if VALA_0_28 || VALA_0_30 || VALA_0_32 || VALA_0_34
+#if VALA_0_28 || VALA_0_30 || VALA_0_32 || VALA_0_34  || VALA_0_36
 			var pkg_config_command = Environment.get_variable ("PKG_CONFIG");
 			ccompiler.compile (context, cc_command, cc_options, pkg_config_command);
 #else
@@ -435,9 +443,10 @@ namespace Palete {
 		
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
+#endif		
+			
 			this.outputResult();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
-			
 		
 		}
 		public bool has_vapi(string[] dirs,  string vapi) 

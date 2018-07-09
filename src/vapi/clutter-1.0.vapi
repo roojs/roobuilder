@@ -5965,7 +5965,7 @@ namespace Clutter {
 	[CCode (cheader_filename = "clutter/clutter.h", type_id = "clutter_image_get_type ()")]
 	public class Image : GLib.Object, Clutter.Content {
 		[CCode (has_construct_function = false)]
-		protected Image ();
+		public Image ();
 		public static Clutter.Content @new ();
 		public bool set_area ([CCode (array_length = false)] uint8[] data, Cogl.PixelFormat pixel_format, Cairo.RectangleInt rect, uint row_stride) throws GLib.Error;
 		public bool set_bytes (GLib.Bytes data, Cogl.PixelFormat pixel_format, uint width, uint height, uint row_stride) throws GLib.Error;

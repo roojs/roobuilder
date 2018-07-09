@@ -116,19 +116,23 @@ Builder  = {
                     continue;
                 }   
                 allText = false;
-                cb("\n");
-                for (j = 0; j < depth; j++) {
-                  // &#166 is just a vertical line
-                  cb("  ");
-                }               
-                
+                // if the current node is 'span' then all childre should not be indented..
+                if (tagName != 'SPAN') {
+                    
+                    
+                    cb("\n");
+                    for (j = 0; j < depth; j++) {
+                      // &#166 is just a vertical line
+                      cb("  ");
+                    }               
+                }    
                     
                 // Recursively traverse the tree structure of the child node
                 this.traverseDOMTree(cb, currentElementChild, depth+1);
                 i++;
                 currentElementChild=currentElement.childNodes.item(i);
             }
-            if (!allText) {
+            if (!allText && (tagName!= 'SPAN') ) {
                     // The remaining code is mostly for formatting the tree
                 cb("\n");
                 for (j = 0; j < depth - 1; j++) {
@@ -148,7 +152,7 @@ Builder  = {
      
     findNode : function(ftg , method) {
         if (!ftg) {
-            return; false
+            return  false;
         }
       // console.log(ftg.id);
         if (ftg.id && typeof(ftg.id) == 'string' && ftg.id.match(/builder-/)) {
@@ -345,8 +349,7 @@ Builder  = {
         tree.el.attr('xtype', tree['|xns'] + '.' +  tree['xtype']);
         //Roo.log(tree);
         //Roo.log("Add xtype")
-        
-        
+         
         
         if (tree.items && tree.items.length > 0) { 
         //Roo.log(tree);

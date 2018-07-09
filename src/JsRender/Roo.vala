@@ -21,7 +21,7 @@ namespace JsRender {
         string region;
         bool disabled;
 
-
+		Gee.HashMap<string,string> namedStrings;
         
         public Roo(Project.Project project, string path) {
             base( project, path);
@@ -61,6 +61,10 @@ namespace JsRender {
                 "header",
                 "placeholder",
                 "fieldLabel",
+                "emptyTitle",
+                "dialogTitle",
+                "modalTitle",
+                "boxLabel"
                 
                 };
             for (var i=0;i<dsp.length;i++) {
@@ -139,6 +143,7 @@ namespace JsRender {
 		GLib.debug("--- JsRender.Roo.save");
 		GLib.debug("save() - reset transStrings\n");
 		this.transStrings = new Gee.HashMap<string,string>();
+		this.namedStrings = new Gee.HashMap<string,string>();
 		this.findTransStrings(this.tree);
 		
 		this.saveBJS();
@@ -183,6 +188,10 @@ namespace JsRender {
 	 
 	public override void saveHTML ( string html )
 	{
+		GLib.debug ("SAVEHTML %s\n",  this.project.runhtml);		 
+		if (this.project.runhtml == "") {
+			return;
+		}
 		 
 		var top = this.tree.fqn();
 		GLib.debug ("TOP = " + top + "\n" );
@@ -255,6 +264,9 @@ namespace JsRender {
 				return;
 			}		
 			
+			var named = new Gee.HashMap<string,string>();
+			var name_prefix = "";
+			
 			var iter = node.props.map_iterator();
 			while (iter.next()) {
 				// key formats : XXXX
@@ -273,26 +285,34 @@ namespace JsRender {
 				if (kname == "html" && node.has("cms-id")) { 
 					continue;
 				}
+				var str = iter.get_value();				
+				if (kname == "name") {
+					name_prefix = str;
+				}
 				
-				var str = iter.get_value();
+				var chksum = GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip());
+				
 				if (this.doubleStringProps.index_of(kname) > -1) {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
-					this.transStrings.set(str,  
-						GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip())
-					);
+					this.transStrings.set(str,  chksum);
+					named.set("_" + kname, chksum);
 					continue;
 				}
 				
 				if (ktype.down() == "string" && kname[0] == '_') {
 					GLib.debug("flag=%s type=%s name=%s : %s\n", kflag,ktype,kname,str);
-					this.transStrings.set(str,  
-						GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip())
-					);
+					this.transStrings.set(str,   chksum);
+					named.set(kname, chksum);
 					continue;
 				}
 				
 			}
-			 
+			if (name_prefix != "") {
+				var niter = named.map_iterator();
+				while (niter.next()) {
+					this.namedStrings.set(name_prefix + niter.get_key(),niter.get_value());
+				}
+			 }
 
 			
 			// iterate children..
@@ -313,20 +333,35 @@ namespace JsRender {
 			}
 			 
 			string[] kvs = {};
+			
+			var hash = new Gee.HashMap<string,string>();
 			var iter = this.transStrings.map_iterator();
 			while (iter.next()) {
+				hash.set(iter.get_value(), iter.get_key());
 				kvs +=  ("  '" + iter.get_value() + "' :" + 
 					this.tree.quoteString(iter.get_key())
 					);
 			}
-			return " _strings : {\n" + string.joinv(",\n", kvs) + "\n" + 
-				" },";
-				
-                
-              
 			
-		}
-		  
+			var ret = " _strings : {\n" + string.joinv(",\n", kvs) + "\n },";
+
+			
+			string[] ns = {};
+			var niter = this.namedStrings.map_iterator();
+			while (niter.next()) {
+				var otext = hash.get(niter.get_value());
+				var com = " /* " + (otext.replace("*/", "* - /") + " */ ");
+
+			
+				ns +=  ("  '" + niter.get_key() + "' : '" + niter.get_value() + "'" + com); 
+			}
+			if (ns.length > 0 ) {
+				ret += "\n _named_strings : {\n" + string.joinv(",\n", ns) + "\n },";
+			}
+			return ret;
+		}	
+                
+             
         /**
 	 * javascript used in Webkit preview 
          */
@@ -335,7 +370,7 @@ namespace JsRender {
         {
 			print("toSourcePreview() - reset transStrings\n");
 			this.transStrings = new Gee.HashMap<string,string>();
-			
+			this.namedStrings = new Gee.HashMap<string,string>();
 		
 			print("to source preview\n");
 			if (this.tree == null) {
@@ -404,6 +439,7 @@ namespace JsRender {
         public override string toSourceCode() 
         {
 			this.transStrings = new Gee.HashMap<string,string>();
+			this.namedStrings = new Gee.HashMap<string,string>();
 			this.findTransStrings(this.tree);
 			return this.toSource();
 		}
@@ -428,6 +464,7 @@ namespace JsRender {
             
             // get the translatable strings.. = we reload them again so calling methods get the right data...
             this.transStrings = new Gee.HashMap<string,string>();
+            this.namedStrings = new Gee.HashMap<string,string>();
 			this.findTransStrings(this.tree);
             
             

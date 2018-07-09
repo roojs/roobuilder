@@ -296,6 +296,7 @@ left:
   Roo.bootstrap.ComboBox:store
   Roo.bootstrap.Calendar:store
   Roo.bootstrap.Table:store
+  Roo.bootstrap.PhoneInput
 right: 
   Roo.data.Store
   Roo.data.SimpleStore
@@ -349,6 +350,7 @@ left:
     Roo.bootstrap.UploadCropbox
     Roo.bootstrap.Popover
     Roo.bootstrap.Link
+    Roo.bootstrap.panel.Content
 right:
     Roo.bootstrap.Container
     Roo.bootstrap.Button
@@ -376,7 +378,6 @@ right:
     Roo.bootstrap.MonthField
     Roo.bootstrap.TimeField
     Roo.bootstrap.CheckBox
-    Roo.bootstrap.Radio
     Roo.bootstrap.ComboBox
     Roo.bootstrap.Element
     Roo.bootstrap.HtmlEditor
@@ -397,11 +398,22 @@ right:
     Roo.bootstrap.FieldLabel
     Roo.bootstrap.DateSplitField
     Roo.bootstrap.Brick
+    Roo.bootstrap.NumberField
+    Roo.bootstrap.DocumentSlider
+    Roo.bootstrap.RadioSet
+    Roo.bootstrap.SecurePass
+    Roo.bootstrap.PhoneInput
+    Roo.bootstrap.MoneyField
 
 left:
     Roo.bootstrap.TabGroup
 right:
     Roo.bootstrap.TabPanel
+
+left:
+    Roo.bootstrap.RadioSet
+right:
+    Roo.bootstrap.Radio
         
 
 left:
@@ -648,11 +660,6 @@ right:
   Roo.bootstrap.panel.Nest
   Roo.bootstrap.panel.Grid
   
-left:  
-    Roo.bootstrap.panel.Content
-right:
-    Roo.bootstrap.Form
-
 left:
   Roo.bootstrap.panel.Nest:layout 
 right: 
@@ -715,20 +722,7 @@ left:
 right:
     Roo.bootstrap.NavGroup
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+left:
+    Roo.bootstrap.MoneyField:store
+right:  
+    Roo.data.Store

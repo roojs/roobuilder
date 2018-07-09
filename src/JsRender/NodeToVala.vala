@@ -473,11 +473,18 @@ public class JsRender.NodeToVala : Object {
 		 
 		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
 			string[] args  = {};
-			var iter =default_ctor.paramset.params.list_iterator();
+			var iter = default_ctor.paramset.params.list_iterator();
 			while (iter.next()) {
 				var n = iter.get().name;
+			    //print("building CTOR ARGS: %s, %s", n, iter.get().is_varargs ? "VARARGS": "");
+				 
+				
 				if (!this.node.has(n)) {
-
+					if (n == "___") { // for some reason our varargs are converted to '___' ...
+						continue;
+					}
+						
+					
 					if (iter.get().type.contains("int")) {
 						args += "0";
 						continue;
