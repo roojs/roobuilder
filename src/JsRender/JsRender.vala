@@ -280,7 +280,17 @@ namespace JsRender {
 				}
 				ret.set_object_member("strings", tr);
             }
-			
+
+            
+            
+			if (this.namedStrings.size > 0) {
+				var tr =  new Json.Object();
+				var iter = this.namedStrings.map_iterator();
+				while (iter.next()) {
+					tr.set_string_member(iter.get_key(), iter.get_value());
+				}
+				ret.set_object_member("named_strings", tr);
+            }
 			
 			
 			var ar = new Json.Array();
