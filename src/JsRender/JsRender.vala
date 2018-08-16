@@ -44,7 +44,7 @@ namespace JsRender {
 		public bool loaded;
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
-		
+		public	Gee.HashMap<string,string> namedStrings;
 
 		public signal void changed (Node? node, string source); 
 		
@@ -75,8 +75,8 @@ namespace JsRender {
 			this.build_module = "";
 			this.loaded = false;
 			//print("JsRender.cto() - reset transStrings\n");
-			this.transStrings = new Gee.HashMap<string,string> ();
-			
+			this.transStrings = new Gee.HashMap<string,string>();
+			this.namedStrings = new Gee.HashMap<string,string>();
 			// should use basename reallly...
 			
 			var ar = this.path.split("/");
