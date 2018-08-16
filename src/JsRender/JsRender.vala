@@ -292,7 +292,6 @@ namespace JsRender {
 				ret.set_object_member("named_strings", tr);
             }
 			
-			
 			var ar = new Json.Array();
 			// empty files do not have a tree.
 			if (this.tree != null) {
