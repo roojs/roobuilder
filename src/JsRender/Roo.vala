@@ -21,7 +21,7 @@ namespace JsRender {
         string region;
         bool disabled;
 
-		Gee.HashMap<string,string> namedStrings;
+ 
         
         public Roo(Project.Project project, string path) {
             base( project, path);
