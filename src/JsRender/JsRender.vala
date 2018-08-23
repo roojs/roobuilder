@@ -44,7 +44,7 @@ namespace JsRender {
 		public bool loaded;
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
-		
+		public	Gee.HashMap<string,string> namedStrings;
 
 		public signal void changed (Node? node, string source); 
 		
@@ -75,8 +75,8 @@ namespace JsRender {
 			this.build_module = "";
 			this.loaded = false;
 			//print("JsRender.cto() - reset transStrings\n");
-			this.transStrings = new Gee.HashMap<string,string> ();
-			
+			this.transStrings = new Gee.HashMap<string,string>();
+			this.namedStrings = new Gee.HashMap<string,string>();
 			// should use basename reallly...
 			
 			var ar = this.path.split("/");
@@ -280,8 +280,17 @@ namespace JsRender {
 				}
 				ret.set_object_member("strings", tr);
             }
-			
-			
+
+            
+            
+			if (this.namedStrings.size > 0) {
+				var tr =  new Json.Object();
+				var iter = this.namedStrings.map_iterator();
+				while (iter.next()) {
+					tr.set_string_member(iter.get_key(), iter.get_value());
+				}
+				ret.set_object_member("named_strings", tr);
+            }
 			
 			var ar = new Json.Array();
 			// empty files do not have a tree.
