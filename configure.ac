@@ -35,7 +35,8 @@ PKG_CHECK_MODULES(ROOBUILDER, [
 
 dnl --- libvala -- needs to find matching really..
 
-dnl - last supported version is 0.36 - as 0.40 broke the compiler 
+dnl - last supported version is 0.36 - as 0.40 broke the compiler
+
 PKG_CHECK_MODULES(LIBVALA, [libvala-0.40],
 			[vala_4_0_enabled=yes],
 			[vala_4_0_enabled=no]) 
@@ -101,7 +102,7 @@ PKG_CHECK_MODULES(LIBVALA, [libvala-0.40],
 			 fi
 		 fi
 fi
-AM_CONDITIONAL(HAVE_LIBVALA36, test "$vala_4_0_enabled" = "yes")
+AM_CONDITIONAL(HAVE_LIBVALA40, test "$vala_4_0_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA36, test "$vala_3_6_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA34, test "$vala_3_4_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA32, test "$vala_3_2_enabled" = "yes")
