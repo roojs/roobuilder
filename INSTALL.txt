@@ -21,4 +21,5 @@ sudo apt-get install  libclutter-gtk-1.0-dev libgladeui-dev libsoup2.4-dev \
 // test
 
 
- 
+./autoconf --prefix=/usr
+sudo make install
