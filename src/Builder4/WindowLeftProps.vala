@@ -1454,7 +1454,7 @@ public class Xcls_LeftProps : Object
                              
                     ((Gtk.Entry)editable).set_text(val);                 
             });
-            this.el.xedited.connect( (path, newtext) => {
+            this.el.edited.connect( (path, newtext) => {
                     GLib.debug("Keyrender  - signal:edited\n");
                 
                 this.el.editable = false;
