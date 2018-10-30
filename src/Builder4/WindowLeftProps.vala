@@ -1440,7 +1440,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             //listeners
-            this.el.xediting_started.connect( (  editable, path) => {
+            this.el.editing_started.connect( (  editable, path) => {
             
                  Gtk.TreeIter  iter;
                 _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
