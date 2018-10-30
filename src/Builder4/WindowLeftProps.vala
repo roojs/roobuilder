@@ -1440,7 +1440,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             //listeners
-            this.el.editing_started.connect( (  editable, path) => {
+            this.el.xediting_started.connect( (  editable, path) => {
             
                  Gtk.TreeIter  iter;
                 _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
@@ -1454,7 +1454,7 @@ public class Xcls_LeftProps : Object
                              
                     ((Gtk.Entry)editable).set_text(val);                 
             });
-            this.el.edited.connect( (path, newtext) => {
+            this.el.xedited.connect( (path, newtext) => {
                     GLib.debug("Keyrender  - signal:edited\n");
                 
                 this.el.editable = false;
