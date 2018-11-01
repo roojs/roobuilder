@@ -25,29 +25,14 @@ public class Xcls_WindowRooView : Object
     public Xcls_buffer buffer;
 
         // my vars (def)
-    public Gtk.Widget lastObj;
-    public int width;
-    public int last_search_end;
-    public Gtk.SourceSearchContext searchcontext;
-    public JsRender.JsRender file;
-    public int height;
-    public Xcls_MainWindow main_window;
 
     // ctor
     public Xcls_WindowRooView()
     {
         _this = this;
-        this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+        this.el = new Gtk.Box();
 
         // my vars (dec)
-        this.lastObj = null;
-        this.width = 0;
-        this.last_search_end = 0;
-        this.file = null;
-        this.height = 0;
-
-        // set gobject values
-        this.el.hexpand = true;
         var child_0 = new Xcls_notebook( _this );
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
@@ -238,8 +223,6 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.Notebook();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_label_preview( _this );
             child_0.ref();
             var child_1 = new Xcls_label_code( _this );
@@ -267,11 +250,9 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.label_preview = this;
-            this.el = new Gtk.Label( "Preview" );
+            this.el = new Gtk.Label();
 
             // my vars (dec)
-
-            // set gobject values
         }
 
         // user defined functions
@@ -290,11 +271,9 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.label_code = this;
-            this.el = new Gtk.Label( "Preview Generated Code" );
+            this.el = new Gtk.Label();
 
             // my vars (dec)
-
-            // set gobject values
         }
 
         // user defined functions
@@ -313,11 +292,9 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.paned = this;
-            this.el = new Gtk.Paned( Gtk.Orientation.VERTICAL );
+            this.el = new Gtk.Paned();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_viewbox( _this );
             child_0.ref();
             this.el.pack1 (  child_0.el , true,true );
@@ -341,12 +318,9 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.viewbox = this;
-            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+            this.el = new Gtk.Box();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.homogeneous = false;
             var child_0 = new Xcls_Box7( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,true,0 );
@@ -369,14 +343,9 @@ public class Xcls_WindowRooView : Object
         public Xcls_Box7(Xcls_WindowRooView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.homogeneous = true;
-            this.el.height_request = 20;
-            this.el.vexpand = false;
             var child_0 = new Xcls_Button8( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,0 );
@@ -406,9 +375,6 @@ public class Xcls_WindowRooView : Object
 
             // my vars (dec)
 
-            // set gobject values
-            this.el.label = "Redraw";
-
             //listeners
             this.el.clicked.connect( ( ) => {
                 _this.view.renderJS(  true);
@@ -435,10 +401,6 @@ public class Xcls_WindowRooView : Object
 
             // my vars (dec)
 
-            // set gobject values
-            this.el.active = true;
-            this.el.label = "Auto Redraw On";
-
             //listeners
             this.el.toggled.connect( (state) => {
                 this.el.set_label(this.el.active  ? "Auto Redraw On" : "Auto Redraw Off");
@@ -463,9 +425,6 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Full Redraw";
 
             //listeners
             this.el.clicked.connect( () => {
@@ -495,12 +454,9 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.viewcontainer = this;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -519,14 +475,6 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public string renderedData;
-        public bool refreshRequired;
-        public WebKit.WebInspector inspector;
-        public string runjs;
-        public int redraws;
-        public GLib.DateTime lastRedraw;
-        public string runhtml;
-        public bool pendingRedraw;
 
         // ctor
         public Xcls_view(Xcls_WindowRooView _owner )
@@ -536,15 +484,6 @@ public class Xcls_WindowRooView : Object
             this.el = new WebKit.WebView();
 
             // my vars (dec)
-            this.renderedData = "";
-            this.refreshRequired = false;
-            this.runjs = "";
-            this.redraws = 0;
-            this.lastRedraw = null;
-            this.runhtml = "";
-            this.pendingRedraw = false;
-
-            // set gobject values
 
             // init method
 
@@ -848,14 +787,7 @@ public class Xcls_WindowRooView : Object
         }
         public void initInspector () {
             
-           /* if (this.inspector == this.el.get_inspector()) {
-                this.inspector.show();
-                this.inspector.open_window();        
-                print("init inspecter called, and inspector is the same as existing\n");
-                return;
-            }
-            print("new inspector?\n");
-        */
+         
             this.inspector = this.el.get_inspector();
             this.inspector.ref();
             
@@ -885,43 +817,6 @@ public class Xcls_WindowRooView : Object
                 return true;
                
             });
-            /*
-            this.inspector.closed.connect(() => {
-                 print("inspector closed?!?");
-                 // if this happens destroy the webkit..
-                 // recreate it..
-                 this.el.stop_loading();
-                 
-                 if (_this.viewbox.el.get_parent() == null) {
-                    return;
-                 }
-                 
-                 
-                _this.viewbox.el.remove(_this.viewcontainer.el);
-                _this.el.remove(_this.inspectorcontainer.el);        
-                 
-                 // destory seems to cause problems.
-                 //this.el.destroy();
-                //_this.viewcontainer.el.destroy();
-                 //_this.inspectorcontainer.el.destroy();
-        
-                 this.el = null;         
-                 var nv =new Xcls_viewcontainer(_this);
-                 nv.ref();
-                 _this.viewbox.el.pack_end(nv.el,true,true,0);
-                 
-                  var  inv =new Xcls_inspectorcontainer(_this);
-                  inv.ref();
-                  _this.el.pack2(inv.el,true,true);
-                 
-                 inv.el.show_all();
-                 nv.el.show_all();
-                 //while(Gtk.events_pending ()) Gtk.main_iteration ();
-                 //_this.view.renderJS(true); 
-                 _this.view.refreshRequired  = true;
-               
-            }); 
-            */
             
             this.inspector.show();
         }
@@ -954,12 +849,9 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.inspectorcontainer = this;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.shadow_type = Gtk.ShadowType.IN;
 
             // init method
 
@@ -982,11 +874,9 @@ public class Xcls_WindowRooView : Object
         public Xcls_ScrolledWindow14(Xcls_WindowRooView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_sourceview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1001,12 +891,6 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public bool loading;
-        public bool button_is_pressed;
-        public string prop_selected;
-        public bool key_is_pressed;
-        public JsRender.Node? node_selected;
-        public int editable_start_pos;
 
         // ctor
         public Xcls_sourceview(Xcls_WindowRooView _owner )
@@ -1016,17 +900,6 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
-            this.loading = true;
-            this.button_is_pressed = false;
-            this.prop_selected = "";
-            this.key_is_pressed = false;
-            this.node_selected = null;
-            this.editable_start_pos = -1;
-
-            // set gobject values
-            this.el.editable = false;
-            this.el.show_line_marks = true;
-            this.el.show_line_numbers = true;
             var child_0 = new Xcls_buffer( _this );
             child_0.ref();
             this.el.set_buffer (  child_0.el  );
@@ -1493,21 +1366,15 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public bool dirty;
-        public int error_line;
 
         // ctor
         public Xcls_buffer(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new Gtk.SourceBuffer( null );
+            this.el = new Gtk.SourceBuffer();
 
             // my vars (dec)
-            this.dirty = false;
-            this.error_line = -1;
-
-            // set gobject values
 
             //listeners
             this.el.changed.connect( () => {

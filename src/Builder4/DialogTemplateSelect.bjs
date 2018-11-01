@@ -2,7 +2,7 @@
  "name" : "DialogTemplateSelect",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/DialogTemplateSelect.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogTemplateSelect.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
@@ -12,8 +12,8 @@
     "delete_event" : "  (self, event)  =>{\n    this.el.hide();\n    return true;\n} "
    },
    "default_width" : 400,
-   "title" : "Add an Object",
    "xtype" : "Dialog",
+   "title" : "Add an Object",
    "default_height" : 200,
    "$ modal" : true,
    "$ xns" : "Gtk",
@@ -26,16 +26,16 @@
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "items" : [
       {
+       "gint margin" : 3,
        "* pack" : "pack_start,false,false,0",
        "xtype" : "Box",
-       "gint margin" : 3,
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
          "label" : "Select Template : ",
-         "xtype" : "Label",
          "* pack" : "pack_start,false,false",
+         "xtype" : "Label",
          "$ xns" : "Gtk"
         },
         {
@@ -47,14 +47,14 @@
          "items" : [
           {
            "id" : "cellrenderer",
-           "xtype" : "CellRendererText",
            "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
            "$ xns" : "Gtk"
           },
           {
            "id" : "model",
-           "* pack" : "set_model",
            "xtype" : "ListStore",
+           "* pack" : "set_model",
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
@@ -65,16 +65,16 @@
        ]
       },
       {
+       "gint margin" : 3,
        "* pack" : "pack_start,false,false,0",
        "xtype" : "Box",
-       "gint margin" : 3,
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
          "label" : "Select Database Table : ",
-         "xtype" : "Label",
          "* pack" : "pack_start,false,false",
+         "xtype" : "Label",
          "$ xns" : "Gtk"
         },
         {
@@ -86,14 +86,14 @@
          "items" : [
           {
            "id" : "dbcellrenderer",
-           "xtype" : "CellRendererText",
            "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
            "$ xns" : "Gtk"
           },
           {
            "id" : "dbmodel",
-           "* pack" : "set_model",
            "xtype" : "ListStore",
+           "* pack" : "set_model",
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
@@ -107,20 +107,20 @@
     },
     {
      "label" : "Cancel",
-     "xtype" : "Button",
      "* pack" : "add_action_widget,0",
+     "xtype" : "Button",
      "$ xns" : "Gtk"
     },
     {
      "label" : "Just add it",
-     "* pack" : "add_action_widget,1",
      "xtype" : "Button",
+     "* pack" : "add_action_widget,1",
      "$ xns" : "Gtk"
     },
     {
      "label" : "OK",
-     "xtype" : "Button",
      "* pack" : "add_action_widget,2",
+     "xtype" : "Button",
      "$ xns" : "Gtk"
     }
    ]
