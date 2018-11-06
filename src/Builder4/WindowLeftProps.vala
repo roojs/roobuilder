@@ -24,14 +24,27 @@ public class Xcls_LeftProps : Object
     public Xcls_ContextMenu ContextMenu;
 
         // my vars (def)
+    public bool allow_edit;
+    public JsRender.JsRender file;
+    public signal bool stop_editor ();
+    public signal void show_editor (JsRender.JsRender file, JsRender.Node node, string type, string key);
+    public signal void changed ();
+    public signal void show_add_props (string type);
+    public Xcls_MainWindow main_window;
+    public JsRender.Node node;
 
     // ctor
     public Xcls_LeftProps()
     {
         _this = this;
-        this.el = new Gtk.Box();
+        this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
         // my vars (dec)
+        this.allow_edit = false;
+        this.main_window = null;
+
+        // set gobject values
+        this.el.homogeneous = false   ;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.pack_start (  child_0.el , false,true,0 );
@@ -574,9 +587,11 @@ public class Xcls_LeftProps : Object
         public Xcls_Box2(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_Button3( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -599,6 +614,9 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
             var child_0 = new Xcls_Box4( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -632,9 +650,11 @@ public class Xcls_LeftProps : Object
         public Xcls_Box4(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_Image5( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -660,6 +680,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.Image();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.stock = Gtk.Stock.ADD;
+            this.el.icon_size = Gtk.IconSize.MENU;
         }
 
         // user defined functions
@@ -677,9 +701,11 @@ public class Xcls_LeftProps : Object
         public Xcls_Label6(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Other" );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -702,6 +728,8 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.Menu();
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_MenuItem8( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
@@ -773,6 +801,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "Using _this.{ID} will map to this element";
+            this.el.label = "id: _this.{ID} (Vala)";
+
             //listeners
             this.el.activate.connect( ()  => {
                 _this.addProp( "prop", "id", "", "");
@@ -797,6 +829,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.tooltip_markup = "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element";
+            this.el.label = "pack: Pack method (Vala)";
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -824,6 +860,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "eg. \n\nnew Clutter.Image.from_file(.....)";
+            this.el.label = "ctor: Alterative to default contructor (Vala)";
+
             //listeners
             this.el.activate.connect( ( ) => {
             
@@ -849,6 +889,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.tooltip_markup = "This code is called after the ctor";
+            this.el.label = "init: initialziation code (vala)";
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -876,6 +920,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})\n";
+            this.el.label = "cms-id: (Roo JS/Pman library)";
+
             //listeners
             this.el.activate.connect( ()  => {
                 _this.addProp( "prop", "cms-id", "", "string");
@@ -900,6 +948,8 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -920,6 +970,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.tooltip_markup = "Add a user defined string property";
+            this.el.label = "String";
 
             //listeners
             this.el.activate.connect( (self) => {
@@ -948,6 +1002,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "Add a user defined number property";
+            this.el.label = "Number";
+
             //listeners
             this.el.activate.connect( ( ) =>{
             
@@ -974,6 +1032,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "Add a user defined boolean property";
+            this.el.label = "Boolean";
+
             //listeners
             this.el.activate.connect( ( ) =>{
             
@@ -999,6 +1061,8 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -1019,6 +1083,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.tooltip_markup = "Add a user function boolean property";
+            this.el.label = "Javascript Function";
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1046,6 +1114,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "Add a user function boolean property";
+            this.el.label = "Vala Method";
+
             //listeners
             this.el.activate.connect( ( ) =>{
             
@@ -1072,6 +1144,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "Add a vala signal";
+            this.el.label = "Vala Signal";
+
             //listeners
             this.el.activate.connect( ( ) =>{
             
@@ -1097,6 +1173,8 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -1117,6 +1195,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.tooltip_markup = "Add a flexy if (for HTML templates)";
+            this.el.label = "Flexy - If";
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1144,6 +1226,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "Add a flexy include (for HTML templates)";
+            this.el.label = "Flexy - Include";
+
             //listeners
             this.el.activate.connect( ( ) =>{
             
@@ -1170,6 +1256,10 @@ public class Xcls_LeftProps : Object
 
             // my vars (dec)
 
+            // set gobject values
+            this.el.tooltip_markup = "Add a flexy foreach (for HTML templates)";
+            this.el.label = "Flexy - Foreach";
+
             //listeners
             this.el.activate.connect( ( ) =>{
             
@@ -1190,15 +1280,20 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
+        public bool editing;
 
         // ctor
         public Xcls_EditProps(Xcls_LeftProps _owner )
         {
             _this = _owner;
             _this.EditProps = this;
-            this.el = new Gtk.ScrolledWindow();
+            this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)
+            this.editing = false;
+
+            // set gobject values
+            this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1220,6 +1315,7 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
+        public Xcls_PopoverProperty popover;
 
         // ctor
         public Xcls_view(Xcls_LeftProps _owner )
@@ -1229,6 +1325,12 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.TreeView();
 
             // my vars (dec)
+            this.popover = null;
+
+            // set gobject values
+            this.el.tooltip_column = 5;
+            this.el.enable_tree_lines = true;
+            this.el.headers_visible = true;
             var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
@@ -1386,9 +1488,18 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore();
+            this.el = new Gtk.TreeStore( 7,      typeof(string),  // 0 key type
+     typeof(string),  // 1 key
+     typeof(string),  // 2 key (display)
+     typeof(string),  // 3 value
+     typeof(string),   // 4 value (display)
+     typeof(string),   // 5 both (tooltip)     
+     typeof(string)   // 6 key (for sorting)
+ );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -1410,6 +1521,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.TreeViewColumn();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.title = "Name";
+            this.el.resizable = true;
             var child_0 = new Xcls_keyrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false );
@@ -1417,7 +1532,7 @@ public class Xcls_LeftProps : Object
             // init method
 
             this.el.add_attribute(_this.keyrender.el , "markup", 2 );
-            this.el.add_attribute(_this.keyrender.el , "text", 1 );
+             this.el.add_attribute(_this.keyrender.el , "text", 1 );
         }
 
         // user defined functions
@@ -1438,6 +1553,8 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
+
+            // set gobject values
 
             //listeners
             this.el.editing_started.connect( (  editable, path) => {
@@ -1520,6 +1637,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.TreeViewColumn();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.title = "Value";
+            this.el.resizable = true;
             var child_0 = new Xcls_valrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
@@ -1562,6 +1683,11 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.CellRendererCombo();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.editable = false;
+            this.el.text_column = 0;
+            this.el.has_entry = true;
             var child_0 = new Xcls_valrendermodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
@@ -1673,9 +1799,11 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.valrendermodel = this;
-            this.el = new Gtk.ListStore();
+            this.el = new Gtk.ListStore( 1, typeof(string) );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -1699,6 +1827,8 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.Menu();
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_MenuItem34( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
@@ -1727,6 +1857,9 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Edit (double click)";
 
             //listeners
             this.el.activate.connect( ( )  =>{
@@ -1783,6 +1916,8 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -1803,6 +1938,9 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Delete";
 
             //listeners
             this.el.activate.connect( ( )  =>{
