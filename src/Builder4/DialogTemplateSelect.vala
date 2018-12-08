@@ -28,6 +28,12 @@ public class DialogTemplateSelect : Object
         this.el = new Gtk.Dialog();
 
         // my vars (dec)
+
+        // set gobject values
+        this.el.title = "Add an Object";
+        this.el.default_height = 200;
+        this.el.default_width = 400;
+        this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.get_content_area().add (  child_0.el  );
@@ -142,9 +148,11 @@ public class DialogTemplateSelect : Object
         public Xcls_Box2(DialogTemplateSelect _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box();
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,0 );
@@ -167,9 +175,12 @@ public class DialogTemplateSelect : Object
         public Xcls_Box3(DialogTemplateSelect _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.margin = 3;
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false );
@@ -192,9 +203,11 @@ public class DialogTemplateSelect : Object
         public Xcls_Label4(DialogTemplateSelect _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Select Template : " );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -216,6 +229,8 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_cellrenderer( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
@@ -246,6 +261,8 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -264,9 +281,11 @@ public class DialogTemplateSelect : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore();
+            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -312,9 +331,12 @@ public class DialogTemplateSelect : Object
         public Xcls_Box8(DialogTemplateSelect _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.margin = 3;
             var child_0 = new Xcls_Label9( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false );
@@ -337,9 +359,11 @@ public class DialogTemplateSelect : Object
         public Xcls_Label9(DialogTemplateSelect _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Select Database Table : " );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -361,6 +385,8 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_dbcellrenderer( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
@@ -391,6 +417,8 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -409,9 +437,11 @@ public class DialogTemplateSelect : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore();
+            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -465,6 +495,9 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Cancel";
         }
 
         // user defined functions
@@ -485,6 +518,9 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Just add it";
         }
 
         // user defined functions
@@ -505,6 +541,9 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "OK";
         }
 
         // user defined functions
