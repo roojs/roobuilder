@@ -165,6 +165,7 @@ right:
   Roo.Toolbar.SplitButton         
   Roo.Toolbar.TextItem        
   Roo.form.ComboBox
+  Roo.form.ComboBoxArray
   Roo.form.DateField
   Roo.form.MonthField
   Roo.form.TextField
