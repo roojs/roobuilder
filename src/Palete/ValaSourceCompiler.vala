@@ -421,9 +421,9 @@ namespace Palete {
 			}
 			
 // none of this works on vala-40 as the API is not publicly visible
-#if VALA_0_40
+// #if VALA_0_42
 
-#else
+//#else
 			context.codegen = new Vala.GDBusServerModule ();
 			 
 			
@@ -436,7 +436,7 @@ namespace Palete {
 			string [] cc_options = { "-lm", "-pg" };
 			valac += " -X -lm -X -pg";
 			
-#if VALA_0_28 || VALA_0_30 || VALA_0_32 || VALA_0_34  || VALA_0_36
+#if VALA_0_28 || VALA_0_30 || VALA_0_32 || VALA_0_34  || VALA_0_36  || VALA_0_42
 			var pkg_config_command = Environment.get_variable ("PKG_CONFIG");
 			ccompiler.compile (context, cc_command, cc_options, pkg_config_command);
 #else
@@ -445,7 +445,7 @@ namespace Palete {
 		
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
-#endif		
+// #endif		
 			
 			this.outputResult();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
