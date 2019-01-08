@@ -37,71 +37,80 @@ dnl --- libvala -- needs to find matching really..
 
 dnl - last supported version is 0.36 - as 0.40 broke the compiler
 
-PKG_CHECK_MODULES(LIBVALA, [libvala-0.40],
-			[vala_4_0_enabled=yes],
-			[vala_4_0_enabled=no]) 
-	if test $vala_4_0_enabled = yes; then
-		AC_DEFINE(HAVE_LIBVALA40,1,[libvala 0.40 support])
-	else
+PKG_CHECK_MODULES(LIBVALA, [libvala-0.42],
+		    [vala_4_2_enabled=yes],
+		    [vala_4_2_enabled=no]) 
+    if test $vala_4_2_enabled = yes; then
+	    AC_DEFINE(HAVE_LIBVALA42,1,[libvala 0.42 support])
+    else
 
-		 PKG_CHECK_MODULES(LIBVALA, [libvala-0.36],
-					 [vala_3_6_enabled=yes],
-					 [vala_3_6_enabled=no]) 
-			 if test $vala_3_6_enabled = yes; then
-				 AC_DEFINE(HAVE_LIBVALA36,1,[libvala 0.36 support])
-			 else
-			    
-			 PKG_CHECK_MODULES(LIBVALA, [libvala-0.34],
-						 [vala_3_4_enabled=yes],
-						 [vala_3_4_enabled=no]) 
-				 if test $vala_3_4_enabled = yes; then
-					 AC_DEFINE(HAVE_LIBVALA34,1,[libvala 0.34 support])
-				 else
-			    
-				 PKG_CHECK_MODULES(LIBVALA, [libvala-0.32],
-						 [vala_3_2_enabled=yes],
-						 [vala_3_2_enabled=no]) 
-				 if test $vala_3_2_enabled = yes; then
-					 AC_DEFINE(HAVE_LIBVALA32,1,[libvala 0.32 support])
-				 else	
-					 PKG_CHECK_MODULES(LIBVALA, [libvala-0.30],
-							 [vala_3_0_enabled=yes],
-							 [vala_3_0_enabled=no]) 
-					 if test $vala_3_0_enabled = yes; then
-							 AC_DEFINE(HAVE_LIBVALA30,1,[libvala 0.30 support])
-					 else				
-						 PKG_CHECK_MODULES(LIBVALA, [libvala-0.28],
-							 [vala_2_8_enabled=yes],
-							 [vala_2_8_enabled=no]) 
-						 if test $vala_2_8_enabled = yes; then
-							 AC_DEFINE(HAVE_LIBVALA28,1,[libvala 0.28 support])
-						 else
-							 PKG_CHECK_MODULES(LIBVALA, [libvala-0.26],
-								 [vala_2_6_enabled=yes],
-								 [vala_2_6_enabled=no])
-						 
-							 if test $vala_2_6_enabled = yes; then
-							 AC_DEFINE(HAVE_LIBVALA26,1,[libvala 0.26 support])
-							 else
-								 PKG_CHECK_MODULES(LIBVALA, [libvala-0.24],
-								 [vala_2_4_enabled=yes],
-								 [vala_2_4_enabled=no])
-							 
-								 if test $vala_2_4_enabled = yes; then
-									 AC_DEFINE(HAVE_LIBVALA24,1,[libvala 0.24 support])
-								 else
-									 PKG_CHECK_MODULES(LIBVALA, [libvala-0.22],
-									 [vala_2_2_enabled=yes] )
-									 
-									 AC_DEFINE(HAVE_LIBVALA22,1,[libvala 0.22 support])
-								 fi
-							 fi
-						 fi
-					 fi
-				 fi
-			 fi
-		 fi
-fi
+    PKG_CHECK_MODULES(LIBVALA, [libvala-0.40],
+			    [vala_4_0_enabled=yes],
+			    [vala_4_0_enabled=no]) 
+	    if test $vala_4_0_enabled = yes; then
+		    AC_DEFINE(HAVE_LIBVALA40,1,[libvala 0.40 support])
+	    else
+
+		     PKG_CHECK_MODULES(LIBVALA, [libvala-0.36],
+					     [vala_3_6_enabled=yes],
+					     [vala_3_6_enabled=no]) 
+			     if test $vala_3_6_enabled = yes; then
+				     AC_DEFINE(HAVE_LIBVALA36,1,[libvala 0.36 support])
+			     else
+			        
+			     PKG_CHECK_MODULES(LIBVALA, [libvala-0.34],
+						     [vala_3_4_enabled=yes],
+						     [vala_3_4_enabled=no]) 
+				     if test $vala_3_4_enabled = yes; then
+					     AC_DEFINE(HAVE_LIBVALA34,1,[libvala 0.34 support])
+				     else
+			        
+				     PKG_CHECK_MODULES(LIBVALA, [libvala-0.32],
+						     [vala_3_2_enabled=yes],
+						     [vala_3_2_enabled=no]) 
+				     if test $vala_3_2_enabled = yes; then
+					     AC_DEFINE(HAVE_LIBVALA32,1,[libvala 0.32 support])
+				     else	
+					     PKG_CHECK_MODULES(LIBVALA, [libvala-0.30],
+							     [vala_3_0_enabled=yes],
+							     [vala_3_0_enabled=no]) 
+					     if test $vala_3_0_enabled = yes; then
+							     AC_DEFINE(HAVE_LIBVALA30,1,[libvala 0.30 support])
+					     else				
+						     PKG_CHECK_MODULES(LIBVALA, [libvala-0.28],
+							     [vala_2_8_enabled=yes],
+							     [vala_2_8_enabled=no]) 
+						     if test $vala_2_8_enabled = yes; then
+							     AC_DEFINE(HAVE_LIBVALA28,1,[libvala 0.28 support])
+						     else
+							     PKG_CHECK_MODULES(LIBVALA, [libvala-0.26],
+								     [vala_2_6_enabled=yes],
+								     [vala_2_6_enabled=no])
+						     
+							     if test $vala_2_6_enabled = yes; then
+							     AC_DEFINE(HAVE_LIBVALA26,1,[libvala 0.26 support])
+							     else
+								     PKG_CHECK_MODULES(LIBVALA, [libvala-0.24],
+								     [vala_2_4_enabled=yes],
+								     [vala_2_4_enabled=no])
+							     
+								     if test $vala_2_4_enabled = yes; then
+									     AC_DEFINE(HAVE_LIBVALA24,1,[libvala 0.24 support])
+								     else
+									     PKG_CHECK_MODULES(LIBVALA, [libvala-0.22],
+									     [vala_2_2_enabled=yes] )
+									     
+									     AC_DEFINE(HAVE_LIBVALA22,1,[libvala 0.22 support])
+								     fi
+							     fi
+						     fi
+					     fi
+				     fi
+			     fi
+		     fi
+    fi
+fi    
+AM_CONDITIONAL(HAVE_LIBVALA42, test "$vala_4_2_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA40, test "$vala_4_0_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA36, test "$vala_3_6_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA34, test "$vala_3_4_enabled" = "yes")
@@ -152,8 +161,7 @@ fi
 AM_CONDITIONAL(HAVE_WEBKIT3, test "$webkit_3_0_enabled" = "yes")
 AM_CONDITIONAL(HAVE_WEBKIT4, test "$webkit_4_0_enabled" = "yes")
 
-
-
+ 
 dnl  -- javascriptcoregtk-4.0  ** not sure if this is needed....
 
 
