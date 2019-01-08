@@ -227,7 +227,9 @@ namespace Palete {
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
-#if VALA_0_40
+#if VALA_0_42
+			var ver=42;
+#elif VALA_0_40
 			var ver=40;
 #elif VALA_0_36
 			var ver=36;
