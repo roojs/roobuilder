@@ -405,6 +405,8 @@ right:
     Roo.bootstrap.SecurePass
     Roo.bootstrap.PhoneInput
     Roo.bootstrap.MoneyField
+    Roo.bootstrap.BezierSignature
+    
 
 left:
     Roo.bootstrap.TabGroup
