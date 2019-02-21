@@ -807,6 +807,77 @@ namespace JsRender {
             return "http://www.roojs.com/roojs1/docs/symbols/" + cls + ".html";
         }
 		 
+		public string toSourceComponent(bool isPreview) 
+        {
+            
+            //var items = JSON.parse(JSON.stringify(this.items[0]));
+            
+    
+           
+ 
+            string[] adda = { " = {",
+                "",
+                this.transStringsToJs() ,
+                "",
+                " dialog : false,",
+                " callback:  false,",
+                "",   
+                " show : function(data, cb)",
+                " {",
+                "  if (!this.dialog) {",
+                "   this.create();",
+                "  }",
+                "",
+                "  this.callback = cb;",
+                "  this.data = data;",
+                "  this.dialog.show(this.data._el);",
+                "  if (this.form) {",
+                "   this.form.reset();",
+                "   this.form.setValues(data);",
+                "   this.form.fireEvent('actioncomplete', this.form,  { type: 'setdata', data: data });",
+                "  }",
+                "",   
+                " },",
+                "",
+                " create : function()",
+                " {",
+                "   var _this = this;",
+                "   this.dialog = Roo.factory(" 
+            };
+            string[] addb = {  
+                   ");",
+                " }",
+                "};",
+                ""
+            };
+             
+            return this.mungeToStringWrap("    ",   
+        		this.outputHeader() + "\n" + this.name + string.joinv("\n", adda), //header
+        		string.joinv("\n", addb) // footer
+    		);
+             
+             
+             
+             
+        } 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
      
     }
 }
