@@ -99,12 +99,7 @@ public class JsRender.NodeToJs : Object {
 			this.iterChildren();
 		}
 		
-		
-		
-		// no properties to output...
-		//if (this.els.size < 1) {
-		//	return "";
-		//}
+		 
 
 		this.mungeOut();
 		return this.ret;
@@ -159,6 +154,12 @@ public class JsRender.NodeToJs : Object {
 		return ret;
 	}
 	
+
+	public void mungeOutProps()
+	{
+	
+	
+	}
 
 	public string mungeOut()
 	{
