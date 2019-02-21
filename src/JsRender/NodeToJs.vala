@@ -215,7 +215,7 @@ public class JsRender.NodeToJs : Object {
 		}		
 	}
 	
-	public void mungeOutPropArray()
+	public void mungeOutPropArrays()
 	{
 	
 		var piter = this.out_props_array.map_iterator();
