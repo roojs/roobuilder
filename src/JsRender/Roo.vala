@@ -819,11 +819,10 @@ namespace JsRender {
             
     		var ret = this.outputHeader();
     		
-           
- 
-            string[] adda = { " = {",
-                "",
-                this.transStringsToJs() ,
+    		ret += string.joinv("\n",{ 
+    			this.name  + " = function(cfg) ",
+                "{",
+
                 "",
                 " dialog : false,",
                 " callback:  false,",
@@ -857,6 +856,7 @@ namespace JsRender {
                 ""
             };
              
+//                this.transStringsToJs() ,
             return this.mungeToStringWrap("    ",   
         		this.outputHeader() + "\n" + this.name + string.joinv("\n", adda), //header
         		string.joinv("\n", addb) // footer
