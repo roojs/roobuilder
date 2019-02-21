@@ -157,10 +157,47 @@ public class JsRender.NodeToJs : Object {
 
 	public void mungeOutProps()
 	{
-	
+		// plain properties.
+		var iter = this.orderedPropKeys().list_iterator();
+		while(iter.next()) {
+ 
+			 
+			var k = iter.get();
+			if (k == "xns" || k == "xtype") {
+				continue;
+			}
+
+			var v = this.out_props.get(k);
+			this.node.setLine(this.cur_line, "p",k); 
+			this.addLine(this.pad + k + " : " + v + suffix, ',');
+			 
+			this.node.setLine(this.cur_line, "e", "");
+			
+		}
 	
 	}
-
+	public void mungeOutListeners()
+	{
+		if (this.out_listeners.size > 0 ) { 
+			 
+			this.addLine(this.pad + "listeners : {", 0);
+			iter = this.orderedListenerKeys().list_iterator();
+			 
+			while(iter.next()) {
+				
+				var k = iter.get();
+				var v = this.out_listeners.get(k);
+				this.node.setLine(this.cur_line, "l",k); //listener
+				this.addLine(this.pad + indent_str + k + " : " + v , ',');
+				this.node.setLine(this.cur_line, "e", "");
+			}
+			
+			this.closeLine();
+			this.addLine(this.pad + "}" ,',');
+			
+		}
+	
+	}
 	public string mungeOut()
 	{
 		this.node.line_start = this.cur_line;
@@ -184,44 +221,12 @@ public class JsRender.NodeToJs : Object {
 			this.addLine(this.pad + "xtype" + " : " + v + suffix, ',');
 		}
 		
-		// plain properties.
-		var iter = this.orderedPropKeys().list_iterator();
-		while(iter.next()) {
- 
-			 
-			var k = iter.get();
-			if (k == "xns" || k == "xtype") {
-				continue;
-			}
-
-			var v = this.out_props.get(k);
-			this.node.setLine(this.cur_line, "p",k); 
-			this.addLine(this.pad + k + " : " + v + suffix, ',');
-			 
-			this.node.setLine(this.cur_line, "e", "");
-			
-		}
+		this.mungeOutProps();
+		this.mungeOutListeners();
 	 
 		// listeners..
 		
-		if (this.out_listeners.size > 0 ) { 
-			 
-			this.addLine(this.pad + "listeners : {", 0);
-			iter = this.orderedListenerKeys().list_iterator();
-			 
-			while(iter.next()) {
-				
-				var k = iter.get();
-				var v = this.out_listeners.get(k);
-				this.node.setLine(this.cur_line, "l",k); //listener
-				this.addLine(this.pad + indent_str + k + " : " + v , ',');
-				this.node.setLine(this.cur_line, "e", "");
-			}
-			
-			this.closeLine();
-			this.addLine(this.pad + "}" ,',');
-			
-		}
+		
 		
 		//------- at this point it is the end of the code relating directly to the object..
 		
