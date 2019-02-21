@@ -823,7 +823,12 @@ namespace JsRender {
     			this.name  + " = function(cfg) ",
                 "{",
                 " var _this = this;",
-                " _this.strings = " + this.name + ".strings;", // bc..
+                " _this.strings = " + this.name + ".strings;", // ?? STRINGS???
+                "  cfg = Roo.apply(this.cfg);
+                
+                
+                
+                
                 " dialog : false,",
                 " callback:  false,",
                 "",   
