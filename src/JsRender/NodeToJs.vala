@@ -235,6 +235,25 @@ public class JsRender.NodeToJs : Object {
 		}	
 	}
 	
+	public void mungeOutChildren()
+	{
+		// children..
+		if (this.out_children.size > 0) {
+			this.addLine(this.pad + "items  : [" , 0);
+			var cniter = this.out_children.list_iterator();
+			while (cniter.next()) {
+				suffix = cniter.has_next()  ? "," : "";
+				var addstr = this.mungeChildNew(this.pad + indent_str  + indent_str, cniter.get());
+				this.addLine(this.pad + indent_str + addstr, ',');
+				this.node.setLine(this.cur_line, "e", "");
+				
+			}
+			this.closeLine();
+			this.addLine(this.pad +   "]",',');
+		}
+	
+	}
+	
 	public string mungeOut()
 	{
 		this.node.line_start = this.cur_line;
@@ -284,20 +303,6 @@ public class JsRender.NodeToJs : Object {
 		// prop arrays...
 		
 		
-		// children..
-		if (this.out_children.size > 0) {
-			this.addLine(this.pad + "items  : [" , 0);
-			var cniter = this.out_children.list_iterator();
-			while (cniter.next()) {
-				suffix = cniter.has_next()  ? "," : "";
-				var addstr = this.mungeChildNew(this.pad + indent_str  + indent_str, cniter.get());
-				this.addLine(this.pad + indent_str + addstr, ',');
-				this.node.setLine(this.cur_line, "e", "");
-				
-			}
-			this.closeLine();
-			this.addLine(this.pad +   "]",',');
-		}
 		this.node.setLine(this.cur_line, "e", "");
 		this.closeLine();
 		if (this.node.props.has_key("* xinclude")) {
