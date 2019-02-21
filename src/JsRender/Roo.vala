@@ -532,11 +532,11 @@ namespace JsRender {
 		   
     		};  
     		var ret=  string.joinv("\n",s);
-		var bits = this.name.split(".");
-		if (bits.length > 1) {
-			ret += "\nRoo.namespace(\'" + 
-				this.name.substring(0, this.name.length - (bits[bits.length-1].length + 1)) +
-				"');\n";
+			var bits = this.name.split(".");
+			if (bits.length > 1) {
+				ret += "\nRoo.namespace(\'" + 
+					this.name.substring(0, this.name.length - (bits[bits.length-1].length + 1)) +
+					"');\n";
 				
 		}
 		/// genericlly used..
@@ -806,6 +806,10 @@ namespace JsRender {
         {
             return "http://www.roojs.com/roojs1/docs/symbols/" + cls + ".html";
         }
+		/**
+		 new componentized version..?
+		
+		*/ 
 		 
 		public string toSourceComponent(bool isPreview) 
         {
