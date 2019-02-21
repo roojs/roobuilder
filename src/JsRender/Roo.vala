@@ -521,7 +521,8 @@ namespace JsRender {
 		}
         
         /**
-        outputs <script header ?? do we need this anymore?
+        outputs generated file text, and Roo.namespace
+        
         */
        
         public string outputHeader()
