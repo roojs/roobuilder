@@ -520,7 +520,9 @@ namespace JsRender {
 		    
 		}
         
-        
+        /**
+        outputs <script header ?? do we need this anymore?
+        */
        
         public string outputHeader()
         {
