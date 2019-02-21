@@ -280,6 +280,7 @@ public class JsRender.NodeToJs : Object {
 		
 	 	this.mungeOutPropObjects();
 	 	this.mungeOutPropArrays();	
+	 	this.mungeOutChildren();		 	
 		// prop arrays...
 		
 		
