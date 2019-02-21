@@ -223,7 +223,7 @@ public class JsRender.NodeToJs : Object {
 		
 		this.mungeOutProps();
 		this.mungeOutListeners();
-	 
+	 	this.mungeOutPropObjects();
 		// listeners..
 		
 		
