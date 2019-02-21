@@ -822,8 +822,8 @@ namespace JsRender {
     		ret += string.joinv("\n",{ 
     			this.name  + " = function(cfg) ",
                 "{",
-
-                "",
+                " var _this = this;",
+                " _this.strings = " + this.name + ".strings;", // bc..
                 " dialog : false,",
                 " callback:  false,",
                 "",   
