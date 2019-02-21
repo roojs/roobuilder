@@ -527,9 +527,8 @@ namespace JsRender {
         public string outputHeader()
         {
     		string[] s = {
-		        "//<script type=\"text/javascript\">",
 		        "",
-		        "// Auto generated file - created by app.Builder.js- do not edit directly (at present!)",
+		        "// This is an auto generated file - created by roojsbuilder - do not edit directly (at present!)",
 		        ""
 		   
     		};  
