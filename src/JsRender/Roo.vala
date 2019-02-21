@@ -530,7 +530,6 @@ namespace JsRender {
 		        "",
 		        "// This is an auto generated file - created by roojsbuilder - do not edit directly (at present!)",
 		        ""
-		   
     		};  
     		var ret=  string.joinv("\n",s);
 			var bits = this.name.split(".");
