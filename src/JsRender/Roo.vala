@@ -839,6 +839,7 @@ namespace JsRender {
 				" cfg.items = " + x.mungeItemsOnly() + ";\n" +
 				" " +this.name + ".superclass.constructor.call(this, cfg);\n" +
 				// fixme .. addEvents...
+				 x.mungeListenerCalls() + "\n" +
 				"}\n" +
 				"Roo.extend(Dynamic.Component, "+ this.node.fqn() + ", {\n";
 				
