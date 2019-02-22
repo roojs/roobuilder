@@ -28,10 +28,10 @@ public class JsRender.NodeToJs : Object {
 	string pad;
 	public JsRender renderer;
 	  
-	Gee.HashMap<string,string> out_props;
-	Gee.HashMap<string,string> out_listeners;	
-	Gee.HashMap<string,Node> out_nodeprops;
-	Gee.ArrayList<Node> out_children;
+	Gee.HashMap<string,string> 				out_props;
+	Gee.HashMap<string,string> 				out_listeners;	
+	Gee.HashMap<string,Node> 				out_nodeprops;
+	Gee.ArrayList<Node> 					out_children;
 	Gee.HashMap<string,Gee.ArrayList<Node>> out_props_array;
 	Gee.HashMap<string,Gee.ArrayList<string>> out_props_array_plain;	
 	
@@ -96,6 +96,7 @@ public class JsRender.NodeToJs : Object {
 		this.readListeners();
 
 		if (!this.node.props.has_key("* xinclude")) {
+			// needed to extract children data..
 			this.iterChildren();
 		}
 		
