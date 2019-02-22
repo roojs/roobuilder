@@ -11,44 +11,13 @@ int main (string[] args) {
 
 	var app =  BuilderApplication.singleton(  args);
 	
-	if (BuilderApplication.opt_debug  || BuilderApplication.opt_compile_project == null) {
-		GLib.Log.set_handler(null, 
-			GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING, 
-			(dom, lvl, msg) => {
-			print("%s: %s\n", dom, msg);
-		});
-	}
-	
+	app.initDebug();
+	app.optListProjects();
+	app.optSetProject();
      
-	if (BuilderApplication.opt_list_projects) {
-		 
-		//BuilderApplication.compileBjs();
-        Project.Project.loadAll();
-		print("Projects\n %s\n", Project.Project.listAllToString());
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-    Project.Project.loadAll();
-    
-    if (BuilderApplication.opt_list_projects) {
-		 
-		//BuilderApplication.compileBjs();
-
-		print("Projects\n %s\n", Project.Project.listAllToString());
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
+ 
 	Project.Project cur_project = null;
-    if (BuilderApplication.opt_compile_project != null) {
-		 
-		 
-		cur_project = Project.Project.getProjectByHash( BuilderApplication.opt_compile_project);
-		
-		if (cur_project == null) {
-			GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
-		}
-		cur_project.scanDirs();
-		
-		
-	}
+    
 	
 	if (BuilderApplication.opt_list_files) {
 		if (cur_project == null) {
