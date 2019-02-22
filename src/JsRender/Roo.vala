@@ -343,15 +343,13 @@ namespace JsRender {
 			
 			var ret = " _strings : {\n" + string.joinv(",\n", kvs) + "\n },";
 
-			
 			string[] ns = {};
 			foreach(var iter in  this.namedStrings.map_iterator()) {
-				var otext = hash.get(niter.get_value());
+				var otext = hash.get(iter.value);
 				var com = " /* " + (otext.replace("*/", "* - /") + " */ ");
-
-			
-				ns +=  ("  '" + niter.get_key() + "' : '" + niter.get_value() + "'" + com); 
+				ns +=  ("  '" + iter.key + "' : '" + iter.value + "'" + com); 
 			}
+			
 			if (ns.length > 0 ) {
 				ret += "\n _named_strings : {\n" + string.joinv(",\n", ns) + "\n },";
 			}
