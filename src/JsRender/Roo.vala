@@ -335,6 +335,15 @@ namespace JsRender {
 			string[] kvs = {};
 			
 			var hash = new Gee.HashMap<string,string>();
+			
+			var ts = this.transStrings;
+			foreach (var iter in ts) {
+				hash.set(iter.value, iter.key);
+				kvs +=  ("  '" + iter.value + "' :" + 
+					this.tree.quoteString(iter.key)
+					);
+			}
+			
 			var iter = this.transStrings.map_iterator();
 			while (iter.next()) {
 				hash.set(iter.get_value(), iter.get_key());
@@ -856,56 +865,18 @@ namespace JsRender {
 			x.mungeOutPropObjects(); // Possibly?
 	 		x.mungeOutPropArrays();	 // 
 	 		ret += x.ret + "\n" +
-	 		 	"});\n";
+	 		 	"});\n" +
+	 			this.name + "._string = "  	
+ 		 	
 	 		
- 
+ 			
             
             
             
             return ret;
                  
                 
-                /*
                 
-                " dialog : false,",
-                " callback:  false,",
-                "",   
-                " show : function(data, cb)",
-                " {",
-                "  if (!this.dialog) {",
-                "   this.create();",
-                "  }",
-                "",
-                "  this.callback = cb;",
-                "  this.data = data;",
-                "  this.dialog.show(this.data._el);",
-                "  if (this.form) {",
-                "   this.form.reset();",
-                "   this.form.setValues(data);",
-                "   this.form.fireEvent('actioncomplete', this.form,  { type: 'setdata', data: data });",
-                "  }",
-                "",   
-                " },",
-                "",
-                " create : function()",
-                " {",
-                "   var _this = this;",
-                "   this.dialog = Roo.factory(" 
-            };
-            string[] addb = {  
-                   ");",
-                " }",
-                "};",
-                ""
-            };
-             
-//                this.transStringsToJs() ,
-            return this.mungeToStringWrap("    ",   
-        		this.outputHeader() + "\n" + this.name + string.joinv("\n", adda), //header
-        		string.joinv("\n", addb) // footer
-    		);
-             */
-             
              
              
         } 
