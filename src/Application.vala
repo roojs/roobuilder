@@ -217,7 +217,8 @@
 				}	
 				var file = this.cur_project.getByName(BuilderApplication.opt_bjs_convert);
 				if (file == null) {
-					GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
+					GLib.error("missing file %s in project %s",
+						 BuilderApplication.opt_bjs_convert, this.cur_project.name);
 				}
 				//BuilderApplication.compileBjs();
 				file.loadItems();
