@@ -358,7 +358,8 @@ namespace JsRender {
 		{
 			GLib.debug("Roo.transStringsToJs()\n");
 			
-			return  ret = " _strings :  "+ this.transStringsToObjectString() +",\n" +
+			return
+				 " _strings :  "+ this.transStringsToObjectString() +",\n" +
 				 "\n _named_strings : " + this.transStringsNamedString() +  ",";
 			
 			
