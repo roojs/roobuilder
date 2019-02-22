@@ -323,6 +323,11 @@ namespace JsRender {
 				
 		}  
 		
+		
+		public string  transStringsToObjectString()
+		{
+		
+		}
 		public string  transStringsToJs()
 		{
 			
