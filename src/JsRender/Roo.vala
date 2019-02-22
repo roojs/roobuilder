@@ -827,7 +827,7 @@ namespace JsRender {
                 "  cfg = Roo.apply(this.cfg);
                 
                 
-                
+                /*
                 
                 " dialog : false,",
                 " callback:  false,",
@@ -866,7 +866,7 @@ namespace JsRender {
         		this.outputHeader() + "\n" + this.name + string.joinv("\n", adda), //header
         		string.joinv("\n", addb) // footer
     		);
-             
+             */
              
              
              
