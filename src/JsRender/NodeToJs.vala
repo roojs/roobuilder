@@ -88,7 +88,7 @@ public class JsRender.NodeToJs : Object {
 	*/
 	
 	
-	public string mungeExcludeTop ( )
+	public string mungeChildrenOnly ( )
 	{
 		//return this.mungeToString(this.node);
 
@@ -104,7 +104,19 @@ public class JsRender.NodeToJs : Object {
 		}
 		
 
-		this.mungeOut();
+		//var suffix = "";
+		this.mungeOutStart();
+		this.mungeOutXtype();	
+		this.mungeOutProps();
+		this.mungeOutListeners();
+		this.mungeOutXNS();			 
+		this.node.line_end = this.cur_line;
+	 	this.mungeOutPropObjects();
+	 	this.mungeOutPropArrays();	
+	 	this.mungeOutChildren();
+ 		this.mungeOutEnd();
+		this.node.sortLines();		 
+		return this.ret;
 		return this.ret;
 		 
 	} 
