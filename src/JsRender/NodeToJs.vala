@@ -235,7 +235,7 @@ public class JsRender.NodeToJs : Object {
 	// this is the this.on(...', function() { } ); bit..
 	public string  mungeOutListenerCalls()
 	{
-		var ret = "";
+		this.ret = "";
 		if (this.out_listeners.size < 1 ) { 
 			return "";
 		}
