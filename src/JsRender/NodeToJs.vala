@@ -332,7 +332,6 @@ public class JsRender.NodeToJs : Object {
 	
 	public string mungeOut()
 	{
-		
 		//var suffix = "";
 		this.mungeOutStart();
 		this.mungeOutXtype();	
@@ -345,15 +344,9 @@ public class JsRender.NodeToJs : Object {
 	 	this.mungeOutPropObjects();
 	 	this.mungeOutPropArrays();	
 	 	this.mungeOutChildren();		 	
-		// prop arrays...
-		
-		this.mungeOutEnd();
-		
-		 
-		this.node.sortLines();
-		 
+ 		this.mungeOutEnd();
+		this.node.sortLines();		 
 		return this.ret;
-	
 	}
 	
 	/**
