@@ -170,9 +170,17 @@
 					print("%s: %s\n", dom, msg);
 				});
 			}
-			 
-		
 		}
+		
+		public void optListProjects()
+		{
+			Project.Project.loadAll();
+			if (BuilderApplication.opt_list_projects) {
+				print("Projects\n %s\n", Project.Project.listAllToString());
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+			}
+		}
+		
 		
 		
 		
