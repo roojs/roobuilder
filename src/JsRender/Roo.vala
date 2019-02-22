@@ -860,7 +860,7 @@ namespace JsRender {
 	 		x.mungeOutPropArrays();	 // 
 	 		ret += x.ret + "\n" +
 	 		 	"});\n" +
-	 			this.name + "._string = 	   " + this.transStringsToObjectString() +",\n\n" +
+	 			this.name + "._string = " 		 + this.transStringsToObjectString() +",\n\n" +
 				this.name + " _named_strings = " + this.transStringsNamedString() +  ",\n";
  		 	
 	 		
