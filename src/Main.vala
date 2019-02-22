@@ -15,22 +15,10 @@ int main (string[] args) {
 	app.optListProjects();
 	app.optSetProject();
 	app.optListFiles();     
- 
 	app.optBjsConvert();     
-    
+	app.optBjsCompile();         
 	
 	
-    
-	
-    
-	if (BuilderApplication.opt_compile_target != null) {
-		 
-		Palete.ValaSourceCompiler.buildApplication();
-		
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-	
-	 
 	
 	GLib.debug("project = %s\n", BuilderApplication.opt_compile_project);
 	
