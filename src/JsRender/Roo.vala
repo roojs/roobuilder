@@ -558,9 +558,7 @@ namespace JsRender {
         {
             
             //var items = JSON.parse(JSON.stringify(this.items[0]));
-            
-    
-           
+             
  
             string[] adda = { " = {",
                 "",
