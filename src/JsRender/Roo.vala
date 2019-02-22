@@ -840,7 +840,7 @@ namespace JsRender {
 				" " +this.name + ".superclass.constructor.call(this, cfg);\n" +
 				// fixme .. addEvents...
 				"}\n" +
-				"Roo.extend(Dynamic.Component, Roo.bootstrap.Body, {
+				"Roo.extend(Dynamic.Component, Roo.bootstrap.Body, {\n";
 				
 
                     
