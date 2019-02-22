@@ -328,7 +328,7 @@ namespace JsRender {
 		{
 			if (this.transStrings.size < 1) {
 				GLib.debug("Roo.transStringsToJs() size < 1?\n");
-				return "";
+				return "{}";
 			}
 			string[] kvs = {};
 			
@@ -867,7 +867,7 @@ namespace JsRender {
 	 		x.mungeOutPropArrays();	 // 
 	 		ret += x.ret + "\n" +
 	 		 	"});\n" +
-	 			this.name + "._string = "  	
+	 			this.name + "._string = " +  transStringsNamedString	
  		 	
 	 		
  			
