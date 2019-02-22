@@ -234,7 +234,7 @@ public class JsRender.NodeToJs : Object {
 		var niter = this.out_nodeprops.map_iterator();
 
 		while(niter.next()) {
-			var addstr = this.mungeChildNew(this.pad + indent_str, niter.get_value());
+			var addstr = this.mungeChild(this.pad + indent_str, niter.get_value());
 			//print("add str: %s\n", addstr);
 			this.node.setLine(this.cur_line, "p",niter.get_key());
 			this.addLine(this.pad + niter.get_key() + " : " + addstr, ',');
@@ -254,7 +254,7 @@ public class JsRender.NodeToJs : Object {
 			
 			var pliter = piter.get_value().list_iterator();
 			while (pliter.next()) {
-				var addstr = this.mungeChildNew(this.pad + indent_str  + indent_str, pliter.get());
+				var addstr = this.mungeChild(this.pad + indent_str  + indent_str, pliter.get());
 				this.addLine(this.pad + indent_str + addstr, ',');
 				this.node.setLine(this.cur_line, "e", "");
 			}
@@ -271,7 +271,7 @@ public class JsRender.NodeToJs : Object {
 			var cniter = this.out_children.list_iterator();
 			while (cniter.next()) {
 				//suffix = cniter.has_next()  ? "," : "";
-				var addstr = this.mungeChildNew(this.pad + indent_str  + indent_str, cniter.get());
+				var addstr = this.mungeChild(this.pad + indent_str  + indent_str, cniter.get());
 				this.addLine(this.pad + indent_str + addstr, ',');
 				this.node.setLine(this.cur_line, "e", "");
 				
@@ -398,7 +398,7 @@ public class JsRender.NodeToJs : Object {
 		this.cur_line += str.split("\n").length;
 	}
  */
-	public string mungeChildNew(string pad ,  Node cnode )
+	public string mungeChild(string pad ,  Node cnode )
 	{
 		var x = new  NodeToJs(cnode, this.doubleStringProps, pad, this);
 	 
