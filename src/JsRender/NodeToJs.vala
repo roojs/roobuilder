@@ -180,6 +180,8 @@ public class JsRender.NodeToJs : Object {
 		return ret;
 	}
 	
+	var mungeSuffix = "";
+	
 
 	public void mungeOutProps()
 	{
