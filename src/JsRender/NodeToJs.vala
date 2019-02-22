@@ -253,7 +253,7 @@ public class JsRender.NodeToJs : Object {
 			}
 			
 			this.closeLine();
-			this.addLine(this.pad + "}" ,',');
+
 			
 		}
 	
