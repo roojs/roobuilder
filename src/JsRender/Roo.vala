@@ -827,7 +827,7 @@ namespace JsRender {
                 "  cfg = Roo.apply(this.cfg);"
             });
             return ret;
-                
+                 
                 
                 /*
                 
