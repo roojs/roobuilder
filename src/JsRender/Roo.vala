@@ -21,7 +21,7 @@ namespace JsRender {
         string region;
         bool disabled;
 
- 
+  
         
         public Roo(Project.Project project, string path) {
             base( project, path);
