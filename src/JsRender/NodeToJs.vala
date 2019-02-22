@@ -253,7 +253,7 @@ public class JsRender.NodeToJs : Object {
 			this.node.setLine(this.cur_line, "l",k); //listener
 			
 			this.addLine(this.pad + indent_str + "this.on('" + k + "', " + v  + "\n" +
-				 this.pad + indent_str +  " );\n",0);
+				 this.pad + indent_str +  " );",0);
 				
 			this.node.setLine(this.cur_line, "e", "");
 		}
@@ -287,7 +287,7 @@ public class JsRender.NodeToJs : Object {
 			var addstr = this.mungeChild(this.pad + indent_str, niter.get_value());
 			//print("add str: %s\n", addstr);
 			this.node.setLine(this.cur_line, "p",niter.get_key());
-			this.addLine(this.pad + "this." + niter.get_key() + " = " + addstr + ";\n", 0);
+			this.addLine(this.pad + "this." + niter.get_key() + " = " + addstr + ";", 0);
 			this.node.setLine(this.cur_line, "e", "");
 		}
 	}
@@ -329,7 +329,7 @@ public class JsRender.NodeToJs : Object {
 				this.node.setLine(this.cur_line, "e", "");
 			}
 			this.closeLine();
-			this.addLine(this.pad + "];" , ',');			
+			this.addLine(this.pad + "];" , 0);			
 		}	
 	}
 	
