@@ -307,7 +307,7 @@ public class JsRender.NodeToJs : Object {
 	{
 		this.node.line_start = this.cur_line;
 		this.top.node.setNodeLine(this.cur_line, this.node);
-		var spad = this.pad.substring(0, this.pad.length-indent);
+
 		
 		if (this.node.props.has_key("* xinclude")) {
 			this.addLine("Roo.apply(" + this.node.props.get("* xinclude") + "._tree(), {",0 );	 
@@ -318,6 +318,8 @@ public class JsRender.NodeToJs : Object {
 	}
 	public void mungeOutEnd()
 	{
+		
+		var spad = this.pad.substring(0, this.pad.length-indent);
 		this.node.setLine(this.cur_line, "e", "");
 		this.closeLine();
 		if (this.node.props.has_key("* xinclude")) {
