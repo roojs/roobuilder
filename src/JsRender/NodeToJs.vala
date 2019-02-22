@@ -320,7 +320,7 @@ public class JsRender.NodeToJs : Object {
 
 		while(piter.next()) {
 			this.node.setLine(this.cur_line, "p",piter.get_key());
-			this.addLine(this.pad + piter.get_key() + " : [", 0);
+			this.addLine(this.pad + "this." +  piter.get_key() + " = [", 0);
 			
 			var pliter = piter.get_value().list_iterator();
 			while (pliter.next()) {
