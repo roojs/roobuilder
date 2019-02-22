@@ -14,19 +14,12 @@ int main (string[] args) {
 	app.initDebug();
 	app.optListProjects();
 	app.optSetProject();
-     
+	app.optListFiles();     
  
 	Project.Project cur_project = null;
     
 	
-	if (BuilderApplication.opt_list_files) {
-		if (cur_project == null) {
-			GLib.error("missing project, use --project to select which project");
-		}
-		print("Files for %s\n %s\n", cur_project.name, cur_project.listAllFilesToString());
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-    
+	
     if (BuilderApplication.opt_bjs_compile != null) {
 		if (cur_project == null) {
 			GLib.error("missing project, use --project to select which project");
