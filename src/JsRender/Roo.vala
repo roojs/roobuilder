@@ -667,7 +667,7 @@ namespace JsRender {
         		"Roo.apply("+this.name + ".prototype, " + string.joinv("\n", adda), // header
         		// body goes here from the function..
         		string.joinv("\n", addb) + ");\n" + // footer
-        		"Roo.apply("+this.name +", " + this.name + ".prototype);\n"
+        		"Roo.apply("+this.name +", " + this.node.fqn + ".prototype);\n"
     		);
              
              
