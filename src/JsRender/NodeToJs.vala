@@ -347,14 +347,9 @@ public class JsRender.NodeToJs : Object {
 		
 		this.mungeOutEnd();
 		
-		
-		
-		
-		
+		 
 		this.node.sortLines();
-		
-		
-		
+		 
 		return this.ret;
 	
 	}
