@@ -667,7 +667,7 @@ namespace JsRender {
         		"Roo.apply("+this.name + ".prototype, " + string.joinv("\n", adda), // header
         		// body goes here from the function..
         		string.joinv("\n", addb) + ");\n" + // footer
-        		"Roo.apply("+this.name +", " + this.node.fqn + ".prototype);\n"
+        		"Roo.apply("+this.name +", " + this.name + ".prototype);\n"
     		);
              
              
@@ -840,7 +840,7 @@ namespace JsRender {
 				" " +this.name + ".superclass.constructor.call(this, cfg);\n" +
 				// fixme .. addEvents...
 				"}\n" +
-				"Roo.extend(Dynamic.Component, Roo.bootstrap.Body, {\n";
+				"Roo.extend(Dynamic.Component, "+ this.node.fqn() + ", {\n";
 				
  
             
