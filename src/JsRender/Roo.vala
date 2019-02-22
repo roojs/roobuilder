@@ -352,7 +352,7 @@ namespace JsRender {
 			}
 			return  (ns.length > 0 ) ?
 				"{\n" + string.joinv(",\n", ns) + "\n }" :
-				"";
+				"{}";
 		}
 		public string  transStringsToJs()
 		{
