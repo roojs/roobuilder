@@ -817,7 +817,7 @@ namespace JsRender {
             
             //var items = JSON.parse(JSON.stringify(this.items[0]));
             
-            var x = new NodeToJs(this.tree, this.doubleStringProps, 0, null);
+            var x = new NodeToJs(this.tree, this.doubleStringProps, " ", null);
 			x.renderer = this;
 
 			
