@@ -303,7 +303,7 @@ public class JsRender.NodeToJs : Object {
 		}
 		
 	}
-	public string mungeOut()
+	public void mungeOutStart()
 	{
 		this.node.line_start = this.cur_line;
 		this.top.node.setNodeLine(this.cur_line, this.node);
@@ -314,14 +314,19 @@ public class JsRender.NodeToJs : Object {
 		} else {
 			this.addLine("{", 0);
 		}
+	
+	}
+	
+	public string mungeOut()
+	{
+		
 		//var suffix = "";
 		
 		this.mungeOutXtype();	
 		this.mungeOutProps();
 		this.mungeOutListeners();
 		this.mungeOutXNS();	
-		//------- at this point it is the end of the code relating directly to the object..
-		
+		 
 		
 		this.node.line_end = this.cur_line;
 		
@@ -339,6 +344,8 @@ public class JsRender.NodeToJs : Object {
 		} else {
 			this.addLine( spad + "}", 0);
 		}
+		
+		
 		
 		this.node.sortLines();
 		
