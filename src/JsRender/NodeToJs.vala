@@ -313,6 +313,25 @@ public class JsRender.NodeToJs : Object {
 			this.addLine(this.pad + "]" , ',');			
 		}	
 	}
+	public void mungeOutPropArrayCalls()
+	{
+	
+		var piter = this.out_props_array.map_iterator();
+
+		while(piter.next()) {
+			this.node.setLine(this.cur_line, "p",piter.get_key());
+			this.addLine(this.pad + piter.get_key() + " : [", 0);
+			
+			var pliter = piter.get_value().list_iterator();
+			while (pliter.next()) {
+				var addstr = this.mungeChild(this.pad + indent_str  + indent_str, pliter.get());
+				this.addLine(this.pad + indent_str + addstr, ',');
+				this.node.setLine(this.cur_line, "e", "");
+			}
+			this.closeLine();
+			this.addLine(this.pad + "]" , ',');			
+		}	
+	}
 	
 	public void mungeOutChildrenArray()
 	{
