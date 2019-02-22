@@ -212,10 +212,10 @@
 		{
 		
 			if (BuilderApplication.opt_bjs_convert != null) {
-				if (cur_project == null) {
+				if (this.cur_project == null) {
 					GLib.error("missing project, use --project to select which project");
 				}	
-				var file = cur_project.getByName(BuilderApplication.opt_bjs_convert);
+				var file = this.cur_project.getByName(BuilderApplication.opt_bjs_convert);
 				if (file == null) {
 					GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 				}
