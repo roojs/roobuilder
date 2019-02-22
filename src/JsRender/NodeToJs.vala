@@ -233,10 +233,12 @@ public class JsRender.NodeToJs : Object {
 	
 	}
 	// this is the this.on(...', function() { } ); bit..
-	public void mungeOutListenerCalls()
+	public string  mungeOutListenerCalls()
 	{
 		var ret = "";
-		if (this.out_listeners.size > 0 ) { 
+		if (this.out_listeners.size < 1 ) { 
+			return "";
+		}
 
 			var iter = this.orderedListenerKeys().list_iterator();
 			 
