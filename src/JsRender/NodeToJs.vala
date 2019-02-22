@@ -248,8 +248,8 @@ public class JsRender.NodeToJs : Object {
 			var v = this.out_listeners.get(k);
 			this.node.setLine(this.cur_line, "l",k); //listener
 			
-			this.addLine(this.pad + indent_str +" this.on('" + k + "', " + v  + "\n" +
-				  " );\n";
+			this.addLine(this.pad + indent_str + "this.on('" + k + "', " + v  + "\n" +
+				 this.pad + indent_str +  " );\n";
 				
 			this.node.setLine(this.cur_line, "e", "");
 		}
