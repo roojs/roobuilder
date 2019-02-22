@@ -236,8 +236,7 @@ public class JsRender.NodeToJs : Object {
 	public void mungeOutListenerCalls()
 	{
 		if (this.out_listeners.size > 0 ) { 
-			 
-			this.addLine(this.pad + "listeners : {", 0);
+
 			var iter = this.orderedListenerKeys().list_iterator();
 			 
 			while(iter.next()) {
@@ -245,7 +244,11 @@ public class JsRender.NodeToJs : Object {
 				var k = iter.get();
 				var v = this.out_listeners.get(k);
 				this.node.setLine(this.cur_line, "l",k); //listener
-				this.addLine(this.pad + indent_str + k + " : " + v , ',');
+				
+				this.addLine(
+					this.pad + indent_str + "this.on('" + k + "', " + v  + "\n" +
+					this.pad + indent_str + ");" , '');
+					
 				this.node.setLine(this.cur_line, "e", "");
 			}
 			
