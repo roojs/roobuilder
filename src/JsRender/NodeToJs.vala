@@ -270,7 +270,7 @@ public class JsRender.NodeToJs : Object {
 			this.addLine(this.pad + "items  : [" , 0);
 			var cniter = this.out_children.list_iterator();
 			while (cniter.next()) {
-				suffix = cniter.has_next()  ? "," : "";
+				//suffix = cniter.has_next()  ? "," : "";
 				var addstr = this.mungeChildNew(this.pad + indent_str  + indent_str, cniter.get());
 				this.addLine(this.pad + indent_str + addstr, ',');
 				this.node.setLine(this.cur_line, "e", "");
