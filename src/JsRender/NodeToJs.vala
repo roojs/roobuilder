@@ -696,13 +696,10 @@ public class JsRender.NodeToJs : Object {
 		var keys = new Gee.ArrayList<string>();
 		var piter = this.node.listeners.map_iterator();
 		while (piter.next() ) {
-			 
 			keys.add(piter.get_key());
 		}
 		keys.sort((  a,  b) => {
 			return ((string)a).collate((string)b);
-			//if (a == b) return 0;
-			//return a < b ? -1 : 1;
 		});
 	
 		 
@@ -710,18 +707,12 @@ public class JsRender.NodeToJs : Object {
 			var key = keys.get(i);
 			var val = this.node.listeners.get(key);
 		
-	
-			 // 
 			var str = val.strip();
 			var lines = str.split("\n");
 			if (lines.length > 0) {
-				//str = string.joinv("\n" + this.pad + "	   ", lines);
 				str = string.joinv("\n" + this.pad + indent_str + indent_str , lines);
 			}
-			 
 			this.out_listeners.set(key.replace("|", "") ,str);
-		
-			
 		}
 		 
 		 
