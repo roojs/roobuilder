@@ -339,17 +339,7 @@ namespace JsRender {
 			var ts = this.transStrings;
 			foreach (var iter in ts) {
 				hash.set(iter.value, iter.key);
-				kvs +=  ("  '" + iter.value + "' :" + 
-					this.tree.quoteString(iter.key)
-					);
-			}
-			
-			var iter = this.transStrings.map_iterator();
-			while (iter.next()) {
-				hash.set(iter.get_value(), iter.get_key());
-				kvs +=  ("  '" + iter.get_value() + "' :" + 
-					this.tree.quoteString(iter.get_key())
-					);
+				kvs +=  ("  '" + iter.value + "' :" +  this.tree.quoteString(iter.key) );
 			}
 			
 			var ret = " _strings : {\n" + string.joinv(",\n", kvs) + "\n },";
