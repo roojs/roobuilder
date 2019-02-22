@@ -840,7 +840,7 @@ namespace JsRender {
 				" " +this.name + ".superclass.constructor.call(this, cfg);\n";
 			x.cur_line = ret.split("\n").length;
 				// fixme .. addEvents...
-			x.resetMunge();
+			x.mungeOutReset();
 			x.mungeOutListenerCalls();
 			x.mungeOutPropObjectCalls();
 			x.mungeOutPropArrayCalls();
