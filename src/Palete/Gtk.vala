@@ -322,7 +322,7 @@ namespace Palete {
 				
 				var max = (int)Vala.TokenType.YIELD +1;
 				for (var i =0; i < max;i++) {
-					var m = (Vala.TokenType)i;
+					var m = (Vala.TokenType);
 					var s = m.to_string();
 					var ss = s.slice(1,-1);
 					if (s[0] == '`' && GLib.Regex.match_simple("^[a-z]+$", ss) &&
