@@ -80,8 +80,34 @@ public class JsRender.NodeToJs : Object {
 		 }
 	}
 	
+	/**
+	convert the node + children into Javascript
+	This one does not output the top node's data -
+	designed for the 'componentized output'
+	
+	*/
 	
 	
+	public string mungeExcludeTop ( )
+	{
+		//return this.mungeToString(this.node);
+
+		
+		this.checkChildren();
+		this.readProps();
+		//this.readArrayProps();
+		this.readListeners();
+
+		if (!this.node.props.has_key("* xinclude")) {
+			// needed to extract children data..
+			this.iterChildren();
+		}
+		
+
+		this.mungeOut();
+		return this.ret;
+		 
+	} 
 	
 	
 	
@@ -100,7 +126,6 @@ public class JsRender.NodeToJs : Object {
 			this.iterChildren();
 		}
 		
-		 
 
 		this.mungeOut();
 		return this.ret;
