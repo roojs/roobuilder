@@ -249,6 +249,17 @@
 			}
 		}
 		
+		public void optTestConvert()
+		{
+			// has to test all the files in a project and see if the convertor has changed output
+			// and the print the diff..
+			
+			
+		
+		
+		}
+		
+		
 	 
 		public void optCompile()
 		{
