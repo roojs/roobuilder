@@ -105,10 +105,10 @@ public class JsRender.NodeToJs : Object {
 		
 
 		//var suffix = "";
-		this.mungeOutStart();
+ 
 		 
-	 	this.mungeOutChildren();
- 		this.mungeOutEnd();
+	 	this.mungeOutChildrenArray();
+ 
 		this.node.sortLines();		 
 		return this.ret;
 	 
