@@ -294,7 +294,7 @@ public class JsRender.NodeToJs : Object {
 		} else {
 			this.addLine("{", 0);
 		}
-		var suffix = "";
+		//var suffix = "";
 		// output the items...
 		// work out remaining items...
 	 
@@ -302,7 +302,7 @@ public class JsRender.NodeToJs : Object {
 		if (this.out_props.has_key("xtype")) {
 			var v = this.out_props.get("xtype");
 			this.node.setLine(this.cur_line, "p","xtype"); 
-			this.addLine(this.pad + "xtype" + " : " + v + suffix, ',');
+			this.addLine(this.pad + "xtype" + " : " + v /* + suffix */, ',');
 		}
 		
 		this.mungeOutProps();
@@ -317,7 +317,7 @@ public class JsRender.NodeToJs : Object {
 		if (this.out_props.has_key("xns")) {
 			var v = this.out_props.get("xns");
 			this.node.setLine(this.cur_line, "p","xns"); 
-			this.addLine(this.pad + "xns" + " : " + v + suffix, ',');
+			this.addLine(this.pad + "xns" + " : " + v /*+ suffix*/, ',');
 			this.node.setLine(this.cur_line, "p","| xns"); 
 			this.addLine(this.pad + "'|xns' : '" + v + "'", ',');
 			this.node.setLine(this.cur_line, "e", "");
