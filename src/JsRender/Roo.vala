@@ -840,13 +840,21 @@ namespace JsRender {
 				" " +this.name + ".superclass.constructor.call(this, cfg);\n";
 			x.cur_line = ret.split("\n").length;
 				// fixme .. addEvents...
-			ret += x.mungeOutListenerCalls() + "\n" +
+				
+			x.mungeOutListenerCalls();
+			x.mungeOutPropObjectCalls();
+			x.mungeOutPropArrayCalls();
+			ret += x.ret + "\n" +
 				"}\n" +
+				
+				
+				
 				"Roo.extend(Dynamic.Component, "+ this.tree.fqn() + ", {\n";
 			x.cur_line = ret.split("\n").length;
-			
-			ret += x.mungeOutProps
-				
+			x.ret = "";
+			x.mungeOutProps();
+			x.mungeOutPropObjects(); // Possibly?
+	 		x.mungeOutPropArrays();	 // 
  
             
             
