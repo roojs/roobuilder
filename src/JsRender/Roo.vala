@@ -851,10 +851,13 @@ namespace JsRender {
 				
 				"Roo.extend(Dynamic.Component, "+ this.tree.fqn() + ", {\n";
 			x.cur_line = ret.split("\n").length;
-			x.ret = "";
+			x.mungeOutReset();
 			x.mungeOutProps();
 			x.mungeOutPropObjects(); // Possibly?
 	 		x.mungeOutPropArrays();	 // 
+	 		ret += x.ret + "\n" +
+	 		 	"});\n";
+	 		
  
             
             
