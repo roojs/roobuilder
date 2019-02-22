@@ -232,6 +232,29 @@ public class JsRender.NodeToJs : Object {
 		}
 	
 	}
+	// this is the this.on(...', function() { } ); bit..
+	public void mungeOutListenerCalls()
+	{
+		if (this.out_listeners.size > 0 ) { 
+			 
+			this.addLine(this.pad + "listeners : {", 0);
+			var iter = this.orderedListenerKeys().list_iterator();
+			 
+			while(iter.next()) {
+				
+				var k = iter.get();
+				var v = this.out_listeners.get(k);
+				this.node.setLine(this.cur_line, "l",k); //listener
+				this.addLine(this.pad + indent_str + k + " : " + v , ',');
+				this.node.setLine(this.cur_line, "e", "");
+			}
+			
+			this.closeLine();
+			this.addLine(this.pad + "}" ,',');
+			
+		}
+	
+	}
 	
 	public void mungeOutPropObjects()
 	{
