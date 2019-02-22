@@ -842,8 +842,7 @@ namespace JsRender {
 				"}\n" +
 				"Roo.extend(Dynamic.Component, Roo.bootstrap.Body, {\n";
 				
-
-                    
+ 
             
             
             
