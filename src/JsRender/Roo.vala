@@ -332,10 +332,7 @@ namespace JsRender {
 			}
 			string[] kvs = {};
 			
-			var hash = new Gee.HashMap<string,string>();
-			
 			foreach (var iter in this.transStrings.entries) {
-				hash.set(iter.value, iter.key);
 				kvs +=  ("  '" + iter.value + "' :" +  this.tree.quoteString(iter.key) );
 			}
 			
@@ -344,6 +341,12 @@ namespace JsRender {
 		}
 		public string  transStringsNamedString()
 		{
+			var hash = new Gee.HashMap<string,string>();
+			
+			foreach (var iter in this.transStrings.entries) {
+				hash.set(iter.value, iter.key);
+			}
+			
 			string[] ns = {};
 			foreach(var iter in  this.namedStrings.entries) {
 				var otext = hash.get(iter.value);
