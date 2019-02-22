@@ -95,21 +95,22 @@ public class JsRender.Node : Object {
 	public static int uid_count = 0;
 	
 	public Node parent;
-	public Gee.ArrayList<Node> items; // child items..
+	public Gee.ArrayList<Node> 			items; // child items..
 	
-	public Gee.HashMap<string,string> props; // the properties..
-	public Gee.HashMap<string,string> listeners; // the listeners..
-	public string  xvala_cls;
+	public Gee.HashMap<string,string> 	props; // the properties..
+	public Gee.HashMap<string,string> 	listeners; // the listeners..
+	
+	public string xvala_cls;
 	public string xvala_xcls; // 'Xcls_' + id;
 	public string xvala_id; // item id or ""
 	
 	// line markers..
 	public int line_start;
 	public int line_end;
-	public Gee.ArrayList<int> lines;
-	public Gee.HashMap<int,string> line_map; // store of l:xxx or p:....
-	public Gee.ArrayList<int> node_lines;
-	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
+	public Gee.ArrayList<int> 		lines;
+	public Gee.HashMap<int,string> 	line_map; // store of l:xxx or p:....
+	public Gee.ArrayList<int> 		node_lines;
+	public Gee.HashMap<int,Node> 	node_lines_map; // store of l:xxx or p:....
 	
 
 	public Node()
