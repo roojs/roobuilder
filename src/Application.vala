@@ -183,7 +183,18 @@
 		Project.Project cur_project = null;
 		public void optSetProject()
 		{
-		
+			if (BuilderApplication.opt_compile_project != null) {
+			 
+			 
+				cur_project = Project.Project.getProjectByHash( BuilderApplication.opt_compile_project);
+				
+				if (cur_project == null) {
+					GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
+				}
+				cur_project.scanDirs();
+				
+			
+			}
 		
 		}
 		
