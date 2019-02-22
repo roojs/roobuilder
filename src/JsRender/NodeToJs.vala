@@ -273,7 +273,7 @@ public class JsRender.NodeToJs : Object {
 	{
 		// children..
 		if (this.out_children.size <  1) {
-			this.addLine("[]" , ',');
+			this.addLine("[]" , 0);
 			return;
 		}
 		
