@@ -326,7 +326,21 @@ namespace JsRender {
 		
 		public string  transStringsToObjectString()
 		{
-		
+			if (this.transStrings.size < 1) {
+				GLib.debug("Roo.transStringsToJs() size < 1?\n");
+				return "";
+			}
+			string[] kvs = {};
+			
+			var hash = new Gee.HashMap<string,string>();
+			
+			foreach (var iter in this.transStrings) {
+				hash.set(iter.value, iter.key);
+				kvs +=  ("  '" + iter.value + "' :" +  this.tree.quoteString(iter.key) );
+			}
+			
+			return "{\n" + string.joinv(",\n", kvs) + "\n },";
+
 		}
 		public string  transStringsToJs()
 		{
