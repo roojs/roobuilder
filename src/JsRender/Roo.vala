@@ -343,6 +343,16 @@ namespace JsRender {
 
 		}
 		public string  transStringsNamedString()
+		{
+			string[] ns = {};
+			foreach(var iter in  this.namedStrings.map_iterator()) {
+				var otext = hash.get(iter.value);
+				var com = " /* " + (otext.replace("*/", "* - /") + " */ ");
+				ns +=  ("  '" + iter.key + "' : '" + iter.value + "'" + com); 
+			}
+			return  (ns.length > 0 ) ?
+				"{\n" + string.joinv(",\n", ns) + "\n }" :
+				"";
 		
 		public string  transStringsToJs()
 		{
@@ -353,16 +363,10 @@ namespace JsRender {
 			}
 			
 			var ret = " _strings :  "+_strings +",\n";
-
-			string[] ns = {};
-			foreach(var iter in  this.namedStrings.map_iterator()) {
-				var otext = hash.get(iter.value);
-				var com = " /* " + (otext.replace("*/", "* - /") + " */ ");
-				ns +=  ("  '" + iter.key + "' : '" + iter.value + "'" + com); 
-			}
+			var ns = this.transStringsNamedString();
 			
 			if (ns.length > 0 ) {
-				ret += "\n _named_strings : {\n" + string.joinv(",\n", ns) + "\n },";
+				ret += "\n _named_strings : " + ns +  ",";
 			}
 			return ret;
 		}	
