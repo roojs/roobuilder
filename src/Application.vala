@@ -79,6 +79,7 @@
 		public static bool opt_debug = false;
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
+		public static bool opt_bjs_test  = false;
 		
 		public static string _self;
 		
