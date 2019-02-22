@@ -843,7 +843,9 @@ namespace JsRender {
 			ret += x.mungeOutListenerCalls() + "\n" +
 				"}\n" +
 				"Roo.extend(Dynamic.Component, "+ this.tree.fqn() + ", {\n";
-				
+			x.cur_line = ret.split("\n").length;
+			
+			ret += x.mungeOutProps
 				
  
             
