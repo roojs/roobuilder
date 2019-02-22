@@ -798,7 +798,7 @@ namespace JsRender {
             return str;
            // 
             //Palete.Palete.factory("Roo").guessName(str);
-            
+             
                             
                                  
         }
@@ -834,7 +834,17 @@ namespace JsRender {
 
             });
 			x.cur_line = ret.split("\n").length;
-            ret +=  "\n cfg.items = " + x.mungeItemsOnly() + ";\n";         
+			ret += 
+				"\n" +
+				" cfg.items = " + x.mungeItemsOnly() + ";\n" +
+				" " +this.name + ".superclass.constructor.call(this, cfg);\n" +
+				// fixme .. addEvents...
+				"}\n" +
+				"Roo.extend(Dynamic.Component, Roo.bootstrap.Body, {
+				
+
+                    
+            
             
             
             return ret;
