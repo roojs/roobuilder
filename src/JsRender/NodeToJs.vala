@@ -209,7 +209,7 @@ public class JsRender.NodeToJs : Object {
 		if (this.out_listeners.size > 0 ) { 
 			 
 			this.addLine(this.pad + "listeners : {", 0);
-			iter = this.orderedListenerKeys().list_iterator();
+			var iter = this.orderedListenerKeys().list_iterator();
 			 
 			while(iter.next()) {
 				
