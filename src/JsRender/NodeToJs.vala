@@ -235,6 +235,7 @@ public class JsRender.NodeToJs : Object {
 	// this is the this.on(...', function() { } ); bit..
 	public void mungeOutListenerCalls()
 	{
+		var ret = "";
 		if (this.out_listeners.size > 0 ) { 
 
 			var iter = this.orderedListenerKeys().list_iterator();
@@ -256,7 +257,7 @@ public class JsRender.NodeToJs : Object {
 
 			
 		}
-	
+		
 	}
 	
 	public void mungeOutPropObjects()
