@@ -824,7 +824,9 @@ namespace JsRender {
                 "{",
                 " var _this = this;",
                 " _this.strings = " + this.name + ".strings;", // ?? STRINGS???
-                "  cfg = Roo.apply(this.cfg);
+                "  cfg = Roo.apply(this.cfg);"
+            });
+            return ret;
                 
                 
                 /*
