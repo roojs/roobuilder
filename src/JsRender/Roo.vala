@@ -345,7 +345,7 @@ namespace JsRender {
 		public string  transStringsNamedString()
 		{
 			string[] ns = {};
-			foreach(var iter in  this.namedStrings.map_iterator()) {
+			foreach(var iter in  this.namedStrings.entries) {
 				var otext = hash.get(iter.value);
 				var com = " /* " + (otext.replace("*/", "* - /") + " */ ");
 				ns +=  ("  '" + iter.key + "' : '" + iter.value + "'" + com); 
