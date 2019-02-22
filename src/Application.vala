@@ -180,7 +180,12 @@
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
 			}
 		}
+		Project.Project cur_project = null;
+		public void optSetProject()
+		{
 		
+		
+		}
 		
 		
 		
