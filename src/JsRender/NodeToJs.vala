@@ -88,7 +88,7 @@ public class JsRender.NodeToJs : Object {
 	*/
 	
 	
-	public string mungeChildrenOnly ( )
+	public string mungeItemsOnly ( )
 	{
 		//return this.mungeToString(this.node);
 
