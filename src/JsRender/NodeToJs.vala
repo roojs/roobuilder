@@ -269,6 +269,30 @@ public class JsRender.NodeToJs : Object {
 		}	
 	}
 	
+	public void mungeOutChildrenArray()
+	{
+		// children..
+		if (this.out_children.size <  1) {
+			this.addLine("[]" , ',');
+			return;
+		}
+		
+			this.addLine(this.pad + "items  : [" , 0);
+			var cniter = this.out_children.list_iterator();
+			while (cniter.next()) {
+				//suffix = cniter.has_next()  ? "," : "";
+				var addstr = this.mungeChild(this.pad + indent_str  + indent_str, cniter.get());
+				this.addLine(this.pad + indent_str + addstr, ',');
+				this.node.setLine(this.cur_line, "e", "");
+				
+			}
+			this.closeLine();
+			this.addLine(this.pad +   "]",',');
+		}
+	
+	}
+	
+	
 	public void mungeOutChildren()
 	{
 		// children..
