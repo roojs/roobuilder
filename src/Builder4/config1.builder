@@ -110,10 +110,7 @@
             "librsvg-2.0",
             "libvala-0.32",
             "libvala-0.34",
-            "roojspacker-1.0",
-            "gee-0.8",
-            "libvala-0.36",
-            "roojspacker-1.2"
+            "roojspacker-1.0"
         ]
     }
 ]
