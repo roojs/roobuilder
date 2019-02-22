@@ -106,18 +106,12 @@ public class JsRender.NodeToJs : Object {
 
 		//var suffix = "";
 		this.mungeOutStart();
-		this.mungeOutXtype();	
-		this.mungeOutProps();
-		this.mungeOutListeners();
-		this.mungeOutXNS();			 
-		this.node.line_end = this.cur_line;
-	 	this.mungeOutPropObjects();
-	 	this.mungeOutPropArrays();	
+		 
 	 	this.mungeOutChildren();
  		this.mungeOutEnd();
 		this.node.sortLines();		 
 		return this.ret;
-		return this.ret;
+	 
 		 
 	} 
 	
