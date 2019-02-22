@@ -5,11 +5,9 @@
 */
  
 int main (string[] args) {
+	 
 	
-	
-	
-	
-    	new JsRender.Lang_Class();
+	new JsRender.Lang_Class();
 
 	var app =  BuilderApplication.singleton(  args);
 	
