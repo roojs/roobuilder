@@ -817,11 +817,11 @@ namespace JsRender {
             
             //var items = JSON.parse(JSON.stringify(this.items[0]));
             
-            var x = new NodeToJs(this.tree, this.doubleStringProps, pad, null);
+            var x = new NodeToJs(this.tree, this.doubleStringProps, " ", null);
 			x.renderer = this;
-			x.cur_line = ret.split("\n").length;
+
 			
-			var ret = x.munge();
+
             
     		var ret = this.outputHeader();
     		
@@ -831,8 +831,12 @@ namespace JsRender {
                 " var _this = this;",
                 " _this.strings = " + this.name + ".strings;", // ?? STRINGS???
                 "  Roo.apply(this,cfg);"
-                " cfg.items = " + this.
+
             });
+			x.cur_line = ret.split("\n").length;
+            ret +=  "\n cfg.items = " + x.mungeItemsOnly() + ";\n";         
+            
+            
             return ret;
                  
                 
