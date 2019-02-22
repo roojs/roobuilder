@@ -64,6 +64,7 @@
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
             { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file", null },
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to target  : vala / js", null },
+            { "test-converter", 0, 0, OptionArg.NONE, ref opt_bjs_test, "convert bjs to js (and diff results)", null },
             
             
 			{ null }
