@@ -287,7 +287,7 @@ public class JsRender.NodeToJs : Object {
 			
 		}
 		this.closeLine();
-		this.addLine(this.pad +   "]");
+		this.addLine(this.pad +   "]",0);
 		
 	
 	}
