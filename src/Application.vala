@@ -62,8 +62,8 @@
             // some testing code.
             { "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
-            { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file", null },
-            { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to target  : vala / js", null },
+            { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_convert, "convert bjs file", null },
+           // { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to target  : vala / js", null },
             { "test-converter", 0, 0, OptionArg.NONE, ref opt_bjs_test, "convert bjs to js (and diff results)", null },
             
             
@@ -74,8 +74,8 @@
 		public static string opt_compile_skip;
 		public static string opt_compile_add;
 		public static string opt_compile_output;
-        public static string opt_bjs_compile;
-        public static string opt_bjs_compile_target;
+        public static string opt_bjs_convert;
+//        public static string opt_bjs_compile_target;
 		public static bool opt_debug = false;
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
@@ -208,6 +208,8 @@
 			}
 			
 		}
+		
+		
 		
 	} 
 
