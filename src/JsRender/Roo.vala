@@ -350,7 +350,7 @@ namespace JsRender {
 				return "";
 			}
 			
-			var ret = " _strings :  "+_strings +",";
+			var ret = " _strings :  "+_strings +",\n";
 
 			string[] ns = {};
 			foreach(var iter in  this.namedStrings.map_iterator()) {
