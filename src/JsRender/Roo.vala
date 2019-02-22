@@ -334,7 +334,7 @@ namespace JsRender {
 			
 			var hash = new Gee.HashMap<string,string>();
 			
-			foreach (var iter in this.transStrings) {
+			foreach (var iter in this.transStrings.entries) {
 				hash.set(iter.value, iter.key);
 				kvs +=  ("  '" + iter.value + "' :" +  this.tree.quoteString(iter.key) );
 			}
