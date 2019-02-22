@@ -342,6 +342,8 @@ namespace JsRender {
 			return "{\n" + string.joinv(",\n", kvs) + "\n }";
 
 		}
+		public string  transStringsNamedString()
+		
 		public string  transStringsToJs()
 		{
 			GLib.debug("Roo.transStringsToJs()\n");
