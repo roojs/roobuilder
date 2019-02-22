@@ -249,7 +249,7 @@ public class JsRender.NodeToJs : Object {
 			this.node.setLine(this.cur_line, "l",k); //listener
 			
 			this.addLine(this.pad + indent_str + "this.on('" + k + "', " + v  + "\n" +
-				 this.pad + indent_str +  " );\n";
+				 this.pad + indent_str +  " );\n",0);
 				
 			this.node.setLine(this.cur_line, "e", "");
 		}
