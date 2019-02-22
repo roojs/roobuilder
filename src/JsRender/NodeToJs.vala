@@ -314,28 +314,10 @@ public class JsRender.NodeToJs : Object {
 		} else {
 			this.addLine("{", 0);
 		}
-	
+		
 	}
-	
-	public string mungeOut()
+	public void mungeOutEnd()
 	{
-		
-		//var suffix = "";
-		
-		this.mungeOutXtype();	
-		this.mungeOutProps();
-		this.mungeOutListeners();
-		this.mungeOutXNS();	
-		 
-		
-		this.node.line_end = this.cur_line;
-		
-	 	this.mungeOutPropObjects();
-	 	this.mungeOutPropArrays();	
-	 	this.mungeOutChildren();		 	
-		// prop arrays...
-		
-		
 		this.node.setLine(this.cur_line, "e", "");
 		this.closeLine();
 		if (this.node.props.has_key("* xinclude")) {
@@ -344,6 +326,28 @@ public class JsRender.NodeToJs : Object {
 		} else {
 			this.addLine( spad + "}", 0);
 		}
+	}
+	
+	public string mungeOut()
+	{
+		
+		//var suffix = "";
+		this.mungeOutStart();
+		this.mungeOutXtype();	
+		this.mungeOutProps();
+		this.mungeOutListeners();
+		this.mungeOutXNS();	
+		 
+		this.node.line_end = this.cur_line;
+		
+	 	this.mungeOutPropObjects();
+	 	this.mungeOutPropArrays();	
+	 	this.mungeOutChildren();		 	
+		// prop arrays...
+		
+		this.mungeOutEnd();
+		
+		
 		
 		
 		
