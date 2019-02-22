@@ -310,8 +310,7 @@ public class JsRender.NodeToJs : Object {
 
 		// listeners..
 		
-		
-		
+		 
 		//------- at this point it is the end of the code relating directly to the object..
 		
 		if (this.out_props.has_key("xns")) {
