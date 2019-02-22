@@ -197,7 +197,7 @@ public class JsRender.NodeToJs : Object {
 
 			var v = this.out_props.get(k);
 			this.node.setLine(this.cur_line, "p",k); 
-			this.addLine(this.pad + k + " : " + v + suffix, ',');
+			this.addLine(this.pad + k + " : " + v + this.mungeSuffix, ',');
 			 
 			this.node.setLine(this.cur_line, "e", "");
 			
