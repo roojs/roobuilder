@@ -17,7 +17,7 @@ int main (string[] args) {
 	app.optListFiles();     
 	app.optBjsConvert();     
 	app.optCompile();         
-	
+	app.optTestConvert();         	
 	 
 	GLib.debug("project = %s\n", BuilderApplication.opt_compile_project);
 	

@@ -136,100 +136,107 @@ namespace JsRender {
             
         }
         
+        public override string targetFileName()
+        {
+			Regex regex = new Regex("\\.(bjs|js)$");
+
+			return regex.replace(this.path,this.path.length , 0 , ".js");
+    
+        }
         
-	public  override  void save()
-	{
-            
-		GLib.debug("--- JsRender.Roo.save");
-		GLib.debug("save() - reset transStrings\n");
-		this.transStrings = new Gee.HashMap<string,string>();
-		this.namedStrings = new Gee.HashMap<string,string>();
-		this.findTransStrings(this.tree);
-		
-		this.saveBJS();
+		public  override  void save()
+		{
+		        
+			GLib.debug("--- JsRender.Roo.save");
+			GLib.debug("save() - reset transStrings\n");
+			this.transStrings = new Gee.HashMap<string,string>();
+			this.namedStrings = new Gee.HashMap<string,string>();
+			this.findTransStrings(this.tree);
+			
+			this.saveBJS();
 
-		// no tree..
-		if (this.tree == null) {
-			return;
+			// no tree..
+			if (this.tree == null) {
+				return;
+			}
+			// now write the js file..
+			string js;
+			try {
+				Regex regex = new Regex("\\.(bjs|js)$");
+
+				js = regex.replace(this.path,this.path.length , 0 , ".js");
+			} catch (RegexError e) {
+				this.name = "???";
+				print("count not make filename from path");
+				return;
+			}
+
+
+			//var d = new Date();
+			var js_src = this.toSource();            
+			//print("TO SOURCE in " + ((new Date()) - d) + "ms");
+			try {
+				this.writeFile(js, js_src);            
+			} catch (FileError e ) {
+				print("Save failed\n");
+			}
+			// for bootstrap - we can write the HTML to the templates directory..
+				 
+		        //var top = this.guessName(this.items[0]);
+		        //print ("TOP = " + top)
+		         
+		        
+		        
+		        
 		}
-		// now write the js file..
-		string js;
-		try {
-			Regex regex = new Regex("\\.(bjs|js)$");
 
-			js = regex.replace(this.path,this.path.length , 0 , ".js");
-		} catch (RegexError e) {
-			this.name = "???";
-			print("count not make filename from path");
-			return;
-		}
-
-
-		//var d = new Date();
-		var js_src = this.toSource();            
-		//print("TO SOURCE in " + ((new Date()) - d) + "ms");
-		try {
-			this.writeFile(js, js_src);            
-		} catch (FileError e ) {
-			print("Save failed\n");
-		}
-		// for bootstrap - we can write the HTML to the templates directory..
-    		 
-            //var top = this.guessName(this.items[0]);
-            //print ("TOP = " + top)
-             
-            
-            
-            
-	}
-
-	 
-
-	 
-	public override void saveHTML ( string html )
-	{
-		GLib.debug ("SAVEHTML %s\n",  this.project.runhtml);		 
-		if (this.project.runhtml == "") {
-			return;
-		}
 		 
-		var top = this.tree.fqn();
-		GLib.debug ("TOP = " + top + "\n" );
-		if (top.index_of("Roo.bootstrap.") < 0 &&
-				 top.index_of("Roo.mailer.") < 0
-	        ) {
-    		return;
-		}
-    		
-    		
-		//now write the js file..
-		string fn;
-		try {
-			Regex regex = new Regex("\\.(bjs|js)$");
 
-			fn = regex.replace(this.path,this.path.length , 0 , ".html");
-		} catch (RegexError e) {
-			this.name = "???";
-			print("count not make filename from path");
-			return;
-		}
-		var bn = GLib.Path.get_basename(fn);
-		var dn = GLib.Path.get_dirname(fn);
+		 
+		public override void saveHTML ( string html )
+		{
+			GLib.debug ("SAVEHTML %s\n",  this.project.runhtml);		 
+			if (this.project.runhtml == "") {
+				return;
+			}
+			 
+			var top = this.tree.fqn();
+			GLib.debug ("TOP = " + top + "\n" );
+			if (top.index_of("Roo.bootstrap.") < 0 &&
+					 top.index_of("Roo.mailer.") < 0
+			    ) {
+				return;
+			}
+				
+				
+			//now write the js file..
+			string fn;
+			try {
+				Regex regex = new Regex("\\.(bjs|js)$");
 
-		var targetdir = dn + (
-              		top.index_of("Roo.mailer.") < 0 ? "/templates" : "" );
-	                      
-		
-		if (!FileUtils.test(targetdir, FileTest.IS_DIR)) {
-			print("Skip save - templates folder does not exist : %s\n", targetdir);
-			return;
-		}
-	   print("SAVE HTML (%d) -- %s\n",html.length, targetdir + "/" +  bn);
-		try {
-			this.writeFile(targetdir + "/" +  bn , html);            
-		} catch (FileError e ) {
-			print("SaveHtml failed\n");
-		}
+				fn = regex.replace(this.path,this.path.length , 0 , ".html");
+			} catch (RegexError e) {
+				this.name = "???";
+				print("count not make filename from path");
+				return;
+			}
+			var bn = GLib.Path.get_basename(fn);
+			var dn = GLib.Path.get_dirname(fn);
+
+			var targetdir = dn + (
+		          		top.index_of("Roo.mailer.") < 0 ? "/templates" : "" );
+			                  
+			
+			if (!FileUtils.test(targetdir, FileTest.IS_DIR)) {
+				print("Skip save - templates folder does not exist : %s\n", targetdir);
+				return;
+			}
+		   print("SAVE HTML (%d) -- %s\n",html.length, targetdir + "/" +  bn);
+			try {
+				this.writeFile(targetdir + "/" +  bn , html);            
+			} catch (FileError e ) {
+				print("SaveHtml failed\n");
+			}
             
             
             
@@ -362,7 +369,7 @@ namespace JsRender {
 			GLib.debug("Roo.transStringsToJs()\n");
 			
 			return
-				" _strings :  "+ this.transStringsToObjectString() +",\n\n" +
+				" _strings : "       + this.transStringsToObjectString() +",\n" +
 				" _named_strings : " + this.transStringsNamedString() +  ",\n";
 						
 		}	

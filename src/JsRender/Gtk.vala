@@ -205,6 +205,15 @@ namespace JsRender {
 	        
 	    }
 	    */
+	    
+	    public override string targetFileName()
+        {
+
+			return GLib.Path.get_dirname(this.path) + "/" + this.name + ".vala";
+    
+        }
+        
+	    
 	   void  saveVala()
 	    {
 			if (this.tree == null) {

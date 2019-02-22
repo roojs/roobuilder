@@ -114,6 +114,12 @@ namespace JsRender {
              
             
         }
+        
+        public override string targetFileName()
+        {
+        	return this.path;
+    	}
+        
         public override void save() {
     		if (!this.loaded) {
     			print("Ignoring Save  - as file was never loaded?\n");

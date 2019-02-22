@@ -309,6 +309,31 @@ public class Spawn : Object
     }
     
     
+    
+    public string runSync()
+    {
+    	string ls_stdout;
+		string ls_stderr;
+		int ls_status;
+
+		Process.spawn_sync (
+			            this.cwd,
+	    		        this.args,
+			            this.env,
+						SpawnFlags.SEARCH_PATH,
+						null,
+						out ls_stdout,
+						out ls_stderr,
+						out ls_status
+		);
+		this.output = ls_stdout;
+		this.stderr = ls_stderr;
+		this.result = ls_status;
+	    return this.output;
+    
+    
+    }
+    
 
     private void tidyup()
     {

@@ -249,16 +249,7 @@
 			}
 		}
 		
-		public void optTestConvert()
-		{
-			// has to test all the files in a project and see if the convertor has changed output
-			// and the print the diff..
-			
-			
-		
-		
-		}
-		
+
 		
 	 
 		public void optCompile()
@@ -270,5 +261,50 @@
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
 			}
 	 	}
+	 	
+		public void optTestConvert()
+		{
+			// has to test all the files in a project and see if the convertor has changed output
+			// and the print the diff..
+			
+			if (!BuilderApplication.opt_bjs_test) {
+				return;
+			}
+			if (this.cur_project == null) {
+				GLib.error("missing project, use --project to select which project");
+			}
+			var files = this.cur_project.sortedFiles();
+			
+			foreach(var file in files) {
+				
+				file.loadItems();
+				FileIOStream iostream;				
+				var tmpfile = File.new_tmp ("test-XXXXXX.tmp", out iostream);
+				
+
+				OutputStream ostream = iostream.output_stream;
+				DataOutputStream dostream = new DataOutputStream (ostream);
+				dostream.put_string (file.toSourceCode());
+				string[] args = {};
+				args += "/usr/bin/diff";
+				args += "-u";				
+				args += file.targetFileName();
+				args += tmpfile.get_path();
+				
+				var compiler = new Spawn("/tmp", args);
+				print("DIFF %s\n%s", file.name, compiler.runSync());
+				
+				
+				  
+			
+			}
+			
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
+
+		
+		
+		}
+		
+	 	
 }
  

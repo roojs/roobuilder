@@ -357,8 +357,8 @@ namespace JsRender {
 			         
 			var f = GLib.File.new_for_path(path);
 			var data_out = new GLib.DataOutputStream(
-                                          f.replace(null, false, GLib.FileCreateFlags.NONE, null)
-         	       );
+                  f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+ 	        );
 			data_out.put_string(contents, null);
 			data_out.close(null);
 		}
@@ -384,6 +384,7 @@ namespace JsRender {
 		public abstract string toSourcePreview() ;
 		public abstract void removeFiles() ;
 		 public abstract void  findTransStrings(Node? node );
+		 public abstract string targetFileName();
 	} 
 
 }
