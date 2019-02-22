@@ -864,8 +864,7 @@ namespace JsRender {
 				this.name + " _named_strings = " + this.transStringsNamedString() +  ",\n";
  		 	
 	 		
- 			
-            
+ 			 
             
             
             return ret;
@@ -876,16 +875,7 @@ namespace JsRender {
              
         } 
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+      
      
      
      
