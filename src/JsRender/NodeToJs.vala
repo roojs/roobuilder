@@ -257,7 +257,6 @@ public class JsRender.NodeToJs : Object {
 				
 			this.node.setLine(this.cur_line, "e", "");
 		}
-		return this.ret;
 		
 		
 	}
