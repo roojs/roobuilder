@@ -282,6 +282,16 @@ public class JsRender.NodeToJs : Object {
 	
 	}
 	
+	public string mungeOutXtype()
+	{
+		if (this.out_props.has_key("xtype")) {
+			var v = this.out_props.get("xtype");
+			this.node.setLine(this.cur_line, "p","xtype"); 
+			this.addLine(this.pad + "xtype" + " : " + v /* + suffix */, ',');
+		}
+
+	}
+	
 	public string mungeOut()
 	{
 		this.node.line_start = this.cur_line;
@@ -299,11 +309,8 @@ public class JsRender.NodeToJs : Object {
 		// work out remaining items...
 	 
 		// output xns / xtype first..
-		if (this.out_props.has_key("xtype")) {
-			var v = this.out_props.get("xtype");
-			this.node.setLine(this.cur_line, "p","xtype"); 
-			this.addLine(this.pad + "xtype" + " : " + v /* + suffix */, ',');
-		}
+		
+		this.mungeOutXtype();
 		
 		this.mungeOutProps();
 		this.mungeOutListeners();
