@@ -842,7 +842,8 @@ namespace JsRender {
 				// fixme .. addEvents...
 			ret += x.mungeOutListenerCalls() + "\n" +
 				"}\n" +
-				"Roo.extend(Dynamic.Component, "+ this.node.fqn() + ", {\n";
+				"Roo.extend(Dynamic.Component, "+ this.tree.fqn() + ", {\n";
+				
 				
  
             
