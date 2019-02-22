@@ -336,8 +336,7 @@ namespace JsRender {
 			
 			var hash = new Gee.HashMap<string,string>();
 			
-			var ts = this.transStrings;
-			foreach (var iter in ts) {
+			foreach (var iter in this.transStrings) {
 				hash.set(iter.value, iter.key);
 				kvs +=  ("  '" + iter.value + "' :" +  this.tree.quoteString(iter.key) );
 			}
@@ -346,8 +345,7 @@ namespace JsRender {
 
 			
 			string[] ns = {};
-			var niter = this.namedStrings.map_iterator();
-			while (niter.next()) {
+			foreach(var iter in  this.namedStrings.map_iterator()) {
 				var otext = hash.get(niter.get_value());
 				var com = " /* " + (otext.replace("*/", "* - /") + " */ ");
 
