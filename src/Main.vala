@@ -16,10 +16,9 @@ int main (string[] args) {
 	app.optSetProject();
 	app.optListFiles();     
 	app.optBjsConvert();     
-	app.optBjsCompile();         
+	app.optCompile();         
 	
-	
-	
+	 
 	GLib.debug("project = %s\n", BuilderApplication.opt_compile_project);
 	
 	Gtk.init (ref args);
