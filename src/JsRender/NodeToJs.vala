@@ -282,7 +282,7 @@ public class JsRender.NodeToJs : Object {
 	
 	}
 	
-	public string mungeOutXtype()
+	public void mungeOutXtype()
 	{
 		if (this.out_props.has_key("xtype")) {
 			var v = this.out_props.get("xtype");
@@ -291,35 +291,8 @@ public class JsRender.NodeToJs : Object {
 		}
 
 	}
-	
-	public string mungeOut()
+	public void mungeOutXNS()
 	{
-		this.node.line_start = this.cur_line;
-		this.top.node.setNodeLine(this.cur_line, this.node);
-		var spad = this.pad.substring(0, this.pad.length-indent);
-		
-		if (this.node.props.has_key("* xinclude")) {
-			this.addLine("Roo.apply(" + this.node.props.get("* xinclude") + "._tree(), {",0 );
-	 
-		} else {
-			this.addLine("{", 0);
-		}
-		//var suffix = "";
-		// output the items...
-		// work out remaining items...
-	 
-		// output xns / xtype first..
-		
-		this.mungeOutXtype();
-		
-		this.mungeOutProps();
-		this.mungeOutListeners();
-
-		// listeners..
-		
-		 
-		//------- at this point it is the end of the code relating directly to the object..
-		
 		if (this.out_props.has_key("xns")) {
 			var v = this.out_props.get("xns");
 			this.node.setLine(this.cur_line, "p","xns"); 
@@ -328,6 +301,27 @@ public class JsRender.NodeToJs : Object {
 			this.addLine(this.pad + "'|xns' : '" + v + "'", ',');
 			this.node.setLine(this.cur_line, "e", "");
 		}
+		
+	}
+	public string mungeOut()
+	{
+		this.node.line_start = this.cur_line;
+		this.top.node.setNodeLine(this.cur_line, this.node);
+		var spad = this.pad.substring(0, this.pad.length-indent);
+		
+		if (this.node.props.has_key("* xinclude")) {
+			this.addLine("Roo.apply(" + this.node.props.get("* xinclude") + "._tree(), {",0 );	 
+		} else {
+			this.addLine("{", 0);
+		}
+		//var suffix = "";
+		
+		this.mungeOutXtype();	
+		this.mungeOutProps();
+		this.mungeOutListeners();
+		this.mungeOutXNS();	
+		//------- at this point it is the end of the code relating directly to the object..
+		
 		
 		this.node.line_end = this.cur_line;
 		
