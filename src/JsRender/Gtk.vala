@@ -16,7 +16,14 @@ namespace JsRender {
   
 	public  class Gtk : JsRender
 	{
-	   
+		string _build_module = "";
+		public string build_module {
+			get {
+				this._build_module = this.tree.get("build_module", '*');
+				return this._build_module ;
+			}
+		}
+		
 
 	    public Gtk(Project.Project project, string path) {
 	    
@@ -100,30 +107,36 @@ namespace JsRender {
 			}
 			var obj = node.get_object ();
 		
-			this.name = obj.get_string_member("name");
-			this.parent = obj.get_string_member("parent");
-			this.title = obj.get_string_member("title");
-		
-			if (obj.has_member("build_module")) { // should check type really..
-				this.build_module = obj.get_string_member("build_module");
-			}
-			 
-			// load items[0] ??? into tree...
-			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
-			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
+			var bjs_version_str = this.readBjsVersion(obj);
+			if (bjs_version_str < 3) {			
+			
+				this.name = obj.get_string_member("name");
+				var parent = this.jsonHasOrEmpty(obj, "parent");
+				var title = this.jsonHasOrEmpty(obj, "title");
+				this.tree.set("* parent", parent);
+				this.tree.set("* desc", title);
+			
+				if (obj.has_member("build_module")) { // should check type really..
+					this.tree.set("* build_module", obj.get_string_member("build_module"));
+				}
+				 
+				// load items[0] ??? into tree...
+				
+				if (obj.has_member("items") 
+					&& 
+					obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
+					&&
+					obj.get_array_member("items").get_length() > 0
+				) {
+					var ar = obj.get_array_member("items");
+					var tree_base = ar.get_object_element(0);
+					this.tree.loadFromJson(tree_base, bjs_version_str);
 
-			if (obj.has_member("items") 
-				&& 
-				obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
-				&&
-				obj.get_array_member("items").get_length() > 0
-			) {
-				var ar = obj.get_array_member("items");
-				var tree_base = ar.get_object_element(0);
-				this.tree = new Node();
-				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
-
+				}
+			} else {
+				this.tree.loadFromJson(obj, bjs_version_str);
 			}
+			
 			NodeToVala.mungeFile(this); // force line numbering..
 			this.loaded = true;
 		

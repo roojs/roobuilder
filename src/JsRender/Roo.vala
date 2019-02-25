@@ -18,17 +18,14 @@ namespace JsRender {
    
     class Roo : JsRender 
     {
-        string region;
-        bool disabled;
-
-  
+        bool disabled;  
         
         public Roo(Project.Project project, string path) {
             base( project, path);
             this.xtype = "Roo";
-             this.language = "js";
+         	this.language = "js";
             
-           this.content_type = "";
+           	this.content_type = "";
            
             //this.items = false;
             //if (cfg.json) {
@@ -37,7 +34,7 @@ namespace JsRender {
             //    //console.log(cfg.items.length);
             //    delete cfg.json; // not needed!
             // }
-            this.modOrder = "001"; /// sequence id that this uses.
+             
             this.region = "center";
             this.disabled = false;
             
@@ -106,30 +103,46 @@ namespace JsRender {
 			}
 			var obj = node.get_object ();
 		
-		
-			this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-			this.name = this.jsonHasOrEmpty(obj, "name");
-			this.parent = this.jsonHasOrEmpty(obj, "parent");
-			this.permname = this.jsonHasOrEmpty(obj, "permname");
-			this.title = this.jsonHasOrEmpty(obj, "title");
-			this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-
-			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
-			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
-
+			var bjs_version_str = this.readBjsVersion(obj);
 			
-			// load items[0] ??? into tree...
-			if (obj.has_member("items") 
-				&& 
-				obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
-				&&
-				obj.get_array_member("items").get_length() > 0
-			) {
-				this.tree = new Node(); 
-				var ar = obj.get_array_member("items");
-				var tree_base = ar.get_object_element(0);
-				this.tree.loadFromJson(tree_base, int.parse(bjs_version_str));
+			if ( bjs_version_str  < 3) {
+				this.name = this.jsonHasOrEmpty(obj, "name"); // will ninit tre...
+				
+				var modOrder = this.jsonHasOrEmpty(obj, "modOrder");
+				
+				var parent = this.jsonHasOrEmpty(obj, "parent");
+				var permname = this.jsonHasOrEmpty(obj, "permname");
+				var title = this.jsonHasOrEmpty(obj, "title");
+  
+				// load items[0] ??? into tree...
+				if (obj.has_member("items") 
+					&& 
+					obj.get_member("items").get_node_type() == Json.NodeType.ARRAY
+					&&
+					obj.get_array_member("items").get_length() > 0
+				) {
+ 
+					var ar = obj.get_array_member("items");
+					var tree_base = ar.get_object_element(0);
+					this.tree.loadFromJson(tree_base,  bjs_version_str );
+				}
+				
+				this.tree.set("* modOrder", modOrder == "" ? "001" : "");
+				this.tree.set("* parent", parent);
+				this.tree.set("* permname", permname);
+				this.tree.set("* desc", title);
+				
+				this.name = name;
+				
+ 
+			} else {
+
+				this.tree.loadFromJson(obj,  bjs_version_str );
+				 
 			}
+			
+			
+			
 			this.loaded = true;
 			this.toSource(); // force it to number the lines...
 
@@ -156,9 +169,7 @@ namespace JsRender {
 			this.saveBJS();
 
 			// no tree..
-			if (this.tree == null) {
-				return;
-			}
+			 
 			// now write the js file..
 			string js;
 			try {
@@ -373,8 +384,7 @@ namespace JsRender {
 				" _named_strings : " + this.transStringsNamedString() +  ",\n";
 						
 		}	
-                
-             
+                 
         /**
 	 * javascript used in Webkit preview 
          */
@@ -721,15 +731,17 @@ namespace JsRender {
     			//    topItem.background = false;
     		}
             
-    		var  modkey = this.modOrder + "-" +   this.name;
+    		var  modkey = this.tree.get("* modOrder") + "-" +   this.name;
     		try {
 	    		var reg = new Regex("[^A-Za-z.]+");
             
-    			 modkey = this.modOrder + "-" + reg.replace(this.name, this.name.length, 0 , "-");
+    			 modkey = this.tree.get("* modOrder") + "-" + reg.replace(this.name, this.name.length, 0 , "-");
             } catch (RegexError e) {
         		//noop..
             }
-    		string  parent =   (this.parent.length > 0 ?  "'" + this.parent + "'" :  "false");
+            var parent = this.tree.get("* parent");
+            
+    		parent =   (parent.length > 0 ?  "'" + parent+ "'" :  "false");
 
 		
 		
@@ -748,7 +760,7 @@ namespace JsRender {
             
             
             
-            var pref = this.outputHeader() + "\n" +
+            string pref = this.outputHeader() + "\n" +
 		        
 		        this.name  +  " = new Roo.XComponent({\n" +
 		        "\n" + 
@@ -761,7 +773,7 @@ namespace JsRender {
 		        "  parent   : "+ parent + ",\n" +
 		        "  name     : " + this.tree.quoteString(this.title.length > 0 ? this.title : "unnamed module") + ",\n" +
 		        "  disabled : " + (this.disabled ? "true" : "false") +", \n" +
-		        "  permname : '" + (this.permname.length > 0 ? this.permname : "") +"', \n" +
+		        "  permname : '" + this.tree.get("* permname")  +"', \n" +
 		            
 		       // "    tree : function() { return this._tree(); },\n" +   //BC
 		        "  _tree : function(_data)\n" +

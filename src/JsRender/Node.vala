@@ -42,6 +42,7 @@
  * 
  * signals
  * @ void open 
+ *
  * 
  * methods -- always text editor..
  * | void clearFiles
@@ -52,6 +53,13 @@
  * * args  -- string
  * * ctor -- string
  * * init -- big string?
+ * * -- these are from the file config
+ * * name string
+ * * title string (used by builder progress to show name)
+ * * permname string (permission name? - should really use tab name?)
+ 
+ * * modOrder string  (sequence / order for tabs)
+ * * parent string  (modular? previous one where tabs could be added to parent) 
  * 
  * event handlers (listeners)
  *   just shown 
@@ -130,6 +138,32 @@ public class JsRender.Node : Object {
 		this.node_lines_map = new Gee.HashMap<int,Node>();
 		
 	}
+	// used when drag/dropping a node into place..
+	// note this is a very shallow copy - so the source node should be 
+	// discarded after use 
+	public Node shallowCopyFromTop(Node n)
+	{
+		this.items = n.items;
+		this.listeners = n.listeners;
+		foreach(var e in this.props.entries) {
+			switch(e.value) {
+				case "* className":
+				case "* parent":
+				case "* modOrder":
+				case "* desc":
+				case "* permname":
+					continue;
+				default:
+					this.props.set(e.key, e.value);
+					break;
+			}
+		
+		}
+		return this;
+			
+	
+	}
+	
 	
 	public void setNodeLine(int line, Node node) {
 		//print("Add node @ %d\n", line);
@@ -316,18 +350,19 @@ public class JsRender.Node : Object {
 
 	}
 	// wrapper around get props that returns empty string if not found.
-	public string get(string key)
+	public string get(string key, char type = 0)
 	{
-		var k = this.props.get(key);
-		if (k != null) {
-			return k;
+		if (type == 0) {
+			var k = this.props.get(key);
+			if (k != null) {
+				return k;
+			}
+			
+			k = this.props.get("$ " + key);
+			if (k != null) {
+				return k;
+			}
 		}
-		
-		k = this.props.get("$ " + key);
-		if (k != null) {
-			return k;
-		}
-		
 		var iter = this.props.map_iterator();
 		while (iter.next()) {
 			var kk = iter.get_key().split(" ");
@@ -341,21 +376,29 @@ public class JsRender.Node : Object {
 		
 	}
 	
-	public string get_key(string key)
+ 
+	public string get_key(string key, char type = 0)
 	{
-		var k = this.props.get(key);
-		if (k != null) {
-			return key;
-		}
+		if (type == 0) {
+			var k = this.props.get(key);
+			if (k != null) {
+				return key;
+			}
+			
+			k = this.props.get("$ " + key);
+			if (k != null) {
+				return "$ " + key;
+			}
 		
-		k = this.props.get("$ " + key);
-		if (k != null) {
-			return "$ " + key;
 		}
-		
 		var iter = this.props.map_iterator();
 		while (iter.next()) {
 			var kk = iter.get_key().split(" ");
+			
+			if (type != 0 && kk[0][0] != type) {
+				continue;
+			}
+			
 			if (kk[kk.length-1] == key) {
 				return iter.get_key();
 			}
@@ -365,6 +408,7 @@ public class JsRender.Node : Object {
 		return "";
 		
 	}
+	 
 	public void normalize_key(string key, out string kname, out string kflag, out string ktype)
 	{
 		// key formats : XXXX
@@ -407,7 +451,7 @@ public class JsRender.Node : Object {
 	public void set(string key, string value) {
 		this.props.set(key,value);
 	}
-	 public bool has(string key)
+	 public bool has(string key, char type = 0)
 	{
 		var k = this.props.get(key);
 		if (k != null) {
@@ -415,7 +459,12 @@ public class JsRender.Node : Object {
 		}
 		var iter = this.props.map_iterator();
 		while (iter.next()) {
-			var kk = iter.get_key().strip().split(" ");
+			var kk = iter.get_key().strip().split(" ");		
+			if (type != 0 && kk[0][0] != type) {
+				continue;
+			}
+		
+
 			if (kk[kk.length-1] == key) {
 				return true;
 			}

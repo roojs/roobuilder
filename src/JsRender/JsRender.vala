@@ -15,27 +15,61 @@ namespace JsRender {
 		public Gee.ArrayList<string> doubleStringProps;
 		
 		public string id;
-		public string name;   // is the JS name of the file.
-		public string fullname;
+		string  _name = "";
+		public string name {
+			get {
+				this._name = this.tree.get("className", '*');
+				return  this._name;
+			}
+			set {
+				this.tree.set("* className", value);
+			}
+		}
+				 	
+			   // is the JS name of the file.
+		
+		 
+		//public string fullname;
 		public string path;  // is the full path to the file.
-		public string parent;  // JS parent.
+		//public string parent;  // JS parent. REMOVED
 		public string region;  // RooJS - insert region.
         
-		public string title;  // a title.. ?? nickname.. ??? -
-		public string build_module; // module to build if we compile (or are running tests...)
+		//public string title;  // a title.. ?? nickname.. ??? - REMOVED
 		
-
-		public string permname;
+		string _title = "";
+		public string title {
+			get {
+				this._title = this.tree.get("desc", '*');
+				return  this._title;
+			}
+		}
+		
+		
+		//public string build_module; // module to build if we compile (or are running tests...)
+		
+ 
+		//public string permname; REMOVED
 		public string language;
 		public string content_type;
-		public string modOrder;
+		//public string modOrder; REMOVED
 		public string xtype;
 		public uint64 webkit_page_id; // set by webkit view - used to extract extension/etc..
 		    
 		public Project.Project project;
 		//Project : false, // link to container project!
+
+		Node _tree;
+		public Node tree {
+			get {	
+				if (this._tree == null) {
+					this._tree = new Node();
+				}
+				return this._tree;
+			}
+			// not set?
+			
 		
-		public Node tree; // the tree of nodes.
+		} // the tree of nodes.
 		
 		public GLib.List<JsRender> cn; // child files.. (used by project ... should move code here..)
 
@@ -44,7 +78,7 @@ namespace JsRender {
 		public bool loaded;
 		
 		public Gee.HashMap<string,string> transStrings; // map of md5 -> string.
-		public	Gee.HashMap<string,string> namedStrings;
+		public Gee.HashMap<string,string> namedStrings;
 
 		public signal void changed (Node? node, string source); 
 		
@@ -64,15 +98,14 @@ namespace JsRender {
 			this.path = path;
 			this.project = project;
 			this.hasParent = false;
-			this.parent = "";
-			this.tree = null;
-			this.title = "";
+			//this.parent = "";
+			//this.title = "";
 			this.region = "";
-			this.permname = "";
-			this.modOrder = "";
+			//this.permname = "";
+			//this.modOrder = "";
 			this.language = "";
 			this.content_type = "";
-			this.build_module = "";
+			//this.build_module = "";
 			this.loaded = false;
 			//print("JsRender.cto() - reset transStrings\n");
 			this.transStrings = new Gee.HashMap<string,string>();
@@ -88,7 +121,7 @@ namespace JsRender {
 			} catch (GLib.Error e) {
 				this.name = "???";
 			}
-			this.fullname = (this.parent.length > 0 ? (this.parent + ".") : "" ) + this.name;
+			//this.fullname = (this.parent.length > 0 ? (this.parent + ".") : "" ) + this.name;
 
 			this.doubleStringProps = new Gee.ArrayList<string>();
 
@@ -121,11 +154,13 @@ namespace JsRender {
 	 
 			switch (xt) {
 				case "Gtk":
-	    				return new Gtk(project, path);
+    				return new Gtk(project, path);
+    				
 				case "Roo":
-		    			return new Roo(project, path);
+	    			return new Roo(project, path);
+	    			
 				case "PlainFile":
-		    			return new PlainFile(project, path);
+	    			return new PlainFile(project, path);
 			}
 			throw new Error.INVALID_FORMAT("JsRender Factory called with xtype=%s", xt);
 			//return null;    
@@ -259,17 +294,19 @@ namespace JsRender {
 			if (this.xtype == "PlainFile") {
 				return ret;
 			}
-			
+			  
+			ret = this.tree.toJsonObject();
+			ret.set_string_member("* bjs-version", "3");
 			//ret.set_string_member("id", this.id); // not relivant..
-			ret.set_string_member("name", this.name);
-			ret.set_string_member("parent", this.parent == null ? "" : this.parent);
-			ret.set_string_member("title", this.title == null ? "" : this.title);
-			ret.set_string_member("path", this.path);
+			//ret.set_string_member("* name", this.name);
+			//ret.set_string_member("parent", this.parent == null ? "" : this.parent);
+			//ret.set_string_member("title", this.title == null ? "" : this.title);
+			//ret.set_string_member("path", this.path);
 			//ret.set_string_member("items", this.items);
-			ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
-			ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
+			//ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
+			//ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
 			if (this.project.xtype == "Gtk") {
-				ret.set_string_member("build_module", this.build_module  == null ? "" : this.build_module);
+				//ret.set_string_member("* build_module", this.build_module  == null ? "" : this.build_module);
 			}
 			
 			if (this.transStrings.size > 0) {
@@ -278,7 +315,7 @@ namespace JsRender {
 				while (iter.next()) {
 					tr.set_string_member(iter.get_value(), iter.get_key());
 				}
-				ret.set_object_member("strings", tr);
+				ret.set_object_member("* strings", tr);
             }
 
             
@@ -289,16 +326,9 @@ namespace JsRender {
 				while (iter.next()) {
 					tr.set_string_member(iter.get_key(), iter.get_value());
 				}
-				ret.set_object_member("named_strings", tr);
+				ret.set_object_member("*  named_strings", tr);
             }
 			
-			var ar = new Json.Array();
-			// empty files do not have a tree.
-			if (this.tree != null) {
-				ar.add_object_element(this.tree.toJsonObject());
-			}
-			ret.set_array_member("items", ar);
-		
 		    return ret;
 		}
 		
@@ -319,16 +349,7 @@ namespace JsRender {
 		    }
 		    return this.path;
 		}
-		/*
-		    sortCn: function()
-		    {
-		        this.cn.sort(function(a,b) {
-		            return a.path > b.path;// ? 1 : -1;
-		        });
-		    },
-		*/
-		    // should be in palete provider really..
-
+		 
 
 		public Palete.Palete palete()
 		{
@@ -374,6 +395,15 @@ namespace JsRender {
 			
 			
 		}
+		
+		public int readBjsVersion(Json.Object obj)
+		{
+			var bjs_version_str = this.jsonHasOrEmpty(obj, "* bjs-version"); //3+ 
+			bjs_version_str = bjs_version_str == "" ? this.jsonHasOrEmpty(obj, "bjs-version") : bjs_version_str; //2
+			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str; //1
+			return int.parse(bjs_version_str);
+		}
+		
 		
 		
 		public abstract void save();
