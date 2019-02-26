@@ -353,6 +353,7 @@ namespace Palete {
 			
 			vapidirs += (BuilderApplication.configDirectory() + "/resources/vapi");
 			context.vapi_directories = vapidirs;
+			context.vapi_directories = "/usr/share/vala-0.%d/vapi".sprintf(ver);
 			// or context.get_vapi_path("glib-2.0"); // should return path..
 			//context.vapi_directories = vapidirs;
 			context.report.enable_warnings = true;
