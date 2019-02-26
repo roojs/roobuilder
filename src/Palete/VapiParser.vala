@@ -31,7 +31,7 @@ namespace Palete {
 				
 				return;
 			}
-			
+			 
 			
 			//print("parsing namespace %s\n", element.name);
 			if (element.name == null) {
