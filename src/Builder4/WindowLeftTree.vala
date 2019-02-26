@@ -1273,7 +1273,8 @@ public class Xcls_WindowLeftTree : Object
                  if ( parent_str.length < 1) {
                       this.el.append(out n_iter, null); // drop at top level..
                       node.parent = null;
-                      node = _this.main_window.windowstate.file.tree.shallowCopyFromTop( node );
+                      var nnode = _this.main_window.windowstate.file.tree.shallowCopyFromTop( node );
+                      node = nnode;
                       
                       
                 } else   if (pos  < 2) {
