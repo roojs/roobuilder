@@ -23,8 +23,7 @@ namespace Palete {
 				project.gir_cache =	  new Gee.HashMap<string,Gir>();
 			}
 		}
-		
-		
+		 
 		
 		public override void visit_namespace (Vala.Namespace element) 
 		{
