@@ -224,8 +224,8 @@ namespace Palete {
 			args += "--project";
 			args += this.file.project.fn;
 			args += "--target";
-			if (this.file.build_module.length > 0 ) {
-        		    args += this.file.build_module;
+			if (this.file.tree.get("build_module",'*').length > 0 ) {
+        		    args += this.file.tree.get("build_module",'*');
 			} else {
 			    args += pr.firstBuildModule();
 			}
@@ -390,8 +390,8 @@ namespace Palete {
  			
 			
 			
-			if (this.file.build_module.length > 0 ) {
-    		    mod =  this.file.build_module;
+			if (this.file.tree.get("build_module",'*').length > 0 ) {
+    		    mod =  this.file.tree.get("build_module",'*');
 			} else {
 			    mod =  pr.firstBuildModule();
 			}
