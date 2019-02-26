@@ -85,7 +85,7 @@ public class DialogSaveModule : Object
             break;
         }
         var f = project.newFile(name);
-        f.tree =  _this.data.deepClone();
+        f.tree.shallowCopyFromTop( _this.data.deepClone());
         f.save();
         
         // now we save it..
