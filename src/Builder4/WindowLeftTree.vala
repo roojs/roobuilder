@@ -1181,7 +1181,7 @@ public class Xcls_WindowLeftTree : Object
             var data = (JsRender.Node)(value.get_object());
             GLib.debug("removing node from Render\n");
             if (data.parent == null) {
-               _this.main_window.windowstate.file.resetTree() = null;
+               _this.main_window.windowstate.file.resetTree()  ;
             } else {
                 data.remove();
             }
