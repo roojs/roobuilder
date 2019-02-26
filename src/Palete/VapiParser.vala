@@ -442,7 +442,7 @@ namespace Palete {
 			// check context:
 			context.check ();
 			if (context.report.get_errors () > 0) {
-				GLib.error("VAPI parser got errors");
+				GLib.error("failed check VAPIS, so we can not write file correctly");
 				// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
 				Vala.CodeContext.pop ();
 				 
