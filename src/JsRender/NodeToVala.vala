@@ -476,7 +476,7 @@ public class JsRender.NodeToVala : Object {
 			var iter = default_ctor.paramset.params.list_iterator();
 			while (iter.next()) {
 				var n = iter.get().name;
-			    //print("building CTOR ARGS: %s, %s", n, iter.get().is_varargs ? "VARARGS": "");
+			    Glib.debug("building CTOR ARGS: %s, %s", n, iter.get().is_varargs ? "VARARGS": "");
 				 
 				
 				if (!this.node.has(n)) {
