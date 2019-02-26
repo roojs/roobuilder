@@ -391,10 +391,10 @@ namespace Palete {
 	    			continue;
     			}
 				//valac += " --pkg " + dcg.packages.get(i);
-				//if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
+				 if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
 				 
-			//		continue;
-			// }
+					continue;
+				}
 				GLib.debug("ADD vapi '%s'", dcg.packages.get(i));
 				context.add_external_package (dcg.packages.get(i));
 			}			
@@ -465,7 +465,18 @@ namespace Palete {
 	//
 		// startpoint:
 		//
-	 
+	 public bool has_vapi(string[] dirs,  string vapi) 
+		{
+			for(var i =0 ; i < dirs.length; i++) {
+				GLib.debug("check VAPI - %s", dirs[i] + "/" + vapi + ".vapi");
+				if (!FileUtils.test( dirs[i] + "/" + vapi + ".vapi", FileTest.EXISTS)) {
+					continue;
+				}   
+				return true;
+			}
+			return false;
+			
+		}
 	}
 }
  /*
