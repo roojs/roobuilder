@@ -359,7 +359,7 @@ namespace Palete {
 			context.report.enable_warnings = true;
 			context.metadata_directories = { };
 			context.gir_directories = {};
-			//context.thread = true;
+			//context.thread = true; 
 			
 			
 			//this.report = new ValaSourceReport(this.file);
