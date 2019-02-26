@@ -8,7 +8,7 @@ namespace Palete {
 		PARSE_FAILED 
 	}
 	 
-
+ 
 	public class VapiParser : Vala.CodeVisitor {
 		
 		Vala.CodeContext context;
