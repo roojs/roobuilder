@@ -32,14 +32,27 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_save_btn save_btn;
 
         // my vars (def)
+    public signal void success (Project.Project pr, JsRender.JsRender file);
+    public bool done;
+    public Project.Project project;
+    public JsRender.JsRender file;
+    public Xcls_MainWindow mainwindow;
 
     // ctor
     public Xcls_PopoverFileDetails()
     {
         _this = this;
-        this.el = new Gtk.Popover();
+        this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.done = false;
+        this.file = null;
+        this.mainwindow = null;
+
+        // set gobject values
+        this.el.border_width = 0;
+        this.el.modal = true;
+        this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
@@ -97,7 +110,7 @@ public class Xcls_PopoverFileDetails : Object
         _this.modOrder.el.set_text(c.tree.get("* modOrder"));
          _this.permname.el.set_text(c.tree.get("* permname"));
         
-        
+         
          
         
          var ar = new Gee.ArrayList<string>();
@@ -163,9 +176,12 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Box2(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box();
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.homogeneous = false;
             var child_0 = new Xcls_HeaderBar3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,true,0 );
@@ -194,6 +210,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.title = "Add / Edit File";
         }
 
         // user defined functions
@@ -215,6 +234,11 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Grid();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.margin_right = 4;
+            this.el.margin_left = 4;
+            this.el.row_spacing = 2;
             var child_0 = new Xcls_filetypelbl( _this );
             child_0.ref();
             this.el.attach (  child_0.el , 0,0,1,1 );
@@ -286,9 +310,13 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.filetypelbl = this;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "File type" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
         }
 
         // user defined functions
@@ -310,6 +338,8 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_ftdbcellrenderer( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
@@ -388,6 +418,8 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -406,9 +438,11 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.ftdbmodel = this;
-            this.el = new Gtk.ListStore();
+            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -474,9 +508,13 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label9(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Component Name" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
         }
 
         // user defined functions
@@ -498,6 +536,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Entry();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -515,9 +556,14 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label11(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Title" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -539,6 +585,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Entry();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -556,9 +605,15 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label13(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Region" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
+            this.el.tooltip_text = "center, north, south, east, west";
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -580,6 +635,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Entry();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -597,9 +655,14 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label15(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Parent Name" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -621,6 +684,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Entry();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -638,9 +704,14 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label17(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Permission Name" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -662,6 +733,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Entry();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -679,9 +753,14 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label19(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Order (for tabs)" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -703,6 +782,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Entry();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -720,9 +802,14 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label21(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Module to build (Vala only)" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -744,6 +831,8 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_dbcellrenderer( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
@@ -774,6 +863,8 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -792,9 +883,11 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore();
+            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -847,9 +940,14 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label25(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label();
+            this.el = new Gtk.Label( "Directory" );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
+            this.el.visible = true;
         }
 
         // user defined functions
@@ -871,6 +969,8 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_dircellrenderer( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
@@ -901,6 +1001,8 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -919,9 +1021,11 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dirmodel = this;
-            this.el = new Gtk.ListStore();
+            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -987,6 +1091,11 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.HButtonBox();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.margin_right = 4;
+            this.el.margin_left = 4;
+            this.el.margin_bottom = 4;
             var child_0 = new Xcls_Button30( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1012,6 +1121,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Cancel";
 
             //listeners
             this.el.clicked.connect( () => { 
@@ -1040,6 +1152,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Save";
 
             //listeners
             this.el.clicked.connect( ( ) =>  { 

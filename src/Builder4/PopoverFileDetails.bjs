@@ -12,9 +12,9 @@
     "closed" : "() => {\n  if (!this.done) {\n    _this.el.show();\n  \n  }\n} "
    },
    "|   void updateFileFromEntry" : "() {\n\n        _this.file.tree.set(\"* desc\",  _this.title.el.get_text());\n        _this.file.tree.set(\"* region\",  _this.region.el.get_text());\n        _this.file.tree.set(\"* parent \",  _this.parent.el.get_text());                        \n        _this.file.tree.set(\"* permname\",  _this.permname.el.get_text()); \n        _this.file.tree.set(\"* modOrder\",  _this.modOrder.el.get_text());\n        \n        if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {\n            _this.file.renameTo(_this.name.el.get_text());\n        }\n        // store the module...\n        _this.file.tree.set(\"* build_module\", \"\");\n        \n         Gtk.TreeIter iter; \n        if (_this.build_module.el.get_active_iter (out iter)) {\n             Value vfname;\n             this.dbmodel.el.get_value (iter, 0, out vfname);\n             if (((string)vfname).length > 0) {\n                 _this.file.tree.set(\"* build_module\",   (string)vfname);\n             }\n    \n        }\n        \n                                                   \n}    ",
-   "id" : "PopoverFileDetails",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
-   "| void show" : "(JsRender.JsRender c, Gtk.Widget btn) \n{\n    this.project = c.project;\n    this.done = false;\n    \n    \n    //if (!this.el) {\n        //this.init();\n     //}\n    \n    _this.name.el.set_text(c.name);\n    _this.title.el.set_text(c.title);\n    _this.parent.el.set_text(c.tree.get(\"* parent\"));    \n    _this.region.el.set_text(c.tree.get(\"* region\"));\n    _this.modOrder.el.set_text(c.tree.get(\"* modOrder\"));\n     _this.permname.el.set_text(c.tree.get(\"* permname\"));\n    \n    \n     \n    \n     var ar = new Gee.ArrayList<string>();\n     _this.dbmodel.loadData(ar,\"\");\n    // load the modules... if relivant..\n    if (this.project.xtype == \"Gtk\") {\n        var p = (Project.Gtk)c.project;\n          var cg = p.compilegroups;\n\n        var iter = cg.map_iterator();\n        while(iter.next()) {\n            var key = iter.get_key();\n            if (key == \"_default_\") {\n                continue;\n            }\n            ar.add(key);\n        };\n        _this.dbmodel.loadData(ar, c.tree.get(\"* build_module\"));\n\n    }\n    \n     \n    _this.file = c;\n    //console.log('show all');\n    this.el.set_modal(true);\n    this.el.set_relative_to(btn);\n\n    this.el.set_position(Gtk.PositionType.RIGHT);\n    \n    // window + header?\n     print(\"SHOWALL - POPIP\\n\");\n    this.el.show_all();\n    this.name.el.grab_focus();\n    \n    \n    \n    if (c.path.length > 0) {\n\t    this.save_btn.el.set_label(\"Save\");\n\t\t_this.filetype.el.hide();\n\t\t_this.filetypelbl.el.hide();\n\t\t_this.filetype.showhide(true); // as we only work on bjs files currently\n    } else {\n        this.save_btn.el.set_label(\"Create\");\n        _this.ftdbmodel.loadData(\"bjs\"); // fixme - need to determine type..\n\t    _this.filetype.el.show();\n\t    _this.filetypelbl.el.show();\n    }\n    \n    \n    //this.success = c.success;\n    \n    \n}",
+   "id" : "PopoverFileDetails",
+   "| void show" : "(JsRender.JsRender c, Gtk.Widget btn) \n{\n    this.project = c.project;\n    this.done = false;\n    \n    \n    //if (!this.el) {\n        //this.init();\n     //}\n    \n    _this.name.el.set_text(c.name);\n    _this.title.el.set_text(c.title);\n    _this.parent.el.set_text(c.tree.get(\"* parent\"));    \n    _this.region.el.set_text(c.tree.get(\"* region\"));\n    _this.modOrder.el.set_text(c.tree.get(\"* modOrder\"));\n     _this.permname.el.set_text(c.tree.get(\"* permname\"));\n    \n     \n     \n    \n     var ar = new Gee.ArrayList<string>();\n     _this.dbmodel.loadData(ar,\"\");\n    // load the modules... if relivant..\n    if (this.project.xtype == \"Gtk\") {\n        var p = (Project.Gtk)c.project;\n          var cg = p.compilegroups;\n\n        var iter = cg.map_iterator();\n        while(iter.next()) {\n            var key = iter.get_key();\n            if (key == \"_default_\") {\n                continue;\n            }\n            ar.add(key);\n        };\n        _this.dbmodel.loadData(ar, c.tree.get(\"* build_module\"));\n\n    }\n    \n     \n    _this.file = c;\n    //console.log('show all');\n    this.el.set_modal(true);\n    this.el.set_relative_to(btn);\n\n    this.el.set_position(Gtk.PositionType.RIGHT);\n    \n    // window + header?\n     print(\"SHOWALL - POPIP\\n\");\n    this.el.show_all();\n    this.name.el.grab_focus();\n    \n    \n    \n    if (c.path.length > 0) {\n\t    this.save_btn.el.set_label(\"Save\");\n\t\t_this.filetype.el.hide();\n\t\t_this.filetypelbl.el.hide();\n\t\t_this.filetype.showhide(true); // as we only work on bjs files currently\n    } else {\n        this.save_btn.el.set_label(\"Create\");\n        _this.ftdbmodel.loadData(\"bjs\"); // fixme - need to determine type..\n\t    _this.filetype.el.show();\n\t    _this.filetypelbl.el.show();\n    }\n    \n    \n    //this.success = c.success;\n    \n    \n}",
    "bool done" : false,
    "# Project.Project project" : "",
    "xtype" : "Popover",
@@ -27,8 +27,8 @@
    "items" : [
     {
      "bool homogeneous" : false,
-     "$ pack" : "add",
      "xtype" : "Box",
+     "$ pack" : "add",
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "items" : [
@@ -73,14 +73,14 @@
          "items" : [
           {
            "id" : "ftdbcellrenderer",
-           "xtype" : "CellRendererText",
            "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
            "$ xns" : "Gtk"
           },
           {
            "id" : "ftdbmodel",
-           "xtype" : "ListStore",
            "* pack" : "set_model",
+           "xtype" : "ListStore",
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
@@ -123,8 +123,8 @@
         },
         {
          "label" : "Region",
-         "tooltip_text" : "center, north, south, east, west",
          "$ visible" : true,
+         "tooltip_text" : "center, north, south, east, west",
          "xalign" : 0.90000000000000002,
          "* pack" : "attach,0,3,1,1",
          "xtype" : "Label",
@@ -209,14 +209,14 @@
          "items" : [
           {
            "id" : "dbcellrenderer",
-           "* pack" : "pack_start,true",
            "xtype" : "CellRendererText",
+           "* pack" : "pack_start,true",
            "$ xns" : "Gtk"
           },
           {
            "id" : "dbmodel",
-           "* pack" : "set_model",
            "xtype" : "ListStore",
+           "* pack" : "set_model",
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
@@ -243,14 +243,14 @@
          "items" : [
           {
            "id" : "dircellrenderer",
-           "xtype" : "CellRendererText",
            "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
            "$ xns" : "Gtk"
           },
           {
            "id" : "dirmodel",
-           "xtype" : "ListStore",
            "* pack" : "set_model",
+           "xtype" : "ListStore",
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
@@ -272,9 +272,9 @@
          "listeners" : {
           "clicked" : "() => { \n\n  _this.done = true;\n    _this.el.hide(); \n}"
          },
+         "string label" : "Cancel",
          "* pack" : "add",
          "xtype" : "Button",
-         "string label" : "Cancel",
          "$ xns" : "Gtk"
         },
         {
@@ -282,8 +282,8 @@
           "clicked" : "( ) =>  { \n\n \n\n\n\tif (_this.name.el.get_text().length  < 1) {\n\t    StandardErrorDialog.show(\n\t        _this.mainwindow.el,\n\t        \"You have to set Component name \"\n\t    );\n\t     \n\t    return;\n\t}\n\t// what does this do?\n\t\n\tvar isNew = _this.file.name.length  > 0 ? false : true;\n\t/*\n\tif (!isNew && this.file.name != _this.name.el.get_text()) {\n\t    Xcls_StandardErrorDialog.singleton().show(\n\t        this.el,\n\t        \"Sorry changing names does not work yet. \"\n\t    );\n\t     \n\t    return;\n\t}\n\t*/\n\t \n\t\n  \n\t// FIXME - this may be more complicated...\n\t//for (var i in this.def) {\n\t//    this.file[i] =  this.get(i).el.get_text();\n\t//}\n\n\tif (!isNew) {\n\t    try {\n\t         _this.updateFileFromEntry();\n\t     } catch( JsRender.Error.RENAME_FILE_EXISTS er) {\n\t          Xcls_StandardErrorDialog.singleton().show(\n\t            _this.mainwindow.el,\n\t            \"The name you used already exists \"\n\t        );\n\t        return;\n\t         \n\t     }\n\n\t      _this.done = true;\n\t    _this.file.save();\n\t    _this.el.hide();\n\t    return;\n\t}\n\t\n\t// ---------------- NEW FILES...\n\tGtk.TreeIter iter;\n\n\tif (!_this.filetype.el.get_active_iter(out iter)) {\n\t\t// should not happen...\n\t\t// so we are jut going to return without \n\t\tStandardErrorDialog.show(\n\t        _this.mainwindow.el,\n\t        \"You must select a file type. \"\n\t    );\n\t    return;\n\t\t \n\t}\n\t\n\t\n\tvar fn = _this.name.el.get_text();\n\t\n\tValue ftypename;\n\t_this.ftdbmodel.el.get_value (iter, 0, out ftypename);\n\tvar ext = ((string)ftypename);\n\tvar dir = _this.project.firstPath(); \n\tif (ext != \"bjs\") {\n\t \n\t\tif (!_this.dir.el.get_active_iter(out iter)) {\n\t\t\t// should not happen...\n\t\t\t// so we are jut going to return without \n\t\t\tStandardErrorDialog.show(\n\t\t\t    _this.mainwindow.el,\n\t\t\t    \"You must select a directory \"\n\t\t\t);\n\t\t\treturn;\n\t\t}\n\t\tValue vdir;\n\t\t_this.dirmodel.el.get_value (iter, 0, out vdir);\n\t\tdir = (string)vdir;\n\t}\n\t\n\tvar targetfile = dir + \"/\" + fn;\n\t\n\t// strip the file type off the end..\n\t\n\t\n    var rx = new GLib.Regex(\"\\\\.\" + ext + \"$\",GLib.RegexCompileFlags.CASELESS);\n    targetfile = rx.replace(targetfile, targetfile.length, 0, \"\"); \n   \n\tif (GLib.FileUtils.test(targetfile + \".\" + ext, GLib.FileTest.EXISTS)) {\n\t    Xcls_StandardErrorDialog.singleton().show(\n\t        _this.mainwindow.el,\n\t        \"That file already exists\"\n\t    ); \n\t    return;\n\t}\n   \n   var f =  JsRender.JsRender.factory(\n\t\text == \"bjs\" ? _this.file.project.xtype : \"PlainFile\",  \n\t\t_this.file.project, \n\t\ttargetfile + \".\" + ext);\n\n\t_this.file = f;\n\t\n\n\t\n\t_this.updateFileFromEntry();\n\t_this.file.loaded = true;\n\t_this.file.save();\n\tif (ext == \"bjs\") {\n\t\t_this.file.project.addFile(_this.file);\n\t}\n\t\n \n\t// what about .js ?\n   _this.done = true;\n\t_this.el.hide();\n\n// hopefull this will work with bjs files..\n\t\n\t_this.success(_this.project, _this.file);\n   \n}"
          },
          "id" : "save_btn",
-         "* pack" : "add",
          "xtype" : "Button",
+         "* pack" : "add",
          "string label" : "Save",
          "$ xns" : "Gtk"
         }

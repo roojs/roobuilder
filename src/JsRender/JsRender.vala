@@ -25,7 +25,7 @@ namespace JsRender {
 				this.tree.set("* className", value);
 			}
 		}
-				 	
+	 	
 			   // is the JS name of the file.
 		
 		 
@@ -70,6 +70,11 @@ namespace JsRender {
 			
 		
 		} // the tree of nodes.
+		
+		public void resetTree()
+		{
+			this._tree = new Node();
+		}
 		
 		public GLib.List<JsRender> cn; // child files.. (used by project ... should move code here..)
 
