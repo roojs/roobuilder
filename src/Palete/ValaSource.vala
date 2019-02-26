@@ -139,7 +139,7 @@ namespace Palete {
 			args += "--project";
 			args += this.file.project.fn;
 			args += "--target";
-			args += this.file.build_module;
+			args += this.file.tree.get("build_module",'*');
 			args += "--add-file";
 			args +=  tmpfile.get_path();
 			args += "--skip-file";
