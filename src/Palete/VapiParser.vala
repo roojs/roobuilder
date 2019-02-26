@@ -392,10 +392,10 @@ namespace Palete {
     			}
 				//valac += " --pkg " + dcg.packages.get(i);
 				//if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
-				//	GLib.debug("Skip vapi '%s' - does not exist", dcg.packages.get(i));
+				 
 			//		continue;
 			// }
-				
+				GLib.debug("ADD vapi '%s'", dcg.packages.get(i));
 				context.add_external_package (dcg.packages.get(i));
 			}			
 			
