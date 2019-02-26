@@ -8,7 +8,7 @@ namespace Palete {
 		PARSE_FAILED 
 	}
 	 
-
+ 
 	public class VapiParser : Vala.CodeVisitor {
 		
 		Vala.CodeContext context;
@@ -23,8 +23,7 @@ namespace Palete {
 				project.gir_cache =	  new Gee.HashMap<string,Gir>();
 			}
 		}
-		
-		
+		 
 		
 		public override void visit_namespace (Vala.Namespace element) 
 		{
@@ -32,7 +31,7 @@ namespace Palete {
 				
 				return;
 			}
-			
+			 
 			
 			//print("parsing namespace %s\n", element.name);
 			if (element.name == null) {
@@ -353,13 +352,15 @@ namespace Palete {
 			var vapidirs = context.vapi_directories;
 			
 			vapidirs += (BuilderApplication.configDirectory() + "/resources/vapi");
+			vapidirs += "/usr/share/vala-0.%d/vapi".printf(ver);
 			context.vapi_directories = vapidirs;
+			
 			// or context.get_vapi_path("glib-2.0"); // should return path..
 			//context.vapi_directories = vapidirs;
 			context.report.enable_warnings = true;
 			context.metadata_directories = { };
 			context.gir_directories = {};
-			//context.thread = true;
+			//context.thread = true; 
 			
 			
 			//this.report = new ValaSourceReport(this.file);
@@ -392,11 +393,11 @@ namespace Palete {
 	    			continue;
     			}
 				//valac += " --pkg " + dcg.packages.get(i);
-				//if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
-				//	GLib.debug("Skip vapi '%s' - does not exist", dcg.packages.get(i));
-			//		continue;
-			// }
-				
+				 if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
+				 
+					continue;
+				}
+				GLib.debug("ADD vapi '%s'", dcg.packages.get(i));
 				context.add_external_package (dcg.packages.get(i));
 			}			
 			
@@ -443,7 +444,7 @@ namespace Palete {
 			// check context:
 			context.check ();
 			if (context.report.get_errors () > 0) {
-				print("check got errors");
+				GLib.error("failed check VAPIS, so we can not write file correctly");
 				// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
 				Vala.CodeContext.pop ();
 				 
@@ -466,7 +467,18 @@ namespace Palete {
 	//
 		// startpoint:
 		//
-	 
+	 public bool has_vapi(string[] dirs,  string vapi) 
+		{
+			for(var i =0 ; i < dirs.length; i++) {
+				GLib.debug("check VAPI - %s", dirs[i] + "/" + vapi + ".vapi");
+				if (!FileUtils.test( dirs[i] + "/" + vapi + ".vapi", FileTest.EXISTS)) {
+					continue;
+				}   
+				return true;
+			}
+			return false;
+			
+		}
 	}
 }
  /*
