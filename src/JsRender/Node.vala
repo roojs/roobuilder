@@ -563,7 +563,7 @@ public class JsRender.Node : Object {
 			
 			this.props.set(rkey,  (string)sv);
 		});
-		if (this.props.get("extends", '*') == "") {
+		if (this.get("extends", '*') == "") {
 			
 		}
 
