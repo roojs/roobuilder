@@ -530,7 +530,7 @@ public class JsRender.Node : Object {
 	public void loadFromJson(Json.Object obj, int version) 
 	{
 		
-		var extends = "";
+
 		obj.foreach_member((o , key, value) => {
 			//print(key+"\n");
 			if (key == "items") {
@@ -563,7 +563,9 @@ public class JsRender.Node : Object {
 			
 			this.props.set(rkey,  (string)sv);
 		});
-		
+		if (this.props.get("extends", '*') == "") {
+			
+		}
 
 
 
