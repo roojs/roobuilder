@@ -564,7 +564,8 @@ public class JsRender.Node : Object {
 			this.props.set(rkey,  (string)sv);
 		});
 		if (this.get("extends", '*') == "") {
-			
+			var xt = this.get("xtype");
+			this.set("* extends",  this.props.get("$ xns") + "." + this.props.get("xtype")); 
 		}
 
 
