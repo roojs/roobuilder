@@ -366,13 +366,14 @@ namespace JsRender {
 		public string guessName(Node ar) // turns the object into full name.
 		{
 		     // eg. xns: Roo, xtype: XXX -> Roo.xxx
-		     return node.fqn();
+		     return ar.fqn();
+		     /*
 		    if (!ar.hasXnsType()) {
 		       return "";
 		    }
 		    
 		    return ar.get("* xns") + "." + ar.get("* xtype");
-		                      
+		       */               
 		                        
 		}
 		/**
