@@ -59,26 +59,19 @@ public class Xcls_LeftProps : Object
      
     	
     	_this.model.el.foreach((mod, path,  iter) => {
+      		GLib.Value gvaltype, gval,kvalue;
+      		
+    		mod.get_value(iter, 1 , out gval); // one is key..
+    		mod.get_value(iter,0, out gvaltype);		 
+    		mod.get_value(iter,3, out kvalue);
     		 
-            
-            	  
-           
-    		 GLib.Value gvaltype, gval,kvalue;
-    		 mod.get_value(iter, 1 , out gval); // one is key..
-    		
-    	     mod.get_value(iter,0, out gvaltype);
-    	     
-     	     mod.get_value(iter,3, out kvalue);
-    	     
-    	      if (oldkey == ((string)gval) && type == ((string)gvaltype)) {
-    	      
-    		  	  //print("update iter type=%s, key=%s value=%s\n", type, key,(string) kvalue);
-    	      
-       	 	      this.updateIter(iter, type, key, (string)kvalue);
-       	 	      return true;
-    	 	  }
-    	     
-    
+    		if (oldkey == ((string)gval) && type == ((string)gvaltype)) {
+    		  
+    			//print("update iter type=%s, key=%s value=%s\n", type, key,(string) kvalue);
+    		  
+    			this.updateIter(iter, type, key, (string)kvalue);
+    			return true;
+    		}
     		return false;
     	});
     	
