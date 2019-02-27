@@ -325,7 +325,7 @@ public class JsRender.Node : Object {
 	{
 		return this.items.size > 0;
 	}
-	public bool hasXnsType()
+	/*public bool hasXnsType()
 	{
 		if (this.props.get("$ xns") != null && this.props.get("xtype") != null) {
 			return true;
@@ -333,6 +333,7 @@ public class JsRender.Node : Object {
 		}
 		return false;
 	}
+
 	public string fqn()
 	{
 		if (!this.hasXnsType ()) {
@@ -341,14 +342,23 @@ public class JsRender.Node : Object {
 		return this.props.get("$ xns") + "." + this.props.get("xtype"); 
 
 	}
+	*/
+	public string fqn() {
+		return this.get("extends", '*');
+	}
+	
+	
 	public void setFqn(string name)
 	{
+		this.set("* extends", name);
+	/*
+		
 		var ar = name.split(".");
 		this.props.set("xtype", ar[ar.length-1]);
 		var l = name.length - (ar[ar.length-1].length +1);
 		this.props.set("$ xns", name.substring(0, l));
 		//print("setFQN %s to %s\n", name , this.fqn());
-		               
+	*/               
 
 	}
 	// wrapper around get props that returns empty string if not found.
