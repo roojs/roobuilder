@@ -61,7 +61,7 @@
  * * modOrder string  (sequence / order for tabs)
  * * parent string  (modular? previous one where tabs could be added to parent) 
  * 
- * * extends
+ * * extends << replace xtype/xns
  *
  * event handlers (listeners)
  *   just shown 
