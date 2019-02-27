@@ -936,7 +936,7 @@ public class Xcls_WindowLeftTree : Object
             _this.main_window.windowstate.file = f;
             
            
-            if (f.tree.get('xtype') == "") {
+            if (f.tree.get("xtype") == "") {
         	    try {
         	        f.loadItems( );
                 } catch (Error e) {
@@ -944,7 +944,7 @@ public class Xcls_WindowLeftTree : Object
                 }
             }
             // if it's still null?
-            if (f.tree.get('xtype') == "") {
+            if (f.tree.get("xtype") == "") {
                 return;
             }
           
