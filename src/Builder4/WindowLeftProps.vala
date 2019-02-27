@@ -542,7 +542,6 @@ public class Xcls_LeftProps : Object
         
         if (type == "listener") {
          
-           
             
             this.model.el.set(iter, 
                     0, type,
