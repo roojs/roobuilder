@@ -944,7 +944,7 @@ public class Xcls_WindowLeftTree : Object
                 }
             }
             // if it's still null?
-            if (f.tree == null) {
+            if (f.tree.get('xtype') == "") {
                 return;
             }
           
