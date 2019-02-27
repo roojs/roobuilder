@@ -527,7 +527,10 @@ public class JsRender.Node : Object {
 		return  Node.gen.to_data (null);   
 	}
 
-	public void loadFromJson(Json.Object obj, int version) {
+	public void loadFromJson(Json.Object obj, int version) 
+	{
+		
+		var extends = "";
 		obj.foreach_member((o , key, value) => {
 			//print(key+"\n");
 			if (key == "items") {
