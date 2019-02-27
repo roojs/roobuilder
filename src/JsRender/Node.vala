@@ -333,18 +333,16 @@ public class JsRender.Node : Object {
 		}
 		return false;
 	}
+	*/
 
-	public string fqn()
-	{
+	public string fqn() {
+		return this.get("extends", '*');
+		/*
 		if (!this.hasXnsType ()) {
 			return "";
 		}
 		return this.props.get("$ xns") + "." + this.props.get("xtype"); 
-
-	}
-	*/
-	public string fqn() {
-		return this.get("extends", '*');
+		*/
 	}
 	
 	
