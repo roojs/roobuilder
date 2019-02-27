@@ -936,7 +936,7 @@ public class Xcls_WindowLeftTree : Object
             _this.main_window.windowstate.file = f;
             
            
-            if (f.tree == null) {
+            if (f.tree.get('xtype') == "") {
         	    try {
         	        f.loadItems( );
                 } catch (Error e) {
