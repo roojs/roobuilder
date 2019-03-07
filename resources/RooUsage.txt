@@ -102,7 +102,8 @@ right:
   Roo.form.TextArea         
   Roo.form.HtmlEditor         
   Roo.form.FCKeditor         
-  Roo.Button         
+  Roo.Button
+  Roo.form.TextItem
 
 left: 
   Roo.form.HtmlEditor:toolbars[]
