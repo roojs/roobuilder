@@ -81,7 +81,7 @@ namespace Palete {
 			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/roodata.json");
 			var node = pa.get_root();
 
-			var clist =  node.get_object().get_object_member("data");
+			var clist =  node.get_object(); /// was in data... .get_object_member("data");
 				clist.foreach_member((o , key, value) => {
 				//print("cls:" + key+"\n");
 			 
