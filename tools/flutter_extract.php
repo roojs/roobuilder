@@ -60,13 +60,19 @@ class eClass extends Obj {
         
         $dom = parent::parseHTML();
         $dl = $dom->getElementsByTagName('dl')->item(0);
-        $dd = $dl->getElementsByTagName('a');
-        
-        if (!isset(self::$url_map[$dd->item($dd->length-1)->getAttribute('href')])) {
-            die("could not find " . $dd->item($dd->length-1)->getAttribute('href') . " when parsing" . $this->href);
+        if ($dl->getAttribute('class') != 'dl-horizontal') {
+            $this->extends = '';
+        } else {
+            $dd = $dl->getElementsByTagName('a');
+            
+            if (!isset(self::$url_map[$dd->item($dd->length-1)->getAttribute('href')])) {
+                die("could not find " . $dd->item($dd->length-1)->getAttribute('href') . " when parsing" . $this->href);
+            }
+            
+            // 
+            
+            $this->extends = self::$url_map[$dd->item($dd->length-1)->getAttribute('href')]->name;
         }
-        
-        $this->extends = self::$url_map[$dd->item($dd->length-1)->getAttribute('href')]->name;
         
     }
     
