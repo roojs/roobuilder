@@ -225,10 +225,7 @@ foreach($js as $o) {
 }
  
 foreach(eClass::$all as $c) {
-    if (!is_a($c, 'Cls')) {
-        print_R($c);
-        continue;
-    }
+    
     $c->readDocs();
 }
 
