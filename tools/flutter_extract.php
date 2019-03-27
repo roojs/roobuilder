@@ -316,6 +316,7 @@ foreach($js as $o) {
  
 foreach(eClass::$all as $c) {
     if (!method_exists($c, 'readDocs')) {
+        echo "missing readDocs";
         print_R($c);exit;
     }
     $c->readDocs();
