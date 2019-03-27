@@ -45,7 +45,7 @@ class Obj {
     function innerHTML($node)
     {
         if (!$node) {
-            print_r($this);exit;
+            print_r($this); 
         }
         return $node->ownerDocument->saveHtml($node);
     }
