@@ -29,8 +29,10 @@ class Obj {
         $dom->loadHTMLFile(FDIR . $this->href);
         libxml_clear_errors();
         $xp = new DomXPath($dom);
-      
-        $this->desc = $this->innerHTML($this->getElementsByClassName($dom, 'desc')->item(0));
+        $desc = $this->getElementsByClassName($dom, 'desc');
+        if ($desc->length) {
+            $this->desc = $this->innerHTML($desc->item(0));
+        }
         $sc = $this->getElementsByClassName($dom, 'source-code');
         if ($sc->length) {
             $this->example = $this->innerHTML($sc->item(0));
