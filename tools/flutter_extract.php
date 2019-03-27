@@ -12,11 +12,13 @@ class Obj {
     
     static $out_props = array(
         'eClass' => array('props', 'events', 'methods'),
+        'eMixin' =>  array('props', 'events', 'methods'),
+        'eTypedef' => array('name', 'type', 'sig', 'static', 'desc','memberOf'),
         'eProperty' => array('name', 'type', 'desc','memberOf'),
         'eMethod' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
         'eConstructor' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
         'eEnum' =>  array('name', 'type', 'static', 'desc','memberOf'), // fixme .. .values.?
-        'eFunction' =>  array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),// fixme .. .values.?
+        'eFunction' =>  array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),// fixme .. .memberof == package.
         
     )
     
