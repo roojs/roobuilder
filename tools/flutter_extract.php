@@ -26,7 +26,7 @@ class Obj {
     {
         $dom = new DomDocument();
         libxml_use_internal_errors(true);
-        
+        echo "Reading : {$this->href}\n";
         $dom->loadHTMLFile(FDIR . $this->href);
         libxml_clear_errors();
         $xp = new DomXPath($dom);
