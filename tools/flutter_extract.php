@@ -156,6 +156,7 @@ foreach($js as $o) {
             ));
             break;  
         default:
+            print_R($o);
             die("invalid type {$o->type}");
     }
     
