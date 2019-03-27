@@ -443,8 +443,8 @@ foreach(eClass::$all as $c) {
     }
     $c->readDocs();
     $summary[$c->name] = $c->toSummaryArray();
-    file_put_contents(FDIR .'json/index.json', json_encode($summary));
-    file_put_contents(FDIR .'json/'.$c->name. '.json', json_encode($c));
+    file_put_contents(FDIR .'json/index.json', json_encode($summary, JSON_PRETTY_PRINT));
+    file_put_contents(FDIR .'json/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
 }
 
 print_r(eClass::$all);
