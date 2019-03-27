@@ -120,7 +120,7 @@ class  Prop extends Obj {
     var $isConstant = false;
 }
 
-class  Method extends Obj {  // doubles up for events? - normally 'on' is the name
+class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the name
     var $name = '';
     var $type = ''; // return...
     var $desc = '';
@@ -138,7 +138,9 @@ class  Method extends Obj {  // doubles up for events? - normally 'on' is the na
     // return_desc
     
 }
-
+class  eFunction extends eMethod {
+    
+}
 
 class Param extends Obj {
     var $name = '';
