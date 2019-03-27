@@ -283,7 +283,7 @@ foreach($js as $o) {
             
             if (substr($o->name, 0,2) == 'on' && $o->type == 'property') {
                 // presumtionus...
-                eClass::$all[$cls]->events[] = new Method(array(
+                eClass::$all[$cls]->events[] = new eMethod(array(
                     'name' => $o->name,
                     'href' => $o->href,
                     'isConstant' => $o->type == 'constant',
