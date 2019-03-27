@@ -91,6 +91,9 @@ class eClass extends Obj {
     
     function parseHTML()
     {
+        // do children first..
+        
+        
         
         $dom = parent::parseHTML();
         $dl = $dom->getElementsByTagName('dl')->item(0);
