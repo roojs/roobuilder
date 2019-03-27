@@ -136,7 +136,7 @@ class eEnum extends eClass
         $dom = Obj::parseHTML();
     }
 }
-class eTypedef extends eClass
+class eTypedef extends eFunction
 {
     function parseHTML()
     {   
