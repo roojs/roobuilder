@@ -53,7 +53,8 @@ class Cls extends Obj {
         self::$url_map[$this->href] = $this;
     }
     
-    function parseHTML() {
+    function parseHTML()
+    {
         
         $dom = parent::parseHTML();
         $dl = $dom->getElementsByTagName('dl')->item(0);
