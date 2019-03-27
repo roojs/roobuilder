@@ -117,6 +117,7 @@ foreach($js as $o) {
             break;
         
         case 'method':
+        case 'mixin':
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
@@ -125,6 +126,7 @@ foreach($js as $o) {
             Cls::$all[$cls]->methods[] = new Method(array(
                 'name' => $o->name,
                 'href' => $o->href,
+                'isMixin' => $o->type == 'mixin'
             ));
             break;
         
