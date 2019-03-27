@@ -193,6 +193,12 @@ class Param extends Obj {
     var $type = '';
     var $desc = '';
     var $isOptional = true;
+    function __construct($dom)
+    {
+        
+        
+        
+    }
 }
 
 
