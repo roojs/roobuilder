@@ -28,7 +28,7 @@ class Obj {
         libxml_clear_errors();
         $xp = new DomXPath($dom);
       
-        $this->desc = $dom->saveHtml($this->getElementsByClassName($dom, 'desc')->item(0));
+        $this->desc = $this->innerHTML($this->getElementsByClassName($dom, 'desc')->item(0));
         return $dom;
     }
     
