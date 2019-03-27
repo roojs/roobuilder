@@ -151,7 +151,7 @@ foreach($js as $o) {
         case 'typedef': // func sig?
         case 'top-level constant':
        
-            $cls = 'e'. str_replace('top-level ', '', $o->type);
+            $cls = 'e'. ucfirst(str_replace('top-level ', '', $o->type));
             
             
             new $cls(array(
