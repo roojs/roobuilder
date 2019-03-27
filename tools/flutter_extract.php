@@ -59,6 +59,7 @@ class Param extends Obj {
 
 $fdir = '/home/alan/Downloads/flutterdocs/flutter/';
 $js = json_decode(file_get_contents($fdir.'index.json'));
+
 foreach($js as $o) {
     switch($o->type) {
         case 'library':
@@ -106,3 +107,4 @@ foreach($js as $o) {
     
     
 }
+print_r($classes);
