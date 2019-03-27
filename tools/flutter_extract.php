@@ -44,6 +44,9 @@ class Obj {
     }
     function innerHTML($node)
     {
+        if (!$node) {
+            print_r($this);exit;
+        }
         return $node->ownerDocument->saveHtml($node);
     }
     function parseType($sp)
