@@ -136,6 +136,13 @@ class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the n
     //  "since" : "",
      // "see" : "",
     // return_desc
+    function parseHTML()
+    {
+        $dom = parent::parseHTML();
+        
+        
+        return $dom;
+    }
     
 }
 class  eFunction extends eMethod
@@ -151,6 +158,11 @@ class  eFunction extends eMethod
         $this->parseHTML();
         // loop through children.
         
+    }
+    function parseHTML()
+    {
+        
+        $dom = parent::parseHTML();
     }
 }
 
