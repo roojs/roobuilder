@@ -117,7 +117,9 @@ foreach($js as $o) {
         case 'typedef': // func sig?
             new Cls(array(
                 'name' => $o->qualifiedName,
-                'href' => $o->href
+                'href' => $o->href,
+                'isMixin' => $o->type == 'mixin',
+                'isEnum' => $o->type == 'enum',
             ));
             break;
         
@@ -132,8 +134,6 @@ foreach($js as $o) {
             Cls::$all[$cls]->methods[] = new Method(array(
                 'name' => $o->name,
                 'href' => $o->href,
-                'isMixin' => $o->type == 'mixin',
-                'isEnum' => $o->type == 'enum',
                 'isConstructor' => $o->type == 'constructor',
             ));
             break;
