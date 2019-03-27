@@ -13,9 +13,9 @@ class Obj {
     static $out_props = array(
         'eClass' => array('props', 'events', 'methods'),
         'eProperty' => array('name', 'type', 'desc','memberOf'),
-        'eMethod' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor', 'sig'),
-        'eConstructor' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor', 'sig'),
-        'eEvent' =>  array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor', 'sig'),
+        'eMethod' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
+        'eConstructor' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
+        'eEnum' =>  array('name', 'type', 'sig', 'static', 'desc','memberOf'), // fixme .. .values.?
         
     )
     
