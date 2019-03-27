@@ -105,7 +105,7 @@ foreach($js as $o) {
             break;
             
         case 'class':
-            $classes[$o->qualifiedName] = new Cls(array(
+            new Cls(array(
                 'name' => $o->qualifiedName,
                 'href' => $o->href
             ));
@@ -115,7 +115,7 @@ foreach($js as $o) {
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
-            $classes[$cls]->methods[] = new Method(array(
+            Cls::$all[$cls]->methods[] = new Method(array(
                 'name' => $o->name,
                 'href' => $o->href,
             ));
@@ -127,7 +127,7 @@ foreach($js as $o) {
             $cls = implode('.', $ar);
             if (substr($o->name, 0,2) == 'on') {
                 // presumtionus...
-                $classes[$cls]->events[] = new Method(array(
+                Cls::$all[$cls]->events[] = new Method(array(
                     'name' => $o->name,
                     'href' => $o->href,
                     
@@ -135,7 +135,7 @@ foreach($js as $o) {
                 break;
             }
             
-            $classes[$cls]->props[] = new Prop(array(
+            Cls::$all[$cls]->props[] = new Prop(array(
                 'name' => $o->name,
                 'href' => $o->href,
             ));
