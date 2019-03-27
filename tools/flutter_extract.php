@@ -41,7 +41,7 @@ class Cls extends Obj {
     {
         parent::__construct($ar);
         $all[$this->name] = $this;
-        $map[$this->url] = $this;
+        $map[$this->href] = $this;
     }
     
     function parseHTML() {
