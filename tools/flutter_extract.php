@@ -125,6 +125,15 @@ class eClass extends Obj {
     function readDocs()
     {
         $this->parseHTML();
+        foreach($this->events as $e) {
+            $e->parseHTML();
+        }
+        foreach($this->methods as $e) {
+            $e->parseHTML();
+        }
+        foreach($this->props as $e) {
+            $e->parseHTML();
+        }
         // loop through children.
         
     }
