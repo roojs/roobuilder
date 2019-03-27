@@ -30,7 +30,7 @@ class Obj {
 class Cls extends Obj {
     
     static $all = array();
-    static $map = array();
+    static $url_map = array();
     var $name;
     var $extends;
     var $events = array();
@@ -41,6 +41,7 @@ class Cls extends Obj {
     {
         parent::__construct($ar);
         $all[$this->name] = $this;
+        $map[$this->url] = $this;
     }
     
     function parseHTML() {
