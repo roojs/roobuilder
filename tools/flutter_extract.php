@@ -103,8 +103,10 @@ class eClass extends Obj {
                     $this->isDeprecated = true;
                     return;
                 }
-                echo "got dl-horizontal - but no 'a' tags";
-                print_R($this);exit;
+                return;  // appears that the 'Annotation area' is used for things like @immutable etc..
+            
+                //echo "got dl-horizontal - but no 'a' tags";
+                //print_R($this);exit;
             }
             if (!isset(self::$url_map[$dd->item($dd->length-1)->getAttribute('href')])) {
                 die("could not find " . $dd->item($dd->length-1)->getAttribute('href') . " when parsing" . $this->href);
