@@ -34,7 +34,7 @@ class Obj {
 }
 
 
-class eCls extends Obj {
+class eClass extends Obj {
     
     static $all = array();
     static $url_map = array();
