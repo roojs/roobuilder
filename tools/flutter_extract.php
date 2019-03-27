@@ -159,8 +159,7 @@ class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the n
         // params...
         $ar = $this->getElementsByClassName($dom,'parameter');
         for($i =0;i<$ar->length;$i++) {
-            $sp = $ar->item($i);
-            
+            $this->params[] = new Param( $ar->item($i) );
         }
         
         return $dom;
