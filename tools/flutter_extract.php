@@ -41,7 +41,7 @@ class Cls extends Obj {
     {
         parent::__construct($ar);
         self::$all[$this->name] = $this;
-        self::$map[$this->href] = $this;
+        self::$url_map[$this->href] = $this;
     }
     
     function parseHTML() {
@@ -148,8 +148,7 @@ foreach($js as $o) {
     
     
 }
-print_R(Cls::$all);exit;
-
+ 
 foreach(Cls::$all as $c) {
     $c->readDocs();
 }
