@@ -162,10 +162,10 @@ foreach($js as $o) {
         case 'typedef': // func sig?
         case 'top-level constant':
        
-            $cls = 'e'. ucfirst(str_replace('top-level ', '', $o->type));
+            $ctor = 'e'. ucfirst(str_replace('top-level ', '', $o->type));
             
             
-            new $cls(array(
+            new $ctor(array(
                 'name' => $o->qualifiedName,
                 'href' => $o->href,
                 'isMixin' => $o->type == 'mixin',
@@ -183,7 +183,7 @@ foreach($js as $o) {
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
-            $ctor = 'e'. ucfirst($o->type)
+            $ctor = 'e'. ucfirst($o->type);
             $add = new $ctor(array(
                 'name' => $o->name,
                 'href' => $o->href,
