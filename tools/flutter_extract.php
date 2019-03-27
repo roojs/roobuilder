@@ -140,6 +140,7 @@ foreach($js as $o) {
             ));
             break;
         
+        case 'constant':
         case 'property':
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
@@ -149,6 +150,7 @@ foreach($js as $o) {
                 Cls::$all[$cls]->events[] = new Method(array(
                     'name' => $o->name,
                     'href' => $o->href,
+                    'isConstant' => $o->type == 'constant',
                     
                 ));
                 break;
