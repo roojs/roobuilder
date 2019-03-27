@@ -115,6 +115,10 @@ foreach($js as $o) {
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
+            if (!isset(Cls::$all[$cls])) {
+                die("no class found $cls?");
+            }
+            
             Cls::$all[$cls]->methods[] = new Method(array(
                 'name' => $o->name,
                 'href' => $o->href,
