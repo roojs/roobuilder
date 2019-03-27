@@ -417,6 +417,9 @@ foreach($js as $o) {
     
 }
 $summary = array();
+if (!file_exists(file_put_contents(FDIR .'json')) {
+    mkdir(file_put_contents(FDIR .'json', 0666);
+}
 foreach(eClass::$all as $c) {
     if (!method_exists($c, 'readDocs')) {
         echo "missing readDocs";
