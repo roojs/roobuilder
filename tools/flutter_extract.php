@@ -146,7 +146,7 @@ foreach($js as $o) {
     
     
 }
-print_R($Cls:$all);exit;
+print_R(Cls::$all);exit;
 
 foreach(Cls::$all as $c) {
     $c->readDocs();
