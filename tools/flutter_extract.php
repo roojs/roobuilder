@@ -26,8 +26,9 @@ class Obj {
 
         $dom->loadHTMLFile(FDIR . $this->href);
         libxml_clear_errors();
-
-        $this->desc = $dom->saveHtml($dom->getElementsByTagName('body')->item(0)->getElementsByClassName('desc')->item(0));
+        $xp = new DomXPath($dom);
+        ;
+        $this->desc = $dom->saveHtml($xp->query("//*[contains(@class, 'desc')]")->item(0));
         return $dom;
     }
 }
