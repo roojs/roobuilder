@@ -180,8 +180,8 @@ class  eFunction extends eMethod
     function __construct($ar)
     {
         parent::__construct($ar);
-        self::$all[$this->name] = $this;
-        self::$url_map[$this->href] = $this;
+        eClass::$all[$this->name] = $this;
+        eClass::$url_map[$this->href] = $this;
     }
     function readDocs()
     {
