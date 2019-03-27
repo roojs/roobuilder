@@ -219,7 +219,7 @@ class eConstructor extends eMethod {
     {
         
         $dom = Obj::parseHTML();
-            
+        // doesnt have a 'type'    
         // params...
         $ar = $this->getElementsByClassName($dom,'parameter');
         for($i =0;$i<$ar->length;$i++) {
