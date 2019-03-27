@@ -119,6 +119,10 @@ foreach($js as $o) {
         case 'enum':
         case 'typedef': // func sig?
         case 'top-level constant':
+       
+            
+            
+            
             new Cls(array(
                 'name' => $o->qualifiedName,
                 'href' => $o->href,
@@ -129,19 +133,27 @@ foreach($js as $o) {
             ));
             break;
         
+        
+            Cls::$all['']
+        
+        
         case 'constructor':
         case 'method':
-        
+        case 'function':
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
           
-            
-            Cls::$all[$cls]->methods[] = new Method(array(
+            $add = = new Method(array(
                 'name' => $o->name,
                 'href' => $o->href,
                 'isConstructor' => $o->type == 'constructor',
             ));
+            if ($o->type != 'function') {
+                Cls::$all[$cls]->methods[] = $add;
+            } else {
+                Cls::$all[$cls] = $add;
+            }
             break;
         
         case 'constant':
