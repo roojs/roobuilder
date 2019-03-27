@@ -51,7 +51,14 @@ class Obj {
         if (!$node) {
             print_r($this); 
         }
-        return $node->ownerDocument->saveHtml($node);
+        $dom= $node->ownerDocument;
+        $ret = '';
+        foreach ($node->childNodes as $child) 
+        { 
+            $ret.= $dom->saveHTML($child);
+        }
+        return $ret;
+        
     }
     function parseType($sp)
     {
