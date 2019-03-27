@@ -199,10 +199,11 @@ class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the n
     // return_desc
     function parseHTML()
     {
+        
         $dom = parent::parseHTML();
         $sp = $this->getElementsByClassName($dom,'returntype')->item(0);
         $this->parseType($sp);
-        
+            
         // params...
         $ar = $this->getElementsByClassName($dom,'parameter');
         for($i =0;$i<$ar->length;$i++) {
@@ -214,7 +215,19 @@ class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the n
     
 }
 class eConstructor extends eMethod {
-    
+    function parseHTML()
+    {
+        
+        $dom = Obj::parseHTML();
+            
+        // params...
+        $ar = $this->getElementsByClassName($dom,'parameter');
+        for($i =0;$i<$ar->length;$i++) {
+            $this->params[] = new Param( $ar->item($i) );
+        }
+        
+        return $dom;
+    }
 }
 
 
