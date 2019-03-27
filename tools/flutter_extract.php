@@ -133,9 +133,7 @@ foreach($js as $o) {
             ));
             break;
         
-        
-            Cls::$all['']
-        
+         
         
         case 'constructor':
         case 'method':
@@ -152,7 +150,7 @@ foreach($js as $o) {
             if ($o->type != 'function') {
                 Cls::$all[$cls]->methods[] = $add;
             } else {
-                Cls::$all[$cls] = $add;
+                Cls::$all[$o->qualifiedName] = $add;
             }
             break;
         
