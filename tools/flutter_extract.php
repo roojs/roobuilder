@@ -156,10 +156,15 @@ foreach($js as $o) {
         
         case 'constant':
         case 'property':
+        case 'top-level property':
+
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
-            if (substr($o->name, 0,2) == 'on') {
+            
+            
+            
+            if (substr($o->name, 0,2) == 'on' && $o->type == 'property') {
                 // presumtionus...
                 Cls::$all[$cls]->events[] = new Method(array(
                     'name' => $o->name,
