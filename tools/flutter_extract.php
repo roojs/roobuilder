@@ -32,7 +32,9 @@ class Obj {
         return $dom;
     }
 }
-class Cls extends Obj {
+
+
+class eCls extends Obj {
     
     static $all = array();
     static $url_map = array();
@@ -69,6 +71,18 @@ class Cls extends Obj {
         // loop through children.
         
     }
+    
+}
+class eMixin extends eCls
+{
+    
+}
+class eConstant extends eCls
+{
+    
+}
+class eEnum extends eCls
+{
     
 }
 class  Prop extends Obj {
