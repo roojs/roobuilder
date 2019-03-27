@@ -158,7 +158,7 @@ class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the n
     {
         $dom = parent::parseHTML();
         $sp = $this->getElementsByClassName($dom,'returntype')->item(0);
-        $this->pasreType($sp);
+        $this->parseType($sp);
         
         // params...
         $ar = $this->getElementsByClassName($dom,'parameter');
