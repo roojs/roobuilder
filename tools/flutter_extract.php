@@ -48,9 +48,9 @@ class Cls extends Obj {
         
         $dom = parent::parseHTML();
         $dl = $dom->getElementsByTagName('dl')->item(0);
-        $dd = $dl->getElementsByTagName('li');
-        $this->extends = $dd->item($dd->length-2)->textContent;
-        // extends is first 'dd' set..
+        $dd = $dl->getElementsByTagName('a');
+        $this->extends = self::$url_map[$dd->item($dd->length-1)->getAttribute('href')]->name;
+        
     }
     
     function parseDocs()
