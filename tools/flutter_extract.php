@@ -5,7 +5,7 @@
 // we have 2 types of data - the overall summary, and the 'detail one we use for docs..
 //
 
-define( FDIR, '/home/alan/Downloads/flutterdocs/flutter/');
+define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
 
 
 class Obj {
