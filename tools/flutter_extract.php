@@ -80,6 +80,15 @@ class Obj {
         }
          
     }
+    function toSummaryArray()
+    {
+        $ret = array();
+        foreach(self::$out_props[get_class($this)] as $k) {
+            $ret[$k] = $this->{$k};
+        }
+        return $ret;
+    }
+    
 }
 
 
@@ -152,6 +161,7 @@ class eClass extends Obj {
         // loop through children.
         
     }
+    
     
 }
 class eMixin extends eClass
