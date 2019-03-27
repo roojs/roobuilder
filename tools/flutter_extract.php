@@ -67,10 +67,39 @@ foreach($js as $o) {
         case 'class':
             $classes[$o->qualifiedName] = new Cls(array(
                 'name' => $o->qualifiedName,
-                'href' => $o->href;
-                
+                'href' => $o->href
             ));
+            break;
+        
+        case 'method':
+            $ar = explode('.', $o->qualifiedName);
+            array_pop($ar);
+            $cls = implode('.', $ar);
+            $classes[$cls]->methods[] = new Method(array(
+                'name' => $o->name,
+                'href' => $o->href,
+            ));
+            break;
+        
+        case 'property':
+            $ar = explode('.', $o->qualifiedName);
+            array_pop($ar);
+            $cls = implode('.', $ar);
+            if (substr($o->name, 0,2) == 'on') {
+                // presumtionus...
+                $classes[$cls]->events[] = new Method(array(
+                    'name' => $o->name,
+                    'href' => $o->href,
+                    
+                ));
+                break;
+            }
             
+            $classes[$cls]->props[] = new Prop(array(
+                'name' => $o->name,
+                'href' => $o->href,
+            ));
+            break;  
            
     }
     
