@@ -94,6 +94,13 @@ class eEnum extends eCls
         $dom = Obj::parseHTML();
     }
 }
+class eTypedef extend eCls
+{
+    function parseHTML()
+    {   
+        $dom = Obj::parseHTML();
+    }
+}
 class  Prop extends Obj {
     var $name = '';
     var $type = '';
