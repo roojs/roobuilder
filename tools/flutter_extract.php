@@ -35,8 +35,8 @@ class Cls extends Obj {
     function parseHTML() {
         $dom = parent::parseHTML();
         $dl = $dom->getElementsByTagName('dl')->item(0);
-        $dd = $dl->getElementsByTagName('dd');
-        $this->extends = $dd->item($dd->length-1)->textContent;
+        $dd = $dl->getElementsByTagName('li');
+        $this->extends = $dd->item($dd->length-2)->textContent;
         // extends is first 'dd' set..
     }
 }
