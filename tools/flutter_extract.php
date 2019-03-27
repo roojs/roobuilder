@@ -98,6 +98,10 @@ class eClass extends Obj {
         } else {
             $dd = $dl->getElementsByTagName('a');
             if (!$dd->length) {
+                if (strpos($this->innerHTML($dl), '@deprecated')) {
+                    $this->isDeprecated = true;
+                    return;
+                }
                 echo "got dl-horizontal - but no 'a' tags";
                 print_R($this);exit;
             }
