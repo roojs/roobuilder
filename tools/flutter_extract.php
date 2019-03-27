@@ -138,12 +138,19 @@ class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the n
     // return_desc
     
 }
-class  eFunction extends eMethod {
+class  eFunction extends eMethod
+{
     function __construct($ar)
     {
         parent::__construct($ar);
         self::$all[$this->name] = $this;
         self::$url_map[$this->href] = $this;
+    }
+    function readDocs()
+    {
+        $this->parseHTML();
+        // loop through children.
+        
     }
 }
 
