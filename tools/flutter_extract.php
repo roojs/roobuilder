@@ -20,7 +20,7 @@ class Obj {
         'eEnum' =>  array('name', 'type', 'static', 'desc','memberOf'), // fixme .. .values.?
         'eFunction' =>  array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),// fixme .. .memberof == package.
         'Prop' => array('name', 'type', 'desc','memberOf'),
-    )
+    );
     
     var $href = '';
     var $desc = '';
