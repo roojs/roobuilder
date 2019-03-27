@@ -28,8 +28,14 @@ class Obj {
         libxml_clear_errors();
         $xp = new DomXPath($dom);
       
-        $this->desc = $dom->saveHtml($xp->query("//*[contains(@class, 'desc')]")->item(0));
+        $this->desc = $dom->saveHtml($this->getElementsByClassName($dom, 'desc')->item(0));
         return $dom;
+    }
+    
+    function getElementsByClassName($dom, $class)
+    {
+        $xp = new DomXPath($dom);
+        return $xp->query("//*[contains(@class, '".$class."')]");
     }
 }
 
@@ -139,6 +145,8 @@ class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the n
     function parseHTML()
     {
         $dom = parent::parseHTML();
+        
+        
         
         
         return $dom;
