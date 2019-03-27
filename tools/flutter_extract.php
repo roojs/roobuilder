@@ -6,6 +6,7 @@
 //
 
 class Obj {
+    var $href = '';
     function __construct($ar)
     {
         foreach($ar as $k=>$v) {
@@ -64,7 +65,11 @@ foreach($js as $o) {
             break;
             
         case 'class':
-            $classes[$o->qualifiedName] = new Cls()
+            $classes[$o->qualifiedName] = new Cls(array(
+                'name' => $o->qualifiedName,
+                'href' => $o->href;
+                
+            ));
             
            
     }
