@@ -113,7 +113,8 @@ foreach($js as $o) {
             
         case 'class':
         case 'mixin':
-        case 'enum':            
+        case 'enum':
+        case 'typedef': // func sig?
             new Cls(array(
                 'name' => $o->qualifiedName,
                 'href' => $o->href
