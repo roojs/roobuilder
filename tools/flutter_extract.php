@@ -25,7 +25,21 @@ class Obj {
         return $dom;
     }
 }
-
+class Cls extends Obj {
+    var $name;
+    var $extends;
+    var $events = array();
+    var $methods = array();
+    var $props = array();
+    
+    function parseHTML() {
+        $dom = parent::parseHTML();
+        $dl = $dom->getElementsByTagName('dl')->item(0);
+        $dd = $dl->getElementsByTagName('dd');
+        $this->extends = $dd->item($dd->length-1)->textContent;
+        // extends is first 'dd' set..
+    }
+}
 class  Prop extends Obj {
     var $name = '';
     var $type = '';
@@ -52,13 +66,7 @@ class  Method extends Obj {  // doubles up for events? - normally 'on' is the na
     
 }
 
-class Cls extends Obj {
-    var $name;
-    var $extends;
-    var $events = array();
-    var $methods = array();
-    var $props = array();
-}
+
 class Param extends Obj {
     var $name = '';
     var $type = '';
