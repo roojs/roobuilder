@@ -89,9 +89,18 @@ class Obj {
             return;
         } 
         $this->type = array();
+        $t = '';
         for($i =0;$i<$ar->length;$i++) {
-            $this->type[] = eClass::$url_map[$ar->item($i)->getAttribute('href')]->name;
+            $add = eClass::$url_map[$ar->item($i)->getAttribute('href')]->name;;
+            $this->types[] = $add;
+            if ($i == 0) {
+                $t .= ($i == 0) ? $add : (' <'. $add );
+            }
         }
+        for($i =0;$i<$ar->length-1;$i++) {
+            $t .= '>';
+        }
+        
          
     }
     function toSummaryArray()
