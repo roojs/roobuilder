@@ -447,7 +447,7 @@ foreach(eClass::$all as $c) {
     if (is_a($c, 'eClass')) {
         file_put_contents(FDIR .'json/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     }
-    // constant's and other stufff. - 
+    // constant's and other mixins.. 
 }
 
 print_r(eClass::$all);
