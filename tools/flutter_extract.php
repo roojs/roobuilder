@@ -17,6 +17,8 @@ class Obj {
         }
          
     }
+    
+    
     function parseHTML()
     {
         $dom = new DomDocument(); 
@@ -26,19 +28,37 @@ class Obj {
     }
 }
 class Cls extends Obj {
+    
+    static $all = array();
+    static $map = array();
     var $name;
     var $extends;
     var $events = array();
     var $methods = array();
     var $props = array();
     
+    function __construct($ar)
+    {
+        parent::__construct($ar);
+        $all[$this->name] = $this;
+    }
+    
     function parseHTML() {
+        
         $dom = parent::parseHTML();
         $dl = $dom->getElementsByTagName('dl')->item(0);
         $dd = $dl->getElementsByTagName('li');
         $this->extends = $dd->item($dd->length-2)->textContent;
         // extends is first 'dd' set..
     }
+    
+    function parseDocs()
+    {
+        $this->parseHTML();
+        
+        
+    }
+    
 }
 class  Prop extends Obj {
     var $name = '';
