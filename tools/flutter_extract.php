@@ -212,7 +212,7 @@ class Param extends Obj {
             
             switch($ar->item($i)->getAttribute('class')) {
                 case 'parameter-name':
-                    $this->name = $ar->item($i)->innerHTML();
+                    $this->name = $this->innerHTML($ar->item($i));
                     break;
                 case 'type-annotation':
                      $this->parseType($ar->item($i));
