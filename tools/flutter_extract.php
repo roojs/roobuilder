@@ -88,7 +88,7 @@ class Obj {
             $this->type = eClass::$url_map[$ar->item(0)->getAttribute('href')]->name;
             return;
         } 
-        $this->type = array();
+        $this->types = array();
         $t = '';
         for($i =0;$i<$ar->length;$i++) {
             $add = eClass::$url_map[$ar->item($i)->getAttribute('href')]->name;;
@@ -100,6 +100,7 @@ class Obj {
         for($i =0;$i<$ar->length-1;$i++) {
             $t .= '>';
         }
+        $this->type = $t;
         
          
     }
