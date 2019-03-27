@@ -9,6 +9,12 @@ define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
 
 
 class Obj {
+    
+    static $out_props = array(
+        'eClass' => array('props', 'events', 'methods'),
+        'eProperty'
+    )
+    
     var $href = '';
     var $desc = '';
     var $example = '';
@@ -84,7 +90,14 @@ class Obj {
     {
         $ret = array();
         foreach(self::$out_props[get_class($this)] as $k) {
-            $ret[$k] = $this->{$k};
+            $out = $this->{$k};
+            if (is_array($out)) {
+                $out = array();
+                foreach($this->{$k} as $v) {
+                    $out[] = $v->toSummaryArray();
+                }
+            }
+            $ret[$k] = $out;
         }
         return $ret;
     }
