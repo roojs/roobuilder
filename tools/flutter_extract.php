@@ -60,9 +60,13 @@ class Obj {
             echo "parseType got invalid value";
          }
         $ar = $sp->getElementsByTagName('a');
+        if (!$ar->length) {
+            $this->type = $sp->textContent;
+        }
         if ($ar->length == 1) {
             $this->type = eClass::$url_map[$ar->item(0)->getAttribute('href')]->name;
-        } else {
+            return;
+        } 
             $this->type = array();
             for($i =0;$i<$ar->length;$i++) {
                 $this->type[] = eClass::$url_map[$ar->item($i)->getAttribute('href')]->name;
