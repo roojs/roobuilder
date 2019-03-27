@@ -193,8 +193,20 @@ class Param extends Obj {
     var $type = '';
     var $desc = '';
     var $isOptional = true;
-    function __construct($dom)
+    function __construct($node)
     {
+        $ar  = $node->getElementsByTagName('span');
+        for($i = 0; i < $ar->length; $i++) {
+            
+            switch($ar->item($i)->getAttribute('class')) {
+                case 'parameter-name':
+                    $this->name = $ar->item($i)->innerHTML();
+                    break;
+                case 'type-annotation':
+                    $this->parseType($ar->item($i));
+                    break;
+            }
+        }
         
         
         
