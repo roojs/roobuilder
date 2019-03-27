@@ -20,7 +20,7 @@ class Obj {
     {
         $dom = new DomDocument(); 
         $dom->loadHTMLFile(FDIR . $this->href);
-        
+        $this->desc = $dom->saveHtml($dom->getElementsByClassName('desc')->item(0));
    
     }
 }
