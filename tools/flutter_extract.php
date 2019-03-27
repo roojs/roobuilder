@@ -174,11 +174,15 @@ foreach($js as $o) {
                 ));
                 break;
             }
-            
-            Cls::$all[$cls]->props[] = new Prop(array(
+            $add =  new Prop(array(
                 'name' => $o->name,
                 'href' => $o->href,
             ));
+            if ($o->type == 'top-level property') {
+                Cls::$all[$o->qualifiedName] = $add;
+            } else {
+                Cls::$all[$cls]->props[] = $add;
+            }
             break;  
         default:
             print_R($o);
