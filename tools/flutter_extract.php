@@ -118,6 +118,7 @@ foreach($js as $o) {
             ));
             break;
         
+        case 'constructor':
         case 'method':
         case 'mixin':
         case 'enum':
@@ -130,7 +131,8 @@ foreach($js as $o) {
                 'name' => $o->name,
                 'href' => $o->href,
                 'isMixin' => $o->type == 'mixin',
-                'isEnum' => $o->type == 'enum'
+                'isEnum' => $o->type == 'enum',
+                'isConstructor' => $o->type == 'constructor',
             ));
             break;
         
