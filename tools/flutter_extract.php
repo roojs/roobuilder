@@ -74,6 +74,7 @@ class  Prop extends Obj {
     var $type = '';
     var $desc = '';
     var $memberOf = '';
+    var $isConstant = false;
 }
 
 class  Method extends Obj {  // doubles up for events? - normally 'on' is the name
