@@ -31,8 +31,9 @@ class Obj {
         $xp = new DomXPath($dom);
       
         $this->desc = $this->innerHTML($this->getElementsByClassName($dom, 'desc')->item(0));
-        if ($this->getElementsByClassName($dom, 'source-code')) {
-            $this->example = $this->innerHTML($this->getElementsByClassName($dom, 'source-code')->item(0));
+        $sc = $this->getElementsByClassName($dom, 'source-code');
+        if ($sc->length) {
+            $this->example = $this->innerHTML($sc->item(0));
         }
         return $dom;
     }
