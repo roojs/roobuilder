@@ -97,7 +97,7 @@ class Param extends Obj {
 
 
 
-$js = json_decode(file_get_contents($fdir.'index.json'));
+$js = json_decode(file_get_contents(FDIR.'index.json'));
 
 foreach($js as $o) {
     switch($o->type) {
