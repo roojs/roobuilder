@@ -73,28 +73,28 @@ class eClass extends Obj {
     }
     
 }
-class eMixin extends eCls
+class eMixin extends eClass
 {
     function parseHTML()
     {   
         $dom = Obj::parseHTML();
     }
 }
-class eConstant extends eCls
+class eConstant extends eClass
 {
     function parseHTML()
     {   
         $dom = Obj::parseHTML();
     }
 }
-class eEnum extends eCls
+class eEnum extends eClass
 {
     function parseHTML()
     {   
         $dom = Obj::parseHTML();
     }
 }
-class eTypedef extends eCls
+class eTypedef extends eClass
 {
     function parseHTML()
     {   
@@ -179,9 +179,9 @@ foreach($js as $o) {
                 'isConstructor' => $o->type == 'constructor',
             ));
             if ($o->type != 'function') {
-                Cls::$all[$cls]->methods[] = $add;
+                eClass::$all[$cls]->methods[] = $add;
             } else {
-                Cls::$all[$o->qualifiedName] = $add;
+                eClass::$all[$o->qualifiedName] = $add;
             }
             break;
         
@@ -197,7 +197,7 @@ foreach($js as $o) {
             
             if (substr($o->name, 0,2) == 'on' && $o->type == 'property') {
                 // presumtionus...
-                Cls::$all[$cls]->events[] = new Method(array(
+                eClass::$all[$cls]->events[] = new Method(array(
                     'name' => $o->name,
                     'href' => $o->href,
                     'isConstant' => $o->type == 'constant',
@@ -210,9 +210,9 @@ foreach($js as $o) {
                 'href' => $o->href,
             ));
             if ($o->type == 'top-level property') {
-                Cls::$all[$o->qualifiedName] = $add;
+                eClass::$all[$o->qualifiedName] = $add;
             } else {
-                Cls::$all[$cls]->props[] = $add;
+                eClass::$all[$cls]->props[] = $add;
             }
             break;  
         default:
@@ -224,7 +224,7 @@ foreach($js as $o) {
     
 }
  
-foreach(Cls::$all as $c) {
+foreach(eClass::$all as $c) {
     if (!is_a($c, 'Cls')) {
         print_R($c);
         continue;
@@ -232,4 +232,4 @@ foreach(Cls::$all as $c) {
     $c->readDocs();
 }
 
-print_r(Cls::$all);
+print_r(eClass::$all);
