@@ -146,4 +146,8 @@ foreach($js as $o) {
     
     
 }
-print_r($classes);
+foreach(Cls::$all as $c) {
+    $c->readDocs();
+}
+
+print_r(Cls::$all);
