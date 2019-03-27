@@ -183,8 +183,8 @@ foreach($js as $o) {
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
-          
-            $add = new Method(array(
+            $ctor = 'e'. ucfirst($o->type)
+            $add = new $ctor(array(
                 'name' => $o->name,
                 'href' => $o->href,
                 'isConstructor' => $o->type == 'constructor',
