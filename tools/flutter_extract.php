@@ -40,8 +40,8 @@ class Cls extends Obj {
     function __construct($ar)
     {
         parent::__construct($ar);
-        $all[$this->name] = $this;
-        $map[$this->href] = $this;
+        self::$all[$this->name] = $this;
+        self::$map[$this->href] = $this;
     }
     
     function parseHTML() {
@@ -115,9 +115,7 @@ foreach($js as $o) {
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
-            if (!isset(Cls::$all[$cls])) {
-                die("no class found $cls?");
-            }
+          
             
             Cls::$all[$cls]->methods[] = new Method(array(
                 'name' => $o->name,
