@@ -262,7 +262,11 @@ class Param extends Obj {
     var $isOptional = true;
     function __construct($node)
     {
+        
         $ar  = $node->getElementsByTagName('span');
+        if (!$ar->length) {
+            echo "mssing paramter info", $this->innerHTML($node); exit;
+        }
         for($i = 0; $i < $ar->length; $i++) {
             
             switch($ar->item($i)->getAttribute('class')) {
