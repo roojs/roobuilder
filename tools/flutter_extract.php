@@ -204,7 +204,7 @@ class Param extends Obj {
     function __construct($node)
     {
         $ar  = $node->getElementsByTagName('span');
-        for($i = 0; i < $ar->length; $i++) {
+        for($i = 0; $i < $ar->length; $i++) {
             
             switch($ar->item($i)->getAttribute('class')) {
                 case 'parameter-name':
