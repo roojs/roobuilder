@@ -236,7 +236,7 @@ foreach($js as $o) {
 }
  
 foreach(eClass::$all as $c) {
-    if (!method_exits($c, 'readDocs')) {
+    if (!method_exists($c, 'readDocs')) {
         print_R($c);exit;
     }
     $c->readDocs();
