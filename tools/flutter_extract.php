@@ -42,6 +42,7 @@ class Cls extends Obj {
     var $methods = array();
     var $props = array();
     var $isMixin = false;
+    var $isEnum = false;
     
     function __construct($ar)
     {
@@ -128,7 +129,7 @@ foreach($js as $o) {
             Cls::$all[$cls]->methods[] = new Method(array(
                 'name' => $o->name,
                 'href' => $o->href,
-                'isMixin' => $o->type == 'mixin'
+                'isMixin' => $o->type == 'mixin',
                 'isEnum' => $o->type == 'enum'
             ));
             break;
