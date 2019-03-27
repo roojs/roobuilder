@@ -418,7 +418,7 @@ foreach($js as $o) {
 }
 $summary = array();
 if (!file_exists(FDIR .'json')) {
-    mkdir(FDIR .'json', 0666);
+    mkdir(FDIR .'json', 0755);
 }
 foreach(eClass::$all as $c) {
     if (!method_exists($c, 'readDocs')) {
