@@ -12,7 +12,8 @@ class Obj {
     
     static $out_props = array(
         'eClass' => array('props', 'events', 'methods'),
-        'eProperty'
+        'eProperty' => array('name', 'type', 'desc','memberOf'),
+        'eMethod' => array('name', 'type', 'sig', 'static', 'desc','memberOf'),
     )
     
     var $href = '';
