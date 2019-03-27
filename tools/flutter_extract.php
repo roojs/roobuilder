@@ -12,6 +12,7 @@ class Obj {
     var $href = '';
     var $desc = '';
     var $example = '';
+    var $isDeprecated = false;
     function __construct($ar)
     {
         foreach($ar as $k=>$v) {
