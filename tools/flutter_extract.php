@@ -121,10 +121,10 @@ foreach($js as $o) {
         case 'typedef': // func sig?
         case 'top-level constant':
        
+            $cls = str_replace('top-level ', '', $o->type);
             
             
-            
-            new Cls(array(
+            new $cls(array(
                 'name' => $o->qualifiedName,
                 'href' => $o->href,
                 'isMixin' => $o->type == 'mixin',
