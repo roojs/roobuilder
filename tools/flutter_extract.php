@@ -134,6 +134,14 @@ class eTypedef extends eClass
         $dom = Obj::parseHTML();
     }
 }
+class eProperty extends eClass
+{
+    function parseHTML()
+    {   
+        $dom = Obj::parseHTML();
+    }
+}
+
 class  Prop extends Obj {
     var $name = '';
     var $type = '';
