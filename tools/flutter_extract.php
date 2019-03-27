@@ -43,7 +43,8 @@ class Cls extends Obj {
     var $props = array();
     var $isMixin = false;
     var $isEnum = false;
-    var $isTypedef = false;    
+    var $isTypedef = false;
+    var $isConstant = false
     
     function __construct($ar)
     {
@@ -117,12 +118,14 @@ foreach($js as $o) {
         case 'mixin':
         case 'enum':
         case 'typedef': // func sig?
+        case 'top-level constant':
             new Cls(array(
                 'name' => $o->qualifiedName,
                 'href' => $o->href,
                 'isMixin' => $o->type == 'mixin',
                 'isEnum' => $o->type == 'enum',
                 'isTypedef' => $o->type == 'typedef',
+                'isConstant' => $o->type == 'top-level constant',
             ));
             break;
         
