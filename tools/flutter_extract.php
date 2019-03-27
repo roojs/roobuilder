@@ -153,7 +153,8 @@ foreach($js as $o) {
                 'href' => $o->href,
             ));
             break;  
-           
+        default:
+            die("invalid type {$o->type}");
     }
     
     
