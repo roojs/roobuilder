@@ -383,13 +383,16 @@ foreach($js as $o) {
     
     
 }
- 
+$summary = array();
 foreach(eClass::$all as $c) {
     if (!method_exists($c, 'readDocs')) {
         echo "missing readDocs";
         print_R($c);exit;
     }
     $c->readDocs();
+    $summary[$c->name] = $c->toSummaryArray();
+    file_put_contents(FDIR .'json/index.json', json_encode($summary));
+    file_put_contents(FDIR .'json/'.$c->name. '.json', json_encode(c));
 }
 
 print_r(eClass::$all);
