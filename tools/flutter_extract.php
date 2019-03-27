@@ -15,6 +15,7 @@ class Obj {
         foreach($ar as $k=>$v) {
             $this->{$k} = $v;
         }
+        $this->parseHTML();
     }
     function parseHTML()
     {
