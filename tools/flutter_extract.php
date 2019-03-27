@@ -225,6 +225,7 @@ class eEnum extends eClass
 
 class eProperty extends eClass
 {
+    var $type = '?';
     function parseHTML()
     {   
         $dom = Obj::parseHTML();
