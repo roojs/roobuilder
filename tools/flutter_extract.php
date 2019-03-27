@@ -58,8 +58,7 @@ class Obj {
         if (!$sp) {
             print_R($this);
             echo "parseType got invalid value";
-            exit;
-        }
+         }
         $ar = $sp->getElementsByTagName('a');
         if ($ar->length == 1) {
             $this->type = eClass::$url_map[$ar->item(0)->getAttribute('href')]->name;
