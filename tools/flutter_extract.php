@@ -203,6 +203,7 @@ class eConstant extends eClass
 }
 class eEnum extends eClass
 {
+    var $type = '';
     function parseHTML()
     {   
         $dom = Obj::parseHTML();
