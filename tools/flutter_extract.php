@@ -240,7 +240,7 @@ foreach($js as $o) {
         case 'enum':
         case 'typedef': // func sig?
         case 'top-level constant':
-       
+        case 'top-level property':
             $ctor = 'e'. ucfirst(str_replace('top-level ', '', $o->type));
             
             
@@ -277,7 +277,7 @@ foreach($js as $o) {
         
         case 'constant':
         case 'property':
-        case 'top-level property':
+        
 
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
