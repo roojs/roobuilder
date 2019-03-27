@@ -44,7 +44,7 @@ class Cls extends Obj {
     var $isMixin = false;
     var $isEnum = false;
     var $isTypedef = false;
-    var $isConstant = false
+    var $isConstant = false;
     
     function __construct($ar)
     {
