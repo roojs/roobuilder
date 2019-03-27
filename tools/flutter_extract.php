@@ -53,7 +53,7 @@ class Cls extends Obj {
         
     }
     
-    function parseDocs()
+    function readDocs()
     {
         $this->parseHTML();
         // loop through children.
