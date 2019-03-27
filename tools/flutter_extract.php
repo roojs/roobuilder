@@ -121,8 +121,8 @@ foreach($js as $o) {
         case 'typedef': // func sig?
         case 'top-level constant':
        
-            $cls = str_replace('top-level ', '', $o->type);
-            $cls = str_replace('class', 'cls', $o->type);
+            $cls = 'e'. str_replace('top-level ', '', $o->type);
+            
             
             new $cls(array(
                 'name' => $o->qualifiedName,
