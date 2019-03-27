@@ -15,6 +15,7 @@ class Obj {
         'eMixin' =>  array('props', 'events', 'methods'),
         'eTypedef' => array('name', 'type', 'sig', 'static', 'desc','memberOf'),
         'eProperty' => array('name', 'type', 'desc','memberOf'),
+        'eConstant' => array('name', 'type', 'desc','memberOf'),
         'eMethod' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
         'eConstructor' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
         'eEnum' =>  array('name', 'type',   'desc','memberOf'), // fixme .. .values.?
