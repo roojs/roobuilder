@@ -17,7 +17,7 @@ class Obj {
         'eProperty' => array('name', 'type', 'desc','memberOf'),
         'eMethod' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
         'eConstructor' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
-        'eEnum' =>  array('name', 'type', 'static', 'desc','memberOf'), // fixme .. .values.?
+        'eEnum' =>  array('name', 'type',   'desc','memberOf'), // fixme .. .values.?
         'eFunction' =>  array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),// fixme .. .memberof == package.
         'Prop' => array('name', 'type', 'desc','memberOf'),
     );
