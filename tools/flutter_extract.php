@@ -22,7 +22,7 @@ class Obj {
     function parseHTML()
     {
         $dom = new DomDocument(); 
-        $dom->loadHTMLFile(FDIR . $this->href);
+        $dom->loadHTMLFile(FDIR . $this->href, LIBXML_NOWARNING);
         $this->desc = $dom->saveHtml($dom->getElementsByClassName('desc')->item(0));
         return $dom;
     }
