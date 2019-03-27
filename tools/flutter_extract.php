@@ -122,7 +122,7 @@ foreach($js as $o) {
         case 'top-level constant':
        
             $cls = str_replace('top-level ', '', $o->type);
-            
+            $cls = str_replace('class', 'cls', $o->type);
             
             new $cls(array(
                 'name' => $o->qualifiedName,
