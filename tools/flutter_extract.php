@@ -41,6 +41,7 @@ class Cls extends Obj {
     var $events = array();
     var $methods = array();
     var $props = array();
+    var $isMixin = false;
     
     function __construct($ar)
     {
