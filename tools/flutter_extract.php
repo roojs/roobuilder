@@ -89,6 +89,9 @@ class Obj {
     function toSummaryArray()
     {
         $ret = array();
+        if (!isset(self::$out_props[get_class($this)] )) {
+            die("don't know how to handle class: " . get_class($this));
+        }
         foreach(self::$out_props[get_class($this)] as $k) {
             $out = $this->{$k};
             if (is_array($out)) {
