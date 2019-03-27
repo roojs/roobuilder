@@ -417,7 +417,7 @@ foreach($js as $o) {
     
 }
 $summary = array();
-if (!file_exists(file_put_contents(FDIR .'json')) {
+if (!file_exists(FDIR .'json')) {
     mkdir(FDIR .'json', 0666);
 }
 foreach(eClass::$all as $c) {
