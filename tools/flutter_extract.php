@@ -15,7 +15,7 @@ class Obj {
         'eProperty' => array('name', 'type', 'desc','memberOf'),
         'eMethod' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor', 'sig'),
         'eConstructor' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor', 'sig'),
-        
+        'eEvent' =>  array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor', 'sig'),
         
     )
     
