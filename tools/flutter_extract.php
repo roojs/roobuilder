@@ -333,7 +333,7 @@ class Param extends Obj {
 
 
 $js = json_decode(file_get_contents(FDIR.'index.json'));
-
+print_r($js);
 foreach($js as $o) {
     switch($o->type) {
         case 'library':
