@@ -121,6 +121,7 @@ class eClass extends Obj {
     static $url_map = array();
     var $name;
     var $extends;
+    var $memberOf; /// really the package..
     var $events = array();
     var $methods = array();
     var $props = array();
