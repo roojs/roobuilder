@@ -119,6 +119,7 @@ foreach($js as $o) {
         
         case 'method':
         case 'mixin':
+        case 'enum':
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
@@ -128,6 +129,7 @@ foreach($js as $o) {
                 'name' => $o->name,
                 'href' => $o->href,
                 'isMixin' => $o->type == 'mixin'
+                'isEnum' => $o->type == 'enum'
             ));
             break;
         
