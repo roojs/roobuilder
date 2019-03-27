@@ -136,13 +136,7 @@ class eEnum extends eClass
         $dom = Obj::parseHTML();
     }
 }
-class eTypedef extends eFunction
-{
-    function parseHTML()
-    {   
-        $dom = Obj::parseHTML();
-    }
-}
+
 class eProperty extends eClass
 {
     function parseHTML()
@@ -216,7 +210,10 @@ class  eFunction extends eMethod
         $dom = parent::parseHTML();
     }
 }
-
+class eTypedef extends eFunction
+{
+     
+}
 class Param extends Obj {
     var $name = '';
     var $type = '';
