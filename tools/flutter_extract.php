@@ -370,6 +370,7 @@ foreach($js as $o) {
                 'isTypedef' => $o->type == 'typedef',
                 'isConstant' => $o->type == 'top-level constant',
                 'memberOf' => $o->enclosedBy->name,
+                'dtype' => $o->type,
             ));
             break;
         
