@@ -43,6 +43,7 @@ class Cls extends Obj {
     var $props = array();
     var $isMixin = false;
     var $isEnum = false;
+    var $isTypedef = false;    
     
     function __construct($ar)
     {
@@ -120,6 +121,7 @@ foreach($js as $o) {
                 'href' => $o->href,
                 'isMixin' => $o->type == 'mixin',
                 'isEnum' => $o->type == 'enum',
+                'isTypedef' => $o->type == 'typedef',
             ));
             break;
         
