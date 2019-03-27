@@ -44,7 +44,7 @@ class Obj {
     function getElementsByClassName($dom, $class)
     {
         $xp = new DomXPath($dom);
-        return $xp->query("//*[contains(@class, '".$class."')]");
+        return $xp->query("//*[contains(concat(' ', @class, ' '), ' ".$class." ')]");
     }
     function innerHTML($node)
     {
