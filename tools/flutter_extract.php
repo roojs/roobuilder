@@ -75,15 +75,24 @@ class eCls extends Obj {
 }
 class eMixin extends eCls
 {
-    
+    function parseHTML()
+    {   
+        $dom = Obj::parseHTML();
+    }
 }
 class eConstant extends eCls
 {
-    
+    function parseHTML()
+    {   
+        $dom = Obj::parseHTML();
+    }
 }
 class eEnum extends eCls
 {
-    
+    function parseHTML()
+    {   
+        $dom = Obj::parseHTML();
+    }
 }
 class  Prop extends Obj {
     var $name = '';
