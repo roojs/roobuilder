@@ -142,7 +142,7 @@ foreach($js as $o) {
             array_pop($ar);
             $cls = implode('.', $ar);
           
-            $add = = new Method(array(
+            $add = new Method(array(
                 'name' => $o->name,
                 'href' => $o->href,
                 'isConstructor' => $o->type == 'constructor',
