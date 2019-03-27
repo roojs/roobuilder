@@ -5,6 +5,9 @@
 // we have 2 types of data - the overall summary, and the 'detail one we use for docs..
 //
 
+define( FDIR, '/home/alan/Downloads/flutterdocs/flutter/');
+
+
 class Obj {
     var $href = '';
     function __construct($ar)
@@ -12,6 +15,13 @@ class Obj {
         foreach($ar as $k=>$v) {
             $this->{$k} = $v;
         }
+    }
+    function parseHTML()
+    {
+        $dom = new DomDocument(); 
+        $dom->loadHTMLFile(FDIR . $this->href);
+        
+   
     }
 }
 
@@ -57,7 +67,6 @@ class Param extends Obj {
 
 
 
-$fdir = '/home/alan/Downloads/flutterdocs/flutter/';
 $js = json_decode(file_get_contents($fdir.'index.json'));
 
 foreach($js as $o) {
