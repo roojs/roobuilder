@@ -112,6 +112,8 @@ foreach($js as $o) {
             break;
             
         case 'class':
+        case 'mixin':
+        case 'enum':            
             new Cls(array(
                 'name' => $o->qualifiedName,
                 'href' => $o->href
@@ -120,8 +122,7 @@ foreach($js as $o) {
         
         case 'constructor':
         case 'method':
-        case 'mixin':
-        case 'enum':
+        
             $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $cls = implode('.', $ar);
