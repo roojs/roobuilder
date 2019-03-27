@@ -270,7 +270,7 @@ class Param extends Obj {
                     $this->name = $this->innerHTML($ar->item($i));
                     break;
                 case 'type-annotation':
-                     $this->parseType($ar->item($i));
+                    $this->parseType($ar->item($i));
                     break;
                 
             }
