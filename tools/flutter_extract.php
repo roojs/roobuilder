@@ -16,6 +16,7 @@ class Obj {
         'eMethod' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
         'eConstructor' => array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),
         'eEnum' =>  array('name', 'type', 'static', 'desc','memberOf'), // fixme .. .values.?
+        'eFunction' =>  array('name', 'type', 'sig', 'static', 'desc','memberOf', 'isConstructor'),// fixme .. .values.?
         
     )
     
