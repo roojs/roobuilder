@@ -37,6 +37,10 @@ class Obj {
         $xp = new DomXPath($dom);
         return $xp->query("//*[contains(@class, '".$class."')]");
     }
+    function innerHTML($node)
+    {
+        return $node->ownerDocument->saveHtml($node);
+    }
     function parseType($sp)
     {
         $ar = $sp->getElementsByTagName('a');
