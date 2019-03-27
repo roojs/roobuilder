@@ -97,7 +97,10 @@ class eClass extends Obj {
             $this->extends = '';
         } else {
             $dd = $dl->getElementsByTagName('a');
-            
+            if (!$dd->length) {
+                echo "got dl-horizontal - but no 'a' tags";
+                print_R($this);exit;
+            }
             if (!isset(self::$url_map[$dd->item($dd->length-1)->getAttribute('href')])) {
                 die("could not find " . $dd->item($dd->length-1)->getAttribute('href') . " when parsing" . $this->href);
             }
