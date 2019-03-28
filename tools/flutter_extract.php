@@ -207,8 +207,9 @@ class eClass extends Obj {
         if ($dl->getAttribute('class') != 'dl-horizontal') {
             $this->extends = '';
         } else {
-            $dd = $dl->getElementsByTagName('a');
-            if (!$dd->length) {
+            $dd = $dl->getElementsByTagName('dd');
+            $dd = $dd->length ? $dd->item(0)->getElementsByTagName('a') : false;
+            if (!$dd || !$dd->length) {
                 if (strpos($this->innerHTML($dl), '@deprecated')) {
                     $this->isDeprecated = true;
                     return;
