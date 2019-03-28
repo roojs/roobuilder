@@ -150,9 +150,10 @@ class Ns extends Obj {
         // in theory flutter has a flat tree... ?
         foreach($this->cn as $e) {
             if (is_a($e, 'eClass') || is_a($e, 'eMixin')) {
-                
+                $ret['cn'][] = $e->toTreeArray();
             }
         }
+        return $ret;
     }
 }
 
