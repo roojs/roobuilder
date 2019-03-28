@@ -15,7 +15,7 @@
   
   
   extends link:
-  
+  source link?
   generic links...
   
   
@@ -565,6 +565,7 @@ foreach($js as $o) {
             $add =  new Prop(array(
                 'name' => $o->name,
                 'href' => $o->href,
+                'memberOf' => $cls
             ));
             
             eClass::$all[$cls]->props[] = $add;
