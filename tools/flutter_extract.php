@@ -408,7 +408,8 @@ class Param extends Obj {
 $js = json_decode(file_get_contents(FDIR.'index.json'));
 
 foreach($js as $o) {
-    if ($o->name == "charcode") {
+    if ($o->name == "material") {
+        break;
         //print_r($o);
         exit;
     }
