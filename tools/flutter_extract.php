@@ -206,8 +206,16 @@ class eClass extends Obj {
         $dl = $dom->getElementsByTagName('dl')->item(0);
         if ($dl->getAttribute('class') != 'dl-horizontal') {
             $this->extends = '';
-        } else {
-            $dd = $dl->getElementsByTagName('dd');
+            return;
+        }
+        $dt = $dl->getElementsByTagName('dt');
+        if (!$dt->length) {
+            return;
+        }
+        if ($this->innerHTML($dt->item(0)) != 'Inheritance') {
+            return;
+        }
+        $dd = $dl->getElementsByTagName('dd');
             $dd = $dd->length ? $dd->item(0)->getElementsByTagName('a') : false;
             if (!$dd || !$dd->length) {
                 if (strpos($this->innerHTML($dl), '@deprecated')) {
