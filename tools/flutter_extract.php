@@ -458,6 +458,7 @@ foreach($js as $o) {
             switch($o->enclosedBy->type) {
                 case 'class':
                     if (empty(eClass::$all[$cls])) {
+                        print_r($o);
                         echo "Can not find class: $cls to add object to";
                         exit;
                     }
