@@ -229,6 +229,12 @@ class eClass extends Obj {
         // loop through children.
         
     }
+    function toTreeArray()
+    {
+        return array(
+            'name' => $this->name,
+        )
+    }
     
     
 }
