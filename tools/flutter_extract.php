@@ -227,8 +227,8 @@ class Ns extends Obj {
                 $cc[] = $c;
                 continue;
             }
-            if (count($cc->cn) < 2) {
-                $cc[] = $cc->cn[0];
+            if (count($c->cn) < 2) {
+                $cc[] = $c->cn[0];
                 continue;
             }
             $cc[] = $c;
