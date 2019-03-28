@@ -504,6 +504,6 @@ foreach(eClass::$tree as $e) {
     $tree[] = $e->toTreeArray();
 }
 file_put_contents(FDIR .'json/tree.json', json_encode($tree, JSON_PRETTY_PRINT));
-//file_put_contents(FDIR .'json/index.json', json_encode($summary, JSON_PRETTY_PRINT));
+//file_put_contents(FDIR .'json/index.json', json_encode($summary, JSON_PRETTY_PRINT)); // this is for builder.. later..
 
 //print_r(eClass::$all);
