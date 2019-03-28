@@ -145,6 +145,7 @@ class Ns extends Obj {
     {
         $ret = array(
             'name' => $this->name,
+            'is_class' => false,
             'cn' => array()
         );
         // in theory flutter has a flat tree... ?
