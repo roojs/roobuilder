@@ -4,6 +4,27 @@
 
 // we have 2 types of data - the overall summary, and the 'detail one we use for docs..
 //
+/*
+ 
+ TODO:
+  Generics CompoundAnimation<T> ... or 
+      children → List<Widget>   
+  Constants on Libraries.. /? classes?
+  
+  Abstracts - no need to show them in menu?
+  
+  
+  extends link:
+  
+  generic links...
+  
+  
+  config --- constructor links...
+  
+  
+ */
+
+
 
 define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
 
