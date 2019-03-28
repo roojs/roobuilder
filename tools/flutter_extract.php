@@ -141,6 +141,19 @@ class Ns extends Obj {
     {
         self::$kv[$cls->memberOf]->cn[] = $cls;
     }
+    function toTreeArray()
+    {
+        $ret = array(
+            'name' => $this->name,
+            'cn' => array()
+        );
+        // in theory flutter has a flat tree... ?
+        foreach($this->cn as $e) {
+            if (is_a($e, 'eClass') || is_a($e, 'eMixin')) {
+                
+            }
+        }
+    }
 }
 
 
