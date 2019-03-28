@@ -194,7 +194,7 @@ class Ns extends Obj {
             }
             $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                                  $c->shortname, -1, PREG_SPLIT_NO_EMPTY);
-            print_r($bits);
+            //print_r($bits);
             if (count($bits) < 2 ) {
                 $cn[] = $c;
                 continue;
