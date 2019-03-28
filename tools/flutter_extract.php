@@ -233,7 +233,9 @@ class eClass extends Obj {
     {
         return array(
             'name' => $this->name,
-        )
+            'is_class' => true,
+            'cn' => array()
+        );
     }
     
     
