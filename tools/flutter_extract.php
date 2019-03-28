@@ -464,6 +464,11 @@ foreach($js as $o) {
                     }
                     eClass::$all[$memberof]->props[] = $add;
                     break;
+                
+                case 'library':
+                    Ns::add($add);
+                    break;
+                
                 default:
                     print_R($o);
                     exit;
