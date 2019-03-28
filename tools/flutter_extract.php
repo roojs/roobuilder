@@ -282,6 +282,8 @@ class  Prop extends Obj {
     var $isConstant = false;
 }
 
+
+
 class  eMethod extends Obj {  // doubles up for events? - normally 'on' is the name
     var $name = '';
     var $type = ''; // return...
@@ -448,7 +450,7 @@ foreach($js as $o) {
             array_pop($ar);
             $memberof= implode('.', $ar);
             
-            $add =  new Constant(array(
+            $add =  new eConstant(array(
                 'name' => $o->name,
                 'href' => $o->href,
                 'memberOf' => $memberof,
