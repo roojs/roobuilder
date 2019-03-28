@@ -233,20 +233,9 @@ class eClass extends Obj {
             if (!isset(self::$url_map[$dd->item($dd->length-1)->getAttribute('href')])) {
                 die("could not find " . $dd->item($dd->length-1)->getAttribute('href') . " when parsing" . $this->href);
             }
-            $this->extends[] = self::$url_map[$dd->item($dd->length-1)->getAttribute('href')]
+            $this->extends[] = self::$url_map[$dd->item($dd->length-1)->getAttribute('href')]->name;
         }
         
-                return;  // appears that the 'Annotation area' is used for things like @immutable etc..
-            
-                //echo "got dl-horizontal - but no 'a' tags";
-                //print_R($this);exit;
-            }
-            
-            
-            // 
-            
-            $this->extends = self::$url_map[$dd->item($dd->length-1)->getAttribute('href')]->name;
-        }
         
     }
     
