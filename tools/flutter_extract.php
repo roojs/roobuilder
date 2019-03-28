@@ -185,47 +185,49 @@ class Ns extends Obj {
     {
         // tidy the tree before starting...
         
-        
-        foreach($this->cn as $c) {
-            if (!isset($c->shortname))  {
-                continue;
-            }
-            $map[$c->shortname] = $c;
+        if (false) {
             
-           
-              
-            
-        }
-        
-        $cn = array();
-        foreach($this->cn as $c) {
-            if (!isset($c->shortname))  {
-                continue;
-            }
-            $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
-                                 $c->shortname, -1, PREG_SPLIT_NO_EMPTY);
-            //print_r($bits);
-            if (count($bits) < 2 ) {
-                continue;   
-            }
-            if (!isset($map[$bits[0]])) {
-                $add = new Ns(array(
-                    'name' => $c->memberOf .'.'. $bits[0],
-                    'isFakeNamespace' => true,
-                    
-                ));
-                $map[$bits[0]] = $add;
-                $cn[] = $add;
+            foreach($this->cn as $c) {
+                if (!isset($c->shortname))  {
+                    continue;
+                }
+                $map[$c->shortname] = $c;
+                
+               
+                  
+                
             }
             
-            $map[$bits[0]]->cn[] = $c;
+            $cn = array();
+            foreach($this->cn as $c) {
+                if (!isset($c->shortname))  {
+                    continue;
+                }
+                $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
+                                     $c->shortname, -1, PREG_SPLIT_NO_EMPTY);
+                //print_r($bits);
+                if (count($bits) < 2 ) {
+                    continue;   
+                }
+                if (!isset($map[$bits[0]])) {
+                    $add = new Ns(array(
+                        'name' => $c->memberOf .'.'. $bits[0],
+                        'isFakeNamespace' => true,
+                        
+                    ));
+                    $map[$bits[0]] = $add;
+                    $cn[] = $add;
+                }
+                
+                $map[$bits[0]]->cn[] = $c;
+                
+                
+            }
+            $this->cn = $cn;
             
-            
-        }
-        $this->cn = $cn;
-        
-        if ($cn) {
-            print_R($cn);
+            if ($cn) {
+                print_R($cn);
+            }
         }
         
         $ret = array(
