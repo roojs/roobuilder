@@ -457,6 +457,10 @@ foreach($js as $o) {
             ));
             switch($o->enclosedBy->type) {
                 case 'class':
+                    if (empty(eClass::$all[$cls])) {
+                        echo "Can not find class: $cls to add object to";
+                        exit;
+                    }
                     eClass::$all[$cls]->props[] = $add;
                     break;
                 default:
