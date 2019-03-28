@@ -187,6 +187,7 @@ class eClass extends Obj {
     var $isEnum = false;
     var $isTypedef = false;
     var $isConstant = false;
+    var $isAbstract = false;
     
     function __construct($ar)
     {
@@ -209,8 +210,7 @@ class eClass extends Obj {
             if (preg_match('/abstract class/', $this->innerHTML($sc->item(0)))) {
                 $this->isAbstract = true;
             }
-            
-            
+             
         }
         
         
