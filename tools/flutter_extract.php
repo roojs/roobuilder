@@ -226,7 +226,7 @@ class eClass extends Obj {
     var $isTypedef = false;
     var $isConstant = false;
     var $isAbstract = false;
-    
+    var $cn = array();
     function __construct($ar)
     {
         parent::__construct($ar);
