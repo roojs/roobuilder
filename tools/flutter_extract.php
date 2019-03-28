@@ -481,6 +481,7 @@ foreach($js as $o) {
                 'name' => $o->name,
                 'href' => $o->href,
                 'isConstructor' => $o->type == 'constructor',
+                'memberOf' => $o->enclosedBy->name,
             ));
             if ($o->type != 'function') {
                 eClass::$all[$cls]->methods[] = $add;
