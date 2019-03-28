@@ -407,7 +407,6 @@ foreach($js as $o) {
         case 'mixin':
         case 'enum':
         case 'typedef': // func sig?
-        case 'top-level constant':
         case 'top-level property':
             $ctor = 'e'. ucfirst(str_replace('top-level ', '', $o->type));
             
@@ -445,6 +444,7 @@ foreach($js as $o) {
             }
             break;
         
+        case 'top-level constant':        
         case 'constant':
              $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
