@@ -211,7 +211,6 @@ class eClass extends Obj {
         
         if (strpos($this->innerHTML($dl), '@deprecated')) {
              $this->isDeprecated = true;
-             return;
         }
         
         
@@ -225,16 +224,24 @@ class eClass extends Obj {
         }
         
         $dd = $dl->getElementsByTagName('dd');
-        $dd = $dd->length ? $dd->item(0)->getElementsByTagName('a') : false;
+        if (!$dd->length) {
+            return;
+        }
+        $as = $dd->item(0)->getElementsByTagName('a');
+        for($i = $as->length-1;$i > -1; $i--) {
+            $this->extends = array();
+            if (!isset(self::$url_map[$dd->item($dd->length-1)->getAttribute('href')])) {
+                die("could not find " . $dd->item($dd->length-1)->getAttribute('href') . " when parsing" . $this->href);
+            }
+            $this->extends[] = self::$url_map[$dd->item($dd->length-1)->getAttribute('href')]
+        }
         
                 return;  // appears that the 'Annotation area' is used for things like @immutable etc..
             
                 //echo "got dl-horizontal - but no 'a' tags";
                 //print_R($this);exit;
             }
-            if (!isset(self::$url_map[$dd->item($dd->length-1)->getAttribute('href')])) {
-                die("could not find " . $dd->item($dd->length-1)->getAttribute('href') . " when parsing" . $this->href);
-            }
+            
             
             // 
             
