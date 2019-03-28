@@ -125,6 +125,24 @@ class Obj {
     
 }
 
+class Ns extends Obj {
+    static $tree = array();
+    static $kv = array();
+    var $name = '';
+    var $href = '';
+    var $cn = array();
+    function __construct($ar)
+    {
+        parent::__construct($ar);
+        self::$tree[] = $this;
+        self::$kv[$this->name] = $this;
+    }
+    static function add($cls)
+    {
+        self::$kv[$cls->memberOf]->cn[] = $cls;
+    }
+}
+
 
 class eClass extends Obj {
     
