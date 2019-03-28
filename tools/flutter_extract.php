@@ -220,7 +220,7 @@ class Ns extends Obj {
         }
         $this->cn = $cn;
         
-        print_R($cn);exit;
+        //print_R($cn);exit;
         
         $ret = array(
             'name' => $this->name,
