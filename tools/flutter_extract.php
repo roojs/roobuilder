@@ -197,7 +197,8 @@ class Ns extends Obj {
             
             
         }
-        $this->cn = $c;
+        $this->cn = $cn;
+        
         $ret = array(
             'name' => $this->name,
             'is_class' => false,
