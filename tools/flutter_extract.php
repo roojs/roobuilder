@@ -246,6 +246,7 @@ class eClass extends Obj {
             if (!isset(self::$url_map[$as->item($i)->getAttribute('href')])) {
                 die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $this->href);
             }
+            
             $this->extends[] = self::$url_map[$as->item($i)->getAttribute('href')]->name;
         }
          
