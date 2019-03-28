@@ -531,9 +531,10 @@ foreach($js as $o) {
     
 }
 $summary = array();
-if (!file_exists(FDIR .'json')) {
-    mkdir(FDIR .'json', 0755);
+if (!file_exists(FDIR .'json/symbols')) {
+    mkdir(FDIR .'json/symbols', 0755, true);
 }
+
 
 
 foreach(eClass::$all as $c) {
@@ -544,7 +545,7 @@ foreach(eClass::$all as $c) {
     $c->readDocs();
     $summary[$c->name] = $c->toSummaryArray();
     if (is_a($c, 'eClass') ||is_a($c, 'eMixin') ) {
-        file_put_contents(FDIR .'json/sybmols/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
+        file_put_contents(FDIR .'json/symbols/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     }
     // constant's and other mixins.. 
 }
