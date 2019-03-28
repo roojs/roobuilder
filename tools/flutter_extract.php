@@ -141,12 +141,13 @@ class Ns extends Obj {
         
         if (count($bits) == 1) {
             self::$tree[] = $this;
-        } else {
-            array_pop($bits);
-            $par = implode('.', $bits);
-            $this->memberOf = $par;
-            self::add($this);
-        }
+            return;
+        } 
+        array_pop($bits);
+        $par = implode('.', $bits);
+        $this->memberOf = $par;
+        self::add($this);
+        
         
     }
     static function add($cls)
