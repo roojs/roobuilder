@@ -658,6 +658,7 @@ foreach(eClass::$all as $c) {
 }
 $tree = array();
 foreach(Ns::$tree as $e) {
+    $e->fakeTree();
     $tree[] = $e->toTreeArray();
 }
 file_put_contents(FDIR .'json/tree.json', json_encode($tree, JSON_PRETTY_PRINT));
