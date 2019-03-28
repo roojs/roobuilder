@@ -181,11 +181,17 @@ class Ns extends Obj {
         // tidy the tree before starting...
         
         
-        foreach($this->cn as $cn) {
-            $map[$cn->shortname] = $cn;
+        foreach($this->cn as $c) {
+            if (!isset($c->shortname))  {
+                continue;
+            }
+            $map[$c->shortname] = $c;
         }
         $cn = array();
         foreach($this->cn as $c) {
+            if (!isset($c->shortname))  {
+                continue;
+            }
             $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                                  $c->shortname, -1, PREG_SPLIT_NO_EMPTY);
             print_r($bits);
