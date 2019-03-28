@@ -351,7 +351,11 @@ $js = json_decode(file_get_contents(FDIR.'index.json'));
 foreach($js as $o) {
     switch($o->type) {
         case 'library':
-            print_R($o);exit;
+            new Ns(array(
+                'name' => $o->name,
+                'href' => $o->href
+            ));
+             
             break;
             
         case 'class':
