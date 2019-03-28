@@ -48,6 +48,7 @@ class Obj {
     var $desc = '';
     var $example = '';
     var $isDeprecated = false;
+    
     function __construct($ar)
     {
         foreach($ar as $k=>$v) {
@@ -177,6 +178,22 @@ class Ns extends Obj {
     }
     function toTreeArray()
     {
+        // tidy the tree before starting...
+        
+        
+        foreach($this->cn as $cn) {
+            $map[$cn->name] = $cn;
+        }
+        foreach($this->cn as $cn) {
+            $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
+                                 $cn->name, -1, PREG_SPLIT_NO_EMPTY);
+            if (count($bits) < 2 || !isset($map[$bits[0]])) {
+                continue;
+            }
+            $map[]
+            
+        }
+        
         $ret = array(
             'name' => $this->name,
             'is_class' => false,
