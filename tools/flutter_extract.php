@@ -208,6 +208,14 @@ class eClass extends Obj {
             $this->extends = '';
             return;
         }
+        
+        if (strpos($this->innerHTML($dl), '@deprecated')) {
+             $this->isDeprecated = true;
+             return;
+        }
+        
+        
+        
         $dt = $dl->getElementsByTagName('dt');
         if (!$dt->length) {
             return;
@@ -215,13 +223,10 @@ class eClass extends Obj {
         if ($this->innerHTML($dt->item(0)) != 'Inheritance') {
             return;
         }
+        
         $dd = $dl->getElementsByTagName('dd');
-            $dd = $dd->length ? $dd->item(0)->getElementsByTagName('a') : false;
-            if (!$dd || !$dd->length) {
-                if (strpos($this->innerHTML($dl), '@deprecated')) {
-                    $this->isDeprecated = true;
-                    return;
-                }
+        $dd = $dd->length ? $dd->item(0)->getElementsByTagName('a') : false;
+        
                 return;  // appears that the 'Annotation area' is used for things like @immutable etc..
             
                 //echo "got dl-horizontal - but no 'a' tags";
