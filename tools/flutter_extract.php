@@ -457,12 +457,12 @@ foreach($js as $o) {
             ));
             switch($o->enclosedBy->type) {
                 case 'class':
-                    if (empty(eClass::$all[$cls])) {
+                    if (empty(eClass::$all[$memberof])) {
                         print_r($o);
-                        echo "Can not find class: $cls to add object to";
+                        echo "Can not find class: $memberof to add object to";
                         exit;
                     }
-                    eClass::$all[$cls]->props[] = $add;
+                    eClass::$all[$memberof]->props[] = $add;
                     break;
                 default:
                     print_R($o);
