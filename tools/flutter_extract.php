@@ -444,6 +444,9 @@ foreach($js as $o) {
             break;
         
         case 'constant':
+            print_r($o);exit;
+            
+            
         case 'property':
         
 
