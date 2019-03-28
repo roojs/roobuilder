@@ -236,6 +236,9 @@ class eClass extends Obj {
     function __construct($ar)
     {
         parent::__construct($ar);
+        $bits = explode('.', $this->name);
+        $this->shortname  = array_pop($bits);
+        
         self::$all[$this->name] = $this;
         self::$url_map[$this->href] = $this;
         Ns::add($this);
@@ -536,7 +539,7 @@ foreach($js as $o) {
         
         case 'top-level constant':        
         case 'constant':
-             $ar = explode('.', $o->qualifiedName);
+            $ar = explode('.', $o->qualifiedName);
             array_pop($ar);
             $memberof= implode('.', $ar);
             
