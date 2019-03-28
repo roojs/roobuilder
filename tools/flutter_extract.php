@@ -217,7 +217,7 @@ class eClass extends Obj {
         
         $dl = $dom->getElementsByTagName('dl')->item(0);
         if ($dl->getAttribute('class') != 'dl-horizontal') {
-            $this->extends = '';
+            $this->extends = array();
             return;
         }
         
