@@ -500,7 +500,7 @@ foreach(eClass::$all as $c) {
     // constant's and other mixins.. 
 }
 $tree = array();
-foreach(eClass::$tree as $e) {
+foreach(Ns::$tree as $e) {
     $tree[] = $e->toTreeArray();
 }
 file_put_contents(FDIR .'json/tree.json', json_encode($tree, JSON_PRETTY_PRINT));
