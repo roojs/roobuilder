@@ -499,6 +499,11 @@ foreach(eClass::$all as $c) {
     }
     // constant's and other mixins.. 
 }
-file_put_contents(FDIR .'json/index.json', json_encode($summary, JSON_PRETTY_PRINT));
+
+foreach(eClass::$tree as $e) {
+    $tree[] = $e->toTreeArray();
+}
+file_put_contents(FDIR .'json/tree.json', json_encode($summary, JSON_PRETTY_PRINT));
+//file_put_contents(FDIR .'json/index.json', json_encode($summary, JSON_PRETTY_PRINT));
 
 //print_r(eClass::$all);
