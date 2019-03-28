@@ -153,15 +153,20 @@ class Ns extends Obj {
     var $name = '';
     var $href = '';
     var $cn = array();
+    var $isFakeNamespace = false;
     function __construct($ar)
     {
         parent::__construct($ar);
+        
+        if ($this->isFakeNamespace) {
+            return;
+        }
         
         $bits=  explode('.', $this->name);
         
         self::$kv[$this->name] = $this;
         
-        if (count($bits) == 1) {
+        if (count($bits) == 1 ) {
             self::$tree[] = $this;
             return;
         } 
@@ -201,7 +206,10 @@ class Ns extends Obj {
                 
             }
             if (!isset($map[$bits[0]])) {
-                $add = new Ns(array('name' => $c->memberOf .'.'. $bits[0]));
+                $add = new Ns(array(
+                    'name' => $c->memberOf .'.'. $bits[0],
+                    'isFakeNamespace' => true,
+                    ));
                 $map[$bits[0]] = $add;
                 $cn[] = $add;
             }
