@@ -281,7 +281,10 @@ class eEnum extends Obj
 
 class eProperty extends Obj
 {
+     var $name = '';
     var $type = '?';
+    var $desc = '';
+    var $memberOf = '';
     function parseHTML()
     {   
         $dom = Obj::parseHTML();
