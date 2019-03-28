@@ -223,7 +223,7 @@ class Ns extends Obj {
         // finally remove from tree if it's saving '1'
         $cc = array();
         foreach($cn as $c) {
-            if (!$c->isFakeNamespace) {
+            if (empty($c->isFakeNamespace)) {
                 $cc[] = $c;
                 continue;
             }
