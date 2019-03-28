@@ -228,15 +228,14 @@ class eClass extends Obj {
             return;
         }
         $as = $dd->item(0)->getElementsByTagName('a');
+        $this->extends = array();        
         for($i = $as->length-1;$i > -1; $i--) {
-            $this->extends = array();
+
             if (!isset(self::$url_map[$as->item($i)->getAttribute('href')])) {
                 die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $this->href);
             }
             $this->extends[] = self::$url_map[$as->item($i)->getAttribute('href')]->name;
         }
-        print_R($as);
-        print_r($this);exit;
         
         
     }
