@@ -182,12 +182,12 @@ class Ns extends Obj {
         
         
         foreach($this->cn as $cn) {
-            $map[$cn->name] = $cn;
+            $map[$cn->shortname] = $cn;
         }
         $cn = array();
         foreach($this->cn as $c) {
             $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
-                                 $c->name, -1, PREG_SPLIT_NO_EMPTY);
+                                 $c->shortname, -1, PREG_SPLIT_NO_EMPTY);
             print_r($bits);
             if (count($bits) < 2 || !isset($map[$bits[0]])) {
                 $cn[] = $c;
