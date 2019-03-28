@@ -235,6 +235,7 @@ class eClass extends Obj {
             }
             $this->extends[] = self::$url_map[$as->item($i)->getAttribute('href')]->name;
         }
+        print_R($as);
         print_r($this);exit;
         
         
