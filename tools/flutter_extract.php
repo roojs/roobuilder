@@ -195,12 +195,12 @@ class Ns extends Obj {
             $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                                  $c->shortname, -1, PREG_SPLIT_NO_EMPTY);
             print_r($bits);
-            if (count($bits) < 2 |)) {
+            if (count($bits) < 2 ) {
                 $cn[] = $c;
                 continue;
                 
             }
-            if (!isset($map[$bits[0]]) {
+            if (!isset($map[$bits[0]])) {
                 $add = new Ns(array('name' => $c->memberOf .'.'. $bits[0]));
                 $map[$bits[0]] = $add;
                 $cn[] = $add;
