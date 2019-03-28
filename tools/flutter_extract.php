@@ -351,6 +351,7 @@ $js = json_decode(file_get_contents(FDIR.'index.json'));
 foreach($js as $o) {
     switch($o->type) {
         case 'library':
+            print_R($o);exit;
             break;
             
         case 'class':
@@ -437,13 +438,15 @@ $summary = array();
 if (!file_exists(FDIR .'json')) {
     mkdir(FDIR .'json', 0755);
 }
+
+
 foreach(eClass::$all as $c) {
     if (!method_exists($c, 'readDocs')) {
         echo "missing readDocs";
         print_R($c);exit;
     }
     $c->readDocs();
-    //$summary[$c->name] = $c->toSummaryArray();
+    $summary[$c->name] = $c->toSummaryArray();
     if (is_a($c, 'eClass') ||is_a($c, 'eMixin') ) {
         file_put_contents(FDIR .'json/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     }
