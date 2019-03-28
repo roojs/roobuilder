@@ -394,6 +394,11 @@ class Param extends Obj {
 $js = json_decode(file_get_contents(FDIR.'index.json'));
 
 foreach($js as $o) {
+    if ($o->name == "charcode.ascii.dollar_lowercase") {
+        print_r($o);
+        exit;
+    }
+    
     switch($o->type) {
         case 'library':
             new Ns(array(
