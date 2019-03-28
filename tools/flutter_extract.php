@@ -444,9 +444,14 @@ foreach($js as $o) {
             break;
         
         case 'constant':
+             $ar = explode('.', $o->qualifiedName);
+            array_pop($ar);
+            $memberof= implode('.', $ar);
+            
             $add =  new Constant(array(
                 'name' => $o->name,
                 'href' => $o->href,
+                'memberOf' => $memberof,
             ));
             switch($o->enclosedBy->type) {
                 case 'class':
