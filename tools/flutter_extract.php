@@ -462,7 +462,7 @@ foreach($js as $o) {
                     exit;
                 
             }
-            
+            break;
             
         case 'property':
         
