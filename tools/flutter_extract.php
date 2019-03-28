@@ -144,6 +144,8 @@ class Ns extends Obj {
         } else {
             array_pop($bits);
             $par = implode('.', $bits);
+            $this->memberOf = $par;
+            
             $self::$kv[$par]->cn[] = $this;
         }
         
