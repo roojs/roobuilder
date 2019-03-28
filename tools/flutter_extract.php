@@ -316,6 +316,7 @@ class  eFunction extends eMethod
         parent::__construct($ar);
         eClass::$all[$this->name] = $this;
         eClass::$url_map[$this->href] = $this;
+        Ns::add($this);
     }
     function readDocs()
     {
