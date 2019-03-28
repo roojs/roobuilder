@@ -262,7 +262,7 @@ class eMixin extends eClass
         $dom = Obj::parseHTML();
     }
 }
-class eConstant extends eClass
+class eConstant extends Obj
 {
     var $type = '';
     function parseHTML()
