@@ -203,6 +203,18 @@ class eClass extends Obj {
         
         
         $dom = parent::parseHTML();
+        
+        $sc = $this->getElementsByClassName($dom,'self-crumb');
+        if ($sc->length) {
+            if preg_match('/abstract class/', $this->innerHTML($sc->item(0))) {
+                $this->isAbstract = true;
+            }
+            
+            
+        }
+        
+        
+        
         $dl = $dom->getElementsByTagName('dl')->item(0);
         if ($dl->getAttribute('class') != 'dl-horizontal') {
             $this->extends = '';
@@ -236,7 +248,8 @@ class eClass extends Obj {
             }
             $this->extends[] = self::$url_map[$as->item($i)->getAttribute('href')]->name;
         }
-        
+         
+         
         
     }
     
