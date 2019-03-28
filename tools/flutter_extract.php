@@ -207,6 +207,7 @@ class eClass extends Obj {
         
         $sc = $this->getElementsByClassName($dom,'self-crumb');
         if ($sc->length) {
+            // abstracts actually impletment stuff in flutter...
             if (preg_match('/abstract class/', $this->innerHTML($sc->item(0)))) {
                 $this->isAbstract = true;
             }
