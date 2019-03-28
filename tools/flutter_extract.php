@@ -206,7 +206,7 @@ class eClass extends Obj {
         
         $sc = $this->getElementsByClassName($dom,'self-crumb');
         if ($sc->length) {
-            if preg_match('/abstract class/', $this->innerHTML($sc->item(0))) {
+            if (preg_match('/abstract class/', $this->innerHTML($sc->item(0)))) {
                 $this->isAbstract = true;
             }
             
