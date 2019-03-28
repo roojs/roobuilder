@@ -544,7 +544,7 @@ foreach(eClass::$all as $c) {
     $c->readDocs();
     $summary[$c->name] = $c->toSummaryArray();
     if (is_a($c, 'eClass') ||is_a($c, 'eMixin') ) {
-        file_put_contents(FDIR .'json/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
+        file_put_contents(FDIR .'json/sybmols/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     }
     // constant's and other mixins.. 
 }
