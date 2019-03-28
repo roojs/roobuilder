@@ -134,8 +134,19 @@ class Ns extends Obj {
     function __construct($ar)
     {
         parent::__construct($ar);
-        self::$tree[] = $this;
+        
+        $bits=  explode('.', $this->name);
+        
         self::$kv[$this->name] = $this;
+        
+        if (count($bits) == 1) {
+            self::$tree[] = $this;
+        } else {
+            array_pop($bits);
+            $par = implode('.', $bits);
+            $self::$kv[$par]->cn[] = $this;
+        }
+        
     }
     static function add($cls)
     {
@@ -405,7 +416,7 @@ foreach($js as $o) {
                 'name' => $o->name,
                 'href' => $o->href
             ));
-             
+            
             break;
             
         case 'class':
