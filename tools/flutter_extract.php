@@ -394,7 +394,7 @@ class Param extends Obj {
 $js = json_decode(file_get_contents(FDIR.'index.json'));
 
 foreach($js as $o) {
-    if ($o->name == "charcode.ascii.dollar_lowercase") {
+    if ($o->name == "charcode") {
         print_r($o);
         exit;
     }
