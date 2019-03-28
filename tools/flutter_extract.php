@@ -164,6 +164,7 @@ class eClass extends Obj {
         parent::__construct($ar);
         self::$all[$this->name] = $this;
         self::$url_map[$this->href] = $this;
+        Ns::add($this);
     }
     
     function parseHTML()
