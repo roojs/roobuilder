@@ -365,10 +365,17 @@ class eClass extends Obj {
     }
     function toTreeArray()
     {
+        $cn = array();
+        foreach($this->cn as $e) {
+            if (is_a($e, 'eClass') || is_a($e, 'eMixin')  ) {
+                $cn[] = $e->toTreeArray();
+            }
+            
+        }
         return array(
             'name' => $this->name,
             'is_class' => true,
-            'cn' => array()
+            'cn' => $cn
         );
     }
     
