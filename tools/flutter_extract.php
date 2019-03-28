@@ -190,8 +190,7 @@ class Ns extends Obj {
                 continue;
             }
             $map[$c->shortname] = $c;
-            
-           
+             
               
             
         }
@@ -205,6 +204,7 @@ class Ns extends Obj {
                                  $c->shortname, -1, PREG_SPLIT_NO_EMPTY);
             //print_r($bits);
             if (count($bits) < 2 ) {
+                $cn[] = $c;
                 continue;   
             }
             if (!isset($map[$bits[0]])) {
