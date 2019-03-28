@@ -270,7 +270,7 @@ class eConstant extends Obj
         $dom = Obj::parseHTML();
     }
 }
-class eEnum extends eClass
+class eEnum extends Obj
 {
     var $type = '';
     function parseHTML()
@@ -279,7 +279,7 @@ class eEnum extends eClass
     }
 }
 
-class eProperty extends eClass
+class eProperty extends Obj
 {
     var $type = '?';
     function parseHTML()
