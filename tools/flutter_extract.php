@@ -230,10 +230,10 @@ class eClass extends Obj {
         $as = $dd->item(0)->getElementsByTagName('a');
         for($i = $as->length-1;$i > -1; $i--) {
             $this->extends = array();
-            if (!isset(self::$url_map[$dd->item($i)->getAttribute('href')])) {
-                die("could not find " . $dd->item($i)->getAttribute('href') . " when parsing" . $this->href);
+            if (!isset(self::$url_map[$as->item($i)->getAttribute('href')])) {
+                die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $this->href);
             }
-            $this->extends[] = self::$url_map[$dd->item($i)->getAttribute('href')]->name;
+            $this->extends[] = self::$url_map[$as->item($i)->getAttribute('href')]->name;
         }
         
         
