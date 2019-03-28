@@ -218,9 +218,24 @@ class Ns extends Obj {
             
             $map[$bits[0]]->cn[] = $c;
             
+        }
+        
+        // finally remove from tree if it's saving '1'
+        $cc = array();
+        foreach($cn as $c) {
+            if (!$c->isFakeNamespace) {
+                $cc[] = $c;
+                continue;
+            }
+            if (count($cc->cn) < 2) {
+                $cc[] = $cc->cn[0];
+                continue;
+            }
+            $cc[] = $c;
             
         }
-        $this->cn = $cn;
+        
+        $this->cn = $cc;
         
  
     }
