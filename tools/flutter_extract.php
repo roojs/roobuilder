@@ -444,7 +444,19 @@ foreach($js as $o) {
             break;
         
         case 'constant':
-            print_r($o);exit;
+            $add =  new Constant(array(
+                'name' => $o->name,
+                'href' => $o->href,
+            ));
+            switch($o->enclosedBy->type) {
+                case 'class':
+                    eClass::$all[$cls]->props[] = $add;
+                    break;
+                default:
+                    print_R($o);
+                    exit;
+                
+            }
             
             
         case 'property':
@@ -470,11 +482,9 @@ foreach($js as $o) {
                 'name' => $o->name,
                 'href' => $o->href,
             ));
-            if ($o->type == 'top-level property') {
-                eClass::$all[$o->qualifiedName] = $add;
-            } else {
-                eClass::$all[$cls]->props[] = $add;
-            }
+            
+            eClass::$all[$cls]->props[] = $add;
+        
             break;  
         default:
             print_R($o);
