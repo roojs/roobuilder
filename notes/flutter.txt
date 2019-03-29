@@ -27,4 +27,12 @@ flutter run
 
 (press 'r') - triggers the hot reload
 
+---------------------------
+emulator embedded?
 
+Xvfb :2 -screen 0 1024x768x24 > /dev/null 2>&1 &
+x11vnc -display :2 -quiet -nopw
+DISPLAY=:2  ~/Android/Sdk/emulator/emulator -avd Nexus_6_API_28
+
+// this bti can use vnc-gtk...
+vncviewer localhost:0 
