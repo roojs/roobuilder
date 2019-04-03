@@ -283,6 +283,7 @@ class eClass extends Obj {
     var $isConstant = false;
     var $isAbstract = false;
     var $implementors = array();
+    var $realImplementors = array();
     var $cn = array();
     function __construct($ar)
     {
