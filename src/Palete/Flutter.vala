@@ -158,7 +158,11 @@ namespace Palete {
 		
 		public override string[] getChildList(string in_rval)
 		{
-			 
+			 string[] ret = {};
+			 foreach(var k in this.usagemap.possibleChildrenOf(in_rval)) {
+			 	ret += k;
+			 }
+			 return ret;
 			
 		}
 		
