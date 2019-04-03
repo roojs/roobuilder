@@ -427,6 +427,13 @@ class  Prop extends Obj {
     var $desc = '';
     var $memberOf = '';
     var $isConstant = false;
+    function parseHTML()
+    {   
+        $dom = Obj::parseHTML();
+        // work out the type..
+        $rt = $this->getElementsByClassName($dom, 'returntype');
+        $this->parseType($rt);
+    }
 }
 
 
