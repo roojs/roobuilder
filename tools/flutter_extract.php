@@ -375,12 +375,14 @@ class eClass extends Obj {
                 $cn[] = $e->toTreeArray();
             }
         }
-        
         $child = $this->prop('child');
         $child = $child ? $child : $this->prop('children');
-        $childtypes = false;
+        $childtypes = 0;
+        
+        
+        
         if ($child && $child->isA('widgets.Widget')) {
-            $childtypes = 'widgets.Widget';
+            $childtypes = $child->isA('dart:core.List') ? 2 : 1;
         } else if ($child) {
             print_r($this);
             die("unknown child type?");
