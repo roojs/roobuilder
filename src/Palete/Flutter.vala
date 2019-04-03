@@ -60,7 +60,7 @@ namespace Palete {
 			// do we need to clean this up?
 			// remove all the unrelated objects?
 		}
-		public Gee.ArrayList<string> childrenOf(string n)
+		public Gee.ArrayList<string> possibleChildrenOf(string n)
 		{
 			var ret = new Gee.ArrayList<string>();
 			if (!this.childType.has_key(n)) {
