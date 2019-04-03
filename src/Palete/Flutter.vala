@@ -76,15 +76,29 @@ namespace Palete {
 		void loadFutterUsageArray(Json.Array ar)
 		{
 			for(var i=0;i< ar.get_length();  i++) 
-				this.loadFutterUsageObject(ar.get_object(i));
+				this.loadFutterUsageObject(ar.get_object_element(i));
 			}
 		}
 		void loadFutterUsageObject(Json.Object o)
 		{
 			
-		
-			this.loadFlutterUsageArray(o.get_array("cn"));
+			this.loadFlutterUsageArray(o.get_array_member("cn"));
+			if (!o.get_boolean_member("isClass")) {
+				return;
+			}
+			if (o.get_array_member("implementors").get_length() > 0) {
+				this.implementors.set(o.get_string_member("name"), this.jsonStringArray(o.get_array_member("implementors")));
+			}
+			
+			
+			
 		}
-		
+		Gee.ArrayList<string> jsonStringArray(Json.Array ar)
+		{
+			var ret = new Gee.ArrayList<string>();
+			for(var i=0;i< ar.get_length();  i++)  {
+				ret.add(ar.get_string_element(i));
+			}
+		}
 	}
 }
