@@ -60,7 +60,7 @@ namespace Palete {
 				string key,
 				string complete_string
 		) { 
-				return new List<SourceCompletionItem>();
+				return new List<Gtk.SourceCompletionItem>();
 		}
 	}
 }
