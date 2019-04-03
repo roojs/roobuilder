@@ -855,6 +855,7 @@ foreach(eClass::$all as $c) {
 foreach(eClass::$all as $c) {
     //$summary[$c->name] = $c->toSummaryArray();
     if (is_a($c, 'eClass') ||is_a($c, 'eMixin') ) {
+        $c->realImplementors();
         file_put_contents(FDIR .'json/symbols/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     }
     // constant's and other mixins.. 
