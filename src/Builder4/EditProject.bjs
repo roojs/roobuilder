@@ -64,7 +64,7 @@
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
-           "| void loadData" : "  ( ) {\n        this.el.clear();\n                      \n        Gtk.TreeIter iter;\n                \n        el.append(out iter);\n        \n        el.set_value(iter, 0, \"Roo\");\n        el.set_value(iter, 1, \"Roo Project\");\n         el.append(out iter);\n        \n        el.set_value(iter, 0, \"Gtk\");\n        el.set_value(iter, 1, \"Gtk Project\");\n         \n              \n                                     \n}\n"
+           "| void loadData" : "  ( ) {\n        this.el.clear();\n                      \n        Gtk.TreeIter iter;\n                \n        el.append(out iter);\n        el.set_value(iter, 0, \"Roo\");\n        el.set_value(iter, 1, \"Roo Project\");\n        \n        el.append(out iter);\n        el.set_value(iter, 0, \"Gtk\");\n        el.set_value(iter, 1, \"Gtk Project\");\n         \n        el.append(out iter);\n        el.set_value(iter, 0, \"Flutter\");\n        el.set_value(iter, 1, \"Flutter Project\");\n              \n                                     \n}\n"
           }
          ]
         }

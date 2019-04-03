@@ -283,14 +283,16 @@ public class EditProject : Object
                 Gtk.TreeIter iter;
                         
                 el.append(out iter);
-                
                 el.set_value(iter, 0, "Roo");
                 el.set_value(iter, 1, "Roo Project");
-                 el.append(out iter);
                 
+                el.append(out iter);
                 el.set_value(iter, 0, "Gtk");
                 el.set_value(iter, 1, "Gtk Project");
                  
+                el.append(out iter);
+                el.set_value(iter, 0, "Flutter");
+                el.set_value(iter, 1, "Flutter Project");
                       
                                              
         }
