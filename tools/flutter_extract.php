@@ -386,14 +386,14 @@ class eClass extends Obj {
     {
         return in_array($name,$this->extends);
     }
-    function getProp($name)
+    function prop($name)
     {
         foreach($this->props as $p) {
             if ($p->name == $name) {
                 return $p;
             }
         }
-        
+        return false;
     }
     
     
