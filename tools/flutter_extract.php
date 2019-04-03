@@ -380,13 +380,9 @@ class eClass extends Obj {
         $childtypes = 0;
         
         
+        // to complicated to check if these are widget children ... some are wrappers around
         
-        if ($child && (
-                $child->isA('widgets.Widget')
-                ||
-                $child->isA('material.ExpansionPanel')
-            )
-        ) {
+        if ($child ) {
             $childtypes = $child->isA('dart:core.List') ? 2 : 1;
         } else if ($child) {
             print_r($this);
