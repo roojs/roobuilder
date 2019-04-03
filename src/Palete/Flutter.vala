@@ -105,10 +105,12 @@ namespace Palete {
 		    //this.load();
 		    //this.proplist = {};
 		    //this.comments = { }; 
+		    
+	    	this.usagemap = new UsageMap();
 		    // no parent...
 		}
 		public override void  load () {
-			this.loadFlutterUsageFile();
+			GLib.error("should not get here?");
 		}
 		
 		public override GirObject? getClass(string ename)
