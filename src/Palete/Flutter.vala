@@ -156,9 +156,9 @@ namespace Palete {
 			this.usagemap = new UsageMap();
 		}
 		
-		public override getChildList()
+		public override string[] getChildList(string in_rval)
 		{
-			
+			 
 			
 		}
 		
