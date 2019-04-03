@@ -361,9 +361,15 @@ class eClass extends Obj {
             $this->implementors[] = $n;
         }
     }
-    function expandImplementors($n)
+    function expandImplementors($exclude = array())
     {
-        
+        $exclude[] = $this->name;
+        foreach($this->implementors as $c) {
+            if (in_array($c, $exclude)) {
+                continue;
+            }
+            $cl = self::$all[$c]->expandImplementors($exclude)
+        }
         
     }
     
