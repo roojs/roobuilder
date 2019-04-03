@@ -437,7 +437,7 @@ class eClass extends Obj {
             'cn' => $cn,
             'extends' => $this->extends,
             'childtypes' => $childtypes,
-            'childtypes' => $childtype,
+            'childtype' => $childtype,
             'implementors' => $this->implementors, // this is not really complete...
         );
     }
