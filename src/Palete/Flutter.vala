@@ -58,6 +58,16 @@ namespace Palete {
 			// do we need to clean this up?
 			// remove all the unrelated objects?
 		}
+		public Gee.ArrayList<string> childrenOf(string n)
+		{
+			var ret = new Gee.ArrayList<string>();
+			if (!this.childType.has_key(n)) {
+				return ret;
+			}
+			var ch = this.childType.get_key(n);
+			ret.add(cn); // what if it's abstract
+			if (!this.implementors.has_key
+		}
 		
 		
 	}
