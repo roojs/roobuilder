@@ -23,7 +23,7 @@ namespace Project
 		  
 		  
 	  		base(path);
-	  		this.palete = new Palete.Flutter(this);
+	  		//this.palete = new Palete.Flutter(this);
 	  		
 	  		//this.gir_cache = new Gee.HashMap<string,Palete.Gir>();
 			this.xtype = "Flutter";
