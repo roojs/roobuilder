@@ -543,6 +543,12 @@ class Param extends Obj {
     }
 }
 
+$c = new eClass(array(
+    'name' => 'dart:core.List',
+    'href' => 'dart-core/List-class.html',
+    'memberOf' => 'dart:core',
+    'dtype' => 'class' 
+));
 
 // let's do some testing...
 $c = new eClass(array(
