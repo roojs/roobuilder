@@ -840,6 +840,9 @@ $summary = array();
 if (!file_exists(FDIR .'json/symbols')) {
     mkdir(FDIR .'json/symbols', 0755, true);
 }
+if (!file_exists(FDIR .'json/ns')) {
+    mkdir(FDIR .'json/ns', 0755, true);
+}
 
 
 
