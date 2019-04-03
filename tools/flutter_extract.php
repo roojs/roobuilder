@@ -449,7 +449,7 @@ class eProperty extends Obj
 class  Prop extends Obj {
     var $name = '';
     var $type = '';
-    var $types = array();
+    var $types = array(); // generics...
     var $desc = '';
     var $memberOf = '';
     var $isConstant = false;
