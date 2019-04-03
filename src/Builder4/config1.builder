@@ -65,7 +65,8 @@
             "../Palete/CompletionProvider.vala",
             "../Builder4/PopoverProperty.vala",
             "../Builder4/ValaProjectSettingsPopover.vala",
-            "../Builder4/RooProjectSettings.vala"
+            "../Builder4/RooProjectSettings.vala",
+            "../Project/Flutter.vala"
         ],
         "packages" : [
         ]
