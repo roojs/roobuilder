@@ -23,3 +23,6 @@ namespace Palete {
 		    //this.comments = { }; 
 		    // no parent...
 		}
+		public override void  load () {
+			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
+		}
