@@ -8,9 +8,9 @@
  
  TODO:
   Generics CompoundAnimation<T> ... or 
-      children → List<Widget>
-      
-   
+      children → List<Widget>  << fixed..
+    material/PopupMenuEntry-class.html     
+    
       
       
   Constants on Libraries.. /? classes?
