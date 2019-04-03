@@ -35,3 +35,15 @@ namespace Palete {
 			return null
 		
 		}
+		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, string type)  
+		{
+		
+			GLib.error("not supported");
+		
+			return new Gee.HashMap<string,GirObject>();
+		}
+		
+		public override void fillPack(JsRender.Node node,JsRender.Node parent)
+		{   
+			return; // flutter does not have pack...
+		}
