@@ -196,7 +196,10 @@ namespace Palete {
 			 return (string) buf;
 			
 		}
-		
+		public overide string[] getChildList(string in_rval)
+        {
+        	return this.original_getChildList(string in_rval);
+    	}
 		
 
 	}
