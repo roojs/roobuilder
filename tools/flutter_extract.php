@@ -373,10 +373,11 @@ class eClass extends Obj {
             $cl = self::$all[$c]->expandImplementors($exclude);
             foreach($cl as $cc) {
                 if (!in_array($cc, $this->implementors)) {
-                    $add = array();
+                    $this->implementors[]= $cc;
                 }
             }
         }
+        return $this->implementors;
         
     }
     
