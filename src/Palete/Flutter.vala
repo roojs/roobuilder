@@ -68,13 +68,13 @@ namespace Palete {
 			}
 			var ch = this.childType.get(n);
 			if (this.is_abstract.has_key(n)  && !this.is_abstract.get(n)) {
-				ret.add(cn); // it's not abstract...
+				ret.add(ch); // it's not abstract...
 			}
 
-			if (!this.implementors.has_key(n)) {
+			if (!this.implementors.has_key(ch)) {
 				return ret;
 			}
-			foreach(var k in this.implementors.get(n)) {
+			foreach(var k in this.implementors.get(ch)) {
 				ret.add(k);
 			}
 			return ret;
