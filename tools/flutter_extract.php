@@ -374,12 +374,23 @@ class eClass extends Obj {
             if (is_a($e, 'eClass') || is_a($e, 'eMixin')  ) {
                 $cn[] = $e->toTreeArray();
             }
-            
         }
+        
+        $child = $this->prop('child');
+        $child = $child ? $child : $this->prop('children');
+        if ($child->isA('widgets.Widget')) {
+            $childtypes = 'widgets.Widget';
+        } else {
+            print_r($this);
+            die("unknown child type?");
+        }
+        
         return array(
             'name' => $this->name,
             'is_class' => true,
-            'cn' => $cn
+            'cn' => $cn,
+            'extends' => $this->extends,
+            'childtypes' => $childtypes
         );
     }
     function isA($name)
