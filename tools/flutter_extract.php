@@ -864,8 +864,12 @@ foreach(eClass::$all as $c) {
     }
     // constant's and other mixins.. 
 }
-
-
+foreach(Ns::$tree as $c) {
+    //$summary[$c->name] = $c->toSummaryArray();
+    file_put_contents(FDIR .'json/ns/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
+    
+    // constant's and other mixins.. 
+}
 $tree = array();
 foreach(Ns::$tree as $e) {
     $e->fakeTree();
