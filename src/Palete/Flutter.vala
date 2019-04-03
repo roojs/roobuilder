@@ -53,7 +53,7 @@ namespace Palete {
 			opts = {};
 			return false;
 		}
-		public override  List<SourceCompletionItem> suggestComplete(
+		public override  List<Gtk.SourceCompletionItem> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
 				string proptype, 
