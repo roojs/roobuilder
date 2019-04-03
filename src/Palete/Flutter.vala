@@ -106,8 +106,9 @@ namespace Palete {
 		    //this.load();
 		    //this.proplist = {};
 		    //this.comments = { }; 
-		    
-	    	this.usagemap = new UsageMap();
+		    if (Flutter.usagemap == null) {
+		    	Flutter.usagemap = new UsageMap();
+	    	}
 		    // no parent...
 		}
 		public override void  load () {
