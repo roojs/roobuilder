@@ -31,8 +31,8 @@ namespace Palete {
 		{
 
 			GLib.error("not supported");
-		
-			return null
+		 
+			return null;
 		
 		}
 		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, string type)  
