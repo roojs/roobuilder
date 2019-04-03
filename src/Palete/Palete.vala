@@ -107,7 +107,7 @@ namespace Palete
          
 
 	    
-		public string[] getChildList(string in_rval)
+		public string[] original_getChildList(string in_rval)
         {
 
 			if (this.map == null) {
