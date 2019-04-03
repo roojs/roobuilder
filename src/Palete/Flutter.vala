@@ -62,3 +62,5 @@ namespace Palete {
 		) { 
 				return new List<SourceCompletionItem>();
 		}
+	}
+}
