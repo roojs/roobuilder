@@ -71,8 +71,19 @@ namespace Palete {
 			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/flutter_tree.json");
 			this.map = new Gee.ArrayList<Usage>();
 			var node = pa.get_root();
-			var ar = node.get_array();
-			this.loadFutterUsageArray();
+			this.loadFutterUsageArray(node.get_array());
+		}
+		void loadFutterUsageArray(Json.Array ar)
+		{
+			for(var i=0;i< ar.get_length();  i++) 
+				this.loadFutterUsageObject(ar.get_object(i));
+			}
+		}
+		void loadFutterUsageObject(Json.Object o)
+		{
+			
+		
+			this.loadFlutterUsageArray(o.get_array("cn"));
 		}
 		
 	}
