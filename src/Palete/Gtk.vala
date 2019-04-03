@@ -546,7 +546,7 @@ namespace Palete {
 		
 		public override string[] getChildList(string in_rval)
         {
-        	return this.original_getChildList(string in_rval);
+        	return this.original_getChildList(  in_rval);
     	}
 	
     }
