@@ -533,8 +533,50 @@ class Param extends Obj {
 }
 
 
-// let's do some testing...
 
+// let's do some testing...
+$c = new eClass(array(
+    'name' => 'dart:core.Object',
+    'href' => 'dart-core/Object-class.html',
+    'memberOf' => 'dart:core',
+    'dtype' => 'class' 
+));
+
+$c = new eClass(array(
+    'name' => 'foundation.Diagnosticable',
+    'href' => 'foundation/Diagnosticable-class.html',
+    'memberOf' => 'foundation',
+    'dtype' => 'class' 
+));
+
+$c = new eClass(array(
+    'name' => 'foundation.DiagnosticableTree',
+    'href' => 'foundation/DiagnosticableTree-class.html',
+    'memberOf' => 'foundation',
+    'dtype' => 'class' 
+));
+
+
+
+$c = new eClass(array(
+    'name' => 'widgets.Widget',
+    'href' => 'widgets/Widget-class.html',
+    'memberOf' => 'widgets',
+    'dtype' => 'class'
+));
+$c = new eClass(array(
+    'name' => 'widgets.StatelessWidget',
+    'href' => 'widgets/StatelessWidget-class.html',
+    'memberOf' => 'widgets',
+    'dtype' => 'class'
+));
+
+$c = new eClass(array(
+    'name' => 'widgets.StatelessWidget',
+    'href' => 'widgets/StatelessWidget-class.html',
+    'memberOf' => 'widgets',
+    'dtype' => 'class'
+));
 
 $c = new eClass(array(
     'name' => 'material.AboutDialog',
