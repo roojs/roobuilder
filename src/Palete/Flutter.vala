@@ -87,6 +87,7 @@ namespace Palete {
 	public class Flutter : Palete {
 		
 		//public Gee.ArrayList<string> package_cache;
+		UsageMap usagemap;
 		
 		public Flutter(Project.Flutter project)
 		{
