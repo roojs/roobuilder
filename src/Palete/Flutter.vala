@@ -48,7 +48,7 @@ namespace Palete {
 			this.no_children.set( name, (int) o.get_int_member("childtypes"));
 			
 		}
-		public Gee.ArrayList<string> jsonStringArray(Json.Array ar)
+		public  Gee.ArrayList<string> jsonStringArray(Json.Array ar)
 		{
 			var ret = new Gee.ArrayList<string>();
 			for(var i=0;i< ar.get_length();  i++)  {
