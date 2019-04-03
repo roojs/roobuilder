@@ -532,7 +532,7 @@ class Param extends Obj {
     }
 }
 
-
+/*
 
 // let's do some testing...
 $c = new eClass(array(
@@ -588,7 +588,7 @@ $c->readDocs();
 print_r($c);
 exit;
 
-
+*/
 
 
 $js = json_decode(file_get_contents(FDIR.'index.json'));
