@@ -1,3 +1,9 @@
+/**
+ Deps:
+    Palete.Flutter
+    
+*/
+
 namespace Project 
 {
 	static int fl_id = 1;
@@ -31,5 +37,13 @@ namespace Project
 		
 		}
 		
+		public void loadConfig() throws GLib.Error 
+		{
+			// ?? read the yaml file?
+			
+			// 
+		
+			
+		}
 		
 		
