@@ -449,6 +449,7 @@ class eProperty extends Obj
 class  Prop extends Obj {
     var $name = '';
     var $type = '';
+    var $types = array();
     var $desc = '';
     var $memberOf = '';
     var $isConstant = false;
@@ -461,7 +462,7 @@ class  Prop extends Obj {
     }
     function isA($name)
     {
-        return is_array($this->types) ? in_array($name,$this->types) : ($name == $this->type);
+        return in_array($name,$this->types) ||  ($name == $this->type);
     }
 }
 
