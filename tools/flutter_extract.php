@@ -347,13 +347,19 @@ class eClass extends Obj {
             }
             
             $this->extends[] = self::$url_map[$as->item($i)->getAttribute('href')]->name;
-            self::$url_map[$as->item($i)->getAttribute('href')]->addImplements($this->name);
+            self::$url_map[$as->item($i)->getAttribute('href')]->addImplementor($this->name);
         }
         
         
         
          
         
+    }
+    function addImplementor($n)
+    {
+        if (!in_array($n, $this->implementors)) {
+            $this->implementors[] = $n;
+        }
     }
     
     function readDocs()
