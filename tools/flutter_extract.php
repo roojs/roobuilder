@@ -401,7 +401,8 @@ class eClass extends Obj {
             'is_class' => true,
             'cn' => $cn,
             'extends' => $this->extends,
-            'childtypes' => $childtypes
+            'childtypes' => $childtypes,
+            'implementors' => $this->implementors, // this is not really complete...
         );
     }
     function isA($name)
