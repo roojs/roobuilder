@@ -88,7 +88,7 @@ namespace Palete {
 	public class Flutter : Palete {
 		
 		//public Gee.ArrayList<string> package_cache;
-		UsageMap usagemap;
+		static UsageMap usagemap = null;
 		
 		public Flutter(Project.Flutter project)
 		{
@@ -153,6 +153,12 @@ namespace Palete {
 		void loadFlutterUsageFile()
 		{
 			this.usagemap = new UsageMap();
+		}
+		
+		public override getChildList()
+		{
+			
+			
 		}
 		
 	}
