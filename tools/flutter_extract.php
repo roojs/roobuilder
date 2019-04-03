@@ -420,6 +420,7 @@ class eClass extends Obj {
         $child = $this->prop('child');
         $child = $child ? $child : $this->prop('children');
         $childtypes = 0;
+        $childtype = '';
         
         
         // to complicated to check if these are widget children ... some are wrappers around
@@ -427,7 +428,6 @@ class eClass extends Obj {
         if ($child ) {
             $childtypes = $child->isA('dart:core.List') ? 2 : 1;
             $childtype = count($child->types) ? $child->types[0] : $child->type;
-            
             
         }  
         
@@ -437,6 +437,7 @@ class eClass extends Obj {
             'cn' => $cn,
             'extends' => $this->extends,
             'childtypes' => $childtypes,
+            'childtypes' => $childtype,
             'implementors' => $this->implementors, // this is not really complete...
         );
     }
