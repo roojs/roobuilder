@@ -828,6 +828,7 @@ if (!file_exists(FDIR .'json/symbols')) {
 
 
 foreach(eClass::$all as $c) {
+    $c->expandImplementors();
     if (!method_exists($c, 'readDocs')) {
         echo "missing readDocs";
         print_R($c);exit;
