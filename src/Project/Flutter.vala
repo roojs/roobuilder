@@ -46,5 +46,9 @@ namespace Project
 		
 			
 		}
+		public void  writeConfig() {}
 		
-		
+		public Gee.ArrayList<string> filesAll(string in_path,bool abspath = true)
+		{
+			GLib.error("Not supported yet");
+		}
