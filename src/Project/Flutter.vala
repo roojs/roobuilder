@@ -56,3 +56,7 @@ namespace Project
 			GLib.error("Not supported yet");
 		}
 		
+		public Gee.ArrayList<string> filesForOpen(string in_path)
+		{
+			GLib.error("Not supported yet");
+		}
