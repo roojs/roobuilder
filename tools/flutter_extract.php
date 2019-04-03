@@ -447,6 +447,10 @@ class  Prop extends Obj {
         $rt = $this->getElementsByClassName($dom, 'returntype');
         $this->parseType($rt->item(0));
     }
+    function isA($name)
+    {
+        return in_array($name,$this->type);
+    }
 }
 
 
