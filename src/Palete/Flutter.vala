@@ -63,5 +63,11 @@ namespace Palete {
 		) { 
 				return new List<SourceCompletionItem>();
 		}
+		
+		void loadUsageFile()
+		{
+		
+		}
+		
 	}
 }
