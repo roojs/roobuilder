@@ -20,7 +20,7 @@ namespace Palete {
 			var node = pa.get_root();
 			this.addArray(node.get_array());
 			
-			this.removeNonChild()
+			this.removeNonChild();
 		}
 		
 
@@ -56,8 +56,9 @@ namespace Palete {
 		public removeNonChild()
 		{
 			// do we need to clean this up?
-		
+			// remove all the unrelated objects?
 		}
+		
 		
 	}
 
