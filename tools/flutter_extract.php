@@ -432,7 +432,7 @@ class  Prop extends Obj {
         $dom = Obj::parseHTML();
         // work out the type..
         $rt = $this->getElementsByClassName($dom, 'returntype');
-        $this->parseType($rt);
+        $this->parseType($rt->item(0));
     }
 }
 
