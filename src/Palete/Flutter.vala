@@ -54,6 +54,7 @@ namespace Palete {
 			for(var i=0;i< ar.get_length();  i++)  {
 				ret.add(ar.get_string_element(i));
 			}
+			return ret;
 		}
 		public void removeNonChild()
 		{
