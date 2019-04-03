@@ -27,4 +27,11 @@ namespace Palete {
 			this.loadUsageFile();
 		}
 		
+		public override GirObject? getClass(string ename)
+		{
+
+			GLib.error("not supported");
 		
+			return null
+		
+		}
