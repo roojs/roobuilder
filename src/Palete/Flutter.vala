@@ -84,13 +84,13 @@ namespace Palete {
 		{
 			
 			this.loadFlutterUsageArray(o.get_array_member("cn"));
-			if (!o.get_boolean_member("isClass")) {
+			if (!o.get_boolean_member("is_class")) {
 				return;
 			}
 			if (o.get_array_member("implementors").get_length() > 0) {
 				this.implementors.set(o.get_string_member("name"), this.jsonStringArray(o.get_array_member("implementors")));
 			}
-			
+			this.
 			
 			
 		}
