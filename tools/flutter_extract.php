@@ -8,7 +8,11 @@
  
  TODO:
   Generics CompoundAnimation<T> ... or 
-      children → List<Widget>   
+      children → List<Widget>
+      
+   
+      
+      
   Constants on Libraries.. /? classes?
   
   Abstracts - no need to show them in menu?
@@ -532,7 +536,6 @@ class Param extends Obj {
     }
 }
 
-/*
 
 // let's do some testing...
 $c = new eClass(array(
@@ -584,11 +587,19 @@ $c = new eClass(array(
     'memberOf' => 'material',
     'dtype' => 'class'
 ));
+  $add =  new Prop(array(
+                'name' => 'children',
+                'href' => 'material/AboutDialog/children.html',
+                'memberOf' => 'material.AboutDialog'
+            ));
+            
+            $c->props[] = $add;
+
 $c->readDocs();
 print_r($c);
 exit;
 
-*/
+
 
 
 $js = json_decode(file_get_contents(FDIR.'index.json'));
