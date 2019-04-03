@@ -118,9 +118,9 @@ class Obj {
         for($i =0;$i<$ar->length;$i++) {
             $add = eClass::$url_map[$ar->item($i)->getAttribute('href')]->name;;
             $this->types[] = $add;
-            if ($i == 0) {
-                $t .= ($i == 0) ? $add : (' <'. $add );
-            }
+             
+            $t .= ($i == 0) ? $add : (' <'. $add );
+             
         }
         for($i =0;$i<$ar->length-1;$i++) {
             $t .= '>';
