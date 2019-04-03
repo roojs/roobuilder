@@ -361,6 +361,12 @@ class eClass extends Obj {
             $this->implementors[] = $n;
         }
     }
+    function expandImplementors($n)
+    {
+        
+        
+    }
+    
     
     function readDocs()
     {
