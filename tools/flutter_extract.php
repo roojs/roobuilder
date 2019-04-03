@@ -426,6 +426,9 @@ class eClass extends Obj {
         
         if ($child ) {
             $childtypes = $child->isA('dart:core.List') ? 2 : 1;
+            $childtype = count($child->types) ? $child->types[0] : $child->type;
+            
+            
         }  
         
         return array(
