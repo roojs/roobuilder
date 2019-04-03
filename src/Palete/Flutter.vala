@@ -27,14 +27,16 @@ namespace Palete {
 		{
 			
 			this.addArray(o.get_array_member("cn"));
+			
+			var name = o.get_string_member("name");
 			if (!o.get_boolean_member("is_class")) {
 				return;
 			}
 			if (o.get_array_member("implementors").get_length() > 0) {
-				this.implementors.set(o.get_string_member("name"), this.jsonStringArray(o.get_array_member("implementors")));
+				this.implementors.set(name , this.jsonStringArray(o.get_array_member("implementors")));
 			}
-			this.
-			
+			this.childType.set( name, o.get_string_member("childtype"));
+			this.no_children.set( name, o.get_int_member("childtypes"));
 			
 		}
 		public Gee.ArrayList<string> jsonStringArray(Json.Array ar)
