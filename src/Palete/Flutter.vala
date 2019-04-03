@@ -54,7 +54,7 @@ namespace Palete {
 				ret.add(ar.get_string_element(i));
 			}
 		}
-		public removeNonChild()
+		public void removeNonChild()
 		{
 			// do we need to clean this up?
 			// remove all the unrelated objects?
