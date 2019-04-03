@@ -47,3 +47,10 @@ namespace Palete {
 		{   
 			return; // flutter does not have pack...
 		}
+		public override bool  typeOptions(string fqn, string key, string type, out string[] opts) 
+		{
+			GLib.error("not supported");
+			opts = {};
+			return false;
+		}
+		
