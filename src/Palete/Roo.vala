@@ -415,6 +415,10 @@ namespace Palete {
 			
 			return ret;
 		}
+		public override string[] getChildList(string in_rval)
+        {
+        	return this.original_getChildList(  in_rval);
+    	}
     }
 }
  
