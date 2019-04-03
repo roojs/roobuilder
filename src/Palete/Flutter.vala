@@ -2,6 +2,51 @@ using Gtk;
  
 namespace Palete {
 
+
+	public class UsageMap : Object
+	{
+		Gee.HashMap<string,Gee.ArrayList<string>> implementors;
+		Gee.HashMap<string,string> childType;
+		Gee.HashMap<string,int> no_children;
+	
+		public UsageMap() 
+		{
+			this.implementors = new Gee.HashMap<string,Gee.ArrayList<string>>();
+			this.childType = new Gee.HashMap<string,string>();
+			this.no_children = new Gee.HashMap<string,int>();
+		}
+		
+
+		public void addArray(Json.Array ar)
+		{
+			for(var i=0;i< ar.get_length();  i++) {
+				this.loadFutterUsageObject(ar.get_object_element(i));
+			}
+		}
+		public void addObject(Json.Object o)
+		{
+			
+			this.addArray(o.get_array_member("cn"));
+			if (!o.get_boolean_member("is_class")) {
+				return;
+			}
+			if (o.get_array_member("implementors").get_length() > 0) {
+				this.implementors.set(o.get_string_member("name"), this.jsonStringArray(o.get_array_member("implementors")));
+			}
+			this.
+			
+			
+		}
+		public Gee.ArrayList<string> jsonStringArray(Json.Array ar)
+		{
+			var ret = new Gee.ArrayList<string>();
+			for(var i=0;i< ar.get_length();  i++)  {
+				ret.add(ar.get_string_element(i));
+			}
+		}
+	}
+
+
 	public class Flutter : Palete {
 		
 		//public Gee.ArrayList<string> package_cache;
@@ -70,36 +115,10 @@ namespace Palete {
 			var pa = new Json.Parser();
 			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/flutter_tree.json");
 			this.map = new Gee.ArrayList<Usage>();
-			this.implementors = new Gee.HashMap<string,Gee.ArrayList<string>>();
+
 			var node = pa.get_root();
 			this.loadFlutterUsageArray(node.get_array());
 		}
-		void loadFlutterUsageArray(Json.Array ar)
-		{
-			for(var i=0;i< ar.get_length();  i++) {
-				this.loadFutterUsageObject(ar.get_object_element(i));
-			}
-		}
-		void loadFutterUsageObject(Json.Object o)
-		{
-			
-			this.loadFlutterUsageArray(o.get_array_member("cn"));
-			if (!o.get_boolean_member("is_class")) {
-				return;
-			}
-			if (o.get_array_member("implementors").get_length() > 0) {
-				this.implementors.set(o.get_string_member("name"), this.jsonStringArray(o.get_array_member("implementors")));
-			}
-			this.
-			
-			
-		}
-		Gee.ArrayList<string> jsonStringArray(Json.Array ar)
-		{
-			var ret = new Gee.ArrayList<string>();
-			for(var i=0;i< ar.get_length();  i++)  {
-				ret.add(ar.get_string_element(i));
-			}
-		}
+		
 	}
 }
