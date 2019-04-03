@@ -70,7 +70,13 @@ namespace Palete {
 				ret.add(cn); // it's not abstract...
 			}
 
-			if (!this.implementors.has_key(n)
+			if (!this.implementors.has_key(n)) {
+				return ret;
+			}
+			foreach(var k in this.implementors.get(n)) {
+				ret.add(k);
+			}
+			return ret;
 		}
 		
 		
