@@ -82,7 +82,7 @@ namespace Palete {
 		void loadFutterUsageObject(Json.Object o)
 		{
 			
-			this.loadFlutterUsageArray(o.get_array_member("cn"));
+			this.loadFutterUsageArray(o.get_array_member("cn"));
 			if (!o.get_boolean_member("isClass")) {
 				return;
 			}
