@@ -542,6 +542,7 @@ $c = new eClass(array(
     'memberOf' => 'material',
     'dtype' => 'class'
 ));
+$c->readDocs();
 print_r($c);
 exit;
 
