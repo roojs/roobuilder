@@ -533,6 +533,20 @@ class Param extends Obj {
 }
 
 
+// let's do some testing...
+
+
+$c = new eClass(array(
+    'name' => 'material.AboutDialog',
+    'href' => 'material/AboutDialog-class.html',
+    'memberOf' => 'material',
+    'dtype' => 'class'
+));
+print_r($c);
+exit;
+
+
+
 
 $js = json_decode(file_get_contents(FDIR.'index.json'));
 
@@ -658,6 +672,10 @@ foreach($js as $o) {
     
     
 }
+
+
+
+
 $summary = array();
 if (!file_exists(FDIR .'json/symbols')) {
     mkdir(FDIR .'json/symbols', 0755, true);
