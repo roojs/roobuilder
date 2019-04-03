@@ -469,6 +469,9 @@ namespace Palete
 				string key,
 				string complete_string
 		);
+		public abstract string[] getChildList(string in_rval);
+		
+		
 	}
 
 
