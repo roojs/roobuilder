@@ -834,14 +834,13 @@ foreach(eClass::$all as $c) {
         print_R($c);exit;
     }
     $c->readDocs();
-    $summary[$c->name] = $c->toSummaryArray();
+    
     $c->expandImplementors();
     // constant's and other mixins.. 
 }
 // output the files..
 foreach(eClass::$all as $c) {
-    
-     
+    //$summary[$c->name] = $c->toSummaryArray();
     if (is_a($c, 'eClass') ||is_a($c, 'eMixin') ) {
         file_put_contents(FDIR .'json/symbols/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     }
