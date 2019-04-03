@@ -382,6 +382,10 @@ class eClass extends Obj {
             'cn' => $cn
         );
     }
+    function isA($name)
+    {
+        return in_array($name,$this->extends);
+    }
     
     
 }
