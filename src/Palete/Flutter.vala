@@ -70,6 +70,7 @@ namespace Palete {
 			var pa = new Json.Parser();
 			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/flutter_tree.json");
 			this.map = new Gee.ArrayList<Usage>();
+			this.implementors = new Gee.HashMap<string,Gee.ArrayList<string>>();
 			var node = pa.get_root();
 			this.loadFlutterUsageArray(node.get_array());
 		}
