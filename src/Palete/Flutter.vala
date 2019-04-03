@@ -16,12 +16,11 @@ namespace Palete {
 			this.no_children = new Gee.HashMap<string,int>();
 			var pa = new Json.Parser();
 			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/flutter_tree.json");
-			this.map = new Gee.ArrayList<Usage>();
 
 			var node = pa.get_root();
 			this.addArray(node.get_array());
 			
-			
+			this.removeNonChild()
 		}
 		
 
@@ -54,6 +53,12 @@ namespace Palete {
 				ret.add(ar.get_string_element(i));
 			}
 		}
+		public removeNonChild()
+		{
+			// do we need to clean this up?
+		
+		}
+		
 	}
 
 
