@@ -53,4 +53,12 @@ namespace Palete {
 			opts = {};
 			return false;
 		}
-		
+		public override  List<SourceCompletionItem> suggestComplete(
+				JsRender.JsRender file,
+				JsRender.Node? node,
+				string proptype, 
+				string key,
+				string complete_string
+		) { 
+				return new List<SourceCompletionItem>();
+		}
