@@ -464,7 +464,23 @@ class  Prop extends Obj {
     }
     function isA($name)
     {
-        return in_array($name,$this->types) ||  ($name == $this->type);
+        if (empty($this->types)) {
+            return $name == $this->type;
+        }
+        
+        if (in_array($name,$this->types)) {
+            return true;
+        }
+        foreach($this->types as $ty) {
+            if (!isset(eClass::$all[$ty])) {
+                print_R($this);
+                die("could not find type $ty\n");
+            }
+            if (in_array($name, eClass::$all[$ty]->extends)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
