@@ -384,10 +384,7 @@ class eClass extends Obj {
         
         if ($child ) {
             $childtypes = $child->isA('dart:core.List') ? 2 : 1;
-        } else if ($child) {
-            print_r($this);
-            die("unknown child type?");
-        }
+        }  
         
         return array(
             'name' => $this->name,
