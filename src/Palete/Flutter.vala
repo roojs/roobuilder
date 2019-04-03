@@ -66,8 +66,11 @@ namespace Palete {
 				return ret;
 			}
 			var ch = this.childType.get_key(n);
-			ret.add(cn); // what if it's abstract. - you can't add it...
-			if (!this.implementors.has_key
+			if (this.is_abstract.has_key(n)  && !this.is_abstract.get(n)) {
+				ret.add(cn); // it's not abstract...
+			}
+
+			if (!this.implementors.has_key(n)
 		}
 		
 		
