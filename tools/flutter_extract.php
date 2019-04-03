@@ -436,6 +436,7 @@ class eClass extends Obj {
             'is_class' => true,
             'cn' => $cn,
             'extends' => $this->extends,
+            'is_abstract' => $this->isAbstract,
             'childtypes' => $childtypes,
             'childtype' => $childtype,
             'implementors' => $this->realImplementors, // this is not really complete...
