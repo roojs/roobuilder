@@ -20,7 +20,7 @@ namespace Palete {
 		public void addArray(Json.Array ar)
 		{
 			for(var i=0;i< ar.get_length();  i++) {
-				this.loadFutterUsageObject(ar.get_object_element(i));
+				this.addObject(ar.get_object_element(i));
 			}
 		}
 		public void addObject(Json.Object o)
