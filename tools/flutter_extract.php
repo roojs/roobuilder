@@ -382,15 +382,15 @@ class eClass extends Obj {
     }
     function realImplementors()
     {
-        $ret = array();
         
+        $this->realImplementors  = array();
         foreach($this->implementors as $c) {
             if (self::$all[$c]->isAbstract) {
                 return;
             }
-            $ret[] = $c;
+            $this->realImplementors[] = $c;
         }
-        return $ret;
+        
     }
     
     function readDocs()
