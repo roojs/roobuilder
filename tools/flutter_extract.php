@@ -588,7 +588,7 @@ class Param extends Obj {
         
     }
 }
- 
+ /*
 $c = new eClass(array(
     'name' => 'dart:core.List',
     'href' => 'dart-core/List-class.html',
@@ -658,7 +658,7 @@ $c->readDocs();
 print_r($c);
 exit;
  
-
+*/
 
 
 $js = json_decode(file_get_contents(FDIR.'index.json'));
