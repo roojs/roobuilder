@@ -834,8 +834,9 @@ foreach(eClass::$all as $c) {
         print_R($c);exit;
     }
     $c->readDocs();
-    
-    $c->expandImplementors();
+    if (is_a($c, 'eClass') ||is_a($c, 'eMixin') ) {
+        $c->expandImplementors();
+    }
     // constant's and other mixins.. 
 }
 // output the files..
