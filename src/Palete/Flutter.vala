@@ -63,7 +63,7 @@ namespace Palete {
 		) { 
 				return new List<SourceCompletionItem>();
 		}
-		
+		Gee.HashMap<string,Gee.ArrayList<string>> implementors;
 		void loadFlutterUsageFile()
 		{
 			// load tree..
