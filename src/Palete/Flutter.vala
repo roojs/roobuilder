@@ -14,6 +14,14 @@ namespace Palete {
 			this.implementors = new Gee.HashMap<string,Gee.ArrayList<string>>();
 			this.childType = new Gee.HashMap<string,string>();
 			this.no_children = new Gee.HashMap<string,int>();
+			var pa = new Json.Parser();
+			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/flutter_tree.json");
+			this.map = new Gee.ArrayList<Usage>();
+
+			var node = pa.get_root();
+			this.addArray(node.get_array());
+			
+			
 		}
 		
 
