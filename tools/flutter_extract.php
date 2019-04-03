@@ -828,18 +828,27 @@ if (!file_exists(FDIR .'json/symbols')) {
 
 
 foreach(eClass::$all as $c) {
-    $c->expandImplementors();
+    
     if (!method_exists($c, 'readDocs')) {
         echo "missing readDocs";
         print_R($c);exit;
     }
     $c->readDocs();
     $summary[$c->name] = $c->toSummaryArray();
+    $c->expandImplementors();
+    // constant's and other mixins.. 
+}
+// output the files..
+foreach(eClass::$all as $c) {
+    
+     
     if (is_a($c, 'eClass') ||is_a($c, 'eMixin') ) {
         file_put_contents(FDIR .'json/symbols/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     }
     // constant's and other mixins.. 
 }
+
+
 $tree = array();
 foreach(Ns::$tree as $e) {
     $e->fakeTree();
