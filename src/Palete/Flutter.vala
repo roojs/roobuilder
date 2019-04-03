@@ -148,13 +148,7 @@ namespace Palete {
 		Gee.HashMap<string,Gee.ArrayList<string>> implementors;
 		void loadFlutterUsageFile()
 		{
-			// load tree..
-			var pa = new Json.Parser();
-			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/flutter_tree.json");
-			this.map = new Gee.ArrayList<Usage>();
-
-			var node = pa.get_root();
-			this.loadFlutterUsageArray(node.get_array());
+			this.usagemap = new UsageMap();
 		}
 		
 	}
