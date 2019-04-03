@@ -8,6 +8,7 @@ namespace Palete {
 		Gee.HashMap<string,Gee.ArrayList<string>> implementors;
 		Gee.HashMap<string,string> childType;
 		Gee.HashMap<string,int> no_children;
+		Gee.HashMap<string,bool> is_abstract;
 	
 		public UsageMap() 
 		{
