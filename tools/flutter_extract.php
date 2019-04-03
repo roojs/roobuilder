@@ -461,7 +461,7 @@ class  Prop extends Obj {
     }
     function isA($name)
     {
-        return in_array($name,$this->type);
+        return is_array($this->type) ? in_array($name,$this->type) : ($name == $this->type);
     }
 }
 
