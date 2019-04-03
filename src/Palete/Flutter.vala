@@ -66,7 +66,7 @@ namespace Palete {
 			if (!this.childType.has_key(n)) {
 				return ret;
 			}
-			var ch = this.childType.get_key(n);
+			var ch = this.childType.get(n);
 			if (this.is_abstract.has_key(n)  && !this.is_abstract.get(n)) {
 				ret.add(cn); // it's not abstract...
 			}
