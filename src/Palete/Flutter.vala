@@ -64,10 +64,12 @@ namespace Palete {
 				return new List<SourceCompletionItem>();
 		}
 		
-		void loadUsageFile()
+		void loadFlutterUsageFile()
 		{
 			// load tree..
-			
+			var pa = new Json.Parser();
+			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/flutter_tree.json");
+
 			
 		}
 		
