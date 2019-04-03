@@ -119,7 +119,7 @@ class Obj {
             $add = eClass::$url_map[$ar->item($i)->getAttribute('href')]->name;;
             $this->types[] = $add;
              
-            $t .= ($i == 0) ? $add : (' <'. $add );
+            $t .= ($i == 0) ? $add : ('<'. $add );
              
         }
         for($i =0;$i<$ar->length-1;$i++) {
