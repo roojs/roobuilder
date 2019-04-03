@@ -378,6 +378,7 @@ class eClass extends Obj {
         
         $child = $this->prop('child');
         $child = $child ? $child : $this->prop('children');
+        $childtypes = false;
         if ($child && $child->isA('widgets.Widget')) {
             $childtypes = 'widgets.Widget';
         } else if ($child) {
