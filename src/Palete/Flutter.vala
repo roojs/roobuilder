@@ -75,7 +75,7 @@ namespace Palete {
 		}
 		void loadFutterUsageArray(Json.Array ar)
 		{
-			for(var i=0;i< ar.get_length();  i++) 
+			for(var i=0;i< ar.get_length();  i++) {
 				this.loadFutterUsageObject(ar.get_object_element(i));
 			}
 		}
