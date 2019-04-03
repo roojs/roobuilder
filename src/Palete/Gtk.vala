@@ -544,9 +544,9 @@ namespace Palete {
 			return ret;
 		}
 		
-		public overide string[] original_getChildList(string in_rval)
+		public overide string[] getChildList(string in_rval)
         {
-        	return this.getChildList(string in_rval);
+        	return this.original_getChildList(string in_rval);
     	}
 	
     }
