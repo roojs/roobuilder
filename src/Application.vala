@@ -286,7 +286,7 @@
 				print("Got %d/%d", (int) p,(int)t);
 				if (p == t) {
 					loop.quit();
-					}
+				}
 			});
 			Resources.singleton().fetchStart();	
 			loop.run();
@@ -307,6 +307,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 """);		
 					break;
 				case "flutter-project":
+			        Project.Project.loadAll();
 					var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
 				
 					break;
