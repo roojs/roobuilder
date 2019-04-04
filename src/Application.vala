@@ -283,7 +283,7 @@
 			}
 
 			Resources.singleton().updateProgress.connect((p,t) => {
-				print("Got %d/%d", p,t);
+				print("Got %d/%d", (int) p,(int)t);
 			});
 			Resources.singleton().fetchStart();			
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
