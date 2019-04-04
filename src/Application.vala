@@ -191,19 +191,18 @@
 		}
 		Project.Project? compileProject()
 		{
+			
+			if (BuilderApplication.opt_compile_project == null) {
+			 	return null;
+			 }
 			Project.Project cur_project = null;
-			if (BuilderApplication.opt_compile_project != null) {
-				 
-				 
-				cur_project = Project.Project.getProjectByHash( BuilderApplication.opt_compile_project);
-				
-				if (cur_project == null) {
-					GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
-				}
-				cur_project.scanDirs();
-				
-				
+			cur_project = Project.Project.getProjectByHash( BuilderApplication.opt_compile_project);
+			
+			if (cur_project == null) {
+				GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
 			}
+			cur_project.scanDirs();
+				
 			return cur_project;
 		
 		}
