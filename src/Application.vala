@@ -217,6 +217,13 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 		}
+		void compileBjs(Project.Project? cur_project)
+		{
+		
+		
+		
+		
+		}
 		
 	} 
 
