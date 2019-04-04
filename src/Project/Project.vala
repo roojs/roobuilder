@@ -629,8 +629,8 @@ namespace Project {
 				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
 			}
 			foreach(var fn in other_files) {
-				var dp = fn.last_index_of(".");
-				var without_ext = fn.substring(0, dp);
+				var dpos = fn.last_index_of(".");
+				var without_ext = fn.substring(0, dpos);
 				if (bjs_files.contains(without_ext)) {
 					continue;
 				}
