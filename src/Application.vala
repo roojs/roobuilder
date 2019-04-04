@@ -275,11 +275,18 @@
 			if (opt_test == null) {
 				return;
 			}
-			
+			switch(opt_test) {
+				case "help":
+					print("""
+help             - list available tests
+flutter-project  - create a flutter project in /tmp/test-flutter
+""");				
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+			}
 		
 		}
 		
-		
+	 
 	} 
 
  
