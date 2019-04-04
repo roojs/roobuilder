@@ -278,7 +278,10 @@
 		}
 		void pullResources()
 		{
-			 Resources.singleton().fetchStart();
+			if (!opt_pull_resources) {
+				return;
+			}
+			Resources.singleton().fetchStart();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 		
