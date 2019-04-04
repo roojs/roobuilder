@@ -624,7 +624,6 @@ namespace Project {
 				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
 			}
 			for (var i = 0; i < subs.length(); i++) {
-				
 				 this.scanDir(subs.nth_data(i), dp+1);
 			}
 			
