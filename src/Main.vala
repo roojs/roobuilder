@@ -12,32 +12,10 @@ int main (string[] args) {
 	new JsRender.Lang_Class();
 
 	var app =  BuilderApplication.singleton(  args);
-	
-	if (BuilderApplication.opt_debug  || BuilderApplication.opt_compile_project == null) {
-		GLib.Log.set_handler(null, 
-			GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING, 
-			(dom, lvl, msg) => {
-			print("%s: %s\n", dom, msg);
-		});
-	}
+	 
 	
      
-	if (BuilderApplication.opt_list_projects) {
-		 
-		//BuilderApplication.compileBjs();
-        Project.Project.loadAll();
-		print("Projects\n %s\n", Project.Project.listAllToString());
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
-    Project.Project.loadAll();
-    
-    if (BuilderApplication.opt_list_projects) {
-		 
-		//BuilderApplication.compileBjs();
-
-		print("Projects\n %s\n", Project.Project.listAllToString());
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
+	  
 	Project.Project cur_project = null;
     if (BuilderApplication.opt_compile_project != null) {
 		 
