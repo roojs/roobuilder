@@ -309,7 +309,8 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 				case "flutter-project":
 			        Project.Project.loadAll();
 					var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
-				
+					var pa = p.palete as Palete.Flutter;
+					pa.dumpusage();
 					break;
 					
 				default:
