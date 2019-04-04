@@ -85,6 +85,10 @@ namespace Palete {
 			foreach (var k  in this.implementors.keys) {
 				GLib.debug("cls: %s : imps: %d", k, this.implementors.get(k).size);
 			}
+			foreach (var k  in this.childType.keys) {
+				GLib.debug("cls: %s : child: %d", v, this.implementors.get(k));
+			}
+			
 		}
 		
 	}
