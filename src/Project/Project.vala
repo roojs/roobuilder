@@ -633,8 +633,9 @@ namespace Project {
 				if (bjs_files.contains(without_ext)) {
 					continue;
 				}
-				var el = JsRender.JsRender.factory("plain",this, dir + "/" + fn);
-				this.files.set( dir + "/" + fn, el);
+				GLib.debug("Could have added %s/%s", dir, fn);
+				//var el = JsRender.JsRender.factory("plain",this, dir + "/" + fn);
+				//this.files.set( dir + "/" + fn, el);
 			}
 			
 			for (var i = 0; i < subs.length(); i++) {
