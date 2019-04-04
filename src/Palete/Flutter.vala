@@ -83,7 +83,7 @@ namespace Palete {
 		void dump()
 		{
 			foreach (var k  in this.implementors.keys) {
-				GLib.debug("cls: %s : imps: %d", k, this.implementors.get(k).length);
+				GLib.debug("cls: %s : imps: %d", k, this.implementors.get(k).size);
 			}
 		}
 		
