@@ -550,7 +550,7 @@ namespace Project {
 			this.on_changed();
 			
 		}
-		public void  scanDirs() // cached version
+		//public void  scanDirs() // cached version
 		{
 			if (this.is_scanned) {
 				return;
