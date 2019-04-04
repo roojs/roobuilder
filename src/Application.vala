@@ -273,6 +273,12 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 	
 		}
+		void pullResources()
+		{
+		
+		
+		}
+		
 		
 		void runTests()
 		{
