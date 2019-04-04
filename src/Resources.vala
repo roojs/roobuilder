@@ -87,7 +87,7 @@ public class Resources : Object
 	{	
 		string[] avail_files = { 
 			"roodata.json",
-			"flutter_tree.json"
+			"flutter_tree.json",
 			"*",
 			"Editors/*.js",
 			"vapi/*"
