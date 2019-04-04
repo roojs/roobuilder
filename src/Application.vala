@@ -184,10 +184,12 @@
 		}
 		void listProjects()
 		{
-			if (BuilderApplication.opt_list_projects) {
-				print("Projects\n %s\n", Project.Project.listAllToString());
-				GLib.Process.exit(Posix.EXIT_SUCCESS);
+			if (!BuilderApplication.opt_list_projects) {
+				return;
 			}
+			print("Projects\n %s\n", Project.Project.listAllToString());
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
+		
 		}
 		Project.Project? compileProject()
 		{
