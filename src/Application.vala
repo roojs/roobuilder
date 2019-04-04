@@ -129,7 +129,8 @@
 			this.initDebug();
 	        Project.Project.loadAll();
 			this.listProjects();
-
+			var cur_project = this.compileProject();
+			
 		}
 
 
