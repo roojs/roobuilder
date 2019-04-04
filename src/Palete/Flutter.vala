@@ -165,6 +165,12 @@ namespace Palete {
 			 return ret;
 			
 		}
+		public void dumpusage()
+		{
+			this.usagemap.dump();
+		
+		}
+		
 		
 	}
 }
