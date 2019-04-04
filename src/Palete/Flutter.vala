@@ -44,8 +44,10 @@ namespace Palete {
 			if (o.get_array_member("implementors").get_length() > 0) {
 				this.implementors.set(name , this.jsonStringArray(o.get_array_member("implementors")));
 			}
-			this.childType.set( name, o.get_string_member("childtype"));
-			this.no_children.set( name, (int) o.get_int_member("childtypes"));
+			if (o.get_string_member("childtype").length) {
+				this.childType.set( name, o.get_string_member("childtype"));
+				this.no_children.set( name, (int) o.get_int_member("childtypes"));
+			}
 			
 		}
 		public  Gee.ArrayList<string> jsonStringArray(Json.Array ar)
