@@ -34,6 +34,9 @@ namespace Project
 			} catch (GLib.Error e )  {
 				// is tihs ok?
 			}
+			//scan files..
+			
+			
 		
 		}
 		
