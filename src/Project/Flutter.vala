@@ -39,7 +39,7 @@ namespace Project
 			
 		
 		}
-		
+		 
 		public void loadConfig() throws GLib.Error 
 		{
 			// ?? read the yaml file?
