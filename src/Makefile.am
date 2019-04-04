@@ -130,6 +130,7 @@ BUIDERPALETE = \
 BUIDERPROJECT = \
 		Project/Gtk.vala \
 		Project/Project.vala \
+		Project/Flutter.vala \
 		Project/Roo.vala 
 
 
