@@ -12,31 +12,7 @@ int main (string[] args) {
 	new JsRender.Lang_Class();
 
 	var app =  BuilderApplication.singleton(  args);
-	 
-	
-     
 	  
-	Project.Project cur_project = null;
-    if (BuilderApplication.opt_compile_project != null) {
-		 
-		 
-		cur_project = Project.Project.getProjectByHash( BuilderApplication.opt_compile_project);
-		
-		if (cur_project == null) {
-			GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
-		}
-		cur_project.scanDirs();
-		
-		
-	}
-	
-	if (BuilderApplication.opt_list_files) {
-		if (cur_project == null) {
-			GLib.error("missing project, use --project to select which project");
-		}
-		print("Files for %s\n %s\n", cur_project.name, cur_project.listAllFilesToString());
-		GLib.Process.exit(Posix.EXIT_SUCCESS);
-	}
     
     if (BuilderApplication.opt_bjs_compile != null) {
 		if (cur_project == null) {
