@@ -282,7 +282,7 @@
 				return;
 			}
 
-			Resources.singleton().updateProgress.connect((p,t) {
+			Resources.singleton().updateProgress.connect((p,t) => {
 				print("Got %d/%d", p,t);
 			});
 			Resources.singleton().fetchStart();			
