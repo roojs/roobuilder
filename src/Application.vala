@@ -185,6 +185,24 @@
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
 			}
 		}
+		Project.Project? compileProject()
+		{
+			Project.Project cur_project = null;
+			if (BuilderApplication.opt_compile_project != null) {
+				 
+				 
+				cur_project = Project.Project.getProjectByHash( BuilderApplication.opt_compile_project);
+				
+				if (cur_project == null) {
+					GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
+				}
+				cur_project.scanDirs();
+				
+				
+			}
+			return cur_project;
+		
+		}
 		
 	} 
 
