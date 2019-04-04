@@ -117,6 +117,7 @@ BUIDERPALETE = \
 		Palete/GirObject.vala \
 		Palete/VapiParser.vala \
 		Palete/Gtk.vala \
+		Palete/Flutter.vala \
 		Palete/RooDatabase.vala \
 		c/jscore_object_call_as_function.c \
 		Palete/Javascript.vala \
