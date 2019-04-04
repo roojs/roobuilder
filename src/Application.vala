@@ -131,6 +131,7 @@
 			}
 			this.initDebug();
 			this.runTests();			
+			this.pullResources();
 			
 	        Project.Project.loadAll();
 			this.listProjects();
@@ -278,7 +279,7 @@
 		void pullResources()
 		{
 			 Resources.singleton().fetchStart();
-					GLib.Process.exit(Posix.EXIT_SUCCESS);
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 		
 		
