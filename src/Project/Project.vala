@@ -610,27 +610,7 @@ namespace Project {
 						//print("no a bjs\n");
 						continue;
 					}
-					/*
-					var parent = "";
-					//if (dp > 0 ) {
-					
-					var sp = dir.split("/");
-					var parent = "";
-					for (var i = 0; i < sp.length; i++) {
-						
-					}
-					
-					/*
-					sp = sp.splice(sp.length - (dp +1), (dp +1));
-					parent = sp.join('.');
-					
-					
-					if (typeof(_this.files[dir  + '/' + fn]) != 'undefined') {
-						// we already have it..
-						_this.files[dir  + '/' + fn].parent = parent;
-						return;
-					}
-					*/
+				 
 					var xt = this.xtype;
 					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
 					this.files.set( dir + "/" + fn, el);
