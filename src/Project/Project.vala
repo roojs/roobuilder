@@ -614,7 +614,7 @@ namespace Project {
 						//print("no a bjs\n");
 						continue;
 					}
-				 	bjs_files.add(fn.substring(0, fn.length-4);
+				 	bjs_files.add(fn.substring(0, fn.length-4));
 				 	
 					var xt = this.xtype;
 					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
