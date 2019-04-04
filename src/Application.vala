@@ -278,7 +278,7 @@
 		void pullResources()
 		{
 			 Resources.singleton().fetchStart();
-		
+					GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 		
 		
