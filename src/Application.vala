@@ -281,12 +281,15 @@
 			if (!opt_pull_resources) {
 				return;
 			}
-
+			var loop = new MainLoop();
 			Resources.singleton().updateProgress.connect((p,t) => {
 				print("Got %d/%d", (int) p,(int)t);
+				if (p == t) {
+					loop.quit();
+					}
 			});
 			Resources.singleton().fetchStart();	
-			GLib.main();		
+			loop.run();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 		
