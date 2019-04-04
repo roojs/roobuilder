@@ -134,6 +134,7 @@
 			this.listFiles(cur_project);
 			this.compileBjs(cur_project);
 			this.compileVala();
+			this.runTests();
 		}
 
 
