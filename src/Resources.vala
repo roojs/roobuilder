@@ -101,7 +101,7 @@ public class Resources : Object
 			if (target == "roodata.json") {
 				src = "https://raw.githubusercontent.com/roojs/roojs1/master/docs/json/roodata.json";
 			}
-			if (target == "flutter_Tree.json") {
+			if (target == "flutter_tree.json") {
 				src = "https://raw.githubusercontent.com/roojs/flutter-docs-json/master/tree.json";
 			}
 			
