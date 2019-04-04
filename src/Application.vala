@@ -275,7 +275,7 @@
 		}
 		void pullResources()
 		{
-			Palete.Resources.singleton().checkResources();
+			Palete.Resources.singleton().fetchStart();
 		
 		}
 		
