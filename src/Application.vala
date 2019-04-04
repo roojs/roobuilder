@@ -287,6 +287,8 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 """);		
 					break;
 				case "flutter-project":
+					var p = new Project.factory("Flutter", "/tmp/test-flutter");
+				
 					break;
 					
 				default:
