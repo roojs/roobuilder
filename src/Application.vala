@@ -126,6 +126,9 @@
 				GLib.Process.exit(Posix.EXIT_FAILURE);
 				 
 			}
+			this.initDebug();
+			
+			
 
 		}
 
