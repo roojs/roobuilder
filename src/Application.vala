@@ -159,6 +159,24 @@
 			return dirname;
 		}
 		
+		
+		// --------------- non static...
+		
+		void initDebug() 
+		{
+		
+			if (BuilderApplication.opt_debug  || BuilderApplication.opt_compile_project == null) {
+				GLib.Log.set_handler(null, 
+					GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING, 
+					(dom, lvl, msg) => {
+					print("%s: %s\n", dom, msg);
+				});
+			}
+			
+		
+		}
+		
+		
 	} 
 
  
