@@ -44,7 +44,7 @@ namespace Palete {
 			if (o.get_array_member("implementors").get_length() > 0) {
 				this.implementors.set(name , this.jsonStringArray(o.get_array_member("implementors")));
 			}
-			if (o.get_string_member("childtype").length) {
+			if (o.get_string_member("childtype").length > 0) {
 				this.childType.set( name, o.get_string_member("childtype"));
 				this.no_children.set( name, (int) o.get_int_member("childtypes"));
 			}
