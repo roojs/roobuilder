@@ -178,7 +178,16 @@
 			
 		
 		}
-		
+		void listProjects()
+		{
+			if (BuilderApplication.opt_list_projects) {
+			 
+				//BuilderApplication.compileBjs();
+				Project.Project.loadAll();
+				print("Projects\n %s\n", Project.Project.listAllToString());
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+			}
+		}
 		
 	} 
 
