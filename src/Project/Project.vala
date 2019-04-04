@@ -583,6 +583,8 @@ namespace Project {
 				return;
 			}
 			// this should be done async -- but since we are getting the proto up ...
+			var other_files = new Gee.ArrayList<string>();
+			var bjs_files = new Gee.ArrayList<string>();
 			
 			var subs = new GLib.List<string>();;            
 			var f = File.new_for_path(dir);
@@ -607,10 +609,12 @@ namespace Project {
 					}
 					
 					if (!Regex.match_simple("\\.bjs$", fn)) {
+						other_files.add(fn);
 						//print("no a bjs\n");
 						continue;
 					}
-				 
+				 	bjs_files.add(fn.substring(0, fn.length-4);
+				 	
 					var xt = this.xtype;
 					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
 					this.files.set( dir + "/" + fn, el);
@@ -623,6 +627,16 @@ namespace Project {
 			} catch (GLib.Error e) {
 				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
 			}
+			foreach(var fn in other_files) {
+				var dp = fn.last_index_of(".");
+				var without_ext = fn.substring(0, dp);
+				if (bjs_files.contains(without_ext)) {
+					continue;
+				}
+				var el = JsRender.JsRender.factory("plain",this, dir + "/" + fn);
+				this.files.set( dir + "/" + fn, el);
+			}
+			
 			for (var i = 0; i < subs.length(); i++) {
 				 this.scanDir(subs.nth_data(i), dp+1);
 			}
