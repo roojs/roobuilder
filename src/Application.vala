@@ -257,8 +257,15 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
 		
+		void compileTarget()
+		{
+			if (BuilderApplication.opt_compile_target == null) {
+				return;
+			 }
+			Palete.ValaSourceCompiler.buildApplication();
 		
-		
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
+	
 		}
 		
 	} 
