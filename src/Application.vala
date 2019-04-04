@@ -280,10 +280,18 @@
 					print("""
 help             - list available tests
 flutter-project  - create a flutter project in /tmp/test-flutter
-""");				
-				GLib.Process.exit(Posix.EXIT_SUCCESS);
+""");		
+					break;
+				case "flutter-project":
+					break;
+					
+				default:
+					print("Invalid test\n");
+					break;
+
+
 			}
-		
+			GLib.Process.exit(Posix.EXIT_SUCCESS);		
 		}
 		
 	 
