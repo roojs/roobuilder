@@ -550,7 +550,7 @@ namespace Project {
 			this.on_changed();
 			
 		}
-		/*
+		 
 		public void  scanDirs() // cached version
 		{
 			if (this.is_scanned) {
@@ -560,7 +560,7 @@ namespace Project {
 			//console.dump(this.files);
 			
 		}
-		*/
+		 
 		public void  scanDirsForce()
 		{
 			this.is_scanned = true;	 
