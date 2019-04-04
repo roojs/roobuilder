@@ -58,6 +58,7 @@
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
 			{ "output", 0, 0, OptionArg.STRING, ref opt_compile_output, "output binary file path", null },
 			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
+			{ "pull-resources", 0, 0, OptionArg.NONE, ref opt_pull_resources, "Show debug messages", null },			
             
             // some testing code.
             { "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
