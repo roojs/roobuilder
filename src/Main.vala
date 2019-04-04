@@ -9,7 +9,7 @@ int main (string[] args) {
 	
 	
 	
-    	new JsRender.Lang_Class();
+	new JsRender.Lang_Class();
 
 	var app =  BuilderApplication.singleton(  args);
 	
@@ -115,17 +115,7 @@ int main (string[] args) {
 	// GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR | LogLevelFlags.LEVEL_CRITICAL); 
 	GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR ); 
 	
-    
-    
-    // respond to other arguments
-    
-	/*var proj = Project.Project.getProject("Pman.Core");
-	if (proj == null) {
-		print("could not load test project Pman.Core");
-		return 0;
-	}
-	proj.scanDirs();
-	*/
+     
 
 	var w = Xcls_MainWindow.singleton();
 	//w.ref();
