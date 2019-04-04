@@ -130,7 +130,7 @@
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
-			
+			this.listFiles(cur_project);
 		}
 
 
@@ -202,6 +202,10 @@
 				
 			}
 			return cur_project;
+		
+		}
+		void listFiles(Project.Project cur_project)
+		{
 		
 		}
 		
