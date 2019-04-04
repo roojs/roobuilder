@@ -516,7 +516,7 @@ namespace Project {
 			var xt = this.xtype;
 			return JsRender.JsRender.factory(xt, this, path);
 			
-		}
+		} 
 		
 		public JsRender.JsRender create(string filename)
 		{
@@ -550,7 +550,8 @@ namespace Project {
 			this.on_changed();
 			
 		}
-		//public void  scanDirs() // cached version
+		/*
+		public void  scanDirs() // cached version
 		{
 			if (this.is_scanned) {
 				return;
@@ -559,7 +560,7 @@ namespace Project {
 			//console.dump(this.files);
 			
 		}
-		
+		*/
 		public void  scanDirsForce()
 		{
 			this.is_scanned = true;	 
