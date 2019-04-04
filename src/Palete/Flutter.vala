@@ -80,7 +80,12 @@ namespace Palete {
 			}
 			return ret;
 		}
-		
+		void dump()
+		{
+			foreach (var k  in this.implements.keys) {
+				GLib.debug("cls: %s : imps: %d", k, this.implements.get(k).length);
+			}
+		}
 		
 	}
 
