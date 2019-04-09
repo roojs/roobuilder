@@ -44,7 +44,7 @@
          "$ xns" : "Gtk"
         },
         {
-         "| string getValue" : " () {\n     var ix = this.el.get_active();\n        if (ix < 0 ) {\n            return \"\";\n        }\n        switch(ix) {\n            case 0:\n                return \"Roo\";\n            case 1:\n                return \"Gtk\";\n        }\n        return \"\";\n}\n",
+         "| string getValue" : " () {\n     var ix = this.el.get_active();\n        if (ix < 0 ) {\n            return \"\";\n        }\n        switch(ix) {\n            case 0:\n                return \"Roo\";\n            case 1:\n                return \"Gtk\";\n           case 2:\n                return \"Gtk\";\n        }\n        return \"\";\n}\n",
          "id" : "xtype",
          "* init" : " this.el.add_attribute(_this.cellrender.el , \"markup\", 1 );  \n  ",
          "xtype" : "ComboBox",

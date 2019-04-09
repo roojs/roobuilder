@@ -229,6 +229,8 @@ public class EditProject : Object
                         return "Roo";
                     case 1:
                         return "Gtk";
+                   case 2:
+                        return "Gtk";
                 }
                 return "";
         }
