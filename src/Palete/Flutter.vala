@@ -82,6 +82,16 @@ namespace Palete {
 			}
 			return ret;
 		}
+		
+		public Gee.ArrayList<string> implementorsOf(string n)
+		{
+			var ret = new Gee.ArrayList<string>();
+			foreach(var k in this.implementors.get(n)) {
+				ret.add(k);
+			}
+			return ret;
+		}
+		
 		public void dump()
 		{
 			foreach (var k  in this.implementors.keys) {
