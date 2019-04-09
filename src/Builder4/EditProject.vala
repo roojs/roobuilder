@@ -230,7 +230,7 @@ public class EditProject : Object
                     case 1:
                         return "Gtk";
                    case 2:
-                        return "Gtk";
+                        return "Flutter";
                 }
                 return "";
         }
