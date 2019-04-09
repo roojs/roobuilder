@@ -118,8 +118,8 @@ namespace Palete {
 			return ret;
 		}
 		
-		public bool is_a(string cls, string possible_extends) {
-			return this.extends.get(possible_extends).contains(cls);
+		public bool is_a(string cls, string subclass) {
+			return this.extends.get(cls).contains(subclass);
 		}
 		
 		public void dump()
