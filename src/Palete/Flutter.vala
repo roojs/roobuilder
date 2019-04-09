@@ -94,20 +94,17 @@ namespace Palete {
 			// find a list of parents.
 			
 			var ret = new Gee.ArrayList<string>();
-			if (!this.childType.has_key(n)) {
+			if (!this.extends.has_key(n)) {
 				return ret;
 			}
-			var ch = this.childType.get(n);
-			if (this.is_abstract.has_key(n)  && !this.is_abstract.get(n)) {
-				ret.add(ch); // it's not abstract...
+			var ch = this.extends.get(n);
+
+			foreach(var k in this.childType.keys) {
+				if (ch.contains(this.childType.get(k))) {
+					ret.add(k);
+				}
 			}
 
-			if (!this.implementors.has_key(ch)) {
-				return ret;
-			}
-			foreach(var k in this.implementors.get(ch)) {
-				ret.add(k);
-			}
 			return ret;
 		}
 		
