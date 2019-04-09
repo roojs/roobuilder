@@ -135,7 +135,7 @@ namespace Palete {
 				foreach(var v in this.extends.get(k)) {
 					s+=v +", ";
 				}
-				GLib.debug("cls: %s : extends: %s", k, v);
+				GLib.debug("cls: %s : extends: %s", k,s);
 			}
 		}
 		
