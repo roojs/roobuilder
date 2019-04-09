@@ -152,39 +152,16 @@ namespace JsRender {
 	    */
 	   void  saveVala()
 	    {
-			if (this.tree == null) {
+			/*if (this.tree == null) {
 				return;
 			}
 			var fn = GLib.Path.get_dirname(this.path) + "/" + this.name + ".vala";
 			print("WRITE :%s\n " , fn);
 			this.writeFile(fn,  NodeToVala.mungeFile(this));
-	        
+	        */
 	        
 	    }
-		/*
-	    valaCompileCmd : function()
-	    {
-	        
-	        var fn = '/tmp/' + this.name + '.vala';
-	        print("WRITE : " + fn);
-	        File.write(fn, this.toVala(true));
-	        
-	        
-	        
-	        return ["valac",
-	               "--pkg",  "gio-2.0",
-	               "--pkg" , "posix" ,
-	               "--pkg" , "gtk+-3.0",
-	               "--pkg",  "libnotify",
-	               "--pkg",  "gtksourceview-3.0",
-	               "--pkg", "libwnck-3.0",
-	               fn ,   "-o", "/tmp/" + this.name];
-	        
-	       
-	         
-	        
-	    },
-	    */
+	 
 	    
    
 	    string getHelpUrl(string cls)
