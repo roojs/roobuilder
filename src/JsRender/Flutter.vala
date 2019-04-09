@@ -11,7 +11,7 @@ namespace JsRender {
 
 
  
-	//int gid = 1;
+	int fid = 1;
 
   
 	public  class Flutter : JsRender
@@ -24,7 +24,7 @@ namespace JsRender {
 	        this.xtype = "Flutter";
 	        this.language = "dart";
 	         
-	        this.id = "file-flutter-%d".printf(gid++);
+	        this.id = "file-flutter-%d".printf(fid++);
 	   
 
 	        
