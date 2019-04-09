@@ -130,7 +130,13 @@ namespace Palete {
 			foreach (var k  in this.childType.keys) {
 				GLib.debug("cls: %s : child: %s", k, this.childType.get(k));
 			}
-			
+			foreach (var k  in this.extends.keys) {
+				var s = "";
+				forearch(var v in this.extends.get(k)) {
+					s+=v +", ";
+				}
+				GLib.debug("cls: %s : extends: %s", k, v);
+			}
 		}
 		
 	}
@@ -251,11 +257,7 @@ namespace Palete {
 			this.usagemap.dump();
 		
 		}
-    	public void dumpextends()
-		{
-			this.usagemap.dump();
-		
-		}
+    	 
 		
 	}
 }
