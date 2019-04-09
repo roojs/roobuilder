@@ -172,10 +172,18 @@ namespace Palete {
 			 // for top level:
 			 // StatelessWidget  (or a generic 'statefull_myname extends State<myname>')
 			 //both have a single child that is a widget
-
+			if (in_rval == "") {
+				return { "widgets.StatelessWidget" , "widgets.StatefullWidget" };
+			}
+			GLib.ArrayList ar = new GLib.ArrayList<string>();
+			if (in_rval == "widgets.StatelessWidget" || in_rval == "widgets.StatefullWidget") {
+				ar = this.usagemap.implementorsOf("widgets.Widget");
+			} else {
+			
+				ar = this.usagemap.possibleChildrenOf(in_rval)
 
  			 string[] ret = {};
-			 foreach(var k in this.usagemap.possibleChildrenOf(in_rval)) {
+			 foreach(var k in ar) {
 			 	ret += k;
 			 }
 			 return ret;
