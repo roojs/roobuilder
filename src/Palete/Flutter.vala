@@ -9,10 +9,12 @@ namespace Palete {
 		Gee.HashMap<string,string> childType;
 		Gee.HashMap<string,int> no_children;
 		Gee.HashMap<string,bool> is_abstract;
-	    Gee.HashMap<string,string> parents;
+	    Gee.HashMap<string,Gee.ArrayList<string>> extends;
+	    
 		public UsageMap() 
 		{
 			this.implementors = new Gee.HashMap<string,Gee.ArrayList<string>>();
+			this.extends = new Gee.HashMap<string,Gee.ArrayList<string>>();
 			this.childType = new Gee.HashMap<string,string>();
 			this.no_children = new Gee.HashMap<string,int>();
 			this.is_abstract = new Gee.HashMap<string,bool>();			
@@ -44,6 +46,9 @@ namespace Palete {
 			if (o.get_array_member("implementors").get_length() > 0) {
 				this.implementors.set(name , this.jsonStringArray(o.get_array_member("implementors")));
 			}
+			if (o.get_array_member("implementors").get_length() > 0) {
+				this.extends.set(name , this.jsonStringArray(o.get_array_member("extends")));
+			}			
 			if (o.get_string_member("childtype").length > 0) {
 				this.childType.set( name, o.get_string_member("childtype"));
 				this.no_children.set( name, (int) o.get_int_member("childtypes"));
