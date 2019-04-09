@@ -75,18 +75,18 @@ public class EditProject : Object
             }
      
              
-              if (_this.xtype.getValue().length < 1) {
-                   
-                    err_dialog.show(_this.el,"You have to set Project type");             
-                    id = -1;
-                    continue;
-                }
-                if (_this.dir.el.get_filename().length < 1) {
-     
-                    err_dialog.show(_this.el,"You have to select a folder");             
-                    id = -1;
-                    continue;
-                }
+          if (_this.xtype.getValue().length < 1) {
+               
+                err_dialog.show(_this.el,"You have to set Project type");             
+                id = -1;
+                continue;
+            }
+            if (_this.dir.el.get_filename().length < 1) {
+    
+                err_dialog.show(_this.el,"You have to select a folder");             
+                id = -1;
+                continue;
+            }
                
         }
         
