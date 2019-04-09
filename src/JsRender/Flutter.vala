@@ -11,12 +11,12 @@ namespace JsRender {
 
 
  
-	int fid = 1;
+	
 
   
 	public  class Flutter : JsRender
 	{
-	   
+	   static int fid = 1;
 
 	    public Flutter(Project.Project project, string path) {
 	    
