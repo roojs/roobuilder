@@ -251,7 +251,11 @@ namespace Palete {
 			this.usagemap.dump();
 		
 		}
+    	public void dumpextends()
+		{
+			this.usagemap.dump();
 		
+		}
 		
 	}
 }
