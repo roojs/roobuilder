@@ -311,6 +311,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
 					var pa = p.palete as Palete.Flutter;
 					pa.dumpusage();
+					pa.getDropList("materil.MaterialApp");
 					break;
 					
 				default:
