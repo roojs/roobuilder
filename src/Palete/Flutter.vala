@@ -234,8 +234,8 @@ namespace Palete {
 		{
 			var ret =  this.usagemap.possibleParentsOf(rval);
 			if (this.usagemap.is_a(rval,   "widgets.Widget")) {
-				ret +=  "widgets.StatelessWidget";
-				ret += "widgets.StatefullWidget";
+				ret.add("widgets.StatelessWidget");
+				ret.add( "widgets.StatefullWidget");
 			}
 			
 
