@@ -108,6 +108,7 @@ BUIDERJSRENDER = \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/Node.vala \
+		JsRender/Flutter.vala \
 		JsRender/Roo.vala 
 
 
