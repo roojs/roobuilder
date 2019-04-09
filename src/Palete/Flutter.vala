@@ -23,7 +23,7 @@ namespace Palete {
 			this.addArray(node.get_array());
 			
 			this.removeNonChild();
-		}
+		} 
 		
 
 		public void addArray(Json.Array ar)
