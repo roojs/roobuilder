@@ -183,7 +183,7 @@ namespace Palete {
 			 // for top level:
 			 // StatelessWidget  (or a generic 'statefull_myname extends State<myname>')
 			 //both have a single child that is a widget
-			if (in_rval == "") {
+			if (in_rval == "*top") {
 				return { "widgets.StatelessWidget" , "widgets.StatefullWidget" };
 			}
 			Gee.ArrayList<string> ar = new Gee.ArrayList<string>();
