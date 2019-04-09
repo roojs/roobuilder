@@ -419,6 +419,7 @@ class eClass extends Obj {
         }
         $child = $this->prop('child');
         $child = $child ? $child : $this->prop('children');
+        $child = $child ? $child : $this->prop('home'); // MaterialApp??
         $childtypes = 0;
         $childtype = '';
         
