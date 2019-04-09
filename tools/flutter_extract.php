@@ -148,7 +148,7 @@ class Obj {
         }
         return $ret;
     }
-    function isA()
+    function isA($str)
     {
         return false;
     }
