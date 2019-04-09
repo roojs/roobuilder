@@ -232,8 +232,8 @@ namespace Palete {
 		}
 		public override string[] getDropList(string rval)
 		{
-			var ret =  this.usage.possibleParentsOf(rval);
-			if (this.usage.is_a(rval,   "widgets.Widget")) {
+			var ret =  this.usagemap.possibleParentsOf(rval);
+			if (this.usagemap.is_a(rval,   "widgets.Widget")) {
 				ret +=  "widgets.StatelessWidget";
 				ret += "widgets.StatefullWidget";
 			}
