@@ -550,7 +550,7 @@ namespace Palete {
     	}
 		public override string[] getDropList(string rval)
 		{
-			return this.default_getDropList(rva);
+			return this.default_getDropList(rval);
 		}	
     }
 }
