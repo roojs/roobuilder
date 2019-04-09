@@ -376,6 +376,12 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
         public void showhide (bool is_bjs) {
+        
+        
+        	if (this.project.xtype != "Roo") {
+        	 	is_bjs = false;
+         	}
+        
         	for (var i = 2; i < 9;i++) {
         		var el = _this.grid.el.get_child_at(0,i);
         		
