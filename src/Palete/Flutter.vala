@@ -185,7 +185,7 @@ namespace Palete {
 			if (in_rval == "") {
 				return { "widgets.StatelessWidget" , "widgets.StatefullWidget" };
 			}
-			Gee.ArrayList ar = new Gee.ArrayList<string>();
+			Gee.ArrayList<string> ar = new Gee.ArrayList<string>();
 			if (in_rval == "widgets.StatelessWidget" || in_rval == "widgets.StatefullWidget") {
 				ar = this.usagemap.implementorsOf("widgets.Widget");
 			} else {
