@@ -28,13 +28,13 @@ namespace Palete {
 		} 
 		
 
-		public void addArray(Json.Array ar)
+		private void addArray(Json.Array ar)
 		{
 			for(var i=0;i< ar.get_length();  i++) {
 				this.addObject(ar.get_object_element(i));
 			}
 		}
-		public void addObject(Json.Object o)
+		private void addObject(Json.Object o)
 		{
 			
 			this.addArray(o.get_array_member("cn"));
@@ -55,7 +55,7 @@ namespace Palete {
 			}
 			
 		}
-		public  Gee.ArrayList<string> jsonStringArray(Json.Array ar)
+		private  Gee.ArrayList<string> jsonStringArray(Json.Array ar)
 		{
 			var ret = new Gee.ArrayList<string>();
 			for(var i=0;i< ar.get_length();  i++)  {
@@ -116,6 +116,10 @@ namespace Palete {
 				ret.add(k);
 			}
 			return ret;
+		}
+		
+		public bool is_a(cls, of_a) {
+			return this.extends.get(of_a).contains(cls);
 		}
 		
 		public void dump()
@@ -228,7 +232,14 @@ namespace Palete {
 		}
 		public override string[] getDropList(string rval)
 		{
-			return this.getChildList(rval);
+			var ret =  this.possibleParentsOf(rval);
+			if (this.usage.is_a(rval,   "widgets.Widget")) {
+				ret +=  "widgets.StatelessWidget";
+				ret += "widgets.StatefullWidget";
+			}
+			
+
+			ret
 		}	
 		
 		public void dumpusage()
