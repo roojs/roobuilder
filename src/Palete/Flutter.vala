@@ -200,6 +200,11 @@ namespace Palete {
 			 return ret;
 			
 		}
+		public override string[] getDropList(string rval)
+		{
+			return this.getChildList(rval);
+		}	
+		
 		public void dumpusage()
 		{
 			this.usagemap.dump();
