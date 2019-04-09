@@ -230,22 +230,7 @@ public class Xcls_DialogNewComponent : Object
             };
             _this.dbmodel.loadData(ar, c.build_module);
     
-        }
-         if (this.project.xtype == "Flutter") {
-            var p = (Project.Flutter)c.project;
-            var cg = p.compilegroups;
-    
-            var iter = cg.map_iterator();
-            while(iter.next()) {
-                var key = iter.get_key();
-                if (key == "_default_") {
-                    continue;
-                }
-                ar.add(key);
-            };
-            _this.dbmodel.loadData(ar, c.build_module);
-    
-        }
+        } 
          
         _this.file = c;
         //console.log('show all');
