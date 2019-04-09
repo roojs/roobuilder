@@ -9,7 +9,7 @@ namespace Palete {
 		Gee.HashMap<string,string> childType;
 		Gee.HashMap<string,int> no_children;
 		Gee.HashMap<string,bool> is_abstract;
-	
+	    Gee.HashMap<string,string> parents;
 		public UsageMap() 
 		{
 			this.implementors = new Gee.HashMap<string,Gee.ArrayList<string>>();
@@ -82,6 +82,30 @@ namespace Palete {
 			}
 			return ret;
 		}
+		public Gee.ArrayList<string> possibleParentsOf(string n)
+		{
+			
+			// basically a list of all the types that accept this type, or it's parents..
+			// find a list of parents.
+			
+			var ret = new Gee.ArrayList<string>();
+			if (!this.childType.has_key(n)) {
+				return ret;
+			}
+			var ch = this.childType.get(n);
+			if (this.is_abstract.has_key(n)  && !this.is_abstract.get(n)) {
+				ret.add(ch); // it's not abstract...
+			}
+
+			if (!this.implementors.has_key(ch)) {
+				return ret;
+			}
+			foreach(var k in this.implementors.get(ch)) {
+				ret.add(k);
+			}
+			return ret;
+		}
+		
 		
 		public Gee.ArrayList<string> implementorsOf(string n)
 		{
