@@ -312,7 +312,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					var pa = p.palete as Palete.Flutter;
 					pa.dumpusage();
 					pa.dumpextends();
-					pa.getDropList("materil.MaterialApp");
+					pa.getDropList("material.MaterialApp");
 					break;
 					
 				default:
