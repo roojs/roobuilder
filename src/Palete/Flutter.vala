@@ -190,7 +190,7 @@ namespace Palete {
 				ar = this.usagemap.implementorsOf("widgets.Widget");
 			} else {
 			
-				ar = this.usagemap.possibleChildrenOf(in_rval)
+				ar = this.usagemap.possibleChildrenOf(in_rval);
 			}
  			 string[] ret = {};
 			 foreach(var k in ar) {
