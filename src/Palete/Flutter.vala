@@ -192,7 +192,7 @@ namespace Palete {
 				ar = this.usagemap.possibleChildrenOf(in_rval);
 			}
  			 string[] ret = {};
-			 foreach(var k in ar.values) {
+			 foreach(var k in ar) {
 			 	ret += k;
 			 }
 			 return ret;
