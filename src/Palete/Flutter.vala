@@ -179,6 +179,7 @@ namespace Palete {
 		
 		public override string[] getChildList(string in_rval)
 		{
+			GLib.debug("getChildlist %s", in_rval);
 			 // for top level:
 			 // StatelessWidget  (or a generic 'statefull_myname extends State<myname>')
 			 //both have a single child that is a widget
