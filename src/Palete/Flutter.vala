@@ -191,7 +191,7 @@ namespace Palete {
 			} else {
 			
 				ar = this.usagemap.possibleChildrenOf(in_rval)
-
+			}
  			 string[] ret = {};
 			 foreach(var k in ar) {
 			 	ret += k;
