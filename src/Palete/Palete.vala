@@ -150,7 +150,8 @@ namespace Palete
         }
 
 	    
-        public string[] getDropList(string rval)
+	    
+        public string[] default_getDropList(string rval)
         {
 
 			if (this.map == null) {
@@ -470,6 +471,7 @@ namespace Palete
 				string complete_string
 		);
 		public abstract string[] getChildList(string in_rval);
+		public abstract string[] getDropList(string rval);		
 		
 		
 	}
