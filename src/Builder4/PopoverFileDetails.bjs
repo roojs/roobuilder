@@ -68,7 +68,7 @@
          "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
          "* pack" : "attach,1,0,1,1",
          "xtype" : "ComboBox",
-         "| void showhide" : "(bool is_bjs) {\n\n\n\tif (this.project.xtype != \"Roo\") {\n\t \tis_bjs = false;\n \t}\n\n\tfor (var i = 2; i < 9;i++) {\n\t\tvar el = _this.grid.el.get_child_at(0,i);\n\t\t\n\t\tvar showhide= is_bjs;\n\t\tif (i> 7) {\n\t\t\tshowhide = !showhide;\n\t\t}\n\t\t\n\t\tif (showhide) {\n\t\t   el.show();\n\t\t} else {\n\t\t\tel.hide();\n\t\t}\n\t\t el = _this.grid.el.get_child_at(1,i);\n\t\tif (showhide) {\n\t\t   el.show();\n\t\t} else {\n\t\t\tel.hide();\n\t\t}     \n    }\n    // load up the directories\n    //??? why can we not create bjs files in other directories??\n\tif (!is_bjs && _this.file.path.length < 1) {\n\t\t_this.dirmodel.loadData();\n\t\t\n\t\t\n\t}\n   \n    \n}\n",
+         "| void showhide" : "(bool is_bjs) {\n\n\n\tif (this.project.xtype != \"Roo\") {\n\t \tis_bjs = false;\n \t}\n\n\tfor (var i = 2; i < 9;i++) {\n\t\tvar el = _this.grid.el.get_child_at(0,i);\n\t\t\n\t\tvar showhide= is_bjs;\n\t\tif (i> 7) {\n\t\t\tshowhide = !showhide;\n\t\t}\n\t\t\n\t\tif (showhide) {\n\t\t   el.show();\n\t\t} else {\n\t\t\tel.hide();\n\t\t}\n\t\t el = _this.grid.el.get_child_at(1,i);\n\t\tif (showhide) {\n\t\t   el.show();\n\t\t} else {\n\t\t\tel.hide();\n\t\t}     \n    }\n    // load up the directories\n    //??? why can we not create bjs files in other directories??\n\t//if (!is_bjs && _this.file.path.length < 1) {\n\t\n\t\t_this.dirmodel.loadData();\n\t\t\n\t\t\n\t//}\n   \n    \n}\n",
          "$ xns" : "Gtk",
          "items" : [
           {
