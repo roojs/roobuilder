@@ -419,6 +419,10 @@ namespace Palete {
         {
         	return this.original_getChildList(  in_rval);
     	}
+    			public abstract string[] getDropList(string rval)
+		{
+			return this.default_getDropList(rva);
+		}	
     }
 }
  
