@@ -148,6 +148,10 @@ class Obj {
         }
         return $ret;
     }
+    function isA()
+    {
+        return false;
+    }
     
 }
 
@@ -474,6 +478,7 @@ class eConstant extends Obj
     {   
         $dom = Obj::parseHTML();
     }
+    
 }
 class eEnum extends eClass // enums look alot like classes..
 {
