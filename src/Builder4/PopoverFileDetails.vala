@@ -378,7 +378,7 @@ public class Xcls_PopoverFileDetails : Object
         public void showhide (bool is_bjs) {
         
         
-        	if (this.project.xtype != "Roo") {
+        	if (_this.project.xtype != "Roo") {
         	 	is_bjs = false;
          	}
         
