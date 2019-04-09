@@ -30,6 +30,7 @@
 
 
 define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
+define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');
 
 
 class Obj {
@@ -839,10 +840,10 @@ foreach($js as $o) {
 
 
 $summary = array();
-if (!file_exists(FDIR .'json/symbols')) {
+if (!file_exists(TDIR .'json/symbols')) {
     mkdir(FDIR .'json/symbols', 0755, true);
 }
-if (!file_exists(FDIR .'json/ns')) {
+if (!file_exists(TDIR .'json/ns')) {
     mkdir(FDIR .'json/ns', 0755, true);
 }
 
@@ -865,13 +866,13 @@ foreach(eClass::$all as $c) {
     //$summary[$c->name] = $c->toSummaryArray();
     if (is_a($c, 'eClass') ||is_a($c, 'eMixin') ) {
         $c->realImplementors();
-        file_put_contents(FDIR .'json/symbols/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
+        file_put_contents(TDIR .'json/symbols/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     }
     // constant's and other mixins.. 
 }
 foreach(Ns::$tree as $c) {
     //$summary[$c->name] = $c->toSummaryArray();
-    file_put_contents(FDIR .'json/ns/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
+    file_put_contents(TDIR .'json/ns/'.$c->name. '.json', json_encode($c,JSON_PRETTY_PRINT));
     
     // constant's and other mixins.. 
 }
@@ -880,7 +881,7 @@ foreach(Ns::$tree as $e) {
     $e->fakeTree();
     $tree[] = $e->toTreeArray();
 }
-file_put_contents(FDIR .'json/tree.json', json_encode($tree, JSON_PRETTY_PRINT));
+file_put_contents(TDIR .'json/tree.json', json_encode($tree, JSON_PRETTY_PRINT));
 //file_put_contents(FDIR .'json/index.json', json_encode($summary, JSON_PRETTY_PRINT)); // this is for builder.. later..
 
 //print_r(eClass::$all);
