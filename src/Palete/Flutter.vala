@@ -133,7 +133,8 @@ namespace Palete {
 		    // no parent...
 		}
 		public override void  load () {
-			GLib.error("should not get here?");
+			// in Roo & Gtk, usage is loaded here.. but it;s already called in the Ctor.??
+			//GLib.error("should not get here?");
 		}
 		
 		public override GirObject? getClass(string ename)
