@@ -11,7 +11,7 @@ namespace JsRender {
 
 
  
-	int gid = 1;
+	//int gid = 1;
 
   
 	public  class Flutter : JsRender
