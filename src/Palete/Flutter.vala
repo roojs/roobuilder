@@ -239,7 +239,7 @@ namespace Palete {
 			}
 			
 
-			ret
+			return ret;
 		}	
 		
 		public void dumpusage()
