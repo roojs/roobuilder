@@ -2,7 +2,7 @@
  "name" : "WindowRightPalete",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/WindowRightPalete.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/WindowRightPalete.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
@@ -21,8 +21,8 @@
    "items" : [
     {
      "id" : "viewbox",
-     "* pack" : "pack_start,true,true,0",
      "xtype" : "Box",
+     "* pack" : "pack_start,true,true,0",
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "items" : [
@@ -66,8 +66,8 @@
            "items" : [
             {
              "id" : "txtrender",
-             "xtype" : "CellRendererText",
              "* pack" : "pack_start,true",
+             "xtype" : "CellRendererText",
              "$ xns" : "Gtk"
             }
            ]
