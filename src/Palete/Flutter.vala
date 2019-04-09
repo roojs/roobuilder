@@ -232,14 +232,18 @@ namespace Palete {
 		}
 		public override string[] getDropList(string rval)
 		{
-			var ret =  this.usagemap.possibleParentsOf(rval);
+			var ar =  this.usagemap.possibleParentsOf(rval);
 			if (this.usagemap.is_a(rval,   "widgets.Widget")) {
-				ret.add("widgets.StatelessWidget");
-				ret.add( "widgets.StatefullWidget");
+				ar.add("widgets.StatelessWidget");
+				ar.add( "widgets.StatefullWidget");
 			}
 			
-
-			return ret;
+			string[] ret = {};
+			 foreach(var k in ar) {
+			 	ret += k;
+			 }
+			 return ret;
+ 
 		}	
 		
 		public void dumpusage()
