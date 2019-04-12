@@ -70,12 +70,17 @@ namespace Palete {
 		}
 		public Gee.ArrayList<string> possibleChildrenOf(string n)
 		{
+			GLib.debug("possibleChildrenOf %s", n);
 			var ret = new Gee.ArrayList<string>();
 			if (!this.childType.has_key(n)) {
 				return ret;
 			}
+			
 			var ch = this.childType.get(n);
-			if (this.is_abstract.has_key(n)  && !this.is_abstract.get(n)) {
+			GLib.debug("childType %s", ch);
+			
+			if (this.is_abstract.has_key(ch)  && !this.is_abstract.get(ch)) {
+				GLib.debug("add Implementor (self) %s", ch);			
 				ret.add(ch); // it's not abstract...
 			}
 
@@ -83,6 +88,7 @@ namespace Palete {
 				return ret;
 			}
 			foreach(var k in this.implementors.get(ch)) {
+				GLib.debug("add Implementor %s", k);
 				ret.add(k);
 			}
 			return ret;
@@ -227,6 +233,7 @@ namespace Palete {
 			if (in_rval == "widgets.StatelessWidget" || in_rval == "widgets.StatefullWidget") {
 				ar = this.usagemap.implementorsOf("widgets.Widget");
 			} else {
+				
 				ar = this.usagemap.possibleChildrenOf(in_rval);
 			}
  			 string[] ret = {};

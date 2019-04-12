@@ -262,7 +262,7 @@ class Ns extends Obj {
         );
         // in theory flutter has a flat tree... ?
         foreach($this->cn as $e) {
-           if (in_array(get_class($e) , 'eClass', 'eMixin', 'Ns')) {
+           if (in_array(get_class($e) , array('eClass', 'eMixin', 'Ns'))) {
                 $ret['cn'][] = $e->toTreeArray();
             }
             
@@ -418,13 +418,17 @@ class eClass extends Obj {
     {
         $cn = array();
         foreach($this->cn as $e) {
-            if (is_a($e, 'eClass') || is_a($e, 'eMixin')  ) {
+            if (in_array(get_class($e) , array('eClass', 'eMixin'))) {
                 $cn[] = $e->toTreeArray();
             }
         }
         $child = $this->prop('child');
         $child = $child ? $child : $this->prop('children');
         $child = $child ? $child : $this->prop('home'); // MaterialApp??
+        // above might be a constant... - technically we could work out the type of that..
+        if ($child && !in_array(get_class($child), array( 'eProperty', 'Prop')))  {
+            $child = false;
+        }
         $childtypes = 0;
         $childtype = '';
         

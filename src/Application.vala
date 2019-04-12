@@ -311,8 +311,14 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
 					var pa = p.palete as Palete.Flutter;
 					pa.dumpusage();
- 
-					pa.getDropList("material.MaterialApp");
+					 var ar = pa.getChildList("material.MaterialApp");
+					GLib.debug("childlist for material.MaterialApp is %s", 
+						string.joinv( "\n-- ", ar)
+					);
+					ar = pa.getDropList("material.MaterialApp");
+					GLib.debug("droplist for material.MaterialApp is %s", 
+						string.joinv( "\n-- ", ar)
+					);
 					break;
 					
 				default:
