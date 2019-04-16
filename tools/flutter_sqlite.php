@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * files parsed from
+ * https://master-api.flutter.dev/offline/flutter.xml
+ */
 
 class fsql {
     var $pdo;
