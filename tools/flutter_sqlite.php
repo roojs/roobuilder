@@ -53,7 +53,7 @@ class fsql {
     function get($k,$v)
     {
         print_R(array($k,$v));
-        $s = $this->pdo->prepare("SELECT id FROM node where $k=?");
+        $s = $this->pdo->prepare("SELECT * FROM node where $k=?");
         $s->execute(array($v));
         $r = $s->fetchAll(PDO::FETCH_ASSOC);
          
@@ -208,8 +208,7 @@ class fsql {
                 die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $id);
             }
             
-            print_R($ex);exit;
-            $extends[] = $ex['qualifiedName'];
+             $extends[] = $ex['qualifiedName'];
             
         }
         $ar['extends'] = implode(',', $extends);
