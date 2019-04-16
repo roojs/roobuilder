@@ -41,7 +41,13 @@ class fsql {
                     extends VARCHAR(255)  NOT NULL
                 );
                     
-        ")
+        ");
+        
+        
+    }
+    
+    function fromIndex()
+    {
         
         
     }
