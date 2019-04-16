@@ -112,6 +112,11 @@ class fsql {
         
         return $dom;
     }
+    function getElementsByClassName($dom, $class)
+    {
+        $xp = new DomXPath($dom);
+        return $xp->query("//*[contains(concat(' ', @class, ' '), ' ".$class." ')]");
+    }
     function readDesc($dom, $id)
     {
         $array = array();
