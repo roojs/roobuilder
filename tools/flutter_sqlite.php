@@ -128,7 +128,7 @@ class fsql {
     }
     function parseIndex()
     {
-        $this->pdo->close();
+        $this->pdo = null;
         remove(TDIR.'docs.db');
         $this->opendb();
         $this->create();
