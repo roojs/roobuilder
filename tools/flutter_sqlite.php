@@ -101,11 +101,33 @@ class fsql {
             $sq->fromIndex($o);
         }
     }
-    function loadDom($url)
+    function readDom($url)
     {
+        $dom = new DomDocument();
+        libxml_use_internal_errors(true);
+        echo "Reading : {$this->href}\n";
+        $dom->loadHTMLFile(FDIR . $this->href);
+        libxml_clear_errors();
+        $xp = new DomXPath($dom);
         
+        return $dom;
     }
-    
+    function readDesc($dom, $id)
+    {
+        $array = array();
+        $desc = $this->getElementsByClassName($dom, 'desc');
+        if ($desc->length) {
+            $array['desc'] = $this->innerHTML($desc->item(0));
+        }
+        $sc = $this->getElementsByClassName($dom, 'source-code');
+        if ($sc->length) {
+            $array['example'] = $this->innerHTML($sc->item(0));
+        }
+        if (!empty($array)) {
+            $this->update($id, $array);
+        }
+    }
+        
     function parse($type)
     {
         $s = $this->pdo->prepare("SELECT * FROM node  WHERE type = ?");
