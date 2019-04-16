@@ -27,7 +27,7 @@ class fsql {
                     memberOf VARCHAR (255) NOT NULL DEFAULT '',
                     is_constructor INTEGER NOT NULL DEFAULT 0,
                     is_static INTEGER NOT NULL DEFAULT 0,
-                    is_deprecated INTEGER NOT NULL DEFAULT 0,
+                   
                     example TEXT,
                     desc TEXT,
                     
@@ -43,10 +43,22 @@ class fsql {
                 );
                     
         ");
-        
+        $this->pdo->exec("ALTER TABLE node ADD COLUMN         is_deprecated INTEGER NOT NULL DEFAULT 0");
         
     }
-    
+    function get($k,$v)
+    {
+        print_R(array($k,$v));
+        $s = $this->pdo->prepare("SELECT id FROM node where $k=?");
+        $s->execute(array($v));
+        $r = $s->fetchAll(PDO::FETCH_ASSOC);
+         
+        if (count($r) != 1) {
+            print_R(array($k,$v,$r));
+            exit;
+        }
+        return $r;
+    }
     function lookup($k,$v)
     {
         print_R(array($k,$v));
