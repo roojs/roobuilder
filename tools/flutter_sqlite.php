@@ -136,7 +136,7 @@ class fsql {
         $this->opendb();
         $js = json_decode(file_get_contents(FDIR.'index.json'));
         foreach($js as $o) {
-            $sq->fromIndex($o);
+            $this->fromIndex($o);
         }
     }
     function readDom($url)
