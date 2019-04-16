@@ -55,6 +55,7 @@ class fsql {
     }
     function update($id, $o)
     {
+        print_r($o);
         foreach((array) $o as $k=>$v) {
             $kk[] = $k;
             $vv[] = '?';
