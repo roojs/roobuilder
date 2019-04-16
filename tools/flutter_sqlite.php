@@ -61,7 +61,7 @@ class fsql {
             print_R(array($k,$v,$r));
             exit;
         }
-        return $r;
+        return $r[0];
     }
     function lookup($k,$v)
     {
