@@ -60,3 +60,9 @@ define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
 define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');
 
 $js = json_decode(file_get_contents(FDIR.'index.json'));
+$js = json_decode(file_get_contents(FDIR.'index.json'));
+$sq = new fsql();
+foreach($js as $o) {
+    $sq->fromIndex($o);
+}
+    
