@@ -185,7 +185,7 @@ class fsql {
                 die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $id);
             }
             
-            $extends[] = $this->lookup('href', $as->item($i)->getAttribute('href'));
+            $extends[] = $ex;
             
         }
         print_r($extends, $this);exit;
