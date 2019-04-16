@@ -65,6 +65,7 @@ class fsql {
             $s = $this->pdo->prepare("INSERT INTO node (".
                 implode(',',$kk) . ") VALUES (".
                 implode(',',$vv) . ")");
+            var_dump($s);
             $s->execute($vvv);
             return;
         }
