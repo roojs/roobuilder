@@ -49,11 +49,12 @@ class fsql {
     
     function lookup($k,$v)
     {
+        print_R(array($k,$v));
         $s = $this->pdo->prepare("SELECT id FROM node where $k=?");
         $s->execute(array($v));
         $r = $s->fetchAll();
         if (count($r) > 1) {
-            print_R($k,$v,$r);
+            print_R(array($k,$v,$r));
             exit;
         }
         return $r ? $r[0]['id'] : 0;
