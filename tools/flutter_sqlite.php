@@ -173,6 +173,20 @@ class fsql {
         if (!$dd->length) {
             return;
         }
+        
+        $as = $dd->item(0)->getElementsByTagName('a');
+        $this->extends = array();        
+        for($i = $as->length-1;$i > -1; $i--) {
+
+            if (!isset(self::$url_map[$as->item($i)->getAttribute('href')])) {
+                die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $this->href);
+            }
+            
+            $extends[] = $this->lookup('href', $as->item($i)->getAttribute('href'));
+            
+        }
+        print_r($extends, $this);
+        
     }
     
     function parse($type)
