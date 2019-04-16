@@ -167,7 +167,6 @@ class fsql {
         }
         $dt = $dl->getElementsByTagName('dt');
         if (!$dt->length || $this->innerHTML($dt->item(0)) != 'Inheritance') {
-            
             return;
         }
         $dd = $dl->getElementsByTagName('dd');
