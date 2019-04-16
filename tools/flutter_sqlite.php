@@ -142,11 +142,26 @@ class fsql {
         if ($sc->length) {
             $array['example'] = $this->innerHTML($sc->item(0));
         }
-        if (!empty($array)) {
-            $this->update($id, $array);
-        }
-    }
+        $this->update($id, $array);
         
+    }
+    function readClassData($dom, $id)
+    {
+        $ar = array();
+        if ($sc->length) {
+            // abstracts actually impletment stuff in flutter...
+            if (preg_match('/abstract class/', $this->innerHTML($sc->item(0)))) {
+                $ar['is_abstract'] = 1;
+            }
+        }
+        $dl = $dom->getElementsByTagName('dl')->item(0);
+        if ($dl->getAttribute('class') != 'dl-horizontal') {
+            $this->update($id, $array);
+            return;
+        }
+        
+    }
+    
     function parse($type)
     {
         $s = $this->pdo->prepare("SELECT * FROM node  WHERE type = ?");
