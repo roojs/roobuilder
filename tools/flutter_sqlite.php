@@ -129,7 +129,7 @@ class fsql {
     function parseIndex()
     {
         $this->pdo = null;
-        remove(TDIR.'docs.db');
+        unlink(TDIR.'docs.db');
         $this->opendb();
         $this->create();
         
