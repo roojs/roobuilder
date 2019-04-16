@@ -128,8 +128,10 @@ class fsql {
     }
     function parseIndex()
     {
+        
         $this->pdo = null;
         unlink(TDIR.'docs.db');
+        $this->opendb();
         $js = json_decode(file_get_contents(FDIR.'index.json'));
         foreach($js as $o) {
             $sq->fromIndex($o);
