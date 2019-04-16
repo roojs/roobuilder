@@ -181,7 +181,7 @@ class fsql {
         for($i = $as->length-1;$i > -1; $i--) {
 
             if (!isset(self::$url_map[$as->item($i)->getAttribute('href')])) {
-                die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $this->href);
+                die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $id);
             }
             
             $extends[] = $this->lookup('href', $as->item($i)->getAttribute('href'));
