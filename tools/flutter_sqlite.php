@@ -196,7 +196,7 @@ class fsql {
             
         }
         $ar['extends'] = implode(',', $extends);
-        $this->update($id, $extends);
+        $this->update($id, $ar);
         //print_r(array($extends, $id));exit;
         
     }
