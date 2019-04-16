@@ -202,7 +202,7 @@ class fsql {
     }
     function parseClass($o)
     {
-        $d = $this->loadDom($o['href']);
+        $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
         $this->readClassData($d,$o['id']);
         
