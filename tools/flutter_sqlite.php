@@ -194,7 +194,7 @@ class fsql {
             $extends[] = $ex;
             
         }
-        print_r(array($extends, $this));exit;
+        print_r(array($extends, $id));exit;
         
     }
     
