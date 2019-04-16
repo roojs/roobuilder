@@ -68,8 +68,9 @@ class fsql {
             $s->execute($vvv);
             return;
         }
-        for(v)
-        
+        $s = $this->pdo->prepare("UPDATE node SET ".
+                implode(',',$kv) . " WHERE id = $id");
+        $s->execute($vvv);
     }
     
     
@@ -91,7 +92,7 @@ class fsql {
 define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
 define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');
 
-$js = json_decode(file_get_contents(FDIR.'index.json'));
+
 $js = json_decode(file_get_contents(FDIR.'index.json'));
 $sq = new fsql();
 foreach($js as $o) {
