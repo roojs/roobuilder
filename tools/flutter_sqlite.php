@@ -156,12 +156,24 @@ class fsql {
                 $ar['is_abstract'] = 1;
             }
         }
+        $this->update($id, $ar);
         $dl = $dom->getElementsByTagName('dl')->item(0);
         if ($dl->getAttribute('class') != 'dl-horizontal') {
+             return;
+        }
+        if (strpos($this->innerHTML($dl), '@deprecated')) {
+            $ar['is_deprecated'] = 1;
             $this->update($id, $ar);
+        }
+        $dt = $dl->getElementsByTagName('dt');
+        if (!$dt->length || $this->innerHTML($dt->item(0)) != 'Inheritance') {
+            
             return;
         }
-        
+        $dd = $dl->getElementsByTagName('dd');
+        if (!$dd->length) {
+            return;
+        }
     }
     
     function parse($type)
