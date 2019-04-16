@@ -65,6 +65,7 @@ class fsql {
         if (empty($o)) {
             return;
         }
+        print_r($o);
         foreach((array) $o as $k=>$v) {
             if (is_a($v,'stdClass')) {
                 foreach((array)$v as $ik  => $iv) {
