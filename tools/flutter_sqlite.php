@@ -252,5 +252,5 @@ define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');
 
 
 $sq = new fsql();
-$sq->parseIndex();
+//$sq->parseIndex();
 $sq->parse('class');
