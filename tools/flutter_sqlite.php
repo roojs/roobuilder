@@ -8,6 +8,7 @@ class fsql {
     var $pdo;
     function __construct()
     {
+        
         $this->pdo = new PDO("sqlite:". TDIR . "doc.db");
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->create();
@@ -124,6 +125,11 @@ class fsql {
     }
     function parseIndex()
     {
+        $this->close();
+        remove(TDIR.'docs.db');
+        $this->opendb();
+        $this->create();
+        
         $js = json_decode(file_get_contents(FDIR.'index.json'));
         foreach($js as $o) {
             $sq->fromIndex($o);
