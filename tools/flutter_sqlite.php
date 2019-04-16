@@ -56,7 +56,9 @@ class fsql {
     }
     function update($id, $o)
     {
-        print_r($o);
+        if (empty($o)) {
+            return;
+        }
         foreach((array) $o as $k=>$v) {
             if (is_a($v,'stdClass')) {
                 foreach((array)$v as $ik  => $iv) {
@@ -156,7 +158,7 @@ class fsql {
         }
         $dl = $dom->getElementsByTagName('dl')->item(0);
         if ($dl->getAttribute('class') != 'dl-horizontal') {
-            $this->update($id, $array);
+            $this->update($id, $ar);
             return;
         }
         
