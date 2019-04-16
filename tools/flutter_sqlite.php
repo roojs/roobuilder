@@ -208,6 +208,7 @@ class fsql {
                 die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $id);
             }
             
+            print_R($ex);exit;
             $extends[] = $ex['qualifiedName'];
             
         }
