@@ -258,9 +258,9 @@ class fsql {
 
 
 define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
-define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');
-
+define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');/
+/
 
 $sq = new fsql();
-$sq->parseIndex();
+//$sq->parseIndex();
 $sq->parse('class');
