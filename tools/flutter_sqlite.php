@@ -52,7 +52,7 @@ class fsql {
         print_R(array($k,$v));
         $s = $this->pdo->prepare("SELECT id FROM node where $k=?");
         $s->execute(array($v));
-        $r = $s->fetchAll();
+        $r = $s->fetchAll(PDO::FETCH_ASSOC);
         print_R($r);
         if (count($r) > 1) {
             print_R(array($k,$v,$r));
