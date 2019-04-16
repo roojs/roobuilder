@@ -180,7 +180,7 @@ class fsql {
         $this->extends = array();        
         for($i = $as->length-1;$i > -1; $i--) {
 
-            $ex = $this->lookup('href', $as->item($i)->getAttribute('href'))
+            $ex = $this->lookup('href', $as->item($i)->getAttribute('href'));
             if ($ex) {
                 die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $id);
             }
