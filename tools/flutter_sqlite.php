@@ -117,6 +117,20 @@ class fsql {
         $xp = new DomXPath($dom);
         return $xp->query("//*[contains(concat(' ', @class, ' '), ' ".$class." ')]");
     }
+    function innerHTML($node)
+    {
+        if (!$node) {
+            print_r($this); 
+        }
+        $dom= $node->ownerDocument;
+        $ret = '';
+        foreach ($node->childNodes as $child) 
+        { 
+            $ret.= $dom->saveHTML($child);
+        }
+        return $ret;
+        
+    }
     function readDesc($dom, $id)
     {
         $array = array();
