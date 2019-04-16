@@ -105,7 +105,7 @@ class fsql {
     {
         $s = $this->pdo->prepare("SELECT * FROM node  WHERE type = ?");
         $s->execute(array($type));
-        $res = $s->fetchAll();
+        $res = $s->fetchAll(PDO::FETCH_ASSOC);
         foreach($res as $r) {
             $m  = "parse{$type}";
             $this->$m($r);
