@@ -130,7 +130,9 @@ class fsql {
     {
         
         $this->pdo = null;
-        unlink(TDIR.'docs.db');
+        if (file_exists(TDIR. 'docs.db')) {
+            unlink(TDIR.'docs.db');
+        }
         $this->opendb();
         $js = json_decode(file_get_contents(FDIR.'index.json'));
         foreach($js as $o) {
