@@ -31,8 +31,15 @@ class fsql {
                     desc TEXT,
                     
                     is_fake_namespace  INTEGER NOT NULL,
+                    is_mixin  INTEGER NOT NULL,
+                    is_enum  INTEGER NOT NULL,
+                    is_typedef  INTEGER NOT NULL,
+                    is_constant  INTEGER NOT NULL,
+                    is_abstract  INTEGER NOT NULL,
+                    parent_id  INTEGER NOT NULL,
                     
-                    
+                    extends VARCHAR(255)  NOT NULL
+                );
                     
         ")
         
