@@ -8,10 +8,13 @@ class fsql {
     var $pdo;
     function __construct()
     {
-        
+        $this->opendb();
+        $this->create();
+    }
+    function opendb() {
         $this->pdo = new PDO("sqlite:". TDIR . "doc.db");
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->create();
+      
     }
     function create()
     {
