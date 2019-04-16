@@ -58,7 +58,7 @@ class fsql {
     {
         print_r($o);
         foreach((array) $o as $k=>$v) {
-            if (is_a('stdClass')) {
+            if (is_a('stdClass', $v)) {
                 foreach((array)($v) as $ik  => $iv) {
                     $kk[] = $k . '_' . $ik;
                     $vv[] = '?';
