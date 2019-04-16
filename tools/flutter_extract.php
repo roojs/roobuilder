@@ -252,6 +252,9 @@ foreach(eClass::$all as $c) {
     $c->readDocs();
     // constant's and other mixins.. 
 }
+// at this point we need to dump the whole thing.
+
+
 
 foreach(eClass::$all as $c) {
     
