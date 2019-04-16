@@ -107,7 +107,8 @@ class fsql {
         $s->execute(array($type));
         $res = $s->fetchAll();
         foreach($res as $r) {
-            $this->parse{$type}($r);
+            $m  = "parse{$type}";
+            $this->$m($r);
         }
         
     }
