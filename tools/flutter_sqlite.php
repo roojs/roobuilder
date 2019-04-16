@@ -27,7 +27,7 @@ class fsql {
                     memberOf VARCHAR (255) NOT NULL DEFAULT '',
                     is_constructor INTEGER NOT NULL DEFAULT 0,
                     is_static INTEGER NOT NULL DEFAULT 0,
-                    is_depricated INTEGER NOT NULL DEFAULT 0,
+                    is_deprecated INTEGER NOT NULL DEFAULT 0,
                     example TEXT,
                     desc TEXT,
                     
