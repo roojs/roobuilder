@@ -43,7 +43,11 @@ class fsql {
                 );
                     
         ");
-        $this->pdo->exec("ALTER TABLE node ADD COLUMN         is_deprecated INTEGER NOT NULL DEFAULT 0");
+         try {
+            $this->pdo->exec("ALTER TABLE node ADD COLUMN         is_deprecated INTEGER NOT NULL DEFAULT 0");
+         } catch(PDOException $e) {
+            // skip;
+         }
         
     }
     function get($k,$v)
