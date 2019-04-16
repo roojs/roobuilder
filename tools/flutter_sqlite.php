@@ -15,31 +15,31 @@ class fsql {
               CREATE TABLE IF NOT EXISTS node (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-                    href VARCHAR (255) NOT NULL,
-                    name VARCHAR (255) NOT NULL,
-                    type VARCHAR (16) NOT NULL,
-                    overriddenDepth INTEGER NOT NULL,
-                    qualifiedName VARCHAR (255) NOT NULL,
-                    enclosedBy_name VARCHAR (255) NOT NULL,
-                    enclosedBy_type VARCHAR (16) NOT NULL,
+                    href VARCHAR (255) NOT NULL DEFAULT '',
+                    name VARCHAR (255) NOT NULL DEFAULT '',
+                    type VARCHAR (16) NOT NULL DEFAULT '',
+                    overriddenDepth INTEGER NOT NULL DEFAULT '',
+                    qualifiedName VARCHAR (255) NOT NULL DEFAULT '',
+                    enclosedBy_name VARCHAR (255) NOT NULL DEFAULT '',
+                    enclosedBy_type VARCHAR (16) NOT NULL DEFAULT '',
                     -- derived data / html extracted...
                     
-                    memberOf VARCHAR (255) NOT NULL,
-                    is_constructor INTEGER NOT NULL,
-                    is_static INTEGER NOT NULL,
-                    is_depricated INTEGER NOT NULL,
+                    memberOf VARCHAR (255) NOT NULL DEFAULT '',
+                    is_constructor INTEGER NOT NULL DEFAULT 0,
+                    is_static INTEGER NOT NULL DEFAULT 0,
+                    is_depricated INTEGER NOT NULL DEFAULT 0,
                     example TEXT,
                     desc TEXT,
                     
-                    is_fake_namespace  INTEGER NOT NULL,
-                    is_mixin  INTEGER NOT NULL,
-                    is_enum  INTEGER NOT NULL,
-                    is_typedef  INTEGER NOT NULL,
-                    is_constant  INTEGER NOT NULL,
-                    is_abstract  INTEGER NOT NULL,
-                    parent_id  INTEGER NOT NULL,
+                    is_fake_namespace  INTEGER NOT NULL DEFAULT 0,
+                    is_mixin  INTEGER NOT NULL DEFAULT 0,
+                    is_enum  INTEGER NOT NULL DEFAULT 0,
+                    is_typedef  INTEGER NOT NULL DEFAULT 0,
+                    is_constant  INTEGER NOT NULL DEFAULT 0,
+                    is_abstract  INTEGER NOT NULL DEFAULT 0,
+                    parent_id  INTEGER NOT NULL DEFAULT 0,
                     
-                    extends VARCHAR(255)  NOT NULL
+                    extends VARCHAR(255)  NOT NULLDEFAULT '',
                 );
                     
         ");
@@ -58,6 +58,7 @@ class fsql {
     {
         print_r($o);
         foreach((array) $o as $k=>$v) {
+            if (is_a('stdClass)
             $kk[] = $k;
             $vv[] = '?';
             $vvv[] = $v;
