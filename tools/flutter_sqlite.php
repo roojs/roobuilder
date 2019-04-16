@@ -5,7 +5,7 @@ class fsql {
     var $pdo;
     function __construct()
     {
-        $this->pdo = new PDO("sqlite:". JDIR . "doc.db");
+        $this->pdo = new PDO("sqlite:". TDIR . "doc.db");
         $this->create();
     }
     function create()
@@ -54,3 +54,9 @@ class fsql {
     
     
 }
+
+
+define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
+define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');
+
+$js = json_decode(file_get_contents(FDIR.'index.json'));
