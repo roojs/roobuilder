@@ -183,7 +183,7 @@ class fsql {
         }
         
         $as = $dd->item(0)->getElementsByTagName('a');
-        $this->extends = array();        
+        $extends = array();        
         for($i = $as->length-1;$i > -1; $i--) {
 
             $ex = $this->lookup('href', $as->item($i)->getAttribute('href'));
@@ -194,7 +194,9 @@ class fsql {
             $extends[] = $ex;
             
         }
-        print_r(array($extends, $id));exit;
+        $ar['extends'] = implode(',', $extends);
+        $this->update($id, $extends);
+        //print_r(array($extends, $id));exit;
         
     }
     
