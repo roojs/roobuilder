@@ -101,6 +101,11 @@ class fsql {
             $sq->fromIndex($o);
         }
     }
+    function loadDom($url)
+    {
+        
+    }
+    
     function parse($type)
     {
         $s = $this->pdo->prepare("SELECT * FROM node  WHERE type = ?");
