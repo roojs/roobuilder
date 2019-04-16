@@ -107,8 +107,8 @@ class fsql {
     {
         $dom = new DomDocument();
         libxml_use_internal_errors(true);
-        echo "Reading : {$this->href}\n";
-        $dom->loadHTMLFile(FDIR . $this->href);
+        echo "Reading : {$url}\n";
+        $dom->loadHTMLFile(FDIR . $url);
         libxml_clear_errors();
         $xp = new DomXPath($dom);
         
