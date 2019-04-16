@@ -12,13 +12,29 @@ class fsql {
     {
          $this->pdo->exec("
               CREATE TABLE IF NOT EXISTS node (
-                    dtype VARCHAR (16) NOT NULL,
-                    name VARCHAR (255) NOT NULL,
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
                     href VARCHAR (255) NOT NULL,
-                    memberOf VARCHAR (255) NOT NULL,
+                    name VARCHAR (255) NOT NULL,
+                    type VARCHAR (16) NOT NULL,
+                    overriddenDepth INTEGER NOT NULL,
+                    qualifiedName VARCHAR (255) NOT NULL,
+                    enclosedBy_name VARCHAR (255) NOT NULL,
+                    enclosedBy_type VARCHAR (16) NOT NULL,
+                    -- derived data / html extracted...
                     
-                          
-                          ")
+                    memberOf VARCHAR (255) NOT NULL,
+                    is_constructor INTEGER NOT NULL,
+                    is_static INTEGER NOT NULL,
+                    is_depricated INTEGER NOT NULL,
+                    example TEXT,
+                    desc TEXT,
+                    
+                    is_fake_namespace  INTEGER NOT NULL,
+                    
+                    
+                    
+        ")
         
         
     }
