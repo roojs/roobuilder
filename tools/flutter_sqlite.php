@@ -53,6 +53,11 @@ class fsql {
         $r = $s->fetchAll();
         return $r ? $r[0]['id'] : 0;
     }
+    function update($id, $o)
+    {
+        
+        
+    }
     
     
     
