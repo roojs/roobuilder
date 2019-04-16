@@ -6,6 +6,7 @@ class fsql {
     function __construct()
     {
         $this->pdo = new PDO("sqlite:". TDIR . "doc.db");
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->create();
     }
     function create()
