@@ -187,7 +187,7 @@ class fsql {
         for($i = $as->length-1;$i > -1; $i--) {
 
             $ex = $this->lookup('href', $as->item($i)->getAttribute('href'));
-            if ($ex) {
+            if (!$ex) {
                 die("could not find " . $as->item($i)->getAttribute('href') . " when parsing" . $id);
             }
             
