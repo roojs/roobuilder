@@ -52,6 +52,10 @@ class fsql {
         $s = $this->pdo->prepare("SELECT id FROM node where $k=?");
         $s->execute(array($v));
         $r = $s->fetchAll();
+        if (count($r) > 1) {
+            print_R($k,$v,$r);
+            exit;
+        }
         return $r ? $r[0]['id'] : 0;
     }
     function update($id, $o)
