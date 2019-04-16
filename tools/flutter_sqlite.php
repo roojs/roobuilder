@@ -55,7 +55,20 @@ class fsql {
     }
     function update($id, $o)
     {
-        
+        foreach((array) $o as $k=>$v) {
+            $kk[] = $k;
+            $vv[] = '?';
+            $vvv[] = $v;
+            $kv[]="{$k}=?";
+        }
+        if (!$id) {
+            $s = $this->pdo->prepare("INSERT INTO node (".
+                implode(',',$kk) . ") VALUES (".
+                implode(',',$vv) . ")");
+            $s->execute($vvv);
+            return;
+        }
+        for(v)
         
     }
     
