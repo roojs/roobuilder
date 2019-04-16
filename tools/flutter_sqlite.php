@@ -185,7 +185,7 @@ class fsql {
             $extends[] = $this->lookup('href', $as->item($i)->getAttribute('href'));
             
         }
-        print_r($extends, $this);
+        print_r($extends, $this);exit;
         
     }
     
