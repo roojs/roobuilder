@@ -458,11 +458,14 @@ class fsql {
                         'qualifiedName' => $o['qualifiedName'] .'.' . $name,
                         'name' => $name,
                         // enclosed by?? - leave?
-                    )
+                    );
                     
                     break;
                 case 'DD': // the description
-                    $desc = 
+                    $n['desc']  =  $this->innerHTML($cn);
+                    $id = $this->lookup('qualifiedName', $n['qualifiedName']);
+                    $this->update($id, $n);
+                    break;
             }
             if ($cn->tagName == '')
         }
