@@ -78,7 +78,31 @@ class fsql {
          
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
+        
+        
+        
     }
+    $this->fixParents()
+    {
+        $this->pdo->exec("
+            UPDATE
+                node as cn 
+              set
+                parent_id = coalesce((
+                  SELECT 
+                    id
+                  FROM
+                    node as pn 
+                  where 
+                          pn.qualifiedName = substr(cn.qualifiedName, 0, length(cn.qualifiedName) - length(cn.name)) 
+                    AND
+                    pn.type = 'class'
+                  ),0) where
+                  enclosedBy_type ='class'
+                  and parent_id = 0
+        ');
+    }
+    
     function get($k,$v)
     {
         //print_R(array($k,$v));
