@@ -606,7 +606,9 @@ class fsql {
                     $sbits= preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                                  $add->qualifiedName, -1, PREG_SPLIT_NO_EMPTY);
                     
-                    
+                    if ($add->qualifiedName == 'animation.ElasticInOutCurve') {
+                        print_r(array($bits, $sbits));exit;
+                    }
                 }
                 
                 
