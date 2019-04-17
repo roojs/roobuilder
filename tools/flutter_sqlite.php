@@ -451,7 +451,7 @@ class fsql {
         foreach($props->childNodes as $cn) {
             var_dump($cn->nodeName);
             switch($cn->nodeName) {
-                case 'DT': // look for name
+                case 'dt': // look for name
                     $name = $this->getElementsByClassName($ct->ownerDocument,'name',$cn)->item(0)->textContents;
                     $n = array(
                         'type' => 'enum-value',
@@ -462,7 +462,7 @@ class fsql {
                     );
                     
                     break;
-                case 'DD': // the description
+                case 'dd': // the description
                     $n['desc']  =  $this->innerHTML($cn);
                     $id = $this->lookup('qualifiedName', $n['qualifiedName']);
                     $this->update($id, $n);
