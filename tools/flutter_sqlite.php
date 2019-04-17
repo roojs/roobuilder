@@ -266,16 +266,37 @@ class fsql {
         // params...
         
     }
-    function readSignature()
+    function readSignature($dom, $id)
     {
+        // simple type:
+        // String
+        // complex type
+        // List<Widget> ... --- List -> generic type = Widget
+        // let's start by just storing the values.
+        // in where? -
+        /*
+         * node
+         *    type='param'
+         *    href='';
+         *    parent_id
+         *
+         */
+        
+        
         $ar = $this->getElementsByClassName($dom,'parameter');
         for($i =0;$i<$ar->length;$i++) {
-            $this->params[] = new Param( $ar->item($i) );
-        }
-        
+            $this->readParam( $id,  $ar->item($i) );
+        }   
         return $dom;
         
     }
+    
+    function readParam($id, $node)
+    {
+        
+        
+    }
+    
     
     function parse($type)
     {
