@@ -302,6 +302,7 @@ class fsql {
         if (!$ar->length) {
             echo "mssing paramter info", $this->innerHTML($node); exit;
         }
+        $parent = $this->get('id',$id);
         $ar = array(
             'type' => 'param',
             'parent_id' => $id,
@@ -316,11 +317,13 @@ class fsql {
                     break;
                 case 'type-annotation':
                     
-                    $ar['type'] = $this->readTypeToString($ar->item($i));
+                    $ar['type'] = $this->readTypeToString($ar->item($i), );
                     break;
                 
             }
         }
+        
+        $this->update(0,$ar);
         
         
     }
