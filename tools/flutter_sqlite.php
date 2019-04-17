@@ -600,6 +600,8 @@ class fsql {
                 }
                 // if the last one and the current one share an ancestor..
                 if ($i == (count($stack) -1)) {
+                    $above = $stack[$i-1];
+                    
                     $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                                  $last->qualifiedName, -1, PREG_SPLIT_NO_EMPTY);
                 
