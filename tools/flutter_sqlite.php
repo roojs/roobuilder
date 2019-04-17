@@ -449,7 +449,7 @@ class fsql {
         $props = $this->getElementsByClassName($ct->ownerDocument,'properties',$ct)->item(0);
         echo $this->innerHTML($props);
         foreach($props->childNodes as $cn) {
-            var_dump($cn->nodeName);
+            //var_dump($cn->nodeName);
             switch($cn->nodeName) {
                 case 'dt': // look for name
                     $name = $this->getElementsByClassName($ct->ownerDocument,'name',$cn)->item(0)->textContent;
@@ -473,7 +473,7 @@ class fsql {
             
         }
         
-        exit;
+        //exit;
         
 
     }
