@@ -304,7 +304,7 @@ class fsql {
             echo "mssing paramter info", $this->innerHTML($node); exit;
         }
        
-        $ar = array(
+        $o = array(
             'type' => 'param',
             'parent_id' => $id,
             'href' => '',
@@ -316,20 +316,20 @@ class fsql {
             switch($ar->item($i)->getAttribute('class')) {
                 
                 case 'parameter-name':
-                    $ar['name'] = $ar->item($i)->textContent;
-                    $ar['sequence_no'] = $seq++;
-                    $ar['qualifiedName' ] = $prefix . '.'. $ar['name'] ;
+                    $o['name'] = $ar->item($i)->textContent;
+                    $o['sequence_no'] = $seq++;
+                    $o['qualifiedName' ] = $prefix . '.'. $o['name'] ;
                     break;
                 
                 case 'type-annotation':
                     
-                    $ar['type'] = $this->readTypeToString($ar->item($i) );
+                    $o['type'] = $this->readTypeToString($ar->item($i) );
                     break;
                 
             }
         }
-        $id = $this->lookup('qualifiedName',$ar['qualifiedName' ] );
-        $this->update($id,$ar);
+        $id = $this->lookup('qualifiedName',$o['qualifiedName' ] );
+        $this->update($id,$o);
         
     }
     function readTypeToString($sp)
