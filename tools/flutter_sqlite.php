@@ -100,7 +100,7 @@ class fsql {
                   ),0) where
                   enclosedBy_type ='class'
                   and parent_id = 0
-        ');
+        ");
     }
     
     function get($k,$v)
