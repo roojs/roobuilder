@@ -248,8 +248,8 @@ class fsql {
                 
                 print_r($ex);die("missing qualifiedName");
             }
-            
-             $extends[] = $ex['qualifiedName'];
+            $this->addExtends($id, $ex['id']);
+            $extends[] = $ex['qualifiedName'];
             
         }
         $ar['extends'] = implode(',', $extends);
