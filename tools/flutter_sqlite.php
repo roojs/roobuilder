@@ -276,6 +276,12 @@ class fsql {
         
     }
     
+    function parseConstructor($o)
+    {
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+        $this->readSignature($d,$o['id']);
+    }
     
 }
 
