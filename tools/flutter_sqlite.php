@@ -86,7 +86,7 @@ class fsql {
          
         if (count($r) != 1) {
             print_R(array($k,$v,$r));
-            exit;
+            die("missing record when searching");
         }
         return $r[0];
     }
