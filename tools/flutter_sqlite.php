@@ -494,7 +494,7 @@ class fsql {
         $this->readDesc($d,$o['id']);
         // methods and props should be handled ok anyway.. 
         
-        print_R($o);exit;
+        //print_R($o);exit;
         
     }
 }
@@ -516,7 +516,7 @@ $sq->parse('method');
 $sq->parse('property');
 $sq->parse('enum');
 $sq->parse('mixin');
-
-*/
 $sq->parse('typedef');
+*/
+
 
