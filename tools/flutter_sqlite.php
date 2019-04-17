@@ -86,7 +86,7 @@ class fsql {
          
         if (count($r) != 1) {
             print_R(array($k,$v,$r));
-            die("missing record when searching");
+            die("not 1 record when searching");
         }
         return $r[0];
     }
@@ -99,7 +99,7 @@ class fsql {
         print_R($r);
         if (count($r) > 1) {
             print_R(array($k,$v,$r));
-            exit;
+            die("more than one record when calling lookup");
         }
         return $r ? $r[0]['id'] : 0;
     }
@@ -306,7 +306,8 @@ class fsql {
     {
         $ar  = $node->getElementsByTagName('span');
         if (!$ar->length) {
-            echo "mssing paramter info", $this->innerHTML($node); exit;
+            echo $this->innerHTML($node);
+            die("mssing paramter info");
         }
        
         $o = array(
