@@ -592,7 +592,7 @@ class fsql {
             //echo "looking for " .$o['qualifiedName'];             print_R($stack);
             for($i = count($stack)-1; $i > -1; $i--) {
                 $last = $stack[$i];
-                //print_r(array( substr($o['qualifiedName'], 0, strlen($last->qualifiedName)), $last->qualifiedName));
+                print_r(array( substr($o['qualifiedName'], 0, strlen($last->qualifiedName)), $last->qualifiedName));
                 if (substr($add->qualifiedName, 0, strlen($last->qualifiedName)) == $last->qualifiedName) {
                     $last->cn[] = $add;
                     $stack[$i+1] = $add;
