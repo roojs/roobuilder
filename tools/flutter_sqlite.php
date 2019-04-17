@@ -615,8 +615,14 @@ class fsql {
                             'qualifiedName' => $stack[0]->qualifiedName . '.' . $bits[0],
                             'type' => 'group',
                             'is_class' => false,
-                            'cn' => array()
+                            'cn' => array(
+                                $last
+                            )
                         );
+                        // remove the previus from it's parent.
+                        array_pop($stack[$i-1]->cn);
+                        $stack[$i-1]->cn[] = $aa;
+                        
                         $stack[$i+1] = $aa;
                         $aa->cn[] = $add;
                         break;
