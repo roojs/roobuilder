@@ -548,18 +548,21 @@ class fsql {
             SELECT qualifiedName, type from node where type IN ('class', 'library') order by qualifiedName ASC
         ");
         $all = $res->fetchAll(PDO::FETCH_ASSOC);
-        $last = false;
-        $lastns = false;
+        $stack = array();
+        
         foreach($all as $o) {
             $add = (object) $o;
             $add->cn = array();
             if ($o['type'] == 'library') {
                 $out[] = $add;
-                $last = $add;
-                $lastns = $add;
+                $stack = array($add);
                 continue;
             }
-            if (substr($o['name']))
+            for($i = count($stack)-1; $i > -1; $i--) {
+                $last = $stack[$i];
+                if (substr($o['qualifiedName'], 0, strlen($last['qualifiedName'])) == $last['qualifiedName']) {
+                    $last->cn[] = $add;
+                }
         }
         
         
