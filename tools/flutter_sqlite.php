@@ -257,6 +257,22 @@ class fsql {
         
     }
     
+    function readReturnType($dom, $id)
+    {
+        
+        $sp = $this->getElementsByClassName($dom,'returntype')->item(0);
+        //$this->parseType($sp);
+        die("not yet");
+        // params...
+        $ar = $this->getElementsByClassName($dom,'parameter');
+        for($i =0;$i<$ar->length;$i++) {
+            $this->params[] = new Param( $ar->item($i) );
+        }
+        
+        return $dom;
+        
+    }
+    
     function parse($type)
     {
         $s = $this->pdo->prepare("SELECT * FROM node  WHERE type = ?");
@@ -282,6 +298,8 @@ class fsql {
         $this->readDesc($d,$o['id']);
         $this->readSignature($d,$o['id']);
     }
+    
+    
     
 }
 
