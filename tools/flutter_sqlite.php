@@ -307,6 +307,7 @@ class fsql {
             'type' => 'param',
             'parent_id' => $id,
             'href' => '',
+            
         );
         for($i = 0; $i < $ar->length; $i++) {
             
@@ -314,7 +315,9 @@ class fsql {
                 
                 case 'parameter-name':
                     $ar['name'] = $ar->item($i)->textContent;
+                    $ar['qualifiedName' ] = $prefix . '.'. $ar['name'] ;
                     break;
+                
                 case 'type-annotation':
                     
                     $ar['type'] = $this->readTypeToString($ar->item($i) );
