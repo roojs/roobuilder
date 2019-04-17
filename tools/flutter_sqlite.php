@@ -601,6 +601,7 @@ class fsql {
                 }
             }
         }
+        echo "WRITE: " .TDIR ."tree.json\n";
         file_put_contents(TDIR .'tree.json', json_encode($out, JSON_PRETTY_PRINT));
 
         //print_r($out);
