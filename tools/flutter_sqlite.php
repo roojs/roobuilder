@@ -609,7 +609,12 @@ class fsql {
                         $cbits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                                 $cname, -1, PREG_SPLIT_NO_EMPTY);
                         if ($cbits[0] == $bits[0]) {
-                            
+                            $aa =  (object) array(
+                                'name' => $stack[0]->qualifiedName . '.' . $bits[0],
+                                'type' => 'group',
+                                'is_class' => false,
+                            )
+                            $stack[$i+1] =
                             
                             
                         }
