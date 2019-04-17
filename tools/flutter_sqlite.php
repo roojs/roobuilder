@@ -489,7 +489,7 @@ class fsql {
     }
     function parsetypeDef($o)
     {
-        // these are really just functions.. 
+        // these appear to be function signatures really.
         $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
         // methods and props should be handled ok anyway.. 
