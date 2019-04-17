@@ -546,6 +546,7 @@ class fsql {
         // our tree should only include classes (non-abstract), and namespaces
         $res = $this->pdo->query("
             SELECT
+                    id,
                     qualifiedName as name,
                     qualifiedName,
                     type,
