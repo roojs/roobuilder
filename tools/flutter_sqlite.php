@@ -623,7 +623,7 @@ class fsql {
                         array_pop($stack[$i-1]->cn);
                         $stack[$i-1]->cn[] = $aa;
                         
-                        $stack[$i+1] = $aa;
+                        $stack[$i] = $aa;
                         $aa->cn[] = $add;
                         break;
                             
