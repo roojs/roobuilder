@@ -563,7 +563,7 @@ class fsql {
             for($i = count($stack)-1; $i > -1; $i--) {
                 $last = $stack[$i];
                 print_r(array(
-                    substr($o['qualifiedName'], 0, strlen($last->qualifiedName),
+                    substr($o['qualifiedName'], 0, strlen($last->qualifiedName)),
                            $last->qualifiedName
                 ));
                 if (substr($o['qualifiedName'], 0, strlen($last->qualifiedName)) == $last->qualifiedName) {
