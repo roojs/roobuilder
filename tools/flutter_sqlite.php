@@ -285,4 +285,6 @@ define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');
  
 $sq = new fsql();
 //$sq->parseIndex();
+//$sq->parse('library'); // what does this achieve?
 $sq->parse('class');
+$sq->parse('constructor');
