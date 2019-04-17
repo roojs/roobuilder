@@ -497,6 +497,16 @@ class fsql {
         //print_R($o);exit;
         
     }
+    function parseConstant($o)
+    {
+        // these appear to be function signatures really.
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+        // methods and props should be handled ok anyway.. 
+        
+        print_R($o);exit;
+        
+    }
 }
 
 
@@ -518,5 +528,5 @@ $sq->parse('enum');
 $sq->parse('mixin');
 $sq->parse('typedef');
 */
-
+$sq->parse('constant');
 
