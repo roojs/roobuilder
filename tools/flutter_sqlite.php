@@ -482,9 +482,9 @@ class fsql {
         // oddly enough mixin's have ctors???
         $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
-         
+        // methods and props should be handled ok anyway.. 
         
-        print_R($o);exit;
+        //print_R($o);exit;
         
     }
     
