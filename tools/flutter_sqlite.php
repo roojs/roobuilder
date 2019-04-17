@@ -65,8 +65,7 @@ class fsql {
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         value_type VARCHAR (255) NOT NULL DEFAULT ''");
         // for params
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         sequence_no INTEGER NOT NULL DEFAULT 0");
-        $this->pdo->exec("ALTER TABLE node ADD COLUMN         namespace VARCHAR (255) NOT NULL DEFAULT ''");
-        
+         
 
          
         $this->pdo->exec("
