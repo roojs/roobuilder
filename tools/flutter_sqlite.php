@@ -601,8 +601,9 @@ class fsql {
                 }
             }
         }
-        
-        print_r($out);
+        file_put_contents(TDIR .'tree.json', json_encode($out, JSON_PRETTY_PRINT));
+
+        //print_r($out);
         
         
         
