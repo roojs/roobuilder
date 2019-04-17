@@ -86,7 +86,7 @@ class fsql {
          
         if (count($r) != 1) {
             print_R(array($k,$v,$r));
-            die("not 1 record when searching");
+            throw new Exception("not 1 record when searching");
         }
         return $r[0];
     }
