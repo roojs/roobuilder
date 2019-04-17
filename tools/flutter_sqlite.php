@@ -601,7 +601,7 @@ class fsql {
                 // if the last one and the current one share an ancestor..
                 if ($i == (count($stack) -1)) {
                     if ($add->qualifiedName == 'animation.ElasticInOutCurve') {
-                        $sname = substr($last->qualifiedName, $stack[0]->qualifiedName+1);
+                        $sname = substr($last->qualifiedName, strlen($stack[0]->qualifiedName)+1);
                         
                         print_r($sname);exit;
                     }
