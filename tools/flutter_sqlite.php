@@ -498,8 +498,8 @@ class fsql {
         $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
         // methods and props should be handled ok anyway.. 
-        
-        print_R($o);exit;
+        $this->readReturnType($d,$o['id']);  
+      
         
     }
 }
