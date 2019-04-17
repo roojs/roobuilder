@@ -600,32 +600,28 @@ class fsql {
                 }
                 // if the last one and the current one share an ancestor..
                 if ($i == (count($stack) -1)) {
-                    if ($add->qualifiedName == 'animation.ElasticInOutCurve') {
-                        $sname = substr($last->qualifiedName, strlen($stack[0]->qualifiedName)+1);
-                        $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
-                                $sname, -1, PREG_SPLIT_NO_EMPTY);
-                        
-                        $cname = substr($add->qualifiedName, strlen($stack[0]->qualifiedName)+1);
-                        $cbits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
-                                $cname, -1, PREG_SPLIT_NO_EMPTY);
-                        if ($cbits[0] == $bits[0]) {
-                            $aa =  (object) array(
-                                'name' => $stack[0]->qualifiedName . '.' . $bits[0],
-                                'type' => 'group',
-                                'is_class' => false,
-                            );
-                            $stack[$i+1] =
+                    //if ($add->qualifiedName == 'animation.ElasticInOutCurve') {
+                    $sname = substr($last->qualifiedName, strlen($stack[0]->qualifiedName)+1);
+                    $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
+                            $sname, -1, PREG_SPLIT_NO_EMPTY);
+                    
+                    $cname = substr($add->qualifiedName, strlen($stack[0]->qualifiedName)+1);
+                    $cbits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
+                            $cname, -1, PREG_SPLIT_NO_EMPTY);
+                    if ($cbits[0] == $bits[0]) {
+                        $aa =  (object) array(
+                            'name' => $stack[0]->qualifiedName . '.' . $bits[0],
+                            'type' => 'group',
+                            'is_class' => false,
+                            'cn' => array()
+                        );
+                        $stack[$i+1] = $aa;
+                        $aa->cn[] = $add;
+                        break;
                             
-                            
-                        }
+                      
                     }
                     
-                    
-                    
-                    
-                
-                    $sbits= preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
-                                 $add->qualifiedName, -1, PREG_SPLIT_NO_EMPTY);
                     
                     
                 }
