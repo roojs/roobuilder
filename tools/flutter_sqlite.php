@@ -541,6 +541,16 @@ class fsql {
     /* ----------------------------- OUTPUT -----------------------------*/
     function outTree()
     {
+        ///make a tree of the classes, and collapse the classes that have same prefix into the prefix.
+        
+        // our tree should only include classes (non-abstract), and namespaces
+        $res = $this->pdo->query("
+            SELECT qualifiedName, type from node where type IN ('class', 'library')
+        ");
+        $all = $res->fetchAll(PDO::FETCH_ASSOC);
+        
+        
+        
         
         
     }
