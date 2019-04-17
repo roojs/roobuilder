@@ -502,6 +502,17 @@ class fsql {
       
         
     }
+    function parseTopLevelConstant($o)
+    {
+        print_r($o);exit;
+        // these appear to be function signatures really.
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+        // methods and props should be handled ok anyway.. 
+        $this->readReturnType($d,$o['id']);  
+      
+        
+    }
 }
 
 
