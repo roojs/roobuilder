@@ -523,6 +523,7 @@ $sq->parse('enum');
 $sq->parse('mixin');
 $sq->parse('typedef');
 $sq->parse('constant');
-*/
 
+*/
+$sq->parse('top-level constant');
 
