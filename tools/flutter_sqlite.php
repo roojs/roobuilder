@@ -5,6 +5,7 @@
  
  FIXMES
  -- contructor with generic eg. const AlwaysStoppedAnimation<T>(
+ -- classes - we need to parse the right hand column to determine which properties/ methods  are static..
  
  
  */
@@ -386,7 +387,7 @@ class fsql {
     
     var $blacklist = array(
         'dart-io/HttpOverrides/runZoned.html', // very complex method call - object with callbacks..
-        
+        'dart-io/IOOverrides/runZoned.html',// insanly complex method call - object with callbacks..
     );
     
     function parse($type)
