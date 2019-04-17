@@ -545,7 +545,12 @@ class fsql {
         
         // our tree should only include classes (non-abstract), and namespaces
         $res = $this->pdo->query("
-            SELECT qualifiedName, type
+            SELECT
+                    name,
+                    qualifiedName,
+                    type,
+                    CASE WHEN type = 'class'  THEN 1 ELSE 0 END AS is_class 
+                    
                 from
                     node
                 where
