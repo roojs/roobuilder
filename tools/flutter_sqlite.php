@@ -565,7 +565,7 @@ class fsql {
                 print_r(array(
                     substr($o['qualifiedName'], 0, strlen($last->qualifiedName),
                            $last->qualifiedName
-                );
+                ));
                 if (substr($o['qualifiedName'], 0, strlen($last->qualifiedName)) == $last->qualifiedName) {
                     $last->cn[] = $add;
                     $stack[$i+1] = $add;
