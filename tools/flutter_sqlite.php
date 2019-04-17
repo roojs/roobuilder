@@ -452,7 +452,8 @@ class fsql {
             var_dump($cn->nodeName);
             switch($cn->nodeName) {
                 case 'dt': // look for name
-                    $name = $this->getElementsByClassName($ct->ownerDocument,'name',$cn)->item(0)->textContents;
+                    $name = $this->getElementsByClassName($ct->ownerDocument,'name',$cn)->item(0)->textContent;
+                    
                     $n = array(
                         'type' => 'enum-value',
                         'parent_id' => $o['id'],
