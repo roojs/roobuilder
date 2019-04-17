@@ -567,6 +567,7 @@ class fsql {
         foreach($all as $o) {
             $add = (object) $o;
             $add->cn = array();
+            unset($add->id);
             $add->extends = explode(',',$add->extends);
             if ($o['type'] == 'library') {
                 $out[] = $add;
