@@ -504,7 +504,7 @@ class fsql {
     }
     function parseTopLevelConstant($o)
     {
-        print_r($o);exit;
+        print_r($o);return;;
         // these appear to be function signatures really.
         $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
