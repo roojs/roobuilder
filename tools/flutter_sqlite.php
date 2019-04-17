@@ -58,7 +58,7 @@ class fsql {
         // deals with param type or return type.
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         value_type VARCHAR (255) NOT NULL DEFAULT ''");
         // for params
-        $this->pdo->exec("ALTER TABLE node ADD COLUMN         sequence_no INTEGER NOT NULL DEAFULT 0");
+        $this->pdo->exec("ALTER TABLE node ADD COLUMN         sequence_no INTEGER NOT NULL DEFAULT 0");
 
          
         $this->pdo->exec("
