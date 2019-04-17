@@ -564,6 +564,7 @@ $sq->parse('top-level constant');
 $sq->parse('function');
 $sq->parse('top-level property');
 
-*/
 
+*/
+$sq->outTree();
 
