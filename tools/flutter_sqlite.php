@@ -596,9 +596,16 @@ class fsql {
                 if (substr($o['qualifiedName'], 0, strlen($last->qualifiedName)) == $last->qualifiedName) {
                     $last->cn[] = $add;
                     $stack[$i+1] = $add;
-                    
                     break;
                 }
+                // if the last one and the current one share an ancestor..
+                if ($i == (count($stack) -1)) {
+                    
+                    
+                    
+                }
+                
+                
             }
         }
         echo "WRITE: " .TDIR ."tree.json\n";
