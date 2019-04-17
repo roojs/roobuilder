@@ -317,7 +317,7 @@ class fsql {
                     break;
                 case 'type-annotation':
                     
-                    $ar['type'] = $this->readTypeToString($ar->item($i), );
+                    $ar['type'] = $this->readTypeToString($ar->item($i), $parent['qualifiedName'] .'.param' );
                     break;
                 
             }
