@@ -593,14 +593,18 @@ class fsql {
             for($i = count($stack)-1; $i > -1; $i--) {
                 $last = $stack[$i];
                 //print_r(array( substr($o['qualifiedName'], 0, strlen($last->qualifiedName)), $last->qualifiedName));
-                if (substr($o['qualifiedName'], 0, strlen($last->qualifiedName)) == $last->qualifiedName) {
+                if (substr($add->qualifiedName, 0, strlen($last->qualifiedName)) == $last->qualifiedName) {
                     $last->cn[] = $add;
                     $stack[$i+1] = $add;
                     break;
                 }
                 // if the last one and the current one share an ancestor..
                 if ($i == (count($stack) -1)) {
-                    
+                    $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
+                                 $last->qualifiedName, -1, PREG_SPLIT_NO_EMPTY);
+                
+                    $sbits= preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
+                                 $add->qualifiedName, -1, PREG_SPLIT_NO_EMPTY);
                     
                     
                 }
