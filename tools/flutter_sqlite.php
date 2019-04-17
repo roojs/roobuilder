@@ -465,17 +465,14 @@ class fsql {
                     $n['desc']  =  $this->innerHTML($cn);
                     $id = $this->lookup('qualifiedName', $n['qualifiedName']);
                     $this->update($id, $n);
+                    print_r($n);
                     break;
             }
-            if ($cn->tagName == '')
+            
         }
         
         exit;
         
-        $this->readEnumValues(
-            $this->getElementsByClassName($d->getElementById('constants'), 'properties')[0],
-            $o
-        );
 
     }
 }
