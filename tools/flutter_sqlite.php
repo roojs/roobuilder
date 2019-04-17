@@ -422,6 +422,6 @@ $sq = new fsql();
 //$sq->parseIndex();
 //$sq->parse('library'); // what does this achieve?
 //$sq->parse('class');
-$sq->parse('constructor');
+//$sq->parse('constructor');
 $sq->parse('method');
 $sq->parse('property');
