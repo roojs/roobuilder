@@ -302,14 +302,21 @@ class fsql {
         if (!$ar->length) {
             echo "mssing paramter info", $this->innerHTML($node); exit;
         }
+        $ar = array(
+            'type' => 'param',
+            'parent_id' => $id,
+            'href' => '',
+        );
         for($i = 0; $i < $ar->length; $i++) {
             
             switch($ar->item($i)->getAttribute('class')) {
+                
                 case 'parameter-name':
-                    $this->name = $ar->item($i)->textContent;
+                    $ar['name'] = $ar->item($i)->textContent;
                     break;
                 case 'type-annotation':
-                    $this->parseType($ar->item($i));
+                    
+                    $ar['type'] = $this->readTypeToString($ar->item($i));
                     break;
                 
             }
