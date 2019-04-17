@@ -350,12 +350,7 @@ class fsql {
         $this->update($id,$o);
         
     }
-    
-    function readEnumValues($node, $o)
-    {
-        
-    }
-    
+   
     function readTypeToString($sp)
     {
         if (!$sp) {
