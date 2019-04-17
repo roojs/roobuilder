@@ -608,7 +608,7 @@ class fsql {
                     $cname = substr($add->qualifiedName, strlen($stack[0]->qualifiedName)+1);
                     $cbits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                             $cname, -1, PREG_SPLIT_NO_EMPTY);
-                    print_r(array($cbits, $bits));
+                    //print_r(array($cbits, $bits));
                     if ($cbits[0] == $bits[0]) {
                         $aa =  (object) array(
                             'name' => $stack[0]->qualifiedName . '.' . $bits[0],
