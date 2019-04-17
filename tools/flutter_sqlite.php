@@ -576,7 +576,7 @@ class fsql {
             }
              $res = $this->pdo->query("
                 SELECT
-                        qualifiedName,
+                        qualifiedName
                     FROM
                         node
                     where
