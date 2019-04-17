@@ -479,6 +479,11 @@ class fsql {
     }
     function parseMixin($o)
     {
+        // oddly enough mixin's have ctors???
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+         
+        
         print_R($o);exit;
         
     }
