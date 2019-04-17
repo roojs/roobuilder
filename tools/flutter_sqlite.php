@@ -6,7 +6,7 @@
  FIXMES
  -- contructor with generic eg. const AlwaysStoppedAnimation<T>(
  -- classes - we need to parse the right hand column to determine which properties/ methods  are static..
- 
+ -- enums have methods !! 
  
  */
 
