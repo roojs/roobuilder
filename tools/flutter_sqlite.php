@@ -66,7 +66,7 @@ class fsql {
         // for params
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         sequence_no INTEGER NOT NULL DEFAULT 0");
          
-
+        $this->pdo->exec("create index lookup on node(name,qualifiedName,parent_id,type)");
          
         $this->pdo->exec("
             CREATE TABLE IF NOT EXISTS extends (
