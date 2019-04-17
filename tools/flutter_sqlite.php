@@ -569,7 +569,8 @@ class fsql {
             }
         }
         
-        print_r($)
+        print_r($out);
+        
         
         
     }
