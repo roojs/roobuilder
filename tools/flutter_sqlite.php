@@ -600,7 +600,7 @@ class fsql {
                 }
                 // if the last one and the current one share an ancestor..
                 if ($i == (count($stack) -1)) {
-                    if ($add->qualifiedName == 'animation.ElasticInOutCurve') {
+                   // if ($add->qualifiedName == 'animation.ElasticInOutCurve') {
                     $sname = substr($last->qualifiedName, strlen($stack[0]->qualifiedName)+1);
                     $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                             $sname, -1, PREG_SPLIT_NO_EMPTY);
@@ -629,7 +629,7 @@ class fsql {
                             
                       
                     }
-                    }
+                    //}
                     
                     
                 }
