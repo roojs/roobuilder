@@ -123,7 +123,7 @@ class fsql {
         if (empty($o)) {
             return;
         }
-        echo "UPDATE";print_r($o);
+        //echo "UPDATE";print_r($o);
         foreach((array) $o as $k=>$v) {
             if (is_a($v,'stdClass')) {
                 foreach((array)$v as $ik  => $iv) {
@@ -143,7 +143,7 @@ class fsql {
             $s = $this->pdo->prepare("INSERT INTO node (".
                 implode(',',$kk) . ") VALUES (".
                 implode(',',$vv) . ")");
-            var_dump($s);
+          //  var_dump($s);
             $s->execute($vvv);
             return;
         }
