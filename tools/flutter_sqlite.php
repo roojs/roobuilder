@@ -477,7 +477,11 @@ class fsql {
         
 
     }
-    function parseEnum()
+    function parseMixin($o)
+    {
+        print_R($o);exit;
+        
+    }
     
 }
 
