@@ -80,7 +80,7 @@ class fsql {
     }
     function get($k,$v)
     {
-        print_R(array($k,$v));
+        //print_R(array($k,$v));
         $s = $this->pdo->prepare("SELECT * FROM node where $k=?");
         $s->execute(array($v));
         $r = $s->fetchAll(PDO::FETCH_ASSOC);
@@ -93,11 +93,11 @@ class fsql {
     }
     function lookup($k,$v)
     {
-        print_R(array($k,$v));
+        //print_R(array($k,$v));
         $s = $this->pdo->prepare("SELECT id FROM node where $k=?");
         $s->execute(array($v));
         $r = $s->fetchAll(PDO::FETCH_ASSOC);
-        print_R($r);
+        //print_R($r);
         if (count($r) > 1) {
             print_R(array($k,$v,$r));
             die("more than one record when calling lookup");
@@ -185,10 +185,10 @@ class fsql {
         
         return $dom;
     }
-    function getElementsByClassName($dom, $class)
+    function getElementsByClassName($dom, $class, $node = null)
     {
         $xp = new DomXPath($dom);
-        return $xp->query("//*[contains(concat(' ', @class, ' '), ' ".$class." ')]");
+        return $xp->query("//*[contains(concat(' ', @class, ' '), ' ".$class." ')]", $node);
     }
     function innerHTML($node)
     {
@@ -350,6 +350,12 @@ class fsql {
         $this->update($id,$o);
         
     }
+    
+    function readEnumValues($node, $o)
+    {
+        
+    }
+    
     function readTypeToString($sp)
     {
         if (!$sp) {
@@ -388,10 +394,12 @@ class fsql {
     var $blacklist = array(
         'dart-io/HttpOverrides/runZoned.html', // very complex method call - object with callbacks..
         'dart-io/IOOverrides/runZoned.html',// insanly complex method call - object with callbacks..
+        'dart-async/StreamTransformer/StreamTransformer.fromBind.html', // complex ctor
     );
     
     function parse($type)
     {
+        echo "Parse $type\n";
         $s = $this->pdo->prepare("SELECT * FROM node  WHERE type = ?");
         $s->execute(array($type));
         $res = $s->fetchAll(PDO::FETCH_ASSOC);
@@ -432,7 +440,41 @@ class fsql {
         $this->readReturnType($d,$o['id']);        
 
     }
-    
+    function parseEnum($o)
+    {
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+        //$this->readReturnType($d,$o['id']);
+        $ct = $d->getElementById('constants');
+        $props = $this->getElementsByClassName($ct->ownerDocument,'properties',$ct)->item(0);
+        echo $this->innerHTML($props);
+        foreach($props->childNodes as $cn) {
+            switch($cn->tagname) {
+                case 'DT': // look for name
+                    $name = $this->getElementsByClassName($ct->ownerDocument,'name',$cn)->item(0)->textContents;
+                    $n = array(
+                        'type' => 'enum-value',
+                        'parent_id' => $o['id'],
+                        'qualifiedName' => $o['qualifiedName'] .'.' . $name,
+                        'name' => $name,
+                        // enclosed by?? - leave?
+                    )
+                    
+                    break;
+                case 'DD': // the description
+                    $desc = 
+            }
+            if ($cn->tagName == '')
+        }
+        
+        exit;
+        
+        $this->readEnumValues(
+            $this->getElementsByClassName($d->getElementById('constants'), 'properties')[0],
+            $o
+        );
+
+    }
 }
 
 
@@ -440,9 +482,16 @@ define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
 define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/'); 
  
 $sq = new fsql();
-$sq->parseIndex();
+print_r($_SERVER['argv']);
+if (!empty($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'index') {
+    echo "rebuilding Index" ;$sq->parseIndex();exit;
+}
 //$sq->parse('library'); // what does this achieve?
+/*
 $sq->parse('class');
 $sq->parse('constructor');
 $sq->parse('method');
 $sq->parse('property');
+*/
+$sq->parse('enum');
+
