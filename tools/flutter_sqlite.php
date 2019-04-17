@@ -472,11 +472,13 @@ class fsql {
             }
              
         }
-        
+        // we ignore methods???
         //exit;
         
 
     }
+    function parseEnum()
+    
 }
 
 
