@@ -602,12 +602,12 @@ class fsql {
                 if ($i == (count($stack) -1)) {
                     if ($add->qualifiedName == 'animation.ElasticInOutCurve') {
                         $sname = substr($last->qualifiedName, strlen($stack[0]->qualifiedName)+1);
-                        
+                        $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
+                                $sname, -1, PREG_SPLIT_NO_EMPTY);
                         print_r($sname);exit;
                     }
                     
-                    $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
-                                 $last->qualifiedName, -1, PREG_SPLIT_NO_EMPTY);
+                    
                     
                     
                 
