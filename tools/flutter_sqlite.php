@@ -545,10 +545,22 @@ class fsql {
         
         // our tree should only include classes (non-abstract), and namespaces
         $res = $this->pdo->query("
-            SELECT qualifiedName, type from node where type IN ('class', 'library')
+            SELECT qualifiedName, type from node where type IN ('class', 'library') order by qualifiedName ASC
         ");
         $all = $res->fetchAll(PDO::FETCH_ASSOC);
-        
+        $last = false;
+        $lastns = false;
+        foreach($all as $o) {
+            $add = (object) $o;
+            $add->cn = array();
+            if ($o['type'] == 'library') {
+                $out[] = $add;
+                $last = $add;
+                $lastns = $add;
+                continue;
+            }
+            if (substr($o['name']))
+        }
         
         
         
