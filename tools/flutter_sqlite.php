@@ -325,8 +325,8 @@ class fsql {
                 
             }
         }
-        
-        $this->update(0,$ar);
+        $id = $this->lookup('qualifiedName',$ar['qualifiedName' ] );
+        $this->update($id,$ar);
         
         
     }
