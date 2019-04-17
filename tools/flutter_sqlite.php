@@ -296,7 +296,7 @@ class fsql {
         
     }
     
-    function readParam($id, $node)
+    function readParam($id, $node, $prefix)
     {
         $ar  = $node->getElementsByTagName('span');
         if (!$ar->length) {
