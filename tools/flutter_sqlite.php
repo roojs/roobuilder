@@ -611,6 +611,7 @@ class fsql {
                     if ($cbits[0] == $bits[0]) {
                         $aa =  (object) array(
                             'name' => $stack[0]->qualifiedName . '.' . $bits[0],
+                            'qualifiedName' => $stack[0]->qualifiedName . '.' . $bits[0],
                             'type' => 'group',
                             'is_class' => false,
                             'cn' => array()
