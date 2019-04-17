@@ -82,7 +82,7 @@ class fsql {
         
         
     }
-    $this->fixParents()
+    function fixParents()
     {
         $this->pdo->exec("
             UPDATE
@@ -709,5 +709,6 @@ $sq->parse('top-level property');
 
 
 */
+$sq->fixParents();
 $sq->outTree();
 
