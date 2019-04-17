@@ -324,7 +324,40 @@ class fsql {
         
         
     }
-    
+    function readTypeToString($sp)
+    {
+        if (!$sp) {
+            print_R($this);
+            die("readTypeToString got invalid value");
+            
+        }
+        $type = '';
+        $ar = $sp->getElementsByTagName('a');
+        if (!$ar->length) {
+            return $sp->textContent;
+        }
+        if ($ar->length == 1) {
+            $rt = $this->get('href',$ar->item(0)->getAttribute('href'));
+            return  $rt['qualifiedName'];
+        } 
+        $types = array();
+        $t = '';
+        for($i =0;$i<$ar->length;$i++) {
+            $rt = $this->get('href',$ar->item($i)->getAttribute('href'));
+            
+            $types[] = $rt['qualifiedName'];
+             
+            //$t .= ($i == 0) ? $rt['qualifiedName'];: ('<'. $rt['qualifiedName'];);
+             
+        }
+        //for($i =0;$i<$ar->length-1;$i++) {
+        //    $t .= '>';
+       // }
+        return implode(',', $types);
+        
+         
+        
+    }
     
     function parse($type)
     {
