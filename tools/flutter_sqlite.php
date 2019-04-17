@@ -385,7 +385,7 @@ class fsql {
     }
     
     var $blacklist = array(
-        
+        'dart-io/HttpOverrides/runZoned.html', // very complex method call - object with callbacks..
         
     );
     
