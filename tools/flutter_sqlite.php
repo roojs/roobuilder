@@ -489,7 +489,7 @@ class fsql {
     }
     function parsetypeDef($o)
     {
-        // oddly enough mixin's have ctors???
+        // these are really just functions.. 
         $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
         // methods and props should be handled ok anyway.. 
