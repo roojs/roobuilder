@@ -32,7 +32,7 @@ class fsql {
 
                     href VARCHAR (255) NOT NULL DEFAULT '',
                     name VARCHAR (255) NOT NULL DEFAULT '',
-                    type VARCHAR (16) NOT NULL DEFAULT '',
+                    type VARCHAR (32) NOT NULL DEFAULT '',
                     overriddenDepth INTEGER NOT NULL DEFAULT '',
                     qualifiedName VARCHAR (255) NOT NULL DEFAULT '',
                     enclosedBy_name VARCHAR (255) NOT NULL DEFAULT '',
