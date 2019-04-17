@@ -402,7 +402,7 @@ class fsql {
             if (in_array($r['href'], $this->blacklist)) {
                 continue;
             }
-            $m  = "parse{$type}";
+            $m  = "parse".preg_replace('/[^A-Z]/i', '', $type);
             $this->$m($r);
         }
         
@@ -523,7 +523,6 @@ $sq->parse('enum');
 $sq->parse('mixin');
 $sq->parse('typedef');
 $sq->parse('constant');
-
 */
 $sq->parse('top-level constant');
 
