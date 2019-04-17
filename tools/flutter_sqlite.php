@@ -287,10 +287,10 @@ class fsql {
          *
          */
         
-        
+         $parent = $this->get('id',$id);
         $ar = $this->getElementsByClassName($dom,'parameter');
         for($i =0;$i<$ar->length;$i++) {
-            $this->readParam( $id,  $ar->item($i) );
+            $this->readParam( $id,  $ar->item($i) ,  $parent['qualifiedName'] .'.param');
         }   
         return $dom;
         
@@ -302,7 +302,7 @@ class fsql {
         if (!$ar->length) {
             echo "mssing paramter info", $this->innerHTML($node); exit;
         }
-        $parent = $this->get('id',$id);
+       
         $ar = array(
             'type' => 'param',
             'parent_id' => $id,
@@ -317,7 +317,7 @@ class fsql {
                     break;
                 case 'type-annotation':
                     
-                    $ar['type'] = $this->readTypeToString($ar->item($i), $parent['qualifiedName'] .'.param' );
+                    $ar['type'] = $this->readTypeToString($ar->item($i) );
                     break;
                 
             }
