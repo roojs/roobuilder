@@ -272,9 +272,9 @@ class fsql {
     {
         
         $sp = $this->getElementsByClassName($dom,'returntype')->item(0);
-        //$this->parseType($sp);
-        die("return type not yet");
-        // params...
+        $vt = $this->readTypeToString($sp);
+        $this->update($id, array('value_type' => $vt));
+        
         
     }
     function readSignature($dom, $id)
@@ -397,7 +397,13 @@ class fsql {
         $this->readDesc($d,$o['id']);
         $this->readSignature($d,$o['id']);
     }
-    
+    function parseMethod($o)
+    {
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+        $this->readReturnType($d,$o['id']);        
+        $this->readSignature($d,$o['id']);
+    }
     
     
 }
@@ -411,3 +417,4 @@ $sq = new fsql();
 //$sq->parse('library'); // what does this achieve?
 //$sq->parse('class');
 $sq->parse('constructor');
+$sq->parse('method');
