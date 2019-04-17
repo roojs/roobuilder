@@ -550,7 +550,7 @@ class fsql {
                     qualifiedName,
                     type,
                     CASE WHEN type = 'class'  THEN 1 ELSE 0 END AS is_class 
-                    
+                    extends
                 from
                     node
                 where
