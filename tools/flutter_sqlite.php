@@ -523,7 +523,8 @@ class fsql {
         $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
         // methods and props should be handled ok anyway.. 
-        //$this->readReturnType($d,$o['id']);  
+        $this->readReturnType($d,$o['id']);
+        $this->readSignature($d,$o['id']);
       
         
     }
