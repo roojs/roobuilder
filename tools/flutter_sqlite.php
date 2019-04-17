@@ -613,7 +613,7 @@ class fsql {
                                 'name' => $stack[0]->qualifiedName . '.' . $bits[0],
                                 'type' => 'group',
                                 'is_class' => false,
-                            )
+                            );
                             $stack[$i+1] =
                             
                             
