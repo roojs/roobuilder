@@ -575,7 +575,7 @@ class fsql {
                 $stack = array($add);
                 continue;
             }
-             $res = $this->pdo->query("
+            $res = $this->pdo->query("
                 SELECT
                         qualifiedName
                     FROM
@@ -588,6 +588,19 @@ class fsql {
                         qualifiedName ASC
             ");
             $add->implementors  = $res->fetchAll(PDO::FETCH_COLUMN);
+            $res = $this->pdo->query("
+                SELECT
+                        qualifiedName
+                    FROM
+                        node
+                    where
+                        id IN (SELECT distinct(class_id) FROM extends WHERE extends_id = {$o['id']})
+                    AND
+                        is_abstract = 0
+                    order by
+                        qualifiedName ASC
+            "); 
+            
             
             
             //echo "looking for " .$o['qualifiedName'];             print_R($stack);
