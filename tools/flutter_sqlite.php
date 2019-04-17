@@ -297,7 +297,7 @@ class fsql {
         $ar = $this->getElementsByClassName($dom,'parameter');
         for($i =0;$i<$ar->length;$i++) {
             // paramenters are used where methods return callbacks with their own params..
-            if ($ar->item($i)->parentNode->class == 'returntype') {
+            if ($ar->item($i)->parentNode->class == 'signature') {
                 continue;
             }
             $this->readParam( $id,  $ar->item($i) ,  $parent['qualifiedName'] .'.param');
