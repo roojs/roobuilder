@@ -506,19 +506,29 @@ class fsql {
     function parseTopLevelConstant($o)
     {
         
-        //print_r($o);return;
+       
         // these appear to be function signatures really.
         $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
         // methods and props should be handled ok anyway.. 
         //$this->readReturnType($d,$o['id']);  
       
+    }
+    function parseTopLevelProperty($o)
+    {
         
+        //print_r($o);exit;
+        // aliases to pre-created classes...
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+        // methods and props should be handled ok anyway.. 
+        $this->readReturnType($d,$o['id']);  
+      
     }
     function parseFunction($o)
     {
         
-        print_r($o);exit;
+      //  print_r($o);exit;
         // these appear to be function signatures really.
         $d = $this->readDom($o['href']);
         $this->readDesc($d,$o['id']);
@@ -551,6 +561,9 @@ $sq->parse('mixin');
 $sq->parse('typedef');
 $sq->parse('constant');
 $sq->parse('top-level constant');
-*/
 $sq->parse('function');
+$sq->parse('top-level property');
+
+*/
+
 
