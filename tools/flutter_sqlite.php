@@ -48,7 +48,7 @@ class fsql {
                     is_abstract         INTEGER NOT NULL DEFAULT 0,
                     parent_id           INTEGER NOT NULL DEFAULT 0,
                     
-                    extends VARCHAR(255)  NOT NULL DEFAULT '',
+                    extends VARCHAR(255)  NOT NULL DEFAULT ''
                     
                 );
                     
