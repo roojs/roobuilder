@@ -487,7 +487,7 @@ class fsql {
         //print_R($o);exit;
         
     }
-    function typeDef($o)
+    function parsetypeDef($o)
     {
         // oddly enough mixin's have ctors???
         $d = $this->readDom($o['href']);
