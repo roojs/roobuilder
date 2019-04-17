@@ -558,6 +558,7 @@ class fsql {
                 $stack = array($add);
                 continue;
             }
+            echo "looking for " .$o['qualifiedName'];
             print_R($stack);
             for($i = count($stack)-1; $i > -1; $i--) {
                 $last = $stack[$i];
