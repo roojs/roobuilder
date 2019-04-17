@@ -56,9 +56,8 @@ class fsql {
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         is_deprecated INTEGER NOT NULL DEFAULT 0");
          
         $this->pdo->exec("
-            CREATE TABLE IF NOT EXISTS node (
+            CREATE TABLE IF NOT EXISTS extends (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-
                 class_id INTEGER NOT NULL DEFAULT 0,
                 extends_id INTEGER NOT NULL DEFAULT 0
             );
