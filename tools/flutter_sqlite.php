@@ -563,11 +563,12 @@ class fsql {
                 if (substr($o['qualifiedName'], 0, strlen($last['qualifiedName'])) == $last['qualifiedName']) {
                     $last->cn[] = $add;
                     $stack = array_slice($stack,0, $i);
+                    break;
                 }
             }
         }
         
-        
+        print_R()
         
         
     }
