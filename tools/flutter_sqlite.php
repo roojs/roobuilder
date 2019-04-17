@@ -495,6 +495,7 @@ $sq->parse('constructor');
 $sq->parse('method');
 $sq->parse('property');
 $sq->parse('enum');
-*/
 
+*/
+$sq->parse('mixin');
 
