@@ -93,6 +93,20 @@ class fsql {
         }
         return $r ? $r[0]['id'] : 0;
     }
+    
+    function addExtends($class_id , $extends_id)
+    {
+        $s = $this->pdo->prepare("SELECT id FROM extends where class_id=? AND extends_id=?");
+        $s->execute(array($class_id , $extends_id));
+        if ($s->fetchAll(PDO::FETCH_ASSOC)) {
+            return;
+        }
+        $s = $this->pdo->prepare("INSERT INTO extends (class_id, extends_id) VALUES (?,?)");
+        $s->execute(array($class_id , $extends_id));
+        
+        
+    }
+    
     function update($id, $o)
     {
         if (empty($o)) {
