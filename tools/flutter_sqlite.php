@@ -347,7 +347,7 @@ class fsql {
         $type = '';
         $ar = $sp->getElementsByTagName('a');
         if (!$ar->length) {
-            return $sp->textContent;
+            return '<'. $sp->textContent .'>';
         }
         if ($ar->length == 1) {
             $rt = $this->get('href',$ar->item(0)->getAttribute('href'));
