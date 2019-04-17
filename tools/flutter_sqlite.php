@@ -440,9 +440,9 @@ define( 'FDIR', '/home/alan/Downloads/flutterdocs/flutter/');
 define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/'); 
  
 $sq = new fsql();
-//$sq->parseIndex();
+$sq->parseIndex();
 //$sq->parse('library'); // what does this achieve?
-//$sq->parse('class');
-//$sq->parse('constructor');
+$sq->parse('class');
+$sq->parse('constructor');
 $sq->parse('method');
 $sq->parse('property');
