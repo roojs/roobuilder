@@ -262,8 +262,12 @@ class fsql {
         
         $sp = $this->getElementsByClassName($dom,'returntype')->item(0);
         //$this->parseType($sp);
-        die("not yet");
+        die("return type not yet");
         // params...
+        
+    }
+    function readSignature()
+    {
         $ar = $this->getElementsByClassName($dom,'parameter');
         for($i =0;$i<$ar->length;$i++) {
             $this->params[] = new Param( $ar->item($i) );
