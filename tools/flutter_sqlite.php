@@ -57,7 +57,7 @@ class fsql {
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         is_deprecated INTEGER NOT NULL DEFAULT 0");
         // deals with param type or return type.
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         value_type VARCHAR (255) NOT NULL DEFAULT ''");
-        
+        // for params
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         sequence_no INTEGER NOT NULL DEAFULT 0");
 
          
@@ -310,12 +310,14 @@ class fsql {
             'href' => '',
             
         );
+        $seq = 1;
         for($i = 0; $i < $ar->length; $i++) {
             
             switch($ar->item($i)->getAttribute('class')) {
                 
                 case 'parameter-name':
                     $ar['name'] = $ar->item($i)->textContent;
+                    $ar['sequence_no'] = $seq++;
                     $ar['qualifiedName' ] = $prefix . '.'. $ar['name'] ;
                     break;
                 
@@ -328,7 +330,6 @@ class fsql {
         }
         $id = $this->lookup('qualifiedName',$ar['qualifiedName' ] );
         $this->update($id,$ar);
-        
         
     }
     function readTypeToString($sp)
@@ -403,5 +404,5 @@ define( 'TDIR', '/home/alan/gitlive/flutter-docs-json/');
 $sq = new fsql();
 //$sq->parseIndex();
 //$sq->parse('library'); // what does this achieve?
-$sq->parse('class');
+//$sq->parse('class');
 $sq->parse('constructor');
