@@ -390,6 +390,9 @@ class fsql {
         $s->execute(array($type));
         $res = $s->fetchAll(PDO::FETCH_ASSOC);
         foreach($res as $r) {
+            if (in_array($r['href'], $this->blacklist)) {
+                continue;
+            }
             $m  = "parse{$type}";
             $this->$m($r);
         }
