@@ -580,7 +580,7 @@ class fsql {
                     FROM
                         node
                     where
-                        id IN (SELECT distinct(class_id) FROM extends WHERE extends_id = {$o['id']}
+                        id IN (SELECT distinct(class_id) FROM extends WHERE extends_id = {$o['id']})
                     AND
                         is_abstract = 0
                     order by
