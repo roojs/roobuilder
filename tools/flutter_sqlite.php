@@ -568,7 +568,7 @@ class fsql {
             $add = (object) $o;
             $add->cn = array();
             unset($add->id);
-            $add->extends = explode(',',$add->extends);
+            $add->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
             if ($o['type'] == 'library') {
                 $out[] = $add;
                 $stack = array($add);
