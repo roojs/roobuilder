@@ -404,7 +404,13 @@ class fsql {
         $this->readReturnType($d,$o['id']);        
         $this->readSignature($d,$o['id']);
     }
-    
+    function parseProperty($o)
+    {
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+        $this->readReturnType($d,$o['id']);        
+
+    }
     
 }
 
@@ -418,3 +424,4 @@ $sq = new fsql();
 //$sq->parse('class');
 $sq->parse('constructor');
 $sq->parse('method');
+$sq->parse('property');
