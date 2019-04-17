@@ -328,7 +328,7 @@ class fsql {
                 
                 case 'type-annotation':
                     
-                    $o['type'] = $this->readTypeToString($ar->item($i) );
+                    $o['value_type'] = $this->readTypeToString($ar->item($i) );
                     break;
                 
             }
