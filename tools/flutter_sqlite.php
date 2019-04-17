@@ -467,10 +467,10 @@ class fsql {
                     $n['desc']  =  $this->innerHTML($cn);
                     $id = $this->lookup('qualifiedName', $n['qualifiedName']);
                     $this->update($id, $n);
-                    print_r($n);
+                    //print_r($n);
                     break;
             }
-            
+             
         }
         
         //exit;
@@ -494,6 +494,7 @@ $sq->parse('class');
 $sq->parse('constructor');
 $sq->parse('method');
 $sq->parse('property');
-*/
 $sq->parse('enum');
+*/
+
 
