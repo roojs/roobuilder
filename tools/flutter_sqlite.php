@@ -296,6 +296,9 @@ class fsql {
          $parent = $this->get('id',$id);
         $ar = $this->getElementsByClassName($dom,'parameter');
         for($i =0;$i<$ar->length;$i++) {
+            if ($ar->item($i)->parentNode->class != 'mutli-line-signature') {
+                continue;
+            }
             $this->readParam( $id,  $ar->item($i) ,  $parent['qualifiedName'] .'.param');
         }   
         return $dom;
