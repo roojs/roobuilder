@@ -33,27 +33,32 @@ class fsql {
                     enclosedBy_type VARCHAR (16) NOT NULL DEFAULT '',
                     -- derived data / html extracted...
                     
-                    memberOf VARCHAR (255) NOT NULL DEFAULT '',
-                    is_constructor INTEGER NOT NULL DEFAULT 0,
-                    is_static INTEGER NOT NULL DEFAULT 0,
+                    memberOf            VARCHAR (255) NOT NULL DEFAULT '',
+                    is_constructor      INTEGER NOT NULL DEFAULT 0,
+                    is_static           INTEGER NOT NULL DEFAULT 0,
                    
                     example TEXT,
                     desc TEXT,
                     
                     is_fake_namespace  INTEGER NOT NULL DEFAULT 0,
-                    is_mixin  INTEGER NOT NULL DEFAULT 0,
-                    is_enum  INTEGER NOT NULL DEFAULT 0,
-                    is_typedef  INTEGER NOT NULL DEFAULT 0,
-                    is_constant  INTEGER NOT NULL DEFAULT 0,
-                    is_abstract  INTEGER NOT NULL DEFAULT 0,
-                    parent_id  INTEGER NOT NULL DEFAULT 0,
+                    is_mixin            INTEGER NOT NULL DEFAULT 0,
+                    is_enum             INTEGER NOT NULL DEFAULT 0,
+                    is_typedef          INTEGER NOT NULL DEFAULT 0,
+                    is_constant         INTEGER NOT NULL DEFAULT 0,
+                    is_abstract         INTEGER NOT NULL DEFAULT 0,
+                    parent_id           INTEGER NOT NULL DEFAULT 0,
                     
-                    extends VARCHAR(255)  NOT NULL DEFAULT ''
+                    extends VARCHAR(255)  NOT NULL DEFAULT '',
+                    
                 );
                     
         ");
          
         $this->pdo->exec("ALTER TABLE node ADD COLUMN         is_deprecated INTEGER NOT NULL DEFAULT 0");
+        // deals with param type or return type.
+        $this->pdo->exec("ALTER TABLE node ADD COLUMN         value_type VARCHAR (255) NOT NULL DEFAULT ''");
+        
+        
          
         $this->pdo->exec("
             CREATE TABLE IF NOT EXISTS extends (
@@ -293,6 +298,22 @@ class fsql {
     
     function readParam($id, $node)
     {
+        $ar  = $node->getElementsByTagName('span');
+        if (!$ar->length) {
+            echo "mssing paramter info", $this->innerHTML($node); exit;
+        }
+        for($i = 0; $i < $ar->length; $i++) {
+            
+            switch($ar->item($i)->getAttribute('class')) {
+                case 'parameter-name':
+                    $this->name = $ar->item($i)->textContent;
+                    break;
+                case 'type-annotation':
+                    $this->parseType($ar->item($i));
+                    break;
+                
+            }
+        }
         
         
     }
