@@ -384,6 +384,11 @@ class fsql {
         
     }
     
+    var $blacklist = array(
+        
+        
+    );
+    
     function parse($type)
     {
         $s = $this->pdo->prepare("SELECT * FROM node  WHERE type = ?");
