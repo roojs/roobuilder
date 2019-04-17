@@ -487,7 +487,16 @@ class fsql {
         //print_R($o);exit;
         
     }
-    
+    function typeDef($o)
+    {
+        // oddly enough mixin's have ctors???
+        $d = $this->readDom($o['href']);
+        $this->readDesc($d,$o['id']);
+        // methods and props should be handled ok anyway.. 
+        
+        print_R($o);exit;
+        
+    }
 }
 
 
@@ -506,7 +515,8 @@ $sq->parse('constructor');
 $sq->parse('method');
 $sq->parse('property');
 $sq->parse('enum');
+$sq->parse('mixin');
 
 */
-$sq->parse('mixin');
+$sq->parse('typedef');
 
