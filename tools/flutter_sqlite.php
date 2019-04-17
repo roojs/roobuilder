@@ -333,6 +333,13 @@ class fsql {
                 
             }
         }
+        if (empty($o['qualifiedName' ])) {
+            $out = $this->get('id', 'id');
+            print_r($out);
+            die("missing paramenter name onn this page:" .$out['href']);
+            
+        }
+        
         $id = $this->lookup('qualifiedName',$o['qualifiedName' ] );
         $this->update($id,$o);
         
