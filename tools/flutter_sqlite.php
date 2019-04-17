@@ -551,13 +551,13 @@ class fsql {
                     qualifiedName,
                     type,
                     CASE WHEN type = 'class'  THEN 1 ELSE 0 END AS is_class,
+                    is_abstract,
                     extends
                 from
                     node
                 where
                     type IN ('class', 'library')
-                AND
-                    is_abstract = 0
+                
                 order by
                     qualifiedName ASC
         ");
@@ -567,6 +567,7 @@ class fsql {
         foreach($all as $o) {
             $add = (object) $o;
             $add->cn = array();
+            $add->is_class = $add->is_class == 1;
             unset($add->id);
             $add->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
             if ($o['type'] == 'library') {
@@ -586,58 +587,26 @@ class fsql {
                     order by
                         qualifiedName ASC
             ");
-            $add->implements  = $res->fetchAll(PDO::FETCH_COLUMN);
+            $add->implementors  = $res->fetchAll(PDO::FETCH_COLUMN);
             
             
             //echo "looking for " .$o['qualifiedName'];             print_R($stack);
             for($i = count($stack)-1; $i > -1; $i--) {
                 $last = $stack[$i];
-                print_r(array( substr($o['qualifiedName'], 0, strlen($last->qualifiedName)), $last->qualifiedName));
+                //print_r(array( substr($o['qualifiedName'], 0, strlen($last->qualifiedName)), $last->qualifiedName));
                 if (substr($add->qualifiedName, 0, strlen($last->qualifiedName)) == $last->qualifiedName) {
                     $last->cn[] = $add;
                     $stack[$i+1] = $add;
                     break;
                 }
-                // if the last one and the current one share an ancestor..
-                if ($i == (count($stack) -1)) {
-                   //
-                    $sname = substr($last->qualifiedName, strlen($stack[0]->qualifiedName)+1);
-                    $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
-                            $sname, -1, PREG_SPLIT_NO_EMPTY);
-                    
-                    $cname = substr($add->qualifiedName, strlen($stack[0]->qualifiedName)+1);
-                    $cbits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
-                            $cname, -1, PREG_SPLIT_NO_EMPTY);
-                    //print_r(array($cbits, $bits));
-                    if ($cbits[0] == $bits[0]) {
-                        echo "CREATED fake: " . $stack[0]->qualifiedName . '.' . $bits[0]."\n";
-                        $aa =  (object) array(
-                            'name' => $stack[0]->qualifiedName . '.' . $bits[0],
-                            'qualifiedName' => $stack[0]->qualifiedName . '.' . $bits[0],
-                            'type' => 'group',
-                            'is_class' => false,
-                            'cn' => array(
-                                $last
-                            )
-                        );
-                        // remove the previus from it's parent.
-                        array_pop($stack[$i-1]->cn);
-                        $stack[$i-1]->cn[] = $aa;
-                        
-                        $stack[$i] = $aa;
-                        $aa->cn[] = $add;
-                        break;
-                            
-                      
-                    }
-                    //}
-                    
-                    
-                }
-                
+                 
                 
             }
         }
+        foreach($out as $obj) {
+            $this->outTreeGroups($obj);
+        }
+        
         echo "WRITE: " .TDIR ."tree.json\n";
         file_put_contents(TDIR .'tree.json', json_encode($out, JSON_PRETTY_PRINT));
 
@@ -646,6 +615,35 @@ class fsql {
         
         
     }
+    function outTreeGroups($obj)
+    {
+        $groups= array();
+        foreach($obj->cn as $c) {
+            $name = substr($c->qualifiedName, strlen($obj->qualifiedName) +1);
+            $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
+                                 $name, -1, PREG_SPLIT_NO_EMPTY);
+            if (!isset($groups[$bits[0]])) {
+                $groups[$bits[0]] = array();
+            }
+            $groups[$bits[0]][] = $c;
+        }
+        $obj->cn = array();
+        foreach($groups as $k => $list) {
+            if (count($list) < 2) {
+                $obj->cn[] = $list[0];
+                continue;
+            }
+            $obj->cn[] = (object) array(
+                'name' => $obj->qualifiedName .'.' . $k,
+                'qualifiedName' => $obj->qualifiedName .'.' . $k,
+                'cn' => $list,
+                'is_class' => 'false',
+                'type' => 'group',
+            );
+        }
+        
+    }
+    
 }
 
 
