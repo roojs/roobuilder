@@ -568,7 +568,7 @@ class fsql {
     function outTree()
     {
         ///make a tree of the classes, and collapse the classes that have same prefix into the prefix.
-        
+        echo "Creating Tree.json\n";
         // our tree should only include classes (non-abstract), and namespaces
         $res = $this->pdo->query("
             SELECT
