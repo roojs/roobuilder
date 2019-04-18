@@ -781,7 +781,7 @@ class fsql {
             $ev = (object) $evar;
             unset($ev->id);
             $ev->params = array(); // FIXME
-            $ev->type = $this->typeToGeneric($ev->type)
+            $ev->type = $this->typeToGeneric($ev->type);
             
             
         }
