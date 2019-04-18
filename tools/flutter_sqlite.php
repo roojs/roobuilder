@@ -199,6 +199,7 @@ class fsql {
         foreach($js as $o) {
             $this->fromIndex($o);
         }
+        $sq->fixParents();
     }
     function readDom($url)
     {
@@ -961,6 +962,6 @@ $sq->parse('top-level property');
 
 
 */
-$sq->fixParents();
+//
 //$sq->outTree();
 $sq->outClassSymbols();
