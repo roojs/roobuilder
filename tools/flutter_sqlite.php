@@ -810,7 +810,7 @@ class fsql {
         
     }
     
-     function outPropertySymbols($c)
+    function outPropertySymbols($c)
     {
         $res = $this->pdo->query("
             SELECT
