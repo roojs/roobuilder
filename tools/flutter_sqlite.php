@@ -756,7 +756,7 @@ class fsql {
         ");
         $all = $res->fetchAll(PDO::FETCH_ASSOC);
         foreach($all as $clsar) {
-            $cls = (object) $cls;
+            $cls = (object) $clsar;
             unset($cls->id);
             $cls->is_enum = $cls->is_enum = 1;
             $cls->is_mixin = $cls->is_mixin = 1;
@@ -764,7 +764,7 @@ class fsql {
             $cls->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
             
             $cls->events = $this->outEventSymbols($clsar); // event's are properties that are typedefs..
-            $cls->methods = $this->outMethodSymbols($clsar['id']);
+            $cls->methods = $this->outMethodSymbols($clsar);
             $cls->props = $this->outPropertySymbols($clsar);
             echo "OUT:".TDIR .'symbols/'.$cls->name. '.json' ."\n";
             file_put_contents(TDIR .'symbols/'.$cls->name. '.json', json_encode($cls,JSON_PRETTY_PRINT));
