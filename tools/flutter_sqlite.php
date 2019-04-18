@@ -702,6 +702,13 @@ class fsql {
         
     }
     
+    function outClass($o)
+    {
+        
+        
+    }
+    
+    
 }
 
 
