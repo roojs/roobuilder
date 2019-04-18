@@ -1013,7 +1013,7 @@ $sq->parse('class');
 $sq->parse('constructor');
 $sq->parse('method');
 $sq->parse('property');
-
+$sq->parse('enum');
 $sq->parse('mixin');
 $sq->parse('typedef');
 $sq->parse('constant');
@@ -1023,7 +1023,7 @@ $sq->parse('top-level property');
 
 
 */
-$sq->parse('enum');
+//
 //
 //$sq->outTree();
-//$sq->outClassSymbols();
+$sq->outClassSymbols();
