@@ -470,7 +470,7 @@ class fsql {
         //$this->readReturnType($d,$o['id']);
         $ct = $d->getElementById('constants');
         $props = $this->getElementsByClassName($ct->ownerDocument,'properties',$ct)->item(0);
-        echo $this->innerHTML($props);
+        //echo $this->innerHTML($props);
         for($i = 0; $i< $props->childNodes->length; $i++) {
             $cn  = $props->childNodes->item($i);
             //var_dump($cn->nodeName);
@@ -478,7 +478,7 @@ class fsql {
                 case 'dt': // look for name
                     
                     $name = $cn->getElementsByTagName('span')->item(0)->textContent; //$this->getElementsByClassName($cn->ownerDocument,'name',$cn)->item(0)->textContent;
-                    var_Dump($name);
+                    //var_Dump($name);
                     $n = array(
                         'type' => 'enum-value',
                         'parent_id' => $o['id'],
@@ -489,7 +489,7 @@ class fsql {
                     
                     break;
                 case 'dd': // the description
-                    print_r($n);
+                    //print_r($n);
                     $n['desc']  =  $this->innerHTML($cn);
                     $id = $this->lookup('qualifiedName', $n['qualifiedName']);
                     $this->update($id, $n);
