@@ -705,7 +705,7 @@ class fsql {
     
     function typeStringToGeneric($str)
     {
-        $bit = explode(',', $str);
+        $bits = explode(',', $str);
         if (count($bits) < 2) {
             return $str;
         }
@@ -803,7 +803,7 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
-            $ev->memberOf = $c['qualifiedName'];
+            $ev->memberOf = $c['name'];
             $ev->params = array(); // FIXME
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
@@ -845,7 +845,7 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
-            $ev->memberOf = $c['qualifiedName'];
+            $ev->memberOf = $c['name'];
             $ev->params = array(); // FIXME
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
@@ -887,7 +887,7 @@ class fsql {
              
             $ev->static = false;
             print_R($c);
-            $ev->memberOf = $c['qualifiedName'];
+            $ev->memberOf = $c['name'];
             $ev->params = $this->outParamSymbols($evar);
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
