@@ -596,13 +596,13 @@ class fsql {
                     qualifiedName as name,
                     qualifiedName,
                     type,
-                    CASE WHEN type = 'class'  THEN 1 ELSE 0 END AS is_class,
+                    CASE WHEN type != 'library'  THEN 1 ELSE 0 END AS is_class,
                     is_abstract,
                     extends 
                 from
                     node
                 where
-                    type IN ('class', 'library')
+                    type IN ('class', 'library', 'enum', 'mixin')
                 
                 order by
                     qualifiedName ASC
