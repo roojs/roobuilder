@@ -741,10 +741,10 @@ class fsql {
             $cls->is_mixin = $cls->is_mixin = 1;
             $cls->is_typedef = $cls->is_typedef = 1;
             
-            $cls->events = array(); // event's are properties that are typedefs..
+            $cls->events = $this->outEventSymbols($clsar['id']); // event's are properties that are typedefs..
             $cls->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
-            $cls->methods = array();
-            $cls->props = array();
+            $cls->methods = $this->outMethodSymbols($clsar['id']);
+            $cls->props = $this->outMethodProps($clsar['id']);
         }
     }
     
