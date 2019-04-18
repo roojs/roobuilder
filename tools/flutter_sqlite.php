@@ -711,11 +711,19 @@ class fsql {
         $res = $this->pdo->query("
             SELECT
                     id,
+                    desc,
+                    type as dtype,
+                    example,
+                    href,
+                    is_abstract as isAbstract,
+                    false as isConstant,
+                    is_depricated as isDeprecated,
+                    false as is_enum,
+                    false as is_mixin,
+                    false as is_typedef,
+                    enclosedBy_name as memberOf,
                     qualifiedName as name,
-                    qualifiedName,
-                    type,
-                    CASE WHEN type = 'class'  THEN 1 ELSE 0 END AS is_class,
-                    is_abstract,
+                    name as shortname,
                     extends
                 from
                     node
@@ -726,9 +734,14 @@ class fsql {
                     qualifiedName ASC
         ");
         $all = $res->fetchAll(PDO::FETCH_ASSOC);
-        foreach($all as $cls) {
+        foreach($all as $clsar) {
+            $cls = (object) $cls;
             unset($cls->id);
-            $cls->events = array();
+            $cls->is_enum = $cls->is_enum = 1;
+            $cls->is_mixin = $cls->is_mixin = 1;
+            $cls->is_typedef = $cls->is_typedef = 1;
+            
+            $cls->events = array(); // event's are properties that are typedefs..
             $cls->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
             $cls->methods = array();
             $cls->props = array();
