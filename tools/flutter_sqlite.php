@@ -709,6 +709,7 @@ class fsql {
     
     function outClass($o)
     {
+        // output for usage with documentation..
         
         
     }
