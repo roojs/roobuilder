@@ -686,6 +686,9 @@ class fsql {
     {
         $groups= array();
         foreach($obj->cn as $c) {
+            if (!$c->is_class) {
+                continue;
+            }
             $name = substr($c->qualifiedName, strlen($obj->qualifiedName) +1);
             $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                                  $name, -1, PREG_SPLIT_NO_EMPTY);
