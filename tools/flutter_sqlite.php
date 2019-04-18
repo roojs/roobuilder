@@ -566,6 +566,24 @@ class fsql {
         
     }
     /* ----------------------------- OUTPUT -----------------------------*/
+    
+    function outImplementorsToArray($id)
+    {
+        $res = $this->pdo->query("
+            SELECT
+                    qualifiedName
+                FROM
+                    node
+                where
+                    id IN (SELECT distinct(class_id) FROM extends WHERE extends_id = {$id})
+                AND
+                    is_abstract = 0
+                order by
+                    qualifiedName ASC
+        ");
+        return  $res->fetchAll(PDO::FETCH_COLUMN);
+    }
+    
     function outTree()
     {
         ///make a tree of the classes, and collapse the classes that have same prefix into the prefix.
@@ -602,19 +620,8 @@ class fsql {
                 $stack = array($add);
                 continue;
             }
-            $res = $this->pdo->query("
-                SELECT
-                        qualifiedName
-                    FROM
-                        node
-                    where
-                        id IN (SELECT distinct(class_id) FROM extends WHERE extends_id = {$o['id']})
-                    AND
-                        is_abstract = 0
-                    order by
-                        qualifiedName ASC
-            ");
-            $add->implementors  = $res->fetchAll(PDO::FETCH_COLUMN);
+            
+            $add->implementors  = $this->outImplementorsToArray($o['id']);
             
             // find if the element has a child or children...
             // this is not really where this should go.. but we will add it for the time being.
@@ -777,7 +784,7 @@ class fsql {
             SELECT
                     id,
                     desc,
-                    example,
+                    COALESCE(example, '') as example,
                     href,
                     is_deprecated as isDeprecated,
                     value_type as type
@@ -819,7 +826,7 @@ class fsql {
             SELECT
                     id,
                     desc,
-                    example,
+                    COALESCE(example, '') as example,
                     href,
                     is_deprecated as isDeprecated,
                     value_type as type
@@ -861,7 +868,7 @@ class fsql {
             SELECT
                     id,
                     desc,
-                    example,
+                    COALESCE(example, '') as example,
                     href,
                     is_deprecated as isDeprecated,
                     value_type as type,
@@ -903,7 +910,7 @@ class fsql {
                     id,
                     name as name,
                     desc,
-                    example,
+                    COALESCE(example, '') as example,
                     href,
                     is_deprecated as isDeprecated,
                     false as isOptional,
