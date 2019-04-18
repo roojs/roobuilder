@@ -769,7 +769,7 @@ class fsql {
             $cls->is_mixin = $cls->is_mixin = 1;
             $cls->is_typedef = $cls->is_typedef = 1;
             $cls->extends = strlen($cls->extends) ? explode(',',$cls->extends) : array();
-            
+            $add->implementors  = $this->outImplementorsToArray($o['id']);
             $cls->events = $this->outEventSymbols($clsar); // event's are properties that are typedefs..
             $cls->methods = $this->outMethodSymbols($clsar);
             $cls->props = $this->outPropertySymbols($clsar);
