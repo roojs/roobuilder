@@ -785,7 +785,8 @@ class fsql {
                 );
             }
             
-            
+            $cls->isConstant = $cls->isConstant == 1;
+
             $cls->isAbstract = $cls->isAbstract == 1;
             $cls->isDeprecated = $cls->isDeprecated == 1;
             $cls->is_enum = $cls->dtype == 'enum';
