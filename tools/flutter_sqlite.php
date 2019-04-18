@@ -886,7 +886,6 @@ class fsql {
             $ev->isConstructor = $ev->dtype == 'constructor';
              
             $ev->static = false;
-            print_R($c);
             $ev->memberOf = $c['name'];
             $ev->params = $this->outParamSymbols($evar);
             $ev->type = $this->typeStringToGeneric($ev->type);
