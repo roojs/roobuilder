@@ -783,7 +783,12 @@ class fsql {
                 order by
                     qualifiedName ASC
         ");
-        
+        $all = $res->fetchAll(PDO::FETCH_ASSOC);
+        foreach($all as $prop) {
+            
+            
+        }
+       
         
     }
     
