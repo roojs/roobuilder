@@ -781,6 +781,7 @@ class fsql {
             if (!isset($ns[$cls->memberOf])) {
                 $ns[$cls->memberOf] = (object) array('classes' => array());
             }
+            $ns[$cls->memberOf]->classes[] = $cls;
             
         }
     }
