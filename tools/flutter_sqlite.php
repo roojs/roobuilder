@@ -765,6 +765,7 @@ class fsql {
             $cls->events = $this->outEventSymbols($clsar); // event's are properties that are typedefs..
             $cls->methods = $this->outMethodSymbols($clsar['id']);
             $cls->props = $this->outPropertySymbols($clsar);
+            echo "OUT:".TDIR .'symbols/'.$cls->name. '.json' ."\n";
             file_put_contents(TDIR .'symbols/'.$cls->name. '.json', json_encode($cls,JSON_PRETTY_PRINT));
         }
     }
