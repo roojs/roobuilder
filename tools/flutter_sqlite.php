@@ -960,5 +960,5 @@ $sq->parse('top-level property');
 
 */
 $sq->fixParents();
-$sq->outTree();
-
+//$sq->outTree();
+$sq->outClassSymbols();
