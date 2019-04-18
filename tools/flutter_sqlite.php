@@ -688,8 +688,12 @@ class fsql {
         $libs = array();
         foreach($obj->cn as $c) {
             if (!$c->is_class) {
-                $libs[]  = $c;
-                continue;
+                $bits = explode(".", $c->qualifiedName);
+                if (count($bits)< 2 || !isset($libs[$bits[0]])) {
+                    $libs[$c->qualifiedName]  = $c;
+                    continue;
+                }
+                $libs[$bits[0]]->cn[] = $c;
             }
             $name = substr($c->qualifiedName, strlen($obj->qualifiedName) +1);
             $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
