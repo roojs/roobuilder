@@ -706,13 +706,35 @@ class fsql {
     {
         
     }
-    
-    function outClass($o)
+    function outClassSymbols()
     {
-        // output for usage with documentation..
-        
-        
+        $res = $this->pdo->query("
+            SELECT
+                    id,
+                    qualifiedName as name,
+                    qualifiedName,
+                    type,
+                    CASE WHEN type = 'class'  THEN 1 ELSE 0 END AS is_class,
+                    is_abstract,
+                    extends
+                from
+                    node
+                where
+                    type IN ('class')
+                
+                order by
+                    qualifiedName ASC
+        ");
+        $all = $res->fetchAll(PDO::FETCH_ASSOC);
+        foreach($all as $cls) {
+            unset($cls->id);
+            $cls->events = array();
+            $cls->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
+            $cls->methods = array();
+            $cls->props = array();
+        }
     }
+    
     
     
 }
