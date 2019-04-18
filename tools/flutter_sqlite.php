@@ -898,12 +898,13 @@ class fsql {
           $res = $this->pdo->query("
             SELECT
                     id,
+                    name as name,
                     desc,
                     example,
                     href,
                     is_depricated as isDeprecated,
-                    value_type as type,
-                    type as dtype
+                    false as isOptional,
+                    value_type as type
                 from 
                         node 
                 where 
@@ -921,11 +922,7 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
-            $ev->isConstructor = $ev->dtype == 'constructor';
-             
-            $ev->static = false;
-            $ev->memberOf = $c['qualifiedName'];
-            $ev->params = $this->outParamSymbols($evar);
+            $ev->isOptional = $c['dtype'] == 'constructor';
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
             
