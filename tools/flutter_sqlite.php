@@ -8,6 +8,7 @@
  -- classes - we need to parse the right hand column to determine which properties/ methods  are static..
  -- enums have methods !! 
  -- types on topLevelconstants are broken (might be able to extract it from the implementation.)
+ -- parse packages on left, and create fake libraries for them...
  */
 
 class fsql {
@@ -670,10 +671,18 @@ class fsql {
                 
             }
         }
-        foreach($out as $obj) {
-            $this->outTreeGroups($obj);
+        $libs = array();
+        foreach($out as $c) {
+            $this->outTreeGroups($c);
+            $bits = explode(".", $c->qualifiedName);
+            if (count($bits)< 2 || !isset($libs[$bits[0]])) {
+                $libs[$c->qualifiedName]  = $c;
+                continue;
+            }
+            $libs[$bits[0]]->cn[] = $c;
         }
         
+        $out = array_values($libs);
         echo "WRITE: " .TDIR ."tree.json\n";
         file_put_contents(TDIR .'tree.json', json_encode($out, JSON_PRETTY_PRINT));
 
@@ -687,14 +696,7 @@ class fsql {
         $groups= array();
         $libs = array();
         foreach($obj->cn as $c) {
-            if (!$c->is_class) {
-                $bits = explode(".", $c->qualifiedName);
-                if (count($bits)< 2 || !isset($libs[$bits[0]])) {
-                    $libs[$c->qualifiedName]  = $c;
-                    continue;
-                }
-                $libs[$bits[0]]->cn[] = $c;
-            }
+            
             $name = substr($c->qualifiedName, strlen($obj->qualifiedName) +1);
             $bits = preg_split('/(?<=[a-z])(?=[A-Z])|(?=[A-Z][a-z])/',
                                  $name, -1, PREG_SPLIT_NO_EMPTY);
@@ -737,25 +739,22 @@ class fsql {
         return $t;
     }
     
-    function outLibrary()
-    {
-        
-    }
+     
     function outClassSymbols()
     {
         echo "Writing Class Symbols\n";
         $res = $this->pdo->query("
             SELECT
                     id,
-                    desc,
+                    COALESCE(desc, '') as desc,
                     type as dtype,
                     COALESCE(example, '') as example,
                     href,
                     is_abstract as isAbstract,
                     false as isConstant,
                     is_deprecated as isDeprecated,
-                    false as is_enum,
-                    false as is_mixin,
+                    type = 'enum' as is_enum,
+                    type = 'mixin' as is_mixin,
                     false as is_typedef,
                     enclosedBy_name as memberOf,
                     qualifiedName as name,
@@ -764,7 +763,7 @@ class fsql {
                 from
                     node
                 where
-                    type IN ('class')
+                    type IN ('class', 'mixin', 'enum')
                 
                 order by
                     qualifiedName ASC
@@ -774,6 +773,21 @@ class fsql {
         foreach($all as $clsar) {
             $cls = (object) $clsar;
             unset($cls->id);
+            
+            if (!isset($ns[$cls->memberOf])) {
+                $ns[$cls->memberOf] = (object) array(
+                    'class' => array(),
+                    'mixin' => array(),
+                    //'constants' => array(), // within a class.. - we could treat as static properties..
+                    'enum' => array(),  // like a class...
+                    'typedef' => array(), // need to query these seperatly... -- look very different to classes..
+                    // functions (within a library... )
+                    // top level constant? (within a library - without a class)
+                    // top level proeprty? (predefined instances of clases) - within a library
+                );
+            }
+            
+            
             $cls->isAbstract = $cls->isAbstract == 1;
             $cls->isDeprecated = $cls->isDeprecated == 1;
             $cls->is_enum = $cls->is_enum = 1;
@@ -784,22 +798,18 @@ class fsql {
             $cls->events = $this->outEventSymbols($clsar); // event's are properties that are typedefs..
             $cls->methods = $this->outMethodSymbols($clsar);
             $cls->props = $this->outPropertySymbols($clsar);
+            
             echo "OUT:".TDIR .'symbols/'.$cls->name. '.json' ."\n";
             file_put_contents(TDIR .'symbols/'.$cls->name. '.json', json_encode($cls,JSON_PRETTY_PRINT));
-            if (!isset($ns[$cls->memberOf])) {
-                $ns[$cls->memberOf] = (object) array(
-                    'classes' => array(),
-                    'mixins' => array(),
-                    'constants' => array(),
-                    'enums' => array(),
-                    // functions
-                    // top level constant?
-                    // top level proeprty?
-                );
-            }
-            $ns[$cls->memberOf]->classes[] = $cls;
+            
+            
+            $ns[$cls->memberOf]->{$cls->dtype}[] = $cls;
             
         }
+        
+        
+        
+        
     }
     
     function outEventSymbols($c)
@@ -807,7 +817,7 @@ class fsql {
         $res = $this->pdo->query("
             SELECT
                     id,
-                    desc,
+                    COALESCE(desc, '') as desc,
                     COALESCE(example, '') as example,
                     href,
                     is_deprecated as isDeprecated,
@@ -851,24 +861,33 @@ class fsql {
         $res = $this->pdo->query("
             SELECT
                     id,
-                    desc,
+                    COALESCE(desc, '') as desc,
                     COALESCE(example, '') as example,
                     href,
                     name as name,
                     is_deprecated as isDeprecated,
-                    value_type as type
+                    value_type as type,
+                    type as dtype
+                    
                 from 
                         node 
                 where 
                         parent_id = {$c['id']}
                         AND
-                        type IN ('property')
-                        AND
-                        'typedef' != (SELECT type from node as sc where sc.qualifiedName = (CASE 
-                        WHEN instr(node.value_type,',') > 0 
-                        THEN substr(node.value_type, 0, instr(node.value_type,',')) 
-                        ELSE node.value_type  
-                        END) limit 1) ;
+                        (
+                            (
+                                type IN ('property')
+                                AND
+                                'typedef' != (SELECT type from node as sc where sc.qualifiedName = (CASE 
+                                WHEN instr(node.value_type,',') > 0 
+                                THEN substr(node.value_type, 0, instr(node.value_type,',')) 
+                                ELSE node.value_type  
+                                END) limit 1)
+                            ) OR (
+                                type IN ('constant', 'enum-value')
+                            )
+                            
+                        );
                     
                 
                 order by
@@ -879,6 +898,8 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
+            $ev->isStatic = $ev->dtype == 'constant'; // since we do not know what static properties are...
+            $ev->isConstant = $ev->dtype == 'constant';
             $ev->memberOf = $c['name'];
             $ev->isDeprecated = $ev->isDeprecated == 1;
             $ev->params = array(); // FIXME
@@ -895,7 +916,7 @@ class fsql {
           $res = $this->pdo->query("
             SELECT
                     id,
-                    desc,
+                    COALESCE(desc, '') as desc,
                     COALESCE(example, '') as example,
                     href,
                     is_deprecated as isDeprecated,
@@ -939,7 +960,7 @@ class fsql {
             SELECT
                     id,
                     name as name,
-                    desc,
+                    COALESCE(desc, '') as desc,
                     COALESCE(example, '') as example,
                     href,
                     is_deprecated as isDeprecated,
@@ -1001,5 +1022,5 @@ $sq->parse('top-level property');
 
 */
 //
-$sq->outTree();
-//$sq->outClassSymbols();
+//$sq->outTree();
+$sq->outClassSymbols();
