@@ -471,7 +471,8 @@ class fsql {
         $ct = $d->getElementById('constants');
         $props = $this->getElementsByClassName($ct->ownerDocument,'properties',$ct)->item(0);
         echo $this->innerHTML($props);
-        foreach($props->childNodes as $cn) {
+        for($i = 0; $i< $props->childNodes->length; $i++) {
+            $cn  = $props->childNodes->item($i);
             //var_dump($cn->nodeName);
             switch($cn->nodeName) {
                 case 'dt': // look for name
