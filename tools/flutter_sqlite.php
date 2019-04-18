@@ -851,7 +851,12 @@ class fsql {
         return $events;
         
     }
-    
+    function outMethodSymbols($c)
+    {
+        
+        
+        
+    }
     
     
     
