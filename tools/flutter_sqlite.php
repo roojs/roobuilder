@@ -753,9 +753,7 @@ class fsql {
                     is_abstract as isAbstract,
                     false as isConstant,
                     is_deprecated as isDeprecated,
-                    type = 'enum' as is_enum,
-                    type = 'mixin' as is_mixin,
-                    false as is_typedef,
+                     
                     enclosedBy_name as memberOf,
                     qualifiedName as name,
                     name as shortname,
@@ -790,9 +788,9 @@ class fsql {
             
             $cls->isAbstract = $cls->isAbstract == 1;
             $cls->isDeprecated = $cls->isDeprecated == 1;
-            $cls->is_enum = $cls->is_enum = 1;
-            $cls->is_mixin = $cls->is_mixin = 1;
-            $cls->is_typedef = $cls->is_typedef = 1;
+            $cls->is_enum = $cls->dtype == 'enum';
+            $cls->is_mixin = $cls->dtype == 'mixin';
+            //$cls->is_typedef = $cls->is_typedef = 1;
             $cls->extends = strlen($cls->extends) ? explode(',',$cls->extends) : array();
             $cls->realImplementors  = $this->outImplementorsToArray($clsar['id']);
             $cls->events = $this->outEventSymbols($clsar); // event's are properties that are typedefs..
