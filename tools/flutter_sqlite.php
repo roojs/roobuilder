@@ -487,6 +487,7 @@ class fsql {
                     
                     break;
                 case 'dd': // the description
+                    print_r($n);
                     $n['desc']  =  $this->innerHTML($cn);
                     $id = $this->lookup('qualifiedName', $n['qualifiedName']);
                     $this->update($id, $n);
