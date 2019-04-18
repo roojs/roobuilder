@@ -734,8 +734,6 @@ class fsql {
     }
     
     function outLibrary()
-    
-    
     {
         
     }
