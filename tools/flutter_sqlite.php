@@ -744,14 +744,47 @@ class fsql {
             $cls->events = $this->outEventSymbols($clsar['id']); // event's are properties that are typedefs..
             $cls->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
             $cls->methods = $this->outMethodSymbols($clsar['id']);
-            $cls->props = $this->outMethodProps($clsar['id']);
+            $cls->props = $this->outMethodProps($clsar);
             file_put_contents(TDIR .'symbols/'.$cls->name. '.json', json_encode($cls,JSON_PRETTY_PRINT));
         }
     }
     
-    function outEventSymbols($id)
+    function outEventSymbols($c)
     {
-        
+        $res = $this->pdo->query("
+            SELECT
+                    id,
+                    desc,
+                    example,
+                    href,
+                    
+                    false as isConstant,
+                    
+                    is_depricated as isDeprecated,
+                    false as is_enum,
+                    false as is_mixin,
+                    false as is_typedef,
+                    enclosedBy_name as memberOf,
+                    qualifiedName as name,
+                    name as shortname,
+                    extends
+                from 
+                        node 
+                where 
+                        parent_id = {$c['id']}
+                        AND
+                        type IN ('property')
+                        AND
+                        'typedef' = (SELECT type from node as sc where sc.qualifiedName = (CASE 
+                        WHEN instr(node.value_type,',') > 0 
+                        THEN substr(node.value_type, 0, instr(node.value_type,',')) 
+                        ELSE node.value_type  
+                        END) limit 1) ;
+                    
+                
+                order by
+                    qualifiedName ASC
+        ");
         
         
     }
