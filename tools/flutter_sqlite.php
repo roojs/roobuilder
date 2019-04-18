@@ -764,10 +764,8 @@ class fsql {
                     false as is_enum,
                     false as is_mixin,
                     false as is_typedef,
-                    enclosedBy_name as memberOf,
-                    qualifiedName as name,
-                    name as shortname,
-                    extends
+                    false as static,
+                    value_type as type
                 from 
                         node 
                 where 
