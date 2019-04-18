@@ -763,7 +763,7 @@ class fsql {
             
             $cls->events = $this->outEventSymbols($clsar); // event's are properties that are typedefs..
             $cls->methods = $this->outMethodSymbols($clsar['id']);
-            $cls->props = $this->outMethodProps($clsar);
+            $cls->props = $this->outPropertySymbols($clsar);
             file_put_contents(TDIR .'symbols/'.$cls->name. '.json', json_encode($cls,JSON_PRETTY_PRINT));
         }
     }
@@ -800,6 +800,7 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
+            $ev->memberOf = $c['qualifiedName'];
             $ev->params = array(); // FIXME
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
@@ -808,6 +809,50 @@ class fsql {
         return $events;
         
     }
+    
+     function outPropertySymbols($c)
+    {
+        $res = $this->pdo->query("
+            SELECT
+                    id,
+                    desc,
+                    example,
+                    href,
+                    is_depricated as isDeprecated,
+                    value_type as type
+                from 
+                        node 
+                where 
+                        parent_id = {$c['id']}
+                        AND
+                        type IN ('property')
+                        AND
+                        'typedef' != (SELECT type from node as sc where sc.qualifiedName = (CASE 
+                        WHEN instr(node.value_type,',') > 0 
+                        THEN substr(node.value_type, 0, instr(node.value_type,',')) 
+                        ELSE node.value_type  
+                        END) limit 1) ;
+                    
+                
+                order by
+                    qualifiedName ASC
+        ");
+        $all = $res->fetchAll(PDO::FETCH_ASSOC);
+        $events = array();
+        foreach($all as $evar) {
+            $ev = (object) $evar;
+            unset($ev->id);
+            $ev->memberOf = $c['qualifiedName'];
+            $ev->params = array(); // FIXME
+            $ev->type = $this->typeStringToGeneric($ev->type);
+            $events[] = $ev;
+            
+        }
+        return $events;
+        
+    }
+    
+    
     
     
 }
