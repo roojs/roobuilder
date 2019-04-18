@@ -608,7 +608,7 @@ class fsql {
         ");
         $all = $res->fetchAll(PDO::FETCH_ASSOC);
         $stack = array();
-        
+        $nsmap = array();
         foreach($all as $o) {
             $add = (object) $o;
             $add->cn = array();
@@ -782,7 +782,11 @@ class fsql {
                 $ns[$cls->memberOf] = (object) array(
                     'classes' => array(),
                     'mixins' => array(),
-                    'constants' => array()
+                    'constants' => array(),
+                    'enums' => array(),
+                    // functions
+                    // top level constant?
+                    // top level proeprty?
                 );
             }
             $ns[$cls->memberOf]->classes[] = $cls;
