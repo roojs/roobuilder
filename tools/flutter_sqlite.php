@@ -898,8 +898,8 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
-            $ev->isStatic = $ev->dtype == 'constant'; // since we do not know what static properties are...
-            $ev->isConstant = $ev->dtype == 'constant';
+            $ev->isStatic = in_array($ev->dtype , array( 'constant', 'enum-value')); // since we do not know what static properties are...
+            $ev->isConstant = in_array($ev->dtype , array( 'constant', 'enum-value'));
             $ev->memberOf = $c['name'];
             $ev->isDeprecated = $ev->isDeprecated == 1;
             $ev->params = array(); // FIXME
