@@ -796,15 +796,16 @@ class fsql {
                     qualifiedName ASC
         ");
         $all = $res->fetchAll(PDO::FETCH_ASSOC);
+        $events = array();
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
             $ev->params = array(); // FIXME
             $ev->type = $this->typeStringToGeneric($ev->type);
-            
+            $events[] = $ev;
             
         }
-       
+        return $events;
         
     }
     
