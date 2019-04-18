@@ -884,7 +884,7 @@ class fsql {
              
             $ev->static = false;
             $ev->memberOf = $c['qualifiedName'];
-            $ev->params = array(); // FIXME
+            $ev->params = $this->outParamSymbols($evar);
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
             
