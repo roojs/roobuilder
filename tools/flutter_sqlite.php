@@ -738,7 +738,7 @@ class fsql {
                     href,
                     is_abstract as isAbstract,
                     false as isConstant,
-                    is_depricated as isDeprecated,
+                    is_deprecated as isDeprecated,
                     false as is_enum,
                     false as is_mixin,
                     false as is_typedef,
@@ -779,7 +779,7 @@ class fsql {
                     desc,
                     example,
                     href,
-                    is_depricated as isDeprecated,
+                    is_deprecated as isDeprecated,
                     value_type as type
                 from 
                         node 
@@ -821,7 +821,7 @@ class fsql {
                     desc,
                     example,
                     href,
-                    is_depricated as isDeprecated,
+                    is_deprecated as isDeprecated,
                     value_type as type
                 from 
                         node 
@@ -863,7 +863,7 @@ class fsql {
                     desc,
                     example,
                     href,
-                    is_depricated as isDeprecated,
+                    is_deprecated as isDeprecated,
                     value_type as type,
                     type as dtype
                 from 
@@ -905,7 +905,7 @@ class fsql {
                     desc,
                     example,
                     href,
-                    is_depricated as isDeprecated,
+                    is_deprecated as isDeprecated,
                     false as isOptional,
                     value_type as type
                 from 
