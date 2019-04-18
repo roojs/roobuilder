@@ -702,7 +702,26 @@ class fsql {
         
     }
     
+    function typeStringToGeneric($str)
+    {
+        $bit = explode(',', $str);
+        if (count($bits) < 2) {
+            return $str;
+        }
+        $t = '';
+        foreach($bits as $i => $add) {
+            $t .= ($i == 0) ? $add : ('<'. $add );
+             
+        }
+        for($i =0;$i<count($bits)-1;$i++) {
+            $t .= '>';
+        }
+        return $t;
+    }
+    
     function outLibrary()
+    
+    
     {
         
     }
@@ -781,7 +800,7 @@ class fsql {
             $ev = (object) $evar;
             unset($ev->id);
             $ev->params = array(); // FIXME
-            $ev->type = $this->typeToGeneric($ev->type);
+            $ev->type = $this->typeStringToGeneric($ev->type);
             
             
         }
