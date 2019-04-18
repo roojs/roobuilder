@@ -84,6 +84,7 @@ class fsql {
     }
     function fixParents()
     {
+        echo "Grouping properties/methods with parents\n";
         $this->pdo->exec("
             UPDATE
                 node as cn 
