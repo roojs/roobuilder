@@ -734,7 +734,7 @@ class fsql {
                     id,
                     desc,
                     type as dtype,
-                    example,
+                    COALESCE(example, '') as example,
                     href,
                     is_abstract as isAbstract,
                     false as isConstant,
