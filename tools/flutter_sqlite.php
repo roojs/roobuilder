@@ -613,6 +613,11 @@ class fsql {
                         qualifiedName ASC
             ");
             $add->implementors  = $res->fetchAll(PDO::FETCH_COLUMN);
+            
+            // find if the element has a child or children...
+            // this is not really where this should go.. but we will add it for the time being.
+            
+            
             $res = $this->pdo->query("
                 SELECT
                         qualifiedName
