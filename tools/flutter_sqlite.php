@@ -633,7 +633,7 @@ class fsql {
                     AND
                         type = 'property'
                     AND
-                        name IN ('child','children','home')
+                        name IN ('child','children','home', 'body')
                     order by
                         name ASC
                     limit 1
