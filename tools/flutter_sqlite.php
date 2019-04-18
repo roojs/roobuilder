@@ -762,6 +762,7 @@ class fsql {
                     qualifiedName ASC
         ");
         $all = $res->fetchAll(PDO::FETCH_ASSOC);
+        $ns = array();
         foreach($all as $clsar) {
             $cls = (object) $clsar;
             unset($cls->id);
@@ -777,6 +778,10 @@ class fsql {
             $cls->props = $this->outPropertySymbols($clsar);
             echo "OUT:".TDIR .'symbols/'.$cls->name. '.json' ."\n";
             file_put_contents(TDIR .'symbols/'.$cls->name. '.json', json_encode($cls,JSON_PRETTY_PRINT));
+            if (!isset($ns[$cls->memberOf])) {
+                $ns[$cls->memberOf] = (object) array('classes' => array());
+            }
+            
         }
     }
     
