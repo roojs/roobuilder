@@ -757,14 +757,7 @@ class fsql {
                     desc,
                     example,
                     href,
-                    
-                    false as isConstant,
-                    
                     is_depricated as isDeprecated,
-                    false as is_enum,
-                    false as is_mixin,
-                    false as is_typedef,
-                    false as static,
                     value_type as type
                 from 
                         node 
@@ -784,7 +777,11 @@ class fsql {
                     qualifiedName ASC
         ");
         $all = $res->fetchAll(PDO::FETCH_ASSOC);
-        foreach($all as $prop) {
+        foreach($all as $evar) {
+            $ev = (object) $evar;
+            unset($ev->id);
+            $ev->params = array(); // FIXME
+            $ev->type = $this->typeToGeneric($ev->type)
             
             
         }
