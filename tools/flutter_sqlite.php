@@ -644,7 +644,7 @@ class fsql {
             if ($types) {
                 $car = explode(',', $types['value_type']);
                 $add->childtype = array_pop($car);
-                $add->childtypes = ($types['name'] == 'children') ? 2 : 1;
+                $add->childtypes = (count($car) && $car[0] == 'date:core.List') ? 2 : 1;
             }
             
             
