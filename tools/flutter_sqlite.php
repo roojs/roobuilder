@@ -685,9 +685,10 @@ class fsql {
     function outTreeGroups($obj)
     {
         $groups= array();
+        $libs = array();
         foreach($obj->cn as $c) {
             if (!$c->is_class) {
-                $libs = array();
+                $libs[]  = $c;
                 continue;
             }
             $name = substr($c->qualifiedName, strlen($obj->qualifiedName) +1);
@@ -698,7 +699,7 @@ class fsql {
             }
             $groups[$bits[0]][] = $c;
         }
-        $obj->cn = array();
+        $obj->cn = $libs;
         foreach($groups as $k => $list) {
             if (count($list) < 2) {
                 $obj->cn[] = $list[0];
