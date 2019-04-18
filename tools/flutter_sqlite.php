@@ -892,7 +892,47 @@ class fsql {
         return $events;
         
     }
-    
+    function outParamSymbols($c)
+    {
+        
+          $res = $this->pdo->query("
+            SELECT
+                    id,
+                    desc,
+                    example,
+                    href,
+                    is_depricated as isDeprecated,
+                    value_type as type,
+                    type as dtype
+                from 
+                        node 
+                where 
+                        parent_id = {$c['id']}
+                        AND
+                        type IN ('param')
+                         
+                    
+                
+                order by
+                    qualifiedName ASC
+        ");
+        $all = $res->fetchAll(PDO::FETCH_ASSOC);
+        $events = array();
+        foreach($all as $evar) {
+            $ev = (object) $evar;
+            unset($ev->id);
+            $ev->isConstructor = $ev->dtype == 'constructor';
+             
+            $ev->static = false;
+            $ev->memberOf = $c['qualifiedName'];
+            $ev->params = $this->outParamSymbols($evar);
+            $ev->type = $this->typeStringToGeneric($ev->type);
+            $events[] = $ev;
+            
+        }
+        return $events;
+        
+    }
     
     
 }
