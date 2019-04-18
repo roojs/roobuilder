@@ -779,7 +779,11 @@ class fsql {
             echo "OUT:".TDIR .'symbols/'.$cls->name. '.json' ."\n";
             file_put_contents(TDIR .'symbols/'.$cls->name. '.json', json_encode($cls,JSON_PRETTY_PRINT));
             if (!isset($ns[$cls->memberOf])) {
-                $ns[$cls->memberOf] = (object) array('classes' => array());
+                $ns[$cls->memberOf] = (object) array(
+                    'classes' => array(),
+                    'mixins' => array(),
+                    'constants' => array()
+                );
             }
             $ns[$cls->memberOf]->classes[] = $cls;
             
