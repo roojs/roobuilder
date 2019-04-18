@@ -745,9 +745,11 @@ class fsql {
             $cls->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
             $cls->methods = $this->outMethodSymbols($clsar['id']);
             $cls->props = $this->outMethodProps($clsar['id']);
+            file_put_contents(TDIR .'symbols/'.$cls->name. '.json', json_encode($cls,JSON_PRETTY_PRINT));
         }
     }
     
+    function out
     
     
 }
