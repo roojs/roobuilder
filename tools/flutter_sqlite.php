@@ -881,6 +881,7 @@ class fsql {
             $ev = (object) $evar;
             unset($ev->id);
             $ev->isConstructor = $ev->dtype == 'constructor';
+             
             $ev->static = false;
             $ev->memberOf = $c['qualifiedName'];
             $ev->params = array(); // FIXME
