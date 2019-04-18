@@ -861,13 +861,14 @@ class fsql {
                     example,
                     href,
                     is_depricated as isDeprecated,
-                    value_type as type
+                    value_type as type,
+                    type as dtype
                 from 
                         node 
                 where 
                         parent_id = {$c['id']}
                         AND
-                        type IN ('property')
+                        type IN ('method','constructor')
                          
                     
                 
@@ -879,6 +880,7 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
+            $ev->isConstructor = $ev->dtype == 'constructor';
             $ev->static = false;
             $ev->memberOf = $c['qualifiedName'];
             $ev->params = array(); // FIXME
