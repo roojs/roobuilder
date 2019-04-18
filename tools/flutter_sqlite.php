@@ -620,17 +620,27 @@ class fsql {
             
             $res = $this->pdo->query("
                 SELECT
-                        qualifiedName
+                        name, value_type
                     FROM
                         node
                     where
-                        id IN (SELECT distinct(class_id) FROM extends WHERE extends_id = {$o['id']})
+                        parent_id = {$o['id']}
                     AND
-                        is_abstract = 0
+                        type = 'property'
+                    AND
+                        name IN ('child','children','home')
                     order by
-                        qualifiedName ASC
+                        name ASC
+                    limit 1
             "); 
-            
+            $types = $res->fetch(PDO::FETCH_ASSOC);
+            $add->childtype = '';
+            $add->childtypes = '0';
+            if ($types) {
+                $car = explode(',', $types['value_type']);
+                $add->childtype = array_pop($car);
+                $add->childtypes = ($types['name'] == 'children') ? 2 : 1;
+            }
             
             
             //echo "looking for " .$o['qualifiedName'];             print_R($stack);
