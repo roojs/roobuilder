@@ -702,6 +702,11 @@ class fsql {
         
     }
     
+    function outLibrary()
+    {
+        
+    }
+    
     function outClass($o)
     {
         
