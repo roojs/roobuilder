@@ -901,6 +901,7 @@ class fsql {
              
             $ev->static = false;
             $ev->memberOf = $c['name'];
+            $ev->isDeprecated = $ev->isDeprecated == 1;            
             $ev->params = $this->outParamSymbols($evar);
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
