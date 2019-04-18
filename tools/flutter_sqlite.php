@@ -765,6 +765,8 @@ class fsql {
         foreach($all as $clsar) {
             $cls = (object) $clsar;
             unset($cls->id);
+            $cls->isAbstract = $cls->isAbstract == 1;
+            $cls->isDeprecated = $cls->isDeprecated == 1;
             $cls->is_enum = $cls->is_enum = 1;
             $cls->is_mixin = $cls->is_mixin = 1;
             $cls->is_typedef = $cls->is_typedef = 1;
@@ -788,7 +790,7 @@ class fsql {
                     href,
                     is_deprecated as isDeprecated,
                     value_type as type,
-                    name as name,
+                    name as name
                 from 
                         node 
                 where 
@@ -811,6 +813,7 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
+            $ev->isDeprecated = $ev->isDeprecated == 1;
             $ev->memberOf = $c['name'];
             $ev->params = array(); // FIXME
             $ev->type = $this->typeStringToGeneric($ev->type);
@@ -855,6 +858,7 @@ class fsql {
             $ev = (object) $evar;
             unset($ev->id);
             $ev->memberOf = $c['name'];
+            $ev->isDeprecated = $ev->isDeprecated == 1;
             $ev->params = array(); // FIXME
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
@@ -935,6 +939,7 @@ class fsql {
         foreach($all as $evar) {
             $ev = (object) $evar;
             unset($ev->id);
+            $ev->isDeprecated = $ev->isDeprecated == 1;
             $ev->isOptional = $c['dtype'] == 'constructor';
             $ev->type = $this->typeStringToGeneric($ev->type);
             $events[] = $ev;
