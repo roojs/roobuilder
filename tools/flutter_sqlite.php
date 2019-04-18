@@ -769,7 +769,7 @@ class fsql {
             $cls->is_mixin = $cls->is_mixin = 1;
             $cls->is_typedef = $cls->is_typedef = 1;
             $cls->extends = strlen($cls->extends) ? explode(',',$cls->extends) : array();
-            $add->implementors  = $this->outImplementorsToArray($o['id']);
+            $cls->realImplementors  = $this->outImplementorsToArray($clsar['id']);
             $cls->events = $this->outEventSymbols($clsar); // event's are properties that are typedefs..
             $cls->methods = $this->outMethodSymbols($clsar);
             $cls->props = $this->outPropertySymbols($clsar);
@@ -787,7 +787,8 @@ class fsql {
                     COALESCE(example, '') as example,
                     href,
                     is_deprecated as isDeprecated,
-                    value_type as type
+                    value_type as type,
+                    name as name,
                 from 
                         node 
                 where 
@@ -828,6 +829,7 @@ class fsql {
                     desc,
                     COALESCE(example, '') as example,
                     href,
+                    name as name,
                     is_deprecated as isDeprecated,
                     value_type as type
                 from 
@@ -872,6 +874,7 @@ class fsql {
                     href,
                     is_deprecated as isDeprecated,
                     value_type as type,
+                    name as name,
                     type as dtype
                 from 
                         node 
