@@ -749,7 +749,12 @@ class fsql {
         }
     }
     
-    function out
+    function outEventSymbols($id)
+    {
+        
+        
+        
+    }
     
     
 }
