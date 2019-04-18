@@ -625,7 +625,11 @@ class fsql {
                     FROM
                         node
                     where
-                        parent_id = {$o['id']}
+                        (
+                            parent_id = {$o['id']}
+                            OR
+                            parent_id IN (SELECT extends_id FROM extends where class_id = {$o['id']})
+                        )
                     AND
                         type = 'property'
                     AND
