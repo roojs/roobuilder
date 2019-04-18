@@ -761,7 +761,7 @@ class fsql {
             $cls->is_enum = $cls->is_enum = 1;
             $cls->is_mixin = $cls->is_mixin = 1;
             $cls->is_typedef = $cls->is_typedef = 1;
-            $cls->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
+            $cls->extends = strlen($cls->extends) ? explode(',',$cls->extends) : array();
             
             $cls->events = $this->outEventSymbols($clsar); // event's are properties that are typedefs..
             $cls->methods = $this->outMethodSymbols($clsar);
