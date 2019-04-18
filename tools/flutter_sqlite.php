@@ -628,7 +628,7 @@ class fsql {
                         (
                             parent_id = {$o['id']}
                             OR
-                            parent_id IN (SELECT extends_id FROM extends where class_id = {$o['id']})
+                            parent_id IN (SELECT distinct(class_id) FROM extends WHERE extends_id = {$o['id']})
                         )
                     AND
                         type = 'property'
