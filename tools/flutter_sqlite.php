@@ -727,6 +727,7 @@ class fsql {
     }
     function outClassSymbols()
     {
+        echo "Writing Class Symbols\n";
         $res = $this->pdo->query("
             SELECT
                     id,
