@@ -491,7 +491,11 @@ class fsql {
                 case 'dd': // the description
                     //print_r($n);
                     $n['desc']  =  $this->innerHTML($cn);
+                    
                     $id = $this->lookup('qualifiedName', $n['qualifiedName']);
+                    if (!strlen(trim($n['name']))) {
+                        break;
+                    }
                     $this->update($id, $n);
                     //print_r($n);
                     break;
