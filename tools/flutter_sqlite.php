@@ -597,7 +597,7 @@ class fsql {
                     type,
                     CASE WHEN type = 'class'  THEN 1 ELSE 0 END AS is_class,
                     is_abstract,
-                    extends
+                    extends 
                 from
                     node
                 where
@@ -616,6 +616,7 @@ class fsql {
             unset($add->id);
             $add->extends = strlen($add->extends) ? explode(',',$add->extends) : array();
             if ($o['type'] == 'library') {
+                 
                 $out[] = $add;
                 $stack = array($add);
                 continue;
