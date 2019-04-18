@@ -687,6 +687,7 @@ class fsql {
         $groups= array();
         foreach($obj->cn as $c) {
             if (!$c->is_class) {
+                $libs = array();
                 continue;
             }
             $name = substr($c->qualifiedName, strlen($obj->qualifiedName) +1);
