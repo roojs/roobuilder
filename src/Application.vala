@@ -313,7 +313,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					pa.dumpusage();
 					 var ar = pa.getChildList("material.Scaffold");
 					GLib.debug("childlist for material.Scaffold is %s", 
-						string.joinv( "\n-- ", ar)ca
+						string.joinv( "\n-- ", ar)
 					);
 					ar = pa.getDropList("material.MaterialApp");
 					GLib.debug("droplist for material.MaterialApp is %s", 
