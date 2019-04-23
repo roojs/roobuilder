@@ -812,7 +812,10 @@ class fsql {
             $ns[$cls->memberOf]->{$cls->dtype}[] = $cls;
             
         }
-        
+        foreach($ns as $nm => $cls) {
+            echo "OUT:".TDIR .'ns/'.$nm. '.json' ."\n";
+            file_put_contents(TDIR .'ns/'.$nm. '.json', json_encode($cls,JSON_PRETTY_PRINT));
+        }
         
         
         
