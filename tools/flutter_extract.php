@@ -5,8 +5,6 @@
 // we have 2 types of data - the overall summary, and the 'detail one we use for docs..
 //
 /*
- *
- *https://master-api.flutter.dev/offline/flutter.xml
  
  TODO:
   Generics CompoundAnimation<T> ... or 
@@ -255,6 +253,8 @@ foreach(eClass::$all as $c) {
     // constant's and other mixins.. 
 }
 // at this point we need to dump the whole thing.
+
+
 
 
 
