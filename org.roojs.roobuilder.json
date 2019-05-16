@@ -1,7 +1,7 @@
 {
     "id": "org.roojs.roobuilder",
-    "runtime": "org.freedesktop.Platform",
-    "runtime-version": "1.2",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.32",
     "sdk": "org.gnome.Sdk",
     "command": "roobuilder",
     "clean": [ "/include", "*.la" ],
