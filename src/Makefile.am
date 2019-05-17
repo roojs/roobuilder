@@ -87,10 +87,10 @@ roobuilder_PKGS = \
 		--pkg json-glib-1.0 \
 		--pkg gee-0.8 \
 		--pkg gobject-introspection-1.0 \
-		--pkg clutter-gtk-1.0 \ 
+		--pkg clutter-gtk-1.0 \
 		--pkg libsoup-2.4 \
  		--pkg javascriptcore \
-		--pkg roojspacker-1.1 \
+		--pkg roojspacker-1.2 \
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
