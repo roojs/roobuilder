@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Roo App Builder
+Comment=Vala and Javascript Application Builder
+Exec=roobuilder
+Icon=roobuilder
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Utility;
