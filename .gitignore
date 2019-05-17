@@ -17,6 +17,7 @@ src/*.stamp
 src/*.stamp-t
 tests/*.c
 
+Makecache
 Makefile
 Makefile.in
 aclocal.m4
