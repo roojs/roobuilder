@@ -96,7 +96,7 @@ roobuilder_PKGS = \
 		$(roobuilder_WEBKKIT) \
 		$(roobuilder_JAVASCRIPTCOREGTK) \
 		$(roobuilder_VTE) \
-		--pkg posix 
+		--pkg posix
 
 
 BUIDERJSRENDER = \
