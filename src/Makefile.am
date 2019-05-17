@@ -159,8 +159,7 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/ValaCompileResults.vala \
 		Builder4/PopoverProperty.vala
         
-roobuilder_SOURCES = \
-		Application.vala \
+roobuilder_SOURCES =  Application.vala \
 		Main.vala \
 		Spawn.vala \
 		Resources.vala  \
@@ -174,8 +173,7 @@ roobuilder_SOURCES = \
 		
 		
  
-roobuilder_VALAFLAGS = \
-	 --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
+roobuilder_VALAFLAGS =  --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
 
 roobuilder_LDADD = $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
 
