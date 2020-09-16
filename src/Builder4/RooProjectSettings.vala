@@ -510,12 +510,18 @@ public class Xcls_RooProjectSettings : Object
         
             el.append(out iter);
             el.set_value(iter, 0, "bootstrap.builder.html");
-         
+          
         	print("\ncur template = %s\n", _this.project.base_template);
          
             if (_this.project.base_template == "bootstrap.builder.html") {
         	   _this.base_template.el.set_active_iter(iter);
             }
+        	  el.append(out iter);
+            el.set_value(iter, 0, "bootstrap4.builder.html");
+             if (_this.project.base_template == "bootstrap4.builder.html") {
+        	   _this.base_template.el.set_active_iter(iter);
+            }
+            
         
         	el.append(out iter);
             el.set_value(iter, 0, "mailer.builder.html");

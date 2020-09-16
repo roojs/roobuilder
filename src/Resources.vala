@@ -161,6 +161,7 @@ public class Resources : Object
 		// this has to check the required files, not the list...
 		string[] required =  {
 			"bootstrap.builder.html",
+			"bootstrap4.builder.html",
 			"Gir.overides",
 			"GtkUsage.txt",
 			"mailer.builder.html",
