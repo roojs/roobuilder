@@ -376,6 +376,12 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
         public void showhide (bool is_bjs) {
+        
+        
+        	if (_this.project.xtype != "Roo") {
+        	 	is_bjs = false;
+         	}
+        
         	for (var i = 2; i < 9;i++) {
         		var el = _this.grid.el.get_child_at(0,i);
         		
@@ -398,11 +404,12 @@ public class Xcls_PopoverFileDetails : Object
             }
             // load up the directories
             //??? why can we not create bjs files in other directories??
-        	if (!is_bjs && _this.file.path.length < 1) {
+        	//if (!is_bjs && _this.file.path.length < 1) {
+        	
         		_this.dirmodel.loadData();
         		
         		
-        	}
+        	//}
            
             
         }

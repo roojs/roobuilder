@@ -2,7 +2,7 @@
  "name" : "EditProject",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/EditProject.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/EditProject.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
@@ -16,7 +16,7 @@
    "title" : "Project Properties",
    "xtype" : "Dialog",
    "default_height" : 500,
-   "| Project.Project? show" : "() {\n      \n\n    //[ 'xtype'  ].forEach(function(k) {\n    //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);\n    //});\n\t// shouild set path..\n    _this.model.loadData();\n    this.el.show_all();\n    \n    var err_dialog = StandardErrorDialog.singleton();\n\n    var id = -1;\n    while (id < 0) {\n         id =  this.el.run();\n         if (id < 1) {\n                this.el.hide();\n                return null;\n        }\n \n         \n          if (_this.xtype.getValue().length < 1) {\n               \n                err_dialog.show(_this.el,\"You have to set Project type\");             \n                id = -1;\n                continue;\n            }\n            if (_this.dir.el.get_filename().length < 1) {\n \n                err_dialog.show(_this.el,\"You have to select a folder\");             \n                id = -1;\n                continue;\n            }\n           \n    }\n    \n    this.el.hide();\n    \n    \n    \n \n    var fn = _this.dir.el.get_filename();\n    print(\"add %s\\n\" , fn);\n    \n    var project = Project.Project.factory(_this.xtype.getValue(), fn);\n    project.save();\n    Project.projects.set(project.name,project);\n    \n    //var pr = imports.Builder.Provider.ProjectManager.ProjectManager.update(this.project);\n    \n    return project;\n\n    \n    //this.success = c.success;\n}\n",
+   "| Project.Project? show" : "() {\n      \n\n    //[ 'xtype'  ].forEach(function(k) {\n    //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);\n    //});\n\t// shouild set path..\n    _this.model.loadData();\n    this.el.show_all();\n    \n    var err_dialog = StandardErrorDialog.singleton();\n\n    var id = -1;\n    while (id < 0) {\n         id =  this.el.run();\n         if (id < 1) {\n                this.el.hide();\n                return null;\n        }\n \n         \n      if (_this.xtype.getValue().length < 1) {\n           \n            err_dialog.show(_this.el,\"You have to set Project type\");             \n            id = -1;\n            continue;\n        }\n        if (_this.dir.el.get_filename().length < 1) {\n\n            err_dialog.show(_this.el,\"You have to select a folder\");             \n            id = -1;\n            continue;\n        }\n           \n    }\n    \n    this.el.hide();\n    \n    \n    \n \n    var fn = _this.dir.el.get_filename();\n    print(\"add %s\\n\" , fn);\n    \n    var project = Project.Project.factory(_this.xtype.getValue(), fn);\n    project.save();\n    Project.projects.set(project.name,project);\n    \n    //var pr = imports.Builder.Provider.ProjectManager.ProjectManager.update(this.project);\n    \n    return project;\n\n    \n    //this.success = c.success;\n}\n",
    "$ modal" : true,
    "$ xns" : "Gtk",
    "border_width" : 3,
@@ -44,7 +44,7 @@
          "$ xns" : "Gtk"
         },
         {
-         "| string getValue" : " () {\n     var ix = this.el.get_active();\n        if (ix < 0 ) {\n            return \"\";\n        }\n        switch(ix) {\n            case 0:\n                return \"Roo\";\n            case 1:\n                return \"Gtk\";\n        }\n        return \"\";\n}\n",
+         "| string getValue" : " () {\n     var ix = this.el.get_active();\n        if (ix < 0 ) {\n            return \"\";\n        }\n        switch(ix) {\n            case 0:\n                return \"Roo\";\n            case 1:\n                return \"Gtk\";\n           case 2:\n                return \"Flutter\";\n        }\n        return \"\";\n}\n",
          "id" : "xtype",
          "* init" : " this.el.add_attribute(_this.cellrender.el , \"markup\", 1 );  \n  ",
          "xtype" : "ComboBox",
@@ -64,7 +64,7 @@
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
-           "| void loadData" : "  ( ) {\n        this.el.clear();\n                      \n        Gtk.TreeIter iter;\n                \n        el.append(out iter);\n        \n        el.set_value(iter, 0, \"Roo\");\n        el.set_value(iter, 1, \"Roo Project\");\n         el.append(out iter);\n        \n        el.set_value(iter, 0, \"Gtk\");\n        el.set_value(iter, 1, \"Gtk Project\");\n         \n              \n                                     \n}\n"
+           "| void loadData" : "  ( ) {\n        this.el.clear();\n                      \n        Gtk.TreeIter iter;\n                \n        el.append(out iter);\n        el.set_value(iter, 0, \"Roo\");\n        el.set_value(iter, 1, \"Roo Project\");\n        \n        el.append(out iter);\n        el.set_value(iter, 0, \"Gtk\");\n        el.set_value(iter, 1, \"Gtk Project\");\n         \n        el.append(out iter);\n        el.set_value(iter, 0, \"Flutter\");\n        el.set_value(iter, 1, \"Flutter Project\");\n              \n                                     \n}\n"
           }
          ]
         }

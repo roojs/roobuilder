@@ -78,8 +78,7 @@ AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFL
 bin_PROGRAMS = roobuilder
 
  
-roobuilder_PKGS = \
-		--pkg glib-2.0  \
+roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg gobject-2.0  \
 		--pkg  gtk+-3.0 \
 		--pkg  gtksourceview-3.0 \
@@ -87,20 +86,19 @@ roobuilder_PKGS = \
 		--pkg json-glib-1.0 \
 		--pkg gee-0.8 \
 		--pkg gobject-introspection-1.0 \
-		--pkg clutter-gtk-1.0 \ 
+		--pkg clutter-gtk-1.0 \
 		--pkg libsoup-2.4 \
  		--pkg javascriptcore \
-		--pkg roojspacker-1.1 \
+		--pkg roojspacker-1.2 \
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
 		$(roobuilder_JAVASCRIPTCOREGTK) \
 		$(roobuilder_VTE) \
-		--pkg posix 
+		--pkg posix
 
 
-BUIDERJSRENDER = \
-		JsRender/Gtk.vala \
+BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/PlainFile.vala \
 		JsRender/JsRender.vala \
 		JsRender/Lang.vala \
@@ -108,15 +106,16 @@ BUIDERJSRENDER = \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/Node.vala \
+		JsRender/Flutter.vala \
 		JsRender/Roo.vala 
 
 
 
-BUIDERPALETE = \
-		Palete/Gir.vala \
+BUIDERPALETE =  Palete/Gir.vala \
 		Palete/GirObject.vala \
 		Palete/VapiParser.vala \
 		Palete/Gtk.vala \
+		Palete/Flutter.vala \
 		Palete/RooDatabase.vala \
 		c/jscore_object_call_as_function.c \
 		Palete/Javascript.vala \
@@ -126,14 +125,13 @@ BUIDERPALETE = \
 		Palete/ValaSourceCompiler.vala \
 		Palete/CompletionProvider.vala
         
-BUIDERPROJECT = \
-		Project/Gtk.vala \
+BUIDERPROJECT = Project/Gtk.vala \
 		Project/Project.vala \
+		Project/Flutter.vala \
 		Project/Roo.vala 
 
 
-BUIDERUI = \
-		Builder4/About.vala \
+BUIDERUI =  	Builder4/About.vala \
 		Builder4/DialogConfirm.vala \
 		Builder4/StandardErrorDialog.vala \
 		Builder4/DialogSaveTemplate.vala \
@@ -161,8 +159,7 @@ BUIDERUI = \
 		Builder4/ValaCompileResults.vala \
 		Builder4/PopoverProperty.vala
         
-roobuilder_SOURCES = \
-		Application.vala \
+roobuilder_SOURCES =  Application.vala \
 		Main.vala \
 		Spawn.vala \
 		Resources.vala  \
@@ -176,10 +173,9 @@ roobuilder_SOURCES = \
 		
 		
  
-roobuilder_VALAFLAGS = \
-	 --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
+roobuilder_VALAFLAGS =  --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
 
-roobuilder_LDADD =  $(ROOBUILDER_LIBS) $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
+roobuilder_LDADD = $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
 
  
 

@@ -20,8 +20,7 @@ AC_CHECK_LIB([m],[cos])
 
 dnl we need to check these exist, then it will generate a compile string for them.
 
-PKG_CHECK_MODULES(ROOBUILDER, [
-		 clutter-gtk-1.0 
+PKG_CHECK_MODULES(ROOBUILDER, [  clutter-gtk-1.0
 		 glib-2.0 >= 2.24.1
 		 gobject-2.0 >= 2.24.1
 		 gtk+-3.0 >= 3.11.3
@@ -30,7 +29,7 @@ PKG_CHECK_MODULES(ROOBUILDER, [
 		 gee-0.8
  		 libxml-2.0
 		 libsoup-2.4,
-		 roojspacker-1.1
+		 roojspacker-1.2
 ])
 
 dnl --- libvala -- needs to find matching really..

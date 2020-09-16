@@ -1,0 +1,38 @@
+Create a project (with all the files..)
+
+flutter create /path/to/newdir
+-------
+build 
+build: (PWD== working dir)
+flutter create apk
+
+-------
+Set up emulators
+flutter emulators
+1 available emulator:
+
+Nexus_6_API_28 • Nexus 6 • Google • Nexus 6 API 28
+
+To run an emulator, run 'flutter emulators --launch <emulator id>'.
+To create a new emulator, run 'flutter emulators --create [--name xyz]'.
+
+You can find more information on managing emulators at the links below:
+  https://developer.android.com/studio/run/managing-avds
+  https://developer.android.com/studio/command-line/avdmanager
+ flutter emulator --launch Nexus_6_API_28
+-------
+test run:
+
+flutter run
+
+(press 'r') - triggers the hot reload
+
+---------------------------
+emulator embedded?
+
+Xvfb :2 -screen 0 1024x768x24 > /dev/null 2>&1 &
+x11vnc -display :2 -quiet -nopw
+DISPLAY=:2  ~/Android/Sdk/emulator/emulator -avd Nexus_6_API_28
+
+// this bti can use vnc-gtk...
+vncviewer localhost:0 

@@ -87,6 +87,7 @@ public class Resources : Object
 	{	
 		string[] avail_files = { 
 			"roodata.json",
+			"flutter_tree.json",
 			"*",
 			"Editors/*.js",
 			"vapi/*"
@@ -99,8 +100,11 @@ public class Resources : Object
 			 
 			if (target == "roodata.json") {
 				src = "https://raw.githubusercontent.com/roojs/roojs1/master/docs/json/roodata.json";
-				//src = "http://git.roojs.org/?p=roojs1;a=blob_plain;f=docs/json/roodata.json";
 			}
+			if (target == "flutter_tree.json") {
+				src = "https://raw.githubusercontent.com/roojs/flutter-docs-json/master/tree.json";
+			}
+			
 			if (target.contains("*")) {
 				var split = target.split("*");
 				

@@ -284,6 +284,8 @@ namespace Project {
 					return new Gtk(path);
 				case "Roo":
 					return new Roo(path);
+				case "Flutter":
+					return new Flutter(path);
 			}
 			throw new Error.INVALID_TYPE("invalid project type");
 				
@@ -514,7 +516,7 @@ namespace Project {
 			var xt = this.xtype;
 			return JsRender.JsRender.factory(xt, this, path);
 			
-		}
+		} 
 		
 		public JsRender.JsRender create(string filename)
 		{
@@ -548,6 +550,7 @@ namespace Project {
 			this.on_changed();
 			
 		}
+		 
 		public void  scanDirs() // cached version
 		{
 			if (this.is_scanned) {
@@ -557,7 +560,7 @@ namespace Project {
 			//console.dump(this.files);
 			
 		}
-		
+		 
 		public void  scanDirsForce()
 		{
 			this.is_scanned = true;	 
@@ -581,6 +584,8 @@ namespace Project {
 				return;
 			}
 			// this should be done async -- but since we are getting the proto up ...
+			var other_files = new Gee.ArrayList<string>();
+			var bjs_files = new Gee.ArrayList<string>();
 			
 			var subs = new GLib.List<string>();;            
 			var f = File.new_for_path(dir);
@@ -605,30 +610,12 @@ namespace Project {
 					}
 					
 					if (!Regex.match_simple("\\.bjs$", fn)) {
+						other_files.add(fn);
 						//print("no a bjs\n");
 						continue;
 					}
-					/*
-					var parent = "";
-					//if (dp > 0 ) {
-					
-					var sp = dir.split("/");
-					var parent = "";
-					for (var i = 0; i < sp.length; i++) {
-						
-					}
-					
-					/*
-					sp = sp.splice(sp.length - (dp +1), (dp +1));
-					parent = sp.join('.');
-					
-					
-					if (typeof(_this.files[dir  + '/' + fn]) != 'undefined') {
-						// we already have it..
-						_this.files[dir  + '/' + fn].parent = parent;
-						return;
-					}
-					*/
+				 	bjs_files.add(fn.substring(0, fn.length-4));
+				 	
 					var xt = this.xtype;
 					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
 					this.files.set( dir + "/" + fn, el);
@@ -641,8 +628,18 @@ namespace Project {
 			} catch (GLib.Error e) {
 				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
 			}
+			foreach(var fn in other_files) {
+				var dpos = fn.last_index_of(".");
+				var without_ext = fn.substring(0, dpos);
+				if (bjs_files.contains(without_ext)) {
+					continue;
+				}
+				GLib.debug("Could have added %s/%s", dir, fn);
+				//var el = JsRender.JsRender.factory("plain",this, dir + "/" + fn);
+				//this.files.set( dir + "/" + fn, el);
+			}
+			
 			for (var i = 0; i < subs.length(); i++) {
-				
 				 this.scanDir(subs.nth_data(i), dp+1);
 			}
 			

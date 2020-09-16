@@ -75,18 +75,18 @@ public class EditProject : Object
             }
      
              
-              if (_this.xtype.getValue().length < 1) {
-                   
-                    err_dialog.show(_this.el,"You have to set Project type");             
-                    id = -1;
-                    continue;
-                }
-                if (_this.dir.el.get_filename().length < 1) {
-     
-                    err_dialog.show(_this.el,"You have to select a folder");             
-                    id = -1;
-                    continue;
-                }
+          if (_this.xtype.getValue().length < 1) {
+               
+                err_dialog.show(_this.el,"You have to set Project type");             
+                id = -1;
+                continue;
+            }
+            if (_this.dir.el.get_filename().length < 1) {
+    
+                err_dialog.show(_this.el,"You have to select a folder");             
+                id = -1;
+                continue;
+            }
                
         }
         
@@ -229,6 +229,8 @@ public class EditProject : Object
                         return "Roo";
                     case 1:
                         return "Gtk";
+                   case 2:
+                        return "Flutter";
                 }
                 return "";
         }
@@ -283,14 +285,16 @@ public class EditProject : Object
                 Gtk.TreeIter iter;
                         
                 el.append(out iter);
-                
                 el.set_value(iter, 0, "Roo");
                 el.set_value(iter, 1, "Roo Project");
-                 el.append(out iter);
                 
+                el.append(out iter);
                 el.set_value(iter, 0, "Gtk");
                 el.set_value(iter, 1, "Gtk Project");
                  
+                el.append(out iter);
+                el.set_value(iter, 0, "Flutter");
+                el.set_value(iter, 1, "Flutter Project");
                       
                                              
         }

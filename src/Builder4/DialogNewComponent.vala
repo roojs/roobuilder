@@ -1,6 +1,6 @@
 static Xcls_DialogNewComponent  _DialogNewComponent;
 
-public class Xcls_DialogNewComponent : Object 
+public class Xcls_DialogNewComponent : Object
 {
     public Gtk.Dialog el;
     private Xcls_DialogNewComponent  _this;
@@ -27,7 +27,7 @@ public class Xcls_DialogNewComponent : Object
     public Project.Project project;
     public JsRender.JsRender file;
 
-    // ctor 
+    // ctor
     public Xcls_DialogNewComponent()
     {
         _this = this;
@@ -52,7 +52,7 @@ public class Xcls_DialogNewComponent : Object
         child_2.ref();
         this.el.add_action_widget (  child_2.el , 1 );
 
-        // listeners 
+        //listeners
         this.el.delete_event.connect( (self, event) => {
             this.el.hide();
             return true; 
@@ -164,7 +164,7 @@ public class Xcls_DialogNewComponent : Object
         });
     }
 
-    // user defined functions 
+    // user defined functions
     public   void updateFileFromEntry () {
     
             _this.file.title = _this.title.el.get_text();
@@ -230,8 +230,7 @@ public class Xcls_DialogNewComponent : Object
             };
             _this.dbmodel.loadData(ar, c.build_module);
     
-        }
-        
+        } 
          
         _this.file = c;
         //console.log('show all');
@@ -241,7 +240,7 @@ public class Xcls_DialogNewComponent : Object
         
         
     }
-    public class Xcls_VBox2 : Object 
+    public class Xcls_VBox2 : Object
     {
         public Gtk.VBox el;
         private Xcls_DialogNewComponent  _this;
@@ -249,7 +248,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_VBox2(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -263,9 +262,9 @@ public class Xcls_DialogNewComponent : Object
             this.el.pack_start (  child_0.el , false,false,0 );
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Table3 : Object 
+    public class Xcls_Table3 : Object
     {
         public Gtk.Table el;
         private Xcls_DialogNewComponent  _this;
@@ -273,7 +272,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Table3(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -326,9 +325,9 @@ public class Xcls_DialogNewComponent : Object
             this.el.attach_defaults (  child_13.el , 1,2,6,7 );
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Label4 : Object 
+    public class Xcls_Label4 : Object
     {
         public Gtk.Label el;
         private Xcls_DialogNewComponent  _this;
@@ -336,7 +335,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Label4(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -349,9 +348,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.xalign = 0.900000f;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_name : Object 
+
+    public class Xcls_name : Object
     {
         public Gtk.Entry el;
         private Xcls_DialogNewComponent  _this;
@@ -359,7 +359,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_name(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -372,9 +372,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Label6 : Object 
+
+    public class Xcls_Label6 : Object
     {
         public Gtk.Label el;
         private Xcls_DialogNewComponent  _this;
@@ -382,7 +383,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Label6(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -396,9 +397,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_title : Object 
+
+    public class Xcls_title : Object
     {
         public Gtk.Entry el;
         private Xcls_DialogNewComponent  _this;
@@ -406,7 +408,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_title(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -419,9 +421,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Label8 : Object 
+
+    public class Xcls_Label8 : Object
     {
         public Gtk.Label el;
         private Xcls_DialogNewComponent  _this;
@@ -429,7 +432,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Label8(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -444,9 +447,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_region : Object 
+
+    public class Xcls_region : Object
     {
         public Gtk.Entry el;
         private Xcls_DialogNewComponent  _this;
@@ -454,7 +458,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_region(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -467,9 +471,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Label10 : Object 
+
+    public class Xcls_Label10 : Object
     {
         public Gtk.Label el;
         private Xcls_DialogNewComponent  _this;
@@ -477,7 +482,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Label10(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -491,9 +496,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_parent : Object 
+
+    public class Xcls_parent : Object
     {
         public Gtk.Entry el;
         private Xcls_DialogNewComponent  _this;
@@ -501,7 +507,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_parent(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -514,9 +520,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Label12 : Object 
+
+    public class Xcls_Label12 : Object
     {
         public Gtk.Label el;
         private Xcls_DialogNewComponent  _this;
@@ -524,7 +531,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Label12(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -538,9 +545,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_permname : Object 
+
+    public class Xcls_permname : Object
     {
         public Gtk.Entry el;
         private Xcls_DialogNewComponent  _this;
@@ -548,7 +556,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_permname(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -561,9 +569,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Label14 : Object 
+
+    public class Xcls_Label14 : Object
     {
         public Gtk.Label el;
         private Xcls_DialogNewComponent  _this;
@@ -571,7 +580,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Label14(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -585,9 +594,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_modOrder : Object 
+
+    public class Xcls_modOrder : Object
     {
         public Gtk.Entry el;
         private Xcls_DialogNewComponent  _this;
@@ -595,7 +605,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_modOrder(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -608,9 +618,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Label16 : Object 
+
+    public class Xcls_Label16 : Object
     {
         public Gtk.Label el;
         private Xcls_DialogNewComponent  _this;
@@ -618,7 +629,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Label16(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -632,9 +643,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.visible = true;
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_build_module : Object 
+
+    public class Xcls_build_module : Object
     {
         public Gtk.ComboBox el;
         private Xcls_DialogNewComponent  _this;
@@ -642,7 +654,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_build_module(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -659,14 +671,14 @@ public class Xcls_DialogNewComponent : Object
             child_1.ref();
             this.el.set_model (  child_1.el  );
 
-            // init method 
+            // init method
 
             this.el.add_attribute(_this.dbcellrenderer.el , "markup", 1 );
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_dbcellrenderer : Object 
+    public class Xcls_dbcellrenderer : Object
     {
         public Gtk.CellRendererText el;
         private Xcls_DialogNewComponent  _this;
@@ -674,7 +686,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_dbcellrenderer(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -686,9 +698,10 @@ public class Xcls_DialogNewComponent : Object
             // set gobject values
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_dbmodel : Object 
+
+    public class Xcls_dbmodel : Object
     {
         public Gtk.ListStore el;
         private Xcls_DialogNewComponent  _this;
@@ -696,7 +709,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_dbmodel(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -708,7 +721,7 @@ public class Xcls_DialogNewComponent : Object
             // set gobject values
         }
 
-        // user defined functions 
+        // user defined functions
         public void loadData (Gee.ArrayList<string> data, string cur) {
             this.el.clear();                                    
             Gtk.TreeIter iter;
@@ -744,7 +757,11 @@ public class Xcls_DialogNewComponent : Object
                                              
         }
     }
-    public class Xcls_Button20 : Object 
+
+
+
+
+    public class Xcls_Button20 : Object
     {
         public Gtk.Button el;
         private Xcls_DialogNewComponent  _this;
@@ -752,7 +769,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Button20(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -764,9 +781,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.label = "Cancel";
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_Button21 : Object 
+
+    public class Xcls_Button21 : Object
     {
         public Gtk.Button el;
         private Xcls_DialogNewComponent  _this;
@@ -774,7 +792,7 @@ public class Xcls_DialogNewComponent : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_Button21(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
@@ -786,6 +804,7 @@ public class Xcls_DialogNewComponent : Object
             this.el.label = "OK";
         }
 
-        // user defined functions 
+        // user defined functions
     }
+
 }

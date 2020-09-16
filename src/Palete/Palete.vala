@@ -105,9 +105,9 @@ namespace Palete
 
             
          
-
+		// this is the old verison using 'Usage'... see flutter for a better version..
 	    
-		public string[] getChildList(string in_rval)
+		public string[] original_getChildList(string in_rval)
         {
 
 			if (this.map == null) {
@@ -150,7 +150,8 @@ namespace Palete
         }
 
 	    
-        public string[] getDropList(string rval)
+	    
+        public string[] default_getDropList(string rval)
         {
 
 			if (this.map == null) {
@@ -469,6 +470,10 @@ namespace Palete
 				string key,
 				string complete_string
 		);
+		public abstract string[] getChildList(string in_rval);
+		public abstract string[] getDropList(string rval);		
+		
+		
 	}
 
 

@@ -196,7 +196,7 @@ namespace Palete {
 			 return (string) buf;
 			
 		}
-		
+		 
 		
 
 	}

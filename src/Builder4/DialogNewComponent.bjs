@@ -2,7 +2,7 @@
  "name" : "DialogNewComponent",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/DialogNewComponent.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogNewComponent.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "",
@@ -14,14 +14,14 @@
     "show" : "(self)  => {\n  this.el.show_all();\n  //test\n}"
    },
    "|   void updateFileFromEntry" : "() {\n\n        _this.file.title = _this.title.el.get_text();\n        _this.file.region = _this.region.el.get_text();            \n        _this.file.parent = _this.parent.el.get_text();                        \n        _this.file.permname = _this.permname.el.get_text();                                    \n        _this.file.modOrder = _this.modOrder.el.get_text();\n        \n        if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {\n            _this.file.renameTo(_this.name.el.get_text());\n        }\n        // store the module...\n        _this.file.build_module = \"\";        \n         Gtk.TreeIter iter; \n        if (_this.build_module.el.get_active_iter (out iter)) {\n             Value vfname;\n             this.dbmodel.el.get_value (iter, 0, out vfname);\n             if (((string)vfname).length > 0) {\n                 _this.file.build_module = (string)vfname;\n             }\n    \n        }\n        \n        \n\n                                                    \n}    ",
-   "id" : "DialogNewComponent",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
+   "id" : "DialogNewComponent",
    "default_width" : 500,
    "$ deletable" : true,
    "# Project.Project project" : "",
    "title" : "New Component",
    "xtype" : "Dialog",
-   "|   void show" : "(JsRender.JsRender c) \n{\n    this.project = c.project;\n    \n    //if (!this.el) {\n        //this.init();\n     //}\n    \n    _this.name.el.set_text(c.name);\n    _this.title.el.set_text(c.title);\n    _this.parent.el.set_text(c.parent);    \n    _this.region.el.set_text(c.region);\n    _this.modOrder.el.set_text(c.modOrder);\n     _this.permname.el.set_text(c.permname);\n    \n    if (c.path.length > 0) {\n        this.el.set_title(\"Edit File Details - \" + c.name);\n    } else {\n        this.el.set_title(\"Create New File\");\n    }\n    \n     var ar = new Gee.ArrayList<string>();\n     _this.dbmodel.loadData(ar,\"\");\n    // load the modules... if relivant..\n    if (this.project.xtype == \"Gtk\") {\n        var p = (Project.Gtk)c.project;\n          var cg = p.compilegroups;\n\n        var iter = cg.map_iterator();\n       while(iter.next()) {\n            var key = iter.get_key();\n            if (key == \"_default_\") {\n                continue;\n            }\n            ar.add(key);\n        };\n        _this.dbmodel.loadData(ar, c.build_module);\n\n    }\n    \n     \n    _this.file = c;\n    //console.log('show all');\n    this.el.show_all();\n    \n    //this.success = c.success;\n    \n    \n}",
+   "|   void show" : "(JsRender.JsRender c) \n{\n    this.project = c.project;\n    \n    //if (!this.el) {\n        //this.init();\n     //}\n    \n    _this.name.el.set_text(c.name);\n    _this.title.el.set_text(c.title);\n    _this.parent.el.set_text(c.parent);    \n    _this.region.el.set_text(c.region);\n    _this.modOrder.el.set_text(c.modOrder);\n     _this.permname.el.set_text(c.permname);\n    \n    if (c.path.length > 0) {\n        this.el.set_title(\"Edit File Details - \" + c.name);\n    } else {\n        this.el.set_title(\"Create New File\");\n    }\n    \n     var ar = new Gee.ArrayList<string>();\n     _this.dbmodel.loadData(ar,\"\");\n    // load the modules... if relivant..\n    if (this.project.xtype == \"Gtk\") {\n        var p = (Project.Gtk)c.project;\n          var cg = p.compilegroups;\n\n        var iter = cg.map_iterator();\n       while(iter.next()) {\n            var key = iter.get_key();\n            if (key == \"_default_\") {\n                continue;\n            }\n            ar.add(key);\n        };\n        _this.dbmodel.loadData(ar, c.build_module);\n\n    } \n     \n    _this.file = c;\n    //console.log('show all');\n    this.el.show_all();\n    \n    //this.success = c.success;\n    \n    \n}",
    "# JsRender.JsRender file" : "null",
    "default_height" : 200,
    "$ modal" : true,
@@ -75,8 +75,8 @@
         },
         {
          "label" : "Region",
-         "$ visible" : true,
          "tooltip_text" : "center, north, south, east, west",
+         "$ visible" : true,
          "xalign" : 0.90000000000000002,
          "* pack" : "attach_defaults,0,1,2,3",
          "xtype" : "Label",
@@ -161,14 +161,14 @@
          "items" : [
           {
            "id" : "dbcellrenderer",
-           "xtype" : "CellRendererText",
            "* pack" : "pack_start,true",
+           "xtype" : "CellRendererText",
            "$ xns" : "Gtk"
           },
           {
            "id" : "dbmodel",
-           "xtype" : "ListStore",
            "* pack" : "set_model",
+           "xtype" : "ListStore",
            "$ columns" : "typeof(string),typeof(string)",
            "n_columns" : 2,
            "$ xns" : "Gtk",
@@ -182,14 +182,14 @@
     },
     {
      "label" : "Cancel",
-     "xtype" : "Button",
      "* pack" : "add_action_widget,0",
+     "xtype" : "Button",
      "$ xns" : "Gtk"
     },
     {
      "label" : "OK",
-     "xtype" : "Button",
      "* pack" : "add_action_widget,1",
+     "xtype" : "Button",
      "$ xns" : "Gtk"
     }
    ]
