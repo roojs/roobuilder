@@ -32,6 +32,7 @@ m4/
 missing
 stamp-h?
 .deps/
+.debhelper/
 .dirstamp
 .libs/
 *.l[ao]
