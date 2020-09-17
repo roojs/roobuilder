@@ -343,6 +343,7 @@ right:
 left:
     Roo.bootstrap.Body
     Roo.bootstrap.Container
+    Roo.bootstrap.Card
     Roo.bootstrap.Modal
     Roo.bootstrap.Column
     Roo.bootstrap.Row
@@ -355,6 +356,7 @@ left:
     Roo.bootstrap.panel.Content
 right:
     Roo.bootstrap.Container
+    Roo.bootstrap.Card
     Roo.bootstrap.Button
     Roo.bootstrap.ButtonGroup
     Roo.bootstrap.Column
@@ -522,12 +524,14 @@ right:
 left:
     Roo.bootstrap.Form
     Roo.bootstrap.Container
+    Roo.bootstrap.Card
 right:
     Roo.bootstrap.Input
     Roo.bootstrap.TextArea
     Roo.bootstrap.Button
     Roo.bootstrap.ComboBox
     Roo.bootstrap.Container
+    Roo.bootstrap.Card
     Roo.bootstrap.Row
     Roo.bootstrap.TabPanel
     Roo.bootstrap.DateField
