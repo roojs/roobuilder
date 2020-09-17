@@ -40,3 +40,7 @@ stamp-h?
 compile
 fontconfig/*
 
+debian/roobuilder
+debian/auto*
+debian/debhelper*
+debian/files
