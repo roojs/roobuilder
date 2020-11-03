@@ -414,7 +414,7 @@ left:
   Roo.bootstrap.Card
 right:
    Roo.bootstrap.CardHeader
-   Roo.bootstrap.CardImage
+   Roo.bootstrap.CardImageTop
    
 left:
     Roo.bootstrap.TabGroup
