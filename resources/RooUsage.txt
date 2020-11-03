@@ -410,7 +410,11 @@ right:
     Roo.bootstrap.MoneyField
     Roo.bootstrap.BezierSignature
     
-
+left:
+  Roo.bootstrap.Card
+right:
+   Roo.bootstrap.CardHeader
+   
 left:
     Roo.bootstrap.TabGroup
 right:
