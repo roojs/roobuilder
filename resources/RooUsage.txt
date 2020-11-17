@@ -415,6 +415,7 @@ left:
 right:
    Roo.bootstrap.CardHeader
    Roo.bootstrap.CardImageTop
+   Roo.bootstrap.CardFooter
    
 left:
     Roo.bootstrap.TabGroup
