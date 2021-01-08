@@ -411,7 +411,6 @@ right:
     Roo.bootstrap.BezierSignature
     Roo.bootstrap.CardUploader    
     Roo.bootstrap.breadcrumb.Nav
-    Roo.bootstrap.breadcrumb.Item
 
     
 left:
@@ -669,8 +668,7 @@ left:
 right:
  Roo.bootstrap.layout.Region
 
- 
- 
+  
 left:
   Roo.bootstrap.layout.Border
 right:
@@ -693,7 +691,13 @@ left:
 right: 
   Roo.bootstrap.NavSimplebar
   
-    
+left:   
+    Roo.bootstrap.breadcrumb.Nav
+right:
+    Roo.bootstrap.breadcrumb.Item
+
+   
+   
     
 // docbook!!!
 
