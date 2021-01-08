@@ -409,7 +409,10 @@ right:
     Roo.bootstrap.PhoneInput
     Roo.bootstrap.MoneyField
     Roo.bootstrap.BezierSignature
-    Roo.bootstrap.CardUploader
+    Roo.bootstrap.CardUploader    
+    Roo.bootstrap.breadcrumb.Nav
+    Roo.bootstrap.breadcrumb.Item
+
     
 left:
   Roo.bootstrap.Card
