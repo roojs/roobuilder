@@ -177,7 +177,7 @@ roobuilder_SOURCES =  Application.vala \
  
 roobuilder_VALAFLAGS =  --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
 
-roobuilder_LDADD = -L. $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
+roobuilder_LDADD = -L. $(ROOBUILDER_LIBS) $(ROOBUILDER_LIBS) $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
 
  
 
