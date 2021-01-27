@@ -58,7 +58,7 @@ namespace JsRender {
 		
 		
 		
-		public JsRender(Project.Project project, string path) {
+		JsRender(Project.Project project, string path) {
 		    
 			this.cn = new GLib.List<JsRender>();
 			this.path = path;
