@@ -20,7 +20,11 @@ AC_CHECK_LIB([m],[cos])
 
 dnl we need to check these exist, then it will generate a compile string for them.
 
-PKG_CHECK_MODULES(ROOBUILDER, [  clutter-gtk-1.0
+dnl  we add zlib in to pad the listof libraries (as for some reason -L is injected on the final stage without argument
+dnl and it breaks the build...
+
+PKG_CHECK_MODULES(ROOBUILDER, [ zlib
+                 clutter-gtk-1.0
 		 glib-2.0 >= 2.24.1
 		 gobject-2.0 >= 2.24.1
 		 gtk+-3.0 >= 3.11.3
@@ -36,11 +40,11 @@ dnl --- libvala -- needs to find matching really..
 
 dnl - last supported version is 0.36 - as 0.40 broke the compiler
 
-PKG_CHECK_MODULES(LIBVALA, [libvala-0.40],
-			[vala_4_0_enabled=yes],
-			[vala_4_0_enabled=no]) 
-	if test $vala_4_0_enabled = yes; then
-		AC_DEFINE(HAVE_LIBVALA40,1,[libvala 0.40 support])
+PKG_CHECK_MODULES(LIBVALA, [libvala-0.48],
+			[vala_4_8_enabled=yes],
+			[vala_4_8_enabled=no]) 
+	if test $vala_4_8_enabled = yes; then
+		AC_DEFINE(HAVE_LIBVALA48,1,[libvala 0.48 support])
 	else
 
 		 PKG_CHECK_MODULES(LIBVALA, [libvala-0.36],
@@ -101,7 +105,7 @@ PKG_CHECK_MODULES(LIBVALA, [libvala-0.40],
 			 fi
 		 fi
 fi
-AM_CONDITIONAL(HAVE_LIBVALA40, test "$vala_4_0_enabled" = "yes")
+AM_CONDITIONAL(HAVE_LIBVALA48, test "$vala_4_8_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA36, test "$vala_3_6_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA34, test "$vala_3_4_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA32, test "$vala_3_2_enabled" = "yes")

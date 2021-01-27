@@ -81,7 +81,7 @@ namespace Palete
 		
 		public Project.Project project;
 	
-        public Palete(Project.Project project)
+        public void aconstruct(Project.Project project)
         {
 				// nothing?
 			this.project = project;

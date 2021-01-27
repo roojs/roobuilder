@@ -21,7 +21,7 @@ namespace JsRender {
 
         public PlainFile(Project.Project project, string path) {
         
-            base( project, path);
+            aconstruct( project, path);
             this.xtype = "PlainFile";
             
             // if the file does not exist...

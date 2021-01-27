@@ -58,7 +58,10 @@ namespace JsRender {
 		
 		
 		
-		public JsRender(Project.Project project, string path) {
+		//abstract JsRender(Project.Project project, string path); 
+		
+		public void aconstruct(Project.Project project, string path)
+		{
 		    
 			this.cn = new GLib.List<JsRender>();
 			this.path = path;
@@ -124,8 +127,8 @@ namespace JsRender {
 	    				return new Gtk(project, path);
 				case "Roo":
 		    			return new Roo(project, path);
-		    	case "Flutter":
-		    			return new Flutter(project, path);
+//		    	case "Flutter":
+//		    			return new Flutter(project, path);
 				case "PlainFile":
 		    			return new PlainFile(project, path);
 			}

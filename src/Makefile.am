@@ -34,8 +34,8 @@ roobuilder_LIBVALA = --pkg libvala-0.36
 endif
 
 
-if HAVE_LIBVALA40
-roobuilder_LIBVALA = --pkg libvala-0.40
+if HAVE_LIBVALA48
+roobuilder_LIBVALA = --pkg libvala-0.48
 endif
  
 # gda
@@ -98,6 +98,8 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg posix
 
 
+#		JsRender/Flutter.vala 
+
 BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/PlainFile.vala \
 		JsRender/JsRender.vala \
@@ -106,16 +108,15 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/Node.vala \
-		JsRender/Flutter.vala \
 		JsRender/Roo.vala 
 
 
+# Palete/Flutter.vala 
 
 BUIDERPALETE =  Palete/Gir.vala \
 		Palete/GirObject.vala \
 		Palete/VapiParser.vala \
 		Palete/Gtk.vala \
-		Palete/Flutter.vala \
 		Palete/RooDatabase.vala \
 		c/jscore_object_call_as_function.c \
 		Palete/Javascript.vala \
@@ -125,9 +126,10 @@ BUIDERPALETE =  Palete/Gir.vala \
 		Palete/ValaSourceCompiler.vala \
 		Palete/CompletionProvider.vala
         
+# Project/Flutter.vala 
+
 BUIDERPROJECT = Project/Gtk.vala \
-		Project/Project.vala \
-		Project/Flutter.vala \
+		Project/Project.vala \	
 		Project/Roo.vala 
 
 
@@ -175,7 +177,7 @@ roobuilder_SOURCES =  Application.vala \
  
 roobuilder_VALAFLAGS =  --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
 
-roobuilder_LDADD = $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
+roobuilder_LDADD =  $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
 
  
 

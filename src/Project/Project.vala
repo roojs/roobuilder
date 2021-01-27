@@ -221,9 +221,13 @@ namespace Project {
 				}
 					
 			});
-
-			
-			var proj = factory(xtype, fpath);
+			Project proj;
+			try {
+				proj = factory(xtype, fpath);
+			} catch (Error e)  {
+				GLib.debug("Skip file - invalid file type");
+				return;
+			}
 
 			proj.json_project_data  = obj; // store the original object...
 			
@@ -265,7 +269,7 @@ namespace Project {
 		}
 		
 		
-		public static Project factory(string xtype, string path)
+		public static Project factory(string xtype, string path) throws Error
 		{
 
 			// check to see if it's already loaded..
@@ -284,8 +288,8 @@ namespace Project {
 					return new Gtk(path);
 				case "Roo":
 					return new Roo(path);
-				case "Flutter":
-					return new Flutter(path);
+				//case "Flutter":
+				//	return new Flutter(path);
 			}
 			throw new Error.INVALID_TYPE("invalid project type");
 				

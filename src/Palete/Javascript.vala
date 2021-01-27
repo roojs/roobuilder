@@ -34,10 +34,10 @@ namespace Palete {
 				exception = null;
 		        return o;
 		}
-		static const JSCore.StaticFunction[] class_functions = {
+		const JSCore.StaticFunction[] class_functions = {
 		         { null, null, 0 }
 		};
-		static const JSCore.ClassDefinition class_definition = {
+		const JSCore.ClassDefinition class_definition = {
 		    0,
 		    JSCore.ClassAttribute.None,
 		    "App",
