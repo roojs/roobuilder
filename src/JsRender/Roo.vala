@@ -421,7 +421,9 @@ namespace JsRender {
 			if (top.contains("Modal")) {
 				return prefix_data + this.toSourceModal(true);
 			}
-
+			if (top.contains("Popover")) {
+				return prefix_data + this.toSourceModal(true);
+			}
 			return prefix_data + this.toSourceLayout(true);
 				
 				
