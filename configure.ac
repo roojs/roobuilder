@@ -20,7 +20,8 @@ AC_CHECK_LIB([m],[cos])
 
 dnl we need to check these exist, then it will generate a compile string for them.
 
-dnl  we add zlib in to pad the listof libraries?
+dnl  we add zlib in to pad the listof libraries (as for some reason -L is injected on the final stage without argument
+dnl and it breaks the build...
 
 PKG_CHECK_MODULES(ROOBUILDER, [ zlib
                  clutter-gtk-1.0
