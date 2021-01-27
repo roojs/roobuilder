@@ -224,7 +224,7 @@ namespace Project {
 			Project proj;
 			try {
 				proj = factory(xtype, fpath);
-			} catch (Error.INVALID_TYPE e)  {
+			} catch (Error e)  {
 				GLib.debug("Skip file - invalid file type");
 				return;
 			}
