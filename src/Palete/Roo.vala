@@ -28,7 +28,7 @@ namespace Palete {
 
 
             
-            base(project);
+            aconstruct(project);
             this.name = "Roo";
 			  
         }
