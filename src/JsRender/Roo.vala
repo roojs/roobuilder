@@ -477,6 +477,11 @@ namespace JsRender {
             if (top.contains("Modal")) {
                 return this.toSourceModal(false);
             }
+            
+            if (top.contains("Popover")) {
+                return this.toSourceModal(false);
+            }
+            
             return this.toSourceLayout(false);
             
             /*
