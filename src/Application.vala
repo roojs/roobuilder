@@ -309,7 +309,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 				case "flutter-project":
 			        Project.Project.loadAll();
 					var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
-					var pa = p.palete as Palete.Flutter;
+					/*var pa = p.palete as Palete.Flutter;
 					pa.dumpusage();
 					 var ar = pa.getChildList("material.Scaffold");
 					GLib.debug("childlist for material.Scaffold is %s", 
@@ -319,6 +319,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					GLib.debug("droplist for material.MaterialApp is %s", 
 						string.joinv( "\n-- ", ar)
 					);
+					*/
 					break;
 					
 				default:
