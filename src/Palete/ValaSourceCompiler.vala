@@ -227,8 +227,8 @@ namespace Palete {
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
-#if VALA_0_40
-			var ver=40;
+#if VALA_0_48
+			var ver=48;
 #elif VALA_0_36
 			var ver=36;
 #elif VALA_0_34
@@ -376,9 +376,11 @@ namespace Palete {
 			context.output = this.output == "" ? "/tmp/testrun" : this.output;
 			valac += " -o " + context.output;
 			GLib.debug("%s", valac);
-			
+#if VALA_0_48
+#else			
 			context.target_glib_major = 2;
 			context.target_glib_minor = 32;
+#endif
 			valac += " --target-glib=2.32 ";
 		
 			//add_documented_files (context, settings.source_files);
@@ -419,7 +421,7 @@ namespace Palete {
 			}
 			
 // none of this works on vala-40 as the API is not publicly visible
-#if VALA_0_40
+#if VALA_0_48
 
 #else
 			context.codegen = new Vala.GDBusServerModule ();
