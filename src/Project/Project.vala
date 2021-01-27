@@ -269,7 +269,7 @@ namespace Project {
 		}
 		
 		
-		public static Project factory(string xtype, string path)
+		public static Project factory(string xtype, string path) throws Error
 		{
 
 			// check to see if it's already loaded..
