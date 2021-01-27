@@ -222,8 +222,12 @@ namespace Project {
 					
 			});
 
-			
-			var proj = factory(xtype, fpath);
+			try {
+				var proj = factory(xtype, fpath);
+			} catch (Error.INVALID_TYPE e)  {
+				GLib.debug("Skip file - invalid file type");
+				return;
+			}
 
 			proj.json_project_data  = obj; // store the original object...
 			
