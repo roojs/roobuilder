@@ -284,8 +284,8 @@ namespace Project {
 					return new Gtk(path);
 				case "Roo":
 					return new Roo(path);
-				case "Flutter":
-					return new Flutter(path);
+				//case "Flutter":
+				//	return new Flutter(path);
 			}
 			throw new Error.INVALID_TYPE("invalid project type");
 				
