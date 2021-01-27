@@ -58,7 +58,7 @@ namespace JsRender {
 		
 		
 		
-		abstract JsRender(Project.Project project, string path); 
+		//abstract JsRender(Project.Project project, string path); 
 		
 		public void aconstruct(Project.Project project, string path); 
 		{
