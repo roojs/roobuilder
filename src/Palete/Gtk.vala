@@ -27,7 +27,7 @@ namespace Palete {
 		public Gtk(Project.Project project)
 		{
 
-		    base(project);
+		    aconstruct(project);
 		    this.name = "Gtk";
 		    var context = new Vala.CodeContext ();
 			 
