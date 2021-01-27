@@ -16,6 +16,7 @@ right:
  Roo.bootstrap.panel.Nest
  Roo.bootstrap.panel.Grid
  Roo.bootstrap.Container
+ Roo.bootstrap.Popover
  Roo.mailer.Body
  Roo.doc.Entry
  
