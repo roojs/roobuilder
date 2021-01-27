@@ -221,9 +221,9 @@ namespace Project {
 				}
 					
 			});
-
+			Project proj;
 			try {
-				var proj = factory(xtype, fpath);
+				proj = factory(xtype, fpath);
 			} catch (Error.INVALID_TYPE e)  {
 				GLib.debug("Skip file - invalid file type");
 				return;
