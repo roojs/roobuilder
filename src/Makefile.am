@@ -98,6 +98,8 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg posix
 
 
+#		JsRender/Flutter.vala 
+
 BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/PlainFile.vala \
 		JsRender/JsRender.vala \
@@ -106,7 +108,7 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/Node.vala \
-		JsRender/Flutter.vala \
+
 		JsRender/Roo.vala 
 
 
@@ -125,9 +127,11 @@ BUIDERPALETE =  Palete/Gir.vala \
 		Palete/ValaSourceCompiler.vala \
 		Palete/CompletionProvider.vala
         
+# Project/Flutter.vala 
+
 BUIDERPROJECT = Project/Gtk.vala \
 		Project/Project.vala \
-		Project/Flutter.vala \
+		
 		Project/Roo.vala 
 
 
