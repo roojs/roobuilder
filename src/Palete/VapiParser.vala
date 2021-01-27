@@ -87,7 +87,7 @@ namespace Palete {
 				var em = new GirObject("EnumMember",e.name);
 				em.gparent = c;
 				em.ns = c.ns;
-				em.type  = e.type_reference == null ||  e.type_reference.data_type == null ? "" : e.type_reference.data_type.get_full_name();
+				em.type  = e.type_reference == null ||  e.type_reference.type_symbol == null ? "" : e.type_reference.type_symbol.get_full_name();
 				// unlikely to get value..
 				//c.value = element->get_prop("value");
 				c.consts.set(e.name,em);
@@ -130,8 +130,8 @@ namespace Palete {
 			//	c.inherits.add(cls.base_class.get_full_name());
 			//}
 			//foreach(var p in cls.get_base_types()) {
-			//	if (p.data_type != null) {
-			//		c.implements.add(p.data_type.get_full_name());
+			//	if (p.type_symbol != null) {
+			//		c.implements.add(p.type_symbol.get_full_name());
 			//	}
 			//}
 			  
@@ -172,8 +172,8 @@ namespace Palete {
 				c.inherits.add(cls.base_class.get_full_name());
 			}
 			foreach(var p in cls.get_base_types()) {
-				if (p.data_type != null) {
-					c.implements.add(p.data_type.get_full_name());
+				if (p.type_symbol != null) {
+					c.implements.add(p.type_symbol.get_full_name());
 				}
 			}
 			  
@@ -188,7 +188,7 @@ namespace Palete {
 			c.ns = parent.ns;
 			c.propertyof = parent.name;
 			
-			c.type  = prop.property_type.data_type == null ? "" : prop.property_type.data_type.get_full_name();
+			c.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
 			parent.props.set(prop.name,c);
 			
 		}
@@ -198,12 +198,12 @@ namespace Palete {
 			c.gparent = parent;
 			c.ns = parent.ns;
 			
-			if (sig.return_type.data_type != null) {
+			if (sig.return_type.type_symbol != null) {
 				//print("creating return type on signal %s\n", sig.name);
 				var cc = new GirObject("Return", "return-value");
 				cc.gparent = c;
 				cc.ns = c.ns;
-				cc.type  =  sig.return_type.data_type.get_full_name();
+				cc.type  =  sig.return_type.type_symbol.get_full_name();
 				c.return_value = cc;
 			}
 			parent.signals.set(sig.name,c);
@@ -241,12 +241,12 @@ namespace Palete {
 			c.gparent = parent;
 			c.ns = parent.ns;
 			
-			if (met.return_type.data_type != null) {
+			if (met.return_type.type_symbol != null) {
 				//print("creating return type on method %s\n", met.name);
 				var cc = new GirObject("Return", "return-value");
 				cc.gparent = c;
 				cc.ns = c.ns;
-				cc.type  =  met.return_type.data_type.get_full_name();
+				cc.type  =  met.return_type.type_symbol.get_full_name();
 				c.return_value = cc;
 			}
 			if (met is Vala.CreationMethod) {
@@ -303,7 +303,7 @@ namespace Palete {
 			parent.params.add(c);
 			
 			if (!pam.ellipsis) {
-				c.type = pam.variable_type.data_type == null ? "" : pam.variable_type.data_type.get_full_name();
+				c.type = pam.variable_type.type_symbol == null ? "" : pam.variable_type.type_symbol.get_full_name();
 			}
 			Gir.checkParamOverride(c); 
 			return c;
