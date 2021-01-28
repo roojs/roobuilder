@@ -749,3 +749,8 @@ left:
     Roo.bootstrap.MoneyField:store
 right:  
     Roo.data.Store
+    
+left:
+    Roo.bootstrap.Popover
+right:
+     Roo.bootstrap.PopoverHeader
