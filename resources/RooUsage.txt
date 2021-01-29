@@ -516,6 +516,7 @@ left:
     Roo.bootstrap.NavSimplebar
     Roo.bootstrap.NavHeaderbar
     Roo.bootstrap.NavSidebar
+    Roo.bootstrap.PopoverNav
 right:    
     Roo.bootstrap.NavGroup
     Roo.bootstrap.Form
@@ -526,7 +527,6 @@ right:
 
 left:
     Roo.bootstrap.NavGroup
-    Roo.bootstrap.PopoverNav
 right:
     Roo.bootstrap.NavItem
     Roo.bootstrap.NavSidebarItem
