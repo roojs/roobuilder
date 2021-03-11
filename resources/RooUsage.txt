@@ -332,7 +332,7 @@ right:
   
   //drag drop..
 left: 
-   Roo.grid.Grid:dragTarget
+   Roo.grid.Grid:dropTarget
 right:
    Roo.dd.DropTarget
   
