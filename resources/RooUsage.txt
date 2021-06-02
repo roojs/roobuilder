@@ -360,6 +360,7 @@ right:
     Roo.bootstrap.Card
     Roo.bootstrap.Button
     Roo.bootstrap.ButtonGroup
+    Roo.bootstrap.ButtonUploader
     Roo.bootstrap.Column
     Roo.bootstrap.Form
     Roo.bootstrap.Navbar
@@ -466,6 +467,7 @@ left:
     Roo.bootstrap.PagingToolbar:buttons[]
 right:  
     Roo.bootstrap.Button
+    Roo.bootstrap.ButtonUploader
 
 left:
     Roo.bootstrap.PagingToolbar:store
@@ -492,11 +494,13 @@ left:
     Roo.bootstrap.TableCell
 right:
     Roo.bootstrap.Button
+    Roo.bootstrap.ButtonUploader
 
 left:
     Roo.bootstrap.ButtonGroup
 right:
     Roo.bootstrap.Button
+    Roo.bootstrap.ButtonUploader
     Roo.bootstrap.Form
 
 left:
@@ -540,6 +544,7 @@ right:
     Roo.bootstrap.Input
     Roo.bootstrap.TextArea
     Roo.bootstrap.Button
+    Roo.bootstrap.ButtonUploader
     Roo.bootstrap.ComboBox
     Roo.bootstrap.Container
     Roo.bootstrap.Card
@@ -561,6 +566,7 @@ left:
     Roo.bootstrap.Modal:buttons[]
 right:
     Roo.bootstrap.Button
+    Roo.bootstrap.ButtonUploader
 
 left:    
     Roo.bootstrap.Modal:tmpl
@@ -585,6 +591,7 @@ left:
 right:
     Roo.bootstrap.Container
     Roo.bootstrap.Button
+    Roo.bootstrap.ButtonUploader
 
 left:    
     Roo.bootstrap.Pagination
@@ -596,6 +603,7 @@ left:
     Roo.bootstrap.Input:after
 right:
     Roo.bootstrap.Button
+    Roo.bootstrap.ButtonUploader
 
 left:
     Roo.mailer.Body
@@ -647,6 +655,7 @@ left:
     Roo.bootstrap.MenuItem
 right:
     Roo.bootstrap.Button
+    Roo.bootstrap.ButtonUploader
     Roo.bootstrap.Row
     Roo.bootstrap.Column
     Roo.bootstrap.Container
