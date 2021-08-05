@@ -73,7 +73,8 @@ namespace Palete {
 			}
 			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/RooUsage.txt");
 			this.classes = new Gee.HashMap<string,GirObject>();
-
+			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
+			
 				
 			var pa = new Json.Parser();
 			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/roodata.json");
@@ -93,11 +94,17 @@ namespace Palete {
 				if (value.get_object().has_member("tree_children")) {
 					var vcn = value.get_object().get_array_member("tree_children");				
 					for (var i =0 ; i < vcn.get_length(); i++) {
-						cls.valid_cn.add( vcn.get_string_element(i) );
+						var ad_c = vcn.get_string_element(i);
+						cls.valid_cn.add( ad_c );
+						if (!add_to.has_key(ad_c)) {
+							add_to.set(ad_c, new Gee.ArrayList<string>());
+						}
+						if (!add_to.get(ad_c).contains(cls.name)) {
+							add_to.get(ad_c).add(cls.name);
+						}
 					}
 				}
-				
-				
+				 
 				this.classes.set(key, cls);
 			});
 			foreach(var cls in this.classes.values()) {
@@ -105,6 +112,9 @@ namespace Palete {
 					if (/^Roo\./.match(gir_obj.type) && classes.has_key(gir_obj.type)) {
 						cls.valid_cn.add( gir_obj.type + ":" + gir_obj.name);
 					}
+				}
+				if (add_to.has_key(cls.name)) {
+					cls.can_drop_onto = add_to.get(cls.name);
 				}
  			
 			}
