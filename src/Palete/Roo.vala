@@ -100,9 +100,14 @@ namespace Palete {
 				
 				this.classes.set(key, cls);
 			});
-				
-				
-			
+			foreach(var cls in this.classes.values()) {
+				foreach(var gir_obj in cls.props) {
+					if (/^Roo\./.match(gir_obj.type) && classes.has_key(gir_obj.type)) {
+						cls.valid_cn.add( gir_obj.type + ":" + gir_obj.name);
+					}
+				}
+ 			
+			}
 				 
 		}
 		  
