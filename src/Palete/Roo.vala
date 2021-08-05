@@ -82,7 +82,7 @@ namespace Palete {
 			var node = pa.get_root();
 
 			var clist =  node.get_object(); /// was in data... .get_object_member("data");
-				clist.foreach_member((o , key, value) => {
+			clist.foreach_member((o , key, value) => {
 				//print("cls:" + key+"\n");
 			 
 				var cls = new GirObject("class", key);  
@@ -91,6 +91,8 @@ namespace Palete {
 				if (value.get_object().has_member("methods")) {
 					cls.methods = this.propsFromJSONArray("method", value.get_object().get_array_member("methods"),cls);
 				}
+				cls.valid_cn = this.stringArrayFromJSONArray(value.get_object().get_array_member("tree_children"));
+				
 				
 				this.classes.set(key, cls);
 			});

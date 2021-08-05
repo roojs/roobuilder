@@ -54,6 +54,10 @@ namespace Palete {
 		public Gee.HashMap<string,GirObject> signals;
 		
 		public Gee.ArrayList<string> optvalues; // used by Roo only..
+		
+		public Gee.ArrayList<string> can_drop_onto; // used by Roo only.. at present
+		public Gee.ArrayList<string> valid_cn; // used by Roo only.. at present
+		
 		public string doctxt;
 
 
@@ -90,6 +94,11 @@ namespace Palete {
 			this.signals    = new Gee.HashMap<string,GirObject>();
 			
 			this.optvalues = new Gee.ArrayList<string>();
+			this.can_drop_onto = new Gee.ArrayList<string>();
+			this.valid_cn = new Gee.ArrayList<string>();
+			
+			
+			
 			this.is_overlaid = false;
 			this.paramset = null;
 		}
