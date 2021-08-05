@@ -60,8 +60,6 @@ namespace Palete {
 					
 				}	
 				
-				
-				
 				//print(type + ":" + name +"\n");
 				ret.set(name,prop);
 			}
@@ -98,6 +96,7 @@ namespace Palete {
 						cls.valid_cn.add( vcn.get_string_element(i) );
 					}
 				}
+				
 				
 				this.classes.set(key, cls);
 			});
