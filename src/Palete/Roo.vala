@@ -91,8 +91,13 @@ namespace Palete {
 				if (value.get_object().has_member("methods")) {
 					cls.methods = this.propsFromJSONArray("method", value.get_object().get_array_member("methods"),cls);
 				}
-				cls.valid_cn = this.stringArrayFromJSONArray(value.get_object().get_array_member("tree_children"));
-				
+
+				if (value.get_object().has_member("tree_children")) {
+					var vcn = value.get_object().get_array_member("tree_children");				
+					for (var i =0 ; i < vcn.get_length(); i++) {
+						cls.valid_cn.add ar.get_string_element(i) );
+					}
+				}
 				
 				this.classes.set(key, cls);
 			});
