@@ -74,7 +74,7 @@ namespace Palete {
 			if (this.classes != null) {
 				return;
 			}
-			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/RooUsage.txt");
+			// this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/RooUsage.txt");
 			this.classes = new Gee.HashMap<string,GirObject>();
 			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
 				
@@ -463,7 +463,7 @@ namespace Palete {
         	var ar = this.top_classes;
         	if (in_rval != "") {
         		if (this.classes.has_key(in_rval)) {
-        			ar = this.classes.has_key(in_rval).valid_children;
+        			ar = this.classes.has_key(in_rval).valid_cn;
         		} else {
         			ar = new Gee.ArrayList<string>();
     			}
