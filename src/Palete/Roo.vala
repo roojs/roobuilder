@@ -473,7 +473,7 @@ namespace Palete {
         		ret += str;
     		} 
         	
-        	return str;	
+        	return ret;	
         	
         	//return this.original_getChildList(  in_rval);
     	}
