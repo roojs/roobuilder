@@ -111,18 +111,22 @@ namespace Palete {
 				foreach(var gir_obj in cls.props.values) {
 					if (/^Roo\./.match(gir_obj.type) && classes.has_key(gir_obj.type)) {
 						cls.valid_cn.add( gir_obj.type + ":" + gir_obj.name);
+						if (!add_to.has_key( gir_obj.type)) {
+							add_to.set( gir_obj.type, new Gee.ArrayList<string>());
+						}
 						if (!add_to.get( gir_obj.type).contains(cls.name)) {
 							add_to.get( gir_obj.type ).add(cls.name);
 						}
 					}
 				}
+				
+ 			
+			}
+			foreach(var cls in this.classes.values) {
 				if (add_to.has_key(cls.name)) {
 					cls.can_drop_onto = add_to.get(cls.name);
 				}
- 			
 			}
-			
-			
 				 
 		}
 		  
