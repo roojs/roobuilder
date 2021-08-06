@@ -22,6 +22,8 @@ namespace Palete {
 */
     public class Roo : Palete {
 		
+		Gee.ArrayList<string> top_classes;
+		
 		
         public Roo(Project.Project project)
         {
@@ -30,7 +32,7 @@ namespace Palete {
             
             aconstruct(project);
             this.name = "Roo";
-			  
+			this.top_classes =  new Gee.ArrayList<string>();
         }
 
 		Gee.HashMap<string,GirObject> propsFromJSONArray(string type, Json.Array ar, GirObject cls)
@@ -65,7 +67,8 @@ namespace Palete {
 			}
 			return ret;
 		}
-	 
+		
+	 	
 		public override void  load () {
 
 			if (this.classes != null) {
@@ -74,7 +77,6 @@ namespace Palete {
 			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/RooUsage.txt");
 			this.classes = new Gee.HashMap<string,GirObject>();
 			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
-			
 				
 			var pa = new Json.Parser();
 			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/roodata.json");
@@ -104,7 +106,18 @@ namespace Palete {
 						}
 					}
 				}
-				 
+				if (value.get_object().has_member("tree_parent")) {
+					var vcn = value.get_object().get_array_member("tree_parent");
+					for (var i =0 ; i < vcn.get_length(); i++) {
+				 		if ("builder" == vcn.get_string_element(i)) {
+				 			// this class can be added to the top level.
+							this.top_classes.add(cls.name);
+							break;
+			 			}
+			 			
+		 			}
+	 			}
+
 				this.classes.set(key, cls);
 			});
 			foreach(var cls in this.classes.values) {
@@ -446,7 +459,22 @@ namespace Palete {
 		}
 		public override string[] getChildList(string in_rval)
         {
-        	return this.original_getChildList(  in_rval);
+        	string[] ret = {};
+        	var ar = this.top_classes;
+        	if (in_rval != "") {
+        		if (this.classes.has_key(in_rval)) {
+        			ar = this.classes.has_key(in_rval).valid_children;
+        		} else {
+        			ar = new Gee.ArrayList<string>();
+        	}
+        	
+        	foreach(var str in ar) {
+        		ret += str;
+    		} 
+        	
+        	return str;	
+        	
+        	//return this.original_getChildList(  in_rval);
     	}
 		public override string[] getDropList(string rval)
 		{
