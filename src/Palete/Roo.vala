@@ -463,7 +463,7 @@ namespace Palete {
         	var ar = this.top_classes;
         	if (in_rval != "") {
         		if (this.classes.has_key(in_rval)) {
-        			ar = this.classes.has_key(in_rval).valid_cn;
+        			ar = this.classes.get(in_rval).valid_cn;
         		} else {
         			ar = new Gee.ArrayList<string>();
     			}
