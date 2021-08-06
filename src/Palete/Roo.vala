@@ -466,6 +466,7 @@ namespace Palete {
         			ar = this.classes.has_key(in_rval).valid_children;
         		} else {
         			ar = new Gee.ArrayList<string>();
+    			}
         	}
         	
         	foreach(var str in ar) {
@@ -478,6 +479,9 @@ namespace Palete {
     	}
 		public override string[] getDropList(string rval)
 		{
+			
+			
+			
 			return this.default_getDropList(rval);
 		}	
     }
