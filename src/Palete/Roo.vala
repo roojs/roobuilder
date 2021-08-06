@@ -115,7 +115,7 @@ namespace Palete {
 							add_to.set( gir_obj.type, new Gee.ArrayList<string>());
 						}
 						if (!add_to.get( gir_obj.type).contains(cls.name)) {
-							add_to.get( gir_obj.type ).add(cls.name);
+							add_to.get( gir_obj.type ).add(cls.name );
 						}
 					}
 				}
