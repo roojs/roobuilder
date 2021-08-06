@@ -463,6 +463,7 @@ namespace Palete {
         	var ar = this.top_classes;
         	if (in_rval != "") {
         		if (this.classes.has_key(in_rval)) {
+          		   // some of these children will be eg: Roo.bootstrap.layout.Region:center
         			ar = this.classes.get(in_rval).valid_cn;
         		} else {
         			ar = new Gee.ArrayList<string>();
@@ -479,10 +480,28 @@ namespace Palete {
     	}
 		public override string[] getDropList(string rval)
 		{
+			// we might be dragging  Roo.bootstrap.layout.Region:center
+			// in which case we need to lookup Roo.bootstrap.layout.Region
+			// and see if it's has can_drop_onto
+			string[] ret = {};
+			var cls = this.classes.get(rval);
+			// cls can be null.
+			if (cls == null && rval.contains(":")) {
+				var rr = rval.substring(0, rval.index_of(":"));
+				cls = this.classes.get(rr);
+		    }
+			if (cls == null) {
+				return ret; //nothing..
+			}
+			
+			foreach(var str in cls.can_drop_onto) {
+				ret += str;
+			}
+			return ret;
+				
 			
 			
-			
-			return this.default_getDropList(rval);
+			//return this.default_getDropList(rval);
 		}	
     }
 }
