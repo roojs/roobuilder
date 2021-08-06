@@ -119,8 +119,7 @@ namespace Palete {
 						}
 					}
 				}
-				
- 			
+				 
 			}
 			foreach(var cls in this.classes.values) {
 				if (add_to.has_key(cls.name)) {
