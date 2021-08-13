@@ -89,15 +89,25 @@ namespace Palete {
 				var cls = new GirObject("class", key);  
 				cls.props = this.propsFromJSONArray("prop", value.get_object().get_array_member("props"),cls);
 				cls.signals = this.propsFromJSONArray("signal", value.get_object().get_array_member("events"),cls);
+				
+				
 				if (value.get_object().has_member("methods")) {
 					cls.methods = this.propsFromJSONArray("method", value.get_object().get_array_member("methods"),cls);
 				}
-
+				if (value.get_object().has_member("implementations")) {
+					var vcn = value.get_object().get_array_member("implementations");
+					for (var i =0 ; i < vcn.get_length(); i++) {
+						cls.implementations.add(vcn.get_string_element(i));
+						break;
+		 			}	 			
+				}
 				if (value.get_object().has_member("tree_children")) {
 					var vcn = value.get_object().get_array_member("tree_children");				
 					for (var i =0 ; i < vcn.get_length(); i++) {
 						var ad_c = vcn.get_string_element(i);
-						cls.valid_cn.add( ad_c );
+						if (!cls.valid_cn.contains(ad_c)) {
+							cls.valid_cn.add( ad_c );
+						}
 						if (!add_to.has_key(ad_c)) {
 							add_to.set(ad_c, new Gee.ArrayList<string>());
 						}
@@ -117,13 +127,21 @@ namespace Palete {
 			 			
 		 			}
 	 			}
-
+ 
 				this.classes.set(key, cls);
 			});
 			foreach(var cls in this.classes.values) {
 				foreach(var gir_obj in cls.props.values) {
 					if (/^Roo\./.match(gir_obj.type) && classes.has_key(gir_obj.type)) {
-						cls.valid_cn.add( gir_obj.type + ":" + gir_obj.name);
+						cls.valid_cn.add(gir_obj.type + ":" +   gir_obj.name );
+						// Roo.bootstrap.panel.Content:east
+						// also means that  Roo.bootstrap.panel.Grid:east works
+						var prop_type = classes.get(gir_obj.type);
+						foreach(var imp_str in prop_type.implementations) {
+							cls.valid_cn.add(imp_str+ ":" +    gir_obj.name);
+						}
+						
+						
 						if (!add_to.has_key( gir_obj.type)) {
 							add_to.set( gir_obj.type, new Gee.ArrayList<string>());
 						}
@@ -487,7 +505,8 @@ namespace Palete {
 			var cls = this.classes.get(rval);
 			// cls can be null.
 			if (cls == null && rval.contains(":")) {
-				var rr = rval.substring(0, rval.index_of(":"));
+				var rr = rval.substring(0,rval.index_of(":"));
+				GLib.debug("Converted classname to %s", rr);
 				cls = this.classes.get(rr);
 		    }
 			if (cls == null) {
