@@ -44,6 +44,7 @@ namespace Palete {
 		public  GirObject gparent;
 		public Gee.ArrayList<GirObject> params;
 		public Gee.ArrayList<string> implements;
+		public Gee.ArrayList<string> implementations;
 		public Gee.ArrayList<string> inherits; // full list of all classes and interfaces...
 		public Gee.HashMap<string,GirObject> ctors;
 		public Gee.HashMap<string,GirObject> methods;
@@ -81,6 +82,7 @@ namespace Palete {
 			this.gparent = null;
 			
 			this.implements = new Gee.ArrayList<string>();
+			this.implementations  = new Gee.ArrayList<string>();
 			this.inherits  = new Gee.ArrayList<string>(); // list of all ancestors. (interfaces and parents)
 			this.includes   = new Gee.HashMap<string,string>();
 

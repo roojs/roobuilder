@@ -139,6 +139,13 @@ namespace Palete {
 						var prop_type = classes.get(gir_obj.type);
 						foreach(var imp_str in prop_type.implementations) {
 							cls.valid_cn.add(imp_str+ ":" +    gir_obj.name);
+							if (!add_to.has_key(imp_str)) {
+								add_to.set( imp_str, new Gee.ArrayList<string>());
+							}
+							if (!add_to.get( imp_str).contains(cls.name)) {
+								add_to.get( imp_str ).add(cls.name );
+							}
+							
 						}
 						
 						
@@ -491,7 +498,7 @@ namespace Palete {
         	foreach(var str in ar) {
         		ret += str;
     		} 
-        	
+        	GLib.debug("getChildList for %s returns %s", in_rval, string.join(", ", ret));
         	return ret;	
         	
         	//return this.original_getChildList(  in_rval);
