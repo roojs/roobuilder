@@ -130,6 +130,11 @@ namespace Palete {
  
 				this.classes.set(key, cls);
 			});
+			
+			// look for properties of classes, that are atually clasess
+			// eg. Roo.data.Store as proxy and reader..
+			
+			
 			foreach(var cls in this.classes.values) {
 				foreach(var gir_obj in cls.props.values) {
 					if (/^Roo\./.match(gir_obj.type) && classes.has_key(gir_obj.type)) {
@@ -521,8 +526,10 @@ namespace Palete {
 			}
 			
 			foreach(var str in cls.can_drop_onto) {
+
 				ret += str;
 			}
+			GLib.debug("getDropList for %s return[] %s", rval, string.join(", ", ret));
 			return ret;
 				
 			
