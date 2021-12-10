@@ -77,8 +77,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public string dragData;
-        public int drag_x;
         public string[] dropList;
+        public int drag_x;
         public int drag_y;
         public bool button_is_pressed;
         public string lastEventSource;
@@ -564,7 +564,7 @@ public class Xcls_WindowLeftTree : Object
                     
                     // a drag from self - this should be handled by drop and motion.
                     if (src == this.el) {
-                        print("Source == this element should not happen.. ? \n");
+                        Glib.debug("Source == this element should not happen.. ? \n");
                         return;
                     }
                     //print("drag_data_recieved from another element");
