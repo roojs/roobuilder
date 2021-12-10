@@ -542,7 +542,7 @@ public class Xcls_WindowLeftTree : Object
                 
                     
             
-                    print("Is Drag %s\n", is_drag ? "Y": "N");
+            		GLib.debug("Is Drag %s\n", is_drag ? "Y": "N");
                     var  targetData = "";
                     
                     Gtk.TreePath path;
@@ -606,8 +606,14 @@ public class Xcls_WindowLeftTree : Object
                         
                         
                     } else {
+                    	if (selection_text.contains(":")) {
+            	        	var bits = selection_text.split(":");
+            	            dropNode.setFqn(bits[0]);
+            	            dropNode.props.set("* prop", bits[1]);
+                    	} else {
             
-                        dropNode.setFqn(selection_text);
+            	            dropNode.setFqn(selection_text);
+                        }
                     }
             
                      
@@ -643,9 +649,10 @@ public class Xcls_WindowLeftTree : Object
                         // no drop action...
                         return;
                     }
-                    // valid drop path..
                     
-                      var td_ar = targetData.split("|");
+                    
+                    
+                     var td_ar = targetData.split("|");
                       
                     
                     if (this.drag_in_motion) { 
@@ -658,7 +665,9 @@ public class Xcls_WindowLeftTree : Object
                 
             
                     // at this point, drag is not in motion... -- as checked above... - so it's a real drop event..
-                    
+                    //targetData
+              		//   {parent}|{pos}|{prop}
+              
             
                     _this.model.dropNode(targetData, dropNode, show_templates);
                     GLib.debug("ADD new node!!!\n");
@@ -1221,10 +1230,13 @@ public class Xcls_WindowLeftTree : Object
              // console.dump(node);
           //    console.dump(target_data);
           
+          		//target_data_str
+          		//   {parent}|{pos}|{prop}
+          
           
                 // 0 = before , 1=after 2/3 onto
           
-          
+          		GLib.debug("dropNode %s", target_data_str);
                 var target_data= target_data_str.split("|");
           
                 var parent_str = target_data[0].length > 0 ? target_data[0] : "";
