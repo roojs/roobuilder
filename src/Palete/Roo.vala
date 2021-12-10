@@ -515,7 +515,7 @@ namespace Palete {
         	foreach(var str in ar) {
         		ret += str;
     		} 
-        	GLib.debug("getChildList for %s returns %s", in_rval, string.join(", ", ret));
+        	GLib.debug("getChildList for %s returns %s", in_rval, string.joinv(", ", ret));
         	return ret;	
         	
         	//return this.original_getChildList(  in_rval);
@@ -541,7 +541,7 @@ namespace Palete {
 
 				ret += str;
 			}
-			GLib.debug("getDropList for %s return[] %s", rval, string.join(", ", ret));
+			GLib.debug("getDropList for %s return[] %s", rval, string.joinv(", ", ret));
 			return ret;
 				
 			
