@@ -552,7 +552,7 @@ public class Xcls_WindowLeftTree : Object
                     // if there are not items in the tree.. the we have to set isOver to true for anything..
                     var isEmpty = false;
                     if (_this.model.el.iter_n_children(null) < 1) {
-                        print("got NO children?\n");
+                        GLib.debug("got NO children?\n");
                         isOver = true; //??? 
                         isEmpty = true;
                         pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
@@ -574,7 +574,7 @@ public class Xcls_WindowLeftTree : Object
                     
                     if (selection_text == null || selection_text.length < 1 || !isOver) {
                         // nothing valid foudn to drop...
-                           print("empty sel text or not over");
+                           GLib.debug("empty sel text or not over");
                         if (is_drag) {
                             Gdk.drag_status(ctx, 0, time);
                             this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
@@ -612,10 +612,10 @@ public class Xcls_WindowLeftTree : Object
             
                      
                     // dropList --- need to gather this ... 
-                    print("get dropList for : %s\n",dropNodeType);            
+                    GLib.debug("get dropList for : %s\n",dropNodeType);            
                     var dropList = _this.main_window.windowstate.file.palete().getDropList(dropNodeType);
                     
-                    print("dropList: %s\n", string.joinv(" , ", dropList));
+                    GLib.debug("dropList: %s\n", string.joinv(" , ", dropList));
                     
                     // if drag action is link ... then we can drop it anywahere...
                      if ((ctx.get_actions() & Gdk.DragAction.LINK) > 0) {
@@ -629,7 +629,7 @@ public class Xcls_WindowLeftTree : Object
                     
                     
                         
-                    print("targetDAta: " + targetData +"\n");
+                    GLib.debug("targetDAta: %s", targetData );
                     
                     if (targetData.length < 1) {
                      
