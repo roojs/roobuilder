@@ -564,7 +564,7 @@ public class Xcls_WindowLeftTree : Object
                     
                     // a drag from self - this should be handled by drop and motion.
                     if (src == this.el) {
-                        Glib.debug("Source == this element should not happen.. ? \n");
+                        GLib.debug("Source == this element should not happen.. ? \n");
                         return;
                     }
                     //print("drag_data_recieved from another element");
