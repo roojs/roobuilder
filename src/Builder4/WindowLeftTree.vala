@@ -661,7 +661,7 @@ public class Xcls_WindowLeftTree : Object
                     
             
                     _this.model.dropNode(targetData, dropNode, show_templates);
-                    print("ADD new node!!!\n");
+                    GLib.debug("ADD new node!!!\n");
                         
                     ///Xcls_DialogTemplateSelect.singleton().show( _this.model.file.palete(), node);
                     
