@@ -101,6 +101,8 @@ namespace Palete {
 						break;
 		 			}	 			
 				}
+				// tree children = 
+				
 				if (value.get_object().has_member("tree_children")) {
 					var vcn = value.get_object().get_array_member("tree_children");				
 					for (var i =0 ; i < vcn.get_length(); i++) {
@@ -116,6 +118,9 @@ namespace Palete {
 						}
 					}
 				}
+				
+				// tree parent
+				
 				if (value.get_object().has_member("tree_parent")) {
 					var vcn = value.get_object().get_array_member("tree_parent");
 					for (var i =0 ; i < vcn.get_length(); i++) {
@@ -491,7 +496,7 @@ namespace Palete {
         {
         	string[] ret = {};
         	var ar = this.top_classes;
-        	if (in_rval != "") {
+        	if (in_rval != "*top") {
         		if (this.classes.has_key(in_rval)) {
           		   // some of these children will be eg: Roo.bootstrap.layout.Region:center
         			ar = this.classes.get(in_rval).valid_cn;
