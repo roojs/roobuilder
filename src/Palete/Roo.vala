@@ -126,6 +126,8 @@ namespace Palete {
 					for (var i =0 ; i < vcn.get_length(); i++) {
 				 		if ("builder" == vcn.get_string_element(i)) {
 				 			// this class can be added to the top level.
+				 			GLib.debug("Add %s to *top", cls.name);
+				 			
 							this.top_classes.add(cls.name);
 							break;
 			 			}
