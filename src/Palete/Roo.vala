@@ -496,6 +496,11 @@ namespace Palete {
 		}
 		public override string[] getChildList(string in_rval)
         {
+        	if (this.top_classes.length < 1) {
+        		this.load();
+        	}
+        	
+        	
         	string[] ret = {};
         	var ar = this.top_classes;
         	if (in_rval != "*top") {
