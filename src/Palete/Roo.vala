@@ -149,7 +149,7 @@ namespace Palete {
 				foreach(var gir_obj in cls.props.values) {
 					var types = gir_obj.type.split("|");
 					for(var i =0; i < types.length; i++) {
-						var type = types[0];
+						var type = types[i];
 					
 						if (/^Roo\./.match(type) && classes.has_key(type)) {
 							
