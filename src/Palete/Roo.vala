@@ -118,6 +118,9 @@ namespace Palete {
 						}
 					}
 				}
+			 	
+				
+				
 				
 				// tree parent
 				
@@ -144,28 +147,35 @@ namespace Palete {
 			
 			foreach(var cls in this.classes.values) {
 				foreach(var gir_obj in cls.props.values) {
-					if (/^Roo\./.match(gir_obj.type) && classes.has_key(gir_obj.type)) {
-						cls.valid_cn.add(gir_obj.type + ":" +   gir_obj.name );
-						// Roo.bootstrap.panel.Content:east
-						// also means that  Roo.bootstrap.panel.Grid:east works
-						var prop_type = classes.get(gir_obj.type);
-						foreach(var imp_str in prop_type.implementations) {
-							cls.valid_cn.add(imp_str+ ":" +    gir_obj.name);
-							if (!add_to.has_key(imp_str)) {
-								add_to.set( imp_str, new Gee.ArrayList<string>());
-							}
-							if (!add_to.get( imp_str).contains(cls.name)) {
-								add_to.get( imp_str ).add(cls.name );
+					var types = gir_obj.type.split("|");
+					for(var i =0; i < types.length; i++) {
+						var type = types[0];
+					
+						if (/^Roo\./.match(type) && classes.has_key(type)) {
+							
+							 
+							cls.valid_cn.add(type + ":" +   gir_obj.name );
+							// Roo.bootstrap.panel.Content:east
+							// also means that  Roo.bootstrap.panel.Grid:east works
+							var prop_type = classes.get(type);
+							foreach(var imp_str in prop_type.implementations) {
+								cls.valid_cn.add(imp_str + ":" +    gir_obj.name);
+								if (!add_to.has_key(imp_str)) {
+									add_to.set( imp_str, new Gee.ArrayList<string>());
+								}
+								if (!add_to.get( imp_str).contains(cls.name)) {
+									add_to.get( imp_str ).add(cls.name );
+								}
+								
 							}
 							
-						}
-						
-						
-						if (!add_to.has_key( gir_obj.type)) {
-							add_to.set( gir_obj.type, new Gee.ArrayList<string>());
-						}
-						if (!add_to.get( gir_obj.type).contains(cls.name)) {
-							add_to.get( gir_obj.type ).add(cls.name );
+							
+							if (!add_to.has_key( type)) {
+								add_to.set( type, new Gee.ArrayList<string>());
+							}
+							if (!add_to.get(type).contains(cls.name)) {
+								add_to.get( type ).add(cls.name );
+							}
 						}
 					}
 				}
