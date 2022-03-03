@@ -22,6 +22,8 @@ namespace Palete {
 */
     public class Roo : Palete {
 		
+		Gee.ArrayList<string> top_classes;
+		
 		
         public Roo(Project.Project project)
         {
@@ -30,7 +32,7 @@ namespace Palete {
             
             aconstruct(project);
             this.name = "Roo";
-			  
+			this.top_classes =  new Gee.ArrayList<string>();
         }
 
 		Gee.HashMap<string,GirObject> propsFromJSONArray(string type, Json.Array ar, GirObject cls)
@@ -60,43 +62,131 @@ namespace Palete {
 					
 				}	
 				
-				
-				
 				//print(type + ":" + name +"\n");
 				ret.set(name,prop);
 			}
 			return ret;
 		}
-	 
+		
+	 	
 		public override void  load () {
 
 			if (this.classes != null) {
 				return;
 			}
-			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/RooUsage.txt");
+			// this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/RooUsage.txt");
 			this.classes = new Gee.HashMap<string,GirObject>();
-
+			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
 				
 			var pa = new Json.Parser();
 			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/roodata.json");
 			var node = pa.get_root();
 
 			var clist =  node.get_object(); /// was in data... .get_object_member("data");
-				clist.foreach_member((o , key, value) => {
+			clist.foreach_member((o , key, value) => {
 				//print("cls:" + key+"\n");
 			 
 				var cls = new GirObject("class", key);  
 				cls.props = this.propsFromJSONArray("prop", value.get_object().get_array_member("props"),cls);
 				cls.signals = this.propsFromJSONArray("signal", value.get_object().get_array_member("events"),cls);
+				
+				
 				if (value.get_object().has_member("methods")) {
 					cls.methods = this.propsFromJSONArray("method", value.get_object().get_array_member("methods"),cls);
 				}
+				if (value.get_object().has_member("implementations")) {
+					var vcn = value.get_object().get_array_member("implementations");
+					for (var i =0 ; i < vcn.get_length(); i++) {
+						cls.implementations.add(vcn.get_string_element(i));
+						//break; << why!?!
+		 			}	 			
+				}
+				// tree children = 
 				
+				if (value.get_object().has_member("tree_children")) {
+					var vcn = value.get_object().get_array_member("tree_children");				
+					for (var i =0 ; i < vcn.get_length(); i++) {
+						var ad_c = vcn.get_string_element(i);
+						if (!cls.valid_cn.contains(ad_c)) {
+							cls.valid_cn.add( ad_c );
+						}
+						if (!add_to.has_key(ad_c)) {
+							add_to.set(ad_c, new Gee.ArrayList<string>());
+						}
+						if (!add_to.get(ad_c).contains(cls.name)) {
+							add_to.get(ad_c).add(cls.name);
+						}
+					}
+				}
+			 	
+				
+				
+				
+				// tree parent
+				
+				if (value.get_object().has_member("tree_parent")) {
+					var vcn = value.get_object().get_array_member("tree_parent");
+					for (var i =0 ; i < vcn.get_length(); i++) {
+				 		if ("builder" == vcn.get_string_element(i)) {
+				 			// this class can be added to the top level.
+				 			GLib.debug("Add %s to *top", cls.name);
+				 			
+							this.top_classes.add(cls.name);
+							break;
+			 			}
+			 			
+		 			}
+	 			}
+ 
 				this.classes.set(key, cls);
 			});
-				
-				
 			
+			// look for properties of classes, that are atually clasess
+			// eg. Roo.data.Store has proxy and reader..
+			
+			
+			foreach(var cls in this.classes.values) {
+				foreach(var gir_obj in cls.props.values) {
+					var types = gir_obj.type.split("|");
+					for(var i =0; i < types.length; i++) {
+						var type = types[i];
+					
+						if (/^Roo\./.match(type) && classes.has_key(type)) {
+							
+							 
+							cls.valid_cn.add(type + ":" +   gir_obj.name );
+							// Roo.bootstrap.panel.Content:east
+							// also means that  Roo.bootstrap.panel.Grid:east works
+							var prop_type = classes.get(type);
+							foreach(var imp_str in prop_type.implementations) {
+								//GLib.debug("addChild for %s - child=  %s:%s", cls.name, imp_str, gir_obj.name);
+								cls.valid_cn.add(imp_str + ":" +    gir_obj.name);
+								if (!add_to.has_key(imp_str)) {
+									add_to.set( imp_str, new Gee.ArrayList<string>());
+								}
+								if (!add_to.get( imp_str).contains(cls.name)) {
+									add_to.get( imp_str ).add(cls.name );
+								}
+								
+							}
+							
+							
+							if (!add_to.has_key( type)) {
+								add_to.set( type, new Gee.ArrayList<string>());
+							}
+							if (!add_to.get(type).contains(cls.name)) {
+								add_to.get( type ).add(cls.name );
+							}
+						}
+					}
+				}
+				 
+			}
+			foreach(var cls in this.classes.values) {
+				if (add_to.has_key(cls.name)) {
+					cls.can_drop_onto = add_to.get(cls.name);
+				}
+			}
 				 
 		}
 		  
@@ -417,11 +507,57 @@ namespace Palete {
 		}
 		public override string[] getChildList(string in_rval)
         {
-        	return this.original_getChildList(  in_rval);
+        	if (this.top_classes.size < 1) {
+        		this.load();
+        	}
+        	
+        	
+        	string[] ret = {};
+        	var ar = this.top_classes;
+        	if (in_rval != "*top") {
+        		if (this.classes.has_key(in_rval)) {
+          		   // some of these children will be eg: Roo.bootstrap.layout.Region:center
+        			ar = this.classes.get(in_rval).valid_cn;
+        		} else {
+        			ar = new Gee.ArrayList<string>();
+    			}
+        	}
+        	
+        	foreach(var str in ar) {
+        		ret += str;
+    		} 
+        	GLib.debug("getChildList for %s returns %s", in_rval, string.joinv(", ", ret));
+        	return ret;	
+        	
+        	//return this.original_getChildList(  in_rval);
     	}
 		public override string[] getDropList(string rval)
 		{
-			return this.default_getDropList(rval);
+			// we might be dragging  Roo.bootstrap.layout.Region:center
+			// in which case we need to lookup Roo.bootstrap.layout.Region
+			// and see if it's has can_drop_onto
+			string[] ret = {};
+			var cls = this.classes.get(rval);
+			// cls can be null.
+			if (cls == null && rval.contains(":")) {
+				var rr = rval.substring(0,rval.index_of(":"));
+				GLib.debug("Converted classname to %s", rr);
+				cls = this.classes.get(rr);
+		    }
+			if (cls == null) {
+				return ret; //nothing..
+			}
+			
+			foreach(var str in cls.can_drop_onto) {
+
+				ret += str;
+			}
+			GLib.debug("getDropList for %s return[] %s", rval, string.joinv(", ", ret));
+			return ret;
+				
+			
+			
+			//return this.default_getDropList(rval);
 		}	
     }
 }

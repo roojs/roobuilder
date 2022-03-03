@@ -48,11 +48,17 @@ public class Xcls_RightPalete : Object
     
         for(var i =0 ; i < tr.length; i++) {
              this.model.el.append(out citer);   
+             var dname = tr[i];
+             if (dname.contains(":")) {
+    			var ar = dname.split(":");
+    			dname = "<b>" + ar[1] +"</b> - <i>"+ar[0]+"</i>";
+    		}
              
-            this.model.el.set_value(citer, 0,   tr[i] ); // title 
+            this.model.el.set_value(citer, 0,   tr[i] ); // used data. 
+            this.model.el.set_value(citer, 1,   dname ); // displayed value.
             
         }
-        this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);
+        this.model.el.set_sort_column_id(1,Gtk.SortType.ASCENDING);
         
     }
     public void clear () {
@@ -208,7 +214,7 @@ public class Xcls_RightPalete : Object
                     return;
             });
             this.el.drag_end.connect( ( drag_context)  => {
-             	 print("SOURCE: drag-end\n");
+             	 GLib.debug("SOURCE: drag-end (call listener on this)\n");
             	
             	this.dragData = "";
             	//this.dropList = null;
@@ -222,7 +228,7 @@ public class Xcls_RightPalete : Object
                     return; 
                 }
                 
-                print("setting drag data to %s\n", this.dragData);
+                GLib.debug("setting drag data to %s\n", this.dragData);
                // selection_data.set_text(this.dragData ,this.dragData.length);
                selection_data.set (selection_data.get_target (), 8, (uchar[]) this.dragData.to_utf8 ());
             
@@ -288,7 +294,7 @@ public class Xcls_RightPalete : Object
 
             // init method
 
-            this.el.add_attribute(_this.txtrender.el , "markup", 0 );
+            this.el.add_attribute(_this.txtrender.el , "markup",  1 );
         }
 
         // user defined functions

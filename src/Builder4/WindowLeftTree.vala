@@ -542,7 +542,7 @@ public class Xcls_WindowLeftTree : Object
                 
                     
             
-                    print("Is Drag %s\n", is_drag ? "Y": "N");
+            		GLib.debug("Is Drag %s\n", is_drag ? "Y": "N");
                     var  targetData = "";
                     
                     Gtk.TreePath path;
@@ -552,7 +552,7 @@ public class Xcls_WindowLeftTree : Object
                     // if there are not items in the tree.. the we have to set isOver to true for anything..
                     var isEmpty = false;
                     if (_this.model.el.iter_n_children(null) < 1) {
-                        print("got NO children?\n");
+                        GLib.debug("got NO children?\n");
                         isOver = true; //??? 
                         isEmpty = true;
                         pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
@@ -564,7 +564,7 @@ public class Xcls_WindowLeftTree : Object
                     
                     // a drag from self - this should be handled by drop and motion.
                     if (src == this.el) {
-                        print("Source == this element should not happen.. ? \n");
+                        GLib.debug("Source == this element should not happen.. ? \n");
                         return;
                     }
                     //print("drag_data_recieved from another element");
@@ -574,7 +574,7 @@ public class Xcls_WindowLeftTree : Object
                     
                     if (selection_text == null || selection_text.length < 1 || !isOver) {
                         // nothing valid foudn to drop...
-                           print("empty sel text or not over");
+                           GLib.debug("empty sel text or not over");
                         if (is_drag) {
                             Gdk.drag_status(ctx, 0, time);
                             this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
@@ -606,16 +606,22 @@ public class Xcls_WindowLeftTree : Object
                         
                         
                     } else {
+                    	if (selection_text.contains(":")) {
+            	        	var bits = selection_text.split(":");
+            	            dropNode.setFqn(bits[0]);
+            	            dropNode.props.set("* prop", bits[1]);
+                    	} else {
             
-                        dropNode.setFqn(selection_text);
+            	            dropNode.setFqn(selection_text);
+                        }
                     }
             
                      
                     // dropList --- need to gather this ... 
-                    print("get dropList for : %s\n",dropNodeType);            
+                    GLib.debug("get dropList for : %s\n",dropNodeType);            
                     var dropList = _this.main_window.windowstate.file.palete().getDropList(dropNodeType);
                     
-                    print("dropList: %s\n", string.joinv(" , ", dropList));
+                    GLib.debug("dropList: %s\n", string.joinv(" , ", dropList));
                     
                     // if drag action is link ... then we can drop it anywahere...
                      if ((ctx.get_actions() & Gdk.DragAction.LINK) > 0) {
@@ -629,7 +635,7 @@ public class Xcls_WindowLeftTree : Object
                     
                     
                         
-                    print("targetDAta: " + targetData +"\n");
+                    GLib.debug("targetDAta: %s", targetData );
                     
                     if (targetData.length < 1) {
                      
@@ -643,9 +649,10 @@ public class Xcls_WindowLeftTree : Object
                         // no drop action...
                         return;
                     }
-                    // valid drop path..
                     
-                      var td_ar = targetData.split("|");
+                    
+                    
+                     var td_ar = targetData.split("|");
                       
                     
                     if (this.drag_in_motion) { 
@@ -658,10 +665,12 @@ public class Xcls_WindowLeftTree : Object
                 
             
                     // at this point, drag is not in motion... -- as checked above... - so it's a real drop event..
-                    
+                    //targetData
+              		//   {parent}|{pos}|{prop}
+              
             
                     _this.model.dropNode(targetData, dropNode, show_templates);
-                    print("ADD new node!!!\n");
+                    GLib.debug("ADD new node!!!\n");
                         
                     ///Xcls_DialogTemplateSelect.singleton().show( _this.model.file.palete(), node);
                     
@@ -1221,10 +1230,13 @@ public class Xcls_WindowLeftTree : Object
              // console.dump(node);
           //    console.dump(target_data);
           
+          		//target_data_str
+          		//   {parent}|{pos}|{prop}
+          
           
                 // 0 = before , 1=after 2/3 onto
           
-          
+          		GLib.debug("dropNode %s", target_data_str);
                 var target_data= target_data_str.split("|");
           
                 var parent_str = target_data[0].length > 0 ? target_data[0] : "";

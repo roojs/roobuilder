@@ -2,16 +2,16 @@
  "name" : "WindowAddProp",
  "parent" : "",
  "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/WindowAddProp.bjs",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/WindowAddProp.bjs",
  "permname" : "",
  "modOrder" : "",
  "build_module" : "builder",
  "items" : [
   {
    "id" : "WindowAddProp",
-   "$ shadow_type" : "Gtk.ShadowType.IN",
    "* init" : "    this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n ",
-   "| void show" : "(Palete.Palete pal, string etype, string xtype) {\n    this.model.el.clear();\n\n    Gtk.TreeIter iter;\n    var elementList = pal.getPropertiesFor( xtype,etype);\n    \n    \n    //print (\"GOT \" + elementList.length + \" items for \" + fullpath + \"|\" + type);\n           // console.dump(elementList);\n           \n    var miter = elementList.map_iterator();\n    while (miter.next()) {\n       var p = miter.get_value();\n        \n        this.model.el.append(out iter);\n\n        this.model.el.set(iter,\n                0,  p.name, \n                1, p.type,\n                2, \"<b>\" + p.name +\"</b> <i>\"+p.type+\"</i>\\n\" + \n                        GLib.Markup.escape_text(p.doctxt),\n                3, p.sig,\n                4, \"<b>\" + p.name +\"</b> <span size=\\\"small\\\"><i>\"+p.type+\"</i></span>\",\n                5, etype,\n                -1\n        );\n    }\n    this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);\n                             \n}\n",
+   "$ shadow_type" : "Gtk.ShadowType.IN",
+   "| void show" : "(Palete.Palete pal, string etype, string xtype) {\n    this.model.el.clear();\n\n    Gtk.TreeIter iter;\n    var elementList = pal.getPropertiesFor( xtype,etype);\n    \n    \n    //print (\"GOT \" + elementList.length + \" items for \" + fullpath + \"|\" + type);\n           // console.dump(elementList);\n           \n    var miter = elementList.map_iterator();\n    while (miter.next()) {\n       var p = miter.get_value();\n        \n        this.model.el.append(out iter);\n\n\t\tvar dname = p.name;\n\t\tvar dtype = p.type;\n\t\t \n\n        this.model.el.set(iter,\n                0,  p.name, \n                1, p.type,\n                2, \"<b>\" + p.name +\"</b> <i>\"+p.type+\"</i>\\n\" + \n                        GLib.Markup.escape_text(p.doctxt),\n                3, p.sig,\n                4, \"<b>\" + dname +\"</b> <span size=\\\"small\\\"><i>\"+dtype+\"</i></span>\",\n                5, etype,\n                -1\n        );\n    }\n    this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);\n                             \n}\n",
    "xtype" : "ScrolledWindow",
    "@ void select" : "(string key, string type, string skel, string etype)",
    "$ xns" : "Gtk",
@@ -48,8 +48,8 @@
        "items" : [
         {
          "id" : "namerender",
-         "* pack" : "pack_start,true",
          "xtype" : "CellRendererText",
+         "* pack" : "pack_start,true",
          "$ xns" : "Gtk"
         }
        ]
