@@ -56,7 +56,7 @@ public class Xcls_WindowAddProp : Object
             this.model.el.append(out iter);
     
     		var dname = p.name;
-    		var dtype = p.type
+    		var dtype = p.type;
     		if (dname.contains(":")) {
     			var ar = dname.split(":");
     			dname = ar[1];
