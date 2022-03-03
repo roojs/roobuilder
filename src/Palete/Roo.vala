@@ -142,7 +142,7 @@ namespace Palete {
 			});
 			
 			// look for properties of classes, that are atually clasess
-			// eg. Roo.data.Store as proxy and reader..
+			// eg. Roo.data.Store has proxy and reader..
 			
 			
 			foreach(var cls in this.classes.values) {
@@ -159,6 +159,7 @@ namespace Palete {
 							// also means that  Roo.bootstrap.panel.Grid:east works
 							var prop_type = classes.get(type);
 							foreach(var imp_str in prop_type.implementations) {
+								GLib.debug("addChild for %s - child=  %s:%s", cls.name, imp_str, gir_obj.name);
 								cls.valid_cn.add(imp_str + ":" +    gir_obj.name);
 								if (!add_to.has_key(imp_str)) {
 									add_to.set( imp_str, new Gee.ArrayList<string>());
