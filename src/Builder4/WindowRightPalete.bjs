@@ -21,8 +21,8 @@
    "items" : [
     {
      "id" : "viewbox",
-     "* pack" : "pack_start,true,true,0",
      "xtype" : "Box",
+     "* pack" : "pack_start,true,true,0",
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "items" : [
@@ -59,15 +59,15 @@
           },
           {
            "utf8 title" : "Drag to add Object",
-           "* init" : " this.el.add_attribute(_this.txtrender.el , \"markup\", 0 );\n \n",
+           "* init" : " this.el.add_attribute(_this.txtrender.el , \"markup\",  1 );\n \n",
            "* pack" : "append_column",
            "xtype" : "TreeViewColumn",
            "$ xns" : "Gtk",
            "items" : [
             {
              "id" : "txtrender",
-             "xtype" : "CellRendererText",
              "* pack" : "pack_start,true",
+             "xtype" : "CellRendererText",
              "$ xns" : "Gtk"
             }
            ]

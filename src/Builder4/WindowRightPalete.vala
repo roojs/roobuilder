@@ -288,7 +288,7 @@ public class Xcls_RightPalete : Object
 
             // init method
 
-            this.el.add_attribute(_this.txtrender.el , "markup", 0 );
+            this.el.add_attribute(_this.txtrender.el , "markup",  1 );
         }
 
         // user defined functions
