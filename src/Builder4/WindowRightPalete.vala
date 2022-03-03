@@ -51,7 +51,7 @@ public class Xcls_RightPalete : Object
              var dname = tr[i];
              if (dname.contains(":")) {
     			var ar = dname.split(":");
-    			dname = "<b>" + ar[1] +"</b> <span size=\"small\"><i>"+ar[0]+"</i></span>";
+    			dname = "<b>" + ar[1] +"</b> - <i>"+ar[0]+"</i>";
     		}
              
             this.model.el.set_value(citer, 0,   tr[i] ); // used data. 
