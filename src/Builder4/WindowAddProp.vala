@@ -1,6 +1,6 @@
 static Xcls_WindowAddProp  _WindowAddProp;
 
-public class Xcls_WindowAddProp : Object 
+public class Xcls_WindowAddProp : Object
 {
     public Gtk.ScrolledWindow el;
     private Xcls_WindowAddProp  _this;
@@ -19,7 +19,7 @@ public class Xcls_WindowAddProp : Object
         // my vars (def)
     public signal void select (string key, string type, string skel, string etype);
 
-    // ctor 
+    // ctor
     public Xcls_WindowAddProp()
     {
         _this = this;
@@ -33,12 +33,12 @@ public class Xcls_WindowAddProp : Object
         child_0.ref();
         this.el.add (  child_0.el  );
 
-        // init method 
+        // init method
 
         this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
     }
 
-    // user defined functions 
+    // user defined functions
     public void show (Palete.Palete pal, string etype, string xtype) {
         this.model.el.clear();
     
@@ -55,13 +55,22 @@ public class Xcls_WindowAddProp : Object
             
             this.model.el.append(out iter);
     
+    		var dname = p.name;
+    		var dtype = p.type
+    		if (dname.contains(":")) {
+    			var ar = dname.split(":");
+    			dname = ar[1];
+    			dtype = ar[0];
+    		}
+    		
+    
             this.model.el.set(iter,
                     0,  p.name, 
                     1, p.type,
                     2, "<b>" + p.name +"</b> <i>"+p.type+"</i>\n" + 
                             GLib.Markup.escape_text(p.doctxt),
                     3, p.sig,
-                    4, "<b>" + p.name +"</b> <span size=\"small\"><i>"+p.type+"</i></span>",
+                    4, "<b>" + dname +"</b> <span size=\"small\"><i>"+dtype+"</i></span>",
                     5, etype,
                     -1
             );
@@ -73,7 +82,7 @@ public class Xcls_WindowAddProp : Object
         this.model.el.clear();
     
     }
-    public class Xcls_TreeView2 : Object 
+    public class Xcls_TreeView2 : Object
     {
         public Gtk.TreeView el;
         private Xcls_WindowAddProp  _this;
@@ -81,7 +90,7 @@ public class Xcls_WindowAddProp : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_TreeView2(Xcls_WindowAddProp _owner )
         {
             _this = _owner;
@@ -100,7 +109,7 @@ public class Xcls_WindowAddProp : Object
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
-            // init method 
+            // init method
 
             {  
                    var description = new Pango.FontDescription();
@@ -115,7 +124,7 @@ public class Xcls_WindowAddProp : Object
                 
             }
 
-            // listeners 
+            //listeners
             this.el.row_activated.connect( (path, column)  => {
             
                     Gtk.TreeIter iter;
@@ -141,9 +150,9 @@ public class Xcls_WindowAddProp : Object
             });
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_model : Object 
+    public class Xcls_model : Object
     {
         public Gtk.ListStore el;
         private Xcls_WindowAddProp  _this;
@@ -151,7 +160,7 @@ public class Xcls_WindowAddProp : Object
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_model(Xcls_WindowAddProp _owner )
         {
             _this = _owner;
@@ -169,7 +178,7 @@ typeof(string) // 5 element type (event|prop)
             // set gobject values
         }
 
-        // user defined functions 
+        // user defined functions
         public string getValue (Gtk.TreeIter iter, int col)
         {
         
@@ -180,7 +189,8 @@ typeof(string) // 5 element type (event|prop)
             
         }
     }
-    public class Xcls_namecol : Object 
+
+    public class Xcls_namecol : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_WindowAddProp  _this;
@@ -188,7 +198,7 @@ typeof(string) // 5 element type (event|prop)
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_namecol(Xcls_WindowAddProp _owner )
         {
             _this = _owner;
@@ -203,14 +213,14 @@ typeof(string) // 5 element type (event|prop)
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
 
-            // init method 
+            // init method
 
             this.el.add_attribute(_this.namerender.el , "markup", 4  );
         }
 
-        // user defined functions 
+        // user defined functions
     }
-    public class Xcls_namerender : Object 
+    public class Xcls_namerender : Object
     {
         public Gtk.CellRendererText el;
         private Xcls_WindowAddProp  _this;
@@ -218,7 +228,7 @@ typeof(string) // 5 element type (event|prop)
 
             // my vars (def)
 
-        // ctor 
+        // ctor
         public Xcls_namerender(Xcls_WindowAddProp _owner )
         {
             _this = _owner;
@@ -230,6 +240,9 @@ typeof(string) // 5 element type (event|prop)
             // set gobject values
         }
 
-        // user defined functions 
+        // user defined functions
     }
+
+
+
 }
