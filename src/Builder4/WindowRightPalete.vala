@@ -58,7 +58,7 @@ public class Xcls_RightPalete : Object
             this.model.el.set_value(citer, 1,   dname ); // displayed value.
             
         }
-        this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);
+        this.model.el.set_sort_column_id(1,Gtk.SortType.ASCENDING);
         
     }
     public void clear () {
