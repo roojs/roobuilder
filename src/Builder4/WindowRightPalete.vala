@@ -48,8 +48,14 @@ public class Xcls_RightPalete : Object
     
         for(var i =0 ; i < tr.length; i++) {
              this.model.el.append(out citer);   
+             var dname = tr[i];
+             if (dname.contains(":")) {
+    			var ar = dname.split(":");
+    			dname = "<b>" + ar[1] +"</b> <span size=\"small\"><i>"+ar[0]+"</i></span>";
+    		}
              
-            this.model.el.set_value(citer, 0,   tr[i] ); // title 
+            this.model.el.set_value(citer, 0,   tr[i] ); // used data. 
+            this.model.el.set_value(citer, 1,   dname ); // displayed value.
             
         }
         this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);

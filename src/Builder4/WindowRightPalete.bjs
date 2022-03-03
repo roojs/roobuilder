@@ -13,7 +13,7 @@
    "* pack" : "add",
    "xtype" : "Box",
    "@ void before_node_change(JsRender.Node? node)" : "",
-   "| void load" : " (Palete.Palete pal, string cls ) {\n   \n   // this.get('model').expanded();\n    \n    var tr = pal.getChildList(cls);\n    this.model.el.clear();\n\n\n    Gtk.TreeIter citer;\n\n    for(var i =0 ; i < tr.length; i++) {\n         this.model.el.append(out citer);   \n         \n        this.model.el.set_value(citer, 0,   tr[i] ); // title \n        \n    }\n    this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);\n    \n} \n\n",
+   "| void load" : " (Palete.Palete pal, string cls ) {\n   \n   // this.get('model').expanded();\n    \n    var tr = pal.getChildList(cls);\n    this.model.el.clear();\n\n\n    Gtk.TreeIter citer;\n\n    for(var i =0 ; i < tr.length; i++) {\n         this.model.el.append(out citer);   \n         var dname = tr[i];\n         if (dname.contains(\":\")) {\n\t\t\tvar ar = dname.split(\":\");\n\t\t\tdname = \"<b>\" + ar[1] +\"</b> <span size=\\\"small\\\"><i>\"+ar[0]+\"</i></span>\";\n\t\t}\n         \n        this.model.el.set_value(citer, 0,   tr[i] ); // used data. \n        this.model.el.set_value(citer, 1,   dname ); // displayed value.\n        \n    }\n    this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);\n    \n} \n\n",
    "@ void drag_end()" : "",
    "$ xns" : "Gtk",
    "| void clear" : "() {\n   this.model.el.clear();\n} ",
