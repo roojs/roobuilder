@@ -98,7 +98,7 @@ namespace Palete {
 					var vcn = value.get_object().get_array_member("implementations");
 					for (var i =0 ; i < vcn.get_length(); i++) {
 						cls.implementations.add(vcn.get_string_element(i));
-						break;
+						//break; << why!?!
 		 			}	 			
 				}
 				// tree children = 
