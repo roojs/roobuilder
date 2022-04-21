@@ -70,8 +70,7 @@
             "../Palete/Flutter.vala",
             "../JsRender/Flutter.vala"
         ],
-        "packages" : [
-        ]
+        "packages" : []
     },
     {
         "name" : "_default_",
