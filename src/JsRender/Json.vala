@@ -49,12 +49,12 @@ namespace JsRender {
 			  if (name){
 					// fixme...
 					// initiate a node as a string... then output it..
+					buffer.append_c( '"'); // might not be needed..
+					var k = new Json.Node(Json.NodeType.TEXT);
+					k.init_string(name);
+					dump_value(buffer,k);
+					
 					buffer.append_c( '"');
-					
-					
-					
-						>>>>>      json_strescape (buffer, name);
-					buffer.append_c( ( '"');
 			
 				  if (this.generator.pretty) {
 					buffer.append( " : ");
@@ -109,7 +109,7 @@ namespace JsRender {
 		  }
 
 		  for (var i = 0; i < array_len; i++) {
-			  JsonNode *cur = json_array_get_element (array, i);
+			  var cur = array.get_element ( i);
 
 			  if (i == 0 && pretty) {
 				buffer.append_c('\n');
