@@ -69,7 +69,8 @@
             "../Project/Flutter.vala",
             "../Palete/Flutter.vala",
             "../JsRender/Flutter.vala",
-            "../JsRender/Json.vala"
+            "../JsRender/Json.vala",
+            "../JsRender/JsonGen.vala"
         ],
         "packages" : []
     },
