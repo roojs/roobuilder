@@ -26,7 +26,7 @@ namespace JsRender {
 		public string to_data()
 		{
 			
-			return dump_node(this.node)
+			return dump_node(this.node);
 		}
 		
 		
@@ -187,7 +187,7 @@ namespace JsRender {
 /*
 compile : 
 
-
+valac --pkg json-glib-1.0 -D JSON_TESTCODE Json.vala
 */
 
 #if JSON_TESTCODE
