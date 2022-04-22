@@ -102,7 +102,7 @@ roobuilder_PKGS = --pkg glib-2.0  \
 
 BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/PlainFile.vala \
-		JsRender/JsonGen.vala \		
+		JsRender/JsonGen.vala \
 		JsRender/JsRender.vala \
 		JsRender/Lang.vala \
 		JsRender/NodeToGtk.vala \
