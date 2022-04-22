@@ -7,12 +7,12 @@ https://gitlab.gnome.org/GNOME/json-glib/-/blob/master/json-glib/json-generator.
 */
 namespace JsRender {
 
-	class Json
+	public class Json : Object {
 	{
 
 		Json.Generator generator;
 		Json.Node node;
-		public void  construct   (Json.Node node )
+		public Json( Json.Node node )
 		{
   
 
@@ -74,7 +74,7 @@ namespace JsRender {
 				  break;
 
 				case Json.NodeType.ARRAY:
-				  this.dump_array ( buffer, level, node.getArray()));
+				  this.dump_array ( buffer, level, node.getArray());
 				  break;
 
 				case Json.NodeType.OBJECT:
@@ -96,7 +96,7 @@ namespace JsRender {
 		{
 
 
-		  var array_len = array.get_length()
+		  var array_len = array.get_length();
 		  
 		  var pretty = this.generator.pretty;
 		  var  indent = this.generator.indent;
@@ -199,7 +199,7 @@ void main (string[] args) {
 	{"q1":{"question":"5 + 7 = ?","options":["10","11","12","13"],"answer":"12"},"q2":
 	{"question":"12 - 8 = ?","options":["1","2","3","4"],"answer":"4"}}}}'
 	""";
-	var parser = new Json.Parser ();
+	var parser =   Json.Parser ();
 	parser.load_from_data(testjson);
 	
 	var node = parser.get_root ();
