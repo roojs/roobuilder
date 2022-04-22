@@ -124,11 +124,11 @@ namespace JsRender {
 			} 
 		  }
 
-		  if (pretty) 
+		  if (pretty) {
 			  for (i = 0; i < (level * indent); i++) {
 				buffer.append_c(this.generator.indent_char);
 			 }
-			}
+		  }
 
 		  buffer.append_c( ']');
 		}
