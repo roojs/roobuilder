@@ -669,7 +669,8 @@ public class JsRender.Node : Object {
 			return;
 		}
 		///print( "ADD " + key + "=" + val + " as a string?\n");
-		o.set_string_member(key,val);
+		this.jsonObjectAddStringValue(o,key,val);
+		//o.set_string_member(key,val);
 		
 	}
 	public string nodeTip()
