@@ -616,7 +616,6 @@ public class JsRender.Node : Object {
 		obj.set_array_member(key,aro);
 	}
 	
-	
 	public Json.Object toJsonObject()
 	{
 		var ret = new Json.Object();
