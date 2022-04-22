@@ -110,7 +110,7 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/Node.vala \
 		JsRender/Roo.vala \
-
+        JsRender/JsonGen.vala
 
 # Palete/Flutter.vala 
 
