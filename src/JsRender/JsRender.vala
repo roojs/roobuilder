@@ -143,7 +143,7 @@ namespace JsRender {
 			}
 			var node = new Json.Node(Json.NodeType.OBJECT);
 			node.set_object(this.toJsonObject());			
-			var generator = new JsonGen(node);
+			var generator = new JsRender.JsonGen(node);
 		    generator.indent = 4;
 		    generator.pretty = true;
 		    
@@ -231,7 +231,7 @@ namespace JsRender {
 		   ;
 		    var node = new Json.Node(Json.NodeType.OBJECT);
 		    node.set_object(this.toJsonObject());
-  			var generator = new JsonGen(node);
+  			var generator = new JsRender.JsonGen(node);
 		    generator.indent = 1;
 		    generator.pretty = true;
 		    
