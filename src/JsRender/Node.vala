@@ -497,7 +497,7 @@ public class JsRender.Node : Object {
 				return;
 			}
 			
-			// if the member is an array (we rejoin it...)
+
 			if (value.get_node_type() == Json.NodeType.VALUE) {
 				var sv =  Value (typeof (string));			
 				var v = value.get_value();
@@ -511,6 +511,7 @@ public class JsRender.Node : Object {
 				
 				this.props.set(rkey,  (string)sv);
 			}
+			// if the member is an array (we rejoin it...) - long string.
 			if (value.get_node_type() == Json.NodeType.ARRAY) {
 				GLib.StringBuilder buffer;
 				var ar = value.get_array();
@@ -520,7 +521,7 @@ public class JsRender.Node : Object {
 					}
 					buffer.append(ar.get_string_element(i));
 				}
-			
+				this.props.set(key, buffer.str);
 			}
 			
 
@@ -601,6 +602,20 @@ public class JsRender.Node : Object {
 		Node.gen.set_root (n);
 		return  Node.gen.to_data (null);   
 	}
+	public void addStringValue(Json.Object obj, string key, string v)
+	{
+		if (v.index_of_char('\n',0) < 0) {
+			obj.set_string_member(key,v);
+			return;
+		}
+		var aro = new Json.Array();
+		var ar = v.split("\n");
+		for(var i =0;i < ar.length;i++) {
+			aro.add_string_element(ar[i]);
+		}
+		obj.set_array_member(key,aro);
+	}
+	
 	
 	public Json.Object toJsonObject()
 	{
