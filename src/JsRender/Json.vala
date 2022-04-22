@@ -11,7 +11,7 @@ namespace JsRender {
 	{
 
 		Json.Generator generator;
-
+		Json.Node node;
 		public void  construct   (Json.Node node )
 		{
   
@@ -21,12 +21,12 @@ namespace JsRender {
 			this.generator.indent = 4;
 			this.generator.pretty = true;
 			this.generator.set_root(node);
-			
+			this.node = node;
 		}
 		public string to_data()
 		{
 			
-			return this.generator.to_data(null);
+			return dump_node(this.node)
 		}
 		
 		
@@ -182,3 +182,39 @@ namespace JsRender {
     }					
 					
 }
+
+
+/*
+compile : 
+
+
+*/
+
+#if JSON_TESTCODE
+void main (string[] args) {
+
+	var testjson = """
+	{"quiz":{"sport":{"q1":{"question":"Which one is correct team name in NBA?","options":["New York Bulls",
+	"Los Angeles Kings","Golden State Warriros","Huston Rocket"],"answer":"Huston Rocket"}},"maths":
+	{"q1":{"question":"5 + 7 = ?","options":["10","11","12","13"],"answer":"12"},"q2":
+	{"question":"12 - 8 = ?","options":["1","2","3","4"],"answer":"4"}}}}'
+	""";
+	var parser = new Json.Parser ();
+	parser.load_from_data(testjson);
+	
+	var node = parser.get_root ();
+
+	var js = new JsRender.Json(node);
+	print("OUT: %s", js.to
+	
+	
+	
+}
+
+
+
+
+
+
+
+
