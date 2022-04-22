@@ -496,17 +496,34 @@ public class JsRender.Node : Object {
 				});
 				return;
 			}
-			var v = value.get_value();
-			var sv =  Value (typeof (string));
-			v.transform(ref sv);
-
-			var rkey = key;
-			if (version == 1) {
-				rkey = this.upgradeKey(key, (string)sv);
-			}
-
 			
-			this.props.set(rkey,  (string)sv);
+			// if the member is an array (we rejoin it...)
+			if (value.get_node_type() == Json.NodeType.VALUE) {
+				var sv =  Value (typeof (string));			
+				var v = value.get_value();
+
+				v.transform(ref sv);
+				var rkey = key;
+				if (version == 1) {
+					rkey = this.upgradeKey(key, (string)sv);
+				}
+
+				
+				this.props.set(rkey,  (string)sv);
+			}
+			if (value.get_node_type() == Json.NodeType.ARRAY) {
+				GLib.StringBuilder buffer;
+				var ar = value.get_array();
+				for (var i = 0; i < array_len; i++) {
+					if (i >0 ) {
+						buffer.append_c('\n');
+					}
+					buffer.append(ar.get_string_element(i));
+				}
+			
+			}
+			
+
 		});
 		
 
