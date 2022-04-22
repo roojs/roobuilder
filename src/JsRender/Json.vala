@@ -205,7 +205,7 @@ void main (string[] args) {
 	var node = parser.get_root ();
 
 	var js = new JsRender.Json(node);
-	print("OUT: %s", js.to
+	print("OUT: %s", js.to_data());
 	
 	
 	
