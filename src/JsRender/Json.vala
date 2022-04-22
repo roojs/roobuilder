@@ -163,11 +163,11 @@ namespace JsRender {
 
 			  if (i < members.length()) {
 				buffer.append_c(  ',');
-			}
+				}
 			  if (pretty) {
 				buffer.append_c(  '\n');
 				}
-			}
+			});
 
 		  if (pretty)
 			{
