@@ -514,7 +514,7 @@ public class JsRender.Node : Object {
 			if (value.get_node_type() == Json.NodeType.ARRAY) {
 				GLib.StringBuilder buffer;
 				var ar = value.get_array();
-				for (var i = 0; i < array_len; i++) {
+				for (var i = 0; i < ar.get_length(); i++) {
 					if (i >0 ) {
 						buffer.append_c('\n');
 					}
