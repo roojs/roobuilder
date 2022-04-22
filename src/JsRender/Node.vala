@@ -515,15 +515,9 @@ public class JsRender.Node : Object {
 	}
 	public string jsonNodeAsString(Json.Node node)
 	{
-		if (node.get_node_type() == Json.NodeType.VALUE) {
-			var sv =  Value (typeof (string));			
-			var v = node.get_value();
-			v.transform(ref sv);
-			return (string)sv;
-		}
 		
 		if (node.get_node_type() == Json.NodeType.ARRAY) {
-			GLib.StringBuilder buffer;
+			var  buffer = new GLib.StringBuilder();
 			var ar = node.get_array();
 			for (var i = 0; i < ar.get_length(); i++) {
 				if (i >0 ) {
@@ -533,7 +527,12 @@ public class JsRender.Node : Object {
 			}
 			return buffer.str;
 		}
-	
+	// hopeflyu only type value..		
+		var sv =  Value (typeof (string));			
+		var v = node.get_value();
+		v.transform(ref sv);
+		return (string)sv;
+
 	}
 	
 	
