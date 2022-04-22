@@ -68,10 +68,11 @@
             "../Builder4/RooProjectSettings.vala",
             "../Project/Flutter.vala",
             "../Palete/Flutter.vala",
-            "../JsRender/Flutter.vala"
+            "../JsRender/Flutter.vala",
+            "../JsRender/Json.vala",
+            "../JsRender/JsonGen.vala"
         ],
-        "packages" : [
-        ]
+        "packages" : []
     },
     {
         "name" : "_default_",

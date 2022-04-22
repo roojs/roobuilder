@@ -141,13 +141,14 @@ namespace JsRender {
 			if (this.xtype == "PlainFile") {
 				return "";
 			}
-			var generator = new Json.Generator ();
-			generator.indent = 4;
-			generator.pretty = true;
 			var node = new Json.Node(Json.NodeType.OBJECT);
-			node.set_object(this.toJsonObject());
-			generator.set_root(node);
-			return generator.to_data(null);
+			node.set_object(this.toJsonObject());			
+			var generator = new JsonGen(node);
+		    generator.indent = 4;
+		    generator.pretty = true;
+		    
+			
+			return generator.to_data();
 		}
 	
 		public string nickType()
@@ -227,16 +228,16 @@ namespace JsRender {
 		    if (this.xtype == "PlainFile") {
 			    return;
 		    }
-		    var generator = new Json.Generator ();
-		    generator.indent = 1;
-		    generator.pretty = true;
+		   ;
 		    var node = new Json.Node(Json.NodeType.OBJECT);
 		    node.set_object(this.toJsonObject());
-		    generator.set_root(node);
+  			var generator = new JsonGen(node);
+		    generator.indent = 1;
+		    generator.pretty = true;
 		    
 		    print("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
 		    try {
-				this.writeFile(this.path, generator.to_data(null));
+				this.writeFile(this.path, generator.to_data());
 		        //generator.to_file(this.path);
 		    } catch(Error e) {
 		        print("Save failed");

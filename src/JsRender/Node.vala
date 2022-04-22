@@ -491,28 +491,51 @@ public class JsRender.Node : Object {
 			if (key == "listeners") {
 				var li = value.get_object();
 				li.foreach_member((lio , li_key, li_value) => {
-					this.listeners.set(li_key, li_value.get_string());
-
+					this.listeners.set(li_key,  this.jsonNodeAsString(li_value));
 				});
 				return;
 			}
-			var v = value.get_value();
-			var sv =  Value (typeof (string));
-			v.transform(ref sv);
+			
 
 			var rkey = key;
+			var sval = this.jsonNodeAsString(value);
 			if (version == 1) {
-				rkey = this.upgradeKey(key, (string)sv);
+				rkey = this.upgradeKey(key, sval);
 			}
 
+				
+			this.props.set(rkey,  sval);
 			
-			this.props.set(rkey,  (string)sv);
+
 		});
 		
 
 
 
 	}
+	public string jsonNodeAsString(Json.Node node)
+	{
+		
+		if (node.get_node_type() == Json.NodeType.ARRAY) {
+			var  buffer = new GLib.StringBuilder();
+			var ar = node.get_array();
+			for (var i = 0; i < ar.get_length(); i++) {
+				if (i >0 ) {
+					buffer.append_c('\n');
+				}
+				buffer.append(ar.get_string_element(i));
+			}
+			return buffer.str;
+		}
+	// hopeflyu only type value..		
+		var sv =  Value (typeof (string));			
+		var v = node.get_value();
+		v.transform(ref sv);
+		return (string)sv;
+
+	}
+	
+	
 
 	public string upgradeKey(string key, string val)
 	{
@@ -584,6 +607,19 @@ public class JsRender.Node : Object {
 		Node.gen.set_root (n);
 		return  Node.gen.to_data (null);   
 	}
+	public void jsonObjectAddStringValue(Json.Object obj, string key, string v)
+	{
+		if (v.index_of_char('\n',0) < 0) {
+			obj.set_string_member(key,v);
+			return;
+		}
+		var aro = new Json.Array();
+		var ar = v.split("\n");
+		for(var i =0;i < ar.length;i++) {
+			aro.add_string_element(ar[i]);
+		}
+		obj.set_array_member(key,aro);
+	}
 	
 	public Json.Object toJsonObject()
 	{
@@ -595,7 +631,7 @@ public class JsRender.Node : Object {
 			ret.set_object_member("listeners", li);
 			var liter = this.listeners.map_iterator();
 			while (liter.next()) {
-				li.set_string_member(liter.get_key(), liter.get_value());
+				this.jsonObjectAddStringValue(li, liter.get_key(), liter.get_value());
 			}
 		}
 		//props
@@ -638,7 +674,8 @@ public class JsRender.Node : Object {
 			return;
 		}
 		///print( "ADD " + key + "=" + val + " as a string?\n");
-		o.set_string_member(key,val);
+		this.jsonObjectAddStringValue(o,key,val);
+		//o.set_string_member(key,val);
 		
 	}
 	public string nodeTip()
