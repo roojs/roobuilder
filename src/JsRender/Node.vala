@@ -491,38 +491,20 @@ public class JsRender.Node : Object {
 			if (key == "listeners") {
 				var li = value.get_object();
 				li.foreach_member((lio , li_key, li_value) => {
-					this.listeners.set(li_key, li_value.get_string());
-
+					this.listeners.set(li_key,  this.jsonNodeAsString(li_value));
 				});
 				return;
 			}
 			
 
-			if (value.get_node_type() == Json.NodeType.VALUE) {
-				var sv =  Value (typeof (string));			
-				var v = value.get_value();
-
-				v.transform(ref sv);
-				var rkey = key;
-				if (version == 1) {
-					rkey = this.upgradeKey(key, (string)sv);
-				}
+			var rkey = key;
+			var sval = this.jsonNodeAsString(value);
+			if (version == 1) {
+				rkey = this.upgradeKey(key, sval);
+			}
 
 				
-				this.props.set(rkey,  (string)sv);
-			}
-			// if the member is an array (we rejoin it...) - long string.
-			if (value.get_node_type() == Json.NodeType.ARRAY) {
-				GLib.StringBuilder buffer;
-				var ar = value.get_array();
-				for (var i = 0; i < ar.get_length(); i++) {
-					if (i >0 ) {
-						buffer.append_c('\n');
-					}
-					buffer.append(ar.get_string_element(i));
-				}
-				this.props.set(key, buffer.str);
-			}
+			this.props.set(rkey,  sval);
 			
 
 		});
@@ -531,6 +513,30 @@ public class JsRender.Node : Object {
 
 
 	}
+	public string jsonNodeAsString(Json.Node node)
+	{
+		if (node.get_node_type() == Json.NodeType.VALUE) {
+			var sv =  Value (typeof (string));			
+			var v = node.get_value();
+			v.transform(ref sv);
+			return (string)sv;
+		}
+		
+		if (node.get_node_type() == Json.NodeType.ARRAY) {
+			GLib.StringBuilder buffer;
+			var ar = node.get_array();
+			for (var i = 0; i < ar.get_length(); i++) {
+				if (i >0 ) {
+					buffer.append_c('\n');
+				}
+				buffer.append(ar.get_string_element(i));
+			}
+			return buffer.str;
+		}
+	
+	}
+	
+	
 
 	public string upgradeKey(string key, string val)
 	{
