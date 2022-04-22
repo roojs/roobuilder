@@ -41,7 +41,7 @@ namespace JsRender {
 			
 			  if (this.generator.pretty) {
 
-				  for (var i = 0; i < (this.generator.level * indent); i++)
+				  for (var i = 0; i < (this.generator.level * indent); i++) {
 						buffer.append_c(this.generator.indent_char);
 				  }
 			  }
