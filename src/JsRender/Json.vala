@@ -5,7 +5,8 @@ based on...
 https://gitlab.gnome.org/GNOME/json-glib/-/blob/master/json-glib/json-generator.c
 
 */
-namespace JsRender {
+namespace JsRender 
+{
 
 	public class Json : Object {
 	{
