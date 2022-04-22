@@ -5,10 +5,9 @@ based on...
 https://gitlab.gnome.org/GNOME/json-glib/-/blob/master/json-glib/json-generator.c
 
 */
-namespace JsRender 
-{
-
-	public class Json : Object {
+namespace JsRender {
+ 
+	public class Json : Object 
 	{
 
 		Json.Generator generator;
@@ -104,7 +103,7 @@ namespace JsRender
 
 		  buffer.append_c( '[');
 
-		  if (array_len == 0)
+		  if (array_len == 0) {
 			   buffer.append_c( ']');
 			   return;
 		  }
