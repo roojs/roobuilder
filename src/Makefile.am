@@ -103,12 +103,13 @@ roobuilder_PKGS = --pkg glib-2.0  \
 BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/PlainFile.vala \
 		JsRender/JsRender.vala \
+		JsRender/JsonGen.vala \		
 		JsRender/Lang.vala \
 		JsRender/NodeToGtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/Node.vala \
-		JsRender/Roo.vala 
+		JsRender/Roo.vala \
 
 
 # Palete/Flutter.vala 
