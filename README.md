@@ -1,6 +1,12 @@
 # roojsbuilder
 Vala and Javascript IDE - for building Vala Desktop applications and Javascript UI's using the roojs libraries (for bootstrap and classic)
 
+---
+Debian and Ubuntu packages
+
+  https://www.dropbox.com/scl/fo/9gmglurw6s4qqwzc3xkvu/h?dl=0&rlkey=9x0o549ne7gyvii3yc93u3brc
+
+  * you will need libvala, roojspacker 
 
 ---
 
@@ -12,7 +18,7 @@ Building it
     sudo apt-get remove vala* libvala*
     
   Download vala*.deb, libvala*.deb,  and roojspacker*.deb from
-  https://www.dropbox.com/sh/730btm3yn6jtplh/AABbRFzK6bI6BoHQIMfh3A4Ia?dl=0
+  https://www.dropbox.com/scl/fo/9gmglurw6s4qqwzc3xkvu/h?dl=0&rlkey=9x0o549ne7gyvii3yc93u3brc
     
     sudo dpkg -i libvala* vala*  roojspacker*
     
@@ -31,3 +37,15 @@ Building it
   e) run it
 
     roobuilder
+    
+---
+
+Notes on updating packaging..
+
+Update Package details.
+    
+    dch -v {release version}
+
+Build it..
+
+    debuild -us -uc
