@@ -24,7 +24,7 @@ dnl  we add zlib in to pad the listof libraries (as for some reason -L is inject
 dnl and it breaks the build...
 
 PKG_CHECK_MODULES(ROOBUILDER, [ zlib
-                 clutter-gtk-1.0
+		 clutter-gtk-1.0
 		 glib-2.0 >= 2.24.1
 		 gobject-2.0 >= 2.24.1
 		 gtk+-3.0 >= 3.11.3
