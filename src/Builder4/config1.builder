@@ -90,7 +90,8 @@
             "../c",
             "../..//tests",
             "../..//pixmaps",
-            "../../..//gitlive"
+            "../../..//gitlive",
+            "..//codegen"
         ],
         "packages" : [
             "gdk-3.0",

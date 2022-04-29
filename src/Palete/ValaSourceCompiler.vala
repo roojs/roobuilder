@@ -227,24 +227,12 @@ namespace Palete {
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
-#if VALA_0_48
+#if VALA_0_56
 			var ver=48;
+
 #elif VALA_0_36
 			var ver=36;
-#elif VALA_0_34
-			var ver=34;
-#elif VALA_0_32
-			var ver=32;
-#elif VALA_0_30
-			var ver=30;
-#elif VALA_0_28
-			var ver=28;
-#elif VALA_0_26	
-			var ver=26;
-#elif VALA_0_24
-			var ver=24;
-#elif VALA_0_22	
-			var ver=22;
+ 
 #endif
 			
 			for (int i = 2; i <= ver; i += 2) {
@@ -286,8 +274,11 @@ namespace Palete {
 
 			// add default packages:
 			//if (settings.profile == "gobject-2.0" || settings.profile == "gobject" || settings.profile == null) {
+#if VALA_0_56
+			context.set_target_profile (Vala.Profile.GOBJECT);
+#elif VALA_0_36
 			context.profile = Vala.Profile.GOBJECT;
- 			 
+#endif
 			var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
 			context.root.add_using_directive (ns_ref);
 
@@ -376,8 +367,9 @@ namespace Palete {
 			context.output = this.output == "" ? "/tmp/testrun" : this.output;
 			valac += " -o " + context.output;
 			GLib.debug("%s", valac);
-#if VALA_0_48
-#else			
+#if VALA_0_56
+			context.set_target_glib_version("2.32");
+#elif VALA_0_36 		
 			context.target_glib_major = 2;
 			context.target_glib_minor = 32;
 #endif
@@ -421,9 +413,9 @@ namespace Palete {
 			}
 			
 // none of this works on vala-40 as the API is not publicly visible
-#if VALA_0_48
+ 
 
-#else
+ 
 			context.codegen = new Vala.GDBusServerModule ();
 			 
 			
@@ -435,17 +427,19 @@ namespace Palete {
 			
 			string [] cc_options = { "-lm", "-pg" };
 			valac += " -X -lm -X -pg";
-			
-#if VALA_0_28 || VALA_0_30 || VALA_0_32 || VALA_0_34  || VALA_0_36
+
+#if VALA_0_56
+			ccompiler.compile (context, cc_command, cc_options);			
+#elif VALA_0_36
 			var pkg_config_command = Environment.get_variable ("PKG_CONFIG");
 			ccompiler.compile (context, cc_command, cc_options, pkg_config_command);
-#else
-			ccompiler.compile (context, cc_command, cc_options);
+			// newer ones got rid fo pkg config command? not sure why.
+			
 #endif
 		
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
-#endif		
+ 	
 			
 			this.outputResult();
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
