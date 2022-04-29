@@ -2,7 +2,7 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.68])
 
-AC_INIT([roobuilder], [4.0.0])
+AC_INIT([roobuilder], [4.1.0])
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -13,7 +13,7 @@ AM_SILENT_RULES([yes])
 
 AC_PROG_CC
 
-AM_PROG_VALAC([0.22.0])
+AM_PROG_VALAC([0.36.0])
 
 
 AC_CHECK_LIB([m],[cos])
@@ -33,8 +33,8 @@ PKG_CHECK_MODULES(ROOBUILDER, [ zlib
 		 gee-0.8
  		 libxml-2.0
 		 libsoup-2.4,
-		 roojspacker-1.2
-])
+		 roojspacker-1.4
+]) 
 
 dnl --- libvala -- needs to find matching really..
 
