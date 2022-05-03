@@ -2,7 +2,7 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.68])
 
-AC_INIT([roobuilder], [4.0.0])
+AC_INIT([roobuilder], [4.1.0])
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -13,7 +13,7 @@ AM_SILENT_RULES([yes])
 
 AC_PROG_CC
 
-AM_PROG_VALAC([0.22.0])
+AM_PROG_VALAC([0.36.0])
 
 
 AC_CHECK_LIB([m],[cos])
@@ -24,7 +24,7 @@ dnl  we add zlib in to pad the listof libraries (as for some reason -L is inject
 dnl and it breaks the build...
 
 PKG_CHECK_MODULES(ROOBUILDER, [ zlib
-                 clutter-gtk-1.0
+		 clutter-gtk-1.0
 		 glib-2.0 >= 2.24.1
 		 gobject-2.0 >= 2.24.1
 		 gtk+-3.0 >= 3.11.3
@@ -33,87 +33,32 @@ PKG_CHECK_MODULES(ROOBUILDER, [ zlib
 		 gee-0.8
  		 libxml-2.0
 		 libsoup-2.4,
-		 roojspacker-1.2
-])
+		 roojspacker-1.4
+]) 
 
 dnl --- libvala -- needs to find matching really..
 
-dnl - last supported version is 0.36 - as 0.40 broke the compiler
+dnl -   supported version is 0.36  and  0.56
 
-PKG_CHECK_MODULES(LIBVALA, [libvala-0.48],
-			[vala_4_8_enabled=yes],
-			[vala_4_8_enabled=no]) 
-	if test $vala_4_8_enabled = yes; then
-		AC_DEFINE(HAVE_LIBVALA48,1,[libvala 0.48 support])
-	else
+PKG_CHECK_MODULES(LIBVALA, [libvala-0.56],
+		[vala_5_6_enabled=yes],
+		[vala_5_6_enabled=no]) 
+if test $vala_5_6_enabled = yes; then
+	AC_DEFINE(HAVE_LIBVALA56,1,[libvala 0.56 support])
+else
 
-		 PKG_CHECK_MODULES(LIBVALA, [libvala-0.36],
-					 [vala_3_6_enabled=yes],
-					 [vala_3_6_enabled=no]) 
-			 if test $vala_3_6_enabled = yes; then
-				 AC_DEFINE(HAVE_LIBVALA36,1,[libvala 0.36 support])
-			 else
-			    
-			 PKG_CHECK_MODULES(LIBVALA, [libvala-0.34],
-						 [vala_3_4_enabled=yes],
-						 [vala_3_4_enabled=no]) 
-				 if test $vala_3_4_enabled = yes; then
-					 AC_DEFINE(HAVE_LIBVALA34,1,[libvala 0.34 support])
-				 else
-			    
-				 PKG_CHECK_MODULES(LIBVALA, [libvala-0.32],
-						 [vala_3_2_enabled=yes],
-						 [vala_3_2_enabled=no]) 
-				 if test $vala_3_2_enabled = yes; then
-					 AC_DEFINE(HAVE_LIBVALA32,1,[libvala 0.32 support])
-				 else	
-					 PKG_CHECK_MODULES(LIBVALA, [libvala-0.30],
-							 [vala_3_0_enabled=yes],
-							 [vala_3_0_enabled=no]) 
-					 if test $vala_3_0_enabled = yes; then
-							 AC_DEFINE(HAVE_LIBVALA30,1,[libvala 0.30 support])
-					 else				
-						 PKG_CHECK_MODULES(LIBVALA, [libvala-0.28],
-							 [vala_2_8_enabled=yes],
-							 [vala_2_8_enabled=no]) 
-						 if test $vala_2_8_enabled = yes; then
-							 AC_DEFINE(HAVE_LIBVALA28,1,[libvala 0.28 support])
-						 else
-							 PKG_CHECK_MODULES(LIBVALA, [libvala-0.26],
-								 [vala_2_6_enabled=yes],
-								 [vala_2_6_enabled=no])
-						 
-							 if test $vala_2_6_enabled = yes; then
-							 AC_DEFINE(HAVE_LIBVALA26,1,[libvala 0.26 support])
-							 else
-								 PKG_CHECK_MODULES(LIBVALA, [libvala-0.24],
-								 [vala_2_4_enabled=yes],
-								 [vala_2_4_enabled=no])
-							 
-								 if test $vala_2_4_enabled = yes; then
-									 AC_DEFINE(HAVE_LIBVALA24,1,[libvala 0.24 support])
-								 else
-									 PKG_CHECK_MODULES(LIBVALA, [libvala-0.22],
-									 [vala_2_2_enabled=yes] )
-									 
-									 AC_DEFINE(HAVE_LIBVALA22,1,[libvala 0.22 support])
-								 fi
-							 fi
-						 fi
-					 fi
-				 fi
-			 fi
-		 fi
-fi
-AM_CONDITIONAL(HAVE_LIBVALA48, test "$vala_4_8_enabled" = "yes")
+	 PKG_CHECK_MODULES(LIBVALA, [libvala-0.36],
+				 [vala_3_6_enabled=yes],
+				 [vala_3_6_enabled=no]) 
+	 if test $vala_3_6_enabled = yes; then
+		 AC_DEFINE(HAVE_LIBVALA36,1,[libvala 0.36 support])
+	 fi
+	 
+ fi
+
+AM_CONDITIONAL(HAVE_LIBVALA56, test "$vala_5_6_enabled" = "yes")
 AM_CONDITIONAL(HAVE_LIBVALA36, test "$vala_3_6_enabled" = "yes")
-AM_CONDITIONAL(HAVE_LIBVALA34, test "$vala_3_4_enabled" = "yes")
-AM_CONDITIONAL(HAVE_LIBVALA32, test "$vala_3_2_enabled" = "yes")
-AM_CONDITIONAL(HAVE_LIBVALA30, test "$vala_3_0_enabled" = "yes")
-AM_CONDITIONAL(HAVE_LIBVALA28, test "$vala_2_8_enabled" = "yes")
-AM_CONDITIONAL(HAVE_LIBVALA26, test "$vala_2_6_enabled" = "yes")
-AM_CONDITIONAL(HAVE_LIBVALA24, test "$vala_2_4_enabled" = "yes")
-AM_CONDITIONAL(HAVE_LIBVALA22, test "$vala_2_2_enabled" = "yes")
+
 
   
 

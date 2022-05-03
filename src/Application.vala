@@ -84,7 +84,7 @@
 		
 		public static string _self;
 		
-		enum Target {
+		public enum Target {
 		    INT32,
 		    STRING,
 		    ROOTWIN

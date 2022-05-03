@@ -1,41 +1,107 @@
 
  
-if HAVE_LIBVALA22
-roobuilder_LIBVALA = --pkg libvala-0.22
-endif
  
-if HAVE_LIBVALA24
-roobuilder_LIBVALA = --pkg libvala-0.24
-endif
-
-if HAVE_LIBVALA26
-roobuilder_LIBVALA = --pkg libvala-0.26
-endif
-
-if HAVE_LIBVALA28
-roobuilder_LIBVALA = --pkg libvala-0.28
-endif
-
-if HAVE_LIBVALA30
-roobuilder_LIBVALA = --pkg libvala-0.30
-endif
-
-if HAVE_LIBVALA32
-roobuilder_LIBVALA = --pkg libvala-0.32
-endif
-
-if HAVE_LIBVALA34
-roobuilder_LIBVALA = --pkg libvala-0.34
-endif
 
 
 if HAVE_LIBVALA36
 roobuilder_LIBVALA = --pkg libvala-0.36
+roobuilder_CODEGEN = 
+
 endif
 
 
-if HAVE_LIBVALA48
-roobuilder_LIBVALA = --pkg libvala-0.48
+if HAVE_LIBVALA56
+roobuilder_LIBVALA = --pkg libvala-0.56
+
+roobuilder_CODEGEN = \
+	codegen/valaccode.vala \
+	codegen/valaccodearraymodule.vala \
+	codegen/valaccodeassignmentmodule.vala \
+	codegen/valaccodeattribute.vala \
+	codegen/valaccodebasemodule.vala \
+	codegen/valaccodecompiler.vala \
+	codegen/valaccodecontrolflowmodule.vala \
+	codegen/valaccodedelegatemodule.vala \
+	codegen/valaccodememberaccessmodule.vala \
+	codegen/valaccodemethodcallmodule.vala \
+	codegen/valaccodemethodmodule.vala \
+	codegen/valaccodestructmodule.vala \
+	codegen/valaclassregisterfunction.vala \
+	codegen/valactype.vala \
+	codegen/valaenumregisterfunction.vala \
+	codegen/valagasyncmodule.vala \
+	codegen/valagdbusclientmodule.vala \
+	codegen/valagdbusmodule.vala \
+	codegen/valagdbusservermodule.vala \
+	codegen/valagerrormodule.vala \
+	codegen/valagirwriter.vala \
+	codegen/valaglibvalue.vala \
+	codegen/valagobjectmodule.vala \
+	codegen/valagtkmodule.vala \
+	codegen/valagsignalmodule.vala \
+	codegen/valagtypemodule.vala \
+	codegen/valagvaluemodule.vala \
+	codegen/valagvariantmodule.vala \
+	codegen/valainterfaceregisterfunction.vala \
+	codegen/valastructregisterfunction.vala \
+	codegen/valatyperegisterfunction.vala \
+	ccode/valaccode.vala \
+	ccode/valaccodeassignment.vala \
+	ccode/valaccodebinaryexpression.vala \
+	ccode/valaccodeblock.vala \
+	ccode/valaccodebreakstatement.vala \
+	ccode/valaccodecasestatement.vala \
+	ccode/valaccodecastexpression.vala \
+	ccode/valaccodecommaexpression.vala \
+	ccode/valaccodecomment.vala \
+	ccode/valaccodeconditionalexpression.vala \
+	ccode/valaccodeconstant.vala \
+	ccode/valaccodeconstantidentifier.vala \
+	ccode/valaccodecontinuestatement.vala \
+	ccode/valaccodedeclaration.vala \
+	ccode/valaccodedeclarator.vala \
+	ccode/valaccodedefine.vala \
+	ccode/valaccodedostatement.vala \
+	ccode/valaccodeemptystatement.vala \
+	ccode/valaccodeenum.vala \
+	ccode/valaccodeenumvalue.vala \
+	ccode/valaccodeexpression.vala \
+	ccode/valaccodeexpressionstatement.vala \
+	ccode/valaccodefile.vala \
+	ccode/valaccodeforstatement.vala \
+	ccode/valaccodefragment.vala \
+	ccode/valaccodefunction.vala \
+	ccode/valaccodefunctioncall.vala \
+	ccode/valaccodefunctiondeclarator.vala \
+	ccode/valaccodeggnucsection.vala \
+	ccode/valaccodegotostatement.vala \
+	ccode/valaccodeidentifier.vala \
+	ccode/valaccodeifstatement.vala \
+	ccode/valaccodeincludedirective.vala \
+	ccode/valaccodeinitializerlist.vala \
+	ccode/valaccodeinvalidexpression.vala \
+	ccode/valaccodelabel.vala \
+	ccode/valaccodelinedirective.vala \
+	ccode/valaccodeifsection.vala \
+	ccode/valaccodemacroreplacement.vala \
+	ccode/valaccodememberaccess.vala \
+	ccode/valaccodemodifiers.vala \
+	ccode/valaccodenewline.vala \
+	ccode/valaccodenode.vala \
+	ccode/valaccodeoncesection.vala \
+	ccode/valaccodeparameter.vala \
+	ccode/valaccodeparenthesizedexpression.vala \
+	ccode/valaccodereturnstatement.vala \
+	ccode/valaccodestatement.vala \
+	ccode/valaccodestruct.vala \
+	ccode/valaccodeswitchstatement.vala \
+	ccode/valaccodetypedefinition.vala \
+	ccode/valaccodeunaryexpression.vala \
+	ccode/valaccodevariabledeclarator.vala \
+	ccode/valaccodewhilestatement.vala \
+	ccode/valaccodewriter.vala \
+	ccode/valaccodeelementaccess.vala
+	
 endif
  
 # gda
@@ -89,7 +155,7 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg clutter-gtk-1.0 \
 		--pkg libsoup-2.4 \
  		--pkg javascriptcore \
-		--pkg roojspacker-1.2 \
+		--pkg roojspacker-1.4 \
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
@@ -124,8 +190,9 @@ BUIDERPALETE =  Palete/Gir.vala \
 		Palete/Roo.vala \
 		Palete/ValaSource.vala \
 		Palete/ValaSourceCompiler.vala \
-		Palete/CompletionProvider.vala
-        
+		Palete/CompletionProvider.vala \
+		$(roobuilder_CODEGEN)
+
 # Project/Flutter.vala 
 
 BUIDERPROJECT = Project/Gtk.vala \

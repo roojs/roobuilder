@@ -87,13 +87,18 @@ namespace Palete {
 				var em = new GirObject("EnumMember",e.name);
 				em.gparent = c;
 				em.ns = c.ns;
+				
+#if VALA_0_56
+				em.type  = e.type_reference == null ||  e.type_reference.type_symbol == null ? "" : e.type_reference.type_symbol.get_full_name();			
+#elif VALA_0_36
 				em.type  = e.type_reference == null ||  e.type_reference.data_type == null ? "" : e.type_reference.data_type.get_full_name();
+#endif				
+				
+				
 				// unlikely to get value..
 				//c.value = element->get_prop("value");
 				c.consts.set(e.name,em);
 			}
-			
-			
 			
 			 
 		}
@@ -172,9 +177,17 @@ namespace Palete {
 				c.inherits.add(cls.base_class.get_full_name());
 			}
 			foreach(var p in cls.get_base_types()) {
+#if VALA_0_56
+				if (p.type_symbol != null) {
+					c.implements.add(p.type_symbol.get_full_name());
+				}
+#elif VALA_0_36
 				if (p.data_type != null) {
 					c.implements.add(p.data_type.get_full_name());
 				}
+
+#endif				
+				 
 			}
 			  
 			
@@ -187,9 +200,13 @@ namespace Palete {
 			c.gparent = parent;
 			c.ns = parent.ns;
 			c.propertyof = parent.name;
-			
-			c.type  = prop.property_type.data_type == null ? "" : prop.property_type.data_type.get_full_name();
+#if VALA_0_56
+			c.type  = prop.property_type.type_symbol == null ? "" : prop.property_type.type_symbol.get_full_name();
+#elif VALA_0_36
+			c.type  = prop.property_type.data_type == null ? "" : prop.property_type.data_type.get_full_name();		
+#endif
 			parent.props.set(prop.name,c);
+
 			
 		}
 		public void add_signal(GirObject parent, Vala.Signal sig)
@@ -197,13 +214,20 @@ namespace Palete {
 			var c = new GirObject("Signal",sig.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
+
+#if VALA_0_56
+			var dt  = sig.return_type.type_symbol  ;
+#elif VALA_0_36
+			var dt  = sig.return_type.data_type;
+#endif			
+			 
 			
-			if (sig.return_type.data_type != null) {
+			if (dt != null) {
 				//print("creating return type on signal %s\n", sig.name);
 				var cc = new GirObject("Return", "return-value");
 				cc.gparent = c;
 				cc.ns = c.ns;
-				cc.type  =  sig.return_type.data_type.get_full_name();
+				cc.type  =  dt.get_full_name();
 				c.return_value = cc;
 			}
 			parent.signals.set(sig.name,c);
@@ -240,13 +264,26 @@ namespace Palete {
 			var c = new GirObject(ty,n);
 			c.gparent = parent;
 			c.ns = parent.ns;
-			
+#if VALA_0_56						
+			if (met.return_type.type_symbol != null) {
+#elif VALA_0_36
 			if (met.return_type.data_type != null) {
+#endif	
+			
+			
 				//print("creating return type on method %s\n", met.name);
 				var cc = new GirObject("Return", "return-value");
 				cc.gparent = c;
 				cc.ns = c.ns;
+
+#if VALA_0_56			
+				cc.type  =  met.return_type.type_symbol.get_full_name();
+#elif VALA_0_36
 				cc.type  =  met.return_type.data_type.get_full_name();
+#endif	
+				
+				
+				
 				c.return_value = cc;
 			}
 			if (met is Vala.CreationMethod) {
@@ -303,7 +340,11 @@ namespace Palete {
 			parent.params.add(c);
 			
 			if (!pam.ellipsis) {
+#if VALA_0_56			
+				c.type = pam.variable_type.type_symbol == null ? "" : pam.variable_type.type_symbol.get_full_name();
+#elif VALA_0_36
 				c.type = pam.variable_type.data_type == null ? "" : pam.variable_type.data_type.get_full_name();
+#endif				
 			}
 			Gir.checkParamOverride(c); 
 			return c;
@@ -318,24 +359,10 @@ namespace Palete {
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
-#if VALA_0_40
-			var ver=40;
+#if VALA_0_56
+			var ver=56;
 #elif VALA_0_36
-			var ver=36;			
-#elif VALA_0_34
-			var ver=34;			
-#elif VALA_0_32
-			var ver=32;			
-#elif VALA_0_30
-			var ver=30;			
-#elif VALA_0_28
-			var ver=28;
-#elif VALA_0_26	
-			var ver=26;
-#elif VALA_0_24
-			var ver=24;
-#elif VALA_0_22	
-			var ver=22;
+			var ver=36;
 #endif
 			
 			for (int i = 2; i <= ver; i += 2) {
@@ -374,7 +401,11 @@ namespace Palete {
 
 			// add default packages:
 			//if (settings.profile == "gobject-2.0" || settings.profile == "gobject" || settings.profile == null) {
+#if VALA_0_56
+			context.set_target_profile (Vala.Profile.GOBJECT);
+#elif VALA_0_36
 			context.profile = Vala.Profile.GOBJECT;
+#endif
  			 
 			var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
 			context.root.add_using_directive (ns_ref);
