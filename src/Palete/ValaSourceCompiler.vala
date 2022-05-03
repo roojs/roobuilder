@@ -228,16 +228,16 @@ namespace Palete {
 			context.experimental = false;
 			context.experimental_non_null = false;
 #if VALA_0_56
-			var ver=48;
+			var ver=56;
 
 #elif VALA_0_36
 			var ver=36;
  
 #endif
-			
-			for (int i = 2; i <= ver; i += 2) {
-				context.add_define ("VALA_0_%d".printf (i));
-			}
+			// this is automatic now.. no need to do it manually apparently..
+			//for (int i = 2; i <= ver; i += 2) {
+			//	context.add_define ("VALA_0_%d".printf (i));
+			//}
 			
 			
 			
@@ -248,6 +248,8 @@ namespace Palete {
 			 vapidirs +=  Path.get_dirname (context.get_vapi_path("glib-2.0")) ; // usr/share/vala-XXX/vapi
 			 			 	
 			for(var i =0 ; i < vapidirs.length; i++) {
+				GLib.debug("Add Vapidir = %s" , vapidirs[i]);
+			
 				valac += " --vapidir=" + vapidirs[i];
 			}
 				
@@ -345,12 +347,14 @@ namespace Palete {
 			
 	    	var dcg = pr.compilegroups.get("_default_");
 	    	for (var i = 0; i < dcg.packages.size; i++) {
-	    	
+	    		
 	    		var pkg = dcg.packages.get(i);
 	    		// do not add libvala versions except the one that matches the one we are compiled against..
 	    		if (Regex.match_simple("^libvala", pkg) && pkg != ("libvala-0." + ver.to_string())) {
+    	    		GLib.debug("Skip libvala Package: %s" , dcg.packages.get(i));
 	    			continue;
     			}
+    			GLib.debug("Add Package: %s" , dcg.packages.get(i));
 				valac += " --pkg " + dcg.packages.get(i);
 				if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
 					GLib.debug("Skip vapi '%s' - does not exist", dcg.packages.get(i));
