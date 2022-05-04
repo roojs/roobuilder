@@ -1,62 +1,167 @@
 {
- "name" : "WindowAddProp",
- "parent" : "",
- "title" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/WindowAddProp.bjs",
- "permname" : "",
- "modOrder" : "",
  "build_module" : "builder",
  "items" : [
   {
-   "id" : "WindowAddProp",
-   "* init" : "    this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n ",
    "$ shadow_type" : "Gtk.ShadowType.IN",
-   "| void show" : "(Palete.Palete pal, string etype, string xtype) {\n    this.model.el.clear();\n\n    Gtk.TreeIter iter;\n    var elementList = pal.getPropertiesFor( xtype,etype);\n    \n    \n    //print (\"GOT \" + elementList.length + \" items for \" + fullpath + \"|\" + type);\n           // console.dump(elementList);\n           \n    var miter = elementList.map_iterator();\n    while (miter.next()) {\n       var p = miter.get_value();\n        \n        this.model.el.append(out iter);\n\n\t\tvar dname = p.name;\n\t\tvar dtype = p.type;\n\t\t \n\n        this.model.el.set(iter,\n                0,  p.name, \n                1, p.type,\n                2, \"<b>\" + p.name +\"</b> <i>\"+p.type+\"</i>\\n\" + \n                        GLib.Markup.escape_text(p.doctxt),\n                3, p.sig,\n                4, \"<b>\" + dname +\"</b> <span size=\\\"small\\\"><i>\"+dtype+\"</i></span>\",\n                5, etype,\n                -1\n        );\n    }\n    this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);\n                             \n}\n",
-   "xtype" : "ScrolledWindow",
-   "@ void select" : "(string key, string type, string skel, string etype)",
    "$ xns" : "Gtk",
-   "| void clear" : "() {\n    this.model.el.clear();\n\n}",
+   "* init" : [
+    "    this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+    " "
+   ],
+   "@ void select" : "(string key, string type, string skel, string etype)",
+   "id" : "WindowAddProp",
    "items" : [
     {
-     "listeners" : {
-      "row_activated" : "(path, column)  => {\n\n        Gtk.TreeIter iter;\n\n\n        var m = _this.model;\n        \n        m.el.get_iter(out iter,path);\n        \n        \n        // var val = \"\";\n        \n        \n        var key = m.getValue(iter, 0);\n        \n        var type = m.getValue(iter, 1);\n        var skel = m.getValue(iter, 3);\n        var etype = m.getValue(iter, 5);\n        \n        \n        _this.select(key,etype == \"signals\" ? \"\" : type,skel, etype);\n        \n}\n "
-     },
-     "* init" : "{  \n       var description = new Pango.FontDescription();\n     description.set_size(8000);\n    this.el.override_font(description);     \n                    \n    this.el.get_selection().set_mode( Gtk.SelectionMode.SINGLE);\n \n\n    \n  \n    \n}\n",
-     "tooltip_column" : 2,
-     "xtype" : "TreeView",
-     "* pack" : "add",
      "$ enable_tree_lines" : true,
      "$ headers_visible" : true,
      "$ xns" : "Gtk",
+     "* init" : [
+      "{  ",
+      "       var description = new Pango.FontDescription();",
+      "     description.set_size(8000);",
+      "    this.el.override_font(description);     ",
+      "                    ",
+      "    this.el.get_selection().set_mode( Gtk.SelectionMode.SINGLE);",
+      " ",
+      "",
+      "    ",
+      "  ",
+      "    ",
+      "}",
+      ""
+     ],
+     "* pack" : "add",
      "items" : [
       {
-       "| string getValue" : "(Gtk.TreeIter iter, int col)\n{\n\n    GLib.Value value;\n    this.el.get_value(iter, col, out value);\n\n    return (string)value;\n    \n}",
-       "id" : "model",
+       "$ columns" : [
+        "typeof(string),  // 0 real key",
+        "typeof(string), // 1 real type",
+        "typeof(string), // 2 docs ?",
+        "typeof(string), // 3 visable desc",
+        "typeof(string), // 4 function desc",
+        "typeof(string) // 5 element type (event|prop)",
+        "        "
+       ],
+       "$ xns" : "Gtk",
        "* pack" : "set_model",
-       "xtype" : "ListStore",
-       "$ columns" : "typeof(string),  // 0 real key\ntypeof(string), // 1 real type\ntypeof(string), // 2 docs ?\ntypeof(string), // 3 visable desc\ntypeof(string), // 4 function desc\ntypeof(string) // 5 element type (event|prop)\n        ",
+       "id" : "model",
        "n_columns" : 6,
-       "$ xns" : "Gtk"
+       "xtype" : "ListStore",
+       "| string getValue" : [
+        "(Gtk.TreeIter iter, int col)",
+        "{",
+        "",
+        "    GLib.Value value;",
+        "    this.el.get_value(iter, col, out value);",
+        "",
+        "    return (string)value;",
+        "    ",
+        "}"
+       ]
       },
       {
-       "id" : "namecol",
-       "utf8 title" : "Double click to add",
-       "* init" : "  this.el.add_attribute(_this.namerender.el , \"markup\", 4  );\n \n",
-       "xtype" : "TreeViewColumn",
-       "* pack" : "append_column",
        "$ xns" : "Gtk",
+       "* init" : [
+        "  this.el.add_attribute(_this.namerender.el , \"markup\", 4  );",
+        " ",
+        ""
+       ],
+       "* pack" : "append_column",
+       "id" : "namecol",
        "items" : [
         {
-         "id" : "namerender",
-         "xtype" : "CellRendererText",
+         "$ xns" : "Gtk",
          "* pack" : "pack_start,true",
-         "$ xns" : "Gtk"
+         "id" : "namerender",
+         "xtype" : "CellRendererText"
         }
-       ]
+       ],
+       "utf8 title" : "Double click to add",
+       "xtype" : "TreeViewColumn"
       }
-     ]
+     ],
+     "listeners" : {
+      "row_activated" : [
+       "(path, column)  => {",
+       "",
+       "        Gtk.TreeIter iter;",
+       "",
+       "",
+       "        var m = _this.model;",
+       "        ",
+       "        m.el.get_iter(out iter,path);",
+       "        ",
+       "        ",
+       "        // var val = \"\";",
+       "        ",
+       "        ",
+       "        var key = m.getValue(iter, 0);",
+       "        ",
+       "        var type = m.getValue(iter, 1);",
+       "        var skel = m.getValue(iter, 3);",
+       "        var etype = m.getValue(iter, 5);",
+       "        ",
+       "        ",
+       "        _this.select(key,etype == \"signals\" ? \"\" : type,skel, etype);",
+       "        ",
+       "}",
+       " "
+      ]
+     },
+     "tooltip_column" : 2,
+     "xtype" : "TreeView"
     }
+   ],
+   "xtype" : "ScrolledWindow",
+   "| void clear" : [
+    "() {",
+    "    this.model.el.clear();",
+    "",
+    "}"
+   ],
+   "| void show" : [
+    "(Palete.Palete pal, string etype, string xtype) {",
+    "    this.model.el.clear();",
+    "",
+    "    Gtk.TreeIter iter;",
+    "    var elementList = pal.getPropertiesFor( xtype,etype);",
+    "    ",
+    "    ",
+    "    //print (\"GOT \" + elementList.length + \" items for \" + fullpath + \"|\" + type);",
+    "           // console.dump(elementList);",
+    "           ",
+    "    var miter = elementList.map_iterator();",
+    "    while (miter.next()) {",
+    "       var p = miter.get_value();",
+    "        ",
+    "        this.model.el.append(out iter);",
+    "",
+    "\t\tvar dname = p.name;",
+    "\t\tvar dtype = p.type;",
+    "\t\t ",
+    "",
+    "        this.model.el.set(iter,",
+    "                0,  p.name, ",
+    "                1, p.type,",
+    "                2, \"<b>\" + p.name +\"</b> <i>\"+p.type+\"</i>\\n\" + ",
+    "                        GLib.Markup.escape_text(p.doctxt),",
+    "                3, p.sig,",
+    "                4, \"<b>\" + dname +\"</b> <span size=\\\"small\\\"><i>\"+dtype+\"</i></span>\",",
+    "                5, etype,",
+    "                -1",
+    "        );",
+    "    }",
+    "    this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);",
+    "                             ",
+    "}",
+    ""
    ]
   }
- ]
+ ],
+ "modOrder" : "",
+ "name" : "WindowAddProp",
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/WindowAddProp.bjs",
+ "permname" : "",
+ "title" : ""
 }
