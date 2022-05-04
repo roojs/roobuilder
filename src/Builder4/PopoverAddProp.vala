@@ -48,8 +48,7 @@ public class Xcls_PopoverAddProp : Object
     
         Gtk.TreeIter iter;
         var elementList = pal.getPropertiesFor( xtype,etype);
-        
-        
+         
         //print ("GOT " + elementList.length + " items for " + fullpath + "|" + type);
                // console.dump(elementList);
                
