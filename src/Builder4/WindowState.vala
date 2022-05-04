@@ -12,7 +12,7 @@ public class WindowState : Object
 	public enum State {
 		NONE,
 		PREVIEW,
-		OBJECT,
+		//OBJECT,
 		//PROP,
 		//LISTENER,
 		CODE,    // code editor.
@@ -34,7 +34,7 @@ public class WindowState : Object
 	public Xcls_LeftProps       left_props;
 	public Xcls_RooProjectSettings roo_projectsettings_pop;
 	public Xcls_ValaProjectSettingsPopover  vala_projectsettings_pop;
-	public Xcls_RightPalete     rightpalete;
+	public Xcls_PopoverAddObject     rightpalete;
 	public Editor               code_editor;    
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
@@ -171,8 +171,8 @@ public class WindowState : Object
 		
 		// do we really want to flip paletes if differnt nodes are selected
 		// showing palete should be deliberate thing..
-		return;
-		/*
+		 
+	 
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
 
 		if (sel == null) {
@@ -180,35 +180,17 @@ public class WindowState : Object
 		} 
 		this.left_props.el.show();
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
-		switch (this.state) {
-			
-			case State.OBJECT: 
-				  
-				 if (sel == null) {
-					this.rightpalete.clear();
-					break;
-				}
-				this.rightpalete.load(this.left_tree.getActiveFile().palete(), sel.fqn());
-				break;
-				 
 		
-		   case State.PROP:
-				if (sel == null) {
-					this.add_props.clear();
-					break;
-				}
-				this.add_props.show(this.left_tree.getActiveFile().palete(), "props", sel.fqn());
-				break;
-
-			case State.LISTENER:
-			   
-				if (sel == null) {
-					this.add_props.clear();
-					break;
-				}
-				this.add_props.show(this.left_tree.getActiveFile().palete(), "signals", sel.fqn());
-				break;
-				
+		
+		// if either of these are active.. then we should update them??
+		
+		this.add_props.hide(); // always hide add node/add listener if we change node.
+		this.rightpalete.hide(); 
+		
+		
+		
+		switch (this.state) {
+		 
 			case State.CODE:
 				 this.switchState(State.PREVIEW);
 			 
@@ -216,7 +198,7 @@ public class WindowState : Object
 			   
 							
 		}
-		*/
+ 
 		 
 
 	}
@@ -345,14 +327,15 @@ public class WindowState : Object
 	public void objectAddInit()
 	{
 
-		this.rightpalete  = new Xcls_RightPalete();
+		this.rightpalete  = new Xcls_PopoverAddObject();
+		this.rightpalete.mainwindow = this.win;
 		this.rightpalete.ref();  /// really?
-		((Gtk.Container)(this.win.objectview.el.get_widget())).add(this.rightpalete.el);
+		/*((Gtk.Container)(this.win.objectview.el.get_widget())).add(this.rightpalete.el);
  
 
 		var stage = this.win.objectview.el.get_stage();
 		stage.set_background_color(  Clutter.Color.from_string("#000"));
-		   
+		 */
 	}
 	
 	// -----------  properties adding list...
@@ -361,6 +344,7 @@ public class WindowState : Object
 	{
 	// Add properties
 		this.add_props  = new Xcls_PopoverAddProp();
+		this.add_props.mainwindow = this.win;
 		this.add_props.ref();  /// really?
 		// don't need to add it..
 		//((Gtk.Container)(this.win.addpropsview.el.get_widget())).add(this.add_props.el);
@@ -371,6 +355,7 @@ public class WindowState : Object
 
 
 		this.add_props.select.connect( (key,type,skel, etype) => {
+			 
 			this.left_props.addProp(etype, key, skel, type);
 		});
 
@@ -384,9 +369,7 @@ public class WindowState : Object
 	
 	}
 
-
-
-	
+ 
 	// ----------- Add / Edit listener
 	// listener uses the properties 
 	//public void listenerInit()     { }
@@ -598,10 +581,12 @@ public class WindowState : Object
 	
 	public void showProps(Gtk.Widget btn, string sig_or_listen)
 	{
-		var ae =      this.left_tree.getActiveElement();
+		var ae =  this.left_tree.getActiveElement();
 		if (ae == null) {
 				return;
 		}
+		this.rightpalete.hide(); 
+		
 		this.add_props.el.show_all(); 
 		this.add_props.show(
 			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
@@ -611,6 +596,23 @@ public class WindowState : Object
 			
 		);
 	}
+	
+	public void showAddObject(Gtk.Widget btn)
+	{
+	 
+		 var n = this.left_tree.getActiveElement();
+		this.add_props.hide();
+		this.rightpalete.el.show_all();
+		this.rightpalete.show(
+			this.left_tree.getActiveFile().palete(), 
+			n == null ? "*top" : n.fqn(),
+			btn
+		);
+	}
+
+				
+	
+	
 	public void switchState(State new_state)
 	{
 		
@@ -645,13 +647,7 @@ public class WindowState : Object
 				
 				break;
 				
-		/*
-		   case State.LISTENER:
-		  case State.PROP:
-				
-				this.win.addpropsview.el.set_scale(0.0f,0.0f);
-				 break;
-			*/	
+	 
 			case State.CODE:
 				this.code_editor.saveContents();
 			  
@@ -669,12 +665,7 @@ public class WindowState : Object
 				this.win.leftpane.el.show();
 				this.win.codeeditview.el.set_scale(0.0f,0.0f);
 			
-				/*this.win.codeeditview.el.set_easing_duration(1000);
-				this.win.codeeditview.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, 0.0f);
-				//this.win.codeeditview.el.set_scale(1.0f,1.0f);
-				this.win.codeeditview.el.set_pivot_point(0.5f,0.5f);
-				this.win.codeeditview.el.set_opacity(0xff);
-			*/
+			 
 			
 			    while (Gtk.events_pending()) { 
 					Gtk.main_iteration();
@@ -684,36 +675,11 @@ public class WindowState : Object
 				 
 				break;
 
-			 case State.OBJECT:
-			   
-				this.win.objectview.el.set_scale(0.0f,0.0f);
-				 break;
-
-			/*case State.FILEPROJECT:
-			//case State.PROJECT:
-			//case State.PROJECTCODEONLY:
-				if (this.win.project.xtype == "Gtk") {
-					this.vala_projectsettings.save();
-				} 
-				if (this.state == State.FILEPROJECT) {
-					this.clutterfiles.el.set_scale(1.0f,1.0f);
-				
-				}
-				this.win.projecteditview.el.set_scale(0.0f,0.0f);
-				break;
-			*/
+		 
 		  case State.FILES: // goes to preview or codeonly...
 				// hide files...
 				
-				
-				/*if (new_state == State.FILEPROJECT) {
-				
-					this.clutterfiles.el.set_easing_duration(1000);
-					this.clutterfiles.el.set_pivot_point(0.5f,1.0f);
-					this.clutterfiles.el.set_scale(0.5f,0.5f);
-					break;
-				}
-				*/
+			 
  
 				if (new_state == State.CODEONLY) {
 					this.win.rooview.el.hide();
@@ -765,66 +731,9 @@ public class WindowState : Object
 				 }
 			   
 				break;
-
-/*
-			case State.LISTENER:
-			case State.PROP:
-				var ae =      this.left_tree.getActiveElement();
-				if (ae == null) {
-					this.state = oldstate;
-					this.buttonsShowHide();
-					this.resizeCanvasElements();
-					this.easingRestoreAll();
-					return;
-				}
-				this.add_props.el.show_all();
-				this.add_props.show(
-					this.win.project.palete, //Palete.factory(this.win.project.xtype), 
-					this.state == State.LISTENER ? "signals" : "props",
-					ae.fqn(),
-					// button
-					
-				);
  
-					 
- 
-				
-				// -- FIXME? this needs to be State aware?
-		 
-				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
-				  
-				this.win.addpropsview.el.set_scale(1.0f,1.0f);
-				break;
-*/		   
-			case State.OBJECT:
-				 var n = this.left_tree.getActiveElement();
-
-				if (this.file == null) {
-					this.state =oldstate;
-					this.buttonsShowHide();
-					this.resizeCanvasElements();
-					this.easingRestoreAll();
-					return;
-				}
-				
-				if (n == null && this.file.tree != null) {
-					this.state = oldstate;
-					this.buttonsShowHide();
-					this.resizeCanvasElements();
-					this.easingRestoreAll();
-					return;
-				}
-
-				this.rightpalete.el.show_all();
-				this.rightpalete.load(this.left_tree.getActiveFile().palete(), n == null ? "*top" : n.fqn());
-
-				
-			  
-				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
-				this.win.objectview.el.set_scale(1.0f,1.0f);
-				 
-				break;
-		   
+		
+			    
 		   
 			case State.CODE:
 				this.win.codeeditview.el.show();
@@ -856,59 +765,7 @@ public class WindowState : Object
 				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
 				break;
 
-			/*case State.PROJECTCODEONLY:
-			    // going to project edit (when in code only)
-
-				
-			    
-				if (this.win.project.xtype == "Roo") {
-					this.projectsettings.el.show_all();
-					this.projectsettings.show(this.win.project);
-				} else {
-					this.vala_projectsettings.el.show_all();
-					this.vala_projectsettings.show((Project.Gtk)this.win.project);
-				}
- 
-				this.win.projecteditview.el.set_scale(1.0f,1.0f);
-				 
-				break;
-
-
-			case State.PROJECT:
-				this.win.rooview.el.set_pivot_point(1.0f,1.0f); // bottom right..
-				
-				if (this.win.project.xtype == "Roo") {
-					this.projectsettings.el.show_all();
-					this.projectsettings.show(this.win.project);
-				} else {
-					this.vala_projectsettings.el.show_all();
-					this.vala_projectsettings.show((Project.Gtk)this.win.project);
-				}
- 
-				this.win.projecteditview.el.set_scale(1.0f,1.0f);
-				 
-				break;
-				
-			case State.FILEPROJECT:
-				var pr = this.left_projects.getSelectedProject();
-
-				this.win.project = pr;
-				
-				this.attachProjectSettings();
-				print("FIlE PROJECT -  show %s\n", pr.xtype);
-				
-				if (pr.xtype == "Roo") {
-					this.projectsettings.el.show_all();
-					this.projectsettings.show(this.win.project);
-				} else {
-					this.vala_projectsettings.el.show_all();
-					this.vala_projectsettings.show((Project.Gtk)this.win.project);
-				}
- 
-				this.win.projecteditview.el.set_scale(1.0f,1.0f);
-				 
-				break;
-			*/
+			 
 		   case State.FILES:  // can only get here from PREVIEW (or code-only) state.. in theory..
 				
    
@@ -1019,17 +876,7 @@ public class WindowState : Object
 				this.clutterfiles.set_size(alloc.width-50, alloc.height);
 				break;
 
-			/*case State.PROJECT:
 		 
-				this.win.projecteditview.el.set_size(alloc.width-50, alloc.height / 2.0f);
-		
-			   // this.win.rooview.el.save_easing_state();
-				//this.win.rooview.el.set_size(alloc.width / 2.0f, alloc.height / 2.0f);
-				 
-				this.win.rooview.el.set_scale(0.5f, 0.5f);
-				//this.win.rooview.el.restore_easing_state();
-				break;
-		*/
 			case State.CODE: 
 				this.win.codeeditview.el.set_size(codesize, alloc.height);
 				var scale = avail > 0.0f ? (avail - codesize -10 ) / avail : 0.0f;
@@ -1047,20 +894,7 @@ public class WindowState : Object
 				this.win.rooview.el.set_scale(scale,scale);
 			   // this.win.rooview.el.restore_easing_state();
 				break;	
-			/*case State.PROP:
-			case State.LISTENER:
-				 this.win.addpropsview.el.set_size(palsize, alloc.height);
-				var scale = avail > 0.0f ? (avail - palsize -10 ) / avail : 0.0f;
-				this.win.rooview.el.set_scale(scale,scale);
-				break;
-				*/
-			case State.OBJECT:  
-				this.win.objectview.el.set_size(palsize, alloc.height);    
-				var scale = avail > 0.0f ? (avail - palsize -10 ) / avail : 0.0f;
-				//this.win.rooview.el.save_easing_state();
-				this.win.rooview.el.set_scale(scale,scale);
-			   // this.win.rooview.el.restore_easing_state();
-				break;
+			 
 		}
 	}
 
@@ -1126,25 +960,9 @@ public class WindowState : Object
 				this.win.addlistenerbutton.el.show(); 
 				break;
 				// continue thru..
-			//case State.PROP:
-			//case State.LISTENER:
-			case State.OBJECT:
-				
-				this.win.backbutton.el.show();
-				this.win.objectshowbutton.el.show(); // add objects
-				this.win.addpropbutton.el.show();  
-				this.win.addlistenerbutton.el.show(); 
-				break;
-			/*
-			case State.PROJECT: 
-			case State.FILEPROJECT:
-			case State.PROJECTCODEONLY:
-				// anything else?
-				this.win.backbutton.el.show();
-				
-				break;
-			*/
-	
+			 
+			 
+		 
 			case State.FILES:
 				if (this.left_projects.getSelectedProject() != null ) {
 					if (this.left_tree.getActiveFile() != null) {

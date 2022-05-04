@@ -1519,8 +1519,8 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                 _this.windowstate.switchState(WindowState.State.OBJECT);
-              
+            
+              	_this.windowstate.showAddObject(this.el);
              
             });
         }
@@ -1636,7 +1636,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                 _this.windowstate.switchState(WindowState.State.PROP);
+                 _this.windowstate.showProps(this.el, "props");
              
             
             });
@@ -1753,8 +1753,8 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                _this.windowstate.switchState(WindowState.State.LISTENER);
-              
+             
+               _this.windowstate.showProps(this.el, "signals");
             
             
             });

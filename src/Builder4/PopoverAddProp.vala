@@ -18,7 +18,9 @@ public class Xcls_PopoverAddProp : Object
 
         // my vars (def)
     public bool active;
-    public signal void select (string key, string type, string skel, string etype);
+    public signal void select (string key, string type, string skel, string prop_or_listener);
+    public Xcls_MainWindow mainwindow;
+    public string prop_or_listener;
 
     // ctor
     public Xcls_PopoverAddProp()
@@ -28,26 +30,34 @@ public class Xcls_PopoverAddProp : Object
 
         // my vars (dec)
         this.active = false;
+        this.prop_or_listener = "";
 
         // set gobject values
         this.el.width_request = 900;
         this.el.height_request = 800;
         this.el.hexpand = false;
         this.el.modal = true;
-        this.el.position = Gtk.PositionType.TOP;
+        this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_ScrolledWindow2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
     }
 
     // user defined functions
-    public void show (Palete.Palete pal, string etype, string xtype,  Gtk.Widget onbtn) {
+    public void show (Palete.Palete pal, string prop_or_listener, string xtype,  Gtk.Widget onbtn) {
     
-            
+        
+        if (this.prop_or_listener  != "" && this.prop_or_listener == prop_or_listener) {
+        	this.prop_or_listener = "";
+        	this.el.hide();
+        	return;
+    	}
+        this.prop_or_listener = prop_or_listener;
+        
         this.model.el.clear();
     
         Gtk.TreeIter iter;
-        var elementList = pal.getPropertiesFor( xtype,etype);
+        var elementList = pal.getPropertiesFor( xtype,prop_or_listener);
          
         //print ("GOT " + elementList.length + " items for " + fullpath + "|" + type);
                // console.dump(elementList);
@@ -69,7 +79,7 @@ public class Xcls_PopoverAddProp : Object
                             GLib.Markup.escape_text(p.doctxt),
                     3, p.sig,
                     4, "<b>" + dname +"</b> <span size=\"small\"><i>"+dtype+"</i></span>",
-                    5, etype,
+                    5, prop_or_listener,
                     -1
             );
         }
@@ -79,16 +89,13 @@ public class Xcls_PopoverAddProp : Object
         
         this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);
         int w,h;
-        this.window.el.get_size(out w, out h);
+        this.mainwindow.el.get_size(out w, out h);
         
         // left tree = 250, editor area = 500?
         
         // min 450?
-        var new_w = int.min(450, w-100);
-        if (new_w > (w-100)) {
-            new_w = w-100;
-        }
-        this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
+    	// max hieght ...
+        this.el.set_size_request( 250, h);
     
         
     
@@ -101,6 +108,10 @@ public class Xcls_PopoverAddProp : Object
                 Gtk.main_iteration();
         }       
      //   this.hpane.el.set_position( 0);
+    }
+    public void hide () {
+    	this.prop_or_listener = "";
+    	this.el.hide();
     }
     public void clear () {
      this.model.el.clear();
@@ -165,7 +176,7 @@ public class Xcls_PopoverAddProp : Object
 
             {  
                    var description = new Pango.FontDescription();
-                 description.set_size(8000);
+                 description.set_size(10000);
                 this.el.override_font(description);     
                                 
                 this.el.get_selection().set_mode( Gtk.SelectionMode.SINGLE);
@@ -179,26 +190,30 @@ public class Xcls_PopoverAddProp : Object
             //listeners
             this.el.row_activated.connect( (path, column)  => {
             
-                    Gtk.TreeIter iter;
+            	Gtk.TreeIter iter;
             
             
-                    var m = _this.model;
-                    
-                    m.el.get_iter(out iter,path);
-                    
-                    
-                    // var val = "";
-                    
-                    
-                    var key = m.getValue(iter, 0);
-                    
-                    var type = m.getValue(iter, 1);
-                    var skel = m.getValue(iter, 3);
-                    var etype = m.getValue(iter, 5);
-                    
-                    
-                    _this.select(key,etype == "signals" ? "" : type,skel, etype);
-                    
+            	var m = _this.model;
+            
+            	m.el.get_iter(out iter,path);
+            
+            
+            	// var val = "";
+            
+            
+            	var key = m.getValue(iter, 0);
+            
+            	var type = m.getValue(iter, 1);
+            	var skel = m.getValue(iter, 3);
+            	var etype = m.getValue(iter, 5);
+            
+            	// hide the popover
+            	_this.el.hide();
+            	_this.prop_or_listener = "";
+            	
+            	
+            	_this.select(key,etype == "signals" ? "" : type,skel, etype);
+             
             });
         }
 
@@ -236,7 +251,7 @@ typeof(string) // 5 element type (event|prop)
         
             GLib.Value value;
             this.el.get_value(iter, col, out value);
-        
+         
             return (string)value;
             
         }

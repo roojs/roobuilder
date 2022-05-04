@@ -22,7 +22,6 @@
             "../Builder4/WindowLeftProjects.vala",
             "../Builder4/WindowLeftProps.vala",
             "../Builder4/WindowLeftTree.vala",
-            "../Builder4/WindowRightPalete.vala",
             "../Builder4/WindowRooView.vala",
             "../Builder4/WindowState.vala",
             "../Builder4",
@@ -156,7 +155,8 @@
             "..//ccode/valaccodewhilestatement.vala",
             "..//ccode/valaccodewriter.vala",
             "..//ccode",
-            "../Builder4/PopoverAddProp.vala"
+            "../Builder4/PopoverAddProp.vala",
+            "../Builder4/PopoverAddObject.vala"
         ],
         "packages" : []
     },
