@@ -19,7 +19,6 @@
             "../Builder4/MainWindow.vala",
             "../Builder4/RooProjectProperties.vala",
             "../Builder4/StandardErrorDialog.vala",
-            "../Builder4/WindowAddProp.vala",
             "../Builder4/WindowLeftProjects.vala",
             "../Builder4/WindowLeftProps.vala",
             "../Builder4/WindowLeftTree.vala",
@@ -156,7 +155,8 @@
             "..//ccode/valaccodevariabledeclarator.vala",
             "..//ccode/valaccodewhilestatement.vala",
             "..//ccode/valaccodewriter.vala",
-            "..//ccode"
+            "..//ccode",
+            "../Builder4/PopoverAddProp.vala"
         ],
         "packages" : []
     },

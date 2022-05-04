@@ -28,8 +28,7 @@ public class WindowState : Object
  
 	public Project.Project project;
 	public JsRender.JsRender file;
-	 
-	
+	  
 	public Xcls_WindowLeftTree  left_tree;
 	public Xcls_PopoverAddProp   add_props;
 	public Xcls_LeftProps       left_props;
