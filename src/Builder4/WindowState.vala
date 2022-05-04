@@ -596,13 +596,16 @@ public class WindowState : Object
 	}
 	
 	
-	public void showProps(Gtk.Widget btn)
+	public void showProps(Gtk.Widget btn, string sig_or_listen)
 	{
-	
-		this.add_props.el.show_all();
+		var ae =      this.left_tree.getActiveElement();
+		if (ae == null) {
+				return;
+		}
+		this.add_props.el.show_all(); 
 		this.add_props.show(
 			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
-			this.state == State.LISTENER ? "signals" : "props",
+			 sig_or_listen, //this.state == State.LISTENER ? "signals" : "props",
 			ae.fqn(),
 			btn
 			
