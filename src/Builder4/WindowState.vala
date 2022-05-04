@@ -31,7 +31,7 @@ public class WindowState : Object
 	 
 	
 	public Xcls_WindowLeftTree  left_tree;
-	public Xcls_WindowAddProp   add_props;
+	public Xcls_PopoverAddProp   add_props;
 	public Xcls_LeftProps       left_props;
 	public Xcls_RooProjectSettings roo_projectsettings_pop;
 	public Xcls_ValaProjectSettingsPopover  vala_projectsettings_pop;
@@ -169,7 +169,11 @@ public class WindowState : Object
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel, string source)
 	{
-
+		
+		// do we really want to flip paletes if differnt nodes are selected
+		// showing palete should be deliberate thing..
+		return;
+		/*
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
 
 		if (sel == null) {
@@ -213,6 +217,7 @@ public class WindowState : Object
 			   
 							
 		}
+		*/
 		 
 
 	}
@@ -356,13 +361,14 @@ public class WindowState : Object
 	public void propsAddInit()
 	{
 	// Add properties
-		this.add_props  = new Xcls_WindowAddProp();
+		this.add_props  = new Xcls_PopoverAddProp();
 		this.add_props.ref();  /// really?
-		((Gtk.Container)(this.win.addpropsview.el.get_widget())).add(this.add_props.el);
+		// don't need to add it..
+		//((Gtk.Container)(this.win.addpropsview.el.get_widget())).add(this.add_props.el);
  
 
-		var  stage = this.win.addpropsview.el.get_stage();
-		stage.set_background_color(  Clutter.Color.from_string("#000"));
+		//var  stage = this.win.addpropsview.el.get_stage();
+		//stage.set_background_color(  Clutter.Color.from_string("#000"));
 
 
 		this.add_props.select.connect( (key,type,skel, etype) => {
