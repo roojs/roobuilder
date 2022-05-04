@@ -595,6 +595,20 @@ public class WindowState : Object
 		this.clutterfiles.el.restore_easing_state();
 		
 	}
+	
+	
+	public void showProps(Gtk.Widget btn)
+	{
+	
+		this.add_props.el.show_all();
+		this.add_props.show(
+			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
+			this.state == State.LISTENER ? "signals" : "props",
+			ae.fqn(),
+			btn
+			
+		);
+	}
 	public void switchState(State new_state)
 	{
 		
@@ -631,7 +645,7 @@ public class WindowState : Object
 				
 			
 		   case State.LISTENER:
-		   case State.PROP:
+		 //  case State.PROP:
 				
 				this.win.addpropsview.el.set_scale(0.0f,0.0f);
 				 break;
@@ -753,7 +767,7 @@ public class WindowState : Object
 
 			case State.LISTENER:
 		// same as prop?
-			case State.PROP:
+			//case State.PROP:
 				var ae =      this.left_tree.getActiveElement();
 				if (ae == null) {
 					this.state = oldstate;
@@ -766,7 +780,9 @@ public class WindowState : Object
 				this.add_props.show(
 					this.win.project.palete, //Palete.factory(this.win.project.xtype), 
 					this.state == State.LISTENER ? "signals" : "props",
-					ae.fqn()
+					ae.fqn(),
+					// button
+					
 				);
  
 					 
