@@ -16,6 +16,12 @@ src/roobuilder
 src/*.stamp
 src/*.stamp-t
 tests/*.c
+src/ccode/*.c
+src/ccode/*.o
+src/codegen/*.c
+src/codegen/*.o
+
+
 
 Makecache
 Makefile
