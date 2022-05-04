@@ -1047,13 +1047,13 @@ public class WindowState : Object
 				this.win.rooview.el.set_scale(scale,scale);
 			   // this.win.rooview.el.restore_easing_state();
 				break;	
-			case State.PROP:
+			/*case State.PROP:
 			case State.LISTENER:
 				 this.win.addpropsview.el.set_size(palsize, alloc.height);
 				var scale = avail > 0.0f ? (avail - palsize -10 ) / avail : 0.0f;
 				this.win.rooview.el.set_scale(scale,scale);
 				break;
-				
+				*/
 			case State.OBJECT:  
 				this.win.objectview.el.set_size(palsize, alloc.height);    
 				var scale = avail > 0.0f ? (avail - palsize -10 ) / avail : 0.0f;
@@ -1126,8 +1126,8 @@ public class WindowState : Object
 				this.win.addlistenerbutton.el.show(); 
 				break;
 				// continue thru..
-			case State.PROP:
-			case State.LISTENER:
+			//case State.PROP:
+			//case State.LISTENER:
 			case State.OBJECT:
 				
 				this.win.backbutton.el.show();
