@@ -13,8 +13,8 @@ public class WindowState : Object
 		NONE,
 		PREVIEW,
 		OBJECT,
-		PROP,
-		LISTENER,
+		//PROP,
+		//LISTENER,
 		CODE,    // code editor.
 		CODEONLY,
 		FILES //,
@@ -643,13 +643,13 @@ public class WindowState : Object
 				
 				break;
 				
-			
+		/*
 		   case State.LISTENER:
-		 //  case State.PROP:
+		  case State.PROP:
 				
 				this.win.addpropsview.el.set_scale(0.0f,0.0f);
 				 break;
-				
+			*/	
 			case State.CODE:
 				this.code_editor.saveContents();
 			  
@@ -764,10 +764,9 @@ public class WindowState : Object
 			   
 				break;
 
-
+/*
 			case State.LISTENER:
-		// same as prop?
-			//case State.PROP:
+			case State.PROP:
 				var ae =      this.left_tree.getActiveElement();
 				if (ae == null) {
 					this.state = oldstate;
@@ -794,7 +793,7 @@ public class WindowState : Object
 				  
 				this.win.addpropsview.el.set_scale(1.0f,1.0f);
 				break;
-		   
+*/		   
 			case State.OBJECT:
 				 var n = this.left_tree.getActiveElement();
 
