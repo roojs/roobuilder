@@ -182,6 +182,9 @@ public class Xcls_PopoverEditor : Object
     	this.prop_or_listener = "";
     	this.el.hide();
     }
+    public return_type XXXX () {
+    
+    }
     public void clear () {
      this.model.el.clear();
     }

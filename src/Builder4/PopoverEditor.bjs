@@ -584,6 +584,12 @@
     "}",
     ""
    ],
+   "| return_type XXXX" : [
+    "() {",
+    "",
+    "}",
+    ""
+   ],
    "| return_type forwardSearch" : [
     "(bool change_focus) {",
     "",
