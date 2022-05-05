@@ -46,46 +46,36 @@ public class Xcls_PopoverEditor : Object
     }
 
     // user defined functions
-    public void show (Palete.Palete pal, string prop_or_listener, string xtype,  Gtk.Widget onbtn) {
-    
+    public void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key,  Gtk.Widget onbtn))
+    {
+        this.file = file;    
+        this.ptype = "";
+        this.key  = "";
+        this.node = null;
+    	this.searchcontext = null;
         
-        if (this.prop_or_listener  != "" && this.prop_or_listener == prop_or_listener) {
-        	this.prop_or_listener = "";
-        	this.el.hide();
-        	return;
-    	}
-        this.prop_or_listener = prop_or_listener;
+        if (file.xtype != "PlainFile") {
         
-        this.model.el.clear();
-    
-        Gtk.TreeIter iter;
-        var elementList = pal.getPropertiesFor( xtype,prop_or_listener);
-         
-        //print ("GOT " + elementList.length + " items for " + fullpath + "|" + type);
-               // console.dump(elementList);
-               
-        var miter = elementList.map_iterator();
-        while (miter.next()) {
-           var p = miter.get_value();
+            this.ptype = ptype;
+            this.key  = key;
+            this.node = node;
+             string val = "";
+            // find the text for the node..
+            if (ptype == "listener") {
+                val = node.listeners.get(key);
             
-            this.model.el.append(out iter);
-    
-    		var dname = p.name;
-    		var dtype = p.type;
-    		 
-    
-            this.model.el.set(iter,
-                    0,  p.name, 
-                    1, p.type,
-                    2, "<b>" + p.name +"</b> <i>"+p.type+"</i>\n" + 
-                            GLib.Markup.escape_text(p.doctxt),
-                    3, p.sig,
-                    4, "<b>" + dname +"</b> <span size=\"small\"><i>"+dtype+"</i></span>",
-                    5, prop_or_listener,
-                    -1
-            );
-        }
+            } else {
+                val = node.props.get(key);
+            }
+            this.view.load(val);
+            this.key_edit.el.show();
+            this.key_edit.el.text = key;  
         
+        } else {
+            this.view.load(        file.toSource() );
+            this.key_edit.el.hide();
+        }
+    
         
         // set size up...
         
