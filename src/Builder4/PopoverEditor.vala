@@ -19,6 +19,7 @@ public class Xcls_PopoverEditor : Object
     public Xcls_buffer buffer;
 
         // my vars (def)
+    public string activeEditor;
     public bool active;
     public Xcls_MainWindow mainwindow;
     public signal void save ();
