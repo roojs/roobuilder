@@ -26,16 +26,7 @@
    "int width_request" : 900,
    "items" : [
     {
-     "# JsRender.JsRender file" : "null",
-     "# JsRender.Node node" : "null",
-     "# Xcls_MainWindow window" : "null",
-     "# bool dirty" : false,
-     "# bool pos" : false,
-     "# int pos_root_x" : "",
-     "# int pos_root_y" : "",
-     "# string activeEditor" : "\"\"",
-     "# string key" : "\"\"",
-     "# string ptype" : "\"\"",
+     
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
      "* pack" : "add",
