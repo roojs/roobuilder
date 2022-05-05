@@ -156,7 +156,8 @@
             "..//ccode/valaccodewriter.vala",
             "..//ccode",
             "../Builder4/PopoverAddProp.vala",
-            "../Builder4/PopoverAddObject.vala"
+            "../Builder4/PopoverAddObject.vala",
+            "../Builder4/PopoverEditor.vala"
         ],
         "packages" : []
     },
