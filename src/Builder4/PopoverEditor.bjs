@@ -4,6 +4,16 @@
   {
    "# bool dirty" : false,
    "# string activeEditor" : "\"\"",
+   
+   "# JsRender.JsRender file" : "null",
+    "# JsRender.Node node" : "null",
+    "# Xcls_MainWindow window" : "null",
+     "# bool pos" : false,
+    "# int pos_root_x" : "",
+    "# int pos_root_y" : "",
+     "# string key" : "\"\"",
+    "# string ptype" : "\"\"",
+   
    "$ xns" : "Gtk",
    "@ void save" : "()",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
