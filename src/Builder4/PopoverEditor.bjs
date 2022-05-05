@@ -612,20 +612,7 @@
    ],
    "string prop_or_listener" : "\"\"",
    "xtype" : "Popover",
-   "| void clear" : [
-    "() {",
-    " this.model.el.clear();",
-    "}",
-    ""
-   ],
-   "| void hide" : [
-    "() {",
-    "\tthis.prop_or_listener = \"\";",
-    "\tthis.el.hide();",
-    "}",
-    ""
-   ],
-   "| void search" : [
+   "| int search" : [
     "(string txt) {",
     "",
     "\tvar s = new Gtk.SourceSearchSettings();",
@@ -642,6 +629,19 @@
     "\treturn this.searchcontext.get_occurrences_count();",
     "",
     "  ",
+    "}",
+    ""
+   ],
+   "| void clear" : [
+    "() {",
+    " this.model.el.clear();",
+    "}",
+    ""
+   ],
+   "| void hide" : [
+    "() {",
+    "\tthis.prop_or_listener = \"\";",
+    "\tthis.el.hide();",
     "}",
     ""
    ],
