@@ -3,6 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
+   "@ void save" : "()",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Xcls_MainWindow mainwindow" : "",
    "bool active" : false,

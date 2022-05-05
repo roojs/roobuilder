@@ -21,6 +21,7 @@ public class Xcls_PopoverEditor : Object
         // my vars (def)
     public bool active;
     public Xcls_MainWindow mainwindow;
+    public signal void save ();
     public string prop_or_listener;
 
     // ctor
