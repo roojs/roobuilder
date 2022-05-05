@@ -9,7 +9,7 @@
    "bool active" : false,
    "bool hexpand" : false,
    "bool modal" : true,
-   "id" : "PopoverAddProp",
+   "id" : "PopoverEditor",
    "int height_request" : 800,
    "int width_request" : 900,
    "items" : [

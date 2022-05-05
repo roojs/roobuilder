@@ -1,16 +1,16 @@
-static Xcls_PopoverAddProp  _PopoverAddProp;
+static Xcls_PopoverEditor  _PopoverEditor;
 
-public class Xcls_PopoverAddProp : Object
+public class Xcls_PopoverEditor : Object
 {
     public Gtk.Popover el;
-    private Xcls_PopoverAddProp  _this;
+    private Xcls_PopoverEditor  _this;
 
-    public static Xcls_PopoverAddProp singleton()
+    public static Xcls_PopoverEditor singleton()
     {
-        if (_PopoverAddProp == null) {
-            _PopoverAddProp= new Xcls_PopoverAddProp();
+        if (_PopoverEditor == null) {
+            _PopoverEditor= new Xcls_PopoverEditor();
         }
-        return _PopoverAddProp;
+        return _PopoverEditor;
     }
     public Xcls_save_button save_button;
     public Xcls_key_edit key_edit;
@@ -25,7 +25,7 @@ public class Xcls_PopoverAddProp : Object
     public string prop_or_listener;
 
     // ctor
-    public Xcls_PopoverAddProp()
+    public Xcls_PopoverEditor()
     {
         _this = this;
         this.el = new Gtk.Popover( null );
@@ -121,7 +121,7 @@ public class Xcls_PopoverAddProp : Object
     public class Xcls_Editor : Object
     {
         public Gtk.Box el;
-        private Xcls_PopoverAddProp  _this;
+        private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
@@ -140,7 +140,7 @@ public class Xcls_PopoverAddProp : Object
         public JsRender.Node node;
 
         // ctor
-        public Xcls_Editor(Xcls_PopoverAddProp _owner )
+        public Xcls_Editor(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -300,13 +300,13 @@ public class Xcls_PopoverAddProp : Object
     public class Xcls_Box3 : Object
     {
         public Gtk.Box el;
-        private Xcls_PopoverAddProp  _this;
+        private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Box3(Xcls_PopoverAddProp _owner )
+        public Xcls_Box3(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -331,13 +331,13 @@ public class Xcls_PopoverAddProp : Object
     public class Xcls_save_button : Object
     {
         public Gtk.Button el;
-        private Xcls_PopoverAddProp  _this;
+        private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_save_button(Xcls_PopoverAddProp _owner )
+        public Xcls_save_button(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             _this.save_button = this;
@@ -360,13 +360,13 @@ public class Xcls_PopoverAddProp : Object
     public class Xcls_key_edit : Object
     {
         public Gtk.Entry el;
-        private Xcls_PopoverAddProp  _this;
+        private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_key_edit(Xcls_PopoverAddProp _owner )
+        public Xcls_key_edit(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             _this.key_edit = this;
@@ -385,13 +385,13 @@ public class Xcls_PopoverAddProp : Object
     public class Xcls_HScale6 : Object
     {
         public Gtk.HScale el;
-        private Xcls_PopoverAddProp  _this;
+        private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_HScale6(Xcls_PopoverAddProp _owner )
+        public Xcls_HScale6(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             this.el = new Gtk.HScale.with_range (6, 30, 1);
@@ -429,13 +429,13 @@ public class Xcls_PopoverAddProp : Object
     public class Xcls_RightEditor : Object
     {
         public Gtk.ScrolledWindow el;
-        private Xcls_PopoverAddProp  _this;
+        private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_RightEditor(Xcls_PopoverAddProp _owner )
+        public Xcls_RightEditor(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             _this.RightEditor = this;
@@ -458,13 +458,13 @@ public class Xcls_PopoverAddProp : Object
     public class Xcls_view : Object
     {
         public Gtk.SourceView el;
-        private Xcls_PopoverAddProp  _this;
+        private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_view(Xcls_PopoverAddProp _owner )
+        public Xcls_view(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             _this.view = this;
@@ -595,7 +595,7 @@ public class Xcls_PopoverAddProp : Object
     public class Xcls_buffer : Object
     {
         public Gtk.SourceBuffer el;
-        private Xcls_PopoverAddProp  _this;
+        private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
@@ -604,7 +604,7 @@ public class Xcls_PopoverAddProp : Object
         public bool check_running;
 
         // ctor
-        public Xcls_buffer(Xcls_PopoverAddProp _owner )
+        public Xcls_buffer(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             _this.buffer = this;
