@@ -2,18 +2,16 @@
  "build_module" : "",
  "items" : [
   {
-   "# bool dirty" : false,
-   "# string activeEditor" : "\"\"",
-   
    "# JsRender.JsRender file" : "null",
-    "# JsRender.Node node" : "null",
-    "# Xcls_MainWindow window" : "null",
-     "# bool pos" : false,
-    "# int pos_root_x" : "",
-    "# int pos_root_y" : "",
-     "# string key" : "\"\"",
-    "# string ptype" : "\"\"",
-   
+   "# JsRender.Node node" : "null",
+   "# Xcls_MainWindow window" : "null",
+   "# bool dirty" : false,
+   "# bool pos" : false,
+   "# int pos_root_x" : "",
+   "# int pos_root_y" : "",
+   "# string activeEditor" : "\"\"",
+   "# string key" : "\"\"",
+   "# string ptype" : "\"\"",
    "$ xns" : "Gtk",
    "@ void save" : "()",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
@@ -26,7 +24,6 @@
    "int width_request" : 900,
    "items" : [
     {
-     
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
      "* pack" : "add",
@@ -502,7 +499,6 @@
        "xtype" : "ScrolledWindow"
       }
      ],
-     "string id" : "Editor",
      "xtype" : "Box"
     }
    ],

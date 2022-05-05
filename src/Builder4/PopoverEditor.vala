@@ -19,11 +19,19 @@ public class Xcls_PopoverEditor : Object
     public Xcls_buffer buffer;
 
         // my vars (def)
+    public Xcls_MainWindow window;
     public string activeEditor;
+    public int pos_root_x;
+    public int pos_root_y;
+    public string ptype;
+    public string key;
     public bool active;
-    public Xcls_MainWindow mainwindow;
+    public JsRender.JsRender file;
+    public bool pos;
     public bool dirty;
+    public Xcls_MainWindow mainwindow;
     public signal void save ();
+    public JsRender.Node node;
     public string prop_or_listener;
 
     // ctor
@@ -33,9 +41,15 @@ public class Xcls_PopoverEditor : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.window = null;
         this.activeEditor = "";
+        this.ptype = "";
+        this.key = "";
         this.active = false;
+        this.file = null;
+        this.pos = false;
         this.dirty = false;
+        this.node = null;
         this.prop_or_listener = "";
 
         // set gobject values
@@ -44,7 +58,7 @@ public class Xcls_PopoverEditor : Object
         this.el.hexpand = false;
         this.el.modal = true;
         this.el.position = Gtk.PositionType.RIGHT;
-        var child_0 = new Xcls_Editor( _this );
+        var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
     }
@@ -205,43 +219,25 @@ public class Xcls_PopoverEditor : Object
     public void clear () {
      this.model.el.clear();
     }
-    public class Xcls_Editor : Object
+    public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
         private Xcls_PopoverEditor  _this;
 
 
             // my vars (def)
-        public Xcls_MainWindow window;
-        public string activeEditor;
-        public int pos_root_x;
-        public int pos_root_y;
-        public string ptype;
         public int last_search_end;
-        public string key;
         public Gtk.SourceSearchContext searchcontext;
-        public JsRender.JsRender file;
-        public bool pos;
-        public bool dirty;
-        public JsRender.Node node;
 
         // ctor
-        public Xcls_Editor(Xcls_PopoverEditor _owner )
+        public Xcls_Box2(Xcls_PopoverEditor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
-            this.window = null;
-            this.activeEditor = "";
-            this.ptype = "";
             this.last_search_end = 0;
-            this.key = "";
             this.searchcontext = null;
-            this.file = null;
-            this.pos = false;
-            this.dirty = false;
-            this.node = null;
 
             // set gobject values
             this.el.homogeneous = false;
@@ -615,16 +611,6 @@ public class Xcls_PopoverEditor : Object
                 }   
                 return false;
             }
-        public   string toString () {
-            
-            Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_start_iter(out s);
-            this.el.get_end_iter(out e);
-            var ret = this.el.get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
-        }
         public   bool checkSyntax () {
          
             if (this.check_running) {
@@ -722,6 +708,16 @@ public class Xcls_PopoverEditor : Object
             //print("done mark line\n");
              
             return true; // at present allow saving - even if it's invalid..
+        }
+        public   string toString () {
+            
+            Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_start_iter(out s);
+            this.el.get_end_iter(out e);
+            var ret = this.el.get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
         }
         public bool highlightErrorsJson (string type, Json.Object obj) {
               Gtk.TextIter start;
