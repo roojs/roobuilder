@@ -148,8 +148,7 @@ public class Xcls_PopoverEditor : Object
     	this.last_search_end = 0;
     	
     	return this.searchcontext.get_occurrences_count();
-    
-      
+     
     }
     public return_type forwardSearch (bool change_focus) {
     

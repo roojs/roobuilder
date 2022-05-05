@@ -560,8 +560,7 @@
     "\tthis.last_search_end = 0;",
     "\t",
     "\treturn this.searchcontext.get_occurrences_count();",
-    "",
-    "  ",
+    " ",
     "}",
     ""
    ],
