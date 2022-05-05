@@ -21,6 +21,7 @@ public class Xcls_PopoverEditor : Object
         // my vars (def)
     public string activeEditor;
     public bool active;
+    public bool activeEditor;
     public Xcls_MainWindow mainwindow;
     public signal void save ();
     public string prop_or_listener;
@@ -33,6 +34,7 @@ public class Xcls_PopoverEditor : Object
 
         // my vars (dec)
         this.active = false;
+        this.activeEditor = true;
         this.prop_or_listener = "";
 
         // set gobject values

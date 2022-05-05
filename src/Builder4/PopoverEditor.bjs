@@ -2,6 +2,7 @@
  "build_module" : "",
  "items" : [
   {
+   "# bool activeEditor" : true,
    "# string activeEditor" : "",
    "$ xns" : "Gtk",
    "@ void save" : "()",
