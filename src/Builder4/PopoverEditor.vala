@@ -230,25 +230,6 @@ public class Xcls_PopoverEditor : Object
         		return false;
         	});   
         }
-        public int search (string txt) {
-        
-        	var s = new Gtk.SourceSearchSettings();
-        	
-        	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
-        	this.searchcontext .set_highlight(true);
-        	s.set_search_text(txt);
-        	Gtk.TextIter beg, st,en;
-        	 
-        	this.buffer.el.get_start_iter(out beg);
-        	this.searchcontext.forward(beg, out st, out en);
-        	this.last_search_end = 0;
-        	
-        	return this.searchcontext.get_occurrences_count();
-        
-         
-           
-        
-        }
         public void forwardSearch (bool change_focus) {
         
         	if (this.searchcontext == null) {
