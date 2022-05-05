@@ -269,6 +269,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.width_request = 100;
+            this.el.editable = false;
         }
 
         // user defined functions
