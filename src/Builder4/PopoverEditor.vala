@@ -21,8 +21,8 @@ public class Xcls_PopoverEditor : Object
         // my vars (def)
     public string activeEditor;
     public bool active;
-    public bool activeEditor;
     public Xcls_MainWindow mainwindow;
+    public bool dirty;
     public signal void save ();
     public string prop_or_listener;
 
@@ -33,8 +33,9 @@ public class Xcls_PopoverEditor : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.activeEditor = "";
         this.active = false;
-        this.activeEditor = true;
+        this.dirty = false;
         this.prop_or_listener = "";
 
         // set gobject values

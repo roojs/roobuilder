@@ -2,8 +2,8 @@
  "build_module" : "",
  "items" : [
   {
-   "# bool activeEditor" : true,
-   "# string activeEditor" : "",
+   "# bool dirty" : false,
+   "# string activeEditor" : "\"\"",
    "$ xns" : "Gtk",
    "@ void save" : "()",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
