@@ -219,7 +219,6 @@ public class Xcls_PopoverEditor : Object
         public JsRender.JsRender file;
         public bool pos;
         public bool dirty;
-        public signal void save ();
         public JsRender.Node node;
 
         // ctor

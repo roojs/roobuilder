@@ -27,7 +27,6 @@
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
      "* pack" : "add",
-     "@ void save" : "()",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "Gtk.SourceSearchContext searchcontext" : "null",
      "bool hexpand" : true,
