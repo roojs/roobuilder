@@ -46,6 +46,23 @@ public class Xcls_PopoverEditor : Object
     }
 
     // user defined functions
+    public void search (string txt) {
+    
+    	var s = new Gtk.SourceSearchSettings();
+    	
+    	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
+    	this.searchcontext .set_highlight(true);
+    	s.set_search_text(txt);
+    	Gtk.TextIter beg, st,en;
+    	 
+    	this.buffer.el.get_start_iter(out beg);
+    	this.searchcontext.forward(beg, out st, out en);
+    	this.last_search_end = 0;
+    	
+    	return this.searchcontext.get_occurrences_count();
+    
+      
+    }
     public void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key,  Gtk.Widget onbtn))
     {
         this.file = file;    

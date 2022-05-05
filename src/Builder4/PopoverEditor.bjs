@@ -625,6 +625,26 @@
     "}",
     ""
    ],
+   "| void search" : [
+    "(string txt) {",
+    "",
+    "\tvar s = new Gtk.SourceSearchSettings();",
+    "\t",
+    "\tthis.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);",
+    "\tthis.searchcontext .set_highlight(true);",
+    "\ts.set_search_text(txt);",
+    "\tGtk.TextIter beg, st,en;",
+    "\t ",
+    "\tthis.buffer.el.get_start_iter(out beg);",
+    "\tthis.searchcontext.forward(beg, out st, out en);",
+    "\tthis.last_search_end = 0;",
+    "\t",
+    "\treturn this.searchcontext.get_occurrences_count();",
+    "",
+    "  ",
+    "}",
+    ""
+   ],
    "| void show" : [
     "(JsRender.JsRender file, JsRender.Node? node, string ptype, string key,  Gtk.Widget onbtn))",
     "{",
