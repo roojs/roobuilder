@@ -584,12 +584,6 @@
     "}",
     ""
    ],
-   "| return_type XXXX" : [
-    "() {",
-    "",
-    "}",
-    ""
-   ],
    "| return_type forwardSearch" : [
     "(bool change_focus) {",
     "",
@@ -612,6 +606,24 @@
     "\t\tthis.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);",
     "\t}",
     "",
+    "}",
+    ""
+   ],
+   "| return_type scroll_to_line" : [
+    "(int line) {",
+    "",
+    "\tGLib.Timeout.add(500, () => {",
+    "   ",
+    "\t\tvar buf = this.view.el.get_buffer();",
+    "",
+    "\t\tvar sbuf = (Gtk.SourceBuffer) buf;",
+    "",
+    "",
+    "\t\tGtk.TextIter iter;   ",
+    "\t\tsbuf.get_iter_at_line(out iter,  line);",
+    "\t\tthis.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);",
+    "\t\treturn false;",
+    "\t});   ",
     "}",
     ""
    ],
