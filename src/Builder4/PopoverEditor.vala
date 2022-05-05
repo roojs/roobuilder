@@ -20,7 +20,6 @@ public class Xcls_PopoverEditor : Object
 
         // my vars (def)
     public bool active;
-    public signal void select (string key, string type, string skel, string prop_or_listener);
     public Xcls_MainWindow mainwindow;
     public string prop_or_listener;
 
@@ -117,6 +116,28 @@ public class Xcls_PopoverEditor : Object
     	return this.searchcontext.get_occurrences_count();
     
       
+    }
+    public return_type forwardSearch (bool change_focus) {
+    
+    	if (this.searchcontext == null) {
+    		return;
+    	}
+    	
+    	Gtk.TextIter beg, st,en;
+    	 
+    	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end);
+    	if (!this.searchcontext.forward(beg, out st, out en)) {
+    	
+    		this.last_search_end = 0;
+    	} else {
+    		this.last_search_end = en.get_offset();
+    		if (change_focus) {
+    			this.view.el.grab_focus();
+    		}
+    		this.buffer.el.place_cursor(st);
+    		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
+    	}
+    
     }
     public void hide () {
     	this.prop_or_listener = "";
@@ -229,28 +250,6 @@ public class Xcls_PopoverEditor : Object
         		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
         		return false;
         	});   
-        }
-        public void forwardSearch (bool change_focus) {
-        
-        	if (this.searchcontext == null) {
-        		return;
-        	}
-        	
-        	Gtk.TextIter beg, st,en;
-        	 
-        	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end);
-        	if (!this.searchcontext.forward(beg, out st, out en)) {
-        	
-        		this.last_search_end = 0;
-        	} else {
-        		this.last_search_end = en.get_offset();
-        		if (change_focus) {
-        			this.view.el.grab_focus();
-        		}
-        		this.buffer.el.place_cursor(st);
-        		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
-        	}
-        
         }
     }
     public class Xcls_Box3 : Object
