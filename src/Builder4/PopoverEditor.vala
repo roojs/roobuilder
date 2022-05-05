@@ -45,6 +45,21 @@ public class Xcls_PopoverEditor : Object
     }
 
     // user defined functions
+    public void scroll_to_line (int line) {
+    
+    	GLib.Timeout.add(500, () => {
+       
+    		var buf = this.view.el.get_buffer();
+    
+    		var sbuf = (Gtk.SourceBuffer) buf;
+    
+    
+    		Gtk.TextIter iter;   
+    		sbuf.get_iter_at_line(out iter,  line);
+    		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+    		return false;
+    	});   
+    }
     public void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key,  Gtk.Widget onbtn))
     {
         this.file = file;    
@@ -138,21 +153,6 @@ public class Xcls_PopoverEditor : Object
     		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
     	}
     
-    }
-    public return_type scroll_to_line (int line) {
-    
-    	GLib.Timeout.add(500, () => {
-       
-    		var buf = this.view.el.get_buffer();
-    
-    		var sbuf = (Gtk.SourceBuffer) buf;
-    
-    
-    		Gtk.TextIter iter;   
-    		sbuf.get_iter_at_line(out iter,  line);
-    		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-    		return false;
-    	});   
     }
     public bool saveContents ()  {
         
