@@ -232,38 +232,6 @@ public class Xcls_PopoverEditor : Object
            
         
         }
-        public   void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key)
-        {
-            this.file = file;    
-            this.ptype = "";
-            this.key  = "";
-            this.node = null;
-        	this.searchcontext = null;
-            
-            if (file.xtype != "PlainFile") {
-            
-                this.ptype = ptype;
-                this.key  = key;
-                this.node = node;
-                 string val = "";
-                // find the text for the node..
-                if (ptype == "listener") {
-                    val = node.listeners.get(key);
-                
-                } else {
-                    val = node.props.get(key);
-                }
-                this.view.load(val);
-                this.key_edit.el.show();
-                this.key_edit.el.text = key;  
-            
-            } else {
-                this.view.load(        file.toSource() );
-                this.key_edit.el.hide();
-            }
-        
-               
-        }
         public void forwardSearch (bool change_focus) {
         
         	if (this.searchcontext == null) {
