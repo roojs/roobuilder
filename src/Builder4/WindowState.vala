@@ -218,6 +218,7 @@ public class WindowState : Object
 		this.left_props.show_editor.connect( (file, node, type,  key) => {
 			this.switchState(State.CODE);
 			this.code_editor.show(
+				this.left_props.el,
 				file,
 				node,
 				type,
