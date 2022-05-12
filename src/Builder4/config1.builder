@@ -12,7 +12,6 @@
             "../Builder4/DialogSaveModule.vala",
             "../Builder4/DialogSaveTemplate.vala",
             "../Builder4/DialogTemplateSelect.vala",
-            "../Builder4/Editor.vala",
             "../Builder4/EditProject.vala",
             "../Builder4/FakeServer.vala",
             "../Builder4/GtkView.vala",
