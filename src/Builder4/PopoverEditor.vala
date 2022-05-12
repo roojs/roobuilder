@@ -197,6 +197,9 @@ public class Xcls_PopoverEditor : Object
     	this.prop_or_listener = "";
     	this.el.hide();
     }
+    public void clear () {
+     this.model.el.clear();
+    }
     public void forwardSearch (bool change_focus) {
     
     	if (this.searchcontext == null) {
