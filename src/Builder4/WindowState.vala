@@ -235,7 +235,7 @@ public class WindowState : Object
 				return true;
 			}
 	
-			var ret =  this.code_editor.saveContents();
+			var ret =  this.code_editor_popover.saveContents();
 			if (!ret) {
 				return false;
 			}
