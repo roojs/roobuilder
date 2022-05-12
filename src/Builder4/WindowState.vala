@@ -755,15 +755,7 @@ public class WindowState : Object
  
 		
 			    
-		   
-			case State.CODE:
-				this.win.codeeditview.el.show();
-				this.code_editor.el.show_all();
-				// caller needs to call editor - show....
-				this.win.codeeditview.el.set_scale(1.0f,1.0f);
-				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
-
-				break;
+		  
 
 			case State.CODEONLY:
 				// going to codeonly..
