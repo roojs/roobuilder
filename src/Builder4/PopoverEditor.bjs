@@ -623,7 +623,7 @@
     ""
    ],
    "| void show" : [
-    "(JsRender.JsRender file, JsRender.Node? node, string ptype, string key,  Gtk.Widget onbtn)",
+    "( Gtk.Widget onbtn, JsRender.JsRender file, JsRender.Node? node, string ptype, string key  )",
     "{",
     "    this.file = file;    ",
     "    this.ptype = \"\";",

@@ -29,8 +29,8 @@ public class Xcls_PopoverEditor : Object
     public JsRender.JsRender file;
     public bool pos;
     public bool dirty;
-    public Xcls_MainWindow mainwindow;
     public int last_search_end;
+    public Xcls_MainWindow mainwindow;
     public Gtk.SourceSearchContext searchcontext;
     public signal void save ();
     public JsRender.Node node;
@@ -83,7 +83,7 @@ public class Xcls_PopoverEditor : Object
     		return false;
     	});   
     }
-    public void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key,  Gtk.Widget onbtn)
+    public void show ( Gtk.Widget onbtn, JsRender.JsRender file, JsRender.Node? node, string ptype, string key  )
     {
         this.file = file;    
         this.ptype = "";
