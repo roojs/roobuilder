@@ -6,11 +6,11 @@ namespace Palete {
 
     public class CompletionProvider : Object, SourceCompletionProvider
     {
-		PopoverEditor editor; 
+		Xcls_PopoverEditor editor; 
 		WindowState windowstate;
  		//public List<Gtk.SourceCompletionItem> filtered_proposals;
 
-		public CompletionProvider(PopoverEditor editor)
+		public CompletionProvider(Xcls_PopoverEditor editor)
 		{
 		    this.editor  = editor;
 		    this.windowstate = null; // not ready until the UI is built.
