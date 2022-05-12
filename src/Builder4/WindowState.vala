@@ -15,7 +15,7 @@ public class WindowState : Object
 		//OBJECT,
 		//PROP,
 		//LISTENER,
-		CODE,    // code editor.
+		//CODE,    // code editor.
 		CODEONLY,
 		FILES //,
 		 
@@ -191,7 +191,7 @@ public class WindowState : Object
 		this.rightpalete.hide(); 
 		
 		
-		
+		/*
 		switch (this.state) {
 		 
 			case State.CODE:
@@ -201,6 +201,7 @@ public class WindowState : Object
 			   
 							
 		}
+		*/
  
 		 
 
@@ -219,7 +220,7 @@ public class WindowState : Object
 		this.left_props.el.show_all();
 	
 		this.left_props.show_editor.connect( (file, node, type,  key) => {
-			this.switchState(State.CODE);
+			//this.switchState(State.CODE);
 			this.code_editor_popover.show(
 				this.left_props.el,
 				file,
