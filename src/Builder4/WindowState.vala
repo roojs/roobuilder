@@ -157,13 +157,15 @@ public class WindowState : Object
 
 	public bool leftTreeBeforeChange()
 	{
-		if (this.state != State.CODE) {
+		// in theory code editor has to hide before tree change occurs.
+		//if (this.state != State.CODE) {
 			this.left_props.finish_editing();
 			return true;
-		}
-		if (!this.code_editor.saveContents()) {
-			return false;
-		}
+		//}
+
+		//if (!this.code_editor.saveContents()) {
+		//	return false;
+		//}
 		return false;
 	}
 	
