@@ -234,15 +234,15 @@ public class WindowState : Object
 
    
 		this.left_props.stop_editor.connect( () => {
-			if (this.state != State.CODE) {
-				return true;
-			}
+			//if (this.state != State.CODE) {
+			//	return true;
+			//}
 	
 			var ret =  this.code_editor_popover.saveContents();
 			if (!ret) {
 				return false;
 			}
-			this.switchState(State.PREVIEW);
+			//this.switchState(State.PREVIEW);
 			return ret;
 		});
 	
