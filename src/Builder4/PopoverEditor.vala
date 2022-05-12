@@ -20,7 +20,6 @@ public class Xcls_PopoverEditor : Object
 
         // my vars (def)
     public Xcls_MainWindow window;
-    public int XXX;
     public string activeEditor;
     public int pos_root_x;
     public int pos_root_y;
@@ -31,6 +30,7 @@ public class Xcls_PopoverEditor : Object
     public bool pos;
     public bool dirty;
     public Xcls_MainWindow mainwindow;
+    public int last_search_end;
     public Gtk.SourceSearchContext searchcontext;
     public signal void save ();
     public JsRender.Node node;
@@ -44,7 +44,6 @@ public class Xcls_PopoverEditor : Object
 
         // my vars (dec)
         this.window = null;
-        this.XXX = 0;
         this.activeEditor = "";
         this.ptype = "";
         this.key = "";
@@ -52,6 +51,7 @@ public class Xcls_PopoverEditor : Object
         this.file = null;
         this.pos = false;
         this.dirty = false;
+        this.last_search_end = 0;
         this.searchcontext = null;
         this.node = null;
         this.prop_or_listener = "";

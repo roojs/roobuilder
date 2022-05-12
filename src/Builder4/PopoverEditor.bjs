@@ -8,6 +8,7 @@
    "# Xcls_MainWindow window" : "null",
    "# bool dirty" : false,
    "# bool pos" : false,
+   "# int last_search_end" : 0,
    "# int pos_root_x" : "",
    "# int pos_root_y" : "",
    "# string activeEditor" : "\"\"",
@@ -21,7 +22,6 @@
    "bool hexpand" : false,
    "bool modal" : true,
    "id" : "PopoverEditor",
-   "int XXX" : 0,
    "int height_request" : 800,
    "int width_request" : 900,
    "items" : [
