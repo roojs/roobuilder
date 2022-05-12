@@ -36,7 +36,7 @@ public class WindowState : Object
 	public Xcls_ValaProjectSettingsPopover  vala_projectsettings_pop;
 	public Xcls_PopoverAddObject     rightpalete;
 	public Xcls_PopoverEditor               code_editor_popover;
-	public Editor code_editor_tab;
+	public Editor					 code_editor_tab; 
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
 	
@@ -390,16 +390,16 @@ public class WindowState : Object
 	{
 		this.code_editor_tab  = new  Editor();
 		//this.code_editor.ref();  /// really?
-		((Gtk.Container)(this.win.codeeditview.el.get_widget())).add(this.code_editor.el);
+		((Gtk.Container)(this.win.codeeditview.el.get_widget())).add(this.code_editor_tab.el);
 		
-		this.code_editor.window = this.win;
+		this.code_editor_tab.window = this.win;
  
 
 		var stage = this.win.codeeditview.el.get_stage();
 		stage.set_background_color(  Clutter.Color.from_string("#000"));
 		// editor.save...
 
-		this.code_editor.save.connect( () => {
+		this.code_editor_tab.save.connect( () => {
 			this.file.save();
 			this.left_tree.model.updateSelected();
 			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
@@ -478,9 +478,9 @@ public class WindowState : Object
 		if (file.xtype == "PlainFile") {
 			this.switchState (State.CODEONLY); 
 			file.loadItems();
-			this.code_editor.show(file, null, "", "");
+			this.code_editor_tab.show(file, null, "", "");
 			if (line> -1) {
-				this.code_editor.scroll_to_line(line);
+				this.code_editor_tab.scroll_to_line(line);
 			}
 		} else {
 		
