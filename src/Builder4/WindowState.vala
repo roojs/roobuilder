@@ -415,7 +415,26 @@ public class WindowState : Object
 		});
 		
 	}
-
+	public void codePopoverEditInit()
+	{
+		this.code_editor_popover  = new  Xcls_PopoverEditor();
+		//this.code_editor.ref();  /// really?
+		 
+		this.code_editor_popover.window = this.win;
+  
+		this.code_editor_popover.save.connect( () => {
+			this.file.save();
+			this.left_tree.model.updateSelected();
+			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
+				   this.window_rooview.requestRedraw();
+			} else {
+				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+			}
+			 // we do not need to call spawn... - as it's already called by the editor?
+			 
+		});
+		
+	}
 	// ----------- list of projects on left
 	public void  projectListInit() 
 	{
