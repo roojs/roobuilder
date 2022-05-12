@@ -734,11 +734,7 @@ public class Xcls_PopoverEditor : Object
                 return true;
             }
             
-            if (_this.window.windowstate.state != WindowState.State.CODEONLY && 
-                _this.window.windowstate.state != WindowState.State.CODE
-                ) {
-                return true;
-            } 
+            
             
             
             var err = obj.get_object_member(type);
