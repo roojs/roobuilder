@@ -1005,7 +1005,7 @@ public class WindowState : Object
 			print("result :%s", generator.to_data (null));
 			
 			
-			var buf = this.code_editor.buffer;
+			var buf = this.code_editor_tab.buffer;
 			buf.check_running = false;
 			var has_errors = false;
 			              
