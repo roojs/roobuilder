@@ -387,7 +387,7 @@ public class WindowState : Object
 
 	public void codeEditInit()
 	{
-		this.code_editor  = new  Editor();
+		this.code_editor_tab  = new  Editor();
 		//this.code_editor.ref();  /// really?
 		((Gtk.Container)(this.win.codeeditview.el.get_widget())).add(this.code_editor.el);
 		
