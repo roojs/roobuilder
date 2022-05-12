@@ -561,8 +561,7 @@
     "        this.view.load(        file.toSource() );",
     "        this.key_edit.el.hide();",
     "    }",
-    "",
-    "       ",
+    " ",
     "}"
    ],
    "| int search" : [
