@@ -131,7 +131,7 @@ public class Xcls_PopoverEditor : Object
        
         while(Gtk.events_pending()) { 
                 Gtk.main_iteration();
-        }       
+        }        
      //   this.hpane.el.set_position( 0);
     }
     public int search (string txt) {

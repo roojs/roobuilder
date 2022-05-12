@@ -673,7 +673,7 @@
     "   ",
     "    while(Gtk.events_pending()) { ",
     "            Gtk.main_iteration();",
-    "    }       ",
+    "    }        ",
     " //   this.hpane.el.set_position( 0);",
     "}",
     ""
