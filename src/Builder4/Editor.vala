@@ -187,7 +187,7 @@ public class Editor : Object
     		this.buffer.el.place_cursor(st);
     		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
     	}
-    
+     
     }
     public class Xcls_Box2 : Object
     {
