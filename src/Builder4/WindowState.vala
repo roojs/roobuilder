@@ -218,7 +218,7 @@ public class WindowState : Object
 	
 		this.left_props.show_editor.connect( (file, node, type,  key) => {
 			this.switchState(State.CODE);
-			this.code_editor.show(
+			this.code_editor_popover.show(
 				this.left_props.el,
 				file,
 				node,
@@ -761,7 +761,7 @@ public class WindowState : Object
 				//}
 				
 				
-				this.code_editor.el.show_all();
+				this.code_editor_tab.el.show_all();
 			    
 				this.win.codeeditview.el.set_scale(1.0f,1.0f);
 				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
