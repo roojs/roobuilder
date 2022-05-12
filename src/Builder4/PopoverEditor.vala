@@ -30,6 +30,7 @@ public class Xcls_PopoverEditor : Object
     public bool pos;
     public bool dirty;
     public Xcls_MainWindow mainwindow;
+    public Gtk.SourceSearchContext searchcontext;
     public signal void save ();
     public JsRender.Node node;
     public string prop_or_listener;
@@ -49,6 +50,7 @@ public class Xcls_PopoverEditor : Object
         this.file = null;
         this.pos = false;
         this.dirty = false;
+        this.searchcontext = null;
         this.node = null;
         this.prop_or_listener = "";
 

@@ -2,6 +2,7 @@
  "build_module" : "",
  "items" : [
   {
+   "# Gtk.SourceSearchContext searchcontext" : "null",
    "# JsRender.JsRender file" : "null",
    "# JsRender.Node node" : "null",
    "# Xcls_MainWindow window" : "null",
