@@ -35,7 +35,7 @@ public class WindowState : Object
 	public Xcls_RooProjectSettings roo_projectsettings_pop;
 	public Xcls_ValaProjectSettingsPopover  vala_projectsettings_pop;
 	public Xcls_PopoverAddObject     rightpalete;
-	public Editor               code_editor;    
+	public Xcls_PopoverEditor               code_editor;    
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
 	
