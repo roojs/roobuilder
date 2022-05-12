@@ -564,7 +564,13 @@
     "}",
     ""
    ],
-   "| return_type forwardSearch" : [
+   "| void clear" : [
+    "() {",
+    " this.model.el.clear();",
+    "}",
+    ""
+   ],
+   "| void forwardSearch" : [
     "(bool change_focus) {",
     "",
     "\tif (this.searchcontext == null) {",
@@ -586,12 +592,6 @@
     "\t\tthis.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);",
     "\t}",
     "",
-    "}",
-    ""
-   ],
-   "| void clear" : [
-    "() {",
-    " this.model.el.clear();",
     "}",
     ""
    ],
