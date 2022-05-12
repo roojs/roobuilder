@@ -21,6 +21,7 @@
    "bool hexpand" : false,
    "bool modal" : true,
    "id" : "PopoverEditor",
+   "int XXX" : 0,
    "int height_request" : 800,
    "int width_request" : 900,
    "items" : [

@@ -20,6 +20,7 @@ public class Xcls_PopoverEditor : Object
 
         // my vars (def)
     public Xcls_MainWindow window;
+    public int XXX;
     public string activeEditor;
     public int pos_root_x;
     public int pos_root_y;
@@ -43,6 +44,7 @@ public class Xcls_PopoverEditor : Object
 
         // my vars (dec)
         this.window = null;
+        this.XXX = 0;
         this.activeEditor = "";
         this.ptype = "";
         this.key = "";
