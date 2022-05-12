@@ -566,12 +566,6 @@
     "}",
     ""
    ],
-   "| void clear" : [
-    "() {",
-    " this.model.el.clear();",
-    "}",
-    ""
-   ],
    "| void forwardSearch" : [
     "(bool change_focus) {",
     "",
