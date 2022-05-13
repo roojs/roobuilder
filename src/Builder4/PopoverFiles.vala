@@ -25,6 +25,7 @@ public class Xcls_PopoverFiles : Object
     public bool is_loaded;
     public Xcls_MainWindow win;
     public bool is_loading;
+    public string XXXX;
 
     // ctor
     public Xcls_PopoverFiles()

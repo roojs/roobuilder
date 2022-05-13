@@ -264,6 +264,7 @@
      "}"
     ]
    },
+   "string XXXX" : "",
    "xtype" : "Popover",
    "| void load" : [
     "() {",
