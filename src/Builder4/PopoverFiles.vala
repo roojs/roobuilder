@@ -534,6 +534,12 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_iconmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions
