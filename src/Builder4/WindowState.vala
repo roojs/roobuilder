@@ -18,7 +18,7 @@ public class WindowState : Object
 		//CODE,    // code editor.
 		CODEONLY,
 		FILES //,
-		 
+	 
 
 	}
 
