@@ -155,7 +155,7 @@ public class Xcls_PopoverFiles : Object
         var fiter = project.sortedFiles().list_iterator();
         while (fiter.next()) {
             m.append(out iter);
-            var file = fiter.get(i);
+            var file = fiter.get();
             m.set(iter,   0,file ); // zero contains the file reference
             m.set(iter,   1,file.nickNameSplit() ); // marked up title?
             m.set(iter,   2,file.nickType() ); // file type?
