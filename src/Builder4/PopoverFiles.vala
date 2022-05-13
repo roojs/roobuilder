@@ -190,7 +190,7 @@ public class Xcls_PopoverFiles : Object
         }
         
         
-        
+        /*
         
         // folders...
         
@@ -236,7 +236,7 @@ public class Xcls_PopoverFiles : Object
     	    //this.el.set_value(citer, 1,   items.get(i) );
     	}
          
-       
+       */
     	
     }
     public void selectProject (Project.Project project) {
