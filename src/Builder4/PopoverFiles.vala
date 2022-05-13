@@ -147,6 +147,9 @@ public class Xcls_PopoverFiles : Object
     	    print("tried to select %s, could not find it", project.name);
         }
     }
+    public return_type XXXX () {
+    
+    }
     public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
