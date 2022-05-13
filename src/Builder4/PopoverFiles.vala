@@ -145,7 +145,18 @@ public class Xcls_PopoverFiles : Object
      
         var fiter = pr.sortedFiles().list_iterator();
         while (fiter.next()) {
-           
+            m.append(out iter);
+            var file = fiter.get(i);
+            m.set(iter,   0,file ); // zero contains the file reference
+            m.set(iter,   1,file.nickNameSplit() ); // marked up title?
+            m.set(iter,   2,file.nickType() ); // file type?
+            
+            
+            var fiter = file.getIconFileName(false);
+            
+            
+            m.set(iter,   3,fiter.get(i).file.nickNameSplit() );
+          
             // this needs to add to the iconview?
             
             //var a = new Xcls_fileitem(this,fiter.get());
