@@ -108,6 +108,9 @@ public class Xcls_PopoverFiles : Object
             var child_1 = new Xcls_ScrolledWindow8( _this );
             child_1.ref();
             this.el.pack_end (  child_1.el , true,true,0 );
+            var child_2 = new Xcls_ScrolledWindow11( _this );
+            child_2.ref();
+            this.el.pack_end (  child_2.el , true,true,0 );
         }
 
         // user defined functions
@@ -375,6 +378,33 @@ public class Xcls_PopoverFiles : Object
     }
 
 
+
+    public class Xcls_ScrolledWindow11 : Object
+    {
+        public Gtk.ScrolledWindow el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ScrolledWindow11(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ScrolledWindow( null, null );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.shadow_type = Gtk.ShadowType.IN;
+
+            // init method
+
+            this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+        }
+
+        // user defined functions
+    }
 
 
 }
