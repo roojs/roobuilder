@@ -12,7 +12,7 @@
     ""
    ],
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
-   "Xcls_MainWindow mainwindow" : "",
+   "Xcls_MainWindow win" : "",
    "bool active" : false,
    "bool hexpand" : false,
    "bool modal" : true,

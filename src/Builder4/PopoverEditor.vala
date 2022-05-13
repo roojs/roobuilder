@@ -16,8 +16,8 @@ public class Xcls_PopoverEditor : Object
         // my vars (def)
     public Editor editor;
     public bool active;
+    public Xcls_MainWindow win;
     public string prop_or_listener;
-    public Xcls_MainWindow mainwindow;
 
     // ctor
     public Xcls_PopoverEditor()
