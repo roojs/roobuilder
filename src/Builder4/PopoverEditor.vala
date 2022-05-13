@@ -57,6 +57,12 @@ public class Xcls_PopoverEditor : Object
         this.el.hexpand = false;
         this.el.modal = true;
         this.el.position = Gtk.PositionType.RIGHT;
+
+        // init method
+
+        {
+        
+        }
     }
 
     // user defined functions

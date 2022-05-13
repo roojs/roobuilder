@@ -15,6 +15,12 @@
    "# string key" : "\"\"",
    "# string ptype" : "\"\"",
    "$ xns" : "Gtk",
+   "* init" : [
+    "{",
+    "",
+    "}",
+    ""
+   ],
    "@ void save" : "()",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Xcls_MainWindow mainwindow" : "",
