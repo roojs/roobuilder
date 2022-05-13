@@ -71,7 +71,7 @@ public class Xcls_PopoverFiles : Object
     	this.el.set_modal(true);
     	this.el.set_relative_to(on_el);
     
-    	this.el.set_position(Gtk.PositionType.TOP);
+    	//this.el.set_position(Gtk.PositionType.BOTTOM);
     
     	// window + header?
      

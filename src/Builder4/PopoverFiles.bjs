@@ -57,7 +57,7 @@
     "\tthis.el.set_modal(true);",
     "\tthis.el.set_relative_to(on_el);",
     "",
-    "\tthis.el.set_position(Gtk.PositionType.TOP);",
+    "\t//this.el.set_position(Gtk.PositionType.BOTTOM);",
     "",
     "\t// window + header?",
     " ",
