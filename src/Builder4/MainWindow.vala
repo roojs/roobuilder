@@ -374,7 +374,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.always_show_image = true;
-            this.el.label = "Files / Projects";
+            this.el.label = "Files / Projects (new)";
             var child_0 = new Xcls_Image9( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );

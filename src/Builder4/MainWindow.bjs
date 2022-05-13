@@ -112,7 +112,7 @@
            "}"
           ]
          },
-         "string label" : "Files / Projects",
+         "string label" : "Files / Projects (new)",
          "xtype" : "Button"
         },
         {
