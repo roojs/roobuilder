@@ -2378,7 +2378,7 @@ public class Xcls_MainWindow : Object
         public void forwardSearch (bool change_focus) {
         	switch(_this.windowstate.state) {
         		case WindowState.State.CODEONLY:
-        		case WindowState.State.CODE:
+        		//case WindowState.State.CODE:
         			// search the code being edited..
         			_this.windowstate.code_editor.forwardSearch(change_focus);
         			

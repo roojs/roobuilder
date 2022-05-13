@@ -965,7 +965,7 @@
           "(bool change_focus) {",
           "\tswitch(_this.windowstate.state) {",
           "\t\tcase WindowState.State.CODEONLY:",
-          "\t\tcase WindowState.State.CODE:",
+          "\t\t//case WindowState.State.CODE:",
           "\t\t\t// search the code being edited..",
           "\t\t\t_this.windowstate.code_editor.forwardSearch(change_focus);",
           "\t\t\t",
