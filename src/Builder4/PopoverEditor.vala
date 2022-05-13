@@ -46,7 +46,7 @@ public class Xcls_PopoverEditor : Object
 
     // user defined functions
     public return_type setMainWindow (Xcls_MainWindow win) {
-    	this.win = win
+    	this.win = win;
     	this.editor.window = win;
     }
     public void show (Gtk.Widget on_el, JsRender.JsRender file, JsRender.Node? node, string ptype, string key) {
