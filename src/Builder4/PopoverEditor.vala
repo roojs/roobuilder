@@ -49,7 +49,7 @@ public class Xcls_PopoverEditor : Object
     	this.editor.show( file, node, ptype, key);
     	
         int w,h;
-        this.mainwindow.el.get_size(out w, out h);
+        this.win.el.get_size(out w, out h);
         
         // left tree = 250, editor area = 500?
         

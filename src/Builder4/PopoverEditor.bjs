@@ -33,7 +33,7 @@
     "\tthis.editor.show( file, node, ptype, key);",
     "\t",
     "    int w,h;",
-    "    this.mainwindow.el.get_size(out w, out h);",
+    "    this.win.el.get_size(out w, out h);",
     "    ",
     "    // left tree = 250, editor area = 500?",
     "    ",
