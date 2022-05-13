@@ -642,8 +642,7 @@ public class WindowState : Object
 		this.popover_files.show(btn, this.win.project);
 
 	}
-				
-	
+		 
 	
 	public void switchState(State new_state)
 	{
