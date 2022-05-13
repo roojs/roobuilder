@@ -121,6 +121,9 @@ public class Xcls_PopoverFiles : Object
          m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
          _this.is_loading = false;     
     }
+    public void onProjectSelected () {
+    
+    }
     public void selectProject (Project.Project project) {
         
         var sel = _this.view.el.get_selection();
@@ -146,9 +149,6 @@ public class Xcls_PopoverFiles : Object
          if (!found) {
     	    print("tried to select %s, could not find it", project.name);
         }
-    }
-    public return_type XXXX () {
-    
     }
     public class Xcls_Box2 : Object
     {
