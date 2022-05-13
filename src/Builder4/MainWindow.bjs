@@ -967,7 +967,7 @@
           "\t\tcase WindowState.State.CODEONLY:",
           "\t\t//case WindowState.State.CODE:",
           "\t\t\t// search the code being edited..",
-          "\t\t\t_this.windowstate.code_editor.forwardSearch(change_focus);",
+          "\t\t\t_this.windowstate.code_editor_tab.forwardSearch(change_focus);",
           "\t\t\t",
           "\t\t\tbreak;",
           "\t\tcase WindowState.State.PREVIEW:",
