@@ -46,7 +46,7 @@ public class Xcls_PopoverEditor : Object
         //listeners
         this.el.hide.connect( () => {
         	// save...
-        	
+        	 _this.editor.saveContents();
         });
     }
 

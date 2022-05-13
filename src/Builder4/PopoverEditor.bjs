@@ -23,7 +23,7 @@
     "hide" : [
      "() => {",
      "\t// save...",
-     "\t",
+     "\t _this.editor.saveContents();",
      "}"
     ]
    },
