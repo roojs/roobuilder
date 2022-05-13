@@ -345,7 +345,7 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             var child_0 = new Xcls_ListStore10( _this );
             child_0.ref();
-            this.el.set_model (  child_0.el  );
+            this.el.model = child_0.el;
         }
 
         // user defined functions
