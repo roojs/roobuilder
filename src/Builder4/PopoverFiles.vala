@@ -22,8 +22,8 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (def)
     public bool active;
+    public bool is_loaded;
     public Xcls_MainWindow win;
-    public bool XXX;
     public string prop_or_listener;
 
     // ctor
@@ -34,7 +34,7 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (dec)
         this.active = false;
-        this.XXX = true;
+        this.is_loaded = false;
         this.prop_or_listener = "";
 
         // set gobject values

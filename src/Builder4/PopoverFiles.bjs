@@ -2,10 +2,10 @@
  "build_module" : "",
  "items" : [
   {
+   "# bool is_loaded" : false,
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
    "Xcls_MainWindow win" : "",
-   "bool XXX" : true,
    "bool active" : false,
    "bool hexpand" : false,
    "bool modal" : true,
