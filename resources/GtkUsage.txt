@@ -95,7 +95,8 @@ right:
 	Gtk.HSV
 	Gtk.FileChooserButton 
 	Gtk.FileChooserWidget
-	Gtk.FontButton 
+	Gtk.FontButton
+	Gtk.IconView
 	GtkSource.View
 	WebKit.WebView
     Gtk.Viewport
