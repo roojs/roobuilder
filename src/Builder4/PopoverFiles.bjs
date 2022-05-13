@@ -133,8 +133,15 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "* init" : [
+          "{",
+          "",
+          "}",
+          ""
+         ],
          "* pack" : "add",
          "id" : "iconview",
+         "int markup_column" : 1,
          "items" : [
           {
            "$ columns" : [
