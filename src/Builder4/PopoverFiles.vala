@@ -1,16 +1,16 @@
-static Xcls_PopoverEditor  _PopoverEditor;
+static Xcls_PopoverFiles  _PopoverFiles;
 
-public class Xcls_PopoverEditor : Object
+public class Xcls_PopoverFiles : Object
 {
     public Gtk.Popover el;
-    private Xcls_PopoverEditor  _this;
+    private Xcls_PopoverFiles  _this;
 
-    public static Xcls_PopoverEditor singleton()
+    public static Xcls_PopoverFiles singleton()
     {
-        if (_PopoverEditor == null) {
-            _PopoverEditor= new Xcls_PopoverEditor();
+        if (_PopoverFiles == null) {
+            _PopoverFiles= new Xcls_PopoverFiles();
         }
-        return _PopoverEditor;
+        return _PopoverFiles;
     }
 
         // my vars (def)
@@ -20,7 +20,7 @@ public class Xcls_PopoverEditor : Object
     public string prop_or_listener;
 
     // ctor
-    public Xcls_PopoverEditor()
+    public Xcls_PopoverFiles()
     {
         _this = this;
         this.el = new Gtk.Popover( null );
@@ -34,7 +34,7 @@ public class Xcls_PopoverEditor : Object
         this.el.height_request = 800;
         this.el.hexpand = false;
         this.el.modal = true;
-        this.el.position = Gtk.PositionType.RIGHT;
+        this.el.position = Gtk.PositionType.BOTTOM;
 
         // init method
 
