@@ -15,6 +15,7 @@
     {
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool homogeneous" : false,
      "xtype" : "Box"
     }
    ],

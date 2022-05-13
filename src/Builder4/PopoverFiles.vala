@@ -97,6 +97,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.homogeneous = false;
         }
 
         // user defined functions
