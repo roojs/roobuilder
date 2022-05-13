@@ -26,6 +26,7 @@ public class Xcls_PopoverFiles : Object
     public Project.Project selectedProject;
     public Xcls_MainWindow win;
     public bool is_loading;
+    public string XXXX;
 
     // ctor
     public Xcls_PopoverFiles()
@@ -152,9 +153,29 @@ public class Xcls_PopoverFiles : Object
             m.set(iter,   2,file.nickType() ); // file type?
             
             
-            var fiter = file.getIconFileName(false);
+            var fname = file.getIconFileName(false);
+            try {
+    		    if (FileUtils.test(fname, FileTest.EXISTS)) {
+    		        pixbuf = new Gdk.Pixbuf.from_file(fname);
+    		    } 
+    		} catch (Error e) {
+    		    // noop
+    		
+    		}
+            if (pixbuf == null) {
             
-            
+            try {
+                if (_this.missing_thumb_pixbuf == null) {
+                        var icon_theme = Gtk.IconTheme.get_default ();
+                        _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
+                        _this.missing_thumb_pixbuf.ref();
+                    }
+                    pixbuf = _this.missing_thumb_pixbuf;
+    
+            } catch (Error e) {
+                // noop?
+            }
+        }
             m.set(iter,   3,fiter.get(i).file.nickNameSplit() );
           
             // this needs to add to the iconview?
