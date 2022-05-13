@@ -35,13 +35,6 @@ public class Xcls_PopoverFiles : Object
         this.el.modal = true;
         this.el.position = Gtk.PositionType.BOTTOM;
 
-        // init method
-
-        {
-          this.editor = new Editor();
-          this.el.add(this.editor.el);
-        }
-
         //listeners
         this.el.hide.connect( () => {
         	// save...

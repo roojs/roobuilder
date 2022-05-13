@@ -3,13 +3,6 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "* init" : [
-    "{",
-    "  this.editor = new Editor();",
-    "  this.el.add(this.editor.el);",
-    "}",
-    ""
-   ],
    "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
    "Xcls_MainWindow win" : "",
    "bool active" : false,
