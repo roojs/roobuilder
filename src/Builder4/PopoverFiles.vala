@@ -23,9 +23,9 @@ public class Xcls_PopoverFiles : Object
         // my vars (def)
     public bool active;
     public bool is_loaded;
+    public Project.Project selectedProject;
     public Xcls_MainWindow win;
     public bool is_loading;
-    public string XXXX;
 
     // ctor
     public Xcls_PopoverFiles()

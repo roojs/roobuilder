@@ -2,6 +2,7 @@
  "build_module" : "",
  "items" : [
   {
+   "# Project.Project selectedProject" : "",
    "# Xcls_MainWindow win" : "",
    "# bool is_loaded" : false,
    "# bool is_loading" : false,
@@ -264,7 +265,6 @@
      "}"
     ]
    },
-   "string XXXX" : "",
    "xtype" : "Popover",
    "| void load" : [
     "() {",
