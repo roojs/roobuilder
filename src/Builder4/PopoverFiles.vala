@@ -117,8 +117,31 @@ public class Xcls_PopoverFiles : Object
          m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
          _this.is_loading = false;     
     }
-    public void selectProject () {
-    
+    public void selectProject (Project.Project project) {
+        
+        var sel = _this.view.el.get_selection();
+        
+        sel.unselect_all();
+        
+        var found = false;
+        _this.model.el.foreach((mod, path, iter) => {
+            GLib.Value val;
+        
+            mod.get_value(iter, 1, out val);
+            if ( ( (Project.Project)val.get_object()).fn != project.fn) {
+                print("SKIP %s != %s\n", ((Project.Project)val.get_object()).name , project.name);
+                return false;//continue
+            }
+            sel.select_iter(iter);
+            this.project_selected(project);
+            found = true;
+            return true;
+            
+        
+        });
+         if (!found) {
+    	    print("tried to select %s, could not find it", project.name);
+        }
     }
     public class Xcls_Box2 : Object
     {
