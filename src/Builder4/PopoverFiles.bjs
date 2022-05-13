@@ -14,6 +14,7 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "xtype" : "Box"
     }
    ],
