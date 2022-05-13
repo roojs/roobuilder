@@ -18,7 +18,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_iconview iconview;
     public Xcls_fileview fileview;
     public Xcls_filemodel filemodel;
-    public Xcls_namecol namecol;
+    public Xcls_filenamecol filenamecol;
 
         // my vars (def)
     public bool active;
@@ -531,18 +531,18 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.title = "File";
-            var child_0 = new Xcls_namecol( _this );
+            var child_0 = new Xcls_filenamecol( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
 
             // init method
 
-            this.el.add_attribute(_this.namecol.el , "markup", 0  );
+            this.el.add_attribute(_this.filenamecol.el , "markup", 0  );
         }
 
         // user defined functions
     }
-    public class Xcls_namecol : Object
+    public class Xcls_filenamecol : Object
     {
         public Gtk.CellRendererText el;
         private Xcls_PopoverFiles  _this;
@@ -551,10 +551,10 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_namecol(Xcls_PopoverFiles _owner )
+        public Xcls_filenamecol(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            _this.namecol = this;
+            _this.filenamecol = this;
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)

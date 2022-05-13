@@ -200,7 +200,7 @@
            "$ xns" : "Gtk",
            "* init" : [
             "",
-            "    this.el.add_attribute(_this.namecol.el , \"markup\", 0  );",
+            "    this.el.add_attribute(_this.filenamecol.el , \"markup\", 0  );",
             " "
            ],
            "* pack" : "append_column",
@@ -208,7 +208,7 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "pack_start,true",
-             "id" : "namecol",
+             "id" : "filenamecol",
              "xtype" : "CellRendererText"
             }
            ],
