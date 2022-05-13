@@ -87,7 +87,7 @@ public class Xcls_PopoverFiles : Object
     	this.win = win;
     	this.editor.window = win;
     }
-    public return_type XXXX () {
+    public void load () {
     
     }
     public class Xcls_Box2 : Object

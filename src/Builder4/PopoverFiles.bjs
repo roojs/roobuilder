@@ -260,7 +260,7 @@
    },
    "string prop_or_listener" : "\"\"",
    "xtype" : "Popover",
-   "| return_type XXXX" : [
+   "| void load" : [
     "() {",
     "",
     "}",
