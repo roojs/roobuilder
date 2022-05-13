@@ -15,7 +15,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_namecol namecol;
-    public Xcls_IconView9 IconView9;
+    public Xcls_iconview iconview;
 
         // my vars (def)
     public bool active;
@@ -316,7 +316,7 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.shadow_type = Gtk.ShadowType.IN;
-            var child_0 = new Xcls_IconView9( _this );
+            var child_0 = new Xcls_iconview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
 
@@ -327,7 +327,7 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
-    public class Xcls_IconView9 : Object
+    public class Xcls_iconview : Object
     {
         public Gtk.IconView el;
         private Xcls_PopoverFiles  _this;
@@ -336,10 +336,10 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_IconView9(Xcls_PopoverFiles _owner )
+        public Xcls_iconview(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            _this.IconView9 = this;
+            _this.iconview = this;
             this.el = new Gtk.IconView();
 
             // my vars (dec)

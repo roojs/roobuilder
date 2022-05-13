@@ -130,7 +130,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add",
-         "id" : "",
+         "id" : "iconview",
          "items" : [
           {
            "$ columns" : "typeof(string), typeof(Object)",
