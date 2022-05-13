@@ -120,6 +120,11 @@
         }
        ],
        "xtype" : "ScrolledWindow"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start,?bool?,?bool?,?uint?",
+       "xtype" : "ScrolledWindow"
       }
      ],
      "xtype" : "Box"

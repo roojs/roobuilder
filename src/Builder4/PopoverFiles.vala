@@ -104,6 +104,9 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_ScrolledWindow3( _this );
             child_0.ref();
             this.el.pack_end (  child_0.el , true,true,0 );
+            var child_1 = new Xcls_ScrolledWindow8( _this );
+            child_1.ref();
+            this.el.pack_start (  child_1.el , ?bool?,?bool?,?uint? );
         }
 
         // user defined functions
@@ -293,6 +296,28 @@ public class Xcls_PopoverFiles : Object
 
 
 
+
+    public class Xcls_ScrolledWindow8 : Object
+    {
+        public Gtk.ScrolledWindow el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ScrolledWindow8(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ScrolledWindow( null, null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
 }
