@@ -265,7 +265,7 @@
    ],
    "listeners" : {
     "hide" : [
-     "(Project.Project project) => {",
+     "( ) => {",
      "\t// save...",
      "\t//this.load();",
      "\t//if (project != null) {",
