@@ -17,7 +17,8 @@
    "$ xns" : "Gtk",
    "* init" : [
     "{",
-    "",
+    "  this.editor = new Editor();",
+    "  ",
     "}",
     ""
    ],

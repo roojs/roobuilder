@@ -61,7 +61,8 @@ public class Xcls_PopoverEditor : Object
         // init method
 
         {
-        
+          this.editor = new Editor();
+          
         }
     }
 
