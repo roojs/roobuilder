@@ -22,8 +22,8 @@
    "string prop_or_listener" : "\"\"",
    "xtype" : "Popover",
    "| return_type setMainWindow" : [
-    "() {",
-    "",
+    "(Xcls_MainWindow win) {",
+    "\tthis.win = win",
     "}",
     ""
    ],
