@@ -131,19 +131,23 @@ public class Xcls_PopoverFiles : Object
     	
     	
     	 
-        this.clearFiles();
+    
         
         
         //this.project_title_name.el.text = pr.name;
         //this.project_title_path.el.text = pr.firstPath();
         
         // file items contains a reference until we reload ...
-        this.fileitems = new Gee.ArrayList<Object>();
+     
+    	 Gtk.TreeIter iter;
+         var m = this.iconmodel.el;
+         m.clear();
      
         var fiter = pr.sortedFiles().list_iterator();
         while (fiter.next()) {
            
-           
+            // this needs to add to the iconview?
+            
             //var a = new Xcls_fileitem(this,fiter.get());
             //this.fileitems.add(a);
     
