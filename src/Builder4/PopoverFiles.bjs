@@ -464,8 +464,15 @@
     ""
    ],
    "| void show" : [
-    "(Gtk.Widget on_el ) {",
+    "(Gtk.Widget on_el, Project.Project project ) {",
     "\t//this.editor.show( file, node, ptype, key);",
+    "\t",
+    "\t\t// save...",
+    "\tthis.load();",
+    "\tif (project != null) {",
+    "\t\tthis.selectProject(project);",
+    "\t}",
+    "\t",
     "\t",
     "    int w,h;",
     "    this.win.el.get_size(out w, out h);",

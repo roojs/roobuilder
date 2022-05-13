@@ -61,8 +61,15 @@ public class Xcls_PopoverFiles : Object
     }
 
     // user defined functions
-    public void show (Gtk.Widget on_el ) {
+    public void show (Gtk.Widget on_el, Project.Project project ) {
     	//this.editor.show( file, node, ptype, key);
+    	
+    		// save...
+    	this.load();
+    	if (project != null) {
+    		this.selectProject(project);
+    	}
+    	
     	
         int w,h;
         this.win.el.get_size(out w, out h);
