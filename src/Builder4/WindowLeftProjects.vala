@@ -17,7 +17,7 @@ public class Xcls_WindowLeftProjects : Object
     public Xcls_namecol namecol;
 
         // my vars (def)
-    public signal void project_selected (Project.Project project);
+    public signal void project_selectedx (Project.Project project);
     public bool is_loaded;
     public bool is_loading;
     public signal void show_new_project ();

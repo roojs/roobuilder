@@ -7,7 +7,7 @@
    "$ homogeneous" : false,
    "$ xns" : "Gtk",
    "* pack" : "add",
-   "@ void project_selected" : "(Project.Project project)",
+   "@ void project_selectedx" : "(Project.Project project)",
    "@ void show_new_project" : "()",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "id" : "WindowLeftProjects",
