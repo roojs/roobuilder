@@ -24,6 +24,7 @@
    "| return_type setMainWindow" : [
     "(Xcls_MainWindow win) {",
     "\tthis.win = win",
+    "\tthis.editor.window = win;",
     "}",
     ""
    ],
