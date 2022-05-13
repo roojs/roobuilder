@@ -421,7 +421,7 @@ public class WindowState : Object
 		this.code_editor_popover  = new  Xcls_PopoverEditor();
 		//this.code_editor.ref();  /// really?
 		 
-		this.code_editor_popover.window = this.win;
+		this.code_editor_popover.mainwindow = this.win;
   
 		this.code_editor_popover.save.connect( () => {
 			this.file.save();
