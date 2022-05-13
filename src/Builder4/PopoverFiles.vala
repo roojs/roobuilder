@@ -15,6 +15,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_namecol namecol;
+    public Xcls_IconView9 IconView9;
 
         // my vars (def)
     public bool active;
@@ -338,6 +339,7 @@ public class Xcls_PopoverFiles : Object
         public Xcls_IconView9(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
+            _this.IconView9 = this;
             this.el = new Gtk.IconView();
 
             // my vars (dec)
