@@ -39,7 +39,7 @@ public class WindowState : Object
 	public Editor					 code_editor_tab; 
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
-	
+	public Xcls_PopoverFiles popover_files;
 	public Xcls_ClutterFiles     clutterfiles;
 
 	public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
@@ -104,6 +104,8 @@ public class WindowState : Object
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
 		this.win.search_results.el.hide();
+		
+		this.popover_files = new XCls_PopoverFiles();
 	}
 
 
