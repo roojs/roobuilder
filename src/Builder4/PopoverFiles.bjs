@@ -137,11 +137,14 @@
          "id" : "iconview",
          "items" : [
           {
-           "$ columns" : "typeof(string), typeof(Object)",
+           "$ columns" : [
+            "typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf),",
+            " "
+           ],
            "$ xns" : "Gtk",
            "* prop" : "model",
            "id" : "iconmodel",
-           "int n_columns" : 2,
+           "int n_columns" : 4,
            "xtype" : "ListStore"
           }
          ],

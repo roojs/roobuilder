@@ -551,7 +551,8 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.iconmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string), typeof(Object) );
+            this.el = new Gtk.ListStore( 4, typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf),
+  );
 
             // my vars (dec)
 
