@@ -16,8 +16,8 @@ public class Xcls_PopoverFiles : Object
     public Xcls_model model;
     public Xcls_namecol namecol;
     public Xcls_iconview iconview;
-    public Xcls_view view;
-    public Xcls_model model;
+    public Xcls_fileview fileview;
+    public Xcls_filemodel filemodel;
     public Xcls_namecol namecol;
 
         // my vars (def)
@@ -400,7 +400,7 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.shadow_type = Gtk.ShadowType.IN;
-            var child_0 = new Xcls_view( _this );
+            var child_0 = new Xcls_fileview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
 
@@ -411,7 +411,7 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
-    public class Xcls_view : Object
+    public class Xcls_fileview : Object
     {
         public Gtk.TreeView el;
         private Xcls_PopoverFiles  _this;
@@ -420,10 +420,10 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_view(Xcls_PopoverFiles _owner )
+        public Xcls_fileview(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            _this.view = this;
+            _this.fileview = this;
             this.el = new Gtk.TreeView();
 
             // my vars (dec)
@@ -431,7 +431,7 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
-            var child_0 = new Xcls_model( _this );
+            var child_0 = new Xcls_filemodel( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
             var child_1 = new Xcls_TreeViewColumn14( _this );
@@ -473,7 +473,7 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
-    public class Xcls_model : Object
+    public class Xcls_filemodel : Object
     {
         public Gtk.ListStore el;
         private Xcls_PopoverFiles  _this;
@@ -482,10 +482,10 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_model(Xcls_PopoverFiles _owner )
+        public Xcls_filemodel(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            _this.model = this;
+            _this.filemodel = this;
             this.el = new Gtk.ListStore( 2, typeof(string), typeof(Object) );
 
             // my vars (dec)
@@ -530,7 +530,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.title = "Projects";
+            this.el.title = "File";
             var child_0 = new Xcls_namecol( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );

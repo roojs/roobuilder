@@ -169,7 +169,7 @@
           " "
          ],
          "* pack" : "add",
-         "id" : "view",
+         "id" : "fileview",
          "items" : [
           {
            "$ columns" : "typeof(string), typeof(Object)",
@@ -192,7 +192,7 @@
             ""
            ],
            "* pack" : "set_model",
-           "id" : "model",
+           "id" : "filemodel",
            "n_columns" : 2,
            "xtype" : "ListStore"
           },
@@ -212,7 +212,7 @@
              "xtype" : "CellRendererText"
             }
            ],
-           "utf8 title" : "Projects",
+           "utf8 title" : "File",
            "xtype" : "TreeViewColumn"
           }
          ],
