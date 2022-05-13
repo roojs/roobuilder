@@ -2,7 +2,7 @@
  "build_module" : "",
  "items" : [
   {
-   "# Editor editor" : true,
+   "# Editor editor" : "",
    "$ xns" : "Gtk",
    "* init" : [
     "{",

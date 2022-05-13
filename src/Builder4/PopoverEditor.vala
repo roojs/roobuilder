@@ -26,7 +26,6 @@ public class Xcls_PopoverEditor : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
-        this.editor = true;
         this.active = false;
         this.prop_or_listener = "";
 
