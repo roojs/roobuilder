@@ -117,6 +117,9 @@ public class Xcls_PopoverFiles : Object
          m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
          _this.is_loading = false;     
     }
+    public return_type XXXX () {
+    
+    }
     public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
