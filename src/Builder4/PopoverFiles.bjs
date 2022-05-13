@@ -11,6 +11,12 @@
    "id" : "PopoverFiles",
    "int height_request" : 800,
    "int width_request" : 900,
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "xtype" : "Box"
+    }
+   ],
    "listeners" : {
     "hide" : [
      "() => {",

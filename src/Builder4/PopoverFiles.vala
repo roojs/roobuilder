@@ -34,6 +34,8 @@ public class Xcls_PopoverFiles : Object
         this.el.hexpand = false;
         this.el.modal = true;
         this.el.position = Gtk.PositionType.BOTTOM;
+        var child_0 = new Xcls_Box2( _this );
+        child_0.ref();
 
         //listeners
         this.el.hide.connect( () => {
@@ -78,4 +80,26 @@ public class Xcls_PopoverFiles : Object
     	this.win = win;
     	this.editor.window = win;
     }
+    public class Xcls_Box2 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box2(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( null, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 }
