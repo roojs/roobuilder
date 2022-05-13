@@ -21,6 +21,12 @@
    "int width_request" : 900,
    "string prop_or_listener" : "\"\"",
    "xtype" : "Popover",
+   "| return_type setMainWindow" : [
+    "() {",
+    "",
+    "}",
+    ""
+   ],
    "| void show" : [
     "(Gtk.Widget on_el, JsRender.JsRender file, JsRender.Node? node, string ptype, string key) {",
     "\tthis.editor.show( file, node, ptype, key);",
