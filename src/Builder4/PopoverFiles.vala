@@ -87,6 +87,9 @@ public class Xcls_PopoverFiles : Object
     	this.win = win;
     	this.editor.window = win;
     }
+    public return_type XXXX () {
+    
+    }
     public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
