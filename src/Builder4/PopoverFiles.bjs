@@ -267,10 +267,10 @@
     "hide" : [
      "(Project.Project project) => {",
      "\t// save...",
-     "\tthis.load();",
-     "\tif (project != null) {",
-     "\t\tthis.selectProject(project);",
-     "\t}",
+     "\t//this.load();",
+     "\t//if (project != null) {",
+     "//\t\tthis.selectProject(project);",
+     "//\t}",
      " ",
      "}"
     ]

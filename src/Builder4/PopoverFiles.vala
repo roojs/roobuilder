@@ -52,10 +52,10 @@ public class Xcls_PopoverFiles : Object
         //listeners
         this.el.hide.connect( (Project.Project project) => {
         	// save...
-        	this.load();
-        	if (project != null) {
-        		this.selectProject(project);
-        	}
+        	//this.load();
+        	//if (project != null) {
+        //		this.selectProject(project);
+        //	}
          
         });
     }
