@@ -66,7 +66,7 @@ public class Xcls_PopoverEditor : Object
     	
     	// width = should be max = w-ww , or 600 at best..?
     	 
-        this.el.set_size_request( int.min(600,(w - ww)), h);
+        this.el.set_size_request( int.min(800,(w - ww)), h);
     
        
     	this.el.set_modal(true);

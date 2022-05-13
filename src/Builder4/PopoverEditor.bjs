@@ -52,7 +52,7 @@
     "\t",
     "\t// width = should be max = w-ww , or 600 at best..?",
     "\t ",
-    "    this.el.set_size_request( int.min(600,(w - ww)), h);",
+    "    this.el.set_size_request( int.min(800,(w - ww)), h);",
     "",
     "   ",
     "\tthis.el.set_modal(true);",
