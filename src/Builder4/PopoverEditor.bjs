@@ -21,7 +21,7 @@
    "int width_request" : 900,
    "string prop_or_listener" : "\"\"",
    "xtype" : "Popover",
-   "| return_type setMainWindow" : [
+   "| void setMainWindow" : [
     "(Xcls_MainWindow win) {",
     "\tthis.win = win;",
     "\tthis.editor.window = win;",
