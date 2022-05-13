@@ -317,7 +317,7 @@ public class Xcls_PopoverFiles : Object
             this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_IconView9( _this );
             child_0.ref();
-            this.el.composite_name (  child_0.el  );
+            this.el.add (  child_0.el  );
 
             // init method
 

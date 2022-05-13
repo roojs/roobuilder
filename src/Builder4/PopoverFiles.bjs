@@ -129,7 +129,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "composite_name",
+         "* pack" : "add",
          "xtype" : "IconView"
         }
        ],
