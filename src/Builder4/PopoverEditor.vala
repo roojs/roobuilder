@@ -14,22 +14,22 @@ public class Xcls_PopoverEditor : Object
     }
 
         // my vars (def)
-    public Xcls_MainWindow window;
+    public string key;
+    public JsRender.JsRender file;
+    public JsRender.Node node;
+    public Editor editor;
+    public int last_search_end;
     public string activeEditor;
+    public Xcls_MainWindow window;
+    public Gtk.SourceSearchContext searchcontext;
+    public bool active;
+    public bool pos;
     public int pos_root_x;
     public int pos_root_y;
-    public string ptype;
-    public string key;
-    public bool active;
-    public JsRender.JsRender file;
-    public bool pos;
-    public bool dirty;
-    public int last_search_end;
-    public Xcls_MainWindow mainwindow;
-    public Gtk.SourceSearchContext searchcontext;
-    public signal void save ();
-    public JsRender.Node node;
     public string prop_or_listener;
+    public Xcls_MainWindow mainwindow;
+    public string ptype;
+    public bool dirty;
 
     // ctor
     public Xcls_PopoverEditor()
@@ -38,18 +38,19 @@ public class Xcls_PopoverEditor : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
-        this.window = null;
-        this.activeEditor = "";
-        this.ptype = "";
         this.key = "";
-        this.active = false;
         this.file = null;
-        this.pos = false;
-        this.dirty = false;
-        this.last_search_end = 0;
-        this.searchcontext = null;
         this.node = null;
+        this.editor = true;
+        this.last_search_end = 0;
+        this.activeEditor = "";
+        this.window = null;
+        this.searchcontext = null;
+        this.active = false;
+        this.pos = false;
         this.prop_or_listener = "";
+        this.ptype = "";
+        this.dirty = false;
 
         // set gobject values
         this.el.width_request = 900;
@@ -67,75 +68,27 @@ public class Xcls_PopoverEditor : Object
     }
 
     // user defined functions
-    public void scroll_to_line (int line) {
+    public void forwardSearch (bool change_focus) {
     
-    	GLib.Timeout.add(500, () => {
-       
-    		var buf = this.view.el.get_buffer();
+    	if (this.searchcontext == null) {
+    		return;
+    	}
+    	
+    	Gtk.TextIter beg, st,en;
+    	 
+    	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end);
+    	if (!this.searchcontext.forward(beg, out st, out en)) {
+    	
+    		this.last_search_end = 0;
+    	} else {
+    		this.last_search_end = en.get_offset();
+    		if (change_focus) {
+    			this.view.el.grab_focus();
+    		}
+    		this.buffer.el.place_cursor(st);
+    		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
+    	}
     
-    		var sbuf = (Gtk.SourceBuffer) buf;
-    
-    
-    		Gtk.TextIter iter;   
-    		sbuf.get_iter_at_line(out iter,  line);
-    		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-    		return false;
-    	});   
-    }
-    public void show ( Gtk.Widget onbtn, JsRender.JsRender file, JsRender.Node? node, string ptype, string key  )
-    {
-        this.file = file;    
-        this.ptype = "";
-        this.key  = "";
-        this.node = null;
-    	this.searchcontext = null;
-        
-        if (file.xtype != "PlainFile") {
-        
-            this.ptype = ptype;
-            this.key  = key;
-            this.node = node;
-             string val = "";
-            // find the text for the node..
-            if (ptype == "listener") {
-                val = node.listeners.get(key);
-            
-            } else {
-                val = node.props.get(key);
-            }
-            this.view.load(val);
-            this.key_edit.el.show();
-            this.key_edit.el.text = key;  
-        
-        } else {
-            this.view.load(        file.toSource() );
-            this.key_edit.el.hide();
-        }
-    
-        
-        // set size up...
-        
-        
-        int w,h;
-        this.mainwindow.el.get_size(out w, out h);
-        
-        // left tree = 250, editor area = 500?
-        
-        // min 450?
-    	// max hieght ...
-        this.el.set_size_request( 250, h);
-    
-        
-    
-        if (this.el.relative_to == null) {
-            this.el.set_relative_to(onbtn);
-        }
-        this.el.show_all();
-       
-        while(Gtk.events_pending()) { 
-                Gtk.main_iteration();
-        }        
-     //   this.hpane.el.set_position( 0);
     }
     public int search (string txt) {
     
@@ -152,6 +105,25 @@ public class Xcls_PopoverEditor : Object
     	
     	return this.searchcontext.get_occurrences_count();
      
+    }
+    public void hide () {
+    	this.prop_or_listener = "";
+    	this.el.hide();
+    }
+    public void scroll_to_line (int line) {
+    
+    	GLib.Timeout.add(500, () => {
+       
+    		var buf = this.view.el.get_buffer();
+    
+    		var sbuf = (Gtk.SourceBuffer) buf;
+    
+    
+    		Gtk.TextIter iter;   
+    		sbuf.get_iter_at_line(out iter,  line);
+    		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+    		return false;
+    	});   
     }
     public bool saveContents ()  {
         
@@ -190,32 +162,6 @@ public class Xcls_PopoverEditor : Object
         this.save();
         
         return true;
-    
-    }
-    public void hide () {
-    	this.prop_or_listener = "";
-    	this.el.hide();
-    }
-    public void forwardSearch (bool change_focus) {
-    
-    	if (this.searchcontext == null) {
-    		return;
-    	}
-    	
-    	Gtk.TextIter beg, st,en;
-    	 
-    	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end);
-    	if (!this.searchcontext.forward(beg, out st, out en)) {
-    	
-    		this.last_search_end = 0;
-    	} else {
-    		this.last_search_end = en.get_offset();
-    		if (change_focus) {
-    			this.view.el.grab_focus();
-    		}
-    		this.buffer.el.place_cursor(st);
-    		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
-    	}
     
     }
 }
