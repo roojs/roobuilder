@@ -315,6 +315,9 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.shadow_type = Gtk.ShadowType.IN;
+            var child_0 = new Xcls_IconView9( _this );
+            child_0.ref();
+            this.el.composite_name (  child_0.el  );
 
             // init method
 
@@ -323,6 +326,28 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
+    public class Xcls_IconView9 : Object
+    {
+        public Gtk.IconView el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_IconView9(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.IconView();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 }
