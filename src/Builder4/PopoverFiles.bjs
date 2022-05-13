@@ -123,7 +123,13 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,?bool?,?bool?,?uint?",
+       "* init" : [
+        "{",
+        "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+        "}",
+        ""
+       ],
+       "* pack" : "pack_end,true,true,0",
        "xtype" : "ScrolledWindow"
       }
      ],

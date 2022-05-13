@@ -106,7 +106,7 @@ public class Xcls_PopoverFiles : Object
             this.el.pack_end (  child_0.el , true,true,0 );
             var child_1 = new Xcls_ScrolledWindow8( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , ?bool?,?bool?,?uint? );
+            this.el.pack_end (  child_1.el , true,true,0 );
         }
 
         // user defined functions
@@ -314,6 +314,12 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+
+            // init method
+
+            {
+              this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+            }
         }
 
         // user defined functions
