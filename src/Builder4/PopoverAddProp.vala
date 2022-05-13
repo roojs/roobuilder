@@ -83,11 +83,11 @@ public class Xcls_PopoverAddProp : Object
                     -1
             );
         }
-        
+        this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);    
         
         // set size up...
         
-        this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);
+    
         int w,h;
         this.mainwindow.el.get_size(out w, out h);
         
