@@ -35,87 +35,45 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
+         "$ tooltop_text" : [
+          "\"Open a new Window",
+          "\""
+         ],
          "$ xns" : "Gtk",
          "* pack" : "add",
-         "bool use_popover" : false,
+         "bool always_show_image" : true,
+         "id" : "windownew",
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* init" : [
-            "{",
-            "    this.el.show_all();",
-            "}",
-            ""
-           ],
-           "* pack" : "set_popup",
-           "id" : "topbarmenu",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "append",
-             "listeners" : {
-              "activate" : [
-               "( ) => {",
-               "       _this.openNewWindow();",
-               "}"
-              ]
-             },
-             "string label" : "Open a new Window",
-             "xtype" : "MenuItem"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "append",
-             "xtype" : "SeparatorMenuItem"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "append",
-             "listeners" : {
-              "activate" : [
-               " ( ) => {",
-               "         Resources.singleton().fetchStart();",
-               "}"
-              ]
-             },
-             "string label" : "Download updated Resources",
-             "xtype" : "MenuItem"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "append",
-             "listeners" : {
-              "activate" : [
-               "() => {",
-               "    About.singleton().el.show();",
-               "    }"
-              ]
-             },
-             "string label" : "About the Builder",
-             "xtype" : "MenuItem"
-            }
-           ],
-           "xtype" : "Menu"
-          },
-          {
-           "$ xns" : "Gtk",
            "* pack" : "set_image",
-           "utf8 icon_name" : "help-about",
+           "utf8 icon_name" : "window-new",
            "xtype" : "Image"
           }
          ],
-         "xtype" : "MenuButton"
+         "listeners" : {
+          "clicked" : [
+           "  ( ) => {",
+           "     _this.openNewWindow();",
+           "      ",
+           "",
+           "}"
+          ]
+         },
+         "string label" : "New Window",
+         "xtype" : "Button"
         },
         {
          "$ tooltop_text" : "\"Open File\"",
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
          "id" : "openbtn",
          "items" : [
           {
            "$ xns" : "Gtk",
            "* pack" : "set_image",
-           "utf8 icon_name" : "document-open",
+           "utf8 icon_name" : "system-file-manager",
            "xtype" : "Image"
           }
          ],
@@ -128,6 +86,7 @@
            "}"
           ]
          },
+         "string label" : "Files / Projects",
          "xtype" : "Button"
         },
         {
@@ -867,6 +826,59 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "* pack" : "add",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "    this.el.show_all();",
+            "}",
+            ""
+           ],
+           "* pack" : "set_popup",
+           "id" : "topbarmenu",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "append",
+             "listeners" : {
+              "activate" : [
+               " ( ) => {",
+               "         Resources.singleton().fetchStart();",
+               "}"
+              ]
+             },
+             "string label" : "Download updated Resources",
+             "xtype" : "MenuItem"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "append",
+             "listeners" : {
+              "activate" : [
+               "() => {",
+               "    About.singleton().el.show();",
+               "    }"
+              ]
+             },
+             "string label" : "About the Builder",
+             "xtype" : "MenuItem"
+            }
+           ],
+           "xtype" : "Menu"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "set_image",
+           "utf8 icon_name" : "dialog-information",
+           "xtype" : "Image"
+          }
+         ],
+         "xtype" : "MenuButton"
+        },
+        {
+         "$ xns" : "Gtk",
          "* pack" : "pack_start,true,true,0",
          "string label" : "   ",
          "xtype" : "Label"
@@ -1183,6 +1195,7 @@
            "xtype" : "ImageMenuItem"
           }
          ],
+         "string tooltip_text" : "Update Resources / About Roobuilder",
          "xtype" : "MenuBar"
         },
         {
