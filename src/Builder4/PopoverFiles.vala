@@ -121,7 +121,7 @@ public class Xcls_PopoverFiles : Object
          m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
          _this.is_loading = false;     
     }
-    public void onProjectSelected () {
+    public void onProjectSelected (Project.Project project) {
     
     }
     public void selectProject (Project.Project project) {
@@ -140,7 +140,8 @@ public class Xcls_PopoverFiles : Object
                 return false;//continue
             }
             sel.select_iter(iter);
-            this.project_selected(project);
+    
+            this.onProjectSelected(project);
             found = true;
             return true;
             
