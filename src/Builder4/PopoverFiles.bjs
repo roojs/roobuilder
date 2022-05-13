@@ -130,6 +130,14 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "set_model",
+           "* prop" : "model",
+           "xtype" : "ListStore"
+          }
+         ],
          "xtype" : "IconView"
         }
        ],

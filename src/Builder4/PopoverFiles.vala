@@ -343,10 +343,35 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_ListStore10( _this );
+            child_0.ref();
+            this.el.model = child_0.el;
         }
 
         // user defined functions
     }
+    public class Xcls_ListStore10 : Object
+    {
+        public Gtk.ListStore el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ListStore10(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ListStore( 0, null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 
