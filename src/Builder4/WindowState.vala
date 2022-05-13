@@ -423,7 +423,7 @@ public class WindowState : Object
 		 
 		this.code_editor_popover.mainwindow = this.win;
   
-		this.code_editor_popover.save.connect( () => {
+		this.code_editor_popover.editor.save.connect( () => {
 			this.file.save();
 			this.left_tree.model.updateSelected();
 			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
