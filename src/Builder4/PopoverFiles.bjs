@@ -133,12 +133,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* init" : [
-          "{",
-          "",
-          "}",
-          ""
-         ],
          "* pack" : "add",
          "id" : "iconview",
          "items" : [
