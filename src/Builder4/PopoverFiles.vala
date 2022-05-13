@@ -314,6 +314,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.shadow_type = Gtk.ShadowType.IN;
 
             // init method
 
