@@ -2,6 +2,7 @@
  "build_module" : "",
  "items" : [
   {
+   "# Gdk.Pixbuf missing_thumb_pixbuf" : "",
    "# Project.Project selectedProject" : "",
    "# Xcls_MainWindow win" : "",
    "# bool is_loaded" : false,
@@ -265,7 +266,6 @@
      "}"
     ]
    },
-   "string XXXX" : "",
    "xtype" : "Popover",
    "| void load" : [
     "() {",

@@ -25,8 +25,8 @@ public class Xcls_PopoverFiles : Object
     public bool is_loaded;
     public Project.Project selectedProject;
     public Xcls_MainWindow win;
+    public Gdk.Pixbuf missing_thumb_pixbuf;
     public bool is_loading;
-    public string XXXX;
 
     // ctor
     public Xcls_PopoverFiles()
