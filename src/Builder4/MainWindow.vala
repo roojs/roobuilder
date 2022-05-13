@@ -2347,9 +2347,9 @@ public class Xcls_MainWindow : Object
             	var res = 0;
             	switch(_this.windowstate.state) {
             		case WindowState.State.CODEONLY:
-            		case WindowState.State.CODE:
+            		///case WindowState.State.CODE:
             			// search the code being edited..
-            			res = _this.windowstate.code_editor.search(this.el.text);
+            			res = _this.windowstate.code_editor_tab.search(this.el.text);
             			
             			break;
             		case WindowState.State.PREVIEW:
