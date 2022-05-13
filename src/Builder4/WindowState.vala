@@ -759,7 +759,6 @@ public class WindowState : Object
 			   
 				break;
  
-		 
 		  
 
 			case State.CODEONLY:
