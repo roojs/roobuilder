@@ -46,4 +46,7 @@ public class Xcls_PopoverEditor : Object
     }
 
     // user defined functions
+    public void show () {
+    
+    }
 }

@@ -20,7 +20,13 @@
    "int height_request" : 800,
    "int width_request" : 900,
    "string prop_or_listener" : "\"\"",
-   "xtype" : "Popover"
+   "xtype" : "Popover",
+   "| void show" : [
+    "() {",
+    "",
+    "}",
+    ""
+   ]
   }
  ],
  "modOrder" : "",
