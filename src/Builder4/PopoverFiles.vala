@@ -362,21 +362,7 @@ public class Xcls_PopoverFiles : Object
         public Xcls_ListStore10(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ListStore( 0, {
-   this.el.set_sort_func(0, (mod,a,b) => {
-       GLib.Value ga, gb;
-       mod.get_value(a,0, out ga);
-       mod.get_value(b,0, out gb);
-        
-        if ((string)ga == (string)gb) {
-            return 0;
-        }
-        return (string)ga > (string)gb ? 1 : -1;
-   }); 
-
-
-}
- );
+            this.el = new Gtk.ListStore( 0, typeof(string), typeof(Object) );
 
             // my vars (dec)
 
