@@ -164,18 +164,21 @@ public class Xcls_PopoverFiles : Object
     		}
             if (pixbuf == null) {
             
-            try {
-                if (_this.missing_thumb_pixbuf == null) {
-                        var icon_theme = Gtk.IconTheme.get_default ();
-                        _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
-                        _this.missing_thumb_pixbuf.ref();
-                    }
-                    pixbuf = _this.missing_thumb_pixbuf;
+    		    try {
+    		        if (_this.missing_thumb_pixbuf == null) {
+    		            var icon_theme = Gtk.IconTheme.get_default ();
+    		            _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
+    		            _this.missing_thumb_pixbuf.ref();
+    		        }
+    		        pixbuf = _this.missing_thumb_pixbuf;
     
-            } catch (Error e) {
-                // noop?
-            }
-        }
+    		    } catch (Error e) {
+    		        // noop?
+    		    }
+    		}
+    		
+    		
+    		
             m.set(iter,   3,fiter.get(i).file.nickNameSplit() );
           
             // this needs to add to the iconview?
