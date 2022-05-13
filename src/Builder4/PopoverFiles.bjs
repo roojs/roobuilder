@@ -355,7 +355,7 @@
     "\t\t",
     "\t\t",
     "\t\t",
-    "        m.set(iter,   3,fiter.get(i).file.nickNameSplit() );",
+    "        m.set(iter,   3,pixbuf);",
     "      ",
     "        // this needs to add to the iconview?",
     "        ",

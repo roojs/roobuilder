@@ -179,7 +179,7 @@ public class Xcls_PopoverFiles : Object
     		
     		
     		
-            m.set(iter,   3,fiter.get(i).file.nickNameSplit() );
+            m.set(iter,   3,pixbuf);
           
             // this needs to add to the iconview?
             
