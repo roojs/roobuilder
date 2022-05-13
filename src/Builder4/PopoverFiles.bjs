@@ -142,6 +142,7 @@
          "* pack" : "add",
          "id" : "iconview",
          "int markup_column" : 1,
+         "int pixbuf_column" : 3,
          "items" : [
           {
            "$ columns" : [
