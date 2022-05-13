@@ -21,7 +21,7 @@
    "int width_request" : 900,
    "listeners" : {
     "hide" : [
-     "() {",
+     "() => {",
      "\t// save...",
      "\t",
      "}"
