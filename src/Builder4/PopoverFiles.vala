@@ -101,7 +101,7 @@ public class Xcls_PopoverFiles : Object
     }
     public void setMainWindow (Xcls_MainWindow win) {
     	this.win = win;
-    	this.editor.window = win;
+    	 
     }
     public void load () {
          // clear list...
