@@ -23,9 +23,8 @@ public class Xcls_PopoverFiles : Object
         // my vars (def)
     public bool active;
     public bool is_loaded;
-    public bool is_loading;
     public Xcls_MainWindow win;
-    public string prop_or_listener;
+    public bool is_loading;
 
     // ctor
     public Xcls_PopoverFiles()
@@ -37,7 +36,6 @@ public class Xcls_PopoverFiles : Object
         this.active = false;
         this.is_loaded = false;
         this.is_loading = false;
-        this.prop_or_listener = "";
 
         // set gobject values
         this.el.width_request = 900;

@@ -2,11 +2,11 @@
  "build_module" : "",
  "items" : [
   {
+   "# Xcls_MainWindow win" : "",
    "# bool is_loaded" : false,
    "# bool is_loading" : false,
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.BOTTOM",
-   "Xcls_MainWindow win" : "",
    "bool active" : false,
    "bool hexpand" : false,
    "bool modal" : true,
@@ -264,7 +264,6 @@
      "}"
     ]
    },
-   "string prop_or_listener" : "\"\"",
    "xtype" : "Popover",
    "| void load" : [
     "() {",
