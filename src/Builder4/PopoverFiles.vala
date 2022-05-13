@@ -22,9 +22,9 @@ public class Xcls_PopoverFiles : Object
     public Xcls_filenamecol filenamecol;
 
         // my vars (def)
-    public bool active;
-    public bool is_loaded;
     public Project.Project selectedProject;
+    public bool is_loaded;
+    public bool active;
     public Xcls_MainWindow win;
     public Gdk.Pixbuf missing_thumb_pixbuf;
     public bool is_loading;
@@ -36,8 +36,8 @@ public class Xcls_PopoverFiles : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
-        this.active = false;
         this.is_loaded = false;
+        this.active = false;
         this.is_loading = false;
 
         // set gobject values
@@ -56,7 +56,7 @@ public class Xcls_PopoverFiles : Object
         	if (project != null) {
         		this.selectProject(project);
         	}
-        	 
+        	  
         });
     }
 
