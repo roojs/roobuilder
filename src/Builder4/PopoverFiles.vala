@@ -152,7 +152,7 @@ public class Xcls_PopoverFiles : Object
          var m = this.iconmodel.el;
          m.clear();
      
-        var fiter = pr.sortedFiles().list_iterator();
+        var fiter = project.sortedFiles().list_iterator();
         while (fiter.next()) {
             m.append(out iter);
             var file = fiter.get(i);
