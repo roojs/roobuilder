@@ -135,6 +135,7 @@
            "$ columns" : "typeof(string), typeof(Object)",
            "$ xns" : "Gtk",
            "* prop" : "model",
+           "int n_columns" : 2,
            "xtype" : "ListStore"
           }
          ],

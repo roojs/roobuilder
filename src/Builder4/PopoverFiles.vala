@@ -362,7 +362,7 @@ public class Xcls_PopoverFiles : Object
         public Xcls_ListStore10(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ListStore( 0, typeof(string), typeof(Object) );
+            this.el = new Gtk.ListStore( 2, typeof(string), typeof(Object) );
 
             // my vars (dec)
 
