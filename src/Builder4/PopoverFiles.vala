@@ -88,7 +88,34 @@ public class Xcls_PopoverFiles : Object
     	this.editor.window = win;
     }
     public void load () {
-    
+         // clear list...
+        
+         if (_this.is_loaded) {
+             return;
+         }
+         _this.is_loading = true;
+            
+         _this.is_loaded = true;
+         
+         Project.Project.loadAll();
+         var projects = Project.Project.allProjectsByName();
+         
+         Gtk.TreeIter iter;
+         var m = this.model.el;
+         m.clear();
+              
+         for (var i = 0; i < projects.size; i++) {
+            m.append(out iter);
+            m.set(iter,   0,projects.get(i).name );
+            
+            var o =  GLib.Value(typeof(Object));
+            o.set_object((Object)projects.get(i));
+                       
+            m.set_value(iter, 1, o);
+         
+         }
+         m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
+         _this.is_loading = false;     
     }
     public class Xcls_Box2 : Object
     {
