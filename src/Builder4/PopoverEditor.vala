@@ -62,7 +62,7 @@ public class Xcls_PopoverEditor : Object
 
         {
           this.editor = new Editor();
-          
+          this.el.add(this.editor.el);
         }
     }
 
