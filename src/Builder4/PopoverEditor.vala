@@ -54,7 +54,7 @@ public class Xcls_PopoverEditor : Object
     public void show (Gtk.Widget on_el, JsRender.JsRender file, JsRender.Node? node, string ptype, string key) {
     	this.editor.show( file, node, ptype, key);
     	
-        int w,h, ww, hh;
+        int w,h;
         this.win.el.get_size(out w, out h);
         
         // left tree = 250, editor area = 500?
@@ -62,7 +62,7 @@ public class Xcls_PopoverEditor : Object
         // min 450?
     	// max hieght ...
     	
-    	on_el.get_size(out ww, out hh);
+    	var  ww =  on_el.get_allocated_width();
     	
     	// width = should be max = w-ww , or 600 at best..?
     	
