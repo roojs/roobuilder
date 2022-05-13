@@ -105,7 +105,7 @@ public class Xcls_PopoverAddProp : Object
         this.el.show_all();
        
         while(Gtk.events_pending()) { 
-                Gtk.main_iteration();
+                Gtk.main_iteration();   // why?
         }       
      //   this.hpane.el.set_position( 0);
     }
