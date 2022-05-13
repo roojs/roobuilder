@@ -266,7 +266,7 @@
      "\tif (project != null) {",
      "\t\tthis.selectProject(project);",
      "\t}",
-     "\t  ",
+     " ",
      "}"
     ]
    },

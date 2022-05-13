@@ -56,7 +56,7 @@ public class Xcls_PopoverFiles : Object
         	if (project != null) {
         		this.selectProject(project);
         	}
-        	  
+         
         });
     }
 
