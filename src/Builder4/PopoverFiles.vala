@@ -15,7 +15,6 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (def)
     public bool active;
-    public Editor editor;
     public Xcls_MainWindow win;
     public string prop_or_listener;
 
