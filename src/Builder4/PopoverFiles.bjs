@@ -115,7 +115,7 @@
            "    mod.get_value(iter, 1 , out gval);",
            "    var project = (Project.Project)gval.get_object();",
            "    ",
-           "    _this.project_selected(project);",
+           "    _this.onProjectSelect(project);",
            "    ",
            "}  "
           ]
