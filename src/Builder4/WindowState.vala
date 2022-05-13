@@ -759,8 +759,7 @@ public class WindowState : Object
 			   
 				break;
  
-		  
-
+		   
 			case State.CODEONLY:
 				// going to codeonly..
 				this.win.codeeditview.el.show();

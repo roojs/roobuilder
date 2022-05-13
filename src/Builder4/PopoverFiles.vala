@@ -645,6 +645,7 @@ public class Xcls_PopoverFiles : Object
 
             //listeners
             this.el.cursor_changed.connect( () => {
+             /*
                 if (_this.is_loading) {
                     return;
                 }
@@ -663,7 +664,7 @@ public class Xcls_PopoverFiles : Object
                 var project = (Project.Project)gval.get_object();
                 
                 _this.project_selected(project);
-                
+                */
             });
         }
 
