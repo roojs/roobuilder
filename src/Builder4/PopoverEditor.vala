@@ -64,9 +64,10 @@ public class Xcls_PopoverEditor : Object
     	
     	on_el.get_size(out ww, out hh);
     	
-    	// width = Int.min(450,(w - ww))
+    	// width = should be max = w-ww , or 600 at best..?
     	
-        this.el.set_size_request( 250, h);
+    	
+        this.el.set_size_request( Int.min(600,(w - ww)), h);
     
       
     	 
