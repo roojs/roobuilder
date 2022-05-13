@@ -252,9 +252,14 @@
    ],
    "listeners" : {
     "hide" : [
-     "() => {",
+     "(Project.Project project) => {",
      "\t// save...",
-     "\t _this.editor.saveContents();",
+     "\tthis.load();",
+     "\tif (project != null) {",
+     "\t\tthis.selectProject(project);",
+     "\t}",
+     "\t",
+     "",
      "}"
     ]
    },

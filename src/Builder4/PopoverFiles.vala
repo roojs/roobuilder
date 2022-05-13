@@ -45,9 +45,14 @@ public class Xcls_PopoverFiles : Object
         child_0.ref();
 
         //listeners
-        this.el.hide.connect( () => {
+        this.el.hide.connect( (Project.Project project) => {
         	// save...
-        	 _this.editor.saveContents();
+        	this.load();
+        	if (project != null) {
+        		this.selectProject(project);
+        	}
+        	
+        
         });
     }
 
