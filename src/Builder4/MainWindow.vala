@@ -2381,7 +2381,7 @@ public class Xcls_MainWindow : Object
         		//case WindowState.State.CODE:
         			// search the code being edited..
         			_this.windowstate.code_editor_tab.forwardSearch(change_focus);
-        			
+        			 
         			break;
         		case WindowState.State.PREVIEW:
         			if (_this.windowstate.file.xtype == "Gtk") {
