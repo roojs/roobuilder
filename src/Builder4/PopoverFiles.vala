@@ -389,7 +389,7 @@ public class Xcls_PopoverFiles : Object
                 mod.get_value(iter, 1 , out gval);
                 var project = (Project.Project)gval.get_object();
                 
-                _this.onProjectSelect(project);
+                _this.onProjectSelected(project);
                 
             });
         }
