@@ -14,8 +14,8 @@ public class Xcls_PopoverEditor : Object
     }
 
         // my vars (def)
-    public Editor editor;
     public bool active;
+    public Editor editor;
     public Xcls_MainWindow win;
     public string prop_or_listener;
 
@@ -42,6 +42,12 @@ public class Xcls_PopoverEditor : Object
           this.editor = new Editor();
           this.el.add(this.editor.el);
         }
+
+        //listeners
+        this.el.hide.connect( () {
+        	// save...
+        	
+        });
     }
 
     // user defined functions
