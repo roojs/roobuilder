@@ -68,7 +68,9 @@ public class Xcls_PopoverEditor : Object
     	// window + header?
      
     	this.el.show_all();
-     
+        //while(Gtk.events_pending()) { 
+        //        Gtk.main_iteration();   // why?
+        //}  
     
     }
 }

@@ -44,7 +44,9 @@
     "\t// window + header?",
     " ",
     "\tthis.el.show_all();",
-    " ",
+    "    //while(Gtk.events_pending()) { ",
+    "    //        Gtk.main_iteration();   // why?",
+    "    //}  ",
     "",
     "}",
     ""
