@@ -233,13 +233,13 @@ public class WindowState : Object
 			
 		});
 
-   
+   		// not sure if this is needed - as closing the popvoer should save it.
 		this.left_props.stop_editor.connect( () => {
 			//if (this.state != State.CODE) {
 			//	return true;
 			//}
 	
-			var ret =  this.code_editor_popover.saveContents();
+			var ret =  this.code_editor_popover.editor.saveContents();
 			if (!ret) {
 				return false;
 			}
