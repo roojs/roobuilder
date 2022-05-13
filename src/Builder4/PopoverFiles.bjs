@@ -300,7 +300,8 @@
    ],
    "| void onProjectSelected" : [
     "(Project.Project project) {",
-    "",
+    "\tproject.scanDirs();",
+    "\t//this.clutterfiles.loadProject(proj);",
     "}",
     ""
    ],

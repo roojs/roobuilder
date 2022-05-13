@@ -124,7 +124,8 @@ public class Xcls_PopoverFiles : Object
          _this.is_loading = false;     
     }
     public void onProjectSelected (Project.Project project) {
-    
+    	project.scanDirs();
+    	//this.clutterfiles.loadProject(proj);
     }
     public void selectProject (Project.Project project) {
         
