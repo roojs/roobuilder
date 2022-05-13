@@ -23,7 +23,7 @@
    "xtype" : "Popover",
    "| void show" : [
     "() {",
-    "",
+    "(JsRender.JsRender file, JsRender.Node? node, string ptype, string key)",
     "}",
     ""
    ]

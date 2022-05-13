@@ -47,6 +47,6 @@ public class Xcls_PopoverEditor : Object
 
     // user defined functions
     public void show () {
-    
+    (JsRender.JsRender file, JsRender.Node? node, string ptype, string key)
     }
 }
