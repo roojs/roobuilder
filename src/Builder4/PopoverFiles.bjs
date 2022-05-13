@@ -260,12 +260,6 @@
    },
    "string prop_or_listener" : "\"\"",
    "xtype" : "Popover",
-   "| return_type XXXX" : [
-    "() {",
-    "",
-    "}",
-    ""
-   ],
    "| void load" : [
     "() {",
     "     // clear list...",
@@ -296,6 +290,12 @@
     "     }",
     "     m.set_sort_column_id(0, Gtk.SortType.ASCENDING);",
     "     _this.is_loading = false;     ",
+    "}",
+    ""
+   ],
+   "| void selectProject" : [
+    "() {",
+    "",
     "}",
     ""
    ],
