@@ -40,7 +40,7 @@ public class Xcls_WindowLeftProjects : Object
 
         //listeners
         this.el.show.connect( ( ) => {
-            this.load();
+            this.load(); 
         });
     }
 
@@ -73,7 +73,7 @@ public class Xcls_WindowLeftProjects : Object
          
          }
          m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
-         _this.is_loading = false;     
+         _this.is_loading = false;      
     }
     public  Project.Project? getSelectedProject () {    
         Gtk.TreeIter iter;
