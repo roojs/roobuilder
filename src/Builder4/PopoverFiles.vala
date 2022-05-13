@@ -65,7 +65,7 @@ public class Xcls_PopoverFiles : Object
     	
     	// width = should be max = w-ww , or 600 at best..?
     	 
-        this.el.set_size_request( int.min(800,(w - ww)), h);
+        this.el.set_size_request( w, h); // same as parent...
     
        
     	this.el.set_modal(true);
