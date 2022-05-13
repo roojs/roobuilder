@@ -165,8 +165,7 @@ public class Editor : Object
             this.view.load(        file.toSource() );
             this.key_edit.el.hide();
         }
-    
-           
+     
     }
     public void forwardSearch (bool change_focus) {
     
@@ -188,7 +187,7 @@ public class Editor : Object
     		this.buffer.el.place_cursor(st);
     		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
     	}
-    
+     
     }
     public class Xcls_Box2 : Object
     {
@@ -269,6 +268,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.width_request = 100;
+            this.el.editable = false;
         }
 
         // user defined functions
@@ -548,16 +548,6 @@ public class Editor : Object
                 }   
                 return false;
             }
-        public   string toString () {
-            
-            Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_start_iter(out s);
-            this.el.get_end_iter(out e);
-            var ret = this.el.get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
-        }
         public   bool checkSyntax () {
          
             if (this.check_running) {
@@ -656,6 +646,16 @@ public class Editor : Object
              
             return true; // at present allow saving - even if it's invalid..
         }
+        public   string toString () {
+            
+            Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_start_iter(out s);
+            this.el.get_end_iter(out e);
+            var ret = this.el.get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
+        }
         public bool highlightErrorsJson (string type, Json.Object obj) {
               Gtk.TextIter start;
              Gtk.TextIter end;     
@@ -671,8 +671,8 @@ public class Editor : Object
                 return true;
             }
             
-            if (_this.window.windowstate.state != WindowState.State.CODEONLY && 
-                _this.window.windowstate.state != WindowState.State.CODE
+            if (_this.window.windowstate.state != WindowState.State.CODEONLY 
+              
                 ) {
                 return true;
             } 

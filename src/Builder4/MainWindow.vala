@@ -1519,8 +1519,8 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                 _this.windowstate.switchState(WindowState.State.OBJECT);
-              
+            
+              	_this.windowstate.showAddObject(this.el);
              
             });
         }
@@ -1636,7 +1636,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                 _this.windowstate.switchState(WindowState.State.PROP);
+                 _this.windowstate.showProps(this.el, "props");
              
             
             });
@@ -1753,8 +1753,8 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                _this.windowstate.switchState(WindowState.State.LISTENER);
-              
+             
+               _this.windowstate.showProps(this.el, "signals");
             
             
             });
@@ -2347,9 +2347,9 @@ public class Xcls_MainWindow : Object
             	var res = 0;
             	switch(_this.windowstate.state) {
             		case WindowState.State.CODEONLY:
-            		case WindowState.State.CODE:
+            		///case WindowState.State.CODE:
             			// search the code being edited..
-            			res = _this.windowstate.code_editor.search(this.el.text);
+            			res = _this.windowstate.code_editor_tab.search(this.el.text);
             			
             			break;
             		case WindowState.State.PREVIEW:
@@ -2378,10 +2378,10 @@ public class Xcls_MainWindow : Object
         public void forwardSearch (bool change_focus) {
         	switch(_this.windowstate.state) {
         		case WindowState.State.CODEONLY:
-        		case WindowState.State.CODE:
+        		//case WindowState.State.CODE:
         			// search the code being edited..
-        			_this.windowstate.code_editor.forwardSearch(change_focus);
-        			
+        			_this.windowstate.code_editor_tab.forwardSearch(change_focus);
+        			 
         			break;
         		case WindowState.State.PREVIEW:
         			if (_this.windowstate.file.xtype == "Gtk") {

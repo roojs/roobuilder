@@ -208,14 +208,15 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/DialogTemplateSelect.vala \
 		Builder4/EditProject.vala \
 		Builder4/Editor.vala \
+		Builder4/PopoverEditor.vala \
 		Builder4/RooProjectSettings.vala \
-		Builder4/WindowRightPalete.vala \
+		Builder4/PopoverAddObject.vala \
 		Builder4/WindowLeftTree.vala \
 		Builder4/WindowRooView.vala \
 		Builder4/WindowLeftProps.vala \
 		Builder4/ClutterFiles.vala \
 		Builder4/WindowLeftProjects.vala \
-		Builder4/WindowAddProp.vala \
+		Builder4/PopoverAddProp.vala \
 		Builder4/GtkView.vala \
 		Builder4/ValaProjectSettingsPopover.vala \
 		Builder4/MainWindow.vala \
