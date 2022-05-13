@@ -140,6 +140,7 @@
            "$ columns" : "typeof(string), typeof(Object)",
            "$ xns" : "Gtk",
            "* prop" : "model",
+           "id" : "iconmodel",
            "int n_columns" : 2,
            "xtype" : "ListStore"
           }

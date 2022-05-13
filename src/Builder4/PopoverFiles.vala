@@ -16,6 +16,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_model model;
     public Xcls_namecol namecol;
     public Xcls_iconview iconview;
+    public Xcls_iconmodel iconmodel;
     public Xcls_fileview fileview;
     public Xcls_filemodel filemodel;
     public Xcls_filenamecol filenamecol;
@@ -530,14 +531,14 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ListStore10( _this );
+            var child_0 = new Xcls_iconmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_ListStore10 : Object
+    public class Xcls_iconmodel : Object
     {
         public Gtk.ListStore el;
         private Xcls_PopoverFiles  _this;
@@ -546,9 +547,10 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListStore10(Xcls_PopoverFiles _owner )
+        public Xcls_iconmodel(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
+            _this.iconmodel = this;
             this.el = new Gtk.ListStore( 2, typeof(string), typeof(Object) );
 
             // my vars (dec)
