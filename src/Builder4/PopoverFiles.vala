@@ -50,8 +50,8 @@ public class Xcls_PopoverFiles : Object
     }
 
     // user defined functions
-    public void show (Gtk.Widget on_el, JsRender.JsRender file, JsRender.Node? node, string ptype, string key) {
-    	this.editor.show( file, node, ptype, key);
+    public void show (Gtk.Widget on_el ) {
+    	//this.editor.show( file, node, ptype, key);
     	
         int w,h;
         this.win.el.get_size(out w, out h);

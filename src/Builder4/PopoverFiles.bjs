@@ -36,8 +36,8 @@
     ""
    ],
    "| void show" : [
-    "(Gtk.Widget on_el, JsRender.JsRender file, JsRender.Node? node, string ptype, string key) {",
-    "\tthis.editor.show( file, node, ptype, key);",
+    "(Gtk.Widget on_el ) {",
+    "\t//this.editor.show( file, node, ptype, key);",
     "\t",
     "    int w,h;",
     "    this.win.el.get_size(out w, out h);",
