@@ -511,7 +511,7 @@
     "        var fname = file.getIconFileName(false);",
     "        try {",
     "\t\t    if (FileUtils.test(fname, FileTest.EXISTS)) {",
-    "\t\t        var pixbuf = new Gdk.Pixbuf.from_file(fname)",
+    "\t\t        var pixbuf = new Gdk.Pixbuf.from_file(fname);",
     "\t\t        pixbuf = pixbuf.scale_simple(92, 92 * (pixbuf.height / pixbuf.width), Gdk.InterpType.NEAREST) ;",
     "\t\t    } ",
     "\t\t} catch (Error e) {",
