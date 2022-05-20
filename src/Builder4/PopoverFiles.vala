@@ -850,7 +850,7 @@ public class Xcls_PopoverFiles : Object
              	Gtk.TreeIter iter;
                
                         
-            	this.el.model.get_iter(out iter, path)
+            	this.el.model.get_iter(out iter, path);
                 
                 GLib.Value gval;
             

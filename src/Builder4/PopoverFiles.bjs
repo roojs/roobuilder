@@ -330,7 +330,7 @@
              " \tGtk.TreeIter iter;",
              "   ",
              "            ",
-             "\tthis.el.model.get_iter(out iter, path)",
+             "\tthis.el.model.get_iter(out iter, path);",
              "    ",
              "    GLib.Value gval;",
              "",
