@@ -243,7 +243,7 @@ public class Xcls_PopoverFiles : Object
     	    
     		    this.filemodel.el.insert(out fxiter,citer, -1);
     	     	this.filemodel.el.set(fiter, 0, fxiles.get(j)); // filename
-    		 	this.filemodel.el.set(fiter, 1, items.get(i))); // Folder?
+    		 	this.filemodel.el.set(fiter, 1, items.get(i)); // Folder?
     	         
     	        
     	    }
