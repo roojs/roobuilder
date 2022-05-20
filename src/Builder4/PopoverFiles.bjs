@@ -78,7 +78,7 @@
          "$ xns" : "Gtk",
          "* init" : [
           "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-          "a"
+          " "
          ],
          "* pack" : "add",
          "items" : [

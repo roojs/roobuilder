@@ -18,8 +18,7 @@ public class WindowState : Object
 		//CODE,    // code editor.
 		CODEONLY //,
 		//FILES //,
-	 
-
+	  
 	} 
 
 	public State state = State.NONE;
