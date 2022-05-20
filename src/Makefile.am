@@ -216,7 +216,6 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/WindowRooView.vala \
 		Builder4/WindowLeftProps.vala \
 		Builder4/ClutterFiles.vala \
-		Builder4/WindowLeftProjects.vala \
 		Builder4/PopoverAddProp.vala \
 		Builder4/GtkView.vala \
 		Builder4/ValaProjectSettingsPopover.vala \
