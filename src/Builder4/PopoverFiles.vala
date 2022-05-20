@@ -266,7 +266,7 @@ public class Xcls_PopoverFiles : Object
                 return false;//continue
             }
             sel.select_iter(iter);
-    
+    		this.selectedProject = project;
             this.onProjectSelected(project);
             found = true;
             return true;
