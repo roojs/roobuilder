@@ -311,11 +311,13 @@ public class WindowState : Object
         if (active_file != null) {
             xtype = active_file.xtype;
         } else {
+        
+        	return; // no active project
             // we might be on the file brower..
-            pr = this.left_projects.getSelectedProject();        
-            if (pr != null) {
-                xtype = pr.xtype;
-            }
+            //pr = this.left_projects.getSelectedProject();        
+            //if (pr != null) {
+            //    xtype = pr.xtype;
+            //}
         }   
         if (xtype == "") {
             return;
@@ -657,11 +659,11 @@ public class WindowState : Object
 		
 		// stop werid stuff happening
 		
-		if (this.state == State.FILES 
+		//if (this.state == State.FILES 
 			//&& new_state == State.FILEPROJECT 
-			&& this.left_projects.getSelectedProject() == null) {
-			return;
-		}
+		//	&& this.left_projects.getSelectedProject() == null) {
+		//	return;
+		//}
 		// save the easing state of everything..
 		this.easingSaveAll();
 		
