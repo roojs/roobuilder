@@ -457,7 +457,16 @@ public class WindowState : Object
 
 	}
 	*/
+	
+	
 	// ----------- file view
+	public void showPopoverFiles(Gtk.Widget btn)
+	{
+		this.popover_files.show(btn, this.project);
+	
+	}
+	
+	
 /*
 	public void fileViewInit()
 	{
