@@ -168,7 +168,7 @@ public class Xcls_PopoverFiles : Object
             var fname = file.getIconFileName(false);
             try {
     		    if (FileUtils.test(fname, FileTest.EXISTS)) {
-    		        pixbuf = new Gdk.Pixbuf.from_file(fname).scale_simple(92,92,GDK_INTERP_NEAREST) ;
+    		        pixbuf = new Gdk.Pixbuf.from_file(fname).scale_simple(92,92, Gdk.InterpType.NEAREST) ;
     		    } 
     		} catch (Error e) {
     		    // noop
