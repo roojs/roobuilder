@@ -49,9 +49,6 @@ public class Xcls_PopoverFiles : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
-        var child_1 = new Xcls_Box9( _this );
-        child_1.ref();
-        this.el.add (  child_1.el  );
 
         //listeners
         this.el.hide.connect( ( ) => {
@@ -298,6 +295,9 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
+            var child_1 = new Xcls_Box9( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
         }
 
         // user defined functions
@@ -558,7 +558,6 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
-
 
 
 
@@ -1054,6 +1053,7 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
+
 
 
 
