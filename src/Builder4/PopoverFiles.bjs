@@ -324,7 +324,12 @@
             }
            ],
            "listeners" : {
-            "item_activated" : ""
+            "item_activated" : [
+             "(path) => {",
+             "",
+             "",
+             "}"
+            ]
            },
            "xtype" : "IconView"
           }
