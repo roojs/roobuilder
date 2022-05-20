@@ -373,57 +373,6 @@
               },
               {
                "$ xns" : "Clutter",
-               "* init" : "this.el.set_size(50.0f,50.0f);",
-               "* pack" : "add_child",
-               "id" : "editfilebutton",
-               "items" : [
-                {
-                 "$ xns" : "GtkClutter",
-                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
-                 "* pack" : "add_child",
-                 "items" : [
-                  {
-                   "$ tooltip_text" : "\"File Details\"",
-                   "$ xns" : "Gtk",
-                   "* pack" : false,
-                   "height_request" : 50,
-                   "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "* pack" : "set_image",
-                     "utf8 icon_name" : "document-properties",
-                     "xtype" : "Image"
-                    }
-                   ],
-                   "listeners" : {
-                    "clicked" : [
-                     "  ( ) => {",
-                     "  ",
-                     "    // create a new file in project..",
-                     "    if (_this.project == null || _this.windowstate.file == null) {",
-                     "        return  ;",
-                     "    }",
-                     "     _this.windowstate.file_details.show(",
-                     "        _this.windowstate.file, this.el",
-                     "    );",
-                     "     ",
-                     "    return  ;    ",
-                     "",
-                     "",
-                     "}"
-                    ]
-                   },
-                   "width_request" : 50,
-                   "xtype" : "Button"
-                  }
-                 ],
-                 "xtype" : "Actor"
-                }
-               ],
-               "xtype" : "Actor"
-              },
-              {
-               "$ xns" : "Clutter",
                "* init" : "this.el.set_size(50,50);",
                "* pack" : "add_child",
                "id" : "objectshowbutton",
