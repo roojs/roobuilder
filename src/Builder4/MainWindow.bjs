@@ -80,7 +80,7 @@
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
-           "  \t_this.windowstate.showPopoverFiles(this.el);",
+           "  \t_this.windowstate.showPopoverFiles(this.el, _this.project);",
            "",
            "}"
           ]
