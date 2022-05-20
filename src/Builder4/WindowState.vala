@@ -465,9 +465,9 @@ public class WindowState : Object
 	
 	
 	// ----------- file view
-	public void showPopoverFiles(Gtk.Widget btn)
+	public void showPopoverFiles(Gtk.Widget btn, Project.Project project)
 	{
-		this.popover_files.show(btn, this.project);
+		this.popover_files.show(btn, project);
 	
 	}
 	
