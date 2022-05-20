@@ -19,8 +19,8 @@
     "//\t}"
    ],
    "border_width" : 0,
-   "default_height" : 500,
-   "default_width" : 800,
+   "default_height" : 750,
+   "default_width" : 1200,
    "id" : "MainWindow",
    "items" : [
     {

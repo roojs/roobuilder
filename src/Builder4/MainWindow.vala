@@ -62,8 +62,8 @@ public class Xcls_MainWindow : Object
 
         // set gobject values
         this.el.border_width = 0;
-        this.el.default_height = 500;
-        this.el.default_width = 800;
+        this.el.default_height = 750;
+        this.el.default_width = 1200;
         var child_0 = new Xcls_headerbar( _this );
         child_0.ref();
         this.el.set_titlebar (  child_0.el  );
