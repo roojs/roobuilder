@@ -45,7 +45,7 @@ public class Xcls_PopoverFiles : Object
         this.el.height_request = 800;
         this.el.hexpand = false;
         this.el.modal = true;
-        this.el.position = Gtk.PositionType.BOTTOM;
+        this.el.position = Gtk.PositionType.TOP;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
 
@@ -85,7 +85,7 @@ public class Xcls_PopoverFiles : Object
     	 
         this.el.set_size_request( w, h); // same as parent...
     
-       
+    
     	this.el.set_modal(true);
     	this.el.set_relative_to(on_el);
     
