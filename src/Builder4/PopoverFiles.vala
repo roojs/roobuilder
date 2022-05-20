@@ -963,7 +963,7 @@ public class Xcls_PopoverFiles : Object
     }
     public class Xcls_filemodel : Object
     {
-        public Gtk.ListStore el;
+        public Gtk.TreeStore el;
         private Xcls_PopoverFiles  _this;
 
 
@@ -974,7 +974,7 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.filemodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string), typeof(Object) );
+            this.el = new Gtk.TreeStore( 2, typeof(string), typeof(string) );
 
             // my vars (dec)
 

@@ -349,7 +349,7 @@
            "id" : "fileview",
            "items" : [
             {
-             "$ columns" : "typeof(string), typeof(Object)",
+             "$ columns" : "typeof(string), typeof(string)",
              "$ xns" : "Gtk",
              "* init" : [
               "{",
@@ -371,7 +371,7 @@
              "* pack" : "set_model",
              "id" : "filemodel",
              "n_columns" : 2,
-             "xtype" : "ListStore"
+             "xtype" : "TreeStore"
             },
             {
              "$ xns" : "Gtk",
