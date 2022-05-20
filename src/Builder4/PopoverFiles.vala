@@ -168,7 +168,7 @@ public class Xcls_PopoverFiles : Object
             try {
     		    if (FileUtils.test(fname, FileTest.EXISTS)) {
     		        pixbuf = new Gdk.Pixbuf.from_file(fname);
-    		        pixbuf = pixbuf.scale_simple(92, 92 * (pixbuf.height / pixbuf.width), Gdk.InterpType.NEAREST) ;
+    		        pixbuf = pixbuf.scale_simple(92, 92 * (pixbuf.width/pixbuf.height  ), Gdk.InterpType.NEAREST) ;
     		    } 
     		} catch (Error e) {
     		    // noop
