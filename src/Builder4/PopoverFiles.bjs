@@ -639,7 +639,7 @@
     ""
    ],
    "| void show" : [
-    "(Gtk.Widget on_el, Project.Project project ) {",
+    "(Gtk.Widget on_el, Project.Project? project ) {",
     "\t//this.editor.show( file, node, ptype, key);",
     "\t",
     "\t\t// save...",
