@@ -296,47 +296,39 @@
       },
       {
        "$ xns" : "Gtk",
+       "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
        "* pack" : "add",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
+       "bool expand" : true,
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+         "* init" : [
+          "{",
+          "",
+          "}",
+          ""
+         ],
          "* pack" : "add",
-         "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
-         "bool expand" : true,
+         "id" : "iconview",
+         "int columns" : 3,
+         "int item_width" : 150,
+         "int markup_column" : 1,
+         "int pixbuf_column" : 3,
          "items" : [
           {
+           "$ columns" : "typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf) ",
            "$ xns" : "Gtk",
-           "* init" : [
-            "{",
-            "",
-            "}",
-            ""
-           ],
-           "* pack" : "add",
-           "id" : "iconview",
-           "int columns" : 3,
-           "int item_width" : 150,
-           "int markup_column" : 1,
-           "int pixbuf_column" : 3,
-           "items" : [
-            {
-             "$ columns" : "typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf) ",
-             "$ xns" : "Gtk",
-             "* prop" : "model",
-             "id" : "iconmodel",
-             "int n_columns" : 4,
-             "xtype" : "ListStore"
-            }
-           ],
-           "xtype" : "IconView"
+           "* prop" : "model",
+           "id" : "iconmodel",
+           "int n_columns" : 4,
+           "xtype" : "ListStore"
           }
          ],
-         "xtype" : "ScrolledWindow"
+         "xtype" : "IconView"
         }
        ],
-       "xtype" : "Box"
+       "xtype" : "ScrolledWindow"
       },
       {
        "$ xns" : "Gtk",
