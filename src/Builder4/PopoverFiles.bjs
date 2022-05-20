@@ -301,12 +301,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
-         "Gtk.ToolbarStyle toolbar_style" : "Gtk.ToolbarStyle.BOTH_HORIZ",
-         "xtype" : "Toolbar"
-        },
-        {
-         "$ xns" : "Gtk",
          "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
          "* pack" : "add",
          "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
