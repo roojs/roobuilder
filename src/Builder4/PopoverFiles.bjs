@@ -195,6 +195,7 @@
          ],
          "* pack" : "add",
          "bool expand" : true,
+         "int width_request" : 150,
          "items" : [
           {
            "$ enable_tree_lines" : true,
