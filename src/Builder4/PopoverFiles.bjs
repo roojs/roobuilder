@@ -333,6 +333,7 @@
          "* pack" : "add",
          "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
          "bool expand" : true,
+         "int width_request" : 100,
          "items" : [
           {
            "$ enable_tree_lines" : true,
