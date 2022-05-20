@@ -18,7 +18,6 @@
             "../Builder4/MainWindow.vala",
             "../Builder4/RooProjectProperties.vala",
             "../Builder4/StandardErrorDialog.vala",
-            "../Builder4/WindowLeftProjects.vala",
             "../Builder4/WindowLeftProps.vala",
             "../Builder4/WindowLeftTree.vala",
             "../Builder4/WindowRooView.vala",
