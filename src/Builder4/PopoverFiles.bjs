@@ -22,6 +22,11 @@
      "bool homogeneous" : false,
      "items" : [
       {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start,?bool?,?bool?,?uint?",
+       "xtype" : "Box"
+      },
+      {
        "$ shadow_type" : "Gtk.ShadowType.IN",
        "$ xns" : "Gtk",
        "* init" : [

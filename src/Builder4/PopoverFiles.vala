@@ -292,20 +292,45 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            var child_0 = new Xcls_ScrolledWindow3( _this );
+            var child_0 = new Xcls_Box3( _this );
             child_0.ref();
-            this.el.pack_end (  child_0.el , true,true,0 );
-            var child_1 = new Xcls_ScrolledWindow8( _this );
+            this.el.pack_start (  child_0.el , ?bool?,?bool?,?uint? );
+            var child_1 = new Xcls_ScrolledWindow4( _this );
             child_1.ref();
             this.el.pack_end (  child_1.el , true,true,0 );
-            var child_2 = new Xcls_ScrolledWindow11( _this );
+            var child_2 = new Xcls_ScrolledWindow9( _this );
             child_2.ref();
             this.el.pack_end (  child_2.el , true,true,0 );
+            var child_3 = new Xcls_ScrolledWindow12( _this );
+            child_3.ref();
+            this.el.pack_end (  child_3.el , true,true,0 );
         }
 
         // user defined functions
     }
-    public class Xcls_ScrolledWindow3 : Object
+    public class Xcls_Box3 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box3(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( null, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_ScrolledWindow4 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -314,7 +339,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow3(Xcls_PopoverFiles _owner )
+        public Xcls_ScrolledWindow4(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -357,7 +382,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn6( _this );
+            var child_1 = new Xcls_TreeViewColumn7( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -436,7 +461,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn6 : Object
+    public class Xcls_TreeViewColumn7 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -445,7 +470,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn6(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn7(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -491,7 +516,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_ScrolledWindow8 : Object
+    public class Xcls_ScrolledWindow9 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -500,7 +525,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow8(Xcls_PopoverFiles _owner )
+        public Xcls_ScrolledWindow9(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -578,7 +603,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_ScrolledWindow11 : Object
+    public class Xcls_ScrolledWindow12 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -587,7 +612,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow11(Xcls_PopoverFiles _owner )
+        public Xcls_ScrolledWindow12(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -630,7 +655,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_filemodel( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn14( _this );
+            var child_1 = new Xcls_TreeViewColumn15( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -710,7 +735,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn14 : Object
+    public class Xcls_TreeViewColumn15 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -719,7 +744,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn14(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn15(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
