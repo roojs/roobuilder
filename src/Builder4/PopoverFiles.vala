@@ -324,7 +324,7 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             var child_0 = new Xcls_Toolbar4( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , ?bool?,?bool?,?uint? );
+            this.el.add (  child_0.el  );
             var child_1 = new Xcls_ScrolledWindow5( _this );
             child_1.ref();
             this.el.add (  child_1.el  );

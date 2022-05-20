@@ -28,7 +28,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "pack_start,?bool?,?bool?,?uint?",
+         "* pack" : "add",
          "xtype" : "Toolbar"
         },
         {
