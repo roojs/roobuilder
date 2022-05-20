@@ -40,8 +40,8 @@ public class WindowState : Object
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
 	public Xcls_PopoverFiles popover_files;
-	public Xcls_ClutterFiles     clutterfiles;
-
+	
+	//public Xcls_ClutterFiles     clutterfiles;
 	//public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
 	 
 	public DialogTemplateSelect template_select; 
@@ -73,7 +73,7 @@ public class WindowState : Object
 		this.codeEditInit();
 		this.codePopoverEditInit();
 		//this.projectListInit();
-		this.fileViewInit();
+		//this.fileViewInit();
 
 		// adding stuff
 		this.objectAddInit();
@@ -105,7 +105,7 @@ public class WindowState : Object
 		this.win.statusbar_run.el.hide();
 		this.win.search_results.el.hide();
 		
-		this.popover_files = new XCls_PopoverFiles();
+		this.popover_files = new Xcls_PopoverFiles();
 	}
 
 
@@ -459,7 +459,7 @@ public class WindowState : Object
 	}
 	*/
 	// ----------- file view
-
+/*
 	public void fileViewInit()
 	{
 		var stage = this.win.rooview.el.get_stage(); // seems odd... 
@@ -483,6 +483,7 @@ public class WindowState : Object
 		});
 
 	}
+	*/
  
 	public void fileDetailsInit()
 	{
@@ -596,7 +597,7 @@ public class WindowState : Object
 		this.win.codeeditview.el.save_easing_state();
 		this.win.objectview.el.save_easing_state();
 		this.win.rooview.el.save_easing_state();
-		this.clutterfiles.el.save_easing_state();
+	//	this.clutterfiles.el.save_easing_state();
 		 
 	}
 	public void easingRestoreAll()
@@ -605,7 +606,7 @@ public class WindowState : Object
 		this.win.codeeditview.el.restore_easing_state();
 		this.win.objectview.el.restore_easing_state();
 		this.win.rooview.el.restore_easing_state();
-		this.clutterfiles.el.restore_easing_state();
+		//this.clutterfiles.el.restore_easing_state();
 		
 	}
 	
@@ -706,7 +707,7 @@ public class WindowState : Object
 				 
 				break;
 
-		 
+		 /*
 		  case State.FILES: // goes to preview or codeonly...
 				// hide files...
 				
@@ -734,7 +735,7 @@ public class WindowState : Object
 				 
 
 				break;
-
+	*/
 				
 		}
 	   
@@ -752,14 +753,14 @@ public class WindowState : Object
 				 this.win.editpane.el.show(); // holder for tree and properties..
 				 
 			 
-				 this.left_projects.el.hide(); 
-				 if (oldstate != State.FILES) {
+				// this.left_projects.el.hide(); 
+				// if (oldstate != State.FILES) {
 					// it's handled above..
-					print ("changing state to preview from NOT files..");
+				//	print ("changing state to preview from NOT files..");
 					 
  
 					this.win.rooview.el.set_scale(1.0f,1.0f);
-				 }
+				// }
 			   
 				break;
  
@@ -784,7 +785,7 @@ public class WindowState : Object
 				this.win.codeeditview.el.set_scale(1.0f,1.0f);
 				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
 				break;
-
+/*
 			 
 		   case State.FILES:  // can only get here from PREVIEW (or code-only) state.. in theory..
 				
@@ -817,7 +818,7 @@ public class WindowState : Object
 				 
 				
 				break;
-
+*/
 
 		}
 		this.resizeCanvasElements();
@@ -892,9 +893,9 @@ public class WindowState : Object
 				this.win.rooview.el.set_size(alloc.width-50, alloc.height);
 				break;
 	
-			case State.FILES: 
-				this.clutterfiles.set_size(alloc.width-50, alloc.height);
-				break;
+			//case State.FILES: 
+				//this.clutterfiles.set_size(alloc.width-50, alloc.height);
+			//	break;
 
 		  
 				
@@ -965,7 +966,7 @@ public class WindowState : Object
 				break;
 		 
 			 
-		 
+		 /*
 			case State.FILES:
 				if (this.left_projects.getSelectedProject() != null ) {
 					if (this.left_tree.getActiveFile() != null) {
@@ -985,6 +986,7 @@ public class WindowState : Object
 				
 				
 				break;
+				*/
 		}
 		
 		
