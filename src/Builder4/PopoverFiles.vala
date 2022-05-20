@@ -707,10 +707,11 @@ public class Xcls_PopoverFiles : Object
                     return;
                 }
                 
-                
+                /*
                 _this.windowstate.left_projects.is_loaded = false;    
                 _this.windowstate.left_projects.load();
                 _this.windowstate.left_projects.selectProject(p);
+                */
                 return  ;    
             
             
