@@ -20,7 +20,7 @@ public class WindowState : Object
 		//FILES //,
 	 
 
-	}
+	} 
 
 	public State state = State.NONE;
 
