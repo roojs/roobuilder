@@ -24,7 +24,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_end,true,true,0",
+       "* pack" : "pack_start,true,true,0",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "items" : [
         {
