@@ -517,11 +517,11 @@ public class Xcls_PopoverFiles : Object
                 // create a new file in project..
                 print("add file selected\n");
                 
-                if (this.project == null) {
+                if (_this.project == null) {
                 	return;
                 }
                 
-                var f = JsRender.JsRender.factory(this.project.xtype,  this.project, "");
+                var f = JsRender.JsRender.factory(_this.project.xtype,  _this.project, "");
                  _this.win.windowstate.file_details.show( f, this.el );
             
             });
