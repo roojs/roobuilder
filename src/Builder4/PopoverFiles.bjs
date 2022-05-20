@@ -448,7 +448,7 @@
      "//\t\tthis.selectProject(project);",
      "//\t}",
      " \tif (_this.win.windowstate.project == null) {",
-     " \t\treturn;",
+     " \t\tthis.el.show();",
      "\t}",
      "}"
     ]
