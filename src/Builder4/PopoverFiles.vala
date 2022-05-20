@@ -939,7 +939,24 @@ public class Xcls_PopoverFiles : Object
             //listeners
             this.el.row_activated.connect( (path, col) => {
             
+            	Gtk.TreeIter iter;
+               
+                        
+            	this.el.model.get_iter(out iter, path);
+                
+                GLib.Value gval;
             
+                this.el.model.get_value(iter, 1 , out gval);
+               var fn = (JsRender.JsRender)gval;
+                if (fn.length < 1) {
+                	return;
+            	}
+                
+                
+                
+                _this.win.windowstate.fileViewOpen(file);
+                _this.el.hide();
+                
             });
             this.el.cursor_changed.connect( () => {
              /*
