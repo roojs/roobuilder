@@ -203,15 +203,15 @@ public class Xcls_PopoverFiles : Object
         }
         
         
-        /*
+         
         
         // folders...
         
-        if (!(pr is Project.Gtk)) {
+        if (!(project is Project.Gtk)) {
             print ("not gtk... skipping files");
             return;
         }
-        var gpr = (Project.Gtk)pr;
+        var gpr = (Project.Gtk)project;
          var def = gpr.compilegroups.get("_default_");
          // not sure why the above is returng null!??
          if (def == null) {
@@ -220,15 +220,17 @@ public class Xcls_PopoverFiles : Object
          }
     	 var items  = def.sources;
     		 
-    		 
+    	 Gtk.TreeIter citer; 
     	 
     	for(var i =0 ; i < items.size; i++) {
-    	    print ("cheking folder %s\n", items.get(i));
+    	     print ("cheking folder %s\n", items.get(i));
     	     var files = gpr.filesForOpen(items.get(i));
     	     if (files.size < 1) {
     	        continue;
     	     }
-    
+    		 this.el.append(out citer,null);
+    		
+    		
     	    // add the directory... items.get(i);
     	    var x = new Xcls_folderitem(this,items.get(i));
     	    this.fileitems.add(x);
