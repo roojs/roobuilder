@@ -298,7 +298,7 @@ public class Xcls_PopoverFiles : Object
             var child_1 = new Xcls_Box11( _this );
             child_1.ref();
             this.el.pack_end (  child_1.el , true,true,0 );
-            var child_2 = new Xcls_ScrolledWindow22( _this );
+            var child_2 = new Xcls_ScrolledWindow21( _this );
             child_2.ref();
             this.el.pack_end (  child_2.el , true,true,0 );
         }
@@ -611,7 +611,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_Toolbar12( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_ScrolledWindow19( _this );
+            var child_1 = new Xcls_ScrolledWindow18( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
         }
@@ -638,10 +638,10 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_ToolButton13( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
-            var child_1 = new Xcls_ToolButton15( _this );
+            var child_1 = new Xcls_ToolButton14( _this );
             child_1.ref();
             this.el.composite_name (  child_1.el  );
-            var child_2 = new Xcls_ToolButton17( _this );
+            var child_2 = new Xcls_ToolButton16( _this );
             child_2.ref();
             this.el.composite_name (  child_2.el  );
         }
@@ -665,9 +665,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Image14( _this );
-            child_0.ref();
-            this.el.set_image (  child_0.el  );
+            this.el.icon_name = "emblem-system";
 
             //listeners
             this.el.clicked.connect( ( ) => {
@@ -697,31 +695,8 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
-    public class Xcls_Image14 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_PopoverFiles  _this;
 
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image14(Xcls_PopoverFiles _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "emblem-system";
-        }
-
-        // user defined functions
-    }
-
-
-    public class Xcls_ToolButton15 : Object
+    public class Xcls_ToolButton14 : Object
     {
         public Gtk.ToolButton el;
         private Xcls_PopoverFiles  _this;
@@ -730,7 +705,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton15(Xcls_PopoverFiles _owner )
+        public Xcls_ToolButton14(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ToolButton( null, "Delete Project" );
@@ -738,7 +713,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Image16( _this );
+            var child_0 = new Xcls_Image15( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -776,7 +751,7 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
-    public class Xcls_Image16 : Object
+    public class Xcls_Image15 : Object
     {
         public Gtk.Image el;
         private Xcls_PopoverFiles  _this;
@@ -785,7 +760,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image16(Xcls_PopoverFiles _owner )
+        public Xcls_Image15(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -800,7 +775,7 @@ public class Xcls_PopoverFiles : Object
     }
 
 
-    public class Xcls_ToolButton17 : Object
+    public class Xcls_ToolButton16 : Object
     {
         public Gtk.ToolButton el;
         private Xcls_PopoverFiles  _this;
@@ -809,7 +784,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton17(Xcls_PopoverFiles _owner )
+        public Xcls_ToolButton16(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ToolButton( null, "New File" );
@@ -817,7 +792,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Image18( _this );
+            var child_0 = new Xcls_Image17( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -850,7 +825,7 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
-    public class Xcls_Image18 : Object
+    public class Xcls_Image17 : Object
     {
         public Gtk.Image el;
         private Xcls_PopoverFiles  _this;
@@ -859,7 +834,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image18(Xcls_PopoverFiles _owner )
+        public Xcls_Image17(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -875,7 +850,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_ScrolledWindow19 : Object
+    public class Xcls_ScrolledWindow18 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -884,7 +859,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow19(Xcls_PopoverFiles _owner )
+        public Xcls_ScrolledWindow18(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -963,7 +938,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_ScrolledWindow22 : Object
+    public class Xcls_ScrolledWindow21 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -972,7 +947,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow22(Xcls_PopoverFiles _owner )
+        public Xcls_ScrolledWindow21(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -1015,7 +990,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_filemodel( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn25( _this );
+            var child_1 = new Xcls_TreeViewColumn24( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -1095,7 +1070,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn25 : Object
+    public class Xcls_TreeViewColumn24 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -1104,7 +1079,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn25(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn24(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
