@@ -431,7 +431,10 @@ public class Xcls_PopoverFiles : Object
 
             //listeners
             this.el.clicked.connect( ( ) => {
-               
+              // should disable the button really.
+               if (_this.selectedProject == null) {
+            	   return;
+               }
             	_this.win.windowstate.projectPopoverShow(this.el, _this.selectedProject);
              });
         }

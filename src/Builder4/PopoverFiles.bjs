@@ -71,7 +71,10 @@
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
-             "   ",
+             "  // should disable the button really.",
+             "   if (_this.selectedProject == null) {",
+             "\t   return;",
+             "   }",
              "\t_this.win.windowstate.projectPopoverShow(this.el, _this.selectedProject);",
              " }"
             ]
