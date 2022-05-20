@@ -230,7 +230,7 @@ public class Xcls_PopoverFiles : Object
     	     }
     		 this.filemodel.el.append(out citer,null);
     		 this.filemodel.el.set(citer, 0, items.get(i));
-    		 this.filemodel.el.set(citer, 1, ""); // parent (empty as it's a folder)
+    		 this.filemodel.el.set(citer, 1, null); // parent (empty as it's a folder)
     		
     		
     	    // add the directory... items.get(i);
