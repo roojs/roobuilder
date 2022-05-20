@@ -218,7 +218,7 @@
              "}"
             ]
            },
-           "string label" : "New Project",
+           "string label" : "Delete Selected Project",
            "xtype" : "ToolButton"
           }
          ],
