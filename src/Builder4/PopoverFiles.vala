@@ -806,7 +806,7 @@ public class Xcls_PopoverFiles : Object
 
             // init method
 
-            this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+            this.el.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
         }
 
         // user defined functions
