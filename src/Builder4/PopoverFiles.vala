@@ -368,7 +368,7 @@ public class Xcls_PopoverFiles : Object
         public Xcls_ToolButton5(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton( null, "" );
+            this.el = new Gtk.ToolButton( null, "New Project" );
 
             // my vars (dec)
 
