@@ -23,7 +23,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,?bool?,?bool?,?uint?",
+       "* pack" : "pack_end,true,true,0",
        "xtype" : "Box"
       },
       {
