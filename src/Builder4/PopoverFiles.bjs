@@ -158,6 +158,9 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "composite_name",
+           "listeners" : {
+            "clicked" : ""
+           },
            "string label" : "New File",
            "xtype" : "ToolButton"
           }

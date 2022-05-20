@@ -635,6 +635,9 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.clicked.connect( );
         }
 
         // user defined functions
