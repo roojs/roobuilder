@@ -420,7 +420,12 @@
              "    */",
              "}  "
             ],
-            "row_activated" : ""
+            "row_activated" : [
+             "(path, col) => {",
+             "",
+             "",
+             "}"
+            ]
            },
            "xtype" : "TreeView"
           }
