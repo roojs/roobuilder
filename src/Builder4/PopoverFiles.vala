@@ -48,7 +48,7 @@ public class Xcls_PopoverFiles : Object
         this.el.position = Gtk.PositionType.TOP;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.pack_start (  child_0.el , ?bool?,?bool?,?uint? );
+        this.el.add (  child_0.el  );
         var child_1 = new Xcls_Box3( _this );
         child_1.ref();
         this.el.add (  child_1.el  );
@@ -290,7 +290,7 @@ public class Xcls_PopoverFiles : Object
         public Xcls_Box2(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
