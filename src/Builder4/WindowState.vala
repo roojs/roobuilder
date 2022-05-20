@@ -16,8 +16,8 @@ public class WindowState : Object
 		//PROP,
 		//LISTENER,
 		//CODE,    // code editor.
-		CODEONLY,
-		FILES //,
+		CODEONLY //,
+		//FILES //,
 	 
 
 	}
