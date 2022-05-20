@@ -936,7 +936,6 @@ public class Xcls_PopoverFiles : Object
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
 
             //listeners
-            this.el.button_press_event.connect( );
             this.el.cursor_changed.connect( () => {
              /*
                 if (_this.is_loading) {
