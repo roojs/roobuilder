@@ -523,6 +523,7 @@
          "$ tooltip_text" : "\"Project Details\"",
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
          "height_request" : 50,
          "items" : [
           {
@@ -542,7 +543,7 @@
            "}"
           ]
          },
-         "string label" : "Edit Project",
+         "string label" : "Edit Project Settings",
          "width_request" : 50,
          "xtype" : "Button"
         },
@@ -550,6 +551,7 @@
          "$ tooltip_text" : "\"File Details\"",
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
          "height_request" : 50,
          "items" : [
           {
@@ -632,6 +634,7 @@
            "xtype" : "Image"
           }
          ],
+         "string label" : "About",
          "xtype" : "MenuButton"
         },
         {
