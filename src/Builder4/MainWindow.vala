@@ -146,7 +146,7 @@ public class Xcls_MainWindow : Object
     
             w.el.show_all();
             w.initChildren();
-            w.
+            w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);
             // should open the file dialog...
             //w.windowstate.switchState(WindowState.State.FILES);
     }
