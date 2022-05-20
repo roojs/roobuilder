@@ -67,7 +67,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "composite_name",
+           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -101,7 +101,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "composite_name",
+           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -141,7 +141,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "composite_name",
+           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              " () => {",

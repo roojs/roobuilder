@@ -349,13 +349,13 @@ public class Xcls_PopoverFiles : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_ToolButton6( _this );
             child_1.ref();
-            this.el.composite_name (  child_1.el  );
+            this.el.add (  child_1.el  );
             var child_2 = new Xcls_ToolButton7( _this );
             child_2.ref();
-            this.el.composite_name (  child_2.el  );
+            this.el.add (  child_2.el  );
             var child_3 = new Xcls_ToolButton8( _this );
             child_3.ref();
-            this.el.composite_name (  child_3.el  );
+            this.el.add (  child_3.el  );
         }
 
         // user defined functions
