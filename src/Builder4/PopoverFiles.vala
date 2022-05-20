@@ -251,7 +251,7 @@ public class Xcls_PopoverFiles : Object
     	    
     	    //this.el.set_value(citer, 1,   items.get(i) );
     	}
-        this.file
+        _this.fileview.el.expand_all();
         
     	
     }

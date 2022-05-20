@@ -596,7 +596,7 @@
     "\t    ",
     "\t    //this.el.set_value(citer, 1,   items.get(i) );",
     "\t}",
-    "    this.file",
+    "    _this.fileview.el.expand_all();",
     "    ",
     "\t",
     "}",
