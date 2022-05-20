@@ -432,27 +432,11 @@ public class Xcls_PopoverFiles : Object
             //listeners
             this.el.clicked.connect( ( ) => {
               
-                // create a new file in project..
-                //Xcls_DialogNewComponent.singleton().show(
-               var  pe =      EditProject.singleton();
-               // pe.el.set_transient_for(_this.el);
-                pe.el.set_modal(true);   
-               
-                var p  = pe.show();
-            
-                if (p == null) {
-                    return;
-                }
-                
-                /*
-                _this.windowstate.left_projects.is_loaded = false;    
-                _this.windowstate.left_projects.load();
-                _this.windowstate.left_projects.selectProject(p);
-                */
-                return  ;    
-            
-            
-            });
+              
+              
+              
+            	this.win.windowstate.projectPopoverShow(this.el);
+             });
         }
 
         // user defined functions
