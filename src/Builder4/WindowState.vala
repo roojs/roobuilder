@@ -42,7 +42,7 @@ public class WindowState : Object
 	public Xcls_PopoverFiles popover_files;
 	public Xcls_ClutterFiles     clutterfiles;
 
-	public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
+	//public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
 	
 	public DialogTemplateSelect template_select; 
 	
@@ -72,7 +72,7 @@ public class WindowState : Object
 		this.projectEditInit();
 		this.codeEditInit();
 		this.codePopoverEditInit();
-		this.projectListInit();
+		//this.projectListInit();
 		this.fileViewInit();
 
 		// adding stuff
