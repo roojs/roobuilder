@@ -304,7 +304,7 @@
          "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
          "* pack" : "add",
          "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
-         "bool expand" : "",
+         "bool expand" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
