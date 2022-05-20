@@ -390,10 +390,11 @@ public class Xcls_PopoverFiles : Object
                     return;
                 }
                 
-                
-                _this.windowstate.left_projects.is_loaded = false;    
-                _this.windowstate.left_projects.load();
-                _this.windowstate.left_projects.selectProject(p);
+                /*
+                _this.win.windowstate.left_projects.is_loaded = false;    
+                _this.win.windowstate.left_projects.load();
+                _this.win.windowstate.left_projects.selectProject(p);
+                */
                 return  ;    
             
             
