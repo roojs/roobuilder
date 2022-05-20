@@ -349,7 +349,7 @@
            "id" : "fileview",
            "items" : [
             {
-             "$ columns" : "typeof(string), typeof(Object)",
+             "$ columns" : "typeof(string), typeof(string)",
              "$ xns" : "Gtk",
              "* init" : [
               "{",
@@ -586,8 +586,8 @@
     "\t    for(var j =0 ; j < files.size; j++) {",
     "\t    ",
     "\t\t    this.filemodel.el.insert(out fxiter,citer, -1);",
-    "\t     \tthis.filemodel.el.set(fiter, 0, fxiles.get(j).name); // filename",
-    "\t\t \tthis.filemodel.el.set(fiter, 1, fxiles.get(i)); // Folder?",
+    "\t     \tthis.filemodel.el.set(fiter, 0, fxiles.get(j)); // filename",
+    "\t\t \tthis.filemodel.el.set(fiter, 1, items.get(i))); // Folder?",
     "\t         ",
     "\t        ",
     "\t    }",

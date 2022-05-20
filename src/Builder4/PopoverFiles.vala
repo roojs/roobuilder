@@ -242,8 +242,8 @@ public class Xcls_PopoverFiles : Object
     	    for(var j =0 ; j < files.size; j++) {
     	    
     		    this.filemodel.el.insert(out fxiter,citer, -1);
-    	     	this.filemodel.el.set(fiter, 0, fxiles.get(j).name); // filename
-    		 	this.filemodel.el.set(fiter, 1, fxiles.get(i)); // Folder?
+    	     	this.filemodel.el.set(fiter, 0, fxiles.get(j)); // filename
+    		 	this.filemodel.el.set(fiter, 1, items.get(i))); // Folder?
     	         
     	        
     	    }
@@ -974,7 +974,7 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.filemodel = this;
-            this.el = new Gtk.TreeStore( 2, typeof(string), typeof(Object) );
+            this.el = new Gtk.TreeStore( 2, typeof(string), typeof(string) );
 
             // my vars (dec)
 
