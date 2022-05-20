@@ -146,6 +146,7 @@ public class Xcls_MainWindow : Object
     
             w.el.show_all();
             w.initChildren();
+            w.
             // should open the file dialog...
             //w.windowstate.switchState(WindowState.State.FILES);
     }
