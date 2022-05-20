@@ -662,6 +662,7 @@
            "}"
           ]
          },
+         "string label" : "Edit Project",
          "width_request" : 50,
          "xtype" : "Button"
         },
