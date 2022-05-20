@@ -929,7 +929,7 @@ public class Xcls_PopoverFiles : Object
             // init method
 
             var description = new Pango.FontDescription();
-                 description.set_size(8000);
+                 description.set_size(9000);
                 this.el.override_font(description);     
                                 
                 var selection = this.el.get_selection();
