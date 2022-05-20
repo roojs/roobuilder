@@ -68,7 +68,7 @@
          "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
-         "id" : "openbtn",
+         "id" : "open_projects_btn",
          "items" : [
           {
            "$ xns" : "Gtk",
