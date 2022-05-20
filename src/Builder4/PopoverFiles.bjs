@@ -158,7 +158,7 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "composite_name",
-           "string label" : "New Project",
+           "string label" : "New File",
            "xtype" : "ToolButton"
           }
          ],
