@@ -512,7 +512,7 @@
     "        try {",
     "\t\t    if (FileUtils.test(fname, FileTest.EXISTS)) {",
     "\t\t        var npixbuf = new Gdk.Pixbuf.from_file(fname);",
-    "\t\t        pixbuf = npixbuf.scale_simple(92, 92 * (npixbuf.height/npixbuf.width  ), Gdk.InterpType.NEAREST) ;",
+    "\t\t        pixbuf = npixbuf.scale_simple(92, 92.0 * (npixbuf.height * 1.0 /npixbuf.width * 1.0  ), Gdk.InterpType.NEAREST) ;",
     "\t\t    } ",
     "\t\t} catch (Error e) {",
     "\t\t    // noop",
