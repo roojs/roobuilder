@@ -105,6 +105,7 @@ public class WindowState : Object
 		this.win.search_results.el.hide();
 		
 		this.popover_files = new Xcls_PopoverFiles();
+		this.popover_files.windowstate = this;
 	}
 
 
