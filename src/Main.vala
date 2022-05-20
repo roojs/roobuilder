@@ -27,7 +27,7 @@ int main (string[] args) {
 	w.el.show_all();
 	// it looks like showall after children causes segfault on ubuntu 14.4
 	w.initChildren();
-	w.windowstate.showPopoverFiles(w.open_projects_btn.el);
+	w.windowstate.showPopoverFiles(w.open_projects_btn.el, null);
 //	w.windowstate.switchState(WindowState.State.FILES);
 	
 	Gtk.main();
