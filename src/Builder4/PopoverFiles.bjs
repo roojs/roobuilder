@@ -565,7 +565,7 @@
     "\t var items  = def.sources;",
     "\t\t ",
     "\t Gtk.TreeIter citer;  // folder iter",
-    "\t Gtk.TreeIter fiter;  // file iter",
+    "\t// Gtk.TreeIter fiter;  // file iter",
     "\tfor(var i =0 ; i < items.size; i++) {",
     "\t     print (\"cheking folder %s\\n\", items.get(i));",
     "\t     var files = gpr.filesForOpen(items.get(i));",

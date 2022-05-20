@@ -221,7 +221,7 @@ public class Xcls_PopoverFiles : Object
     	 var items  = def.sources;
     		 
     	 Gtk.TreeIter citer;  // folder iter
-    	 Gtk.TreeIter fiter;  // file iter
+    	// Gtk.TreeIter fiter;  // file iter
     	for(var i =0 ; i < items.size; i++) {
     	     print ("cheking folder %s\n", items.get(i));
     	     var files = gpr.filesForOpen(items.get(i));
