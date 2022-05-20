@@ -43,7 +43,7 @@ public class WindowState : Object
 	public Xcls_ClutterFiles     clutterfiles;
 
 	//public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
-	
+	 
 	public DialogTemplateSelect template_select; 
 	
  	public Xcls_PopoverFileDetails file_details;
