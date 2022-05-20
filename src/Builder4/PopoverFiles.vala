@@ -295,15 +295,12 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
             this.el.pack_end (  child_0.el , true,true,0 );
-            var child_1 = new Xcls_ScrolledWindow4( _this );
+            var child_1 = new Xcls_ScrolledWindow9( _this );
             child_1.ref();
             this.el.pack_end (  child_1.el , true,true,0 );
-            var child_2 = new Xcls_ScrolledWindow9( _this );
+            var child_2 = new Xcls_ScrolledWindow12( _this );
             child_2.ref();
             this.el.pack_end (  child_2.el , true,true,0 );
-            var child_3 = new Xcls_ScrolledWindow12( _this );
-            child_3.ref();
-            this.el.pack_end (  child_3.el , true,true,0 );
         }
 
         // user defined functions
@@ -320,16 +317,18 @@ public class Xcls_PopoverFiles : Object
         public Xcls_Box3(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_ScrolledWindow4( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
         }
 
         // user defined functions
     }
-
     public class Xcls_ScrolledWindow4 : Object
     {
         public Gtk.ScrolledWindow el;
@@ -355,6 +354,7 @@ public class Xcls_PopoverFiles : Object
             // init method
 
             this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+            a
         }
 
         // user defined functions
@@ -512,6 +512,7 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
+
 
 
 
