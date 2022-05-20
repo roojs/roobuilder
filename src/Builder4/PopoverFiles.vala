@@ -847,7 +847,17 @@ public class Xcls_PopoverFiles : Object
             //listeners
             this.el.item_activated.connect( (path) => {
             
+             	Gtk.TreeIter iter;
+               
+                        
+            	this.el.model.get_iter(out iter, path)
+                
+                GLib.Value gval;
             
+                mod.get_value(iter, 0 , out gval);
+                var file = (File.File)gval;
+                
+                
             });
         }
 

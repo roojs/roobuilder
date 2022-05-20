@@ -327,7 +327,17 @@
             "item_activated" : [
              "(path) => {",
              "",
+             " \tGtk.TreeIter iter;",
+             "   ",
+             "            ",
+             "\tthis.el.model.get_iter(out iter, path)",
+             "    ",
+             "    GLib.Value gval;",
              "",
+             "    mod.get_value(iter, 0 , out gval);",
+             "    var file = (File.File)gval;",
+             "    ",
+             "    ",
              "}"
             ]
            },
