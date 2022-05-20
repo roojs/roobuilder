@@ -573,7 +573,7 @@
     "\t        continue;",
     "\t     }",
     "\t\t this.filemodel.el.append(out citer,null);",
-    "\t\t this.filemodel.el.set(citer, 0, items.get(i));",
+    "\t\t this.filemodel.el.set(citer, 0, GLib.Path.get_basename(items.get(i)));",
     "\t\t this.filemodel.el.set(citer, 1, null); // parent (empty as it's a folder)",
     "\t\t",
     "\t\t",

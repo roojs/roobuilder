@@ -229,7 +229,7 @@ public class Xcls_PopoverFiles : Object
     	        continue;
     	     }
     		 this.filemodel.el.append(out citer,null);
-    		 this.filemodel.el.set(citer, 0, items.get(i));
+    		 this.filemodel.el.set(citer, 0, GLib.Path.get_basename(items.get(i)));
     		 this.filemodel.el.set(citer, 1, null); // parent (empty as it's a folder)
     		
     		
