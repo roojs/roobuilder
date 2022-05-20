@@ -664,15 +664,12 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_ToolButton14( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
-            var child_1 = new Xcls_Image15( _this );
+            var child_1 = new Xcls_ToolButton16( _this );
             child_1.ref();
-            this.el.set_image (  child_1.el  );
-            var child_2 = new Xcls_ToolButton16( _this );
+            this.el.composite_name (  child_1.el  );
+            var child_2 = new Xcls_ToolButton18( _this );
             child_2.ref();
             this.el.composite_name (  child_2.el  );
-            var child_3 = new Xcls_ToolButton18( _this );
-            child_3.ref();
-            this.el.composite_name (  child_3.el  );
         }
 
         // user defined functions
@@ -694,77 +691,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-
-            //listeners
-            this.el.clicked.connect( ( ) => {
-              
-                // create a new file in project..
-                //Xcls_DialogNewComponent.singleton().show(
-               var  pe =      EditProject.singleton();
-                pe.el.set_transient_for(_this.el);
-                pe.el.set_modal(true);   
-               
-                var p  = pe.show();
-            
-                if (p == null) {
-                    return;
-                }
-                
-                /*
-                _this.windowstate.left_projects.is_loaded = false;    
-                _this.windowstate.left_projects.load();
-                _this.windowstate.left_projects.selectProject(p);
-                */
-                return  ;    
-            
-            
-            });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_Image15 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_PopoverFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image15(Xcls_PopoverFiles _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "emblem-system";
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_ToolButton16 : Object
-    {
-        public Gtk.ToolButton el;
-        private Xcls_PopoverFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ToolButton16(Xcls_PopoverFiles _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ToolButton( null, "Delete Project" );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_Image17( _this );
+            var child_0 = new Xcls_Image15( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -796,6 +723,85 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
+    public class Xcls_Image15 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image15(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "emblem-system";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_ToolButton16 : Object
+    {
+        public Gtk.ToolButton el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ToolButton16(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ToolButton( null, "Delete Project" );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_Image17( _this );
+            child_0.ref();
+            this.el.set_image (  child_0.el  );
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+              /*
+               var cd = DialogConfirm.singleton();
+                 cd.el.set_transient_for(_this.el);
+                cd.el.set_modal(true);
+            
+                 var project =   _this.windowstate.left_projects.getSelectedProject();
+                if (project == null) {
+                    print("SKIP - no project\n");
+                    return;
+                }
+                
+                    
+                 if (Gtk.ResponseType.YES != cd.show("Confirm", 
+                    "Are you sure you want to delete project %s".printf(project.name))) {
+                    return;
+                }
+                 
+            
+                // confirm?
+                Project.Project.remove(project);
+                _this.project = null;
+                
+                _this.windowstate.left_projects.is_loaded =  false;
+                _this.windowstate.left_projects.load();
+                _this.windowstate.clutterfiles.clearFiles();
+            */
+            
+            });
+        }
+
+        // user defined functions
+    }
     public class Xcls_Image17 : Object
     {
         public Gtk.Image el;
@@ -813,7 +819,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "folder-new";
+            this.el.icon_name = "user-trash";
         }
 
         // user defined functions
