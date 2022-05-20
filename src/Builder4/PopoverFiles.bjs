@@ -323,6 +323,9 @@
              "xtype" : "ListStore"
             }
            ],
+           "listeners" : {
+            "item_activated" : ""
+           },
            "xtype" : "IconView"
           }
          ],

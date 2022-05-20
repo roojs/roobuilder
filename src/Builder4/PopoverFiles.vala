@@ -843,6 +843,9 @@ public class Xcls_PopoverFiles : Object
             {
             
             }
+
+            //listeners
+            this.el.item_activated.connect( );
         }
 
         // user defined functions
