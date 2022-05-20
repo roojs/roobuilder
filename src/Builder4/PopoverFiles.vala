@@ -298,10 +298,10 @@ public class Xcls_PopoverFiles : Object
             this.el.pack_start (  child_0.el , true,true,0 );
             var child_1 = new Xcls_Box11( _this );
             child_1.ref();
-            this.el.pack_end (  child_1.el , true,true,0 );
+            this.el.add (  child_1.el  );
             var child_2 = new Xcls_ScrolledWindow19( _this );
             child_2.ref();
-            this.el.pack_end (  child_2.el , true,true,0 );
+            this.el.add (  child_2.el  );
         }
 
         // user defined functions
