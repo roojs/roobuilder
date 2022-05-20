@@ -548,7 +548,7 @@
         {
          "$ tooltip_text" : "\"Project Details\"",
          "$ xns" : "Gtk",
-         "* pack" : false,
+         "* pack" : "add",
          "height_request" : 50,
          "items" : [
           {
@@ -575,7 +575,7 @@
         {
          "$ tooltip_text" : "\"File Details\"",
          "$ xns" : "Gtk",
-         "* pack" : false,
+         "* pack" : "add",
          "height_request" : 50,
          "items" : [
           {

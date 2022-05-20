@@ -1412,8 +1412,10 @@ public class Xcls_MainWindow : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_Button41( _this );
             child_0.ref();
+            this.el.add (  child_0.el  );
             var child_1 = new Xcls_Button43( _this );
             child_1.ref();
+            this.el.add (  child_1.el  );
             var child_2 = new Xcls_MenuButton45( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
