@@ -27,6 +27,11 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "items" : [
         {
+         "$ xns" : "Gtk",
+         "* pack" : "pack_start,?bool?,?bool?,?uint?",
+         "xtype" : "Toolbar"
+        },
+        {
          "$ shadow_type" : "Gtk.ShadowType.IN",
          "$ xns" : "Gtk",
          "* init" : [
