@@ -350,6 +350,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.toolbar_style = Gtk.ToolbarStyle.BOTH_HORIZ;
             var child_0 = new Xcls_ToolButton5( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
