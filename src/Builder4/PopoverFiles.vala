@@ -855,7 +855,9 @@ public class Xcls_PopoverFiles : Object
                 GLib.Value gval;
             
                 mod.get_value(iter, 0 , out gval);
-                var file = (File.File)gval;
+                var file = (JsRender.JsRender)gval;
+                this.win.windowstate.fileViewOpen(file);
+                this.el.hide();
                 
                 
             });
