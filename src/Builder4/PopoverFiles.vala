@@ -375,7 +375,7 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             var child_0 = new Xcls_Image6( _this );
             child_0.ref();
-            this.el.set_image (  child_0.el  );
+            this.el.set_image = child_0.el;
 
             //listeners
             this.el.clicked.connect( ( ) => {
