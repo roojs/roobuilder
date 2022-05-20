@@ -376,6 +376,30 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_Image6( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+              
+                // create a new file in project..
+                //Xcls_DialogNewComponent.singleton().show(
+               var  pe =      EditProject.singleton();
+                pe.el.set_transient_for(_this.el);
+                pe.el.set_modal(true);   
+               
+                var p  = pe.show();
+            
+                if (p == null) {
+                    return;
+                }
+                
+                
+                _this.windowstate.left_projects.is_loaded = false;    
+                _this.windowstate.left_projects.load();
+                _this.windowstate.left_projects.selectProject(p);
+                return  ;    
+            
+            
+            });
         }
 
         // user defined functions
