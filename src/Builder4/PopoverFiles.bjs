@@ -29,7 +29,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add",
-         "Gtk.ToolbarStyle toolbar_style" : "Gtk.ToolbarStyle.BOTH_HORIZ",
+         "Gtk.ToolbarStyle toolbar_style" : "Gtk.ToolbarStyle.BOTH",
          "items" : [
           {
            "$ xns" : "Gtk",
