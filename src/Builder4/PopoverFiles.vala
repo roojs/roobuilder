@@ -49,7 +49,7 @@ public class Xcls_PopoverFiles : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
-        var child_1 = new Xcls_Box3( _this );
+        var child_1 = new Xcls_Box11( _this );
         child_1.ref();
         this.el.add (  child_1.el  );
 
@@ -295,11 +295,13 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Box3( _this );
+            child_0.ref();
+            this.el.pack_start (  child_0.el , true,true,0 );
         }
 
         // user defined functions
     }
-
     public class Xcls_Box3 : Object
     {
         public Gtk.Box el;
@@ -312,53 +314,22 @@ public class Xcls_PopoverFiles : Object
         public Xcls_Box3(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.homogeneous = false;
-            var child_0 = new Xcls_Box4( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true,true,0 );
-            var child_1 = new Xcls_Box12( _this );
-            child_1.ref();
-            this.el.add (  child_1.el  );
-            var child_2 = new Xcls_ScrolledWindow20( _this );
-            child_2.ref();
-            this.el.add (  child_2.el  );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Box4 : Object
-    {
-        public Gtk.Box el;
-        private Xcls_PopoverFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Box4(Xcls_PopoverFiles _owner )
-        {
-            _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Toolbar5( _this );
+            var child_0 = new Xcls_Toolbar4( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_ScrolledWindow7( _this );
+            var child_1 = new Xcls_ScrolledWindow6( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Toolbar5 : Object
+    public class Xcls_Toolbar4 : Object
     {
         public Gtk.Toolbar el;
         private Xcls_PopoverFiles  _this;
@@ -367,7 +338,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Toolbar5(Xcls_PopoverFiles _owner )
+        public Xcls_Toolbar4(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.Toolbar();
@@ -376,14 +347,14 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.toolbar_style = Gtk.ToolbarStyle.BOTH_HORIZ;
-            var child_0 = new Xcls_ToolButton6( _this );
+            var child_0 = new Xcls_ToolButton5( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_ToolButton6 : Object
+    public class Xcls_ToolButton5 : Object
     {
         public Gtk.ToolButton el;
         private Xcls_PopoverFiles  _this;
@@ -392,7 +363,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton6(Xcls_PopoverFiles _owner )
+        public Xcls_ToolButton5(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ToolButton( null, "New Project" );
@@ -432,7 +403,7 @@ public class Xcls_PopoverFiles : Object
     }
 
 
-    public class Xcls_ScrolledWindow7 : Object
+    public class Xcls_ScrolledWindow6 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -441,7 +412,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow7(Xcls_PopoverFiles _owner )
+        public Xcls_ScrolledWindow6(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -485,7 +456,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn10( _this );
+            var child_1 = new Xcls_TreeViewColumn9( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -564,7 +535,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn10 : Object
+    public class Xcls_TreeViewColumn9 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -573,7 +544,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn10(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn9(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -620,6 +591,35 @@ public class Xcls_PopoverFiles : Object
 
 
 
+
+    public class Xcls_Box11 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box11(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.homogeneous = false;
+            var child_0 = new Xcls_Box12( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_ScrolledWindow20( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+        }
+
+        // user defined functions
+    }
     public class Xcls_Box12 : Object
     {
         public Gtk.Box el;

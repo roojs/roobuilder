@@ -20,13 +20,6 @@
      "$ xns" : "Gtk",
      "* pack" : "add",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-     "xtype" : "Box"
-    },
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "add",
-     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-     "bool homogeneous" : false,
      "items" : [
       {
        "$ xns" : "Gtk",
@@ -182,7 +175,16 @@
         }
        ],
        "xtype" : "Box"
-      },
+      }
+     ],
+     "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* pack" : "add",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool homogeneous" : false,
+     "items" : [
       {
        "$ xns" : "Gtk",
        "* pack" : "add",
