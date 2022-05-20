@@ -229,8 +229,8 @@ public class Xcls_PopoverFiles : Object
     	        continue;
     	     }
     		 this.filemodel.el.append(out citer,null);
-    		 this.filemodel.el.set(citer, 0, items.get(i).name);
-    		 this.filemodel.el.set(citer, 1, ""); // file (empty as it's a folder)
+    		 this.filemodel.el.set(citer, 0, items.get(i));
+    		 this.filemodel.el.set(citer, 1, ""); // parent (empty as it's a folder)
     		
     		
     	    // add the directory... items.get(i);
@@ -242,8 +242,8 @@ public class Xcls_PopoverFiles : Object
     	    for(var j =0 ; j < files.size; j++) {
     	    
     		    this.filemodel.el.insert(out fiter,citer, -1);
-    	     	this.filemodel.el.set(citer, 0, items.get(i).name);
-    		 	this.filemodel.el.set(citer, 1, files.get(j)); // file (empty as it's a folder)
+    	     	this.filemodel.el.set(citer, 0, files.get(j)); // filename
+    		 	this.filemodel.el.set(citer, 1, items.get(i)); // Folder?
     	         
     	        
     	    }
