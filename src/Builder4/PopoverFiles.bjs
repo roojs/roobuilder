@@ -72,7 +72,7 @@
             "clicked" : [
              "  ( ) => {",
              "   ",
-             "\tthis.win.windowstate.projectPopoverShow(this.el, this.project);",
+             "\t_this.win.windowstate.projectPopoverShow(this.el, this.project);",
              " }"
             ]
            },
