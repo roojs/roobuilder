@@ -242,8 +242,8 @@ public class Xcls_PopoverFiles : Object
     	    for(var j =0 ; j < files.size; j++) {
     	    
     		    this.filemodel.el.insert(out fxiter,citer, -1);
-    	     	this.filemodel.el.set(fiter, 0, fxiles.get(j)); // filename
-    		 	this.filemodel.el.set(fiter, 1, items.get(i)); // Folder?
+    	     	this.filemodel.el.set(fxiter, 0, files.get(j)); // filename
+    		 	this.filemodel.el.set(fxiter, 1, items.get(i)); // Folder?
     	         
     	        
     	    }
