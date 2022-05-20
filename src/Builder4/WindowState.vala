@@ -19,7 +19,7 @@ public class WindowState : Object
 		CODEONLY //,
 		//FILES //,
 	  
-	} 
+	}  
 
 	public State state = State.NONE;
 

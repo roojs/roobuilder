@@ -947,7 +947,7 @@ public class Xcls_PopoverFiles : Object
                 GLib.Value gval;
             
                 this.el.model.get_value(iter, 1 , out gval);
-               var fn = (JsRender.JsRender)gval;
+               var fn = (string)gval;
                 if (fn.length < 1) {
                 	return;
             	}
