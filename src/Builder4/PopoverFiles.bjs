@@ -346,6 +346,7 @@
             " "
            ],
            "* pack" : "add",
+           "bool activate_on_single_click" : false,
            "bool expand" : true,
            "id" : "fileview",
            "items" : [

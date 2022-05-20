@@ -916,6 +916,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.activate_on_single_click = false;
             this.el.expand = true;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
