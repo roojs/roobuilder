@@ -1645,6 +1645,7 @@ public class Xcls_MainWindow : Object
             this.el.width_request = 50;
             this.el.height_request = 50;
             this.el.tooltip_text = "File Details";
+            this.el.label = "";
             var child_0 = new Xcls_Image48( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
