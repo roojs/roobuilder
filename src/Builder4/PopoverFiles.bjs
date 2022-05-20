@@ -311,7 +311,7 @@
            "* pack" : "add",
            "id" : "iconview",
            "int columns" : 3,
-           "int item_width" : 150,
+           "int item_width" : 120,
            "int markup_column" : 1,
            "items" : [
             {
