@@ -432,7 +432,7 @@ public class Xcls_PopoverFiles : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                
-            	_this.win.windowstate.projectPopoverShow(this.el, this.project);
+            	_this.win.windowstate.projectPopoverShow(this.el, _this.project);
              });
         }
 
