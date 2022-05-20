@@ -75,7 +75,7 @@
              "  ",
              "  ",
              "  ",
-             "\tthis.win.windowstate.projectPopoverShow(this.el);",
+             "\tthis.win.windowstate.projectPopoverShow(this.el, this.project);",
              " }"
             ]
            },
@@ -131,6 +131,9 @@
              " () => {",
              "    // create a new file in project..",
              "    print(\"add file selected\\n\");",
+             "    ",
+             "    ",
+             "    ",
              "    // what's the currently selected project...",
              "    /*",
              "    var proj = _this.windowstate.left_projects.getSelectedProject();",

@@ -435,7 +435,7 @@ public class Xcls_PopoverFiles : Object
               
               
               
-            	this.win.windowstate.projectPopoverShow(this.el);
+            	this.win.windowstate.projectPopoverShow(this.el, this.project);
              });
         }
 
@@ -519,6 +519,9 @@ public class Xcls_PopoverFiles : Object
             this.el.clicked.connect( () => {
                 // create a new file in project..
                 print("add file selected\n");
+                
+                
+                
                 // what's the currently selected project...
                 /*
                 var proj = _this.windowstate.left_projects.getSelectedProject();
