@@ -259,14 +259,6 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "composite_name",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "set_image",
-             "utf8 icon_name" : "document-new",
-             "xtype" : "Image"
-            }
-           ],
            "listeners" : {
             "clicked" : [
              " () => {",
@@ -295,6 +287,7 @@
              "}"
             ]
            },
+           "string icon_name" : "document-new",
            "string label" : "New File",
            "xtype" : "ToolButton"
           }
