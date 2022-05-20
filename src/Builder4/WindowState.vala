@@ -927,10 +927,10 @@ public class WindowState : Object
 		// basically hide everything, then show the relivant..
 
 		// top bar btns
-		this.win.openbtn.el.hide();
-		this.win.openbackbtn.el.hide();
+		//this.win.openbtn.el.hide();
+		//this.win.openbackbtn.el.hide();
 		
-		this.win.backbutton.el.hide();
+		//this.win.backbutton.el.hide();
 		
 
 		 
@@ -955,12 +955,12 @@ public class WindowState : Object
 				this.win.addlistenerbutton.el.show(); 
 				this.win.search_entry.el.show();
 				
-				this.win.openbtn.el.show();
+			//	this.win.openbtn.el.show();
 				
 				break;
 			
 			case State.CODEONLY: 
-				this.win.openbtn.el.show();
+			//	this.win.openbtn.el.show();
 				this.win.search_entry.el.show();
 				break;
 		 
