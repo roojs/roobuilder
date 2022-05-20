@@ -48,6 +48,7 @@ public class Xcls_PopoverFiles : Object
         this.el.position = Gtk.PositionType.TOP;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
+        this.el.add (  child_0.el  );
 
         //listeners
         this.el.hide.connect( ( ) => {
