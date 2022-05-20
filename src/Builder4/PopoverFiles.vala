@@ -220,30 +220,31 @@ public class Xcls_PopoverFiles : Object
          }
     	 var items  = def.sources;
     		 
-    	 Gtk.TreeIter citer; 
-    	 
+    	 Gtk.TreeIter citer;  // folder iter
+    	 Gtk.TreeIter fiter;  // file iter
     	for(var i =0 ; i < items.size; i++) {
     	     print ("cheking folder %s\n", items.get(i));
     	     var files = gpr.filesForOpen(items.get(i));
     	     if (files.size < 1) {
     	        continue;
     	     }
-    		 this.el.append(out citer,null);
+    		 this.filemodel.el.append(out citer,null);
+    		 this.filemodel.el.set(citer, 0, items.get(i).name);
+    		 this.filemodel.el.set(citer, 1, ""); // file (empty as it's a folder)
     		
     		
     	    // add the directory... items.get(i);
-    	    var x = new Xcls_folderitem(this,items.get(i));
-    	    this.fileitems.add(x);
-    	    this.filelayout.el.add_child(x.el);
+    	    //var x = new Xcls_folderitem(this,items.get(i));
+    	    //this.fileitems.add(x);
+    	    //this.filelayout.el.add_child(x.el);
+    	    
     	    
     	    for(var j =0 ; j < files.size; j++) {
-    	        print ("adding file %s\n", files.get(j));
     	    
-    	        var y = new Xcls_folderfile(this, files.get(j));
-    	        this.fileitems.add(y);
-    	        x.el.add_child(y.el);
-    
-    	        // add file to files.get(j);
+    		    this.filemodel.el.insert(out fiter,citer, -1);
+    	     	this.filemodel.el.set(citer, 0, items.get(i).name);
+    		 	this.filemodel.el.set(citer, 1, files.get(j)); // file (empty as it's a folder)
+    	         
     	        
     	    }
     	    
@@ -251,7 +252,7 @@ public class Xcls_PopoverFiles : Object
     	    //this.el.set_value(citer, 1,   items.get(i) );
     	}
          
-       */
+        
     	
     }
     public void selectProject (Project.Project project) {
