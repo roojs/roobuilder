@@ -320,8 +320,7 @@ public class Xcls_MainWindow : Object
 
             //listeners
             this.el.clicked.connect( ( ) => {
-               _this.windowstate.switchState(WindowState.State.FILES);
-                  
+              	_this.windowstate.showPopoverFiles(this.el);
             
             });
         }

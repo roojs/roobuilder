@@ -80,8 +80,7 @@
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
-           "   _this.windowstate.switchState(WindowState.State.FILES);",
-           "      ",
+           "  \t_this.windowstate.showPopoverFiles(this.el);",
            "",
            "}"
           ]
