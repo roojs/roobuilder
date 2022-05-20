@@ -522,7 +522,7 @@ public class Xcls_PopoverFiles : Object
                 }
                 
                 var f = JsRender.JsRender.factory(this.project.xtype,  this.project, "");
-                 _this.windowstate.file_details.show( f, this.el );
+                 _this.win.windowstate.file_details.show( f, this.el );
             
             });
         }
