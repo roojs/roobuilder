@@ -395,6 +395,7 @@
             }
            ],
            "listeners" : {
+            "button_press_event" : "",
             "cursor_changed" : [
              " () => {",
              " /*",
@@ -418,7 +419,8 @@
              "    _this.project_selected(project);",
              "    */",
              "}  "
-            ]
+            ],
+            "row_activated" : ""
            },
            "xtype" : "TreeView"
           }
