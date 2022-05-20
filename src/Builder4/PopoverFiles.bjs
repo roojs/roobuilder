@@ -341,6 +341,7 @@
        "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
        "* pack" : "pack_end,true,true,0",
        "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
+       "bool expand" : true,
        "items" : [
         {
          "$ enable_tree_lines" : true,
