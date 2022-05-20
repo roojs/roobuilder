@@ -829,7 +829,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.markup_column = 1;
+            this.el.item_width = 100;
             var child_0 = new Xcls_iconmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;

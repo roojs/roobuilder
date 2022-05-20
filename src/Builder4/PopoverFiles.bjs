@@ -310,7 +310,7 @@
            ],
            "* pack" : "add",
            "id" : "iconview",
-           "int markup_column" : 1,
+           "int item_width" : 100,
            "items" : [
             {
              "$ columns" : "typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf) ",
