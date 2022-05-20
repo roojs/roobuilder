@@ -303,10 +303,13 @@ public class WindowState : Object
 		 });
 
 	}
-	public void projectPopoverShow(Gtk.Widget btn)
-	{
-		var xtype = "";
-        var  pr = this.project;
+	public void projectPopoverShow(Gtk.Widget btn, Project.Project? pr) 
+	{ 
+		if (pr == null) {
+		    pr = this.project;
+	    }
+	  
+	    /*
         var active_file = this.left_tree.getActiveFile() ;
         if (active_file != null) {
             xtype = active_file.xtype;
@@ -318,11 +321,12 @@ public class WindowState : Object
             //if (pr != null) {
             //    xtype = pr.xtype;
             //}
-        }   
-        if (xtype == "") {
+        } 
+        */
+        if (pr.xtype == "") {
             return;
         }
-        if (xtype == "Roo" ) {
+        if (pr.xtype  == "Roo" ) {
 			this.roo_projectsettings_pop.show(btn,pr);
 			return;
 		}
