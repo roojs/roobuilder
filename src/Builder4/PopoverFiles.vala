@@ -831,7 +831,6 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             this.el.markup_column = 1;
             this.el.columns = 3;
-            this.el.pixbuf_column = 3;
             this.el.item_width = 150;
             var child_0 = new Xcls_iconmodel( _this );
             child_0.ref();
