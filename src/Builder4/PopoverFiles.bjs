@@ -396,7 +396,6 @@
             }
            ],
            "listeners" : {
-            "button_press_event" : "",
             "cursor_changed" : [
              " () => {",
              " /*",
