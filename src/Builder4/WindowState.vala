@@ -439,6 +439,7 @@ public class WindowState : Object
 		
 	}
 	// ----------- list of projects on left
+	/*
 	public void  projectListInit() 
 	{
 
@@ -454,6 +455,7 @@ public class WindowState : Object
 		 });
 
 	}
+	*/
 	// ----------- file view
 
 	public void fileViewInit()
