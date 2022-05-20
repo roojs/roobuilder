@@ -349,7 +349,7 @@
            "id" : "fileview",
            "items" : [
             {
-             "$ columns" : "typeof(string), typeof(string)",
+             "$ columns" : "typeof(string), typeof(Object)",
              "$ xns" : "Gtk",
              "* init" : [
               "{",

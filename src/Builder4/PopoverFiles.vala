@@ -974,7 +974,7 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.filemodel = this;
-            this.el = new Gtk.TreeStore( 2, typeof(string), typeof(string) );
+            this.el = new Gtk.TreeStore( 2, typeof(string), typeof(Object) );
 
             // my vars (dec)
 
