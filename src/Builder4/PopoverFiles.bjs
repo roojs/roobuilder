@@ -346,6 +346,7 @@
             " "
            ],
            "* pack" : "add",
+           "bool expand" : true,
            "id" : "fileview",
            "items" : [
             {
