@@ -196,6 +196,46 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "set_image",
+             "utf8 icon_name" : "folder-new",
+             "xtype" : "Image"
+            }
+           ],
+           "listeners" : {
+            "clicked" : [
+             "  ( ) => {",
+             "  ",
+             "    // create a new file in project..",
+             "    //Xcls_DialogNewComponent.singleton().show(",
+             "   var  pe =      EditProject.singleton();",
+             "    pe.el.set_transient_for(_this.el);",
+             "    pe.el.set_modal(true);   ",
+             "   ",
+             "    var p  = pe.show();",
+             "",
+             "    if (p == null) {",
+             "        return;",
+             "    }",
+             "    ",
+             "    ",
+             "    _this.windowstate.left_projects.is_loaded = false;    ",
+             "    _this.windowstate.left_projects.load();",
+             "    _this.windowstate.left_projects.selectProject(p);",
+             "    return  ;    ",
+             "",
+             "",
+             "}"
+            ]
+           },
+           "string label" : "Project Properties",
+           "xtype" : "ToolButton"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "composite_name",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "set_image",
              "utf8 icon_name" : "document-new",
              "xtype" : "Image"
             }
