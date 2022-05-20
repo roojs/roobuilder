@@ -57,7 +57,9 @@ public class Xcls_PopoverFiles : Object
         	//if (project != null) {
         //		this.selectProject(project);
         //	}
-         
+         	if (_this.win.windowstate.project == null) {
+         		return;
+        	}
         });
     }
 

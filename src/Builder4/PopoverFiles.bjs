@@ -447,7 +447,9 @@
      "\t//if (project != null) {",
      "//\t\tthis.selectProject(project);",
      "//\t}",
-     " ",
+     " \tif (_this.win.windowstate.project == null) {",
+     " \t\treturn;",
+     "\t}",
      "}"
     ]
    },
