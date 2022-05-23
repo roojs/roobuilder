@@ -337,7 +337,21 @@ public class Xcls_LeftProps : Object
        
        this.view.el.get_selection().unselect_all();
        
+       
+       /**
+       
+       make outerpane = {current width of left pane} + width of props
+       make innerpane = {current width of left pane}
+       
+       
+       
+       
+       */
+       var outerpane = _this.main_window.leftpane.el;
        var pane = _this.main_window.editpane.el;
+       
+      /* 
+       
         var try_size = (i * 25) + 60; // est. 20px per line + 40px header
         GLib.Timeout.add_seconds(1, () => { 
     		// max 80%...
@@ -347,6 +361,7 @@ public class Xcls_LeftProps : Object
     		    pane.max_position-try_size);
     	    return GLib.Source.REMOVE;
     	});
+    	*/
        
     }
     public              string keyFormat (string val, string type) {
