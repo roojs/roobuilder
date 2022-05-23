@@ -182,13 +182,14 @@ public class WindowState : Object
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
 
 		this.add_props.hide(); // always hide add node/add listener if we change node.
-		this.rightpalete.hide(); 
+		this.rightpalete.hide();
+		 
 		if (sel == null) {
 			this.left_props.el.hide();
 			this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
 		} 
-		
+		print("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
 		if (!this.left_props.el.visible) {
 			var outerpane = this.win.mainpane.el;
   			var innerpane = this.win.editpane.el;
