@@ -146,7 +146,6 @@ public class Xcls_MainWindow : Object
     
             w.el.show_all();
             w.initChildren();
-            w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);
             // should open the file dialog...
             //w.windowstate.switchState(WindowState.State.FILES);
     }
@@ -312,7 +311,7 @@ public class Xcls_MainWindow : Object
 
             //listeners
             this.el.clicked.connect( ( ) => {
-              	_this.windowstate.showPopoverFiles(this.el, _this.project);
+              	_this.windowstate.showPopoverFiles(this.el);
             
             });
         }
@@ -418,7 +417,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.leftpane = this;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
@@ -443,7 +442,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.editpane = this;
-            this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
+            this.el = new Gtk.Paned( Gtk.Orientation.VERTICAL );
 
             // my vars (dec)
 
@@ -499,6 +498,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.width_request = 150;
         }
 
         // user defined functions
@@ -1395,9 +1395,8 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.width_request = 50;
             this.el.height_request = 50;
-            this.el.always_show_image = true;
             this.el.tooltip_text = "Project Details";
-            this.el.label = "Edit Project Settings";
+            this.el.label = "Edit Project";
             var child_0 = new Xcls_Image40( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
@@ -1405,7 +1404,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                  
-                 _this.windowstate.projectPopoverShow(this.el, _this.project);
+                 _this.windowstate.projectPopoverShow(this.el);
                
              
             });
@@ -1456,7 +1455,6 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.width_request = 50;
             this.el.height_request = 50;
-            this.el.always_show_image = true;
             this.el.tooltip_text = "File Details";
             this.el.label = "Edit File Properties";
             var child_0 = new Xcls_Image42( _this );
@@ -1523,8 +1521,6 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.always_show_image = true;
-            this.el.label = "About";
             var child_0 = new Xcls_topbarmenu( _this );
             child_0.ref();
             this.el.set_popup (  child_0.el  );
