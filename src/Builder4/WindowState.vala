@@ -16,11 +16,10 @@ public class WindowState : Object
 		//PROP,
 		//LISTENER,
 		//CODE,    // code editor.
-		CODEONLY,
-		FILES //,
-		 
-
-	}
+		CODEONLY //,
+		//FILES //,
+	  
+	}  
 
 	public State state = State.NONE;
 
@@ -39,11 +38,11 @@ public class WindowState : Object
 	public Editor					 code_editor_tab; 
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
+	public Xcls_PopoverFiles popover_files;
 	
-	public Xcls_ClutterFiles     clutterfiles;
-
-	public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
-	
+	//public Xcls_ClutterFiles     clutterfiles;
+	//public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
+	 
 	public DialogTemplateSelect template_select; 
 	
  	public Xcls_PopoverFileDetails file_details;
@@ -72,8 +71,8 @@ public class WindowState : Object
 		this.projectEditInit();
 		this.codeEditInit();
 		this.codePopoverEditInit();
-		this.projectListInit();
-		this.fileViewInit();
+		//this.projectListInit();
+		//this.fileViewInit();
 
 		// adding stuff
 		this.objectAddInit();
@@ -104,6 +103,9 @@ public class WindowState : Object
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
 		this.win.search_results.el.hide();
+		
+		this.popover_files = new Xcls_PopoverFiles();
+	 	this.popover_files.setMainWindow(this.win);
 	}
 
 
@@ -301,24 +303,30 @@ public class WindowState : Object
 		 });
 
 	}
-	public void projectPopoverShow(Gtk.Widget btn)
-	{
-		var xtype = "";
-        var  pr = this.project;
+	public void projectPopoverShow(Gtk.Widget btn, Project.Project? pr) 
+	{ 
+		if (pr == null) {
+		    pr = this.project;
+	    }
+	  
+	    /*
         var active_file = this.left_tree.getActiveFile() ;
         if (active_file != null) {
             xtype = active_file.xtype;
         } else {
+        
+        	return; // no active project
             // we might be on the file brower..
-            pr = this.left_projects.getSelectedProject();        
-            if (pr != null) {
-                xtype = pr.xtype;
-            }
-        }   
-        if (xtype == "") {
+            //pr = this.left_projects.getSelectedProject();        
+            //if (pr != null) {
+            //    xtype = pr.xtype;
+            //}
+        } 
+        */
+        if (pr.xtype == "") {
             return;
         }
-        if (xtype == "Roo" ) {
+        if (pr.xtype  == "Roo" ) {
 			this.roo_projectsettings_pop.show(btn,pr);
 			return;
 		}
@@ -437,6 +445,7 @@ public class WindowState : Object
 		
 	}
 	// ----------- list of projects on left
+	/*
 	public void  projectListInit() 
 	{
 
@@ -452,8 +461,18 @@ public class WindowState : Object
 		 });
 
 	}
+	*/
+	
+	
 	// ----------- file view
-
+	public void showPopoverFiles(Gtk.Widget btn, Project.Project? project)
+	{
+		this.popover_files.show(btn, project);
+	
+	}
+	
+	
+/*
 	public void fileViewInit()
 	{
 		var stage = this.win.rooview.el.get_stage(); // seems odd... 
@@ -477,6 +496,7 @@ public class WindowState : Object
 		});
 
 	}
+	*/
  
 	public void fileDetailsInit()
 	{
@@ -590,7 +610,7 @@ public class WindowState : Object
 		this.win.codeeditview.el.save_easing_state();
 		this.win.objectview.el.save_easing_state();
 		this.win.rooview.el.save_easing_state();
-		this.clutterfiles.el.save_easing_state();
+	//	this.clutterfiles.el.save_easing_state();
 		 
 	}
 	public void easingRestoreAll()
@@ -599,7 +619,7 @@ public class WindowState : Object
 		this.win.codeeditview.el.restore_easing_state();
 		this.win.objectview.el.restore_easing_state();
 		this.win.rooview.el.restore_easing_state();
-		this.clutterfiles.el.restore_easing_state();
+		//this.clutterfiles.el.restore_easing_state();
 		
 	}
 	
@@ -634,9 +654,13 @@ public class WindowState : Object
 			btn
 		);
 	}
+	public void showFilesPopover(Gtk.Widget btn)
+	{
+		this.popover_files.el.show_all();
+		this.popover_files.show(btn, this.win.project);
 
-				
-	
+	}
+		 
 	
 	public void switchState(State new_state)
 	{
@@ -649,11 +673,11 @@ public class WindowState : Object
 		
 		// stop werid stuff happening
 		
-		if (this.state == State.FILES 
+		//if (this.state == State.FILES 
 			//&& new_state == State.FILEPROJECT 
-			&& this.left_projects.getSelectedProject() == null) {
-			return;
-		}
+		//	&& this.left_projects.getSelectedProject() == null) {
+		//	return;
+		//}
 		// save the easing state of everything..
 		this.easingSaveAll();
 		
@@ -696,7 +720,7 @@ public class WindowState : Object
 				 
 				break;
 
-		 
+		 /*
 		  case State.FILES: // goes to preview or codeonly...
 				// hide files...
 				
@@ -724,7 +748,7 @@ public class WindowState : Object
 				 
 
 				break;
-
+	*/
 				
 		}
 	   
@@ -742,20 +766,18 @@ public class WindowState : Object
 				 this.win.editpane.el.show(); // holder for tree and properties..
 				 
 			 
-				 this.left_projects.el.hide(); 
-				 if (oldstate != State.FILES) {
+				// this.left_projects.el.hide(); 
+				// if (oldstate != State.FILES) {
 					// it's handled above..
-					print ("changing state to preview from NOT files..");
+				//	print ("changing state to preview from NOT files..");
 					 
  
 					this.win.rooview.el.set_scale(1.0f,1.0f);
-				 }
+				// }
 			   
 				break;
  
-		 
-		  
-
+		   
 			case State.CODEONLY:
 				// going to codeonly..
 				this.win.codeeditview.el.show();
@@ -776,7 +798,7 @@ public class WindowState : Object
 				this.win.codeeditview.el.set_scale(1.0f,1.0f);
 				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
 				break;
-
+/*
 			 
 		   case State.FILES:  // can only get here from PREVIEW (or code-only) state.. in theory..
 				
@@ -809,7 +831,7 @@ public class WindowState : Object
 				 
 				
 				break;
-
+*/
 
 		}
 		this.resizeCanvasElements();
@@ -884,9 +906,9 @@ public class WindowState : Object
 				this.win.rooview.el.set_size(alloc.width-50, alloc.height);
 				break;
 	
-			case State.FILES: 
-				this.clutterfiles.set_size(alloc.width-50, alloc.height);
-				break;
+			//case State.FILES: 
+				//this.clutterfiles.set_size(alloc.width-50, alloc.height);
+			//	break;
 
 		  
 				
@@ -909,14 +931,12 @@ public class WindowState : Object
 		// basically hide everything, then show the relivant..
 
 		// top bar btns
-		this.win.openbtn.el.hide();
-		this.win.openbackbtn.el.hide();
+		//this.win.openbtn.el.hide();
+		//this.win.openbackbtn.el.hide();
 		
-		this.win.backbutton.el.hide();
+		//this.win.backbutton.el.hide();
 		
 
-		this.win.editfilebutton.el.hide();
-		this.win.projecteditbutton.el.hide();
 		 
 		
 		this.win.objectshowbutton.el.hide(); // add objects
@@ -925,19 +945,12 @@ public class WindowState : Object
 
 	
 	
-		this.win.addprojectbutton.el.hide();
-		this.win.addfilebutton.el.hide();
-		this.win.delprojectbutton.el.hide();
-		
 		this.win.search_entry.el.hide();
 		this.win.search_results.el.hide();
 		switch (this.state) {
 			
 			case State.PREVIEW:  // this is the default state when working...
 			   
-				
-				this.win.editfilebutton.el.show();
-				this.win.projecteditbutton.el.show();
 				 
 				 
 				
@@ -946,18 +959,17 @@ public class WindowState : Object
 				this.win.addlistenerbutton.el.show(); 
 				this.win.search_entry.el.show();
 				
-				this.win.openbtn.el.show();
+			//	this.win.openbtn.el.show();
 				
 				break;
 			
 			case State.CODEONLY: 
-				this.win.openbtn.el.show();
-				this.win.projecteditbutton.el.show();
+			//	this.win.openbtn.el.show();
 				this.win.search_entry.el.show();
 				break;
 		 
 			 
-		 
+		 /*
 			case State.FILES:
 				if (this.left_projects.getSelectedProject() != null ) {
 					if (this.left_tree.getActiveFile() != null) {
@@ -977,6 +989,7 @@ public class WindowState : Object
 				
 				
 				break;
+				*/
 		}
 		
 		

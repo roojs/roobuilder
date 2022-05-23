@@ -18,7 +18,6 @@
             "../Builder4/MainWindow.vala",
             "../Builder4/RooProjectProperties.vala",
             "../Builder4/StandardErrorDialog.vala",
-            "../Builder4/WindowLeftProjects.vala",
             "../Builder4/WindowLeftProps.vala",
             "../Builder4/WindowLeftTree.vala",
             "../Builder4/WindowRooView.vala",
@@ -157,7 +156,8 @@
             "../Builder4/PopoverAddProp.vala",
             "../Builder4/PopoverAddObject.vala",
             "../Builder4/PopoverEditor.vala",
-            "../Builder4/Editor.vala"
+            "../Builder4/Editor.vala",
+            "../Builder4/PopoverFiles.vala"
         ],
         "packages" : []
     },

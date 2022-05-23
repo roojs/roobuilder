@@ -17,7 +17,7 @@ public class Xcls_WindowLeftProjects : Object
     public Xcls_namecol namecol;
 
         // my vars (def)
-    public signal void project_selected (Project.Project project);
+    public signal void project_selectedx (Project.Project project);
     public bool is_loaded;
     public bool is_loading;
     public signal void show_new_project ();
@@ -40,7 +40,7 @@ public class Xcls_WindowLeftProjects : Object
 
         //listeners
         this.el.show.connect( ( ) => {
-            this.load();
+            this.load(); 
         });
     }
 
@@ -73,7 +73,7 @@ public class Xcls_WindowLeftProjects : Object
          
          }
          m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
-         _this.is_loading = false;     
+         _this.is_loading = false;      
     }
     public  Project.Project? getSelectedProject () {    
         Gtk.TreeIter iter;
