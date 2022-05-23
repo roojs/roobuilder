@@ -418,7 +418,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.leftpane = this;
-            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
 
