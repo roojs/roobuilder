@@ -443,7 +443,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.editpane = this;
-            this.el = new Gtk.Paned( Gtk.Orientation.VERTICAL );
+            this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
 
