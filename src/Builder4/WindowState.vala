@@ -169,7 +169,7 @@ public class WindowState : Object
 		//if (!this.code_editor.saveContents()) {
 		//	return false;
 		//}
-		return false;
+		//return false;
 	}
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel, string source)
