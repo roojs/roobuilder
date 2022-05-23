@@ -194,7 +194,7 @@ public class WindowState : Object
 			var outerpane = this.win.mainpane.el;
   			var innerpane = this.win.editpane.el;
   			var cw = this.left_tree.el.get_allocated_width();
-  			var rw = this.left_props.el.width_request;
+  			var rw = int.min(this.left_props.el.width_request, 150);
   			print("outerpos : %d, innerpos : %d", cw + rw, cw);
   			outerpane.set_position(cw+rw);
   			innerpane.set_position(cw);
