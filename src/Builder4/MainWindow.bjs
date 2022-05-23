@@ -537,7 +537,7 @@
           "clicked" : [
            "  ( ) => {",
            "     ",
-           "     _this.windowstate.projectPopoverShow(this.el);",
+           "     _this.windowstate.projectPopoverShow(this.el, _this.project);",
            "   ",
            " ",
            "}"
