@@ -190,14 +190,19 @@ public class WindowState : Object
 			return;
 		} 
 		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
+		
+		
 		//if (!this.left_props.el.visible) {
 			var outerpane = this.win.mainpane.el;
   			var innerpane = this.win.editpane.el;
-  			var cw = this.left_tree.el.get_allocated_width();
+  			
+  			print("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
+  			
+  			/* var cw = outerpane.el.get_position();
   			var rw = int.min(this.left_props.el.width_request, 150);
   			print("outerpos : %d, innerpos : %d", cw + rw, cw);
   			outerpane.set_position(cw+rw);
-  			innerpane.set_position(cw);
+  			innerpane.set_position(cw); */
   			this.left_props.el.show();
 		
 		//}
