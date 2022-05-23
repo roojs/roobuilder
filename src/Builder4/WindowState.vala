@@ -183,9 +183,13 @@ public class WindowState : Object
 
 		this.add_props.hide(); // always hide add node/add listener if we change node.
 		this.rightpalete.hide();
-		 
+		var outerpane = this.win.mainpane.el;
+		var innerpane = this.win.editpane.el;
+  				 
 		if (sel == null) {
+			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
+			outerpanel.set_position(innerpane.get_position());
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
 		} 
@@ -197,7 +201,7 @@ public class WindowState : Object
 			var outerpane = this.win.mainpane.el;
   			var innerpane = this.win.editpane.el;
   			
-  			print("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
+  			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
   			
   			/* var cw = outerpane.el.get_position();
   			var rw = int.min(this.left_props.el.width_request, 150);
