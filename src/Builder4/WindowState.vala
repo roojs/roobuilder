@@ -189,7 +189,7 @@ public class WindowState : Object
 		if (sel == null) {
 			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
-			outerpanel.set_position(innerpane.get_position());
+			outerpane.set_position(innerpane.get_position());
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
 		} 
@@ -198,9 +198,7 @@ public class WindowState : Object
 		// expanded out -> outer = 686, inner = 399 
 		
 		//if (!this.left_props.el.visible) {
-			var outerpane = this.win.mainpane.el;
-  			var innerpane = this.win.editpane.el;
-  			
+		 
   			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
   			
   			/* var cw = outerpane.el.get_position();
