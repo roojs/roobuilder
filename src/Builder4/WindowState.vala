@@ -190,7 +190,7 @@ public class WindowState : Object
 			return;
 		} 
 		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
-		if (!this.left_props.el.visible) {
+		//if (!this.left_props.el.visible) {
 			var outerpane = this.win.mainpane.el;
   			var innerpane = this.win.editpane.el;
   			var cw = this.left_tree.el.get_allocated_width();
@@ -200,7 +200,7 @@ public class WindowState : Object
   			innerpane.set_position(cw);
   			this.left_props.el.show();
 		
-		}
+		//}
 		
 		 
 		
