@@ -346,11 +346,11 @@ public class Xcls_LeftProps : Object
        
        
        
-       */
+       
        var outerpane = _this.main_window.leftpane.el;
        var pane = _this.main_window.editpane.el;
        
-      /* 
+      
        
         var try_size = (i * 25) + 60; // est. 20px per line + 40px header
         GLib.Timeout.add_seconds(1, () => { 
