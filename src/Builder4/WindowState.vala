@@ -186,11 +186,12 @@ public class WindowState : Object
 		 
 		if (sel == null) {
 			this.left_props.el.hide();
-			this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
+			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
 		} 
 		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
-		
+		// at start (hidden) - outer  = 400 inner = 399
+		// expanded out -> outer = 686, inner = 399 
 		
 		//if (!this.left_props.el.visible) {
 			var outerpane = this.win.mainpane.el;
