@@ -586,6 +586,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
          "items" : [
           {
            "$ xns" : "Gtk",

@@ -1523,6 +1523,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.always_show_image = true;
             this.el.label = "About";
             var child_0 = new Xcls_topbarmenu( _this );
             child_0.ref();
