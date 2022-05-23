@@ -181,17 +181,60 @@ public class WindowState : Object
 	 
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
 
+		this.add_props.hide(); // always hide add node/add listener if we change node.
+		this.rightpalete.hide(); 
 		if (sel == null) {
 			this.left_props.el.hide();
+			this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
+			return;
 		} 
-		this.left_props.el.show();
+		
+		if (!this.left_props.el.visible) {
+			var outerpane = this.win.mainpane.el;
+  			var innerpane = this.win.editpane.el;
+  			var cw = this.left_tree.el.get_allocated_width();
+  			var rw = this.left_props.el.width_request;
+  			outerpane.set_position(cw+rw);
+  			innerpane.set_position(cw);
+  			this.left_props.el.show();
+		
+		}
+		
+		 
+		
+		
+		
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
 		
 		
 		// if either of these are active.. then we should update them??
 		
-		this.add_props.hide(); // always hide add node/add listener if we change node.
-		this.rightpalete.hide(); 
+		
+		
+   /**
+   
+   make outerpane = {current width of left pane} + width of props
+   make innerpane = {current width of left pane}
+   
+   
+   
+   
+   
+   var outerpane = _this.main_window.leftpane.el;
+   var pane = _this.main_window.editpane.el;
+   
+  
+   
+    var try_size = (i * 25) + 60; // est. 20px per line + 40px header
+    GLib.Timeout.add_seconds(1, () => { 
+		// max 80%...
+		pane.set_position( 
+		     ((try_size * 1.0f) /  (pane.max_position * 1.0f))  > 0.8f  ? 
+		    (int) (pane.max_position * 0.2f) :
+		    pane.max_position-try_size);
+	    return GLib.Source.REMOVE;
+	});
+	*/
 		
 		
 		/*
