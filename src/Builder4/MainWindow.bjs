@@ -118,7 +118,7 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "pack_start,true,true,0",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "id" : "editpane",
            "items" : [
             {
