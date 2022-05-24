@@ -112,7 +112,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add1",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "id" : "leftpane",
          "items" : [
           {
@@ -133,7 +133,6 @@
              "* pack" : "add2",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
              "id" : "props",
-             "int width_request" : 150,
              "xtype" : "Box"
             }
            ],
@@ -524,6 +523,7 @@
          "$ tooltip_text" : "\"Project Details\"",
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
          "height_request" : 50,
          "items" : [
           {
@@ -539,11 +539,11 @@
            "     ",
            "     _this.windowstate.projectPopoverShow(this.el, _this.project);",
            "   ",
-           " ",
+           "  ",
            "}"
           ]
          },
-         "string label" : "Edit Project",
+         "string label" : "Edit Project Settings",
          "width_request" : 50,
          "xtype" : "Button"
         },
@@ -551,6 +551,7 @@
          "$ tooltip_text" : "\"File Details\"",
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
          "height_request" : 50,
          "items" : [
           {
@@ -585,6 +586,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -633,6 +635,7 @@
            "xtype" : "Image"
           }
          ],
+         "string label" : "About",
          "xtype" : "MenuButton"
         },
         {
@@ -1092,6 +1095,7 @@
     "",
     "        w.el.show_all();",
     "        w.initChildren();",
+    "        w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);",
     "        // should open the file dialog...",
     "        //w.windowstate.switchState(WindowState.State.FILES);",
     "}",
