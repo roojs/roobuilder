@@ -458,6 +458,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.accept_position.connect( () => {
             	GLib.debug("Accept postion");
+            	return true;
             });
             this.el.move_handle.connect( (scroll) => {
             	GLib.debug("Move handle");

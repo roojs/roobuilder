@@ -140,6 +140,7 @@
             "accept_position" : [
              "() => {",
              "\tGLib.debug(\"Accept postion\");",
+             "\treturn true;",
              "}"
             ],
             "move_handle" : [
