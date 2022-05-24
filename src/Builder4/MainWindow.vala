@@ -459,6 +459,7 @@ public class Xcls_MainWindow : Object
             this.el.accept_position.connect( () => {
             	GLib.debug("Accept postion");
             });
+            this.el.move_handle.connect( );
         }
 
         // user defined functions

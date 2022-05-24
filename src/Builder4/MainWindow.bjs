@@ -141,7 +141,8 @@
              "() => {",
              "\tGLib.debug(\"Accept postion\");",
              "}"
-            ]
+            ],
+            "move_handle" : ""
            },
            "xtype" : "Paned"
           }
