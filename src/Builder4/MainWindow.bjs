@@ -136,6 +136,13 @@
              "xtype" : "Box"
             }
            ],
+           "listeners" : {
+            "accept_position" : [
+             "() => {",
+             "\tGLib.debug(\"Accept postion\");",
+             "}"
+            ]
+           },
            "xtype" : "Paned"
           }
          ],

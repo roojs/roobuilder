@@ -454,6 +454,11 @@ public class Xcls_MainWindow : Object
             var child_1 = new Xcls_props( _this );
             child_1.ref();
             this.el.add2 (  child_1.el  );
+
+            //listeners
+            this.el.accept_position.connect( () => {
+            	GLib.debug("Accept postion");
+            });
         }
 
         // user defined functions
