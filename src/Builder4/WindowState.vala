@@ -189,6 +189,7 @@ public class WindowState : Object
 		if (sel == null) {
 			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
+			this.win.props.el.remove(this.left_props.el);
 			outerpane.set_position(innerpane.get_position());
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
@@ -196,7 +197,8 @@ public class WindowState : Object
 		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
 		// at start (hidden) - outer  = 400 inner = 399
 		// expanded out -> outer = 686, inner = 399 
-		
+		this.win.props.el.pack_start(this.left_props.el,true, true,0);
+		this.left_props.el.show_all();
 		//if (!this.left_props.el.visible) {
 		 
   			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
@@ -272,8 +274,8 @@ public class WindowState : Object
 		this.left_props =new Xcls_LeftProps();
 		this.left_props.ref();
 		this.left_props.main_window = this.win;
-		this.win.props.el.pack_start(this.left_props.el,true, true,0);
-		this.left_props.el.show_all();
+		//this.win.props.el.pack_start(this.left_props.el,true, true,0);
+		//this.left_props.el.show_all();
 	
 		this.left_props.show_editor.connect( (file, node, type,  key) => {
 			//this.switchState(State.CODE);
