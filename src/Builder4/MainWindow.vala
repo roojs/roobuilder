@@ -462,6 +462,7 @@ public class Xcls_MainWindow : Object
             });
             this.el.move_handle.connect( (scroll) => {
             	GLib.debug("Move handle");
+            	return true;
             });
         }
 

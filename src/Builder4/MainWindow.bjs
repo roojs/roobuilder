@@ -146,6 +146,7 @@
             "move_handle" : [
              "(scroll) => {",
              "\tGLib.debug(\"Move handle\");",
+             "\treturn true;",
              "}"
             ]
            },
