@@ -77,8 +77,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public string dragData;
-        public string[] dropList;
         public int drag_x;
+        public string[] dropList;
         public int drag_y;
         public bool button_is_pressed;
         public string lastEventSource;
