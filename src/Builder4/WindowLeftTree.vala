@@ -940,7 +940,7 @@ public class Xcls_WindowLeftTree : Object
         public           void loadFile (JsRender.JsRender f) {
             //console.dump(f);
             this.el.clear();
-            
+            _this.main_window.windowstate.leftTreeNodeSelected(null, "");
             // needed???
             _this.main_window.windowstate.file = f;
             
