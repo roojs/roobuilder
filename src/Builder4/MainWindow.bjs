@@ -142,7 +142,11 @@
              "\tGLib.debug(\"Accept postion\");",
              "}"
             ],
-            "move_handle" : ""
+            "move_handle" : [
+             "(scroll) => {",
+             "\tGLib.debug(\"Move handle\");",
+             "}"
+            ]
            },
            "xtype" : "Paned"
           }
