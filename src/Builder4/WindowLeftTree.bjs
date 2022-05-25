@@ -3,7 +3,6 @@
  "items" : [
   {
    "# Xcls_MainWindow main_window" : "null",
-   "$ shadow_type" : "Gtk.ShadowType.IN",
    "$ xns" : "Gtk",
    "* pack" : "add",
    "@ bool before_node_change" : "()",
