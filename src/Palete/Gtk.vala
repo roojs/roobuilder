@@ -50,7 +50,7 @@ namespace Palete {
 			var gtk = Gir.factory(this.project, "Gtk");
 			var pr = (Project.Gtk) this.project;
 			
-			foreach(var key in   pr.gir_cache) {
+			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				var iter = gir.classes.map_iterator();
 				while(iter.next()) {
