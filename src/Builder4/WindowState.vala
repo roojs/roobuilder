@@ -791,7 +791,7 @@ public class WindowState : Object
 
 				this.win.rooviewbox.el.show(); 
 				this.win.leftpane.el.show();
-				this.win.codeeditviewbox.el.hide_all(); //.el.set_scale(0.0f,0.0f);
+				this.win.codeeditviewbox.el.hide(); //.el.set_scale(0.0f,0.0f);
 			
 			 
 			
