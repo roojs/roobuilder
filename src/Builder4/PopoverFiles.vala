@@ -209,8 +209,10 @@ public class Xcls_PopoverFiles : Object
         
         if (!(project is Project.Gtk)) {
             print ("not gtk... skipping files");
+            this.filemodel.el.hide();
             return;
         }
+        this.filemodel.el.show();
         var gpr = (Project.Gtk)project;
          var def = gpr.compilegroups.get("_default_");
          // not sure why the above is returng null!??
