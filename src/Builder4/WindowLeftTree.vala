@@ -35,10 +35,6 @@ public class Xcls_WindowLeftTree : Object
         // set gobject values
         var child_0 = new Xcls_ScrolledWindow2( _this );
         child_0.ref();
-
-        // init method
-
-        this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
     }
 
     // user defined functions
