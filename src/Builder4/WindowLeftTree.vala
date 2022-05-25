@@ -12,10 +12,10 @@ public class Xcls_WindowLeftTree : Object
         }
         return _WindowLeftTree;
     }
-    public Xcls_LeftTreeMenu LeftTreeMenu;
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_renderer renderer;
+    public Xcls_LeftTreeMenu LeftTreeMenu;
 
         // my vars (def)
     public signal bool before_node_change ();
@@ -33,10 +33,8 @@ public class Xcls_WindowLeftTree : Object
         this.main_window = null;
 
         // set gobject values
-        var child_0 = new Xcls_LeftTreeMenu( _this );
+        var child_0 = new Xcls_ScrolledWindow2( _this );
         child_0.ref();
-        var child_1 = new Xcls_ScrolledWindow6( _this );
-        child_1.ref();
 
         // init method
 
@@ -67,171 +65,7 @@ public class Xcls_WindowLeftTree : Object
         view.get_selection().get_selected(out mod, out iter);
         return mod.get_path(iter).to_string();
     }
-    public class Xcls_LeftTreeMenu : Object
-    {
-        public Gtk.Menu el;
-        private Xcls_WindowLeftTree  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_LeftTreeMenu(Xcls_WindowLeftTree _owner )
-        {
-            _this = _owner;
-            _this.LeftTreeMenu = this;
-            this.el = new Gtk.Menu();
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_MenuItem3( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-            var child_1 = new Xcls_MenuItem4( _this );
-            child_1.ref();
-            this.el.add (  child_1.el  );
-            var child_2 = new Xcls_MenuItem5( _this );
-            child_2.ref();
-            this.el.add (  child_2.el  );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_MenuItem3 : Object
-    {
-        public Gtk.MenuItem el;
-        private Xcls_WindowLeftTree  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_MenuItem3(Xcls_WindowLeftTree _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.MenuItem();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Delete Element";
-
-            //listeners
-            this.el.activate.connect( ( ) => {
-                
-                print("ACTIVATE?");
-                
-              
-                 _this.model.deleteSelected();
-            });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_MenuItem4 : Object
-    {
-        public Gtk.MenuItem el;
-        private Xcls_WindowLeftTree  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_MenuItem4(Xcls_WindowLeftTree _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.MenuItem();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Save as Template";
-
-            //listeners
-            this.el.activate.connect( () => {
-            
-                 DialogSaveTemplate.singleton().show(
-                        (Gtk.Window) _this.el.get_toplevel (), 
-                        _this.main_window.windowstate.file.palete(), 
-                        _this.getActiveElement()
-                );
-                 
-                
-            });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_MenuItem5 : Object
-    {
-        public Gtk.MenuItem el;
-        private Xcls_WindowLeftTree  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_MenuItem5(Xcls_WindowLeftTree _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.MenuItem();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Save as Module";
-
-            //listeners
-            this.el.activate.connect( () => {
-                var node = _this.getActiveElement();
-                 var name = DialogSaveModule.singleton().show(
-                        (Gtk.Window) _this.el.get_toplevel (), 
-                        _this.main_window.windowstate.project, 
-                        node
-                 );
-                 if (name.length < 1) {
-                        return;
-              
-                 }
-                 node.props.set("* xinclude", name);
-                 node.items.clear();
-            
-            
-                var s = _this.view.el.get_selection();
-                
-                print("GET  SELECTED?");
-                Gtk.TreeIter iter;
-                Gtk.TreeModel mod;
-            
-                
-                if (!s.get_selected(out mod, out iter)) {
-                    return; // nothing seleted..
-                }
-                Gtk.TreeIter citer;
-                var n_cn = mod.iter_n_children(iter) -1;
-                for (var i = n_cn; i > -1; i--) {
-                    mod.iter_nth_child(out citer, iter, i);
-                    
-            
-                    print("removing node from Tree\n");    
-                
-                    _this.model.el.remove(ref citer);
-                }
-                _this.changed();
-                _this.node_selected(node, "tree");
-                 
-                
-            });
-        }
-
-        // user defined functions
-    }
-
-
-    public class Xcls_ScrolledWindow6 : Object
+    public class Xcls_ScrolledWindow2 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_WindowLeftTree  _this;
@@ -240,7 +74,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow6(Xcls_WindowLeftTree _owner )
+        public Xcls_ScrolledWindow2(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -251,6 +85,8 @@ public class Xcls_WindowLeftTree : Object
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
+            var child_1 = new Xcls_LeftTreeMenu( _this );
+            child_1.ref();
         }
 
         // user defined functions
@@ -293,7 +129,7 @@ public class Xcls_WindowLeftTree : Object
             var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn9( _this );
+            var child_1 = new Xcls_TreeViewColumn5( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -1604,7 +1440,7 @@ public class Xcls_WindowLeftTree : Object
         }
     }
 
-    public class Xcls_TreeViewColumn9 : Object
+    public class Xcls_TreeViewColumn5 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_WindowLeftTree  _this;
@@ -1613,7 +1449,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn9(Xcls_WindowLeftTree _owner )
+        public Xcls_TreeViewColumn5(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -1656,6 +1492,170 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
+
+
+    public class Xcls_LeftTreeMenu : Object
+    {
+        public Gtk.Menu el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_LeftTreeMenu(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            _this.LeftTreeMenu = this;
+            this.el = new Gtk.Menu();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_MenuItem8( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_MenuItem9( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+            var child_2 = new Xcls_MenuItem10( _this );
+            child_2.ref();
+            this.el.add (  child_2.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_MenuItem8 : Object
+    {
+        public Gtk.MenuItem el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_MenuItem8(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.MenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Delete Element";
+
+            //listeners
+            this.el.activate.connect( ( ) => {
+                
+                print("ACTIVATE?");
+                
+              
+                 _this.model.deleteSelected();
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_MenuItem9 : Object
+    {
+        public Gtk.MenuItem el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_MenuItem9(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.MenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Save as Template";
+
+            //listeners
+            this.el.activate.connect( () => {
+            
+                 DialogSaveTemplate.singleton().show(
+                        (Gtk.Window) _this.el.get_toplevel (), 
+                        _this.main_window.windowstate.file.palete(), 
+                        _this.getActiveElement()
+                );
+                 
+                
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_MenuItem10 : Object
+    {
+        public Gtk.MenuItem el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_MenuItem10(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.MenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Save as Module";
+
+            //listeners
+            this.el.activate.connect( () => {
+                var node = _this.getActiveElement();
+                 var name = DialogSaveModule.singleton().show(
+                        (Gtk.Window) _this.el.get_toplevel (), 
+                        _this.main_window.windowstate.project, 
+                        node
+                 );
+                 if (name.length < 1) {
+                        return;
+              
+                 }
+                 node.props.set("* xinclude", name);
+                 node.items.clear();
+            
+            
+                var s = _this.view.el.get_selection();
+                
+                print("GET  SELECTED?");
+                Gtk.TreeIter iter;
+                Gtk.TreeModel mod;
+            
+                
+                if (!s.get_selected(out mod, out iter)) {
+                    return; // nothing seleted..
+                }
+                Gtk.TreeIter citer;
+                var n_cn = mod.iter_n_children(iter) -1;
+                for (var i = n_cn; i > -1; i--) {
+                    mod.iter_nth_child(out citer, iter, i);
+                    
+            
+                    print("removing node from Tree\n");    
+                
+                    _this.model.el.remove(ref citer);
+                }
+                _this.changed();
+                _this.node_selected(node, "tree");
+                 
+                
+            });
+        }
+
+        // user defined functions
+    }
 
 
 
