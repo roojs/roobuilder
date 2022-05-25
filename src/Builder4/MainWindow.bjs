@@ -184,11 +184,6 @@
               ]
              },
              "xtype" : "Paned"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "pack_start,?bool?,?bool?,?uint?",
-             "xtype" : "Box"
             }
            ],
            "xtype" : "Box"
