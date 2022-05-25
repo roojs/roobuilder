@@ -38,6 +38,7 @@ public class Xcls_WindowLeftTree : Object
         this.el.add (  child_0.el  );
         var child_1 = new Xcls_ScrolledWindow4( _this );
         child_1.ref();
+        this.el.add (  child_1.el  );
     }
 
     // user defined functions
@@ -116,6 +117,7 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.icon_name = "list-add";
+            this.el.hexpand = ;
         }
 
         // user defined functions
