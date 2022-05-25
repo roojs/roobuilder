@@ -1024,7 +1024,6 @@ public class Xcls_WindowRooView : Object
                 //buf.notify.connect(this.onCursorChanged);
               
               
-              
                 var attrs = new Gtk.SourceMarkAttributes();
                 var  pink =   Gdk.RGBA();
                 pink.parse ( "pink");
