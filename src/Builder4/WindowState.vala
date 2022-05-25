@@ -803,35 +803,7 @@ public class WindowState : Object
 				 
 				break;
 
-		 /*
-		  case State.FILES: // goes to preview or codeonly...
-				// hide files...
-				
-			 
- 
-				if (new_state == State.CODEONLY) {
-					this.win.rooview.el.hide();
-				} else {
-					this.win.rooview.el.show();
-				}
-				
-				this.win.rooview.el.set_easing_duration(1000);
-				this.win.rooview.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, 0.0f);
-				this.win.rooview.el.set_scale(1.0f,1.0f);
-				this.win.rooview.el.set_pivot_point(0.5f,0.5f);
-				this.win.rooview.el.set_opacity(0xff);
-				
-				this.clutterfiles.el.set_easing_duration(1000);
-				this.clutterfiles.el.set_pivot_point(0.5f,0.5f);
-				this.clutterfiles.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, -180.0f);
-				this.clutterfiles.el.set_opacity(0);
- 
-			   
-				//this.clutterfiles.el.hide();
-				 
-
-				break;
-	*/
+		 
 				
 		}
 	   
@@ -855,7 +827,7 @@ public class WindowState : Object
 				//	print ("changing state to preview from NOT files..");
 					 
  
-					this.win.rooview.el.set_scale(1.0f,1.0f);
+					this.win.rooviewbox.el.show();
 				// }
 			   
 				break;
@@ -863,14 +835,14 @@ public class WindowState : Object
 		   
 			case State.CODEONLY:
 				// going to codeonly..
-				this.win.codeeditview.el.show();
+				this.win.codeeditviewbox.el.show();
 				// recalc canvas...
 				//while (Gtk.events_pending()) { 
 				//	Gtk.main_iteration();
 				//}
 				
 				this.win.leftpane.el.hide();
-				this.win.codeeditview.el.show();
+				this.win.codeeditviewbox.el.show();
 				//while (Gtk.events_pending()) { 
 				//	Gtk.main_iteration();
 				//}
@@ -878,8 +850,8 @@ public class WindowState : Object
 				
 				this.code_editor_tab.el.show_all();
 			    
-				this.win.codeeditview.el.set_scale(1.0f,1.0f);
-				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
+				this.win.codeeditviewbox.el.show();
+
 				break;
 /*
 			 
