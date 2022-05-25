@@ -312,6 +312,7 @@
          "}"
         ]
        },
+       "string label" : "Add Property",
        "width_request" : 50,
        "xtype" : "Button"
       }
