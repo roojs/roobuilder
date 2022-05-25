@@ -1346,6 +1346,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             this.el.always_show_image = true;
             this.el.tooltip_text = "Add Event Code";
             this.el.label = "Event";
