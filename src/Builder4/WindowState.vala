@@ -218,7 +218,9 @@ public class WindowState : Object
 		    
 		
 			//GLib.debug("Hide Properties");
+			outerpane.show_all(); // make sure it's visiable..
 			this.left_props.el.hide();
+			GLib.debug("set position: %d", this.tree_width);
  			outerpane.set_position(this.tree_width);
 			//outerpane.set_position(int.max(250,innerpane.get_position()));
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
