@@ -191,8 +191,16 @@ public class WindowState : Object
 
 		this.add_props.hide(); // always hide add node/add listener if we change node.
 		this.rightpalete.hide();
+		
+		this.left_props.load(this.left_tree.getActiveFile(), sel);
+		
 		var outerpane = this.win.mainpane.el;
 		var innerpane = this.win.editpane.el;
+  		
+  		 if (this.win.editpane.el.parent != null && sel != null) {
+  			// select another node... no change to show hide/resize
+  			return;
+		}
   				 
 		if (sel == null) {
 		    // remove win.editpane from leftpane
@@ -247,7 +255,7 @@ public class WindowState : Object
 		
 		
 		
-		this.left_props.load(this.left_tree.getActiveFile(), sel);
+
 		
 		
 		// if either of these are active.. then we should update them??
