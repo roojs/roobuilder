@@ -115,6 +115,32 @@
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "items" : [
           {
+           "$ tooltip_text" : "\"Add Child Element\"",
+           "$ xns" : "Gtk",
+           "* pack" : false,
+           "height_request" : 50,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "set_image",
+             "utf8 icon_name" : "list-add",
+             "xtype" : "Image"
+            }
+           ],
+           "listeners" : {
+            "clicked" : [
+             "  ( ) => {",
+             "    ",
+             "",
+             "  \t_this.windowstate.showAddObject(this.el);",
+             " ",
+             "}"
+            ]
+           },
+           "width_request" : 50,
+           "xtype" : "Button"
+          },
+          {
            "$ xns" : "Gtk",
            "* pack" : "add1",
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
