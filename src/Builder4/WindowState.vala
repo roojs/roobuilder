@@ -187,6 +187,16 @@ public class WindowState : Object
 		var innerpane = this.win.editpane.el;
   				 
 		if (sel == null) {
+		    // remove win.editpane from leftpane
+		    // remove lefttree from from win.tree 
+		    // add win.tree to leftpane
+		    if (this.win.editpane.el.parent != null) {
+		    	this.win.leftpane.el.remove(this.win.editpane.el);
+		    	this.win.tree.el.remove(this.lefttree.el);
+		    	this.leftpane.add(this.lefttree.el);
+	    	}
+		    
+		
 			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
 			this.win.props.el.remove(this.left_props.el);
