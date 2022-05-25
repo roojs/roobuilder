@@ -72,6 +72,23 @@ public class Xcls_WindowRooView : Object
     
        
     }
+    public int search (string txt) {
+    	this.notebook.el.page = 1;
+     	var s = new Gtk.SourceSearchSettings();
+    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
+    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
+    	this.searchcontext.set_highlight(true);
+    	s.set_search_text(txt);
+    	
+    	Gtk.TextIter beg, st,en;
+    	 
+    	buf.get_start_iter(out beg);
+    	this.searchcontext.forward(beg, out st, out en);
+    	this.last_search_end  = 0;
+    	return this.searchcontext.get_occurrences_count();
+    
+       
+    }
     public void createThumb () {
         
         
@@ -106,23 +123,6 @@ public class Xcls_WindowRooView : Object
         this.notebook.el.page = 0;// gtk preview 
         this.sourceview.loadFile();   
         
-    }
-    public int search (string txt) {
-    	this.notebook.el.page = 1;
-     	var s = new Gtk.SourceSearchSettings();
-    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
-    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
-    	this.searchcontext.set_highlight(true);
-    	s.set_search_text(txt);
-    	
-    	Gtk.TextIter beg, st,en;
-    	 
-    	buf.get_start_iter(out beg);
-    	this.searchcontext.forward(beg, out st, out en);
-    	this.last_search_end  = 0;
-    	return this.searchcontext.get_occurrences_count();
-    
-       
     }
     public void requestRedraw () {
         this.view.renderJS(false);
@@ -998,6 +998,12 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
+        public bool button_is_pressed;
+        public JsRender.Node? node_selected;
+        public bool loading;
+        public int editable_start_pos;
+        public string prop_selected;
+        public bool key_is_pressed;
 
         // ctor
         public Xcls_sourceview(Xcls_WindowRooView _owner )
@@ -1007,6 +1013,17 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
+            this.button_is_pressed = false;
+            this.node_selected = null;
+            this.loading = true;
+            this.editable_start_pos = -1;
+            this.prop_selected = "";
+            this.key_is_pressed = false;
+
+            // set gobject values
+            this.el.editable = false;
+            this.el.show_line_marks = true;
+            this.el.show_line_numbers = true;
             var child_0 = new Xcls_buffer( _this );
             child_0.ref();
             this.el.set_buffer (  child_0.el  );
@@ -1127,6 +1144,18 @@ public class Xcls_WindowRooView : Object
         }
 
         // user defined functions
+        public void clearGreySelection () {
+         // clear all the marks..
+            var sbuf = (Gtk.SourceBuffer)this.el.buffer;
+            
+            Gtk.TextIter start;
+            Gtk.TextIter end;     
+                
+            sbuf.get_bounds (out start, out end);
+            sbuf.remove_source_marks (start, end, "grey");
+            
+            
+        }
         public void onCursorChanged (/*ParamSpec ps*/) {
         
         		if (!this.key_is_pressed && !this.button_is_pressed) {
@@ -1199,17 +1228,14 @@ public class Xcls_WindowRooView : Object
                 
                 // highlight the node..
         }
-        public void clearGreySelection () {
-         // clear all the marks..
-            var sbuf = (Gtk.SourceBuffer)this.el.buffer;
-            
-            Gtk.TextIter start;
-            Gtk.TextIter end;     
-                
-            sbuf.get_bounds (out start, out end);
-            sbuf.remove_source_marks (start, end, "grey");
-            
-            
+        public string toString () {
+           Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_buffer().get_start_iter(out s);
+            this.el.get_buffer().get_end_iter(out e);
+            var ret = this.el.get_buffer().get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
         }
         public void nodeSelected (JsRender.Node? sel, bool scroll ) {
           
@@ -1229,15 +1255,6 @@ public class Xcls_WindowRooView : Object
             
             
             
-        }
-        public string toString () {
-           Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_buffer().get_start_iter(out s);
-            this.el.get_buffer().get_end_iter(out e);
-            var ret = this.el.get_buffer().get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
         }
         public void loadFile ( ) {
             this.loading = true;
@@ -1471,15 +1488,21 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
+        public bool dirty;
+        public int error_line;
 
         // ctor
         public Xcls_buffer(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new Gtk.SourceBuffer();
+            this.el = new Gtk.SourceBuffer( null );
 
             // my vars (dec)
+            this.dirty = false;
+            this.error_line = -1;
+
+            // set gobject values
 
             //listeners
             this.el.changed.connect( () => {
@@ -1581,16 +1604,6 @@ public class Xcls_WindowRooView : Object
             }   
             return false;
         }
-        public   string toString () {
-            
-            Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_start_iter(out s);
-            this.el.get_end_iter(out e);
-            var ret = this.el.get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
-        }
         public   bool checkSyntax () {
          
            
@@ -1633,6 +1646,16 @@ public class Xcls_WindowRooView : Object
                 null
             );    
              
+        }
+        public   string toString () {
+            
+            Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_start_iter(out s);
+            this.el.get_end_iter(out e);
+            var ret = this.el.get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
         }
     }
 

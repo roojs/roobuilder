@@ -667,7 +667,7 @@ public class WindowState : Object
 		}
 		print("OPEN : " + file.name);
 		if (file.xtype != "PlainFile") {    
-			this.win.editpane.el.set_position(this.win.editpane.el.max_position);
+			//this.win.editpane.el.set_position(this.win.editpane.el.max_position);
 		}
 		this.win.setTitle(file.project.name + " : " + file.name);
 			 

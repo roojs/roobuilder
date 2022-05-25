@@ -19,6 +19,7 @@
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "Gtk.SourceSearchContext searchcontext" : "null",
    "bool hexpand" : true,
+   "bool vexpand" : true,
    "int last_search_end" : 0,
    "items" : [
     {
