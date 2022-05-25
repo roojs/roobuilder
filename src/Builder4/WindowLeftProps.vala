@@ -1347,7 +1347,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.tooltip_text = "Add Event Code";
-            this.el.label = "Event Handler";
+            this.el.label = "Event";
             var child_0 = new Xcls_Image27( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );

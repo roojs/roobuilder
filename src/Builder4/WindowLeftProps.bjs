@@ -345,7 +345,7 @@
          "}"
         ]
        },
-       "string label" : "Event Handler",
+       "string label" : "Event",
        "xtype" : "Button"
       }
      ],
