@@ -567,6 +567,7 @@
          "# bool button_is_pressed" : false,
          "# bool key_is_pressed" : false,
          "# bool loading" : true,
+         "# int editable_start_pos" : "-1",
          "# string prop_selected" : "\"\"",
          "$ xns" : "Gtk",
          "* init" : [
@@ -641,7 +642,6 @@
          "gboolean show_line_marks" : true,
          "gboolean show_line_numbers" : true,
          "id" : "sourceview",
-         "int editable_start_pos" : "-1",
          "items" : [
           {
            "$ xns" : "Gtk",
