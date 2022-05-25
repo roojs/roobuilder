@@ -177,8 +177,8 @@ public class WindowState : Object
 		//return false;
 	}
 	
-	int outer_pane_pos = 300;
-	int inner_pane_pos = 300;
+	int tree_width = 300;
+	int props_width = 300;
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel, string source)
 	{
@@ -207,8 +207,8 @@ public class WindowState : Object
 		    // remove lefttree from from win.tree 
 		    // add win.tree to leftpane
 		    if (this.win.editpane.el.parent != null) {
-		    	this.inner_pane_pos = innerpane.get_position();
-		    	this.outer_pane_pos = outerpane.get_position();
+		    	this.props_width =  outerpane.get_position() - innerpane.get_position();
+		    	this.tree_width = innerpane.get_position();
 		    
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.left_tree.el);
@@ -218,12 +218,18 @@ public class WindowState : Object
 		
 			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
- 			outerpane.set_position(this.inner_pane_pos);
+ 			outerpane.set_position(this.tree_width);
 			//outerpane.set_position(int.max(250,innerpane.get_position()));
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
 		}
 		
+		// at this point we are showing the outer only,
+		
+		
+		
+		
+		this.tree_width = outerpane.get_position();
 		// remove this.ldeftree from this.win.leftpane
 		this.win.leftpane.el.remove(this.left_tree.el);
 		this.win.tree.el.add(this.left_tree.el);
@@ -240,8 +246,8 @@ public class WindowState : Object
 		//if (!this.left_props.el.visible) {
 		 
   			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
-  			outerpane.set_position(this.inner_pane_pos);
-  			innerpane.set_position(this.outer_pane_pos);
+  			outerpane.set_position(this.tree_width + this.props_width);
+  			innerpane.set_position(this.tree_width);
   			/* var cw = outerpane.el.get_position();
   			var rw = int.min(this.left_props.el.width_request, 150);
   			print("outerpos : %d, innerpos : %d", cw + rw, cw);
