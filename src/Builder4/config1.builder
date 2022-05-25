@@ -186,7 +186,6 @@
             "gtk+-3.0",
             "gtksourceview-3.0",
             "libgda-5.0",
-            "clutter-gtk-1.0",
             "glib-2.0",
             "gobject-introspection-1.0",
             "gobject-2.0",
