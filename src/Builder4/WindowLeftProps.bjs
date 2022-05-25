@@ -300,7 +300,7 @@
          "}"
         ]
        },
-       "string label" : "",
+       "string label" : "Add User Defined",
        "xtype" : "Button"
       },
       {
