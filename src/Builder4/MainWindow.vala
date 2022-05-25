@@ -21,8 +21,8 @@ public class Xcls_MainWindow : Object
     public Xcls_editpane editpane;
     public Xcls_tree tree;
     public Xcls_props props;
-    public Xcls_rooview rooview;
-    public Xcls_codeeditview codeeditview;
+    public Xcls_rooviewbox rooviewbox;
+    public Xcls_codeeditviewbox codeeditviewbox;
     public Xcls_topbarmenu topbarmenu;
     public Xcls_statusbar statusbar;
     public Xcls_search_entry search_entry;
@@ -525,17 +525,17 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_rooview( _this );
+            var child_0 = new Xcls_rooviewbox( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_codeeditview( _this );
+            var child_1 = new Xcls_codeeditviewbox( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_rooview : Object
+    public class Xcls_rooviewbox : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -544,10 +544,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_rooview(Xcls_MainWindow _owner )
+        public Xcls_rooviewbox(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.rooview = this;
+            _this.rooviewbox = this;
             this.el = new Gtk.Box( null, 0 );
 
             // my vars (dec)
@@ -558,7 +558,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_codeeditview : Object
+    public class Xcls_codeeditviewbox : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -567,10 +567,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_codeeditview(Xcls_MainWindow _owner )
+        public Xcls_codeeditviewbox(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.codeeditview = this;
+            _this.codeeditviewbox = this;
             this.el = new Gtk.Box( null, 0 );
 
             // my vars (dec)

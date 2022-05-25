@@ -163,7 +163,7 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "add",
-           "id" : "rooview",
+           "id" : "rooviewbox",
            "xtype" : "Box"
           },
           {
@@ -191,7 +191,7 @@
             "}"
            ],
            "* pack" : "add",
-           "id" : "codeeditview",
+           "id" : "codeeditviewbox",
            "xtype" : "Box"
           }
          ],
