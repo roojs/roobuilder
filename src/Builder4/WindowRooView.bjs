@@ -563,6 +563,7 @@
        "* pack" : "append_page,_this.label_code.el",
        "items" : [
         {
+         "# JsRender.Node? node_selected" : "null",
          "# bool button_is_pressed" : false,
          "# bool key_is_pressed" : false,
          "# bool loading" : true,
@@ -636,7 +637,6 @@
           " "
          ],
          "* pack" : "add",
-         "JsRender.Node? node_selected" : "null",
          "gboolean editable" : false,
          "gboolean show_line_marks" : true,
          "gboolean show_line_numbers" : true,
