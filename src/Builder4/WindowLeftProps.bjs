@@ -318,7 +318,7 @@
          "}"
         ]
        },
-       "string label" : "Add Property",
+       "string label" : "Property",
        "xtype" : "Button"
       },
       {
@@ -345,7 +345,7 @@
          "}"
         ]
        },
-       "string label" : "Add Event Handler",
+       "string label" : "Event Handler",
        "xtype" : "Button"
       }
      ],
