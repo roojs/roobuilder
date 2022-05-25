@@ -400,7 +400,6 @@
           ]
          },
          "string label" : "Edit File Properties",
-         "width_request" : 50,
          "xtype" : "Button"
         },
         {
