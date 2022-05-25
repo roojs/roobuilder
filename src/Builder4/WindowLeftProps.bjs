@@ -292,7 +292,7 @@
       {
        "$ tooltip_text" : "\"Add Property\"",
        "$ xns" : "Gtk",
-       "* pack" : false,
+       "* pack" : "add",
        "bool always_show_image" : true,
        "height_request" : 50,
        "items" : [
