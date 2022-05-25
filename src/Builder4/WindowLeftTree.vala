@@ -2,7 +2,7 @@ static Xcls_WindowLeftTree  _WindowLeftTree;
 
 public class Xcls_WindowLeftTree : Object
 {
-    public Gtk.ScrolledWindow el;
+    public Gtk.Box el;
     private Xcls_WindowLeftTree  _this;
 
     public static Xcls_WindowLeftTree singleton()
@@ -27,13 +27,12 @@ public class Xcls_WindowLeftTree : Object
     public Xcls_WindowLeftTree()
     {
         _this = this;
-        this.el = new Gtk.ScrolledWindow( null, null );
+        this.el = new Gtk.Box( null, 0 );
 
         // my vars (dec)
         this.main_window = null;
 
         // set gobject values
-        this.el.shadow_type = Gtk.ShadowType.IN;
         var child_0 = new Xcls_view( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
@@ -320,6 +319,44 @@ public class Xcls_WindowLeftTree : Object
                     
                     return;
             });
+            this.el.drag_data_get.connect( ( drag_context, data, info, time) => {
+                        
+                        
+                             //print("drag-data-get");
+                             var s = this.el.get_selection();
+                             if (s.count_selected_rows() < 1) {
+                                    data.set_text("",0);     
+                                     print("return empty string - no selection..");
+                                    return;
+                                }
+                             
+                             Gtk.TreeIter iter;
+                             Gtk.TreeModel mod;
+                             
+                             s.get_selected(out mod, out iter);
+                             
+                            
+                            
+                             GLib.Value value;
+                             _this.model.el.get_value(iter, 2, out value);
+                             var ndata = (JsRender.Node)(value.dup_object());
+                             
+                            
+                            
+                            var tp = mod.get_path(iter).to_string();
+                            // by default returns the path..
+                            
+                           if ( info != Gdk.Atom.intern("STRING",true) ) {
+                                tp = ndata.toJsonString();
+                           }   
+                           
+                           //data.set_text(tp,tp.length);   
+                            
+                            data.set (data.get_target (), 8, (uchar[]) tp.to_utf8 ());
+                        
+                            
+                           //  print("return " + tp);
+                        });
             this.el.drag_end.connect( (drag_context) => {
             	//Seed.print('LEFT-TREE: drag-end');
                     this.dragData = "";
@@ -483,44 +520,6 @@ public class Xcls_WindowLeftTree : Object
                    
                    
             });
-            this.el.drag_data_get.connect( ( drag_context, data, info, time) => {
-                        
-                        
-                             //print("drag-data-get");
-                             var s = this.el.get_selection();
-                             if (s.count_selected_rows() < 1) {
-                                    data.set_text("",0);     
-                                     print("return empty string - no selection..");
-                                    return;
-                                }
-                             
-                             Gtk.TreeIter iter;
-                             Gtk.TreeModel mod;
-                             
-                             s.get_selected(out mod, out iter);
-                             
-                            
-                            
-                             GLib.Value value;
-                             _this.model.el.get_value(iter, 2, out value);
-                             var ndata = (JsRender.Node)(value.dup_object());
-                             
-                            
-                            
-                            var tp = mod.get_path(iter).to_string();
-                            // by default returns the path..
-                            
-                           if ( info != Gdk.Atom.intern("STRING",true) ) {
-                                tp = ndata.toJsonString();
-                           }   
-                           
-                           //data.set_text(tp,tp.length);   
-                            
-                            data.set (data.get_target (), 8, (uchar[]) tp.to_utf8 ());
-                        
-                            
-                           //  print("return " + tp);
-                        });
             this.el.key_press_event.connect( (ev) => {
                this.key_is_pressed = true;
                 return false;
@@ -1136,33 +1135,6 @@ public class Xcls_WindowLeftTree : Object
             this.activePath= "";
             //this.updateNode(false,true);
         }
-        public           void load (Gee.ArrayList<JsRender.Node> tr, Gtk.TreeIter? iter) 
-        {
-            Gtk.TreeIter citer;
-            //this.insert(citer,iter,0);
-            for(var i =0 ; i < tr.size; i++) {
-                if (iter != null) {
-                    this.el.insert(out citer,iter,-1); // why not append?
-                } else {
-                    this.el.append(out citer,null);
-                }
-                
-                this.el.set(citer, 0, tr.get(i).nodeTitle(),
-                        1, tr.get(i).nodeTip(), -1
-                );
-                var o =   GLib.Value(typeof(Object));
-                o.set_object((Object)tr.get(i));
-                
-                this.el.set_value(citer, 2, o);
-                
-                if (tr.get(i).items.size > 0) {
-                    this.load(tr.get(i).items, citer);
-                }
-             
-            }
-        
-            
-        }
         public           void deleteSelected () {
             
             print("DELETE SELECTED?");
@@ -1212,6 +1184,33 @@ public class Xcls_WindowLeftTree : Object
             _this.changed();
             
             _this.view.blockChanges = false;
+        }
+        public           void load (Gee.ArrayList<JsRender.Node> tr, Gtk.TreeIter? iter) 
+        {
+            Gtk.TreeIter citer;
+            //this.insert(citer,iter,0);
+            for(var i =0 ; i < tr.size; i++) {
+                if (iter != null) {
+                    this.el.insert(out citer,iter,-1); // why not append?
+                } else {
+                    this.el.append(out citer,null);
+                }
+                
+                this.el.set(citer, 0, tr.get(i).nodeTitle(),
+                        1, tr.get(i).nodeTip(), -1
+                );
+                var o =   GLib.Value(typeof(Object));
+                o.set_object((Object)tr.get(i));
+                
+                this.el.set_value(citer, 2, o);
+                
+                if (tr.get(i).items.size > 0) {
+                    this.load(tr.get(i).items, citer);
+                }
+             
+            }
+        
+            
         }
         public           JsRender.Node pathToNode (string path) {
          

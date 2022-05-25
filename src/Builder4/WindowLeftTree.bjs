@@ -1562,7 +1562,7 @@
      "xtype" : "Menu"
     }
    ],
-   "xtype" : "ScrolledWindow",
+   "xtype" : "Box",
    "|           JsRender.JsRender getActiveFile" : [
     "() {",
     "    return this.main_window.windowstate.file;",
