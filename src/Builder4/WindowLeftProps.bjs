@@ -336,7 +336,7 @@
          "  ( ) => {",
          "    ",
          " ",
-         "   _this.windowstate.showProps(this.el, \"signals\");",
+         "   _this.main_window.windowstate.showProps(this.el, \"signals\");",
          "",
          "",
          "}"
