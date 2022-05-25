@@ -180,8 +180,12 @@ namespace Palete {
 		
 		
 		
-		public static GirObject?  factoryFqn(Project.Project project, string fqn)  
+		public static GirObject?  factoryFqn(Project.Project project, string in_fqn)  
 		{       
+			var fqn = in_fqn;
+			// swap Gtk.Source* to GtkSource.
+			
+			GLib.debug("Gir.facotryFqn  search %s", fqn);
 			var bits = fqn.split(".");
 			if (bits.length < 1) {
 				return null;
