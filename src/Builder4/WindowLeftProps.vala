@@ -663,7 +663,7 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.label = "Add User Defined";
+            this.el.label = "Custom Property";
             var child_0 = new Xcls_AddPropertyPopup( _this );
             child_0.ref();
             var child_1 = new Xcls_Image23( _this );

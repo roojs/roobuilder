@@ -292,7 +292,7 @@
          "}"
         ]
        },
-       "string label" : "Add User Defined",
+       "string label" : "Custom Property",
        "xtype" : "Button"
       },
       {
