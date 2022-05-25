@@ -6,7 +6,6 @@
         "target_bin" : "/tmp/builder",
         "sources" : [
             "../Builder4/About.vala",
-            "../Builder4/ClutterFiles.vala",
             "../Builder4/DialogConfirm.vala",
             "../Builder4/DialogPluginWebkit.vala",
             "../Builder4/DialogSaveModule.vala",
