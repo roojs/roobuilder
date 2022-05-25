@@ -30,7 +30,6 @@ public class Xcls_WindowRooView : Object
     public int last_search_end;
     public Gtk.SourceSearchContext searchcontext;
     public JsRender.JsRender file;
-    public int height;
     public Xcls_MainWindow main_window;
 
     // ctor
@@ -44,7 +43,6 @@ public class Xcls_WindowRooView : Object
         this.width = 0;
         this.last_search_end = 0;
         this.file = null;
-        this.height = 0;
 
         // set gobject values
         this.el.hexpand = true;
@@ -1001,12 +999,6 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public bool loading;
-        public bool button_is_pressed;
-        public string prop_selected;
-        public bool key_is_pressed;
-        public JsRender.Node? node_selected;
-        public int editable_start_pos;
 
         // ctor
         public Xcls_sourceview(Xcls_WindowRooView _owner )
@@ -1016,17 +1008,6 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
-            this.loading = true;
-            this.button_is_pressed = false;
-            this.prop_selected = "";
-            this.key_is_pressed = false;
-            this.node_selected = null;
-            this.editable_start_pos = -1;
-
-            // set gobject values
-            this.el.editable = false;
-            this.el.show_line_marks = true;
-            this.el.show_line_numbers = true;
             var child_0 = new Xcls_buffer( _this );
             child_0.ref();
             this.el.set_buffer (  child_0.el  );
@@ -1493,21 +1474,15 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public bool dirty;
-        public int error_line;
 
         // ctor
         public Xcls_buffer(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new Gtk.SourceBuffer( null );
+            this.el = new Gtk.SourceBuffer();
 
             // my vars (dec)
-            this.dirty = false;
-            this.error_line = -1;
-
-            // set gobject values
 
             //listeners
             this.el.changed.connect( () => {
