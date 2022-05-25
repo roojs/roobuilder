@@ -704,24 +704,7 @@ public class WindowState : Object
 		this.window_gladeview.main_window = this.win;
 	}
 	
-	public void easingSaveAll()
-	{
-		this.win.addpropsview.el.save_easing_state();
-		this.win.codeeditview.el.save_easing_state();
-		this.win.objectview.el.save_easing_state();
-		this.win.rooview.el.save_easing_state();
-	//	this.clutterfiles.el.save_easing_state();
-		 
-	}
-	public void easingRestoreAll()
-	{
-		this.win.addpropsview.el.restore_easing_state();
-		this.win.codeeditview.el.restore_easing_state();
-		this.win.objectview.el.restore_easing_state();
-		this.win.rooview.el.restore_easing_state();
-		//this.clutterfiles.el.restore_easing_state();
-		
-	}
+
 	
 	
 	public void showProps(Gtk.Widget btn, string sig_or_listen)
@@ -779,7 +762,7 @@ public class WindowState : Object
 		//	return;
 		//}
 		// save the easing state of everything..
-		this.easingSaveAll();
+
 		
 		switch (this.state) {
 
@@ -806,9 +789,9 @@ public class WindowState : Object
 
 				//this.code_editor.saveContents(); << not yet...
 
-				this.win.rooview.el.show(); 
+				this.win.rooviewbox.el.show(); 
 				this.win.leftpane.el.show();
-				this.win.codeeditview.el.set_scale(0.0f,0.0f);
+				this.win.codeeditviewbox.hideAll(); //.el.set_scale(0.0f,0.0f);
 			
 			 
 			
