@@ -120,7 +120,7 @@ public class WindowState : Object
 	
 		this.win.leftpane.el.remove(this.win.editpane.el);
     	//this.win.tree.el.remove(this.left_tree.el);
-    	this.win.leftpane.add(this.left_tree.el);
+    	this.win.leftpane.el.add(this.left_tree.el);
 	
 	
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
