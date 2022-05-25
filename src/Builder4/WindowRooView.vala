@@ -1089,8 +1089,6 @@ public class Xcls_WindowRooView : Object
             this.el.button_press_event.connect( () => {
             	
             	
-            	
-            	
             	this.button_is_pressed = true;
             	return false;
             });

@@ -821,8 +821,6 @@
            "() => {",
            "\t",
            "\t",
-           "\t",
-           "\t",
            "\tthis.button_is_pressed = true;",
            "\treturn false;",
            "}\t ",
