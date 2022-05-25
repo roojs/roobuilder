@@ -21,6 +21,10 @@ public class Xcls_MainWindow : Object
     public Xcls_editpane editpane;
     public Xcls_tree tree;
     public Xcls_props props;
+    public Xcls_leftpane leftpane;
+    public Xcls_editpane editpane;
+    public Xcls_tree tree;
+    public Xcls_props props;
     public Xcls_clutterembed clutterembed;
     public Xcls_rooview rooview;
     public Xcls_objectview objectview;
@@ -367,7 +371,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_mainpane( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true,true,0 );
-            var child_1 = new Xcls_Box41( _this );
+            var child_1 = new Xcls_Box45( _this );
             child_1.ref();
             this.el.pack_end (  child_1.el , false,true,0 );
         }
@@ -395,17 +399,20 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.position = 400;
-            var child_0 = new Xcls_Box10( _this );
+            var child_0 = new Xcls_leftpane( _this );
             child_0.ref();
-            this.el.add1 (  child_0.el  );
-            var child_1 = new Xcls_Box17( _this );
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_Box14( _this );
             child_1.ref();
-            this.el.add2 (  child_1.el  );
+            this.el.add1 (  child_1.el  );
+            var child_2 = new Xcls_Box21( _this );
+            child_2.ref();
+            this.el.add2 (  child_2.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Box10 : Object
+    public class Xcls_leftpane : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -414,7 +421,118 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box10(Xcls_MainWindow _owner )
+        public Xcls_leftpane(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            _this.leftpane = this;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_editpane( _this );
+            child_0.ref();
+            this.el.pack_start (  child_0.el , true,true,0 );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_editpane : Object
+    {
+        public Gtk.Paned el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_editpane(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            _this.editpane = this;
+            this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_tree( _this );
+            child_0.ref();
+            this.el.add1 (  child_0.el  );
+            var child_1 = new Xcls_props( _this );
+            child_1.ref();
+            this.el.add2 (  child_1.el  );
+
+            //listeners
+            this.el.accept_position.connect( () => {
+            	GLib.debug("Accept postion");
+            	return true;
+            });
+            this.el.move_handle.connect( (scroll) => {
+            	GLib.debug("Move handle");
+            	return true;
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_tree : Object
+    {
+        public Gtk.Box el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_tree(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            _this.tree = this;
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_props : Object
+    {
+        public Gtk.Box el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_props(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            _this.props = this;
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+
+    public class Xcls_Box14 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box14(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -422,7 +540,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button11( _this );
+            var child_0 = new Xcls_Button15( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_leftpane( _this );
@@ -432,7 +550,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Button11 : Object
+    public class Xcls_Button15 : Object
     {
         public Gtk.Button el;
         private Xcls_MainWindow  _this;
@@ -441,7 +559,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button11(Xcls_MainWindow _owner )
+        public Xcls_Button15(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -454,7 +572,7 @@ public class Xcls_MainWindow : Object
             this.el.always_show_image = true;
             this.el.tooltip_text = "Add Child Element";
             this.el.label = "Add Child Element";
-            var child_0 = new Xcls_Image12( _this );
+            var child_0 = new Xcls_Image16( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -469,7 +587,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Image12 : Object
+    public class Xcls_Image16 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -478,7 +596,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image12(Xcls_MainWindow _owner )
+        public Xcls_Image16(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -605,7 +723,7 @@ public class Xcls_MainWindow : Object
 
 
 
-    public class Xcls_Box17 : Object
+    public class Xcls_Box21 : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -614,7 +732,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box17(Xcls_MainWindow _owner )
+        public Xcls_Box21(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -880,7 +998,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_BoxLayout24( _this );
+            var child_0 = new Xcls_BoxLayout28( _this );
             child_0.ref();
             this.el.layout_manager = child_0.el;
             var child_1 = new Xcls_backbutton( _this );
@@ -919,7 +1037,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_BoxLayout24 : Object
+    public class Xcls_BoxLayout28 : Object
     {
         public Clutter.BoxLayout el;
         private Xcls_MainWindow  _this;
@@ -928,7 +1046,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_BoxLayout24(Xcls_MainWindow _owner )
+        public Xcls_BoxLayout28(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Clutter.BoxLayout();
@@ -960,127 +1078,6 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Actor26( _this );
-            child_0.ref();
-            this.el.add_child (  child_0.el  );
-
-            // init method
-
-            this.el.set_size(50,50);
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Actor26 : Object
-    {
-        public GtkClutter.Actor el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Actor26(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new GtkClutter.Actor();
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_Button27( _this );
-            child_0.ref();
-
-            // init method
-
-            ((Gtk.Container)(this.el.get_widget())).add ( child_0.el);
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Button27 : Object
-    {
-        public Gtk.Button el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button27(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.width_request = 50;
-            this.el.height_request = 50;
-            this.el.tooltip_text = "Back";
-            var child_0 = new Xcls_Image28( _this );
-            child_0.ref();
-            this.el.set_image (  child_0.el  );
-
-            //listeners
-            this.el.clicked.connect( ( ) => {
-             //  if (_this.windowstate.state == WindowState.State.FILEPROJECT) {
-                
-            //	     _this.windowstate.switchState(WindowState.State.FILES);
-              //   } else { 
-            	    _this.windowstate.switchState(WindowState.State.PREVIEW);
-              //  }
-                
-            
-            });
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Image28 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image28(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "go-previous";
-        }
-
-        // user defined functions
-    }
-
-
-
-
-    public class Xcls_objectshowbutton : Object
-    {
-        public Clutter.Actor el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_objectshowbutton(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            _this.objectshowbutton = this;
-            this.el = new Clutter.Actor();
-
-            // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_Actor30( _this );
             child_0.ref();
             this.el.add_child (  child_0.el  );
@@ -1088,16 +1085,6 @@ public class Xcls_MainWindow : Object
             // init method
 
             this.el.set_size(50,50);
-
-            //listeners
-            this.el.enter_event.connect( (  event)  => {
-                this.el.background_color =   Clutter.Color.from_string("#333");
-                    return false;
-            });
-            this.el.leave_event.connect( (  event)  => {
-                this.el.background_color =   Clutter.Color.from_string("#000");
-                return false;
-            });
         }
 
         // user defined functions
@@ -1148,17 +1135,21 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.width_request = 50;
             this.el.height_request = 50;
-            this.el.tooltip_text = "Add Child Element";
+            this.el.tooltip_text = "Back";
             var child_0 = new Xcls_Image32( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
             //listeners
             this.el.clicked.connect( ( ) => {
+             //  if (_this.windowstate.state == WindowState.State.FILEPROJECT) {
+                
+            //	     _this.windowstate.switchState(WindowState.State.FILES);
+              //   } else { 
+            	    _this.windowstate.switchState(WindowState.State.PREVIEW);
+              //  }
                 
             
-              	_this.windowstate.showAddObject(this.el);
-             
             });
         }
 
@@ -1181,7 +1172,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "list-add";
+            this.el.icon_name = "go-previous";
         }
 
         // user defined functions
@@ -1190,7 +1181,7 @@ public class Xcls_MainWindow : Object
 
 
 
-    public class Xcls_addpropbutton : Object
+    public class Xcls_objectshowbutton : Object
     {
         public Clutter.Actor el;
         private Xcls_MainWindow  _this;
@@ -1199,10 +1190,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_addpropbutton(Xcls_MainWindow _owner )
+        public Xcls_objectshowbutton(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.addpropbutton = this;
+            _this.objectshowbutton = this;
             this.el = new Clutter.Actor();
 
             // my vars (dec)
@@ -1215,6 +1206,16 @@ public class Xcls_MainWindow : Object
             // init method
 
             this.el.set_size(50,50);
+
+            //listeners
+            this.el.enter_event.connect( (  event)  => {
+                this.el.background_color =   Clutter.Color.from_string("#333");
+                    return false;
+            });
+            this.el.leave_event.connect( (  event)  => {
+                this.el.background_color =   Clutter.Color.from_string("#000");
+                return false;
+            });
         }
 
         // user defined functions
@@ -1265,7 +1266,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.width_request = 50;
             this.el.height_request = 50;
-            this.el.tooltip_text = "Add Property";
+            this.el.tooltip_text = "Add Child Element";
             var child_0 = new Xcls_Image36( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
@@ -1273,9 +1274,9 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                 _this.windowstate.showProps(this.el, "props");
-             
             
+              	_this.windowstate.showAddObject(this.el);
+             
             });
         }
 
@@ -1298,7 +1299,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "format-justify-left";
+            this.el.icon_name = "list-add";
         }
 
         // user defined functions
@@ -1307,7 +1308,7 @@ public class Xcls_MainWindow : Object
 
 
 
-    public class Xcls_addlistenerbutton : Object
+    public class Xcls_addpropbutton : Object
     {
         public Clutter.Actor el;
         private Xcls_MainWindow  _this;
@@ -1316,10 +1317,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_addlistenerbutton(Xcls_MainWindow _owner )
+        public Xcls_addpropbutton(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.addlistenerbutton = this;
+            _this.addpropbutton = this;
             this.el = new Clutter.Actor();
 
             // my vars (dec)
@@ -1382,7 +1383,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.width_request = 50;
             this.el.height_request = 50;
-            this.el.tooltip_text = "Add Event Code";
+            this.el.tooltip_text = "Add Property";
             var child_0 = new Xcls_Image40( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
@@ -1390,9 +1391,8 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
+                 _this.windowstate.showProps(this.el, "props");
              
-               _this.windowstate.showProps(this.el, "signals");
-            
             
             });
         }
@@ -1416,6 +1416,124 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.icon_name = "format-justify-left";
+        }
+
+        // user defined functions
+    }
+
+
+
+
+    public class Xcls_addlistenerbutton : Object
+    {
+        public Clutter.Actor el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_addlistenerbutton(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            _this.addlistenerbutton = this;
+            this.el = new Clutter.Actor();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_Actor42( _this );
+            child_0.ref();
+            this.el.add_child (  child_0.el  );
+
+            // init method
+
+            this.el.set_size(50,50);
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Actor42 : Object
+    {
+        public GtkClutter.Actor el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Actor42(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            this.el = new GtkClutter.Actor();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_Button43( _this );
+            child_0.ref();
+
+            // init method
+
+            ((Gtk.Container)(this.el.get_widget())).add ( child_0.el);
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Button43 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button43(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.width_request = 50;
+            this.el.height_request = 50;
+            this.el.tooltip_text = "Add Event Code";
+            var child_0 = new Xcls_Image44( _this );
+            child_0.ref();
+            this.el.set_image (  child_0.el  );
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+                
+             
+               _this.windowstate.showProps(this.el, "signals");
+            
+            
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image44 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image44(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
             this.el.icon_name = "appointment-new";
         }
 
@@ -1429,7 +1547,7 @@ public class Xcls_MainWindow : Object
 
 
 
-    public class Xcls_Box41 : Object
+    public class Xcls_Box45 : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -1438,7 +1556,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box41(Xcls_MainWindow _owner )
+        public Xcls_Box45(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1447,16 +1565,16 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            var child_0 = new Xcls_Button42( _this );
+            var child_0 = new Xcls_Button46( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_Button44( _this );
+            var child_1 = new Xcls_Button48( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_MenuButton46( _this );
+            var child_2 = new Xcls_MenuButton50( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
-            var child_3 = new Xcls_Label51( _this );
+            var child_3 = new Xcls_Label55( _this );
             child_3.ref();
             this.el.pack_start (  child_3.el , true,true,0 );
             var child_4 = new Xcls_statusbar( _this );
@@ -1465,7 +1583,7 @@ public class Xcls_MainWindow : Object
             var child_5 = new Xcls_search_entry( _this );
             child_5.ref();
             this.el.pack_start (  child_5.el , false,true,0 );
-            var child_6 = new Xcls_MenuBar54( _this );
+            var child_6 = new Xcls_MenuBar58( _this );
             child_6.ref();
             this.el.add (  child_6.el  );
             var child_7 = new Xcls_statusbar_compile_spinner( _this );
@@ -1475,7 +1593,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Button42 : Object
+    public class Xcls_Button46 : Object
     {
         public Gtk.Button el;
         private Xcls_MainWindow  _this;
@@ -1484,7 +1602,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button42(Xcls_MainWindow _owner )
+        public Xcls_Button46(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1497,7 +1615,7 @@ public class Xcls_MainWindow : Object
             this.el.always_show_image = true;
             this.el.tooltip_text = "Project Details";
             this.el.label = "Edit Project Settings";
-            var child_0 = new Xcls_Image43( _this );
+            var child_0 = new Xcls_Image47( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -1512,7 +1630,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Image43 : Object
+    public class Xcls_Image47 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1521,7 +1639,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image43(Xcls_MainWindow _owner )
+        public Xcls_Image47(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1536,7 +1654,7 @@ public class Xcls_MainWindow : Object
     }
 
 
-    public class Xcls_Button44 : Object
+    public class Xcls_Button48 : Object
     {
         public Gtk.Button el;
         private Xcls_MainWindow  _this;
@@ -1545,7 +1663,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button44(Xcls_MainWindow _owner )
+        public Xcls_Button48(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1558,7 +1676,7 @@ public class Xcls_MainWindow : Object
             this.el.always_show_image = true;
             this.el.tooltip_text = "File Details";
             this.el.label = "Edit File Properties";
-            var child_0 = new Xcls_Image45( _this );
+            var child_0 = new Xcls_Image49( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -1581,7 +1699,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Image45 : Object
+    public class Xcls_Image49 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1590,7 +1708,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image45(Xcls_MainWindow _owner )
+        public Xcls_Image49(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1605,7 +1723,7 @@ public class Xcls_MainWindow : Object
     }
 
 
-    public class Xcls_MenuButton46 : Object
+    public class Xcls_MenuButton50 : Object
     {
         public Gtk.MenuButton el;
         private Xcls_MainWindow  _this;
@@ -1614,7 +1732,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuButton46(Xcls_MainWindow _owner )
+        public Xcls_MenuButton50(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -1627,7 +1745,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_topbarmenu( _this );
             child_0.ref();
             this.el.set_popup (  child_0.el  );
-            var child_1 = new Xcls_Image50( _this );
+            var child_1 = new Xcls_Image54( _this );
             child_1.ref();
             this.el.set_image (  child_1.el  );
         }
@@ -1652,10 +1770,10 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem48( _this );
+            var child_0 = new Xcls_MenuItem52( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
-            var child_1 = new Xcls_MenuItem49( _this );
+            var child_1 = new Xcls_MenuItem53( _this );
             child_1.ref();
             this.el.append (  child_1.el  );
 
@@ -1668,7 +1786,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_MenuItem48 : Object
+    public class Xcls_MenuItem52 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_MainWindow  _this;
@@ -1677,7 +1795,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem48(Xcls_MainWindow _owner )
+        public Xcls_MenuItem52(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -1696,7 +1814,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem49 : Object
+    public class Xcls_MenuItem53 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_MainWindow  _this;
@@ -1705,7 +1823,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem49(Xcls_MainWindow _owner )
+        public Xcls_MenuItem53(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -1725,7 +1843,7 @@ public class Xcls_MainWindow : Object
     }
 
 
-    public class Xcls_Image50 : Object
+    public class Xcls_Image54 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1734,7 +1852,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image50(Xcls_MainWindow _owner )
+        public Xcls_Image54(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1749,7 +1867,7 @@ public class Xcls_MainWindow : Object
     }
 
 
-    public class Xcls_Label51 : Object
+    public class Xcls_Label55 : Object
     {
         public Gtk.Label el;
         private Xcls_MainWindow  _this;
@@ -1758,7 +1876,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label51(Xcls_MainWindow _owner )
+        public Xcls_Label55(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "   " );
@@ -1910,7 +2028,7 @@ public class Xcls_MainWindow : Object
         }
     }
 
-    public class Xcls_MenuBar54 : Object
+    public class Xcls_MenuBar58 : Object
     {
         public Gtk.MenuBar el;
         private Xcls_MainWindow  _this;
@@ -1919,7 +2037,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuBar54(Xcls_MainWindow _owner )
+        public Xcls_MenuBar58(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuBar();
@@ -1971,7 +2089,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Matches";
-            var child_0 = new Xcls_Image56( _this );
+            var child_0 = new Xcls_Image60( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -1992,7 +2110,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Image56 : Object
+    public class Xcls_Image60 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -2001,7 +2119,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image56(Xcls_MainWindow _owner )
+        public Xcls_Image60(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -2064,7 +2182,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Errors";
-            var child_0 = new Xcls_Image59( _this );
+            var child_0 = new Xcls_Image63( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -2089,7 +2207,7 @@ public class Xcls_MainWindow : Object
         
         }
     }
-    public class Xcls_Image59 : Object
+    public class Xcls_Image63 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -2098,7 +2216,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image59(Xcls_MainWindow _owner )
+        public Xcls_Image63(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -2136,7 +2254,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Warnings";
-            var child_0 = new Xcls_Image61( _this );
+            var child_0 = new Xcls_Image65( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -2160,7 +2278,7 @@ public class Xcls_MainWindow : Object
         
         }
     }
-    public class Xcls_Image61 : Object
+    public class Xcls_Image65 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -2169,7 +2287,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image61(Xcls_MainWindow _owner )
+        public Xcls_Image65(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -2207,7 +2325,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Depricated";
-            var child_0 = new Xcls_Image63( _this );
+            var child_0 = new Xcls_Image67( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -2232,7 +2350,7 @@ public class Xcls_MainWindow : Object
         
         }
     }
-    public class Xcls_Image63 : Object
+    public class Xcls_Image67 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -2241,7 +2359,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image63(Xcls_MainWindow _owner )
+        public Xcls_Image67(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -2277,7 +2395,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Run";
-            var child_0 = new Xcls_Image65( _this );
+            var child_0 = new Xcls_Image69( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -2296,7 +2414,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Image65 : Object
+    public class Xcls_Image69 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -2305,7 +2423,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image65(Xcls_MainWindow _owner )
+        public Xcls_Image69(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
