@@ -18,6 +18,11 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "* init" : [
+      " this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+      " ",
+      ""
+     ],
      "items" : [
       {
        "# bool blockChanges" : false,

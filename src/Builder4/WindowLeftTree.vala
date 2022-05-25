@@ -87,6 +87,10 @@ public class Xcls_WindowLeftTree : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_LeftTreeMenu( _this );
             child_1.ref();
+
+            // init method
+
+            this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         }
 
         // user defined functions
