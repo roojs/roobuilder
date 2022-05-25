@@ -424,6 +424,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Button11( _this );
             child_0.ref();
+            this.el.add (  child_0.el  );
             var child_1 = new Xcls_leftpane( _this );
             child_1.ref();
             this.el.add1 (  child_1.el  );
@@ -450,6 +451,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.width_request = 50;
             this.el.height_request = 50;
+            this.el.always_show_image = true;
             this.el.tooltip_text = "Add Child Element";
             this.el.label = "Add Child Element";
             var child_0 = new Xcls_Image12( _this );
