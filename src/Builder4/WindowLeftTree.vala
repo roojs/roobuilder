@@ -78,6 +78,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.add (  child_0.el  );

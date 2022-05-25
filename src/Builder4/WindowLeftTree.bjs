@@ -18,6 +18,7 @@
       " ",
       ""
      ],
+     "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
      "items" : [
       {
        "# bool blockChanges" : false,
