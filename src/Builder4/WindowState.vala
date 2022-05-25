@@ -208,7 +208,7 @@ public class WindowState : Object
 		    // add win.tree to leftpane
 		    if (this.win.editpane.el.parent != null) {
 		    	this.inner_pane_pos = innerpane.get_position();
-		    	this.outer_pane_pos = outerpane.get_position() - this.inner_pane_pos;
+		    	this.outer_pane_pos = outerpane.get_position();
 		    
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.left_tree.el);
