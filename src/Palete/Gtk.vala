@@ -61,7 +61,8 @@ namespace Palete {
 				}
 			}
 			// widgets - can be added anywhere?
-			// containers - can have children.
+			// gtk.containers - can have children. ??? or do we look for 'add methods' ?
+ 
 			// gtkwebview is not inheriting a widget?
 			
 			
