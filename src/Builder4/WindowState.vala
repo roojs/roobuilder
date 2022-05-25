@@ -689,11 +689,10 @@ public class WindowState : Object
 		this.window_rooview  =new Xcls_WindowRooView();
 		this.window_rooview.main_window = this.win;
 		this.window_rooview.ref();
-		((Gtk.Container)(this.win.rooview.el.get_widget())).add(this.window_rooview.el);
+		this.win.rooviewbox.el.add(this.window_rooview.el);
 		this.window_rooview.el.show_all();
 
-		var stage = this.win.rooview.el.get_stage();
-		stage.set_background_color(  Clutter.Color.from_string("#000"));
+	
 	}
 
 	// ------ Gtk  - view
