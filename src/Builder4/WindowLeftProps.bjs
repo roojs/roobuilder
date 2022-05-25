@@ -22,6 +22,12 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "* pack" : "pack_start,?bool?,?bool?,?uint?",
+       "string label" : "Add:",
+       "xtype" : "Label"
+      },
+      {
+       "$ xns" : "Gtk",
        "* pack" : "add",
        "bool hexpand" : true,
        "items" : [
