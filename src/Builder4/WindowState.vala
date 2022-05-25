@@ -508,6 +508,7 @@ public class WindowState : Object
 		//this.code_editor.ref();  /// really?
 		this.win.codeeditviewbox.el.add(this.code_editor_tab.el);
 		
+		this.win.codeeditviewbox.el.hide();
 		this.code_editor_tab.window = this.win;
  
 		// editor.save...
@@ -690,8 +691,9 @@ public class WindowState : Object
 		this.window_rooview.main_window = this.win;
 		this.window_rooview.ref();
 		this.win.rooviewbox.el.add(this.window_rooview.el);
+		
 		this.window_rooview.el.show_all();
-
+		this.win.rooviewbox.el.hide();
 	
 	}
 
@@ -779,33 +781,15 @@ public class WindowState : Object
 				
 				break;
 				
-	 
+	 }
 			 
-				
-			case State.CODEONLY:
-				// going from codeonly..
-				
-				// enable re-calc of canvas..
-
-				//this.code_editor.saveContents(); << not yet...
-
-				this.win.rooviewbox.el.show(); 
-				this.win.leftpane.el.show();
-				this.win.codeeditviewbox.el.hide(); //.el.set_scale(0.0f,0.0f);
-			
 			 
-			
-			    while (Gtk.events_pending()) { 
-					Gtk.main_iteration();
-				}
-				
-				 // hides it completely...
-				 
-				break;
-
 		 
 				
-		}
+		
+		this.win.rooviewbox.el.hide();
+	   this.win.codeeditviewbox.el.hide();
+	   
 	   
 		var oldstate  =this.state;
 		this.state = new_state;
@@ -834,59 +818,17 @@ public class WindowState : Object
  
 		   
 			case State.CODEONLY:
-				// going to codeonly..
-				this.win.codeeditviewbox.el.show();
-				// recalc canvas...
-				//while (Gtk.events_pending()) { 
-				//	Gtk.main_iteration();
-				//}
 				
 				this.win.leftpane.el.hide();
 				this.win.codeeditviewbox.el.show();
-				//while (Gtk.events_pending()) { 
-				//	Gtk.main_iteration();
-				//}
 				
 				
 				this.code_editor_tab.el.show_all();
 			    
-				this.win.codeeditviewbox.el.show();
+
 
 				break;
-/*
-			 
-		   case State.FILES:  // can only get here from PREVIEW (or code-only) state.. in theory..
-				
-   
-				this.win.editpane.el.hide(); // holder for tree and properties..
-				
-				this.left_projects.el.show(); 
-				
-				// rotate the preview to hidden...
-				this.win.rooview.el.set_easing_duration(1000);
-				this.win.rooview.el.set_pivot_point(0.5f,0.5f);
-				this.win.rooview.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, 180.0f);
-				this.win.rooview.el.set_opacity(0);
-			 
-				
-				
-	 
-				if (this.win.project != null) {
-					this.left_projects.selectProject(this.win.project);
-				}
-			 
-				
-				this.clutterfiles.el.show();
-				 
-				this.clutterfiles.el.set_easing_duration(1000);
-				this.clutterfiles.el.set_pivot_point(0.5f,0.5f);
-				this.clutterfiles.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, 0.0f);
-				this.clutterfiles.el.set_opacity(0xff);
-				
-				 
-				
-				break;
-*/
+ 
 
 		}
 
