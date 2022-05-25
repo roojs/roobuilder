@@ -193,17 +193,26 @@ public class WindowState : Object
 		    if (this.win.editpane.el.parent != null) {
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.lefttree.el);
-		    	this.leftpane.add(this.lefttree.el);
+		    	this.win.leftpane.add(this.lefttree.el);
 	    	}
 		    
 		
 			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
-			this.win.props.el.remove(this.left_props.el);
+ 
 			outerpane.set_position(innerpane.get_position());
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
-		} 
+		}
+		
+		// remove this.ldeftree from this.win.leftpane
+		this.win.leftpane.remove(this.lefttree.el);
+		this.win.tree.el.add(this.lefttree.el);
+		this.win.leftpanel.el.add(this.win.editpane.el);
+		
+		
+		
+		
 		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
 		// at start (hidden) - outer  = 400 inner = 399
 		// expanded out -> outer = 686, inner = 399 
