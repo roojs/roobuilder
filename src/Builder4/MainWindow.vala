@@ -397,7 +397,7 @@ public class Xcls_MainWindow : Object
             this.el.position = 400;
             var child_0 = new Xcls_Box10( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , ?bool?,?bool?,?uint? );
+            this.el.add1 (  child_0.el  );
             var child_1 = new Xcls_leftpane( _this );
             child_1.ref();
             this.el.add1 (  child_1.el  );
@@ -420,7 +420,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Box10(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 

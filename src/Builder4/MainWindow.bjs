@@ -111,7 +111,8 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "pack_start,?bool?,?bool?,?uint?",
+         "* pack" : "add1",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "xtype" : "Box"
         },
         {
