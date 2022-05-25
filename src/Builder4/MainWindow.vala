@@ -427,7 +427,7 @@ public class Xcls_MainWindow : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_leftpane( _this );
             child_1.ref();
-            this.el.add1 (  child_1.el  );
+            this.el.add (  child_1.el  );
         }
 
         // user defined functions
