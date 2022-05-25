@@ -27,7 +27,7 @@ public class About : Object
         this.el.program_name = "roobuilder";
         this.el.license = "LGPL";
         this.el.authors = { "Alan Knowles" };
-        this.el.version = "2.1";
+        this.el.version = "4.2";
         this.el.website = "https://github.com/roojs/roobuilder";
         this.el.modal = true;
         this.el.copyright = "LGPL";
