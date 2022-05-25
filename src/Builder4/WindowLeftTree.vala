@@ -82,7 +82,6 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.width_request = 50;
-            this.el.height_request = 50;
             this.el.tooltip_text = "Add Child Element";
             var child_0 = new Xcls_Image3( _this );
             child_0.ref();

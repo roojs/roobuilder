@@ -15,7 +15,6 @@
      "$ tooltip_text" : "\"Add Child Element\"",
      "$ xns" : "Gtk",
      "* pack" : "add",
-     "height_request" : 50,
      "items" : [
       {
        "$ xns" : "Gtk",
