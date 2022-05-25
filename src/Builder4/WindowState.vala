@@ -177,6 +177,9 @@ public class WindowState : Object
 		//return false;
 	}
 	
+	int outer_pane_pos = 300;
+	int inner_pane_pos = 300;
+	
 	public void leftTreeNodeSelected(JsRender.Node? sel, string source)
 	{
 		
@@ -196,6 +199,9 @@ public class WindowState : Object
 		    // remove lefttree from from win.tree 
 		    // add win.tree to leftpane
 		    if (this.win.editpane.el.parent != null) {
+		    	this.inner_pane_pos = innerpane.get_position();
+		    	
+		    
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.left_tree.el);
 		    	this.win.leftpane.el.add(this.left_tree.el);
