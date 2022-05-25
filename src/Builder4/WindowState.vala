@@ -121,7 +121,7 @@ public class WindowState : Object
 		this.win.leftpane.el.remove(this.win.editpane.el);
     	//this.win.tree.el.remove(this.left_tree.el);
     	this.win.leftpane.el.add(this.left_tree.el);
-	
+	    
 	
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show_all();
@@ -205,7 +205,7 @@ public class WindowState : Object
 			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
  
-			outerpane.set_position(innerpane.get_position());
+			outerpane.set_position(int.max(250,innerpane.get_position());
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
 		}
