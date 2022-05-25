@@ -117,7 +117,6 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.icon_name = "list-add";
-            this.el.hexpand = ;
         }
 
         // user defined functions

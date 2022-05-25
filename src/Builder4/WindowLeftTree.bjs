@@ -19,7 +19,6 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "set_image",
-       "bool hexpand" : "",
        "utf8 icon_name" : "list-add",
        "xtype" : "Image"
       }
