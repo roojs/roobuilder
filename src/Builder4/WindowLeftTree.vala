@@ -82,6 +82,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             this.el.always_show_image = true;
             this.el.label = "Add Child Element";
             var child_0 = new Xcls_Image3( _this );
