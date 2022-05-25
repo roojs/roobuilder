@@ -174,12 +174,6 @@
            "items" : [
             {
              "$ xns" : "GtkClutter",
-             "* pack" : "add",
-             "id" : "objectview",
-             "xtype" : "Actor"
-            },
-            {
-             "$ xns" : "GtkClutter",
              "* init" : [
               "{",
               "   ",
@@ -285,6 +279,13 @@
            "$ xns" : "Gtk",
            "* pack" : "add",
            "id" : "rooview",
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* init" : "",
+           "* pack" : "add",
+           "id" : "objectview",
            "xtype" : "Box"
           }
          ],
