@@ -2,7 +2,7 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.68])
 
-AC_INIT([roobuilder], [4.1.0])
+AC_INIT([roobuilder], [4.2.0])
 
 AC_CONFIG_HEADERS([config.h])
 
