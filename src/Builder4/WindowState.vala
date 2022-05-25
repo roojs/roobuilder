@@ -118,6 +118,11 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
+		this.win.leftpane.el.remove(this.win.editpane.el);
+    	//this.win.tree.el.remove(this.left_tree.el);
+    	this.win.leftpane.add(this.left_tree.el);
+	
+	
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show_all();
 		   
