@@ -398,12 +398,9 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Box10( _this );
             child_0.ref();
             this.el.add1 (  child_0.el  );
-            var child_1 = new Xcls_leftpane( _this );
+            var child_1 = new Xcls_Box16( _this );
             child_1.ref();
-            this.el.add1 (  child_1.el  );
-            var child_2 = new Xcls_Box16( _this );
-            child_2.ref();
-            this.el.add2 (  child_2.el  );
+            this.el.add2 (  child_1.el  );
         }
 
         // user defined functions
@@ -425,11 +422,13 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_leftpane( _this );
+            child_0.ref();
+            this.el.add1 (  child_0.el  );
         }
 
         // user defined functions
     }
-
     public class Xcls_leftpane : Object
     {
         public Gtk.Box el;
@@ -564,6 +563,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
+
 
 
     public class Xcls_Box16 : Object

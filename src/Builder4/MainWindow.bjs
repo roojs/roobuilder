@@ -113,54 +113,56 @@
          "$ xns" : "Gtk",
          "* pack" : "add1",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-         "xtype" : "Box"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "add1",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "id" : "leftpane",
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,true,true,0",
+           "* pack" : "add1",
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "id" : "editpane",
+           "id" : "leftpane",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add1",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-             "id" : "tree",
-             "xtype" : "Box"
+             "* pack" : "pack_start,true,true,0",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "id" : "editpane",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "add1",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+               "id" : "tree",
+               "xtype" : "Box"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "add2",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+               "id" : "props",
+               "xtype" : "Box"
+              }
+             ],
+             "listeners" : {
+              "accept_position" : [
+               "() => {",
+               "\tGLib.debug(\"Accept postion\");",
+               "\treturn true;",
+               "}"
+              ],
+              "move_handle" : [
+               "(scroll) => {",
+               "\tGLib.debug(\"Move handle\");",
+               "\treturn true;",
+               "}"
+              ]
+             },
+             "xtype" : "Paned"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add2",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-             "id" : "props",
+             "* pack" : "pack_start,?bool?,?bool?,?uint?",
              "xtype" : "Box"
             }
            ],
-           "listeners" : {
-            "accept_position" : [
-             "() => {",
-             "\tGLib.debug(\"Accept postion\");",
-             "\treturn true;",
-             "}"
-            ],
-            "move_handle" : [
-             "(scroll) => {",
-             "\tGLib.debug(\"Move handle\");",
-             "\treturn true;",
-             "}"
-            ]
-           },
-           "xtype" : "Paned"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "pack_start,?bool?,?bool?,?uint?",
            "xtype" : "Box"
           }
          ],
