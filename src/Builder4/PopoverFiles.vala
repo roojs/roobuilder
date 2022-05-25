@@ -17,6 +17,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_namecol namecol;
     public Xcls_iconview iconview;
     public Xcls_iconmodel iconmodel;
+    public Xcls_tree_container tree_container;
     public Xcls_fileview fileview;
     public Xcls_filemodel filemodel;
     public Xcls_filenamecol filenamecol;
@@ -209,10 +210,10 @@ public class Xcls_PopoverFiles : Object
         
         if (!(project is Project.Gtk)) {
             print ("not gtk... skipping files");
-            this.fileview.el.hide();
+            this.file_container.el.hide();
             return;
         }
-        this.fileview.el.show();
+        this.file_container.el.show();
         var gpr = (Project.Gtk)project;
          var def = gpr.compilegroups.get("_default_");
          // not sure why the above is returng null!??
@@ -566,7 +567,7 @@ public class Xcls_PopoverFiles : Object
             var child_1 = new Xcls_ScrolledWindow15( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_ScrolledWindow18( _this );
+            var child_2 = new Xcls_tree_container( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
         }
@@ -870,7 +871,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_ScrolledWindow18 : Object
+    public class Xcls_tree_container : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -879,9 +880,10 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow18(Xcls_PopoverFiles _owner )
+        public Xcls_tree_container(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
+            _this.tree_container = this;
             this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)

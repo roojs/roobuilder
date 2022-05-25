@@ -327,6 +327,7 @@
          "* pack" : "add",
          "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
          "bool expand" : true,
+         "id" : "tree_container",
          "int width_request" : 100,
          "items" : [
           {
@@ -580,10 +581,10 @@
     "    ",
     "    if (!(project is Project.Gtk)) {",
     "        print (\"not gtk... skipping files\");",
-    "        this.fileview.el.hide();",
+    "        this.file_container.el.hide();",
     "        return;",
     "    }",
-    "    this.fileview.el.show();",
+    "    this.file_container.el.show();",
     "    var gpr = (Project.Gtk)project;",
     "     var def = gpr.compilegroups.get(\"_default_\");",
     "     // not sure why the above is returng null!??",
