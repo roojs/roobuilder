@@ -27,27 +27,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "items" : [
-          {
-           "$ Gtk.Stock stock" : "Gtk.Stock.ADD",
-           "$ icon_size" : "Gtk.IconSize.MENU",
-           "$ xns" : "Gtk",
-           "* pack" : "add",
-           "xtype" : "Image"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add",
-           "label" : "Other",
-           "xtype" : "Label"
-          }
-         ],
-         "xtype" : "Box"
-        },
-        {
-         "$ xns" : "Gtk",
          "* pack" : false,
          "id" : "AddPropertyPopup",
          "items" : [
@@ -289,7 +268,7 @@
          "$ Gtk.Stock stock" : "Gtk.Stock.ADD",
          "$ icon_size" : "Gtk.IconSize.MENU",
          "$ xns" : "Gtk",
-         "* pack" : "add",
+         "* pack" : "set_image",
          "xtype" : "Image"
         }
        ],
