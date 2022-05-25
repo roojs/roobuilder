@@ -35,6 +35,7 @@ public class Xcls_WindowLeftTree : Object
         // set gobject values
         var child_0 = new Xcls_Button2( _this );
         child_0.ref();
+        this.el.add (  child_0.el  );
         var child_1 = new Xcls_ScrolledWindow4( _this );
         child_1.ref();
     }
