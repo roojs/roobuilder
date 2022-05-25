@@ -31,32 +31,6 @@
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "items" : [
           {
-           "$ tooltip_text" : "\"Add Property\"",
-           "$ xns" : "Gtk",
-           "* pack" : false,
-           "height_request" : 50,
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "set_image",
-             "utf8 icon_name" : "format-justify-left",
-             "xtype" : "Image"
-            }
-           ],
-           "listeners" : {
-            "clicked" : [
-             "  ( ) => {",
-             "    ",
-             "     _this.windowstate.showProps(this.el, \"props\");",
-             " ",
-             "",
-             "}"
-            ]
-           },
-           "width_request" : 50,
-           "xtype" : "Button"
-          },
-          {
            "$ Gtk.Stock stock" : "Gtk.Stock.ADD",
            "$ icon_size" : "Gtk.IconSize.MENU",
            "$ xns" : "Gtk",
