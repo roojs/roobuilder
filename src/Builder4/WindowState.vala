@@ -623,6 +623,7 @@ public class WindowState : Object
 		
 		
 		if (file.xtype == "PlainFile") {
+			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
 			file.loadItems();
 			this.code_editor_tab.show(file, null, "", "");
@@ -645,11 +646,14 @@ public class WindowState : Object
  
 	
 		if (file.project.xtype == "Roo" ) { 
+		    // removes all the childe elemnts from rooviewbox
+		
 			ctr.foreach( (w) => { ctr.remove(w); });
  
 			ctr.add(this.window_rooview.el);
  
 			if (file.xtype != "PlainFile") {       
+ 
 				this.window_rooview.loadFile(file);
 				this.window_rooview.el.show_all();
 			}
@@ -662,13 +666,16 @@ public class WindowState : Object
 			ctr.add(this.window_gladeview.el);
  
 			if (file.xtype != "PlainFile") {    
+				
 				this.window_gladeview.loadFile(file);
 				this.window_gladeview.el.show_all();
 			}
  
 		}
 		print("OPEN : " + file.name);
-		if (file.xtype != "PlainFile") {    
+		if (file.xtype != "PlainFile") { 
+			// hide the file editor.
+		   this.win.codeeditviewbox.el.hide();
 			//this.win.editpane.el.set_position(this.win.editpane.el.max_position);
 		}
 		this.win.setTitle(file.project.name + " : " + file.name);
