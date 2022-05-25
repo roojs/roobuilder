@@ -12,7 +12,6 @@
    "id" : "WindowLeftTree",
    "items" : [
     {
-     "$ tooltip_text" : "\"Add Child Element\"",
      "$ xns" : "Gtk",
      "* pack" : "add",
      "items" : [
@@ -33,7 +32,7 @@
        "}"
       ]
      },
-     "width_request" : 50,
+     "string label" : "Add Child Element",
      "xtype" : "Button"
     },
     {
