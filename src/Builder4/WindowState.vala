@@ -199,7 +199,7 @@ public class WindowState : Object
   		
   		 if (this.win.editpane.el.parent != null && sel != null) {
   			// select another node... no change to show hide/resize
-  			
+  			return;
 		}
   				 
 		if (sel == null) {
