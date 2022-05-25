@@ -216,7 +216,7 @@ public class WindowState : Object
 		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
 		// at start (hidden) - outer  = 400 inner = 399
 		// expanded out -> outer = 686, inner = 399 
-		this.win.props.el.pack_start(this.left_props.el,true, true,0);
+		//this.win.props.el.pack_start(this.left_props.el,true, true,0);
 		this.left_props.el.show_all();
 		//if (!this.left_props.el.visible) {
 		 
