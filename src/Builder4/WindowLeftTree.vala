@@ -91,7 +91,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.clicked.connect( ( ) => {
                 
             
-              	_this.win.windowstate.showAddObject(this.el);
+              	_this.main_window.windowstate.showAddObject(this.el);
              
             });
         }
