@@ -326,6 +326,7 @@
          "* pack" : "add",
          "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
          "bool expand" : true,
+         "bool visible" : false,
          "id" : "file_container",
          "int width_request" : 100,
          "items" : [

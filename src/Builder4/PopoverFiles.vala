@@ -891,6 +891,7 @@ public class Xcls_PopoverFiles : Object
             this.el.width_request = 100;
             this.el.expand = true;
             this.el.shadow_type = Gtk.ShadowType.IN;
+            this.el.visible = false;
             var child_0 = new Xcls_fileview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
