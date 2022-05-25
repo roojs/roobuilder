@@ -28,7 +28,7 @@
        "  ( ) => {",
        "    ",
        "",
-       "  \t_this.windowstate.showAddObject(this.el);",
+       "  \t_this.win.windowstate.showAddObject(this.el);",
        " ",
        "}"
       ]
