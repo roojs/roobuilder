@@ -9,9 +9,9 @@
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "Gtk.SourceSearchContext searchcontext" : "",
    "bool hexpand" : true,
+   "bool vexpand" : true,
    "id" : "WindowRooView",
    "int last_search_end" : 0,
-   "int width" : 0,
    "items" : [
     {
      "$ xns" : "Gtk",

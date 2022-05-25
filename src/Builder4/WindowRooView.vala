@@ -26,7 +26,6 @@ public class Xcls_WindowRooView : Object
 
         // my vars (def)
     public Gtk.Widget lastObj;
-    public int width;
     public int last_search_end;
     public Gtk.SourceSearchContext searchcontext;
     public JsRender.JsRender file;
@@ -40,12 +39,12 @@ public class Xcls_WindowRooView : Object
 
         // my vars (dec)
         this.lastObj = null;
-        this.width = 0;
         this.last_search_end = 0;
         this.file = null;
 
         // set gobject values
         this.el.hexpand = true;
+        this.el.vexpand = true;
         var child_0 = new Xcls_notebook( _this );
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
