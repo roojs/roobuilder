@@ -1042,11 +1042,7 @@ public class WindowState : Object
 		
 
 		 
-		
-		this.win.objectshowbutton.el.hide(); // add objects
-		this.win.addpropbutton.el.hide();  
-		this.win.addlistenerbutton.el.hide(); 
-
+	 
 	
 	
 		this.win.search_entry.el.hide();
@@ -1058,9 +1054,7 @@ public class WindowState : Object
 				 
 				 
 				
-				this.win.objectshowbutton.el.show(); // add objects
-				this.win.addpropbutton.el.show();  
-				this.win.addlistenerbutton.el.show(); 
+				 
 				this.win.search_entry.el.show();
 				
 			//	this.win.openbtn.el.show();
