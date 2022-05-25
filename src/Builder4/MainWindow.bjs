@@ -161,40 +161,9 @@
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "items" : [
           {
-           "$ xns" : "GtkClutter",
-           "* init" : [
-            "    var stage = this.el.get_stage();",
-            "    stage.set_background_color(  Clutter.Color.from_string(\"#000\"));",
-            "    ",
-            "    ",
-            ""
-           ],
-           "* pack" : "pack_start,true,true,0",
-           "id" : "clutterembed",
-           "listeners" : {
-            "size_allocate" : [
-             "  (  alloc) => {",
-             "    if (_this.windowstate == null) {",
-             "        return;",
-             "    }",
-             "    _this.windowstate.resizeCanvas(); ",
-             "        ",
-             "}"
-            ]
-           },
-           "xtype" : "Embed"
-          },
-          {
            "$ xns" : "Gtk",
            "* pack" : "add",
            "id" : "rooview",
-           "xtype" : "Box"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* init" : "",
-           "* pack" : "add",
-           "id" : "objectview",
            "xtype" : "Box"
           },
           {
