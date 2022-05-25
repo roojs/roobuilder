@@ -307,7 +307,7 @@
         "clicked" : [
          "  ( ) => {",
          "    ",
-         "     _this.windowstate.showProps(this.el, \"props\");",
+         "     _this.main_window.windowstate.showProps(this.el, \"props\");",
          " ",
          "",
          "}"
