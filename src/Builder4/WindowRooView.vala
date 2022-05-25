@@ -1015,6 +1015,7 @@ public class Xcls_WindowRooView : Object
 
             {
                
+               
                 var description =   Pango.FontDescription.from_string("monospace");
                 description.set_size(8000);
                 this.el.override_font(description);
