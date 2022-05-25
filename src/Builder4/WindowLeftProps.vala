@@ -1259,6 +1259,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.width_request = 50;
             this.el.height_request = 50;
+            this.el.always_show_image = true;
             this.el.tooltip_text = "Add Property";
             this.el.label = "Add Property";
             var child_0 = new Xcls_Image24( _this );
