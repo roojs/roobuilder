@@ -118,7 +118,7 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
+		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show_all();
 		   
 		this.left_tree.before_node_change.connect(() => {
@@ -192,8 +192,8 @@ public class WindowState : Object
 		    // add win.tree to leftpane
 		    if (this.win.editpane.el.parent != null) {
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
-		    	this.win.tree.el.remove(this.lefttree.el);
-		    	this.win.leftpane.add(this.lefttree.el);
+		    	this.win.tree.el.remove(this.left_tree.el);
+		    	this.win.leftpane.add(this.left_tree.el);
 	    	}
 		    
 		
@@ -206,8 +206,8 @@ public class WindowState : Object
 		}
 		
 		// remove this.ldeftree from this.win.leftpane
-		this.win.leftpane.remove(this.lefttree.el);
-		this.win.tree.el.add(this.lefttree.el);
+		this.win.leftpane.remove(this.left_tree.el);
+		this.win.tree.el.add(this.left_tree.el);
 		this.win.leftpanel.el.add(this.win.editpane.el);
 		
 		
