@@ -22,11 +22,11 @@ public class Xcls_MainWindow : Object
     public Xcls_tree tree;
     public Xcls_props props;
     public Xcls_clutterembed clutterembed;
-    public Xcls_codeeditview codeeditview;
     public Xcls_addpropsview addpropsview;
     public Xcls_buttonlayout buttonlayout;
     public Xcls_rooview rooview;
     public Xcls_objectview objectview;
+    public Xcls_codeeditview codeeditview;
     public Xcls_topbarmenu topbarmenu;
     public Xcls_statusbar statusbar;
     public Xcls_search_entry search_entry;
@@ -538,6 +538,9 @@ public class Xcls_MainWindow : Object
             var child_2 = new Xcls_objectview( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
+            var child_3 = new Xcls_codeeditview( _this );
+            child_3.ref();
+            this.el.add (  child_3.el  );
         }
 
         // user defined functions
@@ -560,15 +563,12 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_codeeditview( _this );
+            var child_0 = new Xcls_addpropsview( _this );
             child_0.ref();
             this.el.get_stage().add_child (  child_0.el  );
-            var child_1 = new Xcls_addpropsview( _this );
+            var child_1 = new Xcls_buttonlayout( _this );
             child_1.ref();
             this.el.get_stage().add_child (  child_1.el  );
-            var child_2 = new Xcls_buttonlayout( _this );
-            child_2.ref();
-            this.el.get_stage().add_child (  child_2.el  );
 
             // init method
 
@@ -587,52 +587,6 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_codeeditview : Object
-    {
-        public GtkClutter.Actor el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_codeeditview(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            _this.codeeditview = this;
-            this.el = new GtkClutter.Actor();
-
-            // my vars (dec)
-
-            // set gobject values
-
-            // init method
-
-            {
-               
-               /*
-                this.el.add_constraint(
-                    new Clutter.AlignConstraint(
-                        _this.clutterembed.el.get_stage(), 
-                        Clutter.AlignAxis.X_AXIS,
-                        0.0f
-                    )
-                );
-                */
-                this.el.fixed_x = 50.0f;
-                this.el.fixed_y = 0.0f;
-                //this.el.set_position(100,100);
-                this.el.set_pivot_point(0.0f,0.0f);
-                this.el.set_scale(0.0f,1.0f);
-                this.el.set_size((_this.clutterembed.el.get_stage().width-50)/2,
-                        _this.clutterembed.el.get_stage().height);
-                        
-            }
-        }
-
-        // user defined functions
-    }
-
     public class Xcls_addpropsview : Object
     {
         public GtkClutter.Actor el;
@@ -697,7 +651,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_BoxLayout19( _this );
+            var child_0 = new Xcls_BoxLayout18( _this );
             child_0.ref();
             this.el.layout_manager = child_0.el;
 
@@ -724,7 +678,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_BoxLayout19 : Object
+    public class Xcls_BoxLayout18 : Object
     {
         public Clutter.BoxLayout el;
         private Xcls_MainWindow  _this;
@@ -733,7 +687,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_BoxLayout19(Xcls_MainWindow _owner )
+        public Xcls_BoxLayout18(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Clutter.BoxLayout();
@@ -794,6 +748,52 @@ public class Xcls_MainWindow : Object
             // init method
 
             
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_codeeditview : Object
+    {
+        public Gtk.Box el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_codeeditview(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            _this.codeeditview = this;
+            this.el = new Gtk.Box( null, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+
+            // init method
+
+            {
+               
+               /*
+                this.el.add_constraint(
+                    new Clutter.AlignConstraint(
+                        _this.clutterembed.el.get_stage(), 
+                        Clutter.AlignAxis.X_AXIS,
+                        0.0f
+                    )
+                );
+                */
+                this.el.fixed_x = 50.0f;
+                this.el.fixed_y = 0.0f;
+                //this.el.set_position(100,100);
+                this.el.set_pivot_point(0.0f,0.0f);
+                this.el.set_scale(0.0f,1.0f);
+                this.el.set_size((_this.clutterembed.el.get_stage().width-50)/2,
+                        _this.clutterembed.el.get_stage().height);
+                        
+            }
         }
 
         // user defined functions
