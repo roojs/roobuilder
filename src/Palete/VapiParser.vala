@@ -380,6 +380,7 @@ namespace Palete {
 			
 			vapidirs += (BuilderApplication.configDirectory() + "/resources/vapi");
 			vapidirs += "/usr/share/vala-0.%d/vapi".printf(ver);
+			vapidirs += "/usr/share/vala/vapi";
 			context.vapi_directories = vapidirs;
 			
 			// or context.get_vapi_path("glib-2.0"); // should return path..
