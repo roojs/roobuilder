@@ -780,6 +780,7 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             this.el.width_request = 600;
             this.el.expand = true;
+            this.el.hexpand = true;
             this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_iconview( _this );
             child_0.ref();
