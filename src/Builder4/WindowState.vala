@@ -200,7 +200,7 @@ public class WindowState : Object
 		    // add win.tree to leftpane
 		    if (this.win.editpane.el.parent != null) {
 		    	this.inner_pane_pos = innerpane.get_position();
-		    	
+		    	this.outer_pane_pos = outerpane.get_position() - this.inner_pane_pos;
 		    
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.left_tree.el);
@@ -210,8 +210,8 @@ public class WindowState : Object
 		
 			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
- 
-			outerpane.set_position(int.max(250,innerpane.get_position()));
+ 			outerpane.set_position(this.outer_pane_pos);
+			//outerpane.set_position(int.max(250,innerpane.get_position()));
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
 		}
