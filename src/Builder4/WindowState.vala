@@ -205,7 +205,7 @@ public class WindowState : Object
 			GLib.debug("Hide Properties");
 			this.left_props.el.hide();
  
-			outerpane.set_position(int.max(250,innerpane.get_position());
+			outerpane.set_position(int.max(250,innerpane.get_position()));
 			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
 			return;
 		}
