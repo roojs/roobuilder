@@ -336,9 +336,9 @@
          "  ( ) => {",
          "    ",
          " ",
-         "   _this.main_window.windowstate.showProps(this.el, \"signals\");",
+         "   _this.main_wind1ow.windowstate.showProps(this.el, \"signals\");",
          "",
-         "",
+         " ",
          "}"
         ]
        },

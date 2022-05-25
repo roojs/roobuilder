@@ -1334,9 +1334,9 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
                 
              
-               _this.main_window.windowstate.showProps(this.el, "signals");
+               _this.main_wind1ow.windowstate.showProps(this.el, "signals");
             
-            
+             
             });
         }
 
