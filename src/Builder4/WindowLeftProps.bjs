@@ -300,6 +300,7 @@
        "$ xns" : "Gtk",
        "* pack" : "add",
        "bool always_show_image" : true,
+       "bool hexpand" : true,
        "items" : [
         {
          "$ xns" : "Gtk",
