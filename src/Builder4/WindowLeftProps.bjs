@@ -300,6 +300,7 @@
          "}"
         ]
        },
+       "string label" : "",
        "xtype" : "Button"
       },
       {
