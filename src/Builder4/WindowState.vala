@@ -198,7 +198,7 @@ public class WindowState : Object
 		    if (this.win.editpane.el.parent != null) {
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.left_tree.el);
-		    	this.win.leftpane.add(this.left_tree.el);
+		    	this.win.leftpane.eladd(this.left_tree.el);
 	    	}
 		    
 		
@@ -211,7 +211,7 @@ public class WindowState : Object
 		}
 		
 		// remove this.ldeftree from this.win.leftpane
-		this.win.leftpane.remove(this.left_tree.el);
+		this.win.leftpane..el.remove(this.left_tree.el);
 		this.win.tree.el.add(this.left_tree.el);
 		this.win.leftpanel.el.add(this.win.editpane.el);
 		
