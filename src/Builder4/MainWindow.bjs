@@ -137,6 +137,7 @@
              "}"
             ]
            },
+           "string label" : "Add Child Element",
            "width_request" : 50,
            "xtype" : "Button"
           },
