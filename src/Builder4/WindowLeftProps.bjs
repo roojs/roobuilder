@@ -320,7 +320,8 @@
       {
        "$ tooltip_text" : "\"Add Event Code\"",
        "$ xns" : "Gtk",
-       "* pack" : false,
+       "* pack" : "add",
+       "bool always_show_image" : true,
        "height_request" : 50,
        "items" : [
         {

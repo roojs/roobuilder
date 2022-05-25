@@ -614,6 +614,7 @@ public class Xcls_LeftProps : Object
             child_1.ref();
             var child_2 = new Xcls_Button25( _this );
             child_2.ref();
+            this.el.add (  child_2.el  );
         }
 
         // user defined functions
@@ -1322,6 +1323,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.width_request = 50;
             this.el.height_request = 50;
+            this.el.always_show_image = true;
             this.el.tooltip_text = "Add Event Code";
             this.el.label = "Add Event Handler";
             var child_0 = new Xcls_Image26( _this );
