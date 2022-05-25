@@ -571,7 +571,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.codeeditviewbox = this;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 

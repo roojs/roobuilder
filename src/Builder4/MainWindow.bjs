@@ -192,6 +192,7 @@
             "}"
            ],
            "* pack" : "add",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
            "id" : "codeeditviewbox",
            "xtype" : "Box"
           }
