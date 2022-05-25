@@ -44,16 +44,34 @@ namespace Palete {
 		    // no parent...
 		}
 	      
-		public override void  load () {
-
+		public override void  load () 
+		{
+			
+			var gtk = Gir.factory(this.project, "Gtk");
+			
+			
+			foreach(var key in   Gir.global_cache.keys) {
+				var gir = Gir.global_cache.get(key);
+				var iter = gir.classes.map_iterator();
+				while(iter.next()) {
+					var cls = iter.get_value();
+					GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
+						string.joinv( ",", cls.inheritsToStringArray())
+					);
+					
+					
+				}
+				
+			}
 			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
 	 
 		     
 		}
 		
-		public string doc(string what) {
-	    		var ns = what.split(".")[0];
-	    		var gir =  Gir.factory(this.project,ns);
+		public string doc(string what) 
+		{
+    		var ns = what.split(".")[0];
+    		var gir =  Gir.factory(this.project,ns);
 			return   gir.doc(what);
 			
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
@@ -225,6 +243,7 @@ namespace Palete {
 			
 			return ret;
 		}
+		// get a list of available vapi files...
 		
 		public  Gee.ArrayList<string>  loadPackages(string dirname)
 		{
