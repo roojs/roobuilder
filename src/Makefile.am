@@ -152,7 +152,6 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg json-glib-1.0 \
 		--pkg gee-0.8 \
 		--pkg gobject-introspection-1.0 \
-		--pkg clutter-gtk-1.0 \
 		--pkg libsoup-2.4 \
  		--pkg javascriptcore \
 		--pkg roojspacker-1.4 \
@@ -215,7 +214,6 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/WindowLeftTree.vala \
 		Builder4/WindowRooView.vala \
 		Builder4/WindowLeftProps.vala \
-		Builder4/ClutterFiles.vala \
 		Builder4/PopoverAddProp.vala \
 		Builder4/GtkView.vala \
 		Builder4/ValaProjectSettingsPopover.vala \

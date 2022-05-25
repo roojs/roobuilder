@@ -19,7 +19,7 @@
     "//\t}"
    ],
    "border_width" : 0,
-   "default_height" : 750,
+   "default_height" : 850,
    "default_width" : 1200,
    "id" : "MainWindow",
    "items" : [
@@ -111,14 +111,14 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add1",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "* pack" : "add",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "id" : "leftpane",
          "items" : [
           {
            "$ xns" : "Gtk",
            "* pack" : "pack_start,true,true,0",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "id" : "editpane",
            "items" : [
             {
@@ -136,6 +136,20 @@
              "xtype" : "Box"
             }
            ],
+           "listeners" : {
+            "accept_position" : [
+             "() => {",
+             "\tGLib.debug(\"Accept postion\");",
+             "\treturn true;",
+             "}"
+            ],
+            "move_handle" : [
+             "(scroll) => {",
+             "\tGLib.debug(\"Move handle\");",
+             "\treturn true;",
+             "}"
+            ]
+           },
            "xtype" : "Paned"
           }
          ],
@@ -147,364 +161,20 @@
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "items" : [
           {
-           "$ xns" : "GtkClutter",
-           "* init" : [
-            "    var stage = this.el.get_stage();",
-            "    stage.set_background_color(  Clutter.Color.from_string(\"#000\"));",
-            "    ",
-            "    ",
-            ""
-           ],
-           "* pack" : "pack_start,true,true,0",
-           "id" : "clutterembed",
-           "items" : [
-            {
-             "$ xns" : "GtkClutter",
-             "* init" : [
-              "{",
-              "   ",
-              "   ",
-              "    this.el.add_constraint(",
-              "        new Clutter.AlignConstraint(",
-              "            _this.clutterembed.el.get_stage(), ",
-              "            Clutter.AlignAxis.X_AXIS,",
-              "            1.0f",
-              "        )",
-              "    );",
-              "        ",
-              "    //this.el.set_position(100,100);",
-              "    this.el.set_pivot_point(1.0f,1.0f);",
-              "    ",
-              "    this.el.set_size(_this.clutterembed.el.get_stage().width-50,",
-              "            _this.clutterembed.el.get_stage().height);",
-              "            ",
-              "}"
-             ],
-             "* pack" : "get_stage().add_child",
-             "id" : "rooview",
-             "xtype" : "Actor"
-            },
-            {
-             "$ xns" : "GtkClutter",
-             "* init" : [
-              "{",
-              "   ",
-              "   /*",
-              "    this.el.add_constraint(",
-              "        new Clutter.AlignConstraint(",
-              "            _this.clutterembed.el.get_stage(), ",
-              "            Clutter.AlignAxis.X_AXIS,",
-              "            0.0f",
-              "        )",
-              "    );",
-              "    */",
-              "    this.el.fixed_x = 50.0f;",
-              "    this.el.fixed_y = 0.0f;",
-              "    //this.el.set_position(100,100);",
-              "    this.el.set_pivot_point(0.0f,0.0f);",
-              "    this.el.set_scale(0.0f,1.0f);",
-              "    this.el.set_size((_this.clutterembed.el.get_stage().width-50)/2,",
-              "            _this.clutterembed.el.get_stage().height);",
-              "            ",
-              "}"
-             ],
-             "* pack" : "get_stage().add_child",
-             "id" : "objectview",
-             "xtype" : "Actor"
-            },
-            {
-             "$ xns" : "GtkClutter",
-             "* init" : [
-              "{",
-              "   ",
-              "   /*",
-              "    this.el.add_constraint(",
-              "        new Clutter.AlignConstraint(",
-              "            _this.clutterembed.el.get_stage(), ",
-              "            Clutter.AlignAxis.X_AXIS,",
-              "            0.0f",
-              "        )",
-              "    );",
-              "    */",
-              "    this.el.fixed_x = 50.0f;",
-              "    this.el.fixed_y = 0.0f;",
-              "    //this.el.set_position(100,100);",
-              "    this.el.set_pivot_point(0.0f,0.0f);",
-              "    this.el.set_scale(0.0f,1.0f);",
-              "    this.el.set_size((_this.clutterembed.el.get_stage().width-50)/2,",
-              "            _this.clutterembed.el.get_stage().height);",
-              "            ",
-              "}"
-             ],
-             "* pack" : "get_stage().add_child",
-             "id" : "codeeditview",
-             "xtype" : "Actor"
-            },
-            {
-             "$ xns" : "GtkClutter",
-             "* init" : [
-              "{",
-              "   ",
-              "   /*",
-              "    this.el.add_constraint(",
-              "        new Clutter.AlignConstraint(",
-              "            _this.clutterembed.el.get_stage(), ",
-              "            Clutter.AlignAxis.X_AXIS,",
-              "            0.0f",
-              "        )",
-              "    );",
-              "    */",
-              "    this.el.fixed_x = 50.0f;",
-              "    this.el.fixed_y = 0.0f;",
-              "    //this.el.set_position(100,100);",
-              "    this.el.set_pivot_point(0.0f,0.0f);",
-              "    this.el.set_scale(0.0f,1.0f);",
-              "    this.el.set_size((_this.clutterembed.el.get_stage().width-50)/2,",
-              "            _this.clutterembed.el.get_stage().height);",
-              "            ",
-              "}"
-             ],
-             "* pack" : "get_stage().add_child",
-             "id" : "addpropsview",
-             "xtype" : "Actor"
-            },
-            {
-             "$ xns" : "Clutter",
-             "* init" : [
-              "{",
-              "    ",
-              "    this.el.add_constraint(",
-              "        new Clutter.AlignConstraint(",
-              "            _this.clutterembed.el.get_stage(), ",
-              "            Clutter.AlignAxis.X_AXIS,",
-              "            0.0f",
-              "        )",
-              "    );",
-              "     ",
-              "    ",
-              "    //this.el.set_position(100,100);",
-              "    this.el.set_pivot_point(0.5f,0.5f);",
-              "     this.el.set_size(50,",
-              "           _this.clutterembed.el.get_stage().height);",
-              "     ",
-              "}"
-             ],
-             "* pack" : "get_stage().add_child",
-             "id" : "buttonlayout",
-             "items" : [
-              {
-               "$ orientation" : "Clutter.Orientation.VERTICAL",
-               "$ xns" : "Clutter",
-               "* prop" : "layout_manager",
-               "xtype" : "BoxLayout"
-              },
-              {
-               "$ xns" : "Clutter",
-               "* init" : "this.el.set_size(50,50);",
-               "* pack" : "add_child",
-               "id" : "backbutton",
-               "items" : [
-                {
-                 "$ xns" : "GtkClutter",
-                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
-                 "* pack" : "add_child",
-                 "items" : [
-                  {
-                   "$ xns" : "Gtk",
-                   "* pack" : false,
-                   "height_request" : 50,
-                   "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "* pack" : "set_image",
-                     "utf8 icon_name" : "go-previous",
-                     "xtype" : "Image"
-                    }
-                   ],
-                   "listeners" : {
-                    "clicked" : [
-                     "  ( ) => {",
-                     " //  if (_this.windowstate.state == WindowState.State.FILEPROJECT) {",
-                     "    ",
-                     "//\t     _this.windowstate.switchState(WindowState.State.FILES);",
-                     "  //   } else { ",
-                     "\t    _this.windowstate.switchState(WindowState.State.PREVIEW);",
-                     "  //  }",
-                     "    ",
-                     "",
-                     "}"
-                    ]
-                   },
-                   "utf8 tooltip_text" : "Back",
-                   "width_request" : 50,
-                   "xtype" : "Button"
-                  }
-                 ],
-                 "xtype" : "Actor"
-                }
-               ],
-               "xtype" : "Actor"
-              },
-              {
-               "$ xns" : "Clutter",
-               "* init" : "this.el.set_size(50,50);",
-               "* pack" : "add_child",
-               "id" : "objectshowbutton",
-               "items" : [
-                {
-                 "$ xns" : "GtkClutter",
-                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
-                 "* pack" : "add_child",
-                 "items" : [
-                  {
-                   "$ tooltip_text" : "\"Add Child Element\"",
-                   "$ xns" : "Gtk",
-                   "* pack" : false,
-                   "height_request" : 50,
-                   "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "* pack" : "set_image",
-                     "utf8 icon_name" : "list-add",
-                     "xtype" : "Image"
-                    }
-                   ],
-                   "listeners" : {
-                    "clicked" : [
-                     "  ( ) => {",
-                     "    ",
-                     "",
-                     "  \t_this.windowstate.showAddObject(this.el);",
-                     " ",
-                     "}"
-                    ]
-                   },
-                   "width_request" : 50,
-                   "xtype" : "Button"
-                  }
-                 ],
-                 "xtype" : "Actor"
-                }
-               ],
-               "listeners" : {
-                "enter_event" : [
-                 "(  event)  => {",
-                 "    this.el.background_color =   Clutter.Color.from_string(\"#333\");",
-                 "        return false;",
-                 "}"
-                ],
-                "leave_event" : [
-                 "(  event)  => {",
-                 "    this.el.background_color =   Clutter.Color.from_string(\"#000\");",
-                 "    return false;",
-                 "}"
-                ]
-               },
-               "xtype" : "Actor"
-              },
-              {
-               "$ xns" : "Clutter",
-               "* init" : "this.el.set_size(50,50);",
-               "* pack" : "add_child",
-               "id" : "addpropbutton",
-               "items" : [
-                {
-                 "$ xns" : "GtkClutter",
-                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
-                 "* pack" : "add_child",
-                 "items" : [
-                  {
-                   "$ tooltip_text" : "\"Add Property\"",
-                   "$ xns" : "Gtk",
-                   "* pack" : false,
-                   "height_request" : 50,
-                   "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "* pack" : "set_image",
-                     "utf8 icon_name" : "format-justify-left",
-                     "xtype" : "Image"
-                    }
-                   ],
-                   "listeners" : {
-                    "clicked" : [
-                     "  ( ) => {",
-                     "    ",
-                     "     _this.windowstate.showProps(this.el, \"props\");",
-                     " ",
-                     "",
-                     "}"
-                    ]
-                   },
-                   "width_request" : 50,
-                   "xtype" : "Button"
-                  }
-                 ],
-                 "xtype" : "Actor"
-                }
-               ],
-               "xtype" : "Actor"
-              },
-              {
-               "$ xns" : "Clutter",
-               "* init" : "this.el.set_size(50,50);",
-               "* pack" : "add_child",
-               "id" : "addlistenerbutton",
-               "items" : [
-                {
-                 "$ xns" : "GtkClutter",
-                 "* init" : "((Gtk.Container)(this.el.get_widget())).add ( child_0.el);",
-                 "* pack" : "add_child",
-                 "items" : [
-                  {
-                   "$ tooltip_text" : "\"Add Event Code\"",
-                   "$ xns" : "Gtk",
-                   "* pack" : false,
-                   "height_request" : 50,
-                   "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "* pack" : "set_image",
-                     "utf8 icon_name" : "appointment-new",
-                     "xtype" : "Image"
-                    }
-                   ],
-                   "listeners" : {
-                    "clicked" : [
-                     "  ( ) => {",
-                     "    ",
-                     " ",
-                     "   _this.windowstate.showProps(this.el, \"signals\");",
-                     "",
-                     "",
-                     "}"
-                    ]
-                   },
-                   "width_request" : 50,
-                   "xtype" : "Button"
-                  }
-                 ],
-                 "xtype" : "Actor"
-                }
-               ],
-               "xtype" : "Actor"
-              }
-             ],
-             "xtype" : "Actor"
-            }
-           ],
-           "listeners" : {
-            "size_allocate" : [
-             "  (  alloc) => {",
-             "    if (_this.windowstate == null) {",
-             "        return;",
-             "    }",
-             "    _this.windowstate.resizeCanvas(); ",
-             "        ",
-             "}"
-            ]
-           },
-           "xtype" : "Embed"
+           "$ xns" : "Gtk",
+           "* pack" : "add",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "bool vexpand" : true,
+           "id" : "rooviewbox",
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "add",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "bool vexpand" : true,
+           "id" : "codeeditviewbox",
+           "xtype" : "Box"
           }
          ],
          "xtype" : "Box"
@@ -524,7 +194,6 @@
          "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
-         "height_request" : 50,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -539,12 +208,11 @@
            "     ",
            "     _this.windowstate.projectPopoverShow(this.el, _this.project);",
            "   ",
-           " ",
+           "  ",
            "}"
           ]
          },
          "string label" : "Edit Project Settings",
-         "width_request" : 50,
          "xtype" : "Button"
         },
         {
@@ -552,7 +220,6 @@
          "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
-         "height_request" : 50,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -580,7 +247,6 @@
           ]
          },
          "string label" : "Edit File Properties",
-         "width_request" : 50,
          "xtype" : "Button"
         },
         {
@@ -681,6 +347,7 @@
          ],
          "* pack" : "pack_start,false,true,0",
          "id" : "search_entry",
+         "int width_request" : 300,
          "listeners" : {
           "changed" : [
            "() => {",
@@ -1074,11 +741,7 @@
     "    this.windowstate = new WindowState(this);",
     "     ",
     "",
-    "    //w.el.show_all();",
-    "    var tl = new Clutter.Timeline(6000);",
-    "    tl.set_repeat_count(-1);",
-    "    tl.start();",
-    "    tl.ref();",
+    " ",
     "",
     "    ",
     "",

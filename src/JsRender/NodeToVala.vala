@@ -292,6 +292,8 @@ public class JsRender.NodeToVala : Object {
 	
 	void addMyVars()
 	{
+		GLib.debug("callinged addMhyVars");
+		
 		this.addLine();
 		this.addLine(this.ipad + "// my vars (def)");
 			
@@ -300,6 +302,8 @@ public class JsRender.NodeToVala : Object {
 		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		   
 		if (cls == null) {
+			GLib.debug("Gir factory failed to find class %s", this.node.fqn());
+			
 			return;
 		}
 	  
@@ -327,6 +331,7 @@ public class JsRender.NodeToVala : Object {
 				this.ignore(k);
 				continue;
 			}
+			GLib.debug("Got myvars: %s", k.strip());
 			var min = (vv[0] == "$" || vv[0] == "#") ? 3 : 2; 
 			if (vv.length < min) {
 				// skip 'old js style properties without a type'

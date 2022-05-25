@@ -6,7 +6,6 @@
         "target_bin" : "/tmp/builder",
         "sources" : [
             "../Builder4/About.vala",
-            "../Builder4/ClutterFiles.vala",
             "../Builder4/DialogConfirm.vala",
             "../Builder4/DialogPluginWebkit.vala",
             "../Builder4/DialogSaveModule.vala",
@@ -186,7 +185,6 @@
             "gtk+-3.0",
             "gtksourceview-3.0",
             "libgda-5.0",
-            "clutter-gtk-1.0",
             "glib-2.0",
             "gobject-introspection-1.0",
             "gobject-2.0",
@@ -203,7 +201,6 @@
             "librsvg-2.0",
             "libvala-0.32",
             "libvala-0.34",
-            "roojspacker-1.0",
             "libvala-0.36",
             "gee-0.8",
             "roojspacker-1.4",

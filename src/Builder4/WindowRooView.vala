@@ -26,11 +26,9 @@ public class Xcls_WindowRooView : Object
 
         // my vars (def)
     public Gtk.Widget lastObj;
-    public int width;
     public int last_search_end;
     public Gtk.SourceSearchContext searchcontext;
     public JsRender.JsRender file;
-    public int height;
     public Xcls_MainWindow main_window;
 
     // ctor
@@ -41,13 +39,12 @@ public class Xcls_WindowRooView : Object
 
         // my vars (dec)
         this.lastObj = null;
-        this.width = 0;
         this.last_search_end = 0;
         this.file = null;
-        this.height = 0;
 
         // set gobject values
         this.el.hexpand = true;
+        this.el.vexpand = true;
         var child_0 = new Xcls_notebook( _this );
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
@@ -72,6 +69,23 @@ public class Xcls_WindowRooView : Object
     		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
     		return false;
     	});   
+    
+       
+    }
+    public int search (string txt) {
+    	this.notebook.el.page = 1;
+     	var s = new Gtk.SourceSearchSettings();
+    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
+    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
+    	this.searchcontext.set_highlight(true);
+    	s.set_search_text(txt);
+    	
+    	Gtk.TextIter beg, st,en;
+    	 
+    	buf.get_start_iter(out beg);
+    	this.searchcontext.forward(beg, out st, out en);
+    	this.last_search_end  = 0;
+    	return this.searchcontext.get_occurrences_count();
     
        
     }
@@ -109,23 +123,6 @@ public class Xcls_WindowRooView : Object
         this.notebook.el.page = 0;// gtk preview 
         this.sourceview.loadFile();   
         
-    }
-    public int search (string txt) {
-    	this.notebook.el.page = 1;
-     	var s = new Gtk.SourceSearchSettings();
-    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
-    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
-    	this.searchcontext.set_highlight(true);
-    	s.set_search_text(txt);
-    	
-    	Gtk.TextIter beg, st,en;
-    	 
-    	buf.get_start_iter(out beg);
-    	this.searchcontext.forward(beg, out st, out en);
-    	this.last_search_end  = 0;
-    	return this.searchcontext.get_occurrences_count();
-    
-       
     }
     public void requestRedraw () {
         this.view.renderJS(false);
@@ -1001,12 +998,12 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public bool loading;
         public bool button_is_pressed;
+        public JsRender.Node? node_selected;
+        public bool loading;
+        public int editable_start_pos;
         public string prop_selected;
         public bool key_is_pressed;
-        public JsRender.Node? node_selected;
-        public int editable_start_pos;
 
         // ctor
         public Xcls_sourceview(Xcls_WindowRooView _owner )
@@ -1016,12 +1013,12 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
-            this.loading = true;
             this.button_is_pressed = false;
+            this.node_selected = null;
+            this.loading = true;
+            this.editable_start_pos = -1;
             this.prop_selected = "";
             this.key_is_pressed = false;
-            this.node_selected = null;
-            this.editable_start_pos = -1;
 
             // set gobject values
             this.el.editable = false;
@@ -1035,6 +1032,7 @@ public class Xcls_WindowRooView : Object
 
             {
                
+               
                 var description =   Pango.FontDescription.from_string("monospace");
                 description.set_size(8000);
                 this.el.override_font(description);
@@ -1042,7 +1040,6 @@ public class Xcls_WindowRooView : Object
                 this.loading = true;
                 //var buf = this.el.get_buffer();
                 //buf.notify.connect(this.onCursorChanged);
-              
               
               
                 var attrs = new Gtk.SourceMarkAttributes();
@@ -1110,8 +1107,6 @@ public class Xcls_WindowRooView : Object
             this.el.button_press_event.connect( () => {
             	
             	
-            	
-            	
             	this.button_is_pressed = true;
             	return false;
             });
@@ -1149,6 +1144,18 @@ public class Xcls_WindowRooView : Object
         }
 
         // user defined functions
+        public void clearGreySelection () {
+         // clear all the marks..
+            var sbuf = (Gtk.SourceBuffer)this.el.buffer;
+            
+            Gtk.TextIter start;
+            Gtk.TextIter end;     
+                
+            sbuf.get_bounds (out start, out end);
+            sbuf.remove_source_marks (start, end, "grey");
+            
+            
+        }
         public void onCursorChanged (/*ParamSpec ps*/) {
         
         		if (!this.key_is_pressed && !this.button_is_pressed) {
@@ -1221,17 +1228,14 @@ public class Xcls_WindowRooView : Object
                 
                 // highlight the node..
         }
-        public void clearGreySelection () {
-         // clear all the marks..
-            var sbuf = (Gtk.SourceBuffer)this.el.buffer;
-            
-            Gtk.TextIter start;
-            Gtk.TextIter end;     
-                
-            sbuf.get_bounds (out start, out end);
-            sbuf.remove_source_marks (start, end, "grey");
-            
-            
+        public string toString () {
+           Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_buffer().get_start_iter(out s);
+            this.el.get_buffer().get_end_iter(out e);
+            var ret = this.el.get_buffer().get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
         }
         public void nodeSelected (JsRender.Node? sel, bool scroll ) {
           
@@ -1251,15 +1255,6 @@ public class Xcls_WindowRooView : Object
             
             
             
-        }
-        public string toString () {
-           Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_buffer().get_start_iter(out s);
-            this.el.get_buffer().get_end_iter(out e);
-            var ret = this.el.get_buffer().get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
         }
         public void loadFile ( ) {
             this.loading = true;
@@ -1609,16 +1604,6 @@ public class Xcls_WindowRooView : Object
             }   
             return false;
         }
-        public   string toString () {
-            
-            Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_start_iter(out s);
-            this.el.get_end_iter(out e);
-            var ret = this.el.get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
-        }
         public   bool checkSyntax () {
          
            
@@ -1661,6 +1646,16 @@ public class Xcls_WindowRooView : Object
                 null
             );    
              
+        }
+        public   string toString () {
+            
+            Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_start_iter(out s);
+            this.el.get_end_iter(out e);
+            var ret = this.el.get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
         }
     }
 

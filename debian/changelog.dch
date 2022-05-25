@@ -1,11 +1,6 @@
 roobuilder (4.2.0) UNRELEASED; urgency=medium
 
-  * Remove Clutter dependancy and interface
-  * Change Project and File management to Popover
-  * Property editing now expand right
-  * Popover property editing
-  * Popover for adding properties, events and children
-  * Cleaner User interface - icons and text for most things now.
+  * 
 
  -- Alan <alan@office.roojs.com>  Wed, 25 May 2022 14:41:34 +0800
 

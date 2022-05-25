@@ -118,7 +118,12 @@ public class WindowState : Object
 		this.left_tree.ref();
 		this.left_tree.main_window = this.win;
 	
-		this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
+		this.win.leftpane.el.remove(this.win.editpane.el);
+    	//this.win.tree.el.remove(this.left_tree.el);
+    	this.win.leftpane.el.add(this.left_tree.el);
+	    
+	
+		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
 		this.left_tree.el.show_all();
 		   
 		this.left_tree.before_node_change.connect(() => {
@@ -169,8 +174,11 @@ public class WindowState : Object
 		//if (!this.code_editor.saveContents()) {
 		//	return false;
 		//}
-		return false;
+		//return false;
 	}
+	
+	int tree_width = 300;
+	int props_width = 300;
 	
 	public void leftTreeNodeSelected(JsRender.Node? sel, string source)
 	{
@@ -181,17 +189,115 @@ public class WindowState : Object
 	 
 		print("node_selected called %s\n", (sel == null) ? "NULL" : "a value");
 
-		if (sel == null) {
-			this.left_props.el.hide();
-		} 
-		this.left_props.el.show();
+		this.add_props.hide(); // always hide add node/add listener if we change node.
+		this.rightpalete.hide();
+		
 		this.left_props.load(this.left_tree.getActiveFile(), sel);
+		
+		var outerpane = this.win.mainpane.el;
+		var innerpane = this.win.editpane.el;
+  		
+  		 if (this.win.editpane.el.parent != null && sel != null) {
+  			// select another node... no change to show hide/resize
+  			return;
+		}
+  				 
+		if (sel == null) {
+		    // remove win.editpane from leftpane
+		    // remove lefttree from from win.tree 
+		    // add win.tree to leftpane
+		    if (this.win.editpane.el.parent != null) {
+		    	this.props_width =  outerpane.get_position() - innerpane.get_position();
+		    	this.tree_width = innerpane.get_position();
+		        GLib.debug("HIDE: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
+		        
+		    	this.win.leftpane.el.remove(this.win.editpane.el);
+		    	this.win.tree.el.remove(this.left_tree.el);
+		    	this.win.leftpane.el.add(this.left_tree.el);
+	    	}
+		    
+		
+			//GLib.debug("Hide Properties");
+			outerpane.show_all(); // make sure it's visiable..
+			this.left_props.el.hide();
+			GLib.debug("set position: %d", this.tree_width);
+ 			outerpane.set_position(this.tree_width);
+			//outerpane.set_position(int.max(250,innerpane.get_position()));
+			//this.left_props.el.width_request =  this.left_props.el.get_allocated_width();
+			return;
+		}
+		
+		// at this point we are showing the outer only,
+		
+		
+		
+		
+		this.tree_width = outerpane.get_position();
+		
+		GLib.debug("SHOW: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
+		      
+		// remove this.ldeftree from this.win.leftpane
+		this.win.leftpane.el.remove(this.left_tree.el);
+		this.win.tree.el.add(this.left_tree.el);
+		this.win.leftpane.el.add(this.win.editpane.el);
+		
+		
+		
+		
+		GLib.debug("left props is %s",  this.left_props.el.visible ? "shown" : "hidden");
+		// at start (hidden) - outer  = 400 inner = 399
+		// expanded out -> outer = 686, inner = 399 
+		//this.win.props.el.pack_start(this.left_props.el,true, true,0);
+		this.left_props.el.show_all();
+		//if (!this.left_props.el.visible) {
+		 
+  			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
+  			outerpane.set_position(this.tree_width + this.props_width);
+  			innerpane.set_position(this.tree_width);
+  			/* var cw = outerpane.el.get_position();
+  			var rw = int.min(this.left_props.el.width_request, 150);
+  			print("outerpos : %d, innerpos : %d", cw + rw, cw);
+  			
+  			innerpane.set_position(cw); */
+  			this.left_props.el.show();
+		
+		//}
+		
+		 
+		
+		
+		
+
 		
 		
 		// if either of these are active.. then we should update them??
 		
-		this.add_props.hide(); // always hide add node/add listener if we change node.
-		this.rightpalete.hide(); 
+		
+		
+   /**
+   
+   make outerpane = {current width of left pane} + width of props
+   make innerpane = {current width of left pane}
+   
+   
+   
+   
+   
+   var outerpane = _this.main_window.leftpane.el;
+   var pane = _this.main_window.editpane.el;
+   
+  
+   
+    var try_size = (i * 25) + 60; // est. 20px per line + 40px header
+    GLib.Timeout.add_seconds(1, () => { 
+		// max 80%...
+		pane.set_position( 
+		     ((try_size * 1.0f) /  (pane.max_position * 1.0f))  > 0.8f  ? 
+		    (int) (pane.max_position * 0.2f) :
+		    pane.max_position-try_size);
+	    return GLib.Source.REMOVE;
+	});
+	*/
 		
 		
 		/*
@@ -402,13 +508,11 @@ public class WindowState : Object
 	{
 		this.code_editor_tab  = new  Editor();
 		//this.code_editor.ref();  /// really?
-		((Gtk.Container)(this.win.codeeditview.el.get_widget())).add(this.code_editor_tab.el);
+		this.win.codeeditviewbox.el.add(this.code_editor_tab.el);
 		
+		this.win.codeeditviewbox.el.hide();
 		this.code_editor_tab.window = this.win;
  
-
-		var stage = this.win.codeeditview.el.get_stage();
-		stage.set_background_color(  Clutter.Color.from_string("#000"));
 		// editor.save...
 
 		this.code_editor_tab.save.connect( () => {
@@ -519,6 +623,7 @@ public class WindowState : Object
 		
 		
 		if (file.xtype == "PlainFile") {
+			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
 			file.loadItems();
 			this.code_editor_tab.show(file, null, "", "");
@@ -537,15 +642,18 @@ public class WindowState : Object
 		}
 	
 	
-		var ctr= ((Gtk.Container)(this.win.rooview.el.get_widget()));
+		var ctr= this.win.rooviewbox.el;
  
 	
 		if (file.project.xtype == "Roo" ) { 
+		    // removes all the childe elemnts from rooviewbox
+		
 			ctr.foreach( (w) => { ctr.remove(w); });
  
 			ctr.add(this.window_rooview.el);
  
 			if (file.xtype != "PlainFile") {       
+ 
 				this.window_rooview.loadFile(file);
 				this.window_rooview.el.show_all();
 			}
@@ -558,14 +666,17 @@ public class WindowState : Object
 			ctr.add(this.window_gladeview.el);
  
 			if (file.xtype != "PlainFile") {    
+				
 				this.window_gladeview.loadFile(file);
 				this.window_gladeview.el.show_all();
 			}
  
 		}
 		print("OPEN : " + file.name);
-		if (file.xtype != "PlainFile") {    
-			this.win.editpane.el.set_position(this.win.editpane.el.max_position);
+		if (file.xtype != "PlainFile") { 
+			// hide the file editor.
+		   this.win.codeeditviewbox.el.hide();
+			//this.win.editpane.el.set_position(this.win.editpane.el.max_position);
 		}
 		this.win.setTitle(file.project.name + " : " + file.name);
 			 
@@ -588,11 +699,11 @@ public class WindowState : Object
 		this.window_rooview  =new Xcls_WindowRooView();
 		this.window_rooview.main_window = this.win;
 		this.window_rooview.ref();
-		((Gtk.Container)(this.win.rooview.el.get_widget())).add(this.window_rooview.el);
+		this.win.rooviewbox.el.add(this.window_rooview.el);
+		
 		this.window_rooview.el.show_all();
-
-		var stage = this.win.rooview.el.get_stage();
-		stage.set_background_color(  Clutter.Color.from_string("#000"));
+		this.win.rooviewbox.el.hide();
+	
 	}
 
 	// ------ Gtk  - view
@@ -604,24 +715,7 @@ public class WindowState : Object
 		this.window_gladeview.main_window = this.win;
 	}
 	
-	public void easingSaveAll()
-	{
-		this.win.addpropsview.el.save_easing_state();
-		this.win.codeeditview.el.save_easing_state();
-		this.win.objectview.el.save_easing_state();
-		this.win.rooview.el.save_easing_state();
-	//	this.clutterfiles.el.save_easing_state();
-		 
-	}
-	public void easingRestoreAll()
-	{
-		this.win.addpropsview.el.restore_easing_state();
-		this.win.codeeditview.el.restore_easing_state();
-		this.win.objectview.el.restore_easing_state();
-		this.win.rooview.el.restore_easing_state();
-		//this.clutterfiles.el.restore_easing_state();
-		
-	}
+
 	
 	
 	public void showProps(Gtk.Widget btn, string sig_or_listen)
@@ -679,7 +773,7 @@ public class WindowState : Object
 		//	return;
 		//}
 		// save the easing state of everything..
-		this.easingSaveAll();
+
 		
 		switch (this.state) {
 
@@ -696,61 +790,15 @@ public class WindowState : Object
 				
 				break;
 				
-	 
+	 }
 			 
-				
-			case State.CODEONLY:
-				// going from codeonly..
-				
-				// enable re-calc of canvas..
-
-				//this.code_editor.saveContents(); << not yet...
-
-				this.win.rooview.el.show(); 
-				this.win.leftpane.el.show();
-				this.win.codeeditview.el.set_scale(0.0f,0.0f);
-			
 			 
-			
-			    while (Gtk.events_pending()) { 
-					Gtk.main_iteration();
-				}
+		 
 				
-				 // hides it completely...
-				 
-				break;
-
-		 /*
-		  case State.FILES: // goes to preview or codeonly...
-				// hide files...
-				
-			 
- 
-				if (new_state == State.CODEONLY) {
-					this.win.rooview.el.hide();
-				} else {
-					this.win.rooview.el.show();
-				}
-				
-				this.win.rooview.el.set_easing_duration(1000);
-				this.win.rooview.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, 0.0f);
-				this.win.rooview.el.set_scale(1.0f,1.0f);
-				this.win.rooview.el.set_pivot_point(0.5f,0.5f);
-				this.win.rooview.el.set_opacity(0xff);
-				
-				this.clutterfiles.el.set_easing_duration(1000);
-				this.clutterfiles.el.set_pivot_point(0.5f,0.5f);
-				this.clutterfiles.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, -180.0f);
-				this.clutterfiles.el.set_opacity(0);
- 
-			   
-				//this.clutterfiles.el.hide();
-				 
-
-				break;
-	*/
-				
-		}
+		
+		this.win.rooviewbox.el.hide();
+	   this.win.codeeditviewbox.el.hide();
+	   
 	   
 		var oldstate  =this.state;
 		this.state = new_state;
@@ -772,157 +820,33 @@ public class WindowState : Object
 				//	print ("changing state to preview from NOT files..");
 					 
  
-					this.win.rooview.el.set_scale(1.0f,1.0f);
+					this.win.rooviewbox.el.show();
 				// }
 			   
 				break;
  
 		   
 			case State.CODEONLY:
-				// going to codeonly..
-				this.win.codeeditview.el.show();
-				// recalc canvas...
-				//while (Gtk.events_pending()) { 
-				//	Gtk.main_iteration();
-				//}
 				
 				this.win.leftpane.el.hide();
-				this.win.codeeditview.el.show();
-				//while (Gtk.events_pending()) { 
-				//	Gtk.main_iteration();
-				//}
+				this.win.codeeditviewbox.el.show();
 				
 				
 				this.code_editor_tab.el.show_all();
 			    
-				this.win.codeeditview.el.set_scale(1.0f,1.0f);
-				this.win.rooview.el.set_pivot_point(1.0f,0.5f);
+
+
 				break;
-/*
-			 
-		   case State.FILES:  // can only get here from PREVIEW (or code-only) state.. in theory..
-				
-   
-				this.win.editpane.el.hide(); // holder for tree and properties..
-				
-				this.left_projects.el.show(); 
-				
-				// rotate the preview to hidden...
-				this.win.rooview.el.set_easing_duration(1000);
-				this.win.rooview.el.set_pivot_point(0.5f,0.5f);
-				this.win.rooview.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, 180.0f);
-				this.win.rooview.el.set_opacity(0);
-			 
-				
-				
-	 
-				if (this.win.project != null) {
-					this.left_projects.selectProject(this.win.project);
-				}
-			 
-				
-				this.clutterfiles.el.show();
-				 
-				this.clutterfiles.el.set_easing_duration(1000);
-				this.clutterfiles.el.set_pivot_point(0.5f,0.5f);
-				this.clutterfiles.el.set_rotation_angle(Clutter.RotateAxis.Y_AXIS, 0.0f);
-				this.clutterfiles.el.set_opacity(0xff);
-				
-				 
-				
-				break;
-*/
-
-		}
-		this.resizeCanvasElements();
-		this.easingRestoreAll();
-		
-		// run the animation.. - then load files...
-		GLib.Timeout.add(500,  ()  =>{
-			 this.resizeCanvasElements();
-			 return false;
-		});
-			
-	}
-	
-	public int redraw_count = 0;
-	public void resizeCanvas() // called by window resize .. delays redraw
-	{
-		var rc = this.redraw_count;        
-		this.redraw_count = 2;
-		if (rc == 0) {
-			GLib.Timeout.add(100,  ()  =>{
-				 return this.resizeCanvasQueue();
-			});
-		}
-	}
-	public bool  resizeCanvasQueue()
-	{
-		//print("WindowState.resizeCanvasQueue %d\n", this.redraw_count);        
-
-		if (this.redraw_count < 1) {
-			return false; // should not really happen...
-		}
-
-
-		this.redraw_count--;
-
-		if (this.redraw_count > 0) {
-			return true; // do it again in 1 second...
-		}
-		// got down to 0 or -1....
-		this.redraw_count = 0;
-		this.resizeCanvasElements();
-		return false;
-
-	}
-	public void resizeCanvasElements()
-	{
-		Gtk.Allocation alloc;
-		this.win.clutterembed.el.get_allocation(out alloc);
-
-	   // print("WindowState.resizeCanvasElements\n");
-		if (!this.children_loaded || this.win.clutterembed == null) {
-			print("WindowState.resizeCanvasElements = ingnore not loaded or no clutterfiles\n");
-			return; 
-		}
-		
-		var avail = alloc.width < 50.0f ? 0 :  alloc.width - 50.0f;
-		var palsize = avail < 300.0f ? avail : 300.0f;
-		   
  
-		// -------- code edit min 600
-		
-		var codesize = avail < 800.0f ? avail : 800.0f;
-		
-		
-		//print("set code size %f\n", codesize);
 
-			
-		
-		switch ( this.state) {
-			case State.PREVIEW:
-				 
-				this.win.rooview.el.set_size(alloc.width-50, alloc.height);
-				break;
-	
-			//case State.FILES: 
-				//this.clutterfiles.set_size(alloc.width-50, alloc.height);
-			//	break;
-
-		  
-				
-			case State.CODEONLY: 
-				this.win.codeeditview.el.set_size(codesize, alloc.height);
-				var scale = avail > 0.0f ? (avail - codesize -10 ) / avail : 0.0f;
-				//this.win.rooview.el.save_easing_state();
-				this.win.rooview.el.hide(); 
-				this.win.rooview.el.set_scale(scale,scale);
-			   // this.win.rooview.el.restore_easing_state();
-				break;	
-			 
 		}
+
+		
+	
+			
 	}
+	
+  
 
 	// -- buttons show hide.....
 
@@ -938,11 +862,7 @@ public class WindowState : Object
 		
 
 		 
-		
-		this.win.objectshowbutton.el.hide(); // add objects
-		this.win.addpropbutton.el.hide();  
-		this.win.addlistenerbutton.el.hide(); 
-
+	 
 	
 	
 		this.win.search_entry.el.hide();
@@ -954,9 +874,7 @@ public class WindowState : Object
 				 
 				 
 				
-				this.win.objectshowbutton.el.show(); // add objects
-				this.win.addpropbutton.el.show();  
-				this.win.addlistenerbutton.el.show(); 
+				 
 				this.win.search_entry.el.show();
 				
 			//	this.win.openbtn.el.show();
