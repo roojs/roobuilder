@@ -1245,6 +1245,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.width_request = 300;
 
             // init method
 

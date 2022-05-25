@@ -504,6 +504,7 @@
          ],
          "* pack" : "pack_start,false,true,0",
          "id" : "search_entry",
+         "int width_request" : 300,
          "listeners" : {
           "changed" : [
            "() => {",
