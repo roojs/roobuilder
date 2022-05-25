@@ -209,14 +209,15 @@ public class WindowState : Object
 		    if (this.win.editpane.el.parent != null) {
 		    	this.props_width =  outerpane.get_position() - innerpane.get_position();
 		    	this.tree_width = innerpane.get_position();
-		    
+		        GLib.debug("HIDE: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
+		        
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.left_tree.el);
 		    	this.win.leftpane.el.add(this.left_tree.el);
 	    	}
 		    
 		
-			GLib.debug("Hide Properties");
+			//GLib.debug("Hide Properties");
 			this.left_props.el.hide();
  			outerpane.set_position(this.tree_width);
 			//outerpane.set_position(int.max(250,innerpane.get_position()));
@@ -230,6 +231,9 @@ public class WindowState : Object
 		
 		
 		this.tree_width = outerpane.get_position();
+		
+		GLib.debug("SHOW: prop_w = %d, tree_w = %d", this.props_width, this.tree_width);
+		      
 		// remove this.ldeftree from this.win.leftpane
 		this.win.leftpane.el.remove(this.left_tree.el);
 		this.win.tree.el.add(this.left_tree.el);
