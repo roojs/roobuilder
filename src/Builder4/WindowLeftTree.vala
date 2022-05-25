@@ -27,7 +27,7 @@ public class Xcls_WindowLeftTree : Object
     public Xcls_WindowLeftTree()
     {
         _this = this;
-        this.el = new Gtk.Box( null, 0 );
+        this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
         // my vars (dec)
         this.main_window = null;
