@@ -284,6 +284,13 @@
           }
          ],
          "xtype" : "Menu"
+        },
+        {
+         "$ Gtk.Stock stock" : "Gtk.Stock.ADD",
+         "$ icon_size" : "Gtk.IconSize.MENU",
+         "$ xns" : "Gtk",
+         "* pack" : "add",
+         "xtype" : "Image"
         }
        ],
        "listeners" : {
