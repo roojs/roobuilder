@@ -203,7 +203,7 @@ public class Xcls_PopoverFiles : Object
         }
         
         
-         
+         this.filemodel.el.clear();
         
         // folders...
         
