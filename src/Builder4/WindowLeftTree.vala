@@ -38,6 +38,8 @@ public class Xcls_WindowLeftTree : Object
         this.el.add (  child_0.el  );
         var child_1 = new Xcls_LeftTreeMenu( _this );
         child_1.ref();
+        var child_2 = new Xcls_ScrolledWindow10( _this );
+        child_2.ref();
 
         // init method
 
@@ -1634,5 +1636,27 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
+
+    public class Xcls_ScrolledWindow10 : Object
+    {
+        public Gtk.ScrolledWindow el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ScrolledWindow10(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ScrolledWindow( null, null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 }
