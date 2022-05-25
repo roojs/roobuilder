@@ -904,8 +904,6 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.width_request = 50;
-            this.el.height_request = 50;
             this.el.always_show_image = true;
             this.el.tooltip_text = "Project Details";
             this.el.label = "Edit Project Settings";
@@ -966,7 +964,6 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.width_request = 50;
-            this.el.height_request = 50;
             this.el.always_show_image = true;
             this.el.tooltip_text = "File Details";
             this.el.label = "Edit File Properties";

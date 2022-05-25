@@ -347,7 +347,6 @@
          "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
-         "height_request" : 50,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -367,7 +366,6 @@
           ]
          },
          "string label" : "Edit Project Settings",
-         "width_request" : 50,
          "xtype" : "Button"
         },
         {
@@ -375,7 +373,6 @@
          "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
-         "height_request" : 50,
          "items" : [
           {
            "$ xns" : "Gtk",
