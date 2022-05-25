@@ -506,13 +506,10 @@ public class WindowState : Object
 	{
 		this.code_editor_tab  = new  Editor();
 		//this.code_editor.ref();  /// really?
-		((Gtk.Container)(this.win.codeeditview.el.get_widget())).add(this.code_editor_tab.el);
+		this.win.codeeditviewbox.el.add(this.code_editor_tab.el);
 		
 		this.code_editor_tab.window = this.win;
  
-
-		var stage = this.win.codeeditview.el.get_stage();
-		stage.set_background_color(  Clutter.Color.from_string("#000"));
 		// editor.save...
 
 		this.code_editor_tab.save.connect( () => {
@@ -641,7 +638,7 @@ public class WindowState : Object
 		}
 	
 	
-		var ctr= ((Gtk.Container)(this.win.rooview.el.get_widget()));
+		var ctr= this.win.rooviewbox.el;
  
 	
 		if (file.project.xtype == "Roo" ) { 
