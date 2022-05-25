@@ -240,7 +240,7 @@ public class WindowState : Object
 		//if (!this.left_props.el.visible) {
 		 
   			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
-  			outerpane.set_position(this.outer_pane_pos + this.inner_pane_pos);
+  			outerpane.set_position(this.inner_pane_pos);
   			innerpane.set_position(this.outer_pane_pos);
   			/* var cw = outerpane.el.get_position();
   			var rw = int.min(this.left_props.el.width_request, 150);
