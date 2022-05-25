@@ -293,8 +293,8 @@ public class WindowState : Object
 		this.left_props =new Xcls_LeftProps();
 		this.left_props.ref();
 		this.left_props.main_window = this.win;
-		//this.win.props.el.pack_start(this.left_props.el,true, true,0);
-		//this.left_props.el.show_all();
+		this.win.props.el.pack_start(this.left_props.el,true, true,0);
+		this.left_props.el.show_all();
 	
 		this.left_props.show_editor.connect( (file, node, type,  key) => {
 			//this.switchState(State.CODE);
