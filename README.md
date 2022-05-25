@@ -6,22 +6,16 @@ Debian and Ubuntu packages
 
   https://www.dropbox.com/scl/fo/9gmglurw6s4qqwzc3xkvu/h?dl=0&rlkey=9x0o549ne7gyvii3yc93u3brc
 
-  * you will need libvala, roojspacker 
+  * you will need libvala, roojspacker and a few other packages 
 
 ---
 
 Building it
 
-  a) Remove vala and install packages from here. We need to use an old version of vala, as new versions changed the code inspection api,
-  and build output and I've not got round to fixing hat.
+  a) Install roojspacker (either from binary or source)
 
-    sudo apt-get remove vala* libvala*
-    
-  Download vala*.deb, libvala*.deb,  and roojspacker*.deb from
-  https://www.dropbox.com/scl/fo/9gmglurw6s4qqwzc3xkvu/h?dl=0&rlkey=9x0o549ne7gyvii3yc93u3brc
-    
-    sudo dpkg -i libvala* vala*  roojspacker*
-    
+     see https://www.dropbox.com/scl/fo/9gmglurw6s4qqwzc3xkvu/h?dl=0&rlkey=9x0o549ne7gyvii3yc93u3brc
+
   b) Clone this code..
   
     git clone https://github.com/roojs/roobuilder.git
