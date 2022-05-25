@@ -889,95 +889,13 @@ public class WindowState : Object
 */
 
 		}
-		this.resizeCanvasElements();
-		this.easingRestoreAll();
+
 		
-		// run the animation.. - then load files...
-		GLib.Timeout.add(500,  ()  =>{
-			 this.resizeCanvasElements();
-			 return false;
-		});
+	
 			
 	}
 	
-	public int redraw_count = 0;
-	public void resizeCanvas() // called by window resize .. delays redraw
-	{
-		var rc = this.redraw_count;        
-		this.redraw_count = 2;
-		if (rc == 0) {
-			GLib.Timeout.add(100,  ()  =>{
-				 return this.resizeCanvasQueue();
-			});
-		}
-	}
-	public bool  resizeCanvasQueue()
-	{
-		//print("WindowState.resizeCanvasQueue %d\n", this.redraw_count);        
-
-		if (this.redraw_count < 1) {
-			return false; // should not really happen...
-		}
-
-
-		this.redraw_count--;
-
-		if (this.redraw_count > 0) {
-			return true; // do it again in 1 second...
-		}
-		// got down to 0 or -1....
-		this.redraw_count = 0;
-		this.resizeCanvasElements();
-		return false;
-
-	}
-	public void resizeCanvasElements()
-	{
-		Gtk.Allocation alloc;
-		this.win.clutterembed.el.get_allocation(out alloc);
-
-	   // print("WindowState.resizeCanvasElements\n");
-		if (!this.children_loaded || this.win.clutterembed == null) {
-			print("WindowState.resizeCanvasElements = ingnore not loaded or no clutterfiles\n");
-			return; 
-		}
-		
-		var avail = alloc.width < 50.0f ? 0 :  alloc.width - 50.0f;
-		var palsize = avail < 300.0f ? avail : 300.0f;
-		   
- 
-		// -------- code edit min 600
-		
-		var codesize = avail < 800.0f ? avail : 800.0f;
-		
-		
-		//print("set code size %f\n", codesize);
-
-			
-		
-		switch ( this.state) {
-			case State.PREVIEW:
-				 
-				this.win.rooview.el.set_size(alloc.width-50, alloc.height);
-				break;
-	
-			//case State.FILES: 
-				//this.clutterfiles.set_size(alloc.width-50, alloc.height);
-			//	break;
-
-		  
-				
-			case State.CODEONLY: 
-				this.win.codeeditview.el.set_size(codesize, alloc.height);
-				var scale = avail > 0.0f ? (avail - codesize -10 ) / avail : 0.0f;
-				//this.win.rooview.el.save_easing_state();
-				this.win.rooview.el.hide(); 
-				this.win.rooview.el.set_scale(scale,scale);
-			   // this.win.rooview.el.restore_easing_state();
-				break;	
-			 
-		}
-	}
+  
 
 	// -- buttons show hide.....
 
