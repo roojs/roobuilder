@@ -58,11 +58,16 @@ namespace Palete {
 					GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
 						string.joinv( ",", cls.inheritsToStringArray())
 					);
-					
-					
 				}
-				
 			}
+			// widgets - can be added anywhere?
+			// containers - can have children.
+			// gtkwebview is not inheriting a widget?
+			
+			
+			
+			
+			
 			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
 	 
 		     
