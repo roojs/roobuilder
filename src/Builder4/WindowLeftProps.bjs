@@ -292,7 +292,7 @@
          "}"
         ]
        },
-       "string label" : "Custom Property",
+       "string label" : "Other",
        "xtype" : "Button"
       },
       {
