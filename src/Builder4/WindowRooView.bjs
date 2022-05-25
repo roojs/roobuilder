@@ -565,7 +565,7 @@
         {
          "# bool button_is_pressed" : false,
          "# bool loading" : true,
-         "$ string prop_selected" : "\"\"",
+         "# string prop_selected" : "\"\"",
          "$ xns" : "Gtk",
          "* init" : [
           "{",
