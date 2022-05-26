@@ -104,10 +104,20 @@ namespace Palete {
 					if (cls.inherits.contains("Gtk.Container") || cls.implements.contains("Gtk.Container")) {
 						containers.add(cls.fqn());
 						GLib.debug("Add Container %s", cls.fqn());
-					}					
+					}
+					// at this point we could start adding stuff like:
+					/*
+					  button .. image <Gtk.Widget>
+					  AccelLabel  accel_widget  > 
+					 cellview -> cell_area (child is actually a buildable?)
+					 // ignore <WIDGET>.parent?
+					
+					
+										
 					 //GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
 					//	string.joinv( ",", cls.inheritsToStringArray())
 					//);
+					*/
 					 
 				}
 			}
