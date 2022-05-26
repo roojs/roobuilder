@@ -28,7 +28,7 @@ namespace Palete {
 		
 		public GirObject paramset = null;
 		public GirObject return_value = null;
-		    
+		public bool is_deprecated = false;		    
 		public bool is_instance;
 		public bool is_array;
 		public bool  is_varargs;

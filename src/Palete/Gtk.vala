@@ -47,29 +47,89 @@ namespace Palete {
 		public override void  load () 
 		{
 			
-			var gtk = Gir.factory(this.project, "Gtk");
+			var gtk = Gir.factory(this.project, "Gtk"); // triggers a load...
 			var pr = (Project.Gtk) this.project;
+			
+			var widgets = new Gee.ArrayList<string>();
+			var top = new Gee.ArrayList<string>();
+			var topleft = new Gee.ArrayList<string>();
+			var containers = new Gee.ArrayList<string>();
+
+			topleft.add("*top");
 			
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				var iter = gir.classes.map_iterator();
 				while(iter.next()) {
 					var cls = iter.get_value();
-					GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
-						string.joinv( ",", cls.inheritsToStringArray())
-					);
+					if (cls.is_deprecated) {  // don't add depricated to our selection.
+						//GLib.debug("Class %s is depricated", cls.fqn());
+						continue;
+					}
+					
+					if (cls.inherits.contains("Gtk.Widget") || cls.implements.contains("Gtk.Widget")) {
+					
+						if (
+								  // GTK4 !!
+								 cls.inherits.contains("Gtk.Root")
+								 || 
+								 cls.implements.contains("Gtk.Root")
+								 || 
+								 cls.inherits.contains("Gtk.Native")
+								 || 
+								 cls.implements.contains("Gtk.Native")
+								 || 
+								 // Gtk3
+								 // check for depricated?
+								 cls.inherits.contains("Gtk.Window")
+								 || 
+								 cls.fqn() == "Gtk.Window"
+								 || 
+								 cls.fqn() == "Gtk.Popover" // dont allow it as a child
+								 
+								 ) {
+							top.add(cls.fqn());
+							// skip - can't add these widgets to anything
+						} else { 
+							GLib.debug("Add Widget %s", cls.fqn());
+							widgets.add(cls.fqn());
+							top.add(cls.fqn());
+							GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
+								string.joinv( ",", cls.inheritsToStringArray())
+							);
+							
+							
+						}
+					}
+					if (cls.inherits.contains("Gtk.Container") || cls.implements.contains("Gtk.Container")) {
+						containers.add(cls.fqn());
+						GLib.debug("Add Container %s", cls.fqn());
+					}					
+					 //GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
+					//	string.joinv( ",", cls.inheritsToStringArray())
+					//);
+					 
 				}
 			}
 			// widgets - can be added anywhere?
 			// gtk.containers - can have children. ??? or do we look for 'add methods' ?
  
 			// gtkwebview is not inheriting a widget?
+			/*
+			
+			  *top : {any GtkWidget or Container?)
+			  left: any gtk container
+			  right : any gtk widget
+			  */
+			  
+			  this.map = new Gee.ArrayList<Usage>();
+
+  			  this.map.add(new Usage( topleft, top));
+			  this.map.add(new Usage( containers, widgets));
 			
 			
 			
-			
-			
-			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
+			///this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
 	 
 		     
 		}

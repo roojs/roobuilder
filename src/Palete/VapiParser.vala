@@ -189,11 +189,79 @@ namespace Palete {
 #endif				
 				 
 			}
-			  
 			
+			if (cls.version.deprecated) { 
+				GLib.debug("class %s is deprecated", c.name);
+				c.is_deprecated = true;
+			}
 			
-			 
 		}
+		
+		public GirObject? fqn_to_cls(string fqn)
+		{
+			var ar = fqn.split(".");
+			var pkg = this.project.gir_cache.get(ar[0]);
+			var cls = pkg != null ? pkg.classes.get(ar[1]) : null;
+			return cls;
+		}
+		
+		public void augment_inherits_for(GirObject cls, Gee.ArrayList<string> to_check, bool is_top)
+		{
+			foreach (var chk_cls in to_check) {
+				if (!cls.inherits.contains(chk_cls)) { 
+					cls.inherits.add(chk_cls);
+					
+				} else {
+					if (!is_top) {
+						continue;
+					}
+				}
+				
+				
+				var subcls = this.fqn_to_cls(chk_cls);
+				if (subcls == null) {
+					continue;
+				}
+				this.augment_inherits_for(cls, subcls.inherits, false);
+				this.augment_implements_for(cls, subcls.implements);
+			}
+		
+		}
+		public void augment_implements_for(GirObject cls, Gee.ArrayList<string> to_check)
+		{
+			foreach (var chk_cls in to_check) {
+				if (cls.implements.contains(chk_cls)) { 
+					continue;
+				}
+				cls.implements.add(chk_cls);
+				
+				var subcls = this.fqn_to_cls(chk_cls);
+				if (subcls == null) {
+					continue;
+				}
+				this.augment_implements_for(cls, subcls.implements);
+
+			}
+		
+		}
+		
+		// this might miss out interfaces of child classes?
+		public void augment_all_inheritence()
+		{
+			foreach(var pkgname in this.project.gir_cache.keys) {
+			
+				var pkg = this.project.gir_cache.get(pkgname);
+				foreach (var clsname in pkg.classes.keys) {
+					var cls = pkg.classes.get(clsname);
+					this.augment_inherits_for(cls, cls.inherits, true);
+					this.augment_implements_for(cls, cls.implements);
+				}
+			}
+				
+		}
+		
+		 
+		
 		public void add_property(GirObject parent, Vala.Property prop)
 		{
 			var c = new GirObject("Prop",prop.name);
@@ -492,6 +560,11 @@ namespace Palete {
 			// dump the tree for Gtk?
 			
 			Vala.CodeContext.pop ();
+			
+			
+			this.augment_all_inheritence();
+			
+			
 			
 			print("ALL OK?\n");
 		 

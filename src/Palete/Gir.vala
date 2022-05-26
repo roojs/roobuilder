@@ -200,7 +200,7 @@ namespace Palete {
 			                    
 			
 		}
-
+		 
 			
 		/**
 		 * guess the fqn of a type == eg. gboolean or Widget etc...
