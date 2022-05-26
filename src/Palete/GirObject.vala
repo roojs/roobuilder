@@ -111,6 +111,9 @@ namespace Palete {
 			for(var i =0;i< this.inherits.size; i++) {
 				ret += this.inherits.get(i);
 			}
+			for(var i =0;i< this.implements.size; i++) {
+				ret += this.implements.get(i);
+			}
 			return ret;
 
 		}
