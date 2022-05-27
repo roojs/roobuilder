@@ -165,6 +165,7 @@ namespace Palete {
 					GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 					foreach(var impl in propcls.implementations) {
 						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
+						// in theory these can not be abstract?
 						localopts_r.add( impl + ":" + prop.name );
 					}
 					
