@@ -148,12 +148,19 @@ namespace Palete {
 					if (prop.name == "parent" || prop.name == "child") {
 						continue;
 					}
-					if (this.getClass(prop.type) == null) {
-					
+					var propcls = this.getClass(prop.type);
+					if (propcls == null) {
 						continue;
 					}
+					// check if propcls is abstract?
 					localopts_r.add( prop.type + ":" + prop.name);
+					
+					foreach(var impl in propcls.implementations) {
+						localopts_r.add( impl  );
+					}
 					GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
+					
+					
 					
 					// lookup type -> is it an object
 					// and not a enum..
