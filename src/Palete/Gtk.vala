@@ -83,6 +83,8 @@ namespace Palete {
 					continue;
 				}
 				if (
+						 cls.is_abstract
+						 ||
 						  // GTK4 !!
 						 cls.inherits.contains("Gtk.Root")
 						 || 
