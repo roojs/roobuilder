@@ -82,38 +82,42 @@ namespace Palete {
 				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
 					continue;
 				}
-				if (
-						 cls.is_abstract
-						 ||
-						  // GTK4 !!
-						 cls.inherits.contains("Gtk.Root")
-						 || 
-						 cls.implements.contains("Gtk.Root")
-						 || 
-						 cls.inherits.contains("Gtk.Native")
-						 || 
-						 cls.implements.contains("Gtk.Native")
-						 || 
-						 // Gtk3
-						 // check for depricated?
-						 cls.inherits.contains("Gtk.Window")
-						 || 
-						 cls.fqn() == "Gtk.Window"
-						 || 
-						 cls.fqn() == "Gtk.Popover" // dont allow it as a child
-						 
-						 ) {
-					top.add(cls.fqn());
-					// skip - can't add these widgets to anything
-				} else { 
-					//GLib.debug("Add Widget %s", cls.fqn());
-					widgets.add(cls.fqn());
-					top.add(cls.fqn());
-					//GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
-					//	string.joinv( ",", cls.inheritsToStringArray())
-					//);
+				// we can still add properties of abstract classes...
+				
+				if (!cls.is_abstract) {
 					
-					
+					if (
+							 
+							  // GTK4 !!
+							 cls.inherits.contains("Gtk.Root")
+							 || 
+							 cls.implements.contains("Gtk.Root")
+							 || 
+							 cls.inherits.contains("Gtk.Native")
+							 || 
+							 cls.implements.contains("Gtk.Native")
+							 || 
+							 // Gtk3
+							 // check for depricated?
+							 cls.inherits.contains("Gtk.Window")
+							 || 
+							 cls.fqn() == "Gtk.Window"
+							 || 
+							 cls.fqn() == "Gtk.Popover" // dont allow it as a child
+							 
+							 ) {
+						top.add(cls.fqn());
+						// skip - can't add these widgets to anything
+					} else { 
+						//GLib.debug("Add Widget %s", cls.fqn());
+						widgets.add(cls.fqn());
+						top.add(cls.fqn());
+						//GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
+						//	string.joinv( ",", cls.inheritsToStringArray())
+						//);
+						
+						
+					}
 				}
 				if (cls.inherits.contains("Gtk.Container") || cls.implements.contains("Gtk.Container")) {
 					containers.add(cls.fqn());
