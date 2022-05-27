@@ -91,15 +91,32 @@ namespace Palete {
 							top.add(cls.fqn());
 							// skip - can't add these widgets to anything
 						} else { 
-							GLib.debug("Add Widget %s", cls.fqn());
+							//GLib.debug("Add Widget %s", cls.fqn());
 							widgets.add(cls.fqn());
 							top.add(cls.fqn());
-							GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
-								string.joinv( ",", cls.inheritsToStringArray())
-							);
+							//GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
+							//	string.joinv( ",", cls.inheritsToStringArray())
+							//);
 							
 							
 						}
+						
+						var localopts = new Gee.ArrayList<string>();
+						
+						// we have a class that extends a widget - let's see if we can add the object based properties. here.
+						foreach(var prop in cls.props.keys) {
+							var type = cls.props.get(prop).type;
+							GLib.debug("Add Widget Prop %s:%s (%s)", cls.fqn(), prop, type);
+							// lookup type -> is it an object
+							// and not a enum..
+							// if so then add it to localopts
+						
+						}
+						
+						
+						
+						
+						
 					}
 					if (cls.inherits.contains("Gtk.Container") || cls.implements.contains("Gtk.Container")) {
 						containers.add(cls.fqn());
@@ -111,7 +128,7 @@ namespace Palete {
 					  AccelLabel  accel_widget  > 
 					 cellview -> cell_area (child is actually a buildable?)
 					 // ignore <WIDGET>.parent?
-					
+					// have to be settable!!!?
 					
 										
 					 //GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
