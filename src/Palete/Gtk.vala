@@ -159,7 +159,9 @@ namespace Palete {
 						continue;
 					}
 					// check if propcls is abstract?
-					localopts_r.add( prop.type + ":" + prop.name);
+					if (!propcls.is_abstract) { 
+						localopts_r.add( prop.type + ":" + prop.name);
+					}
 					GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 					foreach(var impl in propcls.implementations) {
 						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
