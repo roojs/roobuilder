@@ -33,6 +33,9 @@ namespace Palete {
 		public bool is_array;
 		public bool  is_varargs;
 		public bool  ctor_only; // specially added ctor properties..
+		public bool is_writable = true;
+		public bool is_readable = true;
+		
 		public  string parent;
 		public  string value;
 		// to be filled in...

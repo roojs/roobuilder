@@ -248,6 +248,7 @@ namespace Palete {
 		// this might miss out interfaces of child classes?
 		public void augment_all_inheritence()
 		{
+			// this works out all the children...
 			foreach(var pkgname in this.project.gir_cache.keys) {
 			
 				var pkg = this.project.gir_cache.get(pkgname);
@@ -257,6 +258,31 @@ namespace Palete {
 					this.augment_implements_for(cls, cls.implements);
 				}
 			}
+			// now do the implementations
+			foreach(var pkgname in this.project.gir_cache.keys) {
+			
+				var pkg = this.project.gir_cache.get(pkgname);
+				foreach (var clsname in pkg.classes.keys) {
+					var cls = pkg.classes.get(clsname);
+					foreach(var parentname in cls.inherits) {
+						var parent =  this.fqn_to_cls(parentname);
+						if (parent.implementations.contains(cls.fqn())) {
+							continue;
+						}
+						parent.implementations.add(cls.fqn());
+					
+					}
+					foreach(var parentname in cls.implements) {
+						var parent =  this.fqn_to_cls(parentname);
+						if (parent.implementations.contains(cls.fqn())) {
+							continue;
+						}
+						parent.implementations.add(cls.fqn());
+					
+					}
+				}
+			}
+			
 				
 		}
 		
@@ -273,6 +299,12 @@ namespace Palete {
 #elif VALA_0_36
 			c.type  = prop.property_type.data_type == null ? "" : prop.property_type.data_type.get_full_name();		
 #endif
+			c.is_readable = prop.get_accessor.readable;
+			c.is_writable = prop.get_accessor.writable;
+			if (prop.version.deprecated) { 
+				GLib.debug("class %s is deprecated", c.name);
+				c.is_deprecated = true;
+			}
 			parent.props.set(prop.name,c);
 
 			
