@@ -35,7 +35,7 @@ namespace Palete {
 		public bool  ctor_only; // specially added ctor properties..
 		public bool is_writable = true;
 		public bool is_readable = true;
-		
+		public bool is_abstract = false;
 		public  string parent;
 		public  string value;
 		// to be filled in...
