@@ -266,6 +266,9 @@ namespace Palete {
 					var cls = pkg.classes.get(clsname);
 					foreach(var parentname in cls.inherits) {
 						var parent =  this.fqn_to_cls(parentname);
+						if (parent == null) { 
+							continue;
+						}
 						if (parent.implementations.contains(cls.fqn())) {
 							continue;
 						}
@@ -274,6 +277,9 @@ namespace Palete {
 					}
 					foreach(var parentname in cls.implements) {
 						var parent =  this.fqn_to_cls(parentname);
+						if (parent == null) { 
+							continue;
+						}
 						if (parent.implementations.contains(cls.fqn())) {
 							continue;
 						}
