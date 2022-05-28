@@ -133,7 +133,7 @@ public class JsRender.NodeToGlade : Object {
 		var b = new global::Gtk.Builder();
 
 		var gtype = b.get_type_from_name(cls);
-		print("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
+		GLib.debug ("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
 
 		
 		
@@ -182,7 +182,7 @@ public class JsRender.NodeToGlade : Object {
     		var pviter = props.map_iterator();
 		while (pviter.next()) {
 			
-				// print("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
+				GLib.debug ("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
 				
         		// skip items we have already handled..
         		if  (!this.node.has(pviter.get_key())) {
@@ -266,7 +266,7 @@ public class JsRender.NodeToGlade : Object {
 		var cls = gir.classes.get(p_parts[1]);
 		var mdef = cls.methods.get(pk[0]);
 		if (mdef == null) {
-			print("could not find method : %s\n", pk[0]);
+			GLib.debug ("could not find method : %s\n", pk[0]);
 			return "";
 		}
 		/*
@@ -277,7 +277,7 @@ public class JsRender.NodeToGlade : Object {
 		generator.indent = 4;
 		generator.pretty = true;
 		    
-		print(generator.to_data(null));
+		GLib.debug print(generator.to_data(null));
 		*/
 		string[]  pbody  = {};
 		switch(pk[0]) {
@@ -301,11 +301,11 @@ public class JsRender.NodeToGlade : Object {
 				return pack;
                 
 			case "set_model":
-				print ("set_model not handled yet..");
+				GLib.debug ("set_model not handled yet..");
 				return "";
 			
 			default:
-				print ("unknown pack type: %s", pk[0]);
+				GLib.debug  ("unknown pack type: %s", pk[0]);
 				return "";
 				
 		}
@@ -334,7 +334,7 @@ public class JsRender.NodeToGlade : Object {
 			    
 			print(generator.to_data(null));
 			*/
-			print("skip - packing - no arguments (" + pk[0] + ")\n");
+			GLib.debug ("skip - packing - no arguments (" + pk[0] + ")\n");
 			return "";
 		}
 		
