@@ -64,6 +64,7 @@
             { "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
             { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file", null },
+            { "bjs-glade", 0, 0, OptionArg.NONE, ref opt_bjs_compile_glade, "output glade", null },
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
             
@@ -80,7 +81,8 @@
 		public static bool opt_debug = false;
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
-		public static bool opt_pull_resources = false;		
+		public static bool opt_pull_resources = false;
+		public static bool opt_bjs_compile_glade = false;
 		
 		public static string _self;
 		
@@ -238,6 +240,13 @@
 			if (file == null) {
 				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 			}
+			
+			if (BuilderApplication.opt_bjs_compile_glade) {
+				var str = file.toGlade();
+				print("%s", str);
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+			}
+			
 			//BuilderApplication.compileBjs();
 			file.loadItems();
 			var str = file.toSourceCode();
