@@ -150,9 +150,11 @@ res +
 		
 		var girdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		
-		if 
 		
-		/// check if it's a 
+		
+		/// check if it's a GtkWidget?
+		// maybe not?
+		// how are models handled?
 		
 		
 		//var b = new global::Gtk.Builder();
@@ -193,7 +195,7 @@ res +
 		*/
 		
 		// should really use GXml... 
-		var obj = this.doc.create_element("object");
+		var obj = doc.create_element("object");
 		var id = this.node.uid();
 		obj.set_attribute("class", cls);
 		obj.set_attribute("id", id);
@@ -233,18 +235,15 @@ res +
 
 		
 		for (var i = 0; i < this.node.items.size; i++ ) {
-
-			var add = this.mungeChild(pad + "        " , this.node.items.get(i) , true);
-			if (add.length < 1) {
+			var child  = doc.create_element("child");
+			
+			this.mungeChild(this.node.items.get(i), child);
+			if (child.child_nodes.length < 1) {
 				continue;
 			}
-			
-			ret += @"$pad    <child>\n";
-			ret += add;
-			ret += @"$pad    </child>\n";
+			obj.append_child(child);
+			 
 		}
-		
-		return ret + @"$pad</object>\n" + pack;
 		
 
 		 
