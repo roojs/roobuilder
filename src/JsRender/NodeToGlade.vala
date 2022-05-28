@@ -193,7 +193,7 @@ public class JsRender.NodeToGlade : Object {
 			var val = this.node.get(pviter.get_key()).strip();
 			var prop = this.create_element("property");
 			prop->set_prop("name", k);
-			prop->add_child(new Xml.Dom.text(val));
+			prop->add_child(new Xml.Node.text(val));
 			obj->add_child(prop); 
         }
 		// packing???
