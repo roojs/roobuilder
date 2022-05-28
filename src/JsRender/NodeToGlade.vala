@@ -214,7 +214,7 @@ public class JsRender.NodeToGlade : Object {
 			var child  = this.create_element("child");
 			
 			this.mungeChild(this.node.items.get(i), child);
-			if (child.child_element_count  < 1) {
+			if (child->child_element_count()  < 1) {
 				continue;
 			}
 			obj->add_child(child);
