@@ -295,6 +295,12 @@ public class Xcls_GladeuiView : Object
             var child_0 = new Xcls_designview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions

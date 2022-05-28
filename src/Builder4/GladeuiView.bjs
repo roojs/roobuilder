@@ -36,6 +36,12 @@
       },
       {
        "$ xns" : "Gtk",
+       "* init" : [
+        "{",
+        "",
+        "}",
+        ""
+       ],
        "* pack" : "append_page,_this.label_preview.el",
        "items" : [
         {
