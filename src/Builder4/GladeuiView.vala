@@ -25,6 +25,7 @@ public class Xcls_GladeuiView : Object
     public Gtk.SourceSearchContext searchcontext;
     public JsRender.JsRender file;
     public int height;
+    public string XXXX;
     public Xcls_MainWindow main_window;
 
     // ctor
