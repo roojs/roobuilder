@@ -1,16 +1,16 @@
-static Xcls_GtkView  _GtkView;
+static Xcls_GladeuiView  _GladeuiView;
 
-public class Xcls_GtkView : Object
+public class Xcls_GladeuiView : Object
 {
     public Gtk.Box el;
-    private Xcls_GtkView  _this;
+    private Xcls_GladeuiView  _this;
 
-    public static Xcls_GtkView singleton()
+    public static Xcls_GladeuiView singleton()
     {
-        if (_GtkView == null) {
-            _GtkView= new Xcls_GtkView();
+        if (_GladeuiView == null) {
+            _GladeuiView= new Xcls_GladeuiView();
         }
-        return _GtkView;
+        return _GladeuiView;
     }
     public Xcls_notebook notebook;
     public Xcls_label_preview label_preview;
@@ -28,7 +28,7 @@ public class Xcls_GtkView : Object
     public Xcls_MainWindow main_window;
 
     // ctor
-    public Xcls_GtkView()
+    public Xcls_GladeuiView()
     {
         _this = this;
         this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -200,13 +200,13 @@ public class Xcls_GtkView : Object
     public class Xcls_notebook : Object
     {
         public Gtk.Notebook el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_notebook(Xcls_GtkView _owner )
+        public Xcls_notebook(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.notebook = this;
@@ -232,13 +232,13 @@ public class Xcls_GtkView : Object
     public class Xcls_label_preview : Object
     {
         public Gtk.Label el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_label_preview(Xcls_GtkView _owner )
+        public Xcls_label_preview(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.label_preview = this;
@@ -255,13 +255,13 @@ public class Xcls_GtkView : Object
     public class Xcls_label_code : Object
     {
         public Gtk.Label el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_label_code(Xcls_GtkView _owner )
+        public Xcls_label_code(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.label_code = this;
@@ -278,13 +278,13 @@ public class Xcls_GtkView : Object
     public class Xcls_ScrolledWindow5 : Object
     {
         public Gtk.ScrolledWindow el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow5(Xcls_GtkView _owner )
+        public Xcls_ScrolledWindow5(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -302,14 +302,14 @@ public class Xcls_GtkView : Object
     public class Xcls_designview : Object
     {
         public Glade.DesignView el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
         public JsRender.JsRender file;
 
         // ctor
-        public Xcls_designview(Xcls_GtkView _owner )
+        public Xcls_designview(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.designview = this;
@@ -348,13 +348,13 @@ public class Xcls_GtkView : Object
     public class Xcls_ScrolledWindow7 : Object
     {
         public Gtk.ScrolledWindow el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow7(Xcls_GtkView _owner )
+        public Xcls_ScrolledWindow7(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -372,7 +372,7 @@ public class Xcls_GtkView : Object
     public class Xcls_sourceview : Object
     {
         public Gtk.SourceView el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
@@ -380,7 +380,7 @@ public class Xcls_GtkView : Object
         public bool allow_node_scroll;
 
         // ctor
-        public Xcls_sourceview(Xcls_GtkView _owner )
+        public Xcls_sourceview(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.sourceview = this;
