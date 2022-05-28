@@ -546,7 +546,7 @@
     "\tvar x =  new JsRender.NodeToGlade((Project.Gtk) file.project, file.tree,  null);",
     "",
     "\t ",
-    "",
+    "FileIOStream iostream;",
     "\tvar  f = File.new_tmp (\"tpl-XXXXXX.glade\", out iostream);",
     "\tvar ostream = iostream.output_stream;",
     "\tvar dostream = new DataOutputStream (ostream);",

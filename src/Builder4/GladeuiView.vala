@@ -160,7 +160,7 @@ public class Xcls_GladeuiView : Object
     	var x =  new JsRender.NodeToGlade((Project.Gtk) file.project, file.tree,  null);
     
     	 
-    
+    FileIOStream iostream;
     	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
     	var ostream = iostream.output_stream;
     	var dostream = new DataOutputStream (ostream);
