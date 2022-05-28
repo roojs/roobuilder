@@ -49,14 +49,12 @@ public class JsRender.NodeToGlade : Object {
 	Gee.HashMap<string,string> ar_props;
 	public static int vcnt = 0; 
 	Project.Gtk project;
-	GXml.Element parent_node;
+	GXml.Element? domparent;
 	
 	public NodeToGlade( Project.Gtk project, Node node, GXml.Element? node) 
 	{
 		
-		if (node == null) {
-			this.doc = new GXml.Document();
-		}
+		this.domparent = node;
 		this.project = project;
 		this.node = node;
  		this.pad = pad;
@@ -95,9 +93,7 @@ public class JsRender.NodeToGlade : Object {
 
 		var cls = this.node.fqn().replace(".", "");
 
-		this.document.
-
-
+		
 		var res= this.mungeNode (true);
 
 	/*	switch(cls) {
@@ -131,12 +127,22 @@ res +
 	}
 	public string mungeChild(string pad ,  Node cnode, bool with_packing = false)
 	{
-		var x = new  NodeToGlade(this.project, cnode,  pad + "  ", this.doc);
+		var x = new  NodeToGlade(this.project, cnode,  this.parentnode);
 		return x.mungeNode(with_packing);
 	}
 	
 	public string mungeNode(bool with_packing)
 	{
+		GXmlDocument doc;
+		if (this.domparent == null) {
+			doc = new GXml.DomDocument();
+			var intf = doc.createElement("interface");
+			doc.document_element = inf;
+			var req = doc.createElement("requires");
+			req.set_attribute("lib", "gtk+");
+			req.set_attribuet("version", "3.12");
+			inf.append_child(req);
+			
 		var cls = this.node.fqn().replace(".", "");
 		
 		var b = new global::Gtk.Builder();
