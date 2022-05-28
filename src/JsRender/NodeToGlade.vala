@@ -49,12 +49,12 @@ public class JsRender.NodeToGlade : Object {
 	Gee.HashMap<string,string> ar_props;
 	public static int vcnt = 0; 
 	Project.Gtk project;
-	GXml.Element? domparent;
+	GXml.DomElement? parent;
 	
-	public NodeToGlade( Project.Gtk project, Node node, GXml.Element? node) 
+	public NodeToGlade( Project.Gtk project, Node node, GXml.DomElement? node) 
 	{
 		
-		this.domparent = node;
+		this.parent = node;
 		this.project = project;
 		this.node = node;
  		this.pad = pad;
@@ -127,14 +127,14 @@ res +
 	}
 	public string mungeChild(string pad ,  Node cnode, bool with_packing = false)
 	{
-		var x = new  NodeToGlade(this.project, cnode,  this.parentnode);
+		var x = new  NodeToGlade(this.project, cnode,  this.parent);
 		return x.mungeNode(with_packing);
 	}
 	
 	public string mungeNode(bool with_packing)
 	{
 		GXmlDocument doc;
-		if (this.domparent == null) {
+		if (this.parent == null) {
 			doc = new GXml.DomDocument();
 			var intf = doc.createElement("interface");
 			doc.document_element = inf;
@@ -142,10 +142,20 @@ res +
 			req.set_attribute("lib", "gtk+");
 			req.set_attribuet("version", "3.12");
 			inf.append_child(req);
-			
+			this.parent = intf;
+		} else {
+			doc = this.parent.owner_document;
+		}
 		var cls = this.node.fqn().replace(".", "");
 		
-		var b = new global::Gtk.Builder();
+		var girdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
+		
+		if 
+		
+		/// check if it's a 
+		
+		
+		//var b = new global::Gtk.Builder();
 
 		// this might be needed if we are using non-Gtk elements?
 		//var gtype = b.get_type_from_name(cls);
@@ -187,7 +197,7 @@ res +
 		var id = this.node.uid();
 		obj.set_attribute("class", cls);
 		obj.set_attribute("id", id);
-		
+		this.parent.append_child(obj);
 		// properties..
 		var props = Palete.Gir.factoryFqn(this.project, this.node.fqn()).props;
  
@@ -202,12 +212,14 @@ res +
 				continue;
 			}
 			var k = pviter.get_key();
-			var val = GLib.Markup.escape_text(this.node.get(pviter.get_key()).strip());
-			ret += @"$pad    <property name=\"$k\">$val</property>\n"; // es
-
-                }
+			var val = this.node.get(pviter.get_key()).strip();
+			var prop = doc.create_element("property");
+			prop.set_attribute("name", k);
+			prop.append_child(doc.create_text_node(val));
+			obj.append_child(prop); 
+        }
 		// packing???
-
+/*
 		var pack = "";
 		
 		if (with_packing   ) {
@@ -215,12 +227,10 @@ res +
 			pack = this.packString();
 			
 
-		}	
+		
+		}	*/
 		// children..
 
-		if (this.node.items.size < 1) {
-			return ret + @"$pad</object>\n" + pack;
-		}
 		
 		for (var i = 0; i < this.node.items.size; i++ ) {
 
