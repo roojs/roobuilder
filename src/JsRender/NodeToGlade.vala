@@ -116,9 +116,9 @@ public class JsRender.NodeToGlade : Object {
 		if (this.parent == null) {
 			doc = new Xml.Doc("1.0");
 
-			var intf = this.createElement("interface");
+			var intf = this.create_element("interface");
 			doc.set_root_element(inf);
-			var req = this.createElement("requires");
+			var req = this.create_element("requires");
 			req.set_prop("lib", "gtk+");
 			req.set_prop("version", "3.12");
 			inf.add_child(req);
