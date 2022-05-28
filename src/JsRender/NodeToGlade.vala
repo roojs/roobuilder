@@ -112,13 +112,13 @@ public class JsRender.NodeToGlade : Object {
 		if (this.parent == null) {
 			doc = new Xml.Doc("1.0");
 
-			var intf = this.create_element("interface");
-			doc.set_root_element(inf);
+			var inf = this.create_element("interface");
+			doc->set_root_element(inf);
 			var req = this.create_element("requires");
 			req.set_prop("lib", "gtk+");
 			req.set_prop("version", "3.12");
-			inf.add_child(req);
-			this.parent = intf;
+			inf->add_child(req);
+			this.parent = inf;
 		} else {
 			doc = this.parent.doc;
 		}
