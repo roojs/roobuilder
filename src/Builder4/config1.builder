@@ -158,7 +158,7 @@
             "../Builder4/Editor.vala",
             "../Builder4/PopoverFiles.vala",
             "../JsRender/NodeToGlade.vala",
-            "../Builder4/GladeView.vala"
+            "../Builder4/GladeuiView.vala"
         ],
         "packages" : []
     },
