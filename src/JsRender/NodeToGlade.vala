@@ -74,7 +74,7 @@ public class JsRender.NodeToGlade : Object {
 		
 		GLib.debug("top cls %s / xlcs %s\n ",file.tree.xvala_cls,file.tree.xvala_cls); 
 		//n.cls = file.tree.xvala_cls;
-		n.xcls = fi//le.tree.xvala_xcls;
+		//n.xcls = file.tree.xvala_xcls;
 		return n.munge();
 		
 
