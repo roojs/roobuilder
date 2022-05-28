@@ -325,6 +325,7 @@ public class Xcls_GladeuiView : Object
 
             {
             Glade.App.add_project(_this.gladeproject);
+            		Glade.App.set_window(this.mainwindow.el);
             }
             this.el.show();
         }
