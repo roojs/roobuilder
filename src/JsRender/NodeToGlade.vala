@@ -91,7 +91,7 @@ public class JsRender.NodeToGlade : Object {
           
 		     
 	}
-	public Xml.Node* mungeChild( Node cnode)
+	public Xml.Doc* mungeChild( Node cnode)
 	{
 		var x = new  NodeToGlade(this.project, cnode,  this.parent);
 		return x.mungeNode();
