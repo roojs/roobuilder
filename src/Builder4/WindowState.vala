@@ -715,6 +715,7 @@ public class WindowState : Object
 		this.window_gladeview  =new Xcls_GladeuiView();
 		this.window_gladeview.ref();
 		this.window_gladeview.main_window = this.win;
+		Glade.App.set_window(_this.main_window.el);
 	}
 	
 
