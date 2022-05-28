@@ -90,8 +90,10 @@ public class JsRender.NodeToGlade : Object {
 		this.pad += "    ";
 
 		var cls = this.node.fqn().replace(".", "");
-		string res = "";
-		switch(cls) {
+
+		var res= this.mungeNode (true);
+
+	/*	switch(cls) {
 			// things we can not do yet...
 			case "GtkDialog": // top level.. - named and referenced
 			case "GtkAboutDialog":
@@ -100,22 +102,23 @@ public class JsRender.NodeToGlade : Object {
 				res =  this.mungeOuter(true);
 				break;
 			default:
-				res = this.mungeOuter(false);
+				;
 				break;
 		}
-				
+		*/		
 		
 		if (res.length < 1) {
 			return "";
 		}
+		// fixme add lib requires stuff...
 		return  "<?xml version=\"1.0\" encoding=\"UTF-8\"?> 
-			<!-- Generated with appBuilder 4.1 -->
-			<interface> 
-				<requires lib=\"gtk+\" version=\"3.12\"/>
-				<!-- <requires lib=\"gtksourceview\" version=\"3.0\"/> -->
-			" +
-  			res +
-  			"</interface>\n";
+<!-- Generated with roobuilder 2.x -->
+<interface> 
+	<requires lib=\"gtk+\" version=\"3.12\"/>
+	<!-- <requires lib=\"gtksourceview\" version=\"3.0\"/> -->
+" +
+res +
+"</interface>\n";
           
 		     
 	}
@@ -136,7 +139,7 @@ public class JsRender.NodeToGlade : Object {
 		GLib.debug ("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
 
 		
-		
+		/*
 		var ns = this.node.fqn().split(".")[0];
 		if (ns == "Clutter") {
 			return "";
@@ -147,19 +150,12 @@ public class JsRender.NodeToGlade : Object {
 		if (ns == "WebKit") {
 			return "";
 		}
+		*/
+		/*
+		
 		switch(cls) {
 			// things we can not do yet...
-			/*case "GtkDialog": // top level.. - named and referenced
-			case "GtkAboutDialog":
-			case "GtkWindow": // top level.. - named and referenced
-				return this.mungeWindow();
-				
-					
-				if (this.node.items.size > 0) {
-					return this.mungeChild(pad + "        " , this.node.items.get(0), false );
-				}
-				return "";
-			*/
+			
 			//case "GtkView": // SourceView?
 			case "GtkTreeStore": // top level.. - named and referenced
 			case "GtkListStore": // top level.. - named and referenced
@@ -171,6 +167,7 @@ public class JsRender.NodeToGlade : Object {
 			///case "GtkClutterEmbed"://fixme..
 				return "";
 		}
+		*/
 
 		
 		var id = this.node.uid();
@@ -350,78 +347,15 @@ public class JsRender.NodeToGlade : Object {
 			(this.node.has("title") ? this.node.get("title") : "No-title");
 		
 		var ret = "";
-		ret+= "
-<object class=\"GtkBox\" id=\"fake-window1\">
-	<property name=\"visible\">True</property>
-	<property name=\"can_focus\">False</property>
-	<property name=\"orientation\">vertical</property>
-";
-		if (with_window) { 		
-			ret+="
-	<child>
-		<object class=\"GtkLabel\" id=\"fake-window-label-1\">
-			<property name=\"visible\">True</property>
-			<property name=\"can_focus\">False</property>
-			<property name=\"label\" translatable=\"yes\">" + label + "</property>
-		</object>
-		<packing>
-			<property name=\"expand\">False</property>
-			<property name=\"fill\">True</property>
-			<property name=\"position\">0</property>
-		</packing>
-	</child>
-	";
-		}
-		
-		ret+=" 
-		<child>
-		";
-		if (with_window) {
-			var children = "";
-			if (this.node.items.size > 0) {
-			
-				children =  this.mungeChild(pad + "        " , this.node.items.get(0), false);
-			  
-
-			} 
-			children += (children.length > 0) ? "<packing>
-				<property name=\"expand\">True</property>
-				<property name=\"fill\">True</property>
-				<property name=\"position\">1</property>
-		      </packing>" : "";
-			
-			ret+= (children.length < 1 ) ? "<placeholder/>" : children;
-			
-			
-			
-
-		} else {
+	
+	 {
 			ret+= this.mungeNode (true);
 		}
 
 		ret+="
 		    </child>
 	    ";
-	if (with_window) {
-		ret+="
-		    <child>
-		      <object class=\"GtkBox\" id=\"fake-footer\">
-			<property name=\"visible\">True</property>
-			<property name=\"can_focus\">False</property>
-			<child>
-			  <placeholder/>
-			</child>
-			<child>
-			  <placeholder/>
-			</child>
-		      </object>
-		      <packing>
-			<property name=\"expand\">False</property>
-			<property name=\"fill\">True</property>
-			<property name=\"position\">2</property>
-		      </packing>
-		    </child>
-	    ";
+;
 	}
 		ret +="
 	</object>"; 
