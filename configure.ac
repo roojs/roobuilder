@@ -32,6 +32,7 @@ PKG_CHECK_MODULES(ROOBUILDER, [ zlib
 		 gee-0.8
  		 libxml-2.0
 		 libsoup-2.4,
+		 gladeui-2.0,
 		 roojspacker-1.4
 ]) 
 
