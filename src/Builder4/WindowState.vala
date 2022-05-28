@@ -709,7 +709,7 @@ public class WindowState : Object
 
 	public void gtkViewInit()
 	{
-		Glade.App.set_window(this.win.el);
+
 		
 		
 		this.window_gladeview  =new Xcls_GladeuiView();
