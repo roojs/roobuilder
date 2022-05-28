@@ -48,9 +48,12 @@ public class JsRender.NodeToGlade : Object {
         //Gee.ArrayList<string> skip;
 	Gee.HashMap<string,string> ar_props;
 	public static int vcnt = 0; 
+	Project.Gtk project;
 
-	public NodeToGlade( Node node,   string pad) 
+
+	public NodeToGlade( Project.Gkt project, Node node,   string pad) 
 	{
+		this.project = project;
 		this.node = node;
  		this.pad = pad;
 		this.els = new Gee.ArrayList<string>(); 
@@ -65,7 +68,7 @@ public class JsRender.NodeToGlade : Object {
 			return "";
 		}
 
-		var n = new NodeToGlade(  file.tree, " ");
+		var n = new NodeToGlade(  file.project, file.tree, " ");
 		//n.file = file;
 		n.vcnt = 0;
 		
