@@ -37,23 +37,6 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "append_page,_this.label_preview.el",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "add",
-         "id" : "view_layout",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "put,10,10",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "id" : "container",
-           "xtype" : "Box"
-          }
-         ],
-         "xtype" : "Layout"
-        }
-       ],
        "xtype" : "ScrolledWindow"
       },
       {

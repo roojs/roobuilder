@@ -15,8 +15,6 @@ public class Xcls_GtkView : Object
     public Xcls_notebook notebook;
     public Xcls_label_preview label_preview;
     public Xcls_label_code label_code;
-    public Xcls_view_layout view_layout;
-    public Xcls_container container;
     public Xcls_sourceview sourceview;
 
         // my vars (def)
@@ -242,7 +240,7 @@ public class Xcls_GtkView : Object
             var child_2 = new Xcls_ScrolledWindow5( _this );
             child_2.ref();
             this.el.append_page (  child_2.el , _this.label_preview.el );
-            var child_3 = new Xcls_ScrolledWindow8( _this );
+            var child_3 = new Xcls_ScrolledWindow6( _this );
             child_3.ref();
             this.el.append_page (  child_3.el , _this.label_code.el );
         }
@@ -312,64 +310,12 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_view_layout( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_view_layout : Object
-    {
-        public Gtk.Layout el;
-        private Xcls_GtkView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_view_layout(Xcls_GtkView _owner )
-        {
-            _this = _owner;
-            _this.view_layout = this;
-            this.el = new Gtk.Layout( null, null );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_container( _this );
-            child_0.ref();
-            this.el.put (  child_0.el , 10,10 );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_container : Object
-    {
-        public Gtk.Box el;
-        private Xcls_GtkView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_container(Xcls_GtkView _owner )
-        {
-            _this = _owner;
-            _this.container = this;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-            // my vars (dec)
-
-            // set gobject values
         }
 
         // user defined functions
     }
 
-
-
-    public class Xcls_ScrolledWindow8 : Object
+    public class Xcls_ScrolledWindow6 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_GtkView  _this;
@@ -378,7 +324,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow8(Xcls_GtkView _owner )
+        public Xcls_ScrolledWindow6(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
