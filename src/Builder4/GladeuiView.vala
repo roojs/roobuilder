@@ -15,6 +15,7 @@ public class Xcls_GtkView : Object
     public Xcls_notebook notebook;
     public Xcls_label_preview label_preview;
     public Xcls_label_code label_code;
+    public Xcls_GladeView GladeView;
     public Xcls_sourceview sourceview;
 
         // my vars (def)
@@ -240,7 +241,7 @@ public class Xcls_GtkView : Object
             var child_2 = new Xcls_ScrolledWindow5( _this );
             child_2.ref();
             this.el.append_page (  child_2.el , _this.label_preview.el );
-            var child_3 = new Xcls_ScrolledWindow6( _this );
+            var child_3 = new Xcls_ScrolledWindow7( _this );
             child_3.ref();
             this.el.append_page (  child_3.el , _this.label_code.el );
         }
@@ -310,12 +311,96 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_GladeView( _this );
+            child_0.ref();
+            this.el.composite_name (  child_0.el  );
         }
 
         // user defined functions
     }
+    public class Xcls_GladeView : Object
+    {
+        public Glade.DesignView el;
+        private Xcls_GtkView  _this;
 
-    public class Xcls_ScrolledWindow6 : Object
+
+            // my vars (def)
+        public JsRender.JsRender file;
+
+        // ctor
+        public Xcls_GladeView(Xcls_GtkView _owner )
+        {
+            _this = _owner;
+            _this.GladeView = this;
+            this.el = new Glade.DesignView(new Glade.Project());
+
+            // my vars (dec)
+            this.file = null;
+
+            // set gobject values
+        }
+
+        // user defined functions
+        public void createThumb () {
+            
+            
+            if (this.file == null) {
+                return;
+            }
+            var filename = this.file.getIconFileName(false);
+            
+            var  win = this.el.get_parent_window();
+            var width = win.get_width();
+            var height = win.get_height();
+        
+            Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
+        
+            screenshot.save(filename,"png");
+            return;
+            
+            
+             
+        }
+        public void loadFile (JsRender.JsRender file)
+        {
+            
+        
+            this.file = file;
+            
+        
+                // clear existing elements from project?
+                
+                var  p = this.el.get_project();
+                var    li = p.get_objects().copy();
+                // should remove all..
+                for (var i =0;    i < li.length(); i++) {   
+                    p.remove_object(li.nth_data(i)); 
+                }
+        
+                if (file.tree == null) {
+                    return;
+                }
+        
+        //        print("%s\n",tf.tree.toJsonString());
+        	var x =  JsRender.NodeToGlade(file.project, file.tree,  null);
+        
+        	 
+        
+        	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
+        	var ostream = iostream.output_stream;
+        	var dostream = new DataOutputStream (ostream);
+        	dostream.put_string (x.munge());
+        	this.el.show();
+        	 print("LOADING %s\n",f.get_path ());
+              p.load_from_file(f.get_path ());
+                
+         
+        
+        }
+    }
+
+
+    public class Xcls_ScrolledWindow7 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_GtkView  _this;
@@ -324,7 +409,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow6(Xcls_GtkView _owner )
+        public Xcls_ScrolledWindow7(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
