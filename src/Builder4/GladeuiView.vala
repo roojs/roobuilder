@@ -108,7 +108,7 @@ public class Xcls_GladeuiView : Object
         
         var filename = this.file.getIconFileName(false);
         
-        var  win = this.el.get_parent_window();
+        var  win = this.designview.el.get_parent_window();
         var width = win.get_width();
         var height = win.get_height();
         try {
