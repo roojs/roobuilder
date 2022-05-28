@@ -99,7 +99,7 @@ public class JsRender.NodeToGlade : Object {
 	public static Xml.Ns* ns;
 	
 	
-	public Xml.Node* createElemnt(string n)
+	public Xml.Node* create_element(string n)
 	{
 		if (this.ns == null) {
 			Xml.Ns* ns = new Xml.Ns (null, "", "");
