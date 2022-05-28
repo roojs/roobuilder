@@ -157,7 +157,7 @@ public class Xcls_GladeuiView : Object
             }
     
     //        print("%s\n",tf.tree.toJsonString());
-    	var x =  JsRender.NodeToGlade(file.project, file.tree,  null);
+    	var x =  new JsRender.NodeToGlade(file.project, file.tree,  null);
     
     	 
     
