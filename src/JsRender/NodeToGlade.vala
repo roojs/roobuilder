@@ -188,7 +188,7 @@ public class JsRender.NodeToGlade : Object {
 			
     		// skip items we have already handled..
     		if  (!this.node.has(pviter.get_key())) {
-				continue;
+				contin
 			}
 			var k = pviter.get_key();
 			var val = this.node.get(pviter.get_key()).strip();
@@ -213,6 +213,10 @@ public class JsRender.NodeToGlade : Object {
 		
 		for (var i = 0; i < this.node.items.size; i++ ) {
 			var child  = this.create_element("child");
+			if (cls == "GtkWindow" && child.fqn() == "Gtk.Headerbar") {
+				child->set_prop("type", "titlebar");
+			}
+			
 			
 			this.mungeChild(this.node.items.get(i), child);
 			if (child->child_element_count()  < 1) {
