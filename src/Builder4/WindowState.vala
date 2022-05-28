@@ -36,7 +36,7 @@ public class WindowState : Object
 	public Xcls_PopoverEditor               code_editor_popover;
 	public Editor					 code_editor_tab; 
 	public Xcls_WindowRooView   window_rooview;
-	public Xcls_GladeView         window_gladeview;
+	public Xcls_GladeuiView         window_gladeview;
 	public Xcls_PopoverFiles popover_files;
 	
 	//public Xcls_ClutterFiles     clutterfiles;
@@ -709,7 +709,7 @@ public class WindowState : Object
 
 	public void gtkViewInit()
 	{
-		this.window_gladeview  =new Xcls_GladeView();
+		this.window_gladeview  =new Xcls_GladeuiView();
 		this.window_gladeview.ref();
 		this.window_gladeview.main_window = this.win;
 	}
