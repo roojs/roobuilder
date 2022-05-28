@@ -121,7 +121,7 @@ public class JsRender.NodeToGlade : Object {
 			inf.add_child(req);
 			this.parent = intf;
 		} else {
-			doc = this.parent.owner_document;
+			doc = this.parent.doc;
 		}
 		var cls = this.node.fqn().replace(".", "");
 		
