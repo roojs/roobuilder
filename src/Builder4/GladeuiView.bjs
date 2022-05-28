@@ -46,14 +46,9 @@
        "* pack" : "append_page,_this.label_preview.el",
        "items" : [
         {
-         "# Glade.Project gladeproject" : "",
          "# JsRender.JsRender file" : "null",
          "$ xns" : "Glade",
-         "* ctor" : [
-          "this.gladeproject = new Glade.Project();",
-          "",
-          "new Glade.DesignView(this.gladeproject)"
-         ],
+         "* ctor" : "new Glade.DesignView(_this.gladeproject)",
          "* pack" : "add",
          "id" : "designview",
          "xtype" : "DesignView",
