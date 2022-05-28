@@ -49,7 +49,7 @@ public class JsRender.NodeToGlade : Object {
 	Gee.HashMap<string,string> ar_props;
 	public static int vcnt = 0; 
 	Project.Gtk project;
-	GXml.Document doc;
+	GXml.Element parent_node;
 	
 	public NodeToGlade( Project.Gtk project, Node node, GXml.Element? node) 
 	{
@@ -141,8 +141,7 @@ res +
 		
 		var b = new global::Gtk.Builder();
 
-
-/		// this might be needed if we are using non-Gtk elements?
+		// this might be needed if we are using non-Gtk elements?
 		//var gtype = b.get_type_from_name(cls);
 		//GLib.debug ("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
 
