@@ -43,18 +43,13 @@
 public class JsRender.NodeToGlade : Object {
 
 	Node node;
- 	string pad;
-	Gee.ArrayList<string> els;
-        //Gee.ArrayList<string> skip;
-	Gee.HashMap<string,string> ar_props;
-	public static int vcnt = 0; 
 	Project.Gtk project;
-	GXml.DomElement? parent;
+	Xml.Node* parent;
 	
-	public NodeToGlade( Project.Gtk project, Node node, GXml.DomElement? node) 
+	public NodeToGlade( Project.Gtk project, Node node, Xml.Node* parent) 
 	{
 		
-		this.parent = node;
+		this.parent = parent;
 		this.project = project;
 		this.node = node;
  		this.pad = pad;
@@ -71,9 +66,7 @@ public class JsRender.NodeToGlade : Object {
 		}
 
 		var n = new NodeToGlade(  (Project.Gtk) file.project, file.tree,  null);
-		//n.file = file;
-		n.vcnt = 0;
-		
+	
 		///n.toValaName(file.tree);
 		
 		
@@ -88,60 +81,44 @@ public class JsRender.NodeToGlade : Object {
 	public string munge ( )
 	{
 
-		 
-		this.pad += "    ";
 
-		var cls = this.node.fqn().replace(".", "");
-
-		
-		var res= this.mungeNode (true);
-
-	/*	switch(cls) {
-			// things we can not do yet...
-			case "GtkDialog": // top level.. - named and referenced
-			case "GtkAboutDialog":
-			case "GtkMessageDialog":
-			case "GtkWindow": // top level.. - named and referenced
-				res =  this.mungeOuter(true);
-				break;
-			default:
-				;
-				break;
-		}
-		*/		
-		
-		if (res.length < 1) {
-			return "";
-		}
-		// fixme add lib requires stuff...
-		return  "<?xml version=\"1.0\" encoding=\"UTF-8\"?> 
-<!-- Generated with roobuilder 2.x -->
-<interface> 
-  <requires lib=\"gtk+\" version=\"3.12\"/>
-  <!-- <requires lib=\"gtksourceview\" version=\"3.0\"/> -->
-" +
-res +
-"</interface>\n";
+		var doc = this.mungeNode (true);
+		return doc.write_string();
+	
           
 		     
 	}
-	public string mungeChild(string pad ,  Node cnode, bool with_packing = false)
+	public string mungeChild( Node cnode)
 	{
 		var x = new  NodeToGlade(this.project, cnode,  this.parent);
-		return x.mungeNode(with_packing);
+		return x.mungeNode();
+	}
+	public static Xml.Ns* ns;
+	
+	
+	public Xml.Node* createElemnt(string n)
+	{
+		if (this.ns == null) {
+			Xml.Ns* ns = new Xml.Ns (null, "", "");
+	        ns->type = Xml.ElementType.ELEMENT_NODE;
+		}
+
+       return  new Xml.Node (ns, n);
+	
 	}
 	
-	public string mungeNode(bool with_packing)
+	public Xml.Doc* mungeNode()
 	{
-		GXmlDocument doc;
+		Xml.Doc* doc;
 		if (this.parent == null) {
-			doc = new GXml.DomDocument();
-			var intf = doc.createElement("interface");
-			doc.document_element = inf;
-			var req = doc.createElement("requires");
-			req.set_attribute("lib", "gtk+");
-			req.set_attribuet("version", "3.12");
-			inf.append_child(req);
+			doc = new Xml.Doc("1.0");
+
+			var intf = this.createElement("interface");
+			doc.set_root_element(inf);
+			var req = this.createElement("requires");
+			req.set_prop("lib", "gtk+");
+			req.set_prop("version", "3.12");
+			inf.add_child(req);
 			this.parent = intf;
 		} else {
 			doc = this.parent.owner_document;
