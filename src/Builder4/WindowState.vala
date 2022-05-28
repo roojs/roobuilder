@@ -14,8 +14,7 @@ public class WindowState : Object
 		PREVIEW,
 		//OBJECT,
 		//PROP,
-		//LISTENER,
-		//CODE,    // code editor.
+		//LISTENER,Gtk
 		CODEONLY //,
 		//FILES //,
 	  
@@ -37,7 +36,7 @@ public class WindowState : Object
 	public Xcls_PopoverEditor               code_editor_popover;
 	public Editor					 code_editor_tab; 
 	public Xcls_WindowRooView   window_rooview;
-	public Xcls_GtkView         window_gladeview;
+	public Xcls_GladeView         window_gladeview;
 	public Xcls_PopoverFiles popover_files;
 	
 	//public Xcls_ClutterFiles     clutterfiles;
