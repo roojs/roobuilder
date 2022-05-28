@@ -49,7 +49,7 @@ public class JsRender.NodeToGlade : Object {
 	Gee.HashMap<string,string> ar_props;
 	public static int vcnt = 0; 
 
-	public NodeToGlade( Project.Gtk, Node node,   string pad) 
+	public NodeToGlade( Project.Gtk project, Node node,   string pad) 
 	{
 		this.node = node;
  		this.pad = pad;
@@ -65,7 +65,7 @@ public class JsRender.NodeToGlade : Object {
 			return "";
 		}
 
-		var n = new NodeToGlade(file, file.tree, 0, null);
+		var n = new NodeToGlade(file, file.tree, 0);
 		n.file = file;
 		n.vcnt = 0;
 		
