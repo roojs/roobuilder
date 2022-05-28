@@ -42,7 +42,7 @@
          "# JsRender.JsRender file" : "null",
          "$ xns" : "Glade",
          "* ctor" : "new Glade.DesignView(new Glade.Project())",
-         "* pack" : "composite_name",
+         "* pack" : "add",
          "id" : "GladeView",
          "xtype" : "DesignView",
          "| void createThumb" : [
