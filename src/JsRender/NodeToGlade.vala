@@ -87,9 +87,9 @@ public class JsRender.NodeToGlade : Object {
           
 		     
 	}
-	public Xml.Doc* mungeChild( Node cnode)
+	public Xml.Doc* mungeChild( Node cnode , Xml.Node* cdom)
 	{
-		var x = new  NodeToGlade(this.project, cnode,  this.parent);
+		var x = new  NodeToGlade(this.project, cnode,  cdom);
 		return x.mungeNode();
 	}
 	public static Xml.Ns* ns = null;
@@ -173,9 +173,9 @@ public class JsRender.NodeToGlade : Object {
 		// should really use GXml... 
 		var obj = this.create_element("object");
 		var id = this.node.uid();
-		obj.set_prop("class", cls);
-		obj.set_prop("id", id);
-		this.parent.add_child(obj);
+		obj->set_prop("class", cls);
+		obj->set_prop("id", id);
+		this.parent->add_child(obj);
 		// properties..
 		var props = Palete.Gir.factoryFqn(this.project, this.node.fqn()).props;
  
@@ -192,9 +192,9 @@ public class JsRender.NodeToGlade : Object {
 			var k = pviter.get_key();
 			var val = this.node.get(pviter.get_key()).strip();
 			var prop = this.create_element("property");
-			prop.set_prop("name", k);
-			prop.set_prop(doc.create_text_node(val));
-			obj.add_child(prop); 
+			prop->set_prop("name", k);
+			prop->add_child(new Xml.Dom.text(val));
+			obj->add_child(prop); 
         }
 		// packing???
 /*
@@ -211,13 +211,13 @@ public class JsRender.NodeToGlade : Object {
 
 		
 		for (var i = 0; i < this.node.items.size; i++ ) {
-			var child  = doc.create_element("child");
+			var child  = this.create_element("child");
 			
 			this.mungeChild(this.node.items.get(i), child);
 			if (child.child_nodes.length < 1) {
 				continue;
 			}
-			obj.append_child(child);
+			obj->add_child(child);
 			 
 		}
 		
