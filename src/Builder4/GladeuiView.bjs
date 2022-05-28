@@ -543,7 +543,7 @@
     "        }",
     "",
     "//        print(\"%s\\n\",tf.tree.toJsonString());",
-    "\tvar x =  new JsRender.NodeToGlade((Gtk.Project) file.project, file.tree,  null);",
+    "\tvar x =  new JsRender.NodeToGlade((Project.Gtk) file.project, file.tree,  null);",
     "",
     "\t ",
     "",
