@@ -115,12 +115,12 @@ public class JsRender.NodeToGlade : Object {
 			var inf = this.create_element("interface");
 			doc->set_root_element(inf);
 			var req = this.create_element("requires");
-			req.set_prop("lib", "gtk+");
-			req.set_prop("version", "3.12");
+			req->set_prop("lib", "gtk+");
+			req->set_prop("version", "3.12");
 			inf->add_child(req);
 			this.parent = inf;
 		} else {
-			doc = this.parent.doc;
+			doc = this.parent->doc;
 		}
 		var cls = this.node.fqn().replace(".", "");
 		
