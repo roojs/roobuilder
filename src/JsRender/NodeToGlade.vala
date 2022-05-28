@@ -82,7 +82,7 @@ public class JsRender.NodeToGlade : Object {
 	{
 
 
-		var doc = this.mungeNode (true);
+		var doc = this.mungeNode ();
 		string ret;
         doc->dump_memory (out ret);
 
@@ -91,7 +91,7 @@ public class JsRender.NodeToGlade : Object {
           
 		     
 	}
-	public string mungeChild( Node cnode)
+	public Xml.Node* mungeChild( Node cnode)
 	{
 		var x = new  NodeToGlade(this.project, cnode,  this.parent);
 		return x.mungeNode();
