@@ -47,6 +47,7 @@
           "{",
           "Glade.App.add_project(_this.gladeproject);",
           "}",
+          "this.el.show();",
           ""
          ],
          "* pack" : "add",

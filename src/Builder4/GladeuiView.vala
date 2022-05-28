@@ -326,6 +326,7 @@ public class Xcls_GladeuiView : Object
             {
             Glade.App.add_project(_this.gladeproject);
             }
+            this.el.show();
         }
 
         // user defined functions
