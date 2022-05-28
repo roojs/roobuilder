@@ -51,10 +51,10 @@ public class JsRender.NodeToGlade : Object {
 	Project.Gtk project;
 	GXml.Document doc;
 	
-	public NodeToGlade( Project.Gtk project, Node node,   string pad, GXml.Document? doc) 
+	public NodeToGlade( Project.Gtk project, Node node, GXml.Element? node) 
 	{
 		
-		if (doc == null) {
+		if (node == null) {
 			this.doc = new GXml.Document();
 		}
 		this.project = project;
@@ -72,7 +72,7 @@ public class JsRender.NodeToGlade : Object {
 			return "";
 		}
 
-		var n = new NodeToGlade(  (Project.Gtk) file.project, file.tree, " ", null);
+		var n = new NodeToGlade(  (Project.Gtk) file.project, file.tree,  null);
 		//n.file = file;
 		n.vcnt = 0;
 		
@@ -94,6 +94,9 @@ public class JsRender.NodeToGlade : Object {
 		this.pad += "    ";
 
 		var cls = this.node.fqn().replace(".", "");
+
+		this.document.
+
 
 		var res= this.mungeNode (true);
 
@@ -118,8 +121,8 @@ public class JsRender.NodeToGlade : Object {
 		return  "<?xml version=\"1.0\" encoding=\"UTF-8\"?> 
 <!-- Generated with roobuilder 2.x -->
 <interface> 
-	<requires lib=\"gtk+\" version=\"3.12\"/>
-	<!-- <requires lib=\"gtksourceview\" version=\"3.0\"/> -->
+  <requires lib=\"gtk+\" version=\"3.12\"/>
+  <!-- <requires lib=\"gtksourceview\" version=\"3.0\"/> -->
 " +
 res +
 "</interface>\n";
@@ -134,13 +137,14 @@ res +
 	
 	public string mungeNode(bool with_packing)
 	{
-		var pad = this.pad;
 		var cls = this.node.fqn().replace(".", "");
 		
 		var b = new global::Gtk.Builder();
 
-		var gtype = b.get_type_from_name(cls);
-		GLib.debug ("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
+
+/		// this might be needed if we are using non-Gtk elements?
+		//var gtype = b.get_type_from_name(cls);
+		//GLib.debug ("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
 
 		
 		/*
@@ -174,20 +178,22 @@ res +
 		*/
 		
 		// should really use GXml... 
-		
+		var obj = this.doc.create_element("object");
 		var id = this.node.uid();
-		var ret = @"$pad<object class=\"$cls\" id=\"$id\">\n";
+		obj.set_attribute("class", cls);
+		obj.set_attribute("id", id);
+		
 		// properties..
 		var props = Palete.Gir.factoryFqn(this.project, this.node.fqn()).props;
-		//var props =  Palete.factory("Gtk").getPropertiesFor(this.node.fqn(), "props");
+ 
               
-    		var pviter = props.map_iterator();
+		var pviter = props.map_iterator();
 		while (pviter.next()) {
 			
-				GLib.debug ("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
-				
-        		// skip items we have already handled..
-        		if  (!this.node.has(pviter.get_key())) {
+			GLib.debug ("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
+			
+    		// skip items we have already handled..
+    		if  (!this.node.has(pviter.get_key())) {
 				continue;
 			}
 			var k = pviter.get_key();
