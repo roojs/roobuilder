@@ -1,6 +1,6 @@
 static Xcls_GladeView  _GladeView;
 
-public class Xcls_GladeView : Object 
+public class Xcls_GladeView : Object
 {
     public Glade.DesignView el;
     private Xcls_GladeView  _this;
@@ -14,21 +14,17 @@ public class Xcls_GladeView : Object
     }
 
         // my vars (def)
-    public JsRender.JsRender file;
 
-    // ctor 
+    // ctor
     public Xcls_GladeView()
     {
         _this = this;
         this.el = new Glade.DesignView(new Glade.Project());
 
         // my vars (dec)
-        this.file = null;
-
-        // set gobject values
     }
 
-    // user defined functions 
+    // user defined functions
     public void createThumb () {
         
         
@@ -46,20 +42,6 @@ public class Xcls_GladeView : Object
         screenshot.save(filename,"png");
         return;
         
-        
-        
-        
-        
-         
-        
-        // should we hold until it's printed...
-        
-          
-    
-        
-        
-    
-    
         
          
     }
