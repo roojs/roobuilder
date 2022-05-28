@@ -251,7 +251,10 @@ namespace JsRender {
 			// not yet..
 		}
 
-	    
+		public override string toGlade() 
+		{
+		
+		}
 	  
 
 	
