@@ -220,7 +220,7 @@ public class JsRender.NodeToGlade : Object {
 			obj->add_child(child);
 			 
 		}
-		
+		return doc;
 
 		 
 
