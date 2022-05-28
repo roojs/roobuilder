@@ -66,15 +66,15 @@ public class JsRender.NodeToGlade : Object {
 		}
 
 		var n = new NodeToGlade(  file.tree, " ");
-		n.file = file;
+		//n.file = file;
 		n.vcnt = 0;
 		
 		///n.toValaName(file.tree);
 		
 		
 		GLib.debug("top cls %s / xlcs %s\n ",file.tree.xvala_cls,file.tree.xvala_cls); 
-		n.cls = file.tree.xvala_cls;
-		n.xcls = file.tree.xvala_xcls;
+		//n.cls = file.tree.xvala_cls;
+		n.xcls = fi//le.tree.xvala_xcls;
 		return n.munge();
 		
 
