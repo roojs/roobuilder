@@ -42,7 +42,7 @@
         {
          "# JsRender.JsRender file" : "null",
          "$ xns" : "Glade",
-         "* ctor" : "new Glade.DesignView(_this.gladeproject)",
+         "* ctor" : "new Glade.DesignView(_this.gladeproject=new Glade.Project())",
          "* init" : [
           "{",
           "Glade.App.add_project(_this.gladeproject);",
