@@ -52,11 +52,7 @@ public class JsRender.NodeToGlade : Object {
 		this.parent = parent;
 		this.project = project;
 		this.node = node;
- 		this.pad = pad;
-		this.els = new Gee.ArrayList<string>(); 
-		//this.skip = new Gee.ArrayList<string>();
-		this.ar_props = new Gee.HashMap<string,string>();
-
+ 		
 	}
 	
 	public static string mungeFile(JsRender file) 
