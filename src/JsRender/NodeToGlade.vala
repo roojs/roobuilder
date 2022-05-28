@@ -121,7 +121,7 @@ public class JsRender.NodeToGlade : Object {
 	}
 	public string mungeChild(string pad ,  Node cnode, bool with_packing = false)
 	{
-		var x = new  NodeToGlade(cnode,  pad);
+		var x = new  NodeToGlade(this.project, cnode,  pad);
 		return x.mungeNode(with_packing);
 	}
 	
