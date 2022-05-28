@@ -253,7 +253,7 @@ namespace JsRender {
 
 		public override string toGlade() 
 		{
-		
+			return  NodeToGlade.mungeFile(this);
 		}
 	  
 
