@@ -72,7 +72,7 @@ public class JsRender.NodeToGlade : Object {
 			return "";
 		}
 
-		var n = new NodeToGlade(  (Project.Gtk) file.project, file.tree, " ");
+		var n = new NodeToGlade(  (Project.Gtk) file.project, file.tree, " ", null);
 		//n.file = file;
 		n.vcnt = 0;
 		
@@ -128,7 +128,7 @@ res +
 	}
 	public string mungeChild(string pad ,  Node cnode, bool with_packing = false)
 	{
-		var x = new  NodeToGlade(this.project, cnode,  pad);
+		var x = new  NodeToGlade(this.project, cnode,  pad + "  ", this.doc);
 		return x.mungeNode(with_packing);
 	}
 	
