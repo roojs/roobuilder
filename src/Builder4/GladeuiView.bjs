@@ -43,6 +43,12 @@
          "# JsRender.JsRender file" : "null",
          "$ xns" : "Glade",
          "* ctor" : "new Glade.DesignView(_this.gladeproject)",
+         "* init" : [
+          "{",
+          "",
+          "}",
+          ""
+         ],
          "* pack" : "add",
          "id" : "designview",
          "xtype" : "DesignView",

@@ -320,6 +320,12 @@ public class Xcls_GladeuiView : Object
             this.file = null;
 
             // set gobject values
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions
