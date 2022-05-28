@@ -2,6 +2,7 @@
  "build_module" : "",
  "items" : [
   {
+   "# Glade.Project gladeproject" : "",
    "# Gtk.Widget lastObj" : "null",
    "# JsRender.JsRender file" : "null",
    "# Xcls_MainWindow main_window" : "",
@@ -434,7 +435,6 @@
      " "
     ]
    },
-   "string XXXX" : "",
    "xtype" : "Box",
    "| int search" : [
     "(string txt) {",

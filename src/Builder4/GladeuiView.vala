@@ -19,13 +19,13 @@ public class Xcls_GladeuiView : Object
     public Xcls_sourceview sourceview;
 
         // my vars (def)
+    public Glade.Project gladeproject;
     public Gtk.Widget lastObj;
     public int last_search_end;
     public int width;
     public Gtk.SourceSearchContext searchcontext;
     public JsRender.JsRender file;
     public int height;
-    public string XXXX;
     public Xcls_MainWindow main_window;
 
     // ctor
