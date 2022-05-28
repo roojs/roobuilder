@@ -214,7 +214,7 @@ public class JsRender.NodeToGlade : Object {
 		for (var i = 0; i < this.node.items.size; i++ ) {
 			var cn = this.node.items.get(i);
 			var child  = this.create_element("child");
-			if (cls == "GtkWindow" && cn.fqn() == "Gtk.Headerbar") {
+			if (cls == "GtkWindow" && cn.fqn() == "Gtk.HeaderBar") {
 				child->set_prop("type", "titlebar");
 			}
 			
