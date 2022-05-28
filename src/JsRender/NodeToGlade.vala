@@ -51,7 +51,7 @@ public class JsRender.NodeToGlade : Object {
 	Project.Gtk project;
 
 
-	public NodeToGlade( Project.Gkt project, Node node,   string pad) 
+	public NodeToGlade( Project.Gtk project, Node node,   string pad) 
 	{
 		this.project = project;
 		this.node = node;
