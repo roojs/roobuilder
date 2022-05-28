@@ -15,7 +15,7 @@ public class Xcls_GtkView : Object
     public Xcls_notebook notebook;
     public Xcls_label_preview label_preview;
     public Xcls_label_code label_code;
-    public Xcls_GladeView GladeView;
+    public Xcls_designview designview;
     public Xcls_sourceview sourceview;
 
         // my vars (def)
@@ -292,14 +292,14 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_GladeView( _this );
+            var child_0 = new Xcls_designview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_GladeView : Object
+    public class Xcls_designview : Object
     {
         public Glade.DesignView el;
         private Xcls_GtkView  _this;
@@ -309,10 +309,10 @@ public class Xcls_GtkView : Object
         public JsRender.JsRender file;
 
         // ctor
-        public Xcls_GladeView(Xcls_GtkView _owner )
+        public Xcls_designview(Xcls_GtkView _owner )
         {
             _this = _owner;
-            _this.GladeView = this;
+            _this.designview = this;
             this.el = new Glade.DesignView(new Glade.Project());
 
             // my vars (dec)
@@ -341,42 +341,6 @@ public class Xcls_GtkView : Object
             
             
              
-        }
-        public void loadFile (JsRender.JsRender file)
-        {
-            
-        
-            this.file = file;
-            
-        
-                // clear existing elements from project?
-                
-                var  p = this.el.get_project();
-                var    li = p.get_objects().copy();
-                // should remove all..
-                for (var i =0;    i < li.length(); i++) {   
-                    p.remove_object(li.nth_data(i)); 
-                }
-        
-                if (file.tree == null) {
-                    return;
-                }
-        
-        //        print("%s\n",tf.tree.toJsonString());
-        	var x =  JsRender.NodeToGlade(file.project, file.tree,  null);
-        
-        	 
-        
-        	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
-        	var ostream = iostream.output_stream;
-        	var dostream = new DataOutputStream (ostream);
-        	dostream.put_string (x.munge());
-        	this.el.show();
-        	 print("LOADING %s\n",f.get_path ());
-              p.load_from_file(f.get_path ());
-                
-         
-        
         }
     }
 
