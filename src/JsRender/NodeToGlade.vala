@@ -65,7 +65,7 @@ public class JsRender.NodeToGlade : Object {
 			return "";
 		}
 
-		var n = new NodeToGlade(file, file.tree, 0);
+		var n = new NodeToGlade((Project.Gtk) file, file.tree, 0);
 		n.file = file;
 		n.vcnt = 0;
 		
