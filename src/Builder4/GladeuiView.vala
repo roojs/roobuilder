@@ -306,8 +306,8 @@ public class Xcls_GladeuiView : Object
 
 
             // my vars (def)
+        public Glade.Project gladeproject;
         public JsRender.JsRender file;
-        public bool XXX;
 
         // ctor
         public Xcls_designview(Xcls_GladeuiView _owner )
@@ -320,7 +320,6 @@ new Glade.DesignView(this.gladeproject);
 
             // my vars (dec)
             this.file = null;
-            this.XXX = true;
 
             // set gobject values
         }
