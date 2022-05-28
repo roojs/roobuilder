@@ -96,12 +96,12 @@ public class JsRender.NodeToGlade : Object {
 		var x = new  NodeToGlade(this.project, cnode,  this.parent);
 		return x.mungeNode();
 	}
-	public static Xml.Ns* ns;
+	public static Xml.Ns* ns = null;
 	
 	
 	public Xml.Node* create_element(string n)
 	{
-		if (ns == null) {
+		if (NodeToGlade.ns == null) {
 			Xml.Ns* ns = new Xml.Ns (null, "", "");
 	        ns->type = Xml.ElementType.ELEMENT_NODE;
 		}
