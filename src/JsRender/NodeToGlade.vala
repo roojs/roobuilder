@@ -83,7 +83,10 @@ public class JsRender.NodeToGlade : Object {
 
 
 		var doc = this.mungeNode (true);
-		return doc.write_string();
+		string ret;
+        doc->dump_memory (out ret);
+
+		return ret;
 	
           
 		     
@@ -172,11 +175,11 @@ public class JsRender.NodeToGlade : Object {
 		*/
 		
 		// should really use GXml... 
-		var obj = doc.create_element("object");
+		var obj = this.create_element("object");
 		var id = this.node.uid();
-		obj.set_attribute("class", cls);
-		obj.set_attribute("id", id);
-		this.parent.append_child(obj);
+		obj.set_prop("class", cls);
+		obj.set_prop("id", id);
+		this.parent.add_child(obj);
 		// properties..
 		var props = Palete.Gir.factoryFqn(this.project, this.node.fqn()).props;
  
@@ -192,10 +195,10 @@ public class JsRender.NodeToGlade : Object {
 			}
 			var k = pviter.get_key();
 			var val = this.node.get(pviter.get_key()).strip();
-			var prop = doc.create_element("property");
-			prop.set_attribute("name", k);
-			prop.append_child(doc.create_text_node(val));
-			obj.append_child(prop); 
+			var prop = this.create_element("property");
+			prop.set_prop("name", k);
+			prop.set_prop(doc.create_text_node(val));
+			obj.add_child(prop); 
         }
 		// packing???
 /*
