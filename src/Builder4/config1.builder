@@ -206,8 +206,7 @@
             "libvala-0.36",
             "gee-0.8",
             "roojspacker-1.4",
-            "libvala-0.56",
-            "libglade-2.0"
+            "libvala-0.56"
         ]
     }
 ]
