@@ -346,27 +346,7 @@ public class JsRender.NodeToGlade : Object {
 		return pack;
 
 	}
-	public string  mungeOuter(bool with_window)
-	{
-		var label = this.node.fqn() + ": " + 
-			(this.node.has("title") ? this.node.get("title") : "No-title");
-		
-		var ret = "";
-	
-	 {
-			ret+= this.mungeNode (true);
-		}
 
-		ret+="
-		    </child>
-	    ";
-;
-	}
-		ret +="
-	</object>"; 
-
-	return ret;
-	}
 
 		
 }
