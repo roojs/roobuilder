@@ -101,7 +101,7 @@ public class JsRender.NodeToGlade : Object {
 	
 	public Xml.Node* create_element(string n)
 	{
-		if (this.ns == null) {
+		if (ns == null) {
 			Xml.Ns* ns = new Xml.Ns (null, "", "");
 	        ns->type = Xml.ElementType.ELEMENT_NODE;
 		}
