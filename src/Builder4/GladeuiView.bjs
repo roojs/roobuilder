@@ -47,6 +47,7 @@
           "new Glade.DesignView(this.gladeproject)"
          ],
          "* pack" : "add",
+         "bool XXX" : true,
          "id" : "designview",
          "xtype" : "DesignView",
          "| void createThumb" : [
