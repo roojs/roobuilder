@@ -709,6 +709,9 @@ public class WindowState : Object
 
 	public void gtkViewInit()
 	{
+		Glade.App.set_window(this.main_window.el);
+		
+		
 		this.window_gladeview  =new Xcls_GladeuiView();
 		this.window_gladeview.ref();
 		this.window_gladeview.main_window = this.win;
