@@ -80,7 +80,7 @@ public class JsRender.NodeToGlade : Object {
 
 		var doc = this.mungeNode ();
 		string ret;
-        doc->dump_memory (out ret);
+        doc->dump_memory_format (out ret, true);
 
 		return ret;
 	
