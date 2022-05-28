@@ -41,7 +41,11 @@
         {
          "# JsRender.JsRender file" : "null",
          "$ xns" : "Glade",
-         "* ctor" : "new Glade.DesignView(new Glade.Project())",
+         "* ctor" : [
+          "this.gladeproject = new Glade.Project();",
+          "",
+          "new Glade.DesignView(this.gladeproject)"
+         ],
          "* pack" : "add",
          "id" : "designview",
          "xtype" : "DesignView",
