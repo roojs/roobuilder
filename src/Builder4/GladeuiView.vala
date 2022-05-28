@@ -299,7 +299,8 @@ public class Xcls_GladeuiView : Object
             // init method
 
             {
-            
+            	_this.gladeproject = new Glade.Project();
+            	
             }
         }
 

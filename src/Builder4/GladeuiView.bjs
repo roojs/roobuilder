@@ -38,7 +38,8 @@
        "$ xns" : "Gtk",
        "* init" : [
         "{",
-        "",
+        "\t_this.gladeproject = new Glade.Project();",
+        "\t",
         "}",
         ""
        ],
