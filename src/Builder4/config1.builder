@@ -206,7 +206,8 @@
             "libvala-0.36",
             "gee-0.8",
             "roojspacker-1.4",
-            "libvala-0.56"
+            "libvala-0.56",
+            "libgnomeui-2.0"
         ]
     }
 ]
