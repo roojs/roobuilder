@@ -230,7 +230,7 @@ public class JsRender.NodeToGlade : Object {
 
 	}
 	 
-	 
+	 /*
 	public string packString()
 	{
 		
@@ -281,6 +281,7 @@ public class JsRender.NodeToGlade : Object {
 		    
 		GLib.debug print(generator.to_data(null));
 		*/
+		/*
 		string[]  pbody  = {};
 		switch(pk[0]) {
 
@@ -312,7 +313,7 @@ public class JsRender.NodeToGlade : Object {
 				
 		}
 			
-		var pad = this.pad;
+
 		 
 		for (var i = 2; i < mdef.paramset.params.size; i++) {
 			var poff = i - 1;
@@ -335,7 +336,8 @@ public class JsRender.NodeToGlade : Object {
 			generator.pretty = true;
 			    
 			print(generator.to_data(null));
-			*/
+			*/ 
+			/*
 			GLib.debug ("skip - packing - no arguments (" + pk[0] + ")\n");
 			return "";
 		}
@@ -346,6 +348,7 @@ public class JsRender.NodeToGlade : Object {
 		return pack;
 
 	}
+	*/
 
 
 		
