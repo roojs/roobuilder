@@ -49,10 +49,14 @@ public class JsRender.NodeToGlade : Object {
 	Gee.HashMap<string,string> ar_props;
 	public static int vcnt = 0; 
 	Project.Gtk project;
-
-
-	public NodeToGlade( Project.Gtk project, Node node,   string pad) 
+	GXml.Document doc;
+	
+	public NodeToGlade( Project.Gtk project, Node node,   string pad, GXml.Document? doc) 
 	{
+		
+		if (doc == null) {
+			this.doc = new GXml.Document();
+		}
 		this.project = project;
 		this.node = node;
  		this.pad = pad;
@@ -168,7 +172,8 @@ res +
 				return "";
 		}
 		*/
-
+		
+		// should really use GXml... 
 		
 		var id = this.node.uid();
 		var ret = @"$pad<object class=\"$cls\" id=\"$id\">\n";
