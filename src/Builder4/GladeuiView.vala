@@ -321,7 +321,7 @@ public class Xcls_GladeuiView : Object
         {
             _this = _owner;
             _this.designview = this;
-            this.el = new Glade.DesignView(_this.gladeproject);
+            this.el = new Glade.DesignView(_this.gladeproject= new Glade.Project());
 
             // my vars (dec)
             this.file = null;
