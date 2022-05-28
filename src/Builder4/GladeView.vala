@@ -14,6 +14,7 @@ public class Xcls_GladeView : Object
     }
 
         // my vars (def)
+    public JsRender.JsRender file;
 
     // ctor
     public Xcls_GladeView()
@@ -22,6 +23,9 @@ public class Xcls_GladeView : Object
         this.el = new Glade.DesignView(new Glade.Project());
 
         // my vars (dec)
+        this.file = null;
+
+        // set gobject values
     }
 
     // user defined functions
