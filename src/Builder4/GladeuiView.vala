@@ -136,60 +136,41 @@ public class Xcls_GtkView : Object
         
          
     }
-    public void loadFile (JsRender.JsRender file) 
+    public void loadFile (JsRender.JsRender file)
     {
-            this.file = null;
+        
+    
+        this.file = file;
+        
+    
+            // clear existing elements from project?
             
+            var  p = this.designview.el.get_project();
+            var    li = p.get_objects().copy();
+            // should remove all..
+            for (var i =0;    i < li.length(); i++) {   
+                p.remove_object(li.nth_data(i)); 
+            }
+    
             if (file.tree == null) {
                 return;
             }
-            this.notebook.el.page = 0;// gtk preview 
-       
-      
-            
-           this.file = file;     
-            this.sourceview.loadFile();
-            this.searchcontext = null;
-            
     
-            if (this.lastObj != null) {
-                this.container.el.remove(this.lastObj);
-            }
+    //        print("%s\n",tf.tree.toJsonString());
+    	var x =  JsRender.NodeToGlade(file.project, file.tree,  null);
+    
+    	 
+    
+    	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
+    	var ostream = iostream.output_stream;
+    	var dostream = new DataOutputStream (ostream);
+    	dostream.put_string (x.munge());
+    	this.el.show();
+    	 print("LOADING %s\n",f.get_path ());
+          p.load_from_file(f.get_path ());
             
-            // hide the compile view at present..
-              
-            
-            var w = this.width;
-            var h = this.height;
-            
-            print("ALLOC SET SIZES %d, %d\n", w,h); 
-            
-            // set the container size min to 500/500 or 20 px less than max..
-            w = int.max (w-20, 500);
-            h = int.max (h-20, 500); 
-            
-            print("SET SIZES %d, %d\n", w,h);       
-            _this.container.el.set_size_request(w,h);
-            
-            _this.view_layout.el.set_size(w,h); // should be baded on calc.. -- see update_scrolled.
-            var rgba = Gdk.RGBA ();
-            rgba.parse ("#ccc");
-            _this.view_layout.el.override_background_color(Gtk.StateFlags.NORMAL, rgba);
-            
-            
-    	var x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);
-            var obj = x.munge() as Gtk.Widget;
-            this.lastObj = null;
-    	if (obj == null) {
-            	return;
-    	}
-    	this.lastObj = obj;
-            
-            this.container.el.add(obj);
-            obj.show_all();
-            
-             
-            
+     
+    
     }
     public void forwardSearch (bool change_focus) {
     
