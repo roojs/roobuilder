@@ -59,6 +59,27 @@ public class JsRender.NodeToGlade : Object {
 
 	}
 	
+	public static string mungeFile(JsRender file) 
+	{
+		if (file.tree == null) {
+			return "";
+		}
+
+		var n = new NodeToGlade(file, file.tree, 0, null);
+		n.file = file;
+		n.vcnt = 0;
+		
+		///n.toValaName(file.tree);
+		
+		
+		GLib.debug("top cls %s / xlcs %s\n ",file.tree.xvala_cls,file.tree.xvala_cls); 
+		n.cls = file.tree.xvala_cls;
+		n.xcls = file.tree.xvala_xcls;
+		return n.munge();
+		
+
+	}
+	
 	public string munge ( )
 	{
 
