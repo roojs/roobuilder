@@ -37,13 +37,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* init" : [
-        "{",
-        "\t_this.gladeproject = new Glade.Project();",
-        "\t",
-        "}",
-        ""
-       ],
        "* pack" : "append_page,_this.label_preview.el",
        "items" : [
         {
