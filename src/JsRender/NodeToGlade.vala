@@ -197,7 +197,7 @@ public class JsRender.NodeToGlade : Object {
 			switch (k) { 
 				case "orientation":
 					var bits = val.split(".");
-					val = bits.length > 2 ? bits[2] : "vertical"; // ??
+					val = bits.length > 2 ? bits[2].down() : "vertical"; // ??
 					break;
 			}
 			
