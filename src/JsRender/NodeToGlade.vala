@@ -95,13 +95,13 @@ public class JsRender.NodeToGlade : Object {
 	public static Xml.Ns* ns = null;
 	
 	
-	public  Xml.Node* create_element(string n)
+	public  Xml.Node create_element(string n)
 	{
 		if (NodeToGlade.ns == null) {
 			Xml.Ns* ns = new Xml.Ns (null, "", "");
 	        ns->type = Xml.ElementType.ELEMENT_NODE;
 		}
-		var nn =  new Xml.Node (ns, n);
+		Xml.Node* nn =  new Xml.Node (ns, n);
        return nn;
 	
 	}
