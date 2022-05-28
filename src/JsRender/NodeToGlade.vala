@@ -194,6 +194,14 @@ public class JsRender.NodeToGlade : Object {
 			var val = this.node.get(pviter.get_key()).strip();
 			var prop = this.create_element("property");
 			prop->set_prop("name", k);
+			switch (k) { 
+				case "orientation":
+					var bits = val.split(".");
+					val = bits.length > 2 ? bits[2] : "vertical"; // ??
+					break;
+			}
+			
+			
 			prop->add_child(new Xml.Node.text(val));
 			obj->add_child(prop); 
         }
