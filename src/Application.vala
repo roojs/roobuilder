@@ -240,7 +240,8 @@
 			if (file == null) {
 				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 			}
-			
+			file.loadItems();
+						
 			if (BuilderApplication.opt_bjs_compile_glade) {
 				var str = file.toGlade();
 				print("%s", str);
@@ -248,7 +249,7 @@
 			}
 			
 			//BuilderApplication.compileBjs();
-			file.loadItems();
+
 			var str = file.toSourceCode();
 			  
 			  
