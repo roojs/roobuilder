@@ -148,7 +148,10 @@ namespace JsRender {
 			// not yet..
 		}
 	
-        
+        public override string toGlade() 
+		{
+			return "Roo files do not convert to glade";
+		}
 	  
 
 		
