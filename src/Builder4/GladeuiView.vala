@@ -324,7 +324,7 @@ public class Xcls_GladeuiView : Object
             // init method
 
             {
-            Glade.App.add_project(_this.gladeproject);
+            
             
             }
             this.el.show();

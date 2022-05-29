@@ -45,7 +45,7 @@
          "* ctor" : "new Glade.DesignView(_this.gladeproject=new Glade.Project())",
          "* init" : [
           "{",
-          "Glade.App.add_project(_this.gladeproject);",
+          "",
           "",
           "}",
           "this.el.show();",
