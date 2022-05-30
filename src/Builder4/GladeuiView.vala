@@ -524,6 +524,8 @@ public class Xcls_GladeuiView : Object
         
         }
         public void loadFile ( ) {
+            Glade.App.
+            
             this.loading = true;
             var buf = this.el.get_buffer();
             buf.set_text("",0);
