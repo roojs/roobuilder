@@ -445,7 +445,7 @@
     "() {",
     "\t _this.designview =  new Xcls_designview( _this );",
     "\t ",
-    "\t_this.notebook.el.append_page(_this.designview, _this.label_preview.el)",
+    "\t_this.notebook.el.append_page(_this.designview, _this.label_preview.el);",
     "}",
     ""
    ],
