@@ -714,7 +714,8 @@ public class WindowState : Object
 		
 		this.window_gladeview  =new Xcls_GladeuiView(this.win);
 		this.window_gladeview.ref();
-		
+		this.window_gladeview.main_window = this.win;
+		this.window_gladeview.initGlade();
 	}
 	
 
