@@ -289,7 +289,7 @@ public class Xcls_GladeuiView : Object
         {
             _this = _owner;
             _this.designview = this;
-            this.el = new Glade.DesignView(_this.main_window.gladeproject);
+            this.el = ;
 
             // my vars (dec)
             this.file = null;
