@@ -30,7 +30,7 @@ static int main (string[] args)
     ins.show();
     win.set_size_request(300,300);
     win.show_all();
-    project.load_from_file("/tmp/glade.xml");
+    proj.load_from_file("/tmp/glade.xml");
     
     Gtk.main();
     return 0;
