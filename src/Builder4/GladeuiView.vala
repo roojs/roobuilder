@@ -210,8 +210,8 @@ public class Xcls_GladeuiView : Object
     	 box.pack_start(_this.designview.el);
     	// box.pack_start(pal);
     	 //box.pack_start(ins);
-    	   pal.show();
-        ins.show();
+    	  // pal.show();
+       // ins.show();
         _this.designview.el.show();
     	 box.show_all();	 
     	 
