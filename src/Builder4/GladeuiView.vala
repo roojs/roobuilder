@@ -200,7 +200,17 @@ public class Xcls_GladeuiView : Object
     public void initGlade () {
     	 _this.designview =  new Xcls_designview( _this );
     	 
-    	 _this.notebook.el.append_page(_this.designview.el, _this.label_preview.el);
+    	 var box = new Gtk.Box();
+    	 
+    	 _this.notebook.el.append_page(box, _this.label_preview.el);
+    	 
+    	 
+    
+    	 box.pack_start(_this.designview.el);
+    	 box.pack_start(pal);
+    	 box.pack_start(ins);
+    	 	 
+    	 
     }
     public class Xcls_notebook : Object
     {
