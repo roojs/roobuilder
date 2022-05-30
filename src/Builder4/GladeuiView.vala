@@ -204,12 +204,16 @@ public class Xcls_GladeuiView : Object
     	 
     	 _this.notebook.el.append_page(box, _this.label_preview.el);
     	 
-    	 
+    	  Palette pal = new Palette();
+        Inspector ins = new Inspector();
     
     	 box.pack_start(_this.designview.el);
     	 box.pack_start(pal);
     	 box.pack_start(ins);
-    	 	 
+    	   pal.show();
+        ins.show();
+        _this.designview.el.show();
+    	 box.show_all();	 
     	 
     }
     public class Xcls_notebook : Object
