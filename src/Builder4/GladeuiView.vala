@@ -29,10 +29,10 @@ public class Xcls_GladeuiView : Object
     public Xcls_MainWindow main_window;
 
     // ctor
-    public Xcls_GladeuiView(, Gtk.Window main_window)
+    public Xcls_GladeuiView()
     {
         _this = this;
-        this.el = ;
+        this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
         // my vars (dec)
         this.lastObj = null;
@@ -42,16 +42,11 @@ public class Xcls_GladeuiView : Object
         this.height = 0;
 
         // set gobject values
-        this.el.orientation = Gtk.Orientation.VERTICAL;
         this.el.hexpand = true;
         this.el.vexpand = true;
         var child_0 = new Xcls_notebook( _this );
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
-
-        // init method
-
-        _this.main_window = main_window
 
         //listeners
         this.el.size_allocate.connect( (aloc) => {
