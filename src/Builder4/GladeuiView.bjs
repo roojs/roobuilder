@@ -43,7 +43,7 @@
         "this.el.show();",
         ""
        ],
-       "* pack" : "append_page,_this.label_preview.el",
+       "* pack" : false,
        "id" : "designview",
        "xtype" : "DesignView",
        "| void createThumb" : [
