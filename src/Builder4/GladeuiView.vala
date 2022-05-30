@@ -48,6 +48,12 @@ public class Xcls_GladeuiView : Object
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
 
+        // init method
+
+        {
+        
+        }
+
         //listeners
         this.el.size_allocate.connect( (aloc) => {
          
