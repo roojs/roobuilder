@@ -203,7 +203,7 @@ public class Xcls_GladeuiView : Object
     	 var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
     	 
     	 _this.notebook.el.append_page(box, _this.label_preview.el);
-    	 
+    	     Glade.App.set_window(win);
     	 var  pal = new Glade.Palette();
         var ins = new Glade.Inspector();
     

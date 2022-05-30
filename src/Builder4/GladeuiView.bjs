@@ -521,7 +521,7 @@
     "\t var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
     "\t ",
     "\t _this.notebook.el.append_page(box, _this.label_preview.el);",
-    "\t ",
+    "\t     Glade.App.set_window(win);",
     "\t var  pal = new Glade.Palette();",
     "    var ins = new Glade.Inspector();",
     "",
