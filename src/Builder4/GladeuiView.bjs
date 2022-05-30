@@ -35,10 +35,7 @@
        "utf8 label" : "Preview Generated Code",
        "xtype" : "Label"
       },
-      {
-       "$ xns" : "Glade",
-       "* pack" : "append_page,_this.label_preview.el",
-       "items" : [
+       
         {
          "# JsRender.JsRender file" : "null",
          "$ xns" : "Glade",
@@ -51,7 +48,7 @@
           "this.el.show();",
           ""
          ],
-         "* pack" : "add",
+       "* pack" : "append_page,_this.label_preview.el",
          "id" : "designview",
          "xtype" : "DesignView",
          "| void createThumb" : [
@@ -77,9 +74,8 @@
           "}",
           ""
          ]
-        }
-       ],
-       "xtype" : "DesignView"
+        
+         "xtype" : "DesignView"
       },
       
         {
