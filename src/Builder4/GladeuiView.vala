@@ -524,7 +524,7 @@ public class Xcls_GladeuiView : Object
         
         }
         public void loadFile ( ) {
-            Glade.App.
+            Glade.App.set_window(_this.mainwindow.el);
             
             this.loading = true;
             var buf = this.el.get_buffer();
