@@ -8,6 +8,7 @@
    "# Xcls_MainWindow main_window" : "",
    "$ xns" : "Gtk",
    "* args" : "Gtk.Window main_window",
+   "* ctor" : "",
    "* init" : "_this.main_window = main_window",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "Gtk.SourceSearchContext searchcontext" : "",
