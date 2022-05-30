@@ -81,10 +81,7 @@
        ],
        "xtype" : "ScrolledWindow"
       },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "append_page,_this.label_code.el",
-       "items" : [
+      
         {
          "$ xns" : "Gtk",
          "* init" : [
@@ -190,7 +187,7 @@
           "}",
           " "
          ],
-         "* pack" : "add",
+               "* pack" : "append_page,_this.label_code.el",
          "bool allow_node_scroll" : true,
          "bool loading" : true,
          "gboolean editable" : false,
@@ -419,9 +416,7 @@
           ""
          ]
         }
-       ],
-       "xtype" : "ScrolledWindow"
-      }
+       
      ],
      "xtype" : "Notebook"
     }
