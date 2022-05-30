@@ -441,7 +441,7 @@
     "}",
     ""
    ],
-   "| return_type XXXX" : [
+   "| return_type initGlade" : [
     "() {",
     "",
     "}",

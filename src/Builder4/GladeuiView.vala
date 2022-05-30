@@ -172,7 +172,7 @@ public class Xcls_GladeuiView : Object
      
     
     }
-    public return_type XXXX () {
+    public return_type initGlade () {
     
     }
     public void forwardSearch (bool change_focus) {
