@@ -172,6 +172,9 @@ public class Xcls_GladeuiView : Object
      
     
     }
+    public return_type XXXX () {
+    
+    }
     public void forwardSearch (bool change_focus) {
     
     	if (this.searchcontext == null) {
