@@ -50,9 +50,7 @@ public class Xcls_GladeuiView : Object
 
         // init method
 
-        {
-        
-        }
+        _this.main_window = main_window
 
         //listeners
         this.el.size_allocate.connect( (aloc) => {
