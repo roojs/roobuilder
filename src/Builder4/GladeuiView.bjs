@@ -443,7 +443,7 @@
    ],
    "| return_type initGlade" : [
     "() {",
-    "",
+    "\t_this.notebook.el.append_page(_this.designview, _this.label_preview.el)",
     "}",
     ""
    ],
