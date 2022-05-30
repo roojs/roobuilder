@@ -204,12 +204,12 @@ public class Xcls_GladeuiView : Object
     	 
     	 _this.notebook.el.append_page(box, _this.label_preview.el);
     	     Glade.App.set_window(this.main_window.el);
-    	 var  pal = new Glade.Palette();
-        var ins = new Glade.Inspector();
+    	// var  pal = new Glade.Palette();
+        //var ins = new Glade.Inspector();
     
     	 box.pack_start(_this.designview.el);
-    	 box.pack_start(pal);
-    	 box.pack_start(ins);
+    	// box.pack_start(pal);
+    	 //box.pack_start(ins);
     	   pal.show();
         ins.show();
         _this.designview.el.show();
