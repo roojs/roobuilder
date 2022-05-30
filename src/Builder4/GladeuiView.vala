@@ -29,7 +29,7 @@ public class Xcls_GladeuiView : Object
     public Xcls_MainWindow main_window;
 
     // ctor
-    public Xcls_GladeuiView()
+    public Xcls_GladeuiView(, true)
     {
         _this = this;
         this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
