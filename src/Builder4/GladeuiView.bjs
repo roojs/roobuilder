@@ -441,14 +441,6 @@
     "}",
     ""
    ],
-   "| return_type initGlade" : [
-    "() {",
-    "\t _this.designview =  new Xcls_designview( _this );",
-    "\t ",
-    "\t_this.notebook.el.append_page(_this.designview, _this.label_preview.el);",
-    "}",
-    ""
-   ],
    "| void createThumb" : [
     "() {",
     "    ",
@@ -519,6 +511,14 @@
     "\t\tthis.sourceview.el.scroll_to_iter(stl,  0.0f, true, 0.0f, 0.5f);",
     "\t}",
     "",
+    "}",
+    ""
+   ],
+   "| void initGlade" : [
+    "() {",
+    "\t _this.designview =  new Xcls_designview( _this );",
+    "\t ",
+    "\t_this.notebook.el.append_page(_this.designview, _this.label_preview.el);",
     "}",
     ""
    ],
