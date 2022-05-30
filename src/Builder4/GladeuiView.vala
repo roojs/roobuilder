@@ -200,7 +200,7 @@ public class Xcls_GladeuiView : Object
     public void initGlade () {
     	 _this.designview =  new Xcls_designview( _this );
     	 
-    	 var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL);
+    	 var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
     	 
     	 _this.notebook.el.append_page(box, _this.label_preview.el);
     	 

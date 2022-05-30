@@ -518,7 +518,7 @@
     "() {",
     "\t _this.designview =  new Xcls_designview( _this );",
     "\t ",
-    "\t var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL);",
+    "\t var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
     "\t ",
     "\t _this.notebook.el.append_page(box, _this.label_preview.el);",
     "\t ",
