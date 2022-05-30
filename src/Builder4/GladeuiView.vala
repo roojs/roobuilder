@@ -220,10 +220,10 @@ public class Xcls_GladeuiView : Object
             child_0.ref();
             var child_1 = new Xcls_label_code( _this );
             child_1.ref();
-            var child_2 = new Xcls_ScrolledWindow5( _this );
+            var child_2 = new Xcls_designview( _this );
             child_2.ref();
             this.el.append_page (  child_2.el , _this.label_preview.el );
-            var child_3 = new Xcls_ScrolledWindow7( _this );
+            var child_3 = new Xcls_sourceview( _this );
             child_3.ref();
             this.el.append_page (  child_3.el , _this.label_code.el );
         }
@@ -276,30 +276,6 @@ public class Xcls_GladeuiView : Object
         // user defined functions
     }
 
-    public class Xcls_ScrolledWindow5 : Object
-    {
-        public Gtk.ScrolledWindow el;
-        private Xcls_GladeuiView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ScrolledWindow5(Xcls_GladeuiView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_designview( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-        }
-
-        // user defined functions
-    }
     public class Xcls_designview : Object
     {
         public Glade.DesignView el;
@@ -323,10 +299,6 @@ public class Xcls_GladeuiView : Object
 
             // init method
 
-            {
-            
-            
-            }
             this.el.show();
         }
 
@@ -353,31 +325,6 @@ public class Xcls_GladeuiView : Object
         }
     }
 
-
-    public class Xcls_ScrolledWindow7 : Object
-    {
-        public Gtk.ScrolledWindow el;
-        private Xcls_GladeuiView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ScrolledWindow7(Xcls_GladeuiView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_sourceview( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-        }
-
-        // user defined functions
-    }
     public class Xcls_sourceview : Object
     {
         public Gtk.SourceView el;
@@ -719,7 +666,6 @@ public class Xcls_GladeuiView : Object
         
         }
     }
-
 
 
 }
