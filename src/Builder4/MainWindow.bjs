@@ -2,6 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# Glade.Project gladeproject" : "",
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "null",
    "# int no_windows" : 1,
@@ -725,7 +726,6 @@
      "}"
     ]
    },
-   "string XXXX" : "",
    "xtype" : "Window",
    "|             void setTitle" : [
     " (string str) {",
