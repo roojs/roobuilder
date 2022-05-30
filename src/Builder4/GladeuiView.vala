@@ -172,11 +172,6 @@ public class Xcls_GladeuiView : Object
      
     
     }
-    public return_type initGlade () {
-    	 _this.designview =  new Xcls_designview( _this );
-    	 
-    	_this.notebook.el.append_page(_this.designview, _this.label_preview.el);
-    }
     public void forwardSearch (bool change_focus) {
     
     	if (this.searchcontext == null) {
