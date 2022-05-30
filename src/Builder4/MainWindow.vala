@@ -39,6 +39,7 @@ public class Xcls_MainWindow : Object
     public string title;
     public int no_windows;
     public WindowState windowstate;
+    public string XXXX;
 
     // ctor
     public Xcls_MainWindow()
@@ -71,6 +72,9 @@ public class Xcls_MainWindow : Object
         	//} catch (Exception e) {
         	//	print("no icon found");
         //	}
+        		Glade.App.set_window(this.el);
+        		this.gladeproject = new Glade.Project();
+        		Glade.App.add_project(this.gladeproject);
 
         //listeners
         this.el.delete_event.connect( (   event) => {

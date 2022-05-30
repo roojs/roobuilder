@@ -16,7 +16,11 @@
     "         this.el.set_icon_name(\"roobuilder\");",
     "\t//} catch (Exception e) {",
     "\t//\tprint(\"no icon found\");",
-    "//\t}"
+    "//\t}",
+    "\t\tGlade.App.set_window(this.el);",
+    "\t\tthis.gladeproject = new Glade.Project();",
+    "\t\tGlade.App.add_project(this.gladeproject);",
+    ""
    ],
    "border_width" : 0,
    "default_height" : 850,
@@ -721,6 +725,7 @@
      "}"
     ]
    },
+   "string XXXX" : "",
    "xtype" : "Window",
    "|             void setTitle" : [
     " (string str) {",
