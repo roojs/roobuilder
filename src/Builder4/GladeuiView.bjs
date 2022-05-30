@@ -533,8 +533,7 @@
     "    _this.designview.el.show();",
     "\t box.show_all();\t ",
     "\t ",
-    "}",
-    "run",
+    "} ",
     ""
    ],
    "| void loadFile" : [

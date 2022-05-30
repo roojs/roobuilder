@@ -216,7 +216,6 @@ public class Xcls_GladeuiView : Object
     	 box.show_all();	 
     	 
     }
-    run
     public class Xcls_notebook : Object
     {
         public Gtk.Notebook el;
