@@ -37,7 +37,7 @@
       {
        "# JsRender.JsRender file" : "null",
        "$ xns" : "Glade",
-       "* ctor" : "",
+       "* ctor" : "_this.main_window == null ? null : new Glade.DesignView(_this.main_window..gladeproject)",
        "* init" : [
         " ",
         "this.el.show();",
