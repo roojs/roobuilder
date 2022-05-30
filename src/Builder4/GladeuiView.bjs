@@ -40,7 +40,7 @@
       {
        "# JsRender.JsRender file" : "null",
        "$ xns" : "Glade",
-       "* ctor" : "new Glade.DesignView(_this.gladeproject=new Glade.Project())",
+       "* ctor" : "new Glade.DesignView(_this.main_window.gladeproject)",
        "* init" : [
         " ",
         "this.el.show();",
