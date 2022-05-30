@@ -19,7 +19,6 @@ public class Xcls_GladeuiView : Object
     public Xcls_sourceview sourceview;
 
         // my vars (def)
-    public Glade.Project gladeproject;
     public Gtk.Widget lastObj;
     public int last_search_end;
     public int width;
