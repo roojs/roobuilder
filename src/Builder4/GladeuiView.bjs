@@ -538,7 +538,7 @@
     "",
     "//        print(\"%s\\n\",tf.tree.toJsonString());",
     "\tvar x =  new JsRender.NodeToGlade((Project.Gtk) file.project, file.tree,  null);",
-    "    Glade.App.set_window(_this.main_window.el);",
+    "    Glade.App.set_window(_this.main_window.el); // see if setting it again forces it to go to the irght locations.",
     "\t ",
     "FileIOStream iostream;",
     "\tvar  f = File.new_tmp (\"tpl-XXXXXX.glade\", out iostream);",

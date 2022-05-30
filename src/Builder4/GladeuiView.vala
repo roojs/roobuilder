@@ -159,7 +159,7 @@ public class Xcls_GladeuiView : Object
     
     //        print("%s\n",tf.tree.toJsonString());
     	var x =  new JsRender.NodeToGlade((Project.Gtk) file.project, file.tree,  null);
-        Glade.App.set_window(_this.main_window.el);
+        Glade.App.set_window(_this.main_window.el); // see if setting it again forces it to go to the irght locations.
     	 
     FileIOStream iostream;
     	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
