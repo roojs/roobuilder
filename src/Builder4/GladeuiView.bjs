@@ -36,7 +36,7 @@
        "xtype" : "Label"
       },
       {
-       "$ xns" : "Gtk",
+       "$ xns" : "Glade",
        "* pack" : "append_page,_this.label_preview.el",
        "items" : [
         {
@@ -79,7 +79,7 @@
          ]
         }
        ],
-       "xtype" : "ScrolledWindow"
+       "xtype" : "DesignView"
       },
       
         {
