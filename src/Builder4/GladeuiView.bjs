@@ -7,7 +7,7 @@
    "# JsRender.JsRender file" : "null",
    "# Xcls_MainWindow main_window" : "",
    "$ xns" : "Gtk",
-   "* args" : "Gtk.Window main_window",
+   "* args" : "Glade.Project project",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "Gtk.SourceSearchContext searchcontext" : "",
    "bool hexpand" : true,
