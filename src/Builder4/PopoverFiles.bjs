@@ -436,12 +436,12 @@
              "    if (fn.length < 1) {",
              "    \treturn;",
              "\t}",
-             "    ",
+             "     _this.el.hide();",
              "    ",
              "    var f = JsRender.JsRender.factory(\"PlainFile\", _this.selectedProject, fn);",
              "   ",
              "    _this.win.windowstate.fileViewOpen(f);",
-             "    _this.el.hide();",
+             "   ",
              "    ",
              "}"
             ]

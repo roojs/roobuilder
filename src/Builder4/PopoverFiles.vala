@@ -955,12 +955,12 @@ public class Xcls_PopoverFiles : Object
                 if (fn.length < 1) {
                 	return;
             	}
-                
+                 _this.el.hide();
                 
                 var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
                
                 _this.win.windowstate.fileViewOpen(f);
-                _this.el.hide();
+               
                 
             });
             this.el.cursor_changed.connect( () => {
