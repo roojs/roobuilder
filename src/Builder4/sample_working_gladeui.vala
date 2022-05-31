@@ -15,19 +15,19 @@ static int main (string[] args)
    
     Project proj = new Project();
     App.add_project(proj);
-    Palette pal = new Palette();
-    Inspector ins = new Inspector();
+    //Palette pal = new Palette();
+    //Inspector ins = new Inspector();
     DesignView dv = new DesignView(proj);
-    pal.project = proj;
-    ins.project = proj;
+    //pal.project = proj;
+    //ins.project = proj;
     HBox box = new HBox(false,0);
-    box.pack_start(pal);
-    box.pack_start(ins);
+    //box.pack_start(pal);
+    //box.pack_start(ins);
     box.pack_start(dv);
     win.add(box);
     dv.show();
-    pal.show();
-    ins.show();
+    //pal.show();
+    //ins.show();
     win.set_size_request(300,300);
     win.show_all();
      App.set_window(win);
