@@ -3,6 +3,14 @@
  compile:
  
 valac src/Builder4/sample_working_gladeui.vala --pkg gladeui-2.0  --pkg gtk+-3.0 -o /tmp/test_glade --vapidir src/vapi
+
+This works fine. - however when I added it to the builder - the gtkwindows seperated themselves from the display
+- I think it tries to get clever and does something with gtk_plug which doesnt really work.
+
+There are some downsides to using glade anyway - so probably dont think about it next time.
+* the UI mouse menu introduces quite a few things that may be difficult to handle.
+* the drag drop into the view, needs the paleate from glade - which is not really compatible with our one.
+
 */
 
 using Glade;
