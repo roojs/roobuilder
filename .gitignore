@@ -50,3 +50,5 @@ debian/roobuilder
 debian/auto*
 debian/debhelper*
 debian/files
+
+.gdb_history
