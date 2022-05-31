@@ -825,10 +825,10 @@ public class Xcls_PopoverFiles : Object
 
             //listeners
             this.el.item_activated.connect( (path) => {
+                
+                _this.win.windowstate.project = _this.selectedProject;
                 _this.el.hide();
-                while(Gtk.events_pending()) {
-                    Gtk.main_iteration();
-                } // do hide before we do next bit..
+                
                 
              	Gtk.TreeIter iter;
                
@@ -839,6 +839,8 @@ public class Xcls_PopoverFiles : Object
             
                 this.el.model.get_value(iter, 0 , out gval);
                 var file = (JsRender.JsRender)gval;
+                
+                
                 _this.win.windowstate.fileViewOpen(file);
             
                 
