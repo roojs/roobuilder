@@ -35,7 +35,6 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 
         // my vars (def)
-    public Glade.Project gladeproject;
     public Project.Project project;
     public string title;
     public int no_windows;
