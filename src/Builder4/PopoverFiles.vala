@@ -825,7 +825,7 @@ public class Xcls_PopoverFiles : Object
 
             //listeners
             this.el.item_activated.connect( (path) => {
-            
+                _this.el.hide();
              	Gtk.TreeIter iter;
                
                         
@@ -836,7 +836,7 @@ public class Xcls_PopoverFiles : Object
                 this.el.model.get_value(iter, 0 , out gval);
                 var file = (JsRender.JsRender)gval;
                 _this.win.windowstate.fileViewOpen(file);
-                _this.el.hide();
+            
                 
                 
             });
