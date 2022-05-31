@@ -568,9 +568,9 @@
     "\tdostream.put_string (x.munge());",
     "\tthis.el.show();",
     "\t print(\"LOADING %s\\n\",f.get_path ());",
-    "      p.load_from_file(f.get_path ());",
+    "      //p.load_from_file(f.get_path ());",
     "        ",
-    " ",
+    "     p.load_from_file(\"/tmp/glade.xml\");",
     "",
     "}"
    ],

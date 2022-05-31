@@ -167,9 +167,9 @@ public class Xcls_GladeuiView : Object
     	dostream.put_string (x.munge());
     	this.el.show();
     	 print("LOADING %s\n",f.get_path ());
-          p.load_from_file(f.get_path ());
+          //p.load_from_file(f.get_path ());
             
-     
+         p.load_from_file("/tmp/glade.xml");
     
     }
     public void forwardSearch (bool change_focus) {
