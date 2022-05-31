@@ -217,7 +217,7 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/WindowRooView.vala \
 		Builder4/WindowLeftProps.vala \
 		Builder4/PopoverAddProp.vala \
-		Builder4/GladeuiView.vala \
+		Builder4/GtkView.vala \
 		Builder4/ValaProjectSettingsPopover.vala \
 		Builder4/MainWindow.vala \
 		Builder4/WindowState.vala \

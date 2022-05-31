@@ -21,8 +21,8 @@ public class Xcls_GtkView : Object
 
         // my vars (def)
     public Gtk.Widget lastObj;
-    public int width;
     public int last_search_end;
+    public int width;
     public Gtk.SourceSearchContext searchcontext;
     public JsRender.JsRender file;
     public int height;
@@ -36,8 +36,8 @@ public class Xcls_GtkView : Object
 
         // my vars (dec)
         this.lastObj = null;
-        this.width = 0;
         this.last_search_end = 0;
+        this.width = 0;
         this.file = null;
         this.height = 0;
 
@@ -75,6 +75,23 @@ public class Xcls_GtkView : Object
     		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
     		return false;
     	});   
+    
+       
+    }
+    public int search (string txt) {
+    	this.notebook.el.page = 1;
+     	var s = new Gtk.SourceSearchSettings();
+    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
+    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
+    	this.searchcontext.set_highlight(true);
+    	s.set_search_text(txt);
+    	
+    	Gtk.TextIter beg, st,en;
+    	 
+    	buf.get_start_iter(out beg);
+    	this.searchcontext.forward(beg, out st, out en);
+    	this.last_search_end  = 0;
+    	return this.searchcontext.get_occurrences_count();
     
        
     }
@@ -162,8 +179,8 @@ public class Xcls_GtkView : Object
             
             
     	var x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);
-            var obj = x.munge() as Gtk.Widget;
-            this.lastObj = null;
+        var obj = x.munge() as Gtk.Widget;
+        this.lastObj = null;
     	if (obj == null) {
             	return;
     	}
@@ -174,23 +191,6 @@ public class Xcls_GtkView : Object
             
              
             
-    }
-    public int search (string txt) {
-    	this.notebook.el.page = 1;
-     	var s = new Gtk.SourceSearchSettings();
-    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
-    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
-    	this.searchcontext.set_highlight(true);
-    	s.set_search_text(txt);
-    	
-    	Gtk.TextIter beg, st,en;
-    	 
-    	buf.get_start_iter(out beg);
-    	this.searchcontext.forward(beg, out st, out en);
-    	this.last_search_end  = 0;
-    	return this.searchcontext.get_occurrences_count();
-    
-       
     }
     public void forwardSearch (bool change_focus) {
     
@@ -524,6 +524,15 @@ public class Xcls_GtkView : Object
         }
 
         // user defined functions
+        public string toString () {
+           Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_buffer().get_start_iter(out s);
+            this.el.get_buffer().get_end_iter(out e);
+            var ret = this.el.get_buffer().get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
+        }
         public void nodeSelected (JsRender.Node? sel) {
           
             
@@ -581,15 +590,6 @@ public class Xcls_GtkView : Object
             }
             
         
-        }
-        public string toString () {
-           Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_buffer().get_start_iter(out s);
-            this.el.get_buffer().get_end_iter(out e);
-            var ret = this.el.get_buffer().get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
         }
         public void loadFile ( ) {
             this.loading = true;
