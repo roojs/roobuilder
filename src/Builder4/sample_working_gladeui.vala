@@ -14,7 +14,7 @@ static int main (string[] args)
     Window win = new Window(WindowType.TOPLEVEL);
    
     Project proj = new Project();
-    App.add_project(proj);
+
     //Palette pal = new Palette();
     //Inspector ins = new Inspector();
     DesignView dv = new DesignView(proj);
@@ -31,6 +31,7 @@ static int main (string[] args)
     win.set_size_request(300,300);
     win.show_all();
      App.set_window(win);
+    App.add_project(proj);     
     proj.load_from_file("/tmp/glade.xml");
     
     Gtk.main();
