@@ -826,7 +826,9 @@ public class Xcls_PopoverFiles : Object
             //listeners
             this.el.item_activated.connect( (path) => {
                 _this.el.hide();
-                Gtk.m
+                while(Gtk.events_pending()) {
+                    Gtk.main_iteration();
+                } // do hide before we do next bit..
                 
              	Gtk.TreeIter iter;
                

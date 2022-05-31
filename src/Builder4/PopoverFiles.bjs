@@ -298,7 +298,9 @@
             "item_activated" : [
              "(path) => {",
              "    _this.el.hide();",
-             "    Gtk.m",
+             "    while(Gtk.events_pending()) {",
+             "        Gtk.main_iteration();",
+             "    } // do hide before we do next bit..",
              "    ",
              " \tGtk.TreeIter iter;",
              "   ",
