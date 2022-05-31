@@ -961,9 +961,11 @@ public class Xcls_PopoverFiles : Object
                 if (fn.length < 1) {
                 	return;
             	}
+                _this.win.windowstate.project = _this.selectedProject;
                  _this.el.hide();
                 
                 var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
+               
                
                 _this.win.windowstate.fileViewOpen(f);
                
