@@ -157,8 +157,7 @@
             "../Builder4/PopoverEditor.vala",
             "../Builder4/Editor.vala",
             "../Builder4/PopoverFiles.vala",
-            "../JsRender/NodeToGlade.vala",
-            "../Builder4/GladeuiView.vala"
+            "../JsRender/NodeToGlade.vala"
         ],
         "packages" : []
     },
@@ -206,8 +205,7 @@
             "libvala-0.36",
             "gee-0.8",
             "roojspacker-1.4",
-            "libvala-0.56",
-            "gladeui-2.0"
+            "libvala-0.56"
         ]
     }
 ]
