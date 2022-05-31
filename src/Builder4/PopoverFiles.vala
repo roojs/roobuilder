@@ -826,6 +826,8 @@ public class Xcls_PopoverFiles : Object
             //listeners
             this.el.item_activated.connect( (path) => {
                 _this.el.hide();
+                Gtk.m
+                
              	Gtk.TreeIter iter;
                
                         

@@ -298,6 +298,8 @@
             "item_activated" : [
              "(path) => {",
              "    _this.el.hide();",
+             "    Gtk.m",
+             "    ",
              " \tGtk.TreeIter iter;",
              "   ",
              "            ",
