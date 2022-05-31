@@ -12,7 +12,7 @@ static int main (string[] args)
 {
     Gtk.init(ref args);
     Window win = new Window(WindowType.TOPLEVEL);
-    App.set_window(win);
+   
     Project proj = new Project();
     App.add_project(proj);
     Palette pal = new Palette();
@@ -30,6 +30,7 @@ static int main (string[] args)
     ins.show();
     win.set_size_request(300,300);
     win.show_all();
+     App.set_window(win);
     proj.load_from_file("/tmp/glade.xml");
     
     Gtk.main();
