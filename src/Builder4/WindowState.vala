@@ -778,6 +778,7 @@ public class WindowState : Object
 		switch (this.state) {
 			 
 			case State.PREVIEW:
+				// stop editing the editor tab.
 				this.code_editor_tab.reset();
 				break;
 			
