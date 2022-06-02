@@ -778,10 +778,12 @@ public class WindowState : Object
 		switch (this.state) {
 			 
 			case State.PREVIEW:
-				// stop editing the editor tab.
-				
+		
 			
 			case State.PREVIEW:
+				// stop editing the editor tab.
+				// always save before calling switch state to preview?
+				
 				this.code_editor_tab.reset();
 				 
 				if (this.left_tree.getActiveFile() != null) {
