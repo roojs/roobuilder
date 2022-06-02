@@ -15,6 +15,7 @@
     {
      "$ pack" : "get_content_area().add",
      "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "items" : [
       {
        "$ homogeneous" : true,
