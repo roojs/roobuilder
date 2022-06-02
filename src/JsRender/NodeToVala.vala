@@ -4,7 +4,13 @@
  * 
  * usage : x = (new JsRender.NodeToVala(node)).munge();
  * 
- * 
+ * Fixmes?
+ *
+ *  pack - can we come up with a replacement?
+     - parent.child == child_widget -- actually uses getters and effectively does 'add'?
+       (works on most)?
+    
+     
  * 
  * 
  * 
@@ -399,7 +405,7 @@ public class JsRender.NodeToVala : Object {
 		if (this.node.has("* args")) {
 			// not sure what this is supposed to be ding..
 		
-			cargs_str = ", " + this.node.get("* args");
+			cargs_str =  this.node.get("* args");
 			//var ar = this.node.get("* args");.split(",");
 			//for (var ari =0; ari < ar.length; ari++) {
 				//	cargs +=  (ar[ari].trim().split(" ").pop();
@@ -412,7 +418,9 @@ public class JsRender.NodeToVala : Object {
 			this.addLine(this.pad + "public " + this.xcls + "(" +  cargs_str +")");
 			this.addLine(this.pad + "{");
 		} else {
-				
+			if (cargs_str.length > 0) {
+				cargs_str = ", " + cargs_str;
+			}
 			// for sub classes = we passs the top level as _owner
 			this.addLine(this.pad + "public " + this.xcls + "(" +  this.top.xcls + " _owner " + cargs_str + ")");
 			this.addLine(this.pad + "{");
