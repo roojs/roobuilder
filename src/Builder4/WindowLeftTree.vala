@@ -266,7 +266,7 @@ public class Xcls_WindowLeftTree : Object
                 }
                 
             
-                this.main_window.windowstate.leftTreeBeforeChange();
+                _this.main_window.windowstate.leftTreeBeforeChange();
             
                 
                  
