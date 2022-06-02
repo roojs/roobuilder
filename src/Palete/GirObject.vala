@@ -28,11 +28,14 @@ namespace Palete {
 		
 		public GirObject paramset = null;
 		public GirObject return_value = null;
-		    
+		public bool is_deprecated = false;		    
 		public bool is_instance;
 		public bool is_array;
 		public bool  is_varargs;
 		public bool  ctor_only; // specially added ctor properties..
+		public bool is_writable = true;
+		public bool is_readable = true;
+		public bool is_abstract = false;
 		public  string parent;
 		public  string value;
 		// to be filled in...
@@ -110,6 +113,9 @@ namespace Palete {
 			string[] ret = {};
 			for(var i =0;i< this.inherits.size; i++) {
 				ret += this.inherits.get(i);
+			}
+			for(var i =0;i< this.implements.size; i++) {
+				ret += this.implements.get(i);
 			}
 			return ret;
 

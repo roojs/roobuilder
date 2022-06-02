@@ -1,118 +1,112 @@
 /*
-
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
-<interface>
-  <requires lib="gtk+" version="3.12"/>
-  <object class="GtkBox" id="box1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="orientation">vertical</property>
-    <child>
-      <object class="GtkButton" id="button1">
-        <property name="label" translatable="yes">button</property>
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <object class="GtkToggleButton" id="togglebutton1">
-        <property name="label" translatable="yes">togglebutton</property>
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">2</property>
-      </packing>
-    </child>
-  </object>
-</interface>
+ This kind of works - however there are issues with embedding gladeui that do not seem fixable.
+ - rendering is borked for windows - they detach for some reason.
+ - selecting stuff and drag etc. would probably be complicated...
+ 
+ 
 */
 public class JsRender.NodeToGlade : Object {
 
 	Node node;
- 	string pad;
-	Gee.ArrayList<string> els;
-        //Gee.ArrayList<string> skip;
-	Gee.HashMap<string,string> ar_props;
-	public static int vcnt = 0; 
-
-	public NodeToGlade( Project.Gtk, Node node,   string pad) 
+	Project.Gtk project;
+	Xml.Node* parent;
+	
+	public NodeToGlade( Project.Gtk project, Node node, Xml.Node* parent) 
 	{
+		
+		this.parent = parent;
+		this.project = project;
 		this.node = node;
- 		this.pad = pad;
-		this.els = new Gee.ArrayList<string>(); 
-		//this.skip = new Gee.ArrayList<string>();
-		this.ar_props = new Gee.HashMap<string,string>();
+ 		
+	}
+	
+	public static string mungeFile(JsRender file) 
+	{
+		if (file.tree == null) {
+			return "";
+		}
+
+		var n = new NodeToGlade(  (Project.Gtk) file.project, file.tree,  null);
+	
+		///n.toValaName(file.tree);
+		
+		
+		GLib.debug("top cls %s / xlcs %s\n ",file.tree.xvala_cls,file.tree.xvala_cls); 
+		//n.cls = file.tree.xvala_cls;
+		//n.xcls = file.tree.xvala_xcls;
+		return n.munge();
+		
 
 	}
 	
 	public string munge ( )
 	{
 
-		 
-		this.pad += "    ";
 
-		var cls = this.node.fqn().replace(".", "");
-		string res = "";
-		switch(cls) {
-			// things we can not do yet...
-			case "GtkDialog": // top level.. - named and referenced
-			case "GtkAboutDialog":
-			case "GtkMessageDialog":
-			case "GtkWindow": // top level.. - named and referenced
-				res =  this.mungeOuter(true);
-				break;
-			default:
-				res = this.mungeOuter(false);
-				break;
-		}
-				
-		
-		if (res.length < 1) {
-			return "";
-		}
-		return  "<?xml version=\"1.0\" encoding=\"UTF-8\"?> 
-			<!-- Generated with appBuilder 4.1 -->
-			<interface> 
-				<requires lib=\"gtk+\" version=\"3.12\"/>
-				<!-- <requires lib=\"gtksourceview\" version=\"3.0\"/> -->
-			" +
-  			res +
-  			"</interface>\n";
+		var doc = this.mungeNode ();
+		string ret;
+		int len;
+        doc->dump_memory_format (out ret, out len, true);
+
+		return ret;
+	
           
 		     
 	}
-	public string mungeChild(string pad ,  Node cnode, bool with_packing = false)
+	public Xml.Doc* mungeChild( Node cnode , Xml.Node* cdom)
 	{
-		var x = new  NodeToGlade(cnode,  pad);
-		return x.mungeNode(with_packing);
+		var x = new  NodeToGlade(this.project, cnode,  cdom);
+		return x.mungeNode();
+	}
+	public static Xml.Ns* ns = null;
+	
+	
+	public  Xml.Node* create_element(string n)
+	{
+		if (NodeToGlade.ns == null) {
+			Xml.Ns* ns = new Xml.Ns (null, "", "");
+	        ns->type = Xml.ElementType.ELEMENT_NODE;
+		}
+		Xml.Node* nn =  new Xml.Node (ns, n);
+       return nn;
+	
 	}
 	
-	public string mungeNode(bool with_packing)
+	public Xml.Doc* mungeNode()
 	{
-		var pad = this.pad;
+		Xml.Doc* doc;
+		if (this.parent == null) {
+			doc = new Xml.Doc("1.0");
+
+			var inf = this.create_element("interface");
+			doc->set_root_element(inf);
+			var req = this.create_element("requires");
+			req->set_prop("lib", "gtk+");
+			req->set_prop("version", "3.12");
+			inf->add_child(req);
+			this.parent = inf;
+		} else {
+			doc = this.parent->doc;
+		}
 		var cls = this.node.fqn().replace(".", "");
 		
-		var b = new global::Gtk.Builder();
-
-		var gtype = b.get_type_from_name(cls);
-		print("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
-
+		var girdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		
 		
+		
+		/// check if it's a GtkWidget?
+		// maybe not?
+		// how are models handled?
+		
+		
+		//var b = new global::Gtk.Builder();
+
+		// this might be needed if we are using non-Gtk elements?
+		//var gtype = b.get_type_from_name(cls);
+		//GLib.debug ("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
+
+		
+		/*
 		var ns = this.node.fqn().split(".")[0];
 		if (ns == "Clutter") {
 			return "";
@@ -123,19 +117,12 @@ public class JsRender.NodeToGlade : Object {
 		if (ns == "WebKit") {
 			return "";
 		}
+		*/
+		/*
+		
 		switch(cls) {
 			// things we can not do yet...
-			/*case "GtkDialog": // top level.. - named and referenced
-			case "GtkAboutDialog":
-			case "GtkWindow": // top level.. - named and referenced
-				return this.mungeWindow();
-				
-					
-				if (this.node.items.size > 0) {
-					return this.mungeChild(pad + "        " , this.node.items.get(0), false );
-				}
-				return "";
-			*/
+			
 			//case "GtkView": // SourceView?
 			case "GtkTreeStore": // top level.. - named and referenced
 			case "GtkListStore": // top level.. - named and referenced
@@ -147,30 +134,44 @@ public class JsRender.NodeToGlade : Object {
 			///case "GtkClutterEmbed"://fixme..
 				return "";
 		}
-
+		*/
 		
+		// should really use GXml... 
+		var obj = this.create_element("object");
 		var id = this.node.uid();
-		var ret = @"$pad<object class=\"$cls\" id=\"$id\">\n";
+		obj->set_prop("class", cls);
+		obj->set_prop("id", id);
+		this.parent->add_child(obj);
 		// properties..
 		var props = Palete.Gir.factoryFqn(this.project, this.node.fqn()).props;
-		//var props =  Palete.factory("Gtk").getPropertiesFor(this.node.fqn(), "props");
+ 
               
-    		var pviter = props.map_iterator();
+		var pviter = props.map_iterator();
 		while (pviter.next()) {
 			
-				// print("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
-				
-        		// skip items we have already handled..
-        		if  (!this.node.has(pviter.get_key())) {
+			GLib.debug ("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
+			
+    		// skip items we have already handled..
+    		if  (!this.node.has(pviter.get_key())) {
 				continue;
 			}
 			var k = pviter.get_key();
-			var val = GLib.Markup.escape_text(this.node.get(pviter.get_key()).strip());
-			ret += @"$pad    <property name=\"$k\">$val</property>\n"; // es
-
-                }
+			var val = this.node.get(pviter.get_key()).strip();
+			var prop = this.create_element("property");
+			prop->set_prop("name", k);
+			switch (k) { 
+				case "orientation":
+					var bits = val.split(".");
+					val = bits.length > 2 ? bits[2].down() : "vertical"; // ??
+					break;
+			}
+			
+			
+			prop->add_child(new Xml.Node.text(val));
+			obj->add_child(prop); 
+        }
 		// packing???
-
+/*
 		var pack = "";
 		
 		if (with_packing   ) {
@@ -178,33 +179,33 @@ public class JsRender.NodeToGlade : Object {
 			pack = this.packString();
 			
 
-		}	
+		
+		}	*/
 		// children..
 
-		if (this.node.items.size < 1) {
-			return ret + @"$pad</object>\n" + pack;
-		}
 		
 		for (var i = 0; i < this.node.items.size; i++ ) {
-
-			var add = this.mungeChild(pad + "        " , this.node.items.get(i) , true);
-			if (add.length < 1) {
-				continue;
+			var cn = this.node.items.get(i);
+			var child  = this.create_element("child");
+			if (cls == "GtkWindow" && cn.fqn() == "Gtk.HeaderBar") {
+				child->set_prop("type", "titlebar");
 			}
 			
-			ret += @"$pad    <child>\n";
-			ret += add;
-			ret += @"$pad    </child>\n";
+			
+			this.mungeChild(cn, child);
+			if (child->child_element_count()  < 1) {
+				continue;
+			}
+			obj->add_child(child);
+			 
 		}
-		
-		return ret + @"$pad</object>\n" + pack;
-		
+		return doc;
 
 		 
 
 	}
 	 
-	 
+	 /*
 	public string packString()
 	{
 		
@@ -242,7 +243,7 @@ public class JsRender.NodeToGlade : Object {
 		var cls = gir.classes.get(p_parts[1]);
 		var mdef = cls.methods.get(pk[0]);
 		if (mdef == null) {
-			print("could not find method : %s\n", pk[0]);
+			GLib.debug ("could not find method : %s\n", pk[0]);
 			return "";
 		}
 		/*
@@ -253,8 +254,9 @@ public class JsRender.NodeToGlade : Object {
 		generator.indent = 4;
 		generator.pretty = true;
 		    
-		print(generator.to_data(null));
+		GLib.debug print(generator.to_data(null));
 		*/
+		/*
 		string[]  pbody  = {};
 		switch(pk[0]) {
 
@@ -277,16 +279,16 @@ public class JsRender.NodeToGlade : Object {
 				return pack;
                 
 			case "set_model":
-				print ("set_model not handled yet..");
+				GLib.debug ("set_model not handled yet..");
 				return "";
 			
 			default:
-				print ("unknown pack type: %s", pk[0]);
+				GLib.debug  ("unknown pack type: %s", pk[0]);
 				return "";
 				
 		}
 			
-		var pad = this.pad;
+
 		 
 		for (var i = 2; i < mdef.paramset.params.size; i++) {
 			var poff = i - 1;
@@ -309,8 +311,9 @@ public class JsRender.NodeToGlade : Object {
 			generator.pretty = true;
 			    
 			print(generator.to_data(null));
-			*/
-			print("skip - packing - no arguments (" + pk[0] + ")\n");
+			*/ 
+			/*
+			GLib.debug ("skip - packing - no arguments (" + pk[0] + ")\n");
 			return "";
 		}
 		
@@ -320,90 +323,8 @@ public class JsRender.NodeToGlade : Object {
 		return pack;
 
 	}
-	public string  mungeOuter(bool with_window)
-	{
-		var label = this.node.fqn() + ": " + 
-			(this.node.has("title") ? this.node.get("title") : "No-title");
-		
-		var ret = "";
-		ret+= "
-<object class=\"GtkBox\" id=\"fake-window1\">
-	<property name=\"visible\">True</property>
-	<property name=\"can_focus\">False</property>
-	<property name=\"orientation\">vertical</property>
-";
-		if (with_window) { 		
-			ret+="
-	<child>
-		<object class=\"GtkLabel\" id=\"fake-window-label-1\">
-			<property name=\"visible\">True</property>
-			<property name=\"can_focus\">False</property>
-			<property name=\"label\" translatable=\"yes\">" + label + "</property>
-		</object>
-		<packing>
-			<property name=\"expand\">False</property>
-			<property name=\"fill\">True</property>
-			<property name=\"position\">0</property>
-		</packing>
-	</child>
-	";
-		}
-		
-		ret+=" 
-		<child>
-		";
-		if (with_window) {
-			var children = "";
-			if (this.node.items.size > 0) {
-			
-				children =  this.mungeChild(pad + "        " , this.node.items.get(0), false);
-			  
+	*/
 
-			} 
-			children += (children.length > 0) ? "<packing>
-				<property name=\"expand\">True</property>
-				<property name=\"fill\">True</property>
-				<property name=\"position\">1</property>
-		      </packing>" : "";
-			
-			ret+= (children.length < 1 ) ? "<placeholder/>" : children;
-			
-			
-			
-
-		} else {
-			ret+= this.mungeNode (true);
-		}
-
-		ret+="
-		    </child>
-	    ";
-	if (with_window) {
-		ret+="
-		    <child>
-		      <object class=\"GtkBox\" id=\"fake-footer\">
-			<property name=\"visible\">True</property>
-			<property name=\"can_focus\">False</property>
-			<child>
-			  <placeholder/>
-			</child>
-			<child>
-			  <placeholder/>
-			</child>
-		      </object>
-		      <packing>
-			<property name=\"expand\">False</property>
-			<property name=\"fill\">True</property>
-			<property name=\"position\">2</property>
-		      </packing>
-		    </child>
-	    ";
-	}
-		ret +="
-	</object>"; 
-
-	return ret;
-	}
 
 		
 }

@@ -65,12 +65,7 @@ public class Xcls_MainWindow : Object
 
         // init method
 
-        //this.el.show_all();
-            //try {
-                 this.el.set_icon_name("roobuilder");
-        	//} catch (Exception e) {
-        	//	print("no icon found");
-        //	}
+        this.el.set_icon_name("roobuilder");
 
         //listeners
         this.el.delete_event.connect( (   event) => {

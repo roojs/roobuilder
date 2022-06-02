@@ -1,100 +1,208 @@
 {
- "name" : "EditProject",
- "parent" : "",
- "title" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/EditProject.bjs",
- "permname" : "",
- "modOrder" : "",
  "build_module" : "builder",
  "items" : [
   {
-   "listeners" : {
-    "destroy_event" : "(self, event) => {\n\tthis.el.response(0);\n//     this.el.hide();\n    return false;\n}"
-   },
-   "default_width" : 600,
    "$ deletable" : true,
-   "title" : "Project Properties",
-   "xtype" : "Dialog",
-   "default_height" : 500,
-   "| Project.Project? show" : "() {\n      \n\n    //[ 'xtype'  ].forEach(function(k) {\n    //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);\n    //});\n\t// shouild set path..\n    _this.model.loadData();\n    this.el.show_all();\n    \n    var err_dialog = StandardErrorDialog.singleton();\n\n    var id = -1;\n    while (id < 0) {\n         id =  this.el.run();\n         if (id < 1) {\n                this.el.hide();\n                return null;\n        }\n \n         \n      if (_this.xtype.getValue().length < 1) {\n           \n            err_dialog.show(_this.el,\"You have to set Project type\");             \n            id = -1;\n            continue;\n        }\n        if (_this.dir.el.get_filename().length < 1) {\n\n            err_dialog.show(_this.el,\"You have to select a folder\");             \n            id = -1;\n            continue;\n        }\n           \n    }\n    \n    this.el.hide();\n    \n    \n    \n \n    var fn = _this.dir.el.get_filename();\n    print(\"add %s\\n\" , fn);\n    \n    var project = Project.Project.factory(_this.xtype.getValue(), fn);\n    project.save();\n    Project.projects.set(project.name,project);\n    \n    //var pr = imports.Builder.Provider.ProjectManager.ProjectManager.update(this.project);\n    \n    return project;\n\n    \n    //this.success = c.success;\n}\n",
    "$ modal" : true,
    "$ xns" : "Gtk",
    "border_width" : 3,
-   "name" : "EditProject",
+   "default_height" : 500,
+   "default_width" : 600,
    "items" : [
     {
-     "bool expand" : true,
-     "xtype" : "Box",
-     "$ pack" : " get_content_area().add \n \n",
+     "$ homogeneous" : false,
+     "$ pack" : [
+      " get_content_area().add ",
+      " ",
+      ""
+     ],
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-     "$ homogeneous" : false,
+     "bool expand" : true,
      "items" : [
       {
-       "xtype" : "Box",
-       "* pack" : "pack_start,false,true,3",
-       "$ xns" : "Gtk",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ homogeneous" : false,
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start,false,true,3",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
-         "label" : "Project type :",
-         "xtype" : "Label",
+         "$ xns" : "Gtk",
          "* pack" : "pack_start,false,true,3",
-         "$ xns" : "Gtk"
+         "label" : "Project type :",
+         "xtype" : "Label"
         },
         {
-         "| string getValue" : " () {\n     var ix = this.el.get_active();\n        if (ix < 0 ) {\n            return \"\";\n        }\n        switch(ix) {\n            case 0:\n                return \"Roo\";\n            case 1:\n                return \"Gtk\";\n           case 2:\n                return \"Flutter\";\n        }\n        return \"\";\n}\n",
-         "id" : "xtype",
-         "* init" : " this.el.add_attribute(_this.cellrender.el , \"markup\", 1 );  \n  ",
-         "xtype" : "ComboBox",
-         "* pack" : "pack_end,true,true,3",
          "$ xns" : "Gtk",
+         "* init" : [
+          " this.el.add_attribute(_this.cellrender.el , \"markup\", 1 );  ",
+          "  "
+         ],
+         "* pack" : "pack_end,true,true,3",
+         "id" : "xtype",
          "items" : [
           {
-           "id" : "cellrender",
+           "$ xns" : "Gtk",
            "* pack" : "pack_start,true",
-           "xtype" : "CellRendererText",
-           "$ xns" : "Gtk"
+           "id" : "cellrender",
+           "xtype" : "CellRendererText"
           },
           {
-           "id" : "model",
-           "xtype" : "ListStore",
-           "* pack" : "set_model",
            "$ columns" : "typeof(string),typeof(string)",
-           "n_columns" : 2,
            "$ xns" : "Gtk",
-           "| void loadData" : "  ( ) {\n        this.el.clear();\n                      \n        Gtk.TreeIter iter;\n                \n        el.append(out iter);\n        el.set_value(iter, 0, \"Roo\");\n        el.set_value(iter, 1, \"Roo Project\");\n        \n        el.append(out iter);\n        el.set_value(iter, 0, \"Gtk\");\n        el.set_value(iter, 1, \"Gtk Project\");\n         \n        el.append(out iter);\n        el.set_value(iter, 0, \"Flutter\");\n        el.set_value(iter, 1, \"Flutter Project\");\n              \n                                     \n}\n"
+           "* pack" : "set_model",
+           "id" : "model",
+           "n_columns" : 2,
+           "xtype" : "ListStore",
+           "| void loadData" : [
+            "  ( ) {",
+            "        this.el.clear();",
+            "                      ",
+            "        Gtk.TreeIter iter;",
+            "                ",
+            "        el.append(out iter);",
+            "        el.set_value(iter, 0, \"Roo\");",
+            "        el.set_value(iter, 1, \"Roo Project\");",
+            "        ",
+            "        el.append(out iter);",
+            "        el.set_value(iter, 0, \"Gtk\");",
+            "        el.set_value(iter, 1, \"Gtk Project\");",
+            "         ",
+            "        el.append(out iter);",
+            "        el.set_value(iter, 0, \"Flutter\");",
+            "        el.set_value(iter, 1, \"Flutter Project\");",
+            "              ",
+            "                                     ",
+            "}",
+            ""
+           ]
           }
+         ],
+         "xtype" : "ComboBox",
+         "| string getValue" : [
+          " () {",
+          "     var ix = this.el.get_active();",
+          "        if (ix < 0 ) {",
+          "            return \"\";",
+          "        }",
+          "        switch(ix) {",
+          "            case 0:",
+          "                return \"Roo\";",
+          "            case 1:",
+          "                return \"Gtk\";",
+          "           case 2:",
+          "                return \"Flutter\";",
+          "        }",
+          "        return \"\";",
+          "}",
+          ""
          ]
         }
-       ]
+       ],
+       "xtype" : "Box"
       },
       {
-       "$ create_folders" : false,
-       "id" : "dir",
        "$ action" : "Gtk.FileChooserAction.SELECT_FOLDER",
-       "bool expand" : true,
-       "* pack" : "pack_end,true,true,5",
-       "xtype" : "FileChooserWidget",
+       "$ create_folders" : false,
+       "$ select_multiple" : false,
        "$ xns" : "Gtk",
-       "$ select_multiple" : false
+       "* pack" : "pack_end,true,true,5",
+       "bool expand" : true,
+       "id" : "dir",
+       "xtype" : "FileChooserWidget"
       }
-     ]
+     ],
+     "xtype" : "Box"
     },
     {
-     "label" : "OK",
+     "$ xns" : "Gtk",
      "* pack" : "add_action_widget,1",
-     "xtype" : "Button",
-     "$ xns" : "Gtk"
+     "label" : "OK",
+     "xtype" : "Button"
     },
     {
-     "label" : "Cancel",
-     "xtype" : "Button",
+     "$ xns" : "Gtk",
      "* pack" : "add_action_widget,0",
-     "$ xns" : "Gtk"
+     "label" : "Cancel",
+     "xtype" : "Button"
     }
+   ],
+   "listeners" : {
+    "destroy_event" : [
+     "(self, event) => {",
+     "\tthis.el.response(0);",
+     "//     this.el.hide();",
+     "    return false;",
+     "}"
+    ]
+   },
+   "name" : "EditProject",
+   "title" : "Project Properties",
+   "xtype" : "Dialog",
+   "| Project.Project? show" : [
+    "() {",
+    "      ",
+    "",
+    "    //[ 'xtype'  ].forEach(function(k) {",
+    "    //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);",
+    "    //});",
+    "\t// shouild set path..",
+    "    _this.model.loadData();",
+    "    this.el.show_all();",
+    "    ",
+    "    var err_dialog = StandardErrorDialog.singleton();",
+    "",
+    "    var id = -1;",
+    "    while (id < 0) {",
+    "         id =  this.el.run();",
+    "         if (id < 1) {",
+    "                this.el.hide();",
+    "                return null;",
+    "        }",
+    " ",
+    "         ",
+    "      if (_this.xtype.getValue().length < 1) {",
+    "           ",
+    "            err_dialog.show(_this.el,\"You have to set Project type\");             ",
+    "            id = -1;",
+    "            continue;",
+    "        }",
+    "        if (_this.dir.el.get_filename().length < 1) {",
+    "",
+    "            err_dialog.show(_this.el,\"You have to select a folder\");             ",
+    "            id = -1;",
+    "            continue;",
+    "        }",
+    "           ",
+    "    }",
+    "    ",
+    "    this.el.hide();",
+    "    ",
+    "    ",
+    "    ",
+    " ",
+    "    var fn = _this.dir.el.get_filename();",
+    "    print(\"add %s\\n\" , fn);",
+    "    ",
+    "    var project = Project.Project.factory(_this.xtype.getValue(), fn);",
+    "    project.save();",
+    "    Project.projects.set(project.name,project);",
+    "    ",
+    "    //var pr = imports.Builder.Provider.ProjectManager.ProjectManager.update(this.project);",
+    "    ",
+    "    return project;",
+    "",
+    "    ",
+    "    //this.success = c.success;",
+    "}",
+    ""
    ]
   }
- ]
+ ],
+ "modOrder" : "",
+ "name" : "EditProject",
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/EditProject.bjs",
+ "permname" : "",
+ "title" : ""
 }

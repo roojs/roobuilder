@@ -58,7 +58,7 @@ namespace Palete {
 		public static void checkParamOverride(GirObject c)
 		{
 			
-			GLib.debug("checkParamOverride :check %s\n", c.name);
+			//GLib.debug("checkParamOverride :check %s", c.name);
 			var parset = c.gparent;
 			if (parset == null || parset.nodetype != "Paramset") {
 				print("skip parent not Paramset\n");
@@ -200,7 +200,7 @@ namespace Palete {
 			                    
 			
 		}
-
+		 
 			
 		/**
 		 * guess the fqn of a type == eg. gboolean or Widget etc...

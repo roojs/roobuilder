@@ -2,7 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
-   "# JsRender.JsRender file" : "null",
+   "# JsRender.JsRender? file" : "null",
    "# JsRender.Node node" : "null",
    "# Xcls_MainWindow window" : "null",
    "# bool dirty" : false,
@@ -535,11 +535,8 @@
    "|   void show" : [
     "(JsRender.JsRender file, JsRender.Node? node, string ptype, string key)",
     "{",
+    "    this.reset();",
     "    this.file = file;    ",
-    "    this.ptype = \"\";",
-    "    this.key  = \"\";",
-    "    this.node = null;",
-    "\tthis.searchcontext = null;",
     "    ",
     "    if (file.xtype != \"PlainFile\") {",
     "    ",
@@ -609,6 +606,17 @@
     "\t\tthis.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);",
     "\t}",
     " ",
+    "}",
+    ""
+   ],
+   "| void reset" : [
+    "() {",
+    "\t this.file = null;    ",
+    "    this.ptype = \"\";",
+    "    this.key  = \"\";",
+    "    this.node = null;",
+    "\tthis.searchcontext = null;",
+    "  ",
     "}",
     ""
    ],

@@ -813,7 +813,10 @@ namespace JsRender {
         {
             return "http://www.roojs.com/roojs1/docs/symbols/" + cls + ".html";
         }
-		 
+		 public override string toGlade() 
+		{
+			return "Roo files do not convert to glade";
+		}
      
     }
 }

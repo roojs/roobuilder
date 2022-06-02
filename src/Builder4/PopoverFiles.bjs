@@ -57,7 +57,6 @@
              "    */",
              "    return  ;    ",
              "",
-             "",
              "}"
             ]
            },
@@ -298,7 +297,11 @@
            "listeners" : {
             "item_activated" : [
              "(path) => {",
-             "",
+             "    ",
+             "    _this.win.windowstate.project = _this.selectedProject;",
+             "    _this.el.hide();",
+             "    ",
+             "    ",
              " \tGtk.TreeIter iter;",
              "   ",
              "            ",
@@ -308,8 +311,10 @@
              "",
              "    this.el.model.get_value(iter, 0 , out gval);",
              "    var file = (JsRender.JsRender)gval;",
+             "    ",
+             "    ",
              "    _this.win.windowstate.fileViewOpen(file);",
-             "    _this.el.hide();",
+             "",
              "    ",
              "    ",
              "}"
@@ -437,12 +442,14 @@
              "    if (fn.length < 1) {",
              "    \treturn;",
              "\t}",
-             "    ",
+             "    _this.win.windowstate.project = _this.selectedProject;",
+             "     _this.el.hide();",
              "    ",
              "    var f = JsRender.JsRender.factory(\"PlainFile\", _this.selectedProject, fn);",
              "   ",
+             "   ",
              "    _this.win.windowstate.fileViewOpen(f);",
-             "    _this.el.hide();",
+             "   ",
              "    ",
              "}"
             ]

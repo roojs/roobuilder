@@ -7,6 +7,21 @@
  * 
  * we need to sort out that - paths is currently a key/value array..
  * 
+ * currently we store projects in ~/.Builder/{md5}.json
+   - then for Gtk projects we have a file config1.builder - which contains dependancies, and a list of files for each target
+     (for builder it's ended up in src/Builder/config1.builder? by accident.
+   - should really support something like 
+       roobuilder --build {path_to_cfg} {target} - or local directory if not set..
+       roobuilder --build-errors {path_to_cfg} {target} - or local directory if not set..
+       
+       
+   
+   
+   should really store project data in the directory of the project?
+   
+   
+   
+ 
  * 
  * 
  */

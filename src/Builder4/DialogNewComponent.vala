@@ -42,7 +42,7 @@ public class Xcls_DialogNewComponent : Object
         this.el.default_width = 500;
         this.el.deletable = true;
         this.el.modal = true;
-        var child_0 = new Xcls_VBox2( _this );
+        var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.get_content_area().add (  child_0.el  );
         var child_1 = new Xcls_Button20( _this );
@@ -240,19 +240,19 @@ public class Xcls_DialogNewComponent : Object
         
         
     }
-    public class Xcls_VBox2 : Object
+    public class Xcls_Box2 : Object
     {
-        public Gtk.VBox el;
+        public Gtk.Box el;
         private Xcls_DialogNewComponent  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_VBox2(Xcls_DialogNewComponent _owner )
+        public Xcls_Box2(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
-            this.el = new Gtk.VBox( true, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 

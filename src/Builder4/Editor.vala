@@ -25,9 +25,9 @@ public class Editor : Object
     public int pos_root_y;
     public string ptype;
     public int last_search_end;
+    public JsRender.JsRender? file;
     public string key;
     public Gtk.SourceSearchContext searchcontext;
-    public JsRender.JsRender file;
     public bool pos;
     public bool dirty;
     public signal void save ();
@@ -44,9 +44,9 @@ public class Editor : Object
         this.activeEditor = "";
         this.ptype = "";
         this.last_search_end = 0;
+        this.file = null;
         this.key = "";
         this.searchcontext = null;
-        this.file = null;
         this.pos = false;
         this.dirty = false;
         this.node = null;
@@ -139,11 +139,8 @@ public class Editor : Object
     }
     public   void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key)
     {
+        this.reset();
         this.file = file;    
-        this.ptype = "";
-        this.key  = "";
-        this.node = null;
-    	this.searchcontext = null;
         
         if (file.xtype != "PlainFile") {
         
@@ -189,6 +186,14 @@ public class Editor : Object
     		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
     	}
      
+    }
+    public void reset () {
+    	 this.file = null;    
+        this.ptype = "";
+        this.key  = "";
+        this.node = null;
+    	this.searchcontext = null;
+      
     }
     public class Xcls_Box2 : Object
     {

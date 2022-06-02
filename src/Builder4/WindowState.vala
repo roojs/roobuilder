@@ -12,12 +12,8 @@ public class WindowState : Object
 	public enum State {
 		NONE,
 		PREVIEW,
-		//OBJECT,
-		//PROP,
-		//LISTENER,
-		//CODE,    // code editor.
-		CODEONLY //,
-		//FILES //,
+		CODE,
+		CODEONLY  
 	  
 	}  
 
@@ -34,7 +30,7 @@ public class WindowState : Object
 	public Xcls_RooProjectSettings roo_projectsettings_pop;
 	public Xcls_ValaProjectSettingsPopover  vala_projectsettings_pop;
 	public Xcls_PopoverAddObject     rightpalete;
-	public Xcls_PopoverEditor               code_editor_popover;
+	//public Xcls_PopoverEditor               code_editor_popover;
 	public Editor					 code_editor_tab; 
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
@@ -70,7 +66,7 @@ public class WindowState : Object
 		// on clutter space...
 		this.projectEditInit();
 		this.codeEditInit();
-		this.codePopoverEditInit();
+		//this.codePopoverEditInit();
 		//this.projectListInit();
 		//this.fileViewInit();
 
@@ -168,6 +164,12 @@ public class WindowState : Object
 		// in theory code editor has to hide before tree change occurs.
 		//if (this.state != State.CODE) {
 			this.left_props.finish_editing();
+			
+			if (this.state == State.CODE) {
+				this.code_editor_tab.saveContents();
+				this.switchState(State.PREVIEW);
+			}
+			
 			return true;
 		//}
 
@@ -329,9 +331,10 @@ public class WindowState : Object
 		this.left_props.el.show_all();
 	
 		this.left_props.show_editor.connect( (file, node, type,  key) => {
-			//this.switchState(State.CODE);
-			this.code_editor_popover.show(
-				this.left_props.el,
+			this.switchState(State.CODE);
+			
+			
+			this.code_editor_tab.show(
 				file,
 				node,
 				type,
@@ -339,19 +342,17 @@ public class WindowState : Object
 			);
 			
 			
+			
 		});
 
    		// not sure if this is needed - as closing the popvoer should save it.
 		this.left_props.stop_editor.connect( () => {
-			//if (this.state != State.CODE) {
-			//	return true;
-			//}
-	
-			var ret =  this.code_editor_popover.editor.saveContents();
+			var ret =  this.code_editor_tab.saveContents();
 			if (!ret) {
 				return false;
 			}
-			//this.switchState(State.PREVIEW);
+			this.switchState(State.PREVIEW);
+			 
 			return ret;
 		});
 	
@@ -409,6 +410,7 @@ public class WindowState : Object
 		 });
 
 	}
+	
 	public void projectPopoverShow(Gtk.Widget btn, Project.Project? pr) 
 	{ 
 		if (pr == null) {
@@ -528,6 +530,7 @@ public class WindowState : Object
 		});
 		
 	}
+	/*
 	public void codePopoverEditInit()
 	{
 		this.code_editor_popover  = new  Xcls_PopoverEditor();
@@ -548,6 +551,7 @@ public class WindowState : Object
 		});
 		
 	}
+	*/
 	// ----------- list of projects on left
 	/*
 	public void  projectListInit() 
@@ -710,9 +714,13 @@ public class WindowState : Object
 
 	public void gtkViewInit()
 	{
-		this.window_gladeview  =new Xcls_GtkView();
+
+		
+		
+		this.window_gladeview  =new Xcls_GtkView( );
 		this.window_gladeview.ref();
 		this.window_gladeview.main_window = this.win;
+ 
 	}
 	
 
@@ -765,19 +773,18 @@ public class WindowState : Object
 			return;
 		}
 		
-		// stop werid stuff happening
-		
-		//if (this.state == State.FILES 
-			//&& new_state == State.FILEPROJECT 
-		//	&& this.left_projects.getSelectedProject() == null) {
-		//	return;
-		//}
-		// save the easing state of everything..
-
+ 	 	// anything to do beforehand?
 		
 		switch (this.state) {
-
+			 
+		 
+			
 			case State.PREVIEW:
+				// stop editing the editor tab.
+				// always save before calling switch state to preview?
+				
+				this.code_editor_tab.reset();
+				 
 				if (this.left_tree.getActiveFile() != null) {
 					 if (this.left_tree.getActiveFile().xtype == "Roo" ) {
 						 this.window_rooview.createThumb();
@@ -795,12 +802,7 @@ public class WindowState : Object
 			 
 		 
 				
-		
-		this.win.rooviewbox.el.hide();
-	   this.win.codeeditviewbox.el.hide();
-	   
-	   
-		var oldstate  =this.state;
+		 
 		this.state = new_state;
 		
 		
@@ -811,33 +813,30 @@ public class WindowState : Object
 		switch (this.state) {
 			
 			case State.PREVIEW:  // this is the default state when working...
-				 this.win.editpane.el.show(); // holder for tree and properties..
-				 
-			 
-				// this.left_projects.el.hide(); 
-				// if (oldstate != State.FILES) {
-					// it's handled above..
-				//	print ("changing state to preview from NOT files..");
-					 
- 
-					this.win.rooviewbox.el.show();
-				// }
-			   
-				break;
- 
+				this.win.leftpane.el.show();
+				this.win.editpane.el.show(); // holder for tree and properties..
+			    this.win.rooviewbox.el.show();
+			  	this.win.codeeditviewbox.el.hide();
+			 	break;
+				
+ 			case State.CODE:
+		   		this.win.leftpane.el.show();
+		   		this.win.editpane.el.show();
+
+			    this.win.rooviewbox.el.hide();
+				this.win.codeeditviewbox.el.show();
+				this.code_editor_tab.el.show_all();
+		   		break;
+		   
 		   
 			case State.CODEONLY:
 				
 				this.win.leftpane.el.hide();
 				this.win.codeeditviewbox.el.show();
-				
-				
+				this.win.rooviewbox.el.hide();
 				this.code_editor_tab.el.show_all();
-			    
-
-
-				break;
- 
+			    break;
+			
 
 		}
 

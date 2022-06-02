@@ -411,7 +411,6 @@ public class Xcls_PopoverFiles : Object
                 */
                 return  ;    
             
-            
             });
         }
 
@@ -826,7 +825,11 @@ public class Xcls_PopoverFiles : Object
 
             //listeners
             this.el.item_activated.connect( (path) => {
-            
+                
+                _this.win.windowstate.project = _this.selectedProject;
+                _this.el.hide();
+                
+                
              	Gtk.TreeIter iter;
                
                         
@@ -836,8 +839,10 @@ public class Xcls_PopoverFiles : Object
             
                 this.el.model.get_value(iter, 0 , out gval);
                 var file = (JsRender.JsRender)gval;
+                
+                
                 _this.win.windowstate.fileViewOpen(file);
-                _this.el.hide();
+            
                 
                 
             });
@@ -956,12 +961,14 @@ public class Xcls_PopoverFiles : Object
                 if (fn.length < 1) {
                 	return;
             	}
-                
+                _this.win.windowstate.project = _this.selectedProject;
+                 _this.el.hide();
                 
                 var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
                
+               
                 _this.win.windowstate.fileViewOpen(f);
-                _this.el.hide();
+               
                 
             });
             this.el.cursor_changed.connect( () => {

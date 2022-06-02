@@ -389,7 +389,9 @@ namespace JsRender {
 		public abstract void setSource(string str);
 		public abstract string toSourcePreview() ;
 		public abstract void removeFiles() ;
-		 public abstract void  findTransStrings(Node? node );
+		public abstract void  findTransStrings(Node? node );
+		public abstract string toGlade();
+		
 	} 
 
 }

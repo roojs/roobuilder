@@ -155,6 +155,7 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg libsoup-2.4 \
  		--pkg javascriptcore \
 		--pkg roojspacker-1.4 \
+		--pkg gladeui-2.0 \
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
@@ -173,6 +174,7 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/NodeToGtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
+		JsRender/NodeToGlade.vala \		
 		JsRender/Node.vala \
 		JsRender/Roo.vala
 

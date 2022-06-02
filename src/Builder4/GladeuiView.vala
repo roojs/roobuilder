@@ -1,22 +1,21 @@
-static Xcls_GtkView  _GtkView;
+static Xcls_GladeuiView  _GladeuiView;
 
-public class Xcls_GtkView : Object
+public class Xcls_GladeuiView : Object
 {
     public Gtk.Box el;
-    private Xcls_GtkView  _this;
+    private Xcls_GladeuiView  _this;
 
-    public static Xcls_GtkView singleton()
+    public static Xcls_GladeuiView singleton()
     {
-        if (_GtkView == null) {
-            _GtkView= new Xcls_GtkView();
+        if (_GladeuiView == null) {
+            _GladeuiView= new Xcls_GladeuiView();
         }
-        return _GtkView;
+        return _GladeuiView;
     }
     public Xcls_notebook notebook;
     public Xcls_label_preview label_preview;
     public Xcls_label_code label_code;
-    public Xcls_view_layout view_layout;
-    public Xcls_container container;
+    public Xcls_designview designview;
     public Xcls_sourceview sourceview;
 
         // my vars (def)
@@ -29,7 +28,7 @@ public class Xcls_GtkView : Object
     public Xcls_MainWindow main_window;
 
     // ctor
-    public Xcls_GtkView()
+    public Xcls_GladeuiView()
     {
         _this = this;
         this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -109,7 +108,7 @@ public class Xcls_GtkView : Object
         
         var filename = this.file.getIconFileName(false);
         
-        var  win = this.el.get_parent_window();
+        var  win = this.designview.el.get_parent_window();
         var width = win.get_width();
         var height = win.get_height();
         try {
@@ -137,60 +136,41 @@ public class Xcls_GtkView : Object
         
          
     }
-    public void loadFile (JsRender.JsRender file) 
+    public void loadFile (JsRender.JsRender file)
     {
-            this.file = null;
+        
+    
+        this.file = file;
+        
+    
+            // clear existing elements from project?
             
+            var  p = this.designview.el.get_project();
+            var    li = p.get_objects().copy();
+            // should remove all..
+            for (var i =0;    i < li.length(); i++) {   
+                p.remove_object(li.nth_data(i)); 
+            }
+    
             if (file.tree == null) {
                 return;
             }
-            this.notebook.el.page = 0;// gtk preview 
-       
-      
-            
-           this.file = file;     
-            this.sourceview.loadFile();
-            this.searchcontext = null;
-            
     
-            if (this.lastObj != null) {
-                this.container.el.remove(this.lastObj);
-            }
+    //        print("%s\n",tf.tree.toJsonString());
+    	var x =  new JsRender.NodeToGlade((Project.Gtk) file.project, file.tree,  null);
+        Glade.App.set_window(_this.main_window.el); // see if setting it again forces it to go to the irght locations.
+    	 
+    FileIOStream iostream;
+    	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
+    	var ostream = iostream.output_stream;
+    	var dostream = new DataOutputStream (ostream);
+    	dostream.put_string (x.munge());
+    	this.el.show();
+    	 print("LOADING %s\n",f.get_path ());
+          //p.load_from_file(f.get_path ());
             
-            // hide the compile view at present..
-              
-            
-            var w = this.width;
-            var h = this.height;
-            
-            print("ALLOC SET SIZES %d, %d\n", w,h); 
-            
-            // set the container size min to 500/500 or 20 px less than max..
-            w = int.max (w-20, 500);
-            h = int.max (h-20, 500); 
-            
-            print("SET SIZES %d, %d\n", w,h);       
-            _this.container.el.set_size_request(w,h);
-            
-            _this.view_layout.el.set_size(w,h); // should be baded on calc.. -- see update_scrolled.
-            var rgba = Gdk.RGBA ();
-            rgba.parse ("#ccc");
-            _this.view_layout.el.override_background_color(Gtk.StateFlags.NORMAL, rgba);
-            
-            
-    	var x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);
-        var obj = x.munge() as Gtk.Widget;
-        this.lastObj = null;
-    	if (obj == null) {
-            	return;
-    	}
-    	this.lastObj = obj;
-            
-            this.container.el.add(obj);
-            obj.show_all();
-            
-             
-            
+         p.load_from_file("/tmp/glade.xml");
+    
     }
     public void forwardSearch (bool change_focus) {
     
@@ -217,16 +197,35 @@ public class Xcls_GtkView : Object
     	}
     
     }
+    public void initGlade () {
+    	 _this.designview =  new Xcls_designview( _this );
+    	 
+    	 var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
+    	 
+    	 _this.notebook.el.append_page(box, _this.label_preview.el);
+    	     Glade.App.set_window(this.main_window.el);
+    	// var  pal = new Glade.Palette();
+        //var ins = new Glade.Inspector();
+    
+    	 box.pack_start(_this.designview.el);
+    	// box.pack_start(pal);
+    	 //box.pack_start(ins);
+    	  // pal.show();
+       // ins.show();
+        _this.designview.el.show();
+    	 box.show_all();	 
+    	 
+    }
     public class Xcls_notebook : Object
     {
         public Gtk.Notebook el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_notebook(Xcls_GtkView _owner )
+        public Xcls_notebook(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.notebook = this;
@@ -239,10 +238,9 @@ public class Xcls_GtkView : Object
             child_0.ref();
             var child_1 = new Xcls_label_code( _this );
             child_1.ref();
-            var child_2 = new Xcls_ScrolledWindow5( _this );
+            var child_2 = new Xcls_designview( _this );
             child_2.ref();
-            this.el.append_page (  child_2.el , _this.label_preview.el );
-            var child_3 = new Xcls_ScrolledWindow8( _this );
+            var child_3 = new Xcls_sourceview( _this );
             child_3.ref();
             this.el.append_page (  child_3.el , _this.label_code.el );
         }
@@ -252,13 +250,13 @@ public class Xcls_GtkView : Object
     public class Xcls_label_preview : Object
     {
         public Gtk.Label el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_label_preview(Xcls_GtkView _owner )
+        public Xcls_label_preview(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.label_preview = this;
@@ -275,13 +273,13 @@ public class Xcls_GtkView : Object
     public class Xcls_label_code : Object
     {
         public Gtk.Label el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_label_code(Xcls_GtkView _owner )
+        public Xcls_label_code(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.label_code = this;
@@ -295,108 +293,59 @@ public class Xcls_GtkView : Object
         // user defined functions
     }
 
-    public class Xcls_ScrolledWindow5 : Object
+    public class Xcls_designview : Object
     {
-        public Gtk.ScrolledWindow el;
-        private Xcls_GtkView  _this;
+        public Glade.DesignView el;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
+        public JsRender.JsRender file;
 
         // ctor
-        public Xcls_ScrolledWindow5(Xcls_GtkView _owner )
+        public Xcls_designview(Xcls_GladeuiView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            _this.designview = this;
+            this.el = _this.main_window == null ? null : new Glade.DesignView(_this.main_window.gladeproject);
 
             // my vars (dec)
+            this.file = null;
 
             // set gobject values
-            var child_0 = new Xcls_view_layout( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
+
+            // init method
+
+            this.el.show();
         }
 
         // user defined functions
-    }
-    public class Xcls_view_layout : Object
-    {
-        public Gtk.Layout el;
-        private Xcls_GtkView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_view_layout(Xcls_GtkView _owner )
-        {
-            _this = _owner;
-            _this.view_layout = this;
-            this.el = new Gtk.Layout( null, null );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_container( _this );
-            child_0.ref();
-            this.el.put (  child_0.el , 10,10 );
+        public void createThumb () {
+            
+            
+            if (this.file == null) {
+                return;
+            }
+            var filename = this.file.getIconFileName(false);
+            
+            var  win = this.el.get_parent_window();
+            var width = win.get_width();
+            var height = win.get_height();
+        
+            Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
+        
+            screenshot.save(filename,"png");
+            return;
+            
+            
+             
         }
-
-        // user defined functions
-    }
-    public class Xcls_container : Object
-    {
-        public Gtk.Box el;
-        private Xcls_GtkView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_container(Xcls_GtkView _owner )
-        {
-            _this = _owner;
-            _this.container = this;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
     }
 
-
-
-    public class Xcls_ScrolledWindow8 : Object
-    {
-        public Gtk.ScrolledWindow el;
-        private Xcls_GtkView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ScrolledWindow8(Xcls_GtkView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_sourceview( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-        }
-
-        // user defined functions
-    }
     public class Xcls_sourceview : Object
     {
         public Gtk.SourceView el;
-        private Xcls_GtkView  _this;
+        private Xcls_GladeuiView  _this;
 
 
             // my vars (def)
@@ -404,7 +353,7 @@ public class Xcls_GtkView : Object
         public bool allow_node_scroll;
 
         // ctor
-        public Xcls_sourceview(Xcls_GtkView _owner )
+        public Xcls_sourceview(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             _this.sourceview = this;
@@ -592,6 +541,8 @@ public class Xcls_GtkView : Object
         
         }
         public void loadFile ( ) {
+        
+            
             this.loading = true;
             var buf = this.el.get_buffer();
             buf.set_text("",0);
@@ -734,7 +685,6 @@ public class Xcls_GtkView : Object
         
         }
     }
-
 
 
 }

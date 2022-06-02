@@ -10,13 +10,9 @@
    "$ xns" : "Gtk",
    "* init" : [
     " ",
-    "\t  ",
-    "    //this.el.show_all();",
-    "    //try {",
-    "         this.el.set_icon_name(\"roobuilder\");",
-    "\t//} catch (Exception e) {",
-    "\t//\tprint(\"no icon found\");",
-    "//\t}"
+    " ",
+    "     this.el.set_icon_name(\"roobuilder\");",
+    " "
    ],
    "border_width" : 0,
    "default_height" : 850,

@@ -1,6 +1,6 @@
 static Xcls_GladeView  _GladeView;
 
-public class Xcls_GladeView : Object 
+public class Xcls_GladeView : Object
 {
     public Glade.DesignView el;
     private Xcls_GladeView  _this;
@@ -16,7 +16,7 @@ public class Xcls_GladeView : Object
         // my vars (def)
     public JsRender.JsRender file;
 
-    // ctor 
+    // ctor
     public Xcls_GladeView()
     {
         _this = this;
@@ -28,7 +28,7 @@ public class Xcls_GladeView : Object
         // set gobject values
     }
 
-    // user defined functions 
+    // user defined functions
     public void createThumb () {
         
         
@@ -46,20 +46,6 @@ public class Xcls_GladeView : Object
         screenshot.save(filename,"png");
         return;
         
-        
-        
-        
-        
-         
-        
-        // should we hold until it's printed...
-        
-          
-    
-        
-        
-    
-    
         
          
     }
@@ -84,17 +70,17 @@ public class Xcls_GladeView : Object
             }
     
     //        print("%s\n",tf.tree.toJsonString());
-    	var x = new JsRender.NodeToGlade(file.tree,  "");
+    	var x =  JsRender.NodeToGlade(file.project, file.tree,  null);
     
     	 
-    	FileIOStream iostream;
+    
     	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
     	var ostream = iostream.output_stream;
     	var dostream = new DataOutputStream (ostream);
     	dostream.put_string (x.munge());
     	this.el.show();
     	 print("LOADING %s\n",f.get_path ());
-            p.load_from_file(f.get_path ());
+          p.load_from_file(f.get_path ());
             
      
     

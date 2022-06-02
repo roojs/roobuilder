@@ -1,5 +1,34 @@
 using Gtk;
 
+
+/**
+Known issues with Palete
+
+
+Object Add:
+
+SourceView/TextView - can add widget (which doesnt really seem to work) - as it's subclassing a container
+Gtk.Table - adding children? (nothing is currently allowed.
+
+
+Properties list 
+- need to remove widgets from this..
+- help / show source interface etc..?
+- make wider?
+
+Events list
+- signature on insert
+- show source interface / help
+
+
+
+
+
+
+*/
+
+
+
 namespace Palete {
 
 	
@@ -44,16 +73,169 @@ namespace Palete {
 		    // no parent...
 		}
 	      
-		public override void  load () {
+		public override void  load () 
+		{
+			
+			var gtk = Gir.factory(this.project, "Gtk"); // triggers a load...
+			var pr = (Project.Gtk) this.project;
+			
+			
+			this.map = new Gee.ArrayList<Usage>();
+ 
+			foreach(var key in   pr.gir_cache.keys) {
+				var gir = pr.gir_cache.get(key);
+				
+				this.add_map_from_classes(gir.classes);
+			}
+		}
+		
+		public void add_map_from_classes(Gee.HashMap<string,GirObject> classes)
+		{
+			
+			var widgets = new Gee.ArrayList<string>();
+			var top = new Gee.ArrayList<string>();
+			var topleft = new Gee.ArrayList<string>();
+			var containers = new Gee.ArrayList<string>();
 
-			this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
+			topleft.add("*top");
+			
+			
+			foreach(var cls in classes.values) {
+				
+				
+				if (cls.is_deprecated) {  // don't add depricated to our selection.
+					//GLib.debug("Class %s is depricated", cls.fqn());
+					continue;
+				}
+					
+				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
+					continue;
+				}
+				// we can still add properties of abstract classes...
+				
+				if (!cls.is_abstract) {
+					
+					if (
+							 
+							  // GTK4 !!
+							 cls.inherits.contains("Gtk.Root")
+							 || 
+							 cls.implements.contains("Gtk.Root")
+							 || 
+							 cls.inherits.contains("Gtk.Native")
+							 || 
+							 cls.implements.contains("Gtk.Native")
+							 || 
+							 // Gtk3
+							 // check for depricated?
+							 cls.inherits.contains("Gtk.Window")
+							 || 
+							 cls.fqn() == "Gtk.Window"
+							 || 
+							 cls.fqn() == "Gtk.Popover" // dont allow it as a child
+							 
+							 ) {
+						top.add(cls.fqn());
+						// skip - can't add these widgets to anything
+					} else { 
+						//GLib.debug("Add Widget %s", cls.fqn());
+						widgets.add(cls.fqn());
+						top.add(cls.fqn());
+						//GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
+						//	string.joinv( ",", cls.inheritsToStringArray())
+						//);
+						
+						
+					}
+				}
+				if (cls.inherits.contains("Gtk.Container") || cls.implements.contains("Gtk.Container")) {
+					containers.add(cls.fqn());
+					GLib.debug("Add Container %s", cls.fqn());
+				}
+				
+				if (cls.props.size < 1) {	
+					continue;
+				}			
+				
+				var localopts_r = new Gee.ArrayList<string>();
+				var localopts_l = new Gee.ArrayList<string>();
+				localopts_l.add(cls.fqn());
+				
+				// we have a class that extends a widget - let's see if we can add the object based properties. here.
+				
+				var props = cls.props.values.to_array();
+				for (var i = 0 ;i < props.length;i++) {
+					var prop = props[i];
+				
+					if (!prop.type.contains(".")) {
+						// not a namespaced object - ignore
+						continue;
+					}
+					// gtkcontainer child is a abstract method - that can be called multiple times
+					// gtkwidget parent - is a similar method 
+					if (!prop.is_readable && !prop.is_writable) {
+						continue;
+					}
+					if (prop.is_deprecated) {
+						continue;
+					}
+					
+					if (prop.name == "parent" || 
+						prop.name == "child" || 
+						prop.name == "attached_to" || 
+						prop.name == "mnemonic_widget" ||
+						prop.name == "application" ||
+						prop.name == "transient_for"
+						
+						) {
+						continue;
+					}
+					var propcls = this.getClass(prop.type);
+					if (propcls == null) {
+						continue;
+					}
+					// check if propcls is abstract?
+					if (!propcls.is_abstract) { 
+						localopts_r.add( prop.type + ":" + prop.name);
+					}
+					GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
+					foreach(var impl in propcls.implementations) {
+						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
+						// in theory these can not be abstract?
+						localopts_r.add( impl + ":" + prop.name );
+					}
+					
+					
+					
+					
+					// lookup type -> is it an object
+					// and not a enum..
+					// if so then add it to localopts
+				
+				}
+				if (localopts_r.size > 0) { 
+					this.map.add(new Usage(localopts_l, localopts_r));
+				}
+			}
+						
+						
+				 
+			  
+			  
+		  	this.map.add(new Usage( topleft, top));
+		  	this.map.add(new Usage( containers, widgets));
+		
+			
+			
+			///this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
 	 
 		     
 		}
 		
-		public string doc(string what) {
-	    		var ns = what.split(".")[0];
-	    		var gir =  Gir.factory(this.project,ns);
+		public string doc(string what) 
+		{
+    		var ns = what.split(".")[0];
+    		var gir =  Gir.factory(this.project,ns);
 			return   gir.doc(what);
 			
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
@@ -225,6 +407,7 @@ namespace Palete {
 			
 			return ret;
 		}
+		// get a list of available vapi files...
 		
 		public  Gee.ArrayList<string>  loadPackages(string dirname)
 		{
