@@ -23,10 +23,9 @@
        "* pack" : "pack_start,false,false,0",
        "items" : [
         {
-         "$ justify" : "Gtk.Justification.RIGHT",
          "$ xns" : "Gtk",
          "* pack" : "attach_defaults,0,1,0,1",
-         "Gtk.Justification justify" : "Gtk.Justification.LEFT",
+         "Gtk.Justification justify" : "Gtk.Justification.RIGHT",
          "label" : "Component Name",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
@@ -44,7 +43,7 @@
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach_defaults,0,1,1,2",
-         "Gtk.Justification justify" : "Gtk.Justification.LEFT",
+         "Gtk.Justification justify" : "Gtk.Justification.RIGHT",
          "label" : "Title",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
