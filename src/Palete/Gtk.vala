@@ -151,7 +151,13 @@ namespace Palete {
 						continue;
 					}
 					
-					if (prop.name == "parent" || prop.name == "child") {
+					if (prop.name == "parent" || 
+						prop.name == "child" || 
+						prop.name == "attached_to" || 
+						prop.name == "mnemonic_widget" || 						
+						prop.name == "transient_for"
+						
+						) {
 						continue;
 					}
 					var propcls = this.getClass(prop.type);
