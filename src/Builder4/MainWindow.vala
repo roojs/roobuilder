@@ -128,12 +128,12 @@ public class Xcls_MainWindow : Object
     // user defined functions
     public void openNewWindow () {
     	Xcls_MainWindow.singleton().no_windows++;
-            var w = new Xcls_MainWindow();
-            w.ref();
+        var w = new Xcls_MainWindow();
+        w.ref();
     
-            w.el.show_all();
-            w.initChildren();
-            w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);
+        w.el.show_all();
+        w.initChildren();
+        w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);
             // should open the file dialog...
             //w.windowstate.switchState(WindowState.State.FILES);
     }
