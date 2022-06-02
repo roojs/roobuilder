@@ -39,7 +39,6 @@
          "xtype" : "Entry"
         },
         {
-         "$ justify" : "Gtk.Justification.RIGHT",
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach_defaults,0,1,1,2",
