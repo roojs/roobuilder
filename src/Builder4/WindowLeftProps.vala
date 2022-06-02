@@ -953,7 +953,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( (self) => {
             
-                _this.addProp( "prop", "XXXX", "","string");
+                _this.addProp( "prop", "XXXX", "","# string");
             
             });
         }
