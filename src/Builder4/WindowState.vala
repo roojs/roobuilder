@@ -777,8 +777,7 @@ public class WindowState : Object
 		
 		switch (this.state) {
 			 
-			case State.PREVIEW:
-		
+		 
 			
 			case State.PREVIEW:
 				// stop editing the editor tab.
