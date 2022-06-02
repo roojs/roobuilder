@@ -199,7 +199,7 @@
        "xtype" : "Table"
       }
      ],
-     "xtype" : "VBox"
+     "xtype" : "Box"
     },
     {
      "$ xns" : "Gtk",
