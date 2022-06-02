@@ -265,10 +265,9 @@ public class Xcls_WindowLeftTree : Object
                     return true;
                 }
                 
-                if (_this.main_window.windowstate.state == STATE.CODE) {
-                	
-            	    this.main_window.windowstate.switchState(State.PREVIEW);
-                }
+            
+                this.main_window.windowstate.leftTreeBeforeChange()
+            
                 
                  
                 this.el.get_selection().select_path(res);
