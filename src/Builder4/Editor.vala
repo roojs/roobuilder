@@ -165,14 +165,6 @@ public class Editor : Object
         }
      
     }
-    public return_type reset () {
-    	 this.file = null;    
-        this.ptype = "";
-        this.key  = "";
-        this.node = null;
-    	this.searchcontext = null;
-      
-    }
     public void forwardSearch (bool change_focus) {
     
     	if (this.searchcontext == null) {
@@ -194,6 +186,14 @@ public class Editor : Object
     		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
     	}
      
+    }
+    public void reset () {
+    	 this.file = null;    
+        this.ptype = "";
+        this.key  = "";
+        this.node = null;
+    	this.searchcontext = null;
+      
     }
     public class Xcls_Box2 : Object
     {

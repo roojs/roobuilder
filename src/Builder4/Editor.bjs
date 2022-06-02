@@ -584,17 +584,6 @@
     "}",
     ""
    ],
-   "| return_type reset" : [
-    "() {",
-    "\t this.file = null;    ",
-    "    this.ptype = \"\";",
-    "    this.key  = \"\";",
-    "    this.node = null;",
-    "\tthis.searchcontext = null;",
-    "  ",
-    "}",
-    ""
-   ],
    "| void forwardSearch" : [
     "(bool change_focus) {",
     "",
@@ -617,6 +606,17 @@
     "\t\tthis.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);",
     "\t}",
     " ",
+    "}",
+    ""
+   ],
+   "| void reset" : [
+    "() {",
+    "\t this.file = null;    ",
+    "    this.ptype = \"\";",
+    "    this.key  = \"\";",
+    "    this.node = null;",
+    "\tthis.searchcontext = null;",
+    "  ",
     "}",
     ""
    ],
