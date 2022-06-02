@@ -777,6 +777,9 @@ public class WindowState : Object
 		
 		switch (this.state) {
 			 
+			case State.PREVIEW:
+				this.code_editor_tab.reset();
+				break;
 			
 			case State.PREVIEW:
 				if (this.left_tree.getActiveFile() != null) {
