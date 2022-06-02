@@ -209,7 +209,6 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/DialogTemplateSelect.vala \
 		Builder4/EditProject.vala \
 		Builder4/Editor.vala \
-		Builder4/PopoverEditor.vala \
 		Builder4/PopoverFiles.vala \
 		Builder4/RooProjectSettings.vala \
 		Builder4/PopoverAddObject.vala \
