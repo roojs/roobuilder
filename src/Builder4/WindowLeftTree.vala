@@ -254,7 +254,7 @@ public class Xcls_WindowLeftTree : Object
                    return true;
                 }
                 
-            
+            	
                 
                 if (ev.type != Gdk.EventType.BUTTON_PRESS  || ev.button != 3) {
                     //print("click" + ev.type);
@@ -264,6 +264,12 @@ public class Xcls_WindowLeftTree : Object
                 if (!_this.view.el.get_path_at_pos((int)ev.x,(int)ev.y, out res, null, null, null) ) {
                     return true;
                 }
+                
+                if (_this.main_window.windowstate.state == STATE.CODE) {
+                	
+            	    this.main_window.windowstate.switchState(State.PREVIEW);
+                }
+                
                  
                 this.el.get_selection().select_path(res);
                  
