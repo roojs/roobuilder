@@ -139,11 +139,8 @@ public class Editor : Object
     }
     public   void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key)
     {
+        this.reset();
         this.file = file;    
-        this.ptype = "";
-        this.key  = "";
-        this.node = null;
-    	this.searchcontext = null;
         
         if (file.xtype != "PlainFile") {
         
