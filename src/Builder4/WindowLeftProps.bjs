@@ -197,7 +197,7 @@
             "activate" : [
              "  ( ) =>{",
              "",
-             "    _this.addProp( \"prop\", \"XXXX\", \"() {\\n\\n}\\n\", \"| return_type\");",
+             "    _this.addProp( \"prop\", \"XXXX\", \"() {\\n\\n}\\n\", \"| void\");",
              "}"
             ]
            },
