@@ -26,6 +26,7 @@
          "$ justify" : "Gtk.Justification.RIGHT",
          "$ xns" : "Gtk",
          "* pack" : "attach_defaults,0,1,0,1",
+         "Gtk.Justification justify" : "Gtk.Justification.LEFT",
          "label" : "Component Name",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
