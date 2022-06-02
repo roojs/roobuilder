@@ -1,5 +1,34 @@
 using Gtk;
 
+
+/**
+Known issues with Palete
+
+
+Object Add:
+
+SourceView/TextView - can add widget (which doesnt really seem to work) - as it's subclassing a container
+Gtk.Table - adding children? (nothing is currently allowed.
+
+
+Properties list 
+- need to remove widgets from this..
+- help / show source interface etc..?
+- make wider?
+
+Events list
+- signature on insert
+- show source interface / help
+
+
+
+
+
+
+*/
+
+
+
 namespace Palete {
 
 	
@@ -154,7 +183,8 @@ namespace Palete {
 					if (prop.name == "parent" || 
 						prop.name == "child" || 
 						prop.name == "attached_to" || 
-						prop.name == "mnemonic_widget" || 						
+						prop.name == "mnemonic_widget" ||
+						prop.name == "application" ||
 						prop.name == "transient_for"
 						
 						) {
