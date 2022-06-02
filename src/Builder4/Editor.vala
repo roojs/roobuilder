@@ -168,6 +168,9 @@ public class Editor : Object
         }
      
     }
+    public return_type reset () {
+    
+    }
     public void forwardSearch (bool change_focus) {
     
     	if (this.searchcontext == null) {

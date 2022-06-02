@@ -587,6 +587,12 @@
     "}",
     ""
    ],
+   "| return_type reset" : [
+    "() {",
+    "",
+    "}",
+    ""
+   ],
    "| void forwardSearch" : [
     "(bool change_focus) {",
     "",
