@@ -392,6 +392,7 @@ public class Xcls_DialogNewComponent : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
             this.el.xalign = 0.900000f;
             this.el.visible = true;
         }

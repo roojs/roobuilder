@@ -40,9 +40,11 @@
          "xtype" : "Entry"
         },
         {
+         "$ justify" : "Gtk.Justification.RIGHT",
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach_defaults,0,1,1,2",
+         "Gtk.Justification justify" : "Gtk.Justification.LEFT",
          "label" : "Title",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
