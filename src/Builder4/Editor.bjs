@@ -2,7 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
-   "# JsRender.JsRender file" : "null",
+   "# JsRender.JsRender? file" : "null",
    "# JsRender.Node node" : "null",
    "# Xcls_MainWindow window" : "null",
    "# bool dirty" : false,
