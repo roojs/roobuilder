@@ -10,8 +10,7 @@
      "(rid) => {",
      "    this.el.hide();",
      "    ",
-     "}",
-     "  "
+     "}"
     ]
    },
    "program_name" : "roobuilder",
