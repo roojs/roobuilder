@@ -779,10 +779,11 @@ public class WindowState : Object
 			 
 			case State.PREVIEW:
 				// stop editing the editor tab.
-				this.code_editor_tab.reset();
-				break;
+				
 			
 			case State.PREVIEW:
+				this.code_editor_tab.reset();
+				 
 				if (this.left_tree.getActiveFile() != null) {
 					 if (this.left_tree.getActiveFile().xtype == "Roo" ) {
 						 this.window_rooview.createThumb();
