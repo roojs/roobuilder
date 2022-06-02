@@ -589,7 +589,12 @@
    ],
    "| return_type reset" : [
     "() {",
-    "",
+    "\t this.file = null;    ",
+    "    this.ptype = \"\";",
+    "    this.key  = \"\";",
+    "    this.node = null;",
+    "\tthis.searchcontext = null;",
+    "  ",
     "}",
     ""
    ],

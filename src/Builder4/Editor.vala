@@ -169,7 +169,12 @@ public class Editor : Object
      
     }
     public return_type reset () {
-    
+    	 this.file = null;    
+        this.ptype = "";
+        this.key  = "";
+        this.node = null;
+    	this.searchcontext = null;
+      
     }
     public void forwardSearch (bool change_focus) {
     
