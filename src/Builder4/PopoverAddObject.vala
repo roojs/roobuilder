@@ -13,7 +13,7 @@ public class Xcls_PopoverAddObject : Object
         return _PopoverAddObject;
     }
     public Xcls_model model;
-    public Xcls_iconrenderer iconrenderer;
+    public Xcls_iconrender iconrender;
     public Xcls_txtrender txtrender;
 
         // my vars (def)
@@ -320,7 +320,7 @@ public class Xcls_PopoverAddObject : Object
 
             // set gobject values
             this.el.title = "Drag to add Object";
-            var child_0 = new Xcls_iconrenderer( _this );
+            var child_0 = new Xcls_iconrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
             var child_1 = new Xcls_txtrender( _this );
@@ -335,7 +335,7 @@ public class Xcls_PopoverAddObject : Object
 
         // user defined functions
     }
-    public class Xcls_iconrenderer : Object
+    public class Xcls_iconrender : Object
     {
         public Gtk.CellRendererPixbuf el;
         private Xcls_PopoverAddObject  _this;
@@ -344,10 +344,10 @@ public class Xcls_PopoverAddObject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_iconrenderer(Xcls_PopoverAddObject _owner )
+        public Xcls_iconrender(Xcls_PopoverAddObject _owner )
         {
             _this = _owner;
-            _this.iconrenderer = this;
+            _this.iconrender = this;
             this.el = new Gtk.CellRendererPixbuf();
 
             // my vars (dec)

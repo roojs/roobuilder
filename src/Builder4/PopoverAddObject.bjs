@@ -91,7 +91,7 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "pack_start,true",
-           "id" : "iconrenderer",
+           "id" : "iconrender",
            "xtype" : "CellRendererPixbuf"
           },
           {
