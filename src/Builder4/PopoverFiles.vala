@@ -161,7 +161,7 @@ public class Xcls_PopoverFiles : Object
             m.append(out iter);
             var file = fiter.get();
             m.set(iter,   0,file ); // zero contains the file reference
-            m.set(iter,   1,file.nickType() + "<BR>" + file.nickName()); // marked up title?
+            m.set(iter,   1,file.nickType() + "\n" + file.nickName()); // marked up title?
             m.set(iter,   2,file.nickType() ); // file type?
             
             
