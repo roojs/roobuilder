@@ -286,7 +286,7 @@ public class Xcls_PopoverAddObject : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string),typeof(Gdk.Pixbuf) );
+            this.el = new Gtk.ListStore( 3, typeof(string),typeof(string),typeof(Gdk.Pixbuf) );
 
             // my vars (dec)
 

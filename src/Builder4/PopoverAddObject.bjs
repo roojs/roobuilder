@@ -68,7 +68,7 @@
          "$ xns" : "Gtk",
          "* pack" : "set_model",
          "id" : "model",
-         "n_columns" : 2,
+         "n_columns" : 3,
          "xtype" : "ListStore",
          "| string getValue" : [
           " (Gtk.TreeIter iter, int col)  {",
