@@ -65,7 +65,7 @@ public class Xcls_PopoverAddObject : Object
              if (dname.contains(":")) {
     			var ar = dname.split(":");
     			dname = "<b>" + ar[1] +"</b> - <i>"+ar[0]+"</i>";
-    			clsname = ar[1]; /// possibly?
+    			clsname = ar[0]; /// possibly?
     		}
              
             this.model.el.set_value(citer, 0,   tr[i] ); // used data. 

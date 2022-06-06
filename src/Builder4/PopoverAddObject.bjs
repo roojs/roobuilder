@@ -216,7 +216,7 @@
     "         if (dname.contains(\":\")) {",
     "\t\t\tvar ar = dname.split(\":\");",
     "\t\t\tdname = \"<b>\" + ar[1] +\"</b> - <i>\"+ar[0]+\"</i>\";",
-    "\t\t\tclsname = ar[1]; /// possibly?",
+    "\t\t\tclsname = ar[0]; /// possibly?",
     "\t\t}",
     "         ",
     "        this.model.el.set_value(citer, 0,   tr[i] ); // used data. ",
