@@ -543,7 +543,7 @@
           "    Gtk.TreeIter citer;",
           "    //this.insert(citer,iter,0);",
           "    var ic = Gtk.IconTheme.get_default();",
-          "    var pixdef = ic.load_icon(\"emblem-new\", 32,0);",
+          "    var pixdef = ic.load_icon(\"emblem-new\", 16,0);",
           "    ",
           "    for(var i =0 ; i < tr.size; i++) {",
           "        if (iter != null) {",
