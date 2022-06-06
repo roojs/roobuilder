@@ -56,7 +56,7 @@ public class Xcls_PopoverAddObject : Object
     
         Gtk.TreeIter citer;
         var ic = Gtk.IconTheme.get_default();
-    	var pixdef = ic.load_icon("emblem-new", 32,0);
+    	var pixdef = ic.load_icon("emblem-new", 16,0);
     
         for(var i =0 ; i < tr.length; i++) {
              this.model.el.append(out citer);   
@@ -75,7 +75,7 @@ public class Xcls_PopoverAddObject : Object
             var sub = clsb.length > 1 ? clsb[1].down()  : "";
             
             var pix = pixdef;
-            var fn = "/usr/share/glade/pixmaps/hicolor/22x22/actions/widget-gtk-" + sub + ".png";
+            var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
             if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
     	        pix = new Gdk.Pixbuf.from_file (fn);
             }
