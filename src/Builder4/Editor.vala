@@ -219,7 +219,7 @@ public class Editor : Object
             var child_1 = new Xcls_key_edit( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , true,true );
-            var child_2 = new Xcls_HScale6( _this );
+            var child_2 = new Xcls_HScale5( _this );
             child_2.ref();
             this.el.pack_end (  child_2.el , true,true );
         }
@@ -275,37 +275,12 @@ public class Editor : Object
             // set gobject values
             this.el.width_request = 100;
             this.el.editable = false;
-            var child_0 = new Xcls_BytesIcon5( _this );
-            child_0.ref();
-            this.el.primary_icon_gicon = child_0.el;
-        }
-
-        // user defined functions
-    }
-    public class Xcls_BytesIcon5 : Object
-    {
-        public GLib.BytesIcon el;
-        private Editor  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_BytesIcon5(Editor _owner )
-        {
-            _this = _owner;
-            this.el = new GLib.BytesIcon( null );
-
-            // my vars (dec)
-
-            // set gobject values
         }
 
         // user defined functions
     }
 
-
-    public class Xcls_HScale6 : Object
+    public class Xcls_HScale5 : Object
     {
         public Gtk.HScale el;
         private Editor  _this;
@@ -314,7 +289,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HScale6(Editor _owner )
+        public Xcls_HScale5(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.HScale.with_range (6, 30, 1);
