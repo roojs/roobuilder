@@ -109,7 +109,7 @@
         {
          "# DialogTemplateSelect template_select" : "null",
          "# string activePath" : "\"\"",
-         "$ columns" : "typeof(string),typeof(string),typeof(Object)",
+         "$ columns" : "typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf)",
          "$ listAllTypes" : [
           "function() {",
           "    var s = this.get('/LeftTree.view').selection;",
@@ -721,6 +721,12 @@
          ],
          "* pack" : "append_column",
          "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,true",
+           "id" : "iconrender",
+           "xtype" : "CellRendererPixbuf"
+          },
           {
            "$ xns" : "Gtk",
            "* pack" : "pack_start,true",

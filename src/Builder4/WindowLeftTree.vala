@@ -14,6 +14,7 @@ public class Xcls_WindowLeftTree : Object
     }
     public Xcls_view view;
     public Xcls_model model;
+    public Xcls_iconrender iconrender;
     public Xcls_renderer renderer;
     public Xcls_LeftTreeMenu LeftTreeMenu;
 
@@ -992,7 +993,7 @@ public class Xcls_WindowLeftTree : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore( 4, typeof(string),typeof(string),typeof(Object) );
+            this.el = new Gtk.TreeStore( 4, typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf) );
 
             // my vars (dec)
             this.template_select = null;
@@ -1527,9 +1528,12 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.title = "test";
-            var child_0 = new Xcls_renderer( _this );
+            var child_0 = new Xcls_iconrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
+            var child_1 = new Xcls_renderer( _this );
+            child_1.ref();
+            this.el.pack_start (  child_1.el , true );
 
             // init method
 
@@ -1538,6 +1542,29 @@ public class Xcls_WindowLeftTree : Object
 
         // user defined functions
     }
+    public class Xcls_iconrender : Object
+    {
+        public Gtk.CellRendererPixbuf el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_iconrender(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            _this.iconrender = this;
+            this.el = new Gtk.CellRendererPixbuf();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_renderer : Object
     {
         public Gtk.CellRendererText el;
@@ -1581,20 +1608,20 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem10( _this );
+            var child_0 = new Xcls_MenuItem11( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_MenuItem11( _this );
+            var child_1 = new Xcls_MenuItem12( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_MenuItem12( _this );
+            var child_2 = new Xcls_MenuItem13( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_MenuItem10 : Object
+    public class Xcls_MenuItem11 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1603,7 +1630,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem10(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem11(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -1626,7 +1653,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem11 : Object
+    public class Xcls_MenuItem12 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1635,7 +1662,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem11(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem12(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -1661,7 +1688,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem12 : Object
+    public class Xcls_MenuItem13 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1670,7 +1697,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem12(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem13(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
