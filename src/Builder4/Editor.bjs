@@ -49,6 +49,13 @@
        "bool editable" : false,
        "id" : "key_edit",
        "int width_request" : 100,
+       "items" : [
+        {
+         "$ xns" : "GLib",
+         "* prop" : "primary_icon_gicon",
+         "xtype" : "BytesIcon"
+        }
+       ],
        "xtype" : "Entry"
       },
       {
