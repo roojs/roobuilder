@@ -1282,6 +1282,8 @@ public class Xcls_WindowLeftTree : Object
         {
             Gtk.TreeIter citer;
             //this.insert(citer,iter,0);
+        	var pixdef = ic.load_icon("emblem-new", 32,0);
+            
             for(var i =0 ; i < tr.size; i++) {
                 if (iter != null) {
                     this.el.insert(out citer,iter,-1); // why not append?
@@ -1296,6 +1298,24 @@ public class Xcls_WindowLeftTree : Object
                 o.set_object((Object)tr.get(i));
                 
                 this.el.set_value(citer, 2, o);
+                
+                var clsname = tr.get(i).fqn();
+                
+                var clsb = clsname.split(".");
+                var sub = clsb.length > 1 ? clsb[1].down()  : "";
+                
+                var pix = pixdef;
+                var fn = "/usr/share/glade/pixmaps/hicolor/22x22/actions/widget-gtk-" + sub + ".png";
+                if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
+        	        pix = new Gdk.Pixbuf.from_file (fn);
+                }
+                
+                
+                this.model.el.set_value(citer, 2,   pix );
+                
+                
+                
+                
                 
                 if (tr.get(i).items.size > 0) {
                     this.load(tr.get(i).items, citer);
