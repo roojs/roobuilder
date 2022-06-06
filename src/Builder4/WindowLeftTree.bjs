@@ -181,7 +181,7 @@
          "* pack" : "set_model",
          "currentTree" : false,
          "id" : "model",
-         "n_columns" : 3,
+         "n_columns" : 4,
          "xtype" : "TreeStore",
          "|           JsRender.Node pathToNode" : [
           "(string path) {",

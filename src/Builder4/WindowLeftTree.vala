@@ -992,7 +992,7 @@ public class Xcls_WindowLeftTree : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore( 3, typeof(string),typeof(string),typeof(Object) );
+            this.el = new Gtk.TreeStore( 4, typeof(string),typeof(string),typeof(Object) );
 
             // my vars (dec)
             this.template_select = null;
