@@ -77,7 +77,7 @@ public class Xcls_PopoverAddObject : Object
             var pix = pixdef;
             var fn = "/usr/share/glade/pixmaps/hicolor/22x22/actions/widget-gtk-" + sub + ".png";
             if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
-    	        pix = Gdk.Pixbuf.from_file (fn);
+    	        pix = new Gdk.Pixbuf.from_file (fn);
             }
             
             
