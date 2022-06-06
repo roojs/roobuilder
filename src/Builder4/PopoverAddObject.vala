@@ -61,17 +61,17 @@ public class Xcls_PopoverAddObject : Object
         for(var i =0 ; i < tr.length; i++) {
              this.model.el.append(out citer);   
              var dname = tr[i];
-             var cls = dname;
+             var clsname = dname;
              if (dname.contains(":")) {
     			var ar = dname.split(":");
     			dname = "<b>" + ar[1] +"</b> - <i>"+ar[0]+"</i>";
-    			cls = ar[1]; /// possibly?
+    			clsname = ar[1]; /// possibly?
     		}
              
             this.model.el.set_value(citer, 0,   tr[i] ); // used data. 
             this.model.el.set_value(citer, 1,   dname ); // displayed value.
             
-            var clsb = cls.split(".");
+            var clsb = clsname.split(".");
             var sub = clsb.length > 1 ? clsb[1].down()  : "";
             
             var pix = pixdef;
