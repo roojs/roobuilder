@@ -22,10 +22,10 @@ public class Editor : Object
     public Xcls_MainWindow window;
     public string activeEditor;
     public int pos_root_x;
+    public JsRender.JsRender? file;
     public int pos_root_y;
     public string ptype;
     public int last_search_end;
-    public JsRender.JsRender? file;
     public string key;
     public Gtk.SourceSearchContext searchcontext;
     public bool pos;
@@ -42,9 +42,9 @@ public class Editor : Object
         // my vars (dec)
         this.window = null;
         this.activeEditor = "";
+        this.file = null;
         this.ptype = "";
         this.last_search_end = 0;
-        this.file = null;
         this.key = "";
         this.searchcontext = null;
         this.pos = false;

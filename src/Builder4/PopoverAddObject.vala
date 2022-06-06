@@ -13,6 +13,7 @@ public class Xcls_PopoverAddObject : Object
         return _PopoverAddObject;
     }
     public Xcls_model model;
+    public Xcls_iconrender iconrender;
     public Xcls_txtrender txtrender;
 
         // my vars (def)
@@ -54,17 +55,34 @@ public class Xcls_PopoverAddObject : Object
     
     
         Gtk.TreeIter citer;
+        var ic = Gtk.IconTheme.get_default();
+    	var pixdef = ic.load_icon("emblem-new", 16,0);
     
         for(var i =0 ; i < tr.length; i++) {
              this.model.el.append(out citer);   
              var dname = tr[i];
+             var clsname = dname;
              if (dname.contains(":")) {
     			var ar = dname.split(":");
     			dname = "<b>" + ar[1] +"</b> - <i>"+ar[0]+"</i>";
+    			clsname = ar[0]; /// possibly?
     		}
              
             this.model.el.set_value(citer, 0,   tr[i] ); // used data. 
             this.model.el.set_value(citer, 1,   dname ); // displayed value.
+            
+            var clsb = clsname.split(".");
+            var sub = clsb.length > 1 ? clsb[1].down()  : "";
+            
+            var pix = pixdef;
+            var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
+            if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
+    	        pix = new Gdk.Pixbuf.from_file (fn);
+            }
+            
+            
+            this.model.el.set_value(citer, 2,   pix );
+            
             
         }
         this.model.el.set_sort_column_id(1,Gtk.SortType.ASCENDING);
@@ -268,7 +286,7 @@ public class Xcls_PopoverAddObject : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore( 3, typeof(string),typeof(string),typeof(Gdk.Pixbuf) );
 
             // my vars (dec)
 
@@ -302,17 +320,44 @@ public class Xcls_PopoverAddObject : Object
 
             // set gobject values
             this.el.title = "Drag to add Object";
-            var child_0 = new Xcls_txtrender( _this );
+            var child_0 = new Xcls_iconrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
+            var child_1 = new Xcls_txtrender( _this );
+            child_1.ref();
+            this.el.pack_start (  child_1.el , true );
 
             // init method
 
             this.el.add_attribute(_this.txtrender.el , "markup",  1 );
+            this.el.add_attribute(_this.iconrender.el , "pixbuf",  2 );
         }
 
         // user defined functions
     }
+    public class Xcls_iconrender : Object
+    {
+        public Gtk.CellRendererPixbuf el;
+        private Xcls_PopoverAddObject  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_iconrender(Xcls_PopoverAddObject _owner )
+        {
+            _this = _owner;
+            _this.iconrender = this;
+            this.el = new Gtk.CellRendererPixbuf();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_txtrender : Object
     {
         public Gtk.CellRendererText el;

@@ -14,6 +14,7 @@ public class Xcls_WindowLeftTree : Object
     }
     public Xcls_view view;
     public Xcls_model model;
+    public Xcls_iconrender iconrender;
     public Xcls_renderer renderer;
     public Xcls_LeftTreeMenu LeftTreeMenu;
 
@@ -992,7 +993,7 @@ public class Xcls_WindowLeftTree : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore( 3, typeof(string),typeof(string),typeof(Object) );
+            this.el = new Gtk.TreeStore( 4, typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf) );
 
             // my vars (dec)
             this.template_select = null;
@@ -1281,6 +1282,9 @@ public class Xcls_WindowLeftTree : Object
         {
             Gtk.TreeIter citer;
             //this.insert(citer,iter,0);
+            var ic = Gtk.IconTheme.get_default();
+            var pixdef = ic.load_icon("emblem-new", 16,0);
+            
             for(var i =0 ; i < tr.size; i++) {
                 if (iter != null) {
                     this.el.insert(out citer,iter,-1); // why not append?
@@ -1295,6 +1299,24 @@ public class Xcls_WindowLeftTree : Object
                 o.set_object((Object)tr.get(i));
                 
                 this.el.set_value(citer, 2, o);
+                
+                var clsname = tr.get(i).fqn();
+                
+                var clsb = clsname.split(".");
+                var sub = clsb.length > 1 ? clsb[1].down()  : "";
+                
+                var pix = pixdef;
+                var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
+                if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
+        	        pix = new Gdk.Pixbuf.from_file (fn);
+                }
+                
+                
+                this.el.set_value(citer, 3,   pix );
+                
+                
+                
+                
                 
                 if (tr.get(i).items.size > 0) {
                     this.load(tr.get(i).items, citer);
@@ -1527,17 +1549,44 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.title = "test";
-            var child_0 = new Xcls_renderer( _this );
+            var child_0 = new Xcls_iconrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
+            var child_1 = new Xcls_renderer( _this );
+            child_1.ref();
+            this.el.pack_start (  child_1.el , true );
 
             // init method
 
             this.el.add_attribute(_this.renderer.el , "markup", 0 );
+              this.el.add_attribute(_this.iconrender.el , "pixbuf",  3 );
         }
 
         // user defined functions
     }
+    public class Xcls_iconrender : Object
+    {
+        public Gtk.CellRendererPixbuf el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_iconrender(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            _this.iconrender = this;
+            this.el = new Gtk.CellRendererPixbuf();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_renderer : Object
     {
         public Gtk.CellRendererText el;
@@ -1581,20 +1630,20 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem10( _this );
+            var child_0 = new Xcls_MenuItem11( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_MenuItem11( _this );
+            var child_1 = new Xcls_MenuItem12( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_MenuItem12( _this );
+            var child_2 = new Xcls_MenuItem13( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_MenuItem10 : Object
+    public class Xcls_MenuItem11 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1603,7 +1652,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem10(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem11(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -1626,7 +1675,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem11 : Object
+    public class Xcls_MenuItem12 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1635,7 +1684,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem11(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem12(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -1661,7 +1710,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem12 : Object
+    public class Xcls_MenuItem13 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1670,7 +1719,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem12(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem13(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();

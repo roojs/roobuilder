@@ -109,7 +109,7 @@
         {
          "# DialogTemplateSelect template_select" : "null",
          "# string activePath" : "\"\"",
-         "$ columns" : "typeof(string),typeof(string),typeof(Object)",
+         "$ columns" : "typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf)",
          "$ listAllTypes" : [
           "function() {",
           "    var s = this.get('/LeftTree.view').selection;",
@@ -181,7 +181,7 @@
          "* pack" : "set_model",
          "currentTree" : false,
          "id" : "model",
-         "n_columns" : 3,
+         "n_columns" : 4,
          "xtype" : "TreeStore",
          "|           JsRender.Node pathToNode" : [
           "(string path) {",
@@ -542,6 +542,9 @@
           "{",
           "    Gtk.TreeIter citer;",
           "    //this.insert(citer,iter,0);",
+          "    var ic = Gtk.IconTheme.get_default();",
+          "    var pixdef = ic.load_icon(\"emblem-new\", 16,0);",
+          "    ",
           "    for(var i =0 ; i < tr.size; i++) {",
           "        if (iter != null) {",
           "            this.el.insert(out citer,iter,-1); // why not append?",
@@ -556,6 +559,24 @@
           "        o.set_object((Object)tr.get(i));",
           "        ",
           "        this.el.set_value(citer, 2, o);",
+          "        ",
+          "        var clsname = tr.get(i).fqn();",
+          "        ",
+          "        var clsb = clsname.split(\".\");",
+          "        var sub = clsb.length > 1 ? clsb[1].down()  : \"\";",
+          "        ",
+          "        var pix = pixdef;",
+          "        var fn = \"/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-\" + sub + \".png\";",
+          "        if (FileUtils.test (fn, FileTest.IS_REGULAR)) {",
+          "\t        pix = new Gdk.Pixbuf.from_file (fn);",
+          "        }",
+          "        ",
+          "        ",
+          "        this.el.set_value(citer, 3,   pix );",
+          "        ",
+          "        ",
+          "        ",
+          "        ",
           "        ",
           "        if (tr.get(i).items.size > 0) {",
           "            this.load(tr.get(i).items, citer);",
@@ -717,10 +738,17 @@
          "$ xns" : "Gtk",
          "* init" : [
           "  this.el.add_attribute(_this.renderer.el , \"markup\", 0 );",
+          "  this.el.add_attribute(_this.iconrender.el , \"pixbuf\",  3 );",
           " "
          ],
          "* pack" : "append_column",
          "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,true",
+           "id" : "iconrender",
+           "xtype" : "CellRendererPixbuf"
+          },
           {
            "$ xns" : "Gtk",
            "* pack" : "pack_start,true",
