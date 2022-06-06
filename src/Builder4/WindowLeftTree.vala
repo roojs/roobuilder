@@ -1538,6 +1538,7 @@ public class Xcls_WindowLeftTree : Object
             // init method
 
             this.el.add_attribute(_this.renderer.el , "markup", 0 );
+              this.el.add_attribute(_this.iconrender.el , "pixbuf",  3 );
         }
 
         // user defined functions
