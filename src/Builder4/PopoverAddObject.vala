@@ -75,7 +75,7 @@ public class Xcls_PopoverAddObject : Object
             var sub = clsb.length > 1 ? clsb[1].down()  : "";
             
             var pix = pixdef;
-            var fn = "/usr/share/glade/pixmaps/hicolor/22x22/actions/widget-gtk-" + sub;
+            var fn = "/usr/share/glade/pixmaps/hicolor/22x22/actions/widget-gtk-" + sub + ".png";
             if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
     	        pix = Gdk.Pixbuf.from_file (fn)
             }
