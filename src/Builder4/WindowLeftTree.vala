@@ -1312,7 +1312,7 @@ public class Xcls_WindowLeftTree : Object
                 }
                 
                 
-                o.set_value(citer, 2,   pix );
+                this.el.set_value(citer, 3,   pix );
                 
                 
                 
