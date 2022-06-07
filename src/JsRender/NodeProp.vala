@@ -102,15 +102,17 @@ public class JsRender.NodeProp : Object {
 				} else {
 					// has a ptype.
 					
-					this.rtype = kk[0];
-					kflag = kk[0];
+					this.rtype = kk[1];
+					this.ptype = NodePropType.from_string(kk[0]);
 				}
 				return;
+			default: // 3 or more... (ignores spaces..)
 			case 3:
-				kname = kk[2];
-				kflag = kk[0];
-				ktype = kk[1];
+				this.name = kk[2];
+				this.ptype = NodePropType.from_string(kk[0]);
+				this.rtype = kk[1];
 				return;
+			
 		}
 		
 	}
@@ -118,6 +120,8 @@ public class JsRender.NodeProp : Object {
 	public string  to_key()
 	{
 	
+	
+	}
 	
 	public NodeProp.listenerfromjson(string str)
 	{
