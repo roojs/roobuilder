@@ -81,7 +81,7 @@ public class JsRender.NodeProp : Object {
 		this.val = val;
 	}
 	
-	public NodeProp.propfromjson(string key, string inval)
+	public NodeProp.from_json(string key, string inval)
 	{
 		this.val = inval;
 		var kkv = key.strip().split(" ");
@@ -121,8 +121,10 @@ public class JsRender.NodeProp : Object {
 		}
 		
 	}
+	public string  to_json_key()
 	
-	public string  to_key()
+	
+	public string  to_index_key()
 	{
 		switch(this.ptype) {
 			case NodePropType.PROP:
