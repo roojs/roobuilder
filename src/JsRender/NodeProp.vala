@@ -31,12 +31,12 @@ public enum JsRender.NodePropType
 	{
 		switch(intype) {
 			case PROP: return  "";
-			case PROP_RAW: return "$",
-			case PROP_METHOD : return  "|",	
-			case PROP_SIGNAL : return  "@", // vala signal
-			case PROP_USER : return  "#", // user defined.
-			case PROP_SPECIAL : return  "*", // * prop| args | ctor | init
-			case LISTENER : return  ""  // always raw...
+			case PROP_RAW: return "$";
+			case PROP_METHOD : return  "|";	
+			case PROP_SIGNAL : return  "@"; // vala signal
+			case PROP_USER : return  "#"; // user defined.
+			case PROP_SPECIAL : return  "*"; // * prop| args | ctor | init
+			case LISTENER : return  "";  // always raw...
 		}
 		return "??";
 	}
@@ -120,14 +120,14 @@ public class JsRender.NodeProp : Object {
 	public string  to_key()
 	{
 		switch(this.ptype) {
-			case NodePropType.PROP: return  "";
-			case NodePropType.PROP_RAW: return "$",
-			case NodePropType.PROP_METHOD : return  "|",	
-			case NodePropType.PROP_SIGNAL : return  "@", // vala signal
-			case NodePropType.PROP_USER : return  "#", // user defined.
+			case NodePropType.PROP:
+			case NodePropType.PROP_RAW:
+			case NodePropType.PROP_METHOD :
+			case NodePropType.PROP_SIGNAL :
+			case NodePropType.PROP_USER : 
 				return this.name;
 			
-			case NodePropType.PROP_SPECIAL : return  "*", // * prop| args | ctor | init
+			case NodePropType.PROP_SPECIAL : 
 				return "* " + this.name;
 				
 			// in seperate list..
