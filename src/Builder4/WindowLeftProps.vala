@@ -153,7 +153,7 @@ public class Xcls_LeftProps : Object
         // others... - fill in options for true/false?
         GLib.debug("turn on editing %s \n" , mod.get_path(iter).to_string());
        
-           GLib.debug (ktype.up());
+          // GLib.debug (ktype.up());
         if (has_opts) {
                 GLib.debug("start editing try/false)???");
                 this.valrender.el.has_entry = false;
