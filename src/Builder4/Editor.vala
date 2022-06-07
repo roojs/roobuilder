@@ -88,10 +88,12 @@ public class Editor : Object
         // find the text for the node..
         if (_this.file.xtype != "PlainFile") {
             if (ptype == "listener") {
-                this.node.listeners.set(key,str);
+            	var prop = this.node.listeners.get(key);
+            	prop.val = str;
             
             } else {
-                 this.node.props.set(key,str);
+            	var prop = this.node.props.get(key);
+            	prop.val = str;
             }
         } else {
             _this.file.setSource(  str );
