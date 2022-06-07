@@ -705,6 +705,7 @@ public class JsRender.Node : Object {
 		//o.set_string_member(key,val);
 		
 	}
+	// fixme this needs to better handle 'user defined types etc..
 	public string nodeTip()
 	{
 		var ret = this.nodeTitle(true);
