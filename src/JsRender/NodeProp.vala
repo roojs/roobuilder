@@ -63,9 +63,11 @@ public enum JsRender.NodePropType
 
 public class JsRender.NodeProp : Object {
 
-	public string name  = "";
-	public NodePropType ptype;  
-	public string rtype = ""; // return or type
+
+
+	public string name  = "" { get; private set; };
+	public NodePropType ptype { get; private set; } ;  
+	public string rtype = "" { get; private set; } ; // return or type
 	public string val = "";
 	
 	
