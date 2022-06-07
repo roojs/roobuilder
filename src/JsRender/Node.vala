@@ -375,12 +375,20 @@ public class JsRender.Node : Object {
 		
 	}
 	*/
-	public new NodeProp? get_prop(string key)
+	public  NodeProp? get_prop(string key)
 	{
 		
 		return this.props.get(key);
 		
 	}
+	
+	public void set_prop(NodeProp prop)
+	{
+		
+		  this.props.set(prop.get_index_key(), prop);
+		
+	}
+	
 	/*
 	public void normalize_key(string key, out string kname, out string kflag, out string ktype)
 	{
