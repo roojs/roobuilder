@@ -21,10 +21,10 @@ public enum JsRender.NodePropType
 
 	
 	// specials - these should be in a seperate list?
-	SPECIAL,
+	SPECIAL;
 
-	// listerens can definatly overlap as they are stored in a seperate list.
-	LISTENER;
+	// listerens can definatly overlap as they are stored in a seperate list. << no need to use this for listeners?
+//	LISTENER;
 	
 	
 	public static string to_string(NodePropType intype)
@@ -36,7 +36,7 @@ public enum JsRender.NodePropType
 			case SIGNAL : return  "@"; // vala signal
 			case USER : return  "#"; // user defined.
 			case SPECIAL : return  "*"; // * prop| args | ctor | init
-			case LISTENER : return  "";  // always raw...
+	//		case LISTENER : return  "";  // always raw...
 		}
 		return "??";
 	}
@@ -131,13 +131,13 @@ public class JsRender.NodeProp : Object {
 				return "* " + this.name;
 				
 			// in seperate list..
-			case NodePropType.LISTENER : 
+			//case NodePropType.LISTENER : 
 				return  this.name;
 		}
 		return this.name;
 	
 	}
-	
+	/*
 	public NodeProp.listenerfromjson(string str, string inval)
 	{
 		this.val = inval;
@@ -146,7 +146,7 @@ public class JsRender.NodeProp : Object {
 		this.rtype = "";
 		
 	}
-	
+	*/
 	// regular addition - should work for properties  
 	public NodeProp.jsprop(string name, string rtype = "", string val = "")
 	{
@@ -166,10 +166,12 @@ public class JsRender.NodeProp : Object {
 	{
 		this(name, NodePropType.SPECIAL, "", val);
 	}
+	/*
 	public NodeProp.listener(string name, string rtype = "", string val = "")
 	{
 		this(name, NodePropType.LISTENER, rtype, val);
 	}
+	*/
 	public NodeProp.user(string name, string rtype = "", string val = "")
 	{
 		this(name, NodePropType.USER, rtype, val);
