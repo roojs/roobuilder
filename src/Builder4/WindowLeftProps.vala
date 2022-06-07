@@ -54,38 +54,6 @@ public class Xcls_LeftProps : Object
     }
 
     // user defined functions
-    public void updateKey (string oldkey,  string type, string key ) {
-    
-     
-    	
-    	_this.model.el.foreach((mod, path,  iter) => {
-    		 
-            
-            	  
-           
-    		 GLib.Value gvaltype, gval,kvalue;
-    		 mod.get_value(iter, 1 , out gval); // one is key..
-    		
-    	     mod.get_value(iter,0, out gvaltype);
-    	     
-     	     mod.get_value(iter,3, out kvalue);
-    	     
-    	      if (oldkey == ((string)gval) && type == ((string)gvaltype)) {
-    	      
-    		  	  //print("update iter type=%s, key=%s value=%s\n", type, key,(string) kvalue);
-    	      
-       	 	      this.updateIter(iter, type, key, (string)kvalue);
-       	 	      return true;
-    	 	  }
-    	     
-    
-    		return false;
-    	});
-    	
-    	this.changed();
-    
-    
-    }
     public              string keySortFormat (string key) {
         // listeners first - with 0
         // specials
@@ -574,7 +542,7 @@ public class Xcls_LeftProps : Object
             this.model.el.set(iter, 
             	0, prop,
             	1, prop.to_display_name(),
-            	2, dis_val.
+            	2, dis_val,
                 3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
                 4, "0 " + prop.name
                 
@@ -587,7 +555,7 @@ public class Xcls_LeftProps : Object
         this.model.el.set(iter, 
                 0, prop,
             	1, prop.to_display_name(),
-            	2, dis_val.
+            	2, dis_val,
                 3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
                 4, "1 " + prop.name
                 
@@ -1303,8 +1271,7 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
                 
                  _this.main_window.windowstate.showProps(this.el, "props");
-             
-            
+              
             });
         }
 
