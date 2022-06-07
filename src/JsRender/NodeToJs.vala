@@ -496,16 +496,15 @@ public class JsRender.NodeToJs : Object {
 			//}
 			if (  Regex.match_simple("\\[\\]$", k)) {
 				// array .. not supported... here?
-				
-
+				 
 			}
 			
 			string leftv = k;
 			// skip builder stuff. prefixed with  '.' .. just like unix fs..
-			if (kflag == ".") { // |. or . -- do not output..
-				continue;
-			}
-			if (kflag == "*") {
+			//if (kflag == ".") { // |. or . -- do not output..
+			//	continue;
+			//}
+			if (kflag == NodePropType.SPECIAL) {
 				// ignore '* prop'; ??? 
 				continue;
 			}
@@ -516,7 +515,7 @@ public class JsRender.NodeToJs : Object {
 			}
 			// html must not be a dynamic property...
 			// note - we do not translate this either...
-			if (has_cms && k == "html" && kflag != "$") {
+			if (has_cms && k == "html" && kflag !=  NodePropType.RAW) {
 				 
 
 				this.out_props.set("html", "Pman.Cms.content(" + 
@@ -544,11 +543,11 @@ public class JsRender.NodeToJs : Object {
 			 
 			// next.. is it a function.. or a raw string..
 			if (
-				kflag == "|" 
+				kflag == NodePropType.METHOD 
 				|| 
-				kflag == "$" 
+				kflag == NodePropType.RAW 
 				|| 
-				ktype == "function"
+				ktype == "function" // ??? why woudl return type be function? << messed up..
 	   		       
 				// ??? any others that are raw output..
 				) {
@@ -614,7 +613,7 @@ public class JsRender.NodeToJs : Object {
 		 	// doubleStringProps is a list of keys like 'name' 'title' etc.. that we know can be translated..
 		   
 			if ((this.doubleStringProps.index_of(k) > -1) || 
-				(ktype.down() == "string" && k[0] == '_')
+				(ktype.down() == "string" && k[0] == '_')  // strings starting with '_'
 			
 			) {
 				// then use the translated version...
@@ -677,7 +676,7 @@ public class JsRender.NodeToJs : Object {
 		 
 		for (var i = 0; i< keys.size; i++) {
 			var key = keys.get(i);
-			var val = this.node.listeners.get(key);
+			var val = this.node.listeners.get(key).val;
 		
 	
 			 // 
