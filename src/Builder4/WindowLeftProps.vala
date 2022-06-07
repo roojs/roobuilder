@@ -1654,66 +1654,6 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-
-            //listeners
-            this.el.editing_started.connect( (  editable, path) => {
-            
-                 Gtk.TreeIter  iter;
-                _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
-                GLib.Value gval;
-                              
-            
-            
-                 //   this.get('/LeftPanel.model').activePath  = path;
-                _this.model.el.get_value(iter,0, out gval);
-                    var val = (JsRender.NodeProp)gval;
-                             
-                    ((Gtk.Entry)editable).set_text(val.to_display_name());
-            });
-            this.el.edited.connect( (path, newtext) => {
-                    GLib.debug("Keyrender  - signal:edited\n");
-                
-                this.el.editable = false;
-              
-             
-            
-                    Gtk.TreeIter  iter;
-                    _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
-                    GLib.Value gval;
-                    
-                     _this.model.el.get_value(iter,1, out gval);
-                    var oldval = (string)gval;
-                    
-                     _this.model.el.get_value(iter,0, out gval);
-                    var ktype = (string)gval;
-                   
-                    _this.model.el.set_value(iter, 1, newtext);
-                    
-                    if (oldval == newtext) {
-                        return;
-                    }
-                    
-                    
-                    GLib.debug("ktype: %s\n",ktype);
-                    switch(ktype) {
-                        case "listener":
-                            var ov = _this.node.listeners.get(oldval);
-                            _this.node.listeners.set(newtext, ov);
-                            _this.node.listeners.unset(oldval);
-                            
-                            _this.updateIter(iter,  ktype, newtext, ov);
-                            
-                            break;
-                        case "props":
-                            var ov = _this.node.props.get(oldval);
-                            _this.node.props.set(newtext, ov);
-                            _this.node.props.unset(oldval);
-                            _this.updateIter(iter,  ktype, newtext, ov);
-                            break;
-                     }
-                     _this.changed();
-                      
-            });
         }
 
         // user defined functions
