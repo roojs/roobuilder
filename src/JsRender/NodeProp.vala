@@ -9,22 +9,53 @@ events and properties
 public enum JsRender.NodePropType 
 {
 	// these are all stored as properties, and should not overlap.
-	PROP = "",
+	PROP,
 	
-	PROP_RAW = "$ ",
-	PROP_METHOD = "| ",	
-	PROP_SIGNAL = "@ ", // vala signal
+	PROP_RAW,
+	PROP_METHOD,
+	PROP_SIGNAL,
 		
 	// in theory we could have user defined properties that overlap - but probably not a good idea.
-	PROP_USER = "# ", // user defined.
+	PROP_USER,
 
 
 	
 	// specials - these should be in a seperate list?
-	PROP_SPECIAL = "* ", // * prop| args | ctor | init
+	PROP_SPECIAL,
 
 	// listerens can definatly overlap as they are stored in a seperate list.
-	LISTENER = "", // always raw...
+	LISTENER;
+	
+	
+	public static to_string(NodePropType intype)
+	{
+		switch(intype) {
+			case PROP: return  "";
+			case PROP_RAW: return "$",
+			case PROP_METHOD : return  "|",	
+			case PROP_SIGNAL : return  "@", // vala signal
+			case PROP_USER : return  "#", // user defined.
+			case PROP_SPECIAL : return  "*", // * prop| args | ctor | init
+			case LISTENER : return  ""  // always raw...
+		}
+		return "??";
+	}
+	
+	public static NodePropType from_string(string str)
+	{
+		switch(str) {
+			case "" : return PROP;
+			case "$": return  PROP_RAW;
+			case "|": return PROP_METHOD;
+			case "@": return  PROP_SIGNAL;
+			case "#": return PROP_USER;
+			case "*": return PROP_SPECIAL;
+			//case "": return case LISTENER : return  ""  // always raw...
+		}
+		return PROP;
+	
+	}
+	
 }
 
 
@@ -44,10 +75,49 @@ public class JsRender.NodeProp : Object {
 		this.val = val;
 	}
 	
-	public NodeProp.propfromjson(string str)
+	public NodeProp.propfromjson(string key, string inval)
+	{
+		this.val = inval;
+		var kkv = key.strip().split(" ");
+		string[] kk = {};
+		for (var i = 0; i < kkv.length; i++) {
+			if (kkv[i].length > 0 ) {
+				kk += kkv[i];
+			}
+		}
+		
+		switch(kk.length) {
+			case 1: 
+				this.name = kk[0];
+				this.ptype = NodePropType.PROP;
+				this.rtype = "";		
+				return;
+			case 2: 
+				this.name = kk[1];
+				if (kk[0].length > 1) {
+					// void fred (no type)
+					this.rtype = kk[0];
+					this.ptype = NodePropType.PROP;
+				} else {
+					// has a ptype.
+					
+					this.rtype = kk[0];
+					kflag = kk[0];
+				}
+				return;
+			case 3:
+				kname = kk[2];
+				kflag = kk[0];
+				ktype = kk[1];
+				return;
+		}
+		
+	}
+	
+	public string  to_key()
 	{
 	
-	}
+	
 	public NodeProp.listenerfromjson(string str)
 	{
 		// listener is just an implementation?
