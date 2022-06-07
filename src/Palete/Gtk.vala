@@ -374,7 +374,7 @@ namespace Palete {
 				return ;
 			}
 			if (res.has_key("pack_start")) {
-				node.prop_set(new NodeProp.special("pack", res.get("pack_start")));
+				node.set_prop(new NodeProp.special("pack", res.get("pack_start")));
 				return;
 			}
 			if (res.has_key("add")) {
