@@ -161,6 +161,22 @@ public class JsRender.NodeProp : Object {
 		return this.name;
 	
 	}
+	// how it appears on the property list. -- 
+	public string to_display_name()
+	{
+		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+		// before we showed "@" for signals
+		
+		return this.name;
+	}
+	public string to_tooltip()
+	{
+		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+		// before we showed "@" for signals
+		
+		return this.name;
+	}
+	
 	/*
 	public NodeProp.listenerfromjson(string str, string inval)
 	{
