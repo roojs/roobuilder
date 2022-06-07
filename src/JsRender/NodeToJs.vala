@@ -469,12 +469,9 @@ public class JsRender.NodeToJs : Object {
 		var keys = new Gee.ArrayList<string>();
 		var piter = this.node.props.map_iterator();
 		while (piter.next() ) {
-			string k;
-			string ktype;
-			string kflag;
-			this.node.normalize_key(piter.get_key(), out k, out kflag, out ktype);
-			
-			keys.add(k);
+		
+
+			keys.add( piter.get_value().name);
 		}
 		
 		keys.sort((  a,  b) => {
@@ -486,16 +483,12 @@ public class JsRender.NodeToJs : Object {
 		var has_cms = this.node.has("cms-id");
 		
 		for (var i = 0; i< keys.size; i++) {
-			var key = this.node.get_key(keys.get(i));
+			var prop = this.node.get_prop(keys.get(i));
 			//("ADD KEY %s\n", key);
-			string k;
-			string ktype;
-			string kflag;
-			
-			this.node.normalize_key(key, out k, out kflag, out ktype);
-			
-			
-			var v = this.node.get(key);
+			var k = prop.name;
+			var ktype  = prop.rtype;
+			var kflag = prop.ptype;
+			var v = prop.val;
 			 
 			
 			//if (this.skip.contains(k) ) {
