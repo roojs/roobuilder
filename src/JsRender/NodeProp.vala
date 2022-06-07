@@ -69,8 +69,8 @@ public class JsRender.NodeProp : Object {
 	public NodePropType ptype;  
 	public string rtype = ""; // return or type
 	public string val = "";
-	public int start_line;
-	public int end_line;
+	public int start_line = 0;
+	public int end_line = 0;
 	
 	
 	
