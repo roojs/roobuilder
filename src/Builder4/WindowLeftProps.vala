@@ -146,7 +146,7 @@ public class Xcls_LeftProps : Object
          var pal = this.file.project.palete;
         
         string[] opts;
-        var has_opts = pal.typeOptions(this.node.fqn(), kname, ktype, out opts);
+        var has_opts = pal.typeOptions(this.node.fqn(), prop.name, prop.rtype, out opts);
         
         
         
@@ -165,10 +165,10 @@ public class Xcls_LeftProps : Object
                  this.allow_edit  = true;
                  GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
                      this.view.el.set_cursor_on_cell(
-                        path,
-                        this.valcol.el,
-                        this.valrender.el,
-                        true
+    	                path,
+    	                this.valcol.el,
+    	                this.valrender.el,
+    	                true
                     );
                     return false;
                 });
