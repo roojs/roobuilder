@@ -318,10 +318,12 @@ public class JsRender.Node : Object {
 	}
 	// wrapper around get props that returns empty string if not found.
 	//overrides Glib.object.get (hence new)
-	public new NodeProp? get(string key)
+	public new string get(string key)
 	{
 		
-		return this.props.get(key);
+		var v = this.props.get(key);
+		return v == null ? "" : v.val;
+		
 		/*
 		var k = this.props.get(key);
 		if (k != null) {
