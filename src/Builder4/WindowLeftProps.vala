@@ -27,7 +27,7 @@ public class Xcls_LeftProps : Object
     public bool allow_edit;
     public JsRender.JsRender file;
     public signal bool stop_editor ();
-    public signal void show_editor (JsRender.JsRender file, JsRender.Node node, string type, string key);
+    public signal void show_editor (JsRender.JsRender file, JsRender.Node node, JsRender.NodeProp prop);
     public signal void changed ();
     public signal void show_add_props (string type);
     public Xcls_MainWindow main_window;
