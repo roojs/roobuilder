@@ -115,7 +115,7 @@ public class JsRender.Node : Object {
 	public Node()
 	{
 		this.items = new Gee.ArrayList<Node>();
-		this.props = new Gee.HashMap<string,string>();
+		this.props = new Gee.HashMap<string,NodeProp>();
 		this.listeners = new Gee.HashMap<string,string>();
 		this.xvala_cls = "";
 		this.xvala_xcls = "";
@@ -378,7 +378,7 @@ public class JsRender.Node : Object {
 		string[] kk = {};
 		for (var i = 0; i < kkv.length; i++) {
 			if (kkv[i].length > 0 ) {
-				kk+= kkv[i];
+				kk += kkv[i];
 			}
 		}
 		//print("normalize %s => %s\n", key,string.joinv("=:=",kk));
