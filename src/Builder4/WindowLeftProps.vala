@@ -552,7 +552,7 @@ public class Xcls_LeftProps : Object
         
                   
     }
-    public              void updateIter (Gtk.TreeIter iter,  string type, string key, string kvalue) {
+    public              void updateIter (Gtk.TreeIter iter, JsRender.NodeProp prop) {
     
         //print("update Iter %s, %s\n", key,kvalue);
         //typeof(string),  // 0 key type
