@@ -1654,6 +1654,22 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.editing_started.connect( (  editable, path) => {
+            
+                 Gtk.TreeIter  iter;
+                _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
+                GLib.Value gval;
+                              
+            
+            
+                 //   this.get('/LeftPanel.model').activePath  = path;
+                _this.model.el.get_value(iter,0, out gval);
+                    var val = (JsRender.NodeProp)gval;
+                             
+                    ((Gtk.Entry)editable).set_text(val.to_display_name());
+            });
         }
 
         // user defined functions
