@@ -537,6 +537,8 @@ public class JsRender.Node : Object {
 
 
 	}
+	
+	// converts the array into a string with line breaks.
 	public string jsonNodeAsString(Json.Node node)
 	{
 		
