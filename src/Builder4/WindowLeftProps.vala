@@ -260,7 +260,7 @@ public class Xcls_LeftProps : Object
        while(miter.next()) {
                i++;
             m.append(out iter,null);
-             this.updateIter(iter,  "prop", miter.get_value());
+             this.updateIter(iter,   miter.get_value());
              
        }
        GLib.debug("clear selection\n");
