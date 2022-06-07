@@ -633,6 +633,7 @@ public class JsRender.Node : Object {
 		Node.gen.set_root (n);
 		return  Node.gen.to_data (null);   
 	}
+	
 	public void jsonObjectAddStringValue(Json.Object obj, string key, string v)
 	{
 		if (v.index_of_char('\n',0) < 0) {
@@ -657,14 +658,14 @@ public class JsRender.Node : Object {
 			ret.set_object_member("listeners", li);
 			var liter = this.listeners.map_iterator();
 			while (liter.next()) {
-				this.jsonObjectAddStringValue(li, liter.get_key(), liter.get_value());
+				this.jsonObjectAddStringValue(li, liter.get_value().to_json_key(), liter.get_value().val);
 			}
 		}
 		//props
 		if (this.props.size > 0 ) {
 			var iter = this.props.map_iterator();
 			while (iter.next()) {
-				this.jsonObjectsetMember(ret, iter.get_key(), iter.get_value());
+				this.jsonObjectsetMember(ret, iter.get_value().to_json_key(), iter.get_value().val);
 			}
 		}
 		if (this.items.size > 0) {
