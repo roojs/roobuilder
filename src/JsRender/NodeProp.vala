@@ -132,7 +132,7 @@ public class JsRender.NodeProp : Object {
 				
 			// in seperate list..
 			//case NodePropType.LISTENER : 
-				return  this.name;
+			//	return  this.name;
 		}
 		return this.name;
 	
