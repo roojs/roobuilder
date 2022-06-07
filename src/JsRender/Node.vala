@@ -107,8 +107,8 @@ public class JsRender.Node : Object {
 	public int line_start;
 	public int line_end;
 	public Gee.ArrayList<int> lines;
-	public Gee.HashMap<int,string> line_map; // store of l:xxx or p:....
-	public Gee.ArrayList<int> node_lines;
+	public Gee.HashMap<int,string> line_map; // store of l:xxx or p:....  // fixme - not needed as we can store line numbers in props now.
+	public Gee.ArrayList<int> node_lines; 
 	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
 	
 
@@ -116,7 +116,7 @@ public class JsRender.Node : Object {
 	{
 		this.items = new Gee.ArrayList<Node>();
 		this.props = new Gee.HashMap<string,NodeProp>();
-		this.listeners = new Gee.HashMap<string,string>();
+		this.listeners = new Gee.HashMap<string,NodeProp>(); // Nodeprop can include line numbers..
 		this.xvala_cls = "";
 		this.xvala_xcls = "";
 		this.xvala_id = "";
@@ -471,7 +471,7 @@ public class JsRender.Node : Object {
 	public Node? findProp(string n) {
 		for(var i=0;i< this.items.size;i++) {
 			var p = this.items.get(i).get("* prop");
-			if (p === null) {
+			if (p  == null) {
 				continue;
 			}
 			if (p == n) {
