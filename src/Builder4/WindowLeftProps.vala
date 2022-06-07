@@ -1630,8 +1630,8 @@ public class Xcls_LeftProps : Object
 
             // init method
 
-            this.el.add_attribute(_this.keyrender.el , "markup", 2 );
-             this.el.add_attribute(_this.keyrender.el , "text", 1 );
+            this.el.add_attribute(_this.keyrender.el , "markup", 1 ); // 1 is the key.
+             //this.el.add_attribute(_this.keyrender.el , "text", 1 );
         }
 
         // user defined functions
