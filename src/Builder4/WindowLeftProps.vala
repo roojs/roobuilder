@@ -1688,19 +1688,11 @@ public class Xcls_LeftProps : Object
 
             {
             	
-            	//     typeof(string),  // 0 key type
-                // typeof(string),  // 1 key
-                // typeof(string),  // 2 key (display)
-                // typeof(string),  // 3 value
-                // typeof(string)   // 4 value (display)
+             
             
             	
-            	this.el.add_attribute(_this.valrender.el , "text", 4 );
-            	//this.el.add_attribute(_this.valrender.el , "sensitive", 4 );
-            	//this.el.add_attribute(this.items[0].el , 'editable', 3 );
-                      // this.el.set_cell_data_func(cell, age_cell_data_func, NULL, NULL);
-            
-             //	this.get('/LeftPanel').editableColumn= this;
+            	this.el.add_attribute(_this.valrender.el , "text", 2 );
+             
             }
         }
 
