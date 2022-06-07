@@ -396,6 +396,8 @@
           "        return;",
           "    }",
           "    var iter = new Gtk.TreeIter();",
+          "    ",
+          "    _this.setTreeIter(prop);",
           "    this.el.get_iter(iter, new Gtk.TreePath.from_string(this.activePath));",
           "    ",
           "    this.el.set_value(iter, 1, '' +str);",
