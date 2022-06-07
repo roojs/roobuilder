@@ -526,9 +526,9 @@ public class JsRender.Node : Object {
 			if (version == 1) {
 				rkey = this.upgradeKey(key, sval);
 			}
-
+			var n =  new NodeProp.from_json(rkey, value);
 				
-			this.props.set(rkey,  sval);
+			this.props.set(n.to_key(),  n );
 			
 
 		});
