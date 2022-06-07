@@ -385,7 +385,7 @@ public class JsRender.Node : Object {
 	public void set_prop(NodeProp prop)
 	{
 		
-		  this.props.set(prop.get_index_key(), prop);
+		  this.props.set(prop.to_index_key(), prop);
 		
 	}
 	
