@@ -100,47 +100,27 @@ public class Xcls_LeftProps : Object
     
         var mod = this.model.el;
         mod.get_iter (out iter, path);
-         
-        /*
-            m.set(iter, 
-                    0, "listener",
-                    1, miter.get_key(),
-                    2, "<b>" + miter.get_key() + "</b>",
-                    3, miter.get_value()
-                ); 
-         
-        */
+        
         GLib.Value gval;
-        mod.get_value(iter, 3 , out gval);
-        var val = (string)gval;
-    
-        mod.get_value(iter, 1 , out gval);
-        var key = (string)gval;
-        
-        
-        string kname, kflag, ktype;
-        this.node.normalize_key(key, out kname, out kflag, out ktype);
-         
-        
         mod.get_value(iter, 0 , out gval);
-        var type = (string)gval; // listerner or prop..
-        
+        var prop  = (JsRender.NodeProp)gval;
+    
        
         
         var use_textarea = false;
     
         //------------ things that require the text editor...
         
-        if (type == "listener") {
+        if (prop.ptype == JsRender.NodePropType.LISTENER) {
             use_textarea = true;
         }
-        if (key.length > 0 && key[0] == '|') { // user defined method
+        if (key.length > 0 && prop.ptype == JsRender.NodePropType.METHOD) { 
             use_textarea = true;
         }
-        if (key.length > 0 && key[0] == '$') { // raw string
+        if (key.length > 0 && prop.ptype == JsRender.NodePropType.RAW) { // raw string
             use_textarea = true;
         }
-        if (key.length > 0 && key == "* init") {
+        if (key.length > 0 && key == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
             use_textarea = true;
         }
         if (val.length > 40) { // long value...
