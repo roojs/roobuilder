@@ -390,6 +390,27 @@
        "id" : "view",
        "items" : [
         {
+         "$ changed" : [
+          "function(str, doRefresh) {",
+          "    if (!this.activePath) {",
+          "        return;",
+          "    }",
+          "    var iter = new Gtk.TreeIter();",
+          "    ",
+          "    _this.setTreeIter(prop);",
+          "    this.el.get_iter(iter, new Gtk.TreePath.from_string(this.activePath));",
+          "    ",
+          "    this.el.set_value(iter, 1, '' +str);",
+          "    this.el.set_value(iter, 3, '' + this.toShort(str));",
+          "    var type = this.getIterValue(iter, 4);",
+          "",
+          "    this.el.set_value(iter, 5, type + ' : ' + str);",
+          "    // update the tree...  ",
+          "",
+          "    this.get('/LeftTree.model').changed(this.toJS(), doRefresh); ",
+          "}",
+          ""
+         ],
          "$ columns" : [
           "     typeof(JsRender.NodeProp),  // 0 key type",
           "     typeof(string),  // 1 display_key",
