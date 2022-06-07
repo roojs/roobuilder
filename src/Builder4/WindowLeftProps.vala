@@ -1807,12 +1807,12 @@ public class Xcls_LeftProps : Object
 
         // user defined functions
         public              void setOptions (string[] ar) {
-              var m = _this.valrendermodel.el;
-                m.clear();
-             Gtk.TreeIter iret;
+        	var m = _this.valrendermodel.el;
+        	m.clear();
+        	Gtk.TreeIter iret;
             for (var i =0; i < ar.length; i++) {
-                    m.append(out iret);
-                    m.set_value(iret, 0, ar[i]);
+                m.append(out iret);
+                m.set_value(iret, 0, ar[i]);
             }
         
         }
