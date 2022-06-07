@@ -471,7 +471,7 @@ public class JsRender.Node : Object {
 	public Node? findProp(string n) {
 		for(var i=0;i< this.items.size;i++) {
 			var p = this.items.get(i).get("* prop");
-			if (this.items.get(i).get("* prop").length < 1) {
+			if (p === null) {
 				continue;
 			}
 			if (p == n) {
