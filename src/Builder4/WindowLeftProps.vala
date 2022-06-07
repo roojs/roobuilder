@@ -86,22 +86,6 @@ public class Xcls_LeftProps : Object
     
     
     }
-    public              void before_edit ()
-    {
-    
-        GLib.debug("before edit - stop editing\n");
-        
-      // these do not appear to trigger save...
-        _this.keyrender.el.stop_editing(false);
-        _this.keyrender.el.editable  =false;
-    
-        _this.valrender.el.stop_editing(false);
-        _this.valrender.el.editable  =false;    
-        
-        
-    // technicall stop the popup editor..
-    
-    }
     public              string keySortFormat (string key) {
         // listeners first - with 0
         // specials
@@ -481,6 +465,22 @@ public class Xcls_LeftProps : Object
         });
           
         
+    }
+    public void before_edit ()
+    {
+    
+        GLib.debug("before edit - stop editing\n");
+        
+      // these do not appear to trigger save...
+        _this.keyrender.el.stop_editing(false);
+        _this.keyrender.el.editable  =false;
+    
+        _this.valrender.el.stop_editing(false);
+        _this.valrender.el.editable  =false;    
+        
+        
+    // technicall stop the popup editor..
+    
     }
     public              void addProp (string in_type, string key, string value, string value_type) {
           // info includes key, val, skel, etype..
