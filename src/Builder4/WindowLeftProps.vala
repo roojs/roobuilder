@@ -535,7 +535,12 @@ public class Xcls_LeftProps : Object
             }
             // delay this?
             GLib.Timeout.add_full(GLib.Priority.DEFAULT,40 , () => {
-            
+            	
+            //	if (key == "XXX") { // empty string for key name.
+            	//	_this.view.editPropertyDetails(this.model.el.get_path(iter));
+            //		return false;
+            //	}
+            	
                 this.startEditingValue(this.model.el.get_path(iter));
                 return false;
             });
@@ -953,7 +958,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( (self) => {
             
-                _this.addProp( "prop", "XXXX", "","# string");
+                _this.addProp( "prop", "XXX", "","# string");
             
             });
         }
@@ -1066,7 +1071,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) =>{
             
-                _this.addProp("prop",  "XXXX", "function() { }", "| function");
+                _this.addProp("prop",  "XXX", "function() { }", "| function");
             });
         }
 
@@ -1096,7 +1101,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) =>{
             
-                _this.addProp( "prop", "XXXX", "() {\n\n}\n", "| void");
+                _this.addProp( "prop", "XXX", "() {\n\n}\n", "| void");
             });
         }
 
@@ -1126,7 +1131,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) =>{
             
-                _this.addProp( "prop", "XXXX", "()", "@ void");
+                _this.addProp( "prop", "XXX", "()", "@ void");
             });
         }
 
@@ -1497,34 +1502,7 @@ public class Xcls_LeftProps : Object
                  // double click on name..
                  if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
                     // show popup!.   
-                    
-                     if (this.popover == null) {
-                 		   this.popover = new Xcls_PopoverProperty();
-                 		   this.popover.mainwindow = _this.main_window;
-             		}
-             		
-             
-                     _this.before_edit();
-                      _this.stop_editor();
-            		  
-                     _this.keyrender.el.stop_editing(false);
-                     _this.keyrender.el.editable  =false;
-                
-                     _this.valrender.el.stop_editing(false);
-                     _this.valrender.el.editable  =false;
-                     Gtk.TreeIter iter;
-                      var mod = this.el.get_model();
-            		  mod.get_iter (out iter, path);
-            		  
-                   
-            		GLib.Value gvaltype, gval;
-            		mod.get_value(iter, 1 , out gval); // one is key..
-            		
-            	     mod.get_value(iter,0, out gvaltype);
-            
-                    this.popover.show(this.el, _this.node, (string)gvaltype, (string)gval);
-                       
-                    //  _this.startEditingKey(path); 
+                    this.editPropertyDetails(path); 
                      
                     return false;
                 }
@@ -1594,6 +1572,36 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
+        public void editPropertyDetails (Gtk.TreePath path) {
+        
+             if (this.popover == null) {
+         		   this.popover = new Xcls_PopoverProperty();
+         		   this.popover.mainwindow = _this.main_window;
+        	}
+        	
+        
+             _this.before_edit();
+              _this.stop_editor();
+        	  
+             _this.keyrender.el.stop_editing(false);
+             _this.keyrender.el.editable  =false;
+        
+             _this.valrender.el.stop_editing(false);
+             _this.valrender.el.editable  =false;
+             Gtk.TreeIter iter;
+              var mod = this.el.get_model();
+        	  mod.get_iter (out iter, path);
+        	  
+           
+        	GLib.Value gvaltype, gval;
+        	mod.get_value(iter, 1 , out gval); // one is key..
+        	
+             mod.get_value(iter,0, out gvaltype);
+        
+            this.popover.show(this.el, _this.node, (string)gvaltype, (string)gval);
+               
+            
+        }
     }
     public class Xcls_model : Object
     {

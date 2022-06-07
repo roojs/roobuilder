@@ -131,7 +131,7 @@
             "activate" : [
              "  (self) => {",
              "",
-             "    _this.addProp( \"prop\", \"XXXX\", \"\",\"# string\");",
+             "    _this.addProp( \"prop\", \"XXX\", \"\",\"# string\");",
              "",
              "}"
             ]
@@ -182,7 +182,7 @@
             "activate" : [
              "  ( ) =>{",
              "",
-             "    _this.addProp(\"prop\",  \"XXXX\", \"function() { }\", \"| function\");",
+             "    _this.addProp(\"prop\",  \"XXX\", \"function() { }\", \"| function\");",
              "}"
             ]
            },
@@ -197,7 +197,7 @@
             "activate" : [
              "  ( ) =>{",
              "",
-             "    _this.addProp( \"prop\", \"XXXX\", \"() {\\n\\n}\\n\", \"| void\");",
+             "    _this.addProp( \"prop\", \"XXX\", \"() {\\n\\n}\\n\", \"| void\");",
              "}"
             ]
            },
@@ -212,7 +212,7 @@
             "activate" : [
              "  ( ) =>{",
              "",
-             "    _this.addProp( \"prop\", \"XXXX\", \"()\", \"@ void\");",
+             "    _this.addProp( \"prop\", \"XXX\", \"()\", \"@ void\");",
              "}"
             ]
            },
@@ -757,34 +757,7 @@
          "     // double click on name..",
          "     if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == \"Name\") {    ",
          "        // show popup!.   ",
-         "        ",
-         "         if (this.popover == null) {",
-         "     \t\t   this.popover = new Xcls_PopoverProperty();",
-         "     \t\t   this.popover.mainwindow = _this.main_window;",
-         " \t\t}",
-         " \t\t",
-         " ",
-         "         _this.before_edit();",
-         "          _this.stop_editor();",
-         "\t\t  ",
-         "         _this.keyrender.el.stop_editing(false);",
-         "         _this.keyrender.el.editable  =false;",
-         "    ",
-         "         _this.valrender.el.stop_editing(false);",
-         "         _this.valrender.el.editable  =false;",
-         "         Gtk.TreeIter iter;",
-         "          var mod = this.el.get_model();",
-         "\t\t  mod.get_iter (out iter, path);",
-         "\t\t  ",
-         "       ",
-         "\t\tGLib.Value gvaltype, gval;",
-         "\t\tmod.get_value(iter, 1 , out gval); // one is key..",
-         "\t\t",
-         "\t     mod.get_value(iter,0, out gvaltype);",
-         "",
-         "        this.popover.show(this.el, _this.node, (string)gvaltype, (string)gval);",
-         "           ",
-         "        //  _this.startEditingKey(path); ",
+         "        this.editPropertyDetails(path); ",
          "         ",
          "        return false;",
          "    }",
@@ -854,7 +827,40 @@
         ]
        },
        "tooltip_column" : 5,
-       "xtype" : "TreeView"
+       "xtype" : "TreeView",
+       "| void editPropertyDetails" : [
+        "(Gtk.TreePath path) {",
+        "",
+        "     if (this.popover == null) {",
+        " \t\t   this.popover = new Xcls_PopoverProperty();",
+        " \t\t   this.popover.mainwindow = _this.main_window;",
+        "\t}",
+        "\t",
+        "",
+        "     _this.before_edit();",
+        "      _this.stop_editor();",
+        "\t  ",
+        "     _this.keyrender.el.stop_editing(false);",
+        "     _this.keyrender.el.editable  =false;",
+        "",
+        "     _this.valrender.el.stop_editing(false);",
+        "     _this.valrender.el.editable  =false;",
+        "     Gtk.TreeIter iter;",
+        "      var mod = this.el.get_model();",
+        "\t  mod.get_iter (out iter, path);",
+        "\t  ",
+        "   ",
+        "\tGLib.Value gvaltype, gval;",
+        "\tmod.get_value(iter, 1 , out gval); // one is key..",
+        "\t",
+        "     mod.get_value(iter,0, out gvaltype);",
+        "",
+        "    this.popover.show(this.el, _this.node, (string)gvaltype, (string)gval);",
+        "       ",
+        "    ",
+        "}",
+        ""
+       ]
       }
      ],
      "xtype" : "ScrolledWindow"
@@ -1011,7 +1017,12 @@
     "        }",
     "        // delay this?",
     "        GLib.Timeout.add_full(GLib.Priority.DEFAULT,40 , () => {",
-    "        ",
+    "        \t",
+    "        //\tif (key == \"XXX\") { // empty string for key name.",
+    "        \t//\t_this.view.editPropertyDetails(this.model.el.get_path(iter));",
+    "        //\t\treturn false;",
+    "        //\t}",
+    "        \t",
     "            this.startEditingValue(this.model.el.get_path(iter));",
     "            return false;",
     "        });",
