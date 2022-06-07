@@ -1747,14 +1747,14 @@ public class Xcls_LeftProps : Object
             
                   
                      //   this.get('/LeftPanel.model').activePath  = path;
-                   _this.model.el.get_value(iter,3, out gval);
+                   _this.model.el.get_value(iter,0, out gval);
                 
             
-                    var val = (string)gval;
+                    var prop = (JsRender.NodeProp)gval;
                     var combo =        (Gtk.ComboBox)editable;
             
                     var entry =  (Gtk.Entry) combo.get_child();        
-                    entry.set_text(val);
+                    entry.set_text(prop.val);
                 }
                
             });
