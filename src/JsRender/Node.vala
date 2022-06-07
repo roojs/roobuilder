@@ -205,6 +205,8 @@ public class JsRender.Node : Object {
 		return null;
 		
 	}
+	
+	
 	public string lineToProp(int line)
 	{
 		// assume lineToNode called first...
@@ -231,14 +233,14 @@ public class JsRender.Node : Object {
 				//print("RETURNING NODE ON LINE %d", l);
 				return this.line_map.get(l);
 			}
-			return null;
+			return "";
 			
 		}
 		if (l > -1) {
 			//print("RETURNING NODE ON LINE %d", l);
 			return this.line_map.get(l);
 		}
-		return null;
+		return "";
 	
 	}
 	
