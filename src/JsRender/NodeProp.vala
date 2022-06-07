@@ -27,7 +27,7 @@ public enum JsRender.NodePropType
 	LISTENER;
 	
 	
-	public static to_string(NodePropType intype)
+	public static string to_string(NodePropType intype)
 	{
 		switch(intype) {
 			case PROP: return  "";
