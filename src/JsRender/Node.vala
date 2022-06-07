@@ -561,7 +561,7 @@ public class JsRender.Node : Object {
 
 	}
 	
-	
+	// really old files...
 
 	public string upgradeKey(string key, string val)
 	{
