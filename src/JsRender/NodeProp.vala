@@ -41,10 +41,11 @@ public enum JsRender.NodePropType
 		return "??";
 	}
 	
+	// only usefull for reall values.
 	public static NodePropType from_string(string str)
 	{
 		switch(str) {
-			case "" : return PROP;
+			//case "" : return PROP;
 			case "$": return  PROP_RAW;
 			case "|": return PROP_METHOD;
 			case "@": return  PROP_SIGNAL;
