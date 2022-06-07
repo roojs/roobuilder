@@ -26,8 +26,9 @@ public enum JsRender.NodePropType
 	// listerens can definatly overlap as they are stored in a seperate list. << no need to use this for listeners?
 	LISTENER;
 	
+
 	
-	public static string to_string(NodePropType intype)
+	public static string to_abbr(NodePropType intype)
 	{
 		switch(intype) {
 			case PROP: return  "";
