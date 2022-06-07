@@ -44,7 +44,7 @@ public class JsRender.NodeProp : Object {
 	{
 		this(name, NodePropType.PROP, rtype, val);
 	}
-	public NodeProp.method(string name, string rtype = "", string val = "")
+	public NodeProp.method(string name, string rtype = "void", string val = "() {\n\n}")
 	{
 		this(name, NodePropType.METHOD, rtype, val);
 	}
@@ -61,7 +61,10 @@ public class JsRender.NodeProp : Object {
 	{
 		this(name, NodePropType.USER, rtype, val);
 	}
-	
+	public NodeProp.sig(string name, string rtype = "", string val = "()")
+	{
+		this(name, NodePropType.SIGNAL, rtype);
+	}
 	
 }
 	
