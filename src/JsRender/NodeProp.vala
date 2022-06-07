@@ -134,7 +134,7 @@ public class JsRender.NodeProp : Object {
 			case NodePropType.SIGNAL :
 			case NodePropType.USER : 
 			case NodePropType.SPECIAL: 			
-				return NodePropType.to_string(this.ptype) + " " + this.name;
+				return NodePropType.to_abbr(this.ptype) + " " + this.name;
 			
 		}
 		return this.name;
