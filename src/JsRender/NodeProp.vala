@@ -64,12 +64,12 @@ public enum JsRender.NodePropType
 public class JsRender.NodeProp : Object {
 
 	public string name  = "";
-	public JsRender.NodePropType ptype;  
+	public NodePropType ptype;  
 	public string rtype = ""; // return or type
 	public string val = "";
 	
 	
-	public NodeProp(string name, JsRender.NodePropType ptype, string rtype, string val) {
+	public NodeProp(string name, NodePropType ptype, string rtype, string val) {
 		this.name = name;
 		this.ptype = ptype;
 		this.rtype = rtype;
