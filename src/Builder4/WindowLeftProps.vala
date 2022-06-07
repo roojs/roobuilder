@@ -105,7 +105,7 @@ public class Xcls_LeftProps : Object
         mod.get_value(iter, 0 , out gval);
         var prop  = (JsRender.NodeProp)gval;
     
-       
+    
         
         var use_textarea = false;
     
@@ -114,16 +114,16 @@ public class Xcls_LeftProps : Object
         if (prop.ptype == JsRender.NodePropType.LISTENER) {
             use_textarea = true;
         }
-        if (key.length > 0 && prop.ptype == JsRender.NodePropType.METHOD) { 
+        if (prop.ptype == JsRender.NodePropType.METHOD) { 
             use_textarea = true;
         }
-        if (key.length > 0 && prop.ptype == JsRender.NodePropType.RAW) { // raw string
+        if (prop.ptype == JsRender.NodePropType.RAW) { // raw string
             use_textarea = true;
         }
-        if (key.length > 0 && key == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
+        if ( prop.name == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
             use_textarea = true;
         }
-        if (val.length > 40) { // long value...
+        if (prop.val.length > 40) { // long value...
             use_textarea = true;
         }
         
@@ -134,7 +134,7 @@ public class Xcls_LeftProps : Object
             GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
                 this.view.el.get_selection().select_path(path);
                 
-                this.show_editor(file, node, type, key);
+                this.show_editor(file, node, prop);
                 
                 return false;
             });
