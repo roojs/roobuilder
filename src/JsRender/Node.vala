@@ -282,7 +282,7 @@ public class JsRender.Node : Object {
 			uid_count++;
 			return "uid-%d".printf(uid_count);
 		}
-		return this.props.get("id");
+		return this.props.get("id").val;
 	}
 	
 	
@@ -303,15 +303,15 @@ public class JsRender.Node : Object {
 		if (!this.hasXnsType ()) {
 			return "";
 		}
-		return this.props.get("$ xns") + "." + this.props.get("xtype"); 
+		return this.props.get("xns").val + "." + this.props.get("xtype").val; 
 
 	}
 	public void setFqn(string name)
 	{
 		var ar = name.split(".");
-		this.props.set("xtype", ar[ar.length-1]);
+		this.props.set("xtype",new NodeProp.prop("xtype", "",  ar[ar.length-1]));
 		var l = name.length - (ar[ar.length-1].length +1);
-		this.props.set("$ xns", name.substring(0, l));
+		this.props.set("xns", new NodeProp.raw("xns", "", name.substring(0, l)));
 		//print("setFQN %s to %s\n", name , this.fqn());
 		               
 
