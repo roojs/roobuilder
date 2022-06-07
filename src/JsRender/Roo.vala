@@ -239,7 +239,7 @@ namespace JsRender {
 		{
 			
 			if (node.props.has_key("* xinclude")) {
-				ret.add(node.props.get("* xinclude"));
+				ret.add(node.props.get("* xinclude").val);
 			}
 			for (var i =0; i < node.items.size; i++) {
 				this.findxincludes(node.items.get(i), ret);
