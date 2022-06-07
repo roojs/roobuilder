@@ -317,51 +317,50 @@ public class JsRender.NodeToVala : Object {
 			// Key = TYPE:name
 		var iter = this.node.props.map_iterator();
 		while (iter.next()) {
-			var k = iter.get_key();
-			if (this.shouldIgnore(k)) {
+			 
+			var prop = iter.get_value();
+			
+			if (this.shouldIgnore(prop.name)) {
 				continue;
 			}
-			var vv = k.strip().split(" ");
+
 			// user defined method
-			if (vv[0] == "|") {
+			if (prop.ptype == NodePropType.METHOD) {
 				continue;
 			}
-			if (vv[0] == "*") {
+			if (prop.ptype == NodePropType.SPECIAL) {
 				continue;
 			}
 				
-			if (vv[0] == "@") {
-				this.node.setLine(this.cur_line, "p", k);
-				this.addLine(this.pad + "public signal" + k.substring(1)  + " "  + iter.get_value() + ";");
+			if (prop.ptype == NodePropType.SIGNAL) {
+				this.node.setLine(this.cur_line, "p", prop.name);
+				this.addLine(this.pad + "public signal " + prop.name  + " "  + prop.val + ";");
 				
-				this.ignore(k);
-				continue;
-			}
-			GLib.debug("Got myvars: %s", k.strip());
-			var min = (vv[0] == "$" || vv[0] == "#") ? 3 : 2; 
-			if (vv.length < min) {
-				// skip 'old js style properties without a type'
+				this.ignore(prop.name);
 				continue;
 			}
 			
-			var kname = vv[vv.length-1];
-
-			if (this.shouldIgnore(kname)) {
+			GLib.debug("Got myvars: %s", prop.name.strip());
+			
+			if (prop.rtype.strip().length < 1) {
 				continue;
 			}
 			
 			// is it a class property...
-			if (cls.props.has_key(kname) && vv[0] != "#") {
+			if (cls.props.has_key(prop.name) && prop.ptype != NodePropType.USER) {
 				continue;
 			}
 			
-			this.myvars.add(k);
-			this.node.setLine(this.cur_line, "p", k);
+			this.myvars.add(prop.name);
+			prop.start_line = this.cur_line;
 			
-			this.addLine(this.pad + "public " + 
-				(k[0] == '$' || k[0] == '#' ? k.substring(2) : k ) + ";");
-				
-			this.ignore(k);
+			this.node.setLine(this.cur_line, "p", prop.name);
+			
+			this.addLine(this.pad + "public " + prop.name + ";"); // definer - does not include value.
+
+
+			prop.end_line = this.cur_line;				
+			this.ignore(prop.name);
 			
 				
 		}
