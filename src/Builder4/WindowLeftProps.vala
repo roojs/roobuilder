@@ -1614,14 +1614,20 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore( 7,      typeof(string),  // 0 key type
-     typeof(string),  // 1 key
-     typeof(string),  // 2 key (display)
-     typeof(string),  // 3 value
-     typeof(string),   // 4 value (display)
-     typeof(string),   // 5 both (tooltip)     
-     typeof(string)   // 6 key (for sorting)
- );
+            this.el = new Gtk.TreeStore( 4,      typeof(JsRender.NodeProp),  // 0 key type
+     typeof(string),  // 1 display_key
+     typeof(string),  // 2 display_value
+     typeof(string)  // 3 display_tooltip
+
+/*
+   	0, prop,
+        	1, prop.to_display_name(),
+        	2, dis_val.
+            3,  "<tt>" +  GLib.Markup.escape_text(key + " " +kvalue) + "</tt>",
+            4, "0 " + prop.name
+            
+        ); 
+        */ );
 
             // my vars (dec)
 
