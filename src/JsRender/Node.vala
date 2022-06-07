@@ -317,8 +317,12 @@ public class JsRender.Node : Object {
 
 	}
 	// wrapper around get props that returns empty string if not found.
-	public string get(string key)
+	//overrides Glib.object.get (hence new)
+	public new NodeProp? get(string key)
 	{
+		
+		return this.props.get(key);
+		/*
 		var k = this.props.get(key);
 		if (k != null) {
 			return k;
@@ -335,13 +339,15 @@ public class JsRender.Node : Object {
 			if (kk[kk.length-1] == key) {
 				return iter.get_value();
 			}
-		}
 		
 		
 		return "";
-		
+		}
+		*/
 	}
+	/*
 	
+	SAMNE AS ABOVE
 	public string get_key(string key)
 	{
 		var k = this.props.get(key);
@@ -366,6 +372,7 @@ public class JsRender.Node : Object {
 		return "";
 		
 	}
+	*/
 	public void normalize_key(string key, out string kname, out string kflag, out string ktype)
 	{
 		// key formats : XXXX
