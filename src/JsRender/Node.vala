@@ -422,11 +422,16 @@ public class JsRender.Node : Object {
 		// everything blank otherwise...
 	}
 	*/
-	public void set(string key, string value) {
-		this.props.set(key,value);
+	
+
+	public new void set(string key, NodeProp val) {
+		this.props.set(key,val);
 	}
-	 public bool has(string key)
+
+	public bool has(string key)
 	{
+		return this.prop.has_key(key);
+		/*
 		var k = this.props.get(key);
 		if (k != null) {
 			return true;
@@ -440,7 +445,7 @@ public class JsRender.Node : Object {
 		}
 		
 		return false;
-		
+		*/
 	}
 
 	public void  remove()
