@@ -568,8 +568,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.margin_right = 5;
-            this.el.margin_left = 5;
+            this.el.margin_end = 5;
             this.el.margin_start = 5;
         }
 
