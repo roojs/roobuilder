@@ -6,6 +6,13 @@ events and properties
 
 */
 
+public enum JsRender.NodePropType 
+{
+
+
+}
+
+
 public class JsRender.NodeProp : Object {
 
 	public string name;
