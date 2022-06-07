@@ -137,12 +137,13 @@ public class JsRender.NodeProp : Object {
 	
 	}
 	
-	public NodeProp.listenerfromjson(string str)
+	public NodeProp.listenerfromjson(string str, string inval)
 	{
-		// it does nto have a return type!?
+		this.val = val;
+		this.name = str;
+		this.ptype = NodePropType.LISTENER;
+		this.rtype = "";
 		
-		// listener is just an implementation?
-		// 
 	}
 	
 	// regular addition - should work for properties  
