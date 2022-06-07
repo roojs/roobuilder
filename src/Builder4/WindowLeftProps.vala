@@ -570,6 +570,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.margin_right = 5;
             this.el.margin_left = 5;
+            this.el.margin_start = 5;
         }
 
         // user defined functions

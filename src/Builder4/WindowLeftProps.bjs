@@ -25,6 +25,7 @@
        "* pack" : "add",
        "int margin_left" : 5,
        "int margin_right" : 5,
+       "int margin_start" : 5,
        "string label" : "Add:",
        "xtype" : "Label"
       },
