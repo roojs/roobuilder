@@ -36,7 +36,7 @@ public enum JsRender.NodePropType
 			case SIGNAL : return  "@"; // vala signal
 			case USER : return  "#"; // user defined.
 			case SPECIAL : return  "*"; // * prop| args | ctor | init
-	//		case LISTENER : return  "";  // always raw...
+	 		case LISTENER : return  "";  // always raw...
 		}
 		return "??";
 	}
@@ -51,7 +51,7 @@ public enum JsRender.NodePropType
 			case "@": return  SIGNAL;
 			case "#": return USER;
 			case "*": return SPECIAL;
-			case "": return case LISTENER : return  ""  // always raw...
+			//case "": return case LISTENER : return  ""  // always raw...
 		}
 		return PROP;
 	
