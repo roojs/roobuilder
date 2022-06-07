@@ -378,12 +378,12 @@ namespace Palete {
 				return;
 			}
 			if (res.has_key("add")) {
-				node.props.set("* pack", res.get("add"));
-				return;
+				node.set_prop(new JsRender.NodeProp.special("pack", res.get("add")));
+			    return;
 			}
 			var riter = res.map_iterator();
 			while(riter.next()) {
-				node.props.set("* pack", riter.get_value());
+				node.set_prop(new JsRender.NodeProp.special("pack", riter.get_value()));
 				return;
 			}
 			
