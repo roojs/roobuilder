@@ -171,10 +171,15 @@ public class JsRender.NodeProp : Object {
 	}
 	*/
 	// regular addition - should work for properties  
-	public NodeProp.jsprop(string name, string rtype = "", string val = "")
+	public NodeProp.prop(string name, string rtype = "", string val = "")
 	{
 		this(name, NodePropType.PROP, rtype, val);
 	}
+	public NodeProp.raw(string name, string rtype = "", string val = "")
+	{
+		this(name, NodePropType.RAW, rtype, val);
+	}
+	
 	public NodeProp.valamethod(string name, string rtype = "void", string val = "() {\n\n}")
 	{
 		this(name, NodePropType.METHOD, rtype, val);
