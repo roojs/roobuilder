@@ -134,6 +134,7 @@ public class JsRender.NodeProp : Object {
 			case NodePropType.LISTENER : 
 				return  this.name;
 		}
+		return this.name;
 	
 	}
 	
