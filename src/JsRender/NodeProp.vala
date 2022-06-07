@@ -21,10 +21,10 @@ public enum JsRender.NodePropType
 
 	
 	// specials - these should be in a seperate list?
-	SPECIAL;
+	SPECIAL,
 
 	// listerens can definatly overlap as they are stored in a seperate list. << no need to use this for listeners?
-//	LISTENER;
+	LISTENER;
 	
 	
 	public static string to_string(NodePropType intype)
@@ -122,6 +122,27 @@ public class JsRender.NodeProp : Object {
 		
 	}
 	public string  to_json_key()
+	{
+		switch(this.ptype) {
+			case NodePropType.PROP:
+			case NodePropType.LISTENER : 
+				return this.name;
+				
+			case NodePropType.RAW:
+			case NodePropType.METHOD :
+			case NodePropType.SIGNAL :
+			case NodePropType.USER : 
+				return this.name;
+			
+			case NodePropType.SPECIAL : 
+				return "* " + this.name;
+				
+			// in seperate list..
+			
+			//	return  this.name;
+		}
+		return this.name;
+	}
 	
 	
 	public string  to_index_key()
