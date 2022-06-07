@@ -562,20 +562,24 @@ public class JsRender.NodeToVala : Object {
 			var ar  = k.strip().split(" ");
 			var kname = ar[ar.length-1];
 			
-			var v = this.node.props.get(k);
-			// ignore signals.. 
+			var prop = this.node.props.get(k);
+			
+			var v = prop.val.strip();			
+			
 			if (v.length < 1) {
 				continue; 
 			}
+			// at this point start using 
+
 			if (v == "FALSE" || v == "TRUE") {
-				v = v.down();
+				v= v.down();
 			}
 			//FIXME -- check for raw string.. "string XXXX"
 			
 			// if it's a string...
 			
 			
-			this.addLine(this.ipad + "this." + kname + " = " +   v +";");
+			this.addLine(this.ipad + "this." + prop.name + " = " +   v +";");
 		}
 	}
 
