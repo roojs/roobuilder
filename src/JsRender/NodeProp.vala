@@ -199,6 +199,15 @@ public class JsRender.NodeProp : Object {
 
 	}
 	
+	public bool is(NodeProp comp) {
+		if (comp.ptype == NodePropType.LISTENER || this.ptype == NodePropType.LISTENER ) { 
+			return comp.ptype == this.ptype && comp.name == this.name;
+		}
+		return comp.to_index_key() == this.to_index_key();
+	
+	}
+	
+	
 	/*
 	public NodeProp.listenerfromjson(string str, string inval)
 	{
