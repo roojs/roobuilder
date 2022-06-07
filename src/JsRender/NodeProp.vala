@@ -11,17 +11,17 @@ public enum JsRender.NodePropType
 	// these are all stored as properties, and should not overlap.
 	PROP,
 	
-	PROP_RAW,
-	PROP_METHOD,
-	PROP_SIGNAL,
+	RAW,
+	METHOD,
+	SIGNAL,
 		
 	// in theory we could have user defined properties that overlap - but probably not a good idea.
-	PROP_USER,
+	USER,
 
 
 	
 	// specials - these should be in a seperate list?
-	PROP_SPECIAL,
+	SPECIAL,
 
 	// listerens can definatly overlap as they are stored in a seperate list.
 	LISTENER;
@@ -31,11 +31,11 @@ public enum JsRender.NodePropType
 	{
 		switch(intype) {
 			case PROP: return  "";
-			case PROP_RAW: return "$";
-			case PROP_METHOD : return  "|";	
-			case PROP_SIGNAL : return  "@"; // vala signal
-			case PROP_USER : return  "#"; // user defined.
-			case PROP_SPECIAL : return  "*"; // * prop| args | ctor | init
+			case RAW: return "$";
+			case METHOD : return  "|";	
+			case SIGNAL : return  "@"; // vala signal
+			case USER : return  "#"; // user defined.
+			case SPECIAL : return  "*"; // * prop| args | ctor | init
 			case LISTENER : return  "";  // always raw...
 		}
 		return "??";
@@ -46,11 +46,11 @@ public enum JsRender.NodePropType
 	{
 		switch(str) {
 			//case "" : return PROP;
-			case "$": return  PROP_RAW;
-			case "|": return PROP_METHOD;
-			case "@": return  PROP_SIGNAL;
-			case "#": return PROP_USER;
-			case "*": return PROP_SPECIAL;
+			case "$": return  RAW;
+			case "|": return METHOD;
+			case "@": return  SIGNAL;
+			case "#": return USER;
+			case "*": return SPECIAL;
 			//case "": return case LISTENER : return  ""  // always raw...
 		}
 		return PROP;
@@ -121,13 +121,13 @@ public class JsRender.NodeProp : Object {
 	{
 		switch(this.ptype) {
 			case NodePropType.PROP:
-			case NodePropType.PROP_RAW:
-			case NodePropType.PROP_METHOD :
-			case NodePropType.PROP_SIGNAL :
-			case NodePropType.PROP_USER : 
+			case NodePropType.RAW:
+			case NodePropType.METHOD :
+			case NodePropType.SIGNAL :
+			case NodePropType.USER : 
 				return this.name;
 			
-			case NodePropType.PROP_SPECIAL : 
+			case NodePropType.SPECIAL : 
 				return "* " + this.name;
 				
 			// in seperate list..
@@ -139,7 +139,7 @@ public class JsRender.NodeProp : Object {
 	
 	public NodeProp.listenerfromjson(string str, string inval)
 	{
-		this.val = val;
+		this.val = inval;
 		this.name = str;
 		this.ptype = NodePropType.LISTENER;
 		this.rtype = "";
