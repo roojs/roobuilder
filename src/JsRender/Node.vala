@@ -98,7 +98,7 @@ public class JsRender.Node : Object {
 	public Gee.ArrayList<Node> items; // child items..
 	
 	public Gee.HashMap<string,NodeProp> props; // the properties..
-	public Gee.HashMap<string,string> listeners; // the listeners..
+	public Gee.HashMap<string,NodeProp> listeners; // the listeners..
 	public string  xvala_cls;
 	public string xvala_xcls; // 'Xcls_' + id;
 	public string xvala_id; // item id or ""
