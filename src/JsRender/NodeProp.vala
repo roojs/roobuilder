@@ -51,7 +51,7 @@ public enum JsRender.NodePropType
 			case "@": return  SIGNAL;
 			case "#": return USER;
 			case "*": return SPECIAL;
-			//case "": return case LISTENER : return  ""  // always raw...
+			case "": return case LISTENER : return  ""  // always raw...
 		}
 		return PROP;
 	
@@ -69,6 +69,9 @@ public class JsRender.NodeProp : Object {
 	public NodePropType ptype;  
 	public string rtype = ""; // return or type
 	public string val = "";
+	public int start_line;
+	public int end_line;
+	
 	
 	
 	public NodeProp(string name, NodePropType ptype, string rtype, string val) {
