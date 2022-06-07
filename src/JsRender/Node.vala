@@ -430,7 +430,7 @@ public class JsRender.Node : Object {
 
 	public bool has(string key)
 	{
-		return this.prop.has_key(key);
+		return this.props.has_key(key);
 		/*
 		var k = this.props.get(key);
 		if (k != null) {
