@@ -471,7 +471,7 @@ public class JsRender.NodeToJs : Object {
 		while (piter.next() ) {
 		
 
-			keys.add( piter.get_value().name);
+			keys.add( piter.get_key());
 		}
 		
 		keys.sort((  a,  b) => {
