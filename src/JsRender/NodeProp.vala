@@ -119,12 +119,28 @@ public class JsRender.NodeProp : Object {
 	
 	public string  to_key()
 	{
-	
+		switch(this.ptype) {
+			case NodePropType.PROP: return  "";
+			case NodePropType.PROP_RAW: return "$",
+			case NodePropType.PROP_METHOD : return  "|",	
+			case NodePropType.PROP_SIGNAL : return  "@", // vala signal
+			case NodePropType.PROP_USER : return  "#", // user defined.
+				return this.name;
+			
+			case NodePropType.PROP_SPECIAL : return  "*", // * prop| args | ctor | init
+				return "* " + this.name;
+				
+			// in seperate list..
+			case NodePropType.LISTENER : 
+				return  this.name;
+		}
 	
 	}
 	
 	public NodeProp.listenerfromjson(string str)
 	{
+		// it does nto have a return type!?
+		
 		// listener is just an implementation?
 		// 
 	}
