@@ -171,10 +171,32 @@ public class JsRender.NodeProp : Object {
 	}
 	public string to_tooltip()
 	{
-		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
-		// before we showed "@" for signals
 		
+		switch(this.ptype) {
+			case NodePropType.PROP:
+				return this.rtype + " " + this.name + " = \"" + this.val + "\"";
+			case NodePropType.LISTENER : 
+				return "on " + this.name + " = " + this.val;
+				
+			case NodePropType.RAW:
+				return  this.rtype + " " + this.name + " = " + this.val;
+			case NodePropType.METHOD :
+				// functions - js    FRED  function () { }  <<< could probably be cleaner..
+				// functions - vala    FRED () { }
+				return  this.rtype + " " + this.name  + " "  + this.val;
+			case NodePropType.SIGNAL :
+				return  "signal: "  + this.rtype + " " + this.name  +  " " + this.val;
+			case NodePropType.USER : 
+				return  "user defined: "  + this.rtype + " " + this.name  + " = "  + this.val;
+			
+			case NodePropType.SPECIAL: 			
+				return  "special property: "  + this.rtype + " " + this.name  + " = " +   this.val;			
+
+			
+		}
 		return this.name;
+		
+
 	}
 	
 	/*
