@@ -714,7 +714,7 @@ public class JsRender.Node : Object {
 		var iter = this.props.map_iterator();
 		while (iter.next()) {
 			var i =  iter.get_key().strip();
-			var val = iter.get_value().strip();
+			var val = iter.get_value().val.strip();
 			if (val == null || val.length < 1) {
 				continue;
 			}
@@ -747,7 +747,7 @@ public class JsRender.Node : Object {
 		iter = this.listeners.map_iterator();
 		while (iter.next()) {
 			var i =  iter.get_key().strip();
-			var val = iter.get_value().strip();
+			var val = iter.get_value().val.strip();
 			if (val == null || val.length < 1) {
 				continue;
 			}
