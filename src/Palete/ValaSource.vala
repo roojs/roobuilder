@@ -60,7 +60,7 @@ namespace Palete {
 		  
 					JsRender.JsRender file,
 					JsRender.Node node, 
-					string prop,
+					string propname,
 					string ptype,
 					string val
 				 )
@@ -76,17 +76,21 @@ namespace Palete {
 			
 			// untill we get a smarter renderer..
 			// we have some scenarios where changing the value does not work
-			if (prop == "* xns" || prop == "xtype") {
+			if (propname == "* xns" || propname == "xtype" ||  propname == "xns") {
 				return  false;
 			}
 				
 			
-			var old = hash.get(prop);
-			var newval = "/*--VALACHECK-START--*/ " + val ;
+			var prop = hash.get(propname);
+			var old = prop.val;
 			
-			hash.set(prop, newval);
+
+			prop.val =  "/*--VALACHECK-START--*/ " + prop.val ;
+			
+
 			var tmpstring = JsRender.NodeToVala.mungeFile(file);
-			hash.set(prop, old);
+			prop.val = old;
+			
 			//print("%s\n", tmpstring);
 			var bits = tmpstring.split("/*--VALACHECK-START--*/");
 			var offset =0;
