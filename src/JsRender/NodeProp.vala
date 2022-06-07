@@ -167,7 +167,7 @@ public class JsRender.NodeProp : Object {
 	}
 	public NodeProp.listener(string name, string rtype = "", string val = "")
 	{
-		this(name, NodePropType.LISTENER, rtype val);
+		this(name, NodePropType.LISTENER, rtype, val);
 	}
 	public NodeProp.user(string name, string rtype = "", string val = "")
 	{
