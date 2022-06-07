@@ -323,7 +323,7 @@ public class JsRender.Node : Object {
 		
 		var v = this.props.get(key);
 		return v == null ? "" : v.val;
-		
+	}	
 		/*
 		var k = this.props.get(key);
 		if (k != null) {
@@ -346,7 +346,7 @@ public class JsRender.Node : Object {
 		return "";
 		}
 		*/
-	}
+	 
 	/*
 	
 	SAMNE AS ABOVE
@@ -375,6 +375,13 @@ public class JsRender.Node : Object {
 		
 	}
 	*/
+	public new NodeProp? get_prop(string key)
+	{
+		
+		return this.props.get(key);
+		
+	}
+	/*
 	public void normalize_key(string key, out string kname, out string kflag, out string ktype)
 	{
 		// key formats : XXXX
@@ -414,6 +421,7 @@ public class JsRender.Node : Object {
 		}
 		// everything blank otherwise...
 	}
+	*/
 	public void set(string key, string value) {
 		this.props.set(key,value);
 	}
