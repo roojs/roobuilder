@@ -248,7 +248,7 @@ public class Xcls_LeftProps : Object
             i++;
             m.append(out iter,null);
             
-            this.updateIter(iter,  "listener", miter.get_key(), miter.get_value());
+            this.updateIter(iter,  miter.get_value());
             
              
          }
@@ -270,30 +270,7 @@ public class Xcls_LeftProps : Object
        this.view.el.get_selection().unselect_all();
        
        
-       /**
        
-       make outerpane = {current width of left pane} + width of props
-       make innerpane = {current width of left pane}
-       
-       
-       
-       
-       
-       var outerpane = _this.main_window.leftpane.el;
-       var pane = _this.main_window.editpane.el;
-       
-      
-       
-        var try_size = (i * 25) + 60; // est. 20px per line + 40px header
-        GLib.Timeout.add_seconds(1, () => { 
-    		// max 80%...
-    		pane.set_position( 
-    		     ((try_size * 1.0f) /  (pane.max_position * 1.0f))  > 0.8f  ? 
-    		    (int) (pane.max_position * 0.2f) :
-    		    pane.max_position-try_size);
-    	    return GLib.Source.REMOVE;
-    	});
-    	*/
        
     }
     public              string keyFormat (string val, string type) {
