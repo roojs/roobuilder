@@ -8,13 +8,13 @@ events and properties
 
 public enum JsRender.NodePropType 
 {
-	PROP,
-	PROP_RAW,
-	PROP_USER, // user defined.
-	PROP_METHOD = "|",,
-	PROP_SPECIAL = "*", // * prop
-	PROP_SIGNAL,
-	LISTENER, // always raw...
+	PROP = "",
+	PROP_RAW = "$ "
+	PROP_USER = "# ", // user defined.
+	PROP_METHOD = "| ",,
+	PROP_SPECIAL = "* ", // * prop| args | ctor | init
+	PROP_SIGNAL = "@ ", // vala signal
+	LISTENER = "", // always raw...
 }
 
 
