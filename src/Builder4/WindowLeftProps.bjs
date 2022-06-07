@@ -504,10 +504,10 @@
              "",
              "",
              "     //   this.get('/LeftPanel.model').activePath  = path;",
-             "    _this.model.el.get_value(iter,1, out gval);",
-             "        var val = (string)gval;",
+             "    _this.model.el.get_value(iter,0, out gval);",
+             "        var val = (JsRender.NodeProp)gval;",
              "                 ",
-             "        ((Gtk.Entry)editable).set_text(val);                 ",
+             "        ((Gtk.Entry)editable).set_text(val.to_display_name());",
              "}"
             ]
            },
