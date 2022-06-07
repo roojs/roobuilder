@@ -63,7 +63,7 @@ public class JsRender.NodeProp : Object {
 	}
 	public NodeProp.sig(string name, string rtype = "", string val = "()")
 	{
-		this(name, NodePropType.SIGNAL, rtype);
+		this(name, NodePropType.SIGNAL, rtype, val);
 	}
 	
 }
