@@ -864,7 +864,7 @@
     "}"
    ],
    "|              void addProp" : [
-    " (string in_type, string key, string value, string value_type) {",
+    " (JsRender.NodeProp prop) {",
     "      // info includes key, val, skel, etype..",
     "      //console.dump(info);",
     "        //type = info.type.toLowerCase();",
