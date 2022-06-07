@@ -471,7 +471,7 @@ public class JsRender.NodeToJs : Object {
 		while (piter.next() ) {
 		
 
-			keys.add( piter.get_key());
+			keys.add( piter.get_key()); // since are keys are nice and clean now..
 		}
 		
 		keys.sort((  a,  b) => {
