@@ -42,14 +42,17 @@ public class Xcls_PopoverAddProp : Object
     }
 
     // user defined functions
-    public void show (Palete.Palete pal, string prop_or_listener, string xtype,  Gtk.Widget onbtn) {
+    public void show (Palete.Palete pal, JsRender.NodePropType ptype, string xtype,  Gtk.Widget onbtn) {
     
-        
-        if (this.prop_or_listener  != "" && this.prop_or_listener == prop_or_listener) {
-        	this.prop_or_listener = "";
-        	this.el.hide();
-        	return;
-    	}
+        /// what does this do?
+        //if (this.prop_or_listener  != "" && this.prop_or_listener == prop_or_listener) {
+        //	this.prop_or_listener = "";
+        //	this.el.hide();
+        //	return;
+    	//}
+    	
+    	
+    	
         this.prop_or_listener = prop_or_listener;
         
         this.model.el.clear();
