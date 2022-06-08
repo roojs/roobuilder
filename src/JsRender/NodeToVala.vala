@@ -835,7 +835,7 @@ public class JsRender.NodeToVala : Object {
 
 			prop.start_line = this.cur_line;
 			this.node.setLine(this.cur_line, "p", prop.name);
-			this.addMultiLine(this.pad + "public " + prop.rtype + " "  prop.name + " " + this.padMultiline(this.pad, prop.val));;
+			this.addMultiLine(this.pad + "public " + prop.rtype + " " +  prop.name + " " + this.padMultiline(this.pad, prop.val));;
 			prop.end_line = this.cur_line;
 				
 		}
