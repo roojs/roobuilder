@@ -701,7 +701,7 @@ public class Xcls_WindowLeftTree : Object
                     	if (selection_text.contains(":")) {
             	        	var bits = selection_text.split(":");
             	            dropNode.setFqn(bits[0]);
-            	            dropNode.props.set("* prop", bits[1]);
+            	            dropNode.set_prop(new JsRender.NodeProp.special("prop", bits[1]));
                     	} else {
             
             	            dropNode.setFqn(selection_text);

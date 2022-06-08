@@ -1062,7 +1062,7 @@
          "        \tif (selection_text.contains(\":\")) {",
          "\t        \tvar bits = selection_text.split(\":\");",
          "\t            dropNode.setFqn(bits[0]);",
-         "\t            dropNode.props.set(\"* prop\", bits[1]);",
+         "\t            dropNode.set_prop(new JsRender.NodeProp.special(\"prop\", bits[1]));",
          "        \t} else {",
          "",
          "\t            dropNode.setFqn(selection_text);",
