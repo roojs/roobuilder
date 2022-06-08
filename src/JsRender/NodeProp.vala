@@ -193,7 +193,7 @@ public class JsRender.NodeProp : Object {
 				return "<span style=\"italic\">" + GLib.Markup.escape_text(this.name) + "</span>";
 				
 			case NodePropType.METHOD :
-				return "<span color=\"#008000\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.rtype + " " + this.name) + "</span>";
+				return "<i>" + GLib.Markup.escape_text(this.rtype)  + "</i> <span color=\"#008000\" font_weight=\"bold\">" + GLib.Markup.escape_text( this.name) + "</span>";
 			 	
 			case NodePropType.SIGNAL : // purpley
 				return "<span   color=\"#ea00d6\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.name)+ "</span>";
