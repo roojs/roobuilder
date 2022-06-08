@@ -224,7 +224,7 @@ public class Xcls_PopoverAddProp : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 3, 
+            this.el = new Gtk.ListStore( 4, 
 typeof(JsRender.NodeProp),  // 0 real key
 typeof(string),  // text display
 typeof(string),  // tooltip

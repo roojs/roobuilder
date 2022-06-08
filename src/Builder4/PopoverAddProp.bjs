@@ -65,7 +65,7 @@
          "$ xns" : "Gtk",
          "* pack" : "set_model",
          "id" : "model",
-         "n_columns" : 3,
+         "n_columns" : 4,
          "xtype" : "ListStore",
          "| JsRender.NodeProp getValue" : [
           "(Gtk.TreeIter iter, int col)",
