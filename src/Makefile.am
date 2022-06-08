@@ -171,6 +171,7 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/JsonGen.vala \
 		JsRender/JsRender.vala \
 		JsRender/Lang.vala \
+		JsRender/NodeProp.vala \		
 		JsRender/NodeToGtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
