@@ -229,12 +229,7 @@ public class Xcls_LeftProps : Object
         //var provider = this.get('/LeftTree').getPaleteProvider();
         Gtk.TreeIter iter;
         
-        //typeof(string),  // 0 key type
-         //typeof(string),  // 1 key
-         //typeof(string),  // 2 key (display)
-         //typeof(string),  // 3 value
-         //typeof(string),  // 4 value (display)
-         //typeof(string),  // 5 both (tooltip)
+       
         
          
         
@@ -500,7 +495,7 @@ public class Xcls_LeftProps : Object
             	2, dis_val,
                 3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
                 4, "0 " + prop.name
-                
+                -1
             ); 
             return;
         }
