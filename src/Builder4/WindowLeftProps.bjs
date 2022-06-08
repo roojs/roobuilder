@@ -184,8 +184,7 @@
            "listeners" : {
             "activate" : [
              "  ( ) =>{",
-             "",
-             "    _this.addProp(\"prop\",  \"XXX\", \"function() { }\", \"| function\");",
+             "   _this.addProp( new JsRender.NodeProp.jsmethod(\"\") ); ",
              "}"
             ]
            },

@@ -991,8 +991,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-            
-                _this.addProp("prop",  "XXX", "function() { }", "| function");
+               _this.addProp( new JsRender.NodeProp.jsmethod("") ); 
             });
         }
 
