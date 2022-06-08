@@ -219,7 +219,7 @@ public class JsRender.NodeProp : Object {
 	
 	public string to_property_option_markup()
 	{
-		return "<B>" + this.name + "</B> <i>" + this.rtype + "</i>";
+		return "<b>" + this.name + "</b> <i>" + this.rtype + "</i>";
 	}
 	
 	public string to_property_option_tooltip()
