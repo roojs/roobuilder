@@ -79,8 +79,7 @@ public class Xcls_ValaCompileResults : Object
     	/// scroll..
     	buf.get_end_iter (out  iter);
     	this.sourceview.el.scroll_to_iter(iter, 0.0f, true, 0.0f, 1.0f);
-    	
-    
+     
     }
     public class Xcls_compile_view : Object
     {
