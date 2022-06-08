@@ -149,7 +149,7 @@ public class JsRender.NodeProp : Object {
 
 
 			case NodePropType.SPECIAL: 			
-				return (NodePropType.to_abbr(this.ptype) + " " + this.name;
+				return NodePropType.to_abbr(this.ptype) + " " + this.name;
 			
 		}
 		return this.name;
