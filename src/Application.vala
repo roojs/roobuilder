@@ -259,7 +259,7 @@
 					print("diff -u %s /tmp/%s\n", file.path,  file.name);
 					//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 				}
-				print("Files match %s", file.name);
+				print("# Files match %s\n", file.name);
 				
 			}
 			
