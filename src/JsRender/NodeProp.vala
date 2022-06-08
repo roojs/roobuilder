@@ -207,7 +207,7 @@ public class JsRender.NodeProp : Object {
 				
 			// in seperate list..
 			case NodePropType.LISTENER : 
-				return  this.name;
+				return  "<b>" + this.name + "</b>";
 		}
 		return this.name;
  	}
