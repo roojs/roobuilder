@@ -19,7 +19,7 @@ public class StandardErrorDialog : Object
     public StandardErrorDialog()
     {
         _this = this;
-        this.el = new Gtk.MessageDialog( null, null, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "fixme" );
+        this.el = new Gtk.MessageDialog( null, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "fixme" );
 
         // my vars (dec)
 

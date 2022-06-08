@@ -7,6 +7,7 @@
    "$ modal" : true,
    "$ use_markup" : true,
    "$ xns" : "Gtk",
+   "Gtk.DialogFlags flags" : "Gtk.DialogFlags.MODAL",
    "listeners" : {
     "delete_event" : [
      "  (self, event)  => {",
