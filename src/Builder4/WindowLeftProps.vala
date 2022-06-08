@@ -1843,12 +1843,11 @@ public class Xcls_LeftProps : Object
                  _this.valrender.el.editable  =false;
                  
                   
-            	GLib.Value gvaltype, gval;
-            	mod.get_value(iter, 1 , out gval); // one is key..
-            	
-                 mod.get_value(iter,0, out gvaltype);
+            	 GLib.Value gvaltype, gval;
+            	 
+                 mod.get_value(iter,0, out gval);
             
-            	_this.view.popover.show(_this.view.el, _this.node, (string)gvaltype, (string)gval);
+            	_this.view.popover.show(_this.view.el, _this.node, (JsRender.NodeProp)gval);
                    
                 
                 
