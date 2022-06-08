@@ -109,6 +109,9 @@
            "listeners" : {
             "activate" : [
              " ()  => {",
+             " ",
+             " ",
+             " ",
              "    _this.addProp( \"prop\", \"cms-id\", \"\", \"string\");",
              "}"
             ]
