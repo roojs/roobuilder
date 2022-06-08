@@ -213,7 +213,7 @@ namespace Palete {
 			
 		}
 		
-		public override Gee.HashMap<string,GirObject> getPropertiesFor(string ename, string type)
+		public override Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype)
 		{
 			//print("Loading for " + ename);
 			
@@ -242,16 +242,16 @@ namespace Palete {
 
 			//cls.overlayParent();
 
-			switch  (type) {
+			switch  (ptype) {
 				
 				
-				case "props":
+				case JsRender.NodePropType.PROP:
 					return cls.props;
-				case "signals":
+				case JsRender.NodePropType.LISTENER;
 					return cls.signals;
-				case "methods":
+				case JsRender.NodePropType.METHOD:
 					return ret;
-				case "ctors":
+				case JsRender.NodePropType.CTOR:
 					return ret;
 				default:
 					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + type);
