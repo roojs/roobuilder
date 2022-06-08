@@ -1640,8 +1640,7 @@ public class Xcls_WindowRooView : Object
         	return p.javascriptHasErrors(
         		_this.main_window.windowstate,
                 str, 
-                 "", // _this.key, 
-                "file", //_this.ptype,
+                null, // prop - not relivant.
                 _this.file, 
                 null
             );    
