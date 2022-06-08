@@ -441,6 +441,11 @@ namespace Palete {
 			if (this.nodetype == "Signal") {
 				return new JsRender.NodeProp.sig(this.name, this.type); // signature?
 			}
+			var def = "";
+			if (this.type == "bool") {
+				def = "true";
+			}
+			// if it's an enum?? can we fill in a default value?
 			
 			return  new JsRender.NodeProp.prop(this.name, this.type); // signature?
 		
