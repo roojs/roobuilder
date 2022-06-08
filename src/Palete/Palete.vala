@@ -368,7 +368,7 @@ namespace Palete
 		public   bool  javascriptHasErrors(
 					WindowState state,
 		 			string code, 
-					JsRender.NodeProp prop, 
+					JsRender.NodeProp? prop,  // null if you are testing  a whole file.
 					JsRender.JsRender file, 
 					out Gee.HashMap<int,string> errors
 		                 ) 
@@ -381,19 +381,19 @@ namespace Palete
 				return false;
 			 }
 			 // only check listeners and methods?
-			 if (prop.ptype != JsRender.NodePropType.LISTENER && prop.ptype != JsRender.NodePropType.METHOD ) {
+			 if (prop != null && prop.ptype != JsRender.NodePropType.LISTENER && prop.ptype != JsRender.NodePropType.METHOD ) {
 				return false;
 			 }
 			
 			//var cd = new JSCore.ClassDefinitionEmpty();
 			//print("TESTING CODE %s\n", code);
 			string errmsg;
-			var testcode = ptype == "file" ? code : "var __aaa___ = " + code;
+			var testcode = prop == null ? code : "var __aaa___ = " + code;
 			var line = Javascript.singleton().validate(
 								  testcode, out errmsg);
 
 			if (line > -1) {
-				if (ptype == "file") {
+				if (prop == null) {
 					var err = new Json.Object();
 					err.set_int_member("ERR-TOTAL", 1);
 					var files_obj = new Json.Object();
@@ -418,7 +418,7 @@ namespace Palete
 			
 			
 			
-			if (ptype == "file") {
+			if (prop == null) {
 				 return this.javascriptHasCompressionErrors(file, state, code);
 			}
 			print("no errors\n");
