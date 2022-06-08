@@ -199,7 +199,7 @@ public class JsRender.NodeProp : Object {
 				return "<span   color=\"#ea00d6\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.name)+ "</span>";
 				
 			case NodePropType.USER : 
-				return  "<span  font_weight=\"bold\">" + GLib.Markup.escape_text(this.rtype + " " + this.name) + "</span>";
+				return  "<i>" + GLib.Markup.escape_text(this.rtype)  + "</i> <span  font_weight=\"bold\">" + GLib.Markup.escape_text(this.name) + "</span>";
 			
 			case NodePropType.SPECIAL : 
 				return "<span   color=\"#0000CC\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.name) + "</span>";       
