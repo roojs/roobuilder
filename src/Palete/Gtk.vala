@@ -295,7 +295,7 @@ namespace Palete {
 				case JsRender.NodePropType.CTOR:
 					return cls.ctors;
 				default:
-					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + type);
+					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + ptype.to_string());
 					//var ret = new Gee.HashMap<string,GirObject>();
 					//return ret;
 				
