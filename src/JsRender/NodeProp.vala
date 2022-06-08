@@ -129,7 +129,7 @@ public class JsRender.NodeProp : Object {
 	public string  to_json_key()
 	{
 		
-		var ortype = (this.rtype.length > 0 ? " " : "") + rtype;
+		var ortype = this.rtype +  (this.rtype.length > 0 ? " " : "");
 		
 		switch(this.ptype) {
 			
