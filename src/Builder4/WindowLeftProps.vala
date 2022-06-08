@@ -826,7 +826,8 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ()  => {
              
-             
+                _this.addProp( new JsRender.NodeProp.prop("cms-id","string", "" ) );
+            
              
                 _this.addProp( "prop", "cms-id", "", "string");
             });
