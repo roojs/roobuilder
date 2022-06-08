@@ -331,7 +331,7 @@ namespace Palete {
 			inherits += node.fqn() + " ";
 			//print ("fillPack:Inherits : %s\n", inherits);
 			// parent.fqn() method ( node.fqn()
-			var methods = this.getPropertiesFor (parent.fqn(), "methods");
+			var methods = this.getPropertiesFor (parent.fqn(), JsRender.NodePropType.METHOD);
 			
 			var res = new Gee.HashMap<string,string>();
 			var map = methods.map_iterator();
