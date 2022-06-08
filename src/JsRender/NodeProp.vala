@@ -188,7 +188,7 @@ public class JsRender.NodeProp : Object {
 		// before we showed "@" for signals
 		switch(this.ptype) {
 			case NodePropType.PROP:
-				return r + " " + n;
+				return  n;
 				
 			case NodePropType.RAW:
 				return @"<span   style=\"italic\">$n</span>";
