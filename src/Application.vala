@@ -249,7 +249,7 @@
 				GLib.FileUtils.get_contents(file.path, out oldstr);				
 				var outstr = file.toJsonString();
 				if (outstr != oldstr) { 
-					GLib.FileUtils.put_contents("/tmp/" + file.name , out oldstr);
+					GLib.FileUtils.put_contents("/tmp/" + file.name , out outstr);
 					print("Files do not match:\n diff -u %s /tmp/%s", file.path,  file.name);
 					GLib.Process.exit(Posix.EXIT_SUCCESS);		
 				}
