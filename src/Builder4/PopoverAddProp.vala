@@ -261,6 +261,15 @@ typeof(string) // 5 element type (event|prop)
             return (string)value;
             
         }
+        public JsRender.NodeProp getValue (Gtk.TreeIter iter, int col)
+        {
+        
+            GLib.Value value;
+            this.el.get_value(iter, col, out value);
+         
+            return (string)value;
+            
+        }
     }
 
     public class Xcls_namecol : Object

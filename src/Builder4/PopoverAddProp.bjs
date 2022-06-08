@@ -64,6 +64,17 @@
          "id" : "model",
          "n_columns" : 6,
          "xtype" : "ListStore",
+         "| JsRender.NodeProp getValue" : [
+          "(Gtk.TreeIter iter, int col)",
+          "{",
+          "",
+          "    GLib.Value value;",
+          "    this.el.get_value(iter, col, out value);",
+          " ",
+          "    return (string)value;",
+          "    ",
+          "}"
+         ],
          "| string getValue" : [
           "(Gtk.TreeIter iter, int col)",
           "{",
