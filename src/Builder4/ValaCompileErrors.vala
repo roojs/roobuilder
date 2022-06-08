@@ -46,7 +46,7 @@ public class Xcls_ValaCompileErrors : Object
     // user defined functions
     public void show (Json.Object tree, Gtk.Widget onbtn) {
     
-            
+        
             this.file = null;
             this.notices = tree;
            
