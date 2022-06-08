@@ -196,8 +196,8 @@ public class JsRender.NodeProp : Object {
 			case NodePropType.METHOD :
 				return @"<span color=\"#008000\" font_weight=\"bold\">$r $n</span>";
 			 	
-			case NodePropType.SIGNAL :
-				return @"<span   color=\"#0000CC\" font_weight=\"bold\">$n</span>";
+			case NodePropType.SIGNAL : // purpley
+				return @"<span   color=\"#ea00d6\" font_weight=\"bold\">$n</span>";
 				
 			case NodePropType.USER : 
 				return @"<span  font_weight=\"bold\">$r $n</span>";
