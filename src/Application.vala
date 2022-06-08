@@ -243,7 +243,7 @@
 			
 			var ar = cur_project.sortedFiles();
 			foreach(var file in ar) {
-				string outstr;
+				string oldstr;
 
 				file.loadItems();
 				GLib.FileUtils.get_contents(file.path, out oldstr);				
@@ -259,7 +259,7 @@
 			
 			print("All files pass");
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
-		
+		}
 		
 		void compileBjs(Project.Project? cur_project)
 		{
