@@ -446,6 +446,7 @@ namespace Palete {
 				def = "true";
 			}
 			// if it's an enum?? can we fill in a default value?
+			// if it's an object type? use raw?
 			
 			return  new JsRender.NodeProp.prop(this.name, this.type); // signature?
 		
