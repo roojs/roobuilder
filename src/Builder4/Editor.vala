@@ -69,9 +69,7 @@ public class Editor : Object
             return true;
         }
         
-        
-       
-       
+         
          
          var str = _this.buffer.toString();
          
