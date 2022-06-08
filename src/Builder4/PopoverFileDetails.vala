@@ -1175,7 +1175,7 @@ public class Xcls_PopoverFileDetails : Object
             
             
             	if (_this.name.el.get_text().length  < 1) {
-            	    cls_StandardErrorDialog.singleton()..show(
+            	    cls_StandardErrorDialog.singleton().show(
             	        _this.mainwindow.el,
             	        "You have to set Component name "
             	    );
@@ -1227,7 +1227,7 @@ public class Xcls_PopoverFileDetails : Object
             	if (!_this.filetype.el.get_active_iter(out iter)) {
             		// should not happen...
             		// so we are jut going to return without 
-            		StandardErrorDialog.show(
+            		cls_StandardErrorDialog.singleton().show(
             	        _this.mainwindow.el,
             	        "You must select a file type. "
             	    );
