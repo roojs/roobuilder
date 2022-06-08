@@ -141,7 +141,7 @@
    ],
    "| void hide" : [
     "() {",
-    "\tthis.prop_or_listener = \"\";",
+    "\tthis.ptype = JsRender.NodePropType.NONE:",
     "\tthis.el.hide();",
     "}",
     ""
