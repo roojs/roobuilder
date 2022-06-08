@@ -254,6 +254,7 @@ public class JsRender.NodeProp : Object {
 			case NodePropType.PROP:
 				return this.rtype + " " + this.name + " = \"" + this.val + "\"";
 			case NodePropType.LISTENER : 
+				// thsi might look a bit odd on javascript?
 				return "on " + this.name +  this.val;
 				
 			case NodePropType.RAW:
