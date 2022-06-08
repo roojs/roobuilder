@@ -1742,7 +1742,7 @@ public class Xcls_WindowLeftTree : Object
                         return;
               
                  }
-                 node.props.set("* xinclude", name);
+                 node.set_prop( new JsRender.NodeProp.special("xinclude", name));
                  node.items.clear();
             
             
