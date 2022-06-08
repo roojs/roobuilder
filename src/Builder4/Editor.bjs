@@ -600,9 +600,9 @@
    "| void reset" : [
     "() {",
     "\t this.file = null;    ",
-    "    this.ptype = \"\";",
-    "    this.key  = \"\";",
+    "     ",
     "    this.node = null;",
+    "    this.prop = null;",
     "\tthis.searchcontext = null;",
     "  ",
     "}",

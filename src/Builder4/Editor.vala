@@ -176,9 +176,9 @@ public class Editor : Object
     }
     public void reset () {
     	 this.file = null;    
-        this.ptype = "";
-        this.key  = "";
+         
         this.node = null;
+        this.prop = null;
     	this.searchcontext = null;
       
     }
