@@ -407,6 +407,9 @@ public class Xcls_LeftProps : Object
     // technicall stop the popup editor..
     
     }
+    public void reload () {
+    
+    }
     public              void addProp (JsRender.NodeProp prop) {
           // info includes key, val, skel, etype..
           //console.dump(info);
