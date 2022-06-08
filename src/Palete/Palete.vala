@@ -332,8 +332,7 @@ namespace Palete
 	 	public   void validateVala(
 				WindowState state,
 				string code, 
-				string property, 
-				string ptype,
+				JsRender.NodeProp prop,
 				JsRender.JsRender file,
 				JsRender.Node node
 		 ) 
@@ -354,8 +353,7 @@ namespace Palete
 			state.valasource.checkFileWithNodePropChange(
 					file,
 					node, 
-					property, 
-					ptype,
+					prop,
 					code
 			 );
 			 
