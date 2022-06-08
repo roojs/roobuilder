@@ -45,7 +45,7 @@
            "listeners" : {
             "activate" : [
              " ()  => {",
-             " \t// is this userdef?",
+             " \t// is this userdef or special??",
              "    _this.addProp( new JsRender.NodeProp.prop(\"id\") );",
              "}"
             ]

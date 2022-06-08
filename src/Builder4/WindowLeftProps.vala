@@ -705,7 +705,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ()  => {
-             	// is this userdef?
+             	// is this userdef or special??
                 _this.addProp( new JsRender.NodeProp.prop("id") );
             });
         }
