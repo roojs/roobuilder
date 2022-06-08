@@ -30,6 +30,7 @@ public class Editor : Object
     public bool dirty;
     public signal void save ();
     public JsRender.Node node;
+    public string XXXX;
 
     // ctor
     public Editor()
@@ -136,13 +137,13 @@ public class Editor : Object
        
     
     }
-    public   void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key)
+    public   void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
     {
         this.reset();
         this.file = file;    
         
         if (file.xtype != "PlainFile") {
-        
+        	this.prop = prop;
             this.ptype = ptype;
             this.key  = key;
             this.node = node;

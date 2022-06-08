@@ -9,6 +9,7 @@
    "# bool pos" : false,
    "# int pos_root_x" : "",
    "# int pos_root_y" : "",
+   "# string XXXX" : "",
    "# string activeEditor" : "\"\"",
    "$ homogeneous" : false,
    "$ xns" : "Gtk",
@@ -534,13 +535,13 @@
     "} "
    ],
    "|   void show" : [
-    "(JsRender.JsRender file, JsRender.Node? node, string ptype, string key)",
+    "(JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)",
     "{",
     "    this.reset();",
     "    this.file = file;    ",
     "    ",
     "    if (file.xtype != \"PlainFile\") {",
-    "    ",
+    "    \tthis.prop = prop;",
     "        this.ptype = ptype;",
     "        this.key  = key;",
     "        this.node = node;",
