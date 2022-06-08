@@ -1,14 +1,14 @@
-static StandardErrorDialog  _StandardErrorDialog;
+static Xcls_StandardErrorDialog  _StandardErrorDialog;
 
-public class StandardErrorDialog : Object
+public class Xcls_StandardErrorDialog : Object
 {
     public Gtk.MessageDialog el;
-    private StandardErrorDialog  _this;
+    private Xcls_StandardErrorDialog  _this;
 
-    public static StandardErrorDialog singleton()
+    public static Xcls_StandardErrorDialog singleton()
     {
         if (_StandardErrorDialog == null) {
-            _StandardErrorDialog= new StandardErrorDialog();
+            _StandardErrorDialog= new Xcls_StandardErrorDialog();
         }
         return _StandardErrorDialog;
     }
@@ -16,7 +16,7 @@ public class StandardErrorDialog : Object
         // my vars (def)
 
     // ctor
-    public StandardErrorDialog()
+    public Xcls_StandardErrorDialog()
     {
         _this = this;
         this.el = new Gtk.MessageDialog( null, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "fixme" );
