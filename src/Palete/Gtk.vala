@@ -288,7 +288,7 @@ namespace Palete {
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
 					return cls.props;
-				case JsRender.NodePropType.LISTENERS:
+				case JsRender.NodePropType.LISTENER:
 					return cls.signals;
 				case JsRender.NodePropType.METHOD:
 					return cls.methods;
