@@ -592,7 +592,7 @@ public class JsRender.NodeToVala : Object {
 	{
 		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (cls == null) {
-			Glib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
+			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
 			return;
 		}
 			// what are the properties of this class???
