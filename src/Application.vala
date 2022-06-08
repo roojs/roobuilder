@@ -141,6 +141,7 @@
 			this.listProjects();
 			var cur_project = this.compileProject();
 			this.listFiles(cur_project);
+			this.testBjs(cur_project);
 			this.compileBjs(cur_project);
 			this.compileVala();
 
