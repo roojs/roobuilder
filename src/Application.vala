@@ -232,6 +232,11 @@
 			
 		}
 		
+		/**
+		 Test to see if the internal BJS reader/writer still outputs the same files.
+		 -- probably need this for the generator as well.
+		*/
+		
 		void testBjs(Project.Project? cur_project)
 		{
 			if (!BuilderApplication.opt_bjs_test) {
