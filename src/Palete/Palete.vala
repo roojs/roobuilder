@@ -368,20 +368,20 @@ namespace Palete
 		public   bool  javascriptHasErrors(
 					WindowState state,
 		 			string code, 
-					string property, 
-					string ptype,
+					JsRender.NodeProp prop, 
 					JsRender.JsRender file, 
 					out Gee.HashMap<int,string> errors
 		                 ) 
 		{   
 
-			 print("validate code (%s) ptype=%s property=%s\n", file.language, ptype, property);
+			// print("validate code (%s) ptype=%s property=%s\n", file.language, ptype, property);
 			errors = new Gee.HashMap<int,string>();
 		
 			if (file.language != "js") {
 				return false;
 			 }
-			 if (ptype != "listener" && property.length > 0 && property[0] == '|') {
+			 // only check listeners and methods?
+			 if (prop.ptype != JsRender.NodePropType.LISTENER && prop.ptype != JsRender.NodePropType.METHOD ) {
 				return false;
 			 }
 			
