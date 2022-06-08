@@ -222,8 +222,7 @@
      "    this.el.hide();",
      "    return true; ",
      "    //test  ",
-     "}",
-     " "
+     "} "
     ],
     "response" : [
      " (self, response_id) =>  { ",
