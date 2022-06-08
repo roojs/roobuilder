@@ -130,7 +130,10 @@ public class JsRender.NodeProp : Object {
 	{
 		
 		var ortype = this.rtype +  (this.rtype.length > 0 ? " " : "");
-		
+		var oabbr = NodePropType.to_abbr(this.ptype);
+		if (oabbr.length > 0) {
+			oabbr += " ";
+		}
 		switch(this.ptype) {
 			
 
@@ -144,12 +147,12 @@ public class JsRender.NodeProp : Object {
 			case NodePropType.METHOD:
 			case NodePropType.SIGNAL:			
 			case NodePropType.USER : 			
-				return NodePropType.to_abbr(this.ptype) + ortype + " " + this.name;			
+				return oabbr + ortype + " " + this.name;			
 				
 
 
 			case NodePropType.SPECIAL: 			
-				return NodePropType.to_abbr(this.ptype) + " " + this.name;
+				return oabbr + " " + this.name;
 			
 		}
 		return this.name;
