@@ -483,7 +483,7 @@ namespace Palete {
 		public override  List<SourceCompletionItem> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
-				JsRender.NodeProp? prop,
+				JsRender.NodeProp? xxxprop, // is this even used?
 				string complete_string
 		) { 
 			
@@ -585,10 +585,10 @@ namespace Palete {
 							return ret;
 						}
 						if (cls.props.has_key(parts[i])) {
-							var prop = cls.props.get(parts[i]);
-							if (prop.type.index_of(".",0) > -1) {
+							var clsprop = cls.props.get(parts[i]);
+							if (clsprop.type.index_of(".",0) > -1) {
 								// type is another roo object..
-								curtype = prop.type;
+								curtype = clsprop.type;
 								prevbits += parts[i] + ".";
 								continue;
 							}
@@ -677,36 +677,36 @@ namespace Palete {
 				
 				var citer = cls.methods.map_iterator();
 				while (citer.next()) {
-					var prop = citer.get_value();
+					var cprop = citer.get_value();
 					// does the name start with ...
-					if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
+					if (parts[i].length > 0 && cprop.name.index_of(parts[i],0) != 0) {
 						continue;
 					}
 					// got a matching property...
 					// return type?
 					ret.append(new SourceCompletionItem (
-							 prop.name + prop.sig + " :  ("+ prop.propertyof + ")", 
-							prevbits + prop.name + "(", 
+							 cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")", 
+							prevbits + cprop.name + "(", 
 							null, 
-							prop.doctxt));
+							cprop.doctxt));
 				}
 				
 				// get the properties / methods and subclasses.. of cls..
 				// we have cls.. - see if the string matches any of the properties..
 				citer = cls.props.map_iterator();
 				while (citer.next()) {
-					var prop = citer.get_value();
+					var cprop = citer.get_value();
 					// does the name start with ...
-					if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
+					if (parts[i].length > 0 && cprop.name.index_of(parts[i],0) != 0) {
 						continue;
 					}
 					// got a matching property...
 					
 					ret.append(new SourceCompletionItem (
-							 prop.name + " : " + prop.type + " ("+ prop.propertyof + ")", 
-							prevbits + prop.name, 
+							 cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")", 
+							prevbits + cprop.name, 
 							null, 
-							prop.doctxt));
+							cprop.doctxt));
 				}
 					 
 					
