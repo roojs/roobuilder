@@ -330,15 +330,14 @@ public class WindowState : Object
 		this.win.props.el.pack_start(this.left_props.el,true, true,0);
 		this.left_props.el.show_all();
 	
-		this.left_props.show_editor.connect( (file, node, type,  key) => {
+		this.left_props.show_editor.connect( (file, node, prop) => {
 			this.switchState(State.CODE);
 			
 			
 			this.code_editor_tab.show(
 				file,
 				node,
-				type,
-				key
+				prop
 			);
 			
 			
