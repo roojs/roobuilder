@@ -190,19 +190,19 @@ public class JsRender.NodeProp : Object {
 				return  this.name;
 				
 			case NodePropType.RAW:
-				return "<span   style=\"italic\">" + this.name + "</span>";
+				return "<span   style=\"italic\">" + GLib.Markup.escape_text(this.name) + "</span>";
 				
 			case NodePropType.METHOD :
-				return "<span color=\"#008000\" font_weight=\"bold\">" + this.rtype + " " + this.name + "</span>";
+				return "<span color=\"#008000\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.rtype + " " + this.name) + "</span>";
 			 	
 			case NodePropType.SIGNAL : // purpley
-				return "<span   color=\"#ea00d6\" font_weight=\"bold\">" + this.name + "</span>";
+				return "<span   color=\"#ea00d6\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.name)+ "</span>";
 				
 			case NodePropType.USER : 
-				return  "<span  font_weight=\"bold\">" + this.rtype + " " + this.name + "</span>";
+				return  "<span  font_weight=\"bold\">" + GLib.Markup.escape_text(this.rtype + " " + this.name) + "</span>";
 			
 			case NodePropType.SPECIAL : 
-				return "<span   color=\"#0000CC\" font_weight=\"bold\">" + this.name + "</span>";       
+				return "<span   color=\"#0000CC\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.name) + "</span>";       
 				
 			// in seperate list..
 			case NodePropType.LISTENER : 
