@@ -232,13 +232,19 @@ public class Xcls_PopoverAddProp : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 6, typeof(string),  // 0 real key
+            this.el = new Gtk.ListStore( 6, 
+typeof(JsRender.NodeProp),  // 0 real key
+typeof(string),  // text display
+typeof(string),  // tooltip
+
+/* was:
+typeof(string),  // 0 real key
 typeof(string), // 1 real type
 typeof(string), // 2 docs ?
 typeof(string), // 3 visable desc
 typeof(string), // 4 function desc
 typeof(string) // 5 element type (event|prop)
-         );
+*/ );
 
             // my vars (dec)
 
