@@ -256,8 +256,8 @@
 				if (outstr != oldstr) { 
 					
 					GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
-					print("Files do not match:\n diff -u %s /tmp/%s", file.path,  file.name);
-					GLib.Process.exit(Posix.EXIT_SUCCESS);		
+					print("diff -u %s /tmp/%s\n", file.path,  file.name);
+					//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 				}
 				print("Files match %s", file.name);
 				
