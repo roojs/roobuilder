@@ -433,6 +433,15 @@ namespace Palete {
 
 			
 		}
+		
+		
+		public JsRender.NodeProp toNodeProp()
+		{
+			
+		
+		
+		}
+		
 		/*
 		//public string fqtype() {
 		//	return Gir.fqtypeLookup(this.type, this.ns);
