@@ -72,8 +72,7 @@ public class Xcls_PopoverProperty : Object
     public void show (Gtk.Widget btn, JsRender.Node node, JsRender.NodeProp prop) 
     	{
     	
-     
-    	 
+      
     
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
     		this.header.el.title = "Modify Event Listener";
