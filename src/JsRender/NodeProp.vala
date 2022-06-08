@@ -190,7 +190,7 @@ public class JsRender.NodeProp : Object {
 				return  this.name;
 				
 			case NodePropType.RAW:
-				return "<span   style=\"italic\">" + GLib.Markup.escape_text(this.name) + "</span>";
+				return "<span style=\"italic\">" + GLib.Markup.escape_text(this.name) + "</span>";
 				
 			case NodePropType.METHOD :
 				return "<span color=\"#008000\" font_weight=\"bold\">" + GLib.Markup.escape_text(this.rtype + " " + this.name) + "</span>";
