@@ -94,8 +94,7 @@ public class Xcls_RooProjectSettings : Object
         // need to re-init the database 
         
         _this.project.initRooDatabase();
-         
-        
+          
     }
     public class Xcls_Box2 : Object
     {
