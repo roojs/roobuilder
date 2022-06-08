@@ -65,7 +65,7 @@ namespace Palete {
 		    var filtered_proposals = this.windowstate.file.palete().suggestComplete(
 			    this.windowstate.file,
 			    this.editor.node,
-			    this.editor.prop
+			    this.editor.prop,
 			    search
 		    ); 
 		
