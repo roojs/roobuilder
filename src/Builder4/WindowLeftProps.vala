@@ -414,7 +414,7 @@ public class Xcls_LeftProps : Object
             //var data = this.toJS();
               
          
-        var fkey = (value_type.length > 0 ? value_type + " " : "") + key;
+        
                   
         if (prop.ptype == JsRender.NodePropType.LISTENER) {
             if (this.node.listeners.has_key(prop.name)) {
