@@ -27,7 +27,7 @@ public class Xcls_LeftProps : Object
     public bool allow_edit;
     public JsRender.JsRender file;
     public signal bool stop_editor ();
-    public signal void show_editor (JsRender.JsRender file, JsRender.Node node, JsRender.NodeProp prop);
+    public signal void show_editor (JsRender.JsRender file, JsRender.Node node, string type, string key);
     public signal void changed ();
     public signal void show_add_props (string type);
     public Xcls_MainWindow main_window;
@@ -54,6 +54,38 @@ public class Xcls_LeftProps : Object
     }
 
     // user defined functions
+    public void updateKey (string oldkey,  string type, string key ) {
+    
+     
+    	
+    	_this.model.el.foreach((mod, path,  iter) => {
+    		 
+            
+            	  
+           
+    		 GLib.Value gvaltype, gval,kvalue;
+    		 mod.get_value(iter, 1 , out gval); // one is key..
+    		
+    	     mod.get_value(iter,0, out gvaltype);
+    	     
+     	     mod.get_value(iter,3, out kvalue);
+    	     
+    	      if (oldkey == ((string)gval) && type == ((string)gvaltype)) {
+    	      
+    		  	  //print("update iter type=%s, key=%s value=%s\n", type, key,(string) kvalue);
+    	      
+       	 	      this.updateIter(iter, type, key, (string)kvalue);
+       	 	      return true;
+    	 	  }
+    	     
+    
+    		return false;
+    	});
+    	
+    	this.changed();
+    
+    
+    }
     public              string keySortFormat (string key) {
         // listeners first - with 0
         // specials
@@ -100,30 +132,50 @@ public class Xcls_LeftProps : Object
     
         var mod = this.model.el;
         mod.get_iter (out iter, path);
-        
+         
+        /*
+            m.set(iter, 
+                    0, "listener",
+                    1, miter.get_key(),
+                    2, "<b>" + miter.get_key() + "</b>",
+                    3, miter.get_value()
+                ); 
+         
+        */
         GLib.Value gval;
+        mod.get_value(iter, 3 , out gval);
+        var val = (string)gval;
+    
+        mod.get_value(iter, 1 , out gval);
+        var key = (string)gval;
+        
+        
+        string kname, kflag, ktype;
+        this.node.normalize_key(key, out kname, out kflag, out ktype);
+         
+        
         mod.get_value(iter, 0 , out gval);
-        var prop  = (JsRender.NodeProp)gval;
-    
-    
+        var type = (string)gval; // listerner or prop..
+        
+       
         
         var use_textarea = false;
     
         //------------ things that require the text editor...
         
-        if (prop.ptype == JsRender.NodePropType.LISTENER) {
+        if (type == "listener") {
             use_textarea = true;
         }
-        if (prop.ptype == JsRender.NodePropType.METHOD) { 
+        if (key.length > 0 && key[0] == '|') { // user defined method
             use_textarea = true;
         }
-        if (prop.ptype == JsRender.NodePropType.RAW) { // raw string
+        if (key.length > 0 && key[0] == '$') { // raw string
             use_textarea = true;
         }
-        if ( prop.name == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
+        if (key.length > 0 && key == "* init") {
             use_textarea = true;
         }
-        if (prop.val.length > 40) { // long value...
+        if (val.length > 40) { // long value...
             use_textarea = true;
         }
         
@@ -134,7 +186,7 @@ public class Xcls_LeftProps : Object
             GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
                 this.view.el.get_selection().select_path(path);
                 
-                this.show_editor(file, node, prop);
+                this.show_editor(file, node, type, key);
                 
                 return false;
             });
@@ -146,14 +198,14 @@ public class Xcls_LeftProps : Object
          var pal = this.file.project.palete;
         
         string[] opts;
-        var has_opts = pal.typeOptions(this.node.fqn(), prop.name, prop.rtype, out opts);
+        var has_opts = pal.typeOptions(this.node.fqn(), kname, ktype, out opts);
         
         
         
         // others... - fill in options for true/false?
         GLib.debug("turn on editing %s \n" , mod.get_path(iter).to_string());
        
-          // GLib.debug (ktype.up());
+           GLib.debug (ktype.up());
         if (has_opts) {
                 GLib.debug("start editing try/false)???");
                 this.valrender.el.has_entry = false;
@@ -165,10 +217,10 @@ public class Xcls_LeftProps : Object
                  this.allow_edit  = true;
                  GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
                      this.view.el.set_cursor_on_cell(
-    	                path,
-    	                this.valcol.el,
-    	                this.valrender.el,
-    	                true
+                        path,
+                        this.valcol.el,
+                        this.valrender.el,
+                        true
                     );
                     return false;
                 });
@@ -248,7 +300,7 @@ public class Xcls_LeftProps : Object
             i++;
             m.append(out iter,null);
             
-            this.updateIter(iter,  miter.get_value());
+            this.updateIter(iter,  "listener", miter.get_key(), miter.get_value());
             
              
          }
@@ -260,7 +312,7 @@ public class Xcls_LeftProps : Object
        while(miter.next()) {
                i++;
             m.append(out iter,null);
-             this.updateIter(iter, miter.get_value());
+             this.updateIter(iter,  "prop", miter.get_key(), miter.get_value());
              
        }
        GLib.debug("clear selection\n");
@@ -270,7 +322,30 @@ public class Xcls_LeftProps : Object
        this.view.el.get_selection().unselect_all();
        
        
+       /**
        
+       make outerpane = {current width of left pane} + width of props
+       make innerpane = {current width of left pane}
+       
+       
+       
+       
+       
+       var outerpane = _this.main_window.leftpane.el;
+       var pane = _this.main_window.editpane.el;
+       
+      
+       
+        var try_size = (i * 25) + 60; // est. 20px per line + 40px header
+        GLib.Timeout.add_seconds(1, () => { 
+    		// max 80%...
+    		pane.set_position( 
+    		     ((try_size * 1.0f) /  (pane.max_position * 1.0f))  > 0.8f  ? 
+    		    (int) (pane.max_position * 0.2f) :
+    		    pane.max_position-try_size);
+    	    return GLib.Source.REMOVE;
+    	});
+    	*/
        
     }
     public              string keyFormat (string val, string type) {
@@ -407,27 +482,28 @@ public class Xcls_LeftProps : Object
     // technicall stop the popup editor..
     
     }
-    public              void addProp (JsRender.NodeProp prop) {
+    public              void addProp (string in_type, string key, string value, string value_type) {
           // info includes key, val, skel, etype..
           //console.dump(info);
             //type = info.type.toLowerCase();
             //var data = this.toJS();
               
-         
-        
+        var type = in_type == "signals" ? "listener" : in_type;
+          
+        var fkey = (value_type.length > 0 ? value_type + " " : "") + key;
                   
-        if (prop.ptype == JsRender.NodePropType.LISTENER) {
-            if (this.node.listeners.has_key(prop.name)) {
+        if (type == "listener") {
+            if (this.node.listeners.has_key(key)) {
                 return;
             }
-            this.node.listeners.set(prop.name,prop);
+            this.node.listeners.set(key,value);
         } else  {
              assert(this.node != null);
              assert(this.node.props != null);
-            if (this.node.props.has_key(prop.to_index_key())) {
+            if (this.node.props.has_key(fkey)) {
                 return;
             }
-            this.node.props.set(prop.to_index_key(),prop);
+            this.node.props.set(fkey,value);
         }
                 
           
@@ -446,20 +522,24 @@ public class Xcls_LeftProps : Object
       
         this.model.el.foreach((model, path, iter) => {
             GLib.Value gval;
+        
             this.model.el.get_value(iter, 0 , out gval);
-            
-            var iprop = (JsRender.NodeProp)gval;
-            if (!iprop.is(prop)) {
-            	continue;
+            if ((string)gval != type) {
+                GLib.debug("not type: %s = %s\n", (string)gval , type);
+                return false;
             }
-            
+            this.model.el.get_value(iter, 1 , out gval);
+            if ((string)gval != fkey) {
+                GLib.debug("not key: %s = %s\n", (string)gval , fkey);
+                return false;
+            }
             // delay this?
             GLib.Timeout.add_full(GLib.Priority.DEFAULT,40 , () => {
             	
-        		if (prop.name == "") { // empty string for key name.
-            		_this.view.editPropertyDetails(this.model.el.get_path(iter));
-            		return false;
-            	}
+            //	if (key == "XXX") { // empty string for key name.
+            	//	_this.view.editPropertyDetails(this.model.el.get_path(iter));
+            //		return false;
+            //	}
             	
                 this.startEditingValue(this.model.el.get_path(iter));
                 return false;
@@ -472,7 +552,7 @@ public class Xcls_LeftProps : Object
         
                   
     }
-    public              void updateIter (Gtk.TreeIter iter, JsRender.NodeProp prop) {
+    public              void updateIter (Gtk.TreeIter iter,  string type, string key, string kvalue) {
     
         //print("update Iter %s, %s\n", key,kvalue);
         //typeof(string),  // 0 key type
@@ -483,21 +563,22 @@ public class Xcls_LeftProps : Object
          //typeof(string),  // 5 both (tooltip)
          //typeof(string),  // 6 key (sort)
         
-        var dl = prop.val.strip().split("\n");
+        var dl = kvalue.strip().split("\n");
     
         var dis_val = dl.length > 1 ? (dl[0].strip()+ "...") : dl[0];
         
-        if (prop.ptype == JsRender.NodePropType.LISTENER) {
+        if (type == "listener") {
          
            
             
             this.model.el.set(iter, 
-            	0, prop,
-            	1, prop.to_display_name(),
-            	2, dis_val,
-                3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
-                4, "0 " + prop.name
-                
+                    0, type,
+                1, key,
+                2, this.keyFormat(key ,type),
+                3, kvalue,
+                4, dis_val,
+                5, "<tt>" +  GLib.Markup.escape_text(key + " " +kvalue) + "</tt>",
+                6,  "0 " + key
             ); 
             return;
         }
@@ -505,12 +586,13 @@ public class Xcls_LeftProps : Object
     
     
         this.model.el.set(iter, 
-                0, prop,
-            	1, prop.to_display_name(),
-            	2, dis_val,
-                3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
-                4, "1 " + prop.name
-                
+                0, "props",
+                1, key,
+                2,  this.keyFormat(key , "prop"),
+                3, kvalue,
+                4, dis_val,
+                 5, "<tt>" + GLib.Markup.escape_text(key + " " + kvalue) + "</tt>",
+                 6,  this.keySortFormat(key)
             ); 
     }
     public class Xcls_Box2 : Object
@@ -563,8 +645,8 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.margin_end = 5;
-            this.el.margin_start = 5;
+            this.el.margin_right = 5;
+            this.el.margin_left = 5;
         }
 
         // user defined functions
@@ -705,8 +787,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ()  => {
-             	// is this userdef or special??
-                _this.addProp( new JsRender.NodeProp.prop("id") );
+                _this.addProp( "prop", "id", "", "");
             });
         }
 
@@ -735,8 +816,8 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-            // is this userdef?
-                _this.addProp( new JsRender.NodeProp.special("pack", "add") );
+            
+                _this.addProp( "prop", "pack","add", "*");
             });
         }
 
@@ -766,7 +847,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) => {
             
-                  _this.addProp( new JsRender.NodeProp.special("ctor") );
+                _this.addProp( "prop", "ctor","", "*");
             });
         }
 
@@ -795,8 +876,8 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-                  _this.addProp( new JsRender.NodeProp.special("init","{\n\n}\n" ) );
             
+                _this.addProp( "prop",  "init", "{\n\n}\n", "*" );
             });
         }
 
@@ -825,10 +906,6 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ()  => {
-             
-                _this.addProp( new JsRender.NodeProp.prop("cms-id","string", "" ) );
-            
-             
                 _this.addProp( "prop", "cms-id", "", "string");
             });
         }
@@ -880,7 +957,9 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( (self) => {
-                _this.addProp( new JsRender.NodeProp.prop("", "string", "") );
+            
+                _this.addProp( "prop", "XXX", "","# string");
+            
             });
         }
 
@@ -910,7 +989,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) =>{
             
-                   _this.addProp( new JsRender.NodeProp.prop("", "int", "0") ); 
+                _this.addProp("prop",  "XXX", "0", "int");
             });
         }
 
@@ -939,8 +1018,8 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-                   _this.addProp( new JsRender.NodeProp.prop("", "bool", "true") ); 
-             
+            
+                _this.addProp( "prop", "XXX", "true", "bool");
             });
         }
 
@@ -991,7 +1070,8 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-               _this.addProp( new JsRender.NodeProp.jsmethod("") ); 
+            
+                _this.addProp("prop",  "XXX", "function() { }", "| function");
             });
         }
 
@@ -1021,7 +1101,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) =>{
             
-                 _this.addProp( new JsRender.NodeProp.valamethod("") ); 
+                _this.addProp( "prop", "XXX", "() {\n\n}\n", "| void");
             });
         }
 
@@ -1050,7 +1130,8 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-                 _this.addProp( new JsRender.NodeProp.sig("") ); 
+            
+                _this.addProp( "prop", "XXX", "()", "@ void");
             });
         }
 
@@ -1224,7 +1305,8 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
                 
                  _this.main_window.windowstate.showProps(this.el, "props");
-              
+             
+            
             });
         }
 
@@ -1534,20 +1616,14 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore( 4,      typeof(JsRender.NodeProp),  // 0 key type
-     typeof(string),  // 1 display_key
-     typeof(string),  // 2 display_value
-     typeof(string)  // 3 display_tooltip
-
-/*
-   	0, prop,
-        	1, prop.to_display_name(),
-        	2, dis_val.
-            3,  "<tt>" +  GLib.Markup.escape_text(key + " " +kvalue) + "</tt>",
-            4, "0 " + prop.name
-            
-        ); 
-        */ );
+            this.el = new Gtk.TreeStore( 7,      typeof(string),  // 0 key type
+     typeof(string),  // 1 key
+     typeof(string),  // 2 key (display)
+     typeof(string),  // 3 value
+     typeof(string),   // 4 value (display)
+     typeof(string),   // 5 both (tooltip)     
+     typeof(string)   // 6 key (for sorting)
+ );
 
             // my vars (dec)
 
@@ -1583,8 +1659,8 @@ public class Xcls_LeftProps : Object
 
             // init method
 
-            this.el.add_attribute(_this.keyrender.el , "markup", 1 ); // 1 is the key.
-             //this.el.add_attribute(_this.keyrender.el , "text", 1 );
+            this.el.add_attribute(_this.keyrender.el , "markup", 2 );
+             this.el.add_attribute(_this.keyrender.el , "text", 1 );
         }
 
         // user defined functions
@@ -1607,6 +1683,66 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.editing_started.connect( (  editable, path) => {
+            
+                 Gtk.TreeIter  iter;
+                _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
+                GLib.Value gval;
+                              
+            
+            
+                 //   this.get('/LeftPanel.model').activePath  = path;
+                _this.model.el.get_value(iter,1, out gval);
+                    var val = (string)gval;
+                             
+                    ((Gtk.Entry)editable).set_text(val);                 
+            });
+            this.el.edited.connect( (path, newtext) => {
+                    GLib.debug("Keyrender  - signal:edited\n");
+                
+                this.el.editable = false;
+              
+             
+            
+                    Gtk.TreeIter  iter;
+                    _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
+                    GLib.Value gval;
+                    
+                     _this.model.el.get_value(iter,1, out gval);
+                    var oldval = (string)gval;
+                    
+                     _this.model.el.get_value(iter,0, out gval);
+                    var ktype = (string)gval;
+                   
+                    _this.model.el.set_value(iter, 1, newtext);
+                    
+                    if (oldval == newtext) {
+                        return;
+                    }
+                    
+                    
+                    GLib.debug("ktype: %s\n",ktype);
+                    switch(ktype) {
+                        case "listener":
+                            var ov = _this.node.listeners.get(oldval);
+                            _this.node.listeners.set(newtext, ov);
+                            _this.node.listeners.unset(oldval);
+                            
+                            _this.updateIter(iter,  ktype, newtext, ov);
+                            
+                            break;
+                        case "props":
+                            var ov = _this.node.props.get(oldval);
+                            _this.node.props.set(newtext, ov);
+                            _this.node.props.unset(oldval);
+                            _this.updateIter(iter,  ktype, newtext, ov);
+                            break;
+                     }
+                     _this.changed();
+                      
+            });
         }
 
         // user defined functions
@@ -1641,11 +1777,19 @@ public class Xcls_LeftProps : Object
 
             {
             	
-             
+            	//     typeof(string),  // 0 key type
+                // typeof(string),  // 1 key
+                // typeof(string),  // 2 key (display)
+                // typeof(string),  // 3 value
+                // typeof(string)   // 4 value (display)
             
             	
-            	this.el.add_attribute(_this.valrender.el , "text", 2 );
-             
+            	this.el.add_attribute(_this.valrender.el , "text", 4 );
+            	//this.el.add_attribute(_this.valrender.el , "sensitive", 4 );
+            	//this.el.add_attribute(this.items[0].el , 'editable', 3 );
+                      // this.el.set_cell_data_func(cell, age_cell_data_func, NULL, NULL);
+            
+             //	this.get('/LeftPanel').editableColumn= this;
             }
         }
 
@@ -1700,14 +1844,14 @@ public class Xcls_LeftProps : Object
             
                   
                      //   this.get('/LeftPanel.model').activePath  = path;
-                   _this.model.el.get_value(iter,0, out gval);
+                   _this.model.el.get_value(iter,3, out gval);
                 
             
-                    var prop = (JsRender.NodeProp)gval;
+                    var val = (string)gval;
                     var combo =        (Gtk.ComboBox)editable;
             
                     var entry =  (Gtk.Entry) combo.get_child();        
-                    entry.set_text(prop.val);
+                    entry.set_text(val);
                 }
                
             });
@@ -1715,29 +1859,57 @@ public class Xcls_LeftProps : Object
                 GLib.debug("Valrender  - signal:edited\n");
               
                     this.el.editable = false;
-                
+            /*  
+             m.set(iter, 
+                            0, "listener",
+                            1, miter.get_key(),
+                            2, "<b>" + miter.get_key() + "</b>",
+                            3, miter.get_value(),
+                            4, display_value(short);
+                        ); 
+            
+              */      
             
                     Gtk.TreeIter  iter;
                     _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
                     GLib.Value gval;
                     
                      _this.model.el.get_value(iter,0, out gval);
-                    var prop = (JsRender.NodeProp)gval;
-                    prop.val = newtext;
-                    _this.updateIter(iter,prop);
-                    _this.changed();
+                    var ktype = (string)gval;
+                    
+                    
+                     _this.model.el.get_value(iter,3, out gval);
+                    var oldval = (string)gval;
+                    
+                     _this.model.el.get_value(iter,1, out gval);
+                    var key = (string)gval;
+                    
+                     
+                    
+                    switch(ktype) {
+                        case "listener":
+                            _this.node.listeners.set(key, newtext);
+                            _this.updateIter(iter,ktype,key,newtext);
+                            break;
+                        case "props":
+                            _this.node.props.set(key,newtext);
+                            _this.updateIter(iter,ktype, key,newtext);                
+                            break;
+                     }
+            //         _this.load(_this.file,_this.node);
+                     _this.changed();
                       
             });
         }
 
         // user defined functions
         public              void setOptions (string[] ar) {
-        	var m = _this.valrendermodel.el;
-        	m.clear();
-        	Gtk.TreeIter iret;
+              var m = _this.valrendermodel.el;
+                m.clear();
+             Gtk.TreeIter iret;
             for (var i =0; i < ar.length; i++) {
-                m.append(out iret);
-                m.set_value(iret, 0, ar[i]);
+                    m.append(out iret);
+                    m.set_value(iret, 0, ar[i]);
             }
         
         }
