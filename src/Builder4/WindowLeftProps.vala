@@ -1534,8 +1534,8 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.TreeStore( 5,      typeof(JsRender.NodeProp),  // 0 key type
      typeof(string),  // 1 display_key
      typeof(string),  // 2 display_value
-     typeof(string)  // 3 display_tooltip
-
+     typeof(string),  // 3 display_tooltip
+ 		typeof(string)  // 4 sortable value
 /*
    	0, prop,
         	1, prop.to_display_name(),
