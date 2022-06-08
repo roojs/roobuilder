@@ -196,13 +196,13 @@ public class JsRender.NodeProp : Object {
 				return "<span color=\"#008000\" font_weight=\"bold\">" + this.rtype + " " + this.name + "</span>";
 			 	
 			case NodePropType.SIGNAL : // purpley
-				return @"<span   color=\"#ea00d6\" font_weight=\"bold\">$n</span>";
+				return "<span   color=\"#ea00d6\" font_weight=\"bold\">" + this.name + "</span>";
 				
 			case NodePropType.USER : 
-				return @"<span  font_weight=\"bold\">$r $n</span>";
+				return  "<span  font_weight=\"bold\">" + this.rtype + " " + this.name + "</span>";
 			
 			case NodePropType.SPECIAL : 
-				return @"<span   color=\"#0000CC\" font_weight=\"bold\">$n</span>";       
+				return "<span   color=\"#0000CC\" font_weight=\"bold\">" + this.name + "</span>";       
 				
 			// in seperate list..
 			case NodePropType.LISTENER : 
