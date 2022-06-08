@@ -17,6 +17,7 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_namerender namerender;
 
         // my vars (def)
+    public JsRender.NodePropType ptype;
     public bool active;
     public signal void select (JsRender.NodeProp prop);
     public Xcls_MainWindow mainwindow;
@@ -53,7 +54,7 @@ public class Xcls_PopoverAddProp : Object
     	
     	
     	
-        this.prop_or_listener = prop_or_listener;
+        this.ptype = ptype;
         
         this.model.el.clear();
     
