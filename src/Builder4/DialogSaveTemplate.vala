@@ -44,7 +44,7 @@ public class DialogSaveTemplate : Object
         this.el.delete_event.connect( (self, event) => {
            this.el.response(Gtk.ResponseType.CANCEL);
             return true;
-            
+         
         });
     }
 

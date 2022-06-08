@@ -1,58 +1,113 @@
 {
- "name" : "DialogSaveTemplate",
- "parent" : "",
- "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/DialogSaveTemplate.bjs",
- "permname" : "",
- "modOrder" : "",
  "build_module" : "builder",
  "items" : [
   {
-   "listeners" : {
-    "delete_event" : " (self, event) => {\n   this.el.response(Gtk.ResponseType.CANCEL);\n    return true;\n    \n}"
-   },
-   "default_width" : 400,
-   "|    void show" : " (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {\n \n    \n        this.el.set_transient_for(parent);\n        this.el.modal = true;\n        \n          this.name.el.set_text(\"\");\n        this.el.show_all();\n         var   name = \"\";\n        while (true) {\n            var response_id = this.el.run();\n            if (response_id < 1) {\n                this.el.hide();\n                 return;\n            }\n            \n            name = _this.name.el.get_text();\n            if (name.length < 1) {\n                StandardErrorDialog.singleton().show(\n                     _this.el,\n                    \"You must give the template a name. \"\n                );\n                continue;\n            }\n            if (!Regex.match_simple (\"^[A-Za-z][A-Za-z0-9. ]+$\", name) )\n            {\n                StandardErrorDialog.singleton().show(\n                     _this.el,\n                    \"Template Name must contain only letters dots\"\n                );\n                continue;\n            }\n            break;\n        }\n        palete.saveTemplate(name, data);\n        \n        // now we save it..\n        this.el.hide();\n        \n         \n  \n   \n}\n",
-   "xtype" : "Dialog",
-   "default_height" : 200,
+   "# JsRender.Node data" : "",
    "# Palete.Palete palete" : "",
    "$ modal" : true,
-   "# JsRender.Node data" : "",
    "$ xns" : "Gtk",
+   "default_height" : 200,
+   "default_width" : 400,
    "items" : [
     {
-     "xtype" : "Box",
-     "$ pack" : " get_content_area().add\n\n",
+     "$ pack" : [
+      " get_content_area().add",
+      "",
+      ""
+     ],
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "items" : [
       {
-       "label" : "Name",
-       "xtype" : "Label",
+       "$ xns" : "Gtk",
        "* pack" : "add",
-       "$ xns" : "Gtk"
+       "label" : "Name",
+       "xtype" : "Label"
       },
       {
-       "id" : "name",
-       "xtype" : "Entry",
+       "$ xns" : "Gtk",
        "* pack" : "add",
-       "$ xns" : "Gtk"
+       "id" : "name",
+       "xtype" : "Entry"
       }
-     ]
+     ],
+     "xtype" : "Box"
     },
     {
-     "label" : "Cancel",
-     "xtype" : "Button",
+     "$ xns" : "Gtk",
      "* pack" : "add_action_widget,0",
-     "$ xns" : "Gtk"
+     "label" : "Cancel",
+     "xtype" : "Button"
     },
     {
-     "label" : "OK",
-     "xtype" : "Button",
+     "$ xns" : "Gtk",
      "* pack" : "add_action_widget,1",
-     "$ xns" : "Gtk"
+     "label" : "OK",
+     "xtype" : "Button"
     }
+   ],
+   "listeners" : {
+    "delete_event" : [
+     " (self, event) => {",
+     "   this.el.response(Gtk.ResponseType.CANCEL);",
+     "    return true;",
+     " ",
+     "}"
+    ]
+   },
+   "xtype" : "Dialog",
+   "|    void show" : [
+    " (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {",
+    " ",
+    "    ",
+    "        this.el.set_transient_for(parent);",
+    "        this.el.modal = true;",
+    "        ",
+    "          this.name.el.set_text(\"\");",
+    "        this.el.show_all();",
+    "         var   name = \"\";",
+    "        while (true) {",
+    "            var response_id = this.el.run();",
+    "            if (response_id < 1) {",
+    "                this.el.hide();",
+    "                 return;",
+    "            }",
+    "            ",
+    "            name = _this.name.el.get_text();",
+    "            if (name.length < 1) {",
+    "                StandardErrorDialog.singleton().show(",
+    "                     _this.el,",
+    "                    \"You must give the template a name. \"",
+    "                );",
+    "                continue;",
+    "            }",
+    "            if (!Regex.match_simple (\"^[A-Za-z][A-Za-z0-9. ]+$\", name) )",
+    "            {",
+    "                StandardErrorDialog.singleton().show(",
+    "                     _this.el,",
+    "                    \"Template Name must contain only letters dots\"",
+    "                );",
+    "                continue;",
+    "            }",
+    "            break;",
+    "        }",
+    "        palete.saveTemplate(name, data);",
+    "        ",
+    "        // now we save it..",
+    "        this.el.hide();",
+    "        ",
+    "         ",
+    "  ",
+    "   ",
+    "}",
+    ""
    ]
   }
- ]
+ ],
+ "modOrder" : "",
+ "name" : "DialogSaveTemplate",
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogSaveTemplate.bjs",
+ "permname" : "",
+ "title" : ""
 }
