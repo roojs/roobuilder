@@ -8,6 +8,9 @@ events and properties
 
 public enum JsRender.NodePropType 
 {
+	
+	NONE, // fake value - used in popoveraddprop.
+	
 	// these are all stored as properties, and should not overlap.
 	PROP,
 	
