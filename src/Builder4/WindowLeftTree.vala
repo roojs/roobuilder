@@ -1369,7 +1369,8 @@ public class Xcls_WindowLeftTree : Object
                 
                
                  if (target_data.length == 3 && target_data[2].length > 0) {
-                    node.props.set("* prop", target_data[2]);
+        	         node.set_prop(new JsRender.NodeProp.special("prop", target_data[2]));
+        
                 }
         
                 Gtk.TreePath expand_parent = null;
