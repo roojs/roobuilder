@@ -438,7 +438,7 @@ namespace Palete {
 		public JsRender.NodeProp toNodeProp()
 		{
 			
-		
+			if (this.
 		
 		}
 		
