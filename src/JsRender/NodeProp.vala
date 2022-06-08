@@ -112,7 +112,7 @@ public class JsRender.NodeProp : Object {
 				} else {
 					// has a ptype.
 					
-					this.rtype = "";
+					this.rtype = ""; // no return type, only a ptype indicator.
 					this.ptype = NodePropType.from_string(kk[0]);
 				}
 				return;
