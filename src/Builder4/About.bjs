@@ -19,7 +19,7 @@
    "string version" : "4.2.0",
    "website" : "https://github.com/roojs/roobuilder",
    "xtype" : "AboutDialog",
-   "|    void show" : [
+   "| void show" : [
     "(Gtk.Window parent) {",
     "    this.el.set_transient_for(parent);",
     "    this.el.modal = true;",
