@@ -319,7 +319,7 @@ public class Xcls_PopoverProperty : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore( 2, typeof(JsRender.NodePropType),typeof(string) );
 
             // my vars (dec)
 

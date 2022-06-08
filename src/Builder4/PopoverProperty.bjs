@@ -53,7 +53,7 @@
            "xtype" : "CellRendererText"
           },
           {
-           "$ columns" : "typeof(string),typeof(string)",
+           "$ columns" : "typeof(JsRender.NodePropType),typeof(string)",
            "$ xns" : "Gtk",
            "* pack" : "set_model",
            "id" : "dbmodel",
