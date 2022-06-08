@@ -2,7 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
-   "# string XXXX" : "",
+   "# JsRender.NodeProp prop" : "",
    "$ xns" : "Gtk",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
@@ -248,9 +248,7 @@
    "| void show" : [
     "(Gtk.Widget btn, JsRender.Node node, JsRender.NodeProp prop) ",
     "\t{",
-    "\t",
-    "  ",
-    "",
+    "\t ",
     "\tif (prop.ptype == JsRender.NodePropType.LISTENER) {",
     "\t\tthis.header.el.title = \"Modify Event Listener\";",
     "\t} else {",

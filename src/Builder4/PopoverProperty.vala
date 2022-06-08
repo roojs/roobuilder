@@ -23,10 +23,10 @@ public class Xcls_PopoverProperty : Object
     public string old_keyname;
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public bool done;
+    public JsRender.NodeProp prop;
     public Xcls_MainWindow mainwindow;
     public string key_type;
     public JsRender.Node node;
-    public string XXXX;
 
     // ctor
     public Xcls_PopoverProperty()
@@ -72,9 +72,7 @@ public class Xcls_PopoverProperty : Object
     // user defined functions
     public void show (Gtk.Widget btn, JsRender.Node node, JsRender.NodeProp prop) 
     	{
-    	
-      
-    
+    	 
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
     		this.header.el.title = "Modify Event Listener";
     	} else {
