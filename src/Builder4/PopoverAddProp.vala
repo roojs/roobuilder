@@ -72,9 +72,7 @@ public class Xcls_PopoverAddProp : Object
     		
     		var prop = p.toNodeProp();
     		
-    		var dname = p.name;
-    		var dtype = p.type;
-    		 
+    	 	 
     
             this.model.el.set(iter,
                     0,  prop, 
