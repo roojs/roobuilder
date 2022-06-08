@@ -68,7 +68,7 @@ public class Xcls_DialogNewComponent : Object
         
         
                 if (_this.name.el.get_text().length  < 1) {
-                    Xls_StandardErrorDialog.singleton().show(
+                    Xcls_StandardErrorDialog.singleton().show(
                         this.el,
                         "You have to set Component name "
                     );
