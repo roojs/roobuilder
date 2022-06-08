@@ -183,17 +183,18 @@ public class JsRender.NodeProp : Object {
 	public string to_display_name()
 	{
 		var n = this.name;
+		var r = this.rtype;
 		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
 		// before we showed "@" for signals
 		switch(this.ptype) {
 			case NodePropType.PROP:
-				return this.name;
+				return r + " " + n;
 				
 			case NodePropType.RAW:
 				return @"<span   style=\"italic\">$n</span>";
 				
 			case NodePropType.METHOD :
-				return @"<span color=\"#008000\" font_weight=\"bold\">$n</span>";
+				return @"<span color=\"#008000\" font_weight=\"bold\">$r $n</span>";
 			 	
 			case NodePropType.SIGNAL :
 				return @"<span   color=\"#0000CC\" font_weight=\"bold\">$n</span>";
