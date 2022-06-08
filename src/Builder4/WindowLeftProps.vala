@@ -829,7 +829,7 @@ public class Xcls_LeftProps : Object
                 _this.addProp( new JsRender.NodeProp.prop("cms-id","string", "" ) );
             
              
-                _this.addProp( "prop", "cms-id", "", "string");
+                
             });
         }
 
