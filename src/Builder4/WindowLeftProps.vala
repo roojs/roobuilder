@@ -1021,7 +1021,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) =>{
             
-                _this.addProp( "prop", "XXX", "() {\n\n}\n", "| void");
+                 _this.addProp( new JsRender.NodeProp.valamethod("") ); 
             });
         }
 
