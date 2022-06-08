@@ -2,6 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# string XXXX" : "",
    "$ xns" : "Gtk",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
