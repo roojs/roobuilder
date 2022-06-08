@@ -20,7 +20,6 @@ public class Xcls_PopoverAddProp : Object
     public bool active;
     public signal void select (JsRender.NodeProp prop);
     public Xcls_MainWindow mainwindow;
-    public string prop_or_listener;
 
     // ctor
     public Xcls_PopoverAddProp()
@@ -30,7 +29,6 @@ public class Xcls_PopoverAddProp : Object
 
         // my vars (dec)
         this.active = false;
-        this.prop_or_listener = "";
 
         // set gobject values
         this.el.width_request = 900;
