@@ -21,11 +21,6 @@ public class Xcls_ClutterFiles : Object
     public Xcls_filelayout_manager filelayout_manager;
 
         // my vars (def)
-    public Clutter.ScrollMode scroll_mode;
-    public Gdk.Pixbuf missing_thumb_pixbuf;
-    public signal void open (JsRender.JsRender file);
-    public Project.Project project;
-    public Gee.ArrayList<Object> fileitems;
 
     // ctor
     public Xcls_ClutterFiles()
@@ -34,12 +29,6 @@ public class Xcls_ClutterFiles : Object
         this.el = new Clutter.Actor();
 
         // my vars (dec)
-        this.scroll_mode = Clutter.ScrollMode.VERTICALLY;
-        this.missing_thumb_pixbuf = null;
-        this.fileitems = new Gee.ArrayList<Object>();
-
-        // set gobject values
-        this.el.reactive = true;
         var child_0 = new Xcls_project_title( _this );
         child_0.ref();
         this.el.add_child (  child_0.el  );
@@ -49,13 +38,13 @@ public class Xcls_ClutterFiles : Object
     }
 
     // user defined functions
-    public  void clearFiles () {
+    public void clearFiles () {
         
         this.filelayout.el.remove_all_children();
         // we need to unref all the chidren that we loaded though...
         
     }
-    public  void loadProject (Project.Project pr) {
+    public void loadProject (Project.Project pr) {
         // list all the files, and create new Xcls_fileitem for each one.
         
         this.project = pr;
@@ -134,7 +123,7 @@ public class Xcls_ClutterFiles : Object
         
         this.el.show();
     }
-    public  void set_size (float w, float h) 
+    public void set_size (float w, float h) 
     {
         
          // called by window resize... with is alreaddy -50 (for the buttons?)
@@ -195,9 +184,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Actor();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.reactive = true;
             var child_0 = new Xcls_project_title_manager( _this );
             child_0.ref();
             this.el.layout_manager = child_0.el;
@@ -210,13 +196,6 @@ public class Xcls_ClutterFiles : Object
             var child_3 = new Xcls_project_title_path( _this );
             child_3.ref();
             this.el.add_child (  child_3.el  );
-
-            // init method
-
-            this.el.add_constraint(
-                new Clutter.BindConstraint(_this.el,Clutter.BindCoordinate.SIZE, 0.0f)
-            );
-            this.el.set_position(0,0);
         }
 
         // user defined functions
@@ -234,14 +213,9 @@ public class Xcls_ClutterFiles : Object
         {
             _this = _owner;
             _this.project_title_manager = this;
-            this.el = new Clutter.FlowLayout( Clutter.FlowOrientation.HORIZONTAL );
+            this.el = new Clutter.FlowLayout();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.homogeneous = false;
-            this.el.row_spacing = 5f;
-            this.el.column_spacing = 20f;
         }
 
         // user defined functions
@@ -262,8 +236,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.FixedLayout();
 
             // my vars (dec)
-
-            // set gobject values
         }
 
         // user defined functions
@@ -285,11 +257,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Text.full("Sans 20px", "",  Clutter.Color.from_string("#eee"));
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.x = 0.0f;
-            this.el.y = 10.0f;
-            this.el.x_expand = false;
         }
 
         // user defined functions
@@ -311,10 +278,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Text.full("Sans 10px", "",  Clutter.Color.from_string("#ccc"));
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.x = 0.0f;
-            this.el.y = 35.0f;
         }
 
         // user defined functions
@@ -328,8 +291,6 @@ public class Xcls_ClutterFiles : Object
 
 
             // my vars (def)
-        public Gee.ArrayList<Xcls_fileitem> fileitems;
-        public Gdk.Pixbuf missing_thumb_pixbuf;
 
         // ctor
         public Xcls_scroller(Xcls_ClutterFiles _owner )
@@ -339,12 +300,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.ScrollActor();
 
             // my vars (dec)
-            this.fileitems = new Gee.ArrayList<Xcls_fileitem>();
-            this.missing_thumb_pixbuf = null;
-
-            // set gobject values
-            this.el.scroll_mode = Clutter.ScrollMode.VERTICALLY;
-            this.el.reactive = true;
             var child_0 = new Xcls_filelayout( _this );
             child_0.ref();
             this.el.add_child (  child_0.el  );
@@ -415,18 +370,9 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Actor();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.reactive = true;
             var child_0 = new Xcls_filelayout_manager( _this );
             child_0.ref();
             this.el.layout_manager = child_0.el;
-
-            // init method
-
-            this.el.add_constraint(
-                new Clutter.BindConstraint(_this.el,Clutter.BindCoordinate.SIZE, 0.0f)
-            );
         }
 
         // user defined functions
@@ -444,15 +390,9 @@ public class Xcls_ClutterFiles : Object
         {
             _this = _owner;
             _this.filelayout_manager = this;
-            this.el = new Clutter.FlowLayout( Clutter.FlowOrientation.HORIZONTAL );
+            this.el = new Clutter.FlowLayout();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.homogeneous = false;
-            this.el.max_column_width = 100.0f;
-            this.el.row_spacing = 20f;
-            this.el.column_spacing = 20f;
         }
 
         // user defined functions
@@ -465,7 +405,6 @@ public class Xcls_ClutterFiles : Object
 
 
             // my vars (def)
-        public JsRender.JsRender file;
         public Xcls_image image;
         public Xcls_typetitle typetitle;
         public Xcls_title title;
@@ -477,9 +416,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Actor();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.reactive = true;
             var child_0 = new Xcls_BoxLayout11( _this );
             child_0.ref();
             this.el.layout_manager = child_0.el;
@@ -495,11 +431,6 @@ public class Xcls_ClutterFiles : Object
             child_3.ref();
             this.el.add_child (  child_3.el  );
             this.title =  child_3;
-
-            // init method
-
-            this.file = file;
-            this.el.set_size(100,100);
 
             //listeners
             this.el.button_press_event.connect( (  event) => {
@@ -544,10 +475,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.BoxLayout();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.spacing = 4;
-            this.el.orientation = Clutter.Orientation.VERTICAL;
         }
 
         // user defined functions
@@ -568,64 +495,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Actor();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.margin_right = 5f;
-            this.el.margin_left = 5f;
-            this.el.x_align = Clutter.ActorAlign.START;
-            this.el.x_expand = false;
-            this.el.y_align = Clutter.ActorAlign.START;
-            this.el.margin_top = 5f;
-            this.el.y_expand = false;
-
-            // init method
-
-            {
-                Gdk.Pixbuf pixbuf= null;
-                
-                var fname = file.getIconFileName(false);
-            
-                try {
-                    if (FileUtils.test(fname, FileTest.EXISTS)) {
-                        pixbuf = new Gdk.Pixbuf.from_file(fname);
-                    } 
-                } catch (Error e) {
-                    // noop
-                
-                }
-                if (pixbuf == null) {
-                    
-                    try {
-                        if (_this.missing_thumb_pixbuf == null) {
-                                var icon_theme = Gtk.IconTheme.get_default ();
-                                _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
-                                _this.missing_thumb_pixbuf.ref();
-                            }
-                            pixbuf = _this.missing_thumb_pixbuf;
-            
-                    } catch (Error e) {
-                        // noop?
-                    }
-                }
-                try {
-                    var img = new Clutter.Image();
-                    img.set_data(pixbuf.get_pixels(),   
-                                        pixbuf.has_alpha 
-                                          ? Cogl.PixelFormat.RGBA_8888
-                                          : Cogl.PixelFormat.RGB_888,
-                                        pixbuf.get_width (),
-                            pixbuf.get_height (),
-                                        pixbuf.get_rowstride ()
-                    );
-                    this.el.set_content(img);
-                } catch (Error e) {
-                    // noop?
-                }
-                 // should probably do smarter scaling...
-                
-                
-                this.el.set_size(90, 70);
-            }
         }
 
         // user defined functions
@@ -646,12 +515,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Text.full("Sans 10px", file.nickType(),  Clutter.Color.from_string("#fff"));
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.x_align = Clutter.ActorAlign.START;
-            this.el.x_expand = false;
-            this.el.y_align = Clutter.ActorAlign.START;
-            this.el.y_expand = false;
         }
 
         // user defined functions
@@ -672,12 +535,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Text.full("Sans 10px", file.nickNameSplit(),  Clutter.Color.from_string("#fff"));
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.x_align = Clutter.ActorAlign.START;
-            this.el.x_expand = false;
-            this.el.y_align = Clutter.ActorAlign.START;
-            this.el.y_expand = false;
         }
 
         // user defined functions
@@ -700,9 +557,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Actor();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.reactive = true;
             var child_0 = new Xcls_BoxLayout16( _this );
             child_0.ref();
             this.el.layout_manager = child_0.el;
@@ -710,10 +564,6 @@ public class Xcls_ClutterFiles : Object
             child_1.ref();
             this.el.add_child (  child_1.el  );
             this.foldertitle =  child_1;
-
-            // init method
-
-            //this.el.set_size(100,100);
         }
 
         // user defined functions
@@ -733,10 +583,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.BoxLayout();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.spacing = 2;
-            this.el.orientation = Clutter.Orientation.VERTICAL;
         }
 
         // user defined functions
@@ -757,12 +603,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Text.full("Sans bold 14px", GLib.Path.get_basename(folderpath),  Clutter.Color.from_string("#fff"));
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.x_align = Clutter.ActorAlign.START;
-            this.el.x_expand = true;
-            this.el.y_align = Clutter.ActorAlign.START;
-            this.el.y_expand = false;
         }
 
         // user defined functions
@@ -775,7 +615,6 @@ public class Xcls_ClutterFiles : Object
 
 
             // my vars (def)
-        public string filepath;
 
         // ctor
         public Xcls_folderfile(Xcls_ClutterFiles _owner , string filepath)
@@ -784,19 +623,6 @@ public class Xcls_ClutterFiles : Object
             this.el = new Clutter.Text.full("Sans 10px", GLib.Path.get_basename(filepath),  Clutter.Color.from_string("#fff"));
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.x_align = Clutter.ActorAlign.START;
-            this.el.x_expand = true;
-            this.el.y_align = Clutter.ActorAlign.START;
-            this.el.reactive = true;
-            this.el.y_expand = true;
-
-            // init method
-
-            {
-            	this.filepath = filepath;
-            }
 
             //listeners
             this.el.button_press_event.connect( (  event) => {
