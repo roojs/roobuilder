@@ -629,7 +629,7 @@ public class WindowState : Object
 			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
 			file.loadItems();
-			this.code_editor_tab.show(file, null, "", "");
+			this.code_editor_tab.show(file, null, null);
 			if (line> -1) {
 				this.code_editor_tab.scroll_to_line(line);
 			}
