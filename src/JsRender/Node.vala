@@ -523,7 +523,7 @@ public class JsRender.Node : Object {
 			if (key == "listeners") {
 				var li = value.get_object();
 				li.foreach_member((lio , li_key, li_value) => {
-					this.listeners.set(li_key,  new NodeProp.sig(li_key, this.jsonNodeAsString(li_value)));
+					this.listeners.set(li_key,  new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
 				});
 				return;
 			}
