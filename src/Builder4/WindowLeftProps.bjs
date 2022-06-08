@@ -94,8 +94,8 @@
            "listeners" : {
             "activate" : [
              "  ( ) => {",
+             "      _this.addProp( new JsRender.NodeProp.special(\"init\",\"{\\n\\n}\\n\" ) );",
              "",
-             "    _this.addProp( \"prop\",  \"init\", \"{\\n\\n}\\n\", \"*\" );",
              "}"
             ]
            },
