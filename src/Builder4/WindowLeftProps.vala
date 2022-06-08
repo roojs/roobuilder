@@ -735,8 +735,8 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-            
-                _this.addProp( "prop", "pack","add", "*");
+            // is this userdef?
+                _this.addProp( new JsRender.NodeProp.special("pack", "add") );
             });
         }
 
