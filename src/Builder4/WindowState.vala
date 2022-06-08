@@ -475,9 +475,9 @@ public class WindowState : Object
 		//stage.set_background_color(  Clutter.Color.from_string("#000"));
 
 
-		this.add_props.select.connect( (key,type,skel, etype) => {
+		this.add_props.select.connect( (prop) => {
 			 
-			this.left_props.addProp(etype, key, skel, type);
+			this.left_props.addProp(prop);
 		});
 
 	}
