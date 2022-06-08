@@ -457,7 +457,7 @@ namespace Palete
 		      
 		public abstract void fillPack(JsRender.Node node,JsRender.Node parent);
 		public abstract void load();
-		public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, string type);
+		public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype);
 		public abstract GirObject? getClass(string ename);
 	
 		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
