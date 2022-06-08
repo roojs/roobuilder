@@ -229,6 +229,22 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 		}
+		
+		void testBjs(Project.Project? cur_project)
+		{
+			if (!BuilderApplication.opt_bjs_test) {
+				return;
+			}
+			if (cur_project == null) {
+				GLib.error("missing project, use --project to select which project");
+			}
+			
+			
+			
+			print("Files for %s\n %s\n", cur_project.name, cur_project.listAllFilesToString());
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
+		
+		
 		void compileBjs(Project.Project? cur_project)
 		{
 			if (BuilderApplication.opt_bjs_compile == null) {
