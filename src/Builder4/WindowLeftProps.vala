@@ -1226,7 +1226,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                 _this.main_window.windowstate.showProps(this.el, "props");
+                 _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.PROP);
               
             });
         }
@@ -1286,7 +1286,7 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
                 
              
-               _this.main_window.windowstate.showProps(this.el, "signals");
+               _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.LISTENER);
             
              
             });

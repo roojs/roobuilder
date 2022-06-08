@@ -316,7 +316,7 @@
         "clicked" : [
          "  ( ) => {",
          "    ",
-         "     _this.main_window.windowstate.showProps(this.el, \"props\");",
+         "     _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.PROP);",
          "  ",
          "}"
         ]
@@ -343,7 +343,7 @@
          "  ( ) => {",
          "    ",
          " ",
-         "   _this.main_window.windowstate.showProps(this.el, \"signals\");",
+         "   _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.LISTENER);",
          "",
          " ",
          "}"
