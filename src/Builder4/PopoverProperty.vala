@@ -391,7 +391,7 @@ public class Xcls_PopoverProperty : Object
         		el.get_value(titer, 0, out val);
         		 
         		//print("check %s against %s\n", (string)val, _this.prop.ptype);
-        		if (((JsRender.NodePropTyp)val) == prop.ptype) {
+        		if (((JsRender.NodePropType)val) == prop.ptype) {
         			_this.kflag.el.set_active_iter(titer);
         			return true;
         		}

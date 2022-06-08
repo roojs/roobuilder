@@ -125,7 +125,7 @@
             "\t\tel.get_value(titer, 0, out val);",
             "\t\t ",
             "\t\t//print(\"check %s against %s\\n\", (string)val, _this.prop.ptype);",
-            "\t\tif (((JsRender.NodePropTyp)val) == prop.ptype) {",
+            "\t\tif (((JsRender.NodePropType)val) == prop.ptype) {",
             "\t\t\t_this.kflag.el.set_active_iter(titer);",
             "\t\t\treturn true;",
             "\t\t}",
