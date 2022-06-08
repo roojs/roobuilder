@@ -24,9 +24,7 @@ public class Editor : Object
     public int pos_root_x;
     public JsRender.JsRender? file;
     public int pos_root_y;
-    public string ptype;
     public int last_search_end;
-    public string key;
     public Gtk.SourceSearchContext searchcontext;
     public bool pos;
     public bool dirty;
@@ -43,9 +41,7 @@ public class Editor : Object
         this.window = null;
         this.activeEditor = "";
         this.file = null;
-        this.ptype = "";
         this.last_search_end = 0;
-        this.key = "";
         this.searchcontext = null;
         this.pos = false;
         this.dirty = false;

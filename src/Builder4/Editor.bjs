@@ -10,8 +10,6 @@
    "# int pos_root_x" : "",
    "# int pos_root_y" : "",
    "# string activeEditor" : "\"\"",
-   "# string key" : "\"\"",
-   "# string ptype" : "\"\"",
    "$ homogeneous" : false,
    "$ xns" : "Gtk",
    "* pack" : "add",
