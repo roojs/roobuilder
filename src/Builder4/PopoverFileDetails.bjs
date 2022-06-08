@@ -467,7 +467,7 @@
            "",
            "",
            "\tif (_this.name.el.get_text().length  < 1) {",
-           "\t    cls_StandardErrorDialog.singleton().show(",
+           "\t    Xcls_StandardErrorDialog.singleton().show(",
            "\t        _this.mainwindow.el,",
            "\t        \"You have to set Component name \"",
            "\t    );",
