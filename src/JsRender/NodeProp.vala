@@ -129,14 +129,22 @@ public class JsRender.NodeProp : Object {
 	public string  to_json_key()
 	{
 		switch(this.ptype) {
-			case NodePropType.PROP:
+			
+
 			case NodePropType.LISTENER : 
-				return this.name;
+				return this.name; 
 				
+			case NodePropType.PROP:
+				return this.rtype + " " + this.name;			
+			
 			case NodePropType.RAW:
-			case NodePropType.METHOD :
-			case NodePropType.SIGNAL :
-			case NodePropType.USER : 
+			case NodePropType.METHOD:
+			case NodePropType.SIGNAL:			
+			case NodePropType.USER : 			
+				return NodePropType.to_abbr(this.ptype) + " " + this.rtype + " " + this.name;			
+				
+
+
 			case NodePropType.SPECIAL: 			
 				return NodePropType.to_abbr(this.ptype) + " " + this.name;
 			
