@@ -1363,7 +1363,7 @@ public class Xcls_LeftProps : Object
             this.popover = null;
 
             // set gobject values
-            this.el.tooltip_column = 5;
+            this.el.tooltip_column = 4;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
             var child_0 = new Xcls_model( _this );

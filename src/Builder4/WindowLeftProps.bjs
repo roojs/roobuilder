@@ -726,7 +726,7 @@
          "}"
         ]
        },
-       "tooltip_column" : 5,
+       "tooltip_column" : 4,
        "xtype" : "TreeView",
        "| void editPropertyDetails" : [
         "(Gtk.TreePath path) {",
