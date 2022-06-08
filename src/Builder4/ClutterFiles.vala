@@ -433,7 +433,7 @@ public class Xcls_ClutterFiles : Object
             this.title =  child_3;
 
             //listeners
-            this.el.button_press_event.connect( (  event) => {
+            this.el.button_press_event.connect( ( event ) => {
                 _this.open(this.file);
                 return false;
             });

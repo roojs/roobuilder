@@ -205,7 +205,7 @@
          ],
          "listeners" : {
           "button_press_event" : [
-           "  (  event) => {",
+           "  ( event ) => {",
            "    _this.open(this.file);",
            "    return false;",
            "} "
