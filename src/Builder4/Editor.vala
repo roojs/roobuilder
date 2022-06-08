@@ -22,12 +22,12 @@ public class Editor : Object
     public Xcls_MainWindow window;
     public string activeEditor;
     public int pos_root_x;
+    public JsRender.NodeProp? prop;
     public JsRender.JsRender? file;
     public int pos_root_y;
     public int last_search_end;
     public Gtk.SourceSearchContext searchcontext;
     public bool pos;
-    public JsRender.NodeProp prop;
     public bool dirty;
     public signal void save ();
     public JsRender.Node node;
