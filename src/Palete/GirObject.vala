@@ -22,7 +22,7 @@ namespace Palete {
 		public string ns;
 		public string propertyof;
 		public string type;
-		public string nodetype;
+		public string nodetype;  // eg. Signal / prop etc.
 		public string package;
 		public string direction; // used for vala in/out/ref...
 		
@@ -438,7 +438,10 @@ namespace Palete {
 		public JsRender.NodeProp toNodeProp()
 		{
 			
-			if (this.
+			if (this.nodetype == "Signal") {
+				return new JsRender.NodeProp.sig(this.name, this.type); // signature?
+			
+			}
 		
 		}
 		
