@@ -327,7 +327,7 @@ public class Xcls_PopoverProperty : Object
         }
 
         // user defined functions
-        public void loadData (string kflag) {
+        public void loadData (JsRender.NodeProp prop) {
             this.el.clear();                                    
             Gtk.TreeIter iter;
             var el = this.el;
@@ -348,46 +348,51 @@ public class Xcls_PopoverProperty : Object
            // el.set_value(iter, 1, "aaa  - Just add Element - aaa");
         
             el.append(out iter);
-            el.set(iter, 0, "", 1,   "Normal Property", -1);
+            el.set(iter, 0, JsRender.NodePropType.PROP, 1,   "Normal Property", -1);
         	 
-        	if (_this.mainwindow.windowstate.file.xtype == "Gtk") {
+        	if (prop.ptype == JsRender.NodePropType.LISTENER) { 
         		el.append(out iter);
-        		el.set(iter, 0, "$", 1,   "($) Raw Property (not escaped)", -1);
+        		el.set(iter, 0, JsRender.NodePropType.LISTENER, 1,   "Event Handler / Listener", -1);
+        	}	 
+        	else if (_this.mainwindow.windowstate.file.xtype == "Gtk") {
+        		el.append(out iter);
+        		el.set(iter, 0, JsRender.NodePropType.RAW, 1,   "Raw Property (not escaped)", -1);
         		 
         		
         		el.append(out iter);
-        		el.set(iter, 0, "#", 1,   "(#) User defined property", -1);
+        		el.set(iter, 0, JsRender.NodePropType.USER, 1,   "User defined property", -1);
         		 
         		el.append(out iter);
-        		el.set(iter, 0, "|", 1,   "(|) User defined method", -1);
+        		el.set(iter, 0, JsRender.NodePropType.METHOD, 1,   "User defined method", -1);
         		 
         		el.append(out iter);
-        		el.set(iter, 0, "*", 1,   "(*) Special property (eg. prop | args | ctor | init )", -1);
+        		el.set(iter, 0, JsRender.NodePropType.SPECIAL, 1,   "Special property (eg. prop | args | ctor | init )", -1);
         		 
         		
         		el.append(out iter);
-        	    el.set(iter, 0, "@", 1,   "(@) Vala Signal", -1);
+        	    el.set(iter, 0, JsRender.NodePropType.SIGNAL, 1,   "Vala Signal", -1);
         		 
         		
         	} else { 
         		// javascript
         		el.append(out iter);
-        		el.set(iter, 0, "$", 1,   "($) Raw Property (not escaped)", -1);
+        		el.set(iter, 0, JsRender.NodePropType.RAW, 1,   "Raw Property (not escaped)", -1);
         		 
         		el.append(out iter);
-        		el.set(iter, 0, "|", 1,   "(|) User defined method", -1);
+        		el.set(iter, 0, JsRender.NodePropType.METHOD, 1,   "User defined method", -1);
         	 
         		el.append(out iter);
-        		el.set(iter, 0, "*", 1,   "(*) Special property (eg. prop )", -1);
+        		el.set(iter, 0,  JsRender.NodePropType.SPECIAL, 1,   "(*) Special property (eg. prop )", -1);
         		 
         	
         	}
+        	// set selected, based on arg
         	el.foreach((tm, tp, titer) => {
         		GLib.Value val;
         		el.get_value(titer, 0, out val);
         		 
-        		print("check %s against %s\n", (string)val, kflag);
-        		if (((string)val) == kflag) {
+        		//print("check %s against %s\n", (string)val, _this.prop.ptype);
+        		if (((JsRender.NodePropTyp)val) == prop.ptype) {
         			_this.kflag.el.set_active_iter(titer);
         			return true;
         		}
