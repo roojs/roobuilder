@@ -430,7 +430,7 @@
          "$ xns" : "Gtk",
          "* pack" : "set_model",
          "id" : "model",
-         "n_columns" : 4,
+         "n_columns" : 5,
          "xtype" : "TreeStore"
         },
         {
