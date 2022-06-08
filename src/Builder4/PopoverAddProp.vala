@@ -69,7 +69,9 @@ public class Xcls_PopoverAddProp : Object
            var p = miter.get_value();
             
             this.model.el.append(out iter);
-    
+    		
+    		var prop = p.toNodeProp();
+    		
     		var dname = p.name;
     		var dtype = p.type;
     		 
