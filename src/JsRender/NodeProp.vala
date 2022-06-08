@@ -171,7 +171,7 @@ public class JsRender.NodeProp : Object {
 	}
 	public string to_tooltip()
 	{
-		
+		 
 		switch(this.ptype) {
 			case NodePropType.PROP:
 				return this.rtype + " " + this.name + " = \"" + this.val + "\"";
