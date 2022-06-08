@@ -85,7 +85,7 @@
 		public static bool opt_list_files = false;
 		public static bool opt_pull_resources = false;
 		public static bool opt_bjs_compile_glade = false;
-        public static bool opt_bjs_test = false;;		
+        public static bool opt_bjs_test = false; 		
 		public static string _self;
 		
 		public enum Target {
