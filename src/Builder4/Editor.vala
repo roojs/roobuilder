@@ -144,20 +144,12 @@ public class Editor : Object
         
         if (file.xtype != "PlainFile") {
         	this.prop = prop;
-            this.ptype = ptype;
-            this.key  = key;
             this.node = node;
-             string val = "";
+    
             // find the text for the node..
-            if (ptype == "listener") {
-                val = node.listeners.get(key);
-            
-            } else {
-                val = node.props.get(key);
-            }
-            this.view.load(val);
+            this.view.load( prop.val );
             this.key_edit.el.show();
-            this.key_edit.el.text = key;  
+            this.key_edit.el.text = prop.rtype +  " " + prop.name;  
         
         } else {
             this.view.load(        file.toSource() );
