@@ -150,7 +150,7 @@
             "activate" : [
              "  ( ) =>{",
              "",
-             "    _this.addProp(\"prop\",  \"XXX\", \"0\", \"int\");",
+             "       _this.addProp( new JsRender.NodeProp.prop(\"\", \"int\", \"0\") ); ",
              "}"
             ]
            },
