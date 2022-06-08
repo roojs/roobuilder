@@ -292,7 +292,7 @@ public class JsRender.Node : Object {
 	}
 	public bool hasXnsType()
 	{
-		if (this.props.get("$ xns") != null && this.props.get("xtype") != null) {
+		if (this.props.get("xns") != null && this.props.get("xtype") != null) {
 			return true;
 			
 		}
