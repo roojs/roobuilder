@@ -128,6 +128,9 @@ public class JsRender.NodeProp : Object {
 	}
 	public string  to_json_key()
 	{
+		
+		var ortype = (this.rtype.length > 0 ? " " : "") + rtype;
+		
 		switch(this.ptype) {
 			
 
@@ -135,18 +138,18 @@ public class JsRender.NodeProp : Object {
 				return this.name; 
 				
 			case NodePropType.PROP:
-				return this.rtype + " " + this.name;			
+				return ortype + this.name;			
 			
 			case NodePropType.RAW:
 			case NodePropType.METHOD:
 			case NodePropType.SIGNAL:			
 			case NodePropType.USER : 			
-				return NodePropType.to_abbr(this.ptype) + " " + this.rtype + " " + this.name;			
+				return NodePropType.to_abbr(this.ptype) + ortype + " " + this.name;			
 				
 
 
 			case NodePropType.SPECIAL: 			
-				return NodePropType.to_abbr(this.ptype) + " " + this.name;
+				return (NodePropType.to_abbr(this.ptype) + " " + this.name;
 			
 		}
 		return this.name;
