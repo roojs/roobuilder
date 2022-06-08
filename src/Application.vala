@@ -239,9 +239,23 @@
 				GLib.error("missing project, use --project to select which project");
 			}
 			
+			var ar = cur_project.sortedFiles();
+			foreach(var file in ar) {
+				string outstr;
+
+				file.loadItems();
+				GLib.FileUtils.get_contents(file.path, out oldstr);				
+				var outstr = file.toJsonString();
+				if (outstr != oldstr) { 
+					GLib.FileUtils.put_contents("/tmp/" + file.name , out oldstr);
+					print("Files do not match:\n diff -u %s /tmp/%s", file.path,  file.name);
+					GLib.Process.exit(Posix.EXIT_SUCCESS);		
+				}
+				print("Files match %s", file.name);
+				
+			}
 			
-			
-			print("Files for %s\n %s\n", cur_project.name, cur_project.listAllFilesToString());
+			print("All files pass");
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		
 		
