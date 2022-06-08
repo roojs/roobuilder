@@ -262,8 +262,8 @@
            "listeners" : {
             "activate" : [
              "  ( ) =>{",
-             "",
-             "    _this.addProp(\"prop\",  \"flexy:foreach\", \"array,key,value\", \"string\");",
+             "\t_this.addProp( new JsRender.NodeProp.prop( \"flexy:foreach\", \"string\", \"array,key,value\") );",
+             "    ",
              "}"
             ]
            },
