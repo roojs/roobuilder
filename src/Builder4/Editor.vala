@@ -608,10 +608,8 @@ public class Editor : Object
                 p.javascriptHasErrors(
             		_this.window.windowstate,
                     str, 
-                     _this.key, 
-                    _this.ptype,
-                    _this.file,
-         
+                     _this.prop,
+                    _this.file,   // no reference not node?
                     out errors
                 );
                 return this.highlightErrors(errors);    
@@ -626,8 +624,7 @@ public class Editor : Object
            if (! _this.window.windowstate.valasource.checkFileWithNodePropChange(
                 _this.file,
                 _this.node,
-                 _this.key,        
-                 _this.ptype,
+                 _this.prop,        
                     str
                 )) {
                 this.check_running = false;
