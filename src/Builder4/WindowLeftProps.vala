@@ -473,13 +473,6 @@ public class Xcls_LeftProps : Object
     public              void updateIter (Gtk.TreeIter iter, JsRender.NodeProp prop) {
     
         //print("update Iter %s, %s\n", key,kvalue);
-        //typeof(string),  // 0 key type
-         //typeof(string),  // 1 key
-         //typeof(string),  // 2 key (display)
-         //typeof(string),  // 3 value
-         //typeof(string),  // 4 value (display)
-         //typeof(string),  // 5 both (tooltip)
-         //typeof(string),  // 6 key (sort)
         
         var dl = prop.val.strip().split("\n");
     
@@ -494,7 +487,7 @@ public class Xcls_LeftProps : Object
             	1, prop.to_display_name(),
             	2, dis_val,
                 3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
-                4, "0 " + prop.name,
+                4,  prop.to_sort_key(),
                 -1
             ); 
             return;
@@ -507,7 +500,7 @@ public class Xcls_LeftProps : Object
             	1, prop.to_display_name(),
             	2, dis_val,
                 3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
-                4, "1 " + prop.name,
+                4, prop.to_sort_key(),
                 -1
                 
             ); 
