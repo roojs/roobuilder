@@ -494,7 +494,7 @@ public class Xcls_LeftProps : Object
             	1, prop.to_display_name(),
             	2, dis_val,
                 3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
-                4, "0 " + prop.name
+                4, "0 " + prop.name,
                 -1
             ); 
             return;
@@ -507,7 +507,8 @@ public class Xcls_LeftProps : Object
             	1, prop.to_display_name(),
             	2, dis_val,
                 3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
-                4, "1 " + prop.name
+                4, "1 " + prop.name,
+                -1
                 
             ); 
     }
