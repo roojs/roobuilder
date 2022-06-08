@@ -440,8 +440,9 @@ namespace Palete {
 			
 			if (this.nodetype == "Signal") {
 				return new JsRender.NodeProp.sig(this.name, this.type); // signature?
-			
 			}
+			
+			return  new JsRender.NodeProp.prop(this.name, this.type); // signature?
 		
 		}
 		
