@@ -766,7 +766,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) => {
             
-                _this.addProp( "prop", "ctor","", "*");
+                  _this.addProp( new JsRender.NodeProp.special("ctor") );
             });
         }
 

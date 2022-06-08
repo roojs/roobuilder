@@ -76,7 +76,7 @@
             "activate" : [
              "  ( ) => {",
              "",
-             "    _this.addProp( \"prop\", \"ctor\",\"\", \"*\");",
+             "      _this.addProp( new JsRender.NodeProp.special(\"ctor\") );",
              "}"
             ]
            },
