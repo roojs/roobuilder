@@ -147,12 +147,12 @@ public class JsRender.NodeProp : Object {
 			case NodePropType.METHOD:
 			case NodePropType.SIGNAL:			
 			case NodePropType.USER : 			
-				return oabbr + ortype + " " + this.name;			
+				return oabbr + ortype + this.name;			
 				
 
 
 			case NodePropType.SPECIAL: 			
-				return oabbr + " " + this.name;
+				return oabbr +   this.name;
 			
 		}
 		return this.name;
