@@ -3,7 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "@ void select" : "(string key, string type, string skel, string prop_or_listener)",
+   "@ void select" : "(JsRender.NodeProp prop)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Xcls_MainWindow mainwindow" : "",
    "bool active" : false,

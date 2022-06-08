@@ -18,7 +18,7 @@ public class Xcls_PopoverAddProp : Object
 
         // my vars (def)
     public bool active;
-    public signal void select (string key, string type, string skel, string prop_or_listener);
+    public signal void select (JsRender.NodeProp prop);
     public Xcls_MainWindow mainwindow;
     public string prop_or_listener;
 
