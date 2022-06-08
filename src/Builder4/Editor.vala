@@ -85,14 +85,8 @@ public class Editor : Object
         // find the text for the node..
         if (_this.file.xtype != "PlainFile") {
            // in theory these properties have to exist!?!
-            if (ptype == "listener") {
-            	var prop = this.node.listeners.get(key);
-            	prop.val = str;
+        	this.prop.val = str;
             
-            } else {
-            	var prop = this.node.props.get(key);
-            	prop.val = str;
-            }
         } else {
             _this.file.setSource(  str );
          }
