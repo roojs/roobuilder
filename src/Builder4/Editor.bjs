@@ -4,7 +4,7 @@
   {
    "# JsRender.JsRender? file" : "null",
    "# JsRender.Node node" : "null",
-   "# JsRender.NodeProp? prop" : "",
+   "# JsRender.NodeProp? prop" : "null",
    "# Xcls_MainWindow window" : "null",
    "# bool dirty" : false,
    "# bool pos" : false,

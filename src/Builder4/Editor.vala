@@ -41,6 +41,7 @@ public class Editor : Object
         // my vars (dec)
         this.window = null;
         this.activeEditor = "";
+        this.prop = null;
         this.file = null;
         this.last_search_end = 0;
         this.searchcontext = null;
