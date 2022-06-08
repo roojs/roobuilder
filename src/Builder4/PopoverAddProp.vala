@@ -197,22 +197,15 @@ public class Xcls_PopoverAddProp : Object
             
             	m.el.get_iter(out iter,path);
             
-            
-            	// var val = "";
-            
-            
-            	var key = m.getValue(iter, 0);
-            
-            	var type = m.getValue(iter, 1);
-            	var skel = m.getValue(iter, 3);
-            	var etype = m.getValue(iter, 5);
+             
+            	var prop = m.getValue(iter, 0);
+             
             
             	// hide the popover
             	_this.el.hide();
-            	_this.prop_or_listener = "";
+            	 
             	
-            	
-            	_this.select(key,etype == "signals" ? "" : type,skel, etype);
+            	_this.select(prop);
              
             });
         }
