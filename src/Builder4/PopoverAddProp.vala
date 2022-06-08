@@ -229,8 +229,8 @@ public class Xcls_PopoverAddProp : Object
             this.el = new Gtk.ListStore( 3, 
 typeof(JsRender.NodeProp),  // 0 real key
 typeof(string),  // text display
-typeof(string)  // tooltip
-
+typeof(string),  // tooltip
+typeof(string)  // sortable string
 
 // add later? source?
 /* was:
@@ -248,15 +248,6 @@ typeof(string) // 5 element type (event|prop)
         }
 
         // user defined functions
-        public string getValue (Gtk.TreeIter iter, int col)
-        {
-        
-            GLib.Value value;
-            this.el.get_value(iter, col, out value);
-         
-            return (string)value;
-            
-        }
         public JsRender.NodeProp getValue (Gtk.TreeIter iter, int col)
         {
         
