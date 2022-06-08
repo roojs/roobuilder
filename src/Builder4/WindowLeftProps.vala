@@ -1514,12 +1514,11 @@ public class Xcls_LeftProps : Object
         	  mod.get_iter (out iter, path);
         	  
            
-        	GLib.Value gvaltype, gval;
-        	mod.get_value(iter, 1 , out gval); // one is key..
-        	
-             mod.get_value(iter,0, out gvaltype);
+        	GLib.Value gval;
         
-            this.popover.show(this.el, _this.node, (string)gvaltype, (string)gval);
+             mod.get_value(iter,0, out gval);
+        
+            this.popover.show(this.el, _this.node, (JsRender.NodeProp)gval);
                
             
         }
