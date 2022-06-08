@@ -464,8 +464,7 @@ namespace Palete
 		public abstract  List<SourceCompletionItem> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
-				string proptype, 
-				string key,
+				JsRender.NodeProp? prop,
 				string complete_string
 		);
 		public abstract string[] getChildList(string in_rval);
