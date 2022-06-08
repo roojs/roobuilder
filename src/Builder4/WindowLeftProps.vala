@@ -453,7 +453,7 @@ public class Xcls_LeftProps : Object
             
             var iprop = (JsRender.NodeProp)gval;
             if (!iprop.is(prop)) {
-            	continue;
+            	return false; // continue?
             }
             
             // delay this?

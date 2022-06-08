@@ -906,7 +906,7 @@
     "        ",
     "        var iprop = (JsRender.NodeProp)gval;",
     "        if (!iprop.is(prop)) {",
-    "        \tcontinue;",
+    "        \treturn false; // continue?",
     "        }",
     "        ",
     "        // delay this?",
