@@ -1175,7 +1175,7 @@ public class Xcls_PopoverFileDetails : Object
             
             
             	if (_this.name.el.get_text().length  < 1) {
-            	    StandardErrorDialog.show(
+            	    cls_StandardErrorDialog.singleton()..show(
             	        _this.mainwindow.el,
             	        "You have to set Component name "
             	    );
