@@ -77,17 +77,14 @@ public class Xcls_PopoverAddProp : Object
     		 
     
             this.model.el.set(iter,
-                    0,  p.name, 
-                    1, p.type,
-                    2, "<b>" + p.name +"</b> <i>"+p.type+"</i>\n" + 
-                            GLib.Markup.escape_text(p.doctxt),
-                    3, p.sig,
-                    4, "<b>" + dname +"</b> <span size=\"small\"><i>"+dtype+"</i></span>",
-                    5, prop_or_listener,
+                    0,  prop, 
+                    1,  prop.to_property_option_markup(),
+                    2,  prop.to_property_option_tooltip(),                
+                    3,  prop.name,                
                     -1
             );
         }
-        this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);    
+        this.model.el.set_sort_column_id(3,Gtk.SortType.ASCENDING);    
         
         // set size up...
         
