@@ -94,32 +94,26 @@ public class Xcls_PopoverProperty : Object
     }
 
     // user defined functions
-    public void show (Gtk.Widget btn, JsRender.Node node, string key_type,  string key) 
+    public void show (Gtk.Widget btn, JsRender.Node node, JsRender.NodeProp prop) 
     	{
     	
-    	string kname = "", kflag = "", ktype = "";
-    	if (key.length > 0) {
-    		node.normalize_key( key, out  kname, out  kflag, out ktype);
-    	}
+     
+    	 
     
-    	if (key_type == "listener") {
+    	if (prop.ptype == JsRender.NodePropType.LISTENER) {
     		this.header.el.title = "Modify Event Listener";
     	} else {
     		this.header.el.title = "Modify Property";
     	}
-    	
-    	this.key_type = key_type;
-    	this.old_keyname = key;
+    	this.prop = prop;
     	this.node = node;
     	
-    	_this.kname.el.set_text(kname);
-    	_this.ktype.el.set_text(ktype);
+    	_this.kname.el.set_text(prop.name);
+    	_this.ktype.el.set_text(prop.rtype);
     	
-    	_this.dbmodel.loadData(kflag);
+    	_this.dbmodel.loadData(prop.ptype);
     	// does node have this property...
     
-    
-    	 
     
     	_this.node = node;
     	//console.log('show all');
