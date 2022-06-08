@@ -199,6 +199,17 @@ public class JsRender.NodeProp : Object {
 
 	}
 	
+	public string to_property_option_markup()
+	{
+		return "<B>" + this.name + "</B> <i>" + this.rtype + "</i>";
+	}
+	
+	public string to_property_option_tooltip()
+	{
+		return this.to_property_option_markup(); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
+	}
+	
+	
 	public bool is(NodeProp comp) {
 		if (comp.ptype == NodePropType.LISTENER || this.ptype == NodePropType.LISTENER ) { 
 			return comp.ptype == this.ptype && comp.name == this.name;
