@@ -141,7 +141,7 @@
    ],
    "| void hide" : [
     "() {",
-    "\tthis.ptype = JsRender.NodePropType.NONE:",
+    "\tthis.ptype = JsRender.NodePropType.NONE;",
     "\tthis.el.hide();",
     "}",
     ""

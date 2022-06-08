@@ -109,7 +109,7 @@ public class Xcls_PopoverAddProp : Object
      //   this.hpane.el.set_position( 0);
     }
     public void hide () {
-    	this.ptype = JsRender.NodePropType.NONE:
+    	this.ptype = JsRender.NodePropType.NONE;
     	this.el.hide();
     }
     public void clear () {
