@@ -23,6 +23,8 @@ public enum JsRender.NodePropType
 	// specials - these should be in a seperate list?
 	SPECIAL,
 
+
+	CTOR, // not used exetp getProperties for?
 	// listerens can definatly overlap as they are stored in a seperate list. << no need to use this for listeners?
 	LISTENER;
 	
