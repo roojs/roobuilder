@@ -725,7 +725,7 @@ public class WindowState : Object
 
 	
 	
-	public void showProps(Gtk.Widget btn, string sig_or_listen)
+	public void showProps(Gtk.Widget btn, JsRender.NodePropType sig_or_listen)
 	{
 		var ae =  this.left_tree.getActiveElement();
 		if (ae == null) {
