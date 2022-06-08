@@ -27,10 +27,10 @@ public class Editor : Object
     public int last_search_end;
     public Gtk.SourceSearchContext searchcontext;
     public bool pos;
+    public JsRender.NodeProp prop;
     public bool dirty;
     public signal void save ();
     public JsRender.Node node;
-    public string XXXX;
 
     // ctor
     public Editor()

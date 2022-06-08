@@ -4,12 +4,12 @@
   {
    "# JsRender.JsRender? file" : "null",
    "# JsRender.Node node" : "null",
+   "# JsRender.NodeProp prop" : "",
    "# Xcls_MainWindow window" : "null",
    "# bool dirty" : false,
    "# bool pos" : false,
    "# int pos_root_x" : "",
    "# int pos_root_y" : "",
-   "# string XXXX" : "",
    "# string activeEditor" : "\"\"",
    "$ homogeneous" : false,
    "$ xns" : "Gtk",
