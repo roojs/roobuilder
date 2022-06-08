@@ -314,6 +314,7 @@
 					print("""
 help             - list available tests
 flutter-project  - create a flutter project in /tmp/test-flutter
+bjs-roundrobin   - convert all the bjs files into /tmp/bjs-roundrobin  
 """);		
 					break;
 				case "flutter-project":
