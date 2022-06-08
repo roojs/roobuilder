@@ -112,13 +112,13 @@ public class JsRender.NodeProp : Object {
 				} else {
 					// has a ptype.
 					
-					this.rtype = kk[1];
+					this.rtype = "";
 					this.ptype = NodePropType.from_string(kk[0]);
 				}
 				return;
 			default: // 3 or more... (ignores spaces..)
 			case 3:
-				this.name = kk[2];
+				this.name =  kk[2];
 				this.ptype = NodePropType.from_string(kk[0]);
 				this.rtype = kk[1];
 				return;
