@@ -299,7 +299,7 @@ typeof(string) // 5 element type (event|prop)
 
             // init method
 
-            this.el.add_attribute(_this.namerender.el , "markup", 4  );
+            this.el.add_attribute(_this.namerender.el , "markup", 1  );
         }
 
         // user defined functions
