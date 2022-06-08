@@ -136,20 +136,7 @@ namespace JsRender {
 			//return null;    
 		}
 
-		public string toJsonString()
-		{
-			if (this.xtype == "PlainFile") {
-				return "";
-			}
-			var node = new Json.Node(Json.NodeType.OBJECT);
-			node.set_object(this.toJsonObject());			
-			var generator = new JsonGen(node);
-		    generator.indent = 4;
-		    generator.pretty = true;
-		    
-			
-			return generator.to_data();
-		}
+	
 	
 		public string nickType()
 		{
@@ -219,7 +206,21 @@ namespace JsRender {
 
 		}
 		
-
+		public string toJsonString()
+		{
+			if (this.xtype == "PlainFile") {
+				return "";
+			}
+			var node = new Json.Node(Json.NodeType.OBJECT);
+			node.set_object(this.toJsonObject());			
+			var generator = new JsonGen(node);
+		    generator.indent = 1;
+		    generator.pretty = true;
+		    
+			
+			return generator.to_data();
+		}
+		
 		public void saveBJS()
 		{
 		    if (!this.loaded) {
@@ -229,16 +230,12 @@ namespace JsRender {
 			    return;
 		    }
 		   ;
-		    var node = new Json.Node(Json.NodeType.OBJECT);
-		    node.set_object(this.toJsonObject());
-  			var generator = new JsonGen(node);
-		    generator.indent = 1;
-		    generator.pretty = true;
+		     
 		    
 		    print("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
 		    try {
-				this.writeFile(this.path, generator.to_data());
-		        //generator.to_file(this.path);
+				this.writeFile(this.path, this.toJsonString());
+		         
 		    } catch(Error e) {
 		        print("Save failed");
 		    }
