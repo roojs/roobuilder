@@ -135,9 +135,7 @@
            "listeners" : {
             "activate" : [
              "  (self) => {",
-             "",
-             "    _this.addProp( \"prop\", \"XXX\", \"\",\"# string\");",
-             "",
+             "    _this.addProp( new JsRender.NodeProp.prop(\"\", \"string\", \"\") );",
              "}"
             ]
            },

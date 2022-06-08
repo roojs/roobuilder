@@ -880,9 +880,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( (self) => {
-            
-                _this.addProp( "prop", "XXX", "","# string");
-            
+                _this.addProp( new JsRender.NodeProp.prop("", "string", "") );
             });
         }
 
