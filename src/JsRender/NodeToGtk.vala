@@ -451,8 +451,8 @@ public class JsRender.NodeToGtk : Object {
 			return;
 		}
 	
-		if (!this.node.has("* pack") || 
-				this.node.props.get("* pack").length < 1) {
+		if (!this.node.props.has_key("* pack") || 
+				this.node.props.get("* pack").val.length < 1) {
 			return;
 		}
 		
