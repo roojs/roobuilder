@@ -200,7 +200,7 @@ public class JsRender.NodeProp : Object {
 				return @"<span   color=\"#0000CC\" font_weight=\"bold\">$n</span>";
 				
 			case NodePropType.USER : 
-				return @"<span  font_weight=\"bold\">$n</span>";
+				return @"<span  font_weight=\"bold\">$r $n</span>";
 			
 			case NodePropType.SPECIAL : 
 				return @"<span   color=\"#0000CC\" font_weight=\"bold\">$n</span>";       
@@ -210,8 +210,43 @@ public class JsRender.NodeProp : Object {
 				return  this.name;
 		}
 		return this.name;
+ 	}
+ 	public string to_sort_key()
+	{
+		var n = this.name;
+		 
+		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+		// before we showed "@" for signals
+		switch(this.ptype) {
+			case NodePropType.PROP:
+				return "5" +  n;
+				
+			case NodePropType.RAW:
+				return "5" +  n;
+				
+			case NodePropType.METHOD :
+				return "2" +  n;
+			 	
+			case NodePropType.SIGNAL :
+				return "3" +  n;
+				
+			case NodePropType.USER : 
+				return "4" +  n;
+			
+			case NodePropType.SPECIAL : 
+				return "1" +  n;
+				
+			// in seperate list..
+			case NodePropType.LISTENER : 
+				return  "0" + this.name;
+		}
 		return this.name;
-	}
+ 	}
+ 	
+ 	
+ 	
+ 	
+ 	
 	public string to_tooltip()
 	{
 		 
