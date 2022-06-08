@@ -367,8 +367,7 @@ public class WindowState : Object
 				this.valasource.checkFileSpawn(this.file);
 			}
 		});
-	
-
+	 
 
 	}
 
