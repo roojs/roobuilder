@@ -245,7 +245,7 @@
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
 			}
-			
+			print("Checking files\n");
 			var ar = cur_project.sortedFiles();
 			foreach(var file in ar) {
 				string oldstr;
