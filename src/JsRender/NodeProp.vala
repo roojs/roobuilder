@@ -184,7 +184,27 @@ public class JsRender.NodeProp : Object {
 	{
 		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
 		// before we showed "@" for signals
-		
+		switch(this.ptype) {
+			case NodePropType.PROP:
+				return this.name;
+				
+			case NodePropType.RAW:
+				return @"<span   style=\"italic\">$(this.name)</span>";
+				
+			case NodePropType.METHOD :
+			 	return @"<span  font_weight=\"bold\">$(this.name)</span>";
+			case NodePropType.SIGNAL :
+			case NodePropType.USER : 
+				return this.name;
+			
+			case NodePropType.SPECIAL : 
+				return "* " + this.name;
+				
+			// in seperate list..
+			//case NodePropType.LISTENER : 
+			//	return  this.name;
+		}
+		return this.name;
 		return this.name;
 	}
 	public string to_tooltip()
