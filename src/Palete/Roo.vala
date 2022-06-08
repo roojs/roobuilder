@@ -247,14 +247,14 @@ namespace Palete {
 				
 				case JsRender.NodePropType.PROP:
 					return cls.props;
-				case JsRender.NodePropType.LISTENER;
+				case JsRender.NodePropType.LISTENER:
 					return cls.signals;
 				case JsRender.NodePropType.METHOD:
 					return ret;
 				case JsRender.NodePropType.CTOR:
 					return ret;
 				default:
-					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + type);
+					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + ptype.to_string());
 					//var ret = new Gee.HashMap<string,GirObject>();
 					//return ret;
 			
