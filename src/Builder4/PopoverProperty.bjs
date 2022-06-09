@@ -181,9 +181,10 @@
         "key_release_event" : [
          "()=>{",
          "",
-         "\t",
-         "",
-         "\tthis.error.setError(\"\");",
+         "\tvar val = this.el.get_text().strip(); ",
+         "\tif (val.length < 1) {",
+         "\t\tthis.error.setError(\"Name can not be empty\");",
+         "\t}",
          "}",
          "",
          ""

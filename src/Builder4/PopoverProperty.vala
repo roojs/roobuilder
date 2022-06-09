@@ -541,9 +541,10 @@ public class Xcls_PopoverProperty : Object
             //listeners
             this.el.key_release_event.connect( ()=>{
             
-            	
-            
-            	this.error.setError("");
+            	var val = this.el.get_text().strip(); 
+            	if (val.length < 1) {
+            		this.error.setError("Name can not be empty");
+            	}
             });
         }
 
