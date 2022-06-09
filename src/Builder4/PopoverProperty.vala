@@ -545,6 +545,7 @@ public class Xcls_PopoverProperty : Object
             	if (val.length < 1) {
             		_this.error.setError("Name can not be empty");
             	}
+            	return true;
             });
             this.el.key_release_event.connect( ()=>{
             
@@ -552,6 +553,7 @@ public class Xcls_PopoverProperty : Object
             	if (val.length < 1) {
             		_this.error.setError("Name can not be empty");
             	}
+            	return true;
             });
         }
 

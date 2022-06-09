@@ -185,6 +185,7 @@
          "\tif (val.length < 1) {",
          "\t\t_this.error.setError(\"Name can not be empty\");",
          "\t}",
+         "\treturn true;",
          "}",
          "",
          ""
@@ -196,6 +197,7 @@
          "\tif (val.length < 1) {",
          "\t\t_this.error.setError(\"Name can not be empty\");",
          "\t}",
+         "\treturn true;",
          "}",
          "",
          ""
