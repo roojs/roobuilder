@@ -181,7 +181,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "composite_name",
+       "* pack" : "add",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "id" : "buttonbar",
        "int margin_top" : 20,

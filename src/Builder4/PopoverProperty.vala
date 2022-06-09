@@ -205,7 +205,7 @@ public class Xcls_PopoverProperty : Object
             this.el.add (  child_6.el  );
             var child_7 = new Xcls_buttonbar( _this );
             child_7.ref();
-            this.el.composite_name (  child_7.el  );
+            this.el.add (  child_7.el  );
         }
 
         // user defined functions
