@@ -5,7 +5,7 @@
    "# JsRender.NodeProp prop" : "",
    "$ xns" : "Gtk",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
-   "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
+   "Gtk.PositionType position" : "Gtk.PositionType.LEFT",
    "JsRender.Node node" : "",
    "Xcls_MainWindow mainwindow" : "null",
    "bool done" : false,
