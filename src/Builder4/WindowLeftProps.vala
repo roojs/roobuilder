@@ -268,6 +268,9 @@ public class Xcls_LeftProps : Object
        
        
     }
+    public void XXXX () {
+    
+    }
     public              string keyFormat (string val, string type) {
         
         // Glib.markup_escape_text(val);
