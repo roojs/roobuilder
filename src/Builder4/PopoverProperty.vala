@@ -543,14 +543,14 @@ public class Xcls_PopoverProperty : Object
             
             	var val = this.el.get_text().strip(); 
             	if (val.length < 1) {
-            		this.error.setError("Name can not be empty");
+            		_this.error.setError("Name can not be empty");
             	}
             });
             this.el.key_release_event.connect( ()=>{
             
             	var val = this.el.get_text().strip(); 
             	if (val.length < 1) {
-            		this.error.setError("Name can not be empty");
+            		_this.error.setError("Name can not be empty");
             	}
             });
         }
