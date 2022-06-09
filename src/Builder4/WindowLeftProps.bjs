@@ -384,10 +384,7 @@
         "    var description = new Pango.FontDescription();",
         "    description.set_size(10000);",
         "    this.el.override_font(description);",
-        "     if (this.popover == null) {",
-        " \t\t   this.popover = new Xcls_PopoverProperty();",
-        " \t\t   this.popover.mainwindow = _this.main_window;",
-        "\t}",
+        "    ",
         "}",
         ""
        ],

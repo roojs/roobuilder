@@ -1391,10 +1391,7 @@ public class Xcls_LeftProps : Object
                 var description = new Pango.FontDescription();
                 description.set_size(10000);
                 this.el.override_font(description);
-                 if (this.popover == null) {
-             		   this.popover = new Xcls_PopoverProperty();
-             		   this.popover.mainwindow = _this.main_window;
-            	}
+                
             }
 
             //listeners
