@@ -733,7 +733,7 @@
        "tooltip_column" : 3,
        "xtype" : "TreeView",
        "| void editPropertyDetails" : [
-        "(Gtk.TreePath path, int x, int y) {",
+        "(Gtk.TreePath path, double x, double y) {",
         "",
         "     if (this.popover == null) {",
         " \t\t   this.popover = new Xcls_PopoverProperty();",

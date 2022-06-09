@@ -1507,7 +1507,7 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
-        public void editPropertyDetails (Gtk.TreePath path, int x, int y) {
+        public void editPropertyDetails (Gtk.TreePath path, double x, double y) {
         
              if (this.popover == null) {
          		   this.popover = new Xcls_PopoverProperty();
