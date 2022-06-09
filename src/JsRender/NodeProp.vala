@@ -163,12 +163,11 @@ public class JsRender.NodeProp : Object {
 	 		case NodePropType.NONE: // not used
 			case NodePropType.CTOR:
 				 return "";
-			
-			
+			 
 		}
 		return this.name;
 	}
-	
+	 
 	
 	public string  to_index_key()
 	{

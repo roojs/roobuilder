@@ -22,14 +22,14 @@ public class Xcls_PopoverProperty : Object
     public Xcls_buttonbar buttonbar;
 
         // my vars (def)
-    public string old_keyname;
     public bool is_new;
     public signal void success (Project.Project pr, JsRender.JsRender file);
-    public bool done;
-    public JsRender.NodeProp? prop;
-    public Xcls_MainWindow mainwindow;
     public string key_type;
+    public JsRender.NodeProp? prop;
     public JsRender.Node node;
+    public Xcls_MainWindow mainwindow;
+    public bool done;
+    public string old_keyname;
 
     // ctor
     public Xcls_PopoverProperty()
@@ -39,8 +39,8 @@ public class Xcls_PopoverProperty : Object
 
         // my vars (dec)
         this.is_new = false;
-        this.done = false;
         this.mainwindow = null;
+        this.done = false;
 
         // set gobject values
         this.el.border_width = 0;
@@ -48,7 +48,6 @@ public class Xcls_PopoverProperty : Object
         this.el.position = Gtk.PositionType.LEFT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.add (  child_0.el  );
 
         //listeners
         this.el.closed.connect( () => {
@@ -66,8 +65,22 @@ public class Xcls_PopoverProperty : Object
         	if (this.kname.el.get_text().strip().length < 1) {
         		return;
         	}
-        
+        	var oldkey = this.prop.to_index_key();	
+        	
         	this.updateProp();
+        	
+        	var newkey = this.prop.to_index_key();	
+        	if (oldkey != newkey) {
+        	
+        		if (_this.prop.ptype == JsRender.NodePropType.LISTENER) {
+        			this.node.listeners.unset(oldkey);
+        			this.node.listeners.set(newkey, _this.prop);
+        		} else {
+        			this.node.props.unset(oldkey);
+        			this.node.props.set(newkey, _this.prop);
+        		}
+        	
+        	}
         
         	_this.mainwindow.windowstate.left_props.reload();
         
@@ -88,6 +101,22 @@ public class Xcls_PopoverProperty : Object
     }
 
     // user defined functions
+    public void updateProp () {
+    	var newtext = "";
+    	Gtk.TreeIter citer;
+    	GLib.Value gval;
+    	this.kflag.el.get_active_iter(out citer);
+    	this.dbmodel.el.get_value(citer, 0, out  gval);
+    
+    
+    	_this.prop.name = this.kname.el.get_text().strip(); 
+    	_this.prop.rtype = this.ktype.el.get_text().strip(); 
+    	_this.prop.ptype =  (JsRender.NodePropType) gval;
+    	
+    	
+    	
+    	
+    }
     public void show (
     	Gtk.Widget btn, 
     	JsRender.Node node, 
@@ -145,19 +174,6 @@ public class Xcls_PopoverProperty : Object
     
     	//this.success = c.success;
      
-    }
-    public void updateProp () {
-    	var newtext = "";
-    	Gtk.TreeIter citer;
-    	GLib.Value gval;
-    	this.kflag.el.get_active_iter(out citer);
-    	this.dbmodel.el.get_value(citer, 0, out  gval);
-    
-    
-    	_this.prop.name = this.kname.el.get_text().strip(); 
-    	_this.prop.rtype = this.ktype.el.get_text().strip(); 
-    	_this.prop.ptype =  (JsRender.NodePropType) gval;
-    
     }
     public class Xcls_Box2 : Object
     {
@@ -281,10 +297,6 @@ public class Xcls_PopoverProperty : Object
             var child_1 = new Xcls_dbmodel( _this );
             child_1.ref();
             this.el.set_model (  child_1.el  );
-
-            // init method
-
-            this.el.add_attribute(_this.dbcellrenderer.el , "markup", 1 );
         }
 
         // user defined functions
