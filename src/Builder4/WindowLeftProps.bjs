@@ -909,7 +909,7 @@
     "        this.model.el.get_value(iter, 0 , out gval);",
     "        ",
     "        var iprop = (JsRender.NodeProp)gval;",
-    "        if (!iprop.is(prop)) {",
+    "        if (iprop.to_index_key() != prop.to_index_key())) {",
     "        \treturn false; // continue?",
     "        }",
     "        ",
