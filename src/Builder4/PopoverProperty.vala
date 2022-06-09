@@ -722,7 +722,7 @@ public class Xcls_PopoverProperty : Object
             		// error should already be showing?
             		return;
             	}
-            	this.node.updateProp();
+            	_this.updateProp();
             	
             	// since we can't add listeners?!?!?
             	// only check props.
