@@ -184,7 +184,7 @@ public class Xcls_PopoverProperty : Object
     
                                                         
     }
-    public void XXXX () {
+    public void updateProp () {
     
     }
     public class Xcls_Box2 : Object

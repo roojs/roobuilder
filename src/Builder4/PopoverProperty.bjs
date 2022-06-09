@@ -394,12 +394,6 @@
     "                                                    ",
     "}    "
    ],
-   "| void XXXX" : [
-    "() {",
-    "",
-    "}",
-    ""
-   ],
    "| void show" : [
     "(",
     "\tGtk.Widget btn, ",
@@ -459,6 +453,12 @@
     "\t//this.success = c.success;",
     " ",
     "}"
+   ],
+   "| void updateProp" : [
+    "() {",
+    "",
+    "}",
+    ""
    ]
   }
  ],
