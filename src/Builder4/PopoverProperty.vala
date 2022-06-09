@@ -84,7 +84,7 @@ public class Xcls_PopoverProperty : Object
           
         });
         this.el.hide.connect( () => {
-          	Glib.debug("popover hidden");
+          	GLib.debug("popover hidden");
         	if (_this.is_new || this.kname.el.get_text().strip().length < 1) {
         		// dont allow hiding if we are creating a new one.
         		GLib.debug("prevent hiding as its new or text is empty"); 
