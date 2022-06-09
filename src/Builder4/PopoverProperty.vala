@@ -539,7 +539,12 @@ public class Xcls_PopoverProperty : Object
             this.el.visible = true;
 
             //listeners
-            this.el.key_release_event.connect( );
+            this.el.key_release_event.connect( ()=>{
+            
+            	
+            
+            	this.error.setError("");
+            });
         }
 
         // user defined functions

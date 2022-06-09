@@ -178,7 +178,16 @@
        "* pack" : "add",
        "id" : "kname",
        "listeners" : {
-        "key_release_event" : ""
+        "key_release_event" : [
+         "()=>{",
+         "",
+         "\t",
+         "",
+         "\tthis.error.setError(\"\");",
+         "}",
+         "",
+         ""
+        ]
        },
        "xtype" : "Entry"
       },
