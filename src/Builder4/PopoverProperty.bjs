@@ -283,7 +283,11 @@
          "listeners" : {
           "pressed" : [
            "() => {",
-           "",
+           "\t// check if text is not empty..",
+           "\t",
+           "\t",
+           "\t// check if property already exists in node.",
+           "\t",
            "",
            "",
            "}"

@@ -714,7 +714,11 @@ public class Xcls_PopoverProperty : Object
 
             //listeners
             this.el.pressed.connect( () => {
-            
+            	// check if text is not empty..
+            	
+            	
+            	// check if property already exists in node.
+            	
             
             
             });
