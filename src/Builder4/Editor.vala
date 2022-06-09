@@ -13,7 +13,7 @@ public class Editor : Object
         return _Editor;
     }
     public Xcls_save_button save_button;
-    public Xcls_key_edit key_edit;
+    public Xcls_save_button save_button;
     public Xcls_RightEditor RightEditor;
     public Xcls_view view;
     public Xcls_buffer buffer;
@@ -201,12 +201,12 @@ public class Editor : Object
             var child_0 = new Xcls_save_button( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false );
-            var child_1 = new Xcls_key_edit( _this );
+            var child_1 = new Xcls_HScale4( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , true,true );
-            var child_2 = new Xcls_HScale5( _this );
+            this.el.pack_end (  child_1.el , true,true );
+            var child_2 = new Xcls_save_button( _this );
             child_2.ref();
-            this.el.pack_end (  child_2.el , true,true );
+            this.el.pack_start (  child_2.el , false,false );
         }
 
         // user defined functions
@@ -240,32 +240,7 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_key_edit : Object
-    {
-        public Gtk.Entry el;
-        private Editor  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_key_edit(Editor _owner )
-        {
-            _this = _owner;
-            _this.key_edit = this;
-            this.el = new Gtk.Entry();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.width_request = 100;
-            this.el.editable = false;
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_HScale5 : Object
+    public class Xcls_HScale4 : Object
     {
         public Gtk.HScale el;
         private Editor  _this;
@@ -274,7 +249,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HScale5(Editor _owner )
+        public Xcls_HScale4(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.HScale.with_range (6, 30, 1);
@@ -302,6 +277,35 @@ public class Editor : Object
                   description.set_size((int)val*1000);
                   _this.view.el.override_font(description);
                   return false;
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_save_button : Object
+    {
+        public Gtk.Button el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_save_button(Editor _owner )
+        {
+            _this = _owner;
+            _this.save_button = this;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Save";
+
+            //listeners
+            this.el.clicked.connect( () => { 
+                _this.saveContents();
             });
         }
 

@@ -44,14 +44,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,true,true",
-       "bool editable" : false,
-       "id" : "key_edit",
-       "int width_request" : 100,
-       "xtype" : "Entry"
-      },
-      {
-       "$ xns" : "Gtk",
        "* ctor" : "new Gtk.HScale.with_range (6, 30, 1)",
        "* init" : [
         "{",
@@ -78,6 +70,21 @@
         ]
        },
        "xtype" : "HScale"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start,false,false",
+       "id" : "save_button",
+       "label" : "Save",
+       "listeners" : {
+        "clicked" : [
+         " () => { ",
+         "    _this.saveContents();",
+         "}",
+         "  "
+        ]
+       },
+       "xtype" : "Button"
       }
      ],
      "xtype" : "Box"
