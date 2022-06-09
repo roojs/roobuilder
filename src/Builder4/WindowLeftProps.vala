@@ -1415,8 +1415,8 @@ public class Xcls_LeftProps : Object
                  // single click on name..
                  //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
                  if (ev.button == 1 && col.title == "Name") {    
-                 
-                    this.editPropertyDetails(path, (int) ev.y); 
+                 	// need to shift down, as ev.y does not inclucde header apparently..
+                    this.editPropertyDetails(path, (int) ev.y + 12); 
                      
                     return false;
                 }
