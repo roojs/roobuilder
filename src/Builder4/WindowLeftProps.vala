@@ -600,7 +600,8 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                 _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.PROP);
+                 _this.main_window.windowstate.showProps(this.view.el, 
+                 		JsRender.NodePropType.PROP);
               
             });
         }
@@ -660,7 +661,8 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
                 
              
-               _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.LISTENER);
+               _this.main_window.windowstate.showProps(this.view.el, 
+               JsRender.NodePropType.LISTENER);
             
              
             });

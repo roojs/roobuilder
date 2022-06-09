@@ -46,7 +46,8 @@
         "clicked" : [
          "  ( ) => {",
          "    ",
-         "     _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.PROP);",
+         "     _this.main_window.windowstate.showProps(this.view.el, ",
+         "     \t\tJsRender.NodePropType.PROP);",
          "  ",
          "}"
         ]
@@ -73,7 +74,8 @@
          "  ( ) => {",
          "    ",
          " ",
-         "   _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.LISTENER);",
+         "   _this.main_window.windowstate.showProps(this.view.el, ",
+         "   JsRender.NodePropType.LISTENER);",
          "",
          " ",
          "}"
