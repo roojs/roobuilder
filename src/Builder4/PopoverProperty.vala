@@ -706,9 +706,9 @@ public class Xcls_PopoverProperty : Object
             	}
             	// add it, 
             	
-            	_this.node.set_prop(prop);
+            	 
             	_this.is_new = false;	
-            	_this.mainwindow.windowstate.left_props.reload();
+            	 
             	
             
             	// hide self
