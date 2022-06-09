@@ -160,6 +160,7 @@
        "* pack" : "add",
        "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
+       "int margin_top" : 12,
        "label" : "Name",
        "tooltip_text" : "center, north, south, east, west",
        "x_options" : 4,

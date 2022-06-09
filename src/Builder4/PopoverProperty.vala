@@ -464,6 +464,7 @@ public class Xcls_PopoverProperty : Object
             this.el.halign = Gtk.Align.START;
             this.el.justify = Gtk.Justification.LEFT;
             this.el.tooltip_text = "center, north, south, east, west";
+            this.el.margin_top = 12;
             this.el.visible = true;
         }
 
