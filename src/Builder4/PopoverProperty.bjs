@@ -191,7 +191,7 @@
      "   _this.prop.ptype =  (JsRender.NodePropType) gval;",
      "  ",
      "  ",
-     "\t_this.mainwindow.windowstate.left_props.updateProp(_this.prop);",
+     "\t_this.mainwindow.windowstate.left_props.reload();",
      "   ",
      "  ",
      "  ",

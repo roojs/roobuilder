@@ -62,7 +62,7 @@ public class Xcls_PopoverProperty : Object
            _this.prop.ptype =  (JsRender.NodePropType) gval;
           
           
-        	_this.mainwindow.windowstate.left_props.updateProp(_this.prop);
+        	_this.mainwindow.windowstate.left_props.reload();
            
           
           
