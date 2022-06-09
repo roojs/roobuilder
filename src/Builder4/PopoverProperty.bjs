@@ -305,7 +305,7 @@
            "\t",
            "",
            "\t// hide self",
-           "\t_this.prop = false; // skip checks..",
+           "\t_this.prop = null; // skip checks..",
            "\t_this.el.hide();",
            "",
            "",

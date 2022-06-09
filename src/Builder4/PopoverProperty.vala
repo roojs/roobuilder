@@ -739,7 +739,7 @@ public class Xcls_PopoverProperty : Object
             	
             
             	// hide self
-            	_this.prop = false; // skip checks..
+            	_this.prop = null; // skip checks..
             	_this.el.hide();
             
             
