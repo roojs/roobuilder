@@ -730,7 +730,7 @@ public class JsRender.NodeToVala : Object {
 	{
 
 		
-		if (!this.node.has("init")) {
+		if (!this.node.has("* init")) {
 				return;
 		}
 		this.addLine();
@@ -738,8 +738,10 @@ public class JsRender.NodeToVala : Object {
 		this.addLine();
 		this.node.setLine(this.cur_line, "p", "init");
 		
-		this.addMultiLine(ipad + this.padMultiline(ipad, this.node.get("init")) );
-
+		var init =  this.node.get_prop("* init");
+		init.start_line = this.cur_line;
+		this.addMultiLine(ipad + this.padMultiline(ipad, init.val) );
+		init.end_line = this.cur_line;
 	 }
 	 void addListeners()
 	 {

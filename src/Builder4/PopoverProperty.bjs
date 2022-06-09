@@ -333,6 +333,7 @@
    "listeners" : {
     "closed" : [
      "() => {",
+     "",
      " \tGLib.debug(\"popover closed\");",
      "\tif (_this.is_new) {",
      "\t\t// dont allow hiding if we are creating a new one.",
