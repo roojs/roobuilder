@@ -192,7 +192,7 @@
        "tooltip_text" : "center, north, south, east, west",
        "x_options" : 4,
        "xtype" : "Label",
-       "| void XXXX" : [
+       "| void setError" : [
         "() {",
         "",
         "}",
