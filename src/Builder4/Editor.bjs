@@ -185,7 +185,7 @@
           ]
          },
          "xtype" : "SourceBuffer",
-         "|   bool checkSyntax" : [
+         "| bool checkSyntax" : [
           " () {",
           " ",
           "    if (this.check_running) {",
@@ -282,19 +282,6 @@
           "    return true; // at present allow saving - even if it's invalid..",
           "}",
           ""
-         ],
-         "|   string toString" : [
-          "  () {",
-          "    ",
-          "    Gtk.TextIter s;",
-          "    Gtk.TextIter e;",
-          "    this.el.get_start_iter(out s);",
-          "    this.el.get_end_iter(out e);",
-          "    var ret = this.el.get_text(s,e,true);",
-          "    //print(\"TO STRING? \" + ret);",
-          "    return ret;",
-          "}",
-          " "
          ],
          "| bool highlightErrors" : [
           "( Gee.HashMap<int,string> validate_res) {",
@@ -420,6 +407,19 @@
           "",
           "}",
           ""
+         ],
+         "| string toString" : [
+          "  () {",
+          "    ",
+          "    Gtk.TextIter s;",
+          "    Gtk.TextIter e;",
+          "    this.el.get_start_iter(out s);",
+          "    this.el.get_end_iter(out e);",
+          "    var ret = this.el.get_text(s,e,true);",
+          "    //print(\"TO STRING? \" + ret);",
+          "    return ret;",
+          "}",
+          " "
          ]
         }
        ],
@@ -443,7 +443,7 @@
        },
        "uint tab_width" : 4,
        "xtype" : "SourceView",
-       "|   void load" : [
+       "| void load" : [
         " (string str) {",
         "",
         "// show the help page for the active node..",
@@ -485,30 +485,7 @@
      "xtype" : "ScrolledWindow"
     }
    ],
-   "string id" : "Editor",
    "xtype" : "Box",
-   "|   void show" : [
-    "(JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)",
-    "{",
-    "    this.reset();",
-    "    this.file = file;    ",
-    "    ",
-    "    if (file.xtype != \"PlainFile\") {",
-    "    \tthis.prop = prop;",
-    "        this.node = node;",
-    "",
-    "        // find the text for the node..",
-    "        this.view.load( prop.val );",
-    "        this.key_edit.el.show();",
-    "        this.key_edit.el.text = prop.rtype +  \" \" + prop.name;  ",
-    "    ",
-    "    } else {",
-    "        this.view.load(        file.toSource() );",
-    "        this.key_edit.el.hide();",
-    "    }",
-    " ",
-    "}"
-   ],
    "| bool saveContents" : [
     "  ()  {",
     "    ",
@@ -569,7 +546,7 @@
    ],
    "| void forwardSearch" : [
     "(bool change_focus) {",
-    "",
+    " ",
     "\tif (this.searchcontext == null) {",
     "\t\treturn;",
     "\t}",
@@ -620,6 +597,28 @@
     "\t});   ",
     "}",
     ""
+   ],
+   "| void show" : [
+    "(JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)",
+    "{",
+    "    this.reset();",
+    "    this.file = file;    ",
+    "    ",
+    "    if (file.xtype != \"PlainFile\") {",
+    "    \tthis.prop = prop;",
+    "        this.node = node;",
+    "",
+    "        // find the text for the node..",
+    "        this.view.load( prop.val );",
+    "        this.key_edit.el.show();",
+    "        this.key_edit.el.text = prop.rtype +  \" \" + prop.name;  ",
+    "    ",
+    "    } else {",
+    "        this.view.load(        file.toSource() );",
+    "        this.key_edit.el.hide();",
+    "    }",
+    " ",
+    "}"
    ]
   }
  ],

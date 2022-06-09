@@ -20,17 +20,17 @@ public class Editor : Object
 
         // my vars (def)
     public Xcls_MainWindow window;
-    public string activeEditor;
-    public JsRender.NodeProp? prop;
     public int pos_root_x;
-    public JsRender.JsRender? file;
-    public int pos_root_y;
-    public int last_search_end;
-    public Gtk.SourceSearchContext searchcontext;
-    public bool pos;
     public bool dirty;
-    public signal void save ();
+    public int pos_root_y;
+    public bool pos;
+    public Gtk.SourceSearchContext searchcontext;
+    public int last_search_end;
+    public JsRender.NodeProp? prop;
+    public JsRender.JsRender? file;
     public JsRender.Node node;
+    public signal void save ();
+    public string activeEditor;
 
     // ctor
     public Editor()
@@ -40,14 +40,14 @@ public class Editor : Object
 
         // my vars (dec)
         this.window = null;
-        this.activeEditor = "";
+        this.dirty = false;
+        this.pos = false;
+        this.searchcontext = null;
+        this.last_search_end = 0;
         this.prop = null;
         this.file = null;
-        this.last_search_end = 0;
-        this.searchcontext = null;
-        this.pos = false;
-        this.dirty = false;
         this.node = null;
+        this.activeEditor = "";
 
         // set gobject values
         this.el.homogeneous = false;
@@ -62,60 +62,6 @@ public class Editor : Object
     }
 
     // user defined functions
-    public void scroll_to_line (int line) {
-    
-    	GLib.Timeout.add(500, () => {
-       
-    		var buf = this.view.el.get_buffer();
-    
-    		var sbuf = (Gtk.SourceBuffer) buf;
-    
-    
-    		Gtk.TextIter iter;   
-    		sbuf.get_iter_at_line(out iter,  line);
-    		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-    		return false;
-    	});   
-    }
-    public int search (string txt) {
-    
-    	var s = new Gtk.SourceSearchSettings();
-    	
-    	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
-    	this.searchcontext .set_highlight(true);
-    	s.set_search_text(txt);
-    	Gtk.TextIter beg, st,en;
-    	 
-    	this.buffer.el.get_start_iter(out beg);
-    	this.searchcontext.forward(beg, out st, out en);
-    	this.last_search_end = 0;
-    	
-    	return this.searchcontext.get_occurrences_count();
-    
-     
-       
-    
-    }
-    public   void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
-    {
-        this.reset();
-        this.file = file;    
-        
-        if (file.xtype != "PlainFile") {
-        	this.prop = prop;
-            this.node = node;
-    
-            // find the text for the node..
-            this.view.load( prop.val );
-            this.key_edit.el.show();
-            this.key_edit.el.text = prop.rtype +  " " + prop.name;  
-        
-        } else {
-            this.view.load(        file.toSource() );
-            this.key_edit.el.hide();
-        }
-     
-    }
     public bool saveContents ()  {
         
         
@@ -151,7 +97,7 @@ public class Editor : Object
     
     }
     public void forwardSearch (bool change_focus) {
-    
+     
     	if (this.searchcontext == null) {
     		return;
     	}
@@ -172,6 +118,45 @@ public class Editor : Object
     	}
      
     }
+    public void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
+    {
+        this.reset();
+        this.file = file;    
+        
+        if (file.xtype != "PlainFile") {
+        	this.prop = prop;
+            this.node = node;
+    
+            // find the text for the node..
+            this.view.load( prop.val );
+            this.key_edit.el.show();
+            this.key_edit.el.text = prop.rtype +  " " + prop.name;  
+        
+        } else {
+            this.view.load(        file.toSource() );
+            this.key_edit.el.hide();
+        }
+     
+    }
+    public int search (string txt) {
+    
+    	var s = new Gtk.SourceSearchSettings();
+    	
+    	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
+    	this.searchcontext .set_highlight(true);
+    	s.set_search_text(txt);
+    	Gtk.TextIter beg, st,en;
+    	 
+    	this.buffer.el.get_start_iter(out beg);
+    	this.searchcontext.forward(beg, out st, out en);
+    	this.last_search_end = 0;
+    	
+    	return this.searchcontext.get_occurrences_count();
+    
+     
+       
+    
+    }
     public void reset () {
     	 this.file = null;    
          
@@ -179,6 +164,21 @@ public class Editor : Object
         this.prop = null;
     	this.searchcontext = null;
       
+    }
+    public void scroll_to_line (int line) {
+    
+    	GLib.Timeout.add(500, () => {
+       
+    		var buf = this.view.el.get_buffer();
+    
+    		var sbuf = (Gtk.SourceBuffer) buf;
+    
+    
+    		Gtk.TextIter iter;   
+    		sbuf.get_iter_at_line(out iter,  line);
+    		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+    		return false;
+    	});   
     }
     public class Xcls_Box2 : Object
     {
@@ -287,13 +287,6 @@ public class Editor : Object
             this.el.digits = 0;
             this.el.sensitive = true;
 
-            // init method
-
-            {
-            	this.el.set_range(6,30);
-            	this.el.set_value(8);
-            }
-
             //listeners
             this.el.change_value.connect( (st, val ) => {
             	 
@@ -330,10 +323,6 @@ public class Editor : Object
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-
-            // init method
-
-            this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         }
 
         // user defined functions
@@ -368,61 +357,6 @@ public class Editor : Object
             child_0.ref();
             this.el.set_buffer (  child_0.el  );
 
-            // init method
-
-            var description =   Pango.FontDescription.from_string("monospace");
-            		description.set_size(8000);
-            
-            		 this.el.override_font(description);
-            
-            	try {        
-            		this.el.completion.add_provider(new Palete.CompletionProvider(_this));
-                } catch (GLib.Error  e) {}
-                
-            	this.el.completion.unblock_interactive();
-            	this.el.completion.select_on_show			= true; // select
-            	this.el.completion.show_headers			= false;
-            	this.el.completion.remember_info_visibility		= true;
-                
-              
-                var attrs = new Gtk.SourceMarkAttributes();
-                var  pink =   Gdk.RGBA();
-                pink.parse ( "pink");
-                attrs.set_background ( pink);
-                attrs.set_icon_name ( "process-stop");    
-                attrs.query_tooltip_text.connect(( mark) => {
-                    //print("tooltip query? %s\n", mark.name);
-                    return mark.name;
-                });
-                
-                this.el.set_mark_attributes ("ERR", attrs, 1);
-                
-                 var wattrs = new Gtk.SourceMarkAttributes();
-                var  blue =   Gdk.RGBA();
-                blue.parse ( "#ABF4EB");
-                wattrs.set_background ( blue);
-                wattrs.set_icon_name ( "process-stop");    
-                wattrs.query_tooltip_text.connect(( mark) => {
-                    //print("tooltip query? %s\n", mark.name);
-                    return mark.name;
-                });
-                
-                this.el.set_mark_attributes ("WARN", wattrs, 1);
-                
-             
-                
-                 var dattrs = new Gtk.SourceMarkAttributes();
-                var  purple =   Gdk.RGBA();
-                purple.parse ( "#EEA9FF");
-                dattrs.set_background ( purple);
-                dattrs.set_icon_name ( "process-stop");    
-                dattrs.query_tooltip_text.connect(( mark) => {
-                    //print("tooltip query? %s\n", mark.name);
-                    return mark.name;
-                });
-                
-                this.el.set_mark_attributes ("DEPR", dattrs, 1);
-
             //listeners
             this.el.key_release_event.connect( (event) => {
                 
@@ -439,7 +373,7 @@ public class Editor : Object
         }
 
         // user defined functions
-        public   void load (string str) {
+        public void load (string str) {
         
         // show the help page for the active node..
            //this.get('/Help').show();
@@ -482,8 +416,8 @@ public class Editor : Object
 
 
             // my vars (def)
-        public bool check_queued;
         public int error_line;
+        public bool check_queued;
         public bool check_running;
 
         // ctor
@@ -494,8 +428,8 @@ public class Editor : Object
             this.el = new Gtk.SourceBuffer( null );
 
             // my vars (dec)
-            this.check_queued = false;
             this.error_line = -1;
+            this.check_queued = false;
             this.check_running = false;
 
             // set gobject values
@@ -516,30 +450,7 @@ public class Editor : Object
         }
 
         // user defined functions
-        public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
-                 
-                this.error_line = validate_res.size;
-        
-                if (this.error_line < 1) {
-                      return true;
-                }
-                var tlines = this.el.get_line_count ();
-                Gtk.TextIter iter;
-                var valiter = validate_res.map_iterator();
-                while (valiter.next()) {
-                
-            //        print("get inter\n");
-                    var eline = valiter.get_key();
-                    if (eline > tlines) {
-                        continue;
-                    }
-                    this.el.get_iter_at_line( out iter, eline);
-                    //print("mark line\n");
-                    this.el.create_source_mark(valiter.get_value(), "ERR", iter);
-                }   
-                return false;
-            }
-        public   bool checkSyntax () {
+        public bool checkSyntax () {
          
             if (this.check_running) {
                 print("Check is running\n");
@@ -633,16 +544,6 @@ public class Editor : Object
             //print("done mark line\n");
              
             return true; // at present allow saving - even if it's invalid..
-        }
-        public   string toString () {
-            
-            Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_start_iter(out s);
-            this.el.get_end_iter(out e);
-            var ret = this.el.get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
         }
         public bool highlightErrorsJson (string type, Json.Object obj) {
               Gtk.TextIter start;
@@ -740,6 +641,39 @@ public class Editor : Object
         
         
         
+        }
+        public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
+                 
+                this.error_line = validate_res.size;
+        
+                if (this.error_line < 1) {
+                      return true;
+                }
+                var tlines = this.el.get_line_count ();
+                Gtk.TextIter iter;
+                var valiter = validate_res.map_iterator();
+                while (valiter.next()) {
+                
+            //        print("get inter\n");
+                    var eline = valiter.get_key();
+                    if (eline > tlines) {
+                        continue;
+                    }
+                    this.el.get_iter_at_line( out iter, eline);
+                    //print("mark line\n");
+                    this.el.create_source_mark(valiter.get_value(), "ERR", iter);
+                }   
+                return false;
+            }
+        public string toString () {
+            
+            Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_start_iter(out s);
+            this.el.get_end_iter(out e);
+            var ret = this.el.get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
         }
     }
 
