@@ -382,7 +382,7 @@
     "\t ) ",
     "{",
     "\t",
-    "    _this.error.setError(\"\");",
+    "    this.error.setError(\"\");",
     "\tthis.is_new = is_new; ",
     "\tvar pref = is_new ? \"Add \" : \"Modify \";",
     "\tif (prop.ptype == JsRender.NodePropType.LISTENER) {",
