@@ -18,12 +18,14 @@ public class Xcls_PopoverProperty : Object
     public Xcls_dbmodel dbmodel;
     public Xcls_ktype ktype;
     public Xcls_kname kname;
+    public Xcls_buttonbar buttonbar;
 
         // my vars (def)
     public string old_keyname;
+    public bool is_new;
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public bool done;
-    public JsRender.NodeProp prop;
+    public JsRender.NodeProp? prop;
     public Xcls_MainWindow mainwindow;
     public string key_type;
     public JsRender.Node node;
@@ -35,6 +37,7 @@ public class Xcls_PopoverProperty : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.is_new = false;
         this.done = false;
         this.mainwindow = null;
 
@@ -49,6 +52,14 @@ public class Xcls_PopoverProperty : Object
         //listeners
         this.el.closed.connect( () => {
          
+          if (_this.is_new) {
+          	 this.el.show();
+          	 return;
+          	
+          }
+          if (_this.prop == null) {
+          	return;
+          	}
           
           var newtext = "";
           Gtk.TreeIter citer;
@@ -64,7 +75,7 @@ public class Xcls_PopoverProperty : Object
           
         	_this.mainwindow.windowstate.left_props.reload();
            
-          
+           
           
         });
     }
@@ -74,11 +85,11 @@ public class Xcls_PopoverProperty : Object
     	Gtk.Widget btn, 
     	JsRender.Node node, 
     	JsRender.NodeProp prop, 
-     
-    	int y
+    	int y,
+    	bool is_new = false
     	 ) 
     {
-    	 
+    	this.is_new = is_new; 
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
     		this.header.el.title = "Modify Event Listener";
     	} else {
@@ -116,6 +127,11 @@ public class Xcls_PopoverProperty : Object
     	 print("SHOWALL - POPIP\n");
     	this.el.show_all();
     	this.kname.el.grab_focus();
+    	this.buttonbar.el.hide();
+    	if (this.is_new) {
+    		this.buttonbar.el.show();
+    	}
+    
     
     	//this.success = c.success;
      
@@ -187,6 +203,9 @@ public class Xcls_PopoverProperty : Object
             var child_6 = new Xcls_kname( _this );
             child_6.ref();
             this.el.add (  child_6.el  );
+            var child_7 = new Xcls_buttonbar( _this );
+            child_7.ref();
+            this.el.composite_name (  child_7.el  );
         }
 
         // user defined functions
@@ -336,14 +355,16 @@ public class Xcls_PopoverProperty : Object
            // el.set_value(iter, 0, "");
            // el.set_value(iter, 1, "aaa  - Just add Element - aaa");
         
-            el.append(out iter);
-            el.set(iter, 0, JsRender.NodePropType.PROP, 1,   "Normal Property", -1);
-        	 
+            
         	if (prop.ptype == JsRender.NodePropType.LISTENER) { 
         		el.append(out iter);
         		el.set(iter, 0, JsRender.NodePropType.LISTENER, 1,   "Event Handler / Listener", -1);
         	}	 
         	else if (_this.mainwindow.windowstate.file.xtype == "Gtk") {
+        		 el.append(out iter);
+        	    el.set(iter, 0, JsRender.NodePropType.PROP, 1,   "Normal Property", -1);
+        	
+        		
         		el.append(out iter);
         		el.set(iter, 0, JsRender.NodePropType.RAW, 1,   "Raw Property (not escaped)", -1);
         		 
@@ -364,6 +385,9 @@ public class Xcls_PopoverProperty : Object
         		
         	} else { 
         		// javascript
+        	    el.append(out iter);
+        	    el.set(iter, 0, JsRender.NodePropType.PROP, 1,   "Normal Property", -1);
+        	
         		el.append(out iter);
         		el.set(iter, 0, JsRender.NodePropType.RAW, 1,   "Raw Property (not escaped)", -1);
         		 
@@ -494,6 +518,147 @@ public class Xcls_PopoverProperty : Object
 
         // user defined functions
     }
+
+    public class Xcls_buttonbar : Object
+    {
+        public Gtk.Box el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_buttonbar(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            _this.buttonbar = this;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.margin_top = 20;
+            var child_0 = new Xcls_Button13( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_Button15( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Button13 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button13(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+            this.el.always_show_image = true;
+            this.el.label = "Cancel";
+            var child_0 = new Xcls_Image14( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+
+            //listeners
+            this.el.activate.connect( () => { 
+            
+            	_this.prop = null;
+            	_this.is_new = false;
+            	_this.el.hide();
+            
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image14 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image14(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "window-close";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Button15 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button15(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+            this.el.always_show_image = true;
+            this.el.label = "Save";
+            var child_0 = new Xcls_Image16( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image16 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image16(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "list-add";
+        }
+
+        // user defined functions
+    }
+
+
 
 
 }

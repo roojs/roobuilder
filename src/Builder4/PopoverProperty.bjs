@@ -2,13 +2,14 @@
  "build_module" : "builder",
  "items" : [
   {
-   "# JsRender.NodeProp prop" : "",
+   "# JsRender.NodeProp? prop" : "",
    "$ xns" : "Gtk",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "Gtk.PositionType position" : "Gtk.PositionType.LEFT",
    "JsRender.Node node" : "",
    "Xcls_MainWindow mainwindow" : "null",
    "bool done" : false,
+   "bool is_new" : false,
    "bool modal" : true,
    "id" : "PopoverProperty",
    "items" : [
@@ -75,14 +76,16 @@
           "   // el.set_value(iter, 0, \"\");",
           "   // el.set_value(iter, 1, \"aaa  - Just add Element - aaa\");",
           "",
-          "    el.append(out iter);",
-          "    el.set(iter, 0, JsRender.NodePropType.PROP, 1,   \"Normal Property\", -1);",
-          "\t ",
+          "    ",
           "\tif (prop.ptype == JsRender.NodePropType.LISTENER) { ",
           "\t\tel.append(out iter);",
           "\t\tel.set(iter, 0, JsRender.NodePropType.LISTENER, 1,   \"Event Handler / Listener\", -1);",
           "\t}\t ",
           "\telse if (_this.mainwindow.windowstate.file.xtype == \"Gtk\") {",
+          "\t\t el.append(out iter);",
+          "\t    el.set(iter, 0, JsRender.NodePropType.PROP, 1,   \"Normal Property\", -1);",
+          "\t",
+          "\t\t",
           "\t\tel.append(out iter);",
           "\t\tel.set(iter, 0, JsRender.NodePropType.RAW, 1,   \"Raw Property (not escaped)\", -1);",
           "\t\t ",
@@ -103,6 +106,9 @@
           "\t\t",
           "\t} else { ",
           "\t\t// javascript",
+          "\t    el.append(out iter);",
+          "\t    el.set(iter, 0, JsRender.NodePropType.PROP, 1,   \"Normal Property\", -1);",
+          "\t",
           "\t\tel.append(out iter);",
           "\t\tel.set(iter, 0, JsRender.NodePropType.RAW, 1,   \"Raw Property (not escaped)\", -1);",
           "\t\t ",
@@ -172,6 +178,60 @@
        "* pack" : "add",
        "id" : "kname",
        "xtype" : "Entry"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "composite_name",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "id" : "buttonbar",
+       "int margin_top" : 20,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "add",
+         "bool always_show_image" : true,
+         "bool hexpand" : true,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "composite_name",
+           "* prop" : "image",
+           "string icon_name" : "window-close",
+           "xtype" : "Image"
+          }
+         ],
+         "listeners" : {
+          "activate" : [
+           "() => { ",
+           "",
+           "\t_this.prop = null;",
+           "\t_this.is_new = false;",
+           "\t_this.el.hide();",
+           "",
+           "}"
+          ]
+         },
+         "string label" : "Cancel",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "add",
+         "bool always_show_image" : true,
+         "bool hexpand" : true,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "image",
+           "string icon_name" : "list-add",
+           "xtype" : "Image"
+          }
+         ],
+         "string label" : "Save",
+         "xtype" : "Button"
+        }
+       ],
+       "xtype" : "Box"
       }
      ],
      "xtype" : "Box"
@@ -181,6 +241,14 @@
     "closed" : [
      "() => {",
      " ",
+     "  if (_this.is_new) {",
+     "  \t this.el.show();",
+     "  \t return;",
+     "  \t",
+     "  }",
+     "  if (_this.prop == null) {",
+     "  \treturn;",
+     "  \t}",
      "  ",
      "  var newtext = \"\";",
      "  Gtk.TreeIter citer;",
@@ -196,7 +264,7 @@
      "  ",
      "\t_this.mainwindow.windowstate.left_props.reload();",
      "   ",
-     "  ",
+     "   ",
      "  ",
      "} "
     ]
@@ -240,11 +308,11 @@
     "\tGtk.Widget btn, ",
     "\tJsRender.Node node, ",
     "\tJsRender.NodeProp prop, ",
-    " ",
-    "\tint y",
+    "\tint y,",
+    "\tbool is_new = false",
     "\t ) ",
     "{",
-    "\t ",
+    "\tthis.is_new = is_new; ",
     "\tif (prop.ptype == JsRender.NodePropType.LISTENER) {",
     "\t\tthis.header.el.title = \"Modify Event Listener\";",
     "\t} else {",
@@ -282,6 +350,11 @@
     "\t print(\"SHOWALL - POPIP\\n\");",
     "\tthis.el.show_all();",
     "\tthis.kname.el.grab_focus();",
+    "\tthis.buttonbar.el.hide();",
+    "\tif (this.is_new) {",
+    "\t\tthis.buttonbar.el.show();",
+    "\t}",
+    "",
     "",
     "\t//this.success = c.success;",
     " ",
