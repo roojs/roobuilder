@@ -1416,6 +1416,7 @@ public class Xcls_LeftProps : Object
                  //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
                  if (ev.button == 1 && col.title == "Name") {    
                  	// need to shift down, as ev.y does not inclucde header apparently..
+                 	// or popover might be trying to do a central?
                     this.editPropertyDetails(path, (int) ev.y + 12); 
                      
                     return false;
