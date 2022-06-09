@@ -218,8 +218,8 @@
        "xtype" : "Label",
        "| void setError" : [
         "(string err) {",
-        "\tif (err = \"\") {",
-        "\t\t_this.el.hide();",
+        "\tif (err == \"\") {",
+        "\t\tthis.el.hide();",
         "\t} else {",
         "\t\tthis.el show();",
         "\t\t",
