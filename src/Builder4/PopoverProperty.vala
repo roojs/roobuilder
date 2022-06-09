@@ -627,7 +627,7 @@ public class Xcls_PopoverProperty : Object
             // set gobject values
             this.el.hexpand = true;
             this.el.always_show_image = true;
-            this.el.label = "Save";
+            this.el.label = "Add Property";
             var child_0 = new Xcls_Image16( _this );
             child_0.ref();
             this.el.image = child_0.el;

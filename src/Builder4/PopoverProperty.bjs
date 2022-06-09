@@ -227,7 +227,7 @@
            "xtype" : "Image"
           }
          ],
-         "string label" : "Save",
+         "string label" : "Add Property",
          "xtype" : "Button"
         }
        ],
