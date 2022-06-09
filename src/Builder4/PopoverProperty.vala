@@ -249,7 +249,7 @@ public class Xcls_PopoverProperty : Object
 
             // init method
 
-            this.el.add_attribute(_this.dbcellrenderer.el , "markup", 1 );ADDADDA
+            this.el.add_attribute(_this.dbcellrenderer.el , "markup", 1 );
         }
 
         // user defined functions

@@ -36,7 +36,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );ADDADDA",
+       "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
        "* pack" : "add",
        "id" : "kflag",
        "items" : [
