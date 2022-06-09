@@ -356,7 +356,7 @@ public class JsRender.NodeToVala : Object {
 			
 			this.node.setLine(this.cur_line, "p", prop.name);
 			
-			this.addLine(this.pad + "public " + prop.name + ";"); // definer - does not include value.
+			this.addLine(this.pad + "public " + prop.rtype + " " + prop.name + ";"); // definer - does not include value.
 
 
 			prop.end_line = this.cur_line;				
