@@ -711,6 +711,13 @@ public class Xcls_PopoverProperty : Object
             var child_0 = new Xcls_Image17( _this );
             child_0.ref();
             this.el.image = child_0.el;
+
+            //listeners
+            this.el.pressed.connect( () => {
+            
+            
+            
+            });
         }
 
         // user defined functions

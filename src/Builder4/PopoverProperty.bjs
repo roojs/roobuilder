@@ -280,6 +280,15 @@
            "xtype" : "Image"
           }
          ],
+         "listeners" : {
+          "pressed" : [
+           "() => {",
+           "",
+           "",
+           "",
+           "}"
+          ]
+         },
          "string label" : "Add Property",
          "xtype" : "Button"
         }
