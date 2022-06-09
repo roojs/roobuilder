@@ -37,7 +37,7 @@ Building it
 Notes on updating packaging..
 
 Update Package details.
-    
+    Edit the about version (check debian/changelog)
     dch -v {release version}
 
 Build it..
