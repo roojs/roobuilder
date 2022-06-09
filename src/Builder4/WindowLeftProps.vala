@@ -1835,7 +1835,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( )  =>{
-              
+              /*
                 var s = _this.view.el.get_selection();
                 Gtk.TreeIter iter;
                 Gtk.TreeModel mod;
@@ -1863,7 +1863,7 @@ public class Xcls_LeftProps : Object
             
             	_this.view.popover.show(_this.view.el, _this.node, (JsRender.NodeProp)gval);
                    
-                
+                */
                 
                // _this.startEditingKey(model.get_path(iter));
             });

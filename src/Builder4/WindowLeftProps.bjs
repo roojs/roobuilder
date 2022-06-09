@@ -576,7 +576,7 @@
            "listeners" : {
             "activate" : [
              "  ( )  =>{",
-             "  ",
+             "  /*",
              "    var s = _this.view.el.get_selection();",
              "    Gtk.TreeIter iter;",
              "    Gtk.TreeModel mod;",
@@ -604,7 +604,7 @@
              "",
              "\t_this.view.popover.show(_this.view.el, _this.node, (JsRender.NodeProp)gval);",
              "       ",
-             "    ",
+             "    */",
              "    ",
              "   // _this.startEditingKey(model.get_path(iter));",
              "}"
