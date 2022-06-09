@@ -2,7 +2,6 @@
  "build_module" : "builder",
  "items" : [
   {
-   "# Gtk.Widget? pointing_to" : "",
    "# JsRender.NodeProp? prop" : "",
    "$ xns" : "Gtk",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
@@ -332,7 +331,7 @@
     "\t ) ",
     "{",
     "\t",
-    "\tthis.pointing_to = btn;",
+    " ",
     "\tthis.is_new = is_new; ",
     "\tvar pref = is_new ? \"Add \" : \"Modify \";",
     "\tif (prop.ptype == JsRender.NodePropType.LISTENER) {",

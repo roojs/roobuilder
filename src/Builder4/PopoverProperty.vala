@@ -26,7 +26,6 @@ public class Xcls_PopoverProperty : Object
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public bool done;
     public JsRender.NodeProp? prop;
-    public Gtk.Widget? pointing_to;
     public Xcls_MainWindow mainwindow;
     public string key_type;
     public JsRender.Node node;
@@ -107,7 +106,7 @@ public class Xcls_PopoverProperty : Object
     	 ) 
     {
     	
-    	this.pointing_to = btn;
+     
     	this.is_new = is_new; 
     	var pref = is_new ? "Add " : "Modify ";
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
