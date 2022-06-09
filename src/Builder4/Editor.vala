@@ -21,8 +21,8 @@ public class Editor : Object
         // my vars (def)
     public Xcls_MainWindow window;
     public string activeEditor;
-    public int pos_root_x;
     public JsRender.NodeProp? prop;
+    public int pos_root_x;
     public JsRender.JsRender? file;
     public int pos_root_y;
     public int last_search_end;
@@ -85,7 +85,7 @@ public class Editor : Object
         if (_this.file.xtype != "PlainFile") {
            // in theory these properties have to exist!?!
         	this.prop.val = str;
-            
+            this.window.windowstate.left_props.updateProp(this.prop);
         } else {
             _this.file.setSource(  str );
          }

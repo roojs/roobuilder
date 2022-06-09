@@ -511,7 +511,7 @@
     "    if (_this.file.xtype != \"PlainFile\") {",
     "       // in theory these properties have to exist!?!",
     "    \tthis.prop.val = str;",
-    "        ",
+    "        this.window.windowstate.left_props.updateProp(this.prop);",
     "    } else {",
     "        _this.file.setSource(  str );",
     "     }",
