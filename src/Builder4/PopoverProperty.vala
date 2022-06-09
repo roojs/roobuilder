@@ -70,8 +70,14 @@ public class Xcls_PopoverProperty : Object
     }
 
     // user defined functions
-    public void show (Gtk.Widget btn, JsRender.Node node, JsRender.NodeProp prop) 
-    	{
+    public void show (
+    	Gtk.Widget? btn, 
+    	JsRender.Node node, 
+    	JsRender.NodeProp prop, 
+    	int x,
+    	int y
+    	 ) 
+    {
     	 
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
     		this.header.el.title = "Modify Event Listener";
@@ -91,9 +97,21 @@ public class Xcls_PopoverProperty : Object
     	_this.node = node;
     	//console.log('show all');
     	this.el.set_modal(true);
-    	this.el.set_relative_to(btn);
+    	if (btn == null) {
+    		this.el.set_relative_to(btn);
+    	} else {
+    		var  r = Gdk.Rectangle() {
+    			x = x,
+    			y = y,
+    			width = 0,
+    			height = 0
+    		};
+    		this.el.set_pointing_to( r);
+    		}
+    	
+    	
     
-    	this.el.set_position(Gtk.PositionType.TOP);
+    	//this.el.set_position(Gtk.PositionType.TOP);
     
     	// window + header?
     	 print("SHOWALL - POPIP\n");
