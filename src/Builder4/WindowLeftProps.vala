@@ -874,7 +874,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( (self) => {
               	var p = new JsRender.NodeProp.prop("", "string", "") ;
-                 _this.view.popover.show(_this.view_el, _this.node, p ,   -1,  true);
+                 _this.view.popover.show(_this.view.el, _this.node, p ,   -1,  true);
             //    _this.addProp( new JsRender.NodeProp.prop("", "string", "") );
             });
         }
