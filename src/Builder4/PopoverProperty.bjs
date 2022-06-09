@@ -272,7 +272,8 @@
      "",
      "  ",
      "} "
-    ]
+    ],
+    "hide" : ""
    },
    "string key_type" : "",
    "string old_keyname" : "",

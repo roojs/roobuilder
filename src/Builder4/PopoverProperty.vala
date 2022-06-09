@@ -83,6 +83,7 @@ public class Xcls_PopoverProperty : Object
         
           
         });
+        this.el.hide.connect( );
     }
 
     // user defined functions
