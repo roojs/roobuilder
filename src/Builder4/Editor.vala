@@ -154,7 +154,7 @@ public class Editor : Object
     
     	if (this.searchcontext == null) {
     		return;
-    	}
+    	} 
     	
     	Gtk.TextIter beg, st,en;
     	 

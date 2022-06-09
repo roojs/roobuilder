@@ -488,7 +488,6 @@
      "xtype" : "ScrolledWindow"
     }
    ],
-   "string id" : "Editor",
    "xtype" : "Box",
    "|   void show" : [
     "(JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)",
@@ -575,7 +574,7 @@
     "",
     "\tif (this.searchcontext == null) {",
     "\t\treturn;",
-    "\t}",
+    "\t} ",
     "\t",
     "\tGtk.TextIter beg, st,en;",
     "\t ",
