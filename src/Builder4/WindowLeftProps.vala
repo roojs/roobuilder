@@ -1435,10 +1435,7 @@ public class Xcls_LeftProps : Object
                  // single click on name..
                  //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
                  if (ev.button == 1 && col.title == "Name") {    
-                    // show popup!.   
-                   // Gtk.Allocation alloc;
-                   // _this.view.el.get_allocation(out alloc); << does not work!
-                     
+                 
                     this.editPropertyDetails(path,  ev.y); 
                      
                     return false;
