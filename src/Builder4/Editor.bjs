@@ -569,7 +569,7 @@
    ],
    "| void forwardSearch" : [
     "(bool change_focus) {",
-    " ",
+    "",
     "\tif (this.searchcontext == null) {",
     "\t\treturn;",
     "\t}",

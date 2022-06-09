@@ -334,7 +334,7 @@ public class JsRender.NodeToVala : Object {
 				
 			if (prop.ptype == NodePropType.SIGNAL) {
 				this.node.setLine(this.cur_line, "p", prop.name);
-				this.addLine(this.pad + "public signal " + prop.name  + " "  + prop.val + ";");
+				this.addLine(this.pad + "public signal " + prop.rtype + " " + prop.name  + " "  + prop.val + ";");
 				
 				this.ignore(prop.name);
 				continue;
