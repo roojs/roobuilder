@@ -81,12 +81,12 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "add",
-       "id" : "save_button",
-       "label" : "Save",
+       "bool always_show_image" : true,
        "listeners" : {
         "clicked" : [
          " () => { ",
          "    _this.saveContents();",
+         "    _this.window.windowstate.setState(State.PREVIEW);",
          "}",
          "  "
         ]

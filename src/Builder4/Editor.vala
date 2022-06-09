@@ -13,7 +13,6 @@ public class Editor : Object
         return _Editor;
     }
     public Xcls_save_button save_button;
-    public Xcls_save_button save_button;
     public Xcls_RightEditor RightEditor;
     public Xcls_view view;
     public Xcls_buffer buffer;
@@ -207,7 +206,7 @@ public class Editor : Object
             var child_2 = new Xcls_HScale5( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
-            var child_3 = new Xcls_save_button( _this );
+            var child_3 = new Xcls_Button6( _this );
             child_3.ref();
             this.el.add (  child_3.el  );
         }
@@ -310,7 +309,7 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_save_button : Object
+    public class Xcls_Button6 : Object
     {
         public Gtk.Button el;
         private Editor  _this;
@@ -319,20 +318,20 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_save_button(Editor _owner )
+        public Xcls_Button6(Editor _owner )
         {
             _this = _owner;
-            _this.save_button = this;
             this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Save";
+            this.el.always_show_image = true;
 
             //listeners
             this.el.clicked.connect( () => { 
                 _this.saveContents();
+                _this.window.windowstate.setState(State.PREVIEW);
             });
         }
 
