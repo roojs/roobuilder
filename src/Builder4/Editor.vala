@@ -106,12 +106,11 @@ public class Editor : Object
     
             // find the text for the node..
             this.view.load( prop.val );
-            this.key_edit.el.show();
-            this.key_edit.el.text = prop.rtype +  " " + prop.name;  
+           
         
         } else {
             this.view.load(        file.toSource() );
-            this.key_edit.el.hide();
+         
         }
      
     }
