@@ -57,8 +57,8 @@ public class Xcls_PopoverProperty : Object
           this.dbmodel.el.get_value(citer, 0, out  gval);
           
           
-          _this.prop.name = this.ktype.el.get_text().strip(); 
-          _this.prop.rtype = this.kname.el.get_text().strip(); 
+          _this.prop.name = this.kname.el.get_text().strip(); 
+          _this.prop.rtype = this.ktype.el.get_text().strip(); 
            _this.prop.ptype =  (JsRender.NodePropType) gval;
           
           
