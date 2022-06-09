@@ -473,11 +473,12 @@ public class Xcls_LeftProps : Object
             
             // delay this?
             GLib.Timeout.add_full(GLib.Priority.DEFAULT,40 , () => {
-            	
+            	/*
         		if (prop.name == "") { // empty string for key name.
             		_this.view.editPropertyDetails(this.model.el.get_path(iter));
             		return false;
             	}
+            	*/
             	
                 this.startEditingValue(this.model.el.get_path(iter));
                 return false;
