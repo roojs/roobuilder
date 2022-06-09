@@ -206,6 +206,7 @@
            "",
            "\t_this.prop = null;",
            "\t_this.is_new = false;",
+           "\t_this.kname.el.set_text(\"Cancel\");",
            "\t_this.el.hide();",
            "",
            "}"

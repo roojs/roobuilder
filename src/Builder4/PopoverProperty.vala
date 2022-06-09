@@ -596,6 +596,7 @@ public class Xcls_PopoverProperty : Object
             
             	_this.prop = null;
             	_this.is_new = false;
+            	_this.kname.el.set_text("Cancel");
             	_this.el.hide();
             
             });
