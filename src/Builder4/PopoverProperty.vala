@@ -51,7 +51,7 @@ public class Xcls_PopoverProperty : Object
 
         //listeners
         this.el.closed.connect( () => {
-         	Glib.debug("popover closed");
+         	GLib.debug("popover closed");
         	if (_this.is_new) {
         		// dont allow hiding if we are creating a new one.
         		// on.hide will reshow it.
