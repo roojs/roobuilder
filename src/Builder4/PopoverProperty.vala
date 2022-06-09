@@ -565,6 +565,7 @@ public class Xcls_PopoverProperty : Object
             this.el.tooltip_text = "center, north, south, east, west";
             this.el.margin_top = 0;
             this.el.visible = true;
+            this.el.use_markup = true;
         }
 
         // user defined functions
