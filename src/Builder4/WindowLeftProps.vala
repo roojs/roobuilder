@@ -211,6 +211,15 @@ public class Xcls_LeftProps : Object
     }
     public              void load (JsRender.JsRender file, JsRender.Node? node) 
     {
+    	// not sure when to initialize this - we should do it on setting main window really.    
+        if (this.view.popover == null) {
+     		   this.view.popover = new Xcls_PopoverProperty();
+     		   this.view.popover.mainwindow = _this.main_window;
+    	}
+        
+        
+        
+        
         GLib.debug("load leftprops\n");
         this.before_edit();
         this.node = node;
