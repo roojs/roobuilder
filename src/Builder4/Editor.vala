@@ -200,13 +200,13 @@ public class Editor : Object
             var child_0 = new Xcls_save_button( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_Label4( _this );
+            var child_1 = new Xcls_Label5( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_HScale5( _this );
+            var child_2 = new Xcls_HScale6( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
-            var child_3 = new Xcls_Button6( _this );
+            var child_3 = new Xcls_Button7( _this );
             child_3.ref();
             this.el.add (  child_3.el  );
         }
@@ -232,6 +232,9 @@ public class Editor : Object
 
             // set gobject values
             this.el.label = "Save";
+            var child_0 = new Xcls_Image4( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
 
             //listeners
             this.el.clicked.connect( () => { 
@@ -241,8 +244,31 @@ public class Editor : Object
 
         // user defined functions
     }
+    public class Xcls_Image4 : Object
+    {
+        public Gtk.Image el;
+        private Editor  _this;
 
-    public class Xcls_Label4 : Object
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image4(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "file-save";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Label5 : Object
     {
         public Gtk.Label el;
         private Editor  _this;
@@ -251,7 +277,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label4(Editor _owner )
+        public Xcls_Label5(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( null );
@@ -265,7 +291,7 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_HScale5 : Object
+    public class Xcls_HScale6 : Object
     {
         public Gtk.HScale el;
         private Editor  _this;
@@ -274,7 +300,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HScale5(Editor _owner )
+        public Xcls_HScale6(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.HScale.with_range (6, 30, 1);
@@ -309,7 +335,7 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_Button6 : Object
+    public class Xcls_Button7 : Object
     {
         public Gtk.Button el;
         private Editor  _this;
@@ -318,7 +344,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button6(Editor _owner )
+        public Xcls_Button7(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -327,7 +353,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.always_show_image = true;
-            var child_0 = new Xcls_Image7( _this );
+            var child_0 = new Xcls_Image8( _this );
             child_0.ref();
             this.el.image = child_0.el;
 
@@ -340,7 +366,7 @@ public class Editor : Object
 
         // user defined functions
     }
-    public class Xcls_Image7 : Object
+    public class Xcls_Image8 : Object
     {
         public Gtk.Image el;
         private Editor  _this;
@@ -349,7 +375,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image7(Editor _owner )
+        public Xcls_Image8(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();

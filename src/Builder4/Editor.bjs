@@ -31,6 +31,14 @@
        "$ xns" : "Gtk",
        "* pack" : "add",
        "id" : "save_button",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "image",
+         "string icon_name" : "file-save",
+         "xtype" : "Image"
+        }
+       ],
        "label" : "Save",
        "listeners" : {
         "clicked" : [
