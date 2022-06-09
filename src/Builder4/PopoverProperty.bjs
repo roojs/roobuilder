@@ -223,7 +223,7 @@
         "\t} else {",
         "\t\tthis.el show();",
         "\t\t",
-        "\t\t_this.el.set_label(\"<span color=\\\"red\\\">\" + err + \"</span>\";",
+        "\t\t_this.el.set_label(\"<span color=\\\"red\\\">\" + err + \"</span>\");",
         "\t}",
         "}",
         ""
