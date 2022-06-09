@@ -5,10 +5,9 @@ Vala and Javascript IDE - for building Vala Desktop applications and Javascript 
 Debian and Ubuntu packages
 
   https://www.dropbox.com/scl/fo/9gmglurw6s4qqwzc3xkvu/h?dl=0&rlkey=9x0o549ne7gyvii3yc93u3brc
-
+  
   * you will need libvala, roojspacker and a few other packages 
 
----
 
 Building it
 
