@@ -288,7 +288,7 @@
            "\t\t// error should already be showing?",
            "\t\treturn;",
            "\t}",
-           "\tthis.updateProp();",
+           "\tthis.node.updateProp();",
            "\t",
            "\t// since we can't add listeners?!?!?",
            "\t// only check props.",
