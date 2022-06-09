@@ -575,54 +575,6 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "append",
-           "label" : "Edit (double click)",
-           "listeners" : {
-            "activate" : [
-             "  ( )  =>{",
-             "  /*",
-             "    var s = _this.view.el.get_selection();",
-             "    Gtk.TreeIter iter;",
-             "    Gtk.TreeModel mod;",
-             "    s.get_selected (out  mod, out  iter);",
-             "    ",
-             "      if (_this.view.popover == null) {",
-             "     \t\t   _this.view.popover = new Xcls_PopoverProperty();",
-             "     \t\t   _this.view.popover.mainwindow = _this.main_window;",
-             " \t\t}",
-             " \t\t",
-             " ",
-             "      _this.before_edit();",
-             "      _this.stop_editor();",
-             "\t  ",
-             "     _this.keyrender.el.stop_editing(false);",
-             "     _this.keyrender.el.editable  =false;",
-             "",
-             "     _this.valrender.el.stop_editing(false);",
-             "     _this.valrender.el.editable  =false;",
-             "     ",
-             "      ",
-             "\t GLib.Value gvaltype, gval;",
-             "\t ",
-             "     mod.get_value(iter,0, out gval);",
-             "",
-             "\t_this.view.popover.show(_this.view.el, _this.node, (JsRender.NodeProp)gval);",
-             "       ",
-             "    */",
-             "    ",
-             "   // _this.startEditingKey(model.get_path(iter));",
-             "}"
-            ]
-           },
-           "xtype" : "MenuItem"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "append",
-           "xtype" : "SeparatorMenuItem"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "append",
            "label" : "Delete",
            "listeners" : {
             "activate" : [

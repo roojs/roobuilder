@@ -1793,12 +1793,6 @@ public class Xcls_LeftProps : Object
             var child_0 = new Xcls_MenuItem37( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
-            var child_1 = new Xcls_SeparatorMenuItem38( _this );
-            child_1.ref();
-            this.el.append (  child_1.el  );
-            var child_2 = new Xcls_MenuItem39( _this );
-            child_2.ref();
-            this.el.append (  child_2.el  );
         }
 
         // user defined functions
@@ -1813,86 +1807,6 @@ public class Xcls_LeftProps : Object
 
         // ctor
         public Xcls_MenuItem37(Xcls_LeftProps _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.MenuItem();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Edit (double click)";
-
-            //listeners
-            this.el.activate.connect( ( )  =>{
-              /*
-                var s = _this.view.el.get_selection();
-                Gtk.TreeIter iter;
-                Gtk.TreeModel mod;
-                s.get_selected (out  mod, out  iter);
-                
-                  if (_this.view.popover == null) {
-                 		   _this.view.popover = new Xcls_PopoverProperty();
-                 		   _this.view.popover.mainwindow = _this.main_window;
-             		}
-             		
-             
-                  _this.before_edit();
-                  _this.stop_editor();
-            	  
-                 _this.keyrender.el.stop_editing(false);
-                 _this.keyrender.el.editable  =false;
-            
-                 _this.valrender.el.stop_editing(false);
-                 _this.valrender.el.editable  =false;
-                 
-                  
-            	 GLib.Value gvaltype, gval;
-            	 
-                 mod.get_value(iter,0, out gval);
-            
-            	_this.view.popover.show(_this.view.el, _this.node, (JsRender.NodeProp)gval);
-                   
-                */
-                
-               // _this.startEditingKey(model.get_path(iter));
-            });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_SeparatorMenuItem38 : Object
-    {
-        public Gtk.SeparatorMenuItem el;
-        private Xcls_LeftProps  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_SeparatorMenuItem38(Xcls_LeftProps _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.SeparatorMenuItem();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_MenuItem39 : Object
-    {
-        public Gtk.MenuItem el;
-        private Xcls_LeftProps  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_MenuItem39(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
