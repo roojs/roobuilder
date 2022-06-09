@@ -74,7 +74,7 @@ public class Xcls_PopoverProperty : Object
     	Gtk.Widget btn, 
     	JsRender.Node node, 
     	JsRender.NodeProp prop, 
-    	 
+     
     	int y
     	 ) 
     {
@@ -98,7 +98,7 @@ public class Xcls_PopoverProperty : Object
     	//console.log('show all');
     	this.el.set_modal(true);
     	this.el.set_relative_to(btn);
-    	if (x > -1) {
+    	if (y > -1) {
     		var  r = Gdk.Rectangle() {
     			x = 0, // align left...
     			y = y,
