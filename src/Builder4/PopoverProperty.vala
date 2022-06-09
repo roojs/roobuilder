@@ -90,10 +90,11 @@ public class Xcls_PopoverProperty : Object
     	 ) 
     {
     	this.is_new = is_new; 
+    	var pref = is_new ? "Add " : "Modify ";
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
-    		this.header.el.title = "Modify Event Listener";
+    		this.header.el.title = pref + "Event Listener"; // cant really happen yet?
     	} else {
-    		this.header.el.title = "Modify Property";
+    		this.header.el.title = pref + "Property";
     	}
     	this.prop = prop;
     	this.node = node;
