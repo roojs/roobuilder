@@ -28,6 +28,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "add",
+       "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "label" : "Special Flags",
        "x_options" : 4,
@@ -138,10 +139,10 @@
        "$ visible" : true,
        "$ xns" : "Gtk",
        "* pack" : "add",
+       "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "label" : "Type or Return Type",
        "x_options" : 4,
-       "xalign" : 0.90000000000000002,
        "xtype" : "Label"
       },
       {
@@ -159,7 +160,6 @@
        "label" : "Name",
        "tooltip_text" : "center, north, south, east, west",
        "x_options" : 4,
-       "xalign" : 0.90000000000000002,
        "xtype" : "Label"
       },
       {
