@@ -405,26 +405,6 @@ public class Xcls_LeftProps : Object
     public void reload () {
     	this.load(this.file, this.node);
     }
-    public void updateProp (JsRender.NodeProp prop) {
-    
-    
-    	_this.model.el.foreach((mod, path,  iter) => {
-        		 
-                
-            	  
-           
-    		 GLib.Value gvaltype, gval,kvalue;
-    		 mod.get_value(iter, 0 , out gval); // one is key..
-    		 if (prop.is((JsRender.NodeProp) gval)) {
-    		 	this.updateIter(iter, prop);
-    		 	return true;
-    	 	}
-    		return false;
-    	});
-    	
-    	this.changed();
-    
-    }
     public              void addProp (JsRender.NodeProp prop) {
           // info includes key, val, skel, etype..
           //console.dump(info);
