@@ -26,10 +26,10 @@ public class Xcls_PopoverProperty : Object
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public bool done;
     public JsRender.NodeProp? prop;
+    public Gtk.Widget? pointing_to;
     public Xcls_MainWindow mainwindow;
     public string key_type;
     public JsRender.Node node;
-    public string XXXX;
 
     // ctor
     public Xcls_PopoverProperty()
