@@ -591,7 +591,7 @@ public class Xcls_PopoverProperty : Object
         	} else {
         		this.el show();
         		
-        		_this.el.set_label("<span color=\"red\">" + err + "</span>");
+        		this.el.set_label("<span color=\"red\">" + err + "</span>");
         	}
         }
     }
