@@ -362,7 +362,7 @@ public class Editor : Object
             //listeners
             this.el.clicked.connect( () => { 
                 _this.saveContents();
-                _this.window.windowstate.switchState(State.PREVIEW);
+                _this.window.windowstate.switchState(WindowState.State.PREVIEW);
             });
         }
 
