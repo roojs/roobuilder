@@ -273,7 +273,19 @@
      "  ",
      "} "
     ],
-    "hide" : ""
+    "hide" : [
+     "() => {",
+     " ",
+     "\tif (_this.is_new) {",
+     "\t\t// dont allow hiding if we are creating a new one.",
+     "\t\t ",
+     "\t\tthis.el.show_all();",
+     "\t\treturn;",
+     "",
+     "\t}",
+     "\t",
+     "}"
+    ]
    },
    "string key_type" : "",
    "string old_keyname" : "",

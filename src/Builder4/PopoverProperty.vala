@@ -83,7 +83,17 @@ public class Xcls_PopoverProperty : Object
         
           
         });
-        this.el.hide.connect( );
+        this.el.hide.connect( () => {
+         
+        	if (_this.is_new) {
+        		// dont allow hiding if we are creating a new one.
+        		 
+        		this.el.show_all();
+        		return;
+        
+        	}
+        	
+        });
     }
 
     // user defined functions
