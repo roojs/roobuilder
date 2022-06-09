@@ -710,6 +710,7 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.hexpand = true;
+            this.el.always_show_image = true;
             this.el.label = "Other";
             var child_0 = new Xcls_AddPropertyPopup( _this );
             child_0.ref();
@@ -1002,9 +1003,15 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( (self) => {
-              	var p = new JsRender.NodeProp.prop("", "string", "") ;
-                 _this.view.popover.show(_this.view.el, _this.node, p ,   -1,  true);
-            //    _this.addProp( new JsRender.NodeProp.prop("", "string", "") );
+            
+            	_this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.prop("", "string", "") ,
+            		-1,  
+            		true
+            	);
+            
             });
         }
 
@@ -1033,8 +1040,14 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-            
-                   _this.addProp( new JsRender.NodeProp.prop("", "int", "0") ); 
+              _this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.prop("", "int", "0") ,
+            		-1,  
+            		true
+            	);
+             
             });
         }
 
@@ -1063,7 +1076,13 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-                   _this.addProp( new JsRender.NodeProp.prop("", "bool", "true") ); 
+               _this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.prop("", "bool", "true") ,
+            		-1,  
+            		true
+            	); 
              
             });
         }
@@ -1115,7 +1134,16 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-               _this.addProp( new JsRender.NodeProp.jsmethod("") ); 
+               
+               _this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.jsmethod("") ,
+            		-1,  
+            		true
+            	);
+               
+             
             });
         }
 
@@ -1145,7 +1173,13 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) =>{
             
-                 _this.addProp( new JsRender.NodeProp.valamethod("") ); 
+                _this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.valamethod("") ,
+            		-1,  
+            		true
+            	); 
             });
         }
 
@@ -1174,7 +1208,13 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-                 _this.addProp( new JsRender.NodeProp.sig("") ); 
+              _this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.sig("" ) ,
+            		-1,  
+            		true
+            	);    
             });
         }
 
@@ -1225,7 +1265,14 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-             	_this.addProp( new JsRender.NodeProp.prop( "flexy:if", "string", "value_or_condition") );
+             	_this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.prop("flexy:if", "string", "value_or_condition") ,
+            		-1,  
+            		true
+            	);
+            
             
             });
         }
@@ -1255,7 +1302,14 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-             	_this.addProp( new JsRender.NodeProp.prop( "flexy:include", "string", "name_of_file.html") );
+             	_this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.prop("flexy:include", "string", "name_of_file.html") ,
+            		-1,  
+            		true
+            	);
+            
               
             });
         }
@@ -1285,7 +1339,15 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
-            	_this.addProp( new JsRender.NodeProp.prop( "flexy:foreach", "string", "array,key,value") );
+              
+               	_this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.prop("flexy:foreach", "string", "array,key,value") ,
+            		-1,  
+            		true
+            	);
+            
                 
             });
         }
