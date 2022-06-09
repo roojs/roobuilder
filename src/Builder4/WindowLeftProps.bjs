@@ -451,7 +451,7 @@
            "xtype" : "CellRendererText"
           }
          ],
-         "title" : "Name",
+         "title" : "Property",
          "xtype" : "TreeViewColumn"
         },
         {

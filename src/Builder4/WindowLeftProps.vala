@@ -1570,7 +1570,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.title = "Name";
+            this.el.title = "Property";
             this.el.resizable = true;
             var child_0 = new Xcls_keyrender( _this );
             child_0.ref();
