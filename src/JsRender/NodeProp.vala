@@ -160,8 +160,8 @@ public class JsRender.NodeProp : Object {
 
 			case NodePropType.SPECIAL: 			
 				return oabbr +   this.name;
-	 		case NONE: // not used
-			case CTOR:
+	 		case NodePropType.NONE: // not used
+			case NodePropType.CTOR:
 				 return "";
 			
 			
@@ -187,8 +187,8 @@ public class JsRender.NodeProp : Object {
 			case NodePropType.LISTENER : 
 				return  this.name;
 				
-	 		case NONE: // not used
-			case CTOR:
+	 		case NodePropType.NONE: // not used
+			case NodePropType.CTOR:
 				 return "";
 
 				
@@ -224,9 +224,17 @@ public class JsRender.NodeProp : Object {
 			// in seperate list..
 			case NodePropType.LISTENER : 
 				return  "<b>" + this.name + "</b>";
+				
+	 		case NodePropType.NONE: // not used
+			case NodePropType.CTOR:
+				 return "";
+		
+				
 		}
 		return this.name;
  	}
+ 	
+ 	// used ot sort the dispaly list of properties.
  	public string to_sort_key()
 	{
 		var n = this.name;
@@ -255,6 +263,11 @@ public class JsRender.NodeProp : Object {
 			// in seperate list..
 			case NodePropType.LISTENER : 
 				return  "0" + this.name;
+			
+			case NodePropType.NONE: // not used
+			case NodePropType.CTOR:
+				 return "";
+				
 		}
 		return this.name;
  	}
@@ -287,7 +300,9 @@ public class JsRender.NodeProp : Object {
 			case NodePropType.SPECIAL: 			
 				return  "special property: "  + this.rtype + " " + this.name  + " = " +   this.val;			
 
-			
+			case NodePropType.NONE: // not used
+			case NodePropType.CTOR:
+				 return "";
 		}
 		return this.name;
 		
