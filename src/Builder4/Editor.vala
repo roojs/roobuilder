@@ -13,7 +13,7 @@ public class Editor : Object
         return _Editor;
     }
     public Xcls_save_button save_button;
-    public Xcls_key_edit key_edit;
+    public Xcls_close_btn close_btn;
     public Xcls_RightEditor RightEditor;
     public Xcls_view view;
     public Xcls_buffer buffer;
@@ -107,12 +107,11 @@ public class Editor : Object
     
             // find the text for the node..
             this.view.load( prop.val );
-            this.key_edit.el.show();
-            this.key_edit.el.text = prop.rtype +  " " + prop.name;  
+            this.close_btn.el.show();       
         
         } else {
             this.view.load(        file.toSource() );
-            this.key_edit.el.hide();
+            this.close_btn.el.hide();
         }
      
     }
@@ -154,7 +153,7 @@ public class Editor : Object
     
     	if (this.searchcontext == null) {
     		return;
-    	}
+    	} 
     	
     	Gtk.TextIter beg, st,en;
     	 
@@ -200,13 +199,16 @@ public class Editor : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_save_button( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false );
-            var child_1 = new Xcls_key_edit( _this );
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_Label5( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , true,true );
-            var child_2 = new Xcls_HScale5( _this );
+            this.el.add (  child_1.el  );
+            var child_2 = new Xcls_HScale6( _this );
             child_2.ref();
-            this.el.pack_end (  child_2.el , true,true );
+            this.el.add (  child_2.el  );
+            var child_3 = new Xcls_close_btn( _this );
+            child_3.ref();
+            this.el.add (  child_3.el  );
         }
 
         // user defined functions
@@ -229,7 +231,11 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.always_show_image = true;
             this.el.label = "Save";
+            var child_0 = new Xcls_Image4( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
 
             //listeners
             this.el.clicked.connect( () => { 
@@ -239,33 +245,54 @@ public class Editor : Object
 
         // user defined functions
     }
-
-    public class Xcls_key_edit : Object
+    public class Xcls_Image4 : Object
     {
-        public Gtk.Entry el;
+        public Gtk.Image el;
         private Editor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_key_edit(Editor _owner )
+        public Xcls_Image4(Editor _owner )
         {
             _this = _owner;
-            _this.key_edit = this;
-            this.el = new Gtk.Entry();
+            this.el = new Gtk.Image();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.width_request = 100;
-            this.el.editable = false;
+            this.el.icon_name = "document-save";
         }
 
         // user defined functions
     }
 
-    public class Xcls_HScale5 : Object
+
+    public class Xcls_Label5 : Object
+    {
+        public Gtk.Label el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label5(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( null );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_HScale6 : Object
     {
         public Gtk.HScale el;
         private Editor  _this;
@@ -274,7 +301,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HScale5(Editor _owner )
+        public Xcls_HScale6(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.HScale.with_range (6, 30, 1);
@@ -282,6 +309,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.width_request = 200;
             this.el.has_origin = true;
             this.el.draw_value = true;
             this.el.digits = 0;
@@ -307,6 +335,62 @@ public class Editor : Object
 
         // user defined functions
     }
+
+    public class Xcls_close_btn : Object
+    {
+        public Gtk.Button el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_close_btn(Editor _owner )
+        {
+            _this = _owner;
+            _this.close_btn = this;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            var child_0 = new Xcls_Image8( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+
+            //listeners
+            this.el.clicked.connect( () => { 
+                _this.saveContents();
+                _this.window.windowstate.switchState(WindowState.State.PREVIEW);
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image8 : Object
+    {
+        public Gtk.Image el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image8(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "window-close";
+        }
+
+        // user defined functions
+    }
+
 
 
     public class Xcls_RightEditor : Object

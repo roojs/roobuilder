@@ -20,12 +20,12 @@ public class Xcls_GladeuiView : Object
 
         // my vars (def)
     public Gtk.Widget lastObj;
+    public Xcls_MainWindow main_window;
+    public Gtk.SourceSearchContext searchcontext;
     public int last_search_end;
     public int width;
-    public Gtk.SourceSearchContext searchcontext;
     public JsRender.JsRender file;
     public int height;
-    public Xcls_MainWindow main_window;
 
     // ctor
     public Xcls_GladeuiView()
@@ -56,26 +56,85 @@ public class Xcls_GladeuiView : Object
     }
 
     // user defined functions
-    public void scroll_to_line (int line) {
-       this.notebook.el.page = 1;// code preview...
-       
-       GLib.Timeout.add(500, () => {
-       
-       
-    	   
-    	   
-    		  var buf = this.sourceview.el.get_buffer();
+    public void loadFile (JsRender.JsRender file)
+    {
+        
+    
+        this.file = file;
+        
+    
+            // clear existing elements from project?
+            
+            var  p = this.designview.el.get_project();
+            var    li = p.get_objects().copy();
+            // should remove all..
+            for (var i =0;    i < li.length(); i++) {   
+                p.remove_object(li.nth_data(i)); 
+            }
+    
+            if (file.tree == null) {
+                return;
+            }
+    
+    //        print("%s\n",tf.tree.toJsonString());
+    	var x =  new JsRender.NodeToGlade((Project.Gtk) file.project, file.tree,  null);
+        Glade.App.set_window(_this.main_window.el); // see if setting it again forces it to go to the irght locations.
     	 
-    		var sbuf = (Gtk.SourceBuffer) buf;
+    FileIOStream iostream;
+    	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
+    	var ostream = iostream.output_stream;
+    	var dostream = new DataOutputStream (ostream);
+    	dostream.put_string (x.munge());
+    	this.el.show();
+    	 print("LOADING %s\n",f.get_path ());
+          //p.load_from_file(f.get_path ());
+            
+         p.load_from_file("/tmp/glade.xml");
     
+    }
+    public void initGlade () {
+    	 _this.designview =  new Xcls_designview( _this );
+    	 
+    	 var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
+    	 
+    	 _this.notebook.el.append_page(box, _this.label_preview.el);
+    	     Glade.App.set_window(this.main_window.el);
+    	// var  pal = new Glade.Palette();
+        //var ins = new Glade.Inspector();
     
-    		Gtk.TextIter iter;   
-    		sbuf.get_iter_at_line(out iter,  line);
-    		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-    		return false;
-    	});   
+    	 box.pack_start(_this.designview.el);
+    	// box.pack_start(pal);
+    	 //box.pack_start(ins);
+    	  // pal.show();
+       // ins.show();
+        _this.designview.el.show();
+    	 box.show_all();	 
+    	 
+    }
+    public void forwardSearch (bool change_focus) {
     
-       
+    	if (this.searchcontext == null) {
+    		return;
+    	}
+    	this.notebook.el.page = 1;
+    	Gtk.TextIter beg, st,en, stl;
+    	
+    	var buf = this.sourceview.el.get_buffer();
+    	buf.get_iter_at_offset(out beg, this.last_search_end);
+    	if (!this.searchcontext.forward(beg, out st, out en)) {
+    		this.last_search_end = 0;
+    	} else { 
+    		this.last_search_end = en.get_offset();
+    		if (change_focus) {
+    			this.sourceview.el.grab_focus();	
+    		}
+    		buf.place_cursor(st);
+    		var ln = st.get_line();
+    		buf.get_iter_at_line(out stl,ln);
+    		 
+    		this.sourceview.el.scroll_to_iter(stl,  0.0f, true, 0.0f, 0.5f);
+    	}
+    
     }
     public int search (string txt) {
     	this.notebook.el.page = 1;
@@ -136,85 +195,26 @@ public class Xcls_GladeuiView : Object
         
          
     }
-    public void loadFile (JsRender.JsRender file)
-    {
-        
-    
-        this.file = file;
-        
-    
-            // clear existing elements from project?
-            
-            var  p = this.designview.el.get_project();
-            var    li = p.get_objects().copy();
-            // should remove all..
-            for (var i =0;    i < li.length(); i++) {   
-                p.remove_object(li.nth_data(i)); 
-            }
-    
-            if (file.tree == null) {
-                return;
-            }
-    
-    //        print("%s\n",tf.tree.toJsonString());
-    	var x =  new JsRender.NodeToGlade((Project.Gtk) file.project, file.tree,  null);
-        Glade.App.set_window(_this.main_window.el); // see if setting it again forces it to go to the irght locations.
+    public void scroll_to_line (int line) {
+       this.notebook.el.page = 1;// code preview...
+       
+       GLib.Timeout.add(500, () => {
+       
+       
+    	   
+    	   
+    		  var buf = this.sourceview.el.get_buffer();
     	 
-    FileIOStream iostream;
-    	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
-    	var ostream = iostream.output_stream;
-    	var dostream = new DataOutputStream (ostream);
-    	dostream.put_string (x.munge());
-    	this.el.show();
-    	 print("LOADING %s\n",f.get_path ());
-          //p.load_from_file(f.get_path ());
-            
-         p.load_from_file("/tmp/glade.xml");
+    		var sbuf = (Gtk.SourceBuffer) buf;
     
-    }
-    public void forwardSearch (bool change_focus) {
     
-    	if (this.searchcontext == null) {
-    		return;
-    	}
-    	this.notebook.el.page = 1;
-    	Gtk.TextIter beg, st,en, stl;
-    	
-    	var buf = this.sourceview.el.get_buffer();
-    	buf.get_iter_at_offset(out beg, this.last_search_end);
-    	if (!this.searchcontext.forward(beg, out st, out en)) {
-    		this.last_search_end = 0;
-    	} else { 
-    		this.last_search_end = en.get_offset();
-    		if (change_focus) {
-    			this.sourceview.el.grab_focus();	
-    		}
-    		buf.place_cursor(st);
-    		var ln = st.get_line();
-    		buf.get_iter_at_line(out stl,ln);
-    		 
-    		this.sourceview.el.scroll_to_iter(stl,  0.0f, true, 0.0f, 0.5f);
-    	}
+    		Gtk.TextIter iter;   
+    		sbuf.get_iter_at_line(out iter,  line);
+    		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+    		return false;
+    	});   
     
-    }
-    public void initGlade () {
-    	 _this.designview =  new Xcls_designview( _this );
-    	 
-    	 var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-    	 
-    	 _this.notebook.el.append_page(box, _this.label_preview.el);
-    	     Glade.App.set_window(this.main_window.el);
-    	// var  pal = new Glade.Palette();
-        //var ins = new Glade.Inspector();
-    
-    	 box.pack_start(_this.designview.el);
-    	// box.pack_start(pal);
-    	 //box.pack_start(ins);
-    	  // pal.show();
-       // ins.show();
-        _this.designview.el.show();
-    	 box.show_all();	 
-    	 
+       
     }
     public class Xcls_notebook : Object
     {
@@ -300,7 +300,6 @@ public class Xcls_GladeuiView : Object
 
 
             // my vars (def)
-        public JsRender.JsRender file;
 
         // ctor
         public Xcls_designview(Xcls_GladeuiView _owner )
@@ -310,9 +309,6 @@ public class Xcls_GladeuiView : Object
             this.el = _this.main_window == null ? null : new Glade.DesignView(_this.main_window.gladeproject);
 
             // my vars (dec)
-            this.file = null;
-
-            // set gobject values
 
             // init method
 
@@ -320,6 +316,9 @@ public class Xcls_GladeuiView : Object
         }
 
         // user defined functions
+        public void test () {
+        
+        }
         public void createThumb () {
             
             
@@ -473,73 +472,6 @@ public class Xcls_GladeuiView : Object
         }
 
         // user defined functions
-        public string toString () {
-           Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_buffer().get_start_iter(out s);
-            this.el.get_buffer().get_end_iter(out e);
-            var ret = this.el.get_buffer().get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
-        }
-        public void nodeSelected (JsRender.Node? sel) {
-          
-            
-          
-            // this is connected in widnowstate
-            print("Roo-view - node selected\n");
-            var buf = this.el.get_buffer();
-         
-            var sbuf = (Gtk.SourceBuffer) buf;
-        
-           
-            while(Gtk.events_pending()) {
-                Gtk.main_iteration();
-            }
-            
-           
-            // clear all the marks..
-             Gtk.TextIter start;
-            Gtk.TextIter end;     
-                
-            sbuf.get_bounds (out start, out end);
-            sbuf.remove_source_marks (start, end, "grey");
-            
-            
-             if (sel == null) {
-                // no highlighting..
-                return;
-            }
-            Gtk.TextIter iter;   
-            sbuf.get_iter_at_line(out iter,  sel.line_start);
-            
-            
-            Gtk.TextIter cur_iter;
-            sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
-            
-            //var cur_line = cur_iter.get_line();
-            //if (cur_line > sel.line_start && cur_line < sel.line_end) {
-            
-            //} else {
-            if (this.allow_node_scroll) {
-        		 
-            	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-        	}
-            
-             
-            
-            for (var i = 0; i < buf.get_line_count();i++) {
-                if (i < sel.line_start || i > sel.line_end) {
-                   
-                    sbuf.get_iter_at_line(out iter, i);
-                    sbuf.create_source_mark(null, "grey", iter);
-                    
-                }
-            
-            }
-            
-        
-        }
         public void loadFile ( ) {
         
             
@@ -610,6 +542,64 @@ public class Xcls_GladeuiView : Object
            // }
             
             this.loading = false; 
+        }
+        public void nodeSelected (JsRender.Node? sel) {
+          
+            
+          
+            // this is connected in widnowstate
+            print("Roo-view - node selected\n");
+            var buf = this.el.get_buffer();
+         
+            var sbuf = (Gtk.SourceBuffer) buf;
+        
+           
+            while(Gtk.events_pending()) {
+                Gtk.main_iteration();
+            }
+            
+           
+            // clear all the marks..
+             Gtk.TextIter start;
+            Gtk.TextIter end;     
+                
+            sbuf.get_bounds (out start, out end);
+            sbuf.remove_source_marks (start, end, "grey");
+            
+            
+             if (sel == null) {
+                // no highlighting..
+                return;
+            }
+            Gtk.TextIter iter;   
+            sbuf.get_iter_at_line(out iter,  sel.line_start);
+            
+            
+            Gtk.TextIter cur_iter;
+            sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
+            
+            //var cur_line = cur_iter.get_line();
+            //if (cur_line > sel.line_start && cur_line < sel.line_end) {
+            
+            //} else {
+            if (this.allow_node_scroll) {
+        		 
+            	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+        	}
+            
+             
+            
+            for (var i = 0; i < buf.get_line_count();i++) {
+                if (i < sel.line_start || i > sel.line_end) {
+                   
+                    sbuf.get_iter_at_line(out iter, i);
+                    sbuf.create_source_mark(null, "grey", iter);
+                    
+                }
+            
+            }
+            
+        
         }
         public void highlightErrorsJson (string type, Json.Object obj) {
               Gtk.TextIter start;
@@ -683,6 +673,15 @@ public class Xcls_GladeuiView : Object
          
         
         
+        }
+        public string toString () {
+           Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_buffer().get_start_iter(out s);
+            this.el.get_buffer().get_end_iter(out e);
+            var ret = this.el.get_buffer().get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
         }
     }
 

@@ -29,8 +29,17 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,false",
+       "* pack" : "add",
+       "bool always_show_image" : true,
        "id" : "save_button",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "image",
+         "string icon_name" : "document-save",
+         "xtype" : "Image"
+        }
+       ],
        "label" : "Save",
        "listeners" : {
         "clicked" : [
@@ -44,11 +53,9 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,true,true",
-       "bool editable" : false,
-       "id" : "key_edit",
-       "int width_request" : 100,
-       "xtype" : "Entry"
+       "* pack" : "add",
+       "bool hexpand" : true,
+       "xtype" : "Label"
       },
       {
        "$ xns" : "Gtk",
@@ -60,11 +67,12 @@
         "}",
         ""
        ],
-       "* pack" : "pack_end,true,true",
+       "* pack" : "add",
        "bool draw_value" : true,
        "bool has_origin" : true,
        "bool sensitive" : true,
        "int digits" : 0,
+       "int width_request" : 200,
        "listeners" : {
         "change_value" : [
          "(st, val ) => {",
@@ -78,6 +86,30 @@
         ]
        },
        "xtype" : "HScale"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "add",
+       "bool always_show_image" : true,
+       "id" : "close_btn",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "image",
+         "string icon_name" : "window-close",
+         "xtype" : "Image"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         " () => { ",
+         "    _this.saveContents();",
+         "    _this.window.windowstate.switchState(WindowState.State.PREVIEW);",
+         "}",
+         "  "
+        ]
+       },
+       "xtype" : "Button"
       }
      ],
      "xtype" : "Box"
@@ -488,7 +520,6 @@
      "xtype" : "ScrolledWindow"
     }
    ],
-   "string id" : "Editor",
    "xtype" : "Box",
    "|   void show" : [
     "(JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)",
@@ -502,12 +533,11 @@
     "",
     "        // find the text for the node..",
     "        this.view.load( prop.val );",
-    "        this.key_edit.el.show();",
-    "        this.key_edit.el.text = prop.rtype +  \" \" + prop.name;  ",
+    "        this.close_btn.el.show();       ",
     "    ",
     "    } else {",
     "        this.view.load(        file.toSource() );",
-    "        this.key_edit.el.hide();",
+    "        this.close_btn.el.hide();",
     "    }",
     " ",
     "}"
@@ -575,7 +605,7 @@
     "",
     "\tif (this.searchcontext == null) {",
     "\t\treturn;",
-    "\t}",
+    "\t} ",
     "\t",
     "\tGtk.TextIter beg, st,en;",
     "\t ",

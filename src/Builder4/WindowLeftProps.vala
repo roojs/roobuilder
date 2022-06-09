@@ -355,7 +355,9 @@ public class Xcls_LeftProps : Object
             GLib.Value gval;
             mod.get_value(iter, 0 , out gval);
             var prop = (JsRender.NodeProp)gval;
-            
+            if (prop == null) {
+            	return;
+        	}
             switch(prop.ptype) {
                 case JsRender.NodePropType.LISTENER:
                     this.node.listeners.unset(prop.to_index_key());
