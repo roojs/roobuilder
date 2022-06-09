@@ -71,11 +71,11 @@ public class Xcls_PopoverProperty : Object
 
     // user defined functions
     public void show (
-    	Gtk.Widget? btn, 
+    	Gtk.Widget btn, 
     	JsRender.Node node, 
     	JsRender.NodeProp prop, 
-    	double x,
-    	double y
+    	int x,
+    	int y
     	 ) 
     {
     	 
@@ -97,17 +97,16 @@ public class Xcls_PopoverProperty : Object
     	_this.node = node;
     	//console.log('show all');
     	this.el.set_modal(true);
-    	if (btn == null) {
-    		this.el.set_relative_to(btn);
-    	} else {
+    	this.el.set_relative_to(btn);
+    	if (x > -1) {
     		var  r = Gdk.Rectangle() {
-    			x = (int)x,
-    			y = (int)y,
+    			x = 0, // align left...
+    			y = y,
     			width = 1,
     			height = 1
     		};
     		this.el.set_pointing_to( r);
-    		}
+    	}
     	
     	
     
