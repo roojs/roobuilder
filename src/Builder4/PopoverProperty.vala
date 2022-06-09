@@ -413,6 +413,7 @@ public class Xcls_PopoverProperty : Object
             // set gobject values
             this.el.halign = Gtk.Align.START;
             this.el.justify = Gtk.Justification.LEFT;
+            this.el.margin_top = 12;
             this.el.visible = true;
         }
 
