@@ -9,6 +9,8 @@ public enum JsRender.NodePropType
 {
 	
 	NONE, // fake value - used in popoveraddprop.
+	CTOR, // not used exetp getProperties for?
+	
 	
 	// these are all stored as properties, and should not overlap.
 	PROP,
@@ -26,7 +28,7 @@ public enum JsRender.NodePropType
 	SPECIAL,
 
 
-	CTOR, // not used exetp getProperties for?
+	
 	// listerens can definatly overlap as they are stored in a seperate list. << no need to use this for listeners?
 	LISTENER;
 	
@@ -42,6 +44,11 @@ public enum JsRender.NodePropType
 			case USER : return  "#"; // user defined.
 			case SPECIAL : return  "*"; // * prop| args | ctor | init
 	 		case LISTENER : return  "";  // always raw...
+	 		// not used
+	 		case NONE:
+			case CTOR:
+				 return "";
+	 		
 		}
 		return "??";
 	}
@@ -153,6 +160,10 @@ public class JsRender.NodeProp : Object {
 
 			case NodePropType.SPECIAL: 			
 				return oabbr +   this.name;
+	 		case NONE: // not used
+			case CTOR:
+				 return "";
+			
 			
 		}
 		return this.name;
@@ -173,8 +184,14 @@ public class JsRender.NodeProp : Object {
 				return "* " + this.name;
 				
 			// in seperate list..
-			//case NodePropType.LISTENER : 
-			//	return  this.name;
+			case NodePropType.LISTENER : 
+				return  this.name;
+				
+	 		case NONE: // not used
+			case CTOR:
+				 return "";
+
+				
 		}
 		return this.name;
 	
