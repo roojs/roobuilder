@@ -62,6 +62,21 @@ public class Editor : Object
     }
 
     // user defined functions
+    public void scroll_to_line (int line) {
+    
+    	GLib.Timeout.add(500, () => {
+       
+    		var buf = this.view.el.get_buffer();
+    
+    		var sbuf = (Gtk.SourceBuffer) buf;
+    
+    
+    		Gtk.TextIter iter;   
+    		sbuf.get_iter_at_line(out iter,  line);
+    		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+    		return false;
+    	});   
+    }
     public   bool saveContents ()  {
         
         
@@ -95,21 +110,6 @@ public class Editor : Object
         
         return true;
     
-    }
-    public void scroll_to_line (int line) {
-    
-    	GLib.Timeout.add(500, () => {
-       
-    		var buf = this.view.el.get_buffer();
-    
-    		var sbuf = (Gtk.SourceBuffer) buf;
-    
-    
-    		Gtk.TextIter iter;   
-    		sbuf.get_iter_at_line(out iter,  line);
-    		this.view.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-    		return false;
-    	});   
     }
     public int search (string txt) {
     
@@ -149,6 +149,40 @@ public class Editor : Object
             this.key_edit.el.hide();
         }
      
+    }
+    public bool saveContents ()  {
+        
+        
+        if (_this.file == null) {
+            return true;
+        }
+        
+         
+         
+         var str = _this.buffer.toString();
+         
+         _this.buffer.checkSyntax();
+         
+         
+         
+         // LeftPanel.model.changed(  str , false);
+         _this.dirty = false;
+         _this.save_button.el.sensitive = false;
+         
+        // find the text for the node..
+        if (_this.file.xtype != "PlainFile") {
+           // in theory these properties have to exist!?!
+        	this.prop.val = str;
+            this.window.windowstate.left_props.updateProp(this.prop);
+        } else {
+            _this.file.setSource(  str );
+         }
+        
+        // call the signal..
+        this.save();
+        
+        return true;
+    
     }
     public void forwardSearch (bool change_focus) {
     
