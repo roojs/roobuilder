@@ -103,7 +103,7 @@
         "clicked" : [
          " () => { ",
          "    _this.saveContents();",
-         "    _this.window.windowstate.setState(State.PREVIEW);",
+         "    _this.window.windowstate.switchState(State.PREVIEW);",
          "}",
          "  "
         ]
