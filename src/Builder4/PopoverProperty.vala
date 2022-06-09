@@ -107,7 +107,7 @@ public class Xcls_PopoverProperty : Object
     	 ) 
     {
     	
-     
+        this.error.setError("");
     	this.is_new = is_new; 
     	var pref = is_new ? "Add " : "Modify ";
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {

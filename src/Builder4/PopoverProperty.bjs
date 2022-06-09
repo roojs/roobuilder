@@ -358,7 +358,7 @@
     "\t ) ",
     "{",
     "\t",
-    " ",
+    "    this.error.setError(\"\");",
     "\tthis.is_new = is_new; ",
     "\tvar pref = is_new ? \"Add \" : \"Modify \";",
     "\tif (prop.ptype == JsRender.NodePropType.LISTENER) {",
