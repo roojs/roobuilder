@@ -715,6 +715,11 @@ public class Xcls_PopoverProperty : Object
             
             // add it, 
             	// trigger editing of property.
+            	// allow hide to work?
+            	while (Gtk.events_pending()) {
+            		Gtk.main_iteration();
+            	}
+            	
             	_this.mainwindow.windowstate.left_props.addProp(prop);		
             	
             
