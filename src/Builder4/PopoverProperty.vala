@@ -732,6 +732,7 @@ public class Xcls_PopoverProperty : Object
             		return;	
             	}
             	// add it, 
+            	var prop = this.prop;
             	this.node.set_prop(prop);
             	this.is_new = false;	
             	_this.mainwindow.windowstate.left_props.reload();
@@ -740,8 +741,10 @@ public class Xcls_PopoverProperty : Object
             	// hide self
             	_this.prop = false; // skip checks..
             	_this.el.hide();
-            	
+            
+            
             	// trigger editing of property.
+            	_this.mainwindow.windowstate.left_props.addProp(prop);		
             	
             
             });
