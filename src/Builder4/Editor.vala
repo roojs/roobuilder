@@ -327,6 +327,9 @@ public class Editor : Object
 
             // set gobject values
             this.el.always_show_image = true;
+            var child_0 = new Xcls_Image7( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
 
             //listeners
             this.el.clicked.connect( () => { 
@@ -337,6 +340,28 @@ public class Editor : Object
 
         // user defined functions
     }
+    public class Xcls_Image7 : Object
+    {
+        public Gtk.Image el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image7(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
     public class Xcls_RightEditor : Object

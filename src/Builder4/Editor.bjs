@@ -82,6 +82,13 @@
        "$ xns" : "Gtk",
        "* pack" : "add",
        "bool always_show_image" : true,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "image",
+         "xtype" : "Image"
+        }
+       ],
        "listeners" : {
         "clicked" : [
          " () => { ",
