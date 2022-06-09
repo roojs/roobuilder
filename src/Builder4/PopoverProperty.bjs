@@ -237,7 +237,7 @@
     "\tGtk.Widget btn, ",
     "\tJsRender.Node node, ",
     "\tJsRender.NodeProp prop, ",
-    "\tint x,",
+    "\t ",
     "\tint y",
     "\t ) ",
     "{",

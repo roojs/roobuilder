@@ -1438,10 +1438,8 @@ public class Xcls_LeftProps : Object
                     // show popup!.   
                    // Gtk.Allocation alloc;
                    // _this.view.el.get_allocation(out alloc); << does not work!
-                    int rx , ry;
-                    _this.main_window.el.get_position(out rx, out ry);
-                    
-                    this.editPropertyDetails(path,  ev.x_root - rx, ev.y_root - ry); 
+                     
+                    this.editPropertyDetails(path,  ev.y); 
                      
                     return false;
                 }

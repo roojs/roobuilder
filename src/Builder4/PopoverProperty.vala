@@ -74,7 +74,7 @@ public class Xcls_PopoverProperty : Object
     	Gtk.Widget btn, 
     	JsRender.Node node, 
     	JsRender.NodeProp prop, 
-    	int x,
+    	 
     	int y
     	 ) 
     {
