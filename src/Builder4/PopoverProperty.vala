@@ -184,6 +184,9 @@ public class Xcls_PopoverProperty : Object
     
                                                         
     }
+    public void XXXX () {
+    
+    }
     public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
