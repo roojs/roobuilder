@@ -1437,7 +1437,7 @@ public class Xcls_LeftProps : Object
                    // Gtk.Allocation alloc;
                    // _this.view.el.get_allocation(out alloc); << does not work!
                     
-                    this.editPropertyDetails(path,  ev.x, ev.y); 
+                    this.editPropertyDetails(path,  ev.x_root, ev.y_root); 
                      
                     return false;
                 }
