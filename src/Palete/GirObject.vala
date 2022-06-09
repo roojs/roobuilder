@@ -438,8 +438,9 @@ namespace Palete {
 		public JsRender.NodeProp toNodeProp()
 		{
 			
-			if (this.nodetype == "Signal") {
-				return new JsRender.NodeProp.sig(this.name, this.type); // signature?
+			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
+				// when we add properties, they are actually listeners attached to signals
+				return new JsRender.NodeProp.listener(this.name, this.type); 
 			}
 			var def = "";
 			if (this.type == "bool") {
