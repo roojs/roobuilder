@@ -3,6 +3,7 @@
  "items" : [
   {
    "# JsRender.NodeProp? prop" : "",
+   "# string XXXX" : "",
    "$ xns" : "Gtk",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "Gtk.PositionType position" : "Gtk.PositionType.LEFT",
