@@ -21,12 +21,11 @@ public class Editor : Object
         // my vars (def)
     public Xcls_MainWindow window;
     public string activeEditor;
+    public JsRender.NodeProp? prop;
     public int pos_root_x;
     public JsRender.JsRender? file;
     public int pos_root_y;
-    public string ptype;
     public int last_search_end;
-    public string key;
     public Gtk.SourceSearchContext searchcontext;
     public bool pos;
     public bool dirty;
@@ -42,10 +41,9 @@ public class Editor : Object
         // my vars (dec)
         this.window = null;
         this.activeEditor = "";
+        this.prop = null;
         this.file = null;
-        this.ptype = "";
         this.last_search_end = 0;
-        this.key = "";
         this.searchcontext = null;
         this.pos = false;
         this.dirty = false;
@@ -64,45 +62,6 @@ public class Editor : Object
     }
 
     // user defined functions
-    public   bool saveContents ()  {
-        
-        
-        if (_this.file == null) {
-            return true;
-        }
-        
-        
-       
-       
-         
-         var str = _this.buffer.toString();
-         
-         _this.buffer.checkSyntax();
-         
-         
-         
-         // LeftPanel.model.changed(  str , false);
-         _this.dirty = false;
-         _this.save_button.el.sensitive = false;
-         
-        // find the text for the node..
-        if (_this.file.xtype != "PlainFile") {
-            if (ptype == "listener") {
-                this.node.listeners.set(key,str);
-            
-            } else {
-                 this.node.props.set(key,str);
-            }
-        } else {
-            _this.file.setSource(  str );
-         }
-        
-        // call the signal..
-        this.save();
-        
-        return true;
-    
-    }
     public void scroll_to_line (int line) {
     
     	GLib.Timeout.add(500, () => {
@@ -137,33 +96,59 @@ public class Editor : Object
        
     
     }
-    public   void show (JsRender.JsRender file, JsRender.Node? node, string ptype, string key)
+    public   void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
     {
         this.reset();
         this.file = file;    
         
         if (file.xtype != "PlainFile") {
-        
-            this.ptype = ptype;
-            this.key  = key;
+        	this.prop = prop;
             this.node = node;
-             string val = "";
+    
             // find the text for the node..
-            if (ptype == "listener") {
-                val = node.listeners.get(key);
-            
-            } else {
-                val = node.props.get(key);
-            }
-            this.view.load(val);
+            this.view.load( prop.val );
             this.key_edit.el.show();
-            this.key_edit.el.text = key;  
+            this.key_edit.el.text = prop.rtype +  " " + prop.name;  
         
         } else {
             this.view.load(        file.toSource() );
             this.key_edit.el.hide();
         }
      
+    }
+    public bool saveContents ()  {
+        
+        
+        if (_this.file == null) {
+            return true;
+        }
+        
+         
+         
+         var str = _this.buffer.toString();
+         
+         _this.buffer.checkSyntax();
+         
+         
+         
+         // LeftPanel.model.changed(  str , false);
+         _this.dirty = false;
+         _this.save_button.el.sensitive = false;
+         
+        // find the text for the node..
+        if (_this.file.xtype != "PlainFile") {
+           // in theory these properties have to exist!?!
+        	this.prop.val = str;
+            this.window.windowstate.left_props.reload();
+        } else {
+            _this.file.setSource(  str );
+         }
+        
+        // call the signal..
+        this.save();
+        
+        return true;
+    
     }
     public void forwardSearch (bool change_focus) {
     
@@ -189,9 +174,9 @@ public class Editor : Object
     }
     public void reset () {
     	 this.file = null;    
-        this.ptype = "";
-        this.key  = "";
+         
         this.node = null;
+        this.prop = null;
     	this.searchcontext = null;
       
     }
@@ -621,10 +606,8 @@ public class Editor : Object
                 p.javascriptHasErrors(
             		_this.window.windowstate,
                     str, 
-                     _this.key, 
-                    _this.ptype,
-                    _this.file,
-         
+                     _this.prop,
+                    _this.file,   // no reference not node?
                     out errors
                 );
                 return this.highlightErrors(errors);    
@@ -639,8 +622,7 @@ public class Editor : Object
            if (! _this.window.windowstate.valasource.checkFileWithNodePropChange(
                 _this.file,
                 _this.node,
-                 _this.key,        
-                 _this.ptype,
+                 _this.prop,        
                     str
                 )) {
                 this.check_running = false;

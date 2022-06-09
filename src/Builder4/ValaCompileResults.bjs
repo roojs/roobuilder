@@ -1,54 +1,117 @@
 {
- "name" : "ValaCompileResults",
- "parent" : "",
- "title" : "",
- "path" : "/home/alan/gitlive/app.Builder.js/src/Builder4/ValaCompileResults.bjs",
- "permname" : "",
- "modOrder" : "",
  "build_module" : "builder",
  "items" : [
   {
-   "int height_request" : 400,
-   "id" : "ValaCompileResults",
-   "| void show" : "( Gtk.Widget onbtn, bool reset) {\n\tint w, h;\n \n\tthis.window.el.get_size(out w, out h);\n    \n    // left tree = 250, editor area = 500?\n    \n    var new_w = int.min(750, w-100);\n    if (new_w > (w-100)) {\n        new_w = w-100;\n    }\n    this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));\n \n\n    if (this.el.relative_to == null) {\n        this.el.set_relative_to(onbtn);\n    }\n    this.el.show_all();\n   // not sure why..\n   \n   if (reset) {\n\t\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();\n\t\tbuf.set_text(\"\",0);\n\t}\n   \n    while(Gtk.events_pending()) { \n            Gtk.main_iteration();\n    }\n    \n    \n    \n}\n",
-   "Xcls_MainWindow window" : "",
-   "xtype" : "Popover",
-   "Gtk.PositionType position" : "Gtk.PositionType.TOP",
-   "bool active" : true,
-   "int width_request" : 600,
    "$ xns" : "Gtk",
-   "| void addLine" : "(string str) {\n\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();\n\tGtk.TextIter iter;\n\tbuf.get_end_iter (out  iter);\n\tbuf.insert(ref iter, str, str.length);\n\t/// scroll..\n\tbuf.get_end_iter (out  iter);\n\tthis.sourceview.el.scroll_to_iter(iter, 0.0f, true, 0.0f, 1.0f);\n\t\n\n}\n",
+   "Gtk.PositionType position" : "Gtk.PositionType.TOP",
+   "Xcls_MainWindow window" : "",
+   "bool active" : true,
    "bool modal" : true,
+   "id" : "ValaCompileResults",
+   "int height_request" : 400,
+   "int width_request" : 600,
    "items" : [
     {
-     "id" : "compile_view",
-     "* pack" : "add",
-     "xtype" : "Box",
-     "gboolean homogeneous" : false,
      "$ xns" : "Gtk",
+     "* pack" : "add",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "gboolean homogeneous" : false,
+     "id" : "compile_view",
      "items" : [
       {
-       "* init" : "{\n this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);\n \n\n}\n",
-       "bool hexpand" : true,
-       "* pack" : "pack_end,true,true,0",
-       "xtype" : "ScrolledWindow",
        "$ xns" : "Gtk",
+       "* init" : [
+        "{",
+        " this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+        " ",
+        "",
+        "}",
+        ""
+       ],
+       "* pack" : "pack_end,true,true,0",
+       "bool hexpand" : true,
        "items" : [
         {
-         "id" : "sourceview",
-         "* init" : "{\n\n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(8000);\n    this.el.override_font(description);\n\n\n}\n",
-         "xtype" : "SourceView",
+         "$ xns" : "Gtk",
+         "* init" : [
+          "{",
+          "",
+          "    var description =   Pango.FontDescription.from_string(\"monospace\");",
+          "    description.set_size(8000);",
+          "    this.el.override_font(description);",
+          "",
+          "",
+          "}",
+          ""
+         ],
          "* pack" : "add",
          "bool editable" : false,
-         "$ xns" : "Gtk",
-         "bool show_line_numbers" : false
+         "bool show_line_numbers" : false,
+         "id" : "sourceview",
+         "xtype" : "SourceView"
         }
-       ]
+       ],
+       "xtype" : "ScrolledWindow"
       }
-     ]
+     ],
+     "xtype" : "Box"
     }
+   ],
+   "xtype" : "Popover",
+   "| void addLine" : [
+    "(string str) {",
+    "\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();",
+    "\tGtk.TextIter iter;",
+    "\tbuf.get_end_iter (out  iter);",
+    "\tbuf.insert(ref iter, str, str.length);",
+    "\t/// scroll..",
+    "\tbuf.get_end_iter (out  iter);",
+    "\tthis.sourceview.el.scroll_to_iter(iter, 0.0f, true, 0.0f, 1.0f);",
+    " ",
+    "}",
+    ""
+   ],
+   "| void show" : [
+    "( Gtk.Widget onbtn, bool reset) {",
+    "\tint w, h;",
+    " ",
+    "\tthis.window.el.get_size(out w, out h);",
+    "    ",
+    "    // left tree = 250, editor area = 500?",
+    "    ",
+    "    var new_w = int.min(750, w-100);",
+    "    if (new_w > (w-100)) {",
+    "        new_w = w-100;",
+    "    }",
+    "    this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));",
+    " ",
+    "",
+    "    if (this.el.relative_to == null) {",
+    "        this.el.set_relative_to(onbtn);",
+    "    }",
+    "    this.el.show_all();",
+    "   // not sure why..",
+    "   ",
+    "   if (reset) {",
+    "\t\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();",
+    "\t\tbuf.set_text(\"\",0);",
+    "\t}",
+    "   ",
+    "    while(Gtk.events_pending()) { ",
+    "            Gtk.main_iteration();",
+    "    }",
+    "    ",
+    "    ",
+    "    ",
+    "}",
+    ""
    ]
   }
- ]
+ ],
+ "modOrder" : "",
+ "name" : "ValaCompileResults",
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/ValaCompileResults.bjs",
+ "permname" : "",
+ "title" : ""
 }

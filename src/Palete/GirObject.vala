@@ -22,7 +22,7 @@ namespace Palete {
 		public string ns;
 		public string propertyof;
 		public string type;
-		public string nodetype;
+		public string nodetype;  // eg. Signal / prop etc.
 		public string package;
 		public string direction; // used for vala in/out/ref...
 		
@@ -40,7 +40,7 @@ namespace Palete {
 		public  string value;
 		// to be filled in...
 	 
-		public  string sig;
+		public  string sig; // signture (used to create event handlers)
 
 		public bool is_overlaid;
 
@@ -433,6 +433,26 @@ namespace Palete {
 
 			
 		}
+		
+		
+		public JsRender.NodeProp toNodeProp()
+		{
+			
+			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
+				// when we add properties, they are actually listeners attached to signals
+				return new JsRender.NodeProp.listener(this.name, this.sig); 
+			}
+			var def = "";
+			if (this.type == "bool") {
+				def = "true";
+			}
+			// if it's an enum?? can we fill in a default value?
+			// if it's an object type? use raw?
+			
+			return  new JsRender.NodeProp.prop(this.name, this.type); // signature?
+		
+		}
+		
 		/*
 		//public string fqtype() {
 		//	return Gir.fqtypeLookup(this.type, this.ns);

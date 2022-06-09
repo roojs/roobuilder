@@ -1,27 +1,49 @@
 {
- "name" : "DialogConfirm",
- "parent" : "",
- "title" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogConfirm.bjs",
- "permname" : "",
- "modOrder" : "",
  "build_module" : "builder",
  "items" : [
   {
-   "listeners" : {
-    "delete_event" : " (event) => {\n    this.el.response(Gtk.ResponseType.CANCEL);\n    this.el.hide();\n    return true;\n    \n}\n \n\n\n"
-   },
+   "$ buttons" : "Gtk.ButtonsType.YES_NO",
    "$ message_type" : "Gtk.MessageType.QUESTION",
+   "$ modal" : true,
+   "$ use_markup" : true,
+   "$ xns" : "Gtk",
+   "flags" : "Gtk.DialogFlags.MODAL",
+   "listeners" : {
+    "delete_event" : [
+     " (event) => {",
+     "    this.el.response(Gtk.ResponseType.CANCEL);",
+     "    this.el.hide();",
+     "    return true;",
+     "    ",
+     "}",
+     ""
+    ]
+   },
+   "name" : "DialogConfirm",
    "text" : "Test",
    "title" : "Please Confirm ",
    "xtype" : "MessageDialog",
-   "$ modal" : true,
-   "|   int show" : "  (string title, string msg) {\n     //if (!this.el) { this.init(); } \n     //this.success = success;\n     this.el.title = title;\n    this.el.text =  msg;\n    this.el.show_all();\n    var ret =   this.el.run();\n    //print(\"ret got %d\", ret);\n    this.el.hide();\n    return ret;\n \n}\n  ",
-   "$ buttons" : "Gtk.ButtonsType.YES_NO",
-   "$ xns" : "Gtk",
-   "flags" : "Gtk.DialogFlags.MODAL",
-   "$ use_markup" : true,
-   "name" : "DialogConfirm"
+   "|   int show" : [
+    "  (string title, string msg) {",
+    "     //if (!this.el) { this.init(); } ",
+    "     //this.success = success;",
+    "     this.el.title = title;",
+    "    this.el.text =  msg;",
+    "    this.el.show_all();",
+    "    var ret =   this.el.run();",
+    "    //print(\"ret got %d\", ret);",
+    "    this.el.hide();",
+    "    return ret;",
+    " ",
+    "}",
+    "  "
+   ]
   }
- ]
+ ],
+ "modOrder" : "",
+ "name" : "DialogConfirm",
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogConfirm.bjs",
+ "permname" : "",
+ "title" : ""
 }

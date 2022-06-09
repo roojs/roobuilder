@@ -332,8 +332,7 @@ namespace Palete
 	 	public   void validateVala(
 				WindowState state,
 				string code, 
-				string property, 
-				string ptype,
+				JsRender.NodeProp prop,
 				JsRender.JsRender file,
 				JsRender.Node node
 		 ) 
@@ -354,8 +353,7 @@ namespace Palete
 			state.valasource.checkFileWithNodePropChange(
 					file,
 					node, 
-					property, 
-					ptype,
+					prop,
 					code
 			 );
 			 
@@ -368,32 +366,32 @@ namespace Palete
 		public   bool  javascriptHasErrors(
 					WindowState state,
 		 			string code, 
-					string property, 
-					string ptype,
+					JsRender.NodeProp? prop,  // null if you are testing  a whole file.
 					JsRender.JsRender file, 
 					out Gee.HashMap<int,string> errors
 		                 ) 
 		{   
 
-			 print("validate code (%s) ptype=%s property=%s\n", file.language, ptype, property);
+			// print("validate code (%s) ptype=%s property=%s\n", file.language, ptype, property);
 			errors = new Gee.HashMap<int,string>();
 		
 			if (file.language != "js") {
 				return false;
 			 }
-			 if (ptype != "listener" && property.length > 0 && property[0] == '|') {
+			 // only check listeners and methods?
+			 if (prop != null && prop.ptype != JsRender.NodePropType.LISTENER && prop.ptype != JsRender.NodePropType.METHOD ) {
 				return false;
 			 }
 			
 			//var cd = new JSCore.ClassDefinitionEmpty();
 			//print("TESTING CODE %s\n", code);
 			string errmsg;
-			var testcode = ptype == "file" ? code : "var __aaa___ = " + code;
+			var testcode = prop == null ? code : "var __aaa___ = " + code;
 			var line = Javascript.singleton().validate(
 								  testcode, out errmsg);
 
 			if (line > -1) {
-				if (ptype == "file") {
+				if (prop == null) {
 					var err = new Json.Object();
 					err.set_int_member("ERR-TOTAL", 1);
 					var files_obj = new Json.Object();
@@ -418,7 +416,7 @@ namespace Palete
 			
 			
 			
-			if (ptype == "file") {
+			if (prop == null) {
 				 return this.javascriptHasCompressionErrors(file, state, code);
 			}
 			print("no errors\n");
@@ -459,15 +457,14 @@ namespace Palete
 		      
 		public abstract void fillPack(JsRender.Node node,JsRender.Node parent);
 		public abstract void load();
-		public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, string type);
+		public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype);
 		public abstract GirObject? getClass(string ename);
 	
 		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
 		public abstract  List<SourceCompletionItem> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
-				string proptype, 
-				string key,
+				JsRender.NodeProp? prop,
 				string complete_string
 		);
 		public abstract string[] getChildList(string in_rval);

@@ -65,6 +65,7 @@
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
             { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file", null },
             { "bjs-glade", 0, 0, OptionArg.NONE, ref opt_bjs_compile_glade, "output glade", null },
+            { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
             
@@ -76,6 +77,7 @@
 		public static string opt_compile_add;
 		public static string opt_compile_output;
         public static string opt_bjs_compile;
+
         public static string opt_bjs_compile_target;
         public static string opt_test;        
 		public static bool opt_debug = false;
@@ -83,7 +85,7 @@
 		public static bool opt_list_files = false;
 		public static bool opt_pull_resources = false;
 		public static bool opt_bjs_compile_glade = false;
-		
+        public static bool opt_bjs_test = false; 		
 		public static string _self;
 		
 		public enum Target {
@@ -139,6 +141,7 @@
 			this.listProjects();
 			var cur_project = this.compileProject();
 			this.listFiles(cur_project);
+			this.testBjs(cur_project);
 			this.compileBjs(cur_project);
 			this.compileVala();
 
@@ -228,6 +231,42 @@
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 		}
+		
+		/**
+		 Test to see if the internal BJS reader/writer still outputs the same files.
+		 -- probably need this for the generator as well.
+		*/
+		
+		void testBjs(Project.Project? cur_project)
+		{
+			if (!BuilderApplication.opt_bjs_test) {
+				return;
+			}
+			if (cur_project == null) {
+				GLib.error("missing project, use --project to select which project");
+			}
+			print("Checking files\n");
+			var ar = cur_project.sortedFiles();
+			foreach(var file in ar) {
+				string oldstr;
+
+				file.loadItems();
+				GLib.FileUtils.get_contents(file.path, out oldstr);				
+				var outstr = file.toJsonString();
+				if (outstr != oldstr) { 
+					
+					GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
+					print("diff -u %s /tmp/%s\n", file.path,  file.name);
+					//GLib.Process.exit(Posix.EXIT_SUCCESS);		
+				}
+				print("# Files match %s\n", file.name);
+				
+			}
+			
+			print("All files pass");
+			GLib.Process.exit(Posix.EXIT_SUCCESS);
+		}
+		
 		void compileBjs(Project.Project? cur_project)
 		{
 			if (BuilderApplication.opt_bjs_compile == null) {

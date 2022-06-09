@@ -60,8 +60,7 @@ namespace Palete {
 		  
 					JsRender.JsRender file,
 					JsRender.Node node, 
-					string prop,
-					string ptype,
+					JsRender.NodeProp prop,
 					string val
 				 )
 		{
@@ -72,21 +71,24 @@ namespace Palete {
 			}
 			
 			 
-			var hash = ptype == "listener" ? node.listeners : node.props;
+			var hash = prop.ptype == JsRender.NodePropType.LISTENER ? node.listeners : node.props;
 			
 			// untill we get a smarter renderer..
 			// we have some scenarios where changing the value does not work
-			if (prop == "* xns" || prop == "xtype") {
+			if (prop.name == "xns" || prop.name == "xtype") {
 				return  false;
 			}
 				
+			 
+			var old = prop.val;
 			
-			var old = hash.get(prop);
-			var newval = "/*--VALACHECK-START--*/ " + val ;
+
+			prop.val =  "/*--VALACHECK-START--*/ " + prop.val ;
 			
-			hash.set(prop, newval);
+
 			var tmpstring = JsRender.NodeToVala.mungeFile(file);
-			hash.set(prop, old);
+			prop.val = old;
+			
 			//print("%s\n", tmpstring);
 			var bits = tmpstring.split("/*--VALACHECK-START--*/");
 			var offset =0;

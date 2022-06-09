@@ -64,7 +64,7 @@ public class EditProject : Object
         _this.model.loadData();
         this.el.show_all();
         
-        var err_dialog = StandardErrorDialog.singleton();
+        var err_dialog = Xcls_StandardErrorDialog.singleton();
     
         var id = -1;
         while (id < 0) {

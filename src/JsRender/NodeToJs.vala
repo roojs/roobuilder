@@ -167,7 +167,7 @@ public class JsRender.NodeToJs : Object {
 		var spad = this.pad.substring(0, this.pad.length-indent);
 		
 		if (this.node.props.has_key("* xinclude")) {
-			this.addLine("Roo.apply(" + this.node.props.get("* xinclude") + "._tree(), {",0 );
+			this.addLine("Roo.apply(" + this.node.props.get("* xinclude").val + "._tree(), {",0 );
 	 
 		} else {
 			this.addLine("{", 0);
@@ -469,12 +469,9 @@ public class JsRender.NodeToJs : Object {
 		var keys = new Gee.ArrayList<string>();
 		var piter = this.node.props.map_iterator();
 		while (piter.next() ) {
-			string k;
-			string ktype;
-			string kflag;
-			this.node.normalize_key(piter.get_key(), out k, out kflag, out ktype);
-			
-			keys.add(k);
+		
+
+			keys.add( piter.get_key()); // since are keys are nice and clean now..
 		}
 		
 		keys.sort((  a,  b) => {
@@ -486,16 +483,12 @@ public class JsRender.NodeToJs : Object {
 		var has_cms = this.node.has("cms-id");
 		
 		for (var i = 0; i< keys.size; i++) {
-			var key = this.node.get_key(keys.get(i));
+			var prop = this.node.get_prop(keys.get(i));
 			//("ADD KEY %s\n", key);
-			string k;
-			string ktype;
-			string kflag;
-			
-			this.node.normalize_key(key, out k, out kflag, out ktype);
-			
-			
-			var v = this.node.get(key);
+			var k = prop.name;
+			var ktype  = prop.rtype;
+			var kflag = prop.ptype;
+			var v = prop.val;
 			 
 			
 			//if (this.skip.contains(k) ) {
@@ -503,16 +496,15 @@ public class JsRender.NodeToJs : Object {
 			//}
 			if (  Regex.match_simple("\\[\\]$", k)) {
 				// array .. not supported... here?
-				
-
+				 
 			}
 			
 			string leftv = k;
 			// skip builder stuff. prefixed with  '.' .. just like unix fs..
-			if (kflag == ".") { // |. or . -- do not output..
-				continue;
-			}
-			if (kflag == "*") {
+			//if (kflag == ".") { // |. or . -- do not output..
+			//	continue;
+			//}
+			if (kflag == NodePropType.SPECIAL) {
 				// ignore '* prop'; ??? 
 				continue;
 			}
@@ -523,7 +515,7 @@ public class JsRender.NodeToJs : Object {
 			}
 			// html must not be a dynamic property...
 			// note - we do not translate this either...
-			if (has_cms && k == "html" && kflag != "$") {
+			if (has_cms && k == "html" && kflag !=  NodePropType.RAW) {
 				 
 
 				this.out_props.set("html", "Pman.Cms.content(" + 
@@ -551,11 +543,11 @@ public class JsRender.NodeToJs : Object {
 			 
 			// next.. is it a function.. or a raw string..
 			if (
-				kflag == "|" 
+				kflag == NodePropType.METHOD 
 				|| 
-				kflag == "$" 
+				kflag == NodePropType.RAW 
 				|| 
-				ktype == "function"
+				ktype == "function" // ??? why woudl return type be function? << messed up..
 	   		       
 				// ??? any others that are raw output..
 				) {
@@ -621,7 +613,7 @@ public class JsRender.NodeToJs : Object {
 		 	// doubleStringProps is a list of keys like 'name' 'title' etc.. that we know can be translated..
 		   
 			if ((this.doubleStringProps.index_of(k) > -1) || 
-				(ktype.down() == "string" && k[0] == '_')
+				(ktype.down() == "string" && k[0] == '_')  // strings starting with '_'
 			
 			) {
 				// then use the translated version...
@@ -684,7 +676,7 @@ public class JsRender.NodeToJs : Object {
 		 
 		for (var i = 0; i< keys.size; i++) {
 			var key = keys.get(i);
-			var val = this.node.listeners.get(key);
+			var val = this.node.listeners.get(key).val;
 		
 	
 			 // 

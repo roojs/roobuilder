@@ -205,7 +205,7 @@
          ],
          "listeners" : {
           "button_press_event" : [
-           "  (  event) => {",
+           "  ( event ) => {",
            "    _this.open(this.file);",
            "    return false;",
            "} "
@@ -369,7 +369,7 @@
     }
    ],
    "xtype" : "Actor",
-   "|  void clearFiles" : [
+   "| void clearFiles" : [
     "() {",
     "    ",
     "    this.filelayout.el.remove_all_children();",
@@ -378,7 +378,7 @@
     "}",
     " "
    ],
-   "|  void loadProject" : [
+   "| void loadProject" : [
     "(Project.Project pr) {",
     "    // list all the files, and create new Xcls_fileitem for each one.",
     "    ",
@@ -460,7 +460,7 @@
     "}",
     ""
    ],
-   "|  void set_size" : [
+   "| void set_size" : [
     "(float w, float h) ",
     "{",
     "    ",

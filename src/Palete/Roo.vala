@@ -51,6 +51,8 @@ namespace Palete {
 				if (prop.propertyof.length < 1)  {
 					prop.propertyof = cls.name;
 				}
+				
+				// this is the function default.
 				prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
 				
 				if (o.has_member("optvals")  ) {
@@ -213,7 +215,7 @@ namespace Palete {
 			
 		}
 		
-		public override Gee.HashMap<string,GirObject> getPropertiesFor(string ename, string type)
+		public override Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype)
 		{
 			//print("Loading for " + ename);
 			
@@ -242,19 +244,19 @@ namespace Palete {
 
 			//cls.overlayParent();
 
-			switch  (type) {
+			switch  (ptype) {
 				
 				
-				case "props":
+				case JsRender.NodePropType.PROP:
 					return cls.props;
-				case "signals":
+				case JsRender.NodePropType.LISTENER:
 					return cls.signals;
-				case "methods":
+				case JsRender.NodePropType.METHOD:
 					return ret;
-				case "ctors":
+				case JsRender.NodePropType.CTOR:
 					return ret;
 				default:
-					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + type);
+					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + ptype.to_string());
 					//var ret = new Gee.HashMap<string,GirObject>();
 					//return ret;
 			
@@ -299,7 +301,7 @@ namespace Palete {
 				return true;
 			 }
 			 
-			 var props = this.getPropertiesFor(fqn, "props");
+			 var props = this.getPropertiesFor(fqn, JsRender.NodePropType.PROP);
 			 if (!props.has_key(key)) {
 				 print("prop %s does not have key %s\n", fqn, key);
 				 return false;
@@ -321,8 +323,7 @@ namespace Palete {
 		public override  List<SourceCompletionItem> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
-				string proptype, 
-				string key,
+				JsRender.NodeProp? xxprop,
 				string complete_string
 		) { 
 			

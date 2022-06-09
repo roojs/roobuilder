@@ -222,8 +222,7 @@
      "    this.el.hide();",
      "    return true; ",
      "    //test  ",
-     "}",
-     " "
+     "} "
     ],
     "response" : [
      " (self, response_id) =>  { ",
@@ -236,7 +235,7 @@
      "",
      "",
      "        if (_this.name.el.get_text().length  < 1) {",
-     "            StandardErrorDialog.show(",
+     "            Xcls_StandardErrorDialog.singleton().show(",
      "                this.el,",
      "                \"You have to set Component name \"",
      "            );",

@@ -17,10 +17,10 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_namerender namerender;
 
         // my vars (def)
+    public JsRender.NodePropType ptype;
     public bool active;
-    public signal void select (string key, string type, string skel, string prop_or_listener);
+    public signal void select (JsRender.NodeProp prop);
     public Xcls_MainWindow mainwindow;
-    public string prop_or_listener;
 
     // ctor
     public Xcls_PopoverAddProp()
@@ -30,7 +30,6 @@ public class Xcls_PopoverAddProp : Object
 
         // my vars (dec)
         this.active = false;
-        this.prop_or_listener = "";
 
         // set gobject values
         this.el.width_request = 900;
@@ -44,20 +43,23 @@ public class Xcls_PopoverAddProp : Object
     }
 
     // user defined functions
-    public void show (Palete.Palete pal, string prop_or_listener, string xtype,  Gtk.Widget onbtn) {
+    public void show (Palete.Palete pal, JsRender.NodePropType ptype, string xtype,  Gtk.Widget onbtn) {
     
-        
-        if (this.prop_or_listener  != "" && this.prop_or_listener == prop_or_listener) {
-        	this.prop_or_listener = "";
-        	this.el.hide();
-        	return;
-    	}
-        this.prop_or_listener = prop_or_listener;
+        /// what does this do?
+        //if (this.prop_or_listener  != "" && this.prop_or_listener == prop_or_listener) {
+        //	this.prop_or_listener = "";
+        //	this.el.hide();
+        //	return;
+    	//}
+    	
+    	
+    	
+        this.ptype = ptype;
         
         this.model.el.clear();
     
         Gtk.TreeIter iter;
-        var elementList = pal.getPropertiesFor( xtype,prop_or_listener);
+        var elementList = pal.getPropertiesFor( xtype, ptype);
          
         //print ("GOT " + elementList.length + " items for " + fullpath + "|" + type);
                // console.dump(elementList);
@@ -67,23 +69,20 @@ public class Xcls_PopoverAddProp : Object
            var p = miter.get_value();
             
             this.model.el.append(out iter);
-    
-    		var dname = p.name;
-    		var dtype = p.type;
-    		 
+    		
+    		var prop = p.toNodeProp();
+    		
+    	 	 
     
             this.model.el.set(iter,
-                    0,  p.name, 
-                    1, p.type,
-                    2, "<b>" + p.name +"</b> <i>"+p.type+"</i>\n" + 
-                            GLib.Markup.escape_text(p.doctxt),
-                    3, p.sig,
-                    4, "<b>" + dname +"</b> <span size=\"small\"><i>"+dtype+"</i></span>",
-                    5, prop_or_listener,
+                    0,  prop, 
+                    1,  prop.to_property_option_markup(),
+                    2,  prop.to_property_option_tooltip(),                
+                    3,  prop.name,                
                     -1
             );
         }
-        this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);    
+        this.model.el.set_sort_column_id(3,Gtk.SortType.ASCENDING);    
         
         // set size up...
         
@@ -110,7 +109,7 @@ public class Xcls_PopoverAddProp : Object
      //   this.hpane.el.set_position( 0);
     }
     public void hide () {
-    	this.prop_or_listener = "";
+    	this.ptype = JsRender.NodePropType.NONE;
     	this.el.hide();
     }
     public void clear () {
@@ -197,22 +196,15 @@ public class Xcls_PopoverAddProp : Object
             
             	m.el.get_iter(out iter,path);
             
-            
-            	// var val = "";
-            
-            
-            	var key = m.getValue(iter, 0);
-            
-            	var type = m.getValue(iter, 1);
-            	var skel = m.getValue(iter, 3);
-            	var etype = m.getValue(iter, 5);
+             
+            	var prop = m.getValue(iter, 0);
+             
             
             	// hide the popover
             	_this.el.hide();
-            	_this.prop_or_listener = "";
+            	 
             	
-            	
-            	_this.select(key,etype == "signals" ? "" : type,skel, etype);
+            	_this.select(prop);
              
             });
         }
@@ -232,13 +224,21 @@ public class Xcls_PopoverAddProp : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 6, typeof(string),  // 0 real key
+            this.el = new Gtk.ListStore( 4, 
+typeof(JsRender.NodeProp),  // 0 real key
+typeof(string),  // text display
+typeof(string),  // tooltip
+typeof(string)  // sortable string
+
+// add later? source?
+/* was:
+typeof(string),  // 0 real key
 typeof(string), // 1 real type
 typeof(string), // 2 docs ?
 typeof(string), // 3 visable desc
 typeof(string), // 4 function desc
 typeof(string) // 5 element type (event|prop)
-         );
+*/ );
 
             // my vars (dec)
 
@@ -246,13 +246,13 @@ typeof(string) // 5 element type (event|prop)
         }
 
         // user defined functions
-        public string getValue (Gtk.TreeIter iter, int col)
+        public JsRender.NodeProp getValue (Gtk.TreeIter iter, int col)
         {
         
             GLib.Value value;
             this.el.get_value(iter, col, out value);
          
-            return (string)value;
+            return (JsRender.NodeProp)value;
             
         }
     }
@@ -282,7 +282,7 @@ typeof(string) // 5 element type (event|prop)
 
             // init method
 
-            this.el.add_attribute(_this.namerender.el , "markup", 4  );
+            this.el.add_attribute(_this.namerender.el , "markup", 1  );
         }
 
         // user defined functions

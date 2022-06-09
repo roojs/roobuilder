@@ -18,11 +18,15 @@ public class Xcls_PopoverProperty : Object
     public Xcls_dbmodel dbmodel;
     public Xcls_ktype ktype;
     public Xcls_kname kname;
+    public Xcls_error error;
+    public Xcls_buttonbar buttonbar;
 
         // my vars (def)
     public string old_keyname;
+    public bool is_new;
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public bool done;
+    public JsRender.NodeProp? prop;
     public Xcls_MainWindow mainwindow;
     public string key_type;
     public JsRender.Node node;
@@ -34,135 +38,126 @@ public class Xcls_PopoverProperty : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.is_new = false;
         this.done = false;
         this.mainwindow = null;
 
         // set gobject values
         this.el.border_width = 0;
         this.el.modal = true;
-        this.el.position = Gtk.PositionType.RIGHT;
+        this.el.position = Gtk.PositionType.LEFT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
 
         //listeners
         this.el.closed.connect( () => {
-         
+         	GLib.debug("popover closed");
+        	if (_this.is_new) {
+        		// dont allow hiding if we are creating a new one.
+        		// on.hide will reshow it.
+        		return;
+        
+        	}
+        	if (_this.prop == null) {
+        		// hide and dont update.
+        		return;
+        	}
+        	if (this.kname.el.get_text().strip().length < 1) {
+        		return;
+        	}
+        
+        	this.updateProp();
+        
+        	_this.mainwindow.windowstate.left_props.reload();
+        
+        
           
-          var newtext = "";
-          Gtk.TreeIter citer;
-          GLib.Value gval;
-          this.kflag.el.get_active_iter(out citer);
-          this.dbmodel.el.get_value(citer, 0, out  gval);
-          
-          var ktype = this.ktype.el.get_text().strip(); 
-          var kname = this.kname.el.get_text().strip(); 
-          newtext += ((string)gval).strip();  
-          newtext += ktype.length > 0 && newtext.length > 0 ? " " :"";
-          newtext += ktype;
-          newtext += kname.length > 0 && newtext.length > 0 ? " " :"";
-          newtext += kname;
-          
-          
-           var lp =  _this.mainwindow.windowstate.left_props;
-            
-            switch(this.key_type) {
-                case "listener":
-                    var ov = _this.node.listeners.get(this.old_keyname);
-                    _this.node.listeners.set(newtext, ov);
-                    if (this.old_keyname != newtext) { 
-        	            _this.node.listeners.unset(this.old_keyname);
-                    }
-                    
-                    
-                    lp.updateKey(this.old_keyname, this.key_type, newtext);
-                    
-                    break;
-                case "props":
-                    var ov = _this.node.props.get(this.old_keyname);
-                    _this.node.props.set(newtext, ov);
-        			if (this.old_keyname != newtext) { 
-        	            _this.node.props.unset(this.old_keyname);
-                    }
-                    lp.updateKey(this.old_keyname, this.key_type, newtext);
-                    break;
-             }
-           
-          
-          
+        });
+        this.el.hide.connect( () => {
+          	GLib.debug("popover hidden");
+        	if (_this.is_new || this.kname.el.get_text().strip().length < 1) {
+        		// dont allow hiding if we are creating a new one.
+        		GLib.debug("prevent hiding as its new or text is empty"); 
+        		this.el.show_all();
+        		return;
+        
+        	}
+        	
         });
     }
 
     // user defined functions
-    public void show (Gtk.Widget btn, JsRender.Node node, string key_type,  string key) 
-    	{
+    public void show (
+    	Gtk.Widget btn, 
+    	JsRender.Node node, 
+    	JsRender.NodeProp prop, 
+    	int y,
+    	bool is_new = false
+    	 ) 
+    {
     	
-    	string kname = "", kflag = "", ktype = "";
-    	if (key.length > 0) {
-    		node.normalize_key( key, out  kname, out  kflag, out ktype);
-    	}
-    
-    	if (key_type == "listener") {
-    		this.header.el.title = "Modify Event Listener";
+       
+    	this.is_new = is_new; 
+    	var pref = is_new ? "Add " : "Modify ";
+    	if (prop.ptype == JsRender.NodePropType.LISTENER) {
+    		this.header.el.title = pref + "Event Listener"; // cant really happen yet?
     	} else {
-    		this.header.el.title = "Modify Property";
+    		this.header.el.title = pref + "Property";
     	}
-    	
-    	this.key_type = key_type;
-    	this.old_keyname = key;
+    	this.prop = prop;
     	this.node = node;
     	
-    	_this.kname.el.set_text(kname);
-    	_this.ktype.el.set_text(ktype);
+    	_this.kname.el.set_text(prop.name);
+    	_this.ktype.el.set_text(prop.rtype);
     	
-    	_this.dbmodel.loadData(kflag);
+    	_this.dbmodel.loadData(prop );
     	// does node have this property...
     
-    
-    	 
     
     	_this.node = node;
     	//console.log('show all');
     	this.el.set_modal(true);
     	this.el.set_relative_to(btn);
+    	if (y > -1) {
+    		var  r = Gdk.Rectangle() {
+    			x = 0, // align left...
+    			y = y,
+    			width = 1,
+    			height = 1
+    		};
+    		this.el.set_pointing_to( r);
+    	}
+    	
+    	
     
-    	this.el.set_position(Gtk.PositionType.TOP);
+    	//this.el.set_position(Gtk.PositionType.TOP);
     
     	// window + header?
     	 print("SHOWALL - POPIP\n");
     	this.el.show_all();
     	this.kname.el.grab_focus();
+    	this.buttonbar.el.hide();
+    	if (this.is_new) {
+    		this.buttonbar.el.show();
+    	}
+    	 this.error.setError("");
     
     	//this.success = c.success;
      
     }
-    public   void updateNodeFromValues () {
+    public void updateProp () {
+    	var newtext = "";
+    	Gtk.TreeIter citer;
+    	GLib.Value gval;
+    	this.kflag.el.get_active_iter(out citer);
+    	this.dbmodel.el.get_value(citer, 0, out  gval);
     
-         /*   _this.file.title = _this.title.el.get_text();
-            _this.file.region = _this.region.el.get_text();            
-            _this.file.parent = _this.parent.el.get_text();                        
-            _this.file.permname = _this.permname.el.get_text();                                    
-            _this.file.modOrder = _this.modOrder.el.get_text();
-            
-            if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {
-                _this.file.renameTo(_this.name.el.get_text());
-            }
-            // store the module...
-            _this.file.build_module = "";        
-             Gtk.TreeIter iter; 
-            if (_this.build_module.el.get_active_iter (out iter)) {
-                 Value vfname;
-                 this.dbmodel.el.get_value (iter, 0, out vfname);
-                 if (((string)vfname).length > 0) {
-                     _this.file.build_module = (string)vfname;
-                 }
-        
-            }
-            */
-            
-            
     
-                                                        
+    	_this.prop.name = this.kname.el.get_text().strip(); 
+    	_this.prop.rtype = this.ktype.el.get_text().strip(); 
+    	_this.prop.ptype =  (JsRender.NodePropType) gval;
+    
     }
     public class Xcls_Box2 : Object
     {
@@ -185,9 +180,30 @@ public class Xcls_PopoverProperty : Object
             var child_0 = new Xcls_header( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,true,0 );
-            var child_1 = new Xcls_Table4( _this );
+            var child_1 = new Xcls_Label4( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , false,false,4 );
+            this.el.add (  child_1.el  );
+            var child_2 = new Xcls_kflag( _this );
+            child_2.ref();
+            this.el.add (  child_2.el  );
+            var child_3 = new Xcls_Label8( _this );
+            child_3.ref();
+            this.el.add (  child_3.el  );
+            var child_4 = new Xcls_ktype( _this );
+            child_4.ref();
+            this.el.add (  child_4.el  );
+            var child_5 = new Xcls_Label10( _this );
+            child_5.ref();
+            this.el.add (  child_5.el  );
+            var child_6 = new Xcls_kname( _this );
+            child_6.ref();
+            this.el.add (  child_6.el  );
+            var child_7 = new Xcls_error( _this );
+            child_7.ref();
+            this.el.add (  child_7.el  );
+            var child_8 = new Xcls_buttonbar( _this );
+            child_8.ref();
+            this.el.add (  child_8.el  );
         }
 
         // user defined functions
@@ -216,49 +232,7 @@ public class Xcls_PopoverProperty : Object
         // user defined functions
     }
 
-    public class Xcls_Table4 : Object
-    {
-        public Gtk.Table el;
-        private Xcls_PopoverProperty  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Table4(Xcls_PopoverProperty _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Table( 3, 2, true );
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.margin_right = 4;
-            this.el.margin_left = 4;
-            this.el.row_spacing = 2;
-            var child_0 = new Xcls_Label5( _this );
-            child_0.ref();
-            this.el.attach_defaults (  child_0.el , 0,1,0,1 );
-            var child_1 = new Xcls_kflag( _this );
-            child_1.ref();
-            this.el.attach_defaults (  child_1.el , 1,2,0,1 );
-            var child_2 = new Xcls_Label9( _this );
-            child_2.ref();
-            this.el.attach_defaults (  child_2.el , 0,1,1,2 );
-            var child_3 = new Xcls_ktype( _this );
-            child_3.ref();
-            this.el.attach_defaults (  child_3.el , 1,2,1,2 );
-            var child_4 = new Xcls_Label11( _this );
-            child_4.ref();
-            this.el.attach_defaults (  child_4.el , 0,1,2,3 );
-            var child_5 = new Xcls_kname( _this );
-            child_5.ref();
-            this.el.attach_defaults (  child_5.el , 1,2,2,3 );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Label5 : Object
+    public class Xcls_Label4 : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverProperty  _this;
@@ -267,7 +241,7 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label5(Xcls_PopoverProperty _owner )
+        public Xcls_Label4(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Special Flags" );
@@ -275,8 +249,9 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.justify = Gtk.Justification.RIGHT;
-            this.el.xalign = 0.900000f;
+            this.el.halign = Gtk.Align.START;
+            this.el.justify = Gtk.Justification.LEFT;
+            this.el.margin_top = 12;
         }
 
         // user defined functions
@@ -350,7 +325,7 @@ public class Xcls_PopoverProperty : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore( 2, typeof(JsRender.NodePropType),typeof(string) );
 
             // my vars (dec)
 
@@ -358,7 +333,7 @@ public class Xcls_PopoverProperty : Object
         }
 
         // user defined functions
-        public void loadData (string kflag) {
+        public void loadData (JsRender.NodeProp prop) {
             this.el.clear();                                    
             Gtk.TreeIter iter;
             var el = this.el;
@@ -378,47 +353,57 @@ public class Xcls_PopoverProperty : Object
            // el.set_value(iter, 0, "");
            // el.set_value(iter, 1, "aaa  - Just add Element - aaa");
         
-            el.append(out iter);
-            el.set(iter, 0, "", 1,   "Normal Property", -1);
-        	 
-        	if (_this.mainwindow.windowstate.file.xtype == "Gtk") {
+            
+        	if (prop.ptype == JsRender.NodePropType.LISTENER) { 
         		el.append(out iter);
-        		el.set(iter, 0, "$", 1,   "($) Raw Property (not escaped)", -1);
+        		el.set(iter, 0, JsRender.NodePropType.LISTENER, 1,   "Event Handler / Listener", -1);
+        	}	 
+        	else if (_this.mainwindow.windowstate.file.xtype == "Gtk") {
+        		 el.append(out iter);
+        	    el.set(iter, 0, JsRender.NodePropType.PROP, 1,   "Normal Property", -1);
+        	
+        		
+        		el.append(out iter);
+        		el.set(iter, 0, JsRender.NodePropType.RAW, 1,   "Raw Property (not escaped)", -1);
         		 
         		
         		el.append(out iter);
-        		el.set(iter, 0, "#", 1,   "(#) User defined property", -1);
+        		el.set(iter, 0, JsRender.NodePropType.USER, 1,   "User defined property", -1);
         		 
         		el.append(out iter);
-        		el.set(iter, 0, "|", 1,   "(|) User defined method", -1);
+        		el.set(iter, 0, JsRender.NodePropType.METHOD, 1,   "User defined method", -1);
         		 
         		el.append(out iter);
-        		el.set(iter, 0, "*", 1,   "(*) Special property (eg. prop | args | ctor | init )", -1);
+        		el.set(iter, 0, JsRender.NodePropType.SPECIAL, 1,   "Special property (eg. prop | args | ctor | init )", -1);
         		 
         		
         		el.append(out iter);
-        	    el.set(iter, 0, "@", 1,   "(@) Vala Signal", -1);
+        	    el.set(iter, 0, JsRender.NodePropType.SIGNAL, 1,   "Vala Signal", -1);
         		 
         		
         	} else { 
         		// javascript
+        	    el.append(out iter);
+        	    el.set(iter, 0, JsRender.NodePropType.PROP, 1,   "Normal Property", -1);
+        	
         		el.append(out iter);
-        		el.set(iter, 0, "$", 1,   "($) Raw Property (not escaped)", -1);
+        		el.set(iter, 0, JsRender.NodePropType.RAW, 1,   "Raw Property (not escaped)", -1);
         		 
         		el.append(out iter);
-        		el.set(iter, 0, "|", 1,   "(|) User defined method", -1);
+        		el.set(iter, 0, JsRender.NodePropType.METHOD, 1,   "User defined method", -1);
         	 
         		el.append(out iter);
-        		el.set(iter, 0, "*", 1,   "(*) Special property (eg. prop )", -1);
+        		el.set(iter, 0,  JsRender.NodePropType.SPECIAL, 1,   "(*) Special property (eg. prop )", -1);
         		 
         	
         	}
+        	// set selected, based on arg
         	el.foreach((tm, tp, titer) => {
         		GLib.Value val;
         		el.get_value(titer, 0, out val);
         		 
-        		print("check %s against %s\n", (string)val, kflag);
-        		if (((string)val) == kflag) {
+        		//print("check %s against %s\n", (string)val, _this.prop.ptype);
+        		if (((JsRender.NodePropType)val) == prop.ptype) {
         			_this.kflag.el.set_active_iter(titer);
         			return true;
         		}
@@ -431,7 +416,7 @@ public class Xcls_PopoverProperty : Object
     }
 
 
-    public class Xcls_Label9 : Object
+    public class Xcls_Label8 : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverProperty  _this;
@@ -440,7 +425,7 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label9(Xcls_PopoverProperty _owner )
+        public Xcls_Label8(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Type or Return Type" );
@@ -448,8 +433,9 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.justify = Gtk.Justification.RIGHT;
-            this.el.xalign = 0.900000f;
+            this.el.halign = Gtk.Align.START;
+            this.el.justify = Gtk.Justification.LEFT;
+            this.el.margin_top = 12;
             this.el.visible = true;
         }
 
@@ -480,7 +466,7 @@ public class Xcls_PopoverProperty : Object
         // user defined functions
     }
 
-    public class Xcls_Label11 : Object
+    public class Xcls_Label10 : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverProperty  _this;
@@ -489,7 +475,7 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label11(Xcls_PopoverProperty _owner )
+        public Xcls_Label10(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Name" );
@@ -497,9 +483,10 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.justify = Gtk.Justification.RIGHT;
-            this.el.xalign = 0.900000f;
+            this.el.halign = Gtk.Align.START;
+            this.el.justify = Gtk.Justification.LEFT;
             this.el.tooltip_text = "center, north, south, east, west";
+            this.el.margin_top = 12;
             this.el.visible = true;
         }
 
@@ -525,10 +512,245 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.visible = true;
+
+            //listeners
+            this.el.focus_out_event.connect( ()=>{
+            	_this.error.setError("");
+            	var val = this.el.get_text().strip(); 
+            	if (val.length < 1) {
+            		_this.error.setError("Name can not be empty");
+            	}
+            	return true;
+            });
+            this.el.key_release_event.connect( ()=>{
+            	_this.error.setError("");
+            	var val = this.el.get_text().strip(); 
+            	if (val.length < 1) {
+            		_this.error.setError("Name can not be empty");
+            	}
+            	return true;
+            });
         }
 
         // user defined functions
     }
+
+    public class Xcls_error : Object
+    {
+        public Gtk.Label el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_error(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            _this.error = this;
+            this.el = new Gtk.Label( "<span color=\"red\">Error Message</span>" );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.halign = Gtk.Align.START;
+            this.el.justify = Gtk.Justification.LEFT;
+            this.el.tooltip_text = "center, north, south, east, west";
+            this.el.margin_top = 0;
+            this.el.visible = true;
+            this.el.use_markup = true;
+        }
+
+        // user defined functions
+        public void setError (string err)   {
+        	if (err == "") {
+        		this.el.hide();
+        	} else {
+        		this.el.show();
+        		
+        		this.el.label = "<span color=\"red\">" + err + "</span>";
+        	}
+        }
+    }
+
+    public class Xcls_buttonbar : Object
+    {
+        public Gtk.Box el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_buttonbar(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            _this.buttonbar = this;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.margin_top = 20;
+            var child_0 = new Xcls_Button14( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_Button16( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Button14 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button14(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+            this.el.always_show_image = true;
+            this.el.label = "Cancel";
+            var child_0 = new Xcls_Image15( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+
+            //listeners
+            this.el.pressed.connect( () => { 
+            
+            	_this.prop = null;
+            	_this.is_new = false;
+            	_this.kname.el.set_text("Cancel");
+            	_this.el.hide();
+            
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image15 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image15(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "window-close";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Button16 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button16(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+            this.el.always_show_image = true;
+            this.el.label = "Add Property";
+            var child_0 = new Xcls_Image17( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+
+            //listeners
+            this.el.pressed.connect( () => {
+            	// check if text is not empty..
+            	if ( _this.kname.el.get_text().strip().length < 1) {
+            		// error should already be showing?
+            		return;
+            	}
+            	_this.updateProp();
+            	
+            	// since we can't add listeners?!?!?
+            	// only check props.
+            	// check if property already exists in node.	
+            	var prop = _this.prop;
+            	if (_this.node.props.has_key(prop.to_index_key())) {
+            		_this.error.setError("Property already exists");
+            		return;	
+            	}
+            	
+            	
+            	 
+            	_this.is_new = false;	
+            	  
+            	// hide self
+            	_this.prop = null; // skip checks..
+            	_this.el.hide();
+            
+            // add it, 
+            	// trigger editing of property.
+            	// allow hide to work?
+            	while (Gtk.events_pending()) {
+            		Gtk.main_iteration();
+            	}
+            	
+            	_this.mainwindow.windowstate.left_props.addProp(prop);		
+            	
+            
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image17 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image17(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "list-add";
+        }
+
+        // user defined functions
+    }
+
 
 
 

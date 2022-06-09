@@ -701,7 +701,7 @@ public class Xcls_WindowLeftTree : Object
                     	if (selection_text.contains(":")) {
             	        	var bits = selection_text.split(":");
             	            dropNode.setFqn(bits[0]);
-            	            dropNode.props.set("* prop", bits[1]);
+            	            dropNode.set_prop(new JsRender.NodeProp.special("prop", bits[1]));
                     	} else {
             
             	            dropNode.setFqn(selection_text);
@@ -1369,7 +1369,8 @@ public class Xcls_WindowLeftTree : Object
                 
                
                  if (target_data.length == 3 && target_data[2].length > 0) {
-                    node.props.set("* prop", target_data[2]);
+        	         node.set_prop(new JsRender.NodeProp.special("prop", target_data[2]));
+        
                 }
         
                 Gtk.TreePath expand_parent = null;
@@ -1741,7 +1742,7 @@ public class Xcls_WindowLeftTree : Object
                         return;
               
                  }
-                 node.props.set("* xinclude", name);
+                 node.set_prop( new JsRender.NodeProp.special("xinclude", name));
                  node.items.clear();
             
             

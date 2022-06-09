@@ -44,7 +44,7 @@ public class DialogSaveTemplate : Object
         this.el.delete_event.connect( (self, event) => {
            this.el.response(Gtk.ResponseType.CANCEL);
             return true;
-            
+         
         });
     }
 
@@ -67,7 +67,7 @@ public class DialogSaveTemplate : Object
                 
                 name = _this.name.el.get_text();
                 if (name.length < 1) {
-                    StandardErrorDialog.singleton().show(
+                    Xcls_StandardErrorDialog.singleton().show(
                          _this.el,
                         "You must give the template a name. "
                     );
@@ -75,7 +75,7 @@ public class DialogSaveTemplate : Object
                 }
                 if (!Regex.match_simple ("^[A-Za-z][A-Za-z0-9. ]+$", name) )
                 {
-                    StandardErrorDialog.singleton().show(
+                    Xcls_StandardErrorDialog.singleton().show(
                          _this.el,
                         "Template Name must contain only letters dots"
                     );

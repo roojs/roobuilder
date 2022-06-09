@@ -330,15 +330,14 @@ public class WindowState : Object
 		this.win.props.el.pack_start(this.left_props.el,true, true,0);
 		this.left_props.el.show_all();
 	
-		this.left_props.show_editor.connect( (file, node, type,  key) => {
+		this.left_props.show_editor.connect( (file, node, prop) => {
 			this.switchState(State.CODE);
 			
 			
 			this.code_editor_tab.show(
 				file,
 				node,
-				type,
-				key
+				prop
 			);
 			
 			
@@ -368,8 +367,7 @@ public class WindowState : Object
 				this.valasource.checkFileSpawn(this.file);
 			}
 		});
-	
-
+	 
 
 	}
 
@@ -476,9 +474,9 @@ public class WindowState : Object
 		//stage.set_background_color(  Clutter.Color.from_string("#000"));
 
 
-		this.add_props.select.connect( (key,type,skel, etype) => {
+		this.add_props.select.connect( (prop) => {
 			 
-			this.left_props.addProp(etype, key, skel, type);
+			this.left_props.addProp(prop);
 		});
 
 	}
@@ -630,7 +628,7 @@ public class WindowState : Object
 			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
 			file.loadItems();
-			this.code_editor_tab.show(file, null, "", "");
+			this.code_editor_tab.show(file, null, null);
 			if (line> -1) {
 				this.code_editor_tab.scroll_to_line(line);
 			}
@@ -726,7 +724,7 @@ public class WindowState : Object
 
 	
 	
-	public void showProps(Gtk.Widget btn, string sig_or_listen)
+	public void showProps(Gtk.Widget btn, JsRender.NodePropType sig_or_listen)
 	{
 		var ae =  this.left_tree.getActiveElement();
 		if (ae == null) {

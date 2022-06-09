@@ -97,8 +97,8 @@ public class JsRender.Node : Object {
 	public Node parent;
 	public Gee.ArrayList<Node> items; // child items..
 	
-	public Gee.HashMap<string,string> props; // the properties..
-	public Gee.HashMap<string,string> listeners; // the listeners..
+	public Gee.HashMap<string,NodeProp> props; // the properties..
+	public Gee.HashMap<string,NodeProp> listeners; // the listeners..
 	public string  xvala_cls;
 	public string xvala_xcls; // 'Xcls_' + id;
 	public string xvala_id; // item id or ""
@@ -107,16 +107,16 @@ public class JsRender.Node : Object {
 	public int line_start;
 	public int line_end;
 	public Gee.ArrayList<int> lines;
-	public Gee.HashMap<int,string> line_map; // store of l:xxx or p:....
-	public Gee.ArrayList<int> node_lines;
+	public Gee.HashMap<int,string> line_map; // store of l:xxx or p:....  // fixme - not needed as we can store line numbers in props now.
+	public Gee.ArrayList<int> node_lines; 
 	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
 	
 
 	public Node()
 	{
 		this.items = new Gee.ArrayList<Node>();
-		this.props = new Gee.HashMap<string,string>();
-		this.listeners = new Gee.HashMap<string,string>();
+		this.props = new Gee.HashMap<string,NodeProp>();
+		this.listeners = new Gee.HashMap<string,NodeProp>(); // Nodeprop can include line numbers..
 		this.xvala_cls = "";
 		this.xvala_xcls = "";
 		this.xvala_id = "";
@@ -205,6 +205,8 @@ public class JsRender.Node : Object {
 		return null;
 		
 	}
+	
+	
 	public string lineToProp(int line)
 	{
 		// assume lineToNode called first...
@@ -231,14 +233,14 @@ public class JsRender.Node : Object {
 				//print("RETURNING NODE ON LINE %d", l);
 				return this.line_map.get(l);
 			}
-			return null;
+			return "";
 			
 		}
 		if (l > -1) {
 			//print("RETURNING NODE ON LINE %d", l);
 			return this.line_map.get(l);
 		}
-		return null;
+		return "";
 	
 	}
 	
@@ -280,7 +282,7 @@ public class JsRender.Node : Object {
 			uid_count++;
 			return "uid-%d".printf(uid_count);
 		}
-		return this.props.get("id");
+		return this.props.get("id").val;
 	}
 	
 	
@@ -290,7 +292,7 @@ public class JsRender.Node : Object {
 	}
 	public bool hasXnsType()
 	{
-		if (this.props.get("$ xns") != null && this.props.get("xtype") != null) {
+		if (this.props.get("xns") != null && this.props.get("xtype") != null) {
 			return true;
 			
 		}
@@ -301,22 +303,28 @@ public class JsRender.Node : Object {
 		if (!this.hasXnsType ()) {
 			return "";
 		}
-		return this.props.get("$ xns") + "." + this.props.get("xtype"); 
+		return this.props.get("xns").val + "." + this.props.get("xtype").val; 
 
 	}
 	public void setFqn(string name)
 	{
 		var ar = name.split(".");
-		this.props.set("xtype", ar[ar.length-1]);
+		this.props.set("xtype",new NodeProp.prop("xtype", "",  ar[ar.length-1]));
 		var l = name.length - (ar[ar.length-1].length +1);
-		this.props.set("$ xns", name.substring(0, l));
+		this.props.set("xns", new NodeProp.raw("xns", "", name.substring(0, l)));
 		//print("setFQN %s to %s\n", name , this.fqn());
 		               
 
 	}
 	// wrapper around get props that returns empty string if not found.
-	public string get(string key)
+	//overrides Glib.object.get (hence new)
+	public new string get(string key)
 	{
+		
+		var v = this.props.get(key);
+		return v == null ? "" : v.val;
+	}	
+		/*
 		var k = this.props.get(key);
 		if (k != null) {
 			return k;
@@ -333,13 +341,15 @@ public class JsRender.Node : Object {
 			if (kk[kk.length-1] == key) {
 				return iter.get_value();
 			}
-		}
 		
 		
 		return "";
-		
-	}
+		}
+		*/
+	 
+	/*
 	
+	SAMNE AS ABOVE
 	public string get_key(string key)
 	{
 		var k = this.props.get(key);
@@ -364,6 +374,22 @@ public class JsRender.Node : Object {
 		return "";
 		
 	}
+	*/
+	public  NodeProp? get_prop(string key)
+	{
+		
+		return this.props.get(key);
+		
+	}
+	
+	public void set_prop(NodeProp prop)
+	{
+		
+		  this.props.set(prop.to_index_key(), prop);
+		
+	}
+	
+	/*
 	public void normalize_key(string key, out string kname, out string kflag, out string ktype)
 	{
 		// key formats : XXXX
@@ -378,7 +404,7 @@ public class JsRender.Node : Object {
 		string[] kk = {};
 		for (var i = 0; i < kkv.length; i++) {
 			if (kkv[i].length > 0 ) {
-				kk+= kkv[i];
+				kk += kkv[i];
 			}
 		}
 		//print("normalize %s => %s\n", key,string.joinv("=:=",kk));
@@ -403,11 +429,17 @@ public class JsRender.Node : Object {
 		}
 		// everything blank otherwise...
 	}
-	public void set(string key, string value) {
-		this.props.set(key,value);
+	*/
+	
+
+	public new void set(string key, NodeProp val) {
+		this.props.set(key,val);
 	}
-	 public bool has(string key)
+
+	public bool has(string key)
 	{
+		return this.props.has_key(key);
+		/*
 		var k = this.props.get(key);
 		if (k != null) {
 			return true;
@@ -421,7 +453,7 @@ public class JsRender.Node : Object {
 		}
 		
 		return false;
-		
+		*/
 	}
 
 	public void  remove()
@@ -447,7 +479,7 @@ public class JsRender.Node : Object {
 	public Node? findProp(string n) {
 		for(var i=0;i< this.items.size;i++) {
 			var p = this.items.get(i).get("* prop");
-			if (this.items.get(i).get("* prop").length < 1) {
+			if (p  == null) {
 				continue;
 			}
 			if (p == n) {
@@ -491,7 +523,7 @@ public class JsRender.Node : Object {
 			if (key == "listeners") {
 				var li = value.get_object();
 				li.foreach_member((lio , li_key, li_value) => {
-					this.listeners.set(li_key,  this.jsonNodeAsString(li_value));
+					this.listeners.set(li_key,  new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
 				});
 				return;
 			}
@@ -502,9 +534,9 @@ public class JsRender.Node : Object {
 			if (version == 1) {
 				rkey = this.upgradeKey(key, sval);
 			}
-
+			var n =  new NodeProp.from_json(rkey, sval);
 				
-			this.props.set(rkey,  sval);
+			this.props.set(n.to_index_key(),  n );
 			
 
 		});
@@ -513,6 +545,8 @@ public class JsRender.Node : Object {
 
 
 	}
+	
+	// converts the array into a string with line breaks.
 	public string jsonNodeAsString(Json.Node node)
 	{
 		
@@ -535,7 +569,7 @@ public class JsRender.Node : Object {
 
 	}
 	
-	
+	// really old files...
 
 	public string upgradeKey(string key, string val)
 	{
@@ -607,6 +641,7 @@ public class JsRender.Node : Object {
 		Node.gen.set_root (n);
 		return  Node.gen.to_data (null);   
 	}
+	
 	public void jsonObjectAddStringValue(Json.Object obj, string key, string v)
 	{
 		if (v.index_of_char('\n',0) < 0) {
@@ -631,14 +666,14 @@ public class JsRender.Node : Object {
 			ret.set_object_member("listeners", li);
 			var liter = this.listeners.map_iterator();
 			while (liter.next()) {
-				this.jsonObjectAddStringValue(li, liter.get_key(), liter.get_value());
+				this.jsonObjectAddStringValue(li, liter.get_value().to_json_key(), liter.get_value().val);
 			}
 		}
 		//props
 		if (this.props.size > 0 ) {
 			var iter = this.props.map_iterator();
 			while (iter.next()) {
-				this.jsonObjectsetMember(ret, iter.get_key(), iter.get_value());
+				this.jsonObjectsetMember(ret, iter.get_value().to_json_key(), iter.get_value().val);
 			}
 		}
 		if (this.items.size > 0) {
@@ -678,6 +713,7 @@ public class JsRender.Node : Object {
 		//o.set_string_member(key,val);
 		
 	}
+	// fixme this needs to better handle 'user defined types etc..
 	public string nodeTip()
 	{
 		var ret = this.nodeTitle(true);
@@ -687,7 +723,7 @@ public class JsRender.Node : Object {
 		var iter = this.props.map_iterator();
 		while (iter.next()) {
 			var i =  iter.get_key().strip();
-			var val = iter.get_value().strip();
+			var val = iter.get_value().val.strip();
 			if (val == null || val.length < 1) {
 				continue;
 			}
@@ -720,7 +756,7 @@ public class JsRender.Node : Object {
 		iter = this.listeners.map_iterator();
 		while (iter.next()) {
 			var i =  iter.get_key().strip();
-			var val = iter.get_value().strip();
+			var val = iter.get_value().val.strip();
 			if (val == null || val.length < 1) {
 				continue;
 			}
@@ -743,7 +779,8 @@ public class JsRender.Node : Object {
 		return ret;
 
 	}
-	public string nodeTitle(bool for_tip = false) {
+	public string nodeTitle(bool for_tip = false) 
+	{
   		string[] txt = {};
 
 		//var sr = (typeof(c['+buildershow']) != 'undefined') &&  !c['+buildershow'] ? true : false;

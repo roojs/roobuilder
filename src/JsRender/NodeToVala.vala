@@ -317,51 +317,50 @@ public class JsRender.NodeToVala : Object {
 			// Key = TYPE:name
 		var iter = this.node.props.map_iterator();
 		while (iter.next()) {
-			var k = iter.get_key();
-			if (this.shouldIgnore(k)) {
+			 
+			var prop = iter.get_value();
+			
+			if (this.shouldIgnore(prop.name)) {
 				continue;
 			}
-			var vv = k.strip().split(" ");
+
 			// user defined method
-			if (vv[0] == "|") {
+			if (prop.ptype == NodePropType.METHOD) {
 				continue;
 			}
-			if (vv[0] == "*") {
+			if (prop.ptype == NodePropType.SPECIAL) {
 				continue;
 			}
 				
-			if (vv[0] == "@") {
-				this.node.setLine(this.cur_line, "p", k);
-				this.addLine(this.pad + "public signal" + k.substring(1)  + " "  + iter.get_value() + ";");
+			if (prop.ptype == NodePropType.SIGNAL) {
+				this.node.setLine(this.cur_line, "p", prop.name);
+				this.addLine(this.pad + "public signal " + prop.name  + " "  + prop.val + ";");
 				
-				this.ignore(k);
-				continue;
-			}
-			GLib.debug("Got myvars: %s", k.strip());
-			var min = (vv[0] == "$" || vv[0] == "#") ? 3 : 2; 
-			if (vv.length < min) {
-				// skip 'old js style properties without a type'
+				this.ignore(prop.name);
 				continue;
 			}
 			
-			var kname = vv[vv.length-1];
-
-			if (this.shouldIgnore(kname)) {
+			GLib.debug("Got myvars: %s", prop.name.strip());
+			
+			if (prop.rtype.strip().length < 1) {
 				continue;
 			}
 			
 			// is it a class property...
-			if (cls.props.has_key(kname) && vv[0] != "#") {
+			if (cls.props.has_key(prop.name) && prop.ptype != NodePropType.USER) {
 				continue;
 			}
 			
-			this.myvars.add(k);
-			this.node.setLine(this.cur_line, "p", k);
+			this.myvars.add(prop.name);
+			prop.start_line = this.cur_line;
 			
-			this.addLine(this.pad + "public " + 
-				(k[0] == '$' || k[0] == '#' ? k.substring(2) : k ) + ";");
-				
-			this.ignore(k);
+			this.node.setLine(this.cur_line, "p", prop.name);
+			
+			this.addLine(this.pad + "public " + prop.name + ";"); // definer - does not include value.
+
+
+			prop.end_line = this.cur_line;				
+			this.ignore(prop.name);
 			
 				
 		}
@@ -563,20 +562,25 @@ public class JsRender.NodeToVala : Object {
 			var ar  = k.strip().split(" ");
 			var kname = ar[ar.length-1];
 			
-			var v = this.node.props.get(k);
-			// ignore signals.. 
+			var prop = this.node.props.get(k);
+			
+			var v = prop.val.strip();			
+			
 			if (v.length < 1) {
 				continue; 
 			}
+			// at this point start using 
+
 			if (v == "FALSE" || v == "TRUE") {
-				v = v.down();
+				v= v.down();
 			}
 			//FIXME -- check for raw string.. "string XXXX"
 			
 			// if it's a string...
 			
-			
-			this.addLine(this.ipad + "this." + kname + " = " +   v +";");
+			prop.start_line = this.cur_line;
+			this.addLine(this.ipad + "this." + prop.name + " = " +   v +";");
+			prop.end_line = this.cur_line;
 		}
 	}
 
@@ -588,6 +592,7 @@ public class JsRender.NodeToVala : Object {
 	{
 		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (cls == null) {
+			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
 			return;
 		}
 			// what are the properties of this class???
@@ -606,19 +611,20 @@ public class JsRender.NodeToVala : Object {
 				continue;
 			}
 			
-				this.ignore(p);
-			var v = this.node.get(p);
+			this.ignore(p);
 
-			var nodekey = this.node.get_key(p);
 
+			var prop = this.node.get_prop(p);
+			var v = prop.val;
+			
 			// user defined properties.
-			if (nodekey[0] == '#') {
+			if (prop.ptype == NodePropType.USER) {
 				continue;
 			}
 				
 
 			
-			var is_raw = nodekey[0] == '$';
+			var is_raw = prop.ptype == NodePropType.RAW;
 			
 			// what's the type.. - if it's a string.. then we quote it..
 			if (iter.get_value().type == "string" && !is_raw) {
@@ -631,9 +637,9 @@ public class JsRender.NodeToVala : Object {
 				v += "f";
 			}
 			
-			
+			prop.start_line = this.cur_line;
 			this.addLine("%sthis.el.%s = %s;".printf(ipad,p,v)); // // %s,  iter.get_value().type);
-					
+			prop.end_line = this.cur_line;		
 			   // got a property..
 			   
 
@@ -668,7 +674,7 @@ public class JsRender.NodeToVala : Object {
 			var xargs = "";
 			if (ci.has("* args")) {
 				
-				var ar = ci.get("* args").split(",");
+				var ar = ci.get_prop("* args").val.split(",");
 				for (var ari = 0 ; ari < ar.length; ari++ ) {
 					var arg = ar[ari].split(" ");
 					xargs += "," + arg[arg.length -1];
@@ -682,19 +688,19 @@ public class JsRender.NodeToVala : Object {
 			this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 			
 			if (ci.has("* prop")) {
-				this.addLine(ipad + "this.el." + ci.get("* prop") + " = child_" + "%d".printf(i) + ".el;");
+				this.addLine(ipad + "this.el." + ci.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
 				continue;
 			} 
 				
 
 	// not sure why we have 'true' in pack?!?
-			if (!ci.has("pack") || ci.get("pack").down() == "false" || ci.get("pack").down() == "true") {
+			if (!ci.has("* pack") || ci.get("* pack").down() == "false" || ci.get("* pack").down() == "true") {
 				continue;
 			}
 			
 			string[]  packing =  { "add" };
-			if (ci.has("pack")) {
-				packing = ci.get("pack").split(",");
+			if (ci.has("* pack")) {
+				packing = ci.get("* pack").split(",");
 			}
 			
 			var pack = packing[0];
@@ -745,12 +751,14 @@ public class JsRender.NodeToVala : Object {
 		var iter = this.node.listeners.map_iterator();
 		while (iter.next()) {
 			var k = iter.get_key();
-			var v = iter.get_value();
+			var prop = iter.get_value();
+			var v = prop.val;
 			
+			prop.start_line = this.cur_line;
 			this.node.setLine(this.cur_line, "l", k);
 			this.addMultiLine(this.ipad + "this.el." + k + ".connect( " + 
 					this.padMultiline(this.ipad,v) +");"); 
-				
+			prop.end_line = this.cur_line;
 		}
 	}    
 	void addEndCtor()
@@ -811,22 +819,24 @@ public class JsRender.NodeToVala : Object {
 			// user defined functions...
 		var iter = this.node.props.map_iterator();
 		while(iter.next()) {
-			var k = iter.get_key();
-			if (this.shouldIgnore(k)) {
+			var prop = iter.get_value();
+			if (this.shouldIgnore(prop.name)) {
 				continue;
 			}
 			// HOW TO DETERIME if its a method?            
-			if (k[0] != '|') {
+			if (prop.ptype != NodePropType.METHOD) {
 					//strbuilder("\n" + pad + "// skip " + k + " - not pipe \n"); 
 					continue;
 			}
 			
 			// function in the format of {type} (args) { .... }
-			var kk = k.substring(2);
-			var vv = iter.get_value();
-			this.node.setLine(this.cur_line, "p", k);
-			this.addMultiLine(this.pad + "public " + kk + " " + this.padMultiline(this.pad, vv));;
-			
+
+
+
+			prop.start_line = this.cur_line;
+			this.node.setLine(this.cur_line, "p", prop.name);
+			this.addMultiLine(this.pad + "public " + prop.rtype + " " +  prop.name + " " + this.padMultiline(this.pad, prop.val));;
+			prop.end_line = this.cur_line;
 				
 		}
 	}

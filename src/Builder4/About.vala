@@ -35,12 +35,11 @@ public class About : Object
         //listeners
         this.el.response.connect( (rid) => {
             this.el.hide();
-            
         });
     }
 
     // user defined functions
-    public    void show (Gtk.Window parent) {
+    public void show (Gtk.Window parent) {
         this.el.set_transient_for(parent);
         this.el.modal = true;
         this.el.show();
