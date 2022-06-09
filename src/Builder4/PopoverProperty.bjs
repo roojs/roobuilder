@@ -284,6 +284,10 @@
           "pressed" : [
            "() => {",
            "\t// check if text is not empty..",
+           "\tif ( _this.kname.el.get_text().strip().length < 1) {",
+           "\t\t// error should already be showing?",
+           "\t\treturn;",
+           "\t}",
            "\t",
            "\t",
            "\t// check if property already exists in node.",
