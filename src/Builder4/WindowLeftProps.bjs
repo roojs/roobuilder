@@ -29,6 +29,60 @@
        "xtype" : "Label"
       },
       {
+       "$ tooltip_text" : "\"Add Property\"",
+       "$ xns" : "Gtk",
+       "* pack" : "add",
+       "bool always_show_image" : true,
+       "bool hexpand" : true,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "set_image",
+         "utf8 icon_name" : "format-justify-left",
+         "xtype" : "Image"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "    ",
+         "     _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.PROP);",
+         "  ",
+         "}"
+        ]
+       },
+       "string label" : "Property",
+       "xtype" : "Button"
+      },
+      {
+       "$ tooltip_text" : "\"Add Event Code\"",
+       "$ xns" : "Gtk",
+       "* pack" : "add",
+       "bool always_show_image" : true,
+       "bool hexpand" : true,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "set_image",
+         "utf8 icon_name" : "appointment-new",
+         "xtype" : "Image"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "    ",
+         " ",
+         "   _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.LISTENER);",
+         "",
+         " ",
+         "}"
+        ]
+       },
+       "string label" : "Event",
+       "xtype" : "Button"
+      },
+      {
        "$ xns" : "Gtk",
        "* pack" : "add",
        "bool hexpand" : true,
@@ -298,60 +352,6 @@
         ]
        },
        "string label" : "Other",
-       "xtype" : "Button"
-      },
-      {
-       "$ tooltip_text" : "\"Add Property\"",
-       "$ xns" : "Gtk",
-       "* pack" : "add",
-       "bool always_show_image" : true,
-       "bool hexpand" : true,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "set_image",
-         "utf8 icon_name" : "format-justify-left",
-         "xtype" : "Image"
-        }
-       ],
-       "listeners" : {
-        "clicked" : [
-         "  ( ) => {",
-         "    ",
-         "     _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.PROP);",
-         "  ",
-         "}"
-        ]
-       },
-       "string label" : "Property",
-       "xtype" : "Button"
-      },
-      {
-       "$ tooltip_text" : "\"Add Event Code\"",
-       "$ xns" : "Gtk",
-       "* pack" : "add",
-       "bool always_show_image" : true,
-       "bool hexpand" : true,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "set_image",
-         "utf8 icon_name" : "appointment-new",
-         "xtype" : "Image"
-        }
-       ],
-       "listeners" : {
-        "clicked" : [
-         "  ( ) => {",
-         "    ",
-         " ",
-         "   _this.main_window.windowstate.showProps(this.el, JsRender.NodePropType.LISTENER);",
-         "",
-         " ",
-         "}"
-        ]
-       },
-       "string label" : "Event",
        "xtype" : "Button"
       }
      ],
