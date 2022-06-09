@@ -722,6 +722,19 @@ public class Xcls_PopoverProperty : Object
             		// error should already be showing?
             		return;
             	}
+            	this.updateProp();
+            	
+            	// since we can't add listeners?!?!?
+            	// only check props.
+            	
+            	if (this.node.props.has_key(prop.to_index_key())) {
+            		_this.error.setError("Property already exists");
+            		return;
+            	
+            	}
+            	this.node.set_prop(prop);
+            	this.is_new = false;
+            	
             	
             	
             	// check if property already exists in node.
