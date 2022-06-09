@@ -18,6 +18,7 @@ public class Xcls_PopoverProperty : Object
     public Xcls_dbmodel dbmodel;
     public Xcls_ktype ktype;
     public Xcls_kname kname;
+    public Xcls_error error;
     public Xcls_buttonbar buttonbar;
 
         // my vars (def)
@@ -222,7 +223,7 @@ public class Xcls_PopoverProperty : Object
             var child_6 = new Xcls_kname( _this );
             child_6.ref();
             this.el.add (  child_6.el  );
-            var child_7 = new Xcls_Label12( _this );
+            var child_7 = new Xcls_error( _this );
             child_7.ref();
             this.el.add (  child_7.el  );
             var child_8 = new Xcls_buttonbar( _this );
@@ -541,7 +542,7 @@ public class Xcls_PopoverProperty : Object
         // user defined functions
     }
 
-    public class Xcls_Label12 : Object
+    public class Xcls_error : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverProperty  _this;
@@ -550,10 +551,11 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label12(Xcls_PopoverProperty _owner )
+        public Xcls_error(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Name" );
+            _this.error = this;
+            this.el = new Gtk.Label( "Error Message" );
 
             // my vars (dec)
 
