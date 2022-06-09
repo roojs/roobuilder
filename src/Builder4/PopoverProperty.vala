@@ -704,18 +704,16 @@ public class Xcls_PopoverProperty : Object
             		_this.error.setError("Property already exists");
             		return;	
             	}
-            	// add it, 
+            	
             	
             	 
             	_this.is_new = false;	
-            	 
-            	
-            
+            	  
             	// hide self
             	_this.prop = null; // skip checks..
             	_this.el.hide();
             
-            
+            // add it, 
             	// trigger editing of property.
             	_this.mainwindow.windowstate.left_props.addProp(prop);		
             	
