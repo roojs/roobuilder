@@ -733,8 +733,8 @@ public class Xcls_PopoverProperty : Object
             	}
             	// add it, 
             	var prop = this.prop;
-            	this.node.set_prop(prop);
-            	this.is_new = false;	
+            	_this.node.set_prop(prop);
+            	_this.is_new = false;	
             	_this.mainwindow.windowstate.left_props.reload();
             	
             
