@@ -115,7 +115,11 @@ public class JsRender.NodeToVala : Object {
 		item.xvala_id =  id;
 		if (depth > 0) {                        
 			this.vitems.add(item);
-		} else if (!item.props.has_key("id")) {
+			
+		// setting id on top level class changes it classname..			
+		// oddly enough we havent really thought about namespacing here.
+		
+		} else if (!item.props.has_key("id")) { 
 			// use the file name..
 			item.xvala_xcls =  this.file.name;
 			// is id used?
