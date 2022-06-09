@@ -414,7 +414,7 @@ public class Xcls_LeftProps : Object
             	  
            
     		 GLib.Value gvaltype, gval,kvalue;
-    		 mod.get_value(iter, 1 , out gval); // one is key..
+    		 mod.get_value(iter, 0 , out gval); // one is key..
     		 if (prop.is((JsRender.NodeProp) gval)) {
     		 	this.updateIter(iter, prop);
     		 	return true;

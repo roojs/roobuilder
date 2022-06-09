@@ -1255,7 +1255,7 @@
     "        \t  ",
     "       ",
     "\t\t GLib.Value gvaltype, gval,kvalue;",
-    "\t\t mod.get_value(iter, 1 , out gval); // one is key..",
+    "\t\t mod.get_value(iter, 0 , out gval); // one is key..",
     "\t\t if (prop.is((JsRender.NodeProp) gval)) {",
     "\t\t \tthis.updateIter(iter, prop);",
     "\t\t \treturn true;",
