@@ -217,7 +217,7 @@
        "x_options" : 4,
        "xtype" : "Label",
        "| void setError" : [
-        "(string err) {",
+        "(string err) =>  {",
         "\tif (err == \"\") {",
         "\t\tthis.el.hide();",
         "\t} else {",
