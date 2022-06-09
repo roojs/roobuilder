@@ -268,9 +268,6 @@ public class Xcls_LeftProps : Object
        
        
     }
-    public void XXXX () {
-    
-    }
     public              string keyFormat (string val, string type) {
         
         // Glib.markup_escape_text(val);
@@ -407,6 +404,9 @@ public class Xcls_LeftProps : Object
     }
     public void reload () {
     	this.load(this.file, this.node);
+    }
+    public void updateProp () {
+    
     }
     public              void addProp (JsRender.NodeProp prop) {
           // info includes key, val, skel, etype..

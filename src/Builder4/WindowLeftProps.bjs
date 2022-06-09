@@ -1220,12 +1220,6 @@
     "}",
     ""
    ],
-   "| void XXXX" : [
-    "() {",
-    "",
-    "}",
-    ""
-   ],
    "| void before_edit" : [
     "()",
     "{",
@@ -1248,6 +1242,12 @@
    "| void reload" : [
     "() {",
     "\tthis.load(this.file, this.node);",
+    "}",
+    ""
+   ],
+   "| void updateProp" : [
+    "() {",
+    "",
     "}",
     ""
    ]
