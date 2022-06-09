@@ -537,6 +537,9 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.visible = true;
+
+            //listeners
+            this.el.key_release_event.connect( );
         }
 
         // user defined functions
