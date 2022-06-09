@@ -589,7 +589,7 @@ public class Xcls_PopoverProperty : Object
         	if (err == "") {
         		this.el.hide();
         	} else {
-        		this.el show();
+        		this.el.show();
         		
         		this.el.label = "<span color=\"red\">" + err + "</span>";
         	}

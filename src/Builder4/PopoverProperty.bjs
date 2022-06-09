@@ -221,7 +221,7 @@
         "\tif (err == \"\") {",
         "\t\tthis.el.hide();",
         "\t} else {",
-        "\t\tthis.el show();",
+        "\t\tthis.el.show();",
         "\t\t",
         "\t\tthis.el.label = \"<span color=\\\"red\\\">\" + err + \"</span>\";",
         "\t}",
