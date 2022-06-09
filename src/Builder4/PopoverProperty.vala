@@ -97,7 +97,7 @@ public class Xcls_PopoverProperty : Object
     	 ) 
     {
     	
-        this.error.setError("");
+       
     	this.is_new = is_new; 
     	var pref = is_new ? "Add " : "Modify ";
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
@@ -141,38 +141,10 @@ public class Xcls_PopoverProperty : Object
     	if (this.is_new) {
     		this.buttonbar.el.show();
     	}
-    
+    	 this.error.setError("");
     
     	//this.success = c.success;
      
-    }
-    public   void updateNodeFromValues () {
-    
-         /*   _this.file.title = _this.title.el.get_text();
-            _this.file.region = _this.region.el.get_text();            
-            _this.file.parent = _this.parent.el.get_text();                        
-            _this.file.permname = _this.permname.el.get_text();                                    
-            _this.file.modOrder = _this.modOrder.el.get_text();
-            
-            if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {
-                _this.file.renameTo(_this.name.el.get_text());
-            }
-            // store the module...
-            _this.file.build_module = "";        
-             Gtk.TreeIter iter; 
-            if (_this.build_module.el.get_active_iter (out iter)) {
-                 Value vfname;
-                 this.dbmodel.el.get_value (iter, 0, out vfname);
-                 if (((string)vfname).length > 0) {
-                     _this.file.build_module = (string)vfname;
-                 }
-        
-            }
-            */
-            
-            
-    
-                                                        
     }
     public void updateProp () {
     	var newtext = "";
