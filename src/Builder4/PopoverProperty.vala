@@ -569,6 +569,9 @@ public class Xcls_PopoverProperty : Object
         }
 
         // user defined functions
+        public void XXXX () {
+        
+        }
     }
 
     public class Xcls_buttonbar : Object

@@ -191,7 +191,13 @@
        "label" : "<span color=\"red\">Error Message</span>",
        "tooltip_text" : "center, north, south, east, west",
        "x_options" : 4,
-       "xtype" : "Label"
+       "xtype" : "Label",
+       "| void XXXX" : [
+        "() {",
+        "",
+        "}",
+        ""
+       ]
       },
       {
        "$ xns" : "Gtk",
