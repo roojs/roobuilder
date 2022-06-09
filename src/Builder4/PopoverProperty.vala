@@ -592,7 +592,7 @@ public class Xcls_PopoverProperty : Object
             this.el.image = child_0.el;
 
             //listeners
-            this.el.activate.connect( () => { 
+            this.el.pressed.connect( () => { 
             
             	_this.prop = null;
             	_this.is_new = false;

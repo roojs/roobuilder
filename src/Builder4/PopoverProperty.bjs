@@ -201,7 +201,7 @@
           }
          ],
          "listeners" : {
-          "activate" : [
+          "pressed" : [
            "() => { ",
            "",
            "\t_this.prop = null;",
