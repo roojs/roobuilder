@@ -13,6 +13,7 @@ public class Editor : Object
         return _Editor;
     }
     public Xcls_save_button save_button;
+    public Xcls_close_btn close_btn;
     public Xcls_RightEditor RightEditor;
     public Xcls_view view;
     public Xcls_buffer buffer;
@@ -106,11 +107,11 @@ public class Editor : Object
     
             // find the text for the node..
             this.view.load( prop.val );
-           
+            this.close_btn.el.show();       
         
         } else {
             this.view.load(        file.toSource() );
-         
+            this.close_btn.el.hide();
         }
      
     }
@@ -205,7 +206,7 @@ public class Editor : Object
             var child_2 = new Xcls_HScale6( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
-            var child_3 = new Xcls_Button7( _this );
+            var child_3 = new Xcls_close_btn( _this );
             child_3.ref();
             this.el.add (  child_3.el  );
         }
@@ -335,7 +336,7 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_Button7 : Object
+    public class Xcls_close_btn : Object
     {
         public Gtk.Button el;
         private Editor  _this;
@@ -344,9 +345,10 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button7(Editor _owner )
+        public Xcls_close_btn(Editor _owner )
         {
             _this = _owner;
+            _this.close_btn = this;
             this.el = new Gtk.Button();
 
             // my vars (dec)
