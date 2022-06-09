@@ -233,7 +233,6 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.justify = Gtk.Justification.LEFT;
-            this.el.xalign = 0.900000f;
         }
 
         // user defined functions
