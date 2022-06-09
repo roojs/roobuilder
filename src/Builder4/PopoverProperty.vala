@@ -103,8 +103,8 @@ public class Xcls_PopoverProperty : Object
     		var  r = Gdk.Rectangle() {
     			x = x,
     			y = y,
-    			width = 0,
-    			height = 0
+    			width = (int)0,
+    			height = (int)0
     		};
     		this.el.set_pointing_to( r);
     		}
