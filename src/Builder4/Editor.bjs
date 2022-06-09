@@ -63,7 +63,7 @@
        "bool has_origin" : true,
        "bool sensitive" : true,
        "int digits" : 0,
-       "int width_request" : 100,
+       "int width_request" : 200,
        "listeners" : {
         "change_value" : [
          "(st, val ) => {",

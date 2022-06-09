@@ -283,7 +283,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.width_request = 100;
+            this.el.width_request = 200;
             this.el.has_origin = true;
             this.el.draw_value = true;
             this.el.digits = 0;
