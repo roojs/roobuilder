@@ -1436,7 +1436,7 @@ public class Xcls_LeftProps : Object
                  //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
                  if (ev.button == 1 && col.title == "Name") {    
                  
-                    this.editPropertyDetails(path,  ev.y); 
+                    this.editPropertyDetails(path, (int) ev.y); 
                      
                     return false;
                 }
