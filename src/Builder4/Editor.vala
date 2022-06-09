@@ -200,16 +200,16 @@ public class Editor : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_save_button( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false );
+            this.el.add (  child_0.el  );
             var child_1 = new Xcls_Label4( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , ?bool?,?bool?,?uint? );
+            this.el.add (  child_1.el  );
             var child_2 = new Xcls_HScale5( _this );
             child_2.ref();
-            this.el.pack_end (  child_2.el , true,true );
+            this.el.add (  child_2.el  );
             var child_3 = new Xcls_save_button( _this );
             child_3.ref();
-            this.el.pack_start (  child_3.el , false,false );
+            this.el.add (  child_3.el  );
         }
 
         // user defined functions
@@ -282,6 +282,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.width_request = 100;
             this.el.has_origin = true;
             this.el.draw_value = true;
             this.el.digits = 0;

@@ -29,7 +29,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,false",
+       "* pack" : "add",
        "id" : "save_button",
        "label" : "Save",
        "listeners" : {
@@ -44,7 +44,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,?bool?,?bool?,?uint?",
+       "* pack" : "add",
        "xtype" : "Label"
       },
       {
@@ -57,11 +57,12 @@
         "}",
         ""
        ],
-       "* pack" : "pack_end,true,true",
+       "* pack" : "add",
        "bool draw_value" : true,
        "bool has_origin" : true,
        "bool sensitive" : true,
        "int digits" : 0,
+       "int width_request" : 100,
        "listeners" : {
         "change_value" : [
          "(st, val ) => {",
@@ -78,7 +79,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,false",
+       "* pack" : "add",
        "id" : "save_button",
        "label" : "Save",
        "listeners" : {
