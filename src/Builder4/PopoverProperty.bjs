@@ -313,6 +313,8 @@
     "\tbool is_new = false",
     "\t ) ",
     "{",
+    "\t",
+    "\tthis.pointing_to = btn;",
     "\tthis.is_new = is_new; ",
     "\tvar pref = is_new ? \"Add \" : \"Modify \";",
     "\tif (prop.ptype == JsRender.NodePropType.LISTENER) {",

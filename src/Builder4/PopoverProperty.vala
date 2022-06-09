@@ -90,6 +90,8 @@ public class Xcls_PopoverProperty : Object
     	bool is_new = false
     	 ) 
     {
+    	
+    	this.pointing_to = btn;
     	this.is_new = is_new; 
     	var pref = is_new ? "Add " : "Modify ";
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
