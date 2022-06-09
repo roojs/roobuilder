@@ -63,6 +63,9 @@ public class Xcls_PopoverProperty : Object
         		// hide and dont update.
         		return;
         	}
+        	if (this.kname.el.get_text().strip().length < 1) {
+        		return;
+        	}
         
         	var newtext = "";
         	Gtk.TreeIter citer;
