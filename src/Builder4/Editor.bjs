@@ -86,6 +86,7 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "image",
+         "string icon_name" : "window-close",
          "xtype" : "Image"
         }
        ],

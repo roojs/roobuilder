@@ -357,6 +357,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.icon_name = "window-close";
         }
 
         // user defined functions
