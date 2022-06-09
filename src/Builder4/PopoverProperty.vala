@@ -55,9 +55,7 @@ public class Xcls_PopoverProperty : Object
          
         	if (_this.is_new) {
         		// dont allow hiding if we are creating a new one.
-        		this.el.set_modal(true);
-        		this.el.set_relative_to(this.pointing_to);
-        		this.el.show_all();
+        		// on.hide will reshow it.
         		return;
         
         	}
