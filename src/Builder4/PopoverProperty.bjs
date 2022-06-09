@@ -293,7 +293,7 @@
            "\t// since we can't add listeners?!?!?",
            "\t// only check props.",
            "\t// check if property already exists in node.\t",
-           "\tif (this.node.props.has_key(prop.to_index_key())) {",
+           "\tif (_this.node.props.has_key(prop.to_index_key())) {",
            "\t\t_this.error.setError(\"Property already exists\");",
            "\t\treturn;\t",
            "\t}",
