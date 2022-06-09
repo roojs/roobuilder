@@ -154,22 +154,22 @@ public class Xcls_PopoverProperty : Object
             this.el.pack_start (  child_0.el , false,true,0 );
             var child_1 = new Xcls_Label4( _this );
             child_1.ref();
-            this.el.attach_defaults (  child_1.el , 0,1,0,1 );
+            this.el.add (  child_1.el  );
             var child_2 = new Xcls_kflag( _this );
             child_2.ref();
-            this.el.attach_defaults (  child_2.el , 1,2,0,1 );
+            this.el.add (  child_2.el  );
             var child_3 = new Xcls_Label8( _this );
             child_3.ref();
-            this.el.attach_defaults (  child_3.el , 0,1,1,2 );
+            this.el.add (  child_3.el  );
             var child_4 = new Xcls_ktype( _this );
             child_4.ref();
-            this.el.attach_defaults (  child_4.el , 1,2,1,2 );
+            this.el.add (  child_4.el  );
             var child_5 = new Xcls_Label10( _this );
             child_5.ref();
-            this.el.attach_defaults (  child_5.el , 0,1,2,3 );
+            this.el.add (  child_5.el  );
             var child_6 = new Xcls_kname( _this );
             child_6.ref();
-            this.el.attach_defaults (  child_6.el , 1,2,2,3 );
+            this.el.add (  child_6.el  );
         }
 
         // user defined functions
@@ -249,7 +249,7 @@ public class Xcls_PopoverProperty : Object
 
             // init method
 
-            this.el.add_attribute(_this.dbcellrenderer.el , "markup", 1 );
+            this.el.add_attribute(_this.dbcellrenderer.el , "markup", 1 );ADDADDA
         }
 
         // user defined functions

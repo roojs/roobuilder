@@ -28,7 +28,7 @@
       {
        "$ justify" : "Gtk.Justification.RIGHT",
        "$ xns" : "Gtk",
-       "* pack" : "attach_defaults,0,1,0,1",
+       "* pack" : "add",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "label" : "Special Flags",
        "x_options" : 4,
@@ -37,8 +37,8 @@
       },
       {
        "$ xns" : "Gtk",
-       "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
-       "* pack" : "attach_defaults,1,2,0,1",
+       "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );ADDADDA",
+       "* pack" : "add",
        "id" : "kflag",
        "items" : [
         {
@@ -140,7 +140,7 @@
        "$ justify" : "Gtk.Justification.RIGHT",
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "attach_defaults,0,1,1,2",
+       "* pack" : "add",
        "label" : "Type or Return Type",
        "x_options" : 4,
        "xalign" : 0.90000000000000002,
@@ -149,7 +149,7 @@
       {
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "attach_defaults,1,2,1,2",
+       "* pack" : "add",
        "id" : "ktype",
        "xtype" : "Entry"
       },
@@ -157,7 +157,7 @@
        "$ justify" : "Gtk.Justification.RIGHT",
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "attach_defaults,0,1,2,3",
+       "* pack" : "add",
        "label" : "Name",
        "tooltip_text" : "center, north, south, east, west",
        "x_options" : 4,
@@ -167,7 +167,7 @@
       {
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "attach_defaults,1,2,2,3",
+       "* pack" : "add",
        "id" : "kname",
        "xtype" : "Entry"
       }
