@@ -201,12 +201,15 @@ public class Editor : Object
             var child_0 = new Xcls_save_button( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false );
-            var child_1 = new Xcls_HScale4( _this );
+            var child_1 = new Xcls_Label4( _this );
             child_1.ref();
-            this.el.pack_end (  child_1.el , true,true );
-            var child_2 = new Xcls_save_button( _this );
+            this.el.pack_start (  child_1.el , ?bool?,?bool?,?uint? );
+            var child_2 = new Xcls_HScale5( _this );
             child_2.ref();
-            this.el.pack_start (  child_2.el , false,false );
+            this.el.pack_end (  child_2.el , true,true );
+            var child_3 = new Xcls_save_button( _this );
+            child_3.ref();
+            this.el.pack_start (  child_3.el , false,false );
         }
 
         // user defined functions
@@ -240,7 +243,29 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_HScale4 : Object
+    public class Xcls_Label4 : Object
+    {
+        public Gtk.Label el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label4(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_HScale5 : Object
     {
         public Gtk.HScale el;
         private Editor  _this;
@@ -249,7 +274,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HScale4(Editor _owner )
+        public Xcls_HScale5(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.HScale.with_range (6, 30, 1);
