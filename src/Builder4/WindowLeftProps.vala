@@ -456,7 +456,7 @@ public class Xcls_LeftProps : Object
             this.model.el.get_value(iter, 0 , out gval);
             
             var iprop = (JsRender.NodeProp)gval;
-            if (iprop.to_index_key() != prop.to_index_key())) {
+            if (iprop.to_index_key() != prop.to_index_key()) {
             	return false; // continue?
             }
             
