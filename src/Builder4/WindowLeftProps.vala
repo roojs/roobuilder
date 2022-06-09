@@ -343,6 +343,8 @@ public class Xcls_LeftProps : Object
     }
     public              void deleteSelected () {
         
+            this.stop_editor();
+            
             Gtk.TreeIter iter;
             Gtk.TreeModel mod;
             
@@ -352,18 +354,15 @@ public class Xcls_LeftProps : Object
                   
             GLib.Value gval;
             mod.get_value(iter, 0 , out gval);
-            var type = (string)gval;
+            var prop = (JsRender.NodeProp)gval;
             
-            mod.get_value(iter, 1 , out gval);
-            var key = (string)gval;
-            
-            switch(type) {
-                case "listener":
-                    this.node.listeners.unset(key);
+            switch(prop.ptype) {
+                case JsRender.NodePropType.LISTENER:
+                    this.node.listeners.unset(prop.to_index_key());
                     break;
                     
-                case "props":
-                    this.node.props.unset(key);
+                default:
+                    this.node.props.unset(prop.to_index_key());
                     break;
             }
             this.load(this.file, this.node);
@@ -600,8 +599,10 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                 
-                 _this.main_window.windowstate.showProps(this.view.el, 
-                 		JsRender.NodePropType.PROP);
+                 _this.main_window.windowstate.showProps(
+                 	_this.view.el, 
+             		JsRender.NodePropType.PROP
+            	);
               
             });
         }
@@ -661,8 +662,10 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
                 
              
-               _this.main_window.windowstate.showProps(this.view.el, 
-               JsRender.NodePropType.LISTENER);
+               _this.main_window.windowstate.showProps(
+               		_this.view.el, 
+               		JsRender.NodePropType.LISTENER
+            	);
             
              
             });
@@ -1078,6 +1081,8 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) =>{
+              
+              	
                _this.view.popover.show(
             		_this.view.el, 
             		_this.node, 

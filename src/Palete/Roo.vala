@@ -51,6 +51,8 @@ namespace Palete {
 				if (prop.propertyof.length < 1)  {
 					prop.propertyof = cls.name;
 				}
+				
+				// this is the function default.
 				prop.sig = o.has_member("sig") ? o.get_string_member("sig") : "";
 				
 				if (o.has_member("optvals")  ) {

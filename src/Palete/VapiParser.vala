@@ -328,6 +328,8 @@ namespace Palete {
 #endif			
 			 
 			
+			var retval = "";
+			
 			if (dt != null) {
 				//print("creating return type on signal %s\n", sig.name);
 				var cc = new GirObject("Return", "return-value");
@@ -335,11 +337,16 @@ namespace Palete {
 				cc.ns = c.ns;
 				cc.type  =  dt.get_full_name();
 				c.return_value = cc;
+				
+				 retval = "\treturn " + cc.type +";";
 			}
 			parent.signals.set(sig.name,c);
 			
 			var params =  sig.get_parameters() ;
 			if (params.size < 1) {
+			
+				c.sig = "( ) => {\n\n"+ retval + "\n}\n";
+			
 				return;
 			}
 			var cc = new GirObject("Paramset",sig.name); // what's the name on this?
@@ -347,10 +354,16 @@ namespace Palete {
 			cc.ns = c.ns;
 			c.paramset = cc;
 			
-			
+			var args = "";			
 			foreach(var p in params) {
 				this.add_param(cc, p);
+				args += args.length > 0 ? ", " : "";
+				args += p.name;
 			}
+			// add c.sig -> this is the empty 
+			c.sig = "(" + args + ") => {\n\n"+ retval + "\n}\n";
+			
+			
 			
 		}	
 		

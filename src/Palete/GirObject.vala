@@ -40,7 +40,7 @@ namespace Palete {
 		public  string value;
 		// to be filled in...
 	 
-		public  string sig;
+		public  string sig; // signture (used to create event handlers)
 
 		public bool is_overlaid;
 
@@ -440,7 +440,7 @@ namespace Palete {
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
 				// when we add properties, they are actually listeners attached to signals
-				return new JsRender.NodeProp.listener(this.name, this.type); 
+				return new JsRender.NodeProp.listener(this.name, this.sig); 
 			}
 			var def = "";
 			if (this.type == "bool") {

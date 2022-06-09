@@ -355,7 +355,7 @@ public class JsRender.NodeProp : Object {
 	}
 	public NodeProp.jsmethod(string name,  string val = "function() {\n\n}")
 	{
-		this(name, NodePropType.METHOD, "void", val);
+		this(name, NodePropType.METHOD, "", val);
 	}
 	
 	// vala (and js) specials.. props etc.. - they only have name/value (not type) - type is in xns/xtype
