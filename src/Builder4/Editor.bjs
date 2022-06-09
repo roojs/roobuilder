@@ -30,12 +30,13 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "add",
+       "bool always_show_image" : true,
        "id" : "save_button",
        "items" : [
         {
          "$ xns" : "Gtk",
          "* prop" : "image",
-         "string icon_name" : "file-save",
+         "string icon_name" : "document-save",
          "xtype" : "Image"
         }
        ],

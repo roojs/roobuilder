@@ -231,6 +231,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.always_show_image = true;
             this.el.label = "Save";
             var child_0 = new Xcls_Image4( _this );
             child_0.ref();
@@ -261,7 +262,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "file-save";
+            this.el.icon_name = "document-save";
         }
 
         // user defined functions
