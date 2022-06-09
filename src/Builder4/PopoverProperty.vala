@@ -53,32 +53,32 @@ public class Xcls_PopoverProperty : Object
         //listeners
         this.el.closed.connect( () => {
          
-          if (_this.is_new) {
-          	 this.el.set_modal(true);
-        	this.el.set_relative_to(this.pointing_to);
-          	 this.el.show_all();
-          	 return;
-          	
-          }
-          if (_this.prop == null) {
-          	return;
-          	}
-          
-          var newtext = "";
-          Gtk.TreeIter citer;
-          GLib.Value gval;
-          this.kflag.el.get_active_iter(out citer);
-          this.dbmodel.el.get_value(citer, 0, out  gval);
-          
-          
-          _this.prop.name = this.kname.el.get_text().strip(); 
-          _this.prop.rtype = this.ktype.el.get_text().strip(); 
-           _this.prop.ptype =  (JsRender.NodePropType) gval;
-          
-          
+        	if (_this.is_new) {
+        		this.el.set_modal(true);
+        		this.el.set_relative_to(this.pointing_to);
+        		this.el.show_all();
+        		return;
+        
+        	}
+        	if (_this.prop == null) {
+        		return;
+        	}
+        
+        	var newtext = "";
+        	Gtk.TreeIter citer;
+        	GLib.Value gval;
+        	this.kflag.el.get_active_iter(out citer);
+        	this.dbmodel.el.get_value(citer, 0, out  gval);
+        
+        
+        	_this.prop.name = this.kname.el.get_text().strip(); 
+        	_this.prop.rtype = this.ktype.el.get_text().strip(); 
+        	_this.prop.ptype =  (JsRender.NodePropType) gval;
+        
+        
         	_this.mainwindow.windowstate.left_props.reload();
-           
-           
+        
+        
           
         });
     }
