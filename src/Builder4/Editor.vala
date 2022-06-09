@@ -139,7 +139,7 @@ public class Editor : Object
         if (_this.file.xtype != "PlainFile") {
            // in theory these properties have to exist!?!
         	this.prop.val = str;
-            this.window.windowstate.left_props.updateProp(this.prop);
+            this.window.windowstate.left_props.reload();
         } else {
             _this.file.setSource(  str );
          }
