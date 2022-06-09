@@ -178,6 +178,17 @@
        "* pack" : "add",
        "id" : "kname",
        "listeners" : {
+        "focus_out_event" : [
+         "()=>{",
+         "",
+         "\tvar val = this.el.get_text().strip(); ",
+         "\tif (val.length < 1) {",
+         "\t\tthis.error.setError(\"Name can not be empty\");",
+         "\t}",
+         "}",
+         "",
+         ""
+        ],
         "key_release_event" : [
          "()=>{",
          "",
