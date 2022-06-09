@@ -156,6 +156,7 @@
        "$ visible" : true,
        "$ xns" : "Gtk",
        "* pack" : "add",
+       "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "label" : "Name",
        "tooltip_text" : "center, north, south, east, west",
