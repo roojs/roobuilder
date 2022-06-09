@@ -1418,6 +1418,8 @@ public class Xcls_LeftProps : Object
                 int cell_x;
                 int cell_y;
                 Gtk.TreePath path;
+                
+                // event x /y are relative to the widget..
                 if (!this.el.get_path_at_pos((int)ev.x, (int) ev.y, out path, out col, out cell_x, out cell_y )) {
                     GLib.debug("nothing selected on click");
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
