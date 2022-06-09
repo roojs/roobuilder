@@ -153,10 +153,10 @@
        "xtype" : "Entry"
       },
       {
-       "$ justify" : "Gtk.Justification.RIGHT",
        "$ visible" : true,
        "$ xns" : "Gtk",
        "* pack" : "add",
+       "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "label" : "Name",
        "tooltip_text" : "center, north, south, east, west",
        "x_options" : 4,
