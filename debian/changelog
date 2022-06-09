@@ -1,3 +1,13 @@
+roobuilder (4.3.0) UNRELEASED; urgency=medium
+
+  * Refactored the Property storage
+  * Adding Custom Properties now flows -> fill in details, then value (rather than using XX placeholders)
+  * Fixed issues with values not getting updated in property list after editing them.
+  * Removed property name from above editor, and added close editor to new layout
+  * Move property editor back into main UI - as popovers where to problematic for it
+
+ -- Alan <alan@roojs.com>  Thu, 09 Jun 2022 17:59:58 +0800
+
 roobuilder (4.2.0) unstable; urgency=medium
 
   * Remove Clutter dependancy and interface
@@ -7,14 +17,14 @@ roobuilder (4.2.0) unstable; urgency=medium
   * Popover for adding properties, events and children
   * Cleaner User interface - icons and text for most things now.
 
- -- Alan <alan@office.roojs.com>  Wed, 25 May 2022 14:41:34 +0800
+ -- Alan <alan@roojs.com>  Wed, 25 May 2022 14:41:34 +0800
 
 roobuilder (4.1.0) unstable; urgency=medium
 
   * upgrade json file format - better support for diffable files - other features like better child object detection from code docs 
   * support for vala 0.56+ due to copying code from valac (as codegen and ccode are not exported) 
 
- -- Alan <alan@office.roojs.com>  Tue, 03 May 2022 17:40:50 +0800
+ -- Alan <alan@roojs.com>  Tue, 03 May 2022 17:40:50 +0800
 
 roobuilder (4.0.0) unstable; urgency=medium
 
