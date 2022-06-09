@@ -585,7 +585,7 @@ public class Xcls_PopoverProperty : Object
         }
 
         // user defined functions
-        public void setError (string err) =>  {
+        public void setError (string err)   {
         	if (err == "") {
         		this.el.hide();
         	} else {
