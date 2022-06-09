@@ -54,7 +54,9 @@ public class Xcls_PopoverProperty : Object
         this.el.closed.connect( () => {
          
           if (_this.is_new) {
-          	 this.el.show();
+          	 this.el.set_modal(true);
+        	this.el.set_relative_to(this.pointing_to);
+          	 this.el.show_all();
           	 return;
           	
           }
