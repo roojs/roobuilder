@@ -215,7 +215,7 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.justify = Gtk.Justification.LEFT;
             this.el.xalign = 0.900000f;
         }
 
@@ -393,7 +393,7 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.justify = Gtk.Justification.LEFT;
             this.el.xalign = 0.900000f;
             this.el.visible = true;
         }

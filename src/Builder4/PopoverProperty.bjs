@@ -26,7 +26,6 @@
        "xtype" : "HeaderBar"
       },
       {
-       "$ justify" : "Gtk.Justification.RIGHT",
        "$ xns" : "Gtk",
        "* pack" : "add",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
@@ -137,10 +136,10 @@
        "xtype" : "ComboBox"
       },
       {
-       "$ justify" : "Gtk.Justification.RIGHT",
        "$ visible" : true,
        "$ xns" : "Gtk",
        "* pack" : "add",
+       "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "label" : "Type or Return Type",
        "x_options" : 4,
        "xalign" : 0.90000000000000002,
