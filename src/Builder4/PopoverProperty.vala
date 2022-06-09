@@ -101,10 +101,10 @@ public class Xcls_PopoverProperty : Object
     		this.el.set_relative_to(btn);
     	} else {
     		var  r = Gdk.Rectangle() {
-    			x = x,
-    			y = y,
-    			width = (int)0,
-    			height = (int)0
+    			x = (int)x,
+    			y = (int)y,
+    			width = 0,
+    			height = 0
     		};
     		this.el.set_pointing_to( r);
     		}
