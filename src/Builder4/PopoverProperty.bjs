@@ -288,7 +288,10 @@
            "\t",
            "\t// check if property already exists in node.",
            "\t",
-           "",
+           "\t// add it, ",
+           "\t// hide self",
+           "\t// trigger editing of property.",
+           "\t",
            "",
            "}"
           ]

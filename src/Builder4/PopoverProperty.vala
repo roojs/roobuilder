@@ -719,7 +719,10 @@ public class Xcls_PopoverProperty : Object
             	
             	// check if property already exists in node.
             	
-            
+            	// add it, 
+            	// hide self
+            	// trigger editing of property.
+            	
             
             });
         }
