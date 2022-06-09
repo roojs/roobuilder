@@ -1503,7 +1503,7 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
-        public void editPropertyDetails (Gtk.TreePath path) {
+        public void editPropertyDetails (Gtk.TreePath path, int x, int y) {
         
              if (this.popover == null) {
          		   this.popover = new Xcls_PopoverProperty();
@@ -1528,7 +1528,7 @@ public class Xcls_LeftProps : Object
         
              mod.get_value(iter,0, out gval);
         
-            this.popover.show(this.el, _this.node, (JsRender.NodeProp)gval);
+            this.popover.show(null, _this.node, (JsRender.NodeProp)gval, x , y);
                
             
         }
