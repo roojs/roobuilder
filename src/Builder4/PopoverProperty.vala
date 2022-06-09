@@ -86,7 +86,7 @@ public class Xcls_PopoverProperty : Object
         });
         this.el.hide.connect( () => {
          
-        	if (_this.is_new) {
+        	if (_this.is_new || this.kname.el.get_text().strip().length < 1) {
         		// dont allow hiding if we are creating a new one.
         		 
         		this.el.show_all();
