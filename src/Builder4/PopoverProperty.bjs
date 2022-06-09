@@ -187,7 +187,7 @@
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "id" : "error",
        "int margin_top" : 0,
-       "label" : "Error Message",
+       "label" : "<span color=\"red\">Error Message</span>",
        "tooltip_text" : "center, north, south, east, west",
        "x_options" : 4,
        "xtype" : "Label"

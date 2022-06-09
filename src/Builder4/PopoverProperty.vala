@@ -555,7 +555,7 @@ public class Xcls_PopoverProperty : Object
         {
             _this = _owner;
             _this.error = this;
-            this.el = new Gtk.Label( "Error Message" );
+            this.el = new Gtk.Label( "<span color=\"red\">Error Message</span>" );
 
             // my vars (dec)
 
