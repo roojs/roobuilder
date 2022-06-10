@@ -183,7 +183,7 @@ public class Xcls_LeftProps : Object
     }
     public void deleteSelected () {
         
-            this.stop_editor();
+    
             
             Gtk.TreeIter iter;
             Gtk.TreeModel mod;
@@ -199,6 +199,10 @@ public class Xcls_LeftProps : Object
     	        this.load(this.file, this.node);    
             	return;
         	}
+        	
+            this.stop_editor();
+            
+                	
             switch(prop.ptype) {
                 case JsRender.NodePropType.LISTENER:
                     this.node.listeners.unset(prop.to_index_key());
