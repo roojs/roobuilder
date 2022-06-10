@@ -49,7 +49,7 @@ public class GladeView : Object
             // set gobject values
             var child_0 = new Xcls_Button3( _this );
             child_0.ref();
-            this.el.dd (  child_0.el  );
+            this.el.add (  child_0.el  );
         }
 
         // user defined functions
