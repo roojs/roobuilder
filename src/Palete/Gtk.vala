@@ -194,6 +194,16 @@ namespace Palete {
 					if (propcls == null) {
 						continue;
 					}
+					
+					// any other weird stuff.
+					// Button.image -> can be a Gtk.Widget.. but really only makes sense as a Gtk.Image
+					if (prop.name == "image" && propcls.name == "Gtk.Widget") {
+						localopts_r.add( "Gtk.Image:image");
+						continue;
+					
+					}
+					
+					
 					// check if propcls is abstract?
 					if (!propcls.is_abstract) { 
 						localopts_r.add( prop.type + ":" + prop.name);
@@ -322,8 +332,24 @@ namespace Palete {
 			
 
 		}
+		
+		
+		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
+		{   
+			if (parent == null) { //top ?? nothign to do?
+				return;
+			}
+			if (child.has("* prop")) { // child has a property - no need for packing.
+				return;
+			}
+			// not really
+			this.fillPack(child, parent);
+			
+		}
+		
+		
          
-		public override void fillPack(JsRender.Node node,JsRender.Node parent)
+		public   void fillPack(JsRender.Node node,JsRender.Node parent)
 		{   
 			
 			string inherits =  string.joinv(" ", 
