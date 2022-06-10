@@ -4,25 +4,6 @@
   {
    "$ xns" : "Gtk",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "add",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* prop" : "label_widget",
-       "xtype" : "Label"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "add",
-       "xtype" : "Button"
-      }
-     ],
-     "xtype" : "Frame"
-    }
-   ],
    "xtype" : "Box"
   }
  ],
