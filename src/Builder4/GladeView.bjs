@@ -7,6 +7,13 @@
     {
      "$ xns" : "Gtk",
      "* pack" : "add",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "label_widget",
+       "xtype" : "Label"
+      }
+     ],
      "xtype" : "Frame"
     }
    ],

@@ -47,9 +47,34 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Label3( _this );
+            child_0.ref();
+            this.el.label_widget = child_0.el;
         }
 
         // user defined functions
     }
+    public class Xcls_Label3 : Object
+    {
+        public Gtk.Label el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label3(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 }
