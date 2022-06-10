@@ -199,7 +199,7 @@ public class Xcls_LeftProps : Object
     	        this.load(this.file, this.node);    
             	return;
         	}
-        	
+        	// stop editor after fetching property - otherwise prop is null.
             this.stop_editor();
             
                 	

@@ -1119,7 +1119,7 @@
     "\t        this.load(this.file, this.node);    ",
     "        \treturn;",
     "    \t}",
-    "    \t",
+    "    \t// stop editor after fetching property - otherwise prop is null.",
     "        this.stop_editor();",
     "        ",
     "            \t",
