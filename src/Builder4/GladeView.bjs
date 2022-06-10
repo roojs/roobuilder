@@ -8,6 +8,7 @@
     {
      "$ xns" : "Gtk",
      "* pack" : "add",
+     "bool hexpand" : true,
      "xtype" : "Scale"
     }
    ],
