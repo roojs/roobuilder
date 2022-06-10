@@ -4,6 +4,14 @@
   {
    "$ xns" : "Gtk",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "* pack" : "add",
+     "string label" : "test",
+     "xtype" : "Frame"
+    }
+   ],
    "xtype" : "Box"
   }
  ],
