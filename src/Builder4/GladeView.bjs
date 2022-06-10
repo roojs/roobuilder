@@ -8,6 +8,13 @@
     {
      "$ xns" : "Gtk",
      "* pack" : "pack_start,?bool?,?bool?,?uint?",
+     "items" : [
+      {
+       "$ xns" : "GLib",
+       "* prop" : "primary_icon_gicon",
+       "xtype" : "BytesIcon"
+      }
+     ],
      "xtype" : "SearchEntry"
     }
    ],
