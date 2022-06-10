@@ -4,25 +4,6 @@
   {
    "$ xns" : "Gtk",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "add",
-     "xtype" : "MenuButton"
-    },
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "pack_start,?bool?,?bool?,?uint?",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "composite_name",
-       "xtype" : "MenuToolButton"
-      }
-     ],
-     "xtype" : "MenuItem"
-    }
-   ],
    "xtype" : "Box"
   }
  ],
