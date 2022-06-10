@@ -120,10 +120,35 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Image6( _this );
+            child_0.ref();
+            this.el.composite_name (  child_0.el  );
         }
 
         // user defined functions
     }
+    public class Xcls_Image6 : Object
+    {
+        public Gtk.Image el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image6(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 
