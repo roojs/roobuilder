@@ -21,7 +21,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "composite_name",
-         "xtype" : "GLArea"
+         "xtype" : "HSV"
         }
        ],
        "xtype" : "Button"

@@ -96,26 +96,26 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_GLArea5( _this );
+            var child_0 = new Xcls_HSV5( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_GLArea5 : Object
+    public class Xcls_HSV5 : Object
     {
-        public Gtk.GLArea el;
+        public Gtk.HSV el;
         private GladeView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_GLArea5(GladeView _owner )
+        public Xcls_HSV5(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.GLArea();
+            this.el = new Gtk.HSV();
 
             // my vars (dec)
 
