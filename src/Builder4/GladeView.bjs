@@ -29,6 +29,11 @@
           }
          ],
          "xtype" : "IconView"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "composite_name",
+         "xtype" : "LinkButton"
         }
        ],
        "xtype" : "Button"

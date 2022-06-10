@@ -99,6 +99,9 @@ public class GladeView : Object
             var child_0 = new Xcls_IconView5( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
+            var child_1 = new Xcls_LinkButton7( _this );
+            child_1.ref();
+            this.el.composite_name (  child_1.el  );
         }
 
         // user defined functions
@@ -149,6 +152,28 @@ public class GladeView : Object
         // user defined functions
     }
 
+
+    public class Xcls_LinkButton7 : Object
+    {
+        public Gtk.LinkButton el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_LinkButton7(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.LinkButton( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
 
