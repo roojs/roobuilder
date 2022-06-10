@@ -98,7 +98,7 @@ namespace Palete {
 			var containers = new Gee.ArrayList<string>();
 
 
-			var menuwidgets = new Gee.ArrayList<string>();
+			var menuwidgets = new Gee.ArrayList<string>(); // fixme - need to add these seperatly
 			var toolbarwidgets = new Gee.ArrayList<string>();
 			
 
