@@ -2,7 +2,7 @@ static GladeView  _GladeView;
 
 public class GladeView : Object
 {
-    public Gtk.Calendar el;
+    public Gtk.Arrow el;
     private GladeView  _this;
 
     public static GladeView singleton()
@@ -19,7 +19,7 @@ public class GladeView : Object
     public GladeView()
     {
         _this = this;
-        this.el = new Gtk.Calendar();
+        this.el = new Gtk.Arrow( null, null );
 
         // my vars (dec)
 

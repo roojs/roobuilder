@@ -1,11 +1,6 @@
 {
  "build_module" : "",
- "items" : [
-  {
-   "$ xns" : "Gtk",
-   "xtype" : "Calendar"
-  }
- ],
+ "items" : [],
  "modOrder" : "",
  "name" : "GladeView",
  "parent" : "",
