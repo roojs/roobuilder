@@ -4,50 +4,6 @@
   {
    "$ xns" : "Gtk",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "add",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "composite_name",
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "composite_name",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "composite_name",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "composite_name",
-           "xtype" : "Image"
-          }
-         ],
-         "xtype" : "IconView"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "composite_name",
-         "xtype" : "LinkButton"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "composite_name",
-         "xtype" : "ListBox"
-        }
-       ],
-       "xtype" : "Button"
-      }
-     ],
-     "string label" : "test",
-     "xtype" : "Frame"
-    }
-   ],
    "xtype" : "Box"
   }
  ],
