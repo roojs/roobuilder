@@ -43,12 +43,9 @@ public class Xcls_GladeuiView : Object
         // set gobject values
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_0 = new Xcls_Button2( _this );
+        var child_0 = new Xcls_notebook( _this );
         child_0.ref();
-        this.el.pack_start (  child_0.el , ?bool?,?bool?,?uint? );
-        var child_1 = new Xcls_notebook( _this );
-        child_1.ref();
-        this.el.pack_start (  child_1.el , true,true,0 );
+        this.el.pack_start (  child_0.el , true,true,0 );
 
         //listeners
         this.el.size_allocate.connect( (aloc) => {
@@ -219,28 +216,6 @@ public class Xcls_GladeuiView : Object
     
        
     }
-    public class Xcls_Button2 : Object
-    {
-        public Gtk.Button el;
-        private Xcls_GladeuiView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button2(Xcls_GladeuiView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
     public class Xcls_notebook : Object
     {
         public Gtk.Notebook el;
