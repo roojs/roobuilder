@@ -3,7 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "xtype" : "AppChooserWidget"
+   "xtype" : "AccelLabel"
   }
  ],
  "modOrder" : "",
