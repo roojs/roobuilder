@@ -13,6 +13,13 @@
     {
      "$ xns" : "Gtk",
      "* pack" : "add",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "composite_name",
+       "xtype" : "ProgressBar"
+      }
+     ],
      "xtype" : "Paned"
     }
    ],
