@@ -97,6 +97,11 @@ namespace Palete {
 			var topleft = new Gee.ArrayList<string>();
 			var containers = new Gee.ArrayList<string>();
 
+
+			var menuwidgets = new Gee.ArrayList<string>();
+			var toolbarwidgets = new Gee.ArrayList<string>();
+			
+
 			topleft.add("*top");
 			
 			
@@ -234,7 +239,7 @@ namespace Palete {
 					}
 					
 					if (prop.name == "parent" || 
-						prop.name == "child" || 
+						(prop.name == "child" && cls.fqn() != "Gtk.Popover") ||   // allow child only on popover.
 						prop.name == "attached_to" || 
 						prop.name == "mnemonic_widget" ||
 						prop.name == "application" ||
@@ -252,10 +257,16 @@ namespace Palete {
 						) {
 						continue;
 					}
+					
+					
+					
 					var propcls = this.getClass(prop.type);
 					if (propcls == null) {
 						continue;
 					}
+					
+					
+					
 					
 					// any other weird stuff.
 					// Button.image -> can be a Gtk.Widget.. but really only makes sense as a Gtk.Image
@@ -270,10 +281,19 @@ namespace Palete {
 					if (!propcls.is_abstract) { 
 						localopts_r.add( prop.type + ":" + prop.name);
 					}
+
+					
+					
 					GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 					foreach(var impl in propcls.implementations) {
 						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 						// in theory these can not be abstract?
+						
+						var impcls = this.getClass(impl);
+						if (impcls.is_abstract) {
+							continue;
+						}
+						
 						localopts_r.add( impl + ":" + prop.name );
 					}
 					
@@ -295,8 +315,13 @@ namespace Palete {
 			  
 			  
 		  	this.map.add(new Usage( topleft, top));
+		  	
+		  	// this is a bit generic.
+		  	// generic contains can have any widgets,
+		  	
 		  	this.map.add(new Usage( containers, widgets));
 		
+			
 			
 			
 			///this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
