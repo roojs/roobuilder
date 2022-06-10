@@ -8,6 +8,13 @@
     {
      "$ xns" : "Gtk",
      "* pack" : "add",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "composite_name",
+       "xtype" : "Button"
+      }
+     ],
      "string label" : "test",
      "xtype" : "Frame"
     }
