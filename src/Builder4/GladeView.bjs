@@ -3,6 +3,13 @@
  "items" : [
   {
    "$ xns" : "Gtk",
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "* pack" : "add",
+     "xtype" : "Frame"
+    }
+   ],
    "xtype" : "Box"
   }
  ],
