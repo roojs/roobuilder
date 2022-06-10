@@ -24,7 +24,32 @@ public class GladeView : Object
         // my vars (dec)
 
         // set gobject values
+        var child_0 = new Xcls_SearchEntry2( _this );
+        child_0.ref();
+        this.el.pack_start (  child_0.el , ?bool?,?bool?,?uint? );
     }
 
     // user defined functions
+    public class Xcls_SearchEntry2 : Object
+    {
+        public Gtk.SearchEntry el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_SearchEntry2(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.SearchEntry();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 }
