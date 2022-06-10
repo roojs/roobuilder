@@ -3,43 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "composite_name",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "pack_start,?bool?,?bool?,?uint?",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "pack_start,?bool?,?bool?,?uint?",
-         "xtype" : "DrawingArea"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "pack_start,?bool?,?bool?,?uint?",
-         "xtype" : "Entry"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "pack_start,?bool?,?bool?,?uint?",
-         "xtype" : "Expander"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "pack_start,?bool?,?bool?,?uint?",
-         "xtype" : "FontChooserWidget"
-        }
-       ],
-       "xtype" : "ColorSelection"
-      }
-     ],
-     "xtype" : "ColorChooserWidget"
-    }
-   ],
-   "xtype" : "CheckMenuItem"
+   "xtype" : "Box"
   }
  ],
  "modOrder" : "",
