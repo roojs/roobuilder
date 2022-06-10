@@ -111,6 +111,31 @@ namespace Palete {
 				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
 					continue;
 				}
+				
+				// other blacklisted classes - that can never haave any children or any sort.
+				switch (cls.fqn()) {
+					case "Gtk.ShortcutLabel":
+					case "Gtk.ShortcutsGroup":
+					case "Gtk.ShortcutsSection":
+					case "Gtk.ShortcutsShortcut":
+					case "Gtk.ShortcutsWindow":
+					case "Gtk.Socket":
+					case "Gtk.ToolItemGroup":
+					case "WebKit.WebViewBase":
+					case "Gtk.ButtonBox":
+					case "Gtk.CellView":
+					case "Gtk.EventBox":
+					case "Gtk.FlowBoxChild":
+					case "Gtk.Invisible":
+					case "Gtk.ListBoxRow":
+					case "Gtk.OffscreenWindow":
+					case "Gtk.Plug":
+						continue;
+					default:
+						break;
+				}
+				
+				
 				// we can still add properties of abstract classes...
 				
 				if (!cls.is_abstract) {
@@ -148,9 +173,37 @@ namespace Palete {
 						
 					}
 				}
-				if (cls.inherits.contains("Gtk.Container") || cls.implements.contains("Gtk.Container")) {
-					containers.add(cls.fqn());
-					GLib.debug("Add Container %s", cls.fqn());
+				// whitelist of elements that are generic containers.
+				
+				switch (cls.fqn()) {
+					case "Gtk.ActionBar":
+					case "Gtk.AspectFrame":
+					case "Gtk.Frame":
+					case "Gtk.Box":
+					case "Gtk.Button":
+					case "Gtk.CheckButton":
+					case "Gtk.Dialog":
+					case "Gtk.FlowBox":
+					case "Gtk.Frame":
+					case "Gtk.HeaderBar":
+					case "Gtk.InfoBar":
+					case "Gtk.ListBox":
+					case "Gtk.Overlay":
+					case "Gtk.Paned":
+					case "Gtk.PopoverMenu":
+					case "Gtk.Revealer":
+					case "Gtk.ScrolledWindow":
+					case "Gtk.Stack":
+					case "Gtk.Toolbar":
+					case "Gtk.ToolItem":
+					case "Gtk.ToolPalette":
+					case "Gtk.Viewport":
+					case "Gtk.Window":
+					case "Gtk.ApplicationWindow":
+						containers.add(cls.fqn());
+						break;
+					default:
+						break;
 				}
 				
 				if (cls.props.size < 1) {	
@@ -185,7 +238,16 @@ namespace Palete {
 						prop.name == "attached_to" || 
 						prop.name == "mnemonic_widget" ||
 						prop.name == "application" ||
-						prop.name == "transient_for"
+						prop.name == "transient_for" ||
+						prop.name == "screen" || // gtk windows.
+						prop.name == "accel_closure" ||
+						prop.name == "accel_widget" ||
+						prop.name == "label_widget" ||
+						prop.name == "align_widget" ||
+						prop.name == "icon_widget" ||
+						prop.name == "action_target" 
+						
+						
 						
 						) {
 						continue;
