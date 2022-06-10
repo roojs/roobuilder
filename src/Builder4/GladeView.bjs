@@ -3,7 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "xtype" : "AppChooserDialog"
+   "xtype" : "Calendar"
   }
  ],
  "modOrder" : "",
