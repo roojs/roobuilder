@@ -34,6 +34,11 @@
          "$ xns" : "Gtk",
          "* pack" : "composite_name",
          "xtype" : "LinkButton"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "composite_name",
+         "xtype" : "ListBox"
         }
        ],
        "xtype" : "Button"
