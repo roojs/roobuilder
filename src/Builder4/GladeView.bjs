@@ -26,6 +26,11 @@
          "$ xns" : "Gtk",
          "* pack" : "pack_start,?bool?,?bool?,?uint?",
          "xtype" : "Expander"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "pack_start,?bool?,?bool?,?uint?",
+         "xtype" : "FontChooserWidget"
         }
        ],
        "xtype" : "ColorSelection"

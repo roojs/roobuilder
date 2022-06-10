@@ -80,6 +80,9 @@ public class GladeView : Object
             var child_2 = new Xcls_Expander6( _this );
             child_2.ref();
             this.el.pack_start (  child_2.el , ?bool?,?bool?,?uint? );
+            var child_3 = new Xcls_FontChooserWidget7( _this );
+            child_3.ref();
+            this.el.pack_start (  child_3.el , ?bool?,?bool?,?uint? );
         }
 
         // user defined functions
@@ -141,6 +144,28 @@ public class GladeView : Object
         {
             _this = _owner;
             this.el = new Gtk.Expander( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_FontChooserWidget7 : Object
+    {
+        public Gtk.FontChooserWidget el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_FontChooserWidget7(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.FontChooserWidget();
 
             // my vars (dec)
 
