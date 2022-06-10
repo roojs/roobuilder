@@ -9,6 +9,11 @@
      "$ xns" : "Gtk",
      "* pack" : "add",
      "xtype" : "MenuButton"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* pack" : "pack_start,?bool?,?bool?,?uint?",
+     "xtype" : "MenuItem"
     }
    ],
    "xtype" : "Box"
