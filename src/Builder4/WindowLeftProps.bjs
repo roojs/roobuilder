@@ -1116,6 +1116,7 @@
     "        mod.get_value(iter, 0 , out gval);",
     "        var prop = (JsRender.NodeProp)gval;",
     "        if (prop == null) {",
+    "\t        this.load(this.file, this.node);    ",
     "        \treturn;",
     "    \t}",
     "        switch(prop.ptype) {",

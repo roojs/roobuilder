@@ -196,6 +196,7 @@ public class Xcls_LeftProps : Object
             mod.get_value(iter, 0 , out gval);
             var prop = (JsRender.NodeProp)gval;
             if (prop == null) {
+    	        this.load(this.file, this.node);    
             	return;
         	}
             switch(prop.ptype) {
