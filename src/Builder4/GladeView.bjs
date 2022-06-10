@@ -21,6 +21,11 @@
          "$ xns" : "Gtk",
          "* pack" : "pack_start,?bool?,?bool?,?uint?",
          "xtype" : "Entry"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "pack_start,?bool?,?bool?,?uint?",
+         "xtype" : "Expander"
         }
        ],
        "xtype" : "ColorSelection"

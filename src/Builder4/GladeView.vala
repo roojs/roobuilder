@@ -77,6 +77,9 @@ public class GladeView : Object
             var child_1 = new Xcls_Entry5( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , ?bool?,?bool?,?uint? );
+            var child_2 = new Xcls_Expander6( _this );
+            child_2.ref();
+            this.el.pack_start (  child_2.el , ?bool?,?bool?,?uint? );
         }
 
         // user defined functions
@@ -116,6 +119,28 @@ public class GladeView : Object
         {
             _this = _owner;
             this.el = new Gtk.Entry();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Expander6 : Object
+    {
+        public Gtk.Expander el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Expander6(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Expander( null );
 
             // my vars (dec)
 
