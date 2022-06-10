@@ -4,13 +4,6 @@
   {
    "$ xns" : "Gtk",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "pack_start,?bool?,?bool?,?uint?",
-     "xtype" : "SearchBar"
-    }
-   ],
    "xtype" : "Box"
   }
  ],
