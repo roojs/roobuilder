@@ -13,6 +13,11 @@
        "$ xns" : "Gtk",
        "* prop" : "label_widget",
        "xtype" : "Label"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "add",
+       "xtype" : "Button"
       }
      ],
      "xtype" : "Frame"
