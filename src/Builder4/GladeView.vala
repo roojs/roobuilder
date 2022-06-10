@@ -27,9 +27,6 @@ public class GladeView : Object
         var child_0 = new Xcls_ProgressBar2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
-        var child_1 = new Xcls_Paned3( _this );
-        child_1.ref();
-        this.el.add (  child_1.el  );
     }
 
     // user defined functions
@@ -46,28 +43,6 @@ public class GladeView : Object
         {
             _this = _owner;
             this.el = new Gtk.ProgressBar();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_Paned3 : Object
-    {
-        public Gtk.Paned el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Paned3(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Paned( null );
 
             // my vars (dec)
 

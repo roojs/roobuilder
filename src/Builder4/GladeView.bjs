@@ -9,11 +9,6 @@
      "$ xns" : "Gtk",
      "* pack" : "add",
      "xtype" : "ProgressBar"
-    },
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "add",
-     "xtype" : "Paned"
     }
    ],
    "xtype" : "Box"
