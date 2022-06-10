@@ -11,6 +11,13 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start,?bool?,?bool?,?uint?",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "pack_start,?bool?,?bool?,?uint?",
+         "xtype" : "DrawingArea"
+        }
+       ],
        "xtype" : "ColorSelection"
       }
      ],
