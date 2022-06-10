@@ -13,6 +13,11 @@
        "$ xns" : "Gtk",
        "* pack" : "composite_name",
        "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "composite_name",
+       "xtype" : "Button"
       }
      ],
      "string label" : "test",
