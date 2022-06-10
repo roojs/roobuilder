@@ -12,7 +12,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "add",
-       "xtype" : "Button"
+       "xtype" : "ToolButton"
       }
      ],
      "xtype" : "Toolbar"

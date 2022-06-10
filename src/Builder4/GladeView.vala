@@ -47,26 +47,26 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button3( _this );
+            var child_0 = new Xcls_ToolButton3( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Button3 : Object
+    public class Xcls_ToolButton3 : Object
     {
-        public Gtk.Button el;
+        public Gtk.ToolButton el;
         private GladeView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Button3(GladeView _owner )
+        public Xcls_ToolButton3(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.ToolButton( null, null );
 
             // my vars (dec)
 
