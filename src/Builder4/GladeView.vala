@@ -24,28 +24,28 @@ public class GladeView : Object
         // my vars (dec)
 
         // set gobject values
-        var child_0 = new Xcls_Button2( _this );
+        var child_0 = new Xcls_ProgressBar2( _this );
         child_0.ref();
-        this.el.pack_start (  child_0.el , ?bool?,?bool?,?uint? );
+        this.el.add (  child_0.el  );
         var child_1 = new Xcls_Paned3( _this );
         child_1.ref();
         this.el.add (  child_1.el  );
     }
 
     // user defined functions
-    public class Xcls_Button2 : Object
+    public class Xcls_ProgressBar2 : Object
     {
-        public Gtk.Button el;
+        public Gtk.ProgressBar el;
         private GladeView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Button2(GladeView _owner )
+        public Xcls_ProgressBar2(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.ProgressBar();
 
             // my vars (dec)
 
@@ -72,34 +72,9 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ProgressBar4( _this );
-            child_0.ref();
-            this.el.composite_name (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_ProgressBar4 : Object
-    {
-        public Gtk.ProgressBar el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ProgressBar4(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ProgressBar();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
 
 }

@@ -7,19 +7,12 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "* pack" : "pack_start,?bool?,?bool?,?uint?",
-     "xtype" : "Button"
+     "* pack" : "add",
+     "xtype" : "ProgressBar"
     },
     {
      "$ xns" : "Gtk",
      "* pack" : "add",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "composite_name",
-       "xtype" : "ProgressBar"
-      }
-     ],
      "xtype" : "Paned"
     }
    ],
