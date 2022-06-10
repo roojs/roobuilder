@@ -3,7 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "xtype" : "ActionBar"
+   "xtype" : "AboutDialog"
   }
  ],
  "modOrder" : "",
