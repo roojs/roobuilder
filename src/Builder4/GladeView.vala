@@ -2,7 +2,7 @@ static GladeView  _GladeView;
 
 public class GladeView : Object
 {
-    public Gtk.AboutDialog el;
+    public Gtk.AppChooserDialog el;
     private GladeView  _this;
 
     public static GladeView singleton()
@@ -19,7 +19,7 @@ public class GladeView : Object
     public GladeView()
     {
         _this = this;
-        this.el = new Gtk.AboutDialog();
+        this.el = new Gtk.AppChooserDialog( null, null, null );
 
         // my vars (dec)
 
