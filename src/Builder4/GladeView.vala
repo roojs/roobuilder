@@ -24,58 +24,7 @@ public class GladeView : Object
         // my vars (dec)
 
         // set gobject values
-        var child_0 = new Xcls_Scale2( _this );
-        child_0.ref();
-        this.el.add (  child_0.el  );
     }
 
     // user defined functions
-    public class Xcls_Scale2 : Object
-    {
-        public Gtk.Scale el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Scale2(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Scale( null, null );
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.hexpand = true;
-            var child_0 = new Xcls_Adjustment3( _this );
-            child_0.ref();
-            this.el.adjustment = child_0.el;
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Adjustment3 : Object
-    {
-        public Gtk.Adjustment el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Adjustment3(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Adjustment( null, null, null, null, null, null );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-
 }
