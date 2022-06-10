@@ -2,7 +2,7 @@ static GladeView  _GladeView;
 
 public class GladeView : Object
 {
-    public Gtk.AccelLabel el;
+    public Gtk.CheckMenuItem el;
     private GladeView  _this;
 
     public static GladeView singleton()
@@ -19,7 +19,7 @@ public class GladeView : Object
     public GladeView()
     {
         _this = this;
-        this.el = new Gtk.AccelLabel( null );
+        this.el = new Gtk.CheckMenuItem();
 
         // my vars (dec)
 
