@@ -8,7 +8,7 @@
     {
      "$ xns" : "Gtk",
      "* pack" : "pack_start,?bool?,?bool?,?uint?",
-     "xtype" : "Scrollbar"
+     "xtype" : "SearchBar"
     }
    ],
    "xtype" : "Box"
