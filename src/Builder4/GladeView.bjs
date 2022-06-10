@@ -7,6 +7,13 @@
     {
      "$ xns" : "Gtk",
      "* pack" : "composite_name",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start,?bool?,?bool?,?uint?",
+       "xtype" : "ColorSelection"
+      }
+     ],
      "xtype" : "ColorChooserWidget"
     }
    ],

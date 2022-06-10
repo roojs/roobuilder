@@ -47,9 +47,34 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_ColorSelection3( _this );
+            child_0.ref();
+            this.el.pack_start (  child_0.el , ?bool?,?bool?,?uint? );
         }
 
         // user defined functions
     }
+    public class Xcls_ColorSelection3 : Object
+    {
+        public Gtk.ColorSelection el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ColorSelection3(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ColorSelection();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 }
