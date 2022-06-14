@@ -548,12 +548,15 @@ namespace Palete {
 				return;
 			}
 			// not really
-			this.fillPack(child, parent);
+			//this.fillPack(child, parent);
+			
+			
+			
 			
 		}
 		
 		
-         
+         /*
 		public   void fillPack(JsRender.Node node,JsRender.Node parent)
 		{   
 			
@@ -620,6 +623,7 @@ namespace Palete {
 			
 			
 		}
+		*/
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
 			var vapidirs = gproject.vapidirs();
