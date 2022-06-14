@@ -120,7 +120,7 @@ namespace Palete {
 			this.add_special_children("Gtk.Toolbar", "Gtk.ToolItem", "");
 			
 			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]");
-			this.add_special_children("Gtk.Window","Gtk.Headerbar", "titlebar");
+			this.add_special_children("Gtk.Window","Gtk.HeaderBar", "titlebar");
 		
 			this.add_special_children("Gtk.Stack","Gtk.Label", "titles[]");
 			
