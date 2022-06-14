@@ -121,6 +121,8 @@ namespace Palete {
 			
 			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]");
 			this.add_special_children("Gtk.Window","Gtk.Headerbar", "titlebar");
+		
+			this.add_special_children("Gtk.Stack","Gtk.Label", "titles[]");
 			
  
 			//this.add_specials_prop("Gtk.Assistant", "action[]", "Gtk.Widget");	 
@@ -364,7 +366,8 @@ namespace Palete {
 						prop.name == "icon_widget" ||
 						prop.name == "action_target"  ||
 						prop.name == "related_action" || // not sure if we should disable this.
-						prop.name == "visible_child"  
+						prop.name == "visible_child"  || 
+						prop.name == "relative_to"   // popover
 						
 						
 						) {
@@ -393,6 +396,7 @@ namespace Palete {
 					// check if propcls is abstract?
 					if (!propcls.is_abstract) { 
 						localopts_r.add( prop.type + ":" + prop.name);
+						GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);						
 					}
 
 					
@@ -406,7 +410,7 @@ namespace Palete {
 						if (impcls.is_abstract) {
 							continue;
 						}
-						
+						GLib.debug("Add Widget Prop %s:%s (%s)", cls.fqn(), prop.name, impl);
 						localopts_r.add( impl + ":" + prop.name );
 					}
 					
