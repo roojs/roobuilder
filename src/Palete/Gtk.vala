@@ -269,30 +269,30 @@ namespace Palete {
 		
 		public void add_special_children(string parent, string child, string prop)
 		{
-				var cls = this.getClass(parent);
-				var cls_cn = this.getClass(child);
-				var localopts_r = new Gee.ArrayList<string>();
-				var localopts_l = new Gee.ArrayList<string>();
-				localopts_l.add(parent);
-   			 	localopts_r.add(child);
-   			 	
+			var cls = this.getClass(parent);
+			var cls_cn = this.getClass(child);
+			var localopts_r = new Gee.ArrayList<string>();
+			var localopts_l = new Gee.ArrayList<string>();
+			localopts_l.add(parent);
+		 	localopts_r.add(child);
+		 	
+			
+			foreach(var impl in cls_cn.implementations) {
+				//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
+				// in theory these can not be abstract?
 				
-				foreach(var impl in cls_cn.implementations) {
-					//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
-					// in theory these can not be abstract?
-					
-					var impcls = this.getClass(impl);
-					if (impcls.is_abstract) {
-						continue;
-					}
-					
-					localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
+				var impcls = this.getClass(impl);
+				if (impcls.is_abstract) {
+					continue;
 				}
-				this.map.add(new Usage(localopts_l, localopts_r));
-				 
+				
+				localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
 			}
-		
+			this.map.add(new Usage(localopts_l, localopts_r));
+			 
 		}
+		
+		 
 		
 		
 		
