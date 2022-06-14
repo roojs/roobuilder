@@ -294,7 +294,7 @@ namespace Palete {
 				if (impcls.is_abstract) {
 					continue;
 				}
-				if (impcls.notetype == "Interface") {
+				if (impcls.nodetype == "Interface") {
 					continue;
 				}
 				 GLib.debug("Special Parent %s - add %s ", parent , impl );				
