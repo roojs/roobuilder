@@ -216,9 +216,9 @@ namespace Palete {
 			
 			"Gtk.Menu", // it's added as a special only?
 			"Gtk.MenuItem",
-			"Gtk.ToolItem"
+			"Gtk.ToolItem",
 			
-			"WebKit.WebViewBase",
+			"WebKit.WebViewBase"
 			 
 		};
 			
