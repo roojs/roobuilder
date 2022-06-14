@@ -114,13 +114,13 @@ namespace Palete {
 				this.build_class_props(gir.classes);
 			}
 			// oddities.
-			this.add_special_children("Gtk.Window","Gtk.Titlebar", "");		
+
 			this.add_special_children("Gtk.Menu","Gtk.MenuItem", "");
 			this.add_special_children("Gtk.MenuBar", "Gtk.MenuItem", "");
 			this.add_special_children("Gtk.Toolbar", "Gtk.ToolItem", "");
 			
 			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]");
-			
+			this.add_special_children("Gtk.Window","Gtk.Headerbar", "titlebar");
 			
  
 			//this.add_specials_prop("Gtk.Assistant", "action[]", "Gtk.Widget");	 
