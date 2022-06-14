@@ -107,7 +107,7 @@ namespace Palete {
 				 this.add_special_children(k, "Gtk.Menu", "menu"); 
 			}
 			var u = new Usage( alltop,  this.generic_child_widgets);
-			GLib.debug("add Usage: %s", u.to_string());
+			//GLib.debug("add Usage: %s", u.to_string());
 			
 			this.map.add(u);
 			
@@ -129,7 +129,9 @@ namespace Palete {
 			
  
 			//this.add_specials_prop("Gtk.Assistant", "action[]", "Gtk.Widget");	 
-
+			foreach(var m in this.map) {
+				GLib.debug("Usage: %s", m.to_string());
+			}
 			
 		}
 		
