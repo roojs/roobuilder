@@ -197,7 +197,8 @@ namespace Palete {
 			"Gtk.Window",
 			"Gtk.Notebook",
 			"Gtk.ApplicationWindow",
-			"Gtk.Table"
+			"Gtk.Grid",
+			
 		};
 		
 		string[] widgets_blacklist = {
@@ -555,6 +556,10 @@ namespace Palete {
 			this.add_node_default("Gtk.ComboBox", "columns");
 			this.add_node_default("Gtk.ComboBox", "no_columns");
 			
+			this.add_node_default("Gtk.Grid", "columns");
+			this.add_node_default("Gtk.Grid", "rows");			
+		 
+			
 			
 			
 		}
@@ -578,8 +583,8 @@ namespace Palete {
 			this.add_child_default("Gtk.Fixed", "y", "int", "0");
 			this.add_child_default("Gtk.Layout", "x", "int", "0");
 			this.add_child_default("Gtk.Layout", "y", "int", "0");
-			this.add_child_default("Gtk.Table", "width", "int", "1");
-			this.add_child_default("Gtk.Table", "height", "int", "1");			
+			this.add_child_default("Gtk.Grid", "width", "int", "1");
+			this.add_child_default("Gtk.Grid", "height", "int", "1");			
 			
 			
 			
