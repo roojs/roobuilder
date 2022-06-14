@@ -1,6 +1,11 @@
 {
  "build_module" : "",
- "items" : [],
+ "items" : [
+  {
+   "$ xns" : "Gtk",
+   "xtype" : "Popover"
+  }
+ ],
  "modOrder" : "",
  "name" : "GladeView",
  "parent" : "",
