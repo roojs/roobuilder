@@ -3,38 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "composite_name",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* prop" : "model",
-       "xtype" : "TreeStore"
-      }
-     ],
-     "xtype" : "ComboBox"
-    },
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "composite_name",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "composite_name",
-       "xtype" : "ToolButton"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "composite_name",
-       "xtype" : "ToolItem"
-      }
-     ],
-     "xtype" : "Toolbar"
-    }
-   ],
-   "xtype" : "Popover"
+   "xtype" : "Window"
   }
  ],
  "modOrder" : "",
