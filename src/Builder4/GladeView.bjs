@@ -24,6 +24,11 @@
        "$ xns" : "Gtk",
        "* pack" : "composite_name",
        "xtype" : "ToolButton"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "composite_name",
+       "xtype" : "ToolItem"
       }
      ],
      "xtype" : "Toolbar"

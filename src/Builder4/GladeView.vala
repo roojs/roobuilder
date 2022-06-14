@@ -100,6 +100,9 @@ public class GladeView : Object
             var child_0 = new Xcls_ToolButton5( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
+            var child_1 = new Xcls_ToolItem6( _this );
+            child_1.ref();
+            this.el.composite_name (  child_1.el  );
         }
 
         // user defined functions
@@ -117,6 +120,28 @@ public class GladeView : Object
         {
             _this = _owner;
             this.el = new Gtk.ToolButton( null, null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_ToolItem6 : Object
+    {
+        public Gtk.ToolItem el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ToolItem6(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ToolItem();
 
             // my vars (dec)
 
