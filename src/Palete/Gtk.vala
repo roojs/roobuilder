@@ -553,8 +553,10 @@ namespace Palete {
 			this.node_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
 			// does this need to add properties to methods?
-			this.add_node_default("Gtk.ComboBox", "columns");
-			this.add_node_default("Gtk.ComboBox", "no_columns");
+			this.add_node_default("Gtk.ListStore", "columns", "typeof(string)");
+			this.add_node_default("Gtk.ListStore", "n_columns", "1");
+			this.add_node_default("Gtk.TreeStore", "columns", "typeof(string)");
+			this.add_node_default("Gtk.TreeStore", "n_columns", "1");
 			
 			this.add_node_default("Gtk.Grid", "columns", "2");
 			this.add_node_default("Gtk.Grid", "rows", "2");
