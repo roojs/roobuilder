@@ -112,6 +112,15 @@ namespace Palete {
 				var gir = pr.gir_cache.get(key);
 				this.build_class_props(gir.classes);
 			}
+			// oddities.
+			
+			this.add_specials("Gtk.Menu", "Gtk.MenuItem");
+			this.add_specials("Gtk.MenuBar", "Gtk.MenuItem");
+			this.add_specials("Gtk.ToolBar", "Gtk.ToolItem");
+			
+			this.add_specials_prop("Gtk.Notebook", "label[]", "Gtk.Label");
+			//this.add_specials_prop("Gtk.Assistant", "action[]", "Gtk.Widget");	 
+
 			
 		}
 		
@@ -121,12 +130,15 @@ namespace Palete {
 		// containers that can contain only certial types of children, and should be ignored from the general bulk add.
 		Gee.ArrayList<string> generic_child_widgets;
 		Gee.ArrayList<string> all_no_parent;		
+
 		string[] special_containers = {
 			"Gtk.Menu",
 			"Gtk.MenuBar",
-			"Gtk.Assistant", // needs fake child?
-			"Gtk.Notebook", // needs fake child.
 			"Gtk.Toolbar", // only toolbarItems.
+			
+			"Gtk.Assistant", // needs fake child? including fake page type
+			"Gtk.Notebook", // needs fake child?
+			
 		};
 		// children (or anythign that extends this) - that can not be added to a standard widget
 		string[] special_containers_children = {
@@ -140,6 +152,7 @@ namespace Palete {
 		};
 		
 		string[] generic_containers = {
+			"Gtk.Assistant", 
 			"Gtk.ActionBar",
 			"Gtk.AspectFrame",
 			"Gtk.Frame",
@@ -161,6 +174,7 @@ namespace Palete {
 			"Gtk.ToolPalette",
 			"Gtk.Viewport",
 			"Gtk.Window",
+			"Gtk.Notebook",
 			"Gtk.ApplicationWindow",
 			"Gtk.Table",
 		};
