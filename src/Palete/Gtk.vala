@@ -412,7 +412,7 @@ namespace Palete {
 						// in theory these can not be abstract?
 						
 						var impcls = this.getClass(impl);
-						if (impcls.is_abstract || propcls.nodetype == "Interface") {
+						if (impcls.is_abstract || impcls.nodetype == "Interface") {
 							continue;
 						}
 						GLib.debug("Add Widget Prop %s:%s (%s)", cls.fqn(), prop.name, impl);
