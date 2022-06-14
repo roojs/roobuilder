@@ -621,7 +621,7 @@ namespace Palete {
 				}
 			}
 			if (this.node_defaults.has_key(child.fqn())) {
-				foreach(var k in this.node_defaults.get(parent.fqn())) {
+				foreach(var k in this.node_defaults.get(child.fqn())) {
 					child.set_prop(k.dupe());
 				}
 			}
