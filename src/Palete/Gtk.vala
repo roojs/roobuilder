@@ -129,7 +129,7 @@ namespace Palete {
 			this.add_special_children("Gtk.TreeView","Gtk.TreeViewColumn", "column[]");
  			this.add_special_children("Gtk.TreeViewColumn","Gtk.CellRenderer");
  			
- 			
+ 			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
 			  
 			//foreach(var m in this.map) {
 			//	GLib.debug("Usage: %s", m.to_string());
