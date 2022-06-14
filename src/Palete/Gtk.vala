@@ -185,8 +185,6 @@ namespace Palete {
 					case "Gtk.AspectFrame":
 					case "Gtk.Frame":
 					case "Gtk.Box":
-					case "Gtk.Button":
-					case "Gtk.CheckButton":
 					case "Gtk.Dialog":
 					case "Gtk.FlowBox":
 					case "Gtk.Frame":
