@@ -71,6 +71,9 @@ namespace Palete {
 		    //this.proplist = {};
 		    //this.comments = { }; 
 		    // no parent...
+		    
+		    this.init_child_defaults();
+		    
 		}
 		
 		
@@ -538,6 +541,16 @@ namespace Palete {
 
 		}
 		
+		Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
+		
+		public void init_child_defaults()
+		{
+			this.child_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
+			
+			
+			
+			
+		}
 		
 		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
 		{   
