@@ -543,30 +543,48 @@ namespace Palete {
 		
 		Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
 		
-		public void init_child_defaults()
+		public void init_node_defaults()
 		{
-			this.child_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
+			this.node_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
-			this.add_child_default("Gtk.ComboBox", "columns");
-			this.add_child_default("Gtk.ComboBox", "no_columns");
+			this.add_node_default("Gtk.ComboBox", "columns");
+			this.add_node_default("Gtk.ComboBox", "no_columns");
 			
 			
 			
 		}
-		public void add_child_default(string cls, string propname)
+		public void add_node_default(string cls, string propname)
 		{
-			if (!this.child_defaults.has(cls)) {
-				this.child_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			if (!this.node_defaults.has(cls)) {
+				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
 			}
 			
 			var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
 			
 			
-			this.child_defaults.get(cls).add(ar.get(propname).toNodeProp());
+			this.node_defaults.get(cls).add(ar.get(propname).toNodeProp());
 		
 		}
+		public void init_child_defaults()
+		{
+			this.child_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
+			
+			this.add_child_default("Gtk.Fixed", "x", "int", "0");
+			this.add_child_default("Gtk.Fixed", "y", "int", "0");
+			
+			
+			
+		}
+		public void add_child_default(string cls, string propname, string type, string val)
+		{
+			if (!this.child_defaults.has(cls)) {
+				this.child_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			}
+			
+			
+			this.child_defaults.get(cls).add( new JsRender.NodeProp.prop(propname, type, val));
 		
-		
+		}
 		
 		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
 		{   
@@ -576,6 +594,7 @@ namespace Palete {
 			if (child.has("* prop")) { // child has a property - no need for packing.
 				return;
 			}
+			if (this.child_defaults.has(child
 			// not really
 			//this.fillPack(child, parent);
 			
