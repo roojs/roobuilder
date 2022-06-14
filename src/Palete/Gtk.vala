@@ -243,33 +243,11 @@ namespace Palete {
 		
 		}
 		
-		public void add_map_from_classes(Gee.HashMap<string,GirObject> classes)
+		public void build_class_props(Gee.HashMap<string,GirObject> classes)
 		{
 			
 			
-			
-				// do we have access to extends.
-
-				
-				
-			 
-			 
-			 
-			 
-			 
-			 
-			var top = new Gee.ArrayList<string>();
-			var topleft = new Gee.ArrayList<string>();
-			 
-
-
-			var menuwidgets = new Gee.ArrayList<string>(); // fixme - need to add these seperatly
-			var toolbarwidgets = new Gee.ArrayList<string>();
-			
-
-			topleft.add("*top");
-			
-			
+		 
 			foreach(var cls in classes.values) {
 				
 				
@@ -278,106 +256,15 @@ namespace Palete {
 					continue;
 				}
 					
-					
-					
-				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
-					continue;
-				}
 				 
-				// 
-				
-				
-				// other blacklisted classes - that can never haave any children or any sort.
-				switch (cls.fqn()) {
-					case "Gtk.ShortcutLabel":
-					case "Gtk.ShortcutsGroup":
-					case "Gtk.ShortcutsSection":
-					case "Gtk.ShortcutsShortcut":
-					case "Gtk.ShortcutsWindow":
-					case "Gtk.Socket":
-					case "Gtk.ToolItemGroup":
-					case "WebKit.WebViewBase":
-					case "Gtk.ButtonBox":
-					case "Gtk.CellView":
-					case "Gtk.EventBox":
-					case "Gtk.FlowBoxChild":
-					case "Gtk.Invisible":
-					case "Gtk.ListBoxRow":
-					case "Gtk.OffscreenWindow":
-					case "Gtk.Plug":
-						continue;
-					default:
-						break;
-				}
-				
 				
 				// we can still add properties of abstract classes...
 				
-				if (!cls.is_abstract) {
+				if (cls.is_abstract) {
+					continue;
+				}
 					
-					if (
-							 
-							  // GTK4 !!
-							 cls.inherits.contains("Gtk.Root")
-							 || 
-							 cls.implements.contains("Gtk.Root")
-							 || 
-							 cls.inherits.contains("Gtk.Native")
-							 || 
-							 cls.implements.contains("Gtk.Native")
-							 || 
-							 // Gtk3
-							 // check for depricated?
-							 cls.inherits.contains("Gtk.Window")
-							 || 
-							 cls.fqn() == "Gtk.Window"
-							 || 
-							 cls.fqn() == "Gtk.Popover" // dont allow it as a child
-							 
-							 ) {
-						top.add(cls.fqn());
-						// skip - can't add these widgets to anything
-					} else { 
-						//GLib.debug("Add Widget %s", cls.fqn());
-						widgets.add(cls.fqn());
-						top.add(cls.fqn());
-						//GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
-						//	string.joinv( ",", cls.inheritsToStringArray())
-						//);
-						
-						
-					}
-				}
-				// whitelist of elements that are generic containers.
-				
-				switch (cls.fqn()) {
-					case "Gtk.ActionBar":
-					case "Gtk.AspectFrame":
-					case "Gtk.Frame":
-					case "Gtk.Box":
-					case "Gtk.Dialog":
-					case "Gtk.FlowBox":
-					case "Gtk.HeaderBar":
-					case "Gtk.InfoBar":
-					case "Gtk.ListBox":
-					case "Gtk.Overlay":
-					case "Gtk.Paned":
-					case "Gtk.PopoverMenu":
-					case "Gtk.Revealer":
-					case "Gtk.ScrolledWindow":
-					case "Gtk.Stack":
-					case "Gtk.Toolbar":
-					case "Gtk.ToolItem":
-					case "Gtk.ToolPalette":
-					case "Gtk.Viewport":
-					case "Gtk.Window":
-					case "Gtk.ApplicationWindow":
-						containers.add(cls.fqn());
-						break;
-					default:
-						break;
-				}
-				
+ 
 				if (cls.props.size < 1) {	
 					continue;
 				}			
@@ -479,20 +366,7 @@ namespace Palete {
 						
 						
 				 
-			  
-			  
-		  	this.map.add(new Usage( topleft, top));
-		  	
-		  	// this is a bit generic.
-		  	// generic contains can have any widgets,
-		  	
-		  	this.map.add(new Usage( containers, widgets));
-		
-			
-			
-			
-			///this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
-	 
+			   
 		     
 		}
 		
