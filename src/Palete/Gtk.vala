@@ -116,7 +116,7 @@ namespace Palete {
 			
 			this.add_special_children("Gtk.Menu","Gtk.MenuItem", "");
 			this.add_special_children("Gtk.MenuBar", "Gtk.MenuItem", "");
-			this.add_special_children("Gtk.ToolBar", "Gtk.ToolItem", "");
+			this.add_special_children("Gtk.Toolbar", "Gtk.ToolItem", "");
 			
 			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]");
 			//this.add_specials_prop("Gtk.Assistant", "action[]", "Gtk.Widget");	 
