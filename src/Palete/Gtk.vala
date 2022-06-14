@@ -202,6 +202,8 @@ namespace Palete {
 		};
 		
 		string[] widgets_blacklist = {
+			"Gtk.Arrow", //Depricated
+			
 			"Gtk.ShortcutLabel",
 			"Gtk.ShortcutsGroup",
 			"Gtk.ShortcutsSection",
