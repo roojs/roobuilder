@@ -548,6 +548,7 @@ namespace Palete {
 			this.child_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
 			this.add_child_default("Gtk.ComboBox", "columns");
+			this.add_child_default("Gtk.ComboBox", "no_columns");
 			
 			
 			
