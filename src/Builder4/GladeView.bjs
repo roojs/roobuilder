@@ -8,6 +8,11 @@
      "$ xns" : "Gtk",
      "* pack" : "composite_name",
      "xtype" : "Stack"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* pack" : "composite_name",
+     "xtype" : "Toolbar"
     }
    ],
    "xtype" : "Window"
