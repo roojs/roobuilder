@@ -24,35 +24,12 @@ public class GladeView : Object
         // my vars (dec)
 
         // set gobject values
-        var child_0 = new Xcls_Box2( _this );
+        var child_0 = new Xcls_Grid2( _this );
         child_0.ref();
     }
 
     // user defined functions
-    public class Xcls_Box2 : Object
-    {
-        public Gtk.Box el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Box2(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Box( null, 0 );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_Grid3( _this );
-            child_0.ref();
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Grid3 : Object
+    public class Xcls_Grid2 : Object
     {
         public Gtk.Grid el;
         private GladeView  _this;
@@ -61,7 +38,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Grid3(GladeView _owner )
+        public Xcls_Grid2(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Grid();
@@ -73,6 +50,5 @@ public class GladeView : Object
 
         // user defined functions
     }
-
 
 }
