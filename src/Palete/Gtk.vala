@@ -183,7 +183,7 @@ namespace Palete {
 			"Gtk.Window",
 			"Gtk.Notebook",
 			"Gtk.ApplicationWindow",
-			"Gtk.Table",
+			"Gtk.Table"
 		};
 		
 		string[] widgets_blacklist = {
