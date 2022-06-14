@@ -92,34 +92,57 @@ namespace Palete {
 			
 		}
 		
+		// a) build a list of all widgets that can be added generically.
+		// b) build child list for all containers.
+		// c) build child list for all widgets (based on properties)
+		
+		
+		
+		
+		// containers that can contain only certial types of children, and should be ignored from the general bulk add.
+		
 		string[] special_containers = {
-		
-		
+			"Gtk.Menu",
+			"Gtk.MenuBar",
+			"Gtk.Assistant", // needs fake child?
+			"Gtk.Notebook", // needs fake child.
+			"Gtk.Toolbar", // only toolbarItems.
+		};
+		// children (or anythign that extends this) - that can not be added to a standard widget
+		string[] special_containers_children = {
+			"Gtk.MenuItem",
+			"Gtk.ToolbarItem"
+		};
+		// widgets that can not be added.. 
+		string[] no_parent = { // except *top
+			"Gtk.Window",
+			"Gtk.Dialog",
 		}
 		
-		
-		string[] containers = {
+		string[] generic_containers = {
 			"Gtk.ActionBar",
 			"Gtk.AspectFrame",
 			"Gtk.Frame",
 			"Gtk.Box",
 			"Gtk.Dialog",
+			"Gtk.Expander", // add method is different..
 			"Gtk.FlowBox",
 			"Gtk.HeaderBar",
 			"Gtk.InfoBar",
 			"Gtk.ListBox",
 			"Gtk.Overlay",
 			"Gtk.Paned",
+			"Gtk.Popover",
 			"Gtk.PopoverMenu",
 			"Gtk.Revealer",
 			"Gtk.ScrolledWindow",
-			"Gtk.Stack",
-			"Gtk.Toolbar",
+			"Gtk.Stack",  // add with name?
 			"Gtk.ToolItem",
 			"Gtk.ToolPalette",
 			"Gtk.Viewport",
 			"Gtk.Window",
-			"Gtk.ApplicationWindow"
+			"Gtk.ApplicationWindow",
+			"Gtk.Table",
 		};
 		
 		string[] widgets_blacklist = {
@@ -138,7 +161,8 @@ namespace Palete {
 			"Gtk.Invisible",
 			"Gtk.ListBoxRow",
 			"Gtk.OffscreenWindow",
-			"Gtk.Plug"
+			"Gtk.Plug",
+			
 		};
 			
 		/**
