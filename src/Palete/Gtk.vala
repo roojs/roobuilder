@@ -563,16 +563,23 @@ namespace Palete {
 			
 			
 		}
-		public void add_node_default(string cls, string propname)
+		public void add_node_default(string cls, string propname, string def = "")
 		{
 			if (!this.node_defaults.has_key(cls)) {
 				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
 			}
 			
 			var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
+			if (ar.has_key(propname)) {
+				this.node_defaults.get(cls).add(ar.get(propname).toNodeProp());
+			} else {
+				this.node_defaults.get(cls).add(
+					new  JsRender.NodePropType.special( propname, def) 
+				);
+
+			}
 			
-			
-			this.node_defaults.get(cls).add(ar.get(propname).toNodeProp());
+
 		
 		}
 		public void init_child_defaults()
