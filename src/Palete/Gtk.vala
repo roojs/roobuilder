@@ -599,7 +599,11 @@ namespace Palete {
 			if (child.has("* prop")) { // child has a property - no need for packing.
 				return;
 			}
-			if (this.child_defaults.has(child
+			if (this.child_defaults.has(parent.fqn())) {
+				foreach(var k in this.child_defaults.get(parent.fqn())) {
+					node.set(k.dupe());
+				}
+			}
 			// not really
 			//this.fillPack(child, parent);
 			
