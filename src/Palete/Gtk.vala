@@ -145,6 +145,7 @@ namespace Palete {
 			"Gtk.MenuItem",
 			"Gtk.ToolbarItem"
 		};
+		
 		// widgets that can not be added to anything? - including their children.
 		string[] no_parent = { // except *top
 			"Gtk.Window",
@@ -239,6 +240,20 @@ namespace Palete {
 				if (is_black) {
 					continue;
 				}
+				for (var i = 0 ; i < this.special_containers_children.length; i++) {
+					var black = this.special_containers_children[i];
+					
+					if (fqn == black || cls.implements.contains(black) || cls.inherits.contains(black)) {
+						is_black = true;
+						all_no_parent.add(fqn);
+						
+						break;
+					}
+					
+
+				}
+				 
+				
 				for (var i = 0 ; i < this.no_parent.length; i++) {
 					var black = this.no_parent[i];
 					
