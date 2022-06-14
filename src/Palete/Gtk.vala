@@ -563,7 +563,7 @@ namespace Palete {
 			
 			
 		}
-		public void add_node_default(string cls, string propname, string def = "")
+		public void add_node_default(string cls, string propname, string val = "")
 		{
 			if (!this.node_defaults.has_key(cls)) {
 				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
@@ -574,7 +574,7 @@ namespace Palete {
 				this.node_defaults.get(cls).add(ar.get(propname).toNodeProp());
 			} else {
 				this.node_defaults.get(cls).add(
-					new  JsRender.NodeProp.special( propname, def) 
+					new  JsRender.NodeProp.special( propname, val) 
 				);
 
 			}
