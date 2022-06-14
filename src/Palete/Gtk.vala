@@ -72,7 +72,13 @@ namespace Palete {
 		    //this.comments = { }; 
 		    // no parent...
 		}
-	      
+		
+		
+        // a) build a list of all widgets that can be added generically.
+		// b) build child list for all containers.
+		// c) build child list for all widgets (based on properties)
+		// d) handle oddities?
+		
 		public override void  load () 
 		{
 			
@@ -109,10 +115,6 @@ namespace Palete {
 			
 		}
 		
-		// a) build a list of all widgets that can be added generically.
-		// b) build child list for all containers.
-		// c) build child list for all widgets (based on properties)
-		// d) handle oddities?
 		
 		
 		
