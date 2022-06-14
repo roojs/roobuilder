@@ -289,7 +289,7 @@ namespace Palete {
 			var localopts_r = new Gee.ArrayList<string>();
 			var localopts_l = new Gee.ArrayList<string>();
 			localopts_l.add(parent);
-		 	localopts_r.add(child);
+		 	localopts_r.add(child + ( prop.length > 0 ? ":" + prop : "") );
 			 
 			 GLib.debug("Special Parent %s - add %s ", parent , child);			
 			foreach(var impl in cls_cn.implementations) {
