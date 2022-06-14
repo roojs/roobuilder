@@ -82,12 +82,64 @@ namespace Palete {
 			
 			this.map = new Gee.ArrayList<Usage>();
  
+ 			this.init_map();
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				
 				this.add_map_from_classes(gir.classes);
 			}
+			
+			
 		}
+		
+		string[] special_containers = {
+		
+		
+		}
+		
+		
+		string[] containers = {
+			"Gtk.ActionBar",
+			"Gtk.AspectFrame",
+			"Gtk.Frame",
+			"Gtk.Box",
+			"Gtk.Dialog",
+			"Gtk.FlowBox",
+			"Gtk.HeaderBar",
+			"Gtk.InfoBar",
+			"Gtk.ListBox",
+			"Gtk.Overlay",
+			"Gtk.Paned",
+			"Gtk.PopoverMenu",
+			"Gtk.Revealer",
+			"Gtk.ScrolledWindow",
+			"Gtk.Stack",
+			"Gtk.Toolbar",
+			"Gtk.ToolItem",
+			"Gtk.ToolPalette",
+			"Gtk.Viewport",
+			"Gtk.Window",
+			"Gtk.ApplicationWindow"
+		};
+		
+		string[] widgets_blacklist = {
+			"Gtk.ShortcutLabel",
+			"Gtk.ShortcutsGroup",
+			"Gtk.ShortcutsSection",
+			"Gtk.ShortcutsShortcut",
+			"Gtk.ShortcutsWindow",
+			"Gtk.Socket",
+			"Gtk.ToolItemGroup",
+			"WebKit.WebViewBase",
+			"Gtk.ButtonBox",
+			"Gtk.CellView",
+			"Gtk.EventBox",
+			"Gtk.FlowBoxChild",
+			"Gtk.Invisible",
+			"Gtk.ListBoxRow",
+			"Gtk.OffscreenWindow",
+			"Gtk.Plug"
+		};
 			
 		/**
 		 * Gtk's heirachy of parent/children is not particulaly logical
@@ -101,35 +153,12 @@ namespace Palete {
 		public void add_map_from_classes(Gee.HashMap<string,GirObject> classes)
 		{
 			
-			string[] containers = [
-				"Gtk.ActionBar",
-				"Gtk.AspectFrame",
-				"Gtk.Frame",
-				"Gtk.Box",
-				"Gtk.Dialog",
-				"Gtk.FlowBox",
-				"Gtk.HeaderBar",
-				"Gtk.InfoBar",
-				"Gtk.ListBox",
-				"Gtk.Overlay",
-				"Gtk.Paned",
-				"Gtk.PopoverMenu",
-				"Gtk.Revealer",
-				"Gtk.ScrolledWindow",
-				"Gtk.Stack",
-				"Gtk.Toolbar",
-				"Gtk.ToolItem",
-				"Gtk.ToolPalette",
-				"Gtk.Viewport",
-				"Gtk.Window",
-				"Gtk.ApplicationWindow"
-			[;
 			
 			
-			var widgets = new Gee.ArrayList<string>();
+			 
 			var top = new Gee.ArrayList<string>();
 			var topleft = new Gee.ArrayList<string>();
-			var containers = new Gee.ArrayList<string>();
+			 
 
 
 			var menuwidgets = new Gee.ArrayList<string>(); // fixme - need to add these seperatly
@@ -150,6 +179,10 @@ namespace Palete {
 				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
 					continue;
 				}
+				
+				
+				// 
+				
 				
 				// other blacklisted classes - that can never haave any children or any sort.
 				switch (cls.fqn()) {
