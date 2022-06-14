@@ -201,7 +201,7 @@ namespace Palete {
 			"Gtk.ShortcutsWindow",
 			"Gtk.Socket",
 			"Gtk.ToolItemGroup",
-			"WebKit.WebViewBase",
+			
 			"Gtk.ButtonBox",
 			"Gtk.CellView",
 			"Gtk.EventBox",
@@ -215,6 +215,7 @@ namespace Palete {
 			"Gtk.MenuItem",
 			"Gtk.ToolItem"
 			
+			"WebKit.WebViewBase",
 			 
 		};
 			
