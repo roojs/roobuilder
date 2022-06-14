@@ -6,12 +6,6 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "xtype" : "Grid"
-      }
-     ],
      "xtype" : "Box"
     }
    ],
