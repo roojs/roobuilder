@@ -547,10 +547,25 @@ namespace Palete {
 		{
 			this.child_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
+			this.add_child_default("Gtk.ComboBox", "columns");
 			
 			
 			
 		}
+		public void add_child_default(string cls, string propname)
+		{
+			if (!this.child_defaults.has(cls)) {
+				this.child_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			}
+			
+			var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
+			
+			
+			this.child_defaults.get(cls).add(ar.get(propname).toNodeProp());
+		
+		}
+		
+		
 		
 		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
 		{   
