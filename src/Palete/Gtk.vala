@@ -130,7 +130,7 @@ namespace Palete {
 		// containers that can contain only certial types of children, and should be ignored from the general bulk add.
 		Gee.ArrayList<string> generic_child_widgets;
 		Gee.ArrayList<string> all_no_parent;		
-
+/*
 		string[] special_containers = {
 			"Gtk.Menu",
 			"Gtk.MenuBar",
@@ -145,7 +145,7 @@ namespace Palete {
 			"Gtk.MenuItem",
 			"Gtk.ToolbarItem"
 		};
-		
+	*/	
 		// widgets that can not be added to anything? - including their children.
 		string[] no_parent = { // except *top
 			"Gtk.Window",
