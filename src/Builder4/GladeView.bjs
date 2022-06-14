@@ -3,6 +3,13 @@
  "items" : [
   {
    "$ xns" : "Gtk",
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "* pack" : "composite_name",
+     "xtype" : "ComboBox"
+    }
+   ],
    "xtype" : "Popover"
   }
  ],
