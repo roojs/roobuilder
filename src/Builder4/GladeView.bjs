@@ -35,6 +35,10 @@
       }
      ],
      "xtype" : "Grid"
+    },
+    {
+     "$ xns" : "Gtk",
+     "xtype" : "Paned"
     }
    ],
    "xtype" : "Window"
