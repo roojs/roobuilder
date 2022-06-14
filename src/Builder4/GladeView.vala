@@ -69,10 +69,38 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Button4( _this );
+            child_0.ref();
         }
 
         // user defined functions
     }
+    public class Xcls_Button4 : Object
+    {
+        public Gtk.Button el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+        public int width;
+        public int height;
+
+        // ctor
+        public Xcls_Button4(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+            this.width = 1;
+            this.height = 1;
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 }
