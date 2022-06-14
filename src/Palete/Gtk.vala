@@ -104,6 +104,7 @@ namespace Palete {
 			
 			foreach(var k in this.generic_containers) {
 				alltop.add(k);
+				this.add_special_children(k, "Gtk.Menu", "menu"); 
 			}
 			this.map.add(new Usage( alltop,  this.generic_child_widgets));
 			
@@ -119,6 +120,9 @@ namespace Palete {
 			this.add_special_children("Gtk.Toolbar", "Gtk.ToolItem", "");
 			
 			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]");
+			
+			
+			this.add_special_children("Gtk.Notebook", "Gtk.Menu", "menu"); // fake property?
 			//this.add_specials_prop("Gtk.Assistant", "action[]", "Gtk.Widget");	 
 
 			
@@ -263,6 +267,7 @@ namespace Palete {
 					continue;
 				}
 				this.generic_child_widgets.add(fqn);
+				this.add_special_children(fqn, "Gtk.Menu", "menu");
 			}
 		
 		}
