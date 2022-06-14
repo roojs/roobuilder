@@ -603,12 +603,12 @@ namespace Palete {
 			if (child.has("* prop")) { // child has a property - no need for packing.
 				return;
 			}
-			if (this.child_defaults.has(parent.fqn())) {
+			if (this.child_defaults.has_key(parent.fqn())) {
 				foreach(var k in this.child_defaults.get(parent.fqn())) {
 					node.set(k.dupe());
 				}
 			}
-			if (this.node_defaults.has(child.fqn())) {
+			if (this.node_defaults.has_key(child.fqn())) {
 				foreach(var k in this.node_defaults.get(parent.fqn())) {
 					node.set(k.dupe());
 				}
