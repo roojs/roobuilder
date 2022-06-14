@@ -106,7 +106,7 @@ namespace Palete {
 				alltop.add(k);
 				 this.add_special_children(k, "Gtk.Menu", "menu"); 
 			}
-			var u = new Usage( alltop,  this.generic_child_widgets)
+			var u = new Usage( alltop,  this.generic_child_widgets);
 			GLib.debug("add Usage: %s", u.to_string());
 			
 			this.map.add(u);
