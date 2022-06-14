@@ -285,7 +285,7 @@ namespace Palete {
 				if (impcls.is_abstract) {
 					continue;
 				}
-				 GLib.debug("Special Parent %s - add %s ", parent , impl.fqn());				
+				 GLib.debug("Special Parent %s - add %s ", parent , impl );				
 				localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
 			}
 			this.map.add(new Usage(localopts_l, localopts_r));
