@@ -359,7 +359,7 @@ namespace Palete {
 						prop.name == "icon_widget" ||
 						prop.name == "action_target"  ||
 						prop.name == "related_action" || // not sure if we should disable this.
-						prop.name == "visible_child" ||
+						prop.name == "visible_child"  
 						
 						
 						) {
