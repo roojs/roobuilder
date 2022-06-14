@@ -199,7 +199,7 @@ namespace Palete {
 			"Gtk.Plug",
 			
 			"Gtk.MenuItem",
-			"Gtk.ToolbarItem"
+			"Gtk.ToolItem"
 			
 			 
 		};
@@ -358,8 +358,8 @@ namespace Palete {
 						prop.name == "align_widget" ||
 						prop.name == "icon_widget" ||
 						prop.name == "action_target"  ||
-						prop.name == "related_action" // not sure if we should disable this.
-						
+						prop.name == "related_action" || // not sure if we should disable this.
+						prop.name == "visible_child" ||
 						
 						
 						) {
