@@ -88,9 +88,22 @@ namespace Palete {
 				this.add_map_from_classes(gir.classes);
 			}
 		}
-		
+			
+		/**
+		 * Gtk's heirachy of parent/children is not particulaly logical
+		 * Gtk.Containers - some are not really that good t being containers.  Gtk.Bin (single only) - is a good flag for indicating 
+		 * Gtk.Widgets - some are not great at being widgets
+		 * Gtk.Menu - should really only contain menuitems, but the API doesnt really restrict this.
+		 * The list goes on.
+		 * 
+		 *
+		*/		
 		public void add_map_from_classes(Gee.HashMap<string,GirObject> classes)
 		{
+			
+
+			
+			
 			
 			var widgets = new Gee.ArrayList<string>();
 			var top = new Gee.ArrayList<string>();
