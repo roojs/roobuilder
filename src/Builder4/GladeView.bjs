@@ -8,7 +8,11 @@
      "$ xns" : "Gtk",
      "* pack" : "composite_name",
      "items" : [
-       
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "model",
+       "xtype" : "TreeStore"
+      }
      ],
      "xtype" : "ComboBox"
     }

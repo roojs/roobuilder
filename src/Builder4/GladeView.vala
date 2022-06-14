@@ -47,26 +47,26 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TreeModel3( _this );
+            var child_0 = new Xcls_TreeStore3( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_TreeModel3 : Object
+    public class Xcls_TreeStore3 : Object
     {
-        public Gtk.TreeModel el;
+        public Gtk.TreeStore el;
         private GladeView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_TreeModel3(GladeView _owner )
+        public Xcls_TreeStore3(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.TreeModel();
+            this.el = new Gtk.TreeStore( 0, null );
 
             // my vars (dec)
 
