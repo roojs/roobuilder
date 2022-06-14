@@ -554,9 +554,8 @@ namespace Palete {
 			
 			// does this need to add properties to methods?
 			this.add_node_default("Gtk.ListStore", "columns", "typeof(string)");
-			this.add_node_default("Gtk.ListStore", "n_columns", "1");
 			this.add_node_default("Gtk.TreeStore", "columns", "typeof(string)");
-			this.add_node_default("Gtk.TreeStore", "n_columns", "1");
+	 
 			
 			this.add_node_default("Gtk.Grid", "columns", "2");
 			this.add_node_default("Gtk.Grid", "rows", "2");
