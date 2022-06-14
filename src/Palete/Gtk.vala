@@ -82,18 +82,29 @@ namespace Palete {
 			
 			this.map = new Gee.ArrayList<Usage>();
  			this.generic_child_widgets = new Gee.ArrayList<string>();
-
+			this.all_no_parent =  new Gee.ArrayList<string>();
+			var top =   new Gee.ArrayList<string>();
+			top.add("*top");
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				
 				this.build_generic_children(gir.classes);
 			}
-			// add containers.
+			// add containers.   
+			this.map.add(new Usage( top,  this.all_no_parent));
+			var alltop =   new Gee.ArrayList<string>();
+			alltop.add("*top");
 			
+			
+			foreach(var k in this.generic_containers) {
+				alltop.add(k);
+			}
+			this.map.add(new Usage( alltop,  this.generic_child_widgets));
+			
+			 
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
-				
-				this.build_generic_children(gir.classes);
+				this.build_class_props(gir.classes);
 			}
 			
 		}
@@ -107,7 +118,7 @@ namespace Palete {
 		
 		// containers that can contain only certial types of children, and should be ignored from the general bulk add.
 		Gee.ArrayList<string> generic_child_widgets;
-		
+		Gee.ArrayList<string> all_no_parent;		
 		string[] special_containers = {
 			"Gtk.Menu",
 			"Gtk.MenuBar",
@@ -217,6 +228,8 @@ namespace Palete {
 					
 					if (fqn == black || cls.implements.contains(black) || cls.inherits.contains(black)) {
 						is_black = true;
+						all_no_parent.add(fqn);
+						
 						break;
 					}
 					
