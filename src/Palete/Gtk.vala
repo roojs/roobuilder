@@ -297,7 +297,7 @@ namespace Palete {
 				if (impcls.nodetype == "Interface") {
 					continue;
 				}
-				 GLib.debug("Special Parent %s - add %s ", parent , impl );				
+				 GLib.debug("Special Parent %s - add %s ", parent , impl + ( prop.length > 0 ? ":" + prop : ""));				
 				localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
 			}
 			this.map.add(new Usage(localopts_l, localopts_r));
