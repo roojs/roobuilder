@@ -275,17 +275,17 @@ namespace Palete {
 			var localopts_l = new Gee.ArrayList<string>();
 			localopts_l.add(parent);
 		 	localopts_r.add(child);
-		 	
-				 GLib.debug("Parent %s - add %s ", parent , child);			
+			 
+			 GLib.debug("Special Parent %s - add %s ", parent , child);			
 			foreach(var impl in cls_cn.implementations) {
-				 GLib.debug("Parent %s - add %s ", parent , imp.fqn());
+
 				// in theory these can not be abstract?
 				
 				var impcls = this.getClass(impl);
 				if (impcls.is_abstract) {
 					continue;
 				}
-				 GLib.debug("Parent %s - add %s ", parent , imp.fqn());				
+				 GLib.debug("Special Parent %s - add %s ", parent , imp.fqn());				
 				localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
 			}
 			this.map.add(new Usage(localopts_l, localopts_r));
