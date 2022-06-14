@@ -71,8 +71,7 @@ namespace Palete {
 		    //this.proplist = {};
 		    //this.comments = { }; 
 		    // no parent...
-		    
-		    this.init_child_defaults();
+		   
 		    
 		}
 		
@@ -133,7 +132,12 @@ namespace Palete {
  			this.add_special_children("Gtk.TreeViewColumn","Gtk.CellRenderer", "");
  			
  			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
-			  
+			 
+			 
+			 
+			this.init_node_defaults();
+		    this.init_child_defaults();  
+		    
 			//foreach(var m in this.map) {
 			//	GLib.debug("Usage: %s", m.to_string());
 		//	}
@@ -540,12 +544,12 @@ namespace Palete {
 			
 
 		}
-		Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>> node_defaults;
-		Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
+		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> node_defaults;
+		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
 		
 		public void init_node_defaults()
 		{
-			this.node_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
+			this.node_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
 			// does this need to add properties to methods?
 			this.add_node_default("Gtk.ComboBox", "columns");
@@ -568,7 +572,7 @@ namespace Palete {
 		}
 		public void init_child_defaults()
 		{
-			this.child_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
+			this.child_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
 			this.add_child_default("Gtk.Fixed", "x", "int", "0");
 			this.add_child_default("Gtk.Fixed", "y", "int", "0");
