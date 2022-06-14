@@ -118,7 +118,7 @@ namespace Palete {
 			this.add_special_children("Gtk.MenuBar", "Gtk.MenuItem", "");
 			this.add_special_children("Gtk.ToolBar", "Gtk.ToolItem", "");
 			
-			this.add_special_children_prop("Gtk.Notebook", "Gtk.Label", "label[]");
+			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]");
 			//this.add_specials_prop("Gtk.Assistant", "action[]", "Gtk.Widget");	 
 
 			
@@ -267,7 +267,7 @@ namespace Palete {
 		
 		}
 		
-		public void add_special_children(string parent, string child)
+		public void add_special_children(string parent, string child, string prop)
 		{
 				var cls = this.getClass(parent);
 				var cls_cn = this.getClass(child);
@@ -286,9 +286,9 @@ namespace Palete {
 						continue;
 					}
 					
-					localopts_r.add( impl  );
+					localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
 				}
-				
+				this.map.add(new Usage(localopts_l, localopts_r));
 				 
 			}
 		
