@@ -15,6 +15,11 @@
       }
      ],
      "xtype" : "ComboBox"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* pack" : "composite_name",
+     "xtype" : "Toolbar"
     }
    ],
    "xtype" : "Popover"
