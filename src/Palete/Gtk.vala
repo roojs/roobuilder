@@ -101,8 +101,29 @@ namespace Palete {
 		public void add_map_from_classes(Gee.HashMap<string,GirObject> classes)
 		{
 			
-
-			
+			var containers = {
+				"Gtk.ActionBar",
+				"Gtk.AspectFrame",
+				"Gtk.Frame",
+				"Gtk.Box",
+				"Gtk.Dialog",
+				"Gtk.FlowBox",
+				"Gtk.HeaderBar",
+				"Gtk.InfoBar",
+				"Gtk.ListBox",
+				"Gtk.Overlay",
+				"Gtk.Paned",
+				"Gtk.PopoverMenu",
+				"Gtk.Revealer",
+				"Gtk.ScrolledWindow",
+				"Gtk.Stack",
+				"Gtk.Toolbar",
+				"Gtk.ToolItem",
+				"Gtk.ToolPalette",
+				"Gtk.Viewport",
+				"Gtk.Window",
+				"Gtk.ApplicationWindow"
+			};
 			
 			
 			var widgets = new Gee.ArrayList<string>();
