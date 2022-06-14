@@ -81,25 +81,32 @@ namespace Palete {
 			
 			
 			this.map = new Gee.ArrayList<Usage>();
- 
- 			this.init_map();
+ 			this.generic_child_widgets = new Gee.ArrayList<string>();
+
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				
-				this.add_map_from_classes(gir.classes);
+				this.build_generic_children(gir.classes);
 			}
+			// add containers.
 			
+			foreach(var key in   pr.gir_cache.keys) {
+				var gir = pr.gir_cache.get(key);
+				
+				this.build_generic_children(gir.classes);
+			}
 			
 		}
 		
 		// a) build a list of all widgets that can be added generically.
 		// b) build child list for all containers.
 		// c) build child list for all widgets (based on properties)
-		
+		// d) handle oddities?
 		
 		
 		
 		// containers that can contain only certial types of children, and should be ignored from the general bulk add.
+		Gee.ArrayList<string> generic_child_widgets;
 		
 		string[] special_containers = {
 			"Gtk.Menu",
@@ -113,11 +120,11 @@ namespace Palete {
 			"Gtk.MenuItem",
 			"Gtk.ToolbarItem"
 		};
-		// widgets that can not be added.. 
+		// widgets that can not be added to anything? - including their children.
 		string[] no_parent = { // except *top
 			"Gtk.Window",
 			"Gtk.Dialog",
-		}
+		};
 		
 		string[] generic_containers = {
 			"Gtk.ActionBar",
@@ -173,12 +180,70 @@ namespace Palete {
 		 * The list goes on.
 		 * 
 		 *
-		*/		
+		*/
+		
+		public void build_generic_children(Gee.HashMap<string,GirObject> classes)
+		{
+			foreach(var cls in classes.values) {
+				
+				var fqn = cls.fqn();
+				
+				if (cls.is_deprecated) {  // don't add depricated to our selection.
+					//GLib.debug("Class %s is depricated", cls.fqn());
+					continue;
+				}
+					
+				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
+					continue;
+				}
+				if (cls.is_abstract) {
+					continue;
+				}
+				
+				var is_black = false;
+				for (var i = 0 ; i < this.widgets_blacklist.length; i++) {
+					var black = this.widgets_blacklist[i];
+					
+					if (fqn == black || cls.implements.contains(black) || cls.inherits.contains(black)) {
+						is_black = true;
+						break;
+					}
+				}
+				if (is_black) {
+					continue;
+				}
+				for (var i = 0 ; i < this.no_parent.length; i++) {
+					var black = this.no_parent[i];
+					
+					if (fqn == black || cls.implements.contains(black) || cls.inherits.contains(black)) {
+						is_black = true;
+						break;
+					}
+					
+
+				}
+				if (is_black) {
+					continue;
+				}
+				this.generic_child_widgets.add(fqn);
+			}
+		
+		}
+		
 		public void add_map_from_classes(Gee.HashMap<string,GirObject> classes)
 		{
 			
 			
 			
+				// do we have access to extends.
+
+				
+				
+			 
+			 
+			 
+			 
+			 
 			 
 			var top = new Gee.ArrayList<string>();
 			var topleft = new Gee.ArrayList<string>();
@@ -200,11 +265,12 @@ namespace Palete {
 					continue;
 				}
 					
+					
+					
 				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
 					continue;
 				}
-				
-				
+				 
 				// 
 				
 				
