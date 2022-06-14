@@ -104,7 +104,7 @@ namespace Palete {
 			
 			foreach(var k in this.generic_containers) {
 				alltop.add(k);
-				//this.add_special_children(k, "Gtk.Menu", "menu"); 
+				 this.add_special_children(k, "Gtk.Menu", "menu"); 
 			}
 			this.map.add(new Usage( alltop,  this.generic_child_widgets));
 			
