@@ -10,7 +10,7 @@
       {
        "$ xns" : "Gtk",
        "* columns" : "",
-       "* rows" : "",
+       "* rows" : 1,
        "xtype" : "Grid"
       }
      ],
