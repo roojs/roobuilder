@@ -126,12 +126,12 @@ namespace Palete {
 			this.add_special_children("Gtk.Window","Gtk.HeaderBar", "titlebar");
 		
 			this.add_special_children("Gtk.Stack","Gtk.Label", "titles[]");
-			
+			this.add_special_children("Gtk.TreeView","Gtk.TreeViewColumn", "column[]");
  
 			//this.add_specials_prop("Gtk.Assistant", "action[]", "Gtk.Widget");	 
-			foreach(var m in this.map) {
-				GLib.debug("Usage: %s", m.to_string());
-			}
+			//foreach(var m in this.map) {
+			//	GLib.debug("Usage: %s", m.to_string());
+		//	}
 			
 		}
 		
