@@ -9,14 +9,8 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "int height" : 1,
-         "int width" : 1,
-         "xtype" : "Button"
-        }
-       ],
+       "* columns" : "",
+       "* rows" : "",
        "xtype" : "Grid"
       }
      ],
