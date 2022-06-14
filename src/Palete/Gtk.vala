@@ -574,7 +574,7 @@ namespace Palete {
 				this.node_defaults.get(cls).add(ar.get(propname).toNodeProp());
 			} else {
 				this.node_defaults.get(cls).add(
-					new  JsRender.NodePropType.special( propname, def) 
+					new  JsRender.NodeProp.special( propname, def) 
 				);
 
 			}
