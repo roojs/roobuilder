@@ -556,8 +556,8 @@ namespace Palete {
 			this.add_node_default("Gtk.ComboBox", "columns");
 			this.add_node_default("Gtk.ComboBox", "no_columns");
 			
-			this.add_node_default("Gtk.Grid", "columns");
-			this.add_node_default("Gtk.Grid", "rows");			
+			this.add_node_default("Gtk.Grid", "columns", "2");
+			this.add_node_default("Gtk.Grid", "rows", "2");
 		 
 			
 			
