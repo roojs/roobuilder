@@ -38,6 +38,19 @@ namespace Palete
 			return false;
 				
 		}
+		
+		public string to_string()
+		{
+			var r = "left:\n";
+			foreach(var s in left) {
+				r+= "   " + s + "\n";
+			}
+		 	r+= "right:\n";
+			foreach(var s in right) {
+				r+= "   " + s + "\n";
+			}
+			return r;
+		
 
 		
 	}
