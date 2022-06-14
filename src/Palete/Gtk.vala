@@ -237,7 +237,9 @@ namespace Palete {
 				if (cls.is_abstract) {
 					continue;
 				}
-				
+				if (cls.nodetype == "Interface") {
+					continue;
+				}
 				var is_black = false;
 				for (var i = 0 ; i < this.widgets_blacklist.length; i++) {
 					var black = this.widgets_blacklist[i];
@@ -292,6 +294,9 @@ namespace Palete {
 				if (impcls.is_abstract) {
 					continue;
 				}
+				if (cls.impcls == "Interface") {
+					continue;
+				}
 				 GLib.debug("Special Parent %s - add %s ", parent , impl );				
 				localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
 			}
@@ -320,7 +325,7 @@ namespace Palete {
 				
 				// we can still add properties of abstract classes...
 				
-				if (cls.is_abstract) {
+				if (cls.is_abstract || cls.nodetype == "Interface") {
 					continue;
 				}
 					
@@ -394,7 +399,7 @@ namespace Palete {
 					
 					
 					// check if propcls is abstract?
-					if (!propcls.is_abstract) { 
+					if (!propcls.is_abstract && propcls.nodetype != "Interface") { 
 						localopts_r.add( prop.type + ":" + prop.name);
 						GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);						
 					}
@@ -407,7 +412,7 @@ namespace Palete {
 						// in theory these can not be abstract?
 						
 						var impcls = this.getClass(impl);
-						if (impcls.is_abstract) {
+						if (impcls.is_abstract || propcls.nodetype == "Interface") {
 							continue;
 						}
 						GLib.debug("Add Widget Prop %s:%s (%s)", cls.fqn(), prop.name, impl);
