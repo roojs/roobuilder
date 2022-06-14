@@ -401,12 +401,12 @@ namespace Palete {
 					// check if propcls is abstract?
 					if (!propcls.is_abstract && propcls.nodetype != "Interface") { 
 						localopts_r.add( prop.type + ":" + prop.name);
-						GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);						
+						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);						
 					}
 
 					
 					
-					GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
+					//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 					foreach(var impl in propcls.implementations) {
 						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 						// in theory these can not be abstract?
@@ -415,7 +415,7 @@ namespace Palete {
 						if (impcls.is_abstract || impcls.nodetype == "Interface") {
 							continue;
 						}
-						GLib.debug("Add Widget Prop %s:%s (%s)", cls.fqn(), prop.name, impl);
+						//GLib.debug("Add Widget Prop %s:%s (%s)", cls.fqn(), prop.name, impl);
 						localopts_r.add( impl + ":" + prop.name );
 					}
 					
