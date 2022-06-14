@@ -547,6 +547,7 @@ namespace Palete {
 		{
 			this.node_defaults = new Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
+			// does this need to add properties to methods?
 			this.add_node_default("Gtk.ComboBox", "columns");
 			this.add_node_default("Gtk.ComboBox", "no_columns");
 			
@@ -571,6 +572,10 @@ namespace Palete {
 			
 			this.add_child_default("Gtk.Fixed", "x", "int", "0");
 			this.add_child_default("Gtk.Fixed", "y", "int", "0");
+			this.add_child_default("Gtk.Layout", "x", "int", "0");
+			this.add_child_default("Gtk.Layout", "y", "int", "0");
+			this.add_child_default("Gtk.Table", "width", "int", "1");
+			this.add_child_default("Gtk.Table", "height", "int", "1");			
 			
 			
 			
