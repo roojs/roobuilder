@@ -540,7 +540,7 @@ namespace Palete {
 			
 
 		}
-		
+		Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>> node_defaults;
 		Gee.ArrayList<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
 		
 		public void init_node_defaults()
@@ -604,6 +604,12 @@ namespace Palete {
 					node.set(k.dupe());
 				}
 			}
+			if (this.node_defaults.has(child.fqn())) {
+				foreach(var k in this.node_defaults.get(parent.fqn())) {
+					node.set(k.dupe());
+				}
+			}
+			
 			// not really
 			//this.fillPack(child, parent);
 			
