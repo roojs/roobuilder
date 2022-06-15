@@ -2,7 +2,7 @@ static GladeView  _GladeView;
 
 public class GladeView : Object
 {
-    public Gtk.Box el;
+    public Gtk.Window el;
     private GladeView  _this;
 
     public static GladeView singleton()
@@ -19,84 +19,38 @@ public class GladeView : Object
     public GladeView()
     {
         _this = this;
-        this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+        this.el = new Gtk.Window( null );
 
         // my vars (dec)
 
         // set gobject values
-        var child_0 = new Xcls_Expander2( _this );
+        var child_0 = new Xcls_HeaderBar2( _this );
         child_0.ref();
+        this.el.titlebar = child_0.el;
     }
 
     // user defined functions
-    public class Xcls_Expander2 : Object
+    public class Xcls_HeaderBar2 : Object
     {
-        public Gtk.Expander el;
+        public Gtk.HeaderBar el;
         private GladeView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Expander2(GladeView _owner )
+        public Xcls_HeaderBar2(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Expander( "Label" );
+            this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Frame3( _this );
-            child_0.ref();
+            this.el.title = "Window Title";
         }
 
         // user defined functions
     }
-    public class Xcls_Frame3 : Object
-    {
-        public Gtk.Frame el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Frame3(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Frame( "Label" );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_Grid4( _this );
-            child_0.ref();
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Grid4 : Object
-    {
-        public Gtk.Grid el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Grid4(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Grid();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-
 
 }

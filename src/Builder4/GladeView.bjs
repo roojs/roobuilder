@@ -3,31 +3,15 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-   "int spacing" : 0,
    "items" : [
     {
      "$ xns" : "Gtk",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* _columns" : 2,
-         "* _rows" : 2,
-         "xtype" : "Grid"
-        }
-       ],
-       "string label" : "Label",
-       "xtype" : "Frame"
-      }
-     ],
-     "string label" : "Label",
-     "xtype" : "Expander"
+     "* prop" : "titlebar",
+     "string title" : "Window Title",
+     "xtype" : "HeaderBar"
     }
    ],
-   "xtype" : "Box"
+   "xtype" : "Window"
   }
  ],
  "modOrder" : "",
