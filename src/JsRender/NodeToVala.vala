@@ -496,6 +496,7 @@ public class JsRender.NodeToVala : Object {
 				if (this.node.has("label")) {
 					ctor = ".with_label";
 				}
+				break;
 			default:
 				break;
 		}
