@@ -21,6 +21,10 @@
         }
        ],
        "xtype" : "Fixed"
+      },
+      {
+       "$ xns" : "Gtk",
+       "xtype" : "AccelLabel"
       }
      ],
      "xtype" : "Box"
