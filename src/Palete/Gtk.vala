@@ -106,7 +106,7 @@ namespace Palete {
 			
 			foreach(var k in this.generic_containers) {
 				alltop.add(k);
-				 this.add_special_children(k, "Gtk.Menu", "menu"); 
+				this.add_special_children(k, "Gtk.Menu", "menu"); 
 			}
 			var u = new Usage( alltop,  this.generic_child_widgets);
 			//GLib.debug("add Usage: %s", u.to_string());
@@ -591,7 +591,7 @@ namespace Palete {
 			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
 			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
  			this.add_node_default_from_ctor("Gtk.LinkButton", "with_label");  
- 			
+ 			this.add_node_default_from_ctor("Gtk.Paned");  
 			
 		}
 		
