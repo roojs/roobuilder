@@ -478,15 +478,33 @@ public class JsRender.NodeToVala : Object {
 		Seed.quit();
 		}
 		*/
+		
+		// ctor can still override.
 		if (this.node.has("* ctor")) {
 			this.node.setLine(this.cur_line, "p", "* ctor");
 			this.addLine(this.ipad + "this.el = " + this.node.get("* ctor")+ ";");
 			return;
 		}
-		 
-		var  default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ".new");
+		
+		var ctor = ".new";
+		switch(this.node.fqn()) {
+			case "Gtk.ListStore":
+			case "Gtk.TreeStore":
+				ctor = ".newv";
+				break;
+			default:
+				break;
+		}
+		
+		
+		var  default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);
 
-		 
+		
+		
+		// use the default ctor
+		
+		
+		
 		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
 			string[] args  = {};
 			var iter = default_ctor.paramset.params.list_iterator();
@@ -495,7 +513,7 @@ public class JsRender.NodeToVala : Object {
 			    GLib.debug("building CTOR ARGS: %s, %s", n, iter.get().is_varargs ? "VARARGS": "");
 				 
 				
-				if (!this.node.has(n)) {
+				if (!this.node.has(n)) {  // node does not have a value
 					if (n == "___") { // for some reason our varargs are converted to '___' ...
 						continue;
 					}
