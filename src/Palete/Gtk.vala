@@ -567,13 +567,21 @@ namespace Palete {
 			this.add_node_default("Gtk.Label", "label");
 			this.add_node_default("Gtk.AccellLabel", "label");
 			
-			this.add_node_default("Gtk.AppChooserButton", "content_type");
-			this.add_node_default("Gtk.AppChooserWidget", "action");   /// FIXME - this needs to be a Gtk.FileChooserAction (from ctor)
+			//this.add_node_default_from_ctor("Gtk.AppChooserButton", "content_type");
+			//this.add_node_default_from_ctor("Gtk.AppChooserWidget", "action");   /// FIXME - this needs to be a Gtk.FileChooserAction (from ctor)
 			
 			
+			//this.add_node_default_from_ctor("Gtk.AspectFrame");
 			
 			
 		}
+		
+		public void add_node_default_from_ctor(string cls)
+		{
+		
+		
+		}
+		
 		public void add_node_default(string cls, string propname, string val = "")
 		{
 			if (!this.node_defaults.has_key(cls)) {
