@@ -46,9 +46,33 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_FileChooserButton3( _this );
+            child_0.ref();
         }
 
         // user defined functions
     }
+    public class Xcls_FileChooserButton3 : Object
+    {
+        public Gtk.FileChooserButton el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_FileChooserButton3(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.FileChooserButton( "", Gtk.FileChooserAction.CREATE_FOLDER );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 }
