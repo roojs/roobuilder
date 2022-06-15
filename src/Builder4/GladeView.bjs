@@ -8,6 +8,7 @@
      "$ xns" : "Gtk",
      "* prop" : "titlebar",
      "bool has_subtitle" : true,
+     "bool hexpand" : true,
      "string subtitle" : "a test",
      "string title" : "Window Title",
      "xtype" : "HeaderBar"
