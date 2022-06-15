@@ -620,7 +620,7 @@ namespace Palete {
 			
 			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
 			
-			foreach(var prop in ar) {
+			foreach(var prop in ar.values) {
 				GLib.debug("ctor: %s", prop.asJSONString());
 			}
 			
