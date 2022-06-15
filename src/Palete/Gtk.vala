@@ -613,7 +613,10 @@ namespace Palete {
 			foreach (var prop in ctor.params) {
 				string[] opts;
 				this.typeOptions(cls, prop.name, prop.type, out opts);
-
+				var sub = this.getClass(prop.type);
+				if (sub != null) { // can't add child classes here...
+					continue;
+				}
 			
 				this.node_defaults.get(cls).add(
 					new JsRender.NodeProp.prop( prop.name, prop.type, opts.length > 0 ? opts[0] : "")
