@@ -221,12 +221,13 @@ namespace Palete {
 			"Gtk.ListBoxRow",
 			"Gtk.OffscreenWindow",
 			"Gtk.Plug",
+			"Gtk.HSV",
 			
 			"Gtk.Menu", // it's added as a special only?
 			"Gtk.MenuItem",
 			"Gtk.ToolItem",
 			
-			"WebKit.WebViewBase"
+			"WebKit.WebViewBase",
 			
 			"Gtk.HeaderBar",	 // only to window
 		};
