@@ -20,10 +20,6 @@
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "xtype" : "Paned"
-      },
-      {
-       "$ xns" : "Gtk",
-       "xtype" : "TextView"
       }
      ],
      "xtype" : "Box"
