@@ -144,10 +144,34 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_CellRendererText7( _this );
+            child_0.ref();
         }
 
         // user defined functions
     }
+    public class Xcls_CellRendererText7 : Object
+    {
+        public Gtk.CellRendererText el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CellRendererText7(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CellRendererText();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 
