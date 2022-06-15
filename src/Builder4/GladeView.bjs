@@ -34,6 +34,13 @@
       },
       {
        "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "xtype" : "TreeStore"
+        }
+       ],
        "xtype" : "TreeView"
       }
      ],
