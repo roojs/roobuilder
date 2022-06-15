@@ -720,7 +720,10 @@ public class JsRender.NodeToVala : Object {
 			
 			if (child.has("* prop")) {
 				// fixme special packing!??!?!
-			
+				if (child.get_prop("* prop").val.contains("[]")) {
+					this.packChild(child, child.get_prop("* prop").val);
+					continue;
+				}
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
 				continue;
 			} 
@@ -742,7 +745,7 @@ public class JsRender.NodeToVala : Object {
 		}
 	}
 
-	void packChild(Node child)
+	void packChild(Node child, string prop)
 	{
 		// forcing no packing? - true or false? -should we just accept false?
 		if (child.has("* pack") && child.get("* pack").down() == "false") {
