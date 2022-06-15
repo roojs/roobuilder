@@ -120,10 +120,35 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_TreeViewColumn6( _this );
+            child_0.ref();
+            this.el.column[] = child_0.el;
         }
 
         // user defined functions
     }
+    public class Xcls_TreeViewColumn6 : Object
+    {
+        public Gtk.TreeViewColumn el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeViewColumn6(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeViewColumn();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 }

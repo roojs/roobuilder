@@ -23,6 +23,13 @@
       },
       {
        "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "column[]",
+         "xtype" : "TreeViewColumn"
+        }
+       ],
        "xtype" : "TreeView"
       }
      ],
