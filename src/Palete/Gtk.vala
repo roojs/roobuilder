@@ -637,7 +637,7 @@ namespace Palete {
 				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
 			}
 			
-	make 		var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
+	  		var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
 			if (ar.has_key(propname)) {
 				GLib.debug("Class %s has property %s from %s - adding normal property", cls, propnamem, ar.get(propname).asJSONString());
 				var add = ar.get(propname).toNodeProp(); // our nodes dont have default values.
