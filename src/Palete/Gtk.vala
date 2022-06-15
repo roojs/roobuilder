@@ -580,7 +580,7 @@ namespace Palete {
 			this.add_node_default_from_ctor("Gtk.AppChooserButton", "new");
 			this.add_node_default_from_ctor("Gtk.AppChooserWidget", "new");
 			
-			this.add_node_default_from_ctor("Gtk.AspectFrame");
+			this.add_node_default_from_ctor("Gtk.AspectFrame", "new");
 			
 			this.add_node_default("Gtk.Button", "label", "Label");  // these are not necessary
 			this.add_node_default("Gtk.CheckButton", "label", "Label");
