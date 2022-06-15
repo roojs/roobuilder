@@ -638,6 +638,8 @@ namespace Palete {
 			}
 			
 	  		var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
+	  		
+	  		// liststore.columns - exists as a property but does not have a type (it's an array of typeofs()....
 			if (ar.has_key(propname) && ar.get(propname).type != "") { // must have  type (otherwise special)
 				//GLib.debug("Class %s has property %s from %s - adding normal property", cls, propname, ar.get(propname).asJSONString());
 				var add = ar.get(propname).toNodeProp(); // our nodes dont have default values.
