@@ -2,7 +2,7 @@ static GladeView  _GladeView;
 
 public class GladeView : Object
 {
-    public Gtk.Box el;
+    public Gtk.AppChooserWidget el;
     private GladeView  _this;
 
     public static GladeView singleton()
@@ -19,36 +19,12 @@ public class GladeView : Object
     public GladeView()
     {
         _this = this;
-        this.el = new Gtk.Box( null, 0 );
+        this.el = new Gtk.AppChooserWidget( "" );
 
         // my vars (dec)
 
         // set gobject values
-        var child_0 = new Xcls_AppChooserWidget2( _this );
-        child_0.ref();
     }
 
     // user defined functions
-    public class Xcls_AppChooserWidget2 : Object
-    {
-        public Gtk.AppChooserWidget el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_AppChooserWidget2(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.AppChooserWidget( "text/plain" );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
 }
