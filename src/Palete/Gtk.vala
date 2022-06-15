@@ -596,7 +596,7 @@ namespace Palete {
  			this.add_node_default_from_ctor("Gtk.ScaleButton");   /// ctor ignore optional array of strings at end?
 			this.add_node_default_from_ctor("Gtk.Scrollbar");
 			this.add_node_default_from_ctor("Gtk.Separator");
-			
+			this.add_node_default_from_ctor("Gtk.SpinButton");
 			
 			
 		}
@@ -661,7 +661,8 @@ namespace Palete {
 			this.add_child_default("Gtk.Layout", "y", "int", "0");
 			this.add_child_default("Gtk.Grid", "width", "int", "1");
 			this.add_child_default("Gtk.Grid", "height", "int", "1");			
-			
+			this.add_child_default("Gtk.Stack", "stack_name", "string", "name");
+			this.add_child_default("Gtk.Stack", "stack_title", "string", "title");	
 			
 			
 		}
