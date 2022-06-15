@@ -2,7 +2,7 @@ static GladeView  _GladeView;
 
 public class GladeView : Object
 {
-    public Gtk.AppChooserWidget el;
+    public Gtk.AspectFrame el;
     private GladeView  _this;
 
     public static GladeView singleton()
@@ -19,7 +19,7 @@ public class GladeView : Object
     public GladeView()
     {
         _this = this;
-        this.el = new Gtk.AppChooserWidget( "" );
+        this.el = new Gtk.AspectFrame( "asdf", 1, , 1, true );
 
         // my vars (dec)
 

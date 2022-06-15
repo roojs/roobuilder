@@ -3,8 +3,12 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "string content_type" : "",
-   "xtype" : "AppChooserWidget"
+   "bool obey_child" : true,
+   "float ratio" : 1,
+   "float xalign" : 1,
+   "float yalign" : "",
+   "string label" : "asdf",
+   "xtype" : "AspectFrame"
   }
  ],
  "modOrder" : "",
