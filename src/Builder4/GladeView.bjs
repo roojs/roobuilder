@@ -8,14 +8,6 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "Gtk.FileChooserAction action" : "Gtk.FileChooserAction.CREATE_FOLDER",
-       "string title" : "",
-       "xtype" : "FileChooserButton"
-      }
-     ],
      "string label" : "Label",
      "xtype" : "Expander"
     }
