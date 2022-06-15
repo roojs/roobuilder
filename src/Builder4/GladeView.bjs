@@ -35,6 +35,10 @@
           {
            "$ xns" : "Gtk",
            "xtype" : "CellRendererPixbuf"
+          },
+          {
+           "$ xns" : "Gtk",
+           "xtype" : "CellRendererCombo"
           }
          ],
          "xtype" : "TreeViewColumn"
