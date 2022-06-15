@@ -8,6 +8,13 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "string label" : "Label",
+       "xtype" : "Frame"
+      }
+     ],
      "string label" : "Label",
      "xtype" : "Expander"
     }
