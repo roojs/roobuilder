@@ -148,7 +148,10 @@ public class GladeView : Object
         public Xcls_ListStore6(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ListStore( 0, typeof(string), typeof(string), typeof(GLib.Object) );
+            this.el = new Gtk.ListStore( 0, 
+typeof(string), 
+typeof(string), 
+typeof(GLib.Object) );
 
             // my vars (dec)
 

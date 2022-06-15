@@ -25,7 +25,12 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "model",
-         "columns" : "typeof(string), typeof(string), typeof(GLib.Object)",
+         "columns" : [
+          "",
+          "typeof(string), ",
+          "typeof(string), ",
+          "typeof(GLib.Object)"
+         ],
          "xtype" : "ListStore"
         }
        ],
