@@ -639,11 +639,20 @@ namespace Palete {
 				if (sub != null) { // can't add child classes here...
 					continue;
 				}
-				this.typeOptions(cls, prop.name, prop.type, out opts);
+				var dval = "";
+				switch (type) {
+					case "int":
+						dval = "0";break;
+					case "string": 
+						dval = ""; break;
+					// anything else?
+					default:
+						this.typeOptions(cls, prop.name, prop.type, out opts);
+						dval = opts.length > 0 ? opts[0] : "";
+						break;
+				}
 				
-				this.node_defaults.get(cls).add(
-					new JsRender.NodeProp.prop( prop.name, prop.type, opts.length > 0 ? opts[0] : "")
-				);
+				this.node_defaults.get(cls).add( new JsRender.NodeProp.prop( prop.name, prop.type, dval));
 			
 			
 			}
