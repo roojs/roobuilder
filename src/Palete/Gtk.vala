@@ -834,7 +834,7 @@ namespace Palete {
 		{
 			opts = {};
 			if (type == ""  ) { // empty type   dont try and fill in options
-				return "";
+				return false;
 			}
 			print("get typeOptions %s (%s)%s", fqn, type, key);
 			if (type.up() == "BOOL" || type.up() == "BOOLEAN") {
