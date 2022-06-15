@@ -634,12 +634,13 @@ namespace Palete {
 				string[] opts;
 				
 				
-				this.typeOptions(cls, prop.name, prop.type, out opts);
+
 				var sub = this.getClass(prop.type);
 				if (sub != null) { // can't add child classes here...
 					continue;
 				}
-			
+				this.typeOptions(cls, prop.name, prop.type, out opts);
+				
 				this.node_defaults.get(cls).add(
 					new JsRender.NodeProp.prop( prop.name, prop.type, opts.length > 0 ? opts[0] : "")
 				);
@@ -860,7 +861,7 @@ namespace Palete {
 			if (type == ""  ) { // empty type   dont try and fill in options
 				return false;
 			}
-			print("get typeOptions %s (%s)%s", fqn, type, key);
+			GLib.debug("get typeOptions %s (%s)%s", fqn, type, key);
 			if (type.up() == "BOOL" || type.up() == "BOOLEAN") {
 				opts = { "true", "false" };
 				return true;
