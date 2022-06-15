@@ -721,7 +721,7 @@ public class JsRender.NodeToVala : Object {
 			if (child.has("* prop")) {
 				// fixme special packing!??!?!
 				if (child.get_prop("* prop").val.contains("[]")) {
-					this.packChild(child, child.get_prop("* prop").val);
+					this.packChild(child, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
@@ -745,7 +745,7 @@ public class JsRender.NodeToVala : Object {
 		}
 	}
 
-	void packChild(Node child, string prop)
+	void packChild(Node child, string prop = "")
 	{
 		// forcing no packing? - true or false? -should we just accept false?
 		if (child.has("* pack") && child.get("* pack").down() == "false") {
@@ -776,6 +776,13 @@ public class JsRender.NodeToVala : Object {
 			case "Gtk.Layout":
 			case "Gtk.Grid":
 			case "Gtk.Stack":
+			
+			case "Gtk.Notebook": // use label
+			
+			case "Gtk.TreeStore":
+			case "Gtk.ListStore":
+				// column
+				
 			
 			case "Gtk.TreeViewColumn": // packing renderers
 			
