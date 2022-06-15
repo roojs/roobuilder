@@ -3,39 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-     "int spacing" : 0,
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "int x" : 0,
-         "int y" : 0,
-         "string label" : "Label",
-         "xtype" : "Button"
-        }
-       ],
-       "xtype" : "Fixed"
-      },
-      {
-       "$ xns" : "Gtk",
-       "xtype" : "AccelLabel"
-      },
-      {
-       "$ xns" : "Gtk",
-       "string content_type" : "",
-       "xtype" : "AppChooserButton"
-      }
-     ],
-     "xtype" : "Box"
-    }
-   ],
-   "xtype" : "Window"
+   "xtype" : "AppChooserWidget"
   }
  ],
  "modOrder" : "",
