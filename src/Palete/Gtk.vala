@@ -630,7 +630,7 @@ namespace Palete {
 				//gtk box failing
 			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
 			
-			foreach (var prop in ctor.paramset.params) {
+			foreach (var prop in ar.get(method).paramset.params) {
 				string[] opts;
 				
 				
