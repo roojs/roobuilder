@@ -560,8 +560,9 @@ namespace Palete {
 			// this lot could probably be configured?
 			
 			// does this need to add properties to methods?
-			this.add_node_default("Gtk.ListStore", "columns", "typeof(string)");
-			this.add_node_default("Gtk.TreeStore", "columns", "typeof(string)");
+			// these are fake methods.
+			this.add_node_default("Gtk.ListStore", "_columns", "/*\n fill in an array of typeof(xxx), typeof(xxx), \n */\ntypeof(string)");
+			this.add_node_default("Gtk.TreeStore", "_columns", "/*\n fill in an array of typeof(xxx), typeof(xxx), \n */\ntypeof(string)");
 	 
 			
 			
