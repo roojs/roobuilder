@@ -12,113 +12,23 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "string label" : "",
+         "string label" : "xxx",
          "xtype" : "MenuItem"
         },
         {
          "$ xns" : "Gtk",
+         "string label" : "",
          "xtype" : "CheckMenuItem"
+        },
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "ImageMenuItem"
         }
        ],
        "xtype" : "MenuBar"
-      },
-      {
-       "$ xns" : "Gtk",
-       "string label" : "Label",
-       "xtype" : "Label"
       }
      ],
      "xtype" : "Box"
-    },
-    {
-     "$ xns" : "Gtk",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "bool has_entry" : false,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* columns" : [
-          "/*",
-          " fill in an array of typeof(xxx), typeof(xxx), ",
-          " */",
-          "typeof(string)"
-         ],
-         "* prop" : "model",
-         "xtype" : "ListStore"
-        }
-       ],
-       "xtype" : "ComboBox"
-      },
-      {
-       "$ xns" : "Gtk",
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* prop" : "_menu",
-       "xtype" : "RecentChooserMenu"
-      },
-      {
-       "$ xns" : "Gtk",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "model",
-         "xtype" : "TreeStore"
-        }
-       ],
-       "xtype" : "TreeView"
-      },
-      {
-       "$ xns" : "Gtk",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "int x" : 0,
-         "int y" : 0,
-         "string label" : "Label",
-         "xtype" : "Button"
-        }
-       ],
-       "xtype" : "Fixed"
-      }
-     ],
-     "xtype" : "Paned"
-    },
-    {
-     "$ xns" : "Gtk",
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* prop" : "buffer",
-       "xtype" : "TextBuffer"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* prop" : "_menu",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "submenu",
-           "xtype" : "Menu"
-          }
-         ],
-         "xtype" : "MenuItem"
-        }
-       ],
-       "xtype" : "Menu"
-      }
-     ],
-     "xtype" : "TextView"
     }
    ],
    "xtype" : "Window"
