@@ -59,6 +59,10 @@
         }
        ],
        "xtype" : "TreeView"
+      },
+      {
+       "$ xns" : "Gtk",
+       "xtype" : "Fixed"
       }
      ],
      "xtype" : "Paned"
