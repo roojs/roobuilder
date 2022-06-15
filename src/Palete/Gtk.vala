@@ -682,10 +682,12 @@ namespace Palete {
 			if (parent == null) { //top ?? nothign to do?
 				return;
 			}
-			 
-			if (this.child_defaults.has_key(parent.fqn())) {
-				foreach(var k in this.child_defaults.get(parent.fqn())) {
-					child.set_prop(k.dupe());
+			if (!child.has("* prop")) { // child has a property - no need for packing.
+				 
+				if (this.child_defaults.has_key(parent.fqn())) {
+					foreach(var k in this.child_defaults.get(parent.fqn())) {
+						child.set_prop(k.dupe());
+					}
 				}
 			}
 			if (this.node_defaults.has_key(child.fqn())) {
