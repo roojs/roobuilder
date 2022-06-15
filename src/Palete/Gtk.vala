@@ -693,7 +693,7 @@ namespace Palete {
 			}
 			if (this.node_defaults.has_key(child.fqn())) {
 				foreach(var k in this.node_defaults.get(child.fqn())) {
-					GLib.print("Adding Property %s", k.to_string());
+					GLib.print("Adding Property %s", k.to_tooltip());
 					child.set_prop(k.dupe());
 				}
 			}
