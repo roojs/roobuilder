@@ -27,6 +27,12 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "column[]",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "xtype" : "CellRenderer"
+          }
+         ],
          "xtype" : "TreeViewColumn"
         }
        ],
