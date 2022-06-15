@@ -554,6 +554,8 @@ namespace Palete {
 		{
 			this.node_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
+			// this lot could probably be configured?
+			
 			// does this need to add properties to methods?
 			this.add_node_default("Gtk.ListStore", "columns", "typeof(string)");
 			this.add_node_default("Gtk.TreeStore", "columns", "typeof(string)");
@@ -573,7 +575,7 @@ namespace Palete {
 			
 			this.add_node_default_from_ctor("Gtk.AspectFrame");
 			
-			
+			this.add_node_default("Gtk.Button", "label");
 		}
 		
 		public void add_node_default_from_ctor(string cls)
