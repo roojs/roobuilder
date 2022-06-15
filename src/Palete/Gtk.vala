@@ -106,7 +106,7 @@ namespace Palete {
 			
 			foreach(var k in this.generic_containers) {
 				alltop.add(k);
-				this.add_special_children(k, "Gtk.Menu", "menu"); 
+				this.add_special_children(k, "Gtk.Menu", "_menu");
 			}
 			var u = new Usage( alltop,  this.generic_child_widgets);
 			//GLib.debug("add Usage: %s", u.to_string());
@@ -133,7 +133,7 @@ namespace Palete {
  			
  			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
 			 
-			 
+			 this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name");
 			 
 			this.init_node_defaults();
 		    this.init_child_defaults();  
