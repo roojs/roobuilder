@@ -12,6 +12,19 @@
      "string subtitle" : "a test",
      "string title" : "Window Title",
      "xtype" : "HeaderBar"
+    },
+    {
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "int spacing" : 0,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "string label" : "Label",
+       "xtype" : "Button"
+      }
+     ],
+     "xtype" : "Box"
     }
    ],
    "xtype" : "Window"
