@@ -222,6 +222,7 @@ namespace Palete {
 			"Gtk.OffscreenWindow",
 			"Gtk.Plug",
 			"Gtk.HSV",
+			"Gtk.ImageMenuItem", //depricated?
 			
 			"Gtk.Menu", // it's added as a special only?
 			"Gtk.MenuItem",
@@ -394,6 +395,7 @@ namespace Palete {
 						prop.name == "action_target"  ||
 						prop.name == "related_action" || // not sure if we should disable this.
 						prop.name == "visible_child"  || 
+						prop.name == "attach_widget" || // gtk menu
 						prop.name == "relative_to"   // popover
 						
 						
@@ -602,7 +604,10 @@ namespace Palete {
 			this.add_node_default_from_ctor("Gtk.Separator");
 			this.add_node_default_from_ctor("Gtk.SpinButton");
 			this.add_node_default("Gtk.ToggleButton", "label", "Label");  
-			
+			this.add_node_default("Gtk.MenuItem", "label", "Label");
+			this.add_node_default("Gtk.CheckItem", "label", "Label");			
+			this.add_node_default("Gtk.RadioMenuItem", "label", "Label");
+			this.add_node_default("Gtk.TearoffMenuItem", "label", "Label");
 		}
 		
 		public void add_node_default_from_ctor(string cls, string method = "")
