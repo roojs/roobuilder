@@ -583,7 +583,7 @@ namespace Palete {
 			this.add_node_default("Gtk.Expander", "label", "Label"); 
 			this.add_node_default_from_ctor("Gtk.FileChooserButton"); 
 			this.add_node_default_from_ctor("Gtk.FileChooserWidget"); 
-			
+			this.add_node_default("Gtk.Frame", "label", "Label"); 
 			
 			
 			
