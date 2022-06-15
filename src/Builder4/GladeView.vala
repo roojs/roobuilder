@@ -26,9 +26,9 @@ public class GladeView : Object
         // set gobject values
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        var child_1 = new Xcls_Paned5( _this );
+        var child_1 = new Xcls_Paned6( _this );
         child_1.ref();
-        var child_2 = new Xcls_TextView15( _this );
+        var child_2 = new Xcls_TextView16( _this );
         child_2.ref();
     }
 
@@ -52,7 +52,7 @@ public class GladeView : Object
             // set gobject values
             var child_0 = new Xcls_MenuBar3( _this );
             child_0.ref();
-            var child_1 = new Xcls_Label4( _this );
+            var child_1 = new Xcls_Label5( _this );
             child_1.ref();
         }
 
@@ -75,12 +75,36 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_MenuItem4( _this );
+            child_0.ref();
+        }
+
+        // user defined functions
+    }
+    public class Xcls_MenuItem4 : Object
+    {
+        public Gtk.MenuItem el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_MenuItem4(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.MenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
     }
 
-    public class Xcls_Label4 : Object
+
+    public class Xcls_Label5 : Object
     {
         public Gtk.Label el;
         private GladeView  _this;
@@ -89,7 +113,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label4(GladeView _owner )
+        public Xcls_Label5(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Label" );
@@ -103,7 +127,7 @@ public class GladeView : Object
     }
 
 
-    public class Xcls_Paned5 : Object
+    public class Xcls_Paned6 : Object
     {
         public Gtk.Paned el;
         private GladeView  _this;
@@ -112,7 +136,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Paned5(GladeView _owner )
+        public Xcls_Paned6(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Paned( null );
@@ -120,24 +144,24 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ComboBox6( _this );
+            var child_0 = new Xcls_ComboBox7( _this );
             child_0.ref();
-            var child_1 = new Xcls_Button8( _this );
+            var child_1 = new Xcls_Button9( _this );
             child_1.ref();
-            var child_2 = new Xcls_Button9( _this );
+            var child_2 = new Xcls_Button10( _this );
             child_2.ref();
-            var child_3 = new Xcls_RecentChooserMenu10( _this );
+            var child_3 = new Xcls_RecentChooserMenu11( _this );
             child_3.ref();
             this.el._menu = child_3.el;
-            var child_4 = new Xcls_TreeView11( _this );
+            var child_4 = new Xcls_TreeView12( _this );
             child_4.ref();
-            var child_5 = new Xcls_Fixed13( _this );
+            var child_5 = new Xcls_Fixed14( _this );
             child_5.ref();
         }
 
         // user defined functions
     }
-    public class Xcls_ComboBox6 : Object
+    public class Xcls_ComboBox7 : Object
     {
         public Gtk.ComboBox el;
         private GladeView  _this;
@@ -146,7 +170,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ComboBox6(GladeView _owner )
+        public Xcls_ComboBox7(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ComboBox();
@@ -155,14 +179,14 @@ public class GladeView : Object
 
             // set gobject values
             this.el.has_entry = false;
-            var child_0 = new Xcls_ListStore7( _this );
+            var child_0 = new Xcls_ListStore8( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_ListStore7 : Object
+    public class Xcls_ListStore8 : Object
     {
         public Gtk.ListStore el;
         private GladeView  _this;
@@ -171,7 +195,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListStore7(GladeView _owner )
+        public Xcls_ListStore8(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ListStore( 0, null );
@@ -184,28 +208,6 @@ public class GladeView : Object
         // user defined functions
     }
 
-
-    public class Xcls_Button8 : Object
-    {
-        public Gtk.Button el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button8(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
 
     public class Xcls_Button9 : Object
     {
@@ -229,7 +231,29 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_RecentChooserMenu10 : Object
+    public class Xcls_Button10 : Object
+    {
+        public Gtk.Button el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button10(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_RecentChooserMenu11 : Object
     {
         public Gtk.RecentChooserMenu el;
         private GladeView  _this;
@@ -238,7 +262,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_RecentChooserMenu10(GladeView _owner )
+        public Xcls_RecentChooserMenu11(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.RecentChooserMenu();
@@ -251,7 +275,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_TreeView11 : Object
+    public class Xcls_TreeView12 : Object
     {
         public Gtk.TreeView el;
         private GladeView  _this;
@@ -260,7 +284,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeView11(GladeView _owner )
+        public Xcls_TreeView12(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeView();
@@ -268,14 +292,14 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TreeStore12( _this );
+            var child_0 = new Xcls_TreeStore13( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_TreeStore12 : Object
+    public class Xcls_TreeStore13 : Object
     {
         public Gtk.TreeStore el;
         private GladeView  _this;
@@ -284,7 +308,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeStore12(GladeView _owner )
+        public Xcls_TreeStore13(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeStore( 0, null );
@@ -298,7 +322,7 @@ public class GladeView : Object
     }
 
 
-    public class Xcls_Fixed13 : Object
+    public class Xcls_Fixed14 : Object
     {
         public Gtk.Fixed el;
         private GladeView  _this;
@@ -307,7 +331,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Fixed13(GladeView _owner )
+        public Xcls_Fixed14(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Fixed();
@@ -315,13 +339,13 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button14( _this );
+            var child_0 = new Xcls_Button15( _this );
             child_0.ref();
         }
 
         // user defined functions
     }
-    public class Xcls_Button14 : Object
+    public class Xcls_Button15 : Object
     {
         public Gtk.Button el;
         private GladeView  _this;
@@ -332,7 +356,7 @@ public class GladeView : Object
         public int x;
 
         // ctor
-        public Xcls_Button14(GladeView _owner )
+        public Xcls_Button15(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -350,7 +374,7 @@ public class GladeView : Object
 
 
 
-    public class Xcls_TextView15 : Object
+    public class Xcls_TextView16 : Object
     {
         public Gtk.TextView el;
         private GladeView  _this;
@@ -359,7 +383,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TextView15(GladeView _owner )
+        public Xcls_TextView16(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TextView();
@@ -367,17 +391,17 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TextBuffer16( _this );
+            var child_0 = new Xcls_TextBuffer17( _this );
             child_0.ref();
             this.el.buffer = child_0.el;
-            var child_1 = new Xcls_Menu17( _this );
+            var child_1 = new Xcls_Menu18( _this );
             child_1.ref();
             this.el._menu = child_1.el;
         }
 
         // user defined functions
     }
-    public class Xcls_TextBuffer16 : Object
+    public class Xcls_TextBuffer17 : Object
     {
         public Gtk.TextBuffer el;
         private GladeView  _this;
@@ -386,7 +410,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TextBuffer16(GladeView _owner )
+        public Xcls_TextBuffer17(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TextBuffer( null );
@@ -399,7 +423,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_Menu17 : Object
+    public class Xcls_Menu18 : Object
     {
         public Gtk.Menu el;
         private GladeView  _this;
@@ -408,7 +432,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Menu17(GladeView _owner )
+        public Xcls_Menu18(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Menu();
@@ -416,13 +440,13 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem18( _this );
+            var child_0 = new Xcls_MenuItem19( _this );
             child_0.ref();
         }
 
         // user defined functions
     }
-    public class Xcls_MenuItem18 : Object
+    public class Xcls_MenuItem19 : Object
     {
         public Gtk.MenuItem el;
         private GladeView  _this;
@@ -431,7 +455,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem18(GladeView _owner )
+        public Xcls_MenuItem19(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -439,14 +463,14 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Menu19( _this );
+            var child_0 = new Xcls_Menu20( _this );
             child_0.ref();
             this.el.submenu = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Menu19 : Object
+    public class Xcls_Menu20 : Object
     {
         public Gtk.Menu el;
         private GladeView  _this;
@@ -455,7 +479,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Menu19(GladeView _owner )
+        public Xcls_Menu20(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Menu();
