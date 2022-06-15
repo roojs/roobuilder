@@ -567,7 +567,7 @@ namespace Palete {
 			
 			this.add_node_default_from_ctor("Gtk.Box");
 			
-			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
+			
 			this.add_node_default("Gtk.AccellLabel", "label", "Label");
 			
 			
@@ -589,7 +589,9 @@ namespace Palete {
 			this.add_node_default("Gtk.Grid", "rows", "2");
 		 
 			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
-			
+			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
+ 			this.add_node_default_from_ctor("Gtk.LinkButton"); 
+ 			
 			
 		}
 		
