@@ -590,12 +590,12 @@ namespace Palete {
 		 
 			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
 			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
- 			this.add_node_default_from_ctor("Gtk.LinkButton"); 
+ 			this.add_node_default_from_ctor("Gtk.LinkButton", "with_label");  
  			
 			
 		}
 		
-		public void add_node_default_from_ctor(string cls)
+		public void add_node_default_from_ctor(string cls, string method = "")
 		{
 			
 			if (!this.node_defaults.has_key(cls)) {
@@ -606,7 +606,8 @@ namespace Palete {
 			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
 			// assume we are calling this for a reason...
 			// get the first value params.
-			foreach (var prop in ar.values.to_array()[0].params) {
+			var ctor = method.length > 0 ?  ar.get(method) : ar.values.to_array()[0];
+			foreach (var prop ctor.params) {
 				string[] opts;
 				this.typeOptions(cls, prop.name, prop.type, out opts);
 
