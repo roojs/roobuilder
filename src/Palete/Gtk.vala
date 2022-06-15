@@ -592,6 +592,8 @@ namespace Palete {
 			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
  			this.add_node_default_from_ctor("Gtk.LinkButton", "with_label");  
  			this.add_node_default_from_ctor("Gtk.Paned");  
+ 			this.add_node_default("Gtk.Scale", "orientation");
+ 			this.add_node_default_from_ctor("Gtk.ScaleButton");   /// ctor ignore optional array of strings at end?
 			
 		}
 		
