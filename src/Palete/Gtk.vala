@@ -616,9 +616,14 @@ namespace Palete {
 			if (!this.node_defaults.has_key(cls)) {
 				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
 			}
-
+			
 			
 			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
+			
+			foreach(var prop in ar) {
+				GLib.debug("ctor: %s", asJSONString());
+			}
+			
 			// assume we are calling this for a reason...
 			// get the first value params.
 			var ctor = method.length > 0 ?  ar.get(method) : ar.values.to_array()[0];
