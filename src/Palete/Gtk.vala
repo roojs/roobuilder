@@ -682,7 +682,7 @@ namespace Palete {
 			if (parent == null) { //top ?? nothign to do?
 				return;
 			}
-			if (!child.has("* prop")) { // child has a property - no need for packing.
+			if (!child.has("* prop")) { // child has a property - no need for child properties
 				 
 				if (this.child_defaults.has_key(parent.fqn())) {
 					foreach(var k in this.child_defaults.get(parent.fqn())) {
