@@ -1,18 +1,6 @@
 {
  "build_module" : "",
- "items" : [
-  {
-   "$ xns" : "Gtk",
-   "items" : [
-    {
-     "$ xns" : "Gtk",
-     "string content_type" : "text/plain",
-     "xtype" : "AppChooserWidget"
-    }
-   ],
-   "xtype" : "Box"
-  }
- ],
+ "items" : [],
  "modOrder" : "",
  "name" : "GladeView",
  "parent" : "",
