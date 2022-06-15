@@ -126,6 +126,7 @@ public class JsRender.NodeToGtk : Object {
 			}
 			return this.mungeChild(this.node.items.get(0));
 		}
+		 
 
 		var ret = Object.new(cls_gtype);
 		ret.ref(); //??? problematic?
