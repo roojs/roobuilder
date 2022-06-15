@@ -595,6 +595,9 @@ namespace Palete {
  			this.add_node_default("Gtk.Scale", "orientation");
  			this.add_node_default_from_ctor("Gtk.ScaleButton");   /// ctor ignore optional array of strings at end?
 			this.add_node_default_from_ctor("Gtk.Scrollbar");
+			this.add_node_default_from_ctor("Gtk.Separator");
+			
+			
 			
 		}
 		
