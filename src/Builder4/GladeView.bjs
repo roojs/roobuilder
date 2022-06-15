@@ -12,6 +12,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "string label" : "",
          "xtype" : "MenuItem"
         }
        ],
