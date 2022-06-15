@@ -17,11 +17,12 @@
         },
         {
          "$ xns" : "Gtk",
-         "string label" : "",
+         "string label" : "xxx",
          "xtype" : "CheckMenuItem"
         },
         {
          "$ xns" : "Gtk",
+         "string label" : "vvv",
          "xtype" : "ImageMenuItem"
         }
        ],
