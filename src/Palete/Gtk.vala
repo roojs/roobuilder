@@ -637,7 +637,7 @@ namespace Palete {
 
 				var sub = this.getClass(prop.type);
 				if (sub != null) { // can't add child classes here...
-					Glib.debug("skipping ctor argument proprty is an object");
+					GLib.debug("skipping ctor argument proprty is an object");
 					continue;
 				}
 				var dval = "";
