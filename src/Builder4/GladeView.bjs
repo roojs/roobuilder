@@ -11,6 +11,14 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* _columns" : 2,
+         "* _rows" : 2,
+         "xtype" : "Grid"
+        }
+       ],
        "string label" : "Label",
        "xtype" : "Frame"
       }
