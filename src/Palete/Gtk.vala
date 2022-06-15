@@ -612,6 +612,9 @@ namespace Palete {
 			this.add_node_default("Gtk.RadioMenuItem", "label", "Label");
 			this.add_node_default("Gtk.TearoffMenuItem", "label", "Label");
 			
+			
+			this.add_node_default("Gtk.TreeViewColumn", "markup_column",0);
+			 
 			// treeviewcolumn
 			
 		}
