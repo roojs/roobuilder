@@ -21,6 +21,19 @@
       {
        "$ xns" : "Gtk",
        "bool has_entry" : false,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* columns" : [
+          "/*",
+          " fill in an array of typeof(xxx), typeof(xxx), ",
+          " */",
+          "typeof(string)"
+         ],
+         "* prop" : "model",
+         "xtype" : "ListStore"
+        }
+       ],
        "xtype" : "ComboBox"
       },
       {
