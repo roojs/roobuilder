@@ -607,7 +607,7 @@ namespace Palete {
 			// assume we are calling this for a reason...
 			// get the first value params.
 			var ctor = method.length > 0 ?  ar.get(method) : ar.values.to_array()[0];
-			foreach (var prop ctor.params) {
+			foreach (var prop in ctor.params) {
 				string[] opts;
 				this.typeOptions(cls, prop.name, prop.type, out opts);
 
