@@ -833,11 +833,15 @@ namespace Palete {
 		public override bool  typeOptions(string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
+			if (type == "" || key.contains("[]") { // empty type or key is an array. // dont try and fill in options
+				return "";
+			}
 			print("get typeOptions %s (%s)%s", fqn, type, key);
 			if (type.up() == "BOOL" || type.up() == "BOOLEAN") {
 				opts = { "true", "false" };
 				return true;
 			}
+
 			var gir= this.getClass(type) ;
 			if (gir == null) {
 				print("could not find Gir data for %s\n", key);
