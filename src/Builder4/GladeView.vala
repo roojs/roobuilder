@@ -48,6 +48,8 @@ public class GladeView : Object
             // set gobject values
             var child_0 = new Xcls_MenuBar3( _this );
             child_0.ref();
+            var child_1 = new Xcls_Box6( _this );
+            child_1.ref();
         }
 
         // user defined functions
@@ -123,6 +125,28 @@ public class GladeView : Object
         // user defined functions
     }
 
+
+    public class Xcls_Box6 : Object
+    {
+        public Gtk.Box el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box6(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( ,  );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
 }
