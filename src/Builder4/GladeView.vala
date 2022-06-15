@@ -48,6 +48,7 @@ public class GladeView : Object
 
             // set gobject values
             this.el.title = "Window Title";
+            this.el.subtitle = "a test";
             this.el.has_subtitle = true;
         }
 
