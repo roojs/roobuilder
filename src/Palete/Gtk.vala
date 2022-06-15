@@ -562,16 +562,16 @@ namespace Palete {
 			this.add_node_default("Gtk.Grid", "columns", "2");
 			this.add_node_default("Gtk.Grid", "rows", "2");
 		 
-			this.add_node_default("Gtk.Box", "homogeneous");
+			this.add_node_default_from_ctor("Gtk.Box");
 			
-			this.add_node_default("Gtk.Label", "label");
+			this.add_node_default("Gtk.Label", "label"); // althought the ctor asks for string.. - we can use label after ctor.
 			this.add_node_default("Gtk.AccellLabel", "label");
 			
-			//this.add_node_default_from_ctor("Gtk.AppChooserButton", "content_type");
-			//this.add_node_default_from_ctor("Gtk.AppChooserWidget", "action");   /// FIXME - this needs to be a Gtk.FileChooserAction (from ctor)
 			
+			this.add_node_default_from_ctor("Gtk.AppChooserButton");
+			this.add_node_default_from_ctor("Gtk.AppChooserWidget");
 			
-			//this.add_node_default_from_ctor("Gtk.AspectFrame");
+			this.add_node_default_from_ctor("Gtk.AspectFrame");
 			
 			
 		}
