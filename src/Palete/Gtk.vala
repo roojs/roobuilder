@@ -133,7 +133,7 @@ namespace Palete {
  			
  			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
 			 
-			 this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name");
+			 this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name"); // fake property
 			 
 			this.init_node_defaults();
 		    this.init_child_defaults();  
