@@ -25,6 +25,11 @@
       {
        "$ xns" : "Gtk",
        "xtype" : "AccelLabel"
+      },
+      {
+       "$ xns" : "Gtk",
+       "string content_type" : "",
+       "xtype" : "AppChooserButton"
       }
      ],
      "xtype" : "Box"

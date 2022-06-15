@@ -50,6 +50,8 @@ public class GladeView : Object
             child_0.ref();
             var child_1 = new Xcls_AccelLabel5( _this );
             child_1.ref();
+            var child_2 = new Xcls_AppChooserButton6( _this );
+            child_2.ref();
         }
 
         // user defined functions
@@ -118,6 +120,28 @@ public class GladeView : Object
         {
             _this = _owner;
             this.el = new Gtk.AccelLabel( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_AppChooserButton6 : Object
+    {
+        public Gtk.AppChooserButton el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_AppChooserButton6(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.AppChooserButton( "" );
 
             // my vars (dec)
 
