@@ -14,6 +14,11 @@
       {
        "$ xns" : "Gtk",
        "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "_menu",
+       "xtype" : "RecentChooserMenu"
       }
      ],
      "xtype" : "Paned"
