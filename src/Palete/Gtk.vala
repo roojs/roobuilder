@@ -867,12 +867,12 @@ namespace Palete {
 				return true;
 			}
  
-			var gir= this.getClass(type) ;
+			var gir= Gir.factoryFqn(type) ;
 			if (gir == null) {
-				print("could not find Gir data for %s\n", key);
+				GLib.debug("could not find Gir data for %s\n", key);
 				return false;
 			}
-			print ("Got type %s", gir.asJSONString());
+			//print ("Got type %s", gir.asJSONString());
 			if (gir.nodetype != "Enum") {
 				return false;
 			}
