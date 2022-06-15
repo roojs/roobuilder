@@ -633,7 +633,7 @@ namespace Palete {
 			foreach (var prop in ar.get(method).paramset.params) {
 				string[] opts;
 				
-				
+				GLib.debug("adding proprty from ctor : %s, %s, %s", cls, prop.name, prop.type);
 
 				var sub = this.getClass(prop.type);
 				if (sub != null) { // can't add child classes here...
