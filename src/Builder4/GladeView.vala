@@ -139,7 +139,7 @@ public class GladeView : Object
         public Xcls_Box6(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.Box( ,  );
 
             // my vars (dec)
 

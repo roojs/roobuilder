@@ -28,6 +28,8 @@
     },
     {
      "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "",
+     "int spacing" : "",
      "xtype" : "Box"
     }
    ],
