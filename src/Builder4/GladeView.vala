@@ -73,8 +73,6 @@ public class GladeView : Object
             child_0.ref();
             var child_1 = new Xcls_CheckMenuItem5( _this );
             child_1.ref();
-            var child_2 = new Xcls_ImageMenuItem6( _this );
-            child_2.ref();
         }
 
         // user defined functions
@@ -120,29 +118,6 @@ public class GladeView : Object
 
             // set gobject values
             this.el.label = "xxx";
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_ImageMenuItem6 : Object
-    {
-        public Gtk.ImageMenuItem el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ImageMenuItem6(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ImageMenuItem();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "vvv";
         }
 
         // user defined functions

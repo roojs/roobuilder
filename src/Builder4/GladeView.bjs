@@ -19,11 +19,6 @@
          "$ xns" : "Gtk",
          "string label" : "xxx",
          "xtype" : "CheckMenuItem"
-        },
-        {
-         "$ xns" : "Gtk",
-         "string label" : "vvv",
-         "xtype" : "ImageMenuItem"
         }
        ],
        "xtype" : "MenuBar"

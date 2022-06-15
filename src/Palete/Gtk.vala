@@ -222,7 +222,7 @@ namespace Palete {
 			"Gtk.OffscreenWindow",
 			"Gtk.Plug",
 			"Gtk.HSV",
-			"Gtk.ImageMenuItem", //depricated?
+			"Gtk.ImageMenuItem", //deprecated? (not sure why it's not been picked up)
 			
 			"Gtk.Menu", // it's added as a special only?
 			"Gtk.MenuItem",
