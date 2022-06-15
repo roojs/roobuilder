@@ -586,7 +586,8 @@ namespace Palete {
 			
 			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
 			// assume we are calling this for a reason...
-			foreach (var prop in ar.params) {
+			// get the first value params.
+			foreach (var prop in ar.values.to_array()[0].params) {
 				string[] opts;
 				this.typeOptions(cls, prop.name, prop.type, out opts);
 
@@ -595,8 +596,8 @@ namespace Palete {
 					new JsRender.NodeProp.prop( prop.name, prop.type, opts.length > 0 ? opts[0] : "")
 				);
 			
-			}
 			
+			}
 			
 		}
 		
