@@ -597,7 +597,7 @@ namespace Palete {
 			this.add_node_default_from_ctor("Gtk.Scrollbar");
 			this.add_node_default_from_ctor("Gtk.Separator");
 			this.add_node_default_from_ctor("Gtk.SpinButton");
-			
+			this.add_node_default("Gtk.ToggleButton", "label", "Label");  
 			
 		}
 		
