@@ -2,7 +2,7 @@ static GladeView  _GladeView;
 
 public class GladeView : Object
 {
-    public Gtk.AspectFrame el;
+    public Gtk.Box el;
     private GladeView  _this;
 
     public static GladeView singleton()
@@ -19,7 +19,7 @@ public class GladeView : Object
     public GladeView()
     {
         _this = this;
-        this.el = new Gtk.AspectFrame( "asdf", 1, , 1, true );
+        this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
         // my vars (dec)
 

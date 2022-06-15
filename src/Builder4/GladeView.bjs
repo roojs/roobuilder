@@ -3,12 +3,9 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "bool obey_child" : true,
-   "float ratio" : 1,
-   "float xalign" : 1,
-   "float yalign" : "",
-   "string label" : "asdf",
-   "xtype" : "AspectFrame"
+   "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+   "int spacing" : 0,
+   "xtype" : "Box"
   }
  ],
  "modOrder" : "",
