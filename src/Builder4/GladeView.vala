@@ -26,7 +26,7 @@ public class GladeView : Object
         // set gobject values
         var child_0 = new Xcls_Paned2( _this );
         child_0.ref();
-        var child_1 = new Xcls_TextView8( _this );
+        var child_1 = new Xcls_TextView9( _this );
         child_1.ref();
     }
 
@@ -57,6 +57,8 @@ public class GladeView : Object
             var child_3 = new Xcls_RecentChooserMenu7( _this );
             child_3.ref();
             this.el._menu = child_3.el;
+            var child_4 = new Xcls_TreeView8( _this );
+            child_4.ref();
         }
 
         // user defined functions
@@ -175,8 +177,30 @@ public class GladeView : Object
         // user defined functions
     }
 
+    public class Xcls_TreeView8 : Object
+    {
+        public Gtk.TreeView el;
+        private GladeView  _this;
 
-    public class Xcls_TextView8 : Object
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeView8(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeView();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_TextView9 : Object
     {
         public Gtk.TextView el;
         private GladeView  _this;
@@ -185,7 +209,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TextView8(GladeView _owner )
+        public Xcls_TextView9(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TextView();

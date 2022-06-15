@@ -31,6 +31,10 @@
        "$ xns" : "Gtk",
        "* prop" : "_menu",
        "xtype" : "RecentChooserMenu"
+      },
+      {
+       "$ xns" : "Gtk",
+       "xtype" : "TreeView"
       }
      ],
      "xtype" : "Paned"
