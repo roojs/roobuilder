@@ -833,7 +833,7 @@ namespace Palete {
 		public override bool  typeOptions(string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
-			if (type == "" || key.contains("[]") { // empty type or key is an array. // dont try and fill in options
+			if (type == ""  ) { // empty type   dont try and fill in options
 				return "";
 			}
 			print("get typeOptions %s (%s)%s", fqn, type, key);
