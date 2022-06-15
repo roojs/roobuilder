@@ -574,7 +574,7 @@ namespace Palete {
 			this.add_node_default_from_ctor("Gtk.Box");
 			
 			
-			this.add_node_default("Gtk.AccellLabel", "label", "Label");
+			this.add_node_default("Gtk.AccelLabel", "label", "Label");
 			
 			
 			this.add_node_default_from_ctor("Gtk.AppChooserButton");
@@ -620,9 +620,9 @@ namespace Palete {
 			
 			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
 			
-			//foreach(var prop in ar.values) {
-			//	GLib.debug("ctor: %s", prop.asJSONString());
-			//}
+			foreach(var prop in ar.values) {
+				GLib.debug("ctor: %s", prop.asJSONString());
+			}
 			
 			// assume we are calling this for a reason...
 			// get the first value params.
@@ -637,6 +637,7 @@ namespace Palete {
 
 				var sub = this.getClass(prop.type);
 				if (sub != null) { // can't add child classes here...
+					Glib.debug("skipping ctor argument proprty is an object");
 					continue;
 				}
 				var dval = "";
