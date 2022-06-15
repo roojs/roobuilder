@@ -517,7 +517,7 @@ namespace Palete {
 					return cls.signals;
 				case JsRender.NodePropType.METHOD:
 					return cls.methods;
-				case JsRender.NodePropType.CTOR:
+				case JsRender.NodePropType.CTOR:  // needed to query the arguments of a ctor.
 					return cls.ctors;
 				default:
 					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + ptype.to_string());
@@ -536,7 +536,7 @@ namespace Palete {
 		{
 			string[] ret = {};
 			 
-			var cls = Gir.factoryFqn(this.project,ename);
+			var cls = this.getClass(ename);
 			 
 			if (cls == null || cls.nodetype != "Class") {
 				print("getInheritsFor:could not find cls: %s\n", ename);
@@ -578,8 +578,26 @@ namespace Palete {
 		
 		public void add_node_default_from_ctor(string cls)
 		{
-		
-		
+			
+			if (!this.node_defaults.has_key(cls)) {
+				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			}
+
+			
+			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
+			// assume we are calling this for a reason...
+			foreach (var prop in ar.params) {
+				string[] opts;
+				this.typeOptions(cls, prop.name, prop.type, out opts);
+
+			
+				this.node_defaults.get(cls).add(
+					new JsRender.NodeProp.prop( prop.name, prop.type, opts.length > 0 ? opts[0] : "")
+				);
+			
+			}
+			
+			
 		}
 		
 		public void add_node_default(string cls, string propname, string val = "")
@@ -787,7 +805,7 @@ namespace Palete {
 				opts = { "true", "false" };
 				return true;
 			}
-			var gir= Gir.factoryFqn(this.project,type) ;
+			var gir= this.getClass(type) ;
 			if (gir == null) {
 				print("could not find Gir data for %s\n", key);
 				return false;
@@ -898,7 +916,7 @@ namespace Palete {
 				
 				 
 				// look up all the properties of the type...
-				var cls = Gir.factoryFqn(this.project,curtype);
+				var cls = this.getClass(curtype);
 				if (cls == null && curtype[0] != '*') {
 					print("could not get class of curtype %s\n", curtype);
 					return ret;
@@ -934,7 +952,7 @@ namespace Palete {
 						return ret;	 //no idea...
 					}
 					var look = prevbits + parts[i];
-					var scls = Gir.factoryFqn(this.project,look);
+					var scls = this.getClass(look);
 					if (scls == null) {
 						return ret;
 					}
