@@ -177,6 +177,7 @@ namespace Palete {
 			"Gtk.ActionBar",
 			"Gtk.AspectFrame",
 			"Gtk.Frame",
+			"Gtk.Fixed",
 			"Gtk.Box",
 			"Gtk.Dialog",
 			"Gtk.Expander", // add method is different..
@@ -579,9 +580,15 @@ namespace Palete {
 			this.add_node_default("Gtk.CheckButton", "label", "Label");
 			
 			this.add_node_default("Gtk.ComboBox", "has_entry", "false");
-			this.add_node_default("Gtk.Expander", "label", "Label");		
-			this.add_node_default_from_ctor("Gtk.FileChooserButton");		
-			this.add_node_default_from_ctor("Gtk.FileChooserWidget");		
+			this.add_node_default("Gtk.Expander", "label", "Label"); 
+			this.add_node_default_from_ctor("Gtk.FileChooserButton"); 
+			this.add_node_default_from_ctor("Gtk.FileChooserWidget"); 
+			
+			
+			
+			
+			
+			
 		}
 		
 		public void add_node_default_from_ctor(string cls)
