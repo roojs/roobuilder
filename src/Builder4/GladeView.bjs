@@ -25,6 +25,10 @@
       }
      ],
      "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Gtk",
+     "xtype" : "Box"
     }
    ],
    "xtype" : "Window"
