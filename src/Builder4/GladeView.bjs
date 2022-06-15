@@ -15,6 +15,11 @@
        "$ xns" : "Gtk",
        "string label" : "Label",
        "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "xtype" : "Paned"
       }
      ],
      "xtype" : "Box"

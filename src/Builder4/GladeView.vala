@@ -50,6 +50,8 @@ public class GladeView : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_Button3( _this );
             child_0.ref();
+            var child_1 = new Xcls_Paned4( _this );
+            child_1.ref();
         }
 
         // user defined functions
@@ -72,6 +74,28 @@ public class GladeView : Object
 
             // set gobject values
             this.el.label = "Label";
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Paned4 : Object
+    {
+        public Gtk.Paned el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Paned4(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
+
+            // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
