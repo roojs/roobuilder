@@ -10,6 +10,13 @@
       {
        "$ xns" : "Gtk",
        "bool has_entry" : false,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "xtype" : "ListStore"
+        }
+       ],
        "xtype" : "ComboBox"
       },
       {
