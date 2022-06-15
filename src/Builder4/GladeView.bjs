@@ -9,6 +9,10 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "xtype" : "MenuBar"
+      },
+      {
+       "$ xns" : "Gtk",
        "string label" : "Label",
        "xtype" : "Label"
       }
