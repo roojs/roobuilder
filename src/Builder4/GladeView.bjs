@@ -17,6 +17,10 @@
       }
      ],
      "xtype" : "Paned"
+    },
+    {
+     "$ xns" : "Gtk",
+     "xtype" : "TextView"
     }
    ],
    "xtype" : "Window"

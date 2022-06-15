@@ -26,6 +26,8 @@ public class GladeView : Object
         // set gobject values
         var child_0 = new Xcls_Paned2( _this );
         child_0.ref();
+        var child_1 = new Xcls_TextView5( _this );
+        child_1.ref();
     }
 
     // user defined functions
@@ -98,5 +100,27 @@ public class GladeView : Object
         // user defined functions
     }
 
+
+    public class Xcls_TextView5 : Object
+    {
+        public Gtk.TextView el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TextView5(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TextView();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 }
