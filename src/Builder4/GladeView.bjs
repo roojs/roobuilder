@@ -9,6 +9,11 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "bool has_entry" : false,
+       "xtype" : "ComboBox"
+      },
+      {
+       "$ xns" : "Gtk",
        "xtype" : "Button"
       },
       {
