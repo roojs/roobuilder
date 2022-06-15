@@ -90,6 +90,13 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "submenu",
+           "xtype" : "Menu"
+          }
+         ],
          "xtype" : "MenuItem"
         }
        ],

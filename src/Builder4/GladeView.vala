@@ -415,10 +415,35 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Menu18( _this );
+            child_0.ref();
+            this.el.submenu = child_0.el;
         }
 
         // user defined functions
     }
+    public class Xcls_Menu18 : Object
+    {
+        public Gtk.Menu el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Menu18(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Menu();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 
