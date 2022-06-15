@@ -21,19 +21,6 @@
       {
        "$ xns" : "Gtk",
        "bool has_entry" : false,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "model",
-         "columns" : [
-          "",
-          "typeof(string), ",
-          "typeof(string), ",
-          "typeof(GLib.Object)"
-         ],
-         "xtype" : "ListStore"
-        }
-       ],
        "xtype" : "ComboBox"
       },
       {
