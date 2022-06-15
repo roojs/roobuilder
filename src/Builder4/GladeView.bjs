@@ -83,6 +83,11 @@
        "$ xns" : "Gtk",
        "* prop" : "buffer",
        "xtype" : "TextBuffer"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "_menu",
+       "xtype" : "Menu"
       }
      ],
      "xtype" : "TextView"
