@@ -474,6 +474,9 @@ namespace Palete {
 		{
 
 			var es = ename.split(".");
+			if (es.length < 2) {
+				return null;
+			}
 			var gir = Gir.factory(this.project,es[0]);
 		
 			return gir.classes.get(es[1]);
