@@ -62,6 +62,15 @@
       },
       {
        "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "int x" : 0,
+         "int y" : 0,
+         "string label" : "Label",
+         "xtype" : "Button"
+        }
+       ],
        "xtype" : "Fixed"
       }
      ],

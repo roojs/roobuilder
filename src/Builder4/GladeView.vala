@@ -28,7 +28,7 @@ public class GladeView : Object
         child_0.ref();
         var child_1 = new Xcls_Paned4( _this );
         child_1.ref();
-        var child_2 = new Xcls_TextView13( _this );
+        var child_2 = new Xcls_TextView14( _this );
         child_2.ref();
     }
 
@@ -291,13 +291,42 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Button13( _this );
+            child_0.ref();
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Button13 : Object
+    {
+        public Gtk.Button el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+        public int y;
+        public int x;
+
+        // ctor
+        public Xcls_Button13(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+            this.y = 0;
+            this.x = 0;
+
+            // set gobject values
+            this.el.label = "Label";
         }
 
         // user defined functions
     }
 
 
-    public class Xcls_TextView13 : Object
+
+    public class Xcls_TextView14 : Object
     {
         public Gtk.TextView el;
         private GladeView  _this;
@@ -306,7 +335,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TextView13(GladeView _owner )
+        public Xcls_TextView14(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TextView();
@@ -314,14 +343,14 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TextBuffer14( _this );
+            var child_0 = new Xcls_TextBuffer15( _this );
             child_0.ref();
             this.el.buffer = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_TextBuffer14 : Object
+    public class Xcls_TextBuffer15 : Object
     {
         public Gtk.TextBuffer el;
         private GladeView  _this;
@@ -330,7 +359,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TextBuffer14(GladeView _owner )
+        public Xcls_TextBuffer15(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TextBuffer( null );
