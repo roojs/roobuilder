@@ -586,8 +586,8 @@ namespace Palete {
 			this.add_node_default_from_ctor("Gtk.FileChooserWidget"); 
 			this.add_node_default("Gtk.Frame", "label", "Label"); 
 			
-			this.add_node_default("Gtk.Grid", "columns", "2");
-			this.add_node_default("Gtk.Grid", "rows", "2");
+			this.add_node_default("Gtk.Grid", "_columns", "2"); // fake properties
+			this.add_node_default("Gtk.Grid", "_rows", "2");  // fake properties
 		 
 			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
 			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
