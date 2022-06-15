@@ -20,6 +20,13 @@
     },
     {
      "$ xns" : "Gtk",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "menu",
+       "xtype" : "Menu"
+      }
+     ],
      "xtype" : "Box"
     }
    ],
