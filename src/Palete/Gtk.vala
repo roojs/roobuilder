@@ -640,7 +640,7 @@ namespace Palete {
 					continue;
 				}
 				var dval = "";
-				switch (type) {
+				switch (prop.type) {
 					case "int":
 						dval = "0";break;
 					case "string": 
