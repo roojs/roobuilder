@@ -850,7 +850,7 @@ namespace Palete {
 				opts = { "true", "false" };
 				return true;
 			}
-
+ 
 			var gir= this.getClass(type) ;
 			if (gir == null) {
 				print("could not find Gir data for %s\n", key);
