@@ -306,9 +306,12 @@ namespace Palete {
 			var localopts_r = new Gee.ArrayList<string>();
 			var localopts_l = new Gee.ArrayList<string>();
 			localopts_l.add(parent);
-		 	localopts_r.add(child + ( prop.length > 0 ? ":" + prop : "") );
-			 
-			 GLib.debug("Special Parent %s - add %s ", parent , child);			
+			
+			if (!cls_cn.is_abstract) { // and check for interface?
+			
+			 	localopts_r.add(child + ( prop.length > 0 ? ":" + prop : "") );
+			}
+			GLib.debug("Special Parent %s - add %s ", parent , child);			
 			foreach(var impl in cls_cn.implementations) {
 
 				// in theory these can not be abstract?
@@ -608,6 +611,9 @@ namespace Palete {
 			this.add_node_default("Gtk.CheckItem", "label", "Label");			
 			this.add_node_default("Gtk.RadioMenuItem", "label", "Label");
 			this.add_node_default("Gtk.TearoffMenuItem", "label", "Label");
+			
+			// treeviewcolumn
+			
 		}
 		
 		public void add_node_default_from_ctor(string cls, string method )
