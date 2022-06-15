@@ -571,14 +571,14 @@ namespace Palete {
 	 
 			
 			
-			this.add_node_default_from_ctor("Gtk.Box");
+			this.add_node_default_from_ctor("Gtk.Box", "new");
 			
 			
 			this.add_node_default("Gtk.AccelLabel", "label", "Label");
 			
 			
-			this.add_node_default_from_ctor("Gtk.AppChooserButton");
-			this.add_node_default_from_ctor("Gtk.AppChooserWidget");
+			this.add_node_default_from_ctor("Gtk.AppChooserButton", "new");
+			this.add_node_default_from_ctor("Gtk.AppChooserWidget", "new");
 			
 			this.add_node_default_from_ctor("Gtk.AspectFrame");
 			
@@ -587,8 +587,8 @@ namespace Palete {
 			
 			this.add_node_default("Gtk.ComboBox", "has_entry", "false");
 			this.add_node_default("Gtk.Expander", "label", "Label"); 
-			this.add_node_default_from_ctor("Gtk.FileChooserButton"); 
-			this.add_node_default_from_ctor("Gtk.FileChooserWidget"); 
+			this.add_node_default_from_ctor("Gtk.FileChooserButton", "new"); 
+			this.add_node_default_from_ctor("Gtk.FileChooserWidget", "new"); 
 			this.add_node_default("Gtk.Frame", "label", "Label"); 
 			
 			this.add_node_default("Gtk.Grid", "_columns", "2"); // fake properties
@@ -597,12 +597,12 @@ namespace Palete {
 			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
 			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
  			this.add_node_default_from_ctor("Gtk.LinkButton", "with_label");  
- 			this.add_node_default_from_ctor("Gtk.Paned");  
+ 			this.add_node_default_from_ctor("Gtk.Paned", "new");  
  			this.add_node_default("Gtk.Scale", "orientation");
- 			this.add_node_default_from_ctor("Gtk.ScaleButton");   /// ctor ignore optional array of strings at end?
-			this.add_node_default_from_ctor("Gtk.Scrollbar");
-			this.add_node_default_from_ctor("Gtk.Separator");
-			this.add_node_default_from_ctor("Gtk.SpinButton");
+ 			this.add_node_default_from_ctor("Gtk.ScaleButton", "new");   /// ctor ignore optional array of strings at end?
+			this.add_node_default_from_ctor("Gtk.Scrollbar", "new");
+			this.add_node_default_from_ctor("Gtk.Separator", "new");
+			this.add_node_default_from_ctor("Gtk.SpinButton", "new");
 			this.add_node_default("Gtk.ToggleButton", "label", "Label");  
 			this.add_node_default("Gtk.MenuItem", "label", "Label");
 			this.add_node_default("Gtk.CheckItem", "label", "Label");			
@@ -610,7 +610,7 @@ namespace Palete {
 			this.add_node_default("Gtk.TearoffMenuItem", "label", "Label");
 		}
 		
-		public void add_node_default_from_ctor(string cls, string method = "")
+		public void add_node_default_from_ctor(string cls, string method )
 		{
 			GLib.debug("Add node from ctor %s:%s", cls, method);
 			if (!this.node_defaults.has_key(cls)) {
@@ -620,13 +620,13 @@ namespace Palete {
 			
 			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
 			
-			foreach(var prop in ar.values) {
-				GLib.debug("ctor: %s", prop.asJSONString());
-			}
+			 
+			GLib.debug("ctor: %s", ar.get(method).asJSONString());
+			 
 			
 			// assume we are calling this for a reason...
 			// get the first value params.
-			var ctor = method.length > 0 ?  ar.get(method) : ar.values.to_array()[0];
+			 
 				//gtk box failing
 			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
 			
