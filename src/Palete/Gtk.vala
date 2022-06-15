@@ -124,11 +124,11 @@ namespace Palete {
 			this.add_special_children("Gtk.MenuBar", "Gtk.MenuItem", "");
 			this.add_special_children("Gtk.Toolbar", "Gtk.ToolItem", "");
 			
-			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]");
+			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]"); //??
 			this.add_special_children("Gtk.Window","Gtk.HeaderBar", "titlebar");
 		
 			this.add_special_children("Gtk.Stack","Gtk.Label", "titles[]");
-			this.add_special_children("Gtk.TreeView","Gtk.TreeViewColumn", "column[]");
+			this.add_special_children("Gtk.TreeView","Gtk.TreeViewColumn", ""); // any viewcolum added..
  			this.add_special_children("Gtk.TreeViewColumn","Gtk.CellRenderer", "");
  			
  			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
