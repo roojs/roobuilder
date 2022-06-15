@@ -8,6 +8,21 @@
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "int spacing" : 0,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "int x" : 0,
+         "int y" : 0,
+         "string label" : "Label",
+         "xtype" : "Button"
+        }
+       ],
+       "xtype" : "Fixed"
+      }
+     ],
      "xtype" : "Box"
     }
    ],
