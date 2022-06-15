@@ -75,6 +75,8 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_Button4( _this );
             child_0.ref();
         }

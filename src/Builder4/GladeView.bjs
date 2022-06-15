@@ -16,6 +16,8 @@
     {
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool hexpand" : true,
+     "bool vexpand" : true,
      "int spacing" : 0,
      "items" : [
       {
