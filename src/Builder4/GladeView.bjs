@@ -27,6 +27,14 @@
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "",
        "int spacing" : "",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : "",
+         "xtype" : "Box"
+        }
+       ],
        "xtype" : "Box"
       }
      ],

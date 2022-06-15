@@ -143,10 +143,34 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Box7( _this );
+            child_0.ref();
         }
 
         // user defined functions
     }
+    public class Xcls_Box7 : Object
+    {
+        public Gtk.Box el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box7(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL,  );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 }
