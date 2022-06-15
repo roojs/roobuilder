@@ -87,6 +87,12 @@
       {
        "$ xns" : "Gtk",
        "* prop" : "_menu",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "MenuItem"
+        }
+       ],
        "xtype" : "Menu"
       }
      ],
