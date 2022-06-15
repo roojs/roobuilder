@@ -867,7 +867,7 @@ namespace Palete {
 				return true;
 			}
  
-			var gir= Gir.factoryFqn(this.project,type) ;
+			var gir= Gir.factoryFqn(this.project,type) ;  // not get class as we are finding Enums.
 			if (gir == null) {
 				GLib.debug("could not find Gir data for %s\n", key);
 				return false;
