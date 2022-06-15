@@ -612,7 +612,7 @@ namespace Palete {
 		
 		public void add_node_default_from_ctor(string cls, string method = "")
 		{
-			
+			GLib.debug("Add node from ctor %s:%s", cls, method);
 			if (!this.node_defaults.has_key(cls)) {
 				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
 			}
@@ -622,8 +622,13 @@ namespace Palete {
 			// assume we are calling this for a reason...
 			// get the first value params.
 			var ctor = method.length > 0 ?  ar.get(method) : ar.values.to_array()[0];
+			
+			GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
+			
 			foreach (var prop in ctor.params) {
 				string[] opts;
+				
+				
 				this.typeOptions(cls, prop.name, prop.type, out opts);
 				var sub = this.getClass(prop.type);
 				if (sub != null) { // can't add child classes here...
