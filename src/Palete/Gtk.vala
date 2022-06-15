@@ -639,7 +639,7 @@ namespace Palete {
 			
 	  		var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
 			if (ar.has_key(propname)) {
-				GLib.debug("Class %s has property %s from %s - adding normal property", cls, propnamem, ar.get(propname).asJSONString());
+				GLib.debug("Class %s has property %s from %s - adding normal property", cls, propname, ar.get(propname).asJSONString());
 				var add = ar.get(propname).toNodeProp(); // our nodes dont have default values.
 				add.val = val;
 				this.node_defaults.get(cls).add(add);
