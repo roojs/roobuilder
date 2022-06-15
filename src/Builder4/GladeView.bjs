@@ -6,15 +6,6 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "* prop" : "titlebar",
-     "bool has_subtitle" : true,
-     "bool hexpand" : true,
-     "string subtitle" : "a test",
-     "string title" : "Window Title",
-     "xtype" : "HeaderBar"
-    },
-    {
-     "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "bool hexpand" : true,
      "bool vexpand" : true,

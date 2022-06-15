@@ -24,41 +24,12 @@ public class GladeView : Object
         // my vars (dec)
 
         // set gobject values
-        var child_0 = new Xcls_HeaderBar2( _this );
+        var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.titlebar = child_0.el;
-        var child_1 = new Xcls_Box3( _this );
-        child_1.ref();
     }
 
     // user defined functions
-    public class Xcls_HeaderBar2 : Object
-    {
-        public Gtk.HeaderBar el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_HeaderBar2(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.HeaderBar();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.title = "Window Title";
-            this.el.subtitle = "a test";
-            this.el.hexpand = true;
-            this.el.has_subtitle = true;
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_Box3 : Object
+    public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
         private GladeView  _this;
@@ -67,7 +38,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box3(GladeView _owner )
+        public Xcls_Box2(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -77,13 +48,13 @@ public class GladeView : Object
             // set gobject values
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_Button4( _this );
+            var child_0 = new Xcls_Button3( _this );
             child_0.ref();
         }
 
         // user defined functions
     }
-    public class Xcls_Button4 : Object
+    public class Xcls_Button3 : Object
     {
         public Gtk.Button el;
         private GladeView  _this;
@@ -92,7 +63,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button4(GladeView _owner )
+        public Xcls_Button3(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
