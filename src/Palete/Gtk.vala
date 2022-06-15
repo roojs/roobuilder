@@ -622,7 +622,7 @@ namespace Palete {
 			// assume we are calling this for a reason...
 			// get the first value params.
 			var ctor = method.length > 0 ?  ar.get(method) : ar.values.to_array()[0];
-			
+				//gtk box failing
 			GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
 			
 			foreach (var prop in ctor.params) {
