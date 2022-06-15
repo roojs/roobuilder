@@ -566,8 +566,8 @@ namespace Palete {
 		 
 			this.add_node_default_from_ctor("Gtk.Box");
 			
-			this.add_node_default("Gtk.Label", "label"); // althought the ctor asks for string.. - we can use label after ctor.
-			this.add_node_default("Gtk.AccellLabel", "label");
+			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
+			this.add_node_default("Gtk.AccellLabel", "label", "Label");
 			
 			
 			this.add_node_default_from_ctor("Gtk.AppChooserButton");
@@ -575,7 +575,13 @@ namespace Palete {
 			
 			this.add_node_default_from_ctor("Gtk.AspectFrame");
 			
-			this.add_node_default("Gtk.Button", "label");
+			this.add_node_default("Gtk.Button", "label", "Label");  // these are not necessary
+			this.add_node_default("Gtk.CheckButton", "label", "Label");
+			
+			this.add_node_default("Gtk.ComboBox", "has_entry", "false");
+			this.add_node_default("Gtk.Expander", "label", "Label");		
+			this.add_node_default_from_ctor("Gtk.FileChooserButton");		
+			this.add_node_default_from_ctor("Gtk.FileChooserWidget");		
 		}
 		
 		public void add_node_default_from_ctor(string cls)
@@ -611,7 +617,9 @@ namespace Palete {
 			
 			var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
 			if (ar.has_key(propname)) {
-				this.node_defaults.get(cls).add(ar.get(propname).toNodeProp());
+				var add = ar.get(propname).toNodeProp(); // our nodes dont have default values.
+				add.val = val;
+				this.node_defaults.get(cls).add(add);
 			} else {
 				this.node_defaults.get(cls).add(
 					new  JsRender.NodeProp.special( propname, val) 
