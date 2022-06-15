@@ -696,42 +696,68 @@ public class JsRender.NodeToVala : Object {
 		while (iter.next()) {
 			i++;
 				
-			var ci = iter.get();
+			var child = iter.get();
 
-			if (ci.xvala_id[0] == '*') {
+			if (child.xvala_id[0] == '*') {
 				continue; // skip generation of children?
 			}
 					
 			var xargs = "";
 			if (ci.has("* args")) {
 				
-				var ar = ci.get_prop("* args").val.split(",");
+				var ar = child.get_prop("* args").val.split(",");
 				for (var ari = 0 ; ari < ar.length; ari++ ) {
 					var arg = ar[ari].split(" ");
 					xargs += "," + arg[arg.length -1];
 				}
 			}
 			// create the element..
-			this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + ci.xvala_xcls +
+			this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
 					"( _this " + xargs + ");" );
 			
 			// this is only needed if it does not have an ID???
-			this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 			
-			if (ci.has("* prop")) {
-				this.addLine(ipad + "this.el." + ci.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
+			
+			if (child.has("* prop")) {
+				// fixme special packing!??!?!
+			
+				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
 				continue;
 			} 
-				
-
-	// not sure why we have 'true' in pack?!?
-			if (!ci.has("* pack") || ci.get("* pack").down() == "false" || ci.get("* pack").down() == "true") {
-				continue;
+			
+			if (child.xvala_id[0] != '+') {
+				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 			}
 			
+			this.packChild(child);
+			
+					  
+			if (child.xvala_id[0] != '+') {
+			 	continue; // skip generation of children?
+						
+			}
+			// this.{id - without the '+'} = the element...
+			this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " =  child_" + "%d".printf(i) +  ";");
+				  
+		}
+	}
+
+	void packChild(Node child)
+	{
+		// forcing no packing? - true or false? -should we just accept false?
+		if (child.has("* pack") && child.get("* pack").down() == "false") {
+			return; // force no packing
+		}
+		if (child.has("* pack") && child.get("* pack").down() == "true") {
+			return; // force no packing
+		}
+		
+		// BC really - don't want to support this anymore.
+		if (child.has("* pack")) {
+			
 			string[]  packing =  { "add" };
-			if (ci.has("* pack")) {
-				packing = ci.get("* pack").split(",");
+			if (child.has("* pack")) {
+				packing = child.get("* pack").split(",");
 			}
 			
 			var pack = packing[0];
@@ -741,16 +767,29 @@ public class JsRender.NodeToVala : Object {
 					:
 							""
 						) + " );");
-	
-					  
-			if (ci.xvala_id[0] != '+') {
-				continue; // skip generation of children?
-						
-			}
-			// this.{id - without the '+'} = the element...
-			this.addLine(this.ipad + "this." + ci.xvala_id.substring(1) + " =  child_" + "%d".printf(i) +  ";");
-				  
 		}
+		switch (this.node.fqn()) {
+			case "Gtk.Fixed":
+			case "Gtk.Layout":
+			case "Gtk.Grid":
+			case "Gtk.Stack":
+			
+			case "Gtk.TreeViewColumn": // packing renderers
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	void addInit()
