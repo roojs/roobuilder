@@ -32,6 +32,11 @@
          ],
          "* prop" : "model",
          "xtype" : "ListStore"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "_menu",
+         "xtype" : "Menu"
         }
        ],
        "xtype" : "ComboBox"
