@@ -116,7 +116,7 @@ namespace Palete {
 			 
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
-				this.build_class_props(gir.classes);
+				this.build_class_children_from_props(gir.classes);
 			}
 			// oddities.
 
@@ -334,7 +334,7 @@ namespace Palete {
 		
 		
 		
-		public void build_class_props(Gee.HashMap<string,GirObject> classes)
+		public void build_class_children_from_props(Gee.HashMap<string,GirObject> classes)
 		{
 			
 			
