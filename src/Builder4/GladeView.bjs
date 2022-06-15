@@ -6,6 +6,10 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Gtk",
      "items" : [
       {
        "$ xns" : "Gtk",
