@@ -492,6 +492,10 @@ public class JsRender.NodeToVala : Object {
 			case "Gtk.TreeStore":
 				ctor = ".newv";
 				break;
+			case "Gtk.LinkButton":
+				if (this.node.has("label")) {
+					ctor = ".with_label";
+				}
 			default:
 				break;
 		}
