@@ -620,9 +620,9 @@ namespace Palete {
 			
 			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
 			
-			foreach(var prop in ar.values) {
-				GLib.debug("ctor: %s", prop.asJSONString());
-			}
+			//foreach(var prop in ar.values) {
+			//	GLib.debug("ctor: %s", prop.asJSONString());
+			//}
 			
 			// assume we are calling this for a reason...
 			// get the first value params.
@@ -630,7 +630,7 @@ namespace Palete {
 				//gtk box failing
 			GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
 			
-			foreach (var prop in ctor.params) {
+			foreach (var prop in ctor.paramset.params) {
 				string[] opts;
 				
 				
