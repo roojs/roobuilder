@@ -6,6 +6,13 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "string label" : "Label",
+       "xtype" : "Label"
+      }
+     ],
      "xtype" : "Box"
     },
     {
