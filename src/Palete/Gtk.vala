@@ -644,7 +644,7 @@ namespace Palete {
 				add.val = val;
 				this.node_defaults.get(cls).add(add);
 			} else {
-				GLib.debug("Class %s has property %s - adding special property", cls, propname);			
+				//GLib.debug("Class %s has property %s - adding special property", cls, propname);			
 				this.node_defaults.get(cls).add(
 					new  JsRender.NodeProp.special( propname, val) 
 				);
