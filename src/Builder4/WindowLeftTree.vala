@@ -997,15 +997,13 @@ public class Xcls_WindowLeftTree : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore( null );
+            this.el = new Gtk.TreeStore( 4, typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf) );
 
             // my vars (dec)
             this.template_select = null;
             this.activePath = "";
 
             // set gobject values
-            this.el.columns = typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf);
-            this.el.n_columns = 4;
 
             // init method
 
