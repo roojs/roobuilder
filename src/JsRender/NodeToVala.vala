@@ -500,7 +500,7 @@ public class JsRender.NodeToVala : Object {
 			case "Gtk.TreeStore":
 
 				// not sure if this works.. otherwise we have to go with varargs and count + vals...
-				if (this.node.has_prop("* types")) {
+				if (this.node.has("* types")) {
 					args_str = this.node.get_prop("* types").val;
 				}
 				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv(" + args_str + ");");
@@ -531,7 +531,7 @@ public class JsRender.NodeToVala : Object {
 					continue;
 				}
 				
-				if (!this.node.has_prop(n)) {  // node does not have a value
+				if (!this.node.has(n)) {  // node does not have a value
 					
 					 
 					if (iter.get().type.contains("int")) {
@@ -746,7 +746,7 @@ public class JsRender.NodeToVala : Object {
 			
 			
 			this.packChild(child, i, cols, colpos);
-			if (child.node.has_prop("colspan")) {
+			if (child.node.has("colspan")) {
 				colpos += int.parse(child.get_prop("colspan").val);
 			} else {
 				colpos += 1;
@@ -792,22 +792,22 @@ public class JsRender.NodeToVala : Object {
 		switch (this.node.fqn()) {
 			case "Gtk.Fixed":
 			case "Gtk.Layout":
-				var x = child.has_prop("x") ?  child.get_prop("x").val  : "0";
-				var x = child.has_prop("y") ?  child.get_prop("y").val  : "0";
+				var x = child.has("x") ?  child.get_prop("x").val  : "0";
+				var y = child.has("y") ?  child.get_prop("y").val  : "0";
 				this.addLine(this.ipad + "this.el.put(  child_%d.el, %s, %s );".printf(i,x,y) );
 				return;
 				
 			case "Gtk.Grid":
 				var x = "%d".printf(colpos % cols);
-				var y = "%d".printf(colpos -x / cols);
-				var w = child.has_prop("colspan") ? child.get_prop("colspan").val : "1";
+				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
+				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
 				var h = "1";
 				this.addLine(this.ipad + "this.el.attach(  child_%d.el, %s, %s, %s, %s );".printf(i,x,y, w, h) );
 				return;
 
 			case "Gtk.Stack":
-				var named = child.has_prop("stack_name") ? this.node.escape(child.get_prop("stack_name")).val : "";
-				var title = child.has_prop("stack_title") ? this.node.escape(child.get_prop("stack_title")).val : "";
+				var named = child.has("stack_name") ? this.node.escape(child.get_prop("stack_name")).val : "";
+				var title = child.has("stack_title") ? this.node.escape(child.get_prop("stack_title")).val : "";
 				if (title.length > 0) {
 					this.addLine(this.ipad + "this.el.add_titled(  child_%d.el, \"%\", \"%s\" );".printf(i,named,title));	
 				} else {
@@ -816,7 +816,7 @@ public class JsRender.NodeToVala : Object {
 				return;
 				
 			case "Gtk.Notebook": // use label
-				var label = child.has_prop("notebook_label") ? this.node.escape(child.get_prop("notebook_label").val) : "";
+				var label = child.has("notebook_label") ? this.node.escape(child.get_prop("notebook_label").val) : "";
 				this.addLine(this.ipad + "this.el.append_page( child_%d.el, new Gtk.Label(\"%s\"));".printf(i, label));	
 				return;
 				
@@ -826,19 +826,19 @@ public class JsRender.NodeToVala : Object {
 				return;
 			
 			case "Gtk.TreeViewColumn": //adding Renderers
-				if (child.has_prop("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
+				if (child.has("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"markup\", %s );".printf(i, child.get_prop("markup_column").val));
 				}
-				if (child.has_prop("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
+				if (child.has("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"text\", %s );".printf(i, child.get_prop("text_column").val));
 				}
-				if (child.has_prop("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
+				if (child.has("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"pixbuf\", %s );".printf(i, child.get_prop("pixbuf_column").val));
 				}
-				if (child.has_prop("pixbuf_column") && int.parse(child.get_prop("active_column").val) > -1) {
+				if (child.has("pixbuf_column") && int.parse(child.get_prop("active_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"active\", %s );".printf(i, child.get_prop("active_column").val));
 				}
-				if (child.has_prop("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
+				if (child.has("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"background-rgba\", %s );".printf(i, child.get_prop("background_column").val));
 				}
 				// any more!?
