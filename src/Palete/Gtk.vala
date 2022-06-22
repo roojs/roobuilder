@@ -710,8 +710,8 @@ namespace Palete {
 			this.add_child_default("Gtk.Fixed", "y", "int", "0");
 			this.add_child_default("Gtk.Layout", "x", "int", "0");
 			this.add_child_default("Gtk.Layout", "y", "int", "0");
-			this.add_child_default("Gtk.Grid", "width", "int", "1");
-			this.add_child_default("Gtk.Grid", "height", "int", "1");			
+			this.add_child_default("Gtk.Grid", "colspan", "int", "1");
+			//this.add_child_default("Gtk.Grid", "height", "int", "1");			
 			this.add_child_default("Gtk.Stack", "stack_name", "string", "name");
 			this.add_child_default("Gtk.Stack", "stack_title", "string", "title");	
 			
