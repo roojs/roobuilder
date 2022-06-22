@@ -820,9 +820,7 @@ public class JsRender.NodeToVala : Object {
 				this.addLine(this.ipad + "this.el.append_page( child_%d.el, new Gtk.Label(\"%s\"));".printf(i, label));	
 				return;
 				
-			//case "Gtk.TreeStore":
-			//case "Gtk.ListStore":
-				// column
+			 
 			case "Gtk.TreeView": // adding TreeViewColumns
 				this.addLine(this.ipad + "this.el.append_column(  child_" + "%d".printf(i) + ".el );");
 				return;
