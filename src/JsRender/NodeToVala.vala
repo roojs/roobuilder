@@ -690,7 +690,10 @@ public class JsRender.NodeToVala : Object {
 		if (this.node.items.size < 1) {
 			return;
 		}
-			 
+		
+		var cols = this.node.has_prop("cols") ? Int.parse(this.node.get_prop("cols").val) : 1;
+		
+		
 		var iter = this.node.items.list_iterator();
 		var i = -1;
 		while (iter.next()) {
@@ -732,7 +735,7 @@ public class JsRender.NodeToVala : Object {
 				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 			}
 			
-			this.packChild(child);
+			this.packChild(child, i);
 			
 					  
 			if (child.xvala_id[0] != '+') {
@@ -745,7 +748,7 @@ public class JsRender.NodeToVala : Object {
 		}
 	}
 
-	void packChild(Node child, string prop = "")
+	void packChild(Node child, int i)
 	{
 		// forcing no packing? - true or false? -should we just accept false?
 		if (child.has("* pack") && child.get("* pack").down() == "false") {
@@ -770,13 +773,23 @@ public class JsRender.NodeToVala : Object {
 					:
 							""
 						) + " );");
+			return;  
 		}
 		switch (this.node.fqn()) {
 			case "Gtk.Fixed":
 			case "Gtk.Layout":
+			
+				var x = child.has_prop("x") ?  child.get_prop("x").val  : "0";
+				var x = child.has_prop("y") ?  child.get_prop("y").val  : "0";
+				this.addLine(this.ipad + "this.el.put(  child_" + "%d".printf(i) + ".el, " +
+					x + ",  " + y + ");");
+				return;
 			case "Gtk.Grid":
+				
 			case "Gtk.Stack":
 			
+			
+				
 			case "Gtk.Notebook": // use label
 			
 			case "Gtk.TreeStore":
@@ -790,10 +803,12 @@ public class JsRender.NodeToVala : Object {
 		
 		
 		
+			default:
+				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
+				return;
 		
 		
-		
-		
+		}
 		
 		
 		
