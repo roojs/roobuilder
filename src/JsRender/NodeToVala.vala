@@ -806,8 +806,8 @@ public class JsRender.NodeToVala : Object {
 				return;
 
 			case "Gtk.Stack":
-				var named = child.has("stack_name") ? this.node.escape(child.get_prop("stack_name")).val : "";
-				var title = child.has("stack_title") ? this.node.escape(child.get_prop("stack_title")).val : "";
+				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
+				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
 				if (title.length > 0) {
 					this.addLine(this.ipad + "this.el.add_titled(  child_%d.el, \"%\", \"%s\" );".printf(i,named,title));	
 				} else {
@@ -816,7 +816,7 @@ public class JsRender.NodeToVala : Object {
 				return;
 				
 			case "Gtk.Notebook": // use label
-				var label = child.has("notebook_label") ? this.node.escape(child.get_prop("notebook_label").val) : "";
+				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").val.escape() : "";
 				this.addLine(this.ipad + "this.el.append_page( child_%d.el, new Gtk.Label(\"%s\"));".printf(i, label));	
 				return;
 				
