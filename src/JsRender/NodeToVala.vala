@@ -490,29 +490,33 @@ public class JsRender.NodeToVala : Object {
 			return;
 		}
 		
-		Palete.GirObject default_ctor = null;
+		this.node.setLine(this.cur_line, "p", "* xtype");;
+		
+
 		var ctor = ".new";
 		var arg_str = "";
 		switch(this.node.fqn()) {
 			case "Gtk.ListStore":
 			case "Gtk.TreeStore":
-				ctor = ".newv";
+
 				// not sure if this works.. otherwise we have to go with varargs and count + vals...
 				if (this.node.has_prop("* types")) {
 					args_str = this.node.get_prop("* types").val;
 				}
-
+				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv(" + args_str + ");");
+				return;
 				break;
-			case "Gtk.LinkButton":
+				
+			case "Gtk.LinkButton": // args filled with values.
 				if (this.node.has("label")) {
-					ctor = ".with_label";
+					ctor = ".with_label";	 
 				}
 				break;
+				
 			default:
-				default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);
 				break;
 		}
-		
+		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);		
 		 
 		
 		// use the default ctor - with arguments (from properties)
@@ -569,9 +573,9 @@ public class JsRender.NodeToVala : Object {
 			return;
 			
 		}
-		this.node.setLine(this.cur_line, "p", "* xtype");;
-		
 		this.addLine(this.ipad + "this.el = new " + this.cls + "(" + args_str + ");");
+		
+		
 
 			
 	}
