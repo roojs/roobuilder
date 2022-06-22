@@ -613,10 +613,10 @@ namespace Palete {
 			this.add_node_default("Gtk.TearoffMenuItem", "label", "Label");
 			
 			// not sure how many of these 'attributes' there are - documenation is a bit thin on the ground
-			this.add_node_default("Gtk.CellRendererText",	 "markup_column", -1);
-			this.add_node_default("Gtk.CellRendererText", 		"text_column", -1);
-			this.add_node_default("Gtk.CellRendererPixBuf",	 "pixbuf_column", -1);
-			this.add_node_default("Gtk.CellRendererToggle",	 "active_column", -1);			
+			this.add_node_default("Gtk.CellRendererText",	 "markup_column", "-1");
+			this.add_node_default("Gtk.CellRendererText", 		"text_column","-1");
+			this.add_node_default("Gtk.CellRendererPixBuf",	 "pixbuf_column", "-1");
+			this.add_node_default("Gtk.CellRendererToggle",	 "active_column", "-1");			
 
 			//foreground
 			//foreground-gdk
