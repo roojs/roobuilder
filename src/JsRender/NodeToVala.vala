@@ -494,7 +494,7 @@ public class JsRender.NodeToVala : Object {
 		
 
 		var ctor = ".new";
-		var arg_str = "";
+		var args_str = "";
 		switch(this.node.fqn()) {
 			case "Gtk.ListStore":
 			case "Gtk.TreeStore":
@@ -697,8 +697,8 @@ public class JsRender.NodeToVala : Object {
 			return;
 		}
 		
-		var cols = this.node.has_prop("* columns") ? int.parse(this.node.get_prop("* columns").val) : 1;
-		var colspos = 0;
+		var cols = this.node.has("* columns") ? int.parse(this.node.get_prop("* columns").val) : 1;
+		var colpos = 0;
 		
 		var iter = this.node.items.list_iterator();
 		var i = -1;
@@ -712,7 +712,7 @@ public class JsRender.NodeToVala : Object {
 			}
 					
 			var xargs = "";
-			if (ci.has("* args")) {
+			if (child.has("* args")) {
 				
 				var ar = child.get_prop("* args").val.split(",");
 				for (var ari = 0 ; ari < ar.length; ari++ ) {
@@ -746,7 +746,7 @@ public class JsRender.NodeToVala : Object {
 			
 			
 			this.packChild(child, i, cols, colpos);
-			if (child.node.has("colspan")) {
+			if (child.has("colspan")) {
 				colpos += int.parse(child.get_prop("colspan").val);
 			} else {
 				colpos += 1;
@@ -844,8 +844,7 @@ public class JsRender.NodeToVala : Object {
 				// any more!?
 				return;
 				
-			case "Gtk.RadioButton": 
-		
+				
 		
 			default:
 				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
@@ -859,7 +858,9 @@ public class JsRender.NodeToVala : Object {
 	
 	// fixme GtkDialog?!? buttons[]
 	
-	
+	// fixme ... add case "Gtk.RadioButton":  // group_id ??
+
+			
 
 	void addInit()
 	{
