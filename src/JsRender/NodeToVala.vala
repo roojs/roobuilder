@@ -824,11 +824,28 @@ public class JsRender.NodeToVala : Object {
 			//case "Gtk.ListStore":
 				// column
 			case "Gtk.TreeView": // adding TreeViewColumns
+				this.addLine(this.ipad + "this.el.append_column(  child_" + "%d".printf(i) + ".el );");
+				return;
 			
-			
-			case "Gtk.TreeViewColumn": // packing renderers
-			
-		
+			case "Gtk.TreeViewColumn": //adding Renderers
+				if (child.has_prop("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
+					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"markup\", %s );".printf(i, child.get_prop("markup_column").val));
+				}
+				if (child.has_prop("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
+					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"text\", %s );".printf(i, child.get_prop("text_column").val));
+				}
+				if (child.has_prop("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
+					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"pixbuf\", %s );".printf(i, child.get_prop("pixbuf_column").val));
+				}
+				if (child.has_prop("pixbuf_column") && int.parse(child.get_prop("active_column").val) > -1) {
+					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"active\", %s );".printf(i, child.get_prop("active_column").val));
+				}
+				if (child.has_prop("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
+					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"background-rgba\", %s );".printf(i, child.get_prop("background_column").val));
+				}
+				// any more!?
+				return;
+				
 			case "Gtk.RadioButton": 
 		
 		
