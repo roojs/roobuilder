@@ -490,11 +490,18 @@ public class JsRender.NodeToVala : Object {
 			return;
 		}
 		
+		Palete.GirObject default_ctor = null;
 		var ctor = ".new";
+		var arg_str = "";
 		switch(this.node.fqn()) {
 			case "Gtk.ListStore":
 			case "Gtk.TreeStore":
 				ctor = ".newv";
+				// not sure if this works.. otherwise we have to go with varargs and count + vals...
+				if (this.node.has_prop("* types")) {
+					args_str = this.node.get_prop("* types").val;
+				}
+
 				break;
 			case "Gtk.LinkButton":
 				if (this.node.has("label")) {
@@ -502,17 +509,13 @@ public class JsRender.NodeToVala : Object {
 				}
 				break;
 			default:
+				default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);
 				break;
 		}
 		
+		 
 		
-		var  default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ctor);
-
-		
-		
-		// use the default ctor
-		
-		
+		// use the default ctor - with arguments (from properties)
 		
 		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
 			string[] args  = {};
@@ -520,14 +523,13 @@ public class JsRender.NodeToVala : Object {
 			while (iter.next()) {
 				var n = iter.get().name;
 			    GLib.debug("building CTOR ARGS: %s, %s", n, iter.get().is_varargs ? "VARARGS": "");
-				 
+				if (n == "___") { // for some reason our varargs are converted to '___' ...
+					continue;
+				}
 				
-				if (!this.node.has(n)) {  // node does not have a value
-					if (n == "___") { // for some reason our varargs are converted to '___' ...
-						continue;
-					}
-						
+				if (!this.node.has_prop(n)) {  // node does not have a value
 					
+					 
 					if (iter.get().type.contains("int")) {
 						args += "0";
 						continue;
@@ -569,7 +571,7 @@ public class JsRender.NodeToVala : Object {
 		}
 		this.node.setLine(this.cur_line, "p", "* xtype");;
 		
-		this.addLine(this.ipad + "this.el = new " + this.cls + "();");
+		this.addLine(this.ipad + "this.el = new " + this.cls + "(" + args_str + ");");
 
 			
 	}
@@ -724,7 +726,10 @@ public class JsRender.NodeToVala : Object {
 			if (child.has("* prop")) {
 				// fixme special packing!??!?!
 				if (child.get_prop("* prop").val.contains("[]")) {
-					this.packChild(child, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+					// currently these 'child props
+					// used for label[]  on Notebook
+					// used for button[]  on Dialog?
+					//this.packChild(child, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
@@ -797,26 +802,29 @@ public class JsRender.NodeToVala : Object {
 				return;
 
 			case "Gtk.Stack":
-				var named = child.has_prop("stack_name") ? child.get_prop("stack_name").val : "";
-				var title = child.has_prop("stack_title") ? child.get_prop("stack_title").val : "";
+				var named = child.has_prop("stack_name") ? this.node.escape(child.get_prop("stack_name")).val : "";
+				var title = child.has_prop("stack_title") ? this.node.escape(child.get_prop("stack_title")).val : "";
 				if (title.length > 0) {
-					this.addLine(this.ipad + "this.el.add_titled(  child_%d.el, %s, %s );".printf(i,named,title));	
+					this.addLine(this.ipad + "this.el.add_titled(  child_%d.el, \"%\", \"%s\" );".printf(i,named,title));	
 				} else {
-					this.addLine(this.ipad + "this.el.add_named(  child_%d.el, %s );".printf(i,named));
+					this.addLine(this.ipad + "this.el.add_named(  child_%d.el, \"%s\" );".printf(i,named));
 				}
 				return;
 				
 			case "Gtk.Notebook": // use label
-			
-			case "Gtk.TreeStore":
-			case "Gtk.ListStore":
+				var label = child.has_prop("notebook_label") ? this.node.escape(child.get_prop("notebook_label").val) : "";
+				this.addLine(this.ipad + "this.el.append_page( child_%d.el, new Gtk.Label(\"%s\"));".printf(i, label));	
+				return;
+				
+			//case "Gtk.TreeStore":
+			//case "Gtk.ListStore":
 				// column
 				
 			
 			case "Gtk.TreeViewColumn": // packing renderers
 			
 		
-		
+			case "Gtk.RadioButton": 
 		
 		
 			default:
@@ -827,11 +835,11 @@ public class JsRender.NodeToVala : Object {
 		}
 		
 		
-		
-		
-		
-		
 	}
+	
+	// fixme GtkDialog?!? buttons[]
+	
+	
 
 	void addInit()
 	{
