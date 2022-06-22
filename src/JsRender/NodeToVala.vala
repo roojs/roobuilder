@@ -823,7 +823,8 @@ public class JsRender.NodeToVala : Object {
 			//case "Gtk.TreeStore":
 			//case "Gtk.ListStore":
 				// column
-				
+			case "Gtk.TreeView": // adding TreeViewColumns
+			
 			
 			case "Gtk.TreeViewColumn": // packing renderers
 			
