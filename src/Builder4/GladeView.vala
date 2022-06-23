@@ -102,7 +102,7 @@ public class GladeView : Object
             var child_0 = new Xcls_TreeView5( _this );
             child_0.ref();
             this.el.pack1( child_0.el );
-            var child_1 = new Xcls_TreeView10( _this );
+            var child_1 = new Xcls_TreeView11( _this );
             child_1.ref();
             this.el.pack2( child_1.el );
         }
@@ -151,9 +151,9 @@ public class GladeView : Object
             this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
             var child_0 = new Xcls_CellRendererText7( _this );
             child_0.ref();
-            var child_1 = new Xcls_CellRendererPixbuf8( _this );
+            var child_1 = new Xcls_CellRendererPixbuf9( _this );
             child_1.ref();
-            var child_2 = new Xcls_CellRendererCombo9( _this );
+            var child_2 = new Xcls_CellRendererCombo10( _this );
             child_2.ref();
         }
 
@@ -176,12 +176,41 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_RGBA8( _this );
+            child_0.ref();
+            this.el.foreground_rgba = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_RGBA8 : Object
+    {
+        public Gdk.RGBA el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_RGBA8(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gdk.RGBA();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.alpha = ;
+            this.el.red = ;
+            this.el.green = ;
+            this.el.blue = ;
         }
 
         // user defined functions
     }
 
-    public class Xcls_CellRendererPixbuf8 : Object
+
+    public class Xcls_CellRendererPixbuf9 : Object
     {
         public Gtk.CellRendererPixbuf el;
         private GladeView  _this;
@@ -190,7 +219,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererPixbuf8(GladeView _owner )
+        public Xcls_CellRendererPixbuf9(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.CellRendererPixbuf();
@@ -203,7 +232,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_CellRendererCombo9 : Object
+    public class Xcls_CellRendererCombo10 : Object
     {
         public Gtk.CellRendererCombo el;
         private GladeView  _this;
@@ -212,7 +241,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererCombo9(GladeView _owner )
+        public Xcls_CellRendererCombo10(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.CellRendererCombo();
@@ -227,7 +256,7 @@ public class GladeView : Object
 
 
 
-    public class Xcls_TreeView10 : Object
+    public class Xcls_TreeView11 : Object
     {
         public Gtk.TreeView el;
         private GladeView  _this;
@@ -236,7 +265,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeView10(GladeView _owner )
+        public Xcls_TreeView11(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeView();
@@ -244,12 +273,12 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TreeViewColumn11( _this );
+            var child_0 = new Xcls_TreeViewColumn12( _this );
         }
 
         // user defined functions
     }
-    public class Xcls_TreeViewColumn11 : Object
+    public class Xcls_TreeViewColumn12 : Object
     {
         public Gtk.TreeViewColumn el;
         private GladeView  _this;
@@ -258,7 +287,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn11(GladeView _owner )
+        public Xcls_TreeViewColumn12(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -266,17 +295,17 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_CellRendererText12( _this );
+            var child_0 = new Xcls_CellRendererText13( _this );
             child_0.ref();
-            var child_1 = new Xcls_CellRendererPixbuf13( _this );
+            var child_1 = new Xcls_CellRendererPixbuf14( _this );
             child_1.ref();
-            var child_2 = new Xcls_CellRendererCombo14( _this );
+            var child_2 = new Xcls_CellRendererCombo15( _this );
             child_2.ref();
         }
 
         // user defined functions
     }
-    public class Xcls_CellRendererText12 : Object
+    public class Xcls_CellRendererText13 : Object
     {
         public Gtk.CellRendererText el;
         private GladeView  _this;
@@ -285,7 +314,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererText12(GladeView _owner )
+        public Xcls_CellRendererText13(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.CellRendererText();
@@ -298,7 +327,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_CellRendererPixbuf13 : Object
+    public class Xcls_CellRendererPixbuf14 : Object
     {
         public Gtk.CellRendererPixbuf el;
         private GladeView  _this;
@@ -307,7 +336,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererPixbuf13(GladeView _owner )
+        public Xcls_CellRendererPixbuf14(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.CellRendererPixbuf();
@@ -320,7 +349,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_CellRendererCombo14 : Object
+    public class Xcls_CellRendererCombo15 : Object
     {
         public Gtk.CellRendererCombo el;
         private GladeView  _this;
@@ -329,7 +358,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererCombo14(GladeView _owner )
+        public Xcls_CellRendererCombo15(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.CellRendererCombo();
