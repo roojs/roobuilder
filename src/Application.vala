@@ -283,15 +283,16 @@
 
 					file.loadItems();
 					var oldfn = file.targetName();
-					GLib.FileUtils.get_contents(oldfn, out oldstr);				
+					GLib.FileUtils.get_contents(oldfn, out oldstr);
+									
 					var outstr = file.toSourceCode();
 					if (outstr != oldstr) { 
 						
 						GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
-						print("diff -u %s /tmp/%s\n", oldfn,  file.name);
+						GLib.debug("diff -u %s /tmp/%s\n", oldfn,  file.name);
 						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 					}
-					print("# Files match %s\n", file.name);
+					GLib.debug("# Files match %s\n", file.name);
 					
 				}
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
