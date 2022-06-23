@@ -703,7 +703,7 @@ public class JsRender.NodeToVala : Object {
 		if (this.node.items.size < 1) {
 			return;
 		}
-		
+		this.pane_number = 0;
 		var cols = this.node.has("* columns") ? int.parse(this.node.get_prop("* columns").val) : 1;
 		var colpos = 0;
 		
