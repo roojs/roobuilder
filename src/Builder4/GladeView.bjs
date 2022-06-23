@@ -34,10 +34,10 @@
               {
                "$ xns" : "Gdk",
                "* prop" : "foreground_rgba",
-               "double alpha" : "",
+               "double alpha" : 0,
                "double blue" : "",
-               "double green" : "",
-               "double red" : "",
+               "double green" : 0,
+               "double red" : 0,
                "xtype" : "RGBA"
               }
              ],

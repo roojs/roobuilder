@@ -200,9 +200,9 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.alpha = ;
-            this.el.red = ;
-            this.el.green = ;
+            this.el.alpha = 0;
+            this.el.red = 0;
+            this.el.green = 0;
             this.el.blue = ;
         }
 
