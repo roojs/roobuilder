@@ -504,12 +504,12 @@ public class JsRender.NodeToVala : Object {
 					args_str = this.node.get_prop("* types").val;
 				}
 				if (this.node.has("n_columns") && this.node.has("columns")) { // old value?
-					args_str = this.node.get_prop("columns").val;
+					args_str = " { " + this.node.get_prop("columns").val + " } ";
 					this.ignore("columns");
 					this.ignore("n_columns");
 				}
 				
-				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv( { " + args_str + " } );");
+				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv( " + args_str + " );");
 				return;
 				break;
 				
