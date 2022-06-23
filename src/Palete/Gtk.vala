@@ -502,6 +502,7 @@ namespace Palete {
 			if (gir.consts.has_key(es[1])) {
 				return  gir.consts.get(es[1]);
 			}
+			return null;
 		}
 
 
