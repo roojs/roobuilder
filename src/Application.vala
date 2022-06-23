@@ -274,9 +274,40 @@
 			}
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
-			}	
+			}
+			
+			if (BuilderApplication.opt_bjs_compile == "all") {
+				var ar = cur_project.sortedFiles();
+				foreach(file in ar) {
+					string oldstr;
+
+					file.loadItems();
+					GLib.FileUtils.get_contents(file.path, out oldstr);				
+					var outstr = file.toSourceCode();
+					if (outstr != oldstr) { 
+						
+						GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
+						print("diff -u %s /tmp/%s\n", file.path,  file.name);
+						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
+					}
+					print("# Files match %s\n", file.name);
+					
+				}
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+			
+			}
+			
+			
+			
 			var file = cur_project.getByName(BuilderApplication.opt_bjs_compile);
 			if (file == null) {
+				// then compile them all, and compare them...
+				
+			
+			
+			
+			
+			
 				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 			}
 			file.loadItems();
@@ -299,6 +330,9 @@
 			
 			// dump the node tree
 			file.tree.dumpProps();
+			
+			
+			
 			
 			
 			var str_ar = str.split("\n");
