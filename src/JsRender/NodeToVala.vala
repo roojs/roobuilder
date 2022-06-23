@@ -742,6 +742,12 @@ public class JsRender.NodeToVala : Object {
 					//this.packChild(child, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
+				
+				if (child.xvala_id[0] != '+') {
+					this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
+				}
+				
+				
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
 				continue;
 			} 
