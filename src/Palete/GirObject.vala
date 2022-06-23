@@ -446,10 +446,18 @@ namespace Palete {
 			if (this.type == "bool") {
 				def = "true";
 			}
+			if (this.type == "int") {
+				def = "0";
+			}
+			if (this.type == "float") {
+				def = "0.0f"; 
+			}
+			// any more?
+			
 			// if it's an enum?? can we fill in a default value?
 			// if it's an object type? use raw?
 			
-			return  new JsRender.NodeProp.prop(this.name, this.type); // signature?
+			return  new JsRender.NodeProp.prop(this.name, this.type, def); // signature?
 		
 		}
 		
