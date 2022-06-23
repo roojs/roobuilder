@@ -256,7 +256,7 @@
 				if (outstr != oldstr) { 
 					
 					GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
-					print("diff -u %s /tmp/%s\n", file.path,  file.name);
+					print("meld -u %s /tmp/%s\n", file.path,  file.name);
 					//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 				}
 				print("# Files match %s\n", file.name);
@@ -289,7 +289,7 @@
 					if (outstr != oldstr) { 
 						
 						GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
-						print("diff -u %s /tmp/%s\n", oldfn,  file.name + ".out");
+						print("meld -u %s /tmp/%s\n", oldfn,  file.name + ".out");
 						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 					}
 					print("# Files match %s\n", file.name);
