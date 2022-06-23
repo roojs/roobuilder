@@ -746,7 +746,7 @@ public class JsRender.NodeToVala : Object {
 				if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 					this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 				} else {
-					this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
+					//this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
 				} 			
 				
 				
@@ -757,7 +757,7 @@ public class JsRender.NodeToVala : Object {
 			if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 			} else {
-				this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
+				//this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
 			}
 			
 			
