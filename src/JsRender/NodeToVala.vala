@@ -745,7 +745,9 @@ public class JsRender.NodeToVala : Object {
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
 				if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 					this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
-				}
+				} else {
+					this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
+				}...				
 				
 				
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
