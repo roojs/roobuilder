@@ -20,7 +20,7 @@ namespace JsRender {
 
 	    public Gtk(Project.Project project, string path) {
 	    
-	        aconstruct( project, path);
+	        construct( project, path);
 	        this.xtype = "Gtk";
 	        this.language = "vala";
 	        
@@ -205,7 +205,13 @@ namespace JsRender {
 	        
 	    }
 	    */
-	   void  saveVala()
+	    
+	    string targetName()
+	    {
+	    	return GLib.Path.get_dirname(this.path) + "/" + this.name + ".vala";
+    	}
+	    
+	    void  saveVala()
 	    {
 			if (this.tree == null) {
 				return;
