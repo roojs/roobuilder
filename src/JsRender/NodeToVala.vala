@@ -505,8 +505,8 @@ public class JsRender.NodeToVala : Object {
 				}
 				if (this.node.has("n_columns") && this.node.has("columns")) { // old value?
 					args_str = " { " + this.node.get_prop("columns").val + " } ";
-					this.ignoreWrappedList("columns");
-					this.ignoreWrappedList("n_columns");
+					this.ignoreWrapped("columns");
+					this.ignoreWrapped("n_columns");
 				}
 				
 				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv( " + args_str + " );");
