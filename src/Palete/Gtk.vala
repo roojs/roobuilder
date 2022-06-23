@@ -797,6 +797,19 @@ namespace Palete {
 				}
 			}
 			
+			// if child is a struct 
+			var childcls = this.getClass(child.fqn());
+			if (childcls != null && childcls.nodetype == "Struct") {
+				// then we need to add all the props.
+				foreach(var prop in childcls.props.values) {
+					child.set_prop(prop.toNodeProp());
+					
+					
+				}
+				
+			
+			}
+			
 			// not really
 			//this.fillPack(child, parent);
 			
