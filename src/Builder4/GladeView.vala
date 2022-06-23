@@ -101,10 +101,10 @@ public class GladeView : Object
             // set gobject values
             var child_0 = new Xcls_TreeView5( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.pack1( child_0.el );
             var child_1 = new Xcls_TreeView10( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.pack2( child_1.el );
         }
 
         // user defined functions
@@ -148,6 +148,7 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
             var child_0 = new Xcls_CellRendererText7( _this );
             child_0.ref();
             var child_1 = new Xcls_CellRendererPixbuf8( _this );
