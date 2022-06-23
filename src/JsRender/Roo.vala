@@ -136,52 +136,58 @@ namespace JsRender {
             
         }
         
-        
-	public  override  void save()
-	{
-            
-		GLib.debug("--- JsRender.Roo.save");
-		GLib.debug("save() - reset transStrings\n");
-		this.transStrings = new Gee.HashMap<string,string>();
-		this.namedStrings = new Gee.HashMap<string,string>();
-		this.findTransStrings(this.tree);
-		
-		this.saveBJS();
+		public override string targetName()
+		{
+			string js;
+			try {
+				Regex regex = new Regex("\\.(bjs|js)$");
 
-		// no tree..
-		if (this.tree == null) {
-			return;
+				js = regex.replace(this.path,this.path.length , 0 , ".js");
+				return js;
+			} catch (RegexError e) {
+				this.name = "???";
+				print("count not make filename from path");
+				return this.name + ".js";
+			}
+			
 		}
-		// now write the js file..
-		string js;
-		try {
-			Regex regex = new Regex("\\.(bjs|js)$");
+		public  override  void save()
+		{
+		        
+			GLib.debug("--- JsRender.Roo.save");
+			GLib.debug("save() - reset transStrings\n");
+			this.transStrings = new Gee.HashMap<string,string>();
+			this.namedStrings = new Gee.HashMap<string,string>();
+			this.findTransStrings(this.tree);
+			
+			this.saveBJS();
 
-			js = regex.replace(this.path,this.path.length , 0 , ".js");
-		} catch (RegexError e) {
-			this.name = "???";
-			print("count not make filename from path");
-			return;
+			// no tree..
+			if (this.tree == null) {
+				return;
+			}
+			// now write the js file..
+			var  js = this.targetName();
+			 
+
+
+			//var d = new Date();
+			var js_src = this.toSource();            
+			//print("TO SOURCE in " + ((new Date()) - d) + "ms");
+			try {
+				this.writeFile(js, js_src);            
+			} catch (FileError e ) {
+				print("Save failed\n");
+			}
+			// for bootstrap - we can write the HTML to the templates directory..
+				 
+		        //var top = this.guessName(this.items[0]);
+		        //print ("TOP = " + top)
+		         
+		        
+		        
+		        
 		}
-
-
-		//var d = new Date();
-		var js_src = this.toSource();            
-		//print("TO SOURCE in " + ((new Date()) - d) + "ms");
-		try {
-			this.writeFile(js, js_src);            
-		} catch (FileError e ) {
-			print("Save failed\n");
-		}
-		// for bootstrap - we can write the HTML to the templates directory..
-    		 
-            //var top = this.guessName(this.items[0]);
-            //print ("TOP = " + top)
-             
-            
-            
-            
-	}
 
 	 
 
