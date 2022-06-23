@@ -743,7 +743,7 @@ public class JsRender.NodeToVala : Object {
 					continue;
 				}
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
-				if (child.xvala_id[0] != '+') {
+				if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 					this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 				}
 				
@@ -752,7 +752,7 @@ public class JsRender.NodeToVala : Object {
 				continue;
 			} 
 			
-			if (child.xvala_id[0] != '+') {
+			if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 			}
 			
