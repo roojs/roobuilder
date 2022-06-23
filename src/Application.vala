@@ -63,7 +63,7 @@
             // some testing code.
             { "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
-            { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file", null },
+            { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
             { "bjs-glade", 0, 0, OptionArg.NONE, ref opt_bjs_compile_glade, "output glade", null },
             { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
@@ -278,16 +278,17 @@
 			
 			if (BuilderApplication.opt_bjs_compile == "all") {
 				var ar = cur_project.sortedFiles();
-				foreach(file in ar) {
+				foreach(var file in ar) {
 					string oldstr;
 
 					file.loadItems();
-					GLib.FileUtils.get_contents(file.path, out oldstr);				
+					var oldfn = GLib.Path.get_dirname(file.path) +"/" + file.name + ".vala";
+					GLib.FileUtils.get_contents(oldfn, out oldstr);				
 					var outstr = file.toSourceCode();
 					if (outstr != oldstr) { 
 						
-						GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
-						print("diff -u %s /tmp/%s\n", file.path,  file.name);
+						GLib.FileUtils.set_contents("/tmp/" + file.name   + ".vala",   outstr);
+						print("diff -u %s /tmp/%s\n", oldfn,  file.name);
 						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 					}
 					print("# Files match %s\n", file.name);
