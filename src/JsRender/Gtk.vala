@@ -20,6 +20,8 @@ namespace JsRender {
 
 	    public Gtk(Project.Project project, string path) {
 	    
+	        // construct did not work?
+	        
 	        aconstruct( project, path);
 	        this.xtype = "Gtk";
 	        this.language = "vala";
