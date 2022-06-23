@@ -157,8 +157,8 @@ namespace Palete {
 			var c = new GirObject("Struct", parent.name + "." + cls.name);
 			parent.classes.set(cls.name, c);
 			  
-			foreach(var p in cls.get_properties()) {
-				this.add_property(c, p);
+			foreach(var p in cls.get_fields()) {
+				this.add_field(c, p);
 			}
 			// methods...
 			 
@@ -343,6 +343,29 @@ namespace Palete {
 
 			
 		}
+		
+		
+		public void add_field(GirObject parent, Vala.Field prop)
+		{
+			var c = new GirObject("Field",prop.name);
+			c.gparent = parent;
+			c.ns = parent.ns;
+			c.propertyof = parent.name;
+#if VALA_0_56
+			c.type  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
+#elif VALA_0_36
+			c.type  = prop.variable_type.data_type == null ? "" : prop.variable_type.data_type.get_full_name();		
+#endif
+			 
+			if (prop.version.deprecated) { 
+				GLib.debug("class %s is deprecated", c.name);
+				c.is_deprecated = true;
+			}
+			parent.props.set(prop.name,c);
+
+			
+		}
+		
 		public void add_signal(GirObject parent, Vala.Signal sig)
 		{
 			var c = new GirObject("Signal",sig.name);
