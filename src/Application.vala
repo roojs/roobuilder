@@ -289,10 +289,10 @@
 					if (outstr != oldstr) { 
 						
 						GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
-						GLib.debug("diff -u %s /tmp/%s\n", oldfn,  file.name);
+						print("diff -u %s /tmp/%s\n", oldfn,  file.name + ".out");
 						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 					}
-					GLib.debug("# Files match %s\n", file.name);
+					print("# Files match %s\n", file.name);
 					
 				}
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
