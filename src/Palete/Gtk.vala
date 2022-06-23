@@ -576,8 +576,9 @@ namespace Palete {
 					continue;
 				}
 				var cls = this.getClassOrEnum(val.type);
-			 
-				if (cls == null || cls.nodetype == "Enum") {
+			 	
+			 	// if cls == null - it's probably a struct? I don't think we handle thses
+				if ( cls.nodetype == "Enum") {
 					// assume it's ok
 					outprops.set(k,val);
  					continue;
