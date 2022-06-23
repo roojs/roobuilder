@@ -30,17 +30,6 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "items" : [
-              {
-               "$ xns" : "Gdk",
-               "* prop" : "foreground_rgba",
-               "double alpha" : 0,
-               "double blue" : "",
-               "double green" : 0,
-               "double red" : 0,
-               "xtype" : "RGBA"
-              }
-             ],
              "xtype" : "CellRendererText"
             },
             {
