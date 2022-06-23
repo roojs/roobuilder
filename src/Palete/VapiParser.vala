@@ -68,6 +68,11 @@ namespace Palete {
 			foreach(var c in element.get_methods()) {
 				this.add_method(g, c);
 			}
+			
+			foreach(var c in element.get_structs()) {
+				this.add_struct(g, c);
+			}
+			
 			element.accept_children(this); // catch sub namespaces..
 			
 			
@@ -144,6 +149,29 @@ namespace Palete {
 			
 			 
 		}
+		//https://learnxinyminutes.com/docs/vala/ -- see for ctor on structs.
+		
+		public void add_struct(GirObject parent, Vala.Struct cls)
+		{
+		
+			var c = new GirObject("Struct", parent.name + "." + cls.name);
+			parent.classes.set(cls.name, c);
+			  
+			foreach(var p in cls.get_properties()) {
+				this.add_property(c, p);
+			}
+			// methods...
+			 
+			  
+			
+			if (cls.version.deprecated) { 
+				GLib.debug("class %s is deprecated", c.name);
+				c.is_deprecated = true;
+			}
+			
+		}
+		
+		
 		
 		public void add_class(GirObject parent, Vala.Class cls)
 		{
