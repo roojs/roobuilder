@@ -126,6 +126,9 @@ public class JsRender.NodeToGtk : Object {
 			}
 			return this.mungeChild(this.node.items.get(0));
 		}
+		if (cls_gtype.is_a(typeof(global::Gtk.Widget))) {
+			return null;
+		}
 
 		var ret = Object.new(cls_gtype);
 		ret.ref(); //??? problematic?

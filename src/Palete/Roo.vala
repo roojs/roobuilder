@@ -284,7 +284,7 @@ namespace Palete {
 		}
 
 
-		public override void fillPack(JsRender.Node node,JsRender.Node parent)
+		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
 		{   
 
 			 return;

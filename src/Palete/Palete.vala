@@ -38,7 +38,20 @@ namespace Palete
 			return false;
 				
 		}
-
+		
+		public string to_string()
+		{
+			var r = "left:\n";
+			foreach(var s in left) {
+				r+= "   " + s + "\n";
+			}
+		 	r+= "right:\n";
+			foreach(var s in right) {
+				r+= "   " + s + "\n";
+			}
+			return r;
+		
+		}
 		
 	}
 
@@ -455,7 +468,7 @@ namespace Palete
 		
 		
 		      
-		public abstract void fillPack(JsRender.Node node,JsRender.Node parent);
+		public abstract void on_child_added(JsRender.Node? parent,JsRender.Node child);
 		public abstract void load();
 		public abstract Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype);
 		public abstract GirObject? getClass(string ename);

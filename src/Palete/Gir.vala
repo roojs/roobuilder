@@ -245,6 +245,8 @@ namespace Palete {
 					return "true";
 				case "guint":
 					return "0";
+				case "gdouble":
+					return "0f";
 				case "utf8":
 					return "\"\"";
 				default:

@@ -2,72 +2,82 @@
  "build_module" : "",
  "items" : [
   {
-   "# JsRender.JsRender file" : "null",
-   "$ xns" : "Glade",
-   "* ctor" : "new Glade.DesignView(new Glade.Project())",
-   "id" : "GladeView",
-   "xtype" : "DesignView",
-   "| void createThumb" : [
-    "() {",
-    "    ",
-    "    ",
-    "    if (this.file == null) {",
-    "        return;",
-    "    }",
-    "    var filename = this.file.getIconFileName(false);",
-    "    ",
-    "    var  win = this.el.get_parent_window();",
-    "    var width = win.get_width();",
-    "    var height = win.get_height();",
-    "",
-    "    Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?",
-    "",
-    "    screenshot.save(filename,\"png\");",
-    "    return;",
-    "    ",
-    "    ",
-    "     ",
-    "}",
-    ""
+   "$ xns" : "Gtk",
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool hexpand" : true,
+     "bool vexpand" : true,
+     "int spacing" : 0,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "string label" : "Label",
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "column[]",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererText"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererPixbuf"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererCombo"
+            }
+           ],
+           "xtype" : "TreeViewColumn"
+          }
+         ],
+         "xtype" : "TreeView"
+        },
+        {
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "column[]",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererText"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererPixbuf"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererCombo"
+            }
+           ],
+           "xtype" : "TreeViewColumn"
+          }
+         ],
+         "xtype" : "TreeView"
+        }
+       ],
+       "xtype" : "Paned"
+      }
+     ],
+     "xtype" : "Box"
+    }
    ],
-   "| void loadFile" : [
-    "(JsRender.JsRender file)",
-    "{",
-    "    ",
-    "",
-    "    this.file = file;",
-    "    ",
-    "",
-    "        // clear existing elements from project?",
-    "        ",
-    "        var  p = this.el.get_project();",
-    "        var    li = p.get_objects().copy();",
-    "        // should remove all..",
-    "        for (var i =0;    i < li.length(); i++) {   ",
-    "            p.remove_object(li.nth_data(i)); ",
-    "        }",
-    "",
-    "        if (file.tree == null) {",
-    "            return;",
-    "        }",
-    "",
-    "//        print(\"%s\\n\",tf.tree.toJsonString());",
-    "\tvar x =  JsRender.NodeToGlade(file.project, file.tree,  null);",
-    "",
-    "\t ",
-    "",
-    "\tvar  f = File.new_tmp (\"tpl-XXXXXX.glade\", out iostream);",
-    "\tvar ostream = iostream.output_stream;",
-    "\tvar dostream = new DataOutputStream (ostream);",
-    "\tdostream.put_string (x.munge());",
-    "\tthis.el.show();",
-    "\t print(\"LOADING %s\\n\",f.get_path ());",
-    "      p.load_from_file(f.get_path ());",
-    "        ",
-    " ",
-    "",
-    "}"
-   ]
+   "xtype" : "Window"
   }
  ],
  "modOrder" : "",

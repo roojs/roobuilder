@@ -71,8 +71,16 @@ namespace Palete {
 		    //this.proplist = {};
 		    //this.comments = { }; 
 		    // no parent...
+		   
+		    
 		}
-	      
+		
+		
+        // a) build a list of all widgets that can be added generically.
+		// b) build child list for all containers.
+		// c) build child list for all widgets (based on properties)
+		// d) handle oddities?
+		
 		public override void  load () 
 		{
 			
@@ -81,27 +89,165 @@ namespace Palete {
 			
 			
 			this.map = new Gee.ArrayList<Usage>();
- 
+ 			this.generic_child_widgets = new Gee.ArrayList<string>();
+			this.all_no_parent =  new Gee.ArrayList<string>();
+			var top =   new Gee.ArrayList<string>();
+			top.add("*top");
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				
-				this.add_map_from_classes(gir.classes);
+				this.build_generic_children(gir.classes);
 			}
+			// add containers.   
+			this.map.add(new Usage( top,  this.all_no_parent));
+			var alltop =   new Gee.ArrayList<string>();
+			alltop.add("*top");
+			
+			
+			foreach(var k in this.generic_containers) {
+				alltop.add(k);
+				this.add_special_children(k, "Gtk.Menu", "_menu");
+			}
+			var u = new Usage( alltop,  this.generic_child_widgets);
+			//GLib.debug("add Usage: %s", u.to_string());
+			
+			this.map.add(u);
+			
+			 
+			foreach(var key in   pr.gir_cache.keys) {
+				var gir = pr.gir_cache.get(key);
+				this.build_class_children_from_props(gir.classes);
+			}
+			// oddities.
+
+			this.add_special_children("Gtk.Menu","Gtk.MenuItem", "");
+			this.add_special_children("Gtk.MenuBar", "Gtk.MenuItem", "");
+			this.add_special_children("Gtk.Toolbar", "Gtk.ToolItem", "");
+			
+			this.add_special_children("Gtk.Notebook", "Gtk.Label", "label[]"); //??
+			this.add_special_children("Gtk.Window","Gtk.HeaderBar", "titlebar");
+		
+			this.add_special_children("Gtk.Stack","Gtk.Label", "titles[]");
+			this.add_special_children("Gtk.TreeView","Gtk.TreeViewColumn", ""); // any viewcolum added..
+ 			this.add_special_children("Gtk.TreeViewColumn","Gtk.CellRenderer", "");
+ 			
+ 			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
+			 
+			 this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name"); // fake property
+			 
+			this.init_node_defaults();
+		    this.init_child_defaults();  
+		    
+			//foreach(var m in this.map) {
+			//	GLib.debug("Usage: %s", m.to_string());
+		//	}
+			
 		}
 		
-		public void add_map_from_classes(Gee.HashMap<string,GirObject> classes)
+		
+		
+		
+		// containers that can contain only certial types of children, and should be ignored from the general bulk add.
+		Gee.ArrayList<string> generic_child_widgets;
+		Gee.ArrayList<string> all_no_parent;		
+/*
+		string[] special_containers = {
+			"Gtk.Menu",
+			"Gtk.MenuBar",
+			"Gtk.Toolbar", // only toolbarItems.
+			
+			"Gtk.Assistant", // needs fake child? including fake page type
+			"Gtk.Notebook", // needs fake child?
+			
+		};
+		// children (or anythign that extends this) - that can not be added to a standard widget
+		string[] special_containers_children = {
+			"Gtk.MenuItem",
+			"Gtk.ToolbarItem"
+		};
+	*/	
+		// widgets that can not be added to anything? - including their children.
+		string[] no_parent = { // except *top
+			"Gtk.Window",
+			"Gtk.Dialog",
+		};
+		
+		string[] generic_containers = {
+			"Gtk.Assistant", 
+			"Gtk.ActionBar",
+			"Gtk.AspectFrame",
+			"Gtk.Frame",
+			"Gtk.Fixed",
+			"Gtk.Box",
+			"Gtk.Dialog",
+			"Gtk.Expander", // add method is different..
+			"Gtk.FlowBox",
+			"Gtk.HeaderBar",
+			"Gtk.InfoBar",
+			"Gtk.ListBox",
+			"Gtk.Overlay",
+			"Gtk.Paned",
+			"Gtk.Popover",
+			"Gtk.PopoverMenu",
+			"Gtk.Revealer",
+			"Gtk.ScrolledWindow",
+			"Gtk.Stack",  // add with name?
+			"Gtk.ToolItem",
+			"Gtk.ToolPalette",
+			"Gtk.Viewport",
+			"Gtk.Window",
+			"Gtk.Notebook",
+			"Gtk.ApplicationWindow",
+			"Gtk.Grid",
+			
+		};
+		
+		string[] widgets_blacklist = {
+			"Gtk.Arrow", //Depricated
+			
+			"Gtk.ShortcutLabel",
+			"Gtk.ShortcutsGroup",
+			"Gtk.ShortcutsSection",
+			"Gtk.ShortcutsShortcut",
+			"Gtk.ShortcutsWindow",
+			"Gtk.Socket",
+			"Gtk.ToolItemGroup",
+			
+			"Gtk.ButtonBox",
+			"Gtk.CellView",
+			"Gtk.EventBox",
+			"Gtk.FlowBoxChild",
+			"Gtk.Invisible",
+			"Gtk.ListBoxRow",
+			"Gtk.OffscreenWindow",
+			"Gtk.Plug",
+			"Gtk.HSV",
+			"Gtk.ImageMenuItem", //deprecated? (not sure why it's not been picked up)
+			
+			"Gtk.Menu", // it's added as a special only?
+			"Gtk.MenuItem",
+			"Gtk.ToolItem",
+			
+			"WebKit.WebViewBase",
+			
+			"Gtk.HeaderBar",	 // only to window
+		};
+			
+		/**
+		 * Gtk's heirachy of parent/children is not particulaly logical
+		 * Gtk.Containers - some are not really that good t being containers.  Gtk.Bin (single only) - is a good flag for indicating 
+		 * Gtk.Widgets - some are not great at being widgets
+		 * Gtk.Menu - should really only contain menuitems, but the API doesnt really restrict this.
+		 * The list goes on.
+		 * 
+		 *
+		*/
+		
+		public void build_generic_children(Gee.HashMap<string,GirObject> classes)
 		{
-			
-			var widgets = new Gee.ArrayList<string>();
-			var top = new Gee.ArrayList<string>();
-			var topleft = new Gee.ArrayList<string>();
-			var containers = new Gee.ArrayList<string>();
-
-			topleft.add("*top");
-			
-			
 			foreach(var cls in classes.values) {
 				
+				var fqn = cls.fqn();
 				
 				if (cls.is_deprecated) {  // don't add depricated to our selection.
 					//GLib.debug("Class %s is depricated", cls.fqn());
@@ -111,48 +257,105 @@ namespace Palete {
 				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
 					continue;
 				}
-				// we can still add properties of abstract classes...
-				
-				if (!cls.is_abstract) {
+				if (cls.is_abstract) {
+					continue;
+				}
+				if (cls.nodetype == "Interface") {
+					continue;
+				}
+				var is_black = false;
+				for (var i = 0 ; i < this.widgets_blacklist.length; i++) {
+					var black = this.widgets_blacklist[i];
 					
-					if (
-							 
-							  // GTK4 !!
-							 cls.inherits.contains("Gtk.Root")
-							 || 
-							 cls.implements.contains("Gtk.Root")
-							 || 
-							 cls.inherits.contains("Gtk.Native")
-							 || 
-							 cls.implements.contains("Gtk.Native")
-							 || 
-							 // Gtk3
-							 // check for depricated?
-							 cls.inherits.contains("Gtk.Window")
-							 || 
-							 cls.fqn() == "Gtk.Window"
-							 || 
-							 cls.fqn() == "Gtk.Popover" // dont allow it as a child
-							 
-							 ) {
-						top.add(cls.fqn());
-						// skip - can't add these widgets to anything
-					} else { 
-						//GLib.debug("Add Widget %s", cls.fqn());
-						widgets.add(cls.fqn());
-						top.add(cls.fqn());
-						//GLib.debug("Got Class %s : %s Inherits %s", cls.ns , cls.name,
-						//	string.joinv( ",", cls.inheritsToStringArray())
-						//);
-						
-						
+					if (fqn == black || cls.implements.contains(black) || cls.inherits.contains(black)) {
+						is_black = true;
+						break;
 					}
 				}
-				if (cls.inherits.contains("Gtk.Container") || cls.implements.contains("Gtk.Container")) {
-					containers.add(cls.fqn());
-					GLib.debug("Add Container %s", cls.fqn());
+				if (is_black) {
+					continue;
 				}
+				 
+				 
 				
+				for (var i = 0 ; i < this.no_parent.length; i++) {
+					var black = this.no_parent[i];
+					
+					if (fqn == black || cls.implements.contains(black) || cls.inherits.contains(black)) {
+						is_black = true;
+						all_no_parent.add(fqn);
+						
+						break;
+					}
+					
+
+				}
+				if (is_black) {
+					continue;
+				}
+				this.generic_child_widgets.add(fqn);
+				this.add_special_children(fqn, "Gtk.Menu", "_menu"); // fake propety
+			}
+		
+		}
+		
+		public void add_special_children(string parent, string child, string prop)
+		{
+			var cls = this.getClass(parent);
+			var cls_cn = this.getClass(child);
+			var localopts_r = new Gee.ArrayList<string>();
+			var localopts_l = new Gee.ArrayList<string>();
+			localopts_l.add(parent);
+			
+			if (!cls_cn.is_abstract) { // and check for interface?
+			
+			 	localopts_r.add(child + ( prop.length > 0 ? ":" + prop : "") );
+			}
+			GLib.debug("Special Parent %s - add %s ", parent , child);			
+			foreach(var impl in cls_cn.implementations) {
+
+				// in theory these can not be abstract?
+				
+				var impcls = this.getClass(impl);
+				if (impcls.is_abstract) {
+					continue;
+				}
+				if (impcls.nodetype == "Interface") {
+					continue;
+				}
+				 GLib.debug("Special Parent %s - add %s ", parent , impl + ( prop.length > 0 ? ":" + prop : ""));				
+				localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
+			}
+			this.map.add(new Usage(localopts_l, localopts_r));
+			 
+		}
+		
+		 
+		
+		
+		
+		public void build_class_children_from_props(Gee.HashMap<string,GirObject> classes)
+		{
+			
+			
+		 
+			foreach(var cls in classes.values) {
+				
+				
+				if (cls.is_deprecated) {  // don't add depricated to our selection.
+					//GLib.debug("Class %s is depricated", cls.fqn());
+					continue;
+				}
+					
+				 
+				
+				// we can still add properties of abstract classes...
+				
+				if (cls.is_abstract || cls.nodetype == "Interface") {
+					continue;
+				}
+					
+ 
 				if (cls.props.size < 1) {	
 					continue;
 				}			
@@ -181,27 +384,65 @@ namespace Palete {
 					}
 					
 					if (prop.name == "parent" || 
-						prop.name == "child" || 
+						(prop.name == "child" && cls.fqn() != "Gtk.Popover") ||   // allow child only on popover.
 						prop.name == "attached_to" || 
 						prop.name == "mnemonic_widget" ||
 						prop.name == "application" ||
-						prop.name == "transient_for"
+						prop.name == "transient_for" ||
+						prop.name == "screen" || // gtk windows.
+						prop.name == "accel_closure" ||
+						prop.name == "accel_widget" ||
+						prop.name == "label_widget" ||
+						prop.name == "align_widget" ||
+						prop.name == "icon_widget" ||
+						prop.name == "action_target"  ||
+						prop.name == "related_action" || // not sure if we should disable this.
+						prop.name == "visible_child"  || 
+						prop.name == "attach_widget" || // gtk menu
+						prop.name == "relative_to"   // popover
+						
 						
 						) {
 						continue;
 					}
+					
+					
+					
 					var propcls = this.getClass(prop.type);
 					if (propcls == null) {
 						continue;
 					}
-					// check if propcls is abstract?
-					if (!propcls.is_abstract) { 
-						localopts_r.add( prop.type + ":" + prop.name);
+					
+					
+					
+					
+					// any other weird stuff.
+					// Button.image -> can be a Gtk.Widget.. but really only makes sense as a Gtk.Image
+					if (prop.name == "image" && propcls.name == "Gtk.Widget") {
+						localopts_r.add( "Gtk.Image:image");
+						continue;
+					
 					}
-					GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
+					
+					
+					// check if propcls is abstract?
+					if (!propcls.is_abstract && propcls.nodetype != "Interface") { 
+						localopts_r.add( prop.type + ":" + prop.name);
+						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);						
+					}
+
+					
+					
+					//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 					foreach(var impl in propcls.implementations) {
 						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 						// in theory these can not be abstract?
+						
+						var impcls = this.getClass(impl);
+						if (impcls.is_abstract || impcls.nodetype == "Interface") {
+							continue;
+						}
+						//GLib.debug("Add Widget Prop %s:%s (%s)", cls.fqn(), prop.name, impl);
 						localopts_r.add( impl + ":" + prop.name );
 					}
 					
@@ -220,15 +461,7 @@ namespace Palete {
 						
 						
 				 
-			  
-			  
-		  	this.map.add(new Usage( topleft, top));
-		  	this.map.add(new Usage( containers, widgets));
-		
-			
-			
-			///this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/GtkUsage.txt");
-	 
+			   
 		     
 		}
 		
@@ -246,6 +479,9 @@ namespace Palete {
 		{
 
 			var es = ename.split(".");
+			if (es.length < 2) {
+				return null;
+			}
 			var gir = Gir.factory(this.project,es[0]);
 		
 			return gir.classes.get(es[1]);
@@ -292,7 +528,7 @@ namespace Palete {
 					return cls.signals;
 				case JsRender.NodePropType.METHOD:
 					return cls.methods;
-				case JsRender.NodePropType.CTOR:
+				case JsRender.NodePropType.CTOR:  // needed to query the arguments of a ctor.
 					return cls.ctors;
 				default:
 					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + ptype.to_string());
@@ -311,7 +547,7 @@ namespace Palete {
 		{
 			string[] ret = {};
 			 
-			var cls = Gir.factoryFqn(this.project,ename);
+			var cls = this.getClass(ename);
 			 
 			if (cls == null || cls.nodetype != "Class") {
 				print("getInheritsFor:could not find cls: %s\n", ename);
@@ -322,8 +558,205 @@ namespace Palete {
 			
 
 		}
-         
-		public override void fillPack(JsRender.Node node,JsRender.Node parent)
+		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> node_defaults;
+		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
+		
+		public void init_node_defaults()
+		{
+			this.node_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
+			
+			// this lot could probably be configured?
+			
+			// does this need to add properties to methods?
+			// these are fake methods.
+			this.add_node_default("Gtk.ListStore", "types", "/*\n fill in an array of { typeof(xxx), typeof(xxx) } \n */\n{\n\tttypeof(string)\n}");
+			this.add_node_default("Gtk.TreeStore", "types", "/*\n fill in an array of { typeof(xxx), typeof(xxx) } \n */\n{\n\tttypeof(string)\n}");
+	 
+			
+			
+			this.add_node_default_from_ctor("Gtk.Box", "new");
+			
+			
+			this.add_node_default("Gtk.AccelLabel", "label", "Label");
+			
+			
+			this.add_node_default_from_ctor("Gtk.AppChooserButton", "new");
+			this.add_node_default_from_ctor("Gtk.AppChooserWidget", "new");
+			
+			this.add_node_default_from_ctor("Gtk.AspectFrame", "new");
+			
+			this.add_node_default("Gtk.Button", "label", "Label");  // these are not necessary
+			this.add_node_default("Gtk.CheckButton", "label", "Label");
+			
+			this.add_node_default("Gtk.ComboBox", "has_entry", "false");
+			this.add_node_default("Gtk.Expander", "label", "Label"); 
+			this.add_node_default_from_ctor("Gtk.FileChooserButton", "new"); 
+			this.add_node_default_from_ctor("Gtk.FileChooserWidget", "new"); 
+			this.add_node_default("Gtk.Frame", "label", "Label"); 
+			
+			this.add_node_default("Gtk.Grid", "columns", "2"); // special properties
+			//this.add_node_default("Gtk.Grid", "rows", "2");  << this is not really that important..
+		 
+			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
+			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
+ 			this.add_node_default_from_ctor("Gtk.LinkButton", "with_label");  
+ 			this.add_node_default_from_ctor("Gtk.Paned", "new");  
+ 			this.add_node_default("Gtk.Scale", "orientation");
+ 			this.add_node_default_from_ctor("Gtk.ScaleButton", "new");   /// ctor ignore optional array of strings at end?
+			this.add_node_default_from_ctor("Gtk.Scrollbar", "new");
+			this.add_node_default_from_ctor("Gtk.Separator", "new");
+			this.add_node_default_from_ctor("Gtk.SpinButton", "new");
+			this.add_node_default("Gtk.ToggleButton", "label", "Label");  
+			this.add_node_default("Gtk.MenuItem", "label", "Label");
+			this.add_node_default("Gtk.CheckItem", "label", "Label");			
+			this.add_node_default("Gtk.RadioMenuItem", "label", "Label");
+			this.add_node_default("Gtk.TearoffMenuItem", "label", "Label");
+			
+			// not sure how many of these 'attributes' there are - documenation is a bit thin on the ground
+			this.add_node_default("Gtk.CellRendererText",	 "markup_column", "-1");
+			this.add_node_default("Gtk.CellRendererText", 		"text_column","-1");
+			this.add_node_default("Gtk.CellRendererPixBuf",	 "pixbuf_column", "-1");
+			this.add_node_default("Gtk.CellRendererToggle",	 "active_column", "-1");			
+
+			//foreground
+			//foreground-gdk
+			
+			
+			 
+			// treeviewcolumn
+			
+		}
+		
+		public void add_node_default_from_ctor(string cls, string method )
+		{
+			GLib.debug("Add node from ctor %s:%s", cls, method);
+			if (!this.node_defaults.has_key(cls)) {
+				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			}
+			
+			
+			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
+			
+			 
+			GLib.debug("ctor: %s", ar.get(method).asJSONString());
+			 
+			
+			// assume we are calling this for a reason...
+			// get the first value params.
+			 
+				//gtk box failing
+			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
+			
+			foreach (var prop in ar.get(method).paramset.params) {
+				string[] opts;
+				
+				GLib.debug("adding proprty from ctor : %s, %s, %s", cls, prop.name, prop.type);
+
+				var sub = this.getClass(prop.type);
+				if (sub != null) { // can't add child classes here...
+					GLib.debug("skipping ctor argument proprty is an object");
+					continue;
+				}
+				var dval = "";
+				switch (prop.type) {
+					case "int":
+						dval = "0";break;
+					case "string": 
+						dval = ""; break;
+					// anything else?
+					default:
+						this.typeOptions(cls, prop.name, prop.type, out opts);
+						dval = opts.length > 0 ? opts[0] : "";
+						break;
+				}
+				
+				this.node_defaults.get(cls).add( new JsRender.NodeProp.prop( prop.name, prop.type, dval));
+			
+			
+			}
+			
+		}
+		
+		public void add_node_default(string cls, string propname, string val = "")
+		{
+			if (!this.node_defaults.has_key(cls)) {
+				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			}
+			
+	  		var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
+	  		
+	  		// liststore.columns - exists as a property but does not have a type (it's an array of typeofs()....
+			if (ar.has_key(propname) && ar.get(propname).type != "") { // must have  type (otherwise special)
+				//GLib.debug("Class %s has property %s from %s - adding normal property", cls, propname, ar.get(propname).asJSONString());
+				var add = ar.get(propname).toNodeProp(); // our nodes dont have default values.
+				add.val = val;
+				this.node_defaults.get(cls).add(add);
+			} else {
+				//GLib.debug("Class %s has property %s - adding special property", cls, propname);			
+				this.node_defaults.get(cls).add(
+					new  JsRender.NodeProp.special( propname, val) 
+				);
+
+			}
+			
+
+		
+		}
+		public void init_child_defaults()
+		{
+			this.child_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
+			
+			this.add_child_default("Gtk.Fixed", "x", "int", "0");
+			this.add_child_default("Gtk.Fixed", "y", "int", "0");
+			this.add_child_default("Gtk.Layout", "x", "int", "0");
+			this.add_child_default("Gtk.Layout", "y", "int", "0");
+			this.add_child_default("Gtk.Grid", "colspan", "int", "1");
+			//this.add_child_default("Gtk.Grid", "height", "int", "1");			
+			this.add_child_default("Gtk.Stack", "stack_name", "string", "name");
+			this.add_child_default("Gtk.Stack", "stack_title", "string", "title");	
+			
+			
+		}
+		public void add_child_default(string cls, string propname, string type, string val)
+		{
+			if (!this.child_defaults.has_key(cls)) {
+				this.child_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			}
+			
+			
+			this.child_defaults.get(cls).add( new JsRender.NodeProp.prop(propname, type, val));
+		
+		}
+		
+		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
+		{   
+
+			if (parent != null &&  !child.has("* prop")) { // child has a property - no need for child properties
+				 
+				if (this.child_defaults.has_key(parent.fqn())) {
+					foreach(var k in this.child_defaults.get(parent.fqn())) {
+						child.set_prop(k.dupe());
+					}
+				}
+			}
+			if (this.node_defaults.has_key(child.fqn())) {
+				foreach(var k in this.node_defaults.get(child.fqn())) {
+					GLib.print("Adding Property %s", k.to_tooltip());
+					child.set_prop(k.dupe());
+				}
+			}
+			
+			// not really
+			//this.fillPack(child, parent);
+			
+			
+			
+			
+		}
+		
+		
+         /*
+		public   void fillPack(JsRender.Node node,JsRender.Node parent)
 		{   
 			
 			string inherits =  string.joinv(" ", 
@@ -389,6 +822,7 @@ namespace Palete {
 			
 			
 		}
+		*/
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
 			var vapidirs = gproject.vapidirs();
@@ -449,17 +883,21 @@ namespace Palete {
 		public override bool  typeOptions(string fqn, string key, string type, out string[] opts) 
 		{
 			opts = {};
-			print("get typeOptions %s (%s)%s", fqn, type, key);
+			if (type == ""  ) { // empty type   dont try and fill in options
+				return false;
+			}
+			GLib.debug("get typeOptions %s (%s)%s", fqn, type, key);
 			if (type.up() == "BOOL" || type.up() == "BOOLEAN") {
 				opts = { "true", "false" };
 				return true;
 			}
-			var gir= Gir.factoryFqn(this.project,type) ;
+ 
+			var gir= Gir.factoryFqn(this.project,type) ;  // not get class as we are finding Enums.
 			if (gir == null) {
-				print("could not find Gir data for %s\n", key);
+				GLib.debug("could not find Gir data for %s\n", key);
 				return false;
 			}
-			print ("Got type %s", gir.asJSONString());
+			//print ("Got type %s", gir.asJSONString());
 			if (gir.nodetype != "Enum") {
 				return false;
 			}
@@ -565,7 +1003,7 @@ namespace Palete {
 				
 				 
 				// look up all the properties of the type...
-				var cls = Gir.factoryFqn(this.project,curtype);
+				var cls = this.getClass(curtype);
 				if (cls == null && curtype[0] != '*') {
 					print("could not get class of curtype %s\n", curtype);
 					return ret;
@@ -601,7 +1039,7 @@ namespace Palete {
 						return ret;	 //no idea...
 					}
 					var look = prevbits + parts[i];
-					var scls = Gir.factoryFqn(this.project,look);
+					var scls = this.getClass(look);
 					if (scls == null) {
 						return ret;
 					}

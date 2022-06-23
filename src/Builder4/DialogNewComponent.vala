@@ -24,8 +24,8 @@ public class Xcls_DialogNewComponent : Object
 
         // my vars (def)
     public signal void success (Project.Project pr, JsRender.JsRender file);
-    public Project.Project project;
     public JsRender.JsRender file;
+    public Project.Project project;
 
     // ctor
     public Xcls_DialogNewComponent()
@@ -44,7 +44,7 @@ public class Xcls_DialogNewComponent : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.get_content_area().add(  child_0.el );
         var child_1 = new Xcls_Button20( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 0 );
@@ -165,34 +165,7 @@ public class Xcls_DialogNewComponent : Object
     }
 
     // user defined functions
-    public   void updateFileFromEntry () {
-    
-            _this.file.title = _this.title.el.get_text();
-            _this.file.region = _this.region.el.get_text();            
-            _this.file.parent = _this.parent.el.get_text();                        
-            _this.file.permname = _this.permname.el.get_text();                                    
-            _this.file.modOrder = _this.modOrder.el.get_text();
-            
-            if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {
-                _this.file.renameTo(_this.name.el.get_text());
-            }
-            // store the module...
-            _this.file.build_module = "";        
-             Gtk.TreeIter iter; 
-            if (_this.build_module.el.get_active_iter (out iter)) {
-                 Value vfname;
-                 this.dbmodel.el.get_value (iter, 0, out vfname);
-                 if (((string)vfname).length > 0) {
-                     _this.file.build_module = (string)vfname;
-                 }
-        
-            }
-            
-            
-    
-                                                        
-    }
-    public   void show (JsRender.JsRender c) 
+    public void show (JsRender.JsRender c) 
     {
         this.project = c.project;
         
@@ -239,6 +212,33 @@ public class Xcls_DialogNewComponent : Object
         //this.success = c.success;
         
         
+    }
+    public void updateFileFromEntry () {
+    
+            _this.file.title = _this.title.el.get_text();
+            _this.file.region = _this.region.el.get_text();            
+            _this.file.parent = _this.parent.el.get_text();                        
+            _this.file.permname = _this.permname.el.get_text();                                    
+            _this.file.modOrder = _this.modOrder.el.get_text();
+            
+            if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {
+                _this.file.renameTo(_this.name.el.get_text());
+            }
+            // store the module...
+            _this.file.build_module = "";        
+             Gtk.TreeIter iter; 
+            if (_this.build_module.el.get_active_iter (out iter)) {
+                 Value vfname;
+                 this.dbmodel.el.get_value (iter, 0, out vfname);
+                 if (((string)vfname).length > 0) {
+                     _this.file.build_module = (string)vfname;
+                 }
+        
+            }
+            
+            
+    
+                                                        
     }
     public class Xcls_Box2 : Object
     {
@@ -714,7 +714,7 @@ public class Xcls_DialogNewComponent : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 

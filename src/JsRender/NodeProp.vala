@@ -93,6 +93,12 @@ public class JsRender.NodeProp : Object {
 		this.val = val;
 	}
 	
+	public NodeProp dupe()
+	{
+		return new NodeProp(this.name, this.ptype, this.rtype,  this.val);
+	}
+	
+	
 	public NodeProp.from_json(string key, string inval)
 	{
 		this.val = inval;

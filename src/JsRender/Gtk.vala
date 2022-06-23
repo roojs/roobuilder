@@ -146,34 +146,7 @@ namespace JsRender {
 	    public override string toSource() // no seed support currently.
 	    {
 		 
-			
-	        /*
-	        if (this.tree == null) {
-	            return "";
-	        }
-	        
-	        // var data = JSON.parse(JSON.stringify(this.items[0]));
-	        // we should base this on the objects in the tree really..
-	        string[]  inc = { "Gtk", "Gdk", "Pango", "GLib", "Gio", "GObject", 
-	            "GtkSource", "WebKit", "Vte" }; //, "GtkClutter" , "Gdl"];
-	        var src = "";
-			 
-	        for (var i=0; i< inc.length; i++) {
-				var e = inc[i];
-	            src += e+" = imports.gi." + e +";\n";
-	        }
-	        
-	        src += "console = imports.console;\n"; // path?!!?
-	        src += "XObject = imports.XObject.XObject;\n"; // path?!!?
-	        
-	        
-	        src += this.name + "=new XObject("+ this.mungeToString("    ") + ");\n";
-	        src += this.name + ".init();\n";
-	        // register it in the cache
-	        src += "XObject.cache['/" + this.name + "'] = " + this.name + ";\n";
-	        return src;
-	        */
-	        return "";
+			 return  NodeToVala.mungeFile(this);
 	        
 	        
 	    }
@@ -205,12 +178,18 @@ namespace JsRender {
 	        
 	    }
 	    */
-	   void  saveVala()
+	    
+	    public override string targetName()
+	    {
+	    	return GLib.Path.get_dirname(this.path) + "/" + this.name + ".vala";
+    	}
+	    
+	    void  saveVala()
 	    {
 			if (this.tree == null) {
 				return;
 			}
-			var fn = GLib.Path.get_dirname(this.path) + "/" + this.name + ".vala";
+			var fn = this.targetName();
 			print("WRITE :%s\n " , fn);
 			this.writeFile(fn,  NodeToVala.mungeFile(this));
 	        

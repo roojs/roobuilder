@@ -63,7 +63,7 @@
             // some testing code.
             { "list-projects", 0, 0,  OptionArg.NONE, ref opt_list_projects, "List Projects", null },
             { "list-files", 0, 0,  OptionArg.NONE, ref  opt_list_files, "List Files (in a project", null},
-            { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file", null },
+            { "bjs", 0, 0, OptionArg.STRING, ref opt_bjs_compile, "convert bjs file (use all to convert all of them and compare output)", null },
             { "bjs-glade", 0, 0, OptionArg.NONE, ref opt_bjs_compile_glade, "output glade", null },
             { "bjs-test-all", 0, 0, OptionArg.NONE, ref opt_bjs_test, "Test all the BJS files to see if the new parser/writer would change anything", null },            
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
@@ -256,7 +256,7 @@
 				if (outstr != oldstr) { 
 					
 					GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
-					print("diff -u %s /tmp/%s\n", file.path,  file.name);
+					print("meld  %s /tmp/%s\n", file.path,  file.name);
 					//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 				}
 				print("# Files match %s\n", file.name);
@@ -274,9 +274,42 @@
 			}
 			if (cur_project == null) {
 				GLib.error("missing project, use --project to select which project");
-			}	
+			}
+			
+			if (BuilderApplication.opt_bjs_compile == "all") {
+				var ar = cur_project.sortedFiles();
+				foreach(var file in ar) {
+					string oldstr;
+
+					file.loadItems();
+					var oldfn = file.targetName();
+					GLib.FileUtils.get_contents(oldfn, out oldstr);
+									
+					var outstr = file.toSourceCode();
+					if (outstr != oldstr) { 
+						
+						GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
+						print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
+						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
+					}
+					print("# Files match %s\n", file.name);
+					
+				}
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+			
+			}
+			
+			
+			
 			var file = cur_project.getByName(BuilderApplication.opt_bjs_compile);
 			if (file == null) {
+				// then compile them all, and compare them...
+				
+			
+			
+			
+			
+			
 				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 			}
 			file.loadItems();
@@ -299,6 +332,9 @@
 			
 			// dump the node tree
 			file.tree.dumpProps();
+			
+			
+			
 			
 			
 			var str_ar = str.split("\n");

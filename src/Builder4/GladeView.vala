@@ -1,88 +1,348 @@
-static Xcls_GladeView  _GladeView;
+static GladeView  _GladeView;
 
-public class Xcls_GladeView : Object
+public class GladeView : Object
 {
-    public Glade.DesignView el;
-    private Xcls_GladeView  _this;
+    public Gtk.Window el;
+    private GladeView  _this;
 
-    public static Xcls_GladeView singleton()
+    public static GladeView singleton()
     {
         if (_GladeView == null) {
-            _GladeView= new Xcls_GladeView();
+            _GladeView= new GladeView();
         }
         return _GladeView;
     }
 
         // my vars (def)
-    public JsRender.JsRender file;
 
     // ctor
-    public Xcls_GladeView()
+    public GladeView()
     {
         _this = this;
-        this.el = new Glade.DesignView(new Glade.Project());
+        this.el = new Gtk.Window( null );
 
         // my vars (dec)
-        this.file = null;
 
         // set gobject values
+        var child_0 = new Xcls_Box2( _this );
+        child_0.ref();
+        this.el.add(  child_0.el );
     }
 
     // user defined functions
-    public void createThumb () {
-        
-        
-        if (this.file == null) {
-            return;
-        }
-        var filename = this.file.getIconFileName(false);
-        
-        var  win = this.el.get_parent_window();
-        var width = win.get_width();
-        var height = win.get_height();
-    
-        Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
-    
-        screenshot.save(filename,"png");
-        return;
-        
-        
-         
-    }
-    public void loadFile (JsRender.JsRender file)
+    public class Xcls_Box2 : Object
     {
-        
-    
-        this.file = file;
-        
-    
-            // clear existing elements from project?
-            
-            var  p = this.el.get_project();
-            var    li = p.get_objects().copy();
-            // should remove all..
-            for (var i =0;    i < li.length(); i++) {   
-                p.remove_object(li.nth_data(i)); 
-            }
-    
-            if (file.tree == null) {
-                return;
-            }
-    
-    //        print("%s\n",tf.tree.toJsonString());
-    	var x =  JsRender.NodeToGlade(file.project, file.tree,  null);
-    
-    	 
-    
-    	var  f = File.new_tmp ("tpl-XXXXXX.glade", out iostream);
-    	var ostream = iostream.output_stream;
-    	var dostream = new DataOutputStream (ostream);
-    	dostream.put_string (x.munge());
-    	this.el.show();
-    	 print("LOADING %s\n",f.get_path ());
-          p.load_from_file(f.get_path ());
-            
-     
-    
+        public Gtk.Box el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box2(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+            this.el.vexpand = true;
+            var child_0 = new Xcls_Button3( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
+            var child_1 = new Xcls_Paned4( _this );
+            child_1.ref();
+            this.el.add(  child_1.el );
+        }
+
+        // user defined functions
     }
+    public class Xcls_Button3 : Object
+    {
+        public Gtk.Button el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button3(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Label";
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Paned4 : Object
+    {
+        public Gtk.Paned el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Paned4(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_TreeView5( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
+            var child_1 = new Xcls_TreeView10( _this );
+            child_1.ref();
+            this.el.add(  child_1.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_TreeView5 : Object
+    {
+        public Gtk.TreeView el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeView5(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeView();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_TreeViewColumn6( _this );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_TreeViewColumn6 : Object
+    {
+        public Gtk.TreeViewColumn el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeViewColumn6(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeViewColumn();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_CellRendererText7( _this );
+            child_0.ref();
+            var child_1 = new Xcls_CellRendererPixbuf8( _this );
+            child_1.ref();
+            var child_2 = new Xcls_CellRendererCombo9( _this );
+            child_2.ref();
+        }
+
+        // user defined functions
+    }
+    public class Xcls_CellRendererText7 : Object
+    {
+        public Gtk.CellRendererText el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CellRendererText7(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CellRendererText();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_CellRendererPixbuf8 : Object
+    {
+        public Gtk.CellRendererPixbuf el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CellRendererPixbuf8(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CellRendererPixbuf();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_CellRendererCombo9 : Object
+    {
+        public Gtk.CellRendererCombo el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CellRendererCombo9(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CellRendererCombo();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+
+    public class Xcls_TreeView10 : Object
+    {
+        public Gtk.TreeView el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeView10(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeView();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_TreeViewColumn11( _this );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_TreeViewColumn11 : Object
+    {
+        public Gtk.TreeViewColumn el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeViewColumn11(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeViewColumn();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_CellRendererText12( _this );
+            child_0.ref();
+            var child_1 = new Xcls_CellRendererPixbuf13( _this );
+            child_1.ref();
+            var child_2 = new Xcls_CellRendererCombo14( _this );
+            child_2.ref();
+        }
+
+        // user defined functions
+    }
+    public class Xcls_CellRendererText12 : Object
+    {
+        public Gtk.CellRendererText el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CellRendererText12(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CellRendererText();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_CellRendererPixbuf13 : Object
+    {
+        public Gtk.CellRendererPixbuf el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CellRendererPixbuf13(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CellRendererPixbuf();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_CellRendererCombo14 : Object
+    {
+        public Gtk.CellRendererCombo el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CellRendererCombo14(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CellRendererCombo();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+
+
+
 }
