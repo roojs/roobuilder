@@ -216,7 +216,7 @@ namespace JsRender {
 			if (this.tree == null) {
 				return;
 			}
-			var fn = GLib.Path.get_dirname(this.path) + "/" + this.name + ".vala";
+			var fn = this.targetName();
 			print("WRITE :%s\n " , fn);
 			this.writeFile(fn,  NodeToVala.mungeFile(this));
 	        
