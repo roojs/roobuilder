@@ -152,7 +152,10 @@ namespace JsRender {
 		{
 			return "Roo files do not convert to glade";
 		}
-	  
+	    public override string targetName()
+	    {
+	    	return this.path;
+    	}
 
 		
 
