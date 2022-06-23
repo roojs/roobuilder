@@ -449,7 +449,7 @@ namespace Palete {
 			if (this.type == "int") {
 				def = "0";
 			}
-			if (this.type == "float") {
+			if (this.type == "double") {
 				def = "0.0f"; 
 			}
 			// any more?
