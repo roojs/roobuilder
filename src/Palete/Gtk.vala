@@ -579,7 +579,7 @@ namespace Palete {
 				if (cls == null || cls.nodetype == "Enum") {
 					// assume it's ok
 					outprops.set(k,val);
-					return ret;
+ 					continue;
 				}
 				// do nothing? - classes not allowed?
 				
