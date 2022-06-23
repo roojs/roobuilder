@@ -44,6 +44,7 @@ public class JsRender.NodeToVala : Object {
 	Gee.ArrayList<Node> vitems; // top level items
 	NodeToVala top;
 	JsRender file;
+	int pane_number = 0;
 	
 	/* 
 	 * ctor - just initializes things
@@ -777,7 +778,9 @@ public class JsRender.NodeToVala : Object {
 				  
 		}
 	}
+	
 
+	
 	void packChild(Node child, int i, int cols, int colpos)
 	{
 		// forcing no packing? - true or false? -should we just accept false?
@@ -863,7 +866,18 @@ public class JsRender.NodeToVala : Object {
 			case "Gtk.Dialog": 	
 				this.addLine(this.ipad + "this.el.get_content_area().add( child_" + "%d".printf(i) + ".el );");
 				return;
-				
+
+			case "Gtk.Paned":
+				this.pane_number++;
+				switch(this.pane_number) {
+					case 1:
+					case 2:					
+						this.addLine(this.ipad + "this.el.pack%d( child_%d".printf(this.pane_number,i) + ".el );");
+						return;
+					default:
+						// do nothing
+						return;
+				}
 		
 			default:
 				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
