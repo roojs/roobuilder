@@ -30,13 +30,6 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "items" : [
-              {
-               "$ xns" : "Pango",
-               "* prop" : "font_desc",
-               "xtype" : "FontDescription"
-              }
-             ],
              "xtype" : "CellRendererText"
             },
             {
