@@ -747,7 +747,7 @@ public class JsRender.NodeToVala : Object {
 					this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 				} else {
 					this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
-				}...				
+				} 			
 				
 				
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
@@ -758,7 +758,7 @@ public class JsRender.NodeToVala : Object {
 				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
 			} else {
 				this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
-			}..
+			}
 			
 			
 			this.packChild(child, i, cols, colpos);
