@@ -488,6 +488,23 @@ namespace Palete {
 		
 		}
 
+		public  GirObject? getClassOrEnum(string ename)
+		{
+
+			var es = ename.split(".");
+			if (es.length < 2) {
+				return null;
+			}
+			var gir = Gir.factory(this.project,es[0]);
+			if (gir.classes.has_key(es[1])) {
+				return gir.classes.get(es[1]);
+			}
+			if (gir.consts.has_key(es[1])) {
+				return  gir.consts.get(es[1]);
+			}
+		}
+
+
 		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, JsRender.NodePropType ptype)  
 		{
 			//print("Loading for " + ename);
@@ -523,7 +540,7 @@ namespace Palete {
 
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
-					return cls.props;
+					return this.filterProps(cls.props);
 				case JsRender.NodePropType.LISTENER:
 					return cls.signals;
 				case JsRender.NodePropType.METHOD:
@@ -539,10 +556,40 @@ namespace Palete {
 				
 			
 			//cls.overlayInterfaces(gir);
-		    
-		    
+		     
 		     
 		}
+		public Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
+		{
+			// we shold probably cache this??
+			
+			var outprops = new Gee.HashMap<string,GirObject>(); 
+			
+			foreach(var k in props.keys) {
+				var val = props.get(k);
+				if (k == "___") {
+					continue;
+				}
+				if (!val.type.contains(".")) {
+					outprops.set(k,val);
+					continue;
+				}
+				var cls = this.getClass(val.type);
+			 
+				if (cls == null || cls.nodetype != "Enum") {
+
+					return ret;
+				}
+				
+			}
+			
+			
+			return outprops;
+		
+		
+		}
+		
+		
 		public string[] getInheritsFor(string ename)
 		{
 			string[] ret = {};
