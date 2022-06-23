@@ -861,7 +861,7 @@ public class JsRender.NodeToVala : Object {
 				return;
 			
 			case "Gtk.Dialog": 	
-				this.addLine(this.ipad + "this.el.get_content_area().add(  child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.get_content_area().add( child_" + "%d".printf(i) + ".el );");
 				return;
 				
 		
