@@ -509,7 +509,7 @@ public class JsRender.NodeToVala : Object {
 					this.ignore("n_columns");
 				}
 				
-				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv(" + args_str + ");");
+				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv( { " + args_str + " } );");
 				return;
 				break;
 				
