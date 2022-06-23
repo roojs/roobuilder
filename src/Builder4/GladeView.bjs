@@ -19,32 +19,59 @@
       {
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "xtype" : "Paned"
-      },
-      {
-       "$ xns" : "Gtk",
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* prop" : "column[]",
          "items" : [
           {
            "$ xns" : "Gtk",
-           "xtype" : "CellRendererText"
-          },
-          {
-           "$ xns" : "Gtk",
-           "xtype" : "CellRendererPixbuf"
-          },
-          {
-           "$ xns" : "Gtk",
-           "xtype" : "CellRendererCombo"
+           "* prop" : "column[]",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererText"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererPixbuf"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererCombo"
+            }
+           ],
+           "xtype" : "TreeViewColumn"
           }
          ],
-         "xtype" : "TreeViewColumn"
+         "xtype" : "TreeView"
+        },
+        {
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "column[]",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererText"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererPixbuf"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererCombo"
+            }
+           ],
+           "xtype" : "TreeViewColumn"
+          }
+         ],
+         "xtype" : "TreeView"
         }
        ],
-       "xtype" : "TreeView"
+       "xtype" : "Paned"
       }
      ],
      "xtype" : "Box"
