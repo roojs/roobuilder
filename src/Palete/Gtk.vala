@@ -574,12 +574,14 @@ namespace Palete {
 					outprops.set(k,val);
 					continue;
 				}
-				var cls = this.getClass(val.type);
+				var cls = this.getClassOrEnum(val.type);
 			 
-				if (cls == null || cls.nodetype != "Enum") {
-
+				if (cls == null || cls.nodetype == "Enum") {
+					// assume it's ok
+					outprops.set(k,val);
 					return ret;
 				}
+				// do nothing? - classes not allowed?
 				
 			}
 			
