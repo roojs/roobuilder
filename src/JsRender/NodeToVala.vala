@@ -505,8 +505,8 @@ public class JsRender.NodeToVala : Object {
 				}
 				if (this.node.has("n_columns") && this.node.has("columns")) { // old value?
 					args_str = " { " + this.node.get_prop("columns").val + " } ";
-					this.ignore("columns");
-					this.ignore("n_columns");
+					this.ignoreWrappedList("columns");
+					this.ignoreWrappedList("n_columns");
 				}
 				
 				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv( " + args_str + " );");
@@ -859,7 +859,10 @@ public class JsRender.NodeToVala : Object {
 				}
 				// any more!?
 				return;
-				
+			
+			case "Gtk.Dialog": 	
+				this.addLine(this.ipad + "this.el.get_content_area().add(  child_" + "%d".printf(i) + ".el );");
+				return;
 				
 		
 			default:
