@@ -442,16 +442,8 @@ namespace Palete {
 				// when we add properties, they are actually listeners attached to signals
 				return new JsRender.NodeProp.listener(this.name, this.sig); 
 			}
-			var def = "";
-			if (this.type == "bool") {
-				def = "true";
-			}
-			if (this.type == "int") {
-				def = "0";
-			}
-			if (this.type == "double") {
-				def = "0.0f"; 
-			}
+			
+			var def = Gir.guessDefaultValueForType(this.type);
 			// any more?
 			
 			// if it's an enum?? can we fill in a default value?
