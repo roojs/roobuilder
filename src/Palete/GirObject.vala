@@ -443,12 +443,9 @@ namespace Palete {
 				return new JsRender.NodeProp.listener(this.name, this.sig); 
 			}
 			
-			
+			// does not handle Enums... - no need to handle anything else.
 			var def = this.type.contains(".") ?  "" :  Gir.guessDefaultValueForType(this.type);
-			// any more?
-			
-			// if it's an enum?? can we fill in a default value?
-			// if it's an object type? use raw?
+			 
 			
 			return  new JsRender.NodeProp.prop(this.name, this.type, def); // signature?
 		
