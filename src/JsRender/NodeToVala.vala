@@ -495,6 +495,7 @@ public class JsRender.NodeToVala : Object {
 		
 		// is the wrapped element a struct?
 		
+		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		
 
 		var ctor = ".new";
