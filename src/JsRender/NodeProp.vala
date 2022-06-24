@@ -314,6 +314,9 @@ public class JsRender.NodeProp : Object {
 
 	}
 	
+	
+	
+	
 	public string to_property_option_markup()
 	{
 		return "<b>" + this.name + "</b> <i>" + this.rtype + "</i>";
