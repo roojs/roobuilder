@@ -495,8 +495,20 @@ public class JsRender.NodeToVala : Object {
 		
 		// is the wrapped element a struct?
 		
-		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		if (ncls.nodetype == "Struct") {
+			
+			var addline = this.ipad + "this.el = " + this.cls + "() {\n";
+			foreach(var prop in ncls.props.values) {
+				addline += this.ipad + "    " + prop.name + "=" + prop.value_to_code() + "\n";
+				
+			}
+			addline += "
+			this.addLine(addline);
+			return;
 		
+		
+		}
 
 		var ctor = ".new";
 		var args_str = "";
