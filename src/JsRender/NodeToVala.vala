@@ -503,7 +503,7 @@ public class JsRender.NodeToVala : Object {
 				addline += this.ipad + "    " + prop.name + "=" + prop.value_to_code() + "\n";
 				
 			}
-			addline += "
+			addline += this.ipad + "}";
 			this.addLine(addline);
 			return;
 		
