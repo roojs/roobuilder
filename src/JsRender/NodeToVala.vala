@@ -493,6 +493,9 @@ public class JsRender.NodeToVala : Object {
 		
 		this.node.setLine(this.cur_line, "p", "* xtype");;
 		
+		// is the wrapped element a struct?
+		
+		
 
 		var ctor = ".new";
 		var args_str = "";
