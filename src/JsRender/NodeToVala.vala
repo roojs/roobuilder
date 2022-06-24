@@ -500,7 +500,12 @@ public class JsRender.NodeToVala : Object {
 			
 			var addline = this.ipad + "this.el = " + this.cls + "() {\n";
 			foreach(var prop in ncls.props.values) {
-				addline += this.ipad + "    " + prop.name + "=" + prop.value_to_code() + "\n";
+			
+				var val =  this.node.has(prop.name) ?
+					 this.node.get_prop(prop.name).value_to_code() : 
+					 Palete.Gir.guessDefaultValueForType(prop.type);
+			
+				addline += this.ipad + "    " + prop.name + "=" + val + "\n";
 				
 			}
 			addline += this.ipad + "}";
