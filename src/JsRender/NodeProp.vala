@@ -247,7 +247,7 @@ public class JsRender.NodeProp : Object {
 		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
 		// before we showed "@" for signals
 		switch(this.ptype) {
-
+			case NodePropType.PROP:
 				return "5" +  n;
 				
 			case NodePropType.RAW:
@@ -298,13 +298,22 @@ public class JsRender.NodeProp : Object {
 			// probalby an enum
 			return this.val;
 		}
+		
+		
 		switch (this.rtype) {
-			case "string";
+			case "string":
 				return "\"" + this.rtype.escape() + "\"";
-			
+			case "bool":
+				return this.val.down();
+			case "float":
+			case "double":
+			default:
+				return this.val;
+				
 			
 		
 		}
+		return this.val;
  	}
  	
  	
