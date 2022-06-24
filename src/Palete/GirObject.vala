@@ -443,7 +443,8 @@ namespace Palete {
 				return new JsRender.NodeProp.listener(this.name, this.sig); 
 			}
 			
-			var def = Gir.guessDefaultValueForType(this.type);
+			
+			var def = this.type.contains(".") ?  "" :  Gir.guessDefaultValueForType(this.type);
 			// any more?
 			
 			// if it's an enum?? can we fill in a default value?
