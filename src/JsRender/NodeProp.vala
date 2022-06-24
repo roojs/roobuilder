@@ -247,7 +247,7 @@ public class JsRender.NodeProp : Object {
 		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
 		// before we showed "@" for signals
 		switch(this.ptype) {
-			case NodePropType.PROP:
+
 				return "5" +  n;
 				
 			case NodePropType.RAW:
@@ -276,8 +276,36 @@ public class JsRender.NodeProp : Object {
 		}
 		return this.name;
  	}
- 	
- 	
+	// this is really only used for stuct ctors at present 	
+	// which are only props (although RAW might be valid)
+ 	public string value_to_code()
+ 	{
+ 		switch (this.ptype) {
+			case NodePropType.PROP:
+				break;
+				
+			case NodePropType.METHOD : 			 
+			case NodePropType.RAW:
+			case NodePropType.SIGNAL :			
+			case NodePropType.USER : 
+			case NodePropType.SPECIAL : 
+			case NodePropType.LISTENER : 
+			case NodePropType.NONE: // not used
+			case NodePropType.CTOR:			
+				return this.val;
+		}
+		if (this.rtype.contains(".")) {
+			// probalby an enum
+			return this.val;
+		}
+		switch (this.rtype) {
+			case "string";
+				return "\"" + this.rtype.escape() + "\"";
+			
+			
+		
+		}
+ 	}
  	
  	
  	
