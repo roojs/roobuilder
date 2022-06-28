@@ -256,11 +256,11 @@ typeof(string) // 5 element type (event|prop)
         }
 
         // user defined functions
-        public JsRender.NodeProp getValue (Gtk.TreeIter iter, int col)
+        public JsRender.NodeProp getValue (Gtk.TreeIter iter)
         {
         
             GLib.Value value;
-            this.el.get_value(iter, col, out value);
+            this.el.get_value(iter, 0, out value);
          
             return (JsRender.NodeProp)value;
             
