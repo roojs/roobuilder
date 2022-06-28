@@ -71,6 +71,12 @@
             {
              "$ xns" : "Gtk",
              "xtype" : "CellRendererCombo"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* markup_column" : "-1",
+             "* text_column" : "-1",
+             "xtype" : "CellRendererText"
             }
            ],
            "xtype" : "TreeViewColumn"
