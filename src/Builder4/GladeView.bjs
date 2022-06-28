@@ -93,6 +93,27 @@
             "}"
            ],
            "xtype" : "ListStore"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "column[]",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererPixbuf"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "CellRendererCombo"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* markup_column" : 2,
+             "* text_column" : 1,
+             "xtype" : "CellRendererText"
+            }
+           ],
+           "xtype" : "TreeViewColumn"
           }
          ],
          "xtype" : "TreeView"
