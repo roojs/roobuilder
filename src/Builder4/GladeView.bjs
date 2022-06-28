@@ -9,12 +9,6 @@
      "* prop" : "buttons[]",
      "string label" : "Label",
      "xtype" : "Button"
-    },
-    {
-     "$ xns" : "Gtk",
-     "* prop" : "buttons[]",
-     "string label" : "Label",
-     "xtype" : "Button"
     }
    ],
    "xtype" : "Dialog"
