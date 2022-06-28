@@ -26,6 +26,8 @@ public class GladeView : Object
         // set gobject values
         var child_0 = new Xcls_Button2( _this );
         this.el.get_content_area().add( child_0.el );
+        var child_1 = new Xcls_Button3( _this );
+        this.el.get_content_area().add( child_1.el );
     }
 
     // user defined functions
@@ -39,6 +41,29 @@ public class GladeView : Object
 
         // ctor
         public Xcls_Button2(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Label";
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Button3 : Object
+    {
+        public Gtk.Button el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button3(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
