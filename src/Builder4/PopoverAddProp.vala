@@ -352,7 +352,7 @@ typeof(string) // 5 element type (event|prop)
 
             // init method
 
-            this.el.add_attribute(_this.typerender.el , "markup", 1  );
+            this.el.add_attribute(_this.typerender.el , "text", 1  );
         }
 
         // user defined functions
@@ -407,7 +407,7 @@ typeof(string) // 5 element type (event|prop)
 
             // init method
 
-            this.el.add_attribute(_this.typerender.el , "markup", 1  );
+            this.el.add_attribute(_this.fromrender.el , "text", 5);
         }
 
         // user defined functions
