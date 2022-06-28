@@ -98,6 +98,11 @@
          ],
          "utf8 title" : "Double click to add",
          "xtype" : "TreeViewColumn"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "composite_name",
+         "xtype" : "TreeView"
         }
        ],
        "listeners" : {

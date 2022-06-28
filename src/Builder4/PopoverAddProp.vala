@@ -18,9 +18,9 @@ public class Xcls_PopoverAddProp : Object
 
         // my vars (def)
     public JsRender.NodePropType ptype;
-    public bool active;
     public signal void select (JsRender.NodeProp prop);
     public Xcls_MainWindow mainwindow;
+    public bool active;
 
     // ctor
     public Xcls_PopoverAddProp()
@@ -108,12 +108,12 @@ public class Xcls_PopoverAddProp : Object
         }       
      //   this.hpane.el.set_position( 0);
     }
+    public void clear () {
+     this.model.el.clear();
+    }
     public void hide () {
     	this.ptype = JsRender.NodePropType.NONE;
     	this.el.hide();
-    }
-    public void clear () {
-     this.model.el.clear();
     }
     public class Xcls_ScrolledWindow2 : Object
     {
@@ -170,6 +170,9 @@ public class Xcls_PopoverAddProp : Object
             var child_1 = new Xcls_namecol( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
+            var child_2 = new Xcls_TreeView7( _this );
+            child_2.ref();
+            this.el.composite_name (  child_2.el  );
 
             // init method
 
@@ -310,6 +313,28 @@ typeof(string) // 5 element type (event|prop)
         // user defined functions
     }
 
+
+    public class Xcls_TreeView7 : Object
+    {
+        public Gtk.TreeView el;
+        private Xcls_PopoverAddProp  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeView7(Xcls_PopoverAddProp _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeView();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
 
