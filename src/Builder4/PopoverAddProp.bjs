@@ -90,6 +90,7 @@
          ],
          "* pack" : "append_column",
          "id" : "namecol",
+         "int sort_column_id" : 3,
          "items" : [
           {
            "$ xns" : "Gtk",

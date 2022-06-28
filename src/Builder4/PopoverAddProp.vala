@@ -289,6 +289,7 @@ typeof(string) // 5 element type (event|prop)
             // my vars (dec)
 
             // set gobject values
+            this.el.sort_column_id = 3;
             this.el.title = "Double click to add";
             var child_0 = new Xcls_namerender( _this );
             child_0.ref();
