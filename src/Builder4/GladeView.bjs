@@ -13,9 +13,15 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "buttons[]",
-     "int response_id" : 1,
+     "* response_id" : 1,
      "string label" : "Label",
      "xtype" : "Button"
+    },
+    {
+     "$ xns" : "Gtk",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "int spacing" : 0,
+     "xtype" : "Box"
     }
    ],
    "xtype" : "Dialog"
