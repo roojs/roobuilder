@@ -341,6 +341,7 @@ typeof(string) // 5 element type (event|prop)
             // my vars (dec)
 
             // set gobject values
+            this.el.title = "";
 
             // init method
 

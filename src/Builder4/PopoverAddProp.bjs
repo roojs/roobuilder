@@ -110,6 +110,7 @@
          ],
          "* pack" : "append_column",
          "id" : "type",
+         "string title" : "",
          "xtype" : "TreeViewColumn"
         },
         {
