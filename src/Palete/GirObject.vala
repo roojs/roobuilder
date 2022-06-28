@@ -447,7 +447,7 @@ namespace Palete {
 			
 			// does not handle Enums... - no need to handle anything else.
 			var def = this.type.contains(".") ?  "" :  Gir.guessDefaultValueForType(this.type);
-			if (this.type.contains(".")) {
+			if (this.type.contains(".") || this.type.down() == "function") {
 				return  new JsRender.NodeProp.raw(this.name, this.type, def);
 			}
 			
