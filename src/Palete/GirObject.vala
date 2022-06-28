@@ -440,7 +440,9 @@ namespace Palete {
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
 				// when we add properties, they are actually listeners attached to signals
-				return new JsRender.NodeProp.listener(this.name, this.sig); 
+				var r =new JsRender.NodeProp.listener(this.name, this.sig);  
+				r.rtype = this.type;
+				return r;
 			}
 			
 			// does not handle Enums... - no need to handle anything else.
