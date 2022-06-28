@@ -37,7 +37,7 @@
                "double alpha" : "0.0f",
                "double blue" : "0.0f",
                "double green" : "0.0f",
-               "double red" : "0.0f",
+               "double red" : "1.0f",
                "xtype" : "RGBA"
               }
              ],

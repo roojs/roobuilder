@@ -195,13 +195,13 @@ public class GladeView : Object
         public Xcls_RGBA8(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gdk.RGBA();
+            this.el = Gdk.RGBA();
 
             // my vars (dec)
 
             // set gobject values
             this.el.alpha = 0.0f;
-            this.el.red = 0.0f;
+            this.el.red = 1.0f;
             this.el.green = 0.0f;
             this.el.blue = 0.0f;
         }
