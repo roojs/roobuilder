@@ -750,7 +750,7 @@ public class JsRender.NodeToVala : Object {
 					// currently these 'child props
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
-					//this.packChild(child, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+					 this.packChild(child, i, 0, 0);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
