@@ -80,7 +80,9 @@ public class Xcls_PopoverAddProp : Object
                     0,  prop, 
                     1,  prop.to_property_option_markup(),
                     2,  prop.to_property_option_tooltip(),                
-                    3,  prop.name,                
+                    3,  prop.name,
+                    4,  prop.type,
+                    5,  p.propertyof
                     -1
             );
         }
