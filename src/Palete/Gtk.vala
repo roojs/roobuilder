@@ -132,7 +132,7 @@ namespace Palete {
  			this.add_special_children("Gtk.TreeViewColumn","Gtk.CellRenderer", "");
  			
  			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
-		 	this.add_special_children("Gtk.Dialog","Gtk.Button", "response_id");
+		 	//this.add_special_children("Gtk.Dialog","Gtk.Button", "response_id");
 			this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name"); // fake property
 			 
 			this.init_node_defaults();
@@ -808,6 +808,15 @@ namespace Palete {
 				}
 				
 			
+			}
+			// any other combo?
+			switch(parent.fqn()) {
+				case "Gtk.Dialog":
+					if (child.has("* prop") && child.get_prop("* prop").val == "buttons[]") {
+						child.set_prop( new JsRender.NodeProp.prop("response_id", "int", 1);
+					}
+					break;
+					
 			}
 			
 			// not really
