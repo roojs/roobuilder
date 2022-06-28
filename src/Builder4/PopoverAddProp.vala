@@ -16,6 +16,7 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_namecol namecol;
     public Xcls_namerender namerender;
     public Xcls_type type;
+    public Xcls_from from;
 
         // my vars (def)
     public JsRender.NodePropType ptype;
@@ -176,7 +177,7 @@ public class Xcls_PopoverAddProp : Object
             this.el.this.el.add_attribute(_this.typerender.el (  child_2.el ,  "markup", 1  );
  
  );
-            var child_3 = new Xcls_TreeViewColumn8( _this );
+            var child_3 = new Xcls_from( _this );
             child_3.ref();
             this.el.this.el.add_attribute(_this.typerender.el (  child_3.el ,  "markup", 1  );
  
@@ -345,7 +346,7 @@ typeof(string) // 5 element type (event|prop)
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn8 : Object
+    public class Xcls_from : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverAddProp  _this;
@@ -354,9 +355,10 @@ typeof(string) // 5 element type (event|prop)
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn8(Xcls_PopoverAddProp _owner )
+        public Xcls_from(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
+            _this.from = this;
             this.el = new Gtk.TreeViewColumn();
 
             // my vars (dec)
