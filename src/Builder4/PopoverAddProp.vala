@@ -16,6 +16,7 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_namecol namecol;
     public Xcls_namerender namerender;
     public Xcls_type type;
+    public Xcls_typerenderer typerenderer;
     public Xcls_from from;
 
         // my vars (def)
@@ -342,7 +343,7 @@ typeof(string) // 5 element type (event|prop)
 
             // set gobject values
             this.el.title = "Type";
-            var child_0 = new Xcls_CellRendererText8( _this );
+            var child_0 = new Xcls_typerenderer( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
 
@@ -353,7 +354,7 @@ typeof(string) // 5 element type (event|prop)
 
         // user defined functions
     }
-    public class Xcls_CellRendererText8 : Object
+    public class Xcls_typerenderer : Object
     {
         public Gtk.CellRendererText el;
         private Xcls_PopoverAddProp  _this;
@@ -362,9 +363,10 @@ typeof(string) // 5 element type (event|prop)
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererText8(Xcls_PopoverAddProp _owner )
+        public Xcls_typerenderer(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
+            _this.typerenderer = this;
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
