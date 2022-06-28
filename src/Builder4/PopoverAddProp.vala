@@ -299,7 +299,7 @@ typeof(string) // 5 element type (event|prop)
 
             this.el.add_attribute(_this.namerender.el , "text", 1  );
              
-              this.el.add_attribute(_this.namerender.el , "text", 2  );
+              this.el.add_attribute(_this.namerender.el , "tooltip", 2  );
         }
 
         // user defined functions
