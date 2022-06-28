@@ -497,19 +497,8 @@ public class JsRender.NodeToVala : Object {
 		
 		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (ncls.nodetype == "Struct") {
-			
-			var addline = this.ipad + "this.el = " + this.cls + "() {\n";
-			foreach(var prop in ncls.props.values) {
-			
-				var val =  this.node.has(prop.name) ?
-					 this.node.get_prop(prop.name).value_to_code() : 
-					 Palete.Gir.guessDefaultValueForType(prop.type);
-			
-				addline += this.ipad + "    " + prop.name + "=" + val + "\n";
-				
-			}
-			addline += this.ipad + "}";
-			this.addLine(addline);
+			// we can use regular setters to apply the values.
+			this.addLine(this.ipad + "this.el = " + this.cls + "();");
 			return;
 		
 		
