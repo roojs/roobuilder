@@ -132,7 +132,7 @@
          "id" : "from",
          "int sort_column_id" : 4,
          "string title" : "From",
-         "xtype" : "TreeViewColumn"
+         "xtype" : "TreeView"
         }
        ],
        "listeners" : {
