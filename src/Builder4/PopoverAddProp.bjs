@@ -84,7 +84,7 @@
         {
          "$ xns" : "Gtk",
          "* init" : [
-          "  this.el.add_attribute(_this.namerender.el , \"markup\", 1  );",
+          "  this.el.add_attribute(_this.namerender.el , \"text\", 3  );",
           " ",
           ""
          ],
@@ -105,7 +105,7 @@
         {
          "$ xns" : "Gtk",
          "* init" : [
-          "  this.el.add_attribute(_this.typerender.el , \"text\", 3  );",
+          "  this.el.add_attribute(_this.typerender.el , \"text\", 4  );",
           " ",
           ""
          ],
