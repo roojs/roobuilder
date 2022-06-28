@@ -136,7 +136,7 @@
          "\tm.el.get_iter(out iter,path);",
          "",
          " ",
-         "\tvar prop = m.getValue(iter, 0);",
+         "\tvar prop = m.getValue(iter);",
          " ",
          "",
          "\t// hide the popover",

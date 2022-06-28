@@ -205,7 +205,7 @@ public class Xcls_PopoverAddProp : Object
             	m.el.get_iter(out iter,path);
             
              
-            	var prop = m.getValue(iter, 0);
+            	var prop = m.getValue(iter);
              
             
             	// hide the popover
