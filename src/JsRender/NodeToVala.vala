@@ -750,6 +750,7 @@ public class JsRender.NodeToVala : Object {
 					// currently these 'child props
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
+					// columns[] ?
 					 this.packChild(child, i, 0, 0);  /// fixme - this is a bit speciall...
 					continue;
 				}
