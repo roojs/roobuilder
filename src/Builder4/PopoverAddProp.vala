@@ -178,7 +178,9 @@ public class Xcls_PopoverAddProp : Object
  );
             var child_3 = new Xcls_TreeViewColumn8( _this );
             child_3.ref();
-            this.el.composite_name (  child_3.el  );
+            this.el.this.el.add_attribute(_this.typerender.el (  child_3.el ,  "markup", 1  );
+ 
+ );
 
             // init method
 
