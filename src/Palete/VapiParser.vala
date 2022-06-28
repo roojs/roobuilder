@@ -370,7 +370,7 @@ namespace Palete {
 			var c = new GirObject("Signal",sig.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
-
+			c.propertyof = parent.name;
 #if VALA_0_56
 			var dt  = sig.return_type.type_symbol  ;
 #elif VALA_0_36
