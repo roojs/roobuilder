@@ -84,7 +84,7 @@ public class Xcls_PopoverAddProp : Object
                     2,  prop.to_property_option_tooltip(),                
                     3,  prop.name,
                     4,  prop.rtype,
-                    5,  p.propertyof
+                    5,  p.propertyof,
                     -1
             );
         }
