@@ -343,6 +343,9 @@ typeof(string) // 5 element type (event|prop)
             this.title = Type;
 
             // set gobject values
+            var child_0 = new Xcls_CellRendererText8( _this );
+            child_0.ref();
+            this.el.composite_name (  child_0.el  );
 
             // init method
 
@@ -351,6 +354,28 @@ typeof(string) // 5 element type (event|prop)
 
         // user defined functions
     }
+    public class Xcls_CellRendererText8 : Object
+    {
+        public Gtk.CellRendererText el;
+        private Xcls_PopoverAddProp  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CellRendererText8(Xcls_PopoverAddProp _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CellRendererText();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
     public class Xcls_from : Object
     {

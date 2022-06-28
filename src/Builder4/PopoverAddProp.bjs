@@ -110,6 +110,13 @@
          ],
          "* pack" : "append_column",
          "id" : "type",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "composite_name",
+           "xtype" : "CellRendererText"
+          }
+         ],
          "string title" : "Type",
          "xtype" : "TreeView"
         },
