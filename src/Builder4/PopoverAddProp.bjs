@@ -86,7 +86,7 @@
          "* init" : [
           "  this.el.add_attribute(_this.namerender.el , \"text\", 1  );",
           " ",
-          ""
+          "  this.el.add_attribute(_this.namerender.el , \"text\", 2  );"
          ],
          "* pack" : "append_column",
          "id" : "namecol",
