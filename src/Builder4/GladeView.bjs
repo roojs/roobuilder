@@ -24,6 +24,15 @@
      "xtype" : "Box"
     }
    ],
+   "listeners" : {
+    "response" : [
+     "(response_id) => {",
+     "",
+     "",
+     "}",
+     ""
+    ]
+   },
    "xtype" : "Dialog"
   }
  ],

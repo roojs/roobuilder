@@ -31,6 +31,12 @@ public class GladeView : Object
         var child_2 = new Xcls_Box4( _this );
         child_2.ref();
         this.el.get_content_area().add( child_2.el );
+
+        //listeners
+        this.el.response.connect( (response_id) => {
+        
+        
+        });
     }
 
     // user defined functions
