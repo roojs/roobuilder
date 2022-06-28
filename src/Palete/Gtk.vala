@@ -560,6 +560,7 @@ namespace Palete {
 		     
 		     
 		}
+		// get rid of objecst from props list..
 		public Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
 		{
 			// we shold probably cache this??
@@ -826,76 +827,7 @@ namespace Palete {
 			
 			
 		}
-		
-		
-         /*
-		public   void fillPack(JsRender.Node node,JsRender.Node parent)
-		{   
-			
-			string inherits =  string.joinv(" ", 
-                                      this.getInheritsFor (node.fqn())) + " ";
-			inherits += node.fqn() + " ";
-			//print ("fillPack:Inherits : %s\n", inherits);
-			// parent.fqn() method ( node.fqn()
-			var methods = this.getPropertiesFor (parent.fqn(), JsRender.NodePropType.METHOD);
-			
-			var res = new Gee.HashMap<string,string>();
-			var map = methods.map_iterator();
-			while (map.next()) {
-				
-				var n = map.get_key();
-				//print ("fillPack:checking method %s\n", n);
-				
-				var meth = map.get_value();
-				if (meth.paramset == null || meth.paramset.params.size < 1) {
-					print ("fillPack:c -- no params\n");
-				
-					continue;
-				}
-				var fp = meth.paramset.params.get(0);
-				
-				var type = Gir.fqtypeLookup(this.project, fp.type, meth.ns);
-				print ("fillPack:first param type is %s\n", type);
-
-				
-				if (!inherits.contains(" " + type + " ")) {
-					continue;
-				}
-				
-				
-				var pack = meth.name;
-				for(var i =1; i < meth.paramset.params.size; i++) {
-					var ty = Gir.fqtypeLookup(this.project,meth.paramset.params.get(i).type, meth.ns);
-					pack += "," + Gir.guessDefaultValueForType(ty);
-				}
-
-				print ("fillPack:add pack:  --          %s\n",pack );
-
-				res.set(meth.name, pack);
-				
-				
-
-			}
-			if (res.size < 1) {
-				return ;
-			}
-			if (res.has_key("pack_start")) {
-				node.set_prop(new JsRender.NodeProp.special("pack", res.get("pack_start")));
-				return;
-			}
-			if (res.has_key("add")) {
-				node.set_prop(new JsRender.NodeProp.special("pack", res.get("add")));
-			    return;
-			}
-			var riter = res.map_iterator();
-			while(riter.next()) {
-				node.set_prop(new JsRender.NodeProp.special("pack", riter.get_value()));
-				return;
-			}
-			
-			
-		}
-		*/
+		 
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
 			var vapidirs = gproject.vapidirs();
