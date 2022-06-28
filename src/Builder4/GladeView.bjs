@@ -1,6 +1,19 @@
 {
  "build_module" : "",
- "items" : [],
+ "items" : [
+  {
+   "$ xns" : "Gtk",
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "buttons[]",
+     "string label" : "Label",
+     "xtype" : "Button"
+    }
+   ],
+   "xtype" : "Dialog"
+  }
+ ],
  "modOrder" : "",
  "name" : "GladeView",
  "parent" : "",
