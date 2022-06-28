@@ -127,6 +127,7 @@ public class GladeView : Object
 
             // set gobject values
             var child_0 = new Xcls_TreeViewColumn6( _this );
+            this.el.append_column(  child_0.el );
         }
 
         // user defined functions
@@ -274,10 +275,12 @@ public class GladeView : Object
 
             // set gobject values
             var child_0 = new Xcls_TreeViewColumn12( _this );
+            this.el.append_column(  child_0.el );
             var child_1 = new Xcls_ListStore16( _this );
             child_1.ref();
             this.el.model = child_1.el;
             var child_2 = new Xcls_TreeViewColumn17( _this );
+            this.el.append_column(  child_2.el );
         }
 
         // user defined functions
@@ -422,10 +425,8 @@ public class GladeView : Object
             // set gobject values
             var child_0 = new Xcls_CellRendererPixbuf18( _this );
             child_0.ref();
-            var child_1 = new Xcls_CellRendererCombo19( _this );
+            var child_1 = new Xcls_CellRendererText19( _this );
             child_1.ref();
-            var child_2 = new Xcls_CellRendererText20( _this );
-            child_2.ref();
         }
 
         // user defined functions
@@ -452,29 +453,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_CellRendererCombo19 : Object
-    {
-        public Gtk.CellRendererCombo el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_CellRendererCombo19(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.CellRendererCombo();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_CellRendererText20 : Object
+    public class Xcls_CellRendererText19 : Object
     {
         public Gtk.CellRendererText el;
         private GladeView  _this;
@@ -483,7 +462,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererText20(GladeView _owner )
+        public Xcls_CellRendererText19(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.CellRendererText();

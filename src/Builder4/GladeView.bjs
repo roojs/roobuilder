@@ -104,10 +104,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "xtype" : "CellRendererCombo"
-            },
-            {
-             "$ xns" : "Gtk",
              "* markup_column" : 2,
              "* text_column" : 1,
              "xtype" : "CellRendererText"
