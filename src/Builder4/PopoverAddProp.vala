@@ -325,23 +325,24 @@ typeof(string) // 5 element type (event|prop)
 
     public class Xcls_type : Object
     {
-        public Gtk.TreeViewColumn el;
+        public Gtk.TreeView el;
         private Xcls_PopoverAddProp  _this;
 
 
             // my vars (def)
+        public string title;
 
         // ctor
         public Xcls_type(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
             _this.type = this;
-            this.el = new Gtk.TreeViewColumn();
+            this.el = new Gtk.TreeView();
 
             // my vars (dec)
+            this.title = Type;
 
             // set gobject values
-            this.el.title = "Type";
 
             // init method
 

@@ -111,7 +111,7 @@
          "* pack" : "append_column",
          "id" : "type",
          "string title" : "Type",
-         "xtype" : "TreeViewColumn"
+         "xtype" : "TreeView"
         },
         {
          "$ xns" : "Gtk",
