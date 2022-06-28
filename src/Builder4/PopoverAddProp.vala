@@ -369,6 +369,7 @@ typeof(string) // 5 element type (event|prop)
             // my vars (dec)
 
             // set gobject values
+            this.el.sort_column_id = 4;
             this.el.title = "From";
 
             // init method
