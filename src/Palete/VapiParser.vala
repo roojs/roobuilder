@@ -387,7 +387,7 @@ namespace Palete {
 				cc.ns = c.ns;
 				cc.type  =  dt.get_full_name();
 				c.return_value = cc;
-				
+				c.type = dt.get_full_name(); // type is really return type in this scenario.
 				 retval = "\treturn " + cc.type +";";
 			}
 			parent.signals.set(sig.name,c);
