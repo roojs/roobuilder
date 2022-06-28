@@ -877,7 +877,11 @@ public class JsRender.NodeToVala : Object {
 			
 			case "Gtk.Dialog":
 				if (propname == "buttons[]") {
-					this.addLine(this.ipad + "this.el.add_action_widget( child_" + "%d".printf(i) + ".el, i );");
+					var resp_id = i;
+					if (child.has("response_id")) { 
+						resp_id = int.parse(child.get_prop("response_id").val);
+					}
+					this.addLine(this.ipad + "this.el.add_action_widget( child_%d.el, %d);".printf(i,resp_id) );
 				}
 			
 			 	
