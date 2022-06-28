@@ -245,7 +245,7 @@
     "    ",
     "    // min 450?",
     "\t// max hieght ...",
-    "    this.el.set_size_request( 450, h);",
+    "    this.el.set_size_request( 550, h);",
     "",
     "    ",
     "",
