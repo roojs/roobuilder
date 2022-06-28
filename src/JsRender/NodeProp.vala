@@ -359,7 +359,7 @@ public class JsRender.NodeProp : Object {
 	
 	public string to_property_option_tooltip()
 	{
-		return this.to_property_option_markup(); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
+		return this.to_property_option_markup( false ); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
 	}
 	
 	
