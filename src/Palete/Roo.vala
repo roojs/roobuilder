@@ -248,7 +248,7 @@ namespace Palete {
 				
 				
 				case JsRender.NodePropType.PROP:
-					return this.filterProps(cls.props);
+					return cls.props;
 				case JsRender.NodePropType.LISTENER:
 					return cls.signals;
 				case JsRender.NodePropType.METHOD:
@@ -268,33 +268,6 @@ namespace Palete {
 
 			 
 		}
-		
-		
-		// get rid of objecst from props list.. (assumed to be anything with 'dot' in the type.
-		public Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
-		{
-			// we shold probably cache this??
-			
-			var outprops = new Gee.HashMap<string,GirObject>(); 
-			
-			foreach(var k in props.keys) {
-				var val = props.get(k);
-			 
-				if (!val.type.contains(".")) {
-					outprops.set(k,val);
- 
-				}
-				 
-				// do nothing? - classes not allowed?
-				
-			}
-			
-			
-			return outprops;
-		
-		
-		}
-		
 		public string[] getInheritsFor(string ename)
 		{
 			string[] ret = {};
