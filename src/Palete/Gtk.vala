@@ -813,7 +813,7 @@ namespace Palete {
 			switch(parent.fqn()) {
 				case "Gtk.Dialog":
 					if (child.has("* prop") && child.get_prop("* prop").val == "buttons[]") {
-						child.set_prop( new JsRender.NodeProp.prop("response_id", "int", 1));
+						child.set_prop( new JsRender.NodeProp.prop("response_id", "int", "1"));
 					}
 					break;
 					
