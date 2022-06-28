@@ -114,7 +114,7 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "composite_name",
-           "id" : "typerenderer",
+           "id" : "typerender",
            "xtype" : "CellRendererText"
           }
          ],
@@ -135,7 +135,7 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "composite_name",
-           "id" : "",
+           "id" : "fromrender",
            "xtype" : "CellRendererText"
           }
          ],

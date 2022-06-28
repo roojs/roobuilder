@@ -16,8 +16,9 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_namecol namecol;
     public Xcls_namerender namerender;
     public Xcls_type type;
-    public Xcls_typerenderer typerenderer;
+    public Xcls_typerender typerender;
     public Xcls_from from;
+    public Xcls_fromrender fromrender;
 
         // my vars (def)
     public JsRender.NodePropType ptype;
@@ -343,7 +344,7 @@ typeof(string) // 5 element type (event|prop)
 
             // set gobject values
             this.el.title = "Type";
-            var child_0 = new Xcls_typerenderer( _this );
+            var child_0 = new Xcls_typerender( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
 
@@ -354,7 +355,7 @@ typeof(string) // 5 element type (event|prop)
 
         // user defined functions
     }
-    public class Xcls_typerenderer : Object
+    public class Xcls_typerender : Object
     {
         public Gtk.CellRendererText el;
         private Xcls_PopoverAddProp  _this;
@@ -363,10 +364,10 @@ typeof(string) // 5 element type (event|prop)
             // my vars (def)
 
         // ctor
-        public Xcls_typerenderer(Xcls_PopoverAddProp _owner )
+        public Xcls_typerender(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
-            _this.typerenderer = this;
+            _this.typerender = this;
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
@@ -398,7 +399,7 @@ typeof(string) // 5 element type (event|prop)
             // set gobject values
             this.el.sort_column_id = 4;
             this.el.title = "From";
-            var child_0 = new Xcls_CellRendererText10( _this );
+            var child_0 = new Xcls_fromrender( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
 
@@ -409,7 +410,7 @@ typeof(string) // 5 element type (event|prop)
 
         // user defined functions
     }
-    public class Xcls_CellRendererText10 : Object
+    public class Xcls_fromrender : Object
     {
         public Gtk.CellRendererText el;
         private Xcls_PopoverAddProp  _this;
@@ -418,9 +419,10 @@ typeof(string) // 5 element type (event|prop)
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererText10(Xcls_PopoverAddProp _owner )
+        public Xcls_fromrender(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
+            _this.fromrender = this;
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
