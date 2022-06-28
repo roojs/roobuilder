@@ -15,6 +15,7 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_model model;
     public Xcls_namecol namecol;
     public Xcls_namerender namerender;
+    public Xcls_TreeViewColumn7 TreeViewColumn7;
 
         // my vars (def)
     public JsRender.NodePropType ptype;
@@ -328,6 +329,7 @@ typeof(string) // 5 element type (event|prop)
         public Xcls_TreeViewColumn7(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
+            _this.TreeViewColumn7 = this;
             this.el = new Gtk.TreeViewColumn();
 
             // my vars (dec)

@@ -106,6 +106,7 @@
           " ",
           ""
          ],
+         "id" : "",
          "xtype" : "TreeViewColumn"
         }
        ],
