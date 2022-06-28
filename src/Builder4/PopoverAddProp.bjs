@@ -113,7 +113,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "composite_name",
+           "* pack" : "pack_start,true",
            "id" : "typerender",
            "xtype" : "CellRendererText"
           }
@@ -134,7 +134,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "composite_name",
+           "* pack" : "pack_start,true",
            "id" : "fromrender",
            "xtype" : "CellRendererText"
           }

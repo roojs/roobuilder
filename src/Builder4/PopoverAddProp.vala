@@ -346,7 +346,7 @@ typeof(string) // 5 element type (event|prop)
             this.el.title = "Type";
             var child_0 = new Xcls_typerender( _this );
             child_0.ref();
-            this.el.composite_name (  child_0.el  );
+            this.el.pack_start (  child_0.el , true );
 
             // init method
 
@@ -401,7 +401,7 @@ typeof(string) // 5 element type (event|prop)
             this.el.title = "From";
             var child_0 = new Xcls_fromrender( _this );
             child_0.ref();
-            this.el.composite_name (  child_0.el  );
+            this.el.pack_start (  child_0.el , true );
 
             // init method
 
