@@ -101,8 +101,12 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "composite_name",
-         "xtype" : "TreeView"
+         "* pack" : [
+          "  this.el.add_attribute(_this.namerender.el , \"markup\", 1  );",
+          " ",
+          ""
+         ],
+         "xtype" : "TreeViewColumn"
         }
        ],
        "listeners" : {
