@@ -54,15 +54,7 @@
           "typeof(string), // prop type",
           "typeof(string) // from interface",
           "",
-          "// add later? source?",
-          "/* was:",
-          "typeof(string),  // 0 real key",
-          "typeof(string), // 1 real type",
-          "typeof(string), // 2 docs ?",
-          "typeof(string), // 3 visable desc",
-          "typeof(string), // 4 function desc",
-          "typeof(string) // 5 element type (event|prop)",
-          "*/"
+          " "
          ],
          "$ xns" : "Gtk",
          "* pack" : "set_model",
