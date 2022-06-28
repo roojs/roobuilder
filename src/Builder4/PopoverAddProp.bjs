@@ -108,6 +108,11 @@
          ],
          "id" : "from",
          "xtype" : "TreeViewColumn"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "composite_name",
+         "xtype" : "TreeViewColumn"
         }
        ],
        "listeners" : {

@@ -176,6 +176,9 @@ public class Xcls_PopoverAddProp : Object
             this.el.this.el.add_attribute(_this.namerender.el (  child_2.el ,  "markup", 1  );
  
  );
+            var child_3 = new Xcls_TreeViewColumn8( _this );
+            child_3.ref();
+            this.el.composite_name (  child_3.el  );
 
             // init method
 
@@ -330,6 +333,28 @@ typeof(string) // 5 element type (event|prop)
         {
             _this = _owner;
             _this.from = this;
+            this.el = new Gtk.TreeViewColumn();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_TreeViewColumn8 : Object
+    {
+        public Gtk.TreeViewColumn el;
+        private Xcls_PopoverAddProp  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeViewColumn8(Xcls_PopoverAddProp _owner )
+        {
+            _this = _owner;
             this.el = new Gtk.TreeViewColumn();
 
             // my vars (dec)
