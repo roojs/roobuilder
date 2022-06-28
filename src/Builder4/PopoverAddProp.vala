@@ -232,11 +232,13 @@ public class Xcls_PopoverAddProp : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 4, 
+            this.el = new Gtk.ListStore( 6, 
 typeof(JsRender.NodeProp),  // 0 real key
 typeof(string),  // text display
 typeof(string),  // tooltip
-typeof(string)  // sortable string
+typeof(string),  // sortable string
+typeof(string), // prop type
+typeof(string) // from interface
 
 // add later? source?
 /* was:
