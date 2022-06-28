@@ -343,6 +343,7 @@ typeof(string) // 5 element type (event|prop)
             // my vars (dec)
 
             // set gobject values
+            this.el.sort_column_id = 4;
             this.el.title = "Type";
             var child_0 = new Xcls_typerender( _this );
             child_0.ref();
@@ -397,7 +398,7 @@ typeof(string) // 5 element type (event|prop)
             // my vars (dec)
 
             // set gobject values
-            this.el.sort_column_id = 4;
+            this.el.sort_column_id = 5;
             this.el.title = "From";
             var child_0 = new Xcls_fromrender( _this );
             child_0.ref();

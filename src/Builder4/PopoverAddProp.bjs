@@ -110,6 +110,7 @@
          ],
          "* pack" : "append_column",
          "id" : "type",
+         "int sort_column_id" : 4,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -130,7 +131,7 @@
          ],
          "* pack" : "append_column",
          "id" : "from",
-         "int sort_column_id" : 4,
+         "int sort_column_id" : 5,
          "items" : [
           {
            "$ xns" : "Gtk",
