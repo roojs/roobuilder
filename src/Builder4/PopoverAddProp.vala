@@ -240,9 +240,9 @@ public class Xcls_PopoverAddProp : Object
 typeof(JsRender.NodeProp),  // 0 real key
 typeof(string),  // 1 text display
 typeof(string),  // 2 tooltip
-typeof(string),  // sortable string
-typeof(string), // prop type
-typeof(string) // from interface
+typeof(string),  // 3 sortable string
+typeof(string), // 4  prop type
+typeof(string) // 5 from interface
 
   );
 
