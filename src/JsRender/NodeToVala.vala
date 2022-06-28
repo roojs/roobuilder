@@ -751,7 +751,7 @@ public class JsRender.NodeToVala : Object {
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
 					// columns[] ?
-					 this.packChild(child, i, 0, 0);  /// fixme - this is a bit speciall...
+					 this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
@@ -792,7 +792,7 @@ public class JsRender.NodeToVala : Object {
 	
 
 	
-	void packChild(Node child, int i, int cols, int colpos)
+	void packChild(Node child, int i, int cols, int colpos, string propname= "")
 	{
 		// forcing no packing? - true or false? -should we just accept false?
 		if (child.has("* pack") && child.get("* pack").down() == "false") {
@@ -875,7 +875,12 @@ public class JsRender.NodeToVala : Object {
 				// any more!?
 				return;
 			
-			case "Gtk.Dialog": 	
+			case "Gtk.Dialog":
+				if (propname == "buttons[]") {
+					this.addLine(this.ipad + "this.el.add_action_widget( child_" + "%d".printf(i) + ".el, i );");
+				}
+			
+			 	
 				this.addLine(this.ipad + "this.el.get_content_area().add( child_" + "%d".printf(i) + ".el );");
 				return;
 
