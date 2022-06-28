@@ -347,8 +347,7 @@ public class JsRender.NodeProp : Object {
 				 return "";
 		}
 		return this.name;
-		
-
+		 
 	}
 	
 	 
