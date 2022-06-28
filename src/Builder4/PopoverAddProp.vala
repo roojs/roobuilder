@@ -400,6 +400,9 @@ typeof(string) // 5 element type (event|prop)
             this.title = From;
 
             // set gobject values
+            var child_0 = new Xcls_TreeView10( _this );
+            child_0.ref();
+            this.el.composite_name (  child_0.el  );
 
             // init method
 
@@ -408,6 +411,28 @@ typeof(string) // 5 element type (event|prop)
 
         // user defined functions
     }
+    public class Xcls_TreeView10 : Object
+    {
+        public Gtk.TreeView el;
+        private Xcls_PopoverAddProp  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeView10(Xcls_PopoverAddProp _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeView();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 

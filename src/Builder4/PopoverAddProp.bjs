@@ -131,6 +131,13 @@
          "* pack" : "append_column",
          "id" : "from",
          "int sort_column_id" : 4,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "composite_name",
+           "xtype" : "TreeView"
+          }
+         ],
          "string title" : "From",
          "xtype" : "TreeView"
         }
