@@ -289,7 +289,7 @@ typeof(string) // 5 from interface
 
             // init method
 
-            this.el.add_attribute(_this.namerender.el , "text", 1  );
+            this.el.add_attribute(_this.namerender.el , "markup", 1  );
              
               this.el.add_attribute(_this.namerender.el , "tooltip", 2  );
         }
