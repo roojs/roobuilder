@@ -98,7 +98,7 @@ public class Xcls_PopoverAddProp : Object
         
         // min 450?
     	// max hieght ...
-        this.el.set_size_request( 250, h);
+        this.el.set_size_request( 450, h);
     
         
     
