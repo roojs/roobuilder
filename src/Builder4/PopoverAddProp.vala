@@ -352,7 +352,7 @@ typeof(string) // 5 element type (event|prop)
 
             // init method
 
-            this.el.add_attribute(_this.typerender.el , "text", 1  );
+            this.el.add_attribute(_this.typerender.el , "text", 3  );
         }
 
         // user defined functions
