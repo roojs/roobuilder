@@ -80,8 +80,8 @@ public class Xcls_PopoverAddProp : Object
     
             this.model.el.set(iter,
                     0,  prop, 
-                    1,  prop.to_property_option_markup(),
-                    2,  prop.to_property_option_tooltip(p.propertyof == xtype),                
+                    1,  prop.to_property_option_markup(p.propertyof == xtype),
+                    2,  prop.to_property_option_tooltip(),                
                     3,  prop.name,
                     4,  prop.rtype,
                     5,  p.propertyof,
