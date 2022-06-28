@@ -135,11 +135,12 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "composite_name",
-           "xtype" : "TreeView"
+           "id" : "",
+           "xtype" : "CellRendererText"
           }
          ],
          "string title" : "From",
-         "xtype" : "TreeView"
+         "xtype" : "TreeViewColumn"
         }
        ],
        "listeners" : {

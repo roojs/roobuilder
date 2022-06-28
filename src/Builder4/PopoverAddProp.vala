@@ -380,27 +380,25 @@ typeof(string) // 5 element type (event|prop)
 
     public class Xcls_from : Object
     {
-        public Gtk.TreeView el;
+        public Gtk.TreeViewColumn el;
         private Xcls_PopoverAddProp  _this;
 
 
             // my vars (def)
-        public int sort_column_id;
-        public string title;
 
         // ctor
         public Xcls_from(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
             _this.from = this;
-            this.el = new Gtk.TreeView();
+            this.el = new Gtk.TreeViewColumn();
 
             // my vars (dec)
-            this.sort_column_id = 4;
-            this.title = From;
 
             // set gobject values
-            var child_0 = new Xcls_TreeView10( _this );
+            this.el.sort_column_id = 4;
+            this.el.title = "From";
+            var child_0 = new Xcls_CellRendererText10( _this );
             child_0.ref();
             this.el.composite_name (  child_0.el  );
 
@@ -411,19 +409,19 @@ typeof(string) // 5 element type (event|prop)
 
         // user defined functions
     }
-    public class Xcls_TreeView10 : Object
+    public class Xcls_CellRendererText10 : Object
     {
-        public Gtk.TreeView el;
+        public Gtk.CellRendererText el;
         private Xcls_PopoverAddProp  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_TreeView10(Xcls_PopoverAddProp _owner )
+        public Xcls_CellRendererText10(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
-            this.el = new Gtk.TreeView();
+            this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
 
