@@ -238,8 +238,8 @@ public class Xcls_PopoverAddProp : Object
             _this.model = this;
             this.el = new Gtk.ListStore( 6, 
 typeof(JsRender.NodeProp),  // 0 real key
-typeof(string),  // text display
-typeof(string),  // tooltip
+typeof(string),  // 1 text display
+typeof(string),  // 2 tooltip
 typeof(string),  // sortable string
 typeof(string), // prop type
 typeof(string) // from interface
