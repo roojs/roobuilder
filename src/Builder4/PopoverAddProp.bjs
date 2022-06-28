@@ -122,6 +122,7 @@
          ],
          "* pack" : "append_column",
          "id" : "from",
+         "string title" : "From",
          "xtype" : "TreeViewColumn"
         }
        ],
