@@ -871,6 +871,7 @@ public class JsRender.NodeToVala : Object {
 				if (child.has("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"background-rgba\", %s );".printf(i, child.get_prop("background_column").val));
 				}
+				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
 				// any more!?
 				return;
 			
