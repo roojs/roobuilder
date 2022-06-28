@@ -319,7 +319,6 @@ namespace Palete {
 			
 				
 		}
-		
 		 
 		
 		public void add_property(GirObject parent, Vala.Property prop)
