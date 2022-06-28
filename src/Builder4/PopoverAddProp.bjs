@@ -101,21 +101,23 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : [
+         "* init" : [
           "  this.el.add_attribute(_this.typerender.el , \"markup\", 1  );",
           " ",
           ""
          ],
+         "* pack" : "append_column",
          "id" : "type",
          "xtype" : "TreeViewColumn"
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : [
+         "* init" : [
           "  this.el.add_attribute(_this.typerender.el , \"markup\", 1  );",
           " ",
           ""
          ],
+         "* pack" : "append_column",
          "id" : "from",
          "xtype" : "TreeViewColumn"
         }

@@ -174,14 +174,10 @@ public class Xcls_PopoverAddProp : Object
             this.el.append_column (  child_1.el  );
             var child_2 = new Xcls_type( _this );
             child_2.ref();
-            this.el.this.el.add_attribute(_this.typerender.el (  child_2.el ,  "markup", 1  );
- 
- );
+            this.el.append_column (  child_2.el  );
             var child_3 = new Xcls_from( _this );
             child_3.ref();
-            this.el.this.el.add_attribute(_this.typerender.el (  child_3.el ,  "markup", 1  );
- 
- );
+            this.el.append_column (  child_3.el  );
 
             // init method
 
@@ -341,6 +337,10 @@ typeof(string) // 5 element type (event|prop)
             // my vars (dec)
 
             // set gobject values
+
+            // init method
+
+            this.el.add_attribute(_this.typerender.el , "markup", 1  );
         }
 
         // user defined functions
@@ -364,6 +364,10 @@ typeof(string) // 5 element type (event|prop)
             // my vars (dec)
 
             // set gobject values
+
+            // init method
+
+            this.el.add_attribute(_this.typerender.el , "markup", 1  );
         }
 
         // user defined functions
