@@ -80,6 +80,19 @@
             }
            ],
            "xtype" : "TreeViewColumn"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "* types" : [
+            "/*",
+            " fill in an array of { typeof(xxx), typeof(xxx) } ",
+            " */",
+            "{",
+            "\tttypeof(string)",
+            "}"
+           ],
+           "xtype" : "ListStore"
           }
          ],
          "xtype" : "TreeView"

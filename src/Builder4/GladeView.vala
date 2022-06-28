@@ -274,6 +274,9 @@ public class GladeView : Object
 
             // set gobject values
             var child_0 = new Xcls_TreeViewColumn12( _this );
+            var child_1 = new Xcls_ListStore16( _this );
+            child_1.ref();
+            this.el.model = child_1.el;
         }
 
         // user defined functions
@@ -371,6 +374,33 @@ public class GladeView : Object
         // user defined functions
     }
 
+
+    public class Xcls_ListStore16 : Object
+    {
+        public Gtk.ListStore el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ListStore16(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ListStore.newv( /*
+ fill in an array of { typeof(xxx), typeof(xxx) } 
+ */
+{
+	ttypeof(string)
+} );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
 
