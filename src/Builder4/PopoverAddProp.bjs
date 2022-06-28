@@ -118,7 +118,7 @@
           }
          ],
          "string title" : "Type",
-         "xtype" : "TreeView"
+         "xtype" : "TreeViewColumn"
         },
         {
          "$ xns" : "Gtk",
