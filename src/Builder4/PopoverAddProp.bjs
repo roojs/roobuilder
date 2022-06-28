@@ -102,11 +102,11 @@
         {
          "$ xns" : "Gtk",
          "* pack" : [
-          "  this.el.add_attribute(_this.namerender.el , \"markup\", 1  );",
+          "  this.el.add_attribute(_this.typerender.el , \"markup\", 1  );",
           " ",
           ""
          ],
-         "id" : "from",
+         "id" : "type",
          "xtype" : "TreeViewColumn"
         },
         {
