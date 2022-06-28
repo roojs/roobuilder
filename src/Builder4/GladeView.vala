@@ -202,7 +202,7 @@ public class GladeView : Object
             // set gobject values
             this.el.alpha = 0.0f;
             this.el.red = 1.0f;
-            this.el.green = 0.0f;
+            this.el.green = 1.0f;
             this.el.blue = 0.0f;
         }
 
