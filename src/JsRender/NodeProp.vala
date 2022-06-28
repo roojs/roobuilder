@@ -351,9 +351,7 @@ public class JsRender.NodeProp : Object {
 
 	}
 	
-	
-	
-	
+	 
 	public string to_property_option_markup(bool isbold)
 	{
 		return "<b>" + this.name + "</b>";
