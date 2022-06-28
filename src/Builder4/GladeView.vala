@@ -61,6 +61,7 @@ public class GladeView : Object
 
 
             // my vars (def)
+        public int response_id;
 
         // ctor
         public Xcls_Button3(GladeView _owner )
@@ -69,6 +70,7 @@ public class GladeView : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.response_id = 1;
 
             // set gobject values
             this.el.label = "Label";

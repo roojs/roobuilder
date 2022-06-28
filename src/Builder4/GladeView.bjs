@@ -13,6 +13,7 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "buttons[]",
+     "int response_id" : 1,
      "string label" : "Label",
      "xtype" : "Button"
     }
