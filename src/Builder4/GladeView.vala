@@ -295,39 +295,15 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_CellRendererText13( _this );
+            var child_0 = new Xcls_CellRendererPixbuf13( _this );
             child_0.ref();
-            var child_1 = new Xcls_CellRendererPixbuf14( _this );
+            var child_1 = new Xcls_CellRendererCombo14( _this );
             child_1.ref();
-            var child_2 = new Xcls_CellRendererCombo15( _this );
-            child_2.ref();
         }
 
         // user defined functions
     }
-    public class Xcls_CellRendererText13 : Object
-    {
-        public Gtk.CellRendererText el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_CellRendererText13(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.CellRendererText();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_CellRendererPixbuf14 : Object
+    public class Xcls_CellRendererPixbuf13 : Object
     {
         public Gtk.CellRendererPixbuf el;
         private GladeView  _this;
@@ -336,7 +312,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererPixbuf14(GladeView _owner )
+        public Xcls_CellRendererPixbuf13(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.CellRendererPixbuf();
@@ -349,7 +325,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_CellRendererCombo15 : Object
+    public class Xcls_CellRendererCombo14 : Object
     {
         public Gtk.CellRendererCombo el;
         private GladeView  _this;
@@ -358,7 +334,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CellRendererCombo15(GladeView _owner )
+        public Xcls_CellRendererCombo14(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.CellRendererCombo();
