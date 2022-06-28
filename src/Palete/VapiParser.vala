@@ -68,6 +68,11 @@ namespace Palete {
 			foreach(var c in element.get_methods()) {
 				this.add_method(g, c);
 			}
+			
+			foreach(var c in element.get_structs()) {
+				this.add_struct(g, c);
+			}
+			
 			element.accept_children(this); // catch sub namespaces..
 			
 			
@@ -144,6 +149,29 @@ namespace Palete {
 			
 			 
 		}
+		//https://learnxinyminutes.com/docs/vala/ -- see for ctor on structs.
+		
+		public void add_struct(GirObject parent, Vala.Struct cls)
+		{
+		
+			var c = new GirObject("Struct", parent.name + "." + cls.name);
+			parent.classes.set(cls.name, c);
+			  
+			foreach(var p in cls.get_fields()) {
+				this.add_field(c, p);
+			}
+			// methods...
+			 
+			  
+			
+			if (cls.version.deprecated) { 
+				GLib.debug("class %s is deprecated", c.name);
+				c.is_deprecated = true;
+			}
+			
+		}
+		
+		
 		
 		public void add_class(GirObject parent, Vala.Class cls)
 		{
@@ -291,7 +319,6 @@ namespace Palete {
 			
 				
 		}
-		
 		 
 		
 		public void add_property(GirObject parent, Vala.Property prop)
@@ -315,12 +342,35 @@ namespace Palete {
 
 			
 		}
+		
+		
+		public void add_field(GirObject parent, Vala.Field prop)
+		{
+			var c = new GirObject("Field",prop.name);
+			c.gparent = parent;
+			c.ns = parent.ns;
+			c.propertyof = parent.name;
+#if VALA_0_56
+			c.type  = prop.variable_type.type_symbol == null ? "" : prop.variable_type.type_symbol.get_full_name();
+#elif VALA_0_36
+			c.type  = prop.variable_type.data_type == null ? "" : prop.variable_type.data_type.get_full_name();		
+#endif
+			 
+			if (prop.version.deprecated) { 
+				GLib.debug("class %s is deprecated", c.name);
+				c.is_deprecated = true;
+			}
+			parent.props.set(prop.name,c);
+
+			
+		}
+		
 		public void add_signal(GirObject parent, Vala.Signal sig)
 		{
 			var c = new GirObject("Signal",sig.name);
 			c.gparent = parent;
 			c.ns = parent.ns;
-
+			c.propertyof = parent.name;
 #if VALA_0_56
 			var dt  = sig.return_type.type_symbol  ;
 #elif VALA_0_36
@@ -337,7 +387,7 @@ namespace Palete {
 				cc.ns = c.ns;
 				cc.type  =  dt.get_full_name();
 				c.return_value = cc;
-				
+				c.type = dt.get_full_name(); // type is really return type in this scenario.
 				 retval = "\treturn " + cc.type +";";
 			}
 			parent.signals.set(sig.name,c);

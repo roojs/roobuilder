@@ -48,31 +48,25 @@
          "$ columns" : [
           "",
           "typeof(JsRender.NodeProp),  // 0 real key",
-          "typeof(string),  // text display",
-          "typeof(string),  // tooltip",
-          "typeof(string)  // sortable string",
+          "typeof(string),  // 1 text display",
+          "typeof(string),  // 2 tooltip",
+          "typeof(string),  // 3 sortable string",
+          "typeof(string), // 4  prop type",
+          "typeof(string) // 5 from interface",
           "",
-          "// add later? source?",
-          "/* was:",
-          "typeof(string),  // 0 real key",
-          "typeof(string), // 1 real type",
-          "typeof(string), // 2 docs ?",
-          "typeof(string), // 3 visable desc",
-          "typeof(string), // 4 function desc",
-          "typeof(string) // 5 element type (event|prop)",
-          "*/"
+          " "
          ],
          "$ xns" : "Gtk",
          "* pack" : "set_model",
          "id" : "model",
-         "n_columns" : 4,
+         "n_columns" : 6,
          "xtype" : "ListStore",
          "| JsRender.NodeProp getValue" : [
-          "(Gtk.TreeIter iter, int col)",
+          "(Gtk.TreeIter iter)",
           "{",
           "",
           "    GLib.Value value;",
-          "    this.el.get_value(iter, col, out value);",
+          "    this.el.get_value(iter, 0, out value);",
           " ",
           "    return (JsRender.NodeProp)value;",
           "    ",
@@ -84,10 +78,11 @@
          "* init" : [
           "  this.el.add_attribute(_this.namerender.el , \"markup\", 1  );",
           " ",
-          ""
+          "  this.el.add_attribute(_this.namerender.el , \"tooltip\", 2  );"
          ],
          "* pack" : "append_column",
          "id" : "namecol",
+         "int sort_column_id" : 3,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -97,6 +92,48 @@
           }
          ],
          "utf8 title" : "Double click to add",
+         "xtype" : "TreeViewColumn"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* init" : [
+          "  this.el.add_attribute(_this.typerender.el , \"text\", 4  );",
+          " ",
+          ""
+         ],
+         "* pack" : "append_column",
+         "id" : "type",
+         "int sort_column_id" : 4,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,true",
+           "id" : "typerender",
+           "xtype" : "CellRendererText"
+          }
+         ],
+         "string title" : "Type",
+         "xtype" : "TreeViewColumn"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* init" : [
+          "  this.el.add_attribute(_this.fromrender.el , \"text\", 5);",
+          " ",
+          ""
+         ],
+         "* pack" : "append_column",
+         "id" : "from",
+         "int sort_column_id" : 5,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,true",
+           "id" : "fromrender",
+           "xtype" : "CellRendererText"
+          }
+         ],
+         "string title" : "From",
          "xtype" : "TreeViewColumn"
         }
        ],
@@ -112,7 +149,7 @@
          "\tm.el.get_iter(out iter,path);",
          "",
          " ",
-         "\tvar prop = m.getValue(iter, 0);",
+         "\tvar prop = m.getValue(iter);",
          " ",
          "",
          "\t// hide the popover",
@@ -200,7 +237,7 @@
     "    ",
     "    // min 450?",
     "\t// max hieght ...",
-    "    this.el.set_size_request( 250, h);",
+    "    this.el.set_size_request( 550, h);",
     "",
     "    ",
     "",

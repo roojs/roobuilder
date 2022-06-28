@@ -132,8 +132,8 @@ namespace Palete {
  			this.add_special_children("Gtk.TreeViewColumn","Gtk.CellRenderer", "");
  			
  			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
-			 
-			 this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name"); // fake property
+		 	//this.add_special_children("Gtk.Dialog","Gtk.Button", "response_id");
+			this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name"); // fake property
 			 
 			this.init_node_defaults();
 		    this.init_child_defaults();  
@@ -488,6 +488,24 @@ namespace Palete {
 		
 		}
 
+		public  GirObject? getClassOrEnum(string ename)
+		{
+
+			var es = ename.split(".");
+			if (es.length < 2) {
+				return null;
+			}
+			var gir = Gir.factory(this.project,es[0]);
+			if (gir.classes.has_key(es[1])) {
+				return gir.classes.get(es[1]);
+			}
+			if (gir.consts.has_key(es[1])) {
+				return  gir.consts.get(es[1]);
+			}
+			return null;
+		}
+
+
 		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, JsRender.NodePropType ptype)  
 		{
 			//print("Loading for " + ename);
@@ -523,7 +541,7 @@ namespace Palete {
 
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
-					return cls.props;
+					return this.filterProps(cls.props);
 				case JsRender.NodePropType.LISTENER:
 					return cls.signals;
 				case JsRender.NodePropType.METHOD:
@@ -539,10 +557,44 @@ namespace Palete {
 				
 			
 			//cls.overlayInterfaces(gir);
-		    
-		    
+		     
 		     
 		}
+		// get rid of objecst from props list..
+		public Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
+		{
+			// we shold probably cache this??
+			
+			var outprops = new Gee.HashMap<string,GirObject>(); 
+			
+			foreach(var k in props.keys) {
+				var val = props.get(k);
+				if (k == "___") {
+					continue;
+				}
+				if (!val.type.contains(".")) {
+					outprops.set(k,val);
+					continue;
+				}
+				var cls = this.getClassOrEnum(val.type);
+			 	
+			 	// if cls == null - it's probably a struct? I don't think we handle thses
+				if ( cls.nodetype == "Enum") {
+					// assume it's ok
+					outprops.set(k,val);
+ 					continue;
+				}
+				// do nothing? - classes not allowed?
+				
+			}
+			
+			
+			return outprops;
+		
+		
+		}
+		
+		
 		public string[] getInheritsFor(string ename)
 		{
 			string[] ret = {};
@@ -746,6 +798,28 @@ namespace Palete {
 				}
 			}
 			
+			// if child is a struct 
+			var childcls = this.getClass(child.fqn());
+			if (childcls != null && childcls.nodetype == "Struct") {
+				// then we need to add all the props.
+				foreach(var prop in childcls.props.values) {
+					child.set_prop(prop.toNodeProp());
+					
+					
+				}
+				
+			
+			}
+			// any other combo?
+			switch(parent.fqn()) {
+				case "Gtk.Dialog":
+					if (child.has("* prop") && child.get_prop("* prop").val == "buttons[]") {
+						child.set_prop( new JsRender.NodeProp.special("response_id", "1"));
+					}
+					break;
+					
+			}
+			
 			// not really
 			//this.fillPack(child, parent);
 			
@@ -753,76 +827,7 @@ namespace Palete {
 			
 			
 		}
-		
-		
-         /*
-		public   void fillPack(JsRender.Node node,JsRender.Node parent)
-		{   
-			
-			string inherits =  string.joinv(" ", 
-                                      this.getInheritsFor (node.fqn())) + " ";
-			inherits += node.fqn() + " ";
-			//print ("fillPack:Inherits : %s\n", inherits);
-			// parent.fqn() method ( node.fqn()
-			var methods = this.getPropertiesFor (parent.fqn(), JsRender.NodePropType.METHOD);
-			
-			var res = new Gee.HashMap<string,string>();
-			var map = methods.map_iterator();
-			while (map.next()) {
-				
-				var n = map.get_key();
-				//print ("fillPack:checking method %s\n", n);
-				
-				var meth = map.get_value();
-				if (meth.paramset == null || meth.paramset.params.size < 1) {
-					print ("fillPack:c -- no params\n");
-				
-					continue;
-				}
-				var fp = meth.paramset.params.get(0);
-				
-				var type = Gir.fqtypeLookup(this.project, fp.type, meth.ns);
-				print ("fillPack:first param type is %s\n", type);
-
-				
-				if (!inherits.contains(" " + type + " ")) {
-					continue;
-				}
-				
-				
-				var pack = meth.name;
-				for(var i =1; i < meth.paramset.params.size; i++) {
-					var ty = Gir.fqtypeLookup(this.project,meth.paramset.params.get(i).type, meth.ns);
-					pack += "," + Gir.guessDefaultValueForType(ty);
-				}
-
-				print ("fillPack:add pack:  --          %s\n",pack );
-
-				res.set(meth.name, pack);
-				
-				
-
-			}
-			if (res.size < 1) {
-				return ;
-			}
-			if (res.has_key("pack_start")) {
-				node.set_prop(new JsRender.NodeProp.special("pack", res.get("pack_start")));
-				return;
-			}
-			if (res.has_key("add")) {
-				node.set_prop(new JsRender.NodeProp.special("pack", res.get("add")));
-			    return;
-			}
-			var riter = res.map_iterator();
-			while(riter.next()) {
-				node.set_prop(new JsRender.NodeProp.special("pack", riter.get_value()));
-				return;
-			}
-			
-			
-		}
-		*/
+		 
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
 			var vapidirs = gproject.vapidirs();

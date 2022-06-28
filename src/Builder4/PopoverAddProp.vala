@@ -15,12 +15,16 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_model model;
     public Xcls_namecol namecol;
     public Xcls_namerender namerender;
+    public Xcls_type type;
+    public Xcls_typerender typerender;
+    public Xcls_from from;
+    public Xcls_fromrender fromrender;
 
         // my vars (def)
     public JsRender.NodePropType ptype;
-    public bool active;
     public signal void select (JsRender.NodeProp prop);
     public Xcls_MainWindow mainwindow;
+    public bool active;
 
     // ctor
     public Xcls_PopoverAddProp()
@@ -96,7 +100,7 @@ public class Xcls_PopoverAddProp : Object
         
         // min 450?
     	// max hieght ...
-        this.el.set_size_request( 250, h);
+        this.el.set_size_request( 550, h);
     
         
     
@@ -110,12 +114,12 @@ public class Xcls_PopoverAddProp : Object
         }       
      //   this.hpane.el.set_position( 0);
     }
+    public void clear () {
+     this.model.el.clear();
+    }
     public void hide () {
     	this.ptype = JsRender.NodePropType.NONE;
     	this.el.hide();
-    }
-    public void clear () {
-     this.model.el.clear();
     }
     public class Xcls_ScrolledWindow2 : Object
     {
@@ -172,6 +176,12 @@ public class Xcls_PopoverAddProp : Object
             var child_1 = new Xcls_namecol( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
+            var child_2 = new Xcls_type( _this );
+            child_2.ref();
+            this.el.append_column (  child_2.el  );
+            var child_3 = new Xcls_from( _this );
+            child_3.ref();
+            this.el.append_column (  child_3.el  );
 
             // init method
 
@@ -199,7 +209,7 @@ public class Xcls_PopoverAddProp : Object
             	m.el.get_iter(out iter,path);
             
              
-            	var prop = m.getValue(iter, 0);
+            	var prop = m.getValue(iter);
              
             
             	// hide the popover
@@ -226,21 +236,15 @@ public class Xcls_PopoverAddProp : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 4, 
+            this.el = new Gtk.ListStore( 6, 
 typeof(JsRender.NodeProp),  // 0 real key
-typeof(string),  // text display
-typeof(string),  // tooltip
-typeof(string)  // sortable string
+typeof(string),  // 1 text display
+typeof(string),  // 2 tooltip
+typeof(string),  // 3 sortable string
+typeof(string), // 4  prop type
+typeof(string) // 5 from interface
 
-// add later? source?
-/* was:
-typeof(string),  // 0 real key
-typeof(string), // 1 real type
-typeof(string), // 2 docs ?
-typeof(string), // 3 visable desc
-typeof(string), // 4 function desc
-typeof(string) // 5 element type (event|prop)
-*/ );
+  );
 
             // my vars (dec)
 
@@ -248,11 +252,11 @@ typeof(string) // 5 element type (event|prop)
         }
 
         // user defined functions
-        public JsRender.NodeProp getValue (Gtk.TreeIter iter, int col)
+        public JsRender.NodeProp getValue (Gtk.TreeIter iter)
         {
         
             GLib.Value value;
-            this.el.get_value(iter, col, out value);
+            this.el.get_value(iter, 0, out value);
          
             return (JsRender.NodeProp)value;
             
@@ -277,6 +281,7 @@ typeof(string) // 5 element type (event|prop)
             // my vars (dec)
 
             // set gobject values
+            this.el.sort_column_id = 3;
             this.el.title = "Double click to add";
             var child_0 = new Xcls_namerender( _this );
             child_0.ref();
@@ -285,6 +290,8 @@ typeof(string) // 5 element type (event|prop)
             // init method
 
             this.el.add_attribute(_this.namerender.el , "markup", 1  );
+             
+              this.el.add_attribute(_this.namerender.el , "tooltip", 2  );
         }
 
         // user defined functions
@@ -302,6 +309,116 @@ typeof(string) // 5 element type (event|prop)
         {
             _this = _owner;
             _this.namerender = this;
+            this.el = new Gtk.CellRendererText();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_type : Object
+    {
+        public Gtk.TreeViewColumn el;
+        private Xcls_PopoverAddProp  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_type(Xcls_PopoverAddProp _owner )
+        {
+            _this = _owner;
+            _this.type = this;
+            this.el = new Gtk.TreeViewColumn();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.sort_column_id = 4;
+            this.el.title = "Type";
+            var child_0 = new Xcls_typerender( _this );
+            child_0.ref();
+            this.el.pack_start (  child_0.el , true );
+
+            // init method
+
+            this.el.add_attribute(_this.typerender.el , "text", 4  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_typerender : Object
+    {
+        public Gtk.CellRendererText el;
+        private Xcls_PopoverAddProp  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_typerender(Xcls_PopoverAddProp _owner )
+        {
+            _this = _owner;
+            _this.typerender = this;
+            this.el = new Gtk.CellRendererText();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_from : Object
+    {
+        public Gtk.TreeViewColumn el;
+        private Xcls_PopoverAddProp  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_from(Xcls_PopoverAddProp _owner )
+        {
+            _this = _owner;
+            _this.from = this;
+            this.el = new Gtk.TreeViewColumn();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.sort_column_id = 5;
+            this.el.title = "From";
+            var child_0 = new Xcls_fromrender( _this );
+            child_0.ref();
+            this.el.pack_start (  child_0.el , true );
+
+            // init method
+
+            this.el.add_attribute(_this.fromrender.el , "text", 5);
+        }
+
+        // user defined functions
+    }
+    public class Xcls_fromrender : Object
+    {
+        public Gtk.CellRendererText el;
+        private Xcls_PopoverAddProp  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_fromrender(Xcls_PopoverAddProp _owner )
+        {
+            _this = _owner;
+            _this.fromrender = this;
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)

@@ -493,6 +493,16 @@ public class JsRender.NodeToVala : Object {
 		
 		this.node.setLine(this.cur_line, "p", "* xtype");;
 		
+		// is the wrapped element a struct?
+		
+		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		if (ncls.nodetype == "Struct") {
+			// we can use regular setters to apply the values.
+			this.addLine(this.ipad + "this.el = " + this.cls + "();");
+			return;
+		
+		
+		}
 
 		var ctor = ".new";
 		var args_str = "";
@@ -740,7 +750,8 @@ public class JsRender.NodeToVala : Object {
 					// currently these 'child props
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
-					//this.packChild(child, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+					// columns[] ?
+					 this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
@@ -781,7 +792,7 @@ public class JsRender.NodeToVala : Object {
 	
 
 	
-	void packChild(Node child, int i, int cols, int colpos)
+	void packChild(Node child, int i, int cols, int colpos, string propname= "")
 	{
 		// forcing no packing? - true or false? -should we just accept false?
 		if (child.has("* pack") && child.get("* pack").down() == "false") {
@@ -844,7 +855,7 @@ public class JsRender.NodeToVala : Object {
 				this.addLine(this.ipad + "this.el.append_column(  child_" + "%d".printf(i) + ".el );");
 				return;
 			
-			case "Gtk.TreeViewColumn": //adding Renderers
+			case "Gtk.TreeViewColumn": //adding Renderers - I think these are all proprerties of the renderer used...
 				if (child.has("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"markup\", %s );".printf(i, child.get_prop("markup_column").val));
 				}
@@ -860,10 +871,21 @@ public class JsRender.NodeToVala : Object {
 				if (child.has("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
 					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"background-rgba\", %s );".printf(i, child.get_prop("background_column").val));
 				}
+				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
 				// any more!?
 				return;
 			
-			case "Gtk.Dialog": 	
+			case "Gtk.Dialog":
+				if (propname == "buttons[]") {
+					var resp_id = i;
+					if (child.has("* response_id")) { 
+						resp_id = int.parse(child.get_prop("* response_id").val);
+					}
+					this.addLine(this.ipad + "this.el.add_action_widget( child_%d.el, %d);".printf(i,resp_id) );
+					return;
+				}
+			
+			 	
 				this.addLine(this.ipad + "this.el.get_content_area().add( child_" + "%d".printf(i) + ".el );");
 				return;
 

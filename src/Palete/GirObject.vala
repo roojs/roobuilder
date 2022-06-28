@@ -347,7 +347,7 @@ namespace Palete {
 		}
 
  
-		public GirObject fetchByFqn(string fqn) {
+		public GirObject? fetchByFqn(string fqn) {
 			GLib.debug("Searching (%s)%s for %s\n", this.nodetype, this.name, fqn);
 			var bits = fqn.split(".");
 			
@@ -440,16 +440,18 @@ namespace Palete {
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
 				// when we add properties, they are actually listeners attached to signals
-				return new JsRender.NodeProp.listener(this.name, this.sig); 
+				var r =new JsRender.NodeProp.listener(this.name, this.sig);  
+				r.rtype = this.type;
+				return r;
 			}
-			var def = "";
-			if (this.type == "bool") {
-				def = "true";
-			}
-			// if it's an enum?? can we fill in a default value?
-			// if it's an object type? use raw?
 			
-			return  new JsRender.NodeProp.prop(this.name, this.type); // signature?
+			// does not handle Enums... - no need to handle anything else.
+			var def = this.type.contains(".") ?  "" :  Gir.guessDefaultValueForType(this.type);
+			if (this.type.contains(".") || this.type.down() == "function") {
+				return  new JsRender.NodeProp.raw(this.name, this.type, def);
+			}
+			
+			return  new JsRender.NodeProp.prop(this.name, this.type, def); // signature?
 		
 		}
 		

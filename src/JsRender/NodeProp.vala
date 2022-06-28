@@ -276,8 +276,45 @@ public class JsRender.NodeProp : Object {
 		}
 		return this.name;
  	}
- 	
- 	
+	// this is really only used for stuct ctors at present 	
+	// which are only props (although RAW might be valid)
+ 	public string value_to_code()
+ 	{
+ 		switch (this.ptype) {
+			case NodePropType.PROP:
+				break;
+				
+			case NodePropType.METHOD : 			 
+			case NodePropType.RAW:
+			case NodePropType.SIGNAL :			
+			case NodePropType.USER : 
+			case NodePropType.SPECIAL : 
+			case NodePropType.LISTENER : 
+			case NodePropType.NONE: // not used
+			case NodePropType.CTOR:			
+				return this.val;
+		}
+		if (this.rtype.contains(".")) {
+			// probalby an enum
+			return this.val;
+		}
+		
+		
+		switch (this.rtype) {
+			case "string":
+				return "\"" + this.rtype.escape() + "\"";
+			case "bool":
+				return this.val.down();
+			case "float":
+			case "double":
+			default:
+				return this.val;
+				
+			
+		
+		}
+		return this.val;
+ 	}
  	
  	
  	
@@ -310,18 +347,18 @@ public class JsRender.NodeProp : Object {
 				 return "";
 		}
 		return this.name;
-		
-
+		 
 	}
 	
-	public string to_property_option_markup()
+	 
+	public string to_property_option_markup(bool isbold)
 	{
-		return "<b>" + this.name + "</b> <i>" + this.rtype + "</i>";
+		return isbold ?  "<b>" + this.name + "</b>" : this.name;
 	}
 	
 	public string to_property_option_tooltip()
 	{
-		return this.to_property_option_markup(); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
+		return this.to_property_option_markup( false ); // fixme will probaly want help info (possibly by havinga  reference to the GirObject that its created from
 	}
 	
 	

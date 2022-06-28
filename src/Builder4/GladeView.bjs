@@ -6,78 +6,25 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "* prop" : "buttons[]",
+     "string label" : "Label",
+     "xtype" : "Button"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "buttons[]",
+     "* response_id" : 1,
+     "string label" : "Label",
+     "xtype" : "Button"
+    },
+    {
+     "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-     "bool hexpand" : true,
-     "bool vexpand" : true,
      "int spacing" : 0,
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "string label" : "Label",
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "column[]",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "xtype" : "CellRendererText"
-            },
-            {
-             "$ xns" : "Gtk",
-             "xtype" : "CellRendererPixbuf"
-            },
-            {
-             "$ xns" : "Gtk",
-             "xtype" : "CellRendererCombo"
-            }
-           ],
-           "xtype" : "TreeViewColumn"
-          }
-         ],
-         "xtype" : "TreeView"
-        },
-        {
-         "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "column[]",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "xtype" : "CellRendererText"
-            },
-            {
-             "$ xns" : "Gtk",
-             "xtype" : "CellRendererPixbuf"
-            },
-            {
-             "$ xns" : "Gtk",
-             "xtype" : "CellRendererCombo"
-            }
-           ],
-           "xtype" : "TreeViewColumn"
-          }
-         ],
-         "xtype" : "TreeView"
-        }
-       ],
-       "xtype" : "Paned"
-      }
-     ],
      "xtype" : "Box"
     }
    ],
-   "xtype" : "Window"
+   "xtype" : "Dialog"
   }
  ],
  "modOrder" : "",
