@@ -520,6 +520,56 @@ namespace Palete {
 			
 		}
 		
+#if VALA_0_56
+		int vala_version=56;
+#elif VALA_0_36
+		int vala_version=36;
+#endif		
+		public Gee.ArrayList<string> fillDeps(Gee.ArrayList<string> in_ar)
+		{
+			var ret = new Gee.ArrayList<string>();
+			foreach(var k in in_ar) {
+				if (!ret.contains(k)) {			
+					ret.add(k);
+				}
+				var deps = this.loadDeps(k);
+				// hopefully dont need to recurse through these..
+				for(var i =0;i< deps.length;i++) {
+					if (!ret.contains(deps[i])) {
+						ret.add(deps[i]);
+					}
+				}
+				
+			
+			}
+
+
+			return ret;
+		}
+		
+		public string[] loadDeps(string n) 
+		{
+			// only try two? = we are ignoreing our configDirectory?
+			string[] ret  = {};
+			var fn =  "/usr/share/vala-0.%d/vapi/%s.deps".printf(this.vala_version, n);
+			if (!FileUtils.test (fn, FileTest.EXISTS)) {
+				fn = "";
+			}
+			if (fn == "") { 
+				fn =  "/usr/share/vala/vapi/%s.deps".printf( n);
+				if (!FileUtils.test (fn, FileTest.EXISTS)) {
+					return ret;
+				}
+			}
+			string  ostr;
+			FileUtils.get_contents(fn, out ostr);
+			return ostr.split("\n");
+			
+			
+		}
+		
+		
+		
 		public void create_valac_tree( )
 		{
 			// init context:
@@ -528,15 +578,11 @@ namespace Palete {
 		
 			context.experimental = false;
 			context.experimental_non_null = false;
-#if VALA_0_56
-			var ver=56;
-#elif VALA_0_36
-			var ver=36;
-#endif
+ 
 			
-			for (int i = 2; i <= ver; i += 2) {
-				context.add_define ("VALA_0_%d".printf (i));
-			}
+			//for (int i = 2; i <= ver; i += 2) {
+			//	context.add_define ("VALA_0_%d".printf (i));
+			//}
 			
 			 
 			//var vapidirs = ((Project.Gtk)this.file.project).vapidirs();
@@ -548,7 +594,7 @@ namespace Palete {
 			var vapidirs = context.vapi_directories;
 			
 			vapidirs += (BuilderApplication.configDirectory() + "/resources/vapi");
-			vapidirs += "/usr/share/vala-0.%d/vapi".printf(ver);
+			vapidirs += "/usr/share/vala-0.%d/vapi".printf(this.vala_version);
 			vapidirs += "/usr/share/vala/vapi";
 			context.vapi_directories = vapidirs;
 			
@@ -585,21 +631,24 @@ namespace Palete {
 			context.add_external_package ("gobject-2.0");
 			// user defined ones..
 			
-	    	var dcg = this.project.compilegroups.get("_default_");
-	    	for (var i = 0; i < dcg.packages.size; i++) {
+			var dcg = this.project.compilegroups.get("_default_");
+			var pkgs = this.fillDeps(dcg.packages);
+			
 	    	
-	    		var pkg = dcg.packages.get(i);
+	    	for (var i = 0; i < pkgs.size; i++) {
+	    	
+	    		var pkg = pkgs.get(i);
 	    		// do not add libvala versions except the one that matches the one we are compiled against..
-	    		if (Regex.match_simple("^libvala", pkg) && pkg != ("libvala-0." + ver.to_string())) {
+	    		if (Regex.match_simple("^libvala", pkg) && pkg != ("libvala-0." + vala_version.to_string())) {
 	    			continue;
     			}
 				//valac += " --pkg " + dcg.packages.get(i);
-				 if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
+				 if (!this.has_vapi(context.vapi_directories, pkg)) {
 				 
 					continue;
 				}
-				GLib.debug("ADD vapi '%s'", dcg.packages.get(i));
-				context.add_external_package (dcg.packages.get(i));
+				GLib.debug("ADD vapi '%s'",pkgs.get(i));
+				context.add_external_package (pkgs.get(i));
 			}			
 			
 			
