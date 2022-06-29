@@ -496,7 +496,7 @@ public class JsRender.NodeToVala : Object {
 		// is the wrapped element a struct?
 		
 		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
-		if (ncls.nodetype == "Struct") {
+		if (ncls != null && ncls.nodetype == "Struct") {
 			// we can use regular setters to apply the values.
 			this.addLine(this.ipad + "this.el = " + this.cls + "();");
 			return;
