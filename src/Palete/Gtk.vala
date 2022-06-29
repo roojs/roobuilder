@@ -307,6 +307,9 @@ namespace Palete {
 			var localopts_l = new Gee.ArrayList<string>();
 			localopts_l.add(parent);
 			
+			if (cls_cn == null) {
+				return;
+			}
 			if (!cls_cn.is_abstract) { // and check for interface?
 			
 			 	localopts_r.add(child + ( prop.length > 0 ? ":" + prop : "") );
