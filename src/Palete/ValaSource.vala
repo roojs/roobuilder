@@ -13,6 +13,10 @@
  
  ---
  A better design would be a centralized compiler  - so all the windows are compliing to the same source.
+ ** so a singleton design - can't run more than one version at a time
+ ** and all windows get the results.
+ 
+ 
  ---
  It would also be better if we were compling a fixed copy of the code
  -> so copy it all to a certian location
