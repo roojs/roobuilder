@@ -10,7 +10,17 @@
  *  x = new ValaSource();
  *  x.connect.compiled(... do something with results... );
  *  
- * x.
+ 
+ ---
+ A better design would be a centralized compiler  - so all the windows are compliing to the same source.
+ ---
+ It would also be better if we were compling a fixed copy of the code
+ -> so copy it all to a certian location
+ -> and compile from there?
+ 
+ 
+ 
+ 
  * 
  */
 
@@ -147,7 +157,7 @@ namespace Palete {
 			args += "--skip-file";
 			args += valafn;
 			
-			 
+			
 			
 			this.compiler = new Spawn("/tmp", args);
 			this.compiler.complete.connect(spawnResult);
@@ -227,7 +237,7 @@ namespace Palete {
 			args += this.file.project.fn;
 			args += "--target";
 			if (this.file.build_module.length > 0 ) {
-        		    args += this.file.build_module;
+    		    args += this.file.build_module;
 			} else {
 			    args += pr.firstBuildModule();
 			}
@@ -248,7 +258,7 @@ namespace Palete {
 			    GLib.debug(e.message);
 			    this.compiler = null;
 
-		        }
+	        }
 			return;
 			 
 		}
