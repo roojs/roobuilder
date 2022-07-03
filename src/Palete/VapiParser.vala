@@ -376,7 +376,10 @@ namespace Palete {
 #elif VALA_0_36
 			var dt  = sig.return_type.data_type;
 #endif			
-			 
+			if (sig.version.deprecated) { 
+				GLib.debug("class %s is deprecated", c.name);
+				c.is_deprecated = true;
+			} 
 			
 			var retval = "";
 			
