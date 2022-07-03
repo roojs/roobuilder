@@ -546,7 +546,7 @@ namespace Palete {
 				case JsRender.NodePropType.PROP:
 					return this.filterProps(cls.props);
 				case JsRender.NodePropType.LISTENER:
-					return cls.signals;
+					return this.filterSignals(cls.signals);
 				case JsRender.NodePropType.METHOD:
 					return cls.methods;
 				case JsRender.NodePropType.CTOR:  // needed to query the arguments of a ctor.
@@ -599,7 +599,31 @@ namespace Palete {
 		
 		
 		}
+				// get rid of depricated from signal list..
+		public Gee.HashMap<string,GirObject>  filterSignals(Gee.HashMap<string,GirObject> props)
+		{
+			// we shold probably cache this??
+			
+			var outprops = new Gee.HashMap<string,GirObject>(); 
+			
+			foreach(var k in props.keys) {
+				var val = props.get(k);
+				 
+				if (val.is_deprecated) {
+					continue;
+				}
+				
+				outprops.set(k,val);
+ 					
+				// do nothing? - classes not allowed?
+				
+			}
+			
+			
+			return outprops;
 		
+		
+		}
 		
 		public string[] getInheritsFor(string ename)
 		{
