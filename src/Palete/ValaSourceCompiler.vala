@@ -446,7 +446,9 @@ namespace Palete {
 				
 	#endif
 			}
-			
+			if (this.filepath != "") {
+				GLib.FileUtils.unlink(this.filepath);
+			}
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
  	
