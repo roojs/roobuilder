@@ -425,6 +425,10 @@ namespace Palete {
 			
 			context.codegen.emit (context);
 			
+			
+			/* --- - only if we are actually doing a full build.- no added benifet for inline complier
+			on my laptop a 5s upto here.. then 40+s doing this.. - no additional warnings really (although if we are using 'C' code it maight be usefull
+			
 			var ccompiler = new Vala.CCodeCompiler ();
 			var cc_command = Environment.get_variable ("CC");
 			
@@ -440,7 +444,7 @@ namespace Palete {
 			// newer ones got rid fo pkg config command? not sure why.
 			
 #endif
-		
+		*/
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
  	
