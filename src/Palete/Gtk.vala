@@ -575,6 +575,9 @@ namespace Palete {
 				if (k == "___") {
 					continue;
 				}
+				if (val.is_deprecated) {
+					continue;
+				}
 				if (!val.type.contains(".")) {
 					outprops.set(k,val);
 					continue;
