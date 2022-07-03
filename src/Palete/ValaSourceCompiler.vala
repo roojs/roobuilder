@@ -427,7 +427,7 @@ namespace Palete {
 			
 			
 			/* --- do we really need this - only if we are actually doing a full build.
-			var ccompiler = new Vala.CCodeCompiler ();
+			*/var ccompiler = new Vala.CCodeCompiler ();
 			var cc_command = Environment.get_variable ("CC");
 			
 			
@@ -442,7 +442,7 @@ namespace Palete {
 			// newer ones got rid fo pkg config command? not sure why.
 			
 #endif
-		*/
+		
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
  	
