@@ -283,15 +283,15 @@ namespace Palete {
 #endif
 			var ns_ref = new Vala.UsingDirective (new Vala.UnresolvedSymbol (null, "GLib", null));
 			context.root.add_using_directive (ns_ref);
-
-			var source_file = new Vala.SourceFile (
-		    		context, 
-		    		Vala.SourceFileType.SOURCE, 
-					this.filepath 
-	    		);
-			source_file.add_using_directive (ns_ref);
-			context.add_source_file (source_file);
-			
+			if (this.filepath != "") { 
+				var source_file = new Vala.SourceFile (
+						context, 
+						Vala.SourceFileType.SOURCE, 
+						this.filepath 
+					);
+				source_file.add_using_directive (ns_ref);
+				context.add_source_file (source_file);
+			}	
 	    	// add all the files (except the current one) - this.file.path
 	    	var pr = this.project;
 
@@ -425,22 +425,30 @@ namespace Palete {
 			
 			context.codegen.emit (context);
 			
-			var ccompiler = new Vala.CCodeCompiler ();
-			var cc_command = Environment.get_variable ("CC");
 			
-			
-			string [] cc_options = { "-lm", "-pg" };
-			valac += " -X -lm -X -pg";
+			/* --- - only if we are actually doing a full build.- no added benifet for inline complier
+			on my laptop a 5s upto here.. then 40+s doing this.. - no additional warnings really (although if we are using 'C' code it maight be usefull
+			*/
+			if (this.filepath == "") { 
+				var ccompiler = new Vala.CCodeCompiler ();
+				var cc_command = Environment.get_variable ("CC");
+				
+				
+				string [] cc_options = { "-lm", "-pg" };
+				valac += " -X -lm -X -pg";
 
-#if VALA_0_56
-			ccompiler.compile (context, cc_command, cc_options);			
-#elif VALA_0_36
-			var pkg_config_command = Environment.get_variable ("PKG_CONFIG");
-			ccompiler.compile (context, cc_command, cc_options, pkg_config_command);
-			// newer ones got rid fo pkg config command? not sure why.
-			
-#endif
-		
+	#if VALA_0_56
+				ccompiler.compile (context, cc_command, cc_options);			
+	#elif VALA_0_36
+				var pkg_config_command = Environment.get_variable ("PKG_CONFIG");
+				ccompiler.compile (context, cc_command, cc_options, pkg_config_command);
+				// newer ones got rid fo pkg config command? not sure why.
+				
+	#endif
+			}
+			if (this.filepath != "") {
+				GLib.FileUtils.unlink(this.filepath);
+			}
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
  	
