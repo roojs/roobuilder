@@ -46,7 +46,6 @@
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
          "* pack" : "attach,1,0,1,1",
-         "bool has_entry" : true,
          "id" : "filetype",
          "items" : [
           {
@@ -293,7 +292,6 @@
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
          "* pack" : "attach,1,7,1,1",
-         "bool has_entry" : true,
          "id" : "build_module",
          "items" : [
           {
@@ -364,7 +362,6 @@
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.dircellrenderer.el , \"markup\", 1 );",
          "* pack" : "attach,1,8,1,1",
-         "bool has_entry" : true,
          "id" : "dir",
          "items" : [
           {

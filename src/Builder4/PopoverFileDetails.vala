@@ -340,7 +340,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.filetype = this;
-            this.el = new Gtk.ComboBox.with_entry(  );
+            this.el = new Gtk.ComboBox();
 
             // my vars (dec)
 
@@ -840,7 +840,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.build_module = this;
-            this.el = new Gtk.ComboBox.with_entry(  );
+            this.el = new Gtk.ComboBox();
 
             // my vars (dec)
 
@@ -978,7 +978,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dir = this;
-            this.el = new Gtk.ComboBox.with_entry(  );
+            this.el = new Gtk.ComboBox();
 
             // my vars (dec)
 
