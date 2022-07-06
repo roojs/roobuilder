@@ -243,14 +243,18 @@ namespace Palete {
 			if (type.length < 1 || type.contains(".")) {
 				return "null";
 			}
-			switch(type) {
+			switch(type.down()) {
+				case "boolean":
+				case "bool":
 				case "gboolean":
 					return "true";
+				case "int":					
 				case "guint":
 					return "0";
 				case "gdouble":
 					return "0f";
 				case "utf8":
+				case "string":
 					return "\"\"";
 				default:
 					return "?"+  type + "?";
