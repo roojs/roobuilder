@@ -64,13 +64,13 @@ public class ValaProjectSettingsPopover : Object
         //listeners
         this.el.closed.connect( ( ) => {
           if (!this.done) {
-            _this.el.show();
+            _this.el.show_all();
           
           }
         
         });
         this.el.hide.connect( () => {
-          if (!this.done) {
+        	  if (!this.done) {
             _this.el.show();
           
           }
@@ -81,7 +81,7 @@ public class ValaProjectSettingsPopover : Object
     public void show (Gtk.Widget btn, Project.Gtk project) {
          
         //print("ValaProjectSettings show\n");
-        this.done = false;
+        
         this.project=  project;
     
         this.compile_flags.el.text = _this.project.compilegroups.get("_default_").compile_flags;
@@ -128,10 +128,9 @@ public class ValaProjectSettingsPopover : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_Notebook3( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
-            var child_1 = new Xcls_ButtonBox52( _this );
+            this.el.pack_start (  child_0.el , true,true,0 );
+            var child_1 = new Xcls_HButtonBox52( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -153,7 +152,6 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.vexpand = true;
             var child_0 = new Xcls_label_global( _this );
             child_0.ref();
             var child_1 = new Xcls_label_targets( _this );
@@ -398,8 +396,8 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.default_packages_tree_store = this;
-            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 key type
-      typeof(bool) }  );
+            this.el = new Gtk.ListStore( 2,     typeof(string),  // 0 key type
+      typeof(bool) );
 
             // my vars (dec)
 
@@ -592,7 +590,6 @@ public class ValaProjectSettingsPopover : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_default_directory_menu( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -666,8 +663,8 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.default_directory_tree_store = this;
-            this.el = new Gtk.ListStore.newv(  {     typeof(string)
-      }  );
+            this.el = new Gtk.ListStore( 1,     typeof(string)
+      );
 
             // my vars (dec)
 
@@ -1257,9 +1254,9 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.targets_tree_store = this;
-            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 key type
+            this.el = new Gtk.ListStore( 2,     typeof(string),  // 0 key type
      typeof(string) // ??
-      }  );
+      );
 
             // my vars (dec)
 
@@ -1669,11 +1666,11 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.files_tree_store = this;
-            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 file name
+            this.el = new Gtk.ListStore( 4,     typeof(string),  // 0 file name
         typeof(string),  // 0 basename
      typeof(string), // type (dir orfile)
      typeof(bool)  // is checked.
-      }  );
+      );
 
             // my vars (dec)
 
@@ -1956,19 +1953,19 @@ public class ValaProjectSettingsPopover : Object
 
 
 
-    public class Xcls_ButtonBox52 : Object
+    public class Xcls_HButtonBox52 : Object
     {
-        public Gtk.ButtonBox el;
+        public Gtk.HButtonBox el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ButtonBox52(ValaProjectSettingsPopover _owner )
+        public Xcls_HButtonBox52(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
+            this.el = new Gtk.HButtonBox();
 
             // my vars (dec)
 
@@ -1976,7 +1973,6 @@ public class ValaProjectSettingsPopover : Object
             this.el.margin_right = 4;
             this.el.margin_left = 4;
             this.el.margin_bottom = 4;
-            this.el.margin_top = 4;
             var child_0 = new Xcls_Button53( _this );
             child_0.ref();
             this.el.add (  child_0.el  );

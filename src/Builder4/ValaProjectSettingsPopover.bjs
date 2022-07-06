@@ -18,7 +18,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "bool vexpand" : true,
+       "* pack" : "pack_start,true,true,0",
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -975,12 +975,10 @@
        "xtype" : "Notebook"
       },
       {
-       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "int margin_bottom" : 4,
        "int margin_left" : 4,
        "int margin_right" : 4,
-       "int margin_top" : 4,
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -1023,7 +1021,7 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "ButtonBox"
+       "xtype" : "HButtonBox"
       }
      ],
      "xtype" : "Box"
@@ -1033,7 +1031,7 @@
     "closed" : [
      "( ) => {",
      "  if (!this.done) {",
-     "    _this.el.show();",
+     "    _this.el.show_all();",
      "  ",
      "  }",
      "",
@@ -1042,7 +1040,7 @@
     ],
     "hide" : [
      "() => {",
-     "  if (!this.done) {",
+     "\t  if (!this.done) {",
      "    _this.el.show();",
      "  ",
      "  }",
@@ -1060,7 +1058,7 @@
     "(Gtk.Widget btn, Project.Gtk project) {",
     "     ",
     "    //print(\"ValaProjectSettings show\\n\");",
-    "    this.done = false;",
+    "    ",
     "    this.project=  project;",
     "",
     "    this.compile_flags.el.text = _this.project.compilegroups.get(\"_default_\").compile_flags;",
