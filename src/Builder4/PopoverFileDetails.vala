@@ -55,6 +55,7 @@ public class Xcls_PopoverFileDetails : Object
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
+        this.el.add(  child_0.el );
 
         //listeners
         this.el.closed.connect( () => {
@@ -211,6 +212,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_HeaderBar3(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            this.el = new Gtk.HeaderBar.new(  );
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
@@ -235,6 +237,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.grid = this;
+            this.el = new Gtk.Grid.new(  );
             this.el = new Gtk.Grid();
 
             // my vars (dec)
@@ -339,6 +342,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.filetype = this;
+            this.el = new Gtk.ComboBox.with_entry(  );
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
@@ -426,6 +430,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.ftdbcellrenderer = this;
+            this.el = new Gtk.CellRendererText.new(  );
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
@@ -449,7 +454,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.ftdbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -544,6 +549,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.name = this;
+            this.el = new Gtk.Entry.new(  );
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -593,6 +599,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.title = this;
+            this.el = new Gtk.Entry.new(  );
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -643,6 +650,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.region = this;
+            this.el = new Gtk.Entry.new(  );
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -692,6 +700,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.parent = this;
+            this.el = new Gtk.Entry.new(  );
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -741,6 +750,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.permname = this;
+            this.el = new Gtk.Entry.new(  );
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -790,6 +800,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.modOrder = this;
+            this.el = new Gtk.Entry.new(  );
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -839,6 +850,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.build_module = this;
+            this.el = new Gtk.ComboBox.new(  );
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
@@ -871,6 +883,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dbcellrenderer = this;
+            this.el = new Gtk.CellRendererText.new(  );
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
@@ -894,7 +907,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -977,6 +990,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dir = this;
+            this.el = new Gtk.ComboBox.new(  );
             this.el = new Gtk.ComboBox();
 
             // my vars (dec)
@@ -1009,6 +1023,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dircellrenderer = this;
+            this.el = new Gtk.CellRendererText.new(  );
             this.el = new Gtk.CellRendererText();
 
             // my vars (dec)
@@ -1032,7 +1047,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dirmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -1099,6 +1114,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_HButtonBox29(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            this.el = new Gtk.HButtonBox.new(  );
             this.el = new Gtk.HButtonBox();
 
             // my vars (dec)
@@ -1129,6 +1145,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Button30(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            this.el = new Gtk.Button.new(  );
             this.el = new Gtk.Button();
 
             // my vars (dec)
@@ -1160,6 +1177,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.save_btn = this;
+            this.el = new Gtk.Button.new(  );
             this.el = new Gtk.Button();
 
             // my vars (dec)
