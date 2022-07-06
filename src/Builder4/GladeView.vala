@@ -51,6 +51,7 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.halign = Gtk.Align.CENTER;
             this.el.label = "Label";
             var child_0 = new Xcls_Image3( _this );
             child_0.ref();
@@ -76,9 +77,9 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.storage_type = ;
+            this.el.storage_type = Gtk.ImageType.PIXBUF;
             this.el.has_default = true;
-            this.el.halign = ;
+            this.el.halign = Gtk.Align.CENTER;
             this.el.icon_size = 33;
         }
 

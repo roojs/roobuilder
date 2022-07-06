@@ -5,12 +5,13 @@
    "$ xns" : "Gtk",
    "items" : [
     {
+     "$ Gtk.Align halign" : "Gtk.Align.CENTER",
      "$ xns" : "Gtk",
      "* prop" : "buttons[]",
      "items" : [
       {
-       "$ Gtk.Align halign" : "",
-       "$ Gtk.ImageType storage_type" : "",
+       "$ Gtk.Align halign" : "Gtk.Align.CENTER",
+       "$ Gtk.ImageType storage_type" : "Gtk.ImageType.PIXBUF",
        "$ xns" : "Gtk",
        "* prop" : "image",
        "bool has_default" : true,

@@ -181,6 +181,22 @@ public class Xcls_LeftProps : Object
                 
             ); 
     }
+    public void before_edit ()
+    {
+    
+        GLib.debug("before edit - stop editing\n");
+        
+      // these do not appear to trigger save...
+        _this.keyrender.el.stop_editing(false);
+        _this.keyrender.el.editable  =false;
+    
+        _this.valrender.el.stop_editing(false);
+        _this.valrender.el.editable  =false;    
+        
+        
+    // technicall stop the popup editor..
+    
+    }
     public void deleteSelected () {
         
     
@@ -241,28 +257,140 @@ public class Xcls_LeftProps : Object
           
         
     }
-    public void before_edit ()
-    {
-    
-        GLib.debug("before edit - stop editing\n");
-        
-      // these do not appear to trigger save...
-        _this.keyrender.el.stop_editing(false);
-        _this.keyrender.el.editable  =false;
-    
-        _this.valrender.el.stop_editing(false);
-        _this.valrender.el.editable  =false;    
-        
-        
-    // technicall stop the popup editor..
-    
-    }
     public void reload () {
     	this.load(this.file, this.node);
     }
     public void finish_editing () {
          // 
         this.before_edit();
+    }
+    public bool startEditingValue ( Gtk.TreePath path) {
+    
+         // ONLY return true if editing is allowed - eg. combo..
+    
+        GLib.debug("start editing?\n");
+        if (!this.stop_editor()) {
+            GLib.debug("stop editor failed\n");
+            return false;
+        }
+        
+        Gtk.TreeIter iter;
+    
+        var mod = this.model.el;
+        mod.get_iter (out iter, path);
+        
+        GLib.Value gval;
+        mod.get_value(iter, 0 , out gval);
+        var prop  = (JsRender.NodeProp)gval;
+    
+    
+        
+        var use_textarea = false;
+    
+        //------------ things that require the text editor...
+        
+        if (prop.ptype == JsRender.NodePropType.LISTENER) {
+            use_textarea = true;
+        }
+        if (prop.ptype == JsRender.NodePropType.METHOD) { 
+            use_textarea = true;
+        }
+       // if (prop.ptype == JsRender.NodePropType.RAW) { // raw string
+        //    use_textarea = true;
+       // }
+        if ( prop.name == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
+            use_textarea = true;
+        }
+        if (prop.val.length > 40) { // long value...
+            use_textarea = true;
+        }
+        var pal = this.file.project.palete;
+        
+        string[] opts;
+        var has_opts = pal.typeOptions(this.node.fqn(), prop.name, prop.rtype, out opts);
+        
+        if (!has_opts && prop.ptype == JsRender.NodePropType.RAW) {
+          	use_textarea = true;
+        
+        }
+         
+        
+        if (use_textarea) {
+            GLib.debug("Call show editor\n");
+            GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+                this.view.el.get_selection().select_path(path);
+                
+                this.show_editor(file, node, prop);
+                
+                return false;
+            });
+           
+            
+            return false;
+        }
+        
+        
+        
+        
+        
+        // others... - fill in options for true/false?
+        GLib.debug("turn on editing %s \n" , mod.get_path(iter).to_string());
+       
+          // GLib.debug (ktype.up());
+        if (has_opts) {
+                GLib.debug("start editing try/false)???");
+                this.valrender.el.has_entry = false;
+              
+                this.valrender.setOptions(opts);
+                
+                this.valrender.el.has_entry = false;
+                this.valrender.el.editable = true;
+                 this.allow_edit  = true;
+                 GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
+                     this.view.el.set_cursor_on_cell(
+    	                path,
+    	                this.valcol.el,
+    	                this.valrender.el,
+    	                true
+                    );
+                    return false;
+                });
+                return true;
+        }
+                                  
+           // see if type is a Enum.
+           
+           
+       
+            
+       
+         opts =  {  };
+        this.valrender.setOptions(opts);
+       
+       GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+            
+            // at this point - work out the type...
+            // if its' a combo... then show the options..
+            this.valrender.el.has_entry = true;
+            
+            this.valrender.el.editable = true;            
+        
+            
+            this.allow_edit  = true;
+            
+            
+            
+            
+    
+            this.view.el.set_cursor_on_cell(
+                path,
+                this.valcol.el,
+                this.valrender.el,
+                true
+            );
+            return false;
+        });
+        return false;
     }
     public void load (JsRender.JsRender file, JsRender.Node? node) 
     {
@@ -331,129 +459,6 @@ public class Xcls_LeftProps : Object
        
        
        
-    }
-    public bool startEditingValue ( Gtk.TreePath path) {
-    
-         // ONLY return true if editing is allowed - eg. combo..
-    
-        GLib.debug("start editing?\n");
-        if (!this.stop_editor()) {
-            GLib.debug("stop editor failed\n");
-            return false;
-        }
-        
-        Gtk.TreeIter iter;
-    
-        var mod = this.model.el;
-        mod.get_iter (out iter, path);
-        
-        GLib.Value gval;
-        mod.get_value(iter, 0 , out gval);
-        var prop  = (JsRender.NodeProp)gval;
-    
-    
-        
-        var use_textarea = false;
-    
-        //------------ things that require the text editor...
-        
-        if (prop.ptype == JsRender.NodePropType.LISTENER) {
-            use_textarea = true;
-        }
-        if (prop.ptype == JsRender.NodePropType.METHOD) { 
-            use_textarea = true;
-        }
-        if (prop.ptype == JsRender.NodePropType.RAW) { // raw string
-            use_textarea = true;
-        }
-        if ( prop.name == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
-            use_textarea = true;
-        }
-        if (prop.val.length > 40) { // long value...
-            use_textarea = true;
-        }
-        
-        
-        
-        if (use_textarea) {
-            GLib.debug("Call show editor\n");
-            GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                this.view.el.get_selection().select_path(path);
-                
-                this.show_editor(file, node, prop);
-                
-                return false;
-            });
-           
-            
-            return false;
-        }
-        
-         var pal = this.file.project.palete;
-        
-        string[] opts;
-        var has_opts = pal.typeOptions(this.node.fqn(), prop.name, prop.rtype, out opts);
-        
-        
-        
-        // others... - fill in options for true/false?
-        GLib.debug("turn on editing %s \n" , mod.get_path(iter).to_string());
-       
-          // GLib.debug (ktype.up());
-        if (has_opts) {
-                GLib.debug("start editing try/false)???");
-                this.valrender.el.has_entry = false;
-              
-                this.valrender.setOptions(opts);
-                
-                this.valrender.el.has_entry = false;
-                this.valrender.el.editable = true;
-                 this.allow_edit  = true;
-                 GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
-                     this.view.el.set_cursor_on_cell(
-    	                path,
-    	                this.valcol.el,
-    	                this.valrender.el,
-    	                true
-                    );
-                    return false;
-                });
-                return true;
-        }
-                                  
-           // see if type is a Enum.
-           
-           
-       
-            
-       
-         opts =  {  };
-        this.valrender.setOptions(opts);
-       
-       GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-            
-            // at this point - work out the type...
-            // if its' a combo... then show the options..
-            this.valrender.el.has_entry = true;
-            
-            this.valrender.el.editable = true;            
-        
-            
-            this.allow_edit  = true;
-            
-            
-            
-            
-    
-            this.view.el.set_cursor_on_cell(
-                path,
-                this.valcol.el,
-                this.valrender.el,
-                true
-            );
-            return false;
-        });
-        return false;
     }
     public void addProp (JsRender.NodeProp prop) {
           // info includes key, val, skel, etype..
