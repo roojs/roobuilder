@@ -1285,6 +1285,9 @@ public class Xcls_RooProjectSettings : Object
             var child_1 = new Xcls_Button39( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
+            var child_2 = new Xcls_Button40( _this );
+            child_2.ref();
+            this.el.add (  child_2.el  );
         }
 
         // user defined functions
@@ -1329,6 +1332,37 @@ public class Xcls_RooProjectSettings : Object
 
         // ctor
         public Xcls_Button39(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Apply / Keep editing";
+
+            //listeners
+            this.el.clicked.connect( ( ) =>  { 
+            
+               _this.buttonPressed("apply");
+             
+               
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Button40 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button40(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();

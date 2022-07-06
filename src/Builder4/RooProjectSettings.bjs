@@ -530,6 +530,22 @@
           "clicked" : [
            "( ) =>  { ",
            "",
+           "   _this.buttonPressed(\"apply\");",
+           " ",
+           "   ",
+           "}"
+          ]
+         },
+         "string label" : "Apply / Keep editing",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "add",
+         "listeners" : {
+          "clicked" : [
+           "( ) =>  { ",
+           "",
            " ",
            "_this.project.writeConfig(); ",
            " ",
