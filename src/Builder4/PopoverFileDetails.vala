@@ -64,6 +64,13 @@ public class Xcls_PopoverFileDetails : Object
           
           }
         });
+        this.el.hide.connect( ( ) => {
+        
+         if (!this.done) {
+            _this.el.show();
+          
+          }
+        });
     }
 
     // user defined functions
