@@ -840,7 +840,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.build_module = this;
-            this.el = new Gtk.ComboBox();
+            this.el = new Gtk.ComboBox.with_entry(  );
 
             // my vars (dec)
 

@@ -293,6 +293,7 @@
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
          "* pack" : "attach,1,7,1,1",
+         "bool has_entry" : true,
          "id" : "build_module",
          "items" : [
           {
