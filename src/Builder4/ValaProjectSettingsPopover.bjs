@@ -18,7 +18,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,true,true,0",
+       "bool vexpand" : true,
        "items" : [
         {
          "$ xns" : "Gtk",

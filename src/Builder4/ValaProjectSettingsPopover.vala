@@ -128,7 +128,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_Notebook3( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , true,true,0 );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_ButtonBox52( _this );
             child_1.ref();
             this.el.add(  child_1.el );
@@ -153,6 +153,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             var child_0 = new Xcls_label_global( _this );
             child_0.ref();
             var child_1 = new Xcls_label_targets( _this );
