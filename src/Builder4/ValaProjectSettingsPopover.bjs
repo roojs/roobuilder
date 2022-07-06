@@ -6,6 +6,7 @@
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Project.Gtk project" : "null",
    "Xcls_MainWindow window" : "null",
+   "bool done" : false,
    "bool modal" : true,
    "id" : "ValaProjectSettingsPopover",
    "items" : [

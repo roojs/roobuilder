@@ -40,6 +40,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
         // my vars (def)
     public Xcls_MainWindow window;
     public Project.Gtk project;
+    public bool done;
 
     // ctor
     public Xcls_ValaProjectSettingsPopover()
@@ -50,6 +51,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
         // my vars (dec)
         this.window = null;
         this.project = null;
+        this.done = false;
 
         // set gobject values
         this.el.border_width = 0;
