@@ -55,6 +55,8 @@ public class Xcls_RooProjectSettings : Object
 
     // user defined functions
     public void show (Gtk.Widget btn, Project.Project project) {
+        _this.done = false;
+        
         _this.project = project;
         _this.path.el.label = project.firstPath();
         // get the active project.
