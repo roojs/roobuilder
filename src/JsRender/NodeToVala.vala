@@ -815,7 +815,7 @@ public class JsRender.NodeToVala : Object {
 	void packChild(Node child, int i, int cols, int colpos, string propname= "")
 	{
 		
-		GLib.debug("packChild %s", child.fqn());
+		GLib.debug("packChild %s=>%s", this.node.fqn(), child.fqn());
 		// forcing no packing? - true or false? -should we just accept false?
 		if (child.has("* pack") && child.get("* pack").down() == "false") {
 			return; // force no packing
