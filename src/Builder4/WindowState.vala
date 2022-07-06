@@ -378,7 +378,7 @@ public class WindowState : Object
 		this.roo_projectsettings_pop  =new Xcls_RooProjectSettings();
 		this.roo_projectsettings_pop.ref();  /// really?
 	
-		this.vala_projectsettings_pop  =new Xcls_ValaProjectSettingsPopover();
+		this.vala_projectsettings_pop  =new  ValaProjectSettingsPopover();
 		this.vala_projectsettings_pop.ref();
 		this.vala_projectsettings_pop.window = this.win;
 	
