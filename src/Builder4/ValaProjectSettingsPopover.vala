@@ -62,6 +62,7 @@ public class ValaProjectSettingsPopover : Object
         this.el.add (  child_0.el  );
         var child_1 = new Xcls_HButtonBox52( _this );
         child_1.ref();
+        this.el.pack_end (  child_1.el , false,true,0 );
 
         //listeners
         this.el.closed.connect( ( ) => {

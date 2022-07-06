@@ -979,6 +979,7 @@
     },
     {
      "$ xns" : "Gtk",
+     "* pack" : "pack_end,false,true,0",
      "int margin_bottom" : 4,
      "int margin_left" : 4,
      "int margin_right" : 4,
