@@ -975,49 +975,6 @@
       }
      ],
      "xtype" : "Box"
-    },
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "pack_end,false,true,0",
-     "int margin_bottom" : 4,
-     "int margin_left" : 4,
-     "int margin_right" : 4,
-     "items" : [
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "add",
-       "listeners" : {
-        "clicked" : [
-         "() => { ",
-         "",
-         "  _this.done = true;",
-         "    _this.el.hide(); ",
-         "}"
-        ]
-       },
-       "string label" : "Cancel",
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "* pack" : "add",
-       "id" : "save_btn",
-       "listeners" : {
-        "clicked" : [
-         "( ) =>  { ",
-         "",
-         "\t _this.project.writeConfig();",
-         "\t  _this.done = true;",
-         "\t  _this.el.hide();",
-         "  }",
-         " "
-        ]
-       },
-       "string label" : "Save",
-       "xtype" : "Button"
-      }
-     ],
-     "xtype" : "HButtonBox"
     }
    ],
    "listeners" : {

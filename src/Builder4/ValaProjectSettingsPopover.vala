@@ -35,7 +35,6 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_files_tree_store files_tree_store;
     public Xcls_files_render files_render;
     public Xcls_files_render_use files_render_use;
-    public Xcls_save_btn save_btn;
 
         // my vars (def)
     public Xcls_MainWindow window;
@@ -60,9 +59,6 @@ public class ValaProjectSettingsPopover : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
-        var child_1 = new Xcls_HButtonBox52( _this );
-        child_1.ref();
-        this.el.pack_end (  child_1.el , false,true,0 );
 
         //listeners
         this.el.hide.connect( () => {
@@ -1943,99 +1939,6 @@ public class ValaProjectSettingsPopover : Object
 
 
 
-
-
-    public class Xcls_HButtonBox52 : Object
-    {
-        public Gtk.HButtonBox el;
-        private ValaProjectSettingsPopover  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_HButtonBox52(ValaProjectSettingsPopover _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.HButtonBox();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.margin_right = 4;
-            this.el.margin_left = 4;
-            this.el.margin_bottom = 4;
-            var child_0 = new Xcls_Button53( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-            var child_1 = new Xcls_save_btn( _this );
-            child_1.ref();
-            this.el.add (  child_1.el  );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Button53 : Object
-    {
-        public Gtk.Button el;
-        private ValaProjectSettingsPopover  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button53(ValaProjectSettingsPopover _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Cancel";
-
-            //listeners
-            this.el.clicked.connect( () => { 
-            
-              _this.done = true;
-                _this.el.hide(); 
-            });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_save_btn : Object
-    {
-        public Gtk.Button el;
-        private ValaProjectSettingsPopover  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_save_btn(ValaProjectSettingsPopover _owner )
-        {
-            _this = _owner;
-            _this.save_btn = this;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Save";
-
-            //listeners
-            this.el.clicked.connect( ( ) =>  { 
-            
-            	 _this.project.writeConfig();
-            	  _this.done = true;
-            	  _this.el.hide();
-              });
-        }
-
-        // user defined functions
-    }
 
 
 }
