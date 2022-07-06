@@ -26,9 +26,9 @@ public class GladeView : Object
         // set gobject values
         var child_0 = new Xcls_Button2( _this );
         this.el.add_action_widget( child_0.el, 0);
-        var child_1 = new Xcls_Button3( _this );
+        var child_1 = new Xcls_Button4( _this );
         this.el.add_action_widget( child_1.el, 1);
-        var child_2 = new Xcls_Box4( _this );
+        var child_2 = new Xcls_Box5( _this );
         child_2.ref();
         this.el.get_content_area().add( child_2.el );
     }
@@ -52,12 +52,41 @@ public class GladeView : Object
 
             // set gobject values
             this.el.label = "Label";
+            var child_0 = new Xcls_Image3( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image3 : Object
+    {
+        public Gtk.Image el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image3(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.storage_type = ;
+            this.el.has_default = true;
+            this.el.halign = ;
+            this.el.icon_size = 33;
         }
 
         // user defined functions
     }
 
-    public class Xcls_Button3 : Object
+
+    public class Xcls_Button4 : Object
     {
         public Gtk.Button el;
         private GladeView  _this;
@@ -66,7 +95,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button3(GladeView _owner )
+        public Xcls_Button4(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -80,7 +109,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_Box4 : Object
+    public class Xcls_Box5 : Object
     {
         public Gtk.Box el;
         private GladeView  _this;
@@ -89,7 +118,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box4(GladeView _owner )
+        public Xcls_Box5(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );

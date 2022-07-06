@@ -7,6 +7,17 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "buttons[]",
+     "items" : [
+      {
+       "$ Gtk.Align halign" : "",
+       "$ Gtk.ImageType storage_type" : "",
+       "$ xns" : "Gtk",
+       "* prop" : "image",
+       "bool has_default" : true,
+       "int icon_size" : 33,
+       "xtype" : "Image"
+      }
+     ],
      "string label" : "Label",
      "xtype" : "Button"
     },
