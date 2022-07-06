@@ -486,7 +486,7 @@ namespace Palete {
 				return null;
 			}
 			var gir = Gir.factory(this.project,es[0]);
-			if (!gir) {
+			if (gir == null) {
 				return null;
 			}
 			return gir.classes.get(es[1]);
