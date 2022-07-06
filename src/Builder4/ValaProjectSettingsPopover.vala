@@ -81,7 +81,7 @@ public class ValaProjectSettingsPopover : Object
     public void show (Gtk.Widget btn, Project.Gtk project) {
          
         //print("ValaProjectSettings show\n");
-        
+        this.done = false;
         this.project=  project;
     
         this.compile_flags.el.text = _this.project.compilegroups.get("_default_").compile_flags;
