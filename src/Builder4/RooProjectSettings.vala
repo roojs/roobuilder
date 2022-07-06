@@ -1306,7 +1306,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Label";
+            this.el.label = "Cancel";
 
             //listeners
             this.el.clicked.connect( () => { 
@@ -1336,7 +1336,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Label";
+            this.el.label = "Save";
 
             //listeners
             this.el.clicked.connect( ( ) =>  { 
