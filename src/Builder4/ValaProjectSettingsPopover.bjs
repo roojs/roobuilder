@@ -1026,8 +1026,10 @@
    "listeners" : {
     "hide" : [
      "() => {",
-     "\t_this.project.writeConfig();",
-     "",
+     "\t  if (!this.done) {",
+     "    _this.el.show();",
+     "  ",
+     "  }",
      "}"
     ]
    },

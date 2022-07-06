@@ -55,7 +55,6 @@ public class Xcls_PopoverFileDetails : Object
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.add(  child_0.el );
 
         //listeners
         this.el.closed.connect( () => {
@@ -457,7 +456,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.ftdbmodel = this;
-            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
+            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
 
@@ -902,7 +901,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
+            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
 
@@ -1040,7 +1039,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dirmodel = this;
-            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
+            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
 
             // my vars (dec)
 

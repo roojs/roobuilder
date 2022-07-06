@@ -65,8 +65,10 @@ public class ValaProjectSettingsPopover : Object
 
         //listeners
         this.el.hide.connect( () => {
-        	_this.project.writeConfig();
-        
+        	  if (!this.done) {
+            _this.el.show();
+          
+          }
         });
     }
 
