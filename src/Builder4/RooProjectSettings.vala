@@ -29,7 +29,6 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_database_DBUSERNAME database_DBUSERNAME;
     public Xcls_database_DBPASSWORD database_DBPASSWORD;
     public Xcls_database_ERROR database_ERROR;
-    public Xcls_save_btn save_btn;
 
         // my vars (def)
     public signal void buttonPressed (string btn);
@@ -1283,7 +1282,7 @@ public class Xcls_RooProjectSettings : Object
             var child_0 = new Xcls_Button38( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_save_btn( _this );
+            var child_1 = new Xcls_Button39( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
         }
@@ -1320,7 +1319,7 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
-    public class Xcls_save_btn : Object
+    public class Xcls_Button39 : Object
     {
         public Gtk.Button el;
         private Xcls_RooProjectSettings  _this;
@@ -1329,10 +1328,9 @@ public class Xcls_RooProjectSettings : Object
             // my vars (def)
 
         // ctor
-        public Xcls_save_btn(Xcls_RooProjectSettings _owner )
+        public Xcls_Button39(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            _this.save_btn = this;
             this.el = new Gtk.Button();
 
             // my vars (dec)
