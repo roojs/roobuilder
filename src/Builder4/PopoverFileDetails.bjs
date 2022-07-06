@@ -435,6 +435,8 @@
       },
       {
        "$ xns" : "Gtk",
+       "* pack" : "add",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "int margin_bottom" : 4,
        "int margin_left" : 4,
        "int margin_right" : 4,
@@ -598,7 +600,7 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "HButtonBox"
+       "xtype" : "ButtonBox"
       }
      ],
      "xtype" : "Box"

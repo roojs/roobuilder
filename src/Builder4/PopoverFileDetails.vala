@@ -199,8 +199,9 @@ public class Xcls_PopoverFileDetails : Object
             var child_1 = new Xcls_grid( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , false,false,4 );
-            var child_2 = new Xcls_HButtonBox29( _this );
+            var child_2 = new Xcls_ButtonBox29( _this );
             child_2.ref();
+            this.el.add (  child_2.el  );
         }
 
         // user defined functions
@@ -1093,19 +1094,19 @@ public class Xcls_PopoverFileDetails : Object
 
 
 
-    public class Xcls_HButtonBox29 : Object
+    public class Xcls_ButtonBox29 : Object
     {
-        public Gtk.HButtonBox el;
+        public Gtk.ButtonBox el;
         private Xcls_PopoverFileDetails  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_HButtonBox29(Xcls_PopoverFileDetails _owner )
+        public Xcls_ButtonBox29(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.HButtonBox();
+            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
 
