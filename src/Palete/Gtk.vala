@@ -210,7 +210,7 @@ namespace Palete {
 			"Gtk.Socket",
 			"Gtk.ToolItemGroup",
 			
-			"Gtk.ButtonBox",
+			//"Gtk.ButtonBox", << why ? 
 			"Gtk.CellView",
 			"Gtk.EventBox",
 			"Gtk.FlowBoxChild",
