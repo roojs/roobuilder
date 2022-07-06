@@ -506,6 +506,7 @@
        "xtype" : "Box"
       },
       {
+       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "items" : [
         {
