@@ -18,6 +18,11 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "* pack" : "add",
+       "xtype" : "HeaderBar"
+      },
+      {
+       "$ xns" : "Gtk",
        "* pack" : "pack_start,true,true,0",
        "items" : [
         {
