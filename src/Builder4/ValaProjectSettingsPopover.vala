@@ -1976,7 +1976,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.margin_right = 4;
             this.el.margin_left = 4;
             this.el.margin_bottom = 4;
-            this.el.margin_top = 0;
+            this.el.margin_top = 4;
             var child_0 = new Xcls_Button53( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
