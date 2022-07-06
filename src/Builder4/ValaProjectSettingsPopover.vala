@@ -15,6 +15,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
     public Xcls_label_global label_global;
     public Xcls_label_targets label_targets;
     public Xcls_compile_flags compile_flags;
+    public Xcls_default_packages_tree default_packages_tree;
     public Xcls_default_packages_tree_store default_packages_tree_store;
     public Xcls_packages_render packages_render;
     public Xcls_packages_render_use packages_render_use;
@@ -30,9 +31,11 @@ public class Xcls_ValaProjectSettingsPopover : Object
     public Xcls_build_pack_target build_pack_target;
     public Xcls_build_compile_flags build_compile_flags;
     public Xcls_build_execute_args build_execute_args;
+    public Xcls_files_tree files_tree;
     public Xcls_files_tree_store files_tree_store;
     public Xcls_files_render files_render;
     public Xcls_files_render_use files_render_use;
+    public Xcls_save_btn save_btn;
 
         // my vars (def)
     public Xcls_MainWindow window;
@@ -55,6 +58,9 @@ public class Xcls_ValaProjectSettingsPopover : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
+        var child_1 = new Xcls_HButtonBox52( _this );
+        child_1.ref();
+        this.el.pack_end (  child_1.el , false,true,0 );
 
         //listeners
         this.el.hide.connect( () => {
@@ -346,6 +352,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
         public Xcls_default_packages_tree(Xcls_ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
+            _this.default_packages_tree = this;
             this.el = new Gtk.TreeView();
 
             // my vars (dec)
@@ -378,8 +385,8 @@ public class Xcls_ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.default_packages_tree_store = this;
-            this.el = new Gtk.ListStore( 2,     typeof(string),  // 0 key type
-      typeof(bool) );
+            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 key type
+      typeof(bool) }  );
 
             // my vars (dec)
 
@@ -572,6 +579,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_default_directory_menu( _this );
             child_1.ref();
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -645,8 +653,8 @@ public class Xcls_ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.default_directory_tree_store = this;
-            this.el = new Gtk.ListStore( 1,     typeof(string)
-      );
+            this.el = new Gtk.ListStore.newv(  {     typeof(string)
+      }  );
 
             // my vars (dec)
 
@@ -1236,9 +1244,9 @@ public class Xcls_ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.targets_tree_store = this;
-            this.el = new Gtk.ListStore( 2,     typeof(string),  // 0 key type
+            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 key type
      typeof(string) // ??
-      );
+      }  );
 
             // my vars (dec)
 
@@ -1616,6 +1624,7 @@ public class Xcls_ValaProjectSettingsPopover : Object
         public Xcls_files_tree(Xcls_ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
+            _this.files_tree = this;
             this.el = new Gtk.TreeView();
 
             // my vars (dec)
@@ -1647,11 +1656,11 @@ public class Xcls_ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.files_tree_store = this;
-            this.el = new Gtk.ListStore( 4,     typeof(string),  // 0 file name
+            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 file name
         typeof(string),  // 0 basename
      typeof(string), // type (dir orfile)
      typeof(bool)  // is checked.
-      );
+      }  );
 
             // my vars (dec)
 
@@ -1659,6 +1668,28 @@ public class Xcls_ValaProjectSettingsPopover : Object
         }
 
         // user defined functions
+        public void update () {
+        
+        
+            Gtk.TreeIter citer;
+        
+            for(var i =0 ; i < this.el.iter_n_children(null); i++) {
+                this.el.iter_nth_child(out citer,null,i);
+        
+                GLib.Value val;
+                this.el.get_value(citer,0, out val);
+                var fn = (string) val;
+                
+                var active = false;
+                if (_this.set_vbox.cgroup.sources.contains(fn)) {
+                    active = true;
+                }
+                
+                this.el.set_value(citer, 3,   active ); // checked 
+            }
+        
+             _this.set_vbox.el.set_sensitive(true);
+        }
         public void updateDir (string dname, bool bval) {
           
           Gtk.TreeIter citer;
@@ -1744,28 +1775,6 @@ public class Xcls_ValaProjectSettingsPopover : Object
         		_this.set_vbox.el.set_sensitive(false);
             
             }
-        }
-        public void update () {
-        
-        
-            Gtk.TreeIter citer;
-        
-            for(var i =0 ; i < this.el.iter_n_children(null); i++) {
-                this.el.iter_nth_child(out citer,null,i);
-        
-                GLib.Value val;
-                this.el.get_value(citer,0, out val);
-                var fn = (string) val;
-                
-                var active = false;
-                if (_this.set_vbox.cgroup.sources.contains(fn)) {
-                    active = true;
-                }
-                
-                this.el.set_value(citer, 3,   active ); // checked 
-            }
-        
-             _this.set_vbox.el.set_sensitive(true);
         }
     }
 
@@ -1933,6 +1942,224 @@ public class Xcls_ValaProjectSettingsPopover : Object
 
 
 
+
+
+    public class Xcls_HButtonBox52 : Object
+    {
+        public Gtk.HButtonBox el;
+        private Xcls_ValaProjectSettingsPopover  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_HButtonBox52(Xcls_ValaProjectSettingsPopover _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.HButtonBox();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.margin_right = 4;
+            this.el.margin_left = 4;
+            this.el.margin_bottom = 4;
+            var child_0 = new Xcls_Button53( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_save_btn( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Button53 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_ValaProjectSettingsPopover  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button53(Xcls_ValaProjectSettingsPopover _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Cancel";
+
+            //listeners
+            this.el.clicked.connect( () => { 
+            
+              _this.done = true;
+                _this.el.hide(); 
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_save_btn : Object
+    {
+        public Gtk.Button el;
+        private Xcls_ValaProjectSettingsPopover  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_save_btn(Xcls_ValaProjectSettingsPopover _owner )
+        {
+            _this = _owner;
+            _this.save_btn = this;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Save";
+
+            //listeners
+            this.el.clicked.connect( ( ) =>  { 
+            
+             
+            
+            
+            	if (_this.name.el.get_text().length  < 1) {
+            	    Xcls_StandardErrorDialog.singleton().show(
+            	        _this.mainwindow.el,
+            	        "You have to set Component name "
+            	    );
+            	     
+            	    return;
+            	}
+            	// what does this do?
+            	
+            	var isNew = _this.file.name.length  > 0 ? false : true;
+            	/*
+            	if (!isNew && this.file.name != _this.name.el.get_text()) {
+            	    Xcls_StandardErrorDialog.singleton().show(
+            	        this.el,
+            	        "Sorry changing names does not work yet. "
+            	    );
+            	     
+            	    return;
+            	}
+            	*/
+            	 
+            	
+              
+            	// FIXME - this may be more complicated...
+            	//for (var i in this.def) {
+            	//    this.file[i] =  this.get(i).el.get_text();
+            	//}
+            
+            	if (!isNew) {
+            	    try {
+            	         _this.updateFileFromEntry();
+            	     } catch( JsRender.Error.RENAME_FILE_EXISTS er) {
+            	          Xcls_StandardErrorDialog.singleton().show(
+            	            _this.mainwindow.el,
+            	            "The name you used already exists "
+            	        );
+            	        return;
+            	         
+            	     }
+            
+            	      _this.done = true;
+            	    _this.file.save();
+            	    _this.el.hide();
+            	    return;
+            	}
+            	
+            	// ---------------- NEW FILES...
+            	Gtk.TreeIter iter;
+            
+            	if (!_this.filetype.el.get_active_iter(out iter)) {
+            		// should not happen...
+            		// so we are jut going to return without 
+            		Xcls_StandardErrorDialog.singleton().show(
+            	        _this.mainwindow.el,
+            	        "You must select a file type. "
+            	    );
+            	    return;
+            		 
+            	}
+            	
+            	
+            	var fn = _this.name.el.get_text();
+            	
+            	Value ftypename;
+            	_this.ftdbmodel.el.get_value (iter, 0, out ftypename);
+            	var ext = ((string)ftypename);
+            	var dir = _this.project.firstPath(); 
+            	if (ext != "bjs") {
+            	 
+            		if (!_this.dir.el.get_active_iter(out iter)) {
+            			// should not happen...
+            			// so we are jut going to return without 
+            			Xcls_StandardErrorDialog.singleton().show(
+            			    _this.mainwindow.el,
+            			    "You must select a directory "
+            			);
+            			return;
+            		}
+            		Value vdir;
+            		_this.dirmodel.el.get_value (iter, 0, out vdir);
+            		dir = (string)vdir;
+            	}
+            	
+            	var targetfile = dir + "/" + fn;
+            	
+            	// strip the file type off the end..
+            	
+            	
+                var rx = new GLib.Regex("\\." + ext + "$",GLib.RegexCompileFlags.CASELESS);
+                targetfile = rx.replace(targetfile, targetfile.length, 0, ""); 
+               
+            	if (GLib.FileUtils.test(targetfile + "." + ext, GLib.FileTest.EXISTS)) {
+            	    Xcls_StandardErrorDialog.singleton().show(
+            	        _this.mainwindow.el,
+            	        "That file already exists"
+            	    ); 
+            	    return;
+            	}
+               
+               var f =  JsRender.JsRender.factory(
+            		ext == "bjs" ? _this.file.project.xtype : "PlainFile",  
+            		_this.file.project, 
+            		targetfile + "." + ext);
+            
+            	_this.file = f;
+            	
+            
+            	
+            	_this.updateFileFromEntry();
+            	_this.file.loaded = true;
+            	_this.file.save();
+            	if (ext == "bjs") {
+            		_this.file.project.addFile(_this.file);
+            	}
+            	
+             
+            	// what about .js ?
+               _this.done = true;
+            	_this.el.hide();
+            
+            // hopefull this will work with bjs files..
+            	
+            	_this.success(_this.project, _this.file);
+               
+            });
+        }
+
+        // user defined functions
+    }
 
 
 }
