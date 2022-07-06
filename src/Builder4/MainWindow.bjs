@@ -718,20 +718,7 @@
     ]
    },
    "xtype" : "Window",
-   "|             void setTitle" : [
-    " (string str) {",
-    "    this.headerbar.el.set_title(this.title + \" - \" + str);",
-    "} ",
-    ""
-   ],
-   "|             void show" : [
-    "() {",
-    "   ",
-    "    this.el.show_all();",
-    "",
-    "}"
-   ],
-   "|        void initChildren" : [
+   "| void initChildren" : [
     " () {",
     "    // this needs putting in a better place..",
     "    this.windowstate = new WindowState(this);",
@@ -759,6 +746,19 @@
     "        //w.windowstate.switchState(WindowState.State.FILES);",
     "}",
     ""
+   ],
+   "| void setTitle" : [
+    " (string str) {",
+    "    this.headerbar.el.set_title(this.title + \" - \" + str);",
+    "} ",
+    ""
+   ],
+   "| void show" : [
+    "() {",
+    "   ",
+    "    this.el.show_all();",
+    "",
+    "}"
    ]
   }
  ],

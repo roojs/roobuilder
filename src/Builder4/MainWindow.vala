@@ -35,10 +35,10 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 
         // my vars (def)
-    public Project.Project project;
-    public string title;
     public int no_windows;
     public WindowState windowstate;
+    public string title;
+    public Project.Project project;
 
     // ctor
     public Xcls_MainWindow()
@@ -47,10 +47,10 @@ public class Xcls_MainWindow : Object
         this.el = new Gtk.Window( Gtk.WindowType.TOPLEVEL );
 
         // my vars (dec)
-        this.project = null;
-        this.title = "Roo Application Builder";
         this.no_windows = 1;
         this.windowstate = null;
+        this.title = "Roo Application Builder";
+        this.project = null;
 
         // set gobject values
         this.el.border_width = 0;
@@ -126,18 +126,7 @@ public class Xcls_MainWindow : Object
     }
 
     // user defined functions
-    public void openNewWindow () {
-    	Xcls_MainWindow.singleton().no_windows++;
-        var w = new Xcls_MainWindow();
-        w.ref();
-    
-        w.el.show_all();
-        w.initChildren();
-        w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);
-            // should open the file dialog...
-            //w.windowstate.switchState(WindowState.State.FILES);
-    }
-    public        void initChildren () {
+    public void initChildren () {
         // this needs putting in a better place..
         this.windowstate = new WindowState(this);
          
@@ -149,13 +138,24 @@ public class Xcls_MainWindow : Object
     
     
     }
-    public             void show () {
+    public void show () {
        
         this.el.show_all();
     
     }
-    public             void setTitle (string str) {
+    public void setTitle (string str) {
         this.headerbar.el.set_title(this.title + " - " + str);
+    }
+    public void openNewWindow () {
+    	Xcls_MainWindow.singleton().no_windows++;
+        var w = new Xcls_MainWindow();
+        w.ref();
+    
+        w.el.show_all();
+        w.initChildren();
+        w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);
+            // should open the file dialog...
+            //w.windowstate.switchState(WindowState.State.FILES);
     }
     public class Xcls_headerbar : Object
     {
@@ -1203,7 +1203,7 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.ImageMenuItem();
 
             // my vars (dec)
-            this.notices = new Json.Object() ;
+            this.notices = new Json.Object();
 
             // set gobject values
             this.el.always_show_image = true;
@@ -1487,13 +1487,13 @@ public class Xcls_MainWindow : Object
         }
 
         // user defined functions
-        public void stop () {
-         this.el.stop();
-          this.el.hide();
-        }
         public void start () {
           this.el.show();
           this.el.start();  
+        }
+        public void stop () {
+         this.el.stop();
+          this.el.hide();
         }
     }
 

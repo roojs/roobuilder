@@ -23,7 +23,7 @@ namespace Palete {
     public class Roo : Palete {
 		
 		Gee.ArrayList<string> top_classes;
-		
+		public static Gee.HashMap<string,GirObject>? classes_cache = null;
 		
         public Roo(Project.Project project)
         {
@@ -33,6 +33,7 @@ namespace Palete {
             aconstruct(project);
             this.name = "Roo";
 			this.top_classes =  new Gee.ArrayList<string>();
+			this.load(); // ? initialize the roodata?
         }
 
 		Gee.HashMap<string,GirObject> propsFromJSONArray(string type, Json.Array ar, GirObject cls)
@@ -76,6 +77,12 @@ namespace Palete {
 			if (this.classes != null) {
 				return;
 			}
+			if (Roo.classes_cache != null) {
+				this.classes = Roo.classes_cache;
+				return;
+			}
+			
+			
 			// this.loadUsageFile(BuilderApplication.configDirectory() + "/resources/RooUsage.txt");
 			this.classes = new Gee.HashMap<string,GirObject>();
 			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
@@ -189,7 +196,7 @@ namespace Palete {
 					cls.can_drop_onto = add_to.get(cls.name);
 				}
 			}
-				 
+			Roo.classes_cache = classes;	 
 		}
 		  
 			

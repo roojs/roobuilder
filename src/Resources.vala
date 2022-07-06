@@ -162,13 +162,17 @@ public class Resources : Object
 		string[] required =  {
 			"bootstrap.builder.html",
 			"bootstrap4.builder.html",
-			"Gir.overides",
-			"GtkUsage.txt",
+			 
 			"mailer.builder.html",
 			"roo.builder.html",
 			"roo.builder.js",
+			
+			
 			"roodata.json",
-			"RooUsage.txt"
+			
+			//"RooUsage.txt" ?? not needed it's doen from roodata.
+			"Gir.overides" //?? needed anymnore?
+			
 		};
 
 		for (var i = 0; i <  required.length; i++ ) { 
@@ -259,7 +263,7 @@ public class Resources : Object
 				return;
 			}
 			
-			
+			 
 			var tfn = BuilderApplication.configDirectory() + "/resources/" + item.target;
 			
 			
@@ -285,18 +289,10 @@ public class Resources : Object
 					}
 
 					break;
-					
-				case "GtkUsage.txt":
-				foreach(var p in Project.Project.allProjectsByName()) { 
-						if (p is Project.Gtk) {
-							p.palete = new Palete.Gtk(p);
-							//p.palete.load();
-						}
-					}
-
-					break;
+				 
 					
 				case "roodata.json":
+					Palete.Roo.classes_cache = null; // clear the cache.
 					foreach(var p in Project.Project.allProjectsByName()) { 
 						if (p is Project.Roo) {
 							p.palete = new Palete.Roo(p);
