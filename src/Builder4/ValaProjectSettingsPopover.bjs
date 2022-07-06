@@ -19,6 +19,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "add",
+       "string title" : "",
        "xtype" : "HeaderBar"
       },
       {
