@@ -608,7 +608,7 @@
     "closed" : [
      "() => {",
      "  if (!this.done) {",
-     "    _this.el.show();",
+     "    _this.el.show_all();",
      "  ",
      "  }",
      "} "

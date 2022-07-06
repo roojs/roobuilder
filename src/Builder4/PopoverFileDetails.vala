@@ -59,7 +59,7 @@ public class Xcls_PopoverFileDetails : Object
         //listeners
         this.el.closed.connect( () => {
           if (!this.done) {
-            _this.el.show();
+            _this.el.show_all();
           
           }
         });
