@@ -602,11 +602,11 @@ public class JsRender.NodeToVala : Object {
 			
 		}
 		// default ctor with no params..
-		 if (default_ctor != null ) {
+		 if (default_ctor != null && ctor != ".new" ) {
 		 	this.node.setLine(this.cur_line, "p", "* xtype");
 			
 			this.addLine(this.ipad + "this.el = new " + this.node.fqn() + ctor + "(  );") ;
-		 
+		 	return;
 		 }
 		
 		
