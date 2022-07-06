@@ -8,7 +8,6 @@
    "Xcls_MainWindow window" : "null",
    "bool done" : false,
    "bool modal" : true,
-   "id" : "ValaProjectSettingsPopover",
    "items" : [
     {
      "$ xns" : "Gtk",
