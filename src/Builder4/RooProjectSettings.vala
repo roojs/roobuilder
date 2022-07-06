@@ -33,6 +33,7 @@ public class Xcls_RooProjectSettings : Object
         // my vars (def)
     public signal void buttonPressed (string btn);
     public Project.Project project;
+    public bool done;
 
     // ctor
     public Xcls_RooProjectSettings()
@@ -41,6 +42,7 @@ public class Xcls_RooProjectSettings : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.done = false;
 
         // set gobject values
         this.el.border_width = 0;
