@@ -154,9 +154,18 @@ public class GladeView : Object
             var child_0 = new Xcls_Button7( _this );
             child_0.ref();
             this.el.add(  child_0.el );
+
+            //listeners
+            this.el.delete_event.connect( (event) => {
+            
+            	return bool;
+            });
         }
 
         // user defined functions
+        public void test1 () {
+        
+        }
     }
     public class Xcls_Button7 : Object
     {

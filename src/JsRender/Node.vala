@@ -717,46 +717,85 @@ public class JsRender.Node : Object {
 	public string nodeTip()
 	{
 		var ret = this.nodeTitle(true);
+		var spec = "";
 		var funcs = "";
 		var props = "";
 		var listen = "";
-		var iter = this.props.map_iterator();
-		while (iter.next()) {
-			var i =  iter.get_key().strip();
-			var val = iter.get_value().val.strip();
-			if (val == null || val.length < 1) {
-				continue;
-			}
-			if ( i[0] != '|') {
-				props += "\n\t<b>" + 
-					GLib.Markup.escape_text(i) +"</b> : " + 
-					GLib.Markup.escape_text(val.split("\n")[0]);
-				 
-				continue;
-			}
+		var signals = "";
+		var uprops = "";
+		// sort?
 		
-			//if (i == "* init") { 
-			//	continue;
-			//}
+		var keys = new  Gee.ArrayList<string>();
+		foreach(var k in this.props.keys) {
+			keys.add(k);
+		}
+		keys.sort((a,b) => {
+			 return Posix.strcmp(a, b);
+		
+		});
+		
+		
+		foreach(var pk in keys) {
+			 
+			var prop = this.props.get(pk);
+			var i = prop.name.strip();
 			
-			if (Regex.match_simple("^\\s*function", val)) { 
-				funcs += "\n\t<b>" + 
-					GLib.Markup.escape_text(i.substring(1)).strip() +"</b> : " + 
-					GLib.Markup.escape_text(val.split("\n")[0]);
-				continue;
+			switch(prop.ptype) {
+				case PROP: 
+				case RAW: // should they be the same?
+				
+					props += "\n\t<b>" + 
+						GLib.Markup.escape_text(i) +"</b> : " + 
+						GLib.Markup.escape_text(prop.val.split("\n")[0]);
+						
+					break;
+					
+			
+				
+				case METHOD :
+					funcs += "\n\t<b>" + 
+						GLib.Markup.escape_text(i.substring(1)).strip() +"</b> : " + 
+						GLib.Markup.escape_text(prop.val.split("\n")[0]);
+					break;
+					
+				 
+				case USER : // user defined.
+					uprops += "\n\t<b>" + 
+						GLib.Markup.escape_text(i) +"</b> : " + 
+						GLib.Markup.escape_text(prop.val.split("\n")[0]);
+					break;
+					
+				case SPECIAL : // * prop| args | ctor | init
+					spec += "\n\t<b>" + 
+						GLib.Markup.escape_text(i) +"</b> : " + 
+						GLib.Markup.escape_text(prop.val.split("\n")[0]);
+					break;
+					
+		 		case LISTENER : return  "";  // always raw...
+		 		// not used
+		 		default:
+			 		break;;
+			
 			}
-			if (Regex.match_simple("^\\s*\\(", val)) {
-				funcs += "\n\t<b>" + GLib.Markup.escape_text(i.substring(1)).strip() +
-					"</b> : " + 
-					GLib.Markup.escape_text(val.split("\n")[0]);
-				continue;
-			}
+			 
 			
 		}
-		iter = this.listeners.map_iterator();
-		while (iter.next()) {
-			var i =  iter.get_key().strip();
-			var val = iter.get_value().val.strip();
+		
+		keys = new  Gee.ArrayList<string>();
+		foreach(var k in this.listeners.keys) {
+			keys.add(k);
+		}
+		keys.sort((a,b) => {
+			 return Posix.strcmp(a, b);
+		
+		});
+		
+		foreach(var pk in keys) {
+			 
+			var prop = this.listeners.get(pk);
+			var i =  prop.name.strip();
+			
+			var val = prop.val.strip();
 			if (val == null || val.length < 1) {
 				continue;
 			}
@@ -769,13 +808,22 @@ public class JsRender.Node : Object {
 		
 		if (props.length > 0) {
 			ret+="\n\nProperties:" + props;
+		}
+		if (uprops.length > 0) {
+			ret+="\n\nUser defined Properties:" + uprops;
 		} 
+		
+		
 		if (funcs.length > 0) {
 			ret+="\n\nMethods:" + funcs;
 		} 
 		if (listen.length > 0) {
 			ret+="\n\nListeners:" + listen;
 		} 
+		if (spec.length > 0) {
+			ret+="\n\nSpecial:" + spec;
+		} 
+		
 		return ret;
 
 	}

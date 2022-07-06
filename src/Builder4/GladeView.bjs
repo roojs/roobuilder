@@ -44,7 +44,21 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "ButtonBox"
+       "listeners" : {
+        "delete_event" : [
+         "(event) => {",
+         "",
+         "\treturn bool;",
+         "}",
+         ""
+        ]
+       },
+       "xtype" : "ButtonBox",
+       "| void test1" : [
+        "() {",
+        "",
+        "}"
+       ]
       }
      ],
      "xtype" : "Box"
