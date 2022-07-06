@@ -1041,7 +1041,7 @@
     ],
     "hide" : [
      "() => {",
-     "\t  if (!this.done) {",
+     "  if (!this.done) {",
      "    _this.el.show();",
      "  ",
      "  }",

@@ -70,7 +70,7 @@ public class ValaProjectSettingsPopover : Object
         
         });
         this.el.hide.connect( () => {
-        	  if (!this.done) {
+          if (!this.done) {
             _this.el.show();
           
           }
