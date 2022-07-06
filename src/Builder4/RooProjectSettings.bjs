@@ -466,6 +466,10 @@
       {
        "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
+       "int margin_bottom" : 4,
+       "int margin_end" : 4,
+       "int margin_start" : 4,
+       "int margin_top" : 4,
        "items" : [
         {
          "$ xns" : "Gtk",
