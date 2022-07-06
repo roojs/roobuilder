@@ -155,7 +155,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.title = "";
+            this.el.title = "Change Vala Project Compile settings";
         }
 
         // user defined functions
