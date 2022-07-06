@@ -1024,6 +1024,16 @@
     }
    ],
    "listeners" : {
+    "closed" : [
+     "( ) => {",
+     "  if (!this.done) {",
+     "    _this.el.show();",
+     "  ",
+     "  }",
+     "",
+     "}",
+     ""
+    ],
     "hide" : [
      "() => {",
      "\t  if (!this.done) {",
