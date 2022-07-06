@@ -464,49 +464,6 @@
        "xtype" : "Notebook"
       },
       {
-       "$ homogeneous" : true,
-       "$ xns" : "Gtk",
-       "* pack" : "pack_end,false,false,0",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "gboolean expand" : false,
-       "gboolean vexpand" : false,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "add",
-         "label" : "Apply",
-         "listeners" : {
-          "button_press_event" : [
-           "() => {",
-           "    _this.save();",
-           "          ",
-           "    _this.buttonPressed(\"apply\");",
-           "        return false;",
-           "}"
-          ]
-         },
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "add",
-         "label" : "Save",
-         "listeners" : {
-          "button_press_event" : [
-           "() => {",
-           "       _this.save();",
-           "          ",
-           "    _this.buttonPressed(\"save\");",
-           "        return false;",
-           "}"
-          ]
-         },
-         "xtype" : "Button"
-        }
-       ],
-       "xtype" : "Box"
-      },
-      {
        "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "items" : [
