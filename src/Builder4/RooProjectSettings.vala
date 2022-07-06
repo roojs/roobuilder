@@ -784,9 +784,11 @@ public class Xcls_RooProjectSettings : Object
         {
             _this = _owner;
             _this.view = this;
-            this.el = new GtkSource.View();
+            this.el = new Gtk.SourceView();
 
             // my vars (dec)
+
+            // set gobject values
 
             // init method
 

@@ -267,7 +267,7 @@
            "* pack" : "pack_start,true,true,0",
            "items" : [
             {
-             "$ xns" : "GtkSource",
+             "$ xns" : "Gtk",
              "* init" : [
               " ",
               "    var description =   Pango.FontDescription.from_string(\"monospace\");",
@@ -301,7 +301,7 @@
                "}"
               ]
              },
-             "xtype" : "View"
+             "xtype" : "SourceView"
             }
            ],
            "xtype" : "ScrolledWindow"
