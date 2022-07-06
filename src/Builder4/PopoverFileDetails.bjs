@@ -15,6 +15,7 @@
     {
      "$ pack" : "add",
      "$ xns" : "Gtk",
+     "* pack" : "add",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool homogeneous" : false,
      "items" : [
