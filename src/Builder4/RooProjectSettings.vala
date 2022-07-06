@@ -154,6 +154,9 @@ public class Xcls_RooProjectSettings : Object
             var child_1 = new Xcls_Box34( _this );
             child_1.ref();
             this.el.pack_end (  child_1.el , false,false,0 );
+            var child_2 = new Xcls_ButtonBox37( _this );
+            child_2.ref();
+            this.el.add(  child_2.el );
         }
 
         // user defined functions
@@ -483,7 +486,7 @@ public class Xcls_RooProjectSettings : Object
         {
             _this = _owner;
             _this.base_template_model = this;
-            this.el = new Gtk.ListStore( 1, typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string) }  );
 
             // my vars (dec)
 
@@ -672,7 +675,7 @@ public class Xcls_RooProjectSettings : Object
         {
             _this = _owner;
             _this.html_gen_model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -777,7 +780,7 @@ public class Xcls_RooProjectSettings : Object
         {
             _this = _owner;
             _this.view = this;
-            this.el = new Gtk.SourceView();
+            this.el = new GtkSource.View();
 
             // my vars (dec)
 
@@ -1258,6 +1261,28 @@ public class Xcls_RooProjectSettings : Object
         // user defined functions
     }
 
+
+    public class Xcls_ButtonBox37 : Object
+    {
+        public Gtk.ButtonBox el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ButtonBox37(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ButtonBox( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
 }
