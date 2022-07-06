@@ -278,11 +278,22 @@ namespace Palete {
 			
 			foreach(var k in props.keys) {
 				var val = props.get(k);
+				
+				// special props..
+				switch(k) {
+					case "listeners" : 
+						continue;
+					default:
+						break;
+				}
+				
 				 
 				if (!val.type.contains(".")) {
 					outprops.set(k,val);
 					continue;
 				}
+				
+				
 				 
 				// do nothing? - classes not allowed?
 				
