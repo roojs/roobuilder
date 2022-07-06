@@ -134,6 +134,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.pack_start (  child_1.el , true,true,0 );
             var child_2 = new Xcls_HButtonBox53( _this );
             child_2.ref();
+            this.el.add (  child_2.el  );
         }
 
         // user defined functions
