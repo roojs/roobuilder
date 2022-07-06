@@ -423,8 +423,8 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.default_packages_tree_store = this;
-            this.el = new Gtk.ListStore( 2,     typeof(string),  // 0 key type
-      typeof(bool) );
+            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 key type
+      typeof(bool) }  );
 
             // my vars (dec)
 
@@ -617,6 +617,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_default_directory_menu( _this );
             child_1.ref();
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -690,8 +691,8 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.default_directory_tree_store = this;
-            this.el = new Gtk.ListStore( 1,     typeof(string)
-      );
+            this.el = new Gtk.ListStore.newv(  {     typeof(string)
+      }  );
 
             // my vars (dec)
 
@@ -1281,9 +1282,9 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.targets_tree_store = this;
-            this.el = new Gtk.ListStore( 2,     typeof(string),  // 0 key type
+            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 key type
      typeof(string) // ??
-      );
+      }  );
 
             // my vars (dec)
 
@@ -1693,11 +1694,11 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.files_tree_store = this;
-            this.el = new Gtk.ListStore( 4,     typeof(string),  // 0 file name
+            this.el = new Gtk.ListStore.newv(  {     typeof(string),  // 0 file name
         typeof(string),  // 0 basename
      typeof(string), // type (dir orfile)
      typeof(bool)  // is checked.
-      );
+      }  );
 
             // my vars (dec)
 
@@ -2000,6 +2001,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.margin_right = 4;
             this.el.margin_left = 4;
             this.el.margin_bottom = 4;
+            this.el.margin_top = 4;
             var child_0 = new Xcls_Button54( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
