@@ -29,6 +29,7 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_database_DBUSERNAME database_DBUSERNAME;
     public Xcls_database_DBPASSWORD database_DBPASSWORD;
     public Xcls_database_ERROR database_ERROR;
+    public Xcls_save_btn save_btn;
 
         // my vars (def)
     public signal void buttonPressed (string btn);
@@ -1279,10 +1280,86 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Button38( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_save_btn( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
         }
 
         // user defined functions
     }
+    public class Xcls_Button38 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button38(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Label";
+
+            //listeners
+            this.el.clicked.connect( () => { 
+            
+              _this.done = true;
+                _this.el.hide(); 
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_save_btn : Object
+    {
+        public Gtk.Button el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_save_btn(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            _this.save_btn = this;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Label";
+
+            //listeners
+            this.el.clicked.connect( ( ) =>  { 
+            
+             
+            _this.project.writeConfig(); 
+             
+            	// what about .js ?
+               _this.done = true;
+            	_this.el.hide();
+            
+            // hopefull this will work with bjs files..
+            	
+             
+               
+            });
+        }
+
+        // user defined functions
+    }
+
 
 
 }

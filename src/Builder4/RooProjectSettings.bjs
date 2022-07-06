@@ -507,6 +507,48 @@
       },
       {
        "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "add",
+         "listeners" : {
+          "clicked" : [
+           "() => { ",
+           "",
+           "  _this.done = true;",
+           "    _this.el.hide(); ",
+           "}"
+          ]
+         },
+         "string label" : "Label",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "add",
+         "id" : "save_btn",
+         "listeners" : {
+          "clicked" : [
+           "( ) =>  { ",
+           "",
+           " ",
+           "_this.project.writeConfig(); ",
+           " ",
+           "\t// what about .js ?",
+           "   _this.done = true;",
+           "\t_this.el.hide();",
+           "",
+           "// hopefull this will work with bjs files..",
+           "\t",
+           " ",
+           "   ",
+           "}"
+          ]
+         },
+         "string label" : "Label",
+         "xtype" : "Button"
+        }
+       ],
        "xtype" : "ButtonBox"
       }
      ],
