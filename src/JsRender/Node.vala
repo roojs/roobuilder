@@ -792,7 +792,7 @@ public class JsRender.Node : Object {
 		
 		foreach(var pk in keys) {
 			 
-			var prop = this.props.get(pk);
+			var prop = this.listeners.get(pk);
 			var i =  prop.name.strip();
 			
 			var val = prop.val.strip();
