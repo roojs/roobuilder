@@ -607,7 +607,7 @@
     "\t// window + header?",
     "\t print(\"SHOWALL - POPIP\\n\");",
     "\tthis.el.show_all();",
-    "\tthis.el.set_size_request(800,500);",
+    "\tthis.el.set_size_request(800,600);",
     "\tthis.view.el.grab_focus();",
     "\t",
     "    ",
