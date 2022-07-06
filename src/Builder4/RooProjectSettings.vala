@@ -33,6 +33,7 @@ public class Xcls_RooProjectSettings : Object
         // my vars (def)
     public signal void buttonPressed (string btn);
     public Project.Project project;
+    public bool done;
 
     // ctor
     public Xcls_RooProjectSettings()
@@ -41,6 +42,7 @@ public class Xcls_RooProjectSettings : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.done = false;
 
         // set gobject values
         this.el.border_width = 0;
@@ -53,6 +55,8 @@ public class Xcls_RooProjectSettings : Object
 
     // user defined functions
     public void show (Gtk.Widget btn, Project.Project project) {
+        _this.done = false;
+        
         _this.project = project;
         _this.path.el.label = project.firstPath();
         // get the active project.
@@ -89,7 +93,7 @@ public class Xcls_RooProjectSettings : Object
     	// window + header?
     	 print("SHOWALL - POPIP\n");
     	this.el.show_all();
-    	this.el.set_size_request(800,500);
+    	this.el.set_size_request(800,600);
     	this.view.el.grab_focus();
     	
         
@@ -151,9 +155,9 @@ public class Xcls_RooProjectSettings : Object
             var child_0 = new Xcls_Notebook3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true,true,0 );
-            var child_1 = new Xcls_Box34( _this );
+            var child_1 = new Xcls_ButtonBox34( _this );
             child_1.ref();
-            this.el.pack_end (  child_1.el , false,false,0 );
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -483,7 +487,7 @@ public class Xcls_RooProjectSettings : Object
         {
             _this = _owner;
             _this.base_template_model = this;
-            this.el = new Gtk.ListStore( 1, typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string) }  );
 
             // my vars (dec)
 
@@ -672,7 +676,7 @@ public class Xcls_RooProjectSettings : Object
         {
             _this = _owner;
             _this.html_gen_model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -780,6 +784,8 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
+
+            // set gobject values
 
             // init method
 
@@ -1166,32 +1172,36 @@ public class Xcls_RooProjectSettings : Object
 
 
 
-    public class Xcls_Box34 : Object
+    public class Xcls_ButtonBox34 : Object
     {
-        public Gtk.Box el;
+        public Gtk.ButtonBox el;
         private Xcls_RooProjectSettings  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Box34(Xcls_RooProjectSettings _owner )
+        public Xcls_ButtonBox34(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.homogeneous = true;
-            this.el.expand = false;
-            this.el.vexpand = false;
+            this.el.margin_end = 4;
+            this.el.margin_start = 4;
+            this.el.margin_bottom = 4;
+            this.el.margin_top = 4;
             var child_0 = new Xcls_Button35( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_Button36( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
+            var child_2 = new Xcls_Button37( _this );
+            child_2.ref();
+            this.el.add (  child_2.el  );
         }
 
         // user defined functions
@@ -1213,14 +1223,13 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Apply";
+            this.el.label = "Cancel";
 
             //listeners
-            this.el.button_press_event.connect( () => {
-                _this.save();
-                      
-                _this.buttonPressed("apply");
-                    return false;
+            this.el.clicked.connect( () => { 
+            
+              _this.done = true;
+                _this.el.hide(); 
             });
         }
 
@@ -1244,14 +1253,53 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.label = "Apply / Keep editing";
+
+            //listeners
+            this.el.clicked.connect( ( ) =>  { 
+            
+               _this.buttonPressed("apply");
+             
+               
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Button37 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button37(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
             this.el.label = "Save";
 
             //listeners
-            this.el.button_press_event.connect( () => {
-                   _this.save();
-                      
-                _this.buttonPressed("save");
-                    return false;
+            this.el.clicked.connect( ( ) =>  { 
+            
+             
+             _this.buttonPressed("save");
+             
+            	// what about .js ?
+               _this.done = true;
+            	_this.el.hide();
+            
+            // hopefull this will work with bjs files..
+            	
+             
+               
             });
         }
 

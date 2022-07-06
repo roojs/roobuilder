@@ -31,7 +31,7 @@ public class JsRender.NodeToVala : Object {
 	string inpad;
 	string pad;
 	string ipad;
-	string cls;
+	string cls;  // node fqn()
 	string xcls;
 	
 	string ret;
@@ -304,7 +304,7 @@ public class JsRender.NodeToVala : Object {
 	 * 
 	 * 
 	 */
-	
+ 
 	void addMyVars()
 	{
 		GLib.debug("callinged addMhyVars");
@@ -498,7 +498,7 @@ public class JsRender.NodeToVala : Object {
 		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (ncls != null && ncls.nodetype == "Struct") {
 			// we can use regular setters to apply the values.
-			this.addLine(this.ipad + "this.el = " + this.cls + "();");
+			this.addLine(this.ipad + "this.el = " + this.node.fqn() + "();");
 			return;
 		
 		
@@ -507,6 +507,17 @@ public class JsRender.NodeToVala : Object {
 		var ctor = ".new";
 		var args_str = "";
 		switch(this.node.fqn()) {
+		
+			case "Gtk.ComboBox":
+				var is_entry = this.node.has("has_entry") && this.node.get_prop("has_entry").val.down() == "true";
+				if (!is_entry) { 
+					break; // regular ctor.
+				}
+				this.ignoreWrapped("has_entry");
+				ctor = ".with_entry";
+				break;
+				
+		
 			case "Gtk.ListStore":
 			case "Gtk.TreeStore":
 
@@ -520,7 +531,7 @@ public class JsRender.NodeToVala : Object {
 					this.ignoreWrapped("n_columns");
 				}
 				
-				this.addLine(this.ipad + "this.el = new " + this.cls + ".newv( " + args_str + " );");
+				this.addLine(this.ipad + "this.el = new " + this.node.fqn() + ".newv( " + args_str + " );");
 				return;
 				break;
 				
@@ -586,11 +597,20 @@ public class JsRender.NodeToVala : Object {
 			}
 			this.node.setLine(this.cur_line, "p", "* xtype");
 			
-			this.addLine(this.ipad + "this.el = new " + cls + "( "+ string.joinv(", ",args) + " );") ;
+			this.addLine(this.ipad + "this.el = new " + this.node.fqn() + "( "+ string.joinv(", ",args) + " );") ;
 			return;
 			
 		}
-		this.addLine(this.ipad + "this.el = new " + this.cls + "(" + args_str + ");");
+		// default ctor with no params..
+		 if (default_ctor != null && ctor != ".new" ) {
+		 	this.node.setLine(this.cur_line, "p", "* xtype");
+			
+			this.addLine(this.ipad + "this.el = new " + this.node.fqn() + ctor + "(  );") ;
+		 	return;
+		 }
+		
+		
+		this.addLine(this.ipad + "this.el = new " + this.node.fqn() + "(" + args_str + ");");
 		
 		
 
@@ -794,6 +814,8 @@ public class JsRender.NodeToVala : Object {
 	
 	void packChild(Node child, int i, int cols, int colpos, string propname= "")
 	{
+		
+		GLib.debug("packChild %s=>%s", this.node.fqn(), child.fqn());
 		// forcing no packing? - true or false? -should we just accept false?
 		if (child.has("* pack") && child.get("* pack").down() == "false") {
 			return; // force no packing
@@ -820,6 +842,9 @@ public class JsRender.NodeToVala : Object {
 			return;  
 		}
 		switch (this.node.fqn()) {
+			
+				
+		
 			case "Gtk.Fixed":
 			case "Gtk.Layout":
 				var x = child.has("x") ?  child.get_prop("x").val  : "0";

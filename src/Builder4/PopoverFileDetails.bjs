@@ -15,6 +15,7 @@
     {
      "$ pack" : "add",
      "$ xns" : "Gtk",
+     "* pack" : "add",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool homogeneous" : false,
      "items" : [
@@ -435,10 +436,12 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_end,false,true,0",
+       "* pack" : "add",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "int margin_bottom" : 4,
        "int margin_left" : 4,
        "int margin_right" : 4,
+       "int margin_top" : 4,
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -598,7 +601,7 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "HButtonBox"
+       "xtype" : "ButtonBox"
       }
      ],
      "xtype" : "Box"
@@ -612,39 +615,20 @@
      "  ",
      "  }",
      "} "
+    ],
+    "hide" : [
+     "( ) => {",
+     "",
+     " if (!this.done) {",
+     "    _this.el.show();",
+     "  ",
+     "  }",
+     "}",
+     ""
     ]
    },
    "uint border_width" : 0,
    "xtype" : "Popover",
-   "|   void updateFileFromEntry" : [
-    "() {",
-    "",
-    "        _this.file.title = _this.title.el.get_text();",
-    "        _this.file.region = _this.region.el.get_text();            ",
-    "        _this.file.parent = _this.parent.el.get_text();                        ",
-    "        _this.file.permname = _this.permname.el.get_text();                                    ",
-    "        _this.file.modOrder = _this.modOrder.el.get_text();",
-    "        ",
-    "        if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {",
-    "            _this.file.renameTo(_this.name.el.get_text());",
-    "        }",
-    "        // store the module...",
-    "        _this.file.build_module = \"\";        ",
-    "         Gtk.TreeIter iter; ",
-    "        if (_this.build_module.el.get_active_iter (out iter)) {",
-    "             Value vfname;",
-    "             this.dbmodel.el.get_value (iter, 0, out vfname);",
-    "             if (((string)vfname).length > 0) {",
-    "                 _this.file.build_module = (string)vfname;",
-    "             }",
-    "    ",
-    "        }",
-    "        ",
-    "        ",
-    "",
-    "                                                    ",
-    "}    "
-   ],
    "| void show" : [
     "(JsRender.JsRender c, Gtk.Widget btn) ",
     "{",
@@ -721,6 +705,35 @@
     "    ",
     "    ",
     "}"
+   ],
+   "| void updateFileFromEntry" : [
+    "() {",
+    "",
+    "        _this.file.title = _this.title.el.get_text();",
+    "        _this.file.region = _this.region.el.get_text();            ",
+    "        _this.file.parent = _this.parent.el.get_text();                        ",
+    "        _this.file.permname = _this.permname.el.get_text();                                    ",
+    "        _this.file.modOrder = _this.modOrder.el.get_text();",
+    "        ",
+    "        if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {",
+    "            _this.file.renameTo(_this.name.el.get_text());",
+    "        }",
+    "        // store the module...",
+    "        _this.file.build_module = \"\";        ",
+    "         Gtk.TreeIter iter; ",
+    "        if (_this.build_module.el.get_active_iter (out iter)) {",
+    "             Value vfname;",
+    "             this.dbmodel.el.get_value (iter, 0, out vfname);",
+    "             if (((string)vfname).length > 0) {",
+    "                 _this.file.build_module = (string)vfname;",
+    "             }",
+    "    ",
+    "        }",
+    "        ",
+    "        ",
+    "",
+    "                                                    ",
+    "}    "
    ]
   }
  ],

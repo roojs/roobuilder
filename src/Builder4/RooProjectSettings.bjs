@@ -1,315 +1,630 @@
 {
- "name" : "RooProjectSettings",
- "parent" : "",
- "title" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/RooProjectSettings.bjs",
- "permname" : "",
- "modOrder" : "",
  "build_module" : "builder",
  "items" : [
   {
-   "@ void buttonPressed" : "(string btn)",
-   "id" : "RooProjectSettings",
-   "| void show" : " (Gtk.Widget btn, Project.Project project) {\n    _this.project = project;\n    _this.path.el.label = project.firstPath();\n    // get the active project.\n     var lm = Gtk.SourceLanguageManager.get_default();\n                \n    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(\n        lm.get_language(\"html\")\n    );\n  \n    //print (project.fn);\n    //project.runhtml = project.runhtml || '';\n    _this.view.el.get_buffer().set_text(project.runhtml);\n    \n      \n      \n    _this.rootURL.el.set_text( _this.project.rootURL );\n    \n    _this.html_gen_model.loadData(_this.project.html_gen);\n\n    _this.base_template_model.loadData();\n    \n     var js = _this.project;\n    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );\n    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );\n    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );\n    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );\n    \n    \t//console.log('show all');\n\tthis.el.set_modal(true);\n\tthis.el.set_relative_to(btn);\n\n\tthis.el.set_position(Gtk.PositionType.RIGHT);\n\n\t// window + header?\n\t print(\"SHOWALL - POPIP\\n\");\n\tthis.el.show_all();\n\tthis.el.set_size_request(800,500);\n\tthis.view.el.grab_focus();\n\t\n    \n    //this.el.show_all();\n}\n",
-   "xtype" : "Popover",
-   "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
-   "| void save" : "() {\n   var buf =    _this.view.el.get_buffer();\n   Gtk.TextIter s;\n     Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n\t_this.project.runhtml = buf.get_text(s,e,true);\n      \n    _this.project.rootURL = _this.rootURL.el.get_text();\n    \n    \n    Gtk.TreeIter iter;\n    Value html_gen_val;\n    _this.html_gen.el.get_active_iter(out iter);\n    _this.html_gen_model.el.get_value (iter, 0, out html_gen_val);\n    \n    _this.project.html_gen = (string)html_gen_val;\n    \n    // set by event changed...\n    //_this.project.base_template = _this.base_template.el.get_text();    \n    \n    var js = _this.project.json_project_data;\n    js.set_string_member(\"DBTYPE\", _this.database_DBTYPE.el.get_text());\n   js.set_string_member(\"DBNAME\", _this.database_DBNAME.el.get_text());\n    js.set_string_member(\"DBUSERNAME\", _this.database_DBUSERNAME.el.get_text());\n    js.set_string_member(\"DBPASSWORD\", _this.database_DBPASSWORD.el.get_text());\n//    _this.project.set_string_member(\"DBHOST\", _this.DBTYPE.el.get_text());    \n    \n    // need to re-init the database \n    \n    _this.project.initRooDatabase();\n     \n    \n}",
    "$ xns" : "Gtk",
+   "@ void buttonPressed" : "(string btn)",
+   "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Project.Project project" : "",
+   "bool done" : false,
    "bool modal" : true,
-   "uint border_width" : 0,
+   "id" : "RooProjectSettings",
    "items" : [
     {
-     "xtype" : "Box",
-     "* pack" : "add",
+     "$ homogeneous" : false,
      "$ xns" : "Gtk",
+     "* pack" : "add",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "border_width" : 5,
-     "$ homogeneous" : false,
      "items" : [
       {
-       "* pack" : "pack_start,true,true,0",
-       "xtype" : "Notebook",
        "$ xns" : "Gtk",
+       "* pack" : "pack_start,true,true,0",
        "items" : [
         {
+         "$ xns" : "Gtk",
+         "* pack" : false,
          "id" : "label_global",
-         "xtype" : "Label",
-         "* pack" : false,
-         "$ xns" : "Gtk",
-         "utf8 label" : "Global"
+         "utf8 label" : "Global",
+         "xtype" : "Label"
         },
         {
+         "$ xns" : "Gtk",
+         "* pack" : false,
          "id" : "label_database",
-         "* pack" : false,
-         "xtype" : "Label",
-         "$ xns" : "Gtk",
-         "utf8 label" : "Database"
+         "utf8 label" : "Database",
+         "xtype" : "Label"
         },
         {
-         "* pack" : "append_page,_this.label_global.el",
-         "xtype" : "Box",
-         "gboolean homogeneous" : false,
          "$ xns" : "Gtk",
+         "* pack" : "append_page,_this.label_global.el",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "gboolean homogeneous" : false,
          "items" : [
           {
-           "id" : "grid",
-           "int margin_right" : 4,
-           "* pack" : "pack_start,false,false,4",
-           "xtype" : "Grid",
-           "uint row_spacing" : 2,
-           "n_columns" : 2,
-           "$ xns" : "Gtk",
-           "n_rows" : 7,
            "$ homogeneous" : true,
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,4",
+           "id" : "grid",
            "int margin_left" : 4,
+           "int margin_right" : 4,
            "items" : [
             {
+             "$ xns" : "Gtk",
+             "* pack" : "attach,0,0,1,1",
+             "gint margin" : 3,
              "label" : "Filename",
              "xalign" : 0,
-             "* pack" : "attach,0,0,1,1",
-             "xtype" : "Label",
-             "gint margin" : 3,
-             "$ xns" : "Gtk"
+             "xtype" : "Label"
             },
             {
-             "label" : "filename",
-             "id" : "path",
-             "xalign" : 0,
+             "$ xns" : "Gtk",
              "* pack" : "attach,1,0,1,1",
-             "xtype" : "Label",
              "gint margin" : 3,
-             "$ xns" : "Gtk"
+             "id" : "path",
+             "label" : "filename",
+             "xalign" : 0,
+             "xtype" : "Label"
             },
             {
-             "label" : "HTML template file",
+             "$ xns" : "Gtk",
              "* pack" : "attach,0,1,1,1",
-             "xtype" : "Label",
              "gint margin" : 3,
-             "$ xns" : "Gtk"
+             "label" : "HTML template file",
+             "xtype" : "Label"
             },
             {
-             "listeners" : {
-              "changed" : "() => {\n\tGtk.TreeIter iter;\n \n\t// this get's called when we are filling in the data... ???\n\tif (this.loading) {\n\t\treturn;\n\t}\n\t\n \n\tif (this.el.get_active_iter(out iter)) {\n\t\tValue vfname;\n\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);\n\t\t_this.project.base_template = ((string)vfname) ;\n\t\t\n\t\t print(\"\\nSET base template to %s\\n\", _this.project.base_template );\n\t\t// is_bjs = ((string)vfname) == \"bjs\";\n\t}\n    \n  \n    // directory is only available for non-bjs \n \n\n\n}\n"
-             },
-             "id" : "base_template",
-             "bool loading" : false,
+             "$ xns" : "Gtk",
              "* init" : "this.el.add_attribute(_this.base_template_cellrenderer.el , \"markup\", 0 );",
              "* pack" : "attach,1,1,1,1",
-             "xtype" : "ComboBox",
-             "$ xns" : "Gtk",
+             "bool loading" : false,
+             "id" : "base_template",
              "items" : [
               {
-               "id" : "base_template_cellrenderer",
-               "xtype" : "CellRendererText",
+               "$ xns" : "Gtk",
                "* pack" : "pack_start,true",
-               "$ xns" : "Gtk"
+               "id" : "base_template_cellrenderer",
+               "xtype" : "CellRendererText"
               },
               {
-               "id" : "base_template_model",
-               "xtype" : "ListStore",
-               "* pack" : "set_model",
                "$ columns" : "typeof(string)",
-               "n_columns" : 1,
                "$ xns" : "Gtk",
-               "| void loadData" : "  () {\n\t_this.base_template.loading = true;\n  \n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n   /// el.append(out iter);\n    \n   \n    el.append(out iter);\n    el.set_value(iter, 0, \"roo.builder.html\");\n    _this.base_template.el.set_active_iter(iter);\n\tif (_this.project.base_template == \"roo.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\n    el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap.builder.html\");\n  \n\tprint(\"\\ncur template = %s\\n\", _this.project.base_template);\n \n    if (_this.project.base_template == \"bootstrap.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n\t  el.append(out iter);\n    el.set_value(iter, 0, \"bootstrap4.builder.html\");\n     if (_this.project.base_template == \"bootstrap4.builder.html\") {\n\t   _this.base_template.el.set_active_iter(iter);\n    }\n    \n\n\tel.append(out iter);\n    el.set_value(iter, 0, \"mailer.builder.html\");\n\n\tif (_this.project.base_template == \"mailer.builder.html\") {\n\t    _this.base_template.el.set_active_iter(iter);\n    }\n\t_this.base_template.loading = false;\n                                     \n}\n"
+               "* pack" : "set_model",
+               "id" : "base_template_model",
+               "n_columns" : 1,
+               "xtype" : "ListStore",
+               "| void loadData" : [
+                "  () {",
+                "\t_this.base_template.loading = true;",
+                "  ",
+                "    this.el.clear();                                    ",
+                "    Gtk.TreeIter iter;",
+                "    var el = this.el;",
+                "    ",
+                "   /// el.append(out iter);",
+                "    ",
+                "   ",
+                "    el.append(out iter);",
+                "    el.set_value(iter, 0, \"roo.builder.html\");",
+                "    _this.base_template.el.set_active_iter(iter);",
+                "\tif (_this.project.base_template == \"roo.builder.html\") {",
+                "\t   _this.base_template.el.set_active_iter(iter);",
+                "    }",
+                "",
+                "    el.append(out iter);",
+                "    el.set_value(iter, 0, \"bootstrap.builder.html\");",
+                "  ",
+                "\tprint(\"\\ncur template = %s\\n\", _this.project.base_template);",
+                " ",
+                "    if (_this.project.base_template == \"bootstrap.builder.html\") {",
+                "\t   _this.base_template.el.set_active_iter(iter);",
+                "    }",
+                "\t  el.append(out iter);",
+                "    el.set_value(iter, 0, \"bootstrap4.builder.html\");",
+                "     if (_this.project.base_template == \"bootstrap4.builder.html\") {",
+                "\t   _this.base_template.el.set_active_iter(iter);",
+                "    }",
+                "    ",
+                "",
+                "\tel.append(out iter);",
+                "    el.set_value(iter, 0, \"mailer.builder.html\");",
+                "",
+                "\tif (_this.project.base_template == \"mailer.builder.html\") {",
+                "\t    _this.base_template.el.set_active_iter(iter);",
+                "    }",
+                "\t_this.base_template.loading = false;",
+                "                                     ",
+                "}",
+                ""
+               ]
               }
-             ]
+             ],
+             "listeners" : {
+              "changed" : [
+               "() => {",
+               "\tGtk.TreeIter iter;",
+               " ",
+               "\t// this get's called when we are filling in the data... ???",
+               "\tif (this.loading) {",
+               "\t\treturn;",
+               "\t}",
+               "\t",
+               " ",
+               "\tif (this.el.get_active_iter(out iter)) {",
+               "\t\tValue vfname;",
+               "\t\t_this.base_template_model.el.get_value (iter, 0, out vfname);",
+               "\t\t_this.project.base_template = ((string)vfname) ;",
+               "\t\t",
+               "\t\t print(\"\\nSET base template to %s\\n\", _this.project.base_template );",
+               "\t\t// is_bjs = ((string)vfname) == \"bjs\";",
+               "\t}",
+               "    ",
+               "  ",
+               "    // directory is only available for non-bjs ",
+               " ",
+               "",
+               "",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "ComboBox"
             },
             {
-             "label" : "root URL",
+             "$ xns" : "Gtk",
              "* pack" : "attach,0,2,1,1",
-             "xtype" : "Label",
              "gint margin" : 3,
-             "$ xns" : "Gtk"
+             "label" : "root URL",
+             "xtype" : "Label"
             },
             {
-             "id" : "rootURL",
+             "$ xns" : "Gtk",
              "* pack" : "attach,1,2,1,1",
-             "xtype" : "Entry",
-             "$ xns" : "Gtk"
+             "id" : "rootURL",
+             "xtype" : "Entry"
             },
             {
-             "label" : "Generate HTML in",
-             "xtype" : "Label",
+             "$ xns" : "Gtk",
              "* pack" : "attach,0,3,1,1",
              "gint margin" : 3,
-             "$ xns" : "Gtk"
+             "label" : "Generate HTML in",
+             "xtype" : "Label"
             },
             {
-             "id" : "html_gen",
+             "$ xns" : "Gtk",
              "* init" : "this.el.add_attribute(_this.html_gen_cellrenderer.el , \"markup\", 1 );",
              "* pack" : "attach,1,3,1,1",
-             "xtype" : "ComboBox",
-             "$ xns" : "Gtk",
+             "id" : "html_gen",
              "items" : [
               {
-               "id" : "html_gen_cellrenderer",
+               "$ xns" : "Gtk",
                "* pack" : "pack_start,true",
-               "xtype" : "CellRendererText",
-               "$ xns" : "Gtk"
+               "id" : "html_gen_cellrenderer",
+               "xtype" : "CellRendererText"
               },
               {
-               "id" : "html_gen_model",
-               "* pack" : "set_model",
-               "xtype" : "ListStore",
                "$ columns" : "typeof(string),typeof(string)",
-               "n_columns" : 2,
                "$ xns" : "Gtk",
-               "| void loadData" : "  (string cur) {\n    this.el.clear();                                    \n    Gtk.TreeIter iter;\n    var el = this.el;\n    \n \n    el.append(out iter);\n\n    \n    el.set_value(iter, 0, \"\");\n    el.set_value(iter, 1, \"Do not Generate\");\n    _this.html_gen.el.set_active_iter(iter);\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"bjs\");\n    el.set_value(iter, 1, \"same directory as BJS file\");\n\tif (cur == \"bjs\") {\n\t    _this.html_gen.el.set_active_iter(iter);\n    }\n\n\n\n    el.append(out iter);\n    \n    el.set_value(iter, 0, \"templates\");\n    el.set_value(iter, 1, \"in templates subdirectory\");\n\n\tif (cur == \"template\") {\n\t    _this.html_gen.el.set_active_iter(iter);\n    }\n\n                                     \n}\n"
+               "* pack" : "set_model",
+               "id" : "html_gen_model",
+               "n_columns" : 2,
+               "xtype" : "ListStore",
+               "| void loadData" : [
+                "  (string cur) {",
+                "    this.el.clear();                                    ",
+                "    Gtk.TreeIter iter;",
+                "    var el = this.el;",
+                "    ",
+                " ",
+                "    el.append(out iter);",
+                "",
+                "    ",
+                "    el.set_value(iter, 0, \"\");",
+                "    el.set_value(iter, 1, \"Do not Generate\");",
+                "    _this.html_gen.el.set_active_iter(iter);",
+                "",
+                "    el.append(out iter);",
+                "    ",
+                "    el.set_value(iter, 0, \"bjs\");",
+                "    el.set_value(iter, 1, \"same directory as BJS file\");",
+                "\tif (cur == \"bjs\") {",
+                "\t    _this.html_gen.el.set_active_iter(iter);",
+                "    }",
+                "",
+                "",
+                "",
+                "    el.append(out iter);",
+                "    ",
+                "    el.set_value(iter, 0, \"templates\");",
+                "    el.set_value(iter, 1, \"in templates subdirectory\");",
+                "",
+                "\tif (cur == \"template\") {",
+                "\t    _this.html_gen.el.set_active_iter(iter);",
+                "    }",
+                "",
+                "                                     ",
+                "}",
+                ""
+               ]
               }
-             ]
+             ],
+             "xtype" : "ComboBox"
             }
-           ]
+           ],
+           "n_columns" : 2,
+           "n_rows" : 7,
+           "uint row_spacing" : 2,
+           "xtype" : "Grid"
           },
           {
-           "label" : "HTML To insert at end of <HEAD>",
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Label",
-           "$ xns" : "Gtk"
-          },
-          {
-           "* pack" : "pack_start,true,true,0",
-           "xtype" : "ScrolledWindow",
            "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
+           "label" : "HTML To insert at end of <HEAD>",
+           "xtype" : "Label"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,true,true,0",
            "items" : [
             {
-             "listeners" : {
-              "key_release_event" : " ( event) =>{\n    if (event.keyval != 115) {\n        return false;\n         \n    }\n    if   ( (event.state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {\n        return false;\n    }\n     var buf =    this.el.get_buffer();\n    Gtk.TextIter s;\n    Gtk.TextIter e;\n    buf.get_start_iter(out s);\n    buf.get_end_iter(out e);\n    _this.project.runhtml = buf.get_text(s,e,true);\n    \n          \n    _this.buttonPressed(\"save\");\n     \n    return false;\n         \n}"
-             },
-             "id" : "view",
-             "* init" : " \n    var description =   Pango.FontDescription.from_string(\"monospace\");\n    description.set_size(9000);\n    this.el.override_font(description);",
-             "xtype" : "View",
+             "$ xns" : "Gtk",
+             "* init" : [
+              " ",
+              "    var description =   Pango.FontDescription.from_string(\"monospace\");",
+              "    description.set_size(9000);",
+              "    this.el.override_font(description);"
+             ],
              "* pack" : "add",
-             "$ xns" : "GtkSource"
+             "id" : "view",
+             "listeners" : {
+              "key_release_event" : [
+               " ( event) =>{",
+               "    if (event.keyval != 115) {",
+               "        return false;",
+               "         ",
+               "    }",
+               "    if   ( (event.state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {",
+               "        return false;",
+               "    }",
+               "     var buf =    this.el.get_buffer();",
+               "    Gtk.TextIter s;",
+               "    Gtk.TextIter e;",
+               "    buf.get_start_iter(out s);",
+               "    buf.get_end_iter(out e);",
+               "    _this.project.runhtml = buf.get_text(s,e,true);",
+               "    ",
+               "          ",
+               "    _this.buttonPressed(\"save\");",
+               "     ",
+               "    return false;",
+               "         ",
+               "}"
+              ]
+             },
+             "xtype" : "SourceView"
             }
-           ]
+           ],
+           "xtype" : "ScrolledWindow"
           }
-         ]
+         ],
+         "xtype" : "Box"
         },
         {
-         "* pack" : "append_page,_this.label_database.el",
-         "xtype" : "Box",
-         "gboolean homogeneous" : false,
          "$ xns" : "Gtk",
+         "* pack" : "append_page,_this.label_database.el",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "gboolean homogeneous" : false,
          "items" : [
           {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
            "label" : "Type (eg. MySQL or PostgreSQL)",
            "xalign" : 0,
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Label",
-           "$ xns" : "Gtk"
+           "xtype" : "Label"
           },
           {
-           "listeners" : {
-            "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
-           },
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBTYPE",
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Entry",
-           "$ xns" : "Gtk"
+           "listeners" : {
+            "key_press_event" : [
+             "(ev) => {",
+             "",
+             "    if (ev.keyval == Gdk.Key.Tab) {",
+             "        _this.database_DBNAME.el.grab_focus();",
+             "        return true;",
+             "    }",
+             "",
+             "",
+             "    return false;",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "Entry"
           },
           {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
            "label" : "Name",
            "xalign" : 0,
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Label",
-           "$ xns" : "Gtk"
+           "xtype" : "Label"
           },
           {
-           "listeners" : {
-            "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBUSERNAME.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
-           },
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBNAME",
-           "xtype" : "Entry",
-           "* pack" : "pack_start,false,false,0",
-           "$ xns" : "Gtk"
+           "listeners" : {
+            "key_press_event" : [
+             "(ev) => {",
+             "",
+             "    if (ev.keyval == Gdk.Key.Tab) {",
+             "        _this.database_DBUSERNAME.el.grab_focus();",
+             "        return true;",
+             "    }",
+             "",
+             "",
+             "    return false;",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "Entry"
           },
           {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
            "label" : "Username",
            "xalign" : 0,
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Label",
-           "$ xns" : "Gtk"
+           "xtype" : "Label"
           },
           {
-           "listeners" : {
-            "key_press_event" : "(ev) => {\n\n    if (ev.keyval == Gdk.Key.Tab) {\n        _this.database_DBPASSWORD.el.grab_focus();\n        return true;\n    }\n\n\n    return false;\n}\n"
-           },
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBUSERNAME",
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Entry",
-           "$ xns" : "Gtk"
+           "listeners" : {
+            "key_press_event" : [
+             "(ev) => {",
+             "",
+             "    if (ev.keyval == Gdk.Key.Tab) {",
+             "        _this.database_DBPASSWORD.el.grab_focus();",
+             "        return true;",
+             "    }",
+             "",
+             "",
+             "    return false;",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "Entry"
           },
           {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
            "label" : "Password",
            "xalign" : 0,
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Label",
-           "$ xns" : "Gtk"
+           "xtype" : "Label"
           },
           {
-           "id" : "database_DBPASSWORD",
-           "xtype" : "Entry",
-           "* pack" : "pack_start,false,false,0",
-           "$ xns" : "Gtk"
-          },
-          {
-           "listeners" : {
-            "clicked" : "() => {\n\n\n  _this.database_ERROR.el.label    = \"\";\n    Gda.Connection cnc;\n    try {\n        // assumes localhost...\n         cnc = Gda.Connection.open_from_string (\n\t\t\t_this.database_DBTYPE.el.get_text(),\n\t\t\t\"DB_NAME=\" + _this.database_DBNAME.el.get_text(), \n\t\t\t\"USERNAME=\" + _this.database_DBUSERNAME.el.get_text() + \n\t\t\t\";PASSWORD=\" + _this.database_DBPASSWORD.el.get_text(),\n\t\t\tGda.ConnectionOptions.NONE\n\t\t);\n   //} catch (Gda.ConnectionError ce) { \n   //   _this.database_ERROR.el.label = ce.message;        \n   } catch(Gda.ConnectionError ue) {\n      _this.database_ERROR.el.label = ue.message;\n        return;\n   }  catch(Gda.ConfigError ue) {\n      _this.database_ERROR.el.label = ue.message;\n        return;\n   }\n  _this.database_ERROR.el.label = \"Connection Succeeded\";\n   cnc.close();\n}"
-           },
-           "* pack" : "pack_start,false,false,0",
-           "xtype" : "Button",
            "$ xns" : "Gtk",
-           "utf8 label" : "Check Connection"
+           "* pack" : "pack_start,false,false,0",
+           "id" : "database_DBPASSWORD",
+           "xtype" : "Entry"
           },
           {
-           "label" : " ",
-           "id" : "database_ERROR",
-           "xalign" : 0,
+           "$ xns" : "Gtk",
            "* pack" : "pack_start,false,false,0",
-           "xtype" : "Label",
+           "listeners" : {
+            "clicked" : [
+             "() => {",
+             "",
+             "",
+             "  _this.database_ERROR.el.label    = \"\";",
+             "    Gda.Connection cnc;",
+             "    try {",
+             "        // assumes localhost...",
+             "         cnc = Gda.Connection.open_from_string (",
+             "\t\t\t_this.database_DBTYPE.el.get_text(),",
+             "\t\t\t\"DB_NAME=\" + _this.database_DBNAME.el.get_text(), ",
+             "\t\t\t\"USERNAME=\" + _this.database_DBUSERNAME.el.get_text() + ",
+             "\t\t\t\";PASSWORD=\" + _this.database_DBPASSWORD.el.get_text(),",
+             "\t\t\tGda.ConnectionOptions.NONE",
+             "\t\t);",
+             "   //} catch (Gda.ConnectionError ce) { ",
+             "   //   _this.database_ERROR.el.label = ce.message;        ",
+             "   } catch(Gda.ConnectionError ue) {",
+             "      _this.database_ERROR.el.label = ue.message;",
+             "        return;",
+             "   }  catch(Gda.ConfigError ue) {",
+             "      _this.database_ERROR.el.label = ue.message;",
+             "        return;",
+             "   }",
+             "  _this.database_ERROR.el.label = \"Connection Succeeded\";",
+             "   cnc.close();",
+             "}"
+            ]
+           },
+           "utf8 label" : "Check Connection",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "pack_start,false,false,0",
            "gint margin" : 3,
-           "$ xns" : "Gtk"
+           "id" : "database_ERROR",
+           "label" : " ",
+           "xalign" : 0,
+           "xtype" : "Label"
           }
-         ]
+         ],
+         "xtype" : "Box"
         }
-       ]
+       ],
+       "xtype" : "Notebook"
       },
       {
-       "* pack" : "pack_end,false,false,0",
-       "xtype" : "Box",
-       "gboolean expand" : false,
+       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "$ homogeneous" : true,
-       "gboolean vexpand" : false,
+       "int margin_bottom" : 4,
+       "int margin_end" : 4,
+       "int margin_start" : 4,
+       "int margin_top" : 4,
        "items" : [
         {
-         "listeners" : {
-          "button_press_event" : "() => {\n    _this.save();\n          \n    _this.buttonPressed(\"apply\");\n        return false;\n}"
-         },
-         "label" : "Apply",
+         "$ xns" : "Gtk",
          "* pack" : "add",
-         "xtype" : "Button",
-         "$ xns" : "Gtk"
+         "listeners" : {
+          "clicked" : [
+           "() => { ",
+           "",
+           "  _this.done = true;",
+           "    _this.el.hide(); ",
+           "}"
+          ]
+         },
+         "string label" : "Cancel",
+         "xtype" : "Button"
         },
         {
-         "listeners" : {
-          "button_press_event" : "() => {\n       _this.save();\n          \n    _this.buttonPressed(\"save\");\n        return false;\n}"
-         },
-         "label" : "Save",
+         "$ xns" : "Gtk",
          "* pack" : "add",
-         "xtype" : "Button",
-         "$ xns" : "Gtk"
+         "listeners" : {
+          "clicked" : [
+           "( ) =>  { ",
+           "",
+           "   _this.buttonPressed(\"apply\");",
+           " ",
+           "   ",
+           "}"
+          ]
+         },
+         "string label" : "Apply / Keep editing",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "add",
+         "listeners" : {
+          "clicked" : [
+           "( ) =>  { ",
+           "",
+           " ",
+           " _this.buttonPressed(\"save\");",
+           " ",
+           "\t// what about .js ?",
+           "   _this.done = true;",
+           "\t_this.el.hide();",
+           "",
+           "// hopefull this will work with bjs files..",
+           "\t",
+           " ",
+           "   ",
+           "}"
+          ]
+         },
+         "string label" : "Save",
+         "xtype" : "Button"
         }
-       ]
+       ],
+       "xtype" : "ButtonBox"
       }
-     ]
+     ],
+     "xtype" : "Box"
     }
+   ],
+   "uint border_width" : 0,
+   "xtype" : "Popover",
+   "| void save" : [
+    "() {",
+    "   var buf =    _this.view.el.get_buffer();",
+    "   Gtk.TextIter s;",
+    "     Gtk.TextIter e;",
+    "    buf.get_start_iter(out s);",
+    "    buf.get_end_iter(out e);",
+    "\t_this.project.runhtml = buf.get_text(s,e,true);",
+    "      ",
+    "    _this.project.rootURL = _this.rootURL.el.get_text();",
+    "    ",
+    "    ",
+    "    Gtk.TreeIter iter;",
+    "    Value html_gen_val;",
+    "    _this.html_gen.el.get_active_iter(out iter);",
+    "    _this.html_gen_model.el.get_value (iter, 0, out html_gen_val);",
+    "    ",
+    "    _this.project.html_gen = (string)html_gen_val;",
+    "    ",
+    "    // set by event changed...",
+    "    //_this.project.base_template = _this.base_template.el.get_text();    ",
+    "    ",
+    "    var js = _this.project.json_project_data;",
+    "    js.set_string_member(\"DBTYPE\", _this.database_DBTYPE.el.get_text());",
+    "   js.set_string_member(\"DBNAME\", _this.database_DBNAME.el.get_text());",
+    "    js.set_string_member(\"DBUSERNAME\", _this.database_DBUSERNAME.el.get_text());",
+    "    js.set_string_member(\"DBPASSWORD\", _this.database_DBPASSWORD.el.get_text());",
+    "//    _this.project.set_string_member(\"DBHOST\", _this.DBTYPE.el.get_text());    ",
+    "    ",
+    "    // need to re-init the database ",
+    "    ",
+    "    _this.project.initRooDatabase();",
+    "     ",
+    "    ",
+    "}"
+   ],
+   "| void show" : [
+    " (Gtk.Widget btn, Project.Project project) {",
+    "    _this.done = false;",
+    "    ",
+    "    _this.project = project;",
+    "    _this.path.el.label = project.firstPath();",
+    "    // get the active project.",
+    "     var lm = Gtk.SourceLanguageManager.get_default();",
+    "                ",
+    "    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(",
+    "        lm.get_language(\"html\")",
+    "    );",
+    "  ",
+    "    //print (project.fn);",
+    "    //project.runhtml = project.runhtml || '';",
+    "    _this.view.el.get_buffer().set_text(project.runhtml);",
+    "    ",
+    "      ",
+    "      ",
+    "    _this.rootURL.el.set_text( _this.project.rootURL );",
+    "    ",
+    "    _this.html_gen_model.loadData(_this.project.html_gen);",
+    "",
+    "    _this.base_template_model.loadData();",
+    "    ",
+    "     var js = _this.project;",
+    "    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );",
+    "    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );",
+    "    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );",
+    "    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );",
+    "    ",
+    "    \t//console.log('show all');",
+    "\tthis.el.set_modal(true);",
+    "\tthis.el.set_relative_to(btn);",
+    "",
+    "\tthis.el.set_position(Gtk.PositionType.RIGHT);",
+    "",
+    "\t// window + header?",
+    "\t print(\"SHOWALL - POPIP\\n\");",
+    "\tthis.el.show_all();",
+    "\tthis.el.set_size_request(800,600);",
+    "\tthis.view.el.grab_focus();",
+    "\t",
+    "    ",
+    "    //this.el.show_all();",
+    "}",
+    ""
    ]
   }
- ]
+ ],
+ "modOrder" : "",
+ "name" : "RooProjectSettings",
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/RooProjectSettings.bjs",
+ "permname" : "",
+ "title" : ""
 }

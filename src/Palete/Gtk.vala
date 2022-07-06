@@ -20,10 +20,7 @@ Events list
 - signature on insert
 - show source interface / help
 
-
-
-
-
+  
 
 */
 
@@ -134,7 +131,9 @@ namespace Palete {
  			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
 		 	//this.add_special_children("Gtk.Dialog","Gtk.Button", "response_id");
 			this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name"); // fake property
-			 
+			
+			this.add_special_children("Gtk.ButtonBox","Gtk.Button", "");
+			
 			this.init_node_defaults();
 		    this.init_child_defaults();  
 		    
@@ -213,7 +212,7 @@ namespace Palete {
 			"Gtk.Socket",
 			"Gtk.ToolItemGroup",
 			
-			"Gtk.ButtonBox",
+			//"Gtk.ButtonBox", << why ? 
 			"Gtk.CellView",
 			"Gtk.EventBox",
 			"Gtk.FlowBoxChild",
@@ -486,7 +485,9 @@ namespace Palete {
 				return null;
 			}
 			var gir = Gir.factory(this.project,es[0]);
-		
+			if (gir == null) {
+				return null;
+			}
 			return gir.classes.get(es[1]);
 		
 		}
