@@ -1021,7 +1021,7 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "HButtonBox"
+       "xtype" : "ButtonBox"
       }
      ],
      "xtype" : "Box"
