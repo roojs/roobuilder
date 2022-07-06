@@ -1376,7 +1376,7 @@ public class Xcls_RooProjectSettings : Object
             this.el.clicked.connect( ( ) =>  { 
             
              
-            _this.project.writeConfig(); 
+             _this.buttonPressed("save");
              
             	// what about .js ?
                _this.done = true;

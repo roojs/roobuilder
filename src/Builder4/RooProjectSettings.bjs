@@ -547,7 +547,7 @@
            "( ) =>  { ",
            "",
            " ",
-           "_this.project.writeConfig(); ",
+           " _this.buttonPressed(\"save\");",
            " ",
            "\t// what about .js ?",
            "   _this.done = true;",
