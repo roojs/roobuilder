@@ -33,6 +33,12 @@
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "int spacing" : 0,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "xtype" : "ButtonBox"
+      }
+     ],
      "xtype" : "Box"
     }
    ],
