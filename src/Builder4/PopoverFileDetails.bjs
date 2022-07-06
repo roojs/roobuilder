@@ -611,7 +611,7 @@
     "closed" : [
      "() => {",
      "  if (!this.done) {",
-     "    _this.el.show_all();",
+     "    _this.el.show();",
      "  ",
      "  }",
      "} "
@@ -620,7 +620,7 @@
      "( ) => {",
      "",
      " if (!this.done) {",
-     "    _this.el.show_all();",
+     "    _this.el.show();",
      "  ",
      "  }",
      "}",
