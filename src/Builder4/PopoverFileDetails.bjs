@@ -364,6 +364,7 @@
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.dircellrenderer.el , \"markup\", 1 );",
          "* pack" : "attach,1,8,1,1",
+         "bool has_entry" : true,
          "id" : "dir",
          "items" : [
           {
