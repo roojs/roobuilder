@@ -14,7 +14,7 @@
     "     this.el.set_icon_name(\"roobuilder\");",
     " "
    ],
-   "BuilderApplication application" : "",
+   "BuilderApplication application" : "null",
    "border_width" : 0,
    "default_height" : 850,
    "default_width" : 1200,

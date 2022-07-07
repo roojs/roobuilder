@@ -53,7 +53,7 @@ public class Xcls_MainWindow : Object
         this.project = null;
 
         // set gobject values
-        this.el.application = ;
+        this.el.application = null;
         this.el.border_width = 0;
         this.el.default_height = 850;
         this.el.default_width = 1200;
