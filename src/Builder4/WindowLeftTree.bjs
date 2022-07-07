@@ -743,7 +743,7 @@
            "$ xns" : "Gtk",
            "* pack" : "pack_start,true",
            "id" : "iconrender",
-           "int width" : 20,
+           "int width" : 16,
            "xtype" : "CellRendererPixbuf"
           },
           {
