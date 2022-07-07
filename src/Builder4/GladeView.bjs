@@ -35,6 +35,7 @@
      "int spacing" : 0,
      "items" : [
       {
+       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "xtype" : "ButtonBox"
       }

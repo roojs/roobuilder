@@ -146,7 +146,7 @@ public class GladeView : Object
         public Xcls_ButtonBox6(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ButtonBox( null );
+            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
 
