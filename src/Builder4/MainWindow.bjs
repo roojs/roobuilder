@@ -48,6 +48,12 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "append",
+             "string label" : "Label",
+             "xtype" : "MenuItem"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "append",
              "xtype" : "SeparatorMenuItem"
             },
             {
