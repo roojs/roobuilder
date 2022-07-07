@@ -68,7 +68,7 @@
               "activate" : [
                "( ) => {",
                "",
-               "\t_this.windowstate.showPopoverFiles(this.el, _this.project, true);",
+               "\t_this.windowstate.showPopoverFiles(this.windowbtn.el, _this.project, true);",
                "}",
                ""
               ]
