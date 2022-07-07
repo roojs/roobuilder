@@ -423,13 +423,19 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		{
 			w.application = this;
 			BuilderApplication.windows.add(w);
+			foreach(var ww in BuilderApplication.windows) {
+				ww.windowbtn.updateMenu();
+			}
+			
 		}
 		
 		public void removeWindow(Xcls_MainWindow w)
 		{
 		
 			BuilderApplication.windows.remove(w);
-		
+			foreach(var ww in BuilderApplication.windows) {
+				ww.windowbtn.updateMenu();
+			}
 		}
 	 
 	}
