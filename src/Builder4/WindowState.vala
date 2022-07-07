@@ -578,31 +578,6 @@ public class WindowState : Object
 	}
 	
 	
-/*
-	public void fileViewInit()
-	{
-		var stage = this.win.rooview.el.get_stage(); // seems odd... 
-		this.clutterfiles = new Xcls_ClutterFiles();
-		this.clutterfiles.ref();
-		stage.add_child(this.clutterfiles.el);
-		this.clutterfiles.el.show();
-
-
-		this.clutterfiles.open.connect((file) => { 
-			this.fileViewOpen(file);
-		});
-		this.clutterfiles.el.transitions_completed.connect(() => {
-			if (this.state == State.FILES) {
-				this.win.rooview.el.hide();
-			} else {
-				this.clutterfiles.el.hide();
-			}
-			
-			
-		});
-
-	}
-	*/
  
 	public void fileDetailsInit()
 	{
@@ -612,7 +587,7 @@ public class WindowState : Object
 		
 		this.file_details.success.connect((project,file) =>
 		{
-			this.fileViewOpen(file);
+			this.fileViewOpen(file, -1, this.file_details.new_window);
 		});
 
 	}
