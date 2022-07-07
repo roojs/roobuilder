@@ -259,6 +259,7 @@ public class Xcls_MainWindow : Object
             	 this.mitems.clear();
             	 for(var wid in this.application.windows.keys) {
             	 	var w = this.applications.windows.get(wid);
+            	 	// fixme find a better way to display this.
             	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
             	 	m.activate.connect(() => {
             	 		this.application.bringToFront(this.application.windows.get(wid));
