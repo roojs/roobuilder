@@ -227,6 +227,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.margin_end = 4;
             this.el.halign = Gtk.Align.START;
             this.el.direction = Gtk.ArrowType.DOWN;
             this.el.use_popover = false;
