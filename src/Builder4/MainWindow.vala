@@ -257,10 +257,12 @@ public class Xcls_MainWindow : Object
             	 	this.el.detach(m);
             	 }
             	 this.mitems.clear();
-            	 for(var w in this.application.windows) {
-            	 	var m = new Gtk.MenuItem.with_label(window.file.toString());
-            	 
-            	 
+            	 for(var wid in this.application.windows.keys) {
+            	 	var w = this.applications.windows.get(wid);
+            	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.toString());
+            	 	m.activate.connect(() => {
+            	 		this.application.bringToFront(this.application.windows.get(wid));
+            	 	});
             	 }
             	 
             });
