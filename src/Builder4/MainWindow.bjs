@@ -92,7 +92,7 @@
            "\t this.mitems.clear();",
            "\t for(var wid in this.application.windows.keys) {",
            "\t \tvar w = this.applications.windows.get(wid);",
-           "\t \tvar m = new Gtk.MenuItem.with_label(w.windowstate.file.toString());",
+           "\t \tvar m = new Gtk.MenuItem.with_label(w.windowstate.file.path);",
            "\t \tm.activate.connect(() => {",
            "\t \t\tthis.application.bringToFront(this.application.windows.get(wid));",
            "\t \t});",
