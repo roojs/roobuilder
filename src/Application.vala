@@ -108,7 +108,7 @@
 		public BuilderApplication (  string[] args)
 		{
 			
-			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
+			
 			_self = FileUtils.read_link("/proc/self/exe");
 			GLib.debug("SELF = %s", _self);
 			
@@ -116,7 +116,7 @@
 			       application_id: "org.roojs.app-builder",
 				flags: ApplicationFlags.FLAGS_NONE
 			);
-					 
+			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();		 
 			configDirectory();
 			this.settings = AppSettings.factory();	
 			var opt_context = new OptionContext ("Application Builder");
