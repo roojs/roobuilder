@@ -285,7 +285,29 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
         public void updateMenu () {
-        
+        	 foreach(var m in  this.mitems) {
+        	 	 this.el.popup.remove(m);
+        	 }
+        	 this.mitems.clear();
+        	   
+        	 foreach(var w in BuilderApplication.windows) {
+        	 	var wid = BuilderApplication.windows.index_of(w);
+        	 	// fixme find a better way to display this.
+        	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
+        	 		continue;
+         		}
+         		if (w.windowstate.file == null) { 
+         			continue;
+        		}
+         		GLib.debug("add menuitem %s", w.windowstate.file.path);
+        	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
+        	 	m.activate.connect(() => {
+        	 		 BuilderApplication.windows.get(wid).el.present();
+        	 	});
+        	 	this.el.popup.append(m);
+        	 	m.show();
+        	 	this.mitems.add(m);
+        	 }
         }
     }
     public class Xcls_Image5 : Object
