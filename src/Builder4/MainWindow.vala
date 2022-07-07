@@ -39,7 +39,6 @@ public class Xcls_MainWindow : Object
     public WindowState windowstate;
     public string title;
     public Project.Project project;
-    public BuilderApplication? application;
 
     // ctor
     public Xcls_MainWindow()
@@ -50,7 +49,6 @@ public class Xcls_MainWindow : Object
         // my vars (dec)
         this.title = "Roo Application Builder";
         this.project = null;
-        this.application = null;
 
         // set gobject values
         this.el.border_width = 0;

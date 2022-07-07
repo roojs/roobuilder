@@ -2,7 +2,6 @@
  "build_module" : "builder",
  "items" : [
   {
-   "# BuilderApplication? application" : "null",
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "",
    "# string title" : "\"Roo Application Builder\"",
