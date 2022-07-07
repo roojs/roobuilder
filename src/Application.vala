@@ -453,7 +453,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		{
 		    var w = new Xcls_MainWindow();
 			w.ref();
-			this.application.addWindow(w);
+			this.addWindow(w);
 			w.el.show_all();
 			w.initChildren();
 			w.windowstate. fileViewOpen(file, false, line);
