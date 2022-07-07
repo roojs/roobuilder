@@ -49,7 +49,6 @@ public class Xcls_MainWindow : Object
 
         // my vars (dec)
         this.no_windows = 1;
-        this.windowstate = null;
         this.title = "Roo Application Builder";
         this.project = null;
         this.application = null;
