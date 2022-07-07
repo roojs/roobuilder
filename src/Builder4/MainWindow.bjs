@@ -122,34 +122,6 @@
          ]
         },
         {
-         "$ tooltop_text" : [
-          "\"Open a new Window",
-          "\""
-         ],
-         "$ xns" : "Gtk",
-         "* pack" : "add",
-         "bool always_show_image" : true,
-         "id" : "windownew",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "window-new",
-           "xtype" : "Image"
-          }
-         ],
-         "listeners" : {
-          "clicked" : [
-           "  ( ) => {",
-           "     _this.openNewWindow();",
-           "      ",
-           "}"
-          ]
-         },
-         "string label" : "Windows",
-         "xtype" : "Button"
-        },
-        {
          "$ tooltop_text" : "\"Open File\"",
          "$ xns" : "Gtk",
          "* pack" : "add",
