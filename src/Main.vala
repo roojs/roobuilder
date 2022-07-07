@@ -23,7 +23,7 @@ int main (string[] args) {
 	 
 
 	var w = Xcls_MainWindow.singleton();
-	
+	w.application = app;
 	w.el.show_all();
 	// it looks like showall after children causes segfault on ubuntu 14.4
 	w.initChildren();
