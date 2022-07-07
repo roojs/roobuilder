@@ -360,6 +360,12 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.label = "New Window";
+
+            //listeners
+            this.el.activate.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions

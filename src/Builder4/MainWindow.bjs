@@ -65,6 +65,15 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "append",
+             "listeners" : {
+              "activate" : [
+               "( ) => {",
+               "",
+               "",
+               "}",
+               ""
+              ]
+             },
              "string label" : "New Window",
              "xtype" : "MenuItem"
             },
