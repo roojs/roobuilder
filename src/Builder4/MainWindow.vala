@@ -264,6 +264,7 @@ public class Xcls_MainWindow : Object
             	 	m.activate.connect(() => {
             	 		this.application.bringToFront(this.application.windows.get(wid));
             	 	});
+            	 	this.el.append(m);
             	 }
             	 
             });

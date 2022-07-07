@@ -97,6 +97,7 @@
            "\t \tm.activate.connect(() => {",
            "\t \t\tthis.application.bringToFront(this.application.windows.get(wid));",
            "\t \t});",
+           "\t \tthis.el.append(m);",
            "\t }",
            "\t ",
            "}",
