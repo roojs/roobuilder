@@ -90,7 +90,7 @@
            "\t \tthis.el.detach(m);",
            "\t }",
            "\t this.mitems.clear();",
-           "\t foreach(var wid in this.application.windows.keys) {",
+           "\t foreach(var wid in this.application.windows) {",
            "\t \tvar w = this.applications.windows.get(wid);",
            "\t \t// fixme find a better way to display this.",
            "\t \tvar m = new Gtk.MenuItem.with_label(w.windowstate.file.path);",
