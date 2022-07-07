@@ -44,7 +44,7 @@
          ],
          "bool always_show_image" : true,
          "bool use_popover" : false,
-         "id" : "",
+         "id" : "windowbtn",
          "items" : [
           {
            "$ xns" : "Gtk",

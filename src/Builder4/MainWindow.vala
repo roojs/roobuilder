@@ -13,7 +13,7 @@ public class Xcls_MainWindow : Object
         return _MainWindow;
     }
     public Xcls_headerbar headerbar;
-    public Xcls_MenuButton4 MenuButton4;
+    public Xcls_windowbtn windowbtn;
     public Xcls_windownew windownew;
     public Xcls_open_projects_btn open_projects_btn;
     public Xcls_vbox vbox;
@@ -201,7 +201,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuButton4( _this );
+            var child_0 = new Xcls_windowbtn( _this );
             child_0.ref();
             this.el.add(  child_0.el );
             var child_1 = new Xcls_windownew( _this );
@@ -214,7 +214,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_MenuButton4 : Object
+    public class Xcls_windowbtn : Object
     {
         public Gtk.MenuButton el;
         private Xcls_MainWindow  _this;
@@ -224,10 +224,10 @@ public class Xcls_MainWindow : Object
         public Gee.ArrayList<Gtk.MenuItem> mitems;
 
         // ctor
-        public Xcls_MenuButton4(Xcls_MainWindow _owner )
+        public Xcls_windowbtn(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.MenuButton4 = this;
+            _this.windowbtn = this;
             this.el = new Gtk.MenuButton();
 
             // my vars (dec)
