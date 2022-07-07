@@ -253,7 +253,15 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.activate.connect( ( ) => {
             	 // update files
+            	 for(var m in  this.mitems.values) {
+            	 	this.el.detach(m);
+            	 }
+            	 this.mitems.clear();
+            	 for(var w in this.application.windows) {
+            	 	var m = new Gtk.MenuItem.with_label(window.file.toString());
             	 
+            	 
+            	 }
             	 
             });
         }
