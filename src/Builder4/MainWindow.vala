@@ -269,6 +269,7 @@ public class Xcls_MainWindow : Object
             	 		 BuilderApplication.windows.get(wid).el.present();
             	 	});
             	 	this.el.popup.append(m);
+            	 	m.show();
             	 	this.mitems.add(m);
             	 }
             	 this.el.popup.show_all();

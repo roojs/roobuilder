@@ -96,6 +96,7 @@
            "\t \t\t BuilderApplication.windows.get(wid).el.present();",
            "\t \t});",
            "\t \tthis.el.popup.append(m);",
+           "\t \tm.show();",
            "\t \tthis.mitems.add(m);",
            "\t }",
            "\t this.el.popup.show_all();",
