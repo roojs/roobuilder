@@ -894,7 +894,7 @@ public class Xcls_MainWindow : Object
                     return  ;
                 }
                  _this.windowstate.file_details.show(
-                    _this.windowstate.file, this.el, this.new_window
+                    _this.windowstate.file, this.el, false
                 );
                  
                 return  ;    
