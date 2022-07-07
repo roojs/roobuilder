@@ -264,6 +264,10 @@ public class Xcls_MainWindow : Object
             	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
             	 		continue;
              		}
+             		if (w.windowstate.file == null) { 
+             			continue;
+            		}
+             		GLib.log("add menuitem %s", w.windowstate.file.path);
             	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
             	 	m.activate.connect(() => {
             	 		 BuilderApplication.windows.get(wid).el.present();
