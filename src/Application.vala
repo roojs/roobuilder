@@ -14,7 +14,7 @@
 				this.save();
 			});
 		}
-
+ 
 		public static AppSettings factory()
 		{
 			 
@@ -417,23 +417,23 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			GLib.Process.exit(Posix.EXIT_SUCCESS);		
 		}
 		
+		public  Gee.ArrayList<Xcls_MainWindow> windows;
+		
+		public void addWindow(Xcls_MainWindow w)
+		{
+			w.application = this;
+			this.windows.add(w);
+		}
+		
+		public void removeWindow(Xcls_MainWindow w)
+		{
+		
+			this.windows.remove(w);
+		
+		}
 	 
 	}
 	
-	public  Gee.ArrayList<Xcls_MainWindow> windows;
-	
-	public void addWindow(Xcls_MainWindow w)
-	{
-		w.application = this;
-		this.windows.add(w);
-	}
-	
-	public void removeWindow(Xcls_MainWindow w)
-	{
-	
-		this.windows.remove(w);
-	
-	}
 	
 		
 
