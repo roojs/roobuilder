@@ -98,9 +98,9 @@
            "\t \tm.activate.connect(() => {",
            "\t \t\t this.application.windows.get(wid).el.present();",
            "\t \t});",
-           "\t \tthis.el.popup.el.append(m);",
+           "\t \tthis.el.popup.append(m);",
            "\t }",
-           "\t this.el.popup.el.show_all();",
+           "\t this.el.popup.show_all();",
            "\t ",
            "}",
            ""

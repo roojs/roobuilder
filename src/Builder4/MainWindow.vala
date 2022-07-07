@@ -265,9 +265,9 @@ public class Xcls_MainWindow : Object
             	 	m.activate.connect(() => {
             	 		 this.application.windows.get(wid).el.present();
             	 	});
-            	 	this.el.popup.el.append(m);
+            	 	this.el.popup.append(m);
             	 }
-            	 this.el.popup.el.show_all();
+            	 this.el.popup.show_all();
             	 
             });
         }
