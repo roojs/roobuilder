@@ -722,7 +722,7 @@
     ],
     "destroy" : [
      "() =>  {",
-     " Xcls_MainWindow.singleton().no_windows--;",
+     " ",
      " ",
      " Resources.singleton().disconnect(_this.statusbar.handler_id);",
      " ",

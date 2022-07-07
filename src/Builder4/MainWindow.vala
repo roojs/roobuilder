@@ -71,7 +71,7 @@ public class Xcls_MainWindow : Object
             return false;
         });
         this.el.destroy.connect( () =>  {
-         Xcls_MainWindow.singleton().no_windows--;
+         
          
          Resources.singleton().disconnect(_this.statusbar.handler_id);
          
