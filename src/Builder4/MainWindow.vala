@@ -221,6 +221,7 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
+        public Gee.ArrayList<Gtk.MenuItem> mitems;
 
         // ctor
         public Xcls_MenuButton4(Xcls_MainWindow _owner )

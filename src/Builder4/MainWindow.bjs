@@ -31,6 +31,7 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
+         "# Gee.ArrayList<Gtk.MenuItem> mitems" : "",
          "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ Gtk.ArrowType direction" : "Gtk.ArrowType.DOWN",
          "$ xns" : "Gtk",
