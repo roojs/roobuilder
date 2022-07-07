@@ -254,10 +254,10 @@ public class Xcls_MainWindow : Object
             this.el.activate.connect( ( ) => {
             	 // update files
             	 foreach(var m in  this.mitems) {
-            	 	this.el.detach(m);
+            	 	 this.el.popup.el.detach(m);
             	 }
             	 this.mitems.clear();
-            	 var 
+            	   
             	 foreach(var w in this.application.windows) {
             	 	var wid = this.applications.windows.index_of(w);
             	 	// fixme find a better way to display this.
@@ -265,8 +265,9 @@ public class Xcls_MainWindow : Object
             	 	m.activate.connect(() => {
             	 		 this.application.windows.get(wid).el.present();
             	 	});
-            	 	this.el.append(m);
+            	 	this.el.popup.el.append(m);
             	 }
+            	 this.el.popup.el.show_all();
             	 
             });
         }
