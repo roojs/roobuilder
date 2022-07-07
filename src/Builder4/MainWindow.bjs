@@ -91,7 +91,7 @@
            "\t }",
            "\t this.mitems.clear();",
            "\t   ",
-           "\t foreach(var w in this.application.windows) {",
+           "\t foreach(var w in _this.application.windows) {",
            "\t \tvar wid = _this.applications.windows.index_of(w);",
            "\t \t// fixme find a better way to display this.",
            "\t \tvar m = new Gtk.MenuItem.with_label(w.windowstate.file.path);",
