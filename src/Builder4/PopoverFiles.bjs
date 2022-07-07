@@ -676,9 +676,10 @@
     ""
    ],
    "| void show" : [
-    "(Gtk.Widget on_el, Project.Project? project ) {",
+    "(Gtk.Widget on_el, Project.Project? project, bool new_window) {",
     "\t//this.editor.show( file, node, ptype, key);",
     "\t",
+    "\tthis.new_window = new_window;",
     "\t\t// save...",
     "\tthis.load();",
     "\tif (project != null) {",
