@@ -419,11 +419,11 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		
 		public static Gee.ArrayList<Xcls_MainWindow> windows;
 		
-		public void addWindow(Xcls_MainWindow w)
+		public static void addWindow(Xcls_MainWindow w)
 		{
 			w.application = this;
 			BuilderApplication.windows.add(w);
-			this.updateWindows();
+			BuilderApplication.updateWindows();
 		}
 		
 		public static void removeWindow(Xcls_MainWindow w)
