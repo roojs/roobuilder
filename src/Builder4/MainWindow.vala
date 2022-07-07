@@ -154,7 +154,7 @@ public class Xcls_MainWindow : Object
     	this.application.addWindow(w);
         w.el.show_all();
         w.initChildren();
-        w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);
+        w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);
          
     }
     public class Xcls_headerbar : Object
