@@ -23,12 +23,12 @@ public class Xcls_PopoverFiles : Object
     public Xcls_filenamecol filenamecol;
 
         // my vars (def)
-    public Project.Project selectedProject;
-    public bool is_loaded;
-    public bool active;
     public Xcls_MainWindow win;
-    public Gdk.Pixbuf missing_thumb_pixbuf;
+    public Project.Project selectedProject;
     public bool is_loading;
+    public Gdk.Pixbuf missing_thumb_pixbuf;
+    public bool active;
+    public bool is_loaded;
 
     // ctor
     public Xcls_PopoverFiles()
@@ -37,9 +37,9 @@ public class Xcls_PopoverFiles : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
-        this.is_loaded = false;
-        this.active = false;
         this.is_loading = false;
+        this.active = false;
+        this.is_loaded = false;
 
         // set gobject values
         this.el.width_request = 900;
@@ -65,78 +65,6 @@ public class Xcls_PopoverFiles : Object
     }
 
     // user defined functions
-    public void show (Gtk.Widget on_el, Project.Project? project ) {
-    	//this.editor.show( file, node, ptype, key);
-    	
-    		// save...
-    	this.load();
-    	if (project != null) {
-    		this.selectProject(project);
-    	}
-    	
-    	
-        int w,h;
-        this.win.el.get_size(out w, out h);
-        
-        // left tree = 250, editor area = 500?
-        
-        // min 450?
-    	// max hieght ...
-    	
-    	var  ww =  on_el.get_allocated_width();
-    	
-    	// width = should be max = w-ww , or 600 at best..?
-    	 
-        this.el.set_size_request( w, h); // same as parent...
-    
-    
-    	this.el.set_modal(true);
-    	this.el.set_relative_to(on_el);
-    
-    	//this.el.set_position(Gtk.PositionType.BOTTOM);
-    
-    	// window + header?
-     
-    	this.el.show_all();
-        //while(Gtk.events_pending()) { 
-        //        Gtk.main_iteration();   // why?
-        //}  
-    
-    }
-    public void setMainWindow (Xcls_MainWindow win) {
-    	this.win = win;
-    	 
-    }
-    public void load () {
-         // clear list...
-        
-         if (_this.is_loaded) {
-             return;
-         }
-         _this.is_loading = true;
-            
-         _this.is_loaded = true;
-         
-         Project.Project.loadAll();
-         var projects = Project.Project.allProjectsByName();
-         
-         Gtk.TreeIter iter;
-         var m = this.model.el;
-         m.clear();
-              
-         for (var i = 0; i < projects.size; i++) {
-            m.append(out iter);
-            m.set(iter,   0,projects.get(i).name );
-            
-            var o =  GLib.Value(typeof(Object));
-            o.set_object((Object)projects.get(i));
-                       
-            m.set_value(iter, 1, o);
-         
-         }
-         m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
-         _this.is_loading = false;      
-    }
     public void onProjectSelected (Project.Project project) {
     	this.selectedProject = project;
     	project.scanDirs();
@@ -284,6 +212,78 @@ public class Xcls_PopoverFiles : Object
          if (!found) {
     	    print("tried to select %s, could not find it", project.name);
         }
+    }
+    public void show (Gtk.Widget on_el, Project.Project? project ) {
+    	//this.editor.show( file, node, ptype, key);
+    	
+    		// save...
+    	this.load();
+    	if (project != null) {
+    		this.selectProject(project);
+    	}
+    	
+    	
+        int w,h;
+        this.win.el.get_size(out w, out h);
+        
+        // left tree = 250, editor area = 500?
+        
+        // min 450?
+    	// max hieght ...
+    	
+    	var  ww =  on_el.get_allocated_width();
+    	
+    	// width = should be max = w-ww , or 600 at best..?
+    	 
+        this.el.set_size_request( w, h); // same as parent...
+    
+    
+    	this.el.set_modal(true);
+    	this.el.set_relative_to(on_el);
+    
+    	//this.el.set_position(Gtk.PositionType.BOTTOM);
+    
+    	// window + header?
+     
+    	this.el.show_all();
+        //while(Gtk.events_pending()) { 
+        //        Gtk.main_iteration();   // why?
+        //}  
+    
+    }
+    public void load () {
+         // clear list...
+        
+         if (_this.is_loaded) {
+             return;
+         }
+         _this.is_loading = true;
+            
+         _this.is_loaded = true;
+         
+         Project.Project.loadAll();
+         var projects = Project.Project.allProjectsByName();
+         
+         Gtk.TreeIter iter;
+         var m = this.model.el;
+         m.clear();
+              
+         for (var i = 0; i < projects.size; i++) {
+            m.append(out iter);
+            m.set(iter,   0,projects.get(i).name );
+            
+            var o =  GLib.Value(typeof(Object));
+            o.set_object((Object)projects.get(i));
+                       
+            m.set_value(iter, 1, o);
+         
+         }
+         m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
+         _this.is_loading = false;      
+    }
+    public void setMainWindow (Xcls_MainWindow win) {
+    	this.win = win;
+    	 
     }
     public class Xcls_Box2 : Object
     {
@@ -679,7 +679,7 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string), typeof(Object) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string), typeof(Object) }  );
 
             // my vars (dec)
 
@@ -863,7 +863,7 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.iconmodel = this;
-            this.el = new Gtk.ListStore( 4, typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf)  );
+            this.el = new Gtk.ListStore.newv(  { typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf)  }  );
 
             // my vars (dec)
 
@@ -1010,7 +1010,7 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.filemodel = this;
-            this.el = new Gtk.TreeStore( 2, typeof(string), typeof(string) );
+            this.el = new Gtk.TreeStore.newv(  { typeof(string), typeof(string) }  );
 
             // my vars (dec)
 
