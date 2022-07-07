@@ -35,6 +35,12 @@
          "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ Gtk.ArrowType direction" : "Gtk.ArrowType.DOWN",
          "$ xns" : "Gtk",
+         "* init" : [
+          "{",
+          "",
+          "}",
+          ""
+         ],
          "bool always_show_image" : true,
          "bool use_popover" : false,
          "items" : [

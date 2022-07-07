@@ -244,6 +244,12 @@ public class Xcls_MainWindow : Object
             child_1.ref();
             this.el.popup = child_1.el;
 
+            // init method
+
+            {
+            
+            }
+
             //listeners
             this.el.activate.connect( ( ) => {
             	 // update files
