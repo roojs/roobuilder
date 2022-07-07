@@ -259,7 +259,7 @@ public class Xcls_MainWindow : Object
             	 this.mitems.clear();
             	   
             	 foreach(var w in _this.application.windows) {
-            	 	var wid = _this.applications.windows.index_of(w);
+            	 	var wid = _this.application.windows.index_of(w);
             	 	// fixme find a better way to display this.
             	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
             	 	m.activate.connect(() => {
