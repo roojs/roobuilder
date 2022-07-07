@@ -104,7 +104,7 @@
            "\t \tthis.mitems.add(m);",
            "\t }",
            "\t this.el.popup.show_all();",
-           "\t  ",
+           "\t this.el.popup.check_resize();",
            "}",
            ""
           ]

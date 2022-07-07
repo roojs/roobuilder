@@ -277,7 +277,7 @@ public class Xcls_MainWindow : Object
             	 	this.mitems.add(m);
             	 }
             	 this.el.popup.show_all();
-            	  
+            	 this.el.popup.check_resize();
             });
         }
 
