@@ -92,7 +92,7 @@
            "\t this.mitems.clear();",
            "\t   ",
            "\t foreach(var w in BuilderApplication.windows) {",
-           "\t \tvar wid = _this.application.windows.index_of(w);",
+           "\t \tvar wid = BuilderApplication.windows.index_of(w);",
            "\t \t// fixme find a better way to display this.",
            "\t \tif (w.windowstate.file.path == _this.windowstate.file.path) {",
            "\t \t\tcontinue;",

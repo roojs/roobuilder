@@ -259,7 +259,7 @@ public class Xcls_MainWindow : Object
             	 this.mitems.clear();
             	   
             	 foreach(var w in BuilderApplication.windows) {
-            	 	var wid = _this.application.windows.index_of(w);
+            	 	var wid = BuilderApplication.windows.index_of(w);
             	 	// fixme find a better way to display this.
             	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
             	 		continue;
