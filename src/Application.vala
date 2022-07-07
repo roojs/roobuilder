@@ -438,7 +438,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 				ww.windowbtn.updateMenu();
 			}
 		}
-		public Xcls_MainWindow? getWindow(JsRender.JsRender file)
+		public static Xcls_MainWindow? getWindow(JsRender.JsRender file)
 		{
 			foreach(var ww in BuilderApplication.windows) {
 				if (ww.windowstate != null && ww.windowstate.file != null &&  ww.windowstate.file.path == file.path) {
@@ -449,7 +449,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		
 		}
 		
-		public void newWindow(JsRender.JsRender file, int line)
+		public static void newWindow(JsRender.JsRender file, int line)
 		{
 		    var w = new Xcls_MainWindow();
 			w.ref();
