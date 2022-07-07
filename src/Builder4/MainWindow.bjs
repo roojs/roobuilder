@@ -86,11 +86,11 @@
           "activate" : [
            "( ) => {",
            "\t // update files",
-           "\t for(var m in  this.mitems) {",
+           "\t foreach(var m in  this.mitems) {",
            "\t \tthis.el.detach(m);",
            "\t }",
            "\t this.mitems.clear();",
-           "\t for(var wid in this.application.windows.keys) {",
+           "\t foreach(var wid in this.application.windows.keys) {",
            "\t \tvar w = this.applications.windows.get(wid);",
            "\t \t// fixme find a better way to display this.",
            "\t \tvar m = new Gtk.MenuItem.with_label(w.windowstate.file.path);",

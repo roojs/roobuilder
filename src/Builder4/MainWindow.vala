@@ -253,11 +253,11 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.activate.connect( ( ) => {
             	 // update files
-            	 for(var m in  this.mitems) {
+            	 foreach(var m in  this.mitems) {
             	 	this.el.detach(m);
             	 }
             	 this.mitems.clear();
-            	 for(var wid in this.application.windows.keys) {
+            	 foreach(var wid in this.application.windows.keys) {
             	 	var w = this.applications.windows.get(wid);
             	 	// fixme find a better way to display this.
             	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
