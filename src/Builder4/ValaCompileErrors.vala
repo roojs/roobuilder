@@ -314,14 +314,14 @@ public class Xcls_ValaCompileErrors : Object
                     
                 var jsr = p.getByPath(bjsf);
                 if (jsr != null) {
-                    _this.window.windowstate.fileViewOpen(jsr, line);
+                    _this.window.windowstate.fileViewOpen(jsr, true, line);
                     
                     return false;
                 
                 }
                 
                 var pf = JsRender.JsRender.factory("PlainFile", p, fname);
-                _this.window.windowstate.fileViewOpen(pf,line);
+                _this.window.windowstate.fileViewOpen(pf, true, line);
                 
                 // try hiding the left nav..
              
