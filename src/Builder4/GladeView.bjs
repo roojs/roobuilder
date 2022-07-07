@@ -26,41 +26,13 @@
      "$ xns" : "Gtk",
      "* prop" : "buttons[]",
      "* response_id" : 1,
-     "string label" : "Label",
+     "string label" : "xxxx",
      "xtype" : "Button"
     },
     {
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "int spacing" : 0,
-     "items" : [
-      {
-       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "$ xns" : "Gtk",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "string label" : "Label",
-         "xtype" : "Button"
-        }
-       ],
-       "listeners" : {
-        "delete_event" : [
-         "(event) => {",
-         "",
-         "\treturn bool;",
-         "}",
-         ""
-        ]
-       },
-       "xtype" : "ButtonBox",
-       "| void test1" : [
-        "() {",
-        "",
-        "}"
-       ]
-      }
-     ],
      "xtype" : "Box"
     }
    ],

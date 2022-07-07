@@ -818,14 +818,19 @@ namespace Palete {
 				 
 				if (this.child_defaults.has_key(parent.fqn())) {
 					foreach(var k in this.child_defaults.get(parent.fqn())) {
-						child.set_prop(k.dupe());
+						if (!child.has(k.to_index_key())) { 
+							child.set_prop(k.dupe());
+						}
 					}
 				}
 			}
 			if (this.node_defaults.has_key(child.fqn())) {
 				foreach(var k in this.node_defaults.get(child.fqn())) {
-					GLib.print("Adding Property %s", k.to_tooltip());
-					child.set_prop(k.dupe());
+
+					if (!child.has(k.to_index_key())) { 
+						GLib.debug("Adding Property %s", k.to_tooltip());
+						child.set_prop(k.dupe());
+					}
 				}
 			}
 			
