@@ -77,7 +77,7 @@
           }
          ],
          "listeners" : {
-          "toggle" : [
+          "toggled" : [
            "( ) => {",
            "\t // update files",
            "\t foreach(var m in  this.mitems) {",
@@ -104,7 +104,7 @@
            "\t \tthis.mitems.add(m);",
            "\t }",
            "\t this.el.popup.show_all();",
-           "\t ",
+           "\t  ",
            "}",
            ""
           ]

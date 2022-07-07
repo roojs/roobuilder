@@ -251,7 +251,7 @@ public class Xcls_MainWindow : Object
             }
 
             //listeners
-            this.el.toggle.connect( ( ) => {
+            this.el.toggled.connect( ( ) => {
             	 // update files
             	 foreach(var m in  this.mitems) {
             	 	 this.el.popup.remove(m);
@@ -277,7 +277,7 @@ public class Xcls_MainWindow : Object
             	 	this.mitems.add(m);
             	 }
             	 this.el.popup.show_all();
-            	 
+            	  
             });
         }
 
