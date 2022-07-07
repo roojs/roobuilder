@@ -234,6 +234,7 @@ public class Xcls_MainWindow : Object
             this.el.halign = Gtk.Align.START;
             this.el.direction = Gtk.ArrowType.DOWN;
             this.el.use_popover = false;
+            this.el.always_show_image = true;
             this.el.label = "Windows";
             var child_0 = new Xcls_Image5( _this );
             child_0.ref();
