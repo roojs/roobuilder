@@ -40,6 +40,11 @@
            "* pack" : "set_image",
            "utf8 icon_name" : "window-new",
            "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "popup",
+           "xtype" : "Menu"
           }
          ],
          "listeners" : {
