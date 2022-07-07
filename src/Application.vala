@@ -426,13 +426,13 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			this.updateWindows();
 		}
 		
-		public void removeWindow(Xcls_MainWindow w)
+		public static void removeWindow(Xcls_MainWindow w)
 		{
 		
 			BuilderApplication.windows.remove(w);
-			this.updateWindows();
+			BuilderApplication.updateWindows();
 		}
-		public void updateWindows()
+		public static void updateWindows()
 		{
 			foreach(var ww in BuilderApplication.windows) {
 				ww.windowbtn.updateMenu();
@@ -453,7 +453,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		{
 		    var w = new Xcls_MainWindow();
 			w.ref();
-			this.addWindow(w);
+			BuilderApplication.addWindow(w);
 			w.el.show_all();
 			w.initChildren();
 			w.windowstate. fileViewOpen(file, false, line);
