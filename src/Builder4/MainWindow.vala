@@ -251,7 +251,7 @@ public class Xcls_MainWindow : Object
             }
 
             //listeners
-            this.el.activate.connect( ( ) => {
+            this.el.clicked.connect( ( ) => {
             	 // update files
             	 foreach(var m in  this.mitems) {
             	 	 this.el.popup.remove(m);
