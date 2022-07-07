@@ -650,7 +650,7 @@ public class WindowState : Object
 			 
 
 		}
-		this.gotLine(line);
+		this.gotoLine(line);
 	
 		var ctr= this.win.rooviewbox.el;
  
