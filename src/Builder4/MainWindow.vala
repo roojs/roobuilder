@@ -262,7 +262,7 @@ public class Xcls_MainWindow : Object
             	 	// fixme find a better way to display this.
             	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
             	 	m.activate.connect(() => {
-            	 		this.application.bringToFront(this.application.windows.get(wid));
+            	 		 this.application.windows.get(wid).el.present();
             	 	});
             	 	this.el.append(m);
             	 }
