@@ -26,6 +26,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_MainWindow win;
     public Project.Project selectedProject;
     public bool is_loading;
+    public bool new_window;
     public Gdk.Pixbuf missing_thumb_pixbuf;
     public bool active;
     public bool is_loaded;
@@ -38,6 +39,7 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (dec)
         this.is_loading = false;
+        this.new_window = false;
         this.active = false;
         this.is_loaded = false;
 

@@ -7,6 +7,7 @@
    "# Xcls_MainWindow win" : "",
    "# bool is_loaded" : false,
    "# bool is_loading" : false,
+   "# bool new_window" : false,
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.TOP",
    "bool active" : false,
