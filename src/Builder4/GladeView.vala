@@ -127,9 +127,34 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_ButtonBox6( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
         }
 
         // user defined functions
     }
+    public class Xcls_ButtonBox6 : Object
+    {
+        public Gtk.ButtonBox el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ButtonBox6(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ButtonBox( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 }
