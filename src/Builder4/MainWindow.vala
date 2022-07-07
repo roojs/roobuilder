@@ -263,7 +263,11 @@ public class Xcls_MainWindow : Object
         	 foreach(var w in BuilderApplication.windows) {
         	 	var wid = BuilderApplication.windows.index_of(w);
         	 	// fixme find a better way to display this.
-         		if (w.windowstate == null || w.windowstate.file == null || _this.windowstate == null) { 
+         		if (w.windowstate == null ||
+         			 w.windowstate.file == null || 
+         			 _this.windowstate == null ||
+         			 _this.windowstate.file == null
+         			 ) { 
          			continue;
         		}
         	 	
