@@ -1581,6 +1581,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.width = 20;
         }
 
         // user defined functions
