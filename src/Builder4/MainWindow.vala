@@ -258,7 +258,7 @@ public class Xcls_MainWindow : Object
             	 }
             	 this.mitems.clear();
             	   
-            	 foreach(var w in _this.application.windows) {
+            	 foreach(var w in BuilderApplication.windows) {
             	 	var wid = _this.application.windows.index_of(w);
             	 	// fixme find a better way to display this.
             	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
@@ -266,7 +266,7 @@ public class Xcls_MainWindow : Object
              		}
             	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
             	 	m.activate.connect(() => {
-            	 		 _this.application.windows.get(wid).el.present();
+            	 		 BuilderApplication.windows.get(wid).el.present();
             	 	});
             	 	this.el.popup.append(m);
             	 }
