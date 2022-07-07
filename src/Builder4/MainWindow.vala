@@ -147,7 +147,7 @@ public class Xcls_MainWindow : Object
         this.headerbar.el.set_title(this.title + " - " + str);
     }
     public void openNewWindow () {
-    	Xcls_MainWindow.singleton().no_windows++;
+     
         var w = new Xcls_MainWindow();
         w.ref();
     	this.application.addWindow(w);

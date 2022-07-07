@@ -800,7 +800,7 @@
    ],
    "| void openNewWindow" : [
     "() {",
-    "\tXcls_MainWindow.singleton().no_windows++;",
+    " ",
     "    var w = new Xcls_MainWindow();",
     "    w.ref();",
     "\tthis.application.addWindow(w);",
