@@ -51,7 +51,7 @@
           "activate" : [
            "( ) => {",
            "",
-           "\tthis.el.menu_model.append(\"test\",\"test\");",
+           "\t(GLib.Menu)(this.el.menu_model).append(\"test\",\"test\");",
            "}",
            ""
           ]

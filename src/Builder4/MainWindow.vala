@@ -244,7 +244,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.activate.connect( ( ) => {
             
-            	this.el.menu_model.append("test","test");
+            	(GLib.Menu)(this.el.menu_model).append("test","test");
             });
         }
 
