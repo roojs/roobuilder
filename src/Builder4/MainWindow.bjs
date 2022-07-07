@@ -829,7 +829,7 @@
     " ",
     "    var w = new Xcls_MainWindow();",
     "    w.ref();",
-    "\tthis.application.addWindow(w);",
+    "\tBuilderApplication.addWindow(w);",
     "    w.el.show_all();",
     "    w.initChildren();",
     "    w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);",

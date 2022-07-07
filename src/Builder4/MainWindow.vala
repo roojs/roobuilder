@@ -149,7 +149,7 @@ public class Xcls_MainWindow : Object
      
         var w = new Xcls_MainWindow();
         w.ref();
-    	this.application.addWindow(w);
+    	BuilderApplication.addWindow(w);
         w.el.show_all();
         w.initChildren();
         w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);
