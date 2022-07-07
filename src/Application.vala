@@ -438,7 +438,16 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 				ww.windowbtn.updateMenu();
 			}
 		}
+		public Xcls_MainWindow? getWindow(JsRender.File file)
+		{
+			foreach(var ww in BuilderApplication.windows) {
+				if (ww.file != null && ww.file.path == file.path) {
+					return ww;
+				}
+			}
+			return null;
 		
+		}
 		
 		
 	 
