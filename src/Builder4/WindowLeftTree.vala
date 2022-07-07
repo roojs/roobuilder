@@ -1164,7 +1164,7 @@ public class Xcls_WindowLeftTree : Object
             }
             
             this.el.set(
-            		citer, 
+            		iter, 
             		0, node.nodeTitle(),
                     1, node.nodeTip(), 
                     2, o,
@@ -1502,7 +1502,7 @@ public class Xcls_WindowLeftTree : Object
                 } else {
                     this.el.append(out citer,null);
                 }
-                this.iterSetValues(iter, tr.get(i));
+                this.iterSetValues(citer, tr.get(i));
                 
          
                  
