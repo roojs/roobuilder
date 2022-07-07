@@ -37,7 +37,8 @@
          "$ xns" : "Gtk",
          "* init" : [
           "{",
-          "",
+          "\tthis.mitems = new Gee.ArrayList<Gtk.MenuItem>();",
+          "\t",
           "}",
           ""
          ],

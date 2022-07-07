@@ -247,7 +247,8 @@ public class Xcls_MainWindow : Object
             // init method
 
             {
-            
+            	this.mitems = new Gee.ArrayList<Gtk.MenuItem>();
+            	
             }
 
             //listeners
