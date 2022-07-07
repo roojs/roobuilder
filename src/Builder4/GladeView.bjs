@@ -40,6 +40,11 @@
          "$ xns" : "Gtk",
          "string label" : "xxxcc",
          "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "string label" : "xxxcc",
+         "xtype" : "Button"
         }
        ],
        "xtype" : "ButtonBox"
