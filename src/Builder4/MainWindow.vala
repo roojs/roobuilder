@@ -253,7 +253,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.activate.connect( ( ) => {
             	 // update files
-            	 for(var m in  this.mitems.values) {
+            	 for(var m in  this.mitems) {
             	 	this.el.detach(m);
             	 }
             	 this.mitems.clear();

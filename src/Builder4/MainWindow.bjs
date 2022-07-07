@@ -86,7 +86,7 @@
           "activate" : [
            "( ) => {",
            "\t // update files",
-           "\t for(var m in  this.mitems.values) {",
+           "\t for(var m in  this.mitems) {",
            "\t \tthis.el.detach(m);",
            "\t }",
            "\t this.mitems.clear();",
