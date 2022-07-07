@@ -621,7 +621,7 @@ public class WindowState : Object
 		
 		if (existing != null) {
 			existing.el.present();
-			existing.windowstate.gotLine(line);
+			existing.windowstate.gotoLine(line);
 			return;
 		}
 		
