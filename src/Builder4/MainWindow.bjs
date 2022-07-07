@@ -94,7 +94,7 @@
            " \t\tif (w.windowstate.file == null) { ",
            " \t\t\tcontinue;",
            "\t\t}",
-           " \t\tGLib.log(\"add menuitem %s\", w.windowstate.file.path);",
+           " \t\tGLib.debug(\"add menuitem %s\", w.windowstate.file.path);",
            "\t \tvar m = new Gtk.MenuItem.with_label(w.windowstate.file.path);",
            "\t \tm.activate.connect(() => {",
            "\t \t\t BuilderApplication.windows.get(wid).el.present();",
