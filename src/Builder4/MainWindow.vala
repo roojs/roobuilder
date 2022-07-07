@@ -261,6 +261,9 @@ public class Xcls_MainWindow : Object
             	 foreach(var w in _this.application.windows) {
             	 	var wid = _this.application.windows.index_of(w);
             	 	// fixme find a better way to display this.
+            	 	if (w == this) {
+            	 		continue;
+             		}
             	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
             	 	m.activate.connect(() => {
             	 		 _this.application.windows.get(wid).el.present();
