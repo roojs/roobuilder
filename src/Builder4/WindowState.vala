@@ -634,7 +634,7 @@ public class WindowState : Object
 		this.win.project = file.project;
 		this.project = file.project;
 		this.file = file;
-		this.win.application.updateWindows();
+		BuilderApplication.updateWindows();
 		
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();
