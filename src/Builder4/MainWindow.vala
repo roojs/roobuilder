@@ -251,36 +251,6 @@ public class Xcls_MainWindow : Object
             	this.mitems = new Gee.ArrayList<Gtk.MenuItem>();
             	
             }
-
-            //listeners
-            this.el.clicked.connect( ( ) => {
-            	 // update files
-            	 foreach(var m in  this.mitems) {
-            	 	 this.el.popup.remove(m);
-            	 }
-            	 this.mitems.clear();
-            	   
-            	 foreach(var w in BuilderApplication.windows) {
-            	 	var wid = BuilderApplication.windows.index_of(w);
-            	 	// fixme find a better way to display this.
-            	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
-            	 		continue;
-             		}
-             		if (w.windowstate.file == null) { 
-             			continue;
-            		}
-             		GLib.debug("add menuitem %s", w.windowstate.file.path);
-            	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
-            	 	m.activate.connect(() => {
-            	 		 BuilderApplication.windows.get(wid).el.present();
-            	 	});
-            	 	this.el.popup.append(m);
-            	 	m.show();
-            	 	this.mitems.add(m);
-            	 }
-            	 this.el.popup.show_all();
-            	 this.el.popup.reposition();
-            });
         }
 
         // user defined functions
