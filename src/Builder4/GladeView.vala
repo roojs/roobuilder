@@ -26,11 +26,9 @@ public class GladeView : Object
         // set gobject values
         var child_0 = new Xcls_Button2( _this );
         this.el.add_action_widget( child_0.el, 0);
-        var child_1 = new Xcls_Button4( _this );
-        this.el.add_action_widget( child_1.el, 1);
-        var child_2 = new Xcls_Box5( _this );
-        child_2.ref();
-        this.el.get_content_area().add( child_2.el );
+        var child_1 = new Xcls_Box4( _this );
+        child_1.ref();
+        this.el.get_content_area().add( child_1.el );
     }
 
     // user defined functions
@@ -87,30 +85,7 @@ public class GladeView : Object
     }
 
 
-    public class Xcls_Button4 : Object
-    {
-        public Gtk.Button el;
-        private GladeView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button4(GladeView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "xxxx";
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_Box5 : Object
+    public class Xcls_Box4 : Object
     {
         public Gtk.Box el;
         private GladeView  _this;
@@ -119,7 +94,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box5(GladeView _owner )
+        public Xcls_Box4(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -127,14 +102,14 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ButtonBox6( _this );
+            var child_0 = new Xcls_ButtonBox5( _this );
             child_0.ref();
             this.el.add(  child_0.el );
         }
 
         // user defined functions
     }
-    public class Xcls_ButtonBox6 : Object
+    public class Xcls_ButtonBox5 : Object
     {
         public Gtk.ButtonBox el;
         private GladeView  _this;
@@ -143,7 +118,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ButtonBox6(GladeView _owner )
+        public Xcls_ButtonBox5(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
@@ -151,17 +126,17 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button7( _this );
+            var child_0 = new Xcls_Button6( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_Button8( _this );
+            var child_1 = new Xcls_Button7( _this );
             child_1.ref();
             this.el.add(  child_1.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button7 : Object
+    public class Xcls_Button6 : Object
     {
         public Gtk.Button el;
         private GladeView  _this;
@@ -170,7 +145,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button7(GladeView _owner )
+        public Xcls_Button6(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -184,7 +159,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_Button8 : Object
+    public class Xcls_Button7 : Object
     {
         public Gtk.Button el;
         private GladeView  _this;
@@ -193,7 +168,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button8(GladeView _owner )
+        public Xcls_Button7(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();

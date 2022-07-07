@@ -24,13 +24,6 @@
     },
     {
      "$ xns" : "Gtk",
-     "* prop" : "buttons[]",
-     "* response_id" : 1,
-     "string label" : "xxxx",
-     "xtype" : "Button"
-    },
-    {
-     "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "int spacing" : 0,
      "items" : [
