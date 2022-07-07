@@ -50,8 +50,8 @@
          "listeners" : {
           "activate" : [
            "( ) => {",
-           "",
-           "\t(GLib.Menu)(this.el.menu_model).append(\"test\",\"test\");",
+           "\tvar mm = (GLib.Menu)this.el.menu_model;",
+           "\tmm.append(\"test\",\"test\");",
            "}",
            ""
           ]
