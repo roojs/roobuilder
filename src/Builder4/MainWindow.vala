@@ -13,6 +13,7 @@ public class Xcls_MainWindow : Object
         return _MainWindow;
     }
     public Xcls_headerbar headerbar;
+    public Xcls_MenuButton4 MenuButton4;
     public Xcls_windownew windownew;
     public Xcls_open_projects_btn open_projects_btn;
     public Xcls_vbox vbox;
@@ -226,6 +227,7 @@ public class Xcls_MainWindow : Object
         public Xcls_MenuButton4(Xcls_MainWindow _owner )
         {
             _this = _owner;
+            _this.MenuButton4 = this;
             this.el = new Gtk.MenuButton();
 
             // my vars (dec)
@@ -277,7 +279,7 @@ public class Xcls_MainWindow : Object
             	 	this.mitems.add(m);
             	 }
             	 this.el.popup.show_all();
-            	 this.el.popup.check_resize();
+            	 this.el.popup.reposition();
             });
         }
 

@@ -44,6 +44,7 @@
          ],
          "bool always_show_image" : true,
          "bool use_popover" : false,
+         "id" : "",
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -104,7 +105,7 @@
            "\t \tthis.mitems.add(m);",
            "\t }",
            "\t this.el.popup.show_all();",
-           "\t this.el.popup.check_resize();",
+           "\t this.el.popup.reposition();",
            "}",
            ""
           ]
