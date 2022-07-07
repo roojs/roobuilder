@@ -14,7 +14,7 @@
 				this.save();
 			});
 		}
-
+ 
 		public static AppSettings factory()
 		{
 			 
@@ -108,6 +108,7 @@
 		public BuilderApplication (  string[] args)
 		{
 			
+			
 			_self = FileUtils.read_link("/proc/self/exe");
 			GLib.debug("SELF = %s", _self);
 			
@@ -115,7 +116,7 @@
 			       application_id: "org.roojs.app-builder",
 				flags: ApplicationFlags.FLAGS_NONE
 			);
-					 
+			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();		 
 			configDirectory();
 			this.settings = AppSettings.factory();	
 			var opt_context = new OptionContext ("Application Builder");
@@ -416,8 +417,56 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			GLib.Process.exit(Posix.EXIT_SUCCESS);		
 		}
 		
+		public static Gee.ArrayList<Xcls_MainWindow> windows;
+		
+		public static void addWindow(Xcls_MainWindow w)
+		{
+			 
+			BuilderApplication.windows.add(w);
+			BuilderApplication.updateWindows();
+		}
+		
+		public static void removeWindow(Xcls_MainWindow w)
+		{
+		
+			BuilderApplication.windows.remove(w);
+			BuilderApplication.updateWindows();
+		}
+		public static void updateWindows()
+		{
+			foreach(var ww in BuilderApplication.windows) {
+				ww.windowbtn.updateMenu();
+			}
+		}
+		public static Xcls_MainWindow? getWindow(JsRender.JsRender file)
+		{
+			foreach(var ww in BuilderApplication.windows) {
+				if (ww.windowstate != null && ww.windowstate.file != null &&  ww.windowstate.file.path == file.path) {
+					return ww;
+				}
+			}
+			return null;
+		
+		}
+		
+		public static void newWindow(JsRender.JsRender file, int line)
+		{
+		    var w = new Xcls_MainWindow();
+			w.ref();
+			BuilderApplication.addWindow(w);
+			w.el.show_all();
+			w.initChildren();
+			w.windowstate. fileViewOpen(file, false, line);
+			 
+		
+		}
+		
+		
 	 
-	} 
+	}
+	
+	
+		
 
  
 

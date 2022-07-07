@@ -32,6 +32,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_save_btn save_btn;
 
         // my vars (def)
+    public bool new_window;
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public JsRender.JsRender file;
     public Project.Project project;
@@ -45,6 +46,7 @@ public class Xcls_PopoverFileDetails : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.new_window = true;
         this.file = null;
         this.mainwindow = null;
         this.done = false;
@@ -74,11 +76,11 @@ public class Xcls_PopoverFileDetails : Object
     }
 
     // user defined functions
-    public void show (JsRender.JsRender c, Gtk.Widget btn) 
+    public void show (JsRender.JsRender c, Gtk.Widget btn, bool new_window) 
     {
         this.project = c.project;
         this.done = false;
-        
+        this.new_window = new_window;
         
         //if (!this.el) {
             //this.init();
@@ -457,7 +459,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.ftdbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -902,7 +904,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -1040,7 +1042,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dirmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 

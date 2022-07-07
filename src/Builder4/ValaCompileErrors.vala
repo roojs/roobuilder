@@ -15,13 +15,14 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_compile_view compile_view;
     public Xcls_compile_tree compile_tree;
     public Xcls_compile_result_store compile_result_store;
+    public Xcls_column column;
     public Xcls_renderer renderer;
 
         // my vars (def)
     public Xcls_MainWindow window;
-    public bool active;
-    public JsRender.JsRender? file;
     public Json.Object notices;
+    public JsRender.JsRender? file;
+    public bool active;
 
     // ctor
     public Xcls_ValaCompileErrors()
@@ -313,14 +314,14 @@ public class Xcls_ValaCompileErrors : Object
                     
                 var jsr = p.getByPath(bjsf);
                 if (jsr != null) {
-                    _this.window.windowstate.fileViewOpen(jsr, line);
+                    _this.window.windowstate.fileViewOpen(jsr, true, line);
                     
                     return false;
                 
                 }
                 
                 var pf = JsRender.JsRender.factory("PlainFile", p, fname);
-                _this.window.windowstate.fileViewOpen(pf,line);
+                _this.window.windowstate.fileViewOpen(pf, true, line);
                 
                 // try hiding the left nav..
              
@@ -344,7 +345,7 @@ public class Xcls_ValaCompileErrors : Object
         {
             _this = _owner;
             _this.compile_result_store = this;
-            this.el = new Gtk.TreeStore( 4,   typeof(string), typeof(int), typeof(string), typeof(string)  );
+            this.el = new Gtk.TreeStore.newv(  {   typeof(string), typeof(int), typeof(string), typeof(string)  }  );
 
             // my vars (dec)
 
@@ -366,6 +367,7 @@ public class Xcls_ValaCompileErrors : Object
         public Xcls_column(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
+            _this.column = this;
             this.el = new Gtk.TreeViewColumn();
 
             // my vars (dec)

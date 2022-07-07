@@ -4,6 +4,7 @@
   {
    "# JsRender.JsRender file" : "null",
    "# Project.Project project" : "",
+   "# bool new_window" : true,
    "$ xns" : "Gtk",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
@@ -630,11 +631,11 @@
    "uint border_width" : 0,
    "xtype" : "Popover",
    "| void show" : [
-    "(JsRender.JsRender c, Gtk.Widget btn) ",
+    "(JsRender.JsRender c, Gtk.Widget btn, bool new_window) ",
     "{",
     "    this.project = c.project;",
     "    this.done = false;",
-    "    ",
+    "    this.new_window = new_window;",
     "    ",
     "    //if (!this.el) {",
     "        //this.init();",

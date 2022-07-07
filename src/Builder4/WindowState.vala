@@ -571,38 +571,13 @@ public class WindowState : Object
 	
 	
 	// ----------- file view
-	public void showPopoverFiles(Gtk.Widget btn, Project.Project? project)
+	public void showPopoverFiles(Gtk.Widget btn, Project.Project? project, bool new_window)
 	{
-		this.popover_files.show(btn, project);
+		this.popover_files.show(btn, project, new_window);
 	
 	}
 	
 	
-/*
-	public void fileViewInit()
-	{
-		var stage = this.win.rooview.el.get_stage(); // seems odd... 
-		this.clutterfiles = new Xcls_ClutterFiles();
-		this.clutterfiles.ref();
-		stage.add_child(this.clutterfiles.el);
-		this.clutterfiles.el.show();
-
-
-		this.clutterfiles.open.connect((file) => { 
-			this.fileViewOpen(file);
-		});
-		this.clutterfiles.el.transitions_completed.connect(() => {
-			if (this.state == State.FILES) {
-				this.win.rooview.el.hide();
-			} else {
-				this.clutterfiles.el.hide();
-			}
-			
-			
-		});
-
-	}
-	*/
  
 	public void fileDetailsInit()
 	{
@@ -612,37 +587,70 @@ public class WindowState : Object
 		
 		this.file_details.success.connect((project,file) =>
 		{
-			this.fileViewOpen(file);
+			this.fileViewOpen(file, this.file_details.new_window,  -1);
 		});
 
 	}
 	
-	public void fileViewOpen(JsRender.JsRender file, int line = -1)
+	
+	public void gotoLine(int line)
 	{
-		this.win.project = file.project;
-		this.project = file.project;
-		this.file = file;
-		
-		
+	
 		if (file.xtype == "PlainFile") {
-			this.win.codeeditviewbox.el.show();
-			this.switchState (State.CODEONLY); 
-			file.loadItems();
-			this.code_editor_tab.show(file, null, null);
+		    this.switchState (State.CODEONLY); 
 			if (line> -1) {
 				this.code_editor_tab.scroll_to_line(line);
 			}
 		} else {
 		
 			this.switchState (State.PREVIEW); 
-			// this triggers loadItems..
-			this.left_tree.model.loadFile(file);
+			 
 			if (file.project.xtype == "Gtk" && line> -1 ) {
+				// fixme - show the editing tab.
 				this.window_gladeview.scroll_to_line(line);
-			}
+			} 
+			// fixme - what about Roo?
 
 		}
 	
+	}
+	
+	public void fileViewOpen(JsRender.JsRender file, bool new_window, int line = -1)
+	{
+		var existing = BuilderApplication.getWindow(file);
+		
+		if (existing != null) {
+			existing.el.present();
+			existing.windowstate.gotoLine(line);
+			return;
+		}
+		
+		if (new_window) {
+			BuilderApplication.newWindow(file, line);
+			return;
+		}
+		
+		
+		this.win.project = file.project;
+		this.project = file.project;
+		this.file = file;
+		BuilderApplication.updateWindows();
+		
+		if (file.xtype == "PlainFile") {
+			this.win.codeeditviewbox.el.show();
+			this.switchState (State.CODEONLY); 
+			file.loadItems();
+			this.code_editor_tab.show(file, null, null);
+			 
+		} else {
+		
+			this.switchState (State.PREVIEW); 
+			// this triggers loadItems..
+			this.left_tree.model.loadFile(file);
+			 
+
+		}
+		this.gotoLine(line);
 	
 		var ctr= this.win.rooviewbox.el;
  
@@ -754,12 +762,7 @@ public class WindowState : Object
 			btn
 		);
 	}
-	public void showFilesPopover(Gtk.Widget btn)
-	{
-		this.popover_files.el.show_all();
-		this.popover_files.show(btn, this.win.project);
-
-	}
+	 
 		 
 	
 	public void switchState(State new_state)

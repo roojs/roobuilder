@@ -3,8 +3,7 @@
  "items" : [
   {
    "# Project.Project project" : "null",
-   "# WindowState windowstate" : "null",
-   "# int no_windows" : 1,
+   "# WindowState windowstate" : "",
    "# string title" : "\"Roo Application Builder\"",
    "$ type" : "Gtk.WindowType.TOPLEVEL",
    "$ xns" : "Gtk",
@@ -31,33 +30,97 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
-         "$ tooltop_text" : [
-          "\"Open a new Window",
-          "\""
-         ],
+         "# Gee.ArrayList<Gtk.MenuItem> mitems" : "",
+         "$ Gtk.Align halign" : "Gtk.Align.START",
+         "$ Gtk.ArrowType direction" : "Gtk.ArrowType.DOWN",
          "$ xns" : "Gtk",
-         "* pack" : "add",
+         "* init" : [
+          "{",
+          "\tthis.mitems = new Gee.ArrayList<Gtk.MenuItem>();",
+          "\t",
+          "}",
+          ""
+         ],
          "bool always_show_image" : true,
-         "id" : "windownew",
+         "bool use_popover" : false,
+         "id" : "windowbtn",
+         "int margin_end" : 4,
          "items" : [
           {
            "$ xns" : "Gtk",
            "* pack" : "set_image",
            "utf8 icon_name" : "window-new",
            "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "  this.el.show_all();",
+            "}",
+            ""
+           ],
+           "* prop" : "popup",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "append",
+             "listeners" : {
+              "activate" : [
+               "( ) => {",
+               "",
+               "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
+               "}",
+               ""
+              ]
+             },
+             "string label" : "New Window",
+             "xtype" : "MenuItem"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "append",
+             "xtype" : "SeparatorMenuItem"
+            }
+           ],
+           "xtype" : "Menu"
           }
          ],
-         "listeners" : {
-          "clicked" : [
-           "  ( ) => {",
-           "     _this.openNewWindow();",
-           "      ",
-           "",
-           "}"
-          ]
-         },
-         "string label" : "New Window",
-         "xtype" : "Button"
+         "string label" : "Windows",
+         "xtype" : "MenuButton",
+         "| void updateMenu" : [
+          "() {",
+          "\t foreach(var m in  this.mitems) {",
+          "\t \t this.el.popup.remove(m);",
+          "\t }",
+          "\t this.mitems.clear();",
+          "\t   ",
+          "\t foreach(var w in BuilderApplication.windows) {",
+          "\t \tvar wid = BuilderApplication.windows.index_of(w);",
+          "\t \t// fixme find a better way to display this.",
+          " \t\tif (w.windowstate == null ||",
+          " \t\t\t w.windowstate.file == null || ",
+          " \t\t\t _this.windowstate == null ||",
+          " \t\t\t _this.windowstate.file == null",
+          " \t\t\t ) { ",
+          " \t\t\tcontinue;",
+          "\t\t}",
+          "\t \t",
+          "\t \tif (w.windowstate.file.path == _this.windowstate.file.path) {",
+          "\t \t\tcontinue;",
+          " \t\t}",
+          "",
+          " \t\tGLib.debug(\"add menuitem %s\", w.windowstate.file.path);",
+          "\t \tvar m = new Gtk.MenuItem.with_label(w.windowstate.file.path);",
+          "\t \tm.activate.connect(() => {",
+          "\t \t\t BuilderApplication.windows.get(wid).el.present();",
+          "\t \t});",
+          "\t \tthis.el.popup.append(m);",
+          "\t \tm.show();",
+          "\t \tthis.mitems.add(m);",
+          "\t }",
+          "}"
+         ]
         },
         {
          "$ tooltop_text" : "\"Open File\"",
@@ -76,7 +139,7 @@
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
-           "  \t_this.windowstate.showPopoverFiles(this.el, _this.project);",
+           "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
            "",
            "}"
           ]
@@ -233,7 +296,7 @@
            "        return  ;",
            "    }",
            "     _this.windowstate.file_details.show(",
-           "        _this.windowstate.file, this.el",
+           "        _this.windowstate.file, this.el, false",
            "    );",
            "     ",
            "    return  ;    ",
@@ -658,12 +721,13 @@
     ],
     "destroy" : [
      "() =>  {",
-     " Xcls_MainWindow.singleton().no_windows--;",
+     " ",
      " ",
      " Resources.singleton().disconnect(_this.statusbar.handler_id);",
      " ",
+     " BuilderApplication.removeWindow(this);",
      " ",
-     " if (Xcls_MainWindow.singleton().no_windows < 1) {",
+     " if (BuilderApplication.windows.size  < 1) {",
      "",
      "     Gtk.main_quit();",
      " }",
@@ -735,15 +799,14 @@
    ],
    "| void openNewWindow" : [
     "() {",
-    "\tXcls_MainWindow.singleton().no_windows++;",
+    " ",
     "    var w = new Xcls_MainWindow();",
     "    w.ref();",
-    "",
+    "\tBuilderApplication.addWindow(w);",
     "    w.el.show_all();",
     "    w.initChildren();",
-    "    w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project);",
-    "        // should open the file dialog...",
-    "        //w.windowstate.switchState(WindowState.State.FILES);",
+    "    w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);",
+    "     ",
     "}",
     ""
    ],
