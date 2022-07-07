@@ -77,8 +77,9 @@ public class Xcls_MainWindow : Object
          
          Resources.singleton().disconnect(_this.statusbar.handler_id);
          
+         this.application.removeWindow(this);
          
-         if (Xcls_MainWindow.singleton().no_windows < 1) {
+         if (this.application.windows.size  < 1) {
         
              Gtk.main_quit();
          }
