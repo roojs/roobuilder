@@ -44,6 +44,12 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "popup",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "SeparatorMenuItem"
+            }
+           ],
            "xtype" : "Menu"
           }
          ],
