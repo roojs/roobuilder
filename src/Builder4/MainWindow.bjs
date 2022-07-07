@@ -111,7 +111,12 @@
           ]
          },
          "string label" : "Windows",
-         "xtype" : "MenuButton"
+         "xtype" : "MenuButton",
+         "| void updateMenu" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ tooltop_text" : [

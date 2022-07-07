@@ -284,6 +284,9 @@ public class Xcls_MainWindow : Object
         }
 
         // user defined functions
+        public void updateMenu () {
+        
+        }
     }
     public class Xcls_Image5 : Object
     {
