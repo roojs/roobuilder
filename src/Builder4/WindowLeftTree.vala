@@ -1161,7 +1161,7 @@ public class Xcls_WindowLeftTree : Object
                 pix = new Gdk.Pixbuf.from_file (fn);
             } else {
             	pix = ic.load_icon("emblem-new", 16,0);
-            
+            }
             
             this.el.set(
             		citer, 
