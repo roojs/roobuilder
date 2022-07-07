@@ -925,7 +925,10 @@ public class JsRender.NodeToVala : Object {
 						// do nothing
 						return;
 				}
-		
+			case "Gtk.Menu":
+				this.addLine(this.ipad + "this.el.append(  child_" + "%d".printf(i) + ".el );");
+				return;
+			
 			default:
 				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
 				return;
