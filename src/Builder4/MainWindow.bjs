@@ -77,7 +77,7 @@
           }
          ],
          "listeners" : {
-          "clicked" : [
+          "activate" : [
            "( ) => {",
            "\t // update files",
            "\t foreach(var m in  this.mitems) {",
