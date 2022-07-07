@@ -80,7 +80,7 @@ public class Xcls_PopoverFileDetails : Object
     {
         this.project = c.project;
         this.done = false;
-        
+        this.new_window = new_window;
         
         //if (!this.el) {
             //this.init();
