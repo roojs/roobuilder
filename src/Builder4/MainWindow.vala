@@ -263,12 +263,14 @@ public class Xcls_MainWindow : Object
         	 foreach(var w in BuilderApplication.windows) {
         	 	var wid = BuilderApplication.windows.index_of(w);
         	 	// fixme find a better way to display this.
+         		if (w.windowstate == null || w.windowstate.file == null) { 
+         			continue;
+        		}
+        	 	
         	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
         	 		continue;
          		}
-         		if (w.windowstate.file == null) { 
-         			continue;
-        		}
+        
          		GLib.debug("add menuitem %s", w.windowstate.file.path);
         	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
         	 	m.activate.connect(() => {
