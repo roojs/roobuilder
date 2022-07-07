@@ -261,7 +261,7 @@ public class Xcls_MainWindow : Object
             	 foreach(var w in _this.application.windows) {
             	 	var wid = _this.application.windows.index_of(w);
             	 	// fixme find a better way to display this.
-            	 	if (w.windowstate.file.path == this.windowstate.file.path) {
+            	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
             	 		continue;
              		}
             	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);

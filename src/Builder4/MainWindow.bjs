@@ -94,7 +94,7 @@
            "\t foreach(var w in _this.application.windows) {",
            "\t \tvar wid = _this.application.windows.index_of(w);",
            "\t \t// fixme find a better way to display this.",
-           "\t \tif (w.windowstate.file.path == this.windowstate.file.path) {",
+           "\t \tif (w.windowstate.file.path == _this.windowstate.file.path) {",
            "\t \t\tcontinue;",
            " \t\t}",
            "\t \tvar m = new Gtk.MenuItem.with_label(w.windowstate.file.path);",
