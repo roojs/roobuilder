@@ -417,9 +417,9 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			GLib.Process.exit(Posix.EXIT_SUCCESS);		
 		}
 		
-		public  Gee.ArrayList<Xcls_MainWindow> windows;
+		public static Gee.ArrayList<Xcls_MainWindow> windows;
 		
-		public void addWindow(Xcls_MainWindow w)
+		public BuilderApplication addWindow(Xcls_MainWindow w)
 		{
 			w.application = this;
 			this.windows.add(w);
@@ -428,7 +428,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		public void removeWindow(Xcls_MainWindow w)
 		{
 		
-			this.windows.remove(w);
+			BuilderApplication.windows.remove(w);
 		
 		}
 	 
