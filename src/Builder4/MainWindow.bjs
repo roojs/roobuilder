@@ -167,7 +167,7 @@
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
-           "  \t_this.windowstate.showPopoverFiles(this.el, _this.project);",
+           "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
            "",
            "}"
           ]
