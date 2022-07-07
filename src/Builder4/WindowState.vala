@@ -587,7 +587,7 @@ public class WindowState : Object
 		
 		this.file_details.success.connect((project,file) =>
 		{
-			this.fileViewOpen(file, -1, this.file_details.new_window);
+			this.fileViewOpen(file, this.file_details.new_window,  -1);
 		});
 
 	}
