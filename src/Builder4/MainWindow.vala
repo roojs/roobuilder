@@ -238,6 +238,12 @@ public class Xcls_MainWindow : Object
             var child_1 = new Xcls_Menu6( _this );
             child_1.ref();
             this.el.menu_model = child_1.el;
+
+            //listeners
+            this.el.activate.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions

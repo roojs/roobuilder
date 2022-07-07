@@ -45,6 +45,15 @@
            "xtype" : "Menu"
           }
          ],
+         "listeners" : {
+          "activate" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "string label" : "Windows",
          "xtype" : "MenuButton"
         },
