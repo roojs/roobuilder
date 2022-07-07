@@ -1144,6 +1144,37 @@ public class Xcls_WindowLeftTree : Object
             return "";
                     
         }
+        public void iterSetValues (Gtk.TreeIter iter, JsRender.Node node)   {
+        	var ic = Gtk.IconTheme.get_default();
+            Gdk.Pixbuf pix;
+            
+            var o =   GLib.Value(typeof(Object));
+            o.set_object((Object)node);
+            var clsname = node.fqn();
+            
+            var clsb = clsname.split(".");
+            var sub = clsb.length > 1 ? clsb[1].down()  : "";
+            
+           
+            var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
+            if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
+                pix = new Gdk.Pixbuf.from_file (fn);
+            } else {
+            	pix = ic.load_icon("emblem-new", 16,0);
+            }
+            
+            this.el.set(
+            		iter, 
+            		0, node.nodeTitle(),
+                    1, node.nodeTip(), 
+                    -1
+            );
+            this.el.set_value(iter, 2,o);
+            this.el.set_value(iter, 3,pix);    
+        
+            
+        
+        }
         public string treePathFromNode (JsRender.Node node) {
             // iterate through the tree and find the node
             var ret = "";
@@ -1340,16 +1371,9 @@ public class Xcls_WindowLeftTree : Object
                 _this.main_window.windowstate.file.palete().on_child_added(parentNode,node);
                     
                   
-                
+                this.iterSetValues(n_iter, node);
                 // add the node...
-                
-                this.el.set(n_iter, 0, node.nodeTitle(), 1, node.nodeTip(), -1  );
-                var o =   GLib.Value(typeof(Object));
-                o.set_object((Object)node);
-                
-                this.el.set_value(n_iter, 2, o);
-                
-                
+                 
                 
                 
         		// load children - if it has any..
@@ -1472,8 +1496,7 @@ public class Xcls_WindowLeftTree : Object
         {
             Gtk.TreeIter citer;
             //this.insert(citer,iter,0);
-            var ic = Gtk.IconTheme.get_default();
-            var pixdef = ic.load_icon("emblem-new", 16,0);
+           
             
             for(var i =0 ; i < tr.size; i++) {
                 if (iter != null) {
@@ -1481,33 +1504,10 @@ public class Xcls_WindowLeftTree : Object
                 } else {
                     this.el.append(out citer,null);
                 }
+                this.iterSetValues(citer, tr.get(i));
                 
-                this.el.set(citer, 0, tr.get(i).nodeTitle(),
-                        1, tr.get(i).nodeTip(), -1
-                );
-                var o =   GLib.Value(typeof(Object));
-                o.set_object((Object)tr.get(i));
-                
-                this.el.set_value(citer, 2, o);
-                
-                var clsname = tr.get(i).fqn();
-                
-                var clsb = clsname.split(".");
-                var sub = clsb.length > 1 ? clsb[1].down()  : "";
-                
-                var pix = pixdef;
-                var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
-                if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
-        	        pix = new Gdk.Pixbuf.from_file (fn);
-                }
-                
-                
-                this.el.set_value(citer, 3,   pix );
-                
-                
-                
-                
-                
+         
+                 
                 if (tr.get(i).items.size > 0) {
                     this.load(tr.get(i).items, citer);
                 }
@@ -1550,7 +1550,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.title = "test";
             var child_0 = new Xcls_iconrender( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , true );
+            this.el.pack_start (  child_0.el , false );
             var child_1 = new Xcls_renderer( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , true );
@@ -1581,6 +1581,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.width = 16;
         }
 
         // user defined functions
