@@ -621,15 +621,7 @@ public class WindowState : Object
 		
 		if (existing != null) {
 			existing.el.present();
-			if (file.xtype == "PlainFile") {
-				if (line> -1) {
-					existing.windowstate.code_editor_tab.scroll_to_line(line);
-				}
-			} else { 
-				if (file.project.xtype == "Gtk" && line> -1 ) {
-					existing.window.window_gladeview.scroll_to_line(line);
-				}
-			}
+			existing.windowstate.gotLine(line);
 			return;
 		}
 		
@@ -649,20 +641,16 @@ public class WindowState : Object
 			this.switchState (State.CODEONLY); 
 			file.loadItems();
 			this.code_editor_tab.show(file, null, null);
-			if (line> -1) {
-				this.code_editor_tab.scroll_to_line(line);
-			}
+			 
 		} else {
 		
 			this.switchState (State.PREVIEW); 
 			// this triggers loadItems..
 			this.left_tree.model.loadFile(file);
-			if (file.project.xtype == "Gtk" && line> -1 ) {
-				this.window_gladeview.scroll_to_line(line);
-			}
+			 
 
 		}
-	
+		this.gotLine(line);
 	
 		var ctr= this.win.rooviewbox.el;
  
