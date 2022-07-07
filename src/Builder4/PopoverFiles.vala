@@ -844,7 +844,7 @@ public class Xcls_PopoverFiles : Object
                 var file = (JsRender.JsRender)gval;
                 
                 
-                _this.win.windowstate.fileViewOpen(file);
+                _this.win.windowstate.fileViewOpen(file, _this.new_window);
             
                 
                 
