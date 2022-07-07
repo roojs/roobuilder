@@ -441,7 +441,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		public Xcls_MainWindow? getWindow(JsRender.JsRender file)
 		{
 			foreach(var ww in BuilderApplication.windows) {
-				if (ww.file != null && ww.file.path == file.path) {
+				if (ww.windowstate != null && ww.windowstate.file != null &&  ww.windowstate.file.path == file.path) {
 					return ww;
 				}
 			}
