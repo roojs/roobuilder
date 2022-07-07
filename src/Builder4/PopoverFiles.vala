@@ -970,7 +970,7 @@ public class Xcls_PopoverFiles : Object
                 var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
                
                
-                _this.win.windowstate.fileViewOpen(f, _this.new_wndow);
+                _this.win.windowstate.fileViewOpen(f, _this.new_window);
                
                 
             });
