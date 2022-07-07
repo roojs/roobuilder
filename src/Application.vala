@@ -420,15 +420,15 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 	 
 	}
 	
-	Gee.ArrayList<Xcls_MainWindow> windows;
+	public  Gee.ArrayList<Xcls_MainWindow> windows;
 	
-	void addWindow(Xcls_MainWindow w)
+	public void addWindow(Xcls_MainWindow w)
 	{
 		w.application = this;
 		this.windows.add(w);
 	}
 	
-	void removeWindow(Xcls_MainWindow w)
+	public void removeWindow(Xcls_MainWindow w)
 	{
 	
 		this.windows.remove(w);
