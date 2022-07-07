@@ -244,8 +244,7 @@ public class Xcls_MainWindow : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-            	var mm = (GLib.Menu)this.el.menu_model;
-            	mm.append("test","test");
+            	 
             });
         }
 
@@ -300,6 +299,12 @@ public class Xcls_MainWindow : Object
             var child_2 = new Xcls_MenuItem9( _this );
             child_2.ref();
             this.el.append (  child_2.el  );
+
+            // init method
+
+            {
+              this.el.show_all();
+            }
         }
 
         // user defined functions

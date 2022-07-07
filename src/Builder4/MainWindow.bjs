@@ -44,6 +44,12 @@
           },
           {
            "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "  this.el.show_all();",
+            "}",
+            ""
+           ],
            "* prop" : "popup",
            "items" : [
             {
@@ -70,8 +76,7 @@
          "listeners" : {
           "activate" : [
            "( ) => {",
-           "\tvar mm = (GLib.Menu)this.el.menu_model;",
-           "\tmm.append(\"test\",\"test\");",
+           "\t ",
            "}",
            ""
           ]
