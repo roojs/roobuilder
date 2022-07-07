@@ -592,8 +592,53 @@ public class WindowState : Object
 
 	}
 	
+	
+	public void gotoLine(int line)
+	{
+	
+		if (file.xtype == "PlainFile") {
+		    this.switchState (State.CODEONLY); 
+			if (line> -1) {
+				this.code_editor_tab.scroll_to_line(line);
+			}
+		} else {
+		
+			this.switchState (State.PREVIEW); 
+			 
+			if (file.project.xtype == "Gtk" && line> -1 ) {
+				// fixme - show the editing tab.
+				this.window_gladeview.scroll_to_line(line);
+			} 
+			// fixme - what about Roo?
+
+		}
+	
+	}
+	
 	public void fileViewOpen(JsRender.JsRender file, bool new_window, int line = -1)
 	{
+		var existing = BuilderApplication.getWindow(file);
+		
+		if (existing != null) {
+			existing.el.present();
+			if (file.xtype == "PlainFile") {
+				if (line> -1) {
+					existing.windowstate.code_editor_tab.scroll_to_line(line);
+				}
+			} else { 
+				if (file.project.xtype == "Gtk" && line> -1 ) {
+					existing.window.window_gladeview.scroll_to_line(line);
+				}
+			}
+			return;
+		}
+		
+		if (new_window) {
+			BuilderApplication.newWindow(file, line);
+			return;
+		}
+		
+		
 		this.win.project = file.project;
 		this.project = file.project;
 		this.file = file;
