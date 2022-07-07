@@ -421,7 +421,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		
 		public static void addWindow(Xcls_MainWindow w)
 		{
-			w.application = this;
+			 
 			BuilderApplication.windows.add(w);
 			BuilderApplication.updateWindows();
 		}
