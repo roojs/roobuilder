@@ -75,7 +75,6 @@ public class GladeView : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.storage_type = Gtk.ImageType.PIXBUF;
             this.el.has_default = true;
             this.el.halign = Gtk.Align.CENTER;
             this.el.icon_size = 33;
