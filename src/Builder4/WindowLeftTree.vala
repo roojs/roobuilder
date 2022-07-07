@@ -1167,10 +1167,12 @@ public class Xcls_WindowLeftTree : Object
             		iter, 
             		0, node.nodeTitle(),
                     1, node.nodeTip(), 
-                    2, o,
-                    3, pix,
                     -1
             );
+            this.el.set_value(iter, 2,o);
+            this.el.set_value(iter, 3,pix);    
+        
+            
         
         }
         public string treePathFromNode (JsRender.Node node) {
