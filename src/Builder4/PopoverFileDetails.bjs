@@ -4,6 +4,7 @@
   {
    "# JsRender.JsRender file" : "null",
    "# Project.Project project" : "",
+   "# bool new_window" : true,
    "$ xns" : "Gtk",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",

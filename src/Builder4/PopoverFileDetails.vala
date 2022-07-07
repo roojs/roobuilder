@@ -32,6 +32,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_save_btn save_btn;
 
         // my vars (def)
+    public bool new_window;
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public JsRender.JsRender file;
     public Project.Project project;
@@ -45,6 +46,7 @@ public class Xcls_PopoverFileDetails : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.new_window = true;
         this.file = null;
         this.mainwindow = null;
         this.done = false;
