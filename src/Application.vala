@@ -108,6 +108,7 @@
 		public BuilderApplication (  string[] args)
 		{
 			
+			this.windows = new	Gee.ArrayList<Xcls_MainWindow>();
 			_self = FileUtils.read_link("/proc/self/exe");
 			GLib.debug("SELF = %s", _self);
 			
@@ -417,7 +418,24 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		}
 		
 	 
-	} 
+	}
+	
+	Gee.ArrayList<Xcls_MainWindow> windows;
+	
+	void addWindow(Xcls_MainWindow w)
+	{
+		w.application = this;
+		this.windows.add(w);
+	}
+	
+	void removeWindow(Xcls_MainWindow w)
+	{
+	
+		this.windows.remove(w);
+	
+	}
+	
+		
 
  
 
