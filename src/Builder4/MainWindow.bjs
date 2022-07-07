@@ -64,19 +64,13 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "append",
-             "string label" : "Label",
+             "string label" : "New Window",
              "xtype" : "MenuItem"
             },
             {
              "$ xns" : "Gtk",
              "* pack" : "append",
              "xtype" : "SeparatorMenuItem"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "append",
-             "string label" : "New Window",
-             "xtype" : "MenuItem"
             }
            ],
            "xtype" : "Menu"
