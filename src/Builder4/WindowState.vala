@@ -754,12 +754,14 @@ public class WindowState : Object
 			btn
 		);
 	}
+	/*
 	public void showFilesPopover(Gtk.Widget btn)
 	{
 		this.popover_files.el.show_all();
 		this.popover_files.show(btn, this.win.project, false);
 
 	}
+	*/
 		 
 	
 	public void switchState(State new_state)
