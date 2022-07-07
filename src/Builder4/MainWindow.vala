@@ -362,7 +362,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.activate.connect( ( ) => {
             
-            	_this.windowstate.showPopoverFiles(this.windowbtn.el, _this.project, true);
+            	_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
             });
         }
 
