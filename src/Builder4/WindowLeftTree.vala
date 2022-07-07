@@ -1550,7 +1550,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.title = "test";
             var child_0 = new Xcls_iconrender( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , true );
+            this.el.pack_start (  child_0.el , false );
             var child_1 = new Xcls_renderer( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , true );

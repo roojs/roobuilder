@@ -741,7 +741,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,true",
+           "* pack" : "pack_start,false",
            "id" : "iconrender",
            "int width" : 16,
            "xtype" : "CellRendererPixbuf"
