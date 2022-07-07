@@ -2,6 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# BuilderApplication? application" : "null",
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "null",
    "# int no_windows" : 1,
@@ -14,7 +15,6 @@
     "     this.el.set_icon_name(\"roobuilder\");",
     " "
    ],
-   "BuilderApplication? application" : "null",
    "border_width" : 0,
    "default_height" : 850,
    "default_width" : 1200,
