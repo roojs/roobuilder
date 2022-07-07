@@ -51,6 +51,7 @@
             },
             {
              "$ xns" : "Gtk",
+             "* pack" : "append",
              "string label" : "New Window",
              "xtype" : "MenuItem"
             }
