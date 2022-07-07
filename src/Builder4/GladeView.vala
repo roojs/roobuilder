@@ -111,6 +111,9 @@ public class GladeView : Object
             var child_2 = new Xcls_ComboBox10( _this );
             child_2.ref();
             this.el.add(  child_2.el );
+            var child_3 = new Xcls_GLArea11( _this );
+            child_3.ref();
+            this.el.add(  child_3.el );
         }
 
         // user defined functions
@@ -255,6 +258,28 @@ public class GladeView : Object
 
             // set gobject values
             this.el.has_entry = false;
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_GLArea11 : Object
+    {
+        public Gtk.GLArea el;
+        private GladeView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_GLArea11(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.GLArea();
+
+            // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
