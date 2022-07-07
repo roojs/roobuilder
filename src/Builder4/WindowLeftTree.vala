@@ -997,7 +997,7 @@ public class Xcls_WindowLeftTree : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore( 4, typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf) );
+            this.el = new Gtk.TreeStore.newv(  { typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf) }  );
 
             // my vars (dec)
             this.template_select = null;
@@ -1352,7 +1352,7 @@ public class Xcls_WindowLeftTree : Object
                 
                 
                 
-        // load children - if it has any..
+        		// load children - if it has any..
               
                 if (node.items.size > 0) {
                     this.load(node.items, n_iter);
@@ -1398,7 +1398,7 @@ public class Xcls_WindowLeftTree : Object
             var node = this.pathToNode(mod.get_path(old_iter).to_string());
             //console.dump(node);
             if (node == null) {
-                print("moveNode: ERROR - node is null?");
+                GLib.debug("moveNode: ERROR - node is null?");
             }
             
             
@@ -1408,7 +1408,7 @@ public class Xcls_WindowLeftTree : Object
         
             
             if ((action & Gdk.DragAction.MOVE) > 0) {
-                    print("REMOVING OLD NODE : " + target_data + "\n");
+                    GLib.debug("REMOVING OLD NODE : " + target_data + "\n");
                     node.remove();
                     this.dropNode(target_data, node, false);
                     this.el.remove(ref old_iter);
@@ -1416,7 +1416,7 @@ public class Xcls_WindowLeftTree : Object
                     
                                  
             } else {
-                print("DROPPING NODE // copy: " + target_data + "\n");
+                GLib.debug("DROPPING NODE // copy: " + target_data + "\n");
                 node = node.deepClone();
                 this.dropNode(target_data, node, false);
             }

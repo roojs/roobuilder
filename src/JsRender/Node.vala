@@ -508,6 +508,7 @@ public class JsRender.Node : Object {
 	}
 
 	public void loadFromJson(Json.Object obj, int version) {
+		 
 		obj.foreach_member((o , key, value) => {
 			//print(key+"\n");
 			if (key == "items") {
@@ -531,15 +532,18 @@ public class JsRender.Node : Object {
 
 			var rkey = key;
 			var sval = this.jsonNodeAsString(value);
+		
 			if (version == 1) {
 				rkey = this.upgradeKey(key, sval);
 			}
 			var n =  new NodeProp.from_json(rkey, sval);
 				
 			this.props.set(n.to_index_key(),  n );
-			
+
 
 		});
+		
+		
 		
 
 
