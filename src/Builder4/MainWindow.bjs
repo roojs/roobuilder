@@ -87,7 +87,7 @@
            "( ) => {",
            "\t // update files",
            "\t foreach(var m in  this.mitems) {",
-           "\t \t this.el.popup.el.detach(m);",
+           "\t \t this.el.popup.detach(m);",
            "\t }",
            "\t this.mitems.clear();",
            "\t   ",
