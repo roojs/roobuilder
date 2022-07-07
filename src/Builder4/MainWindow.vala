@@ -35,7 +35,6 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 
         // my vars (def)
-    public int no_windows;
     public WindowState windowstate;
     public string title;
     public Project.Project project;
@@ -48,7 +47,6 @@ public class Xcls_MainWindow : Object
         this.el = new Gtk.Window( Gtk.WindowType.TOPLEVEL );
 
         // my vars (dec)
-        this.no_windows = 1;
         this.title = "Roo Application Builder";
         this.project = null;
         this.application = null;

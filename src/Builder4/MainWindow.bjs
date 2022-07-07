@@ -5,7 +5,6 @@
    "# BuilderApplication? application" : "null",
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "",
-   "# int no_windows" : 1,
    "# string title" : "\"Roo Application Builder\"",
    "$ type" : "Gtk.WindowType.TOPLEVEL",
    "$ xns" : "Gtk",
