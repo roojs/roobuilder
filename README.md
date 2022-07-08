@@ -2,11 +2,18 @@
 Vala and Javascript IDE - for building Vala Desktop applications and Javascript UI's using the roojs libraries (for bootstrap and classic)
 
 ---
+Changlog 
+
+    https://github.com/roojs/roobuilder/blob/master/debian/changelog
+
+---
 Debian and Ubuntu packages
 
   https://www.dropbox.com/sh/sgy9kvzkbaowa92/AAC_Yt3KWzFx8t451BiJLqQ7a?dl=0
   
   * you will need libvala, roojspacker and a few other packages 
+
+
 
 
 Building it
