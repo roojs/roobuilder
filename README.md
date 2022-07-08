@@ -4,7 +4,7 @@ Vala and Javascript IDE - for building Vala Desktop applications and Javascript 
 ---
 Changlog 
 
-    https://github.com/roojs/roobuilder/blob/master/debian/changelog
+  https://github.com/roojs/roobuilder/blob/master/debian/changelog
 
 ---
 Debian and Ubuntu packages
