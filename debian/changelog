@@ -1,4 +1,28 @@
-roobuilder (4.2.0) UNRELEASED; urgency=medium
+roobuilder (4.3.0) UNRELEASED; urgency=medium
+
+  * Open files management - will not open same file twice / pulldown to pick open files
+  * Left Tree alighment of icons
+  * Left Tree icons now work on adding and dragging.
+  * Left Tree Tooltip on nodes now shows all properties correctly
+  * Resource fetching simplified
+  * Caching of Library data 
+  * Fix loading of Roo library data
+  * Enums now 'RAW' type 
+  * Fix Compiler so gcc is not run when doing inline testing
+  * Depricated properties and signals not shown in lists
+  * Property lists and Signal lists include info on definer source, and type in seperate columns
+  * Vala generation for 'add' and ctor generation revised
+  * List of available objects to add better defined in source now
+  * Auto generation of some properties when adding nodes and child nodes
+  * Icons for node nodes
+  * Event handler signatures should work better
+  * Gtk Buttons on dialogs now use buttons[] 
+  * Structs support for properties
+  * Some tooltip help on Roo properties and signals
+
+ -- Alan <alan@roojs.com>  Fri, 08 Jul 2022 11:00:48 +0800
+
+roobuilder (4.2.0) unstable; urgency=medium
 
   * Remove Clutter dependancy and interface
   * Change Project and File management to Popover
