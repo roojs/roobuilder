@@ -271,7 +271,7 @@ namespace Palete {
             
 			var pr = (Project.Gtk)(file.project);
  			
-			var m = pr.firstBuildModule();
+			var m = pr.firstBuildModuleWith(file);
 			var cg = pr.compilegroups.get(m);
 
 			if (cg == null) {

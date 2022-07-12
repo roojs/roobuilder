@@ -147,7 +147,7 @@ public class WindowState : Object
 		});
 	 
 		this.left_tree.changed.connect(() => {
-			print("LEFT TREE: Changed fired\n");
+			GLib.debug("LEFT TREE: Changed fired\n");
 			this.file.save();
 			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
 				   this.window_rooview.requestRedraw();
