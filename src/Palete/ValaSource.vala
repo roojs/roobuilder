@@ -322,7 +322,7 @@ namespace Palete {
 			args +=  file.project.fn;
 			args += "--target";
  
-			args += pr.firstBuildModule();
+			args += m;
 			args += "--add-file";
 			args +=  tmpfile.get_path();
 			args += "--skip-file";
