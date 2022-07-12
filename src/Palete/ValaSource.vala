@@ -271,7 +271,7 @@ namespace Palete {
             
 			var pr = (Project.Gtk)(file.project);
  			
-			var m = pr.firstBuildModule();
+			var m = pr.firstBuildModuleWith(file);
 			var cg = pr.compilegroups.get(m);
 
 			if (cg == null) {
@@ -322,7 +322,7 @@ namespace Palete {
 			args +=  file.project.fn;
 			args += "--target";
  
-			args += pr.firstBuildModule();
+			args += m;
 			args += "--add-file";
 			args +=  tmpfile.get_path();
 			args += "--skip-file";

@@ -199,7 +199,8 @@ BUIDERPALETE =  Palete/Gir.vala \
 
 BUIDERPROJECT = Project/Gtk.vala \
 		Project/Project.vala \	
-		Project/Roo.vala 
+		Project/Roo.vala \
+		Project/GtkValaSettings.vala
 
 
 BUIDERUI =  	Builder4/About.vala \
