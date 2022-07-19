@@ -31,7 +31,7 @@ namespace Palete {
 		public signal void compile_output(string str);
  
 		
-		JsRender.JsRender file;
+		public JsRender.JsRender file;
   		public int line_offset = 0;
 		
 		public Gee.ArrayList<Spawn> children;
