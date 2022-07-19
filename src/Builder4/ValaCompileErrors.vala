@@ -69,29 +69,38 @@ public class Xcls_ValaCompileErrors : Object
             store.append(out iter, null);
             var lines = tree.get_object_member(file);
             title += " (" + lines.get_size().to_string() + ")";
-            store.set(iter, 0, file, 1, -1, 2, title, 3, file,-1);
+            store.set(iter, 
+            	0, file, 
+            	1, -1, 
+            	2, title, 
+            	3, file,
+        	-1);
             
             lines.foreach_member((obja, line, nodea) => {
                 var msg  = "";
                 var ar = lines.get_array_member(line);
                 for (var i = 0 ; i < ar.get_length(); i++) {
-    		    msg += (msg.length > 0) ? "\n" : "";
-    		    msg += ar.get_string_element(i);
-            }
-                Gtk.TreeIter citer;  
-                print("Add line %s", line);
-                store.append(out citer, iter);
-                store.set(citer, 
-                    0, file + ":" + line, 
-                    1, int.parse(line), 
-                    2, GLib.Markup.escape_text(line + ": " + msg), 
-                    3, file,-1);
+    				msg += (msg.length > 0) ? "\n" : "";
+    				msg += ar.get_string_element(i);
+    		    }
+    		    Gtk.TreeIter citer;  
+    		    print("Add line %s", line);
+    		    store.append(out citer, iter);
+    		    store.set(citer, 
+    		            0, file + ":" + line, 
+    		            1, int.parse(line), 
+    		            2, GLib.Markup.escape_text(line + ": " + msg), 
+    		            3, file, 
+    		            -1);
             
             });
             
             
         
         });
+          
+        store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
+    
             
         int w,h;
         this.window.el.get_size(out w, out h);
@@ -256,7 +265,7 @@ public class Xcls_ValaCompileErrors : Object
 
             {
              var description = new Pango.FontDescription();
-                description.set_size(8000);
+                description.set_size(10000);
                 this.el.override_font(description);
             
             }
@@ -345,7 +354,10 @@ public class Xcls_ValaCompileErrors : Object
         {
             _this = _owner;
             _this.compile_result_store = this;
-            this.el = new Gtk.TreeStore.newv(  {   typeof(string), typeof(int), typeof(string), typeof(string)  }  );
+            this.el = new Gtk.TreeStore.newv(  {   typeof(string), 
+  typeof(int),
+   typeof(string),
+    typeof(string)  }  );
 
             // my vars (dec)
 

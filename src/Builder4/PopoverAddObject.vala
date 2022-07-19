@@ -17,11 +17,11 @@ public class Xcls_PopoverAddObject : Object
     public Xcls_txtrender txtrender;
 
         // my vars (def)
-    public bool active;
     public signal void before_node_change (JsRender.Node? node);
+    public signal void after_node_change (JsRender.Node? node);
     public signal void drag_end ();
     public Xcls_MainWindow mainwindow;
-    public signal void after_node_change (JsRender.Node? node);
+    public bool active;
 
     // ctor
     public Xcls_PopoverAddObject()
@@ -115,12 +115,12 @@ public class Xcls_PopoverAddObject : Object
         }       
      //   this.hpane.el.set_position( 0);
     }
+    public void clear () {
+     this.model.el.clear();
+    }
     public void hide () {
      
     	this.el.hide();
-    }
-    public void clear () {
-     this.model.el.clear();
     }
     public class Xcls_ScrolledWindow2 : Object
     {
@@ -286,7 +286,7 @@ public class Xcls_PopoverAddObject : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 3, typeof(string),typeof(string),typeof(Gdk.Pixbuf) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string),typeof(Gdk.Pixbuf) }  );
 
             // my vars (dec)
 

@@ -22,14 +22,14 @@ public class Xcls_PopoverProperty : Object
     public Xcls_buttonbar buttonbar;
 
         // my vars (def)
-    public string old_keyname;
     public bool is_new;
     public signal void success (Project.Project pr, JsRender.JsRender file);
-    public bool done;
-    public JsRender.NodeProp? prop;
-    public Xcls_MainWindow mainwindow;
     public string key_type;
+    public JsRender.NodeProp? prop;
     public JsRender.Node node;
+    public Xcls_MainWindow mainwindow;
+    public bool done;
+    public string old_keyname;
 
     // ctor
     public Xcls_PopoverProperty()
@@ -39,8 +39,8 @@ public class Xcls_PopoverProperty : Object
 
         // my vars (dec)
         this.is_new = false;
-        this.done = false;
         this.mainwindow = null;
+        this.done = false;
 
         // set gobject values
         this.el.border_width = 0;
@@ -48,7 +48,7 @@ public class Xcls_PopoverProperty : Object
         this.el.position = Gtk.PositionType.LEFT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.add (  child_0.el  );
+        this.el.add(  child_0.el );
 
         //listeners
         this.el.closed.connect( () => {
@@ -103,6 +103,19 @@ public class Xcls_PopoverProperty : Object
     }
 
     // user defined functions
+    public void updateProp () {
+     
+    	Gtk.TreeIter citer;
+    	GLib.Value gval;
+    	this.kflag.el.get_active_iter(out citer);
+    	this.dbmodel.el.get_value(citer, 0, out  gval);
+    
+    
+    	_this.prop.name = this.kname.el.get_text().strip(); 
+    	_this.prop.rtype = this.ktype.el.get_text().strip(); 
+    	_this.prop.ptype =  (JsRender.NodePropType) gval;
+    
+    }
     public void show (
     	Gtk.Widget btn, 
     	JsRender.Node node, 
@@ -160,19 +173,6 @@ public class Xcls_PopoverProperty : Object
     
     	//this.success = c.success;
      
-    }
-    public void updateProp () {
-     
-    	Gtk.TreeIter citer;
-    	GLib.Value gval;
-    	this.kflag.el.get_active_iter(out citer);
-    	this.dbmodel.el.get_value(citer, 0, out  gval);
-    
-    
-    	_this.prop.name = this.kname.el.get_text().strip(); 
-    	_this.prop.rtype = this.ktype.el.get_text().strip(); 
-    	_this.prop.ptype =  (JsRender.NodePropType) gval;
-    
     }
     public class Xcls_Box2 : Object
     {
@@ -340,7 +340,7 @@ public class Xcls_PopoverProperty : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(JsRender.NodePropType),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(JsRender.NodePropType),typeof(string) }  );
 
             // my vars (dec)
 
