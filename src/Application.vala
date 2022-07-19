@@ -104,6 +104,10 @@
 		};
 		public AppSettings settings = null;
 
+
+
+		public static Palete.ValaSource valasource;
+
 	
 		public BuilderApplication (  string[] args)
 		{
@@ -116,7 +120,10 @@
 			       application_id: "org.roojs.app-builder",
 				flags: ApplicationFlags.FLAGS_NONE
 			);
-			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();		 
+			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
+			BuilderApplication.valasource = new Palete.ValaSource();
+			
+			
 			configDirectory();
 			this.settings = AppSettings.factory();	
 			var opt_context = new OptionContext ("Application Builder");
@@ -424,6 +431,8 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			 
 			BuilderApplication.windows.add(w);
 			BuilderApplication.updateWindows();
+  
+			
 		}
 		
 		public static void removeWindow(Xcls_MainWindow w)
@@ -431,6 +440,10 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		
 			BuilderApplication.windows.remove(w);
 			BuilderApplication.updateWindows();
+			BuilderApplication.valasource.compiled.disconnect(w.windowstate.showCompileResult);
+			BuilderApplication.valasource.compile_output.disconnect(w.windowstate.compile_results.addLine);			
+			
+			
 		}
 		public static void updateWindows()
 		{

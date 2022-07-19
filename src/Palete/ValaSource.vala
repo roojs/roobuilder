@@ -29,16 +29,16 @@ namespace Palete {
 		
 		public signal void compiled(Json.Object res);
 		public signal void compile_output(string str);
-		public Xcls_MainWindow window;
+ 
 		
 		JsRender.JsRender file;
   		public int line_offset = 0;
 		
 		public Gee.ArrayList<Spawn> children;
- 		public ValaSource( Xcls_MainWindow window ) 
+ 		public ValaSource(   ) 
  		{
 			base();
-			this.window  = window;
+			 
 			this.compiler = null;
 			this.children = new Gee.ArrayList<Spawn>();
 			
@@ -151,12 +151,12 @@ namespace Palete {
 			
 			this.compiler = new Spawn("/tmp", args);
 			this.compiler.complete.connect(spawnResult);
-			this.window.statusbar_compile_spinner.start();
+	        this.spinner(true);
 			try {
 				this.compiler.run(); 
 			} catch (GLib.SpawnError e) {
 			        GLib.debug(e.message);
-	    			this.window.statusbar_compile_spinner.stop();
+			        this.spinner(false);
          			this.compiler = null;
 			        return false;
 
@@ -164,6 +164,18 @@ namespace Palete {
 			return true;
 			 
 		}
+		
+		public void spinner(bool state)
+		{
+			foreach (var win in BuilderApplication.windows) {
+				if (state) {
+					win.statusbar_compile_spinner.start();
+				}  else {
+					win.statusbar_compile_spinner.stop();
+				}
+			}
+		}
+		
 		
 		public bool checkFileSpawn(JsRender.JsRender file )
 		{
@@ -188,13 +200,13 @@ namespace Palete {
 			try {
 			    this.compiler = new Spawn("/tmp", args);
 			    this.compiler.complete.connect(spawnResult);
-				this.window.statusbar_compile_spinner.start();
+		        this.spinner(true);
 			    this.compiler.run(); 
 			
 			 
 			} catch (GLib.Error e) {
 			    GLib.debug(e.message);
-			    this.window.statusbar_compile_spinner.stop();
+		        this.spinner(false);
 			    this.compiler = null;
 			    return false;
 		        }
@@ -239,12 +251,12 @@ namespace Palete {
 			    this.compiler = new Spawn( GLib.Environment.get_home_dir(), args);
 			    this.compiler.output_line.connect(compile_output_line);
 			    this.compiler.complete.connect(runResult);
-			    this.window.statusbar_compile_spinner.start();
+		        this.spinner(true);
 			    this.compiler.run(); 
 				this.children.add(this.compiler); //keep a reference...
 			 
 			} catch (GLib.Error e) {
-				this.window.statusbar_compile_spinner.stop();
+		        this.spinner(false);
 			    GLib.debug(e.message);
 			    this.compiler = null;
 
@@ -334,10 +346,10 @@ namespace Palete {
 			try {
 			    this.compiler = new Spawn("/tmp", args);
 			    this.compiler.complete.connect(spawnResult);
-			    this.window.statusbar_compile_spinner.start();
+		        this.spinner(true);
 			    this.compiler.run(); 
 			} catch (GLib.Error e) {
-			    this.window.statusbar_compile_spinner.stop();
+		        this.spinner(false);
 			    this.compiler = null;
 			    return false;
 			}
@@ -349,7 +361,7 @@ namespace Palete {
 		public void spawnResult(int res, string output, string stderr)
 		{
 			 
-			this.window.statusbar_compile_spinner.stop();	
+	        this.spinner(false);
 			try { 
 				//GLib.debug("GOT output %s", output);
 				

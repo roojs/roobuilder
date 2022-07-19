@@ -35,8 +35,8 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 
         // my vars (def)
-    public WindowState windowstate;
     public string title;
+    public WindowState windowstate;
     public Project.Project project;
 
     // ctor
@@ -1551,7 +1551,7 @@ public class Xcls_MainWindow : Object
             	if (_this.windowstate.file == null) {
             		return true;
             	}
-            	_this.windowstate.valasource.spawnExecute(_this.windowstate.file);
+            	BuilderApplication.valasource.spawnExecute(_this.windowstate.file);
             	
             	_this.windowstate.compile_results.show(this.el,true);
             	
