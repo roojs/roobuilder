@@ -76,6 +76,13 @@ public class Xcls_ValaCompileErrors : Object
             	3, file,
         	-1);
             
+            if (this.window.windowstate.file.path == file) {
+            
+            	_this.compile_tree.el.expand_row(   store.get_path(iter) , true);
+            
+            }
+            
+            
             lines.foreach_member((obja, line, nodea) => {
                 var msg  = "";
                 var ar = lines.get_array_member(line);
@@ -87,7 +94,7 @@ public class Xcls_ValaCompileErrors : Object
     		    print("Add line %s", line);
     		    store.append(out citer, iter);
     		    store.set(citer, 
-    		            0, file + ":" + line, 
+    		            0, file + ":" + int.parse(line).to_string("%09d"), 
     		            1, int.parse(line), 
     		            2, GLib.Markup.escape_text(line + ": " + msg), 
     		            3, file, 
