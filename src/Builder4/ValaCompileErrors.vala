@@ -21,7 +21,6 @@ public class Xcls_ValaCompileErrors : Object
         // my vars (def)
     public Xcls_MainWindow window;
     public Json.Object notices;
-    public JsRender.JsRender? file;
     public bool active;
 
     // ctor
@@ -48,7 +47,7 @@ public class Xcls_ValaCompileErrors : Object
     public void show (Json.Object tree, Gtk.Widget onbtn) {
     
         
-        this.file = null;
+     
         this.notices = tree;
        
          //print("looking for %s\n", id);
@@ -58,14 +57,14 @@ public class Xcls_ValaCompileErrors : Object
         var store = this.compile_result_store.el;    
         
         store.clear();
-     
+     	Gtk.TreeIter? expand = null;
         
         tree.foreach_member((obj, file, node) => {
             // id line "display text", file
             
             var title = GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) ;
             Gtk.TreeIter iter;
-            print("Add file %s", title);
+            GLib.debug("Add file %s", title);
             store.append(out iter, null);
             var lines = tree.get_object_member(file);
             title += " (" + lines.get_size().to_string() + ")";
@@ -77,8 +76,9 @@ public class Xcls_ValaCompileErrors : Object
         	-1);
             
             if (this.window.windowstate.file.path == file) {
-            
-            	_this.compile_tree.el.expand_row(   store.get_path(iter) , true);
+                GLib.debug("Expanding Row: %s", file);
+                expand =  iter  ;
+    
             
             }
             
@@ -91,7 +91,7 @@ public class Xcls_ValaCompileErrors : Object
     				msg += ar.get_string_element(i);
     		    }
     		    Gtk.TreeIter citer;  
-    		    print("Add line %s", line);
+    		    GLib.debug("Add line %s", line);
     		    store.append(out citer, iter);
     		    store.set(citer, 
     		            0, file + ":" + int.parse(line).to_string("%09d"), 
@@ -126,6 +126,10 @@ public class Xcls_ValaCompileErrors : Object
             this.el.set_relative_to(onbtn);
         }
         this.el.show_all();
+       
+       	if (expand != null) {
+        	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
+    	}
        
         while(Gtk.events_pending()) { 
                 Gtk.main_iteration();
