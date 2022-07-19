@@ -363,7 +363,7 @@ namespace Palete
 		
 			 
 			//var cd = new JSCore.ClassDefinitionEmpty();
-			state.valasource.checkFileWithNodePropChange(
+			BuilderApplication.valasource.checkFileWithNodePropChange(
 					file,
 					node, 
 					prop,

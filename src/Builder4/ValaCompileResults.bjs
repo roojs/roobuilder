@@ -60,6 +60,12 @@
    "xtype" : "Popover",
    "| void addLine" : [
     "(string str) {",
+    "\t",
+    "\tif (this.window.windowstate.project.fn != BuilderApplication.valasource.file.project.fn) {",
+    "\t\t// not our project.",
+    "\t\treturn;",
+    "\t}",
+    "\t",
     "\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();",
     "\tGtk.TextIter iter;",
     "\tbuf.get_end_iter (out  iter);",

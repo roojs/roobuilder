@@ -50,7 +50,7 @@ public class WindowState : Object
 	public Xcls_DialogPluginWebkit webkit_plugin;
 	
 	
-	public Palete.ValaSource valasource; // the spawner that runs the vala compiler.
+	//public Palete.ValaSource valasource; // the spawner that runs the vala compiler.
 	public Json.Object last_compile_result;
 	
 	// ctor 
@@ -88,13 +88,12 @@ public class WindowState : Object
 		this.children_loaded = true;
 		
 		
-		this.valasource = new Palete.ValaSource(this.win);
-
-		this.valasource.compiled.connect(this.showCompileResult);
+		 
+		BuilderApplication.valasource.compiled.connect(this.showCompileResult); 
 		
-		this.compile_results = new  Xcls_ValaCompileResults();
+		this.compile_results = new  Xcls_ValaCompileResults(); // the poup dialogs with results in.
 		this.compile_results.window = this.win;
-		this.valasource.compile_output.connect(this.compile_results.addLine);
+		BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
 		
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
@@ -364,7 +363,7 @@ public class WindowState : Object
 			this.left_tree.model.updateSelected();
 			this.file.save();
 			if (this.file.xtype=="Gtk") {
-				this.valasource.checkFileSpawn(this.file);
+				BuilderApplication.valasource.checkFileSpawn(this.file);
 			}
 		});
 	 
@@ -918,9 +917,12 @@ public class WindowState : Object
 	public void showCompileResult(Json.Object obj)
 		{
 			// vala has finished compiling...
-			print("vala compiled");
+			GLib.debug("vala compiled");
 			// stop the spinner...
- 
+ 			if (this.project.fn != BuilderApplication.valasource.file.project.fn) {
+				GLib.debug("skip update - not our project");
+ 				return;
+			}
 			
 			var generator = new Json.Generator ();
 			var n  = new Json.Node(Json.NodeType.OBJECT);

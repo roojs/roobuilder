@@ -72,6 +72,12 @@ public class Xcls_ValaCompileResults : Object
         
     }
     public void addLine (string str) {
+    	
+    	if (this.window.windowstate.project.fn != BuilderApplication.valasource.file.project.fn) {
+    		// not our project.
+    		return;
+    	}
+    	
     	var buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();
     	Gtk.TextIter iter;
     	buf.get_end_iter (out  iter);
