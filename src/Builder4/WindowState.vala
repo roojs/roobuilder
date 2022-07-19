@@ -919,7 +919,7 @@ public class WindowState : Object
 			// vala has finished compiling...
 			GLib.debug("vala compiled");
 			// stop the spinner...
- 			if (this.project.id != BuilderApplication.valasource.file.project.id) {
+ 			if (this.project.fn != BuilderApplication.valasource.file.project.fn) {
 				GLib.debug("skip update - not our project");
  				return;
 			}
