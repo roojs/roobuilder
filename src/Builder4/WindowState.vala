@@ -917,9 +917,12 @@ public class WindowState : Object
 	public void showCompileResult(Json.Object obj)
 		{
 			// vala has finished compiling...
-			print("vala compiled");
+			GLib.debug("vala compiled");
 			// stop the spinner...
- 
+ 			if (this.project.xx != BuilderApplication.valasource.file.project.xx) {
+				GLib.debug("skip update - not our project");
+ 				return;
+			}
 			
 			var generator = new Json.Generator ();
 			var n  = new Json.Node(Json.NodeType.OBJECT);
