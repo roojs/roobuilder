@@ -917,8 +917,19 @@ public class WindowState : Object
 	public void showCompileResult(Json.Object obj)
 		{
 			// vala has finished compiling...
-			GLib.debug("vala compiled");
+ 
 			// stop the spinner...
+ 			GLib.debug("vala compiled Built Project: %s    Window Project %s",
+ 				
+     			BuilderApplication.valasource.file == null ? "No file?" : (
+     			
+	     			BuilderApplication.valasource.file.project == null  ? "No Project" : BuilderApplication.valasource.file.project.fn
+     			),
+     			this.project != null ? this.project.fn : "No Project?"
+ 			);
+ 				
+ 			
+ 			
  			if (this.project != null && 
      			BuilderApplication.valasource.file != null &&   
      			BuilderApplication.valasource.file.project != null &&    			

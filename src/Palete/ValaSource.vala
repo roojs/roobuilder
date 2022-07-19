@@ -109,14 +109,15 @@ namespace Palete {
 		}
 		Spawn compiler;
 		 
-		public bool checkStringSpawn(
-				string contents 
+		private bool checkStringSpawn(
+				 string contents 
 			)
 		{
  			
  			if (this.compiler != null) {
 				return false;
 			}
+ 			this.file = file;
  			
 			FileIOStream iostream;
 			var tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
@@ -226,7 +227,7 @@ namespace Palete {
 			}
 			if (!(file.project is Project.Gtk)) {
 			    return;
-        		}
+    		}
 			var pr = (Project.Gtk)(file.project);
  			
  			
@@ -280,6 +281,7 @@ namespace Palete {
  			if (this.compiler != null) { 
 				return false;
 			}
+			this.file = file;
             
 			var pr = (Project.Gtk)(file.project);
  			
