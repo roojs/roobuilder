@@ -94,8 +94,7 @@ public class Xcls_ValaCompileErrors : Object
     		            -1);
             
             });
-            
-            
+             
         
         });
           
