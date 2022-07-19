@@ -117,7 +117,7 @@ namespace Palete {
  			if (this.compiler != null) {
 				return false;
 			}
- 			this.file = file;
+ 
  			
 			FileIOStream iostream;
 			var tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
@@ -327,7 +327,7 @@ namespace Palete {
 				return false;
 			}
  			
- 			this.file = null;
+ 			// this.file = null; << /why
 			this.line_offset = 0;
 			  
 			string[] args = {};

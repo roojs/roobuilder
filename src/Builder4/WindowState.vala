@@ -42,8 +42,7 @@ public class WindowState : Object
 	public DialogTemplateSelect template_select; 
 	
  	public Xcls_PopoverFileDetails file_details;
-	
-	
+	 
 	public Xcls_ValaCompileResults compile_results;
 	
 	// dialogs??
