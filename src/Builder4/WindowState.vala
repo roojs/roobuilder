@@ -801,14 +801,14 @@ public class WindowState : Object
 		this.buttonsShowHide();
 		
 		switch (this.state) {
-			
+
 			case State.PREVIEW:  // this is the default state when working...
 				this.win.leftpane.el.show();
 				this.win.editpane.el.show(); // holder for tree and properties..
 			    this.win.rooviewbox.el.show();
 			  	this.win.codeeditviewbox.el.hide();
 			 	break;
-				
+
  			case State.CODE:
 		   		this.win.leftpane.el.show();
 		   		this.win.editpane.el.show();
@@ -816,25 +816,20 @@ public class WindowState : Object
 				this.win.codeeditviewbox.el.show();
 				this.code_editor_tab.el.show_all();
 		   		break;
-		   
-		   
+
 			case State.CODEONLY:
 				this.win.leftpane.el.hide();
 				this.win.codeeditviewbox.el.show();
 				this.win.rooviewbox.el.hide();
 				this.code_editor_tab.el.show_all();
-			    break;
-			    
+				break;
+
 			case State.NONE:
 				break;
 
 		}
 
-		
-	
-			
 	}
-	
   
 
 	// -- buttons show hide.....
