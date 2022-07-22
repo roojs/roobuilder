@@ -440,7 +440,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.clear();
             var pal = (Palete.Gtk) _this.project.palete;
             var pkgs = pal.packages(_this.project);
-            print("ValaProjectSettings:packages load %d\n", pkgs.size);
+            GLib.debug("ValaProjectSettings:packages load %d\n", pkgs.size);
         
             Gtk.TreeIter citer;
         
@@ -940,28 +940,28 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.activate.connect( ()  => {
-                
-                 //
-                    Gtk.TreeModel mod;
-                    Gtk.TreeIter iter;
-                    if (!_this.default_directory_tree.el.get_selection().get_selected(out mod, out iter)) {
-                           print("nothing selected\n");
-                        return;
-                    }
             
-                        
-                   // add the directory..
-                   
-                   
-                   GLib.Value val;
-                    mod.get_value(iter,0, out val);
-                   var fn =  (string) val;
-                   
-                   print("remove: %s\n", fn);
-                   if (!_this.project.compilegroups.get("_default_").sources.remove(fn)) {
-                              print("remove failed");
-                          }
-                   _this.default_directory_tree_store.load();
+            	//
+            	Gtk.TreeModel mod;
+            	Gtk.TreeIter iter;
+            	if (!_this.default_directory_tree.el.get_selection().get_selected(out mod, out iter)) {
+            		GLib.debug("nothing selected\n");
+            		return;
+            	}
+            
+            		
+            	// add the directory..
+            
+            
+            	GLib.Value val;
+            	mod.get_value(iter,0, out val);
+            	var fn =  (string) val;
+            
+            	GLib.debug("remove: %s\n", fn);
+            	if (!_this.project.compilegroups.get("_default_").sources.remove(fn)) {
+            		GLib.debug("remove failed");
+            	}
+            	_this.default_directory_tree_store.load();
             });
         }
 
@@ -1145,27 +1145,27 @@ public class ValaProjectSettingsPopover : Object
             //listeners
             this.el.activate.connect( ()  => {
                 
-                 //
-                    Gtk.TreeModel mod;
-                    Gtk.TreeIter iter;
-                    if (!_this.targets_tree.el.get_selection().get_selected(out mod, out iter)) {
-                           print("nothing selected\n");
-                        return;
-                    }
+            	//
+            	Gtk.TreeModel mod;
+            	Gtk.TreeIter iter;
+            	if (!_this.targets_tree.el.get_selection().get_selected(out mod, out iter)) {
+            		GLib.debug("nothing selected\n");
+            		return;
+            	}
             
-                        
-                   // add the directory..
-                   
-                   
-                   GLib.Value val;
-                    mod.get_value(iter,0, out val);
-                   var fn =  (string) val;
-                   
-                   print("remove: %s\n", fn);
-                   if (!_this.project.compilegroups.unset(fn)) {
-                              print("remove failed");
-                  }
-                   _this.targets_tree_store.load();
+            
+            	// add the directory..
+            
+            
+            	GLib.Value val;
+            	mod.get_value(iter,0, out val);
+            	var fn =  (string) val;
+            
+            	GLib.debug("remove: %s\n", fn);
+            	if (!_this.project.compilegroups.unset(fn)) {
+            		GLib.debug("remove failed");
+            	}
+            	_this.targets_tree_store.load();
             });
         }
 
@@ -1227,40 +1227,40 @@ public class ValaProjectSettingsPopover : Object
             });
             this.el.cursor_changed.connect( ( ) => {
             
-                if (this.cursor != "") {
-                     // save the values..
-                 }
-                 
-                 // load the new values.
-                 
+            	if (this.cursor != "") {
+            		// save the values..
+            	}
             
-                     Gtk.TreeModel mod;
-                    Gtk.TreeIter iter;
-                    if (!this.el.get_selection().get_selected(out mod, out iter)) {
-                        print("nothing selected\n");
-                        // should disable the right hand side..
-                        _this.set_vbox.el.hide();
-                        return;
-                    }
-                    _this.set_vbox.el.show();
-                        
-                   // add the directory..
-                   
-                   
-                   GLib.Value val;
-                    mod.get_value(iter,0, out val);
-                   var fn =  (string) val;
-                   
-                   this.cursor = fn;
-                   var cg = _this.project.compilegroups.get(fn);
-                   
-                   _this.build_pack_target.el.set_text(cg.target_bin);
-                   _this.build_compile_flags.el.set_text(cg.compile_flags);
-            		_this.build_execute_args.el.set_text(cg.execute_args);
-                   
-                   _this.set_vbox.cgroup = cg;
-                   _this.files_tree_store.update();
-                   
+            	// load the new values.
+            
+            
+            	Gtk.TreeModel mod;
+            	Gtk.TreeIter iter;
+            	if (!this.el.get_selection().get_selected(out mod, out iter)) {
+            		GLib.debug("nothing selected\n");
+            		// should disable the right hand side..
+            		_this.set_vbox.el.hide();
+            		return;
+            	}
+            	_this.set_vbox.el.show();
+            
+            	// add the directory..
+            
+            
+            	GLib.Value val;
+            	mod.get_value(iter,0, out val);
+            	var fn =  (string) val;
+            
+            	this.cursor = fn;
+            	var cg = _this.project.compilegroups.get(fn);
+            
+            	_this.build_pack_target.el.set_text(cg.target_bin);
+            	_this.build_compile_flags.el.set_text(cg.compile_flags);
+            	_this.build_execute_args.el.set_text(cg.execute_args);
+            
+            	_this.set_vbox.cgroup = cg;
+            	_this.files_tree_store.update();
+            
                    // load the srouces
             
             
@@ -1789,7 +1789,7 @@ public class ValaProjectSettingsPopover : Object
                 this.el.set_value(citer, 1,   "<span foreground=\"green\" font_weight=\"bold\">" + 
                             GLib.Markup.escape_text(items.get(i)) + "</span>"
                     ); // title 
-                print("ADD item %s", items.get(i));
+                GLib.debug("ADD item %s", items.get(i));
                 this.el.set_value(citer, 2,   "dir"); // type         
                 this.el.set_value(citer, 3,   false ); // checked 
         
@@ -1797,7 +1797,7 @@ public class ValaProjectSettingsPopover : Object
                 
                  for(var j =0 ; j < files.size; j++) {
                     this.el.append(out citer);   
-                     print("ADD item %s", files.get(j));
+                     GLib.debug("ADD item %s", files.get(j));
                     this.el.set_value(citer, 0,   files.get(j) ); // title 
                     this.el.set_value(citer, 1,   GLib.Markup.escape_text( Path.get_basename (files.get(j))) ); // title             
                     this.el.set_value(citer, 2,   "file"); // type         
