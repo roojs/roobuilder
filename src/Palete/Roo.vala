@@ -24,6 +24,7 @@ namespace Palete {
 		
 		Gee.ArrayList<string> top_classes;
 		public static Gee.HashMap<string,GirObject>? classes_cache = null;
+		public static Gee.ArrayList<string>? top_classes_cache = null;
 		
         public Roo(Project.Project project)
         {
@@ -79,6 +80,7 @@ namespace Palete {
 			}
 			if (Roo.classes_cache != null) {
 				this.classes = Roo.classes_cache;
+				this.top_classes = Roo.top_classes_cache ;
 				return;
 			}
 			
@@ -196,7 +198,8 @@ namespace Palete {
 					cls.can_drop_onto = add_to.get(cls.name);
 				}
 			}
-			Roo.classes_cache = classes;	 
+			Roo.classes_cache = this.classes;
+			Roo.top_classes_cache  = this.top_classes;
 		}
 		  
 			
