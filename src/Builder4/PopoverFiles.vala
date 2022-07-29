@@ -15,6 +15,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_namecol namecol;
+    public Xcls_iconscroll iconscroll;
     public Xcls_iconview iconview;
     public Xcls_iconmodel iconmodel;
     public Xcls_file_container file_container;
@@ -81,7 +82,8 @@ public class Xcls_PopoverFiles : Object
         //this.project_title_path.el.text = pr.firstPath();
         
         // file items contains a reference until we reload ...
-      Gdk.Pixbuf pixbuf = null;
+      	 Gdk.Pixbuf pixbuf = null;
+      	Gdk.Pixbuf bigpixbuf = null;
     	 Gtk.TreeIter iter;
          var m = this.iconmodel.el;
          m.clear();
@@ -101,6 +103,9 @@ public class Xcls_PopoverFiles : Object
     		        var npixbuf = new Gdk.Pixbuf.from_file(fname);
     		        pixbuf = npixbuf.scale_simple(92, (int) (npixbuf.height * 92.0 /npixbuf.width * 1.0 )
     				    , Gdk.InterpType.NEAREST) ;
+    				bigpixbuf = npixbuf.scale_simple(368, (int) (npixbuf.height * 368.0 /npixbuf.width * 1.0 )
+    				    , Gdk.InterpType.NEAREST) ;
+    				
     		    } 
     		} catch (Error e) {
     		    // noop
@@ -115,6 +120,7 @@ public class Xcls_PopoverFiles : Object
     		            _this.missing_thumb_pixbuf.ref();
     		        }
     		        pixbuf = _this.missing_thumb_pixbuf;
+    		        bigpixbuf = _this.missing_thumb_pixbuf;
     
     		    } catch (Error e) {
     		        // noop?
@@ -124,6 +130,7 @@ public class Xcls_PopoverFiles : Object
     		
     		
             m.set(iter,   3,pixbuf);
+            m.set(iter,   4,bigpixbuf);
           
             // this needs to add to the iconview?
             
@@ -566,7 +573,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_ScrolledWindow10( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_ScrolledWindow15( _this );
+            var child_1 = new Xcls_iconscroll( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_file_container( _this );
@@ -764,7 +771,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_ScrolledWindow15 : Object
+    public class Xcls_iconscroll : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -773,9 +780,10 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow15(Xcls_PopoverFiles _owner )
+        public Xcls_iconscroll(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
+            _this.iconscroll = this;
             this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)
@@ -815,6 +823,7 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             this.el.markup_column = 1;
             this.el.pixbuf_column = 3;
+            this.el.has_tooltip = true;
             this.el.item_width = 100;
             var child_0 = new Xcls_iconmodel( _this );
             child_0.ref();
@@ -849,6 +858,30 @@ public class Xcls_PopoverFiles : Object
                 
                 
             });
+            this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
+            
+            	Gtk.TreePath path;
+            	Gtk.CellRenderer cell;
+            	var s = _this.iconview.el.get_item_at_pos(x,y + (int) _this.iconscroll.el.vadjustment.value, out path, out cell);
+            	
+            	
+               // GLib.debug("Tooltip? %d,%d scroll: %d",x,y, (int)_this.iconscroll.el.vadjustment.value);
+            	 
+            	
+            	if (path == null) {
+            		// GLib.debug("Tooltip? - no path");
+            		return false;
+            	}
+            	
+            	Gtk.TreeIter iter;
+            	_this.iconmodel.el.get_iter(out iter, path);
+            	GLib.Value val;
+            	_this.iconmodel.el.get_value(iter, 4, out val);
+            	
+            	tooltip.set_icon((Gdk.Pixbuf) val.get_object());
+            	 _this.iconview.el.set_tooltip_item(tooltip, path);
+            	return true;
+            });
         }
 
         // user defined functions
@@ -866,7 +899,7 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.iconmodel = this;
-            this.el = new Gtk.ListStore.newv(  { typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf)  }  );
+            this.el = new Gtk.ListStore.newv(  { typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf), typeof(Gdk.Pixbuf)  }  );
 
             // my vars (dec)
 
