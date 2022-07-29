@@ -102,6 +102,9 @@ public class Xcls_PopoverFiles : Object
     		        var npixbuf = new Gdk.Pixbuf.from_file(fname);
     		        pixbuf = npixbuf.scale_simple(92, (int) (npixbuf.height * 92.0 /npixbuf.width * 1.0 )
     				    , Gdk.InterpType.NEAREST) ;
+    				bigpixbuf = npixbuf.scale_simple(184, (int) (npixbuf.height * 184.0 /npixbuf.width * 1.0 )
+    				    , Gdk.InterpType.NEAREST) ;
+    				
     		    } 
     		} catch (Error e) {
     		    // noop
@@ -116,6 +119,7 @@ public class Xcls_PopoverFiles : Object
     		            _this.missing_thumb_pixbuf.ref();
     		        }
     		        pixbuf = _this.missing_thumb_pixbuf;
+    		        bigpixbuf = _this.missing_thumb_pixbuf;
     
     		    } catch (Error e) {
     		        // noop?
@@ -125,6 +129,7 @@ public class Xcls_PopoverFiles : Object
     		
     		
             m.set(iter,   3,pixbuf);
+            m.set(iter,   4,pixbuf);
           
             // this needs to add to the iconview?
             
