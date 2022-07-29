@@ -102,7 +102,7 @@ public class Xcls_PopoverFiles : Object
     		        var npixbuf = new Gdk.Pixbuf.from_file(fname);
     		        pixbuf = npixbuf.scale_simple(92, (int) (npixbuf.height * 92.0 /npixbuf.width * 1.0 )
     				    , Gdk.InterpType.NEAREST) ;
-    				bigpixbuf = npixbuf.scale_simple(184, (int) (npixbuf.height * 184.0 /npixbuf.width * 1.0 )
+    				bigpixbuf = npixbuf.scale_simple(368, (int) (npixbuf.height * 368.0 /npixbuf.width * 1.0 )
     				    , Gdk.InterpType.NEAREST) ;
     				
     		    } 
