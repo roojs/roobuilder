@@ -15,6 +15,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_namecol namecol;
+    public Xcls_iconscroll iconscroll;
     public Xcls_iconview iconview;
     public Xcls_iconmodel iconmodel;
     public Xcls_file_container file_container;
@@ -572,7 +573,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_ScrolledWindow10( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_ScrolledWindow15( _this );
+            var child_1 = new Xcls_iconscroll( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_file_container( _this );
@@ -770,7 +771,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_ScrolledWindow15 : Object
+    public class Xcls_iconscroll : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
@@ -779,9 +780,10 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow15(Xcls_PopoverFiles _owner )
+        public Xcls_iconscroll(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
+            _this.iconscroll = this;
             this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)
@@ -863,7 +865,7 @@ public class Xcls_PopoverFiles : Object
             	var s = _this.iconview.el.get_item_at_pos(x,y, out path, out cell);
             	
             	
-                GLib.debug("Tooltip? %d,%d scroll: %L",x,y, _this.iconscroll.el.vadjustment.value);
+                GLib.debug("Tooltip? %d,%d scroll: %d",x,y, _this.iconscroll.el.vadjustment.value);
             	 
             	
             	if (path == null) {

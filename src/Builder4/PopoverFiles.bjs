@@ -270,6 +270,7 @@
          "* pack" : "add",
          "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
          "bool expand" : true,
+         "id" : "iconscroll",
          "int width_request" : 600,
          "items" : [
           {
@@ -329,7 +330,7 @@
              "\tvar s = _this.iconview.el.get_item_at_pos(x,y, out path, out cell);",
              "\t",
              "\t",
-             "    GLib.debug(\"Tooltip? %d,%d scroll: %L\",x,y, _this.iconscroll.el.vadjustment.value);",
+             "    GLib.debug(\"Tooltip? %d,%d scroll: %d\",x,y, _this.iconscroll.el.vadjustment.value);",
              "\t ",
              "\t",
              "\tif (path == null) {",
