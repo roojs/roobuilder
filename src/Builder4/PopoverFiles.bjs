@@ -329,7 +329,7 @@
              "\tGtk.TreeIter iter;",
              "\t_this.iconmodel.el.get_iter(out iter, path);",
              "\tGLib.Value v;",
-             "\tvar val = _this.iconmodel.el.get_value(iter, 4, out v);",
+             "\t_this.iconmodel.el.get_value(iter, 4, out v);",
              "\t",
              "\ttooltip.set_icon((Gdk.Pixbuf) val.get_object());",
              "",
