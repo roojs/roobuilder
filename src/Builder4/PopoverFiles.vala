@@ -81,7 +81,8 @@ public class Xcls_PopoverFiles : Object
         //this.project_title_path.el.text = pr.firstPath();
         
         // file items contains a reference until we reload ...
-      Gdk.Pixbuf pixbuf = null;
+      	 Gdk.Pixbuf pixbuf = null;
+      	Gdk.Pixbuf bigpixbuf = null;
     	 Gtk.TreeIter iter;
          var m = this.iconmodel.el;
          m.clear();
