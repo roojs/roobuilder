@@ -333,7 +333,7 @@
              "\t",
              "\ttooltip.set_icon((Gdk.Pixbuf) val.get_object());",
              "",
-             "\treturn bool;",
+             "\treturn true;",
              "}",
              ""
             ]
