@@ -287,7 +287,7 @@
            "int pixbuf_column" : 3,
            "items" : [
             {
-             "$ columns" : "typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf) ",
+             "$ columns" : "typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf), typeof(Gdk.Pixbuf) ",
              "$ xns" : "Gtk",
              "* prop" : "model",
              "id" : "iconmodel",
