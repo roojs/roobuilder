@@ -331,9 +331,8 @@
              "\tValue v;",
              "\tvar val = _this.iconmodel.getValue(iter, 4, v);",
              "\t",
-             "\ttooltip.set_icon(pixbuf);",
+             "\ttooltip.set_icon((Gdk.Pixbuf) val.get_object());",
              "",
-             "\t",
              "\treturn bool;",
              "}",
              ""

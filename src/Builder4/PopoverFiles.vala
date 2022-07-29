@@ -865,9 +865,8 @@ public class Xcls_PopoverFiles : Object
             	Value v;
             	var val = _this.iconmodel.getValue(iter, 4, v);
             	
-            	tooltip.set_icon(pixbuf);
+            	tooltip.set_icon((Gdk.Pixbuf) val.get_object());
             
-            	
             	return bool;
             });
         }
