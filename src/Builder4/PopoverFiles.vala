@@ -861,6 +861,10 @@ public class Xcls_PopoverFiles : Object
             	Gtk.TreePath path;
             	Gtk.CellRenderer cell;
             	var s = _this.iconview.el.get_item_at_pos(x,y, out path, out cell);
+            	if (path == null) {
+            		return false;
+            	}
+            	
             	Gtk.TreeIter iter;
             	_this.iconmodel.el.get_iter(out iter, path);
             	GLib.Value val;
