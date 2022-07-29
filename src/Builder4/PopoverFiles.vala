@@ -862,10 +862,10 @@ public class Xcls_PopoverFiles : Object
             	Gtk.CellRenderer cell;
             	var s = _this.iconview.el.get_item_at_pos(x,y, out path, out cell);
             	
-            	GLib.debug("Tooltip?");
+            	//GLib.debug("Tooltip?");
             	
             	if (path == null) {
-            		GLib.debug("Tooltip? - no path");
+            		//GLib.debug("Tooltip? - no path");
             		return false;
             	}
             	
