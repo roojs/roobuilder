@@ -347,6 +347,7 @@
              "\t\twidth = 184,",
              "\t\theight = 184",
              "\t};",
+             "\tGLib.debug(\"Show Tooltip? @%d,%d\",x,y);",
              "\t",
              "\ttooltip.set_tip_area(rect);",
              "\treturn true;",

@@ -881,6 +881,7 @@ public class Xcls_PopoverFiles : Object
             		width = 184,
             		height = 184
             	};
+            	GLib.debug("Show Tooltip? @%d,%d",x,y);
             	
             	tooltip.set_tip_area(rect);
             	return true;
