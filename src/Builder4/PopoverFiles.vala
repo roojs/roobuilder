@@ -875,15 +875,7 @@ public class Xcls_PopoverFiles : Object
             	_this.iconmodel.el.get_value(iter, 4, out val);
             	
             	tooltip.set_icon((Gdk.Pixbuf) val.get_object());
-            	var rect = Gdk.Rectangle() {
-            		x = x,
-            		y = y, 
-            		width = x+ 184,
-            		height = y+ 184
-            	};
-            	GLib.debug("Show Tooltip? @%d,%d",x,y);
-            	
-            	tooltip.set_tip_area(rect);
+            	 _this.iconmodel.el.set_tooltip_item(tooltip, path);
             	return true;
             });
         }
