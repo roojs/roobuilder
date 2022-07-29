@@ -862,8 +862,8 @@ public class Xcls_PopoverFiles : Object
             	var s = _this.iconview.el.get_item_at_pos(x,y, out path, out cell);
             	Gtk.TreeIter iter;
             	_this.iconmodel.el.get_iter(out iter, path);
-            	GLib.Value v;
-            	_this.iconmodel.el.get_value(iter, 4, out v);
+            	GLib.Value val;
+            	_this.iconmodel.el.get_value(iter, 4, out val);
             	
             	tooltip.set_icon((Gdk.Pixbuf) val.get_object());
             
