@@ -878,8 +878,8 @@ public class Xcls_PopoverFiles : Object
             	var rect = Gdk.Rectangle() {
             		x = x,
             		y = y, 
-            		width = 184,
-            		height = 184
+            		width = x+ 184,
+            		height = y+ 184
             	};
             	GLib.debug("Show Tooltip? @%d,%d",x,y);
             	
