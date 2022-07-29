@@ -865,11 +865,11 @@ public class Xcls_PopoverFiles : Object
             	var s = _this.iconview.el.get_item_at_pos(x,y + (int) _this.iconscroll.el.vadjustment.value, out path, out cell);
             	
             	
-                GLib.debug("Tooltip? %d,%d scroll: %d",x,y, (int)_this.iconscroll.el.vadjustment.value);
+               // GLib.debug("Tooltip? %d,%d scroll: %d",x,y, (int)_this.iconscroll.el.vadjustment.value);
             	 
             	
             	if (path == null) {
-            		 GLib.debug("Tooltip? - no path");
+            		// GLib.debug("Tooltip? - no path");
             		return false;
             	}
             	
