@@ -857,12 +857,12 @@ public class Xcls_PopoverFiles : Object
             });
             this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
             
-            	TreePath path;
-            	CellRenderer cell;
+            	Gtk.TreePath path;
+            	Gtk.CellRenderer cell;
             	var s = _this.iconview.get_item_at_pos(x,y, out path, out cell);
-            	TreeIter iter;
+            	Gtk.TreeIter iter;
             	_this.iconmodel.get_iter(out iter, path);
-            	Value v;
+            	GLib.Value v;
             	var val = _this.iconmodel.getValue(iter, 4, v);
             	
             	tooltip.set_icon((Gdk.Pixbuf) val.get_object());
