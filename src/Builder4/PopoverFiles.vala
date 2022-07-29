@@ -865,7 +865,7 @@ public class Xcls_PopoverFiles : Object
             	//GLib.debug("Tooltip?");
             	
             	if (path == null) {
-            		//GLib.debug("Tooltip? - no path");
+            		 GLib.debug("Tooltip? - no path");
             		return false;
             	}
             	

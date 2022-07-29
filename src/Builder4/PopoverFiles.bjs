@@ -331,7 +331,7 @@
              "\t//GLib.debug(\"Tooltip?\");",
              "\t",
              "\tif (path == null) {",
-             "\t\t//GLib.debug(\"Tooltip? - no path\");",
+             "\t\t GLib.debug(\"Tooltip? - no path\");",
              "\t\treturn false;",
              "\t}",
              "\t",
