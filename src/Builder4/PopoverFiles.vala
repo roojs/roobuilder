@@ -859,7 +859,7 @@ public class Xcls_PopoverFiles : Object
             	Value v;
             	var val = _this.iconmodel.getValue(iter, 4, v);
             	
-            	
+            	tooltip.set_icon(pixbuf);
             
             	
             	return bool;

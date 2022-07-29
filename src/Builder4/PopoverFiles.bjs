@@ -331,7 +331,7 @@
              "\tValue v;",
              "\tvar val = _this.iconmodel.getValue(iter, 4, v);",
              "\t",
-             "\t",
+             "\ttooltip.set_icon(pixbuf);",
              "",
              "\t",
              "\treturn bool;",
