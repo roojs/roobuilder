@@ -129,7 +129,7 @@ public class Xcls_PopoverFiles : Object
     		
     		
             m.set(iter,   3,pixbuf);
-            m.set(iter,   4,pixbuf);
+            m.set(iter,   4,bigpixbuf);
           
             // this needs to add to the iconview?
             
