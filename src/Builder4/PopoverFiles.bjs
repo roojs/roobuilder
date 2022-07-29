@@ -319,6 +319,24 @@
              "    ",
              "    ",
              "}"
+            ],
+            "query_tooltip" : [
+             "(x, y, keyboard_tooltip, tooltip) => {",
+             "",
+             "\tTreePath path;",
+             "\tCellRenderer cell;",
+             "\tvar s = _this.iconview.get_item_at_pos(x,y, out path, out cell);",
+             "\tTreeIter iter;",
+             "\t_this.iconmodel.get_iter(out iter, path);",
+             "\tValue v;",
+             "\tvar val = _this.iconmodel.getValue(iter, 4, v);",
+             "\t",
+             "\t",
+             "",
+             "\t",
+             "\treturn bool;",
+             "}",
+             ""
             ]
            },
            "xtype" : "IconView"

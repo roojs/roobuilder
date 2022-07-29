@@ -849,6 +849,21 @@ public class Xcls_PopoverFiles : Object
                 
                 
             });
+            this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
+            
+            	TreePath path;
+            	CellRenderer cell;
+            	var s = _this.iconview.get_item_at_pos(x,y, out path, out cell);
+            	TreeIter iter;
+            	_this.iconmodel.get_iter(out iter, path);
+            	Value v;
+            	var val = _this.iconmodel.getValue(iter, 4, v);
+            	
+            	
+            
+            	
+            	return bool;
+            });
         }
 
         // user defined functions
