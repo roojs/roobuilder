@@ -572,9 +572,10 @@ namespace Project {
 		 
 		public void  scanDirs() // cached version
 		{
-			if (this.is_scanned) {
-				return;
-			}
+			// -- why cache this - is it that slow?
+			//if (this.is_scanned) {
+			//	return;
+			//}
 			this.scanDirsForce();
 			//console.dump(this.files);
 			
