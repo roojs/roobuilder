@@ -158,6 +158,8 @@ public class Xcls_WindowLeftTree : Object
             //listeners
             this.el.size_allocate.connect( (allocation) => {
             
+            	
+            	GLib.debug("Got allocation width of scrolled view %d", allocation.width );
             	_this.maincol.el.set_max_width(allocation.width - 32);
             });
         }

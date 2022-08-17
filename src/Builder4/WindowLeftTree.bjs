@@ -1682,6 +1682,8 @@
       "size_allocate" : [
        "(allocation) => {",
        "",
+       "\t",
+       "\tGLib.debug(\"Got allocation width of scrolled view %d\", allocation.width );",
        "\t_this.maincol.el.set_max_width(allocation.width - 32);",
        "}",
        ""
