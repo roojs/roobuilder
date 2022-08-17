@@ -585,6 +585,8 @@ public class WindowState : Object
 		this.file_details.success.connect((project,file) =>
 		{
 			this.fileViewOpen(file, this.file_details.new_window,  -1);
+			// if it's comming from the file dialog -> hide it...
+			
 		});
 
 	}
@@ -623,6 +625,8 @@ public class WindowState : Object
 		}
 		
 		if (new_window) {
+	
+			this.popover_files.el.hide();
 			BuilderApplication.newWindow(file, line);
 			return;
 		}
