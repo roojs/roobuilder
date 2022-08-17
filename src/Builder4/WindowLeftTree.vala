@@ -1536,7 +1536,7 @@ typeof(Gdk.Pixbuf) }  );
         public void load (Gee.ArrayList<JsRender.Node> tr, Gtk.TreeIter? iter) 
         {
             
-            _this.maincol.el.set_max_width(_this.view.el.get_allocated_width() - 32);
+            _ 
             
             Gtk.TreeIter citer;
             //this.insert(citer,iter,0);
