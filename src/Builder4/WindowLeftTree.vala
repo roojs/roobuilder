@@ -278,7 +278,7 @@ public class Xcls_WindowLeftTree : Object
             		return false;
             	}
                 if (_this.model.el.iter_n_children(null) < 1) {
-            	    _this.main_window.windowstate.showAddObject(this.view.el);
+            	    _this.main_window.windowstate.showAddObject(_this.view.el);
             	    return true;
                 }
                 
