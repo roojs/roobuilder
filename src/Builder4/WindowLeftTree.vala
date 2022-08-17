@@ -1063,6 +1063,8 @@ typeof(Gdk.Pixbuf) }  );
             }
             // if it's still null?
             if (f.tree == null) {
+            
+            
                 return;
             }
           
