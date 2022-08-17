@@ -1085,12 +1085,7 @@ typeof(Gdk.Pixbuf) }  );
                   //this.get('/Window.leftvpaned').el.set_position(200);
             }
             
-            while (Gtk.events_pending()) {
-                Gtk.main_iteration();
-            }
-        
-            _this.maincol.el.set_max_width(_this.viewwin.el.get_allocated_width() - 32);
-            
+           
             return;
          
                     
@@ -1536,7 +1531,8 @@ typeof(Gdk.Pixbuf) }  );
         public void load (Gee.ArrayList<JsRender.Node> tr, Gtk.TreeIter? iter) 
         {
             
-            _ 
+           
+            _this.maincol.el.set_max_width(_this.view.el.get_allocated_width() - 32);
             
             Gtk.TreeIter citer;
             //this.insert(citer,iter,0);
