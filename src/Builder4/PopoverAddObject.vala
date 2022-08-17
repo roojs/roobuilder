@@ -41,6 +41,12 @@ public class Xcls_PopoverAddObject : Object
         var child_0 = new Xcls_ScrolledWindow2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
+
+        //listeners
+        this.el.hide.connect( ( ) => {
+        
+        
+        });
     }
 
     // user defined functions

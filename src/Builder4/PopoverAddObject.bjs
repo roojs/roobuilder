@@ -180,6 +180,15 @@
      "xtype" : "ScrolledWindow"
     }
    ],
+   "listeners" : {
+    "hide" : [
+     "( ) => {",
+     "",
+     "",
+     "}",
+     ""
+    ]
+   },
    "xtype" : "Popover",
    "| void clear" : [
     "() {",
