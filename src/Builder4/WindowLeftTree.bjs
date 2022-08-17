@@ -642,7 +642,7 @@
           "    }",
           "    // if it's still null?",
           "    if (f.tree == null) {",
-          "    ",
+          "\t\t_this.main_window.windowstate.showAddObject(this.el);",
           "    ",
           "        return;",
           "    }",

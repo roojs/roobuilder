@@ -1063,7 +1063,7 @@ typeof(Gdk.Pixbuf) }  );
             }
             // if it's still null?
             if (f.tree == null) {
-            
+        		_this.main_window.windowstate.showAddObject(this.el);
             
                 return;
             }
