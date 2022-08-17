@@ -749,7 +749,7 @@
          ]
         },
         {
-         "$ Gtk.TreeViewColumnSizing sizing" : "Gtk.TreeViewColumnSizing.AUTOSIZE",
+         "$ Gtk.TreeViewColumnSizing sizing" : "Gtk.TreeViewColumnSizing.FIXED",
          "$ xns" : "Gtk",
          "* init" : [
           "  this.el.add_attribute(_this.renderer.el , \"markup\", 0 );",
