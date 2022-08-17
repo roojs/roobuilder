@@ -68,7 +68,8 @@ public class Xcls_PopoverFiles : Object
     }
 
     // user defined functions
-    public void onProjectSelected (Project.Project project) {
+    public void onProjectSelected (Project.Project project) 
+    {
     	this.selectedProject = project;
     	project.scanDirs();
     	//this.clutterfiles.loadProject(proj);
@@ -228,7 +229,9 @@ public class Xcls_PopoverFiles : Object
     	this.new_window = new_window;
     		// save...
     	this.load();
+    	this.el.show_all(); // show first - so we can hide stuff later.	
     	if (project != null) {
+    	
     		this.selectProject(project);
     	}
     	
@@ -251,14 +254,7 @@ public class Xcls_PopoverFiles : Object
     	this.el.set_modal(true);
     	this.el.set_relative_to(on_el);
     
-    	//this.el.set_position(Gtk.PositionType.BOTTOM);
-    
-    	// window + header?
-     
-    	this.el.show_all();
-        //while(Gtk.events_pending()) { 
-        //        Gtk.main_iteration();   // why?
-        //}  
+    	 
     
     }
     public void load () {
