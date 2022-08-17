@@ -45,7 +45,7 @@ public class Xcls_PopoverProperty : Object
         // set gobject values
         this.el.border_width = 0;
         this.el.modal = true;
-        this.el.position = Gtk.PositionType.LEFT;
+        this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.add(  child_0.el );
@@ -148,8 +148,10 @@ public class Xcls_PopoverProperty : Object
     	this.el.set_modal(true);
     	this.el.set_relative_to(btn);
     	if (y > -1) {
+    		
+    	
     		var  r = Gdk.Rectangle() {
-    			x = 0, // align left...
+    			x = btn.get_allocated_width(), // align left...
     			y = y,
     			width = 1,
     			height = 1
