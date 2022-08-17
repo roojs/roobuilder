@@ -98,8 +98,8 @@ public class Xcls_WindowLeftTree : Object
             //listeners
             this.el.size_allocate.connect( (allocation) => {
             
-            	
-            	GLib.debug("Got allocation width of scrolled view %d", allocation.width );
+            	 
+            	//GLib.debug("Got allocation width of scrolled view %d", allocation.width );
             	_this.maincol.el.set_max_width(allocation.width - 32);
             });
         }
@@ -1622,7 +1622,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (dec)
 
             // set gobject values
-            this.el.max_width = 16;
+            this.el.max_width = 24;
             this.el.title = "Add";
             this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
             this.el.expand = false;
