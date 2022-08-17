@@ -12,7 +12,7 @@ public class Xcls_WindowLeftTree : Object
         }
         return _WindowLeftTree;
     }
-    public Xcls_ScrolledWindow4 ScrolledWindow4;
+    public Xcls_viewwin viewwin;
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_maincol maincol;
@@ -40,7 +40,7 @@ public class Xcls_WindowLeftTree : Object
         var child_0 = new Xcls_Button2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
-        var child_1 = new Xcls_ScrolledWindow4( _this );
+        var child_1 = new Xcls_viewwin( _this );
         child_1.ref();
         this.el.add (  child_1.el  );
     }
@@ -128,7 +128,7 @@ public class Xcls_WindowLeftTree : Object
     }
 
 
-    public class Xcls_ScrolledWindow4 : Object
+    public class Xcls_viewwin : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_WindowLeftTree  _this;
@@ -137,10 +137,10 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow4(Xcls_WindowLeftTree _owner )
+        public Xcls_viewwin(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
-            _this.ScrolledWindow4 = this;
+            _this.viewwin = this;
             this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)
