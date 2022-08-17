@@ -14,8 +14,10 @@ public class Xcls_WindowLeftTree : Object
     }
     public Xcls_view view;
     public Xcls_model model;
+    public Xcls_maincol maincol;
     public Xcls_iconrender iconrender;
     public Xcls_renderer renderer;
+    public Xcls_addiconrender addiconrender;
     public Xcls_LeftTreeMenu LeftTreeMenu;
 
         // my vars (def)
@@ -152,6 +154,12 @@ public class Xcls_WindowLeftTree : Object
             // init method
 
             this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+
+            //listeners
+            this.el.size_allocate.connect( (allocation) => {
+            
+            	_this.maincol.el.set_max_width(allocation.width - 32);
+            });
         }
 
         // user defined functions
@@ -190,13 +198,16 @@ public class Xcls_WindowLeftTree : Object
             this.el.expand = true;
             this.el.tooltip_column = 1;
             this.el.enable_tree_lines = true;
-            this.el.headers_visible = true;
+            this.el.headers_visible = false;
             var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn7( _this );
+            var child_1 = new Xcls_maincol( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
+            var child_2 = new Xcls_TreeViewColumn10( _this );
+            child_2.ref();
+            this.el.append_column (  child_2.el  );
 
             // init method
 
@@ -237,6 +248,10 @@ public class Xcls_WindowLeftTree : Object
             
                 //Gtk.drag_dest_set_target_list(this.el, Builder.Application.targetList);
                 //Gtk.drag_dest_add_text_targets(this.el);
+                
+                
+               
+                
             }
 
             //listeners
@@ -257,21 +272,31 @@ public class Xcls_WindowLeftTree : Object
                 
             	
                 
-                if (ev.type != Gdk.EventType.BUTTON_PRESS  || ev.button != 3) {
-                    //print("click" + ev.type);
-                    return false;
-                }
+               
                 Gtk.TreePath res;
-                if (!_this.view.el.get_path_at_pos((int)ev.x,(int)ev.y, out res, null, null, null) ) {
+                Gtk.TreeViewColumn col;
+                if (!_this.view.el.get_path_at_pos((int)ev.x,(int)ev.y, out res, out col, null, null) ) {
                     return true;
                 }
                 
-            
+                if (col.title == "Add") {
+                     _this.main_window.windowstate.leftTreeBeforeChange();
+                     this.el.get_selection().select_path(res);
+                 	_this.main_window.windowstate.showAddObject(this.el);
+                 	return true;
+                 }
+                
+            	if (ev.type != Gdk.EventType.BUTTON_PRESS  || ev.button != 3) {
+                    //print("click" + ev.type);
+                    return false;
+                 }
                 _this.main_window.windowstate.leftTreeBeforeChange();
             
                 
                  
                 this.el.get_selection().select_path(res);
+                 
+                  
                  
                   //if (!this.get('/LeftTreeMenu').el)  { 
                   //      this.get('/LeftTreeMenu').init(); 
@@ -997,7 +1022,11 @@ public class Xcls_WindowLeftTree : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore.newv(  { typeof(string),typeof(string),typeof(Object),typeof(Gdk.Pixbuf) }  );
+            this.el = new Gtk.TreeStore.newv(  { typeof(string),
+typeof(string),
+typeof(Object),
+typeof(Gdk.Pixbuf),
+typeof(Gdk.Pixbuf) }  );
 
             // my vars (dec)
             this.template_select = null;
@@ -1155,7 +1184,7 @@ public class Xcls_WindowLeftTree : Object
             var clsb = clsname.split(".");
             var sub = clsb.length > 1 ? clsb[1].down()  : "";
             
-           
+            var addi =  ic.load_icon("list-add", 16,0);
             var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
             if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
                 pix = new Gdk.Pixbuf.from_file (fn);
@@ -1171,7 +1200,7 @@ public class Xcls_WindowLeftTree : Object
             );
             this.el.set_value(iter, 2,o);
             this.el.set_value(iter, 3,pix);    
-        
+          	this.el.set_value(iter, 4,addi);   
             
         
         }
@@ -1494,6 +1523,9 @@ public class Xcls_WindowLeftTree : Object
         }
         public void load (Gee.ArrayList<JsRender.Node> tr, Gtk.TreeIter? iter) 
         {
+            
+            _this.maincol.el.set_max_width(_this.view.el.get_allocated_width() - 32);
+            
             Gtk.TreeIter citer;
             //this.insert(citer,iter,0);
            
@@ -1530,7 +1562,7 @@ public class Xcls_WindowLeftTree : Object
         }
     }
 
-    public class Xcls_TreeViewColumn7 : Object
+    public class Xcls_maincol : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_WindowLeftTree  _this;
@@ -1539,15 +1571,19 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn7(Xcls_WindowLeftTree _owner )
+        public Xcls_maincol(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
+            _this.maincol = this;
             this.el = new Gtk.TreeViewColumn();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.title = "test";
+            this.el.title = "Node";
+            this.el.sizing = Gtk.TreeViewColumnSizing.AUTOSIZE;
+            this.el.expand = true;
+            this.el.resizable = true;
             var child_0 = new Xcls_iconrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false );
@@ -1611,6 +1647,63 @@ public class Xcls_WindowLeftTree : Object
     }
 
 
+    public class Xcls_TreeViewColumn10 : Object
+    {
+        public Gtk.TreeViewColumn el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeViewColumn10(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeViewColumn();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.max_width = 16;
+            this.el.title = "Add";
+            this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
+            this.el.expand = false;
+            var child_0 = new Xcls_addiconrender( _this );
+            child_0.ref();
+            this.el.pack_start (  child_0.el , true );
+
+            // init method
+
+            this.el.add_attribute(_this.addiconrender.el , "pixbuf",  4 );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_addiconrender : Object
+    {
+        public Gtk.CellRendererPixbuf el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_addiconrender(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            _this.addiconrender = this;
+            this.el = new Gtk.CellRendererPixbuf();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.width = 16;
+        }
+
+        // user defined functions
+    }
+
+
 
     public class Xcls_LeftTreeMenu : Object
     {
@@ -1630,20 +1723,20 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem11( _this );
+            var child_0 = new Xcls_MenuItem13( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_MenuItem12( _this );
+            var child_1 = new Xcls_MenuItem14( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_MenuItem13( _this );
+            var child_2 = new Xcls_MenuItem15( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_MenuItem11 : Object
+    public class Xcls_MenuItem13 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1652,7 +1745,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem11(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem13(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -1675,7 +1768,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem12 : Object
+    public class Xcls_MenuItem14 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1684,7 +1777,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem12(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem14(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
@@ -1710,7 +1803,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem13 : Object
+    public class Xcls_MenuItem15 : Object
     {
         public Gtk.MenuItem el;
         private Xcls_WindowLeftTree  _this;
@@ -1719,7 +1812,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem13(Xcls_WindowLeftTree _owner )
+        public Xcls_MenuItem15(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuItem();
