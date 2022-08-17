@@ -277,6 +277,10 @@ public class Xcls_WindowLeftTree : Object
             	if (ev.type != Gdk.EventType.BUTTON_PRESS) {
             		return false;
             	}
+                if (_this.model.el.iter_n_children(null) < 1) {
+            	    _this.main_window.windowstate.showAddObject(this.view.el);
+            	    return true;
+                }
                 
                
                 Gtk.TreePath res;
