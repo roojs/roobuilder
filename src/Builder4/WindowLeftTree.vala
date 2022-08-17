@@ -1540,7 +1540,7 @@ typeof(Gdk.Pixbuf) }  );
             // set gobject values
             this.el.title = "Node";
             this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
-            this.el.expand = false;
+            this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_iconrender( _this );
             child_0.ref();
