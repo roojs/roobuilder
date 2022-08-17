@@ -1089,7 +1089,7 @@ typeof(Gdk.Pixbuf) }  );
                 Gtk.main_iteration();
             }
         
-            _this.maincol.el.set_max_width(_this.viewwin.get_allocated_width() - 32);
+            _this.maincol.el.set_max_width(_this.viewwin.el.get_allocated_width() - 32);
             
             return;
          
