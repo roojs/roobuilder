@@ -1086,8 +1086,8 @@ typeof(Gdk.Pixbuf) }  );
             while (Gtk.events_pending()) {
                 Gtk.main_iteration();
             }
-            var alloc = _this.view.
-            _this.maincol.el.set_max_width(
+        
+            _this.maincol.el.set_max_width(_this.viewwin.get_allocated_width() - 32);
             
             return;
          
