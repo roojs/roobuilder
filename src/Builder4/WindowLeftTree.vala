@@ -12,6 +12,7 @@ public class Xcls_WindowLeftTree : Object
         }
         return _WindowLeftTree;
     }
+    public Xcls_ScrolledWindow4 ScrolledWindow4;
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_maincol maincol;
@@ -139,6 +140,7 @@ public class Xcls_WindowLeftTree : Object
         public Xcls_ScrolledWindow4(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
+            _this.ScrolledWindow4 = this;
             this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)
