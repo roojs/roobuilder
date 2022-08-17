@@ -45,7 +45,6 @@ public class Xcls_PopoverAddObject : Object
         //listeners
         this.el.hide.connect( ( ) => {
         
-        
         });
     }
 
