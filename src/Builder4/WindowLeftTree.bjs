@@ -757,7 +757,7 @@
           " "
          ],
          "* pack" : "append_column",
-         "bool expand" : true,
+         "bool expand" : false,
          "bool resizable" : true,
          "id" : "maincol",
          "items" : [
