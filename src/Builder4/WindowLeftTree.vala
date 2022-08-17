@@ -270,7 +270,9 @@ public class Xcls_WindowLeftTree : Object
                    return true;
                 }
                 
-            	
+            	if (ev.type != Gdk.EventType.BUTTON_PRESS) {
+            		return false;
+            	}
                 
                
                 Gtk.TreePath res;
@@ -286,7 +288,7 @@ public class Xcls_WindowLeftTree : Object
                  	return true;
                  }
                 
-            	if (ev.type != Gdk.EventType.BUTTON_PRESS  || ev.button != 3) {
+            	if (  ev.button != 3) {
                     //print("click" + ev.type);
                     return false;
                  }
