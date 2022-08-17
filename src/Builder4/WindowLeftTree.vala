@@ -1083,6 +1083,11 @@ typeof(Gdk.Pixbuf) }  );
                   //this.get('/Window.leftvpaned').el.set_position(200);
             }
             
+            while (Gtk.events_pending()) {
+                Gtk.main_iteration();
+            }
+            
+            
             return;
          
                     
