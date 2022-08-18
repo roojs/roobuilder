@@ -557,7 +557,7 @@ public class Editor : Object
             this.el.key_release_event.connect( (event) => {
                 
                 if (event.keyval == 115 && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-                    print("SAVE: ctrl-S  pressed");
+                    GLib.debug("SAVE: ctrl-S  pressed");
                     _this.saveContents();
                     return false;
                 }
