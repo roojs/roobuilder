@@ -186,7 +186,7 @@ public class Xcls_WindowRooView : Object
     	}
     	this.last_search_end = en.get_offset();
     	if (change_focus) {
-    		this.view.el.grab_focus();
+    		this.sourceview.el.grab_focus();
     	}
     	this.buffer.el.place_cursor(st);
     	this.sourceview.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
