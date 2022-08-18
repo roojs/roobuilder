@@ -25,6 +25,8 @@ public class Xcls_WindowRooView : Object
     public Xcls_buffer buffer;
     public Xcls_search_entry search_entry;
     public Xcls_search_results search_results;
+    public Xcls_nextBtn nextBtn;
+    public Xcls_backBtn backBtn;
     public Xcls_search_settings search_settings;
     public Xcls_case_sensitive case_sensitive;
     public Xcls_regex regex;
@@ -1751,13 +1753,13 @@ public class Xcls_WindowRooView : Object
             var child_1 = new Xcls_MenuBar20( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_Button23( _this );
+            var child_2 = new Xcls_nextBtn( _this );
             child_2.ref();
             this.el.add(  child_2.el );
-            var child_3 = new Xcls_Button25( _this );
+            var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
             this.el.add(  child_3.el );
-            var child_4 = new Xcls_MenuButton27( _this );
+            var child_4 = new Xcls_MenuButton26( _this );
             child_4.ref();
             this.el.add(  child_4.el );
         }
@@ -1794,22 +1796,22 @@ public class Xcls_WindowRooView : Object
 
             //listeners
             this.el.key_press_event.connect( (event) => {
-                
                  if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-g  pressed");
             		_this.forwardSearch(true);
             	    return true;
             	}
                 
-                
               
              	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
             		var res = _this.search(this.el.text);
-            		if (res > 0) {
-            			_this.search_results.el.label = "%d Matches".printf(res);
-            		} else {
-            			_this.search_results.el.label = "No Matches";
-            		}
+            		 _this.search_results.updateResults();
+            
+            		GLib.Timeout.add_seconds(2,() => {
+            			 _this.search_results.updateResults();
+            			 return false;
+            		 });
+            	 
             		
             	    return true;
             
@@ -1915,7 +1917,6 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public Xcls_ValaCompileErrors popup;
 
         // ctor
         public Xcls_search_results(Xcls_WindowRooView _owner )
@@ -1928,10 +1929,7 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.always_show_image = true;
-            this.el.label = "Matches";
-            var child_0 = new Xcls_Image22( _this );
-            child_0.ref();
-            this.el.set_image (  child_0.el  );
+            this.el.visible = false;
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1949,34 +1947,31 @@ public class Xcls_WindowRooView : Object
         }
 
         // user defined functions
-    }
-    public class Xcls_Image22 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_WindowRooView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image22(Xcls_WindowRooView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "system-search";
-            this.el.sensitive = false;
+        public void updateResults () {
+        	this.el.visible = true;
+        	
+        	var res = _this.searchcontext.get_occurrences_count();
+        	if (res < 0) {
+        		_this.search_results.el.label = "??? Matches";		
+        		return;
+        	}
+        
+        	_this.nextBtn.el.sensitive = false;
+        	_this.backBtn.el.sensitive = false;	
+        
+        	if (res > 0) {
+        		_this.search_results.el.label = "%d Matches".printf(res);
+        		_this.nextBtn.el.sensitive = true;
+        		_this.backBtn.el.sensitive = true;
+        		return;
+        	} 
+        	_this.search_results.el.label = "No Matches";
+        	
         }
-
-        // user defined functions
     }
 
 
-
-    public class Xcls_Button23 : Object
+    public class Xcls_nextBtn : Object
     {
         public Gtk.Button el;
         private Xcls_WindowRooView  _this;
@@ -1985,9 +1980,10 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button23(Xcls_WindowRooView _owner )
+        public Xcls_nextBtn(Xcls_WindowRooView _owner )
         {
             _this = _owner;
+            _this.nextBtn = this;
             this.el = new Gtk.Button();
 
             // my vars (dec)
@@ -1995,7 +1991,8 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Next";
-            var child_0 = new Xcls_Image24( _this );
+            this.el.sensitive = false;
+            var child_0 = new Xcls_Image23( _this );
             child_0.ref();
             this.el.image = child_0.el;
 
@@ -2010,7 +2007,7 @@ public class Xcls_WindowRooView : Object
 
         // user defined functions
     }
-    public class Xcls_Image24 : Object
+    public class Xcls_Image23 : Object
     {
         public Gtk.Image el;
         private Xcls_WindowRooView  _this;
@@ -2019,7 +2016,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image24(Xcls_WindowRooView _owner )
+        public Xcls_Image23(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -2034,7 +2031,7 @@ public class Xcls_WindowRooView : Object
     }
 
 
-    public class Xcls_Button25 : Object
+    public class Xcls_backBtn : Object
     {
         public Gtk.Button el;
         private Xcls_WindowRooView  _this;
@@ -2043,9 +2040,10 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button25(Xcls_WindowRooView _owner )
+        public Xcls_backBtn(Xcls_WindowRooView _owner )
         {
             _this = _owner;
+            _this.backBtn = this;
             this.el = new Gtk.Button();
 
             // my vars (dec)
@@ -2053,7 +2051,8 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Previous";
-            var child_0 = new Xcls_Image26( _this );
+            this.el.sensitive = false;
+            var child_0 = new Xcls_Image25( _this );
             child_0.ref();
             this.el.image = child_0.el;
 
@@ -2068,7 +2067,7 @@ public class Xcls_WindowRooView : Object
 
         // user defined functions
     }
-    public class Xcls_Image26 : Object
+    public class Xcls_Image25 : Object
     {
         public Gtk.Image el;
         private Xcls_WindowRooView  _this;
@@ -2077,7 +2076,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image26(Xcls_WindowRooView _owner )
+        public Xcls_Image25(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -2092,7 +2091,7 @@ public class Xcls_WindowRooView : Object
     }
 
 
-    public class Xcls_MenuButton27 : Object
+    public class Xcls_MenuButton26 : Object
     {
         public Gtk.MenuButton el;
         private Xcls_WindowRooView  _this;
@@ -2101,7 +2100,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuButton27(Xcls_WindowRooView _owner )
+        public Xcls_MenuButton26(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -2111,7 +2110,7 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Settings";
-            var child_0 = new Xcls_Image28( _this );
+            var child_0 = new Xcls_Image27( _this );
             child_0.ref();
             this.el.image = child_0.el;
             var child_1 = new Xcls_search_settings( _this );
@@ -2121,7 +2120,7 @@ public class Xcls_WindowRooView : Object
 
         // user defined functions
     }
-    public class Xcls_Image28 : Object
+    public class Xcls_Image27 : Object
     {
         public Gtk.Image el;
         private Xcls_WindowRooView  _this;
@@ -2130,7 +2129,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image28(Xcls_WindowRooView _owner )
+        public Xcls_Image27(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
