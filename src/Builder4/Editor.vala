@@ -151,7 +151,7 @@ public class Editor : Object
     	
     	Gtk.TextIter beg, st,en;
     	bool has_wrapped_around;
-    	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end);
+    	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end -1 );
     	
     	if (!this.searchcontext.backward2(beg, out st, out en, out has_wrapped_around)) {
     	

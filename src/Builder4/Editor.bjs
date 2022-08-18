@@ -847,7 +847,7 @@
     "\t",
     "\tGtk.TextIter beg, st,en;",
     "\tbool has_wrapped_around;",
-    "\tthis.buffer.el.get_iter_at_offset(out beg, this.last_search_end);",
+    "\tthis.buffer.el.get_iter_at_offset(out beg, this.last_search_end -1 );",
     "\t",
     "\tif (!this.searchcontext.backward2(beg, out st, out en, out has_wrapped_around)) {",
     "\t",
