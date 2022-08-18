@@ -749,7 +749,7 @@ public class Xcls_GtkView : Object
             
             this.loading = false; 
         }
-        public void nodeSelected (JsRender.Node? sel) {
+        public void nodeSelected (JsRender.Node? sel, bool scroll) {
           
             
           
