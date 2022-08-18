@@ -595,7 +595,7 @@
         "(bool change_focus) {",
         "",
         "",
-        "\t_this.forwardSearch();",
+        "\t_this.forwardSearch(change_focus);",
         "",
         "/*",
         "",
