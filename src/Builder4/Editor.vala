@@ -1249,7 +1249,7 @@ public class Editor : Object
             //listeners
             this.el.popped_up.connect( (flipped_rect, final_rect, flipped_x, flipped_y) => {
             
-            
+            	this.el.show_all();
             });
         }
 
