@@ -178,10 +178,14 @@ public class Editor : Object
     	var s = new Gtk.SourceSearchSettings();
     	s.case_sensitive = _this.case_sensitive.el.active;
     	s.regex_enabled = _this.regex.el.active;	
+    	s.wrap_around = false;
     	
     	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
     	this.searchcontext.set_highlight(true);
     	
+    	if (_this.mutiline.el.active) {
+    		txt = txt.replace("\\n", "\n");
+    	}
     	
     	s.set_search_text(txt);
     	Gtk.TextIter beg, st,en;
