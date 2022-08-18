@@ -255,7 +255,7 @@ public class Xcls_WindowRooView : Object
             this.el.append_page (  child_2.el , _this.label_preview.el );
             var child_3 = new Xcls_Box14( _this );
             child_3.ref();
-            this.el.append_page( child_3.el, new Gtk.Label(""));
+            this.el.append_page (  child_3.el , _this.label_code.el );
             var child_4 = new Xcls_ScrolledWindow15( _this );
             child_4.ref();
             this.el.append_page (  child_4.el , _this.label_code.el );
