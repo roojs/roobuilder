@@ -1511,7 +1511,7 @@
    ],
    "xtype" : "Box",
    "| int search" : [
-    "(string txt) {",
+    "(string in_txt) {",
     "\tthis.notebook.el.page = 1;",
     "\t",
     " ",

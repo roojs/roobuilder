@@ -183,7 +183,7 @@ public class Xcls_WindowRooView : Object
     	}
      
     }
-    public int search (string txt) {
+    public int search (string in_txt) {
     	this.notebook.el.page = 1;
     	
      
