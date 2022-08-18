@@ -1126,7 +1126,7 @@ public class Editor : Object
             //listeners
             this.el.button_press_event.connect( (event) => {
             
-            	_this.forwardSearch();
+            	_this.forwardSearch(true);
             	
             	return true;
             });
@@ -1184,7 +1184,7 @@ public class Editor : Object
             //listeners
             this.el.button_press_event.connect( (event) => {
             
-            	_this.backSearch();
+            	_this.backSearch(true);
             	
             	return true;
             });

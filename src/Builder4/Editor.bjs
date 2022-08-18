@@ -684,7 +684,7 @@
         "button_press_event" : [
          "(event) => {",
          "",
-         "\t_this.forwardSearch();",
+         "\t_this.forwardSearch(true);",
          "\t",
          "\treturn true;",
          "}",
@@ -709,7 +709,7 @@
         "button_press_event" : [
          "(event) => {",
          "",
-         "\t_this.backSearch();",
+         "\t_this.backSearch(true);",
          "\t",
          "\treturn true;",
          "}",
