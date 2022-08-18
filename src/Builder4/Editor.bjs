@@ -831,7 +831,7 @@
     "\tthis.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);",
     "\tthis.searchcontext.set_highlight(true);",
     "\t",
-    "\tif (_this.mutiline.el.active) {",
+    "\tif (_this.multiline.el.active) {",
     "\t\ttxt = txt.replace(\"\\\\n\", \"\\n\");",
     "\t}",
     "\t",

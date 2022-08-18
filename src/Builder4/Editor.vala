@@ -183,7 +183,7 @@ public class Editor : Object
     	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
     	this.searchcontext.set_highlight(true);
     	
-    	if (_this.mutiline.el.active) {
+    	if (_this.multiline.el.active) {
     		txt = txt.replace("\\n", "\n");
     	}
     	
