@@ -772,7 +772,7 @@ public class Xcls_GtkView : Object
             sbuf.get_bounds (out start, out end);
             sbuf.remove_source_marks (start, end, "grey");
             
-            
+                this.node_selected = sel;
              if (sel == null) {
                 // no highlighting..
                 return;
