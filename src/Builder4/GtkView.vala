@@ -21,12 +21,12 @@ public class Xcls_GtkView : Object
 
         // my vars (def)
     public Gtk.Widget lastObj;
+    public Xcls_MainWindow main_window;
+    public Gtk.SourceSearchContext searchcontext;
     public int last_search_end;
     public int width;
-    public Gtk.SourceSearchContext searchcontext;
     public JsRender.JsRender file;
     public int height;
-    public Xcls_MainWindow main_window;
 
     // ctor
     public Xcls_GtkView()
@@ -57,86 +57,6 @@ public class Xcls_GtkView : Object
     }
 
     // user defined functions
-    public void scroll_to_line (int line) {
-       this.notebook.el.page = 1;// code preview...
-       
-       GLib.Timeout.add(500, () => {
-       
-       
-    	   
-    	   
-    		  var buf = this.sourceview.el.get_buffer();
-    	 
-    		var sbuf = (Gtk.SourceBuffer) buf;
-    
-    
-    		Gtk.TextIter iter;   
-    		sbuf.get_iter_at_line(out iter,  line);
-    		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-    		return false;
-    	});   
-    
-       
-    }
-    public int search (string txt) {
-    	this.notebook.el.page = 1;
-     	var s = new Gtk.SourceSearchSettings();
-    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
-    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
-    	this.searchcontext.set_highlight(true);
-    	s.set_search_text(txt);
-    	
-    	Gtk.TextIter beg, st,en;
-    	 
-    	buf.get_start_iter(out beg);
-    	this.searchcontext.forward(beg, out st, out en);
-    	this.last_search_end  = 0;
-    	return this.searchcontext.get_occurrences_count();
-    
-       
-    }
-    public void createThumb () {
-        
-        
-        if (this.file == null) {
-            return;
-        }
-        // only screenshot the gtk preview..
-        if (this.notebook.el.page > 0 ) {
-            return;
-        }
-        
-        
-        var filename = this.file.getIconFileName(false);
-        
-        var  win = this.el.get_parent_window();
-        var width = win.get_width();
-        var height = win.get_height();
-        try {
-             Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
-             screenshot.save(filename,"png");
-        } catch (Error e) {
-            
-        }
-    
-       
-        return;
-        
-        
-         
-         
-        
-        // should we hold until it's printed...
-        
-          
-    
-        
-        
-    
-    
-        
-         
-    }
     public void loadFile (JsRender.JsRender file) 
     {
             this.file = null;
@@ -217,6 +137,86 @@ public class Xcls_GtkView : Object
     	}
     
     }
+    public int search (string txt) {
+    	this.notebook.el.page = 1;
+     	var s = new Gtk.SourceSearchSettings();
+    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
+    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
+    	this.searchcontext.set_highlight(true);
+    	s.set_search_text(txt);
+    	
+    	Gtk.TextIter beg, st,en;
+    	 
+    	buf.get_start_iter(out beg);
+    	this.searchcontext.forward(beg, out st, out en);
+    	this.last_search_end  = 0;
+    	return this.searchcontext.get_occurrences_count();
+    
+       
+    }
+    public void createThumb () {
+        
+        
+        if (this.file == null) {
+            return;
+        }
+        // only screenshot the gtk preview..
+        if (this.notebook.el.page > 0 ) {
+            return;
+        }
+        
+        
+        var filename = this.file.getIconFileName(false);
+        
+        var  win = this.el.get_parent_window();
+        var width = win.get_width();
+        var height = win.get_height();
+        try {
+             Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
+             screenshot.save(filename,"png");
+        } catch (Error e) {
+            
+        }
+    
+       
+        return;
+        
+        
+         
+         
+        
+        // should we hold until it's printed...
+        
+          
+    
+        
+        
+    
+    
+        
+         
+    }
+    public void scroll_to_line (int line) {
+       this.notebook.el.page = 1;// code preview...
+       
+       GLib.Timeout.add(500, () => {
+       
+       
+    	   
+    	   
+    		  var buf = this.sourceview.el.get_buffer();
+    	 
+    		var sbuf = (Gtk.SourceBuffer) buf;
+    
+    
+    		Gtk.TextIter iter;   
+    		sbuf.get_iter_at_line(out iter,  line);
+    		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+    		return false;
+    	});   
+    
+       
+    }
     public class Xcls_notebook : Object
     {
         public Gtk.Notebook el;
@@ -242,7 +242,7 @@ public class Xcls_GtkView : Object
             var child_2 = new Xcls_ScrolledWindow5( _this );
             child_2.ref();
             this.el.append_page (  child_2.el , _this.label_preview.el );
-            var child_3 = new Xcls_ScrolledWindow8( _this );
+            var child_3 = new Xcls_Box8( _this );
             child_3.ref();
             this.el.append_page (  child_3.el , _this.label_code.el );
         }
@@ -369,7 +369,31 @@ public class Xcls_GtkView : Object
 
 
 
-    public class Xcls_ScrolledWindow8 : Object
+    public class Xcls_Box8 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_GtkView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box8(Xcls_GtkView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_ScrolledWindow9( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_ScrolledWindow9 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_GtkView  _this;
@@ -378,7 +402,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow8(Xcls_GtkView _owner )
+        public Xcls_ScrolledWindow9(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow( null, null );
@@ -524,73 +548,6 @@ public class Xcls_GtkView : Object
         }
 
         // user defined functions
-        public string toString () {
-           Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_buffer().get_start_iter(out s);
-            this.el.get_buffer().get_end_iter(out e);
-            var ret = this.el.get_buffer().get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
-        }
-        public void nodeSelected (JsRender.Node? sel) {
-          
-            
-          
-            // this is connected in widnowstate
-            print("Roo-view - node selected\n");
-            var buf = this.el.get_buffer();
-         
-            var sbuf = (Gtk.SourceBuffer) buf;
-        
-           
-            while(Gtk.events_pending()) {
-                Gtk.main_iteration();
-            }
-            
-           
-            // clear all the marks..
-             Gtk.TextIter start;
-            Gtk.TextIter end;     
-                
-            sbuf.get_bounds (out start, out end);
-            sbuf.remove_source_marks (start, end, "grey");
-            
-            
-             if (sel == null) {
-                // no highlighting..
-                return;
-            }
-            Gtk.TextIter iter;   
-            sbuf.get_iter_at_line(out iter,  sel.line_start);
-            
-            
-            Gtk.TextIter cur_iter;
-            sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
-            
-            //var cur_line = cur_iter.get_line();
-            //if (cur_line > sel.line_start && cur_line < sel.line_end) {
-            
-            //} else {
-            if (this.allow_node_scroll) {
-        		 
-            	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-        	}
-            
-             
-            
-            for (var i = 0; i < buf.get_line_count();i++) {
-                if (i < sel.line_start || i > sel.line_end) {
-                   
-                    sbuf.get_iter_at_line(out iter, i);
-                    sbuf.create_source_mark(null, "grey", iter);
-                    
-                }
-            
-            }
-            
-        
-        }
         public void loadFile ( ) {
             this.loading = true;
             var buf = this.el.get_buffer();
@@ -659,6 +616,64 @@ public class Xcls_GtkView : Object
            // }
             
             this.loading = false; 
+        }
+        public void nodeSelected (JsRender.Node? sel) {
+          
+            
+          
+            // this is connected in widnowstate
+            print("Roo-view - node selected\n");
+            var buf = this.el.get_buffer();
+         
+            var sbuf = (Gtk.SourceBuffer) buf;
+        
+           
+            while(Gtk.events_pending()) {
+                Gtk.main_iteration();
+            }
+            
+           
+            // clear all the marks..
+             Gtk.TextIter start;
+            Gtk.TextIter end;     
+                
+            sbuf.get_bounds (out start, out end);
+            sbuf.remove_source_marks (start, end, "grey");
+            
+            
+             if (sel == null) {
+                // no highlighting..
+                return;
+            }
+            Gtk.TextIter iter;   
+            sbuf.get_iter_at_line(out iter,  sel.line_start);
+            
+            
+            Gtk.TextIter cur_iter;
+            sbuf.get_iter_at_offset(out cur_iter, sbuf.cursor_position);
+            
+            //var cur_line = cur_iter.get_line();
+            //if (cur_line > sel.line_start && cur_line < sel.line_end) {
+            
+            //} else {
+            if (this.allow_node_scroll) {
+        		 
+            	this.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+        	}
+            
+             
+            
+            for (var i = 0; i < buf.get_line_count();i++) {
+                if (i < sel.line_start || i > sel.line_end) {
+                   
+                    sbuf.get_iter_at_line(out iter, i);
+                    sbuf.create_source_mark(null, "grey", iter);
+                    
+                }
+            
+            }
+            
+        
         }
         public void highlightErrorsJson (string type, Json.Object obj) {
               Gtk.TextIter start;
@@ -733,7 +748,17 @@ public class Xcls_GtkView : Object
         
         
         }
+        public string toString () {
+           Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_buffer().get_start_iter(out s);
+            this.el.get_buffer().get_end_iter(out e);
+            var ret = this.el.get_buffer().get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
+        }
     }
+
 
 
 
