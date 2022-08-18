@@ -1099,6 +1099,12 @@ public class Editor : Object
             var child_0 = new Xcls_Image18( _this );
             child_0.ref();
             this.el.image = child_0.el;
+
+            //listeners
+            this.el.button_press_event.connect( (event) => {
+            
+            	return bool;
+            });
         }
 
         // user defined functions

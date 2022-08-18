@@ -680,6 +680,15 @@
          "xtype" : "Image"
         }
        ],
+       "listeners" : {
+        "button_press_event" : [
+         "(event) => {",
+         "",
+         "\treturn bool;",
+         "}",
+         ""
+        ]
+       },
        "string label" : "Previous",
        "xtype" : "Button"
       },
