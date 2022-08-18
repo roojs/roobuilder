@@ -676,31 +676,6 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "image",
-         "string icon_name" : "go-up",
-         "xtype" : "Image"
-        }
-       ],
-       "listeners" : {
-        "button_press_event" : [
-         "(event) => {",
-         "",
-         "\t_this.searchBack();",
-         "\t",
-         "\treturn true;",
-         "}",
-         ""
-        ]
-       },
-       "string label" : "Previous",
-       "xtype" : "Button"
-      },
-      {
-       "$ xns" : "Gtk",
-       "bool always_show_image" : true,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "image",
          "string icon_name" : "go-down",
          "xtype" : "Image"
         }
@@ -717,6 +692,31 @@
         ]
        },
        "string label" : "Next",
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "bool always_show_image" : true,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "image",
+         "string icon_name" : "go-up",
+         "xtype" : "Image"
+        }
+       ],
+       "listeners" : {
+        "button_press_event" : [
+         "(event) => {",
+         "",
+         "\t_this.searchBack();",
+         "\t",
+         "\treturn true;",
+         "}",
+         ""
+        ]
+       },
+       "string label" : "Previous",
        "xtype" : "Button"
       },
       {

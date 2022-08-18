@@ -1118,7 +1118,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.always_show_image = true;
-            this.el.label = "Previous";
+            this.el.label = "Next";
             var child_0 = new Xcls_Image18( _this );
             child_0.ref();
             this.el.image = child_0.el;
@@ -1126,7 +1126,7 @@ public class Editor : Object
             //listeners
             this.el.button_press_event.connect( (event) => {
             
-            	_this.searchBack();
+            	_this.searchForward();
             	
             	return true;
             });
@@ -1151,7 +1151,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "go-up";
+            this.el.icon_name = "go-down";
         }
 
         // user defined functions
@@ -1176,7 +1176,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.always_show_image = true;
-            this.el.label = "Next";
+            this.el.label = "Previous";
             var child_0 = new Xcls_Image20( _this );
             child_0.ref();
             this.el.image = child_0.el;
@@ -1184,7 +1184,7 @@ public class Editor : Object
             //listeners
             this.el.button_press_event.connect( (event) => {
             
-            	_this.searchForward();
+            	_this.searchBack();
             	
             	return true;
             });
@@ -1209,7 +1209,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "go-down";
+            this.el.icon_name = "go-up";
         }
 
         // user defined functions
