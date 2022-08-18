@@ -903,8 +903,8 @@ public class Editor : Object
             this.el.key_press_event.connect( (event) => {
                 
               
-             	if (event.keyval == Gdk.Key.Return) {
-            		this.search(_this.);
+             	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
+            		_this.search(this.el.text);
             	    return true;
             
             	}    
