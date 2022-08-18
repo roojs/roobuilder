@@ -93,21 +93,7 @@ public class Xcls_MainWindow : Object
         });
         this.el.key_release_event.connect( (event) => {
             
-            if (this.search_entry.el.is_visible()) {
-        		if (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-        		    print("SAVE: ctrl-f  pressed");
-        			this.search_entry.el.grab_focus();
-        		    return false;
-        		}
-        		/*
-        		if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-        		    print("SAVE: ctrl-g  pressed");
-        			this.search_entry.forwardSearch(true);
-        		    return false;
-        		}
-        		*/
-        		
-        	}    
+            
         	
         	if (event.keyval == Gdk.Key.n && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
         		print("SAVE: ctrl-n  pressed");
