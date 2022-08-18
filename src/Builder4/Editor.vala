@@ -1084,7 +1084,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.always_show_image = true;
-            this.el.label = "Label";
+            this.el.label = "Previous";
             var child_0 = new Xcls_Image18( _this );
             child_0.ref();
             this.el.image = child_0.el;
@@ -1134,7 +1134,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.always_show_image = true;
-            this.el.label = "Label";
+            this.el.label = "Next";
             var child_0 = new Xcls_Image20( _this );
             child_0.ref();
             this.el.image = child_0.el;

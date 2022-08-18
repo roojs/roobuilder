@@ -669,7 +669,7 @@
          "xtype" : "Image"
         }
        ],
-       "string label" : "Label",
+       "string label" : "Previous",
        "xtype" : "Button"
       },
       {
@@ -683,7 +683,7 @@
          "xtype" : "Image"
         }
        ],
-       "string label" : "Label",
+       "string label" : "Next",
        "xtype" : "Button"
       },
       {
