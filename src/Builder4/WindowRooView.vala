@@ -167,7 +167,7 @@ public class Xcls_WindowRooView : Object
     	
     	var ln = st.get_line();
     	
-    	this.hightlightNodeAtLine(ln);
+    	this.highlightNodeAtLine(ln);
     }
     public void backSearch (bool change_focus) {
     

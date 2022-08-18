@@ -1631,7 +1631,7 @@
     "\t",
     "\tvar ln = st.get_line();",
     "\t",
-    "\tthis.hightlightNodeAtLine(ln);",
+    "\tthis.highlightNodeAtLine(ln);",
     "}\t",
     "  "
    ],
