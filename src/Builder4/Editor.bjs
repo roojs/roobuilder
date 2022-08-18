@@ -684,7 +684,7 @@
         "button_press_event" : [
          "(event) => {",
          "",
-         "\t_this.searchForward();",
+         "\t_this.forwardSearch();",
          "\t",
          "\treturn true;",
          "}",
