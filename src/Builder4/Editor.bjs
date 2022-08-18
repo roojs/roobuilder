@@ -688,6 +688,12 @@
       },
       {
        "$ xns" : "Gtk",
+       "* init" : [
+        "{",
+        "",
+        "}",
+        ""
+       ],
        "bool always_show_image" : true,
        "items" : [
         {

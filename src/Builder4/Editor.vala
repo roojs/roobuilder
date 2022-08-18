@@ -1191,6 +1191,12 @@ public class Editor : Object
             var child_1 = new Xcls_search_settings( _this );
             child_1.ref();
             this.el.popup = child_1.el;
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions
