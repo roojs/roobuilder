@@ -720,7 +720,6 @@
          "xtype" : "Menu"
         }
        ],
-       "string label" : "Label",
        "xtype" : "MenuButton"
       }
      ],
