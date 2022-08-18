@@ -23,13 +23,19 @@ public class Xcls_WindowRooView : Object
     public Xcls_inspectorcontainer inspectorcontainer;
     public Xcls_sourceview sourceview;
     public Xcls_buffer buffer;
+    public Xcls_search_entry search_entry;
+    public Xcls_search_results search_results;
+    public Xcls_search_settings search_settings;
+    public Xcls_case_sensitive case_sensitive;
+    public Xcls_regex regex;
+    public Xcls_multiline multiline;
 
         // my vars (def)
     public Gtk.Widget lastObj;
-    public int last_search_end;
-    public Gtk.SourceSearchContext searchcontext;
-    public JsRender.JsRender file;
     public Xcls_MainWindow main_window;
+    public Gtk.SourceSearchContext searchcontext;
+    public int last_search_end;
+    public JsRender.JsRender file;
 
     // ctor
     public Xcls_WindowRooView()
@@ -48,74 +54,12 @@ public class Xcls_WindowRooView : Object
         var child_0 = new Xcls_notebook( _this );
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
+        var child_1 = new Xcls_Box17( _this );
+        child_1.ref();
+        this.el.add(  child_1.el );
     }
 
     // user defined functions
-    public void scroll_to_line (int line) {
-       this.notebook.el.page = 1;// code preview...
-       
-       GLib.Timeout.add(500, () => {
-       
-       
-    	   
-    	   
-    		  var buf = this.sourceview.el.get_buffer();
-    	 
-    		var sbuf = (Gtk.SourceBuffer) buf;
-    
-    
-    		Gtk.TextIter iter;   
-    		sbuf.get_iter_at_line(out iter,  line);
-    		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
-    		return false;
-    	});   
-    
-       
-    }
-    public int search (string txt) {
-    	this.notebook.el.page = 1;
-     	var s = new Gtk.SourceSearchSettings();
-    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
-    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
-    	this.searchcontext.set_highlight(true);
-    	s.set_search_text(txt);
-    	
-    	Gtk.TextIter beg, st,en;
-    	 
-    	buf.get_start_iter(out beg);
-    	this.searchcontext.forward(beg, out st, out en);
-    	this.last_search_end  = 0;
-    	return this.searchcontext.get_occurrences_count();
-    
-       
-    }
-    public void createThumb () {
-        
-        
-        if (this.file == null) {
-            return;
-        }
-    	if (this.notebook.el.page > 0 ) {
-            return;
-        }
-        
-        var filename = this.file.getIconFileName(false);
-        
-        var  win = this.el.get_parent_window();
-        var width = win.get_width();
-      //  var height = win.get_height();
-        try { 
-            Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, this.paned.el.position);
-            screenshot.save(filename,"png");
-        } catch(Error e) {
-            //noop
-        }
-    
-        
-         
-        
-         
-    }
     public void loadFile (JsRender.JsRender file)
     {
         this.file = file;
@@ -218,6 +162,71 @@ public class Xcls_WindowRooView : Object
     		
     		 
     
+    }
+    public int search (string txt) {
+    	this.notebook.el.page = 1;
+     	var s = new Gtk.SourceSearchSettings();
+    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
+    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
+    	this.searchcontext.set_highlight(true);
+    	s.set_search_text(txt);
+    	
+    	Gtk.TextIter beg, st,en;
+    	 
+    	buf.get_start_iter(out beg);
+    	this.searchcontext.forward(beg, out st, out en);
+    	this.last_search_end  = 0;
+    	return this.searchcontext.get_occurrences_count();
+    
+       
+    }
+    public void createThumb () {
+        
+        
+        if (this.file == null) {
+            return;
+        }
+    	if (this.notebook.el.page > 0 ) {
+            return;
+        }
+        
+        var filename = this.file.getIconFileName(false);
+        
+        var  win = this.el.get_parent_window();
+        var width = win.get_width();
+      //  var height = win.get_height();
+        try { 
+            Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, this.paned.el.position);
+            screenshot.save(filename,"png");
+        } catch(Error e) {
+            //noop
+        }
+    
+        
+         
+        
+         
+    }
+    public void scroll_to_line (int line) {
+       this.notebook.el.page = 1;// code preview...
+       
+       GLib.Timeout.add(500, () => {
+       
+       
+    	   
+    	   
+    		  var buf = this.sourceview.el.get_buffer();
+    	 
+    		var sbuf = (Gtk.SourceBuffer) buf;
+    
+    
+    		Gtk.TextIter iter;   
+    		sbuf.get_iter_at_line(out iter,  line);
+    		this.sourceview.el.scroll_to_iter(iter,  0.1f, true, 0.0f, 0.5f);
+    		return false;
+    	});   
+    
+       
     }
     public class Xcls_notebook : Object
     {
@@ -516,14 +525,13 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public string renderedData;
-        public bool refreshRequired;
         public WebKit.WebInspector inspector;
-        public string runjs;
-        public int redraws;
-        public GLib.DateTime lastRedraw;
-        public string runhtml;
         public bool pendingRedraw;
+        public bool refreshRequired;
+        public string runjs;
+        public string runhtml;
+        public string renderedData;
+        public GLib.DateTime lastRedraw;
 
         // ctor
         public Xcls_view(Xcls_WindowRooView _owner )
@@ -533,13 +541,12 @@ public class Xcls_WindowRooView : Object
             this.el = new WebKit.WebView();
 
             // my vars (dec)
-            this.renderedData = "";
+            this.pendingRedraw = false;
             this.refreshRequired = false;
             this.runjs = "";
-            this.redraws = 0;
-            this.lastRedraw = null;
             this.runhtml = "";
-            this.pendingRedraw = false;
+            this.renderedData = "";
+            this.lastRedraw = null;
 
             // set gobject values
 
@@ -666,6 +673,97 @@ public class Xcls_WindowRooView : Object
         }
 
         // user defined functions
+        public void initInspector () {
+            
+           /* if (this.inspector == this.el.get_inspector()) {
+                this.inspector.show();
+                this.inspector.open_window();        
+                print("init inspecter called, and inspector is the same as existing\n");
+                return;
+            }
+            print("new inspector?\n");
+        */
+            this.inspector = this.el.get_inspector();
+            this.inspector.ref();
+            
+            // got a new inspector...
+                
+            this.inspector.open_window.connect(() => {
+                 this.inspector = this.el.get_inspector();
+                print("inspector attach\n");
+                var wv = this.inspector.get_web_view();
+                if (wv != null) {
+                    print("got inspector web view\n");
+                    
+                    var cn = _this.inspectorcontainer.el.get_child();
+                    if (cn != null) {
+                         _this.inspectorcontainer.el.remove(cn);
+                     }
+                    
+                    _this.inspectorcontainer.el.add(wv);
+                    wv.show();
+                } else {
+                    //this.inspector.close();
+                    
+                    //this.inspector = null;
+                   
+         
+                }
+                return true;
+               
+            });
+            /*
+            this.inspector.closed.connect(() => {
+                 print("inspector closed?!?");
+                 // if this happens destroy the webkit..
+                 // recreate it..
+                 this.el.stop_loading();
+                 
+                 if (_this.viewbox.el.get_parent() == null) {
+                    return;
+                 }
+                 
+                 
+                _this.viewbox.el.remove(_this.viewcontainer.el);
+                _this.el.remove(_this.inspectorcontainer.el);        
+                 
+                 // destory seems to cause problems.
+                 //this.el.destroy();
+                //_this.viewcontainer.el.destroy();
+                 //_this.inspectorcontainer.el.destroy();
+        
+                 this.el = null;         
+                 var nv =new Xcls_viewcontainer(_this);
+                 nv.ref();
+                 _this.viewbox.el.pack_end(nv.el,true,true,0);
+                 
+                  var  inv =new Xcls_inspectorcontainer(_this);
+                  inv.ref();
+                  _this.el.pack2(inv.el,true,true);
+                 
+                 inv.el.show_all();
+                 nv.el.show_all();
+                 //while(Gtk.events_pending ()) Gtk.main_iteration ();
+                 //_this.view.renderJS(true); 
+                 _this.view.refreshRequired  = true;
+               
+            }); 
+            */
+            
+            this.inspector.show();
+        }
+        public void renderJS (bool force) {
+        
+            // this is the public redraw call..
+            // we refresh in a loop privately..
+            var autodraw = _this.AutoRedraw.el.active;
+            if (!autodraw && !force) {
+                print("Skipping redraw - no force, and autodraw off");
+                return;
+            }
+             
+            this.refreshRequired  = true;
+        }
         public void reInit () {
            print("reInit?");
                  // if this happens destroy the webkit..
@@ -843,97 +941,6 @@ public class Xcls_WindowRooView : Object
         //    print( "after render" +    (new Date()));
             
         }
-        public void initInspector () {
-            
-           /* if (this.inspector == this.el.get_inspector()) {
-                this.inspector.show();
-                this.inspector.open_window();        
-                print("init inspecter called, and inspector is the same as existing\n");
-                return;
-            }
-            print("new inspector?\n");
-        */
-            this.inspector = this.el.get_inspector();
-            this.inspector.ref();
-            
-            // got a new inspector...
-                
-            this.inspector.open_window.connect(() => {
-                 this.inspector = this.el.get_inspector();
-                print("inspector attach\n");
-                var wv = this.inspector.get_web_view();
-                if (wv != null) {
-                    print("got inspector web view\n");
-                    
-                    var cn = _this.inspectorcontainer.el.get_child();
-                    if (cn != null) {
-                         _this.inspectorcontainer.el.remove(cn);
-                     }
-                    
-                    _this.inspectorcontainer.el.add(wv);
-                    wv.show();
-                } else {
-                    //this.inspector.close();
-                    
-                    //this.inspector = null;
-                   
-         
-                }
-                return true;
-               
-            });
-            /*
-            this.inspector.closed.connect(() => {
-                 print("inspector closed?!?");
-                 // if this happens destroy the webkit..
-                 // recreate it..
-                 this.el.stop_loading();
-                 
-                 if (_this.viewbox.el.get_parent() == null) {
-                    return;
-                 }
-                 
-                 
-                _this.viewbox.el.remove(_this.viewcontainer.el);
-                _this.el.remove(_this.inspectorcontainer.el);        
-                 
-                 // destory seems to cause problems.
-                 //this.el.destroy();
-                //_this.viewcontainer.el.destroy();
-                 //_this.inspectorcontainer.el.destroy();
-        
-                 this.el = null;         
-                 var nv =new Xcls_viewcontainer(_this);
-                 nv.ref();
-                 _this.viewbox.el.pack_end(nv.el,true,true,0);
-                 
-                  var  inv =new Xcls_inspectorcontainer(_this);
-                  inv.ref();
-                  _this.el.pack2(inv.el,true,true);
-                 
-                 inv.el.show_all();
-                 nv.el.show_all();
-                 //while(Gtk.events_pending ()) Gtk.main_iteration ();
-                 //_this.view.renderJS(true); 
-                 _this.view.refreshRequired  = true;
-               
-            }); 
-            */
-            
-            this.inspector.show();
-        }
-        public void renderJS (bool force) {
-        
-            // this is the public redraw call..
-            // we refresh in a loop privately..
-            var autodraw = _this.AutoRedraw.el.active;
-            if (!autodraw && !force) {
-                print("Skipping redraw - no force, and autodraw off");
-                return;
-            }
-             
-            this.refreshRequired  = true;
-        }
     }
 
 
@@ -998,12 +1005,12 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public bool button_is_pressed;
-        public JsRender.Node? node_selected;
         public bool loading;
         public int editable_start_pos;
+        public bool button_is_pressed;
         public string prop_selected;
         public bool key_is_pressed;
+        public JsRender.Node? node_selected;
 
         // ctor
         public Xcls_sourceview(Xcls_WindowRooView _owner )
@@ -1013,12 +1020,12 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
-            this.button_is_pressed = false;
-            this.node_selected = null;
             this.loading = true;
             this.editable_start_pos = -1;
+            this.button_is_pressed = false;
             this.prop_selected = "";
             this.key_is_pressed = false;
+            this.node_selected = null;
 
             // set gobject values
             this.el.editable = false;
@@ -1144,17 +1151,69 @@ public class Xcls_WindowRooView : Object
         }
 
         // user defined functions
-        public void clearGreySelection () {
-         // clear all the marks..
-            var sbuf = (Gtk.SourceBuffer)this.el.buffer;
+        public void loadFile ( ) {
+            this.loading = true;
+            
+            
+            // get the cursor and scroll position....
+            var buf = this.el.get_buffer();
+        	var cpos = buf.cursor_position;
+            
+           print("BEFORE LOAD cursor = %d\n", cpos);
+           
+            var vadj_pos = this.el.get_vadjustment().get_value();
+           
+            
+         
+            buf.set_text("",0);
+            var sbuf = (Gtk.SourceBuffer) buf;
+        
+            
+        
+            if (_this.file == null || _this.file.xtype != "Roo") {
+                print("xtype != Roo");
+                this.loading = false;
+                return;
+            }
+            
+            // get the string from the rendered tree...
+             
+             var str = _this.file.toSource();
+             
+        //    print("setting str %d\n", str.length);
+            buf.set_text(str, str.length);
+            var lm = Gtk.SourceLanguageManager.get_default();
+             
+            //?? is javascript going to work as js?
+            
+            ((Gtk.SourceBuffer)(buf)) .set_language(lm.get_language(_this.file.language));
+          
             
             Gtk.TextIter start;
             Gtk.TextIter end;     
                 
             sbuf.get_bounds (out start, out end);
-            sbuf.remove_source_marks (start, end, "grey");
+            sbuf.remove_source_marks (start, end, null); // remove all marks..
             
-            
+             GLib.Timeout.add(500, () => {
+        
+                print("RESORTING cursor to = %d\n", cpos);
+        		Gtk.TextIter cpos_iter;
+        		buf.get_iter_at_offset(out cpos_iter, cpos);
+        		buf.place_cursor(cpos_iter); 
+        		
+        		this.el.get_vadjustment().set_value(vadj_pos);;
+        		
+        
+        		this.onCursorChanged();
+        		
+        		
+        		_this.buffer.checkSyntax();
+        		return false;
+        	});
+        		
+            this.loading = false; 
+            _this.buffer.dirty = false;
         }
         public void onCursorChanged (/*ParamSpec ps*/) {
         
@@ -1228,15 +1287,6 @@ public class Xcls_WindowRooView : Object
                 
                 // highlight the node..
         }
-        public string toString () {
-           Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_buffer().get_start_iter(out s);
-            this.el.get_buffer().get_end_iter(out e);
-            var ret = this.el.get_buffer().get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
-        }
         public void nodeSelected (JsRender.Node? sel, bool scroll ) {
           
             
@@ -1255,70 +1305,6 @@ public class Xcls_WindowRooView : Object
             
             
             
-        }
-        public void loadFile ( ) {
-            this.loading = true;
-            
-            
-            // get the cursor and scroll position....
-            var buf = this.el.get_buffer();
-        	var cpos = buf.cursor_position;
-            
-           print("BEFORE LOAD cursor = %d\n", cpos);
-           
-            var vadj_pos = this.el.get_vadjustment().get_value();
-           
-            
-         
-            buf.set_text("",0);
-            var sbuf = (Gtk.SourceBuffer) buf;
-        
-            
-        
-            if (_this.file == null || _this.file.xtype != "Roo") {
-                print("xtype != Roo");
-                this.loading = false;
-                return;
-            }
-            
-            // get the string from the rendered tree...
-             
-             var str = _this.file.toSource();
-             
-        //    print("setting str %d\n", str.length);
-            buf.set_text(str, str.length);
-            var lm = Gtk.SourceLanguageManager.get_default();
-             
-            //?? is javascript going to work as js?
-            
-            ((Gtk.SourceBuffer)(buf)) .set_language(lm.get_language(_this.file.language));
-          
-            
-            Gtk.TextIter start;
-            Gtk.TextIter end;     
-                
-            sbuf.get_bounds (out start, out end);
-            sbuf.remove_source_marks (start, end, null); // remove all marks..
-            
-             GLib.Timeout.add(500, () => {
-        
-                print("RESORTING cursor to = %d\n", cpos);
-        		Gtk.TextIter cpos_iter;
-        		buf.get_iter_at_offset(out cpos_iter, cpos);
-        		buf.place_cursor(cpos_iter); 
-        		
-        		this.el.get_vadjustment().set_value(vadj_pos);;
-        		
-        
-        		this.onCursorChanged();
-        		
-        		
-        		_this.buffer.checkSyntax();
-        		return false;
-        	});
-        		
-            this.loading = false; 
-            _this.buffer.dirty = false;
         }
         public void updateGreySelection (bool scroll) { 
         	var sel = this.node_selected;
@@ -1480,6 +1466,27 @@ public class Xcls_WindowRooView : Object
         
         
         }
+        public string toString () {
+           Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_buffer().get_start_iter(out s);
+            this.el.get_buffer().get_end_iter(out e);
+            var ret = this.el.get_buffer().get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
+        }
+        public void clearGreySelection () {
+         // clear all the marks..
+            var sbuf = (Gtk.SourceBuffer)this.el.buffer;
+            
+            Gtk.TextIter start;
+            Gtk.TextIter end;     
+                
+            sbuf.get_bounds (out start, out end);
+            sbuf.remove_source_marks (start, end, "grey");
+            
+            
+        }
     }
     public class Xcls_buffer : Object
     {
@@ -1488,8 +1495,8 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public bool dirty;
         public int error_line;
+        public bool dirty;
 
         // ctor
         public Xcls_buffer(Xcls_WindowRooView _owner )
@@ -1499,8 +1506,8 @@ public class Xcls_WindowRooView : Object
             this.el = new Gtk.SourceBuffer( null );
 
             // my vars (dec)
-            this.dirty = false;
             this.error_line = -1;
+            this.dirty = false;
 
             // set gobject values
 
@@ -1581,30 +1588,7 @@ public class Xcls_WindowRooView : Object
         }
 
         // user defined functions
-        public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
-                 
-            this.error_line = validate_res.size;
-        	
-            if (this.error_line < 1) {
-                  return true;
-            }
-            var tlines = this.el.get_line_count ();
-            Gtk.TextIter iter;
-            var valiter = validate_res.map_iterator();
-            while (valiter.next()) {
-            
-        //        print("get inter\n");
-                var eline = valiter.get_key();
-                if (eline > tlines) {
-                    continue;
-                }
-                this.el.get_iter_at_line( out iter, eline);
-                //print("mark line\n");
-                this.el.create_source_mark(valiter.get_value(), "ERR", iter);
-            }   
-            return false;
-        }
-        public   bool checkSyntax () {
+        public bool checkSyntax () {
          
            
             var str = this.toString();
@@ -1646,7 +1630,30 @@ public class Xcls_WindowRooView : Object
             );    
              
         }
-        public   string toString () {
+        public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
+                 
+            this.error_line = validate_res.size;
+        	
+            if (this.error_line < 1) {
+                  return true;
+            }
+            var tlines = this.el.get_line_count ();
+            Gtk.TextIter iter;
+            var valiter = validate_res.map_iterator();
+            while (valiter.next()) {
+            
+        //        print("get inter\n");
+                var eline = valiter.get_key();
+                if (eline > tlines) {
+                    continue;
+                }
+                this.el.get_iter_at_line( out iter, eline);
+                //print("mark line\n");
+                this.el.create_source_mark(valiter.get_value(), "ERR", iter);
+            }   
+            return false;
+        }
+        public string toString () {
             
             Gtk.TextIter s;
             Gtk.TextIter e;
@@ -1656,6 +1663,541 @@ public class Xcls_WindowRooView : Object
             //print("TO STRING? " + ret);
             return ret;
         }
+    }
+
+
+
+
+    public class Xcls_Box17 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box17(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.homogeneous = false;
+            this.el.vexpand = false;
+            var child_0 = new Xcls_search_entry( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
+            var child_1 = new Xcls_MenuBar19( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+            var child_2 = new Xcls_Button22( _this );
+            child_2.ref();
+            this.el.add(  child_2.el );
+            var child_3 = new Xcls_Button24( _this );
+            child_3.ref();
+            this.el.add(  child_3.el );
+            var child_4 = new Xcls_MenuButton26( _this );
+            child_4.ref();
+            this.el.add(  child_4.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_search_entry : Object
+    {
+        public Gtk.SearchEntry el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_search_entry(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            _this.search_entry = this;
+            this.el = new Gtk.SearchEntry();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.width_request = 300;
+            this.el.hexpand = true;
+            this.el.placeholder_text = "Press enter to search";
+
+            // init method
+
+            var description =   Pango.FontDescription.from_string("monospace");
+            	description.set_size(8000);
+            	 this.el.override_font(description);
+
+            //listeners
+            this.el.key_press_event.connect( (event) => {
+                
+              
+             	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
+            		var res = _this.search(this.el.text);
+            		if (res > 0) {
+            			_this.search_results.el.label = "%d Matches".printf(res);
+            		} else {
+            			_this.search_results.el.label = "No Matches";
+            		}
+            		
+            	    return true;
+            
+            	}    
+               // print(event.key.keyval)
+               
+                return false;
+            
+            });
+            this.el.changed.connect( () => {
+            	/*
+            	if (this.el.text == "") {
+            		_this.search_results.el.hide();
+            		return;
+            	}
+            	var res = 0;
+            	switch(_this.windowstate.state) {
+            		case WindowState.State.CODEONLY:
+            		///case WindowState.State.CODE:
+            			// search the code being edited..
+            			res = _this.windowstate.code_editor_tab.search(this.el.text);
+            			
+            			break;
+            		case WindowState.State.PREVIEW:
+            			if (_this.windowstate.file.xtype == "Gtk") {
+            				 res = _this.windowstate.window_gladeview.search(this.el.text);
+            			} else { 
+            				 res = _this.windowstate.window_rooview.search(this.el.text);			
+            			}
+            		
+            		
+            			break;
+            	}
+            	_this.search_results.el.show();
+            	if (res > 0) {
+            		_this.search_results.el.label = "%d Matches".printf(res);
+            	} else {
+            		_this.search_results.el.label = "No Matches";
+            	}
+            		
+            	*/
+            	
+            });
+        }
+
+        // user defined functions
+        public void forwardSearch (bool change_focus) {
+        
+        
+        	_this.forwardSearch(change_focus);
+        
+        /*
+        
+        	switch(_this.windowstate.state) {
+        		case WindowState.State.CODEONLY:
+        		//case WindowState.State.CODE:
+        			// search the code being edited..
+        			_this.windowstate.code_editor_tab.forwardSearch(change_focus);
+        			 
+        			break;
+        		case WindowState.State.PREVIEW:
+        			if (_this.windowstate.file.xtype == "Gtk") {
+        				_this.windowstate.window_gladeview.forwardSearch(change_focus);
+        			} else { 
+        				 _this.windowstate.window_rooview.forwardSearch(change_focus);
+        			}
+        		
+        			break;
+        	}
+        	*/
+        	
+        }
+    }
+
+    public class Xcls_MenuBar19 : Object
+    {
+        public Gtk.MenuBar el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_MenuBar19(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.MenuBar();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_search_results( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_search_results : Object
+    {
+        public Gtk.ImageMenuItem el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+        public Xcls_ValaCompileErrors popup;
+
+        // ctor
+        public Xcls_search_results(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            _this.search_results = this;
+            this.el = new Gtk.ImageMenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            this.el.label = "Matches";
+            var child_0 = new Xcls_Image21( _this );
+            child_0.ref();
+            this.el.set_image (  child_0.el  );
+
+            //listeners
+            this.el.button_press_event.connect( () => {
+            /*
+                if (this.popup == null) {
+                    this.popup = new Xcls_ValaCompileErrors();
+                    this.popup.window = _this;
+                }
+               
+                
+                this.popup.show(this.notices, this.el);
+                */
+                return true;
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image21 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image21(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "system-search";
+            this.el.sensitive = false;
+        }
+
+        // user defined functions
+    }
+
+
+
+    public class Xcls_Button22 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button22(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            this.el.label = "Next";
+            var child_0 = new Xcls_Image23( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+
+            //listeners
+            this.el.button_press_event.connect( (event) => {
+            
+            	_this.forwardSearch(true);
+            	
+            	return true;
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image23 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image23(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "go-down";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Button24 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button24(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            this.el.label = "Previous";
+            var child_0 = new Xcls_Image25( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+
+            //listeners
+            this.el.button_press_event.connect( (event) => {
+            
+            	_this.backSearch(true);
+            	
+            	return true;
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image25 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image25(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "go-up";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_MenuButton26 : Object
+    {
+        public Gtk.MenuButton el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_MenuButton26(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.MenuButton();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            this.el.label = "Settings";
+            var child_0 = new Xcls_Image27( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+            var child_1 = new Xcls_search_settings( _this );
+            child_1.ref();
+            this.el.popup = child_1.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image27 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image27(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "emblem-system";
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_search_settings : Object
+    {
+        public Gtk.Menu el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_search_settings(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            _this.search_settings = this;
+            this.el = new Gtk.Menu();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_case_sensitive( _this );
+            child_0.ref();
+            this.el.append(  child_0.el );
+            var child_1 = new Xcls_regex( _this );
+            child_1.ref();
+            this.el.append(  child_1.el );
+            var child_2 = new Xcls_multiline( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_case_sensitive : Object
+    {
+        public Gtk.CheckMenuItem el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_case_sensitive(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            _this.case_sensitive = this;
+            this.el = new Gtk.CheckMenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Case Sensitive";
+
+            // init method
+
+            {
+            	this.el.show();
+            }
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_regex : Object
+    {
+        public Gtk.CheckMenuItem el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_regex(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            _this.regex = this;
+            this.el = new Gtk.CheckMenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Regex";
+
+            // init method
+
+            {
+            	this.el.show();
+            }
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_multiline : Object
+    {
+        public Gtk.CheckMenuItem el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_multiline(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            _this.multiline = this;
+            this.el = new Gtk.CheckMenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Multi-line (add \\n)";
+
+            // init method
+
+            {
+            	this.el.show();
+            }
+        }
+
+        // user defined functions
     }
 
 
