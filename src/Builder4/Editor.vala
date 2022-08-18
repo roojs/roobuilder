@@ -20,6 +20,7 @@ public class Editor : Object
     public Xcls_search_entry search_entry;
     public Xcls_search_results search_results;
     public Xcls_search_settings search_settings;
+    public Xcls_case_sensitive case_sensitive;
 
         // my vars (def)
     public Xcls_MainWindow window;
@@ -1292,7 +1293,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_CheckMenuItem24( _this );
+            var child_0 = new Xcls_case_sensitive( _this );
             child_0.ref();
             this.el.append(  child_0.el );
             var child_1 = new Xcls_CheckMenuItem25( _this );
@@ -1305,7 +1306,7 @@ public class Editor : Object
 
         // user defined functions
     }
-    public class Xcls_CheckMenuItem24 : Object
+    public class Xcls_case_sensitive : Object
     {
         public Gtk.CheckMenuItem el;
         private Editor  _this;
@@ -1314,9 +1315,10 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CheckMenuItem24(Editor _owner )
+        public Xcls_case_sensitive(Editor _owner )
         {
             _this = _owner;
+            _this.case_sensitive = this;
             this.el = new Gtk.CheckMenuItem();
 
             // my vars (dec)

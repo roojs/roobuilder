@@ -744,6 +744,7 @@
             "}",
             ""
            ],
+           "id" : "case_sensitive",
            "string label" : "Case Sensitive",
            "xtype" : "CheckMenuItem"
           },
