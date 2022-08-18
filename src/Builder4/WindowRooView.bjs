@@ -573,7 +573,7 @@
            "# bool key_is_pressed" : false,
            "# bool loading" : true,
            "# int editable_start_pos" : "-1",
-           "$ string prop_selected" : "\"\"",
+           "# string prop_selected" : "\"\"",
            "$ xns" : "Gtk",
            "* init" : [
             "{",
