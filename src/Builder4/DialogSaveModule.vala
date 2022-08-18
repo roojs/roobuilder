@@ -15,8 +15,8 @@ public class DialogSaveModule : Object
     public Xcls_name name;
 
         // my vars (def)
-    public Project.Project project;
     public JsRender.Node data;
+    public Project.Project project;
 
     // ctor
     public DialogSaveModule()
@@ -32,7 +32,7 @@ public class DialogSaveModule : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.get_content_area().add( child_0.el );
         var child_1 = new Xcls_Button5( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 0 );
@@ -48,7 +48,7 @@ public class DialogSaveModule : Object
     }
 
     // user defined functions
-    public   string show (Gtk.Window parent, Project.Project project, JsRender.Node data) {
+    public string show (Gtk.Window parent, Project.Project project, JsRender.Node data) {
      
          
         this.el.set_transient_for(parent);
