@@ -130,18 +130,22 @@ public class Xcls_GtkView : Object
     	buf.get_iter_at_offset(out beg, this.last_search_end);
     	if (!this.searchcontext.forward(beg, out st, out en)) {
     		this.last_search_end = 0;
-    	} else { 
-    		this.last_search_end = en.get_offset();
-    		if (change_focus) {
-    			this.sourceview.el.grab_focus();	
-    		}
-    		buf.place_cursor(st);
-    		var ln = st.get_line();
-    		buf.get_iter_at_line(out stl,ln);
-    		 
-    		this.sourceview.el.scroll_to_iter(stl,  0.0f, true, 0.0f, 0.5f);
+    		return;
     	}
-    
+    	this.last_search_end = en.get_offset();
+    	if (change_focus) {
+    		this.sourceview.el.grab_focus();
+    	}
+    	buf.place_cursor(st);
+    	
+     
+    	 
+    	this.sourceview.el.scroll_to_iter(st,  0.0f, true, 0.0f, 0.5f);
+    	
+    	
+    	var ln = st.get_line();
+    	
+    	this.highlightNodeAtLine(ln);
     }
     public int search (string in_txt) {
     	this.notebook.el.page = 1;
