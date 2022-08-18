@@ -54,9 +54,6 @@ public class Xcls_WindowRooView : Object
         var child_0 = new Xcls_notebook( _this );
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
-        var child_1 = new Xcls_Box18( _this );
-        child_1.ref();
-        this.el.add(  child_1.el );
     }
 
     // user defined functions
@@ -256,9 +253,6 @@ public class Xcls_WindowRooView : Object
             var child_3 = new Xcls_Box14( _this );
             child_3.ref();
             this.el.append_page (  child_3.el , _this.label_code.el );
-            var child_4 = new Xcls_ScrolledWindow15( _this );
-            child_4.ref();
-            this.el.append_page (  child_4.el , _this.label_code.el );
         }
 
         // user defined functions
@@ -989,16 +983,21 @@ public class Xcls_WindowRooView : Object
         public Xcls_Box14(Xcls_WindowRooView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_ScrolledWindow15( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
+            var child_1 = new Xcls_Box18( _this );
+            child_1.ref();
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
     }
-
     public class Xcls_ScrolledWindow15 : Object
     {
         public Gtk.ScrolledWindow el;
@@ -1016,6 +1015,7 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             var child_0 = new Xcls_sourceview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1692,7 +1692,6 @@ public class Xcls_WindowRooView : Object
 
 
 
-
     public class Xcls_Box18 : Object
     {
         public Gtk.Box el;
@@ -2224,6 +2223,8 @@ public class Xcls_WindowRooView : Object
 
         // user defined functions
     }
+
+
 
 
 
