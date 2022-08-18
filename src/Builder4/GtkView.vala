@@ -680,8 +680,15 @@ public class Xcls_GtkView : Object
 
             //listeners
             this.el.button_press_event.connect( (event) => {
-            
-            	return bool;
+            	
+            	 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
+            	}
+                
+            	 
+            	return false;
             });
         }
 

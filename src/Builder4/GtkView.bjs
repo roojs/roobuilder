@@ -193,9 +193,16 @@
            "listeners" : {
             "button_press_event" : [
              "(event) => {",
-             "",
-             "\treturn bool;",
-             "}",
+             "\t",
+             "\t if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
+             "\t    GLib.debug(\"SAVE: ctrl-g  pressed\");",
+             "\t\t_this.forwardSearch(true);",
+             "\t    return true;",
+             "\t}",
+             "    ",
+             "\t ",
+             "\treturn false;",
+             "}\t ",
              ""
             ]
            },
