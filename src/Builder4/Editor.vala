@@ -991,7 +991,6 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.tooltip_text = "Update Resources / About Roobuilder";
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
