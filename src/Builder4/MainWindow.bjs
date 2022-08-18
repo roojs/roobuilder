@@ -592,7 +592,7 @@
    ],
    "listeners" : {
     "delete_event" : [
-     "  (   event) => {",
+     "(   event) => {",
      "    return false;",
      "} "
     ],
