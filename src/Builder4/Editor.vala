@@ -953,7 +953,7 @@ public class Editor : Object
         public void forwardSearch (bool change_focus) {
         
         
-        	
+        	_this.forwardSearch();
         
         /*
         
