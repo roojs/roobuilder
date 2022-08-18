@@ -514,7 +514,7 @@ public class Xcls_WindowRooView : Object
               //_this.view.renderJS(true);
               FakeServerCache.clear();
               _this.view.reInit();
-            
+             
             });
         }
 
@@ -561,6 +561,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
         public WebKit.WebInspector inspector;
         public bool pendingRedraw;
+        public int redraws;
         public bool refreshRequired;
         public string runjs;
         public string runhtml;
@@ -576,6 +577,7 @@ public class Xcls_WindowRooView : Object
 
             // my vars (dec)
             this.pendingRedraw = false;
+            this.redraws = 0;
             this.refreshRequired = false;
             this.runjs = "";
             this.runhtml = "";

@@ -93,7 +93,7 @@
                "  //_this.view.renderJS(true);",
                "  FakeServerCache.clear();",
                "  _this.view.reInit();",
-               "",
+               " ",
                "}"
               ]
              },
@@ -118,6 +118,7 @@
              "# WebKit.WebInspector inspector" : "",
              "# bool pendingRedraw" : false,
              "# bool refreshRequired" : false,
+             "# int redraws" : 0,
              "# string renderedData" : "\"\"",
              "# string runhtml" : "\"\"",
              "# string runjs" : "\"\"",
@@ -253,7 +254,6 @@
                "}"
               ]
              },
-             "redraws" : 0,
              "xtype" : "WebView",
              "| void initInspector" : [
               "() {",
