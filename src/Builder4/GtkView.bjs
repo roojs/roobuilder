@@ -67,6 +67,7 @@
          "bool vexpand" : true,
          "items" : [
           {
+           "# JsRender.Node? node_selected" : "",
            "$ xns" : "Gtk",
            "* init" : [
             "{",
@@ -172,7 +173,6 @@
             " "
            ],
            "* pack" : "add",
-           "JsRender.Node? node_selected" : true,
            "bool allow_node_scroll" : true,
            "bool loading" : true,
            "gboolean editable" : false,

@@ -563,7 +563,6 @@ public class Xcls_GtkView : Object
             // my vars (dec)
             this.loading = true;
             this.allow_node_scroll = true;
-            this.node_selected = true;
 
             // set gobject values
             this.el.editable = false;
