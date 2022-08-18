@@ -95,7 +95,7 @@ public class WindowState : Object
 		
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
-		this.win.search_results.el.hide();
+ 
 		
 		this.popover_files = new Xcls_PopoverFiles();
 	 	this.popover_files.setMainWindow(this.win);
