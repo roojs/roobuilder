@@ -59,11 +59,12 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "append_page,_this.label_code.el",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "int spacing" : 0,
        "items" : [
         {
          "$ xns" : "Gtk",
+         "bool vexpand" : true,
          "items" : [
           {
            "$ xns" : "Gtk",

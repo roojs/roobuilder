@@ -387,7 +387,7 @@ public class Xcls_GtkView : Object
         public Xcls_Box8(Xcls_GtkView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
@@ -419,6 +419,7 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             var child_0 = new Xcls_sourceview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
