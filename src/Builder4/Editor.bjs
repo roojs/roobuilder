@@ -756,6 +756,7 @@
             "}",
             ""
            ],
+           "id" : "regex",
            "string label" : "Regex",
            "xtype" : "CheckMenuItem"
           },
