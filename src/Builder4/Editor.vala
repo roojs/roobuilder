@@ -950,6 +950,11 @@ public class Editor : Object
 
             //listeners
             this.el.key_press_event.connect( (event) => {
+                 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
+            	}
                 
               
              	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
