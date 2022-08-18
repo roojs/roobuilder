@@ -824,6 +824,11 @@
     "}",
     ""
    ],
+   "| void backSearch" : [
+    "() {",
+    "",
+    "}"
+   ],
    "| void forwardSearch" : [
     "(bool change_focus) {",
     "",

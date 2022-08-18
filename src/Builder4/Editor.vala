@@ -143,6 +143,9 @@ public class Editor : Object
         }
      
     }
+    public void backSearch () {
+    
+    }
     public int search (string txt) {
     
     	var s = new Gtk.SourceSearchSettings();
