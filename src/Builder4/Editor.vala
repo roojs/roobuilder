@@ -173,7 +173,7 @@ public class Editor : Object
     	}
      
     }
-    public int search (string txt) {
+    public int search (string in_txt) {
     
     	var s = new Gtk.SourceSearchSettings();
     	s.case_sensitive = _this.case_sensitive.el.active;
@@ -182,9 +182,10 @@ public class Editor : Object
     	
     	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
     	this.searchcontext.set_highlight(true);
+    	var txt = in_txt;
     	
     	if (_this.multiline.el.active) {
-    		txt = txt.replace("\\n", "\n");
+    		txt = in_txt.replace("\\n", "\n");
     	}
     	
     	s.set_search_text(txt);

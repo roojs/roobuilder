@@ -821,7 +821,7 @@
     "} "
    ],
    "| int search" : [
-    "(string txt) {",
+    "(string in_txt) {",
     "",
     "\tvar s = new Gtk.SourceSearchSettings();",
     "\ts.case_sensitive = _this.case_sensitive.el.active;",
@@ -830,9 +830,10 @@
     "\t",
     "\tthis.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);",
     "\tthis.searchcontext.set_highlight(true);",
+    "\tvar txt = in_txt;",
     "\t",
     "\tif (_this.multiline.el.active) {",
-    "\t\ttxt = txt.replace(\"\\\\n\", \"\\n\");",
+    "\t\ttxt = in_txt.replace(\"\\\\n\", \"\\n\");",
     "\t}",
     "\t",
     "\ts.set_search_text(txt);",
