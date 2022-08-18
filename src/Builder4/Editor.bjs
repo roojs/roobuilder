@@ -684,7 +684,9 @@
         "button_press_event" : [
          "(event) => {",
          "",
-         "\treturn bool;",
+         "\t_this.searchBack();",
+         "\t",
+         "\treturn true;",
          "}",
          ""
         ]
@@ -703,6 +705,17 @@
          "xtype" : "Image"
         }
        ],
+       "listeners" : {
+        "button_press_event" : [
+         "(event) => {",
+         "",
+         "\t_this.searchForward();",
+         "\t",
+         "\treturn true;",
+         "}",
+         ""
+        ]
+       },
        "string label" : "Next",
        "xtype" : "Button"
       },

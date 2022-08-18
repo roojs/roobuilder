@@ -1126,7 +1126,9 @@ public class Editor : Object
             //listeners
             this.el.button_press_event.connect( (event) => {
             
-            	return bool;
+            	_this.searchBack();
+            	
+            	return true;
             });
         }
 
@@ -1178,6 +1180,14 @@ public class Editor : Object
             var child_0 = new Xcls_Image20( _this );
             child_0.ref();
             this.el.image = child_0.el;
+
+            //listeners
+            this.el.button_press_event.connect( (event) => {
+            
+            	_this.searchForward();
+            	
+            	return true;
+            });
         }
 
         // user defined functions
