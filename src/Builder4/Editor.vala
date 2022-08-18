@@ -176,9 +176,13 @@ public class Editor : Object
     public int search (string txt) {
     
     	var s = new Gtk.SourceSearchSettings();
+    	s.case_sensitive = _this.case_sensitive.el.active;
+    	s.regex_enabled = _this.regex.el.active;	
     	
     	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
-    	this.searchcontext .set_highlight(true);
+    	this.searchcontext.set_highlight(true);
+    	
+    	
     	s.set_search_text(txt);
     	Gtk.TextIter beg, st,en;
     	 
