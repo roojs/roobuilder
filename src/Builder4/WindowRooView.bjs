@@ -1631,6 +1631,8 @@
     "\t",
     "\tvar ln = st.get_line();",
     "\t",
+    "\tthis.hightlightNodeAtLine(ln);",
+    "}\t",
     "\t// highlight node...",
     "\t",
     "\t\t",
@@ -1699,6 +1701,11 @@
     "",
     "}",
     ""
+   ],
+   "| void highlightNodeAtLine" : [
+    "() {",
+    "",
+    "}"
    ],
    "| void loadFile" : [
     "",

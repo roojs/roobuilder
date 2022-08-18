@@ -65,6 +65,9 @@ public class Xcls_WindowRooView : Object
         this.sourceview.loadFile();   
         
     }
+    public void highlightNodeAtLine () {
+    
+    }
     public void requestRedraw () {
         this.view.renderJS(false);
         this.sourceview.loadFile();   
@@ -96,6 +99,8 @@ public class Xcls_WindowRooView : Object
     	
     	var ln = st.get_line();
     	
+    	this.hightlightNodeAtLine(ln);
+    }	
     	// highlight node...
     	
     		
