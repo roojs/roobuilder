@@ -1624,7 +1624,7 @@
     "\t}",
     "\tbuf.place_cursor(st);",
     "\t",
-    "\tbuf.get_iter_at_line(out stl,ln);",
+    " ",
     "\t ",
     "\tthis.sourceview.el.scroll_to_iter(st,  0.0f, true, 0.0f, 0.5f);",
     "\t",
