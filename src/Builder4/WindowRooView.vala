@@ -1187,7 +1187,7 @@ public class Xcls_WindowRooView : Object
             	this.button_is_pressed = false;
             	return false;
             });
-            this.el.button_press_event.connect( () => {
+            this.el.button_press_event.connect( (event) => {
             	
             	 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-g  pressed");

@@ -823,7 +823,7 @@
            ],
            "listeners" : {
             "button_press_event" : [
-             "() => {",
+             "(event) => {",
              "\t",
              "\t if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
              "\t    GLib.debug(\"SAVE: ctrl-g  pressed\");",
