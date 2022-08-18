@@ -904,7 +904,13 @@ public class Editor : Object
                 
               
              	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
-            		_this.search(this.el.text);
+            		res = _this.search(this.el.text);
+            		if (res > 0) {
+            			_this.search_results.el.label = "%d Matches".printf(res);
+            		} else {
+            			_this.search_results.el.label = "No Matches";
+            		}
+            		
             	    return true;
             
             	}    
