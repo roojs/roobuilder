@@ -1564,7 +1564,7 @@
     "\t\t\tthis.view.el.grab_focus();",
     "\t\t}",
     "\t\tthis.buffer.el.place_cursor(st);",
-    "\t\tthis.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);",
+    "\t\tthis.sourceview.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);",
     "\t}",
     " ",
     "}",
