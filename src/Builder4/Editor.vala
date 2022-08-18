@@ -152,6 +152,7 @@ public class Editor : Object
     	Gtk.TextIter beg, st,en;
     	 
     	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end);
+    	
     	if (!this.searchcontext.back(beg, out st, out en)) {
     	
     		this.last_search_end = 0;

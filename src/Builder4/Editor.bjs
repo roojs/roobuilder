@@ -834,6 +834,7 @@
     "\tGtk.TextIter beg, st,en;",
     "\t ",
     "\tthis.buffer.el.get_iter_at_offset(out beg, this.last_search_end);",
+    "\t",
     "\tif (!this.searchcontext.back(beg, out st, out en)) {",
     "\t",
     "\t\tthis.last_search_end = 0;",
