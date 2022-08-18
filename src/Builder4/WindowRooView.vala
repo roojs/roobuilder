@@ -1198,32 +1198,16 @@ public class Xcls_WindowRooView : Object
             	this.button_is_pressed = true;
             	return false;
             });
-            this.el.key_press_event.connect( (src, key) => {
-            	this.key_is_pressed = true;
-            	// is it ctrl-G -- find next?
-            	// which will will still ignore..
-            	 
-            	if 	(key.str == "g" && key.state == Gdk.ModifierType.CONTROL_MASK) {
-            		this.key_is_pressed = false;
+            this.el.key_press_event.connect( (event) => {
+            	
+            	 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
             	}
-            	
-            	// if cursor postion is 'at start' of editing range, 
-            	// and backspace is pressed...
-            	// block it..
-            	
-            	 var buf = this.el.get_buffer();
-                //print("cursor changed : %d\n", buf.cursor_position);
-                   
-            	if (buf.cursor_position <= this.editable_start_pos && key.keyval == Gdk.Key.BackSpace) {
-            		return true; // block...
-            	}
-            	// what about 'last line of 'grey...'
-            	// get the buffer - find the line, find the next line ?? see if it's grey?
-            	
-            	
-            	print("KEY PRESS EVENT \n");
-            	this.onCursorChanged();
-            	return false; 
+                
+            	this.button_is_pressed = true;
+            	return false;
             });
             this.el.key_release_event.connect( () => { 
             	this.key_is_pressed = false;
