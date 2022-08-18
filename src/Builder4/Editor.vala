@@ -1302,6 +1302,12 @@ public class Editor : Object
 
             // set gobject values
             this.el.label = "Regex";
+
+            // init method
+
+            {
+            	this.el.show();
+            }
         }
 
         // user defined functions
@@ -1325,6 +1331,12 @@ public class Editor : Object
 
             // set gobject values
             this.el.label = "Multi-line (add \\\\n)";
+
+            // init method
+
+            {
+            	this.el.show();
+            }
         }
 
         // user defined functions

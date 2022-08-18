@@ -714,11 +714,23 @@
           },
           {
            "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "\tthis.el.show();",
+            "}",
+            ""
+           ],
            "string label" : "Regex",
            "xtype" : "CheckMenuItem"
           },
           {
            "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "\tthis.el.show();",
+            "}",
+            ""
+           ],
            "string label" : "Multi-line (add \\\\n)",
            "xtype" : "CheckMenuItem"
           }
