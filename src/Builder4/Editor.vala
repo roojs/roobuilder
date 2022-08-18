@@ -902,14 +902,14 @@ public class Editor : Object
             //listeners
             this.el.key_press_event.connect( (event) => {
                 
-             	/*
+              
              	if (event.keyval == Gdk.Key.Return) {
             		this.forwardSearch(false);
             	    return true;
             
             	}    
                // print(event.key.keyval)
-                */
+               
                 return false;
             
             });

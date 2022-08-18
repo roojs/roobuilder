@@ -577,14 +577,14 @@
         "key_press_event" : [
          "(event) => {",
          "    ",
-         " \t/*",
+         "  ",
          " \tif (event.keyval == Gdk.Key.Return) {",
          "\t\tthis.forwardSearch(false);",
          "\t    return true;",
          "",
          "\t}    ",
          "   // print(event.key.keyval)",
-         "    */",
+         "   ",
          "    return false;",
          "",
          "} "
