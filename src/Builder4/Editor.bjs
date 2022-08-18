@@ -579,7 +579,7 @@
          "    ",
          "  ",
          " \tif (event.keyval == Gdk.Key.Return) {",
-         "\t\tthis.forwardSearch(false);",
+         "\t\tthis.search(_this.);",
          "\t    return true;",
          "",
          "\t}    ",

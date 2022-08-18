@@ -904,7 +904,7 @@ public class Editor : Object
                 
               
              	if (event.keyval == Gdk.Key.Return) {
-            		this.forwardSearch(false);
+            		this.search(_this.);
             	    return true;
             
             	}    
