@@ -17,6 +17,9 @@ public class Editor : Object
     public Xcls_RightEditor RightEditor;
     public Xcls_view view;
     public Xcls_buffer buffer;
+    public Xcls_search_entry search_entry;
+    public Xcls_search_results search_results;
+    public Xcls_search_settings search_settings;
 
         // my vars (def)
     public Xcls_MainWindow window;
@@ -59,6 +62,9 @@ public class Editor : Object
         var child_1 = new Xcls_RightEditor( _this );
         child_1.ref();
         this.el.pack_end (  child_1.el , true,true );
+        var child_2 = new Xcls_Box12( _this );
+        child_2.ref();
+        this.el.add(  child_2.el );
     }
 
     // user defined functions
@@ -96,25 +102,6 @@ public class Editor : Object
         return true;
     
     }
-    public void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
-    {
-        this.reset();
-        this.file = file;    
-        
-        if (file.xtype != "PlainFile") {
-        	this.prop = prop;
-            this.node = node;
-    
-            // find the text for the node..
-            this.view.load( prop.val );
-            this.close_btn.el.show();       
-        
-        } else {
-            this.view.load(        file.toSource() );
-            this.close_btn.el.hide();
-        }
-     
-    }
     public void forwardSearch (bool change_focus) {
     
     	if (this.searchcontext == null) {
@@ -135,6 +122,25 @@ public class Editor : Object
     		this.buffer.el.place_cursor(st);
     		this.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
     	}
+     
+    }
+    public void show (JsRender.JsRender file, JsRender.Node? node, JsRender.NodeProp? prop)
+    {
+        this.reset();
+        this.file = file;    
+        
+        if (file.xtype != "PlainFile") {
+        	this.prop = prop;
+            this.node = node;
+    
+            // find the text for the node..
+            this.view.load( prop.val );
+            this.close_btn.el.show();       
+        
+        } else {
+            this.view.load(        file.toSource() );
+            this.close_btn.el.hide();
+        }
      
     }
     public int search (string txt) {
@@ -826,6 +832,492 @@ public class Editor : Object
             return ret;
         }
     }
+
+
+
+    public class Xcls_Box12 : Object
+    {
+        public Gtk.Box el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box12(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.homogeneous = false;
+            var child_0 = new Xcls_search_entry( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
+            var child_1 = new Xcls_MenuBar14( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+            var child_2 = new Xcls_Button17( _this );
+            child_2.ref();
+            this.el.add(  child_2.el );
+            var child_3 = new Xcls_Button19( _this );
+            child_3.ref();
+            this.el.add(  child_3.el );
+            var child_4 = new Xcls_MenuButton21( _this );
+            child_4.ref();
+            this.el.add(  child_4.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_search_entry : Object
+    {
+        public Gtk.SearchEntry el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_search_entry(Editor _owner )
+        {
+            _this = _owner;
+            _this.search_entry = this;
+            this.el = new Gtk.SearchEntry();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.width_request = 300;
+
+            // init method
+
+            var description =   Pango.FontDescription.from_string("monospace");
+            	description.set_size(8000);
+            	 this.el.override_font(description);
+
+            //listeners
+            this.el.key_press_event.connect( (event) => {
+                
+             	/*
+             	if (event.keyval == Gdk.Key.Return) {
+            		this.forwardSearch(false);
+            	    return true;
+            
+            	}    
+               // print(event.key.keyval)
+                */
+                return false;
+            
+            });
+            this.el.changed.connect( () => {
+            	/*
+            	if (this.el.text == "") {
+            		_this.search_results.el.hide();
+            		return;
+            	}
+            	var res = 0;
+            	switch(_this.windowstate.state) {
+            		case WindowState.State.CODEONLY:
+            		///case WindowState.State.CODE:
+            			// search the code being edited..
+            			res = _this.windowstate.code_editor_tab.search(this.el.text);
+            			
+            			break;
+            		case WindowState.State.PREVIEW:
+            			if (_this.windowstate.file.xtype == "Gtk") {
+            				 res = _this.windowstate.window_gladeview.search(this.el.text);
+            			} else { 
+            				 res = _this.windowstate.window_rooview.search(this.el.text);			
+            			}
+            		
+            		
+            			break;
+            	}
+            	_this.search_results.el.show();
+            	if (res > 0) {
+            		_this.search_results.el.label = "%d Matches".printf(res);
+            	} else {
+            		_this.search_results.el.label = "No Matches";
+            	}
+            		
+            	*/
+            	
+            });
+        }
+
+        // user defined functions
+        public void forwardSearch (bool change_focus) {
+        /*
+        
+        	switch(_this.windowstate.state) {
+        		case WindowState.State.CODEONLY:
+        		//case WindowState.State.CODE:
+        			// search the code being edited..
+        			_this.windowstate.code_editor_tab.forwardSearch(change_focus);
+        			 
+        			break;
+        		case WindowState.State.PREVIEW:
+        			if (_this.windowstate.file.xtype == "Gtk") {
+        				_this.windowstate.window_gladeview.forwardSearch(change_focus);
+        			} else { 
+        				 _this.windowstate.window_rooview.forwardSearch(change_focus);
+        			}
+        		
+        			break;
+        	}
+        	*/
+        	
+        }
+    }
+
+    public class Xcls_MenuBar14 : Object
+    {
+        public Gtk.MenuBar el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_MenuBar14(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.MenuBar();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.tooltip_text = "Update Resources / About Roobuilder";
+            var child_0 = new Xcls_search_results( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_search_results : Object
+    {
+        public Gtk.ImageMenuItem el;
+        private Editor  _this;
+
+
+            // my vars (def)
+        public Xcls_ValaCompileErrors popup;
+
+        // ctor
+        public Xcls_search_results(Editor _owner )
+        {
+            _this = _owner;
+            _this.search_results = this;
+            this.el = new Gtk.ImageMenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            this.el.label = "Matches";
+            var child_0 = new Xcls_Image16( _this );
+            child_0.ref();
+            this.el.set_image (  child_0.el  );
+
+            //listeners
+            this.el.button_press_event.connect( () => {
+            /*
+                if (this.popup == null) {
+                    this.popup = new Xcls_ValaCompileErrors();
+                    this.popup.window = _this;
+                }
+               
+                
+                this.popup.show(this.notices, this.el);
+                */
+                return true;
+            });
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image16 : Object
+    {
+        public Gtk.Image el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image16(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "system-search";
+            this.el.sensitive = false;
+        }
+
+        // user defined functions
+    }
+
+
+
+    public class Xcls_Button17 : Object
+    {
+        public Gtk.Button el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button17(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            this.el.label = "Label";
+            var child_0 = new Xcls_Image18( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image18 : Object
+    {
+        public Gtk.Image el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image18(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "go-up";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Button19 : Object
+    {
+        public Gtk.Button el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button19(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            this.el.label = "Label";
+            var child_0 = new Xcls_Image20( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image20 : Object
+    {
+        public Gtk.Image el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image20(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "go-down";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_MenuButton21 : Object
+    {
+        public Gtk.MenuButton el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_MenuButton21(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.MenuButton();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.always_show_image = true;
+            this.el.label = "Label";
+            var child_0 = new Xcls_Image22( _this );
+            child_0.ref();
+            this.el.image = child_0.el;
+            var child_1 = new Xcls_search_settings( _this );
+            child_1.ref();
+            this.el.popup = child_1.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image22 : Object
+    {
+        public Gtk.Image el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image22(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "emblem-system";
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_search_settings : Object
+    {
+        public Gtk.Menu el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_search_settings(Editor _owner )
+        {
+            _this = _owner;
+            _this.search_settings = this;
+            this.el = new Gtk.Menu();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_CheckMenuItem24( _this );
+            child_0.ref();
+            this.el.append(  child_0.el );
+            var child_1 = new Xcls_CheckMenuItem25( _this );
+            child_1.ref();
+            this.el.append(  child_1.el );
+            var child_2 = new Xcls_CheckMenuItem26( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_CheckMenuItem24 : Object
+    {
+        public Gtk.CheckMenuItem el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CheckMenuItem24(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CheckMenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Case Sensitive";
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_CheckMenuItem25 : Object
+    {
+        public Gtk.CheckMenuItem el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CheckMenuItem25(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CheckMenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Regex";
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_CheckMenuItem26 : Object
+    {
+        public Gtk.CheckMenuItem el;
+        private Editor  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CheckMenuItem26(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CheckMenuItem();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Multi-line (add \\\\n)";
+        }
+
+        // user defined functions
+    }
+
 
 
 

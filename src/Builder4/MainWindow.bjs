@@ -682,7 +682,6 @@
            "xtype" : "ImageMenuItem"
           }
          ],
-         "string tooltip_text" : "Update Resources / About Roobuilder",
          "xtype" : "MenuBar"
         },
         {
