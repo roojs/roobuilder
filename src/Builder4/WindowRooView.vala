@@ -1189,7 +1189,12 @@ public class Xcls_WindowRooView : Object
             });
             this.el.button_press_event.connect( () => {
             	
-            	
+            	 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
+            	}
+                
             	this.button_is_pressed = true;
             	return false;
             });
