@@ -892,7 +892,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.width_request = 300;
-            this.el.placeholder_text = "\"\"";
+            this.el.placeholder_text = "Press enter to search";
 
             // init method
 

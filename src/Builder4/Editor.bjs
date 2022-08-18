@@ -596,7 +596,7 @@
          "} "
         ]
        },
-       "string placeholder_text" : "\"\"",
+       "string placeholder_text" : "Press enter to search",
        "xtype" : "SearchEntry",
        "| void forwardSearch" : [
         "(bool change_focus) {",
