@@ -561,6 +561,13 @@ public class Editor : Object
                     _this.saveContents();
                     return false;
                 }
+                
+                if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
+            	}
+                
                // print(event.key.keyval)
                 
                 return false;
