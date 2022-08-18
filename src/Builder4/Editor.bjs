@@ -596,6 +596,7 @@
          "} "
         ]
        },
+       "string placeholder_text" : "\"\"",
        "xtype" : "SearchEntry",
        "| void forwardSearch" : [
         "(bool change_focus) {",
