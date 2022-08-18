@@ -579,7 +579,7 @@
          "    ",
          "  ",
          " \tif (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {",
-         "\t\tres = _this.search(this.el.text);",
+         "\t\tvar res = _this.search(this.el.text);",
          "\t\tif (res > 0) {",
          "\t\t\t_this.search_results.el.label = \"%d Matches\".printf(res);",
          "\t\t} else {",
