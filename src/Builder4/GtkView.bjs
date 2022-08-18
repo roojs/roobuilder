@@ -68,6 +68,7 @@
          "items" : [
           {
            "# JsRender.Node? node_selected" : "",
+           "# string prop_selected" : "\"\"",
            "$ xns" : "Gtk",
            "* init" : [
             "{",

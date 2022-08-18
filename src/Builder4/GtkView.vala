@@ -550,6 +550,7 @@ public class Xcls_GtkView : Object
 
             // my vars (def)
         public bool loading;
+        public string prop_selected;
         public bool allow_node_scroll;
         public JsRender.Node? node_selected;
 
@@ -562,6 +563,7 @@ public class Xcls_GtkView : Object
 
             // my vars (dec)
             this.loading = true;
+            this.prop_selected = "";
             this.allow_node_scroll = true;
 
             // set gobject values
