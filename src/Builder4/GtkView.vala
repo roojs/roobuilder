@@ -143,22 +143,36 @@ public class Xcls_GtkView : Object
     	}
     
     }
-    public int search (string txt) {
+    public int search (string in_txt) {
     	this.notebook.el.page = 1;
-     	var s = new Gtk.SourceSearchSettings();
-    	var buf = (Gtk.SourceBuffer) this.sourceview.el.get_buffer();
-    	this.searchcontext = new Gtk.SourceSearchContext(buf,s);
-    	this.searchcontext.set_highlight(true);
-    	s.set_search_text(txt);
     	
+     
+       
+    	var s = new Gtk.SourceSearchSettings();
+    	s.case_sensitive = _this.case_sensitive.el.active;
+    	s.regex_enabled = _this.regex.el.active;	
+    	s.wrap_around = false;
+    	
+    	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
+    	this.searchcontext.set_highlight(true);
+    	var txt = in_txt;
+    	
+    	if (_this.multiline.el.active) {
+    		txt = in_txt.replace("\\n", "\n");
+    	}
+    	
+    	s.set_search_text(txt);
     	Gtk.TextIter beg, st,en;
     	 
-    	buf.get_start_iter(out beg);
+    	this.buffer.el.get_start_iter(out beg);
     	this.searchcontext.forward(beg, out st, out en);
-    	this.last_search_end  = 0;
+    	this.last_search_end = 0;
+    	
     	return this.searchcontext.get_occurrences_count();
     
-       
+     
+        
+    
     }
     public void createThumb () {
         
