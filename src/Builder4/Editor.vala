@@ -951,6 +951,10 @@ public class Editor : Object
 
         // user defined functions
         public void forwardSearch (bool change_focus) {
+        
+        
+        	
+        
         /*
         
         	switch(_this.windowstate.state) {

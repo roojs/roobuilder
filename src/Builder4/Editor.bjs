@@ -593,6 +593,10 @@
        "xtype" : "SearchEntry",
        "| void forwardSearch" : [
         "(bool change_focus) {",
+        "",
+        "",
+        "\t",
+        "",
         "/*",
         "",
         "\tswitch(_this.windowstate.state) {",
