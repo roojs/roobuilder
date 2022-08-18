@@ -1956,13 +1956,13 @@ public class Xcls_WindowRooView : Object
         		return;
         	}
         
-        	_this.nextBtn.sensitive = false;
-        	_this.backBtn.sensitive = false;	
+        	_this.nextBtn.el.sensitive = false;
+        	_this.backBtn.el.sensitive = false;	
         
         	if (res > 0) {
         		_this.search_results.el.label = "%d Matches".printf(res);
-        		_this.nextBtn.sensitive = true;
-        		_this.backBtn.sensitive = true;
+        		_this.nextBtn.el.sensitive = true;
+        		_this.backBtn.el.sensitive = true;
         		return;
         	} 
         	_this.search_results.el.label = "No Matches";
