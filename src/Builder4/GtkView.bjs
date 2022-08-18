@@ -190,6 +190,15 @@
              "xtype" : "SourceBuffer"
             }
            ],
+           "listeners" : {
+            "button_press_event" : [
+             "(event) => {",
+             "",
+             "\treturn bool;",
+             "}",
+             ""
+            ]
+           },
            "xtype" : "SourceView",
            "| string toString" : [
             "() {",

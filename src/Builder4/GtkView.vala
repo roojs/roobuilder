@@ -677,6 +677,12 @@ public class Xcls_GtkView : Object
                 
                 
             }
+
+            //listeners
+            this.el.button_press_event.connect( (event) => {
+            
+            	return bool;
+            });
         }
 
         // user defined functions
