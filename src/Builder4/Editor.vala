@@ -1277,7 +1277,7 @@ public class Editor : Object
             // init method
 
             {
-            
+            	this.el.show();
             }
         }
 
