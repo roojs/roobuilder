@@ -1273,6 +1273,12 @@ public class Editor : Object
 
             // set gobject values
             this.el.label = "Case Sensitive";
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions

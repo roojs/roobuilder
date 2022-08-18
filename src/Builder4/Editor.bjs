@@ -703,6 +703,12 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "",
+            "}",
+            ""
+           ],
            "string label" : "Case Sensitive",
            "xtype" : "CheckMenuItem"
           },
