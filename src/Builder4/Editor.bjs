@@ -735,15 +735,6 @@
            "xtype" : "CheckMenuItem"
           }
          ],
-         "listeners" : {
-          "popped_up" : [
-           "(flipped_rect, final_rect, flipped_x, flipped_y) => {",
-           "",
-           "\tthis.el.show_all();",
-           "}",
-           ""
-          ]
-         },
          "xtype" : "Menu"
         }
        ],
