@@ -768,6 +768,7 @@
             "}",
             ""
            ],
+           "id" : "multiline",
            "string label" : "Multi-line (add \\n)",
            "xtype" : "CheckMenuItem"
           }

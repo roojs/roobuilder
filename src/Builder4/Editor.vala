@@ -22,6 +22,7 @@ public class Editor : Object
     public Xcls_search_settings search_settings;
     public Xcls_case_sensitive case_sensitive;
     public Xcls_regex regex;
+    public Xcls_multiline multiline;
 
         // my vars (def)
     public Xcls_MainWindow window;
@@ -1300,7 +1301,7 @@ public class Editor : Object
             var child_1 = new Xcls_regex( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_CheckMenuItem26( _this );
+            var child_2 = new Xcls_multiline( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
@@ -1367,7 +1368,7 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_CheckMenuItem26 : Object
+    public class Xcls_multiline : Object
     {
         public Gtk.CheckMenuItem el;
         private Editor  _this;
@@ -1376,9 +1377,10 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CheckMenuItem26(Editor _owner )
+        public Xcls_multiline(Editor _owner )
         {
             _this = _owner;
+            _this.multiline = this;
             this.el = new Gtk.CheckMenuItem();
 
             // my vars (dec)
