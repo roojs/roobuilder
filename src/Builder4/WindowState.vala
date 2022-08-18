@@ -135,7 +135,7 @@ public class WindowState : Object
 			if (this.file.xtype == "Roo") { 
 				this.window_rooview.sourceview.nodeSelected(sel,true); // foce scroll.
 			} else {
-				this.window_gladeview.sourceview.nodeSelected(sel, false);
+				this.window_gladeview.sourceview.nodeSelected(sel, true);
 			}
 		});
 		
