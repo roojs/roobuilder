@@ -617,7 +617,7 @@
      "\t",
      "\tif (event.keyval == Gdk.Key.n && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
      "\t\tprint(\"SAVE: ctrl-n  pressed\");",
-     "\t\tthis.openNewWindow();",
+     "\t\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
      "\t\treturn false;",
      "\t}",
      "\t",

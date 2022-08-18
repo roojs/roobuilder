@@ -97,7 +97,7 @@ public class Xcls_MainWindow : Object
         	
         	if (event.keyval == Gdk.Key.n && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
         		print("SAVE: ctrl-n  pressed");
-        		this.openNewWindow();
+        		_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
         		return false;
         	}
         	
