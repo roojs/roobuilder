@@ -594,11 +594,13 @@
          "  ",
          " \tif (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {",
          "\t\tvar res = _this.search(this.el.text);",
-         "\t\tif (res > 0) {",
-         "\t\t\t_this.search_results.el.label = \"%d Matches\".printf(res);",
-         "\t\t} else {",
-         "\t\t\t_this.search_results.el.label = \"No Matches\";",
-         "\t\t}",
+         "\t\t _this.search_results.updateResults();",
+         "",
+         "\t\tGLib.Timeout.add_seconds(2,() => {",
+         "\t\t\t _this.search_results.updateResults();",
+         "\t\t\t return false;",
+         "\t\t });",
+         "\t ",
          "\t\t",
          "\t    return true;",
          "",
@@ -649,8 +651,8 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add",
-         "Xcls_ValaCompileErrors popup" : "",
          "bool always_show_image" : true,
+         "bool visible" : false,
          "id" : "search_results",
          "items" : [
           {
@@ -677,8 +679,23 @@
            "}"
           ]
          },
-         "string label" : "Matches",
-         "xtype" : "ImageMenuItem"
+         "xtype" : "ImageMenuItem",
+         "| void updateResults" : [
+          "() {",
+          "\tthis.el.visible = true;",
+          "\tvar res = _this.searchcontext.get_occurrences_count();",
+          "\tif (res < 0) {",
+          "\t\t_this.search_results.el.label = \"??? Matches\";\t\t",
+          "\t\treturn;",
+          "\t}",
+          "\tif (res > 0) {",
+          "\t\t_this.search_results.el.label = \"%d Matches\".printf(res);",
+          "\t\treturn;",
+          "\t} ",
+          "\t_this.search_results.el.label = \"No Matches\";",
+          "\t",
+          "}"
+         ]
         }
        ],
        "xtype" : "MenuBar"

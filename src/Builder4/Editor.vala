@@ -959,11 +959,13 @@ public class Editor : Object
               
              	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
             		var res = _this.search(this.el.text);
-            		if (res > 0) {
-            			_this.search_results.el.label = "%d Matches".printf(res);
-            		} else {
-            			_this.search_results.el.label = "No Matches";
-            		}
+            		 _this.search_results.updateResults();
+            
+            		GLib.Timeout.add_seconds(2,() => {
+            			 _this.search_results.updateResults();
+            			 return false;
+            		 });
+            	 
             		
             	    return true;
             
@@ -1069,7 +1071,6 @@ public class Editor : Object
 
 
             // my vars (def)
-        public Xcls_ValaCompileErrors popup;
 
         // ctor
         public Xcls_search_results(Editor _owner )
@@ -1082,7 +1083,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.always_show_image = true;
-            this.el.label = "Matches";
+            this.el.visible = false;
             var child_0 = new Xcls_Image16( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
@@ -1103,6 +1104,20 @@ public class Editor : Object
         }
 
         // user defined functions
+        public void updateResults () {
+        	this.el.visible = true;
+        	var res = _this.searchcontext.get_occurrences_count();
+        	if (res < 0) {
+        		_this.search_results.el.label = "??? Matches";		
+        		return;
+        	}
+        	if (res > 0) {
+        		_this.search_results.el.label = "%d Matches".printf(res);
+        		return;
+        	} 
+        	_this.search_results.el.label = "No Matches";
+        	
+        }
     }
     public class Xcls_Image16 : Object
     {
