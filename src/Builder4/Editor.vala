@@ -61,7 +61,7 @@ public class Editor : Object
         this.el.pack_start (  child_0.el , false,true );
         var child_1 = new Xcls_RightEditor( _this );
         child_1.ref();
-        this.el.pack_end (  child_1.el , true,true );
+        this.el.add(  child_1.el );
         var child_2 = new Xcls_Box12( _this );
         child_2.ref();
         this.el.add(  child_2.el );

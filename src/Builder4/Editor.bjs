@@ -120,7 +120,6 @@
       "this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
       ""
      ],
-     "* pack" : "pack_end,true,true",
      "id" : "RightEditor",
      "items" : [
       {
