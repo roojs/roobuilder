@@ -18,6 +18,7 @@ public class Xcls_GtkView : Object
     public Xcls_view_layout view_layout;
     public Xcls_container container;
     public Xcls_sourceview sourceview;
+    public Xcls_buffer buffer;
     public Xcls_search_entry search_entry;
     public Xcls_search_results search_results;
     public Xcls_search_settings search_settings;
@@ -510,7 +511,7 @@ public class Xcls_GtkView : Object
             var child_0 = new Xcls_ScrolledWindow9( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_Box11( _this );
+            var child_1 = new Xcls_Box12( _this );
             child_1.ref();
             this.el.add(  child_1.el );
         }
@@ -570,6 +571,9 @@ public class Xcls_GtkView : Object
             this.el.editable = false;
             this.el.show_line_marks = true;
             this.el.show_line_numbers = true;
+            var child_0 = new Xcls_buffer( _this );
+            child_0.ref();
+            this.el.set_buffer (  child_0.el  );
 
             // init method
 
@@ -886,9 +890,186 @@ public class Xcls_GtkView : Object
             return ret;
         }
     }
+    public class Xcls_buffer : Object
+    {
+        public Gtk.SourceBuffer el;
+        private Xcls_GtkView  _this;
 
 
-    public class Xcls_Box11 : Object
+            // my vars (def)
+        public int error_line;
+        public bool dirty;
+
+        // ctor
+        public Xcls_buffer(Xcls_GtkView _owner )
+        {
+            _this = _owner;
+            _this.buffer = this;
+            this.el = new Gtk.SourceBuffer( null );
+
+            // my vars (dec)
+            this.error_line = -1;
+            this.dirty = false;
+
+            // set gobject values
+
+            //listeners
+            this.el.changed.connect( () => {
+             
+            
+                // check syntax??
+                // ??needed..??
+               // _this.save_button.el.sensitive = true;
+                ///?? has changed occured during loading?
+                
+                // only trigger this if 
+                
+                
+                
+                
+                if (_this.sourceview.loading) {
+            		return;
+            	}
+            	
+            
+            	
+                print("- PREVIEW EDITOR CHANGED--");
+            
+                this.dirty = true;  
+                this.checkSyntax(); // this calls backs and highlights errors.. in theory...  
+            
+            
+            
+            	if (!_this.sourceview.button_is_pressed && !_this.sourceview.key_is_pressed) {
+            		print("button or key not pressed to generate change?!\n");
+            		return;
+            	}
+            		
+                
+            	// what are we editing??
+            	if (null == _this.sourceview.node_selected || _this.sourceview.prop_selected.length  < 1) {
+            		return;
+            	}
+            	
+            	// find the colon on the first line...
+            	
+            	if (_this.sourceview.editable_start_pos > -1) {
+            		
+            		var buf = (Gtk.SourceBuffer)_this.sourceview.el.get_buffer();
+            		
+                    //print("cursor changed : %d\n", buf.cursor_position);
+                    Gtk.TextIter spos,epos;
+                    buf.get_iter_at_offset(out spos, _this.sourceview.editable_start_pos);
+                    buf.get_iter_at_offset(out epos, _this.sourceview.editable_start_pos); // initialize epos..
+                    
+                    var gotit= false;
+                    var line = spos.get_line();
+                    var endline = buf.get_line_count();
+                    while (line < endline) {
+                		line++;
+            	        buf.get_iter_at_line(out epos, line);
+            	        if (buf.get_source_marks_at_line(line, "grey").length() > 0) {
+            		        buf.get_iter_at_line(out epos, line);	    		
+            	    		gotit=true;
+            	    		break;
+                		}
+            		}
+                    
+             		if (gotit) {
+            	 		print("End Offset = %d/%d\n", epos.get_line(), epos.get_offset());
+            			// get the pos...
+            			// in theory the last char will be '}' or '},' .. or ','
+            			// we should chop the ',' of the end...
+            			var str = buf.get_text(spos, epos, false);
+            			print("got string\n%s\n", str);
+            		
+            		}
+            	}
+                return ;
+            });
+        }
+
+        // user defined functions
+        public bool checkSyntax () {
+         
+           
+            var str = this.toString();
+            
+            // needed???
+            if (this.error_line > 0) {
+                 Gtk.TextIter start;
+                 Gtk.TextIter end;     
+                this.el.get_bounds (out start, out end);
+        
+                this.el.remove_source_marks (start, end, "WARN");
+                this.el.remove_source_marks (start, end, "ERR");        
+        
+            }
+            
+            if (str.length < 1) {
+                print("checkSyntax - empty string?\n");
+                return false;
+            }
+            
+           if (_this.file == null) {
+               return false;
+           }
+            var p = _this.file.project.palete;
+            
+         
+            if (_this.file.language != "js") {
+        		return false; // fake syntax error.
+        	}
+        	
+            //Gee.HashMap<int,string> ret_x;
+        
+        	return p.javascriptHasErrors(
+        		_this.main_window.windowstate,
+                str, 
+                null, // prop - not relivant.
+                _this.file, 
+                null
+            );    
+             
+        }
+        public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
+                 
+            this.error_line = validate_res.size;
+        	
+            if (this.error_line < 1) {
+                  return true;
+            }
+            var tlines = this.el.get_line_count ();
+            Gtk.TextIter iter;
+            var valiter = validate_res.map_iterator();
+            while (valiter.next()) {
+            
+        //        print("get inter\n");
+                var eline = valiter.get_key();
+                if (eline > tlines) {
+                    continue;
+                }
+                this.el.get_iter_at_line( out iter, eline);
+                //print("mark line\n");
+                this.el.create_source_mark(valiter.get_value(), "ERR", iter);
+            }   
+            return false;
+        }
+        public string toString () {
+            
+            Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_start_iter(out s);
+            this.el.get_end_iter(out e);
+            var ret = this.el.get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
+        }
+    }
+
+
+
+    public class Xcls_Box12 : Object
     {
         public Gtk.Box el;
         private Xcls_GtkView  _this;
@@ -897,7 +1078,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box11(Xcls_GtkView _owner )
+        public Xcls_Box12(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -910,16 +1091,16 @@ public class Xcls_GtkView : Object
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_MenuBar13( _this );
+            var child_1 = new Xcls_MenuBar14( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_Button16( _this );
+            var child_2 = new Xcls_Button17( _this );
             child_2.ref();
             this.el.add(  child_2.el );
-            var child_3 = new Xcls_Button18( _this );
+            var child_3 = new Xcls_Button19( _this );
             child_3.ref();
             this.el.add(  child_3.el );
-            var child_4 = new Xcls_MenuButton20( _this );
+            var child_4 = new Xcls_MenuButton21( _this );
             child_4.ref();
             this.el.add(  child_4.el );
         }
@@ -1046,7 +1227,7 @@ public class Xcls_GtkView : Object
         }
     }
 
-    public class Xcls_MenuBar13 : Object
+    public class Xcls_MenuBar14 : Object
     {
         public Gtk.MenuBar el;
         private Xcls_GtkView  _this;
@@ -1055,7 +1236,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuBar13(Xcls_GtkView _owner )
+        public Xcls_MenuBar14(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuBar();
@@ -1091,7 +1272,7 @@ public class Xcls_GtkView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Matches";
-            var child_0 = new Xcls_Image15( _this );
+            var child_0 = new Xcls_Image16( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -1112,7 +1293,7 @@ public class Xcls_GtkView : Object
 
         // user defined functions
     }
-    public class Xcls_Image15 : Object
+    public class Xcls_Image16 : Object
     {
         public Gtk.Image el;
         private Xcls_GtkView  _this;
@@ -1121,7 +1302,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image15(Xcls_GtkView _owner )
+        public Xcls_Image16(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1138,7 +1319,7 @@ public class Xcls_GtkView : Object
 
 
 
-    public class Xcls_Button16 : Object
+    public class Xcls_Button17 : Object
     {
         public Gtk.Button el;
         private Xcls_GtkView  _this;
@@ -1147,7 +1328,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button16(Xcls_GtkView _owner )
+        public Xcls_Button17(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1157,7 +1338,7 @@ public class Xcls_GtkView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Next";
-            var child_0 = new Xcls_Image17( _this );
+            var child_0 = new Xcls_Image18( _this );
             child_0.ref();
             this.el.image = child_0.el;
 
@@ -1172,7 +1353,7 @@ public class Xcls_GtkView : Object
 
         // user defined functions
     }
-    public class Xcls_Image17 : Object
+    public class Xcls_Image18 : Object
     {
         public Gtk.Image el;
         private Xcls_GtkView  _this;
@@ -1181,7 +1362,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image17(Xcls_GtkView _owner )
+        public Xcls_Image18(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1196,7 +1377,7 @@ public class Xcls_GtkView : Object
     }
 
 
-    public class Xcls_Button18 : Object
+    public class Xcls_Button19 : Object
     {
         public Gtk.Button el;
         private Xcls_GtkView  _this;
@@ -1205,7 +1386,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button18(Xcls_GtkView _owner )
+        public Xcls_Button19(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1215,7 +1396,7 @@ public class Xcls_GtkView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Previous";
-            var child_0 = new Xcls_Image19( _this );
+            var child_0 = new Xcls_Image20( _this );
             child_0.ref();
             this.el.image = child_0.el;
 
@@ -1230,7 +1411,7 @@ public class Xcls_GtkView : Object
 
         // user defined functions
     }
-    public class Xcls_Image19 : Object
+    public class Xcls_Image20 : Object
     {
         public Gtk.Image el;
         private Xcls_GtkView  _this;
@@ -1239,7 +1420,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image19(Xcls_GtkView _owner )
+        public Xcls_Image20(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1254,7 +1435,7 @@ public class Xcls_GtkView : Object
     }
 
 
-    public class Xcls_MenuButton20 : Object
+    public class Xcls_MenuButton21 : Object
     {
         public Gtk.MenuButton el;
         private Xcls_GtkView  _this;
@@ -1263,7 +1444,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuButton20(Xcls_GtkView _owner )
+        public Xcls_MenuButton21(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -1273,7 +1454,7 @@ public class Xcls_GtkView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Settings";
-            var child_0 = new Xcls_Image21( _this );
+            var child_0 = new Xcls_Image22( _this );
             child_0.ref();
             this.el.image = child_0.el;
             var child_1 = new Xcls_search_settings( _this );
@@ -1283,7 +1464,7 @@ public class Xcls_GtkView : Object
 
         // user defined functions
     }
-    public class Xcls_Image21 : Object
+    public class Xcls_Image22 : Object
     {
         public Gtk.Image el;
         private Xcls_GtkView  _this;
@@ -1292,7 +1473,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image21(Xcls_GtkView _owner )
+        public Xcls_Image22(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
