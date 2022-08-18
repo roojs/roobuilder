@@ -401,6 +401,276 @@
           }
          ],
          "xtype" : "ScrolledWindow"
+        },
+        {
+         "$ xns" : "Gtk",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "bool homogeneous" : false,
+         "bool vexpand" : false,
+         "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* init" : [
+            "var description =   Pango.FontDescription.from_string(\"monospace\");",
+            "\tdescription.set_size(8000);",
+            "\t this.el.override_font(description);",
+            "",
+            ""
+           ],
+           "bool hexpand" : true,
+           "id" : "search_entry",
+           "int width_request" : 300,
+           "listeners" : {
+            "changed" : [
+             "() => {",
+             "\t/*",
+             "\tif (this.el.text == \"\") {",
+             "\t\t_this.search_results.el.hide();",
+             "\t\treturn;",
+             "\t}",
+             "\tvar res = 0;",
+             "\tswitch(_this.windowstate.state) {",
+             "\t\tcase WindowState.State.CODEONLY:",
+             "\t\t///case WindowState.State.CODE:",
+             "\t\t\t// search the code being edited..",
+             "\t\t\tres = _this.windowstate.code_editor_tab.search(this.el.text);",
+             "\t\t\t",
+             "\t\t\tbreak;",
+             "\t\tcase WindowState.State.PREVIEW:",
+             "\t\t\tif (_this.windowstate.file.xtype == \"Gtk\") {",
+             "\t\t\t\t res = _this.windowstate.window_gladeview.search(this.el.text);",
+             "\t\t\t} else { ",
+             "\t\t\t\t res = _this.windowstate.window_rooview.search(this.el.text);\t\t\t",
+             "\t\t\t}",
+             "\t\t",
+             "\t\t",
+             "\t\t\tbreak;",
+             "\t}",
+             "\t_this.search_results.el.show();",
+             "\tif (res > 0) {",
+             "\t\t_this.search_results.el.label = \"%d Matches\".printf(res);",
+             "\t} else {",
+             "\t\t_this.search_results.el.label = \"No Matches\";",
+             "\t}",
+             "\t\t",
+             "\t*/",
+             "\t",
+             "}",
+             ""
+            ],
+            "key_press_event" : [
+             "(event) => {",
+             "    ",
+             "     if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
+             "\t    GLib.debug(\"SAVE: ctrl-g  pressed\");",
+             "\t\t_this.forwardSearch(true);",
+             "\t    return true;",
+             "\t}",
+             "    ",
+             "    ",
+             "  ",
+             " \tif (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {",
+             "\t\tvar res = _this.search(this.el.text);",
+             "\t\tif (res > 0) {",
+             "\t\t\t_this.search_results.el.label = \"%d Matches\".printf(res);",
+             "\t\t} else {",
+             "\t\t\t_this.search_results.el.label = \"No Matches\";",
+             "\t\t}",
+             "\t\t",
+             "\t    return true;",
+             "",
+             "\t}    ",
+             "   // print(event.key.keyval)",
+             "   ",
+             "    return false;",
+             "",
+             "} "
+            ]
+           },
+           "string placeholder_text" : "Press enter to search",
+           "xtype" : "SearchEntry",
+           "| void forwardSearch" : [
+            "(bool change_focus) {",
+            "",
+            "",
+            "\t_this.forwardSearch(change_focus);",
+            "",
+            "/*",
+            "",
+            "\tswitch(_this.windowstate.state) {",
+            "\t\tcase WindowState.State.CODEONLY:",
+            "\t\t//case WindowState.State.CODE:",
+            "\t\t\t// search the code being edited..",
+            "\t\t\t_this.windowstate.code_editor_tab.forwardSearch(change_focus);",
+            "\t\t\t ",
+            "\t\t\tbreak;",
+            "\t\tcase WindowState.State.PREVIEW:",
+            "\t\t\tif (_this.windowstate.file.xtype == \"Gtk\") {",
+            "\t\t\t\t_this.windowstate.window_gladeview.forwardSearch(change_focus);",
+            "\t\t\t} else { ",
+            "\t\t\t\t _this.windowstate.window_rooview.forwardSearch(change_focus);",
+            "\t\t\t}",
+            "\t\t",
+            "\t\t\tbreak;",
+            "\t}",
+            "\t*/",
+            "\t",
+            "}",
+            ""
+           ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "add",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add",
+             "Xcls_ValaCompileErrors popup" : "",
+             "bool always_show_image" : true,
+             "id" : "search_results",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "set_image",
+               "bool sensitive" : false,
+               "utf8 icon_name" : "system-search",
+               "xtype" : "Image"
+              }
+             ],
+             "listeners" : {
+              "button_press_event" : [
+               "() => {",
+               "/*",
+               "    if (this.popup == null) {",
+               "        this.popup = new Xcls_ValaCompileErrors();",
+               "        this.popup.window = _this;",
+               "    }",
+               "   ",
+               "    ",
+               "    this.popup.show(this.notices, this.el);",
+               "    */",
+               "    return true;",
+               "}"
+              ]
+             },
+             "string label" : "Matches",
+             "xtype" : "ImageMenuItem"
+            }
+           ],
+           "xtype" : "MenuBar"
+          },
+          {
+           "$ xns" : "Gtk",
+           "bool always_show_image" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "image",
+             "string icon_name" : "go-down",
+             "xtype" : "Image"
+            }
+           ],
+           "listeners" : {
+            "button_press_event" : [
+             "(event) => {",
+             "",
+             "\t_this.forwardSearch(true);",
+             "\t",
+             "\treturn true;",
+             "}",
+             ""
+            ]
+           },
+           "string label" : "Next",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "bool always_show_image" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "image",
+             "string icon_name" : "go-up",
+             "xtype" : "Image"
+            }
+           ],
+           "listeners" : {
+            "button_press_event" : [
+             "(event) => {",
+             "",
+             "\t_this.backSearch(true);",
+             "\t",
+             "\treturn true;",
+             "}",
+             ""
+            ]
+           },
+           "string label" : "Previous",
+           "xtype" : "Button"
+          },
+          {
+           "$ xns" : "Gtk",
+           "bool always_show_image" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "image",
+             "string icon_name" : "emblem-system",
+             "xtype" : "Image"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "popup",
+             "id" : "search_settings",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* init" : [
+                "{",
+                "\tthis.el.show();",
+                "}",
+                ""
+               ],
+               "id" : "case_sensitive",
+               "string label" : "Case Sensitive",
+               "xtype" : "CheckMenuItem"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* init" : [
+                "{",
+                "\tthis.el.show();",
+                "}",
+                ""
+               ],
+               "id" : "regex",
+               "string label" : "Regex",
+               "xtype" : "CheckMenuItem"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* init" : [
+                "{",
+                "\tthis.el.show();",
+                "}",
+                ""
+               ],
+               "id" : "multiline",
+               "string label" : "Multi-line (add \\n)",
+               "xtype" : "CheckMenuItem"
+              }
+             ],
+             "xtype" : "Menu"
+            }
+           ],
+           "string label" : "Settings",
+           "xtype" : "MenuButton"
+          }
+         ],
+         "xtype" : "Box"
         }
        ],
        "xtype" : "Box"
