@@ -1245,6 +1245,12 @@ public class Editor : Object
             var child_2 = new Xcls_CheckMenuItem26( _this );
             child_2.ref();
             this.el.append(  child_2.el );
+
+            //listeners
+            this.el.popped_up.connect( (flipped_rect, final_rect, flipped_x, flipped_y) => {
+            
+            
+            });
         }
 
         // user defined functions
