@@ -559,6 +559,12 @@
       },
       {
        "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "int spacing" : 0,
+       "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
        "* pack" : "append_page,_this.label_code.el",
        "items" : [
         {
