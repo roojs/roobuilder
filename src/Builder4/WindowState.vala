@@ -853,8 +853,7 @@ public class WindowState : Object
 	 
 	
 	
-		this.win.search_entry.el.hide();
-		this.win.search_results.el.hide();
+		 
 		switch (this.state) {
 			
 			case State.PREVIEW:  // this is the default state when working...
