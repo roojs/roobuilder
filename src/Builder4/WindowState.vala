@@ -862,7 +862,7 @@ public class WindowState : Object
 				 
 				
 				 
-				this.win.search_entry.el.show();
+			 
 				
 			//	this.win.openbtn.el.show();
 				
@@ -870,7 +870,7 @@ public class WindowState : Object
 			
 			case State.CODEONLY: 
 			//	this.win.openbtn.el.show();
-				this.win.search_entry.el.show();
+				 
 				break;
 		 
 			 
