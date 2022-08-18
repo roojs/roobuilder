@@ -1384,7 +1384,7 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Multi-line (add \\\\n)";
+            this.el.label = "Multi-line (add \\n)";
 
             // init method
 
