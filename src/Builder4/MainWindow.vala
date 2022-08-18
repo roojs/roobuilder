@@ -25,8 +25,6 @@ public class Xcls_MainWindow : Object
     public Xcls_codeeditviewbox codeeditviewbox;
     public Xcls_topbarmenu topbarmenu;
     public Xcls_statusbar statusbar;
-    public Xcls_search_entry search_entry;
-    public Xcls_search_results search_results;
     public Xcls_statusbar_compilestatus_label statusbar_compilestatus_label;
     public Xcls_statusbar_errors statusbar_errors;
     public Xcls_statusbar_warnings statusbar_warnings;
@@ -95,24 +93,11 @@ public class Xcls_MainWindow : Object
         });
         this.el.key_release_event.connect( (event) => {
             
-            if (this.search_entry.el.is_visible()) {
-        		if (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-        		    print("SAVE: ctrl-f  pressed");
-        			this.search_entry.el.grab_focus();
-        		    return false;
-        		}
-        		
-        		if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-        		    print("SAVE: ctrl-g  pressed");
-        			this.search_entry.forwardSearch(true);
-        		    return false;
-        		}
-        		
-        	}    
+            
         	
         	if (event.keyval == Gdk.Key.n && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
         		print("SAVE: ctrl-n  pressed");
-        		this.openNewWindow();
+        		_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
         		return false;
         	}
         	
@@ -730,15 +715,12 @@ public class Xcls_MainWindow : Object
             var child_4 = new Xcls_statusbar( _this );
             child_4.ref();
             this.el.pack_start (  child_4.el , true,true,0 );
-            var child_5 = new Xcls_search_entry( _this );
+            var child_5 = new Xcls_MenuBar32( _this );
             child_5.ref();
-            this.el.pack_start (  child_5.el , false,true,0 );
-            var child_6 = new Xcls_MenuBar33( _this );
+            this.el.add (  child_5.el  );
+            var child_6 = new Xcls_statusbar_compile_spinner( _this );
             child_6.ref();
             this.el.add (  child_6.el  );
-            var child_7 = new Xcls_statusbar_compile_spinner( _this );
-            child_7.ref();
-            this.el.add (  child_7.el  );
         }
 
         // user defined functions
@@ -1079,103 +1061,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_search_entry : Object
-    {
-        public Gtk.SearchEntry el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_search_entry(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            _this.search_entry = this;
-            this.el = new Gtk.SearchEntry();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.width_request = 300;
-
-            // init method
-
-            var description =   Pango.FontDescription.from_string("monospace");
-            	description.set_size(8000);
-            	 this.el.override_font(description);
-
-            //listeners
-            this.el.key_press_event.connect( (event) => {
-                
-             	if (event.keyval == Gdk.Key.Return) {
-            		this.forwardSearch(false);
-            	    return true;
-            
-            	}    
-               // print(event.key.keyval)
-                
-                return false;
-            
-            });
-            this.el.changed.connect( () => {
-            	if (this.el.text == "") {
-            		_this.search_results.el.hide();
-            		return;
-            	}
-            	var res = 0;
-            	switch(_this.windowstate.state) {
-            		case WindowState.State.CODEONLY:
-            		///case WindowState.State.CODE:
-            			// search the code being edited..
-            			res = _this.windowstate.code_editor_tab.search(this.el.text);
-            			
-            			break;
-            		case WindowState.State.PREVIEW:
-            			if (_this.windowstate.file.xtype == "Gtk") {
-            				 res = _this.windowstate.window_gladeview.search(this.el.text);
-            			} else { 
-            				 res = _this.windowstate.window_rooview.search(this.el.text);			
-            			}
-            		
-            		
-            			break;
-            	}
-            	_this.search_results.el.show();
-            	if (res > 0) {
-            		_this.search_results.el.label = "%d Matches".printf(res);
-            	} else {
-            		_this.search_results.el.label = "No Matches";
-            	}
-            		
-            	
-            	
-            });
-        }
-
-        // user defined functions
-        public void forwardSearch (bool change_focus) {
-        	switch(_this.windowstate.state) {
-        		case WindowState.State.CODEONLY:
-        		//case WindowState.State.CODE:
-        			// search the code being edited..
-        			_this.windowstate.code_editor_tab.forwardSearch(change_focus);
-        			 
-        			break;
-        		case WindowState.State.PREVIEW:
-        			if (_this.windowstate.file.xtype == "Gtk") {
-        				_this.windowstate.window_gladeview.forwardSearch(change_focus);
-        			} else { 
-        				 _this.windowstate.window_rooview.forwardSearch(change_focus);
-        			}
-        		
-        			break;
-        	}
-        	
-        }
-    }
-
-    public class Xcls_MenuBar33 : Object
+    public class Xcls_MenuBar32 : Object
     {
         public Gtk.MenuBar el;
         private Xcls_MainWindow  _this;
@@ -1184,7 +1070,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuBar33(Xcls_MainWindow _owner )
+        public Xcls_MenuBar32(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuBar();
@@ -1192,96 +1078,25 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.tooltip_text = "Update Resources / About Roobuilder";
-            var child_0 = new Xcls_search_results( _this );
+            var child_0 = new Xcls_statusbar_compilestatus_label( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_statusbar_compilestatus_label( _this );
+            var child_1 = new Xcls_statusbar_errors( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_statusbar_errors( _this );
+            var child_2 = new Xcls_statusbar_warnings( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
-            var child_3 = new Xcls_statusbar_warnings( _this );
+            var child_3 = new Xcls_statusbar_depricated( _this );
             child_3.ref();
             this.el.add (  child_3.el  );
-            var child_4 = new Xcls_statusbar_depricated( _this );
+            var child_4 = new Xcls_statusbar_run( _this );
             child_4.ref();
             this.el.add (  child_4.el  );
-            var child_5 = new Xcls_statusbar_run( _this );
-            child_5.ref();
-            this.el.add (  child_5.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_search_results : Object
-    {
-        public Gtk.ImageMenuItem el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-        public Xcls_ValaCompileErrors popup;
-
-        // ctor
-        public Xcls_search_results(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            _this.search_results = this;
-            this.el = new Gtk.ImageMenuItem();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.always_show_image = true;
-            this.el.label = "Matches";
-            var child_0 = new Xcls_Image35( _this );
-            child_0.ref();
-            this.el.set_image (  child_0.el  );
-
-            //listeners
-            this.el.button_press_event.connect( () => {
-            /*
-                if (this.popup == null) {
-                    this.popup = new Xcls_ValaCompileErrors();
-                    this.popup.window = _this;
-                }
-               
-                
-                this.popup.show(this.notices, this.el);
-                */
-                return true;
-            });
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Image35 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image35(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "system-search";
-            this.el.sensitive = false;
-        }
-
-        // user defined functions
-    }
-
-
     public class Xcls_statusbar_compilestatus_label : Object
     {
         public Gtk.MenuItem el;
@@ -1329,7 +1144,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Errors";
-            var child_0 = new Xcls_Image38( _this );
+            var child_0 = new Xcls_Image35( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -1354,7 +1169,7 @@ public class Xcls_MainWindow : Object
         
         }
     }
-    public class Xcls_Image38 : Object
+    public class Xcls_Image35 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1363,7 +1178,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image38(Xcls_MainWindow _owner )
+        public Xcls_Image35(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1401,7 +1216,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Warnings";
-            var child_0 = new Xcls_Image40( _this );
+            var child_0 = new Xcls_Image37( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -1425,7 +1240,7 @@ public class Xcls_MainWindow : Object
         
         }
     }
-    public class Xcls_Image40 : Object
+    public class Xcls_Image37 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1434,7 +1249,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image40(Xcls_MainWindow _owner )
+        public Xcls_Image37(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1472,7 +1287,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Depricated";
-            var child_0 = new Xcls_Image42( _this );
+            var child_0 = new Xcls_Image39( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -1497,7 +1312,7 @@ public class Xcls_MainWindow : Object
         
         }
     }
-    public class Xcls_Image42 : Object
+    public class Xcls_Image39 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1506,7 +1321,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image42(Xcls_MainWindow _owner )
+        public Xcls_Image39(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1542,7 +1357,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Run";
-            var child_0 = new Xcls_Image44( _this );
+            var child_0 = new Xcls_Image41( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
 
@@ -1561,7 +1376,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Image44 : Object
+    public class Xcls_Image41 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1570,7 +1385,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image44(Xcls_MainWindow _owner )
+        public Xcls_Image41(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();

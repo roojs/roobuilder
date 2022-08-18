@@ -95,7 +95,7 @@ public class WindowState : Object
 		
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
-		this.win.search_results.el.hide();
+ 
 		
 		this.popover_files = new Xcls_PopoverFiles();
 	 	this.popover_files.setMainWindow(this.win);
@@ -135,7 +135,7 @@ public class WindowState : Object
 			if (this.file.xtype == "Roo") { 
 				this.window_rooview.sourceview.nodeSelected(sel,true); // foce scroll.
 			} else {
-				this.window_gladeview.sourceview.nodeSelected(sel);
+				this.window_gladeview.sourceview.nodeSelected(sel, true);
 			}
 		});
 		
@@ -853,8 +853,7 @@ public class WindowState : Object
 	 
 	
 	
-		this.win.search_entry.el.hide();
-		this.win.search_results.el.hide();
+		 
 		switch (this.state) {
 			
 			case State.PREVIEW:  // this is the default state when working...
@@ -863,7 +862,7 @@ public class WindowState : Object
 				 
 				
 				 
-				this.win.search_entry.el.show();
+			 
 				
 			//	this.win.openbtn.el.show();
 				
@@ -871,7 +870,7 @@ public class WindowState : Object
 			
 			case State.CODEONLY: 
 			//	this.win.openbtn.el.show();
-				this.win.search_entry.el.show();
+				 
 				break;
 		 
 			 
