@@ -523,6 +523,7 @@
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "bool homogeneous" : false,
+     "bool vexpand" : false,
      "int spacing" : 0,
      "items" : [
       {
@@ -534,7 +535,6 @@
         "",
         ""
        ],
-       "bool expand" : true,
        "id" : "search_entry",
        "int width_request" : 300,
        "listeners" : {

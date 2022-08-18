@@ -877,6 +877,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.homogeneous = false;
+            this.el.vexpand = false;
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
             this.el.add(  child_0.el );
@@ -915,7 +916,6 @@ public class Editor : Object
 
             // set gobject values
             this.el.width_request = 300;
-            this.el.expand = true;
             this.el.placeholder_text = "Press enter to search";
 
             // init method
