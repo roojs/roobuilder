@@ -1184,6 +1184,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.always_show_image = true;
+            this.el.label = "Settings";
             var child_0 = new Xcls_Image22( _this );
             child_0.ref();
             this.el.image = child_0.el;
