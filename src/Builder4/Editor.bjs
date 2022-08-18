@@ -709,7 +709,7 @@
         "button_press_event" : [
          "(event) => {",
          "",
-         "\t_this.searchBack();",
+         "\t_this.backSearch();",
          "\t",
          "\treturn true;",
          "}",

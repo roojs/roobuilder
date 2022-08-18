@@ -1184,7 +1184,7 @@ public class Editor : Object
             //listeners
             this.el.button_press_event.connect( (event) => {
             
-            	_this.searchBack();
+            	_this.backSearch();
             	
             	return true;
             });
