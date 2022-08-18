@@ -534,6 +534,7 @@
         "",
         ""
        ],
+       "bool expand" : true,
        "id" : "search_entry",
        "int width_request" : 300,
        "listeners" : {
