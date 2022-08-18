@@ -173,14 +173,17 @@ public class Xcls_WindowRooView : Object
     	if (!this.searchcontext.backward2(beg, out st, out en, out has_wrapped_around)) {
     	
     		this.last_search_end = 0;
-    	} else {
-    		this.last_search_end = en.get_offset();
-    		if (change_focus) {
-    			this.view.el.grab_focus();
-    		}
-    		this.buffer.el.place_cursor(st);
-    		this.sourceview.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
+    		return;
     	}
+    	this.last_search_end = en.get_offset();
+    	if (change_focus) {
+    		this.view.el.grab_focus();
+    	}
+    	this.buffer.el.place_cursor(st);
+    	this.sourceview.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
+    	
+    	
+    	
      
     }
     public int search (string in_txt) {
