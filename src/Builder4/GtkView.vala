@@ -679,7 +679,7 @@ public class Xcls_GtkView : Object
             }
 
             //listeners
-            this.el.button_press_event.connect( (event) => {
+            this.el.key_press_event.connect( (event) => {
             	
             	 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-g  pressed");
