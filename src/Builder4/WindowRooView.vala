@@ -258,7 +258,7 @@ public class Xcls_WindowRooView : Object
     	this.buffer.el.place_cursor(st);
     	this.sourceview.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
     	var ln = st.get_line();
-    	
+    	this.highlightNodeAtLine(ln);
     	
      
     }
