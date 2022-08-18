@@ -172,6 +172,7 @@
             " "
            ],
            "* pack" : "add",
+           "JsRender.Node? node_selected" : true,
            "bool allow_node_scroll" : true,
            "bool loading" : true,
            "gboolean editable" : false,
