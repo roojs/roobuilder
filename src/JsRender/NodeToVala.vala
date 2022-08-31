@@ -632,7 +632,7 @@ public class JsRender.NodeToVala : Object {
 		}
 
 		if (menuitem_children.contains(this.node.fqn())) {
-			this.addLine(this.ipad + "this.el.show_all();");
+			this.addLine(this.ipad + "this.el.show();");
 		
 		}
 	}
