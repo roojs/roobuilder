@@ -258,7 +258,7 @@ public class Xcls_WindowRooView : Object
     public void scroll_to_line (int line) {
        // code preview...
        
-       GLib.Timeout.add(500, () => {
+       GLib.Timeout.add(100, () => {
        
     		this.notebook.el.set_current_page( 1 );
     	   
