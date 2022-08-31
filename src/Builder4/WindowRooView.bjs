@@ -1743,11 +1743,11 @@
    ],
    "| void scroll_to_line" : [
     "(int line) {",
-    "   this.notebook.el.page = 1;// code preview...",
+    "   // code preview...",
     "   ",
     "   GLib.Timeout.add(500, () => {",
     "   ",
-    "   ",
+    "\t\tthis.notebook.el.set_current_page( 1 );",
     "\t   ",
     "\t   ",
     "\t\t  var buf = this.sourceview.el.get_buffer();",

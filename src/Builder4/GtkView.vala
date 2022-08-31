@@ -321,7 +321,7 @@ public class Xcls_GtkView : Object
          
     }
     public void scroll_to_line (int line) {
-       this.notebook.el.page = 1;// code preview...
+       this.notebook.el.set_current_page(1);// code preview...
        
        GLib.Timeout.add(500, () => {
        

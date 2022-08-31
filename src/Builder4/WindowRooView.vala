@@ -256,11 +256,11 @@ public class Xcls_WindowRooView : Object
          
     }
     public void scroll_to_line (int line) {
-       this.notebook.el.page = 1;// code preview...
+       // code preview...
        
        GLib.Timeout.add(500, () => {
        
-       
+    		this.notebook.el.set_current_page( 1 );
     	   
     	   
     		  var buf = this.sourceview.el.get_buffer();
