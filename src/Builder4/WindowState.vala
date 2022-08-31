@@ -593,11 +593,14 @@ public class WindowState : Object
 	public void gotoLine(int line)
 	{
 	
+		if (line < 0) {
+			return;
+		}
 		if (file.xtype == "PlainFile") {
 		    this.switchState (State.CODEONLY); 
-			if (line> -1) {
-				this.code_editor_tab.scroll_to_line(line);
-			}
+			 
+			this.code_editor_tab.scroll_to_line(line);
+			 
 		} else {
 		
 			this.switchState (State.PREVIEW); 
@@ -605,9 +608,10 @@ public class WindowState : Object
 			if (file.project.xtype == "Gtk" && line> -1 ) {
 				// fixme - show the editing tab.
 				this.window_gladeview.scroll_to_line(line);
-			} 
+			} else {
+				this.window_rooview.scroll_to_line(line);
 			// fixme - what about Roo?
-
+			}
 		}
 	
 	}
