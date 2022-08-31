@@ -688,7 +688,11 @@ public class Xcls_GtkView : Object
             		_this.forwardSearch(true);
             	    return true;
             	}
-                
+                if (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-f  pressed");
+            		_this.search_entry.el.grab_focus();
+            	    return true;
+            	}
             	 
             	return false;
             });
