@@ -293,7 +293,10 @@ namespace Palete {
 					continue;
 				}
 				this.generic_child_widgets.add(fqn);
-				this.add_special_children(fqn, "Gtk.Menu", "_menu"); // fake propety
+				
+				
+				
+				//this.add_special_children(fqn, "Gtk.Menu", "_menu"); // fake propety
 			}
 		
 		}
