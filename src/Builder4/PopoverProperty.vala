@@ -405,7 +405,12 @@ public class Xcls_PopoverProperty : Object
         	
         		el.append(out iter);
         		el.set(iter, 0, JsRender.NodePropType.RAW, 1,   "Raw Property (not escaped)", -1);
-        		 
+        		
+        		// we appear to still use this?!? (builderCfg?)
+        		el.append(out iter);
+        		el.set(iter, 0, JsRender.NodePropType.USER, 1,   "User defined property", -1);
+        		
+        		
         		el.append(out iter);
         		el.set(iter, 0, JsRender.NodePropType.METHOD, 1,   "User defined method", -1);
         	 
