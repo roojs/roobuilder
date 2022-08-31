@@ -130,7 +130,7 @@ public class Xcls_PopoverFileDetails : Object
     
          int w,h;
         this.mainwindow.el.get_size(out w, out h);
-        this.el.set_size_request( 550, 300);
+        this.el.set_size_request( 550, 100); // should expand height, but give  a min width.
     
        
         
@@ -420,9 +420,7 @@ public class Xcls_PopoverFileDetails : Object
         public void showhide (bool is_bjs) {
         
         
-        	if (_this.project.xtype != "Roo") {
-        	 	is_bjs = false;
-         	}
+        	 
         	_this.grid.showAllRows();
         
         	switch(_this.project.xtype) {
@@ -442,6 +440,10 @@ public class Xcls_PopoverFileDetails : Object
         			_this.grid.hideRow(5);	
         			_this.grid.hideRow(6);	
         		    // hide 2,3,4,5,6,
+        		    if (_this.file.name.length > 0) {
+        		    	_this.grid.hideRow(8); // directory - cant change it here..
+        	    	}
+        		    
         			break;
         	}
          
