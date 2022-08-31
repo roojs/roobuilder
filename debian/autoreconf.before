@@ -52,7 +52,7 @@ dad0227408777290e6c56afc03cf6e12  ./src/Builder4/.deps/WindowLeftProjects.Po
 3240de25cec411f70a664d60a863a5bf  ./src/Builder4/.deps/ValaProjectSettings.Po
 eac560ca8d937023d780ae709733ee95  ./src/Builder4/.deps/ProjectSettings.Po
 037af1aa13ae4ac7a33522b32713e2a5  ./src/Builder4/ValaCompileResults.vala
-469451c6fc87aaf8b6c28f88860bb55a  ./src/Builder4/About.bjs
+b4ef19eba6bf0ad81db687f350ed0b1e  ./src/Builder4/About.bjs
 9f22d2c6d4ac12e071bed5503e4da569  ./src/Builder4/DialogSaveTemplate.vala
 b6cd6ab7659c7b11f49577cd611d3752  ./src/Builder4/ValaProjectSettings.bjs
 0fc9ff3b75b4d5d382666b311ea9df13  ./src/Builder4/WindowAddProp.bjs
@@ -66,7 +66,7 @@ dc7e9528040b3bb485f1e9f69df9b5a6  ./src/Builder4/ClutterFiles.c
 4bfb083983d5e2d3b0b0ec63c2484dc3  ./src/Builder4/WindowLeftProps.vala
 44a1921066534c10a2aac94e63e1dd1a  ./src/Builder4/WindowRightPalete.vala
 93a33b5be53d1eeb3a1017a9c00fbce1  ./src/Builder4/GladeView.vala
-ed2b93a30dbd21b47754963fa7c1ff3f  ./src/Builder4/About.vala
+4c67603332b58d27df89a19bb7a0e0ae  ./src/Builder4/About.vala
 cd39567c86afd25c6b982e47d4a4850f  ./src/Builder4/ClutterFiles.vala
 fb71cc9a6b22c171ea2034fdcf15aa94  ./src/Builder4/WindowAddProp.vala
 e48faad93a150ef9bdac43a28013e533  ./src/Builder4/MainWindow.bjs

@@ -142,6 +142,9 @@ public class JsRender.NodeProp : Object {
 	public string  to_json_key()
 	{
 		
+		if (this.rtype == null) { // not sure why this happens.!?
+			this.rtype = "";
+		}
 		var ortype = this.rtype +  (this.rtype.length > 0 ? " " : "");
 		var oabbr = NodePropType.to_abbr(this.ptype);
 		if (oabbr.length > 0) {
