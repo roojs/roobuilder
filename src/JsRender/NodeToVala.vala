@@ -188,6 +188,8 @@ public class JsRender.NodeToVala : Object {
 		this.addInitMyVars();
 		this.addWrappedProperties();
 		this.addChildren();
+		this.addAutoShow(); // autoshow menuitems
+		
 		this.addInit();
 		this.addListeners();
 		this.addEndCtor();
@@ -615,6 +617,24 @@ public class JsRender.NodeToVala : Object {
 		
 
 			
+	}
+	public static Gee.ArrayList<string> menuitem_children = null;
+	
+	void addAutoShow()
+	{
+		if (menuitem_children == null) {
+			menuitem_children = new Gee.ArrayList<string>();
+			menuitem_children.add("Gtk.MenuItem");
+			var gir = this.file.project.palete.getClass("Gtk.MenuItem");
+			foreach(var impl in gir.implementations) {
+				menuitem_children.add(impl);
+			}
+		}
+
+		if (menuitem_children.contains(this.node.fqn())) {
+			this.addLine(this.ipad + "this.el.show();");
+		
+		}
 	}
 
 	void addInitMyVars()

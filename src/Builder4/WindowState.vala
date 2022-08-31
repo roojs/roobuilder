@@ -127,9 +127,9 @@ public class WindowState : Object
 		});
 		// node selected -- only by clicking?
 		this.left_tree.node_selected.connect((sel, source) => {
-			if (source == "editor") {
-				return;
-			}
+			//if (source == "editor") {
+			//	return;
+			//}
 			if (this.file.xtype == "Roo") { 
 				this.window_rooview.sourceview.nodeSelected(sel,true); // foce scroll.
 			} else {
