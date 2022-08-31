@@ -26,7 +26,7 @@ edc8430ca864508d07046aa44624ab22  ./src/Builder4/ProjectSettings.c
 33dfb40081e08b8ccc4e8e367170ac7b  ./src/Builder4/GtkView.bjs
 1f8a135ee916234e6e10a92b6fefbbae  ./src/Builder4/DialogSaveTemplate.bjs
 01f94aae4ea0d5d9b6b56f34fa5f79f4  ./src/Builder4/DialogConfirm.vala
-8ad2dac353945d057ac67420ded35911  ./src/Builder4/PopoverProperty.vala
+a2d0fafef3cfb748e2643edce607e3d6  ./src/Builder4/PopoverProperty.vala
 ccada5ef4cce7f6634a86d7d31460d2a  ./src/Builder4/MainWindow.vala
 3aca1c873e3b299c6c9d65ade9233008  ./src/Builder4/Editor.bjs
 cc34dea3283bdac2fae049d6ed914558  ./src/Builder4/PopoverAddObject.vala
@@ -61,7 +61,7 @@ b6cd6ab7659c7b11f49577cd611d3752  ./src/Builder4/ValaProjectSettings.bjs
 1a56b326a5c38838d23c76f639970fff  ./src/Builder4/PopoverEditor.vala
 dbbe4ac728ab0d96dd578697f909dc5b  ./src/Builder4/PopoverFileDetails.vala
 7685b80a99bee07abefa79a88ccd0f52  ./src/Builder4/GladeView.bjs
-42f667b5370650630064b360a97daea2  ./src/Builder4/PopoverProperty.bjs
+7f8ea7da528f85ca83d33075dc5ced8b  ./src/Builder4/PopoverProperty.bjs
 7c9d022989780c6bdcbf75606a15b0e3  ./src/Builder4/PopoverAddProp.vala
 660550c04db28e98c81d6e4028c7a9bb  ./src/Builder4/StandardErrorDialog.vala
 dc7e9528040b3bb485f1e9f69df9b5a6  ./src/Builder4/ClutterFiles.c
@@ -237,7 +237,7 @@ d743438c4e4b765b7ce4b7e1c98b3b31  ./config.h.in~
 9580a33f9516167b4a1a72fe4fee31ae  ./.gitignore
 737061c1c974f84326be8b9281180af9  ./README.md
 959bffe2993816eb32ec4bc1ec1d5875  ./LICENSE
-d9036b941d8bca551dc5bcb519c5ffe3  ./autom4te.cache/requests
+95067042d7db431f02b3654283d53dbd  ./autom4te.cache/requests
 4ab5d64b369bac36c4c5ea81ef5e82f1  ./autom4te.cache/traces.2
 4ab5d64b369bac36c4c5ea81ef5e82f1  ./autom4te.cache/traces.1
 35d73aa64bd0b12a1f9172b40e9f62b2  ./autom4te.cache/output.1
@@ -245,7 +245,7 @@ d9036b941d8bca551dc5bcb519c5ffe3  ./autom4te.cache/requests
 99d97fe84a1747c45d8bd23c7ab9b8c4  ./autom4te.cache/traces.0
 35d73aa64bd0b12a1f9172b40e9f62b2  ./autom4te.cache/output.0
 d32239bcb673463ab874e80d47fae504  ./COPYING
-3bae6454ef01e04f1c82c0766f1024c7  ./.gdb_history
+a6990f5331cc22822f44ec5fd99de437  ./.gdb_history
 e194375eb17ee97cc2db1c3e680412a3  ./INSTALL.txt
 234ae97ddd94d5596656997f26bdd94a  ./AUTHORS
 e93be940bda9805b18b8ca846d2de2a3  ./resources/mailer.builder.html

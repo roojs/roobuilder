@@ -1196,9 +1196,14 @@ public class Xcls_WindowRooView : Object
             });
             this.el.key_press_event.connect( (event) => {
             	
-            	 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-g  pressed");
             		_this.forwardSearch(true);
+            	    return true;
+            	}
+            	if (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-f  pressed");
+            		_this.search_entry.el.grab_focus();
             	    return true;
             	}
                 
@@ -1421,7 +1426,7 @@ public class Xcls_WindowRooView : Object
         		if (sel.getPropertyRange(this.prop_selected, out nstart, out nend) && nend > nstart) {
         			start_line = nstart;
         			end_line = nend;
-        			this.el.editable = true;
+        			// this.el.editable = true; << cant do this!!?
         			print("start line = %d, end line = %d\n", start_line, end_line);
         			
         				// see if we are 'right of ':'

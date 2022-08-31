@@ -1,4 +1,4 @@
-roobuilder (4.4.0) UNRELEASED; urgency=medium
+roobuilder (4.4.0) unstable; urgency=medium
 
   * slightly better search boxes
   * Add node is in a column, rather than button above

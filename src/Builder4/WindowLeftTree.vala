@@ -228,6 +228,20 @@ public class Xcls_WindowLeftTree : Object
                 }
                 
                 if (col.title == "Add") {
+             		GLib.Value value;
+             		Gtk.TreeIter iter;
+            
+            		_this.model.el.get_iter (out  iter, res);
+                    _this.model.el.get_value(iter, 2, out value);		
+                        // why dup_ - gets and and inc's ref count (which in theory should be freed at the end.?
+                        
+                    var node = (JsRender.Node)value.dup_object();
+                    var fqn = node.fqn();
+                	var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
+              		if (cn.length < 1) {
+              			return true;
+            		}
+                
                      _this.main_window.windowstate.leftTreeBeforeChange();
                      this.el.get_selection().select_path(res);
                  	_this.main_window.windowstate.showAddObject(this.el);
@@ -311,6 +325,8 @@ public class Xcls_WindowLeftTree : Object
                         GLib.Value value;
                         _this.model.el.get_value(iter, 2, out value);
                         _this.model.activePath = mod.get_path(iter).to_string();
+                        
+                        // why dup_?
                         
                         var node = (JsRender.Node)value.dup_object();
                         print ("calling left_tree.node_selected\n");
@@ -1151,6 +1167,9 @@ typeof(Gdk.Pixbuf) }  );
             	pix = ic.load_icon("emblem-new", 16,0);
             }
             
+            var fqn = node.fqn();
+            var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
+            
             this.el.set(
             		iter, 
             		0, node.nodeTitle(),
@@ -1159,7 +1178,7 @@ typeof(Gdk.Pixbuf) }  );
             );
             this.el.set_value(iter, 2,o);
             this.el.set_value(iter, 3,pix);    
-          	this.el.set_value(iter, 4,addi);   
+          	this.el.set_value(iter, 4, cn.length > 0 ? addi : null);   
             
         
         }
