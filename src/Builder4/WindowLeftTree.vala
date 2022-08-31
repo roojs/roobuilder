@@ -272,12 +272,12 @@ public class Xcls_WindowLeftTree : Object
             });
             this.el.cursor_changed.connect( ( ) => {
                 print("LEFT TREE Cursor Changed\n");
-            	if (!this.button_is_pressed && !this.key_is_pressed) {
+            	//if (!this.button_is_pressed && !this.key_is_pressed) {
             		// then event was started by some other action
             		// which should manually trigger all the events..
-            		print("SKIPPING select - no button or key pressed\n");
-            		return;
-            	}
+            	//	print("SKIPPING select - no button or key pressed\n");
+            	//	return;
+            	//}
             
             
                  if (this.blockChanges) { // probably not needed.. 
