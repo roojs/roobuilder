@@ -130,7 +130,7 @@ public class Xcls_PopoverFileDetails : Object
     
          int w,h;
         this.mainwindow.el.get_size(out w, out h);
-        this.el.set_size_request( 550, h);
+        this.el.set_size_request( 550, 300);
     
        
         
@@ -203,6 +203,7 @@ public class Xcls_PopoverFileDetails : Object
 
             // set gobject values
             this.el.homogeneous = false;
+            this.el.hexpand = true;
             var child_0 = new Xcls_HeaderBar3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,true,0 );
@@ -259,6 +260,7 @@ public class Xcls_PopoverFileDetails : Object
             // set gobject values
             this.el.margin_right = 4;
             this.el.margin_left = 4;
+            this.el.hexpand = true;
             this.el.row_spacing = 2;
             var child_0 = new Xcls_filetypelbl( _this );
             child_0.ref();
@@ -323,6 +325,23 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
+        public void showAllRows () {
+        	for (var i = 2; i < 10;i++) {
+        		var el = _this.grid.el.get_child_at(0,i);
+        		el.show();
+        		el = _this.grid.el.get_child_at(1,i);
+        		el.show();
+            }
+        }
+        public void hideRow (int row) 
+        {
+        	var el = _this.grid.el.get_child_at(0,row);
+        
+        	el.hide();
+        	el = _this.grid.el.get_child_at(1,row);
+        	el.hide();
+        
+        }
     }
     public class Xcls_filetypelbl : Object
     {
@@ -367,6 +386,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             var child_0 = new Xcls_ftdbcellrenderer( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
@@ -403,27 +423,28 @@ public class Xcls_PopoverFileDetails : Object
         	if (_this.project.xtype != "Roo") {
         	 	is_bjs = false;
          	}
+        	_this.grid.showAllRows();
         
-        	for (var i = 2; i < 9;i++) {
-        		var el = _this.grid.el.get_child_at(0,i);
-        		
-        		var showhide= is_bjs;
-        		if (i> 7) {
-        			showhide = !showhide;
-        		}
-        		
-        		if (showhide) {
-        		   el.show();
-        		} else {
-        			el.hide();
-        		}
-        		 el = _this.grid.el.get_child_at(1,i);
-        		if (showhide) {
-        		   el.show();
-        		} else {
-        			el.hide();
-        		}     
-            }
+        	switch(_this.project.xtype) {
+        		case "Roo":
+        			
+        			_this.grid.hideRow(7);
+        			_this.grid.hideRow(8);			
+        			// hide: vala: module
+        			// row 7
+        			// row 8 (directory)
+        			
+        			break;
+        		default: // vala..
+        			_this.grid.hideRow(2);
+        			_this.grid.hideRow(3);	
+        			_this.grid.hideRow(4);
+        			_this.grid.hideRow(5);	
+        			_this.grid.hideRow(6);	
+        		    // hide 2,3,4,5,6,
+        			break;
+        	}
+         
             // load up the directories
             //??? why can we not create bjs files in other directories??
         	//if (!is_bjs && _this.file.path.length < 1) {
@@ -572,6 +593,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             this.el.visible = true;
         }
 
@@ -621,6 +643,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             this.el.visible = true;
         }
 
@@ -671,6 +694,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             this.el.visible = true;
         }
 
@@ -836,7 +860,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label21(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Module to build (Vala only)" );
+            this.el = new Gtk.Label( "Module to build" );
 
             // my vars (dec)
 
@@ -1157,6 +1181,7 @@ public class Xcls_PopoverFileDetails : Object
 
             // set gobject values
             this.el.editable = false;
+            this.el.hexpand = true;
             this.el.visible = true;
         }
 
@@ -1212,7 +1237,11 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.always_show_image = true;
             this.el.label = "Cancel";
+            var child_0 = new Xcls_Image33( _this );
+            child_0.ref();
+            this.el.set_image (  child_0.el  );
 
             //listeners
             this.el.clicked.connect( () => { 
@@ -1224,6 +1253,29 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
     }
+    public class Xcls_Image33 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_PopoverFileDetails  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image33(Xcls_PopoverFileDetails _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "window-close";
+        }
+
+        // user defined functions
+    }
+
 
     public class Xcls_save_btn : Object
     {
@@ -1243,7 +1295,12 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.has_default = true;
+            this.el.always_show_image = true;
             this.el.label = "Save";
+            var child_0 = new Xcls_Image35( _this );
+            child_0.ref();
+            this.el.set_image (  child_0.el  );
 
             //listeners
             this.el.clicked.connect( ( ) =>  { 
@@ -1381,6 +1438,29 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
     }
+    public class Xcls_Image35 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_PopoverFileDetails  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image35(Xcls_PopoverFileDetails _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "document-save";
+        }
+
+        // user defined functions
+    }
+
 
 
 

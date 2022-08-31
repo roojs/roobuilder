@@ -18,6 +18,7 @@
      "$ xns" : "Gtk",
      "* pack" : "add",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "bool hexpand" : true,
      "bool homogeneous" : false,
      "items" : [
       {
@@ -27,9 +28,9 @@
        "xtype" : "HeaderBar"
       },
       {
-       "$ homogeneous" : true,
        "$ xns" : "Gtk",
        "* pack" : "pack_start,false,false,4",
+       "bool hexpand" : true,
        "id" : "grid",
        "int margin_left" : 4,
        "int margin_right" : 4,
@@ -48,6 +49,7 @@
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
          "* pack" : "attach,1,0,1,1",
+         "bool hexpand" : true,
          "id" : "filetype",
          "items" : [
           {
@@ -143,27 +145,28 @@
           "\tif (_this.project.xtype != \"Roo\") {",
           "\t \tis_bjs = false;",
           " \t}",
+          "\t_this.grid.showAllRows();",
           "",
-          "\tfor (var i = 2; i < 9;i++) {",
-          "\t\tvar el = _this.grid.el.get_child_at(0,i);",
-          "\t\t",
-          "\t\tvar showhide= is_bjs;",
-          "\t\tif (i> 7) {",
-          "\t\t\tshowhide = !showhide;",
-          "\t\t}",
-          "\t\t",
-          "\t\tif (showhide) {",
-          "\t\t   el.show();",
-          "\t\t} else {",
-          "\t\t\tel.hide();",
-          "\t\t}",
-          "\t\t el = _this.grid.el.get_child_at(1,i);",
-          "\t\tif (showhide) {",
-          "\t\t   el.show();",
-          "\t\t} else {",
-          "\t\t\tel.hide();",
-          "\t\t}     ",
-          "    }",
+          "\tswitch(_this.project.xtype) {",
+          "\t\tcase \"Roo\":",
+          "\t\t\t",
+          "\t\t\t_this.grid.hideRow(7);",
+          "\t\t\t_this.grid.hideRow(8);\t\t\t",
+          "\t\t\t// hide: vala: module",
+          "\t\t\t// row 7",
+          "\t\t\t// row 8 (directory)",
+          "\t\t\t",
+          "\t\t\tbreak;",
+          "\t\tdefault: // vala..",
+          "\t\t\t_this.grid.hideRow(2);",
+          "\t\t\t_this.grid.hideRow(3);\t",
+          "\t\t\t_this.grid.hideRow(4);",
+          "\t\t\t_this.grid.hideRow(5);\t",
+          "\t\t\t_this.grid.hideRow(6);\t",
+          "\t\t    // hide 2,3,4,5,6,",
+          "\t\t\tbreak;",
+          "\t}",
+          " ",
           "    // load up the directories",
           "    //??? why can we not create bjs files in other directories??",
           "\t//if (!is_bjs && _this.file.path.length < 1) {",
@@ -191,6 +194,7 @@
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach,1,1,1,1",
+         "bool hexpand" : true,
          "id" : "name",
          "xtype" : "Entry"
         },
@@ -208,6 +212,7 @@
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach,1,2,1,1",
+         "bool hexpand" : true,
          "id" : "title",
          "xtype" : "Entry"
         },
@@ -226,6 +231,7 @@
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach,1,3,1,1",
+         "bool hexpand" : true,
          "id" : "region",
          "xtype" : "Entry"
         },
@@ -285,7 +291,7 @@
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach,0,7,1,1",
-         "label" : "Module to build (Vala only)",
+         "label" : "Module to build",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
          "xtype" : "Label"
@@ -445,6 +451,7 @@
          "$ xns" : "Gtk",
          "* pack" : "attach,1,9,1,1",
          "bool editable" : false,
+         "bool hexpand" : true,
          "id" : "path",
          "int colspan" : 1,
          "xtype" : "Entry"
@@ -453,7 +460,28 @@
        "n_columns" : 2,
        "n_rows" : 8,
        "uint row_spacing" : 2,
-       "xtype" : "Grid"
+       "xtype" : "Grid",
+       "| void hideRow" : [
+        "(int row) ",
+        "{",
+        "\tvar el = _this.grid.el.get_child_at(0,row);",
+        "",
+        "\tel.hide();",
+        "\tel = _this.grid.el.get_child_at(1,row);",
+        "\tel.hide();",
+        "",
+        "}"
+       ],
+       "| void showAllRows" : [
+        "() {",
+        "\tfor (var i = 2; i < 10;i++) {",
+        "\t\tvar el = _this.grid.el.get_child_at(0,i);",
+        "\t\tel.show();",
+        "\t\tel = _this.grid.el.get_child_at(1,i);",
+        "\t\tel.show();",
+        "    }",
+        "}"
+       ]
       },
       {
        "$ xns" : "Gtk",
@@ -467,6 +495,15 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "set_image",
+           "utf8 icon_name" : "window-close",
+           "xtype" : "Image"
+          }
+         ],
          "listeners" : {
           "clicked" : [
            "() => { ",
@@ -482,7 +519,17 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "add",
+         "bool always_show_image" : true,
+         "bool has_default" : true,
          "id" : "save_btn",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "set_image",
+           "utf8 icon_name" : "document-save",
+           "xtype" : "Image"
+          }
+         ],
          "listeners" : {
           "clicked" : [
            "( ) =>  { ",
@@ -704,7 +751,7 @@
     "",
     "     int w,h;",
     "    this.mainwindow.el.get_size(out w, out h);",
-    "    this.el.set_size_request( 550, h);",
+    "    this.el.set_size_request( 550, 300);",
     "",
     "   ",
     "    ",
