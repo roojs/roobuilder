@@ -1,4 +1,16 @@
-roobuilder (4.3.0) UNRELEASED; urgency=medium
+roobuilder (4.4.0) UNRELEASED; urgency=medium
+
+  * slightly better search boxes
+  * Add node is in a column, rather than button above
+  * Adjust location of popover for editing properties
+  * hide file tree on non-gtk projects
+  * project directory scan caching removed (so it shows latest files)
+  * mouseover icon view shows bigger view of UI
+  * single compiler for gtk, and notify all relivant windows of result
+
+ -- Alan <alan@roojs.com>  Wed, 31 Aug 2022 14:43:28 +0800
+
+roobuilder (4.3.0) unstable; urgency=medium
 
   * Open files management - will not open same file twice / pulldown to pick open files
   * Left Tree alighment of icons
