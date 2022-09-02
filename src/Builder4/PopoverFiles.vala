@@ -304,7 +304,7 @@ public class Xcls_PopoverFiles : Object
     
             try {
     		    
-    		    pixbuf = file.getIcon(32);
+    		    pixbuf = file.getIcon(92);
     			bigpixbuf = file.getIcon(368);
     
     		} catch (Error e) {

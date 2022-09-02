@@ -644,7 +644,7 @@
     "",
     "        try {",
     "\t\t    ",
-    "\t\t    pixbuf = file.getIcon(32);",
+    "\t\t    pixbuf = file.getIcon(92);",
     "\t\t\tbigpixbuf = file.getIcon(368);",
     "",
     "\t\t} catch (Error e) {",
