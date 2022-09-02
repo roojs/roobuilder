@@ -850,8 +850,7 @@ public class Xcls_PopoverFiles : Object
 
             //listeners
             this.el.changed.connect( ( ) => {
-            
-            
+            	GLib.debug("Got '%s'", this.el.text);
             });
         }
 

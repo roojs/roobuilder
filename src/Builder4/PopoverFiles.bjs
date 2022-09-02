@@ -291,8 +291,7 @@
              "listeners" : {
               "changed" : [
                "( ) => {",
-               "",
-               "",
+               "\tGLib.debug(\"Got '%s'\", this.el.text);",
                "}",
                ""
               ]
