@@ -179,14 +179,39 @@ namespace JsRender {
 		Gdk.Pixbuf screenshot92 = null;
 		Gdk.Pixbuf screenshot368 = null;
 		
-		public Gdk.Pixbuf getIcon(int size = 0) {
-		
+		public Gdk.Pixbuf? getIcon(int size = 0) {
+		    var fname = this.getIconFileName(false);		
+		    if (!FileUtils.test(fname, FileTest.EXISTS)) {
+				return null;
+			}
+			
 			switch (size) {
 				case 0:
 					if (this.screenshot == null) {
-						// load it.
+						this.screenshot = new Gdk.Pixbuf.from_file(this.getIconFileName(false));
 					}
-		
+					return this.screenshot;
+				
+				case 92:
+					this.getIcon(0);
+					if (this.screenshot == null) {
+						return null;
+					}
+					
+					this.screenshot92 = this.screenshot.scale_simple(92, (int) (this.screenshot.height * 92.0 /this.screenshot.width * 1.0 )
+				    , Gdk.InterpType.NEAREST) ;
+				    return this.screenshot92;
+			    
+			    case 368:
+			    					this.getIcon(0);
+					if (this.screenshot == null) {
+						return null;
+					}
+					
+					this.screenshot368 = this.screenshot.scale_simple(368, (int) (this.screenshot.height * 368.0 /this.screenshot.width * 1.0 )
+				    , Gdk.InterpType.NEAREST) ;
+				    return this.screenshot368;
+		    }
 		}
 		
 		public void writeIcon(Gdk.Pixbuf pixbuf) {
