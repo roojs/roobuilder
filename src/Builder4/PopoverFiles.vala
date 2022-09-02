@@ -269,6 +269,9 @@ public class Xcls_PopoverFiles : Object
      	this.lastfilter = filter;
      
         var fiter = project.sortedFiles().list_iterator();
+        
+    
+        
         while (fiter.next()) {
         
             var file = fiter.get();
