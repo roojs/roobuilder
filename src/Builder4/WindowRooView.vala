@@ -238,14 +238,14 @@ public class Xcls_WindowRooView : Object
             return;
         }
         
-        var filename = this.file.getIconFileName(false);
         
         var  win = this.el.get_parent_window();
         var width = win.get_width();
       //  var height = win.get_height();
         try { 
             Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, this.paned.el.position);
-            screenshot.save(filename,"png");
+            this.file.writeIcon(screenshot);
+            
         } catch(Error e) {
             //noop
         }
@@ -1935,6 +1935,7 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.visible = false;
+            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -2198,6 +2199,7 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.label = "Case Sensitive";
+            this.el.show();
 
             // init method
 
@@ -2228,6 +2230,7 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.label = "Regex";
+            this.el.show();
 
             // init method
 
@@ -2258,6 +2261,7 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.label = "Multi-line (add \\n)";
+            this.el.show();
 
             // init method
 

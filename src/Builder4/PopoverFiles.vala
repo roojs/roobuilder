@@ -15,6 +15,7 @@ public class Xcls_PopoverFiles : Object
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_namecol namecol;
+    public Xcls_iconsearch iconsearch;
     public Xcls_iconscroll iconscroll;
     public Xcls_iconview iconview;
     public Xcls_iconmodel iconmodel;
@@ -25,10 +26,13 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (def)
     public Xcls_MainWindow win;
+    public string lastfilter;
+    public bool in_onprojectselected;
     public Project.Project selectedProject;
     public bool is_loading;
     public bool new_window;
     public Gdk.Pixbuf missing_thumb_pixbuf;
+    public Gee.HashMap<string,Gdk.Pixbuf> image_cache;
     public bool active;
     public bool is_loaded;
 
@@ -39,8 +43,11 @@ public class Xcls_PopoverFiles : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.lastfilter = "";
+        this.in_onprojectselected = false;
         this.is_loading = false;
         this.new_window = false;
+        this.image_cache = null;
         this.active = false;
         this.is_loaded = false;
 
@@ -70,77 +77,35 @@ public class Xcls_PopoverFiles : Object
     // user defined functions
     public void onProjectSelected (Project.Project project) 
     {
+    	if (this.in_onprojectselected) { 
+    		return;
+    	}
+    	this.in_onprojectselected = true;
+    	
+    	
     	this.selectedProject = project;
     	project.scanDirs();
     	//this.clutterfiles.loadProject(proj);
     	
     	
+    	
+    	_this.iconsearch.el.text = "";
+    	
     	 
-    
+    	
         
         
         //this.project_title_name.el.text = pr.name;
         //this.project_title_path.el.text = pr.firstPath();
         
         // file items contains a reference until we reload ...
-      	 Gdk.Pixbuf pixbuf = null;
-      	Gdk.Pixbuf bigpixbuf = null;
-    	 Gtk.TreeIter iter;
-         var m = this.iconmodel.el;
-         m.clear();
-     
-        var fiter = project.sortedFiles().list_iterator();
-        while (fiter.next()) {
-            m.append(out iter);
-            var file = fiter.get();
-            m.set(iter,   0,file ); // zero contains the file reference
-            m.set(iter,   1,file.nickType() + "\n" + file.nickName()); // marked up title?
-            m.set(iter,   2,file.nickType() ); // file type?
-            
-            
-            var fname = file.getIconFileName(false);
-            try {
-    		    if (FileUtils.test(fname, FileTest.EXISTS)) {
-    		        var npixbuf = new Gdk.Pixbuf.from_file(fname);
-    		        pixbuf = npixbuf.scale_simple(92, (int) (npixbuf.height * 92.0 /npixbuf.width * 1.0 )
-    				    , Gdk.InterpType.NEAREST) ;
-    				bigpixbuf = npixbuf.scale_simple(368, (int) (npixbuf.height * 368.0 /npixbuf.width * 1.0 )
-    				    , Gdk.InterpType.NEAREST) ;
-    				
-    		    } 
-    		} catch (Error e) {
-    		    // noop
-    		
-    		}
-            if (pixbuf == null) {
-            
-    		    try {
-    		        if (_this.missing_thumb_pixbuf == null) {
-    		            var icon_theme = Gtk.IconTheme.get_default ();
-    		            _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
-    		            _this.missing_thumb_pixbuf.ref();
-    		        }
-    		        pixbuf = _this.missing_thumb_pixbuf;
-    		        bigpixbuf = _this.missing_thumb_pixbuf;
-    
-    		    } catch (Error e) {
-    		        // noop?
-    		    }
-    		}
-    		
-    		
-    		
-            m.set(iter,   3,pixbuf);
-            m.set(iter,   4,bigpixbuf);
-          
-            // this needs to add to the iconview?
-            
-            //var a = new Xcls_fileitem(this,fiter.get());
-            //this.fileitems.add(a);
-    
-            //this.filelayout.el.add_child(a.el);
-        }
-        
+      	 this.loadIconView();
+      	 
+      	 
+      	 GLib.Timeout.add(500, () => {
+    	     _this.iconsearch.el.grab_focus();
+    	     return false;
+         });
         
          this.filemodel.el.clear();
         
@@ -149,6 +114,7 @@ public class Xcls_PopoverFiles : Object
         if (!(project is Project.Gtk)) {
             print ("not gtk... skipping files");
             this.file_container.el.hide();
+        	this.in_onprojectselected = false;
             return;
         }
         this.file_container.el.show();
@@ -193,7 +159,7 @@ public class Xcls_PopoverFiles : Object
     	    //this.el.set_value(citer, 1,   items.get(i) );
     	}
         _this.fileview.el.expand_all();
-        
+        	this.in_onprojectselected = false;
     	
     }
     public void selectProject (Project.Project project) {
@@ -290,6 +256,91 @@ public class Xcls_PopoverFiles : Object
     public void setMainWindow (Xcls_MainWindow win) {
     	this.win = win;
     	 
+    }
+    public void loadIconView () {
+    	
+    	if (_this.image_cache == null) {
+    		_this.image_cache = new Gee.HashMap<string,Gdk.Pixbuf>();
+    	}
+    	
+    	 var project =  this.selectedProject;
+     
+     	 Gdk.Pixbuf pixbuf = null;
+      	 Gdk.Pixbuf bigpixbuf = null;
+    	 Gtk.TreeIter iter;
+         var m = this.iconmodel.el;
+         m.clear();
+     
+     
+     	var filter = _this.iconsearch.el.text.down();
+     	this.lastfilter = filter;
+     
+        var fiter = project.sortedFiles().list_iterator();
+        
+        
+          try {
+    	        if (_this.missing_thumb_pixbuf == null) {
+    	            var icon_theme = Gtk.IconTheme.get_default ();
+    	            _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
+    	            _this.missing_thumb_pixbuf.ref();
+    	        }
+    	        
+    
+    	    } catch (Error e) {
+    	        // noop?
+    	    }
+        
+    
+        
+        while (fiter.next()) {
+        
+            var file = fiter.get();
+            if (filter != "") {
+            	if (!file.name.down().contains(filter)) {
+            		continue;
+        		}
+            
+            }    
+        	
+        
+        
+            m.append(out iter);
+    
+            m.set(iter,   0,file ); // zero contains the file reference
+            m.set(iter,   1,file.nickType() + "\n" + file.nickName()); // marked up title?
+            m.set(iter,   2,file.nickType() ); // file type?
+            
+           
+    
+            try {
+    		    
+    		    pixbuf = file.getIcon(92);
+    			bigpixbuf = file.getIcon(368);
+    
+    		} catch (Error e) {
+    		    // noop
+    		
+    		} 
+            
+             
+            if (pixbuf == null) {
+            	GLib.debug("PIXBUF is null? %s", file.name);
+    		    pixbuf = _this.missing_thumb_pixbuf;
+            	bigpixbuf = _this.missing_thumb_pixbuf;
+    		}
+    		
+    		
+    		
+            m.set(iter,   3,pixbuf);
+            m.set(iter,   4,bigpixbuf);
+          
+            // this needs to add to the iconview?
+            
+            //var a = new Xcls_fileitem(this,fiter.get());
+            //this.fileitems.add(a);
+    
+            //this.filelayout.el.add_child(a.el);
+        }
     }
     public class Xcls_Box2 : Object
     {
@@ -570,9 +621,9 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_ScrolledWindow10( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_iconscroll( _this );
+            var child_1 = new Xcls_Box15( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.add(  child_1.el );
             var child_2 = new Xcls_file_container( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
@@ -768,6 +819,101 @@ public class Xcls_PopoverFiles : Object
 
 
 
+    public class Xcls_Box15 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box15(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.width_request = 600;
+            this.el.expand = true;
+            var child_0 = new Xcls_Box16( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
+            var child_1 = new Xcls_iconscroll( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Box16 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box16(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+            var child_0 = new Xcls_iconsearch( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_iconsearch : Object
+    {
+        public Gtk.SearchEntry el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_iconsearch(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            _this.iconsearch = this;
+            this.el = new Gtk.SearchEntry();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+            this.el.placeholder_text = "type to filter results";
+
+            // init method
+
+            var description =   Pango.FontDescription.from_string("monospace");
+            	description.set_size(8000);
+            	 this.el.override_font(description);
+
+            //listeners
+            this.el.changed.connect( ( ) => {
+            	GLib.debug("Got '%s'", this.el.text);
+            	
+            	if (this.el.text.down() != _this.lastfilter) {
+            		_this.loadIconView();
+            	}
+            });
+        }
+
+        // user defined functions
+    }
+
+
     public class Xcls_iconscroll : Object
     {
         public Gtk.ScrolledWindow el;
@@ -829,7 +975,7 @@ public class Xcls_PopoverFiles : Object
             // init method
 
             {
-            
+             
             }
 
             //listeners
@@ -908,6 +1054,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
+
     public class Xcls_file_container : Object
     {
         public Gtk.ScrolledWindow el;
@@ -966,7 +1113,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_filemodel( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn21( _this );
+            var child_1 = new Xcls_TreeViewColumn24( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -1070,7 +1217,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn21 : Object
+    public class Xcls_TreeViewColumn24 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -1079,7 +1226,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn21(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn24(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();

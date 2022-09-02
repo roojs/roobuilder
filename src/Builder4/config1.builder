@@ -180,7 +180,8 @@
             "../..//pixmaps",
             "../../..//gitlive",
             "..//codegen",
-            "..//ccode"
+            "..//ccode",
+            "../..//debian"
         ],
         "packages" : [
             "gdk-3.0",

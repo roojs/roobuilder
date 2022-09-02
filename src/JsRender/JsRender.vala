@@ -174,9 +174,66 @@ namespace JsRender {
 			return ret;
 		
 		}
+		
+		Gdk.Pixbuf screenshot = null;
+		Gdk.Pixbuf screenshot92 = null;
+		Gdk.Pixbuf screenshot368 = null;
+		
+		public Gdk.Pixbuf? getIcon(int size = 0) {
+		    var fname = this.getIconFileName( );		
+		    if (!FileUtils.test(fname, FileTest.EXISTS)) {
+            	GLib.debug("PIXBUF %s:  %s does not exist?", this.name, fname);
+				return null;
+			}
+			
+			switch (size) {
+				case 0:
+					if (this.screenshot == null) {
+						this.screenshot = new Gdk.Pixbuf.from_file(fname);
+					}
+					return this.screenshot;
+				
+				case 92:
+					
+					if (this.screenshot == null) {
+						this.getIcon(0);
+						if (this.screenshot == null) {
+							return null;
+						}
+					}
+					
+					this.screenshot92 = this.screenshot.scale_simple(92, (int) (this.screenshot.height * 92.0 /this.screenshot.width * 1.0 )
+				    		, Gdk.InterpType.NEAREST) ;
+				    return this.screenshot92;
+			    
+			    case 368:
+					if (this.screenshot == null) {
+						this.getIcon(0);
+						if (this.screenshot == null) {
+							return null;
+						}
+					}
+					
+					this.screenshot368 = this.screenshot.scale_simple(368, (int) (this.screenshot.height * 368.0 /this.screenshot.width * 1.0 )
+				    , Gdk.InterpType.NEAREST) ;
+				    return this.screenshot368;
+		    }
+		    return null;
+		}
+		
+		public void writeIcon(Gdk.Pixbuf pixbuf) {
+			
+			pixbuf.save(this.getIconFileName( ),"png");
+			this.screenshot = pixbuf;
+			this.screenshot92 = null;
+			this.screenshot368 = null;
+			
+		
+		}
+		
 
 		
-		public string getIconFileName(bool return_default)
+		public string getIconFileName( )
 		{
 			 
 			var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path); 
@@ -191,19 +248,9 @@ namespace JsRender {
 			}
 			var fname = dir + "/" + m5 + ".png";
 			
-			if (!return_default) {
-				print("getIconFileName return %s\n", fname);
-				return fname;
-			}
-			
-			if (FileUtils.test(fname, FileTest.EXISTS)) {
-				print("getIconFileName return %s\n", fname);
-				return fname;
-			}
-			// we need to create this somehow...
-			print("getIconFileName return %s\n", GLib.Environment.get_home_dir() + "/.Builder/test.jpg");
-			return  GLib.Environment.get_home_dir() + "/.Builder/test.jpg";
-
+			 
+			return fname;
+			  
 		}
 		
 		public string toJsonString()
