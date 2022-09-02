@@ -734,7 +734,7 @@
     "\t    for(var j =0 ; j < files.size; j++) {",
     "\t    ",
     "\t    \tif (filter != \"\") {",
-    "\t\t    \tif (!files.get(j).name.down().contains(filter)) {",
+    "\t\t    \tif (!GLib.Path.get_basename(files.get(j)).down().contains(filter)) {",
     "\t\t    \t\tcontinue;",
     "\t\t\t\t}",
     "\t\t    ",
