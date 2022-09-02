@@ -83,63 +83,7 @@ public class Xcls_PopoverFiles : Object
         //this.project_title_path.el.text = pr.firstPath();
         
         // file items contains a reference until we reload ...
-      	 Gdk.Pixbuf pixbuf = null;
-      	 Gdk.Pixbuf bigpixbuf = null;
-    	 Gtk.TreeIter iter;
-         var m = this.iconmodel.el;
-         m.clear();
-     
-        var fiter = project.sortedFiles().list_iterator();
-        while (fiter.next()) {
-            m.append(out iter);
-            var file = fiter.get();
-            m.set(iter,   0,file ); // zero contains the file reference
-            m.set(iter,   1,file.nickType() + "\n" + file.nickName()); // marked up title?
-            m.set(iter,   2,file.nickType() ); // file type?
-            
-            
-            var fname = file.getIconFileName(false);
-            try {
-    		    if (FileUtils.test(fname, FileTest.EXISTS)) {
-    		        var npixbuf = new Gdk.Pixbuf.from_file(fname);
-    		        pixbuf = npixbuf.scale_simple(92, (int) (npixbuf.height * 92.0 /npixbuf.width * 1.0 )
-    				    , Gdk.InterpType.NEAREST) ;
-    				bigpixbuf = npixbuf.scale_simple(368, (int) (npixbuf.height * 368.0 /npixbuf.width * 1.0 )
-    				    , Gdk.InterpType.NEAREST) ;
-    				
-    		    } 
-    		} catch (Error e) {
-    		    // noop
-    		
-    		}
-            if (pixbuf == null) {
-            
-    		    try {
-    		        if (_this.missing_thumb_pixbuf == null) {
-    		            var icon_theme = Gtk.IconTheme.get_default ();
-    		            _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
-    		            _this.missing_thumb_pixbuf.ref();
-    		        }
-    		        pixbuf = _this.missing_thumb_pixbuf;
-    		        bigpixbuf = _this.missing_thumb_pixbuf;
-    
-    		    } catch (Error e) {
-    		        // noop?
-    		    }
-    		}
-    		
-    		
-    		
-            m.set(iter,   3,pixbuf);
-            m.set(iter,   4,bigpixbuf);
-          
-            // this needs to add to the iconview?
-            
-            //var a = new Xcls_fileitem(this,fiter.get());
-            //this.fileitems.add(a);
-    
-            //this.filelayout.el.add_child(a.el);
-        }
+      	 this.loadIconView();
         
         
          this.filemodel.el.clear();
