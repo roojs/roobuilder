@@ -298,6 +298,7 @@
                "\t",
                "\tif (this.el.text.down() != _this.lastfilter) {",
                "\t\t_this.loadIconView();",
+               "\t\t_this.loadTreeView();",
                "\t}",
                "}",
                ""

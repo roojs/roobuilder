@@ -923,6 +923,7 @@ public class Xcls_PopoverFiles : Object
             	
             	if (this.el.text.down() != _this.lastfilter) {
             		_this.loadIconView();
+            		_this.loadTreeView();
             	}
             });
         }
