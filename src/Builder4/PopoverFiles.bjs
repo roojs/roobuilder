@@ -9,6 +9,7 @@
    "# bool is_loading" : false,
    "# bool new_window" : false,
    "$ xns" : "Gtk",
+   "Gee.HashMap<string,Gdk.Pixbuf> image_cache" : "null",
    "Gtk.PositionType position" : "Gtk.PositionType.TOP",
    "bool active" : false,
    "bool hexpand" : false,

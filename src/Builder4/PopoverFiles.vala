@@ -32,6 +32,7 @@ public class Xcls_PopoverFiles : Object
     public bool is_loading;
     public bool new_window;
     public Gdk.Pixbuf missing_thumb_pixbuf;
+    public Gee.HashMap<string,Gdk.Pixbuf> image_cache;
     public bool active;
     public bool is_loaded;
 
@@ -46,6 +47,7 @@ public class Xcls_PopoverFiles : Object
         this.in_onprojectselected = false;
         this.is_loading = false;
         this.new_window = false;
+        this.image_cache = null;
         this.active = false;
         this.is_loaded = false;
 
