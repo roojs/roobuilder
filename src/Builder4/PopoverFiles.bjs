@@ -654,7 +654,7 @@
     "        ",
     "         ",
     "        if (pixbuf == null) {",
-    "        ",
+    "        \tGLib.debug(\"PIXBUF is null?\");",
     "\t\t    try {",
     "\t\t        if (_this.missing_thumb_pixbuf == null) {",
     "\t\t            var icon_theme = Gtk.IconTheme.get_default ();",
