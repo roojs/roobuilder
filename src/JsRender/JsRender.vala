@@ -193,9 +193,12 @@ namespace JsRender {
 					return this.screenshot;
 				
 				case 92:
-					this.getIcon(0);
+					
 					if (this.screenshot == null) {
-						return null;
+						this.getIcon(0);
+						if (this.screenshot == null) {
+							return null;
+						}
 					}
 					
 					this.screenshot92 = this.screenshot.scale_simple(92, (int) (this.screenshot.height * 92.0 /this.screenshot.width * 1.0 )
@@ -203,9 +206,11 @@ namespace JsRender {
 				    return this.screenshot92;
 			    
 			    case 368:
-			    					this.getIcon(0);
 					if (this.screenshot == null) {
-						return null;
+						this.getIcon(0);
+						if (this.screenshot == null) {
+							return null;
+						}
 					}
 					
 					this.screenshot368 = this.screenshot.scale_simple(368, (int) (this.screenshot.height * 368.0 /this.screenshot.width * 1.0 )
