@@ -324,7 +324,7 @@
              "$ xns" : "Gtk",
              "* init" : [
               "{",
-              "\t_this.iconsearch.el.set_key_capture_widget (this.el);",
+              " ",
               "}",
               ""
              ],
