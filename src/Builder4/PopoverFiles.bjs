@@ -369,6 +369,13 @@
                "    ",
                "}"
               ],
+              "key_press_event" : [
+               "(event) => {",
+               "",
+               "\treturn bool;",
+               "}",
+               ""
+              ],
               "query_tooltip" : [
                "(x, y, keyboard_tooltip, tooltip) => {",
                "",

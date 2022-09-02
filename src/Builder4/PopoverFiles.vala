@@ -1009,6 +1009,10 @@ public class Xcls_PopoverFiles : Object
             	 _this.iconview.el.set_tooltip_item(tooltip, path);
             	return true;
             });
+            this.el.key_press_event.connect( (event) => {
+            
+            	return bool;
+            });
         }
 
         // user defined functions
