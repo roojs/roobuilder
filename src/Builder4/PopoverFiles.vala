@@ -303,7 +303,7 @@ public class Xcls_PopoverFiles : Object
             
     
             try {
-    		    var npixbuf = file.getIcon(0);
+    		    
     		    pixbuf = file.getIcon(32);
     			bigpixbuf = file.getIcon(368);
     
