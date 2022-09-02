@@ -314,7 +314,7 @@ public class Xcls_PopoverFiles : Object
             
              
             if (pixbuf == null) {
-            	GLib.debug("PIXBUF is null? %s" file.name);
+            	GLib.debug("PIXBUF is null? %s", file.name);
     		    try {
     		        if (_this.missing_thumb_pixbuf == null) {
     		            var icon_theme = Gtk.IconTheme.get_default ();
