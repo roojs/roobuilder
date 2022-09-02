@@ -886,7 +886,7 @@ public class Xcls_PopoverFiles : Object
             this.el.changed.connect( ( ) => {
             	GLib.debug("Got '%s'", this.el.text);
             	
-            	if (this.el.text != _this.lastfilter) {
+            	if (this.el.text.down() != _this.lastfilter) {
             		_this.loadIconView();
             	}
             });

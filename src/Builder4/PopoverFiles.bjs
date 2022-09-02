@@ -295,7 +295,7 @@
                "( ) => {",
                "\tGLib.debug(\"Got '%s'\", this.el.text);",
                "\t",
-               "\tif (this.el.text != _this.lastfilter) {",
+               "\tif (this.el.text.down() != _this.lastfilter) {",
                "\t\t_this.loadIconView();",
                "\t}",
                "}",
