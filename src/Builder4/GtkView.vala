@@ -290,14 +290,13 @@ public class Xcls_GtkView : Object
         }
         
         
-        var filename = this.file.getIconFileName(false);
-        
+    
         var  win = this.el.get_parent_window();
         var width = win.get_width();
         var height = win.get_height();
         try {
              Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
-             screenshot.save(filename,"png");
+             this.file.writeIcon(screenshot);
         } catch (Error e) {
             
         }
