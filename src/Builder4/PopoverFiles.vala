@@ -1011,7 +1011,8 @@ public class Xcls_PopoverFiles : Object
             });
             this.el.key_press_event.connect( (event) => {
             
-            	return bool;
+            	_this.iconsearch.el.grab_focus();
+            	return true;
             });
         }
 
