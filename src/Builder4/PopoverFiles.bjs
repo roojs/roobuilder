@@ -3,13 +3,13 @@
  "items" : [
   {
    "# Gdk.Pixbuf missing_thumb_pixbuf" : "",
+   "# Gee.HashMap<string,Gdk.Pixbuf> image_cache" : "null",
    "# Project.Project selectedProject" : "",
    "# Xcls_MainWindow win" : "",
    "# bool is_loaded" : false,
    "# bool is_loading" : false,
    "# bool new_window" : false,
    "$ xns" : "Gtk",
-   "Gee.HashMap<string,Gdk.Pixbuf> image_cache" : "null",
    "Gtk.PositionType position" : "Gtk.PositionType.TOP",
    "bool active" : false,
    "bool hexpand" : false,
