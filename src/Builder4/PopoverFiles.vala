@@ -839,6 +839,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
 
             // init method
 
