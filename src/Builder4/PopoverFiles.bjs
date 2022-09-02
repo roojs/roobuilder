@@ -280,6 +280,13 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "* init" : [
+              "var description =   Pango.FontDescription.from_string(\"monospace\");",
+              "\tdescription.set_size(8000);",
+              "\t this.el.override_font(description);",
+              "",
+              ""
+             ],
              "xtype" : "SearchEntry"
             }
            ],

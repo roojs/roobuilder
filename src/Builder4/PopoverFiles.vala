@@ -839,6 +839,12 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+
+            // init method
+
+            var description =   Pango.FontDescription.from_string("monospace");
+            	description.set_size(8000);
+            	 this.el.override_font(description);
         }
 
         // user defined functions
