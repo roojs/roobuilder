@@ -557,7 +557,7 @@
      "}"
     ]
    },
-   "string last_filter" : "\"\"",
+   "string lastfilter" : "\"\"",
    "xtype" : "Popover",
    "| void load" : [
     "() {",

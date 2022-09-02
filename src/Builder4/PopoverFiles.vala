@@ -26,7 +26,7 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (def)
     public Xcls_MainWindow win;
-    public string last_filter;
+    public string lastfilter;
     public bool in_onprojectselected;
     public Project.Project selectedProject;
     public bool is_loading;
@@ -42,7 +42,7 @@ public class Xcls_PopoverFiles : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
-        this.last_filter = "";
+        this.lastfilter = "";
         this.in_onprojectselected = false;
         this.is_loading = false;
         this.new_window = false;
