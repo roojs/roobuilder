@@ -553,7 +553,7 @@
      "}"
     ]
    },
-   "string last_filter" : "",
+   "string last_filter" : "\"\"",
    "xtype" : "Popover",
    "| void load" : [
     "() {",

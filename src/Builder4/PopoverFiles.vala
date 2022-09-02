@@ -42,6 +42,7 @@ public class Xcls_PopoverFiles : Object
         this.el = new Gtk.Popover( null );
 
         // my vars (dec)
+        this.last_filter = "";
         this.in_onprojectselected = false;
         this.is_loading = false;
         this.new_window = false;
