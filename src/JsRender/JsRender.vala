@@ -202,7 +202,7 @@ namespace JsRender {
 					}
 					
 					this.screenshot92 = this.screenshot.scale_simple(92, (int) (this.screenshot.height * 92.0 /this.screenshot.width * 1.0 )
-				    , Gdk.InterpType.NEAREST) ;
+				    		, Gdk.InterpType.NEAREST) ;
 				    return this.screenshot92;
 			    
 			    case 368:
