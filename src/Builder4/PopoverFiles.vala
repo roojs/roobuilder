@@ -247,7 +247,9 @@ public class Xcls_PopoverFiles : Object
     	     for(var j =0 ; j < files.size; j++) {
     	    
     	    	if (filter != "") {
-    		    	if (!GLib.Path.get_basename(files.get(j)).down().contains(filter)) {
+    	    		var ff = GLib.Path.get_basename(files.get(j)).down();
+    	    		var dp = ff.last_index_of(".");
+    		    	if (!ff.substring(0,dp  < 0 ? ff.length :dp ).contains(filter)) {
     		    		continue;
     				}
     		    
@@ -272,7 +274,9 @@ public class Xcls_PopoverFiles : Object
     	    for(var j =0 ; j < files.size; j++) {
     	    
     	    	if (filter != "") {
-    		    	if (!GLib.Path.get_basename(files.get(j)).down().contains(filter)) {
+    	    		var ff = GLib.Path.get_basename(files.get(j)).down();
+    	    		var dp = ff.last_index_of(".");
+    		    	if (!ff.substring(0,dp  < 0 ? ff.length :dp ).contains(filter)) {
     		    		continue;
     				}
     		    
