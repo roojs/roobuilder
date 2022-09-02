@@ -553,6 +553,7 @@
      "}"
     ]
    },
+   "string last_filter" : "",
    "xtype" : "Popover",
    "| void load" : [
     "() {",

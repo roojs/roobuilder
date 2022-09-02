@@ -26,6 +26,7 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (def)
     public Xcls_MainWindow win;
+    public string last_filter;
     public bool in_onprojectselected;
     public Project.Project selectedProject;
     public bool is_loading;
