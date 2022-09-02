@@ -787,39 +787,13 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             this.el.width_request = 600;
             this.el.expand = true;
-            var child_0 = new Xcls_SearchBar16( _this );
+            var child_0 = new Xcls_iconscroll( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
-            var child_1 = new Xcls_iconscroll( _this );
-            child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.add (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_SearchBar16 : Object
-    {
-        public Gtk.SearchBar el;
-        private Xcls_PopoverFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_SearchBar16(Xcls_PopoverFiles _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.SearchBar();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.hexpand = true;
-        }
-
-        // user defined functions
-    }
-
     public class Xcls_iconscroll : Object
     {
         public Gtk.ScrolledWindow el;
@@ -1019,7 +993,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_filemodel( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn23( _this );
+            var child_1 = new Xcls_TreeViewColumn22( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -1123,7 +1097,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn23 : Object
+    public class Xcls_TreeViewColumn22 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -1132,7 +1106,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn23(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn22(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
