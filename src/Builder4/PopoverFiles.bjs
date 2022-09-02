@@ -602,7 +602,7 @@
     " ",
     " ",
     " \tvar filter = _this.iconsearch.el.text.down();",
-    " \t",
+    " \tthis.lastfilter = filter;",
     " ",
     "    var fiter = project.sortedFiles().list_iterator();",
     "    while (fiter.next()) {",

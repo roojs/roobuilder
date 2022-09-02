@@ -259,7 +259,7 @@ public class Xcls_PopoverFiles : Object
      
      
      	var filter = _this.iconsearch.el.text.down();
-     	
+     	this.lastfilter = filter;
      
         var fiter = project.sortedFiles().list_iterator();
         while (fiter.next()) {
