@@ -107,60 +107,10 @@ public class Xcls_PopoverFiles : Object
     	     return false;
          });
         
-         this.filemodel.el.clear();
         
-        // folders...
-        
-        if (!(project is Project.Gtk)) {
-            print ("not gtk... skipping files");
-            this.file_container.el.hide();
-        	this.in_onprojectselected = false;
-            return;
-        }
-        this.file_container.el.show();
-        var gpr = (Project.Gtk)project;
-         var def = gpr.compilegroups.get("_default_");
-         // not sure why the above is returng null!??
-         if (def == null) {
-     		def = new Project.GtkValaSettings("_default_"); 
-     		gpr.compilegroups.set("_default_", def);
-         }
-    	 var items  = def.sources;
-    		 
-    	 Gtk.TreeIter citer;  // folder iter
-    	  Gtk.TreeIter fxiter;  // file iter
-    	for(var i =0 ; i < items.size; i++) {
-    	     print ("cheking folder %s\n", items.get(i));
-    	     var files = gpr.filesForOpen(items.get(i));
-    	     if (files.size < 1) {
-    	        continue;
-    	     }
-    		 this.filemodel.el.append(out citer,null);
-    		 this.filemodel.el.set(citer, 0, GLib.Path.get_basename(items.get(i)));
-    		 this.filemodel.el.set(citer, 1, null); // parent (empty as it's a folder)
-    		
-    		
-    	    // add the directory... items.get(i);
-    	    //var x = new Xcls_folderitem(this,items.get(i));
-    	    //this.fileitems.add(x);
-    	    //this.filelayout.el.add_child(x.el);
-    	    
-    	    
-    	    for(var j =0 ; j < files.size; j++) {
-    	    
-    		    this.filemodel.el.insert(out fxiter,citer, -1);
-    	     	this.filemodel.el.set(fxiter, 0,  GLib.Path.get_basename(files.get(j))); // filename
-    		 	this.filemodel.el.set(fxiter, 1, files.get(j)); // Folder?
-    	         
-    	        
-    	    }
-    	    
-    	    
-    	    //this.el.set_value(citer, 1,   items.get(i) );
-    	}
-        _this.fileview.el.expand_all();
-        	this.in_onprojectselected = false;
-    	
+    
+    	this.loadTreeView();
+        	this.in_onprojectselected = false;	
     }
     public void selectProject (Project.Project project) {
         
@@ -253,9 +203,72 @@ public class Xcls_PopoverFiles : Object
          m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
          _this.is_loading = false;      
     }
-    public void setMainWindow (Xcls_MainWindow win) {
-    	this.win = win;
-    	 
+    public void loadTreeView () {
+      var project =  this.selectedProject;
+      
+      this.filemodel.el.clear();
+        
+        // folders...
+        
+        if (!(project is Project.Gtk)) {
+            //print ("not gtk... skipping files");
+            this.file_container.el.hide();
+            return;
+        }
+        
+        
+        
+        var filter = _this.iconsearch.el.text.down();
+        
+        this.file_container.el.show();
+        var gpr = (Project.Gtk)project;
+         var def = gpr.compilegroups.get("_default_");
+         // not sure why the above is returng null!??
+         if (def == null) {
+     		def = new Project.GtkValaSettings("_default_"); 
+     		gpr.compilegroups.set("_default_", def);
+         }
+    	 var items  = def.sources;
+    		 
+    	 Gtk.TreeIter citer;  // folder iter
+    	  Gtk.TreeIter fxiter;  // file iter
+    	for(var i =0 ; i < items.size; i++) {
+    	     print ("cheking folder %s\n", items.get(i));
+    	     var files = gpr.filesForOpen(items.get(i));
+    	     if (files.size < 1) {
+    	        continue;
+    	     }
+    		 this.filemodel.el.append(out citer,null);
+    		 this.filemodel.el.set(citer, 0, GLib.Path.get_basename(items.get(i)));
+    		 this.filemodel.el.set(citer, 1, null); // parent (empty as it's a folder)
+    		
+    		
+    	    // add the directory... items.get(i);
+    	    //var x = new Xcls_folderitem(this,items.get(i));
+    	    //this.fileitems.add(x);
+    	    //this.filelayout.el.add_child(x.el);
+    	    
+    	    
+    	    for(var j =0 ; j < files.size; j++) {
+    	    
+    	    	if (filter != "") {
+    		    	if (!file.get(j).name.down().contains(filter)) {
+    		    		continue;
+    				}
+    		    
+    		    }  
+    	    
+    		    this.filemodel.el.insert(out fxiter,citer, -1);
+    	     	this.filemodel.el.set(fxiter, 0,  GLib.Path.get_basename(files.get(j))); // filename
+    		 	this.filemodel.el.set(fxiter, 1, files.get(j)); // Folder?
+    	         
+    	        
+    	    }
+    	    
+    	    
+    	    //this.el.set_value(citer, 1,   items.get(i) );
+    	}
+        _this.fileview.el.expand_all();
     }
     public void loadIconView () {
     	
@@ -341,6 +354,10 @@ public class Xcls_PopoverFiles : Object
     
             //this.filelayout.el.add_child(a.el);
         }
+    }
+    public void setMainWindow (Xcls_MainWindow win) {
+    	this.win = win;
+    	 
     }
     public class Xcls_Box2 : Object
     {
