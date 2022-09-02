@@ -180,7 +180,7 @@ namespace JsRender {
 		Gdk.Pixbuf screenshot368 = null;
 		
 		public Gdk.Pixbuf? getIcon(int size = 0) {
-		    var fname = this.getIconFileName(false);		
+		    var fname = this.getIconFileName( );		
 		    if (!FileUtils.test(fname, FileTest.EXISTS)) {
 				return null;
 			}
@@ -188,7 +188,7 @@ namespace JsRender {
 			switch (size) {
 				case 0:
 					if (this.screenshot == null) {
-						this.screenshot = new Gdk.Pixbuf.from_file(this.getIconFileName(false));
+						this.screenshot = new Gdk.Pixbuf.from_file(fname);
 					}
 					return this.screenshot;
 				
@@ -222,7 +222,7 @@ namespace JsRender {
 		
 		public void writeIcon(Gdk.Pixbuf pixbuf) {
 			
-			pixbuf.save(this.getIconFileName(false),"png");
+			pixbuf.save(this.getIconFileName( ),"png");
 			this.screenshot = pixbuf;
 			this.screenshot92 = null;
 			this.screenshot368 = null;
@@ -247,19 +247,9 @@ namespace JsRender {
 			}
 			var fname = dir + "/" + m5 + ".png";
 			
-			if (!return_default) {
-				print("getIconFileName return %s\n", fname);
-				return fname;
-			}
-			
-			if (FileUtils.test(fname, FileTest.EXISTS)) {
-				print("getIconFileName return %s\n", fname);
-				return fname;
-			}
-			// we need to create this somehow...
-			print("getIconFileName return %s\n", GLib.Environment.get_home_dir() + "/.Builder/test.jpg");
-			return  GLib.Environment.get_home_dir() + "/.Builder/test.jpg";
-
+			 
+			return fname;
+			  
 		}
 		
 		public string toJsonString()
