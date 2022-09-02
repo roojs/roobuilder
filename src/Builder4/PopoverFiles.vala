@@ -251,6 +251,8 @@ public class Xcls_PopoverFiles : Object
     	 
     }
     public void loadIconView () {
+    	var project =  this.selectedProject;
+     
      	 Gdk.Pixbuf pixbuf = null;
       	 Gdk.Pixbuf bigpixbuf = null;
     	 Gtk.TreeIter iter;

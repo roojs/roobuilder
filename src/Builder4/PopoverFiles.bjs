@@ -594,6 +594,8 @@
    ],
    "| void loadIconView" : [
     "() {",
+    "\tvar project =  this.selectedProject;",
+    " ",
     " \t Gdk.Pixbuf pixbuf = null;",
     "  \t Gdk.Pixbuf bigpixbuf = null;",
     "\t Gtk.TreeIter iter;",
