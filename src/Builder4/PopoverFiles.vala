@@ -252,7 +252,7 @@ public class Xcls_PopoverFiles : Object
     	    for(var j =0 ; j < files.size; j++) {
     	    
     	    	if (filter != "") {
-    		    	if (!file.get(j).name.down().contains(filter)) {
+    		    	if (!files.get(j).name.down().contains(filter)) {
     		    		continue;
     				}
     		    
