@@ -788,7 +788,7 @@
     "    ",
     "",
     "\tthis.loadTreeView();",
-    "    \tthis.in_onprojectselected = false;\t",
+    "\tthis.in_onprojectselected = false;\t",
     "}",
     ""
    ],

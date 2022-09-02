@@ -110,7 +110,7 @@ public class Xcls_PopoverFiles : Object
         
     
     	this.loadTreeView();
-        	this.in_onprojectselected = false;	
+    	this.in_onprojectselected = false;	
     }
     public void selectProject (Project.Project project) {
         
