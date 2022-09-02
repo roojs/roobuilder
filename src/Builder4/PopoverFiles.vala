@@ -98,7 +98,9 @@ public class Xcls_PopoverFiles : Object
         
         // file items contains a reference until we reload ...
       	 this.loadIconView();
-      	 GLib.Timeout.add(200, () => {
+      	 
+      	 
+      	 GLib.Timeout.add(500, () => {
     	     _this.iconsearch.el.grab_focus();
     	     return false;
          });
@@ -155,7 +157,7 @@ public class Xcls_PopoverFiles : Object
     	    //this.el.set_value(citer, 1,   items.get(i) );
     	}
         _this.fileview.el.expand_all();
-        	this.in_onprojectselected = true;
+        	this.in_onprojectselected = false;
     	
     }
     public void selectProject (Project.Project project) {
