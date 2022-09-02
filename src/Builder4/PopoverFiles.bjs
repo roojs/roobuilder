@@ -277,6 +277,12 @@
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "bool hexpand" : true,
            "int spacing" : 0,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "SearchEntry"
+            }
+           ],
            "xtype" : "Box"
           },
           {

@@ -815,10 +815,35 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.hexpand = true;
+            var child_0 = new Xcls_SearchEntry17( _this );
+            child_0.ref();
+            this.el.add(  child_0.el );
         }
 
         // user defined functions
     }
+    public class Xcls_SearchEntry17 : Object
+    {
+        public Gtk.SearchEntry el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_SearchEntry17(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.SearchEntry();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
     public class Xcls_iconscroll : Object
     {
@@ -1019,7 +1044,7 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_filemodel( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn23( _this );
+            var child_1 = new Xcls_TreeViewColumn24( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -1123,7 +1148,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn23 : Object
+    public class Xcls_TreeViewColumn24 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -1132,7 +1157,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn23(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn24(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
