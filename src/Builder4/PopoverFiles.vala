@@ -98,7 +98,7 @@ public class Xcls_PopoverFiles : Object
         
         // file items contains a reference until we reload ...
       	 this.loadIconView();
-        
+         _this.iconsearch.el.grab_focus();
         
          this.filemodel.el.clear();
         
