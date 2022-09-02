@@ -288,7 +288,7 @@
               ""
              ],
              "bool hexpand" : true,
-             "string placeholder_text" : "\"\"",
+             "string placeholder_text" : "type to filter results",
              "xtype" : "SearchEntry"
             }
            ],

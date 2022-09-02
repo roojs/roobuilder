@@ -840,7 +840,7 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.placeholder_text = "\"\"";
+            this.el.placeholder_text = "type to filter results";
 
             // init method
 
