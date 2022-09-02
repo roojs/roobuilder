@@ -12,6 +12,7 @@
    "Gtk.PositionType position" : "Gtk.PositionType.TOP",
    "bool active" : false,
    "bool hexpand" : false,
+   "bool in_onprojectselected" : false,
    "bool modal" : true,
    "id" : "PopoverFiles",
    "int height_request" : 800,
@@ -588,7 +589,7 @@
    ],
    "| void loadIconView" : [
     "() {",
-    " \tGdk.Pixbuf pixbuf = null;",
+    " \t Gdk.Pixbuf pixbuf = null;",
     "  \t Gdk.Pixbuf bigpixbuf = null;",
     "\t Gtk.TreeIter iter;",
     "     var m = this.iconmodel.el;",
