@@ -288,6 +288,7 @@
               ""
              ],
              "bool hexpand" : true,
+             "string placeholder_text" : "\"\"",
              "xtype" : "SearchEntry"
             }
            ],
