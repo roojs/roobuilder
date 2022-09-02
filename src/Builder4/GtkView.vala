@@ -1140,6 +1140,7 @@ public class Xcls_GtkView : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.visible = false;
+            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1403,6 +1404,7 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.label = "Case Sensitive";
+            this.el.show();
 
             // init method
 
@@ -1433,6 +1435,7 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.label = "Regex";
+            this.el.show();
 
             // init method
 
@@ -1463,6 +1466,7 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.label = "Multi-line (add \\n)";
+            this.el.show();
 
             // init method
 
