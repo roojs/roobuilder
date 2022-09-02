@@ -233,7 +233,7 @@ public class Xcls_PopoverFiles : Object
     	 Gtk.TreeIter citer;  // folder iter
     	  Gtk.TreeIter fxiter;  // file iter
     	for(var i =0 ; i < items.size; i++) {
-    	     print ("cheking folder %s\n", items.get(i));
+    	    // print ("cheking folder %s\n", items.get(i));
     	     var files = gpr.filesForOpen(items.get(i));
     	     
     	     
@@ -255,7 +255,7 @@ public class Xcls_PopoverFiles : Object
     		    nf++;
     	    }
     	    if (nf < 1) {
-    	    	contineu;
+    	    	continue;
         	} 
     	     
     		 this.filemodel.el.append(out citer,null);
