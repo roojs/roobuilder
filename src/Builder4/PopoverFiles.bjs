@@ -369,14 +369,6 @@
                "    ",
                "}"
               ],
-              "key_press_event" : [
-               "(event) => {",
-               "",
-               "\t_this.iconsearch.el.grab_focus();",
-               "\treturn true;",
-               "}",
-               ""
-              ],
               "query_tooltip" : [
                "(x, y, keyboard_tooltip, tooltip) => {",
                "",
