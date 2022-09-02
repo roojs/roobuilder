@@ -1,3 +1,16 @@
+roobuilder (4.4.1) UNRELEASED; urgency=medium
+
+  * fix issue with old js files using user defined properties
+  * Project properties now shows full path 
+  * Project properties tidy up
+  * goto line now works better (from errors)
+  * clicking code view opens up correct node and shows properties.
+  * segfault on invalid properties fixed.
+  * add icon only shown on nodes that accept children
+  * Gtk.MenuItem and children auto have .show() added to code
+  
+ -- Alan <<alan@roojs.com>  Wed, 31 Aug 2022 17:22:23 +0800
+
 roobuilder (4.4.0) unstable; urgency=medium
 
   * slightly better search boxes
