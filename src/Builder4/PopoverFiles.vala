@@ -301,20 +301,18 @@ public class Xcls_PopoverFiles : Object
             m.set(iter,   2,file.nickType() ); // file type?
             
             
-            var fname = file.getIconFileName(false);
+    
             try {
-    		    if (FileUtils.test(fname, FileTest.EXISTS)) {
-    		        var npixbuf = new Gdk.Pixbuf.from_file(fname);
-    		        pixbuf = npixbuf.scale_simple(92, (int) (npixbuf.height * 92.0 /npixbuf.width * 1.0 )
-    				    , Gdk.InterpType.NEAREST) ;
-    				bigpixbuf = npixbuf.scale_simple(368, (int) (npixbuf.height * 368.0 /npixbuf.width * 1.0 )
-    				    , Gdk.InterpType.NEAREST) ;
-    				
-    		    } 
+    		    var npixbuf = file.getIcon(0);
+    		    pixbuf = file.getIcon(32);
+    			bigpixbuf = file.getIcon(368);
+    
     		} catch (Error e) {
     		    // noop
     		
-    		}
+    		} 
+            
+             
             if (pixbuf == null) {
             
     		    try {
