@@ -235,9 +235,29 @@ public class Xcls_PopoverFiles : Object
     	for(var i =0 ; i < items.size; i++) {
     	     print ("cheking folder %s\n", items.get(i));
     	     var files = gpr.filesForOpen(items.get(i));
+    	     
+    	     
+    	     
+    	     
+    	     
     	     if (files.size < 1) {
     	        continue;
     	     }
+    	     var nf = 0;
+    	     for(var j =0 ; j < files.size; j++) {
+    	    
+    	    	if (filter != "") {
+    		    	if (!GLib.Path.get_basename(files.get(j)).down().contains(filter)) {
+    		    		continue;
+    				}
+    		    
+    		    }  
+    		    nf++;
+    	    }
+    	    if (nf < 1) {
+    	    	contineu;
+        	} 
+    	     
     		 this.filemodel.el.append(out citer,null);
     		 this.filemodel.el.set(citer, 0, GLib.Path.get_basename(items.get(i)));
     		 this.filemodel.el.set(citer, 1, null); // parent (empty as it's a folder)
