@@ -71,10 +71,19 @@ public class Xcls_PopoverFiles : Object
     // user defined functions
     public void onProjectSelected (Project.Project project) 
     {
+    	if (this.in_onprojectselected) { 
+    		return;
+    	}
+    	this.in_onprojectselected = true;
+    	
+    	
     	this.selectedProject = project;
     	project.scanDirs();
     	//this.clutterfiles.loadProject(proj);
     	
+    	
+    	
+    	_this.iconsearch.el.text = "";
     	
     	 
     	
@@ -94,6 +103,7 @@ public class Xcls_PopoverFiles : Object
         if (!(project is Project.Gtk)) {
             print ("not gtk... skipping files");
             this.file_container.el.hide();
+        	this.in_onprojectselected = false;
             return;
         }
         this.file_container.el.show();
@@ -138,7 +148,7 @@ public class Xcls_PopoverFiles : Object
     	    //this.el.set_value(citer, 1,   items.get(i) );
     	}
         _this.fileview.el.expand_all();
-        
+        	this.in_onprojectselected = true;
     	
     }
     public void selectProject (Project.Project project) {
