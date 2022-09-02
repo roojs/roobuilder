@@ -288,6 +288,15 @@
               ""
              ],
              "bool hexpand" : true,
+             "listeners" : {
+              "changed" : [
+               "( ) => {",
+               "",
+               "",
+               "}",
+               ""
+              ]
+             },
              "string placeholder_text" : "type to filter results",
              "xtype" : "SearchEntry"
             }
