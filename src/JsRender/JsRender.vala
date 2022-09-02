@@ -232,7 +232,7 @@ namespace JsRender {
 		
 
 		
-		public string getIconFileName(bool return_default)
+		public string getIconFileName( )
 		{
 			 
 			var m5 = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5,this.path); 
