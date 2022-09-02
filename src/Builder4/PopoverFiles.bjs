@@ -701,6 +701,7 @@
     "  \t this.loadIconView();",
     "  \t GLib.Timeout.add_once(1000, () => {",
     "\t     _this.iconsearch.el.grab_focus();",
+    "\t     return true;",
     "     });",
     "    ",
     "     this.filemodel.el.clear();",

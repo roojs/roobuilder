@@ -100,6 +100,7 @@ public class Xcls_PopoverFiles : Object
       	 this.loadIconView();
       	 GLib.Timeout.add_once(1000, () => {
     	     _this.iconsearch.el.grab_focus();
+    	     return true;
          });
         
          this.filemodel.el.clear();
