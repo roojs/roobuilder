@@ -182,7 +182,7 @@ namespace JsRender {
 		public Gdk.Pixbuf? getIcon(int size = 0) {
 		    var fname = this.getIconFileName( );		
 		    if (!FileUtils.test(fname, FileTest.EXISTS)) {
-            	GLib.debug("PIXBUF %s does not exist?", fname);
+            	GLib.debug("PIXBUF %s:  %s does not exist?", this.name, fname);
 				return null;
 			}
 			
