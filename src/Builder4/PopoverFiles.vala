@@ -310,8 +310,7 @@ public class Xcls_PopoverFiles : Object
             m.set(iter,   1,file.nickType() + "\n" + file.nickName()); // marked up title?
             m.set(iter,   2,file.nickType() ); // file type?
             
-            pixbuf = _this.missing_thumb_pixbuf;
-            bigpixbuf = _this.missing_thumb_pixbuf;
+           
     
             try {
     		    
@@ -326,7 +325,8 @@ public class Xcls_PopoverFiles : Object
              
             if (pixbuf == null) {
             	GLib.debug("PIXBUF is null? %s", file.name);
-    		  
+    		    pixbuf = _this.missing_thumb_pixbuf;
+            	bigpixbuf = _this.missing_thumb_pixbuf;
     		}
     		
     		
