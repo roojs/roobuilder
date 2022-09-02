@@ -278,7 +278,17 @@ public class Xcls_PopoverFiles : Object
         var fiter = project.sortedFiles().list_iterator();
         
         
-        
+          try {
+    	        if (_this.missing_thumb_pixbuf == null) {
+    	            var icon_theme = Gtk.IconTheme.get_default ();
+    	            _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
+    	            _this.missing_thumb_pixbuf.ref();
+    	        }
+    	        
+    
+    	    } catch (Error e) {
+    	        // noop?
+    	    }
         
     
         
@@ -300,7 +310,8 @@ public class Xcls_PopoverFiles : Object
             m.set(iter,   1,file.nickType() + "\n" + file.nickName()); // marked up title?
             m.set(iter,   2,file.nickType() ); // file type?
             
-            
+            pixbuf = _this.missing_thumb_pixbuf;
+            bigpixbuf = _this.missing_thumb_pixbuf;
     
             try {
     		    
@@ -315,18 +326,7 @@ public class Xcls_PopoverFiles : Object
              
             if (pixbuf == null) {
             	GLib.debug("PIXBUF is null? %s", file.name);
-    		    try {
-    		        if (_this.missing_thumb_pixbuf == null) {
-    		            var icon_theme = Gtk.IconTheme.get_default ();
-    		            _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
-    		            _this.missing_thumb_pixbuf.ref();
-    		        }
-    		        pixbuf = _this.missing_thumb_pixbuf;
-    		        bigpixbuf = _this.missing_thumb_pixbuf;
-    
-    		    } catch (Error e) {
-    		        // noop?
-    		    }
+    		  
     		}
     		
     		
