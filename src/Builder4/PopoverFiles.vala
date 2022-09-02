@@ -959,7 +959,7 @@ public class Xcls_PopoverFiles : Object
             // init method
 
             {
-            
+            	_this.iconsearch.el.set_key_capture_widget (this.el);
             }
 
             //listeners
