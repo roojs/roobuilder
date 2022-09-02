@@ -217,6 +217,7 @@ namespace JsRender {
 				    , Gdk.InterpType.NEAREST) ;
 				    return this.screenshot368;
 		    }
+		    return null;
 		}
 		
 		public void writeIcon(Gdk.Pixbuf pixbuf) {
