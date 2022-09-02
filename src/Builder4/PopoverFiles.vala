@@ -255,10 +255,25 @@ public class Xcls_PopoverFiles : Object
          var m = this.iconmodel.el;
          m.clear();
      
+     
+     	var filter = _this.iconsearch.el.text.down();
+     	
+     
         var fiter = project.sortedFiles().list_iterator();
         while (fiter.next()) {
-            m.append(out iter);
+        
             var file = fiter.get();
+            if (filter != "") {
+            	if (!file.name.down().contains(filter)) {
+            		continue;
+        		}
+            
+            }    
+        	
+        
+        
+            m.append(out iter);
+    
             m.set(iter,   0,file ); // zero contains the file reference
             m.set(iter,   1,file.nickType() + "\n" + file.nickName()); // marked up title?
             m.set(iter,   2,file.nickType() ); // file type?
