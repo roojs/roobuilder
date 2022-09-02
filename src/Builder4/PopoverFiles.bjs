@@ -288,6 +288,7 @@
               ""
              ],
              "bool hexpand" : true,
+             "id" : "iconsearch",
              "listeners" : {
               "changed" : [
                "( ) => {",
@@ -655,7 +656,7 @@
     "\t",
     "\t",
     "\t ",
-    "",
+    "\t",
     "    ",
     "    ",
     "    //this.project_title_name.el.text = pr.name;",
