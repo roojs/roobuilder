@@ -333,7 +333,7 @@
 				} catch (FileError e) {
 					GLib.debug("Got error %s", e.message);
 				} catch (Error e) {
-					GLib.debug("got error ", e.message);
+					GLib.debug("got error %s", e.message);
 				}
 				
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
