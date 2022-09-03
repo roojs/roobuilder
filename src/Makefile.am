@@ -141,7 +141,8 @@ endif
 AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFLAGS) $(JAVASCRIPTCOREGTK_CFLAGS) $(VTE_CFLAGS) \
     -Wno-incompatible-pointer-types \
     -Wno-discarded-qualifiers \
-    -Wno-deprecated-declarations
+    -Wno-deprecated-declarations \
+    -Wno-pointer-to-int-cast
 
 bin_PROGRAMS = roobuilder
 
