@@ -144,7 +144,7 @@ AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFL
     -Wno-deprecated-declarations
 
 bin_PROGRAMS = roobuilder
-1
+
  
 roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg gobject-2.0  \
