@@ -36,8 +36,12 @@
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			var setting_file = dirname + "/builder.settings";
 			string data = Json.gobject_to_data (this, null);
-			print("saving application settings\n");
-			FileUtils.set_contents(setting_file,   data);
+			GLib.debug("saving application settings\n");
+			try {
+				FileUtils.set_contents(setting_file,   data);
+			} catch (Error e) {
+				print("Error saving app settings");
+			}
 		}
 
 		
@@ -116,8 +120,12 @@
 		public BuilderApplication (  string[] args)
 		{
 			
-			
-			_self = FileUtils.read_link("/proc/self/exe");
+			try {
+				_self = FileUtils.read_link("/proc/self/exe");
+			} catch (Error e) {
+				// this should nto happen!!?
+				GLib.fatal("could not read /proc/self/exe");
+			}
 			GLib.debug("SELF = %s", _self);
 			
 			Object(
