@@ -965,7 +965,8 @@ public class Editor : Object
                 
               
              	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
-            		var res = _this.search(this.el.text);
+            		//var res =
+            		 _this.search(this.el.text);
             		 _this.search_results.updateResults();
             
             		GLib.Timeout.add_seconds(2,() => {
