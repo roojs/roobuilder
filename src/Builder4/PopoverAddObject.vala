@@ -93,8 +93,6 @@ public class Xcls_PopoverAddObject : Object
         
         
         
-        
-        
         // set size up...
         
         this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);
