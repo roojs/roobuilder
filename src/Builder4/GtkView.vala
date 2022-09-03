@@ -294,12 +294,12 @@ public class Xcls_GtkView : Object
         var  win = this.el.get_parent_window();
         var width = win.get_width();
         var height = win.get_height();
-        try {
+        //try {
              Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
              this.file.writeIcon(screenshot);
-        } catch (Error e) {
+        //} catch (Error e) {
             
-        }
+        //}
     
        
         return;
