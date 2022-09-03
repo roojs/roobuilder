@@ -24,16 +24,24 @@
 				 return new AppSettings();
 			}
 			string data; 
-			FileUtils.get_contents(setting_file, out data);
-			return Json.gobject_from_data (typeof (AppSettings), data) as AppSettings;
+			try { 
+				FileUtils.get_contents(setting_file, out data);
+				return Json.gobject_from_data (typeof (AppSettings), data) as AppSettings;
+			} catch (Error e) {
+			}
+			return new AppSettings();
 		}
 		public void save()
 		{
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			var setting_file = dirname + "/builder.settings";
 			string data = Json.gobject_to_data (this, null);
-			print("saving application settings\n");
-			FileUtils.set_contents(setting_file,   data);
+			GLib.debug("saving application settings\n");
+			try {
+				FileUtils.set_contents(setting_file,   data);
+			} catch (Error e) {
+				print("Error saving app settings");
+			}
 		}
 
 		
@@ -112,8 +120,12 @@
 		public BuilderApplication (  string[] args)
 		{
 			
-			
-			_self = FileUtils.read_link("/proc/self/exe");
+			try {
+				_self = FileUtils.read_link("/proc/self/exe");
+			} catch (Error e) {
+				// this should nto happen!!?
+				GLib.error("could not read /proc/self/exe");
+			}
 			GLib.debug("SELF = %s", _self);
 			
 			Object(
@@ -174,11 +186,19 @@
 		
 			if (!FileUtils.test(dirname,FileTest.IS_DIR)) {
 				var dir = File.new_for_path(dirname);
-				dir.make_directory();	 
+				try {
+					dir.make_directory();	
+				} catch (Error e) {
+					GLib.error("Failed to make directory %s", dirname);
+				} 
 			}
 			if (!FileUtils.test(dirname + "/resources",FileTest.IS_DIR)) {
 				var dir = File.new_for_path(dirname + "/resources");
-				dir.make_directory();	 
+				try {
+					dir.make_directory();	
+				} catch (Error e) {
+					GLib.error("Failed to make directory %s", dirname + "/resources");
+				} 
 			}
 
 		
@@ -254,23 +274,29 @@
 				GLib.error("missing project, use --project to select which project");
 			}
 			print("Checking files\n");
-			var ar = cur_project.sortedFiles();
-			foreach(var file in ar) {
-				string oldstr;
+			try { 
+				var ar = cur_project.sortedFiles();
+				foreach(var file in ar) {
+					string oldstr;
 
-				file.loadItems();
-				GLib.FileUtils.get_contents(file.path, out oldstr);				
-				var outstr = file.toJsonString();
-				if (outstr != oldstr) { 
+					file.loadItems();
+					GLib.FileUtils.get_contents(file.path, out oldstr);				
+					var outstr = file.toJsonString();
+					if (outstr != oldstr) { 
+						
+						GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
+						print("meld  %s /tmp/%s\n", file.path,  file.name);
+						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
+					}
+					print("# Files match %s\n", file.name);
 					
-					GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
-					print("meld  %s /tmp/%s\n", file.path,  file.name);
-					//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 				}
-				print("# Files match %s\n", file.name);
-				
+			} catch (FileError e) {
+				GLib.debug("Got error %s", e.message);
+			} catch (Error e) {
+				GLib.debug("Got error %s", e.message);
 			}
-			
+				
 			print("All files pass");
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
@@ -285,24 +311,31 @@
 			}
 			
 			if (BuilderApplication.opt_bjs_compile == "all") {
-				var ar = cur_project.sortedFiles();
-				foreach(var file in ar) {
-					string oldstr;
-
-					file.loadItems();
-					var oldfn = file.targetName();
-					GLib.FileUtils.get_contents(oldfn, out oldstr);
-									
-					var outstr = file.toSourceCode();
-					if (outstr != oldstr) { 
-						
-						GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
-						print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
-						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
-					}
-					print("# Files match %s\n", file.name);
+				try { 
+					var ar = cur_project.sortedFiles();
 					
+					foreach(var file in ar) {
+						string oldstr;
+
+						file.loadItems();
+						var oldfn = file.targetName();
+						GLib.FileUtils.get_contents(oldfn, out oldstr);
+										
+						var outstr = file.toSourceCode();
+						if (outstr != oldstr) { 
+							
+							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
+							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
+							//GLib.Process.exit(Posix.EXIT_SUCCESS);		
+						}
+						print("# Files match %s\n", file.name);
+					}		
+				} catch (FileError e) {
+					GLib.debug("Got error %s", e.message);
+				} catch (Error e) {
+					GLib.debug("got error %s", e.message);
 				}
+				
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 			}
@@ -320,8 +353,12 @@
 			
 				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 			}
-			file.loadItems();
-						
+			try {
+				file.loadItems();
+			} catch(Error e) {
+				GLib.debug("Load items failed");
+			}
+					
 			if (BuilderApplication.opt_bjs_compile_glade) {
 				var str = file.toGlade();
 				print("%s", str);
@@ -401,7 +438,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					break;
 				case "flutter-project":
 			        Project.Project.loadAll();
-					var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
+					//var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
 					/*var pa = p.palete as Palete.Flutter;
 					pa.dumpusage();
 					 var ar = pa.getChildList("material.Scaffold");

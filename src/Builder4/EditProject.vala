@@ -37,7 +37,7 @@ public class EditProject : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.get_content_area().add( child_0.el );
         var child_1 = new Xcls_Button9( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 1 );
@@ -97,14 +97,17 @@ public class EditProject : Object
      
         var fn = _this.dir.el.get_filename();
         print("add %s\n" , fn);
-        
-        var project = Project.Project.factory(_this.xtype.getValue(), fn);
-        project.save();
-        Project.projects.set(project.name,project);
-        
+        try {
+    		var project = Project.Project.factory(_this.xtype.getValue(), fn);
+    		project.save();
+    		Project.projects.set(project.name,project);
+    		return project;
+    	} catch (Error e) {
+    		GLib.debug("got error? %s" , e.message);
+    	}
         //var pr = imports.Builder.Provider.ProjectManager.ProjectManager.update(this.project);
+        return null;
         
-        return project;
     
         
         //this.success = c.success;
@@ -271,7 +274,7 @@ public class EditProject : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 

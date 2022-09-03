@@ -198,7 +198,7 @@ public class Xcls_GtkView : Object
     		return;
     	}
     	this.notebook.el.page = 1;
-    	Gtk.TextIter beg, st,en, stl;
+    	Gtk.TextIter beg, st,en;
     	
     	var buf = this.sourceview.el.get_buffer();
     	buf.get_iter_at_offset(out beg, this.last_search_end);
@@ -294,12 +294,12 @@ public class Xcls_GtkView : Object
         var  win = this.el.get_parent_window();
         var width = win.get_width();
         var height = win.get_height();
-        try {
+        //try {
              Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
              this.file.writeIcon(screenshot);
-        } catch (Error e) {
+        //} catch (Error e) {
             
-        }
+        //}
     
        
         return;
@@ -1013,7 +1013,7 @@ public class Xcls_GtkView : Object
                 
               
              	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
-            		var res = _this.search(this.el.text);
+            		_this.search(this.el.text);
             		 _this.search_results.updateResults();
             
             		GLib.Timeout.add_seconds(2,() => {

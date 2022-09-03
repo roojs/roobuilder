@@ -41,11 +41,6 @@ public class Xcls_PopoverAddObject : Object
         var child_0 = new Xcls_ScrolledWindow2( _this );
         child_0.ref();
         this.el.add (  child_0.el  );
-
-        //listeners
-        this.el.hide.connect( ( ) => {
-        
-        });
     }
 
     // user defined functions
@@ -53,7 +48,6 @@ public class Xcls_PopoverAddObject : Object
     
         
        
-     
     
         var tr = pal.getChildList(cls);
         this.model.el.clear();
@@ -61,7 +55,11 @@ public class Xcls_PopoverAddObject : Object
     
         Gtk.TreeIter citer;
         var ic = Gtk.IconTheme.get_default();
-    	var pixdef = ic.load_icon("emblem-new", 16,0);
+        Gdk.Pixbuf pixdef = null;
+        try {
+    		pixdef = ic.load_icon("emblem-new", 16,0);
+    	} catch (Error e) {
+    	}
     
         for(var i =0 ; i < tr.length; i++) {
              this.model.el.append(out citer);   
@@ -91,8 +89,6 @@ public class Xcls_PopoverAddObject : Object
             
         }
         this.model.el.set_sort_column_id(1,Gtk.SortType.ASCENDING);
-        
-        
         
         
         

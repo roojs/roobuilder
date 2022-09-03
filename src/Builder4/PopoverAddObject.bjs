@@ -180,14 +180,6 @@
      "xtype" : "ScrolledWindow"
     }
    ],
-   "listeners" : {
-    "hide" : [
-     "( ) => {",
-     "",
-     "}",
-     ""
-    ]
-   },
    "xtype" : "Popover",
    "| void clear" : [
     "() {",
@@ -207,7 +199,6 @@
     "",
     "    ",
     "   ",
-    " ",
     "",
     "    var tr = pal.getChildList(cls);",
     "    this.model.el.clear();",
@@ -215,7 +206,11 @@
     "",
     "    Gtk.TreeIter citer;",
     "    var ic = Gtk.IconTheme.get_default();",
-    "\tvar pixdef = ic.load_icon(\"emblem-new\", 16,0);",
+    "    Gdk.Pixbuf pixdef = null;",
+    "    try {",
+    "\t\tpixdef = ic.load_icon(\"emblem-new\", 16,0);",
+    "\t} catch (Error e) {",
+    "\t}",
     "",
     "    for(var i =0 ; i < tr.length; i++) {",
     "         this.model.el.append(out citer);   ",
@@ -245,8 +240,6 @@
     "        ",
     "    }",
     "    this.model.el.set_sort_column_id(1,Gtk.SortType.ASCENDING);",
-    "    ",
-    "    ",
     "    ",
     "    ",
     "    ",
