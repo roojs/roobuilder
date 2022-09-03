@@ -24,8 +24,12 @@
 				 return new AppSettings();
 			}
 			string data; 
-			FileUtils.get_contents(setting_file, out data);
-			return Json.gobject_from_data (typeof (AppSettings), data) as AppSettings;
+			try { 
+				FileUtils.get_contents(setting_file, out data);
+				return Json.gobject_from_data (typeof (AppSettings), data) as AppSettings;
+			} catch (Error e) {
+			}
+			return new AppSettings();
 		}
 		public void save()
 		{
