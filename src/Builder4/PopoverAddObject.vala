@@ -48,7 +48,6 @@ public class Xcls_PopoverAddObject : Object
     
         
        
-     
     
         var tr = pal.getChildList(cls);
         this.model.el.clear();

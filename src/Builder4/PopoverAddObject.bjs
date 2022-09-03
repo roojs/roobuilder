@@ -199,7 +199,6 @@
     "",
     "    ",
     "   ",
-    " ",
     "",
     "    var tr = pal.getChildList(cls);",
     "    this.model.el.clear();",
