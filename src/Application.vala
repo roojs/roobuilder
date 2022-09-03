@@ -291,6 +291,8 @@
 					print("# Files match %s\n", file.name);
 					
 				}
+			} catch (FileError e) {
+				GLib.debug("Got error %s", e.message);
 			} catch (Error e) {
 				GLib.debug("Got error %s", e.message);
 			}
@@ -328,6 +330,8 @@
 						}
 						print("# Files match %s\n", file.name);
 					}		
+				} catch (FileError e) {
+					GLib.debug("Got error %s", e.message);
 				} catch (Error e) {
 					GLib.debug("got error ", e.message);
 				}
