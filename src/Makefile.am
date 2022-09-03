@@ -138,11 +138,13 @@ endif
  
 # - not sure if needed....  
 
-AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFLAGS) $(JAVASCRIPTCOREGTK_CFLAGS) $(VTE_CFLAGS)
-
+AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFLAGS) $(JAVASCRIPTCOREGTK_CFLAGS) $(VTE_CFLAGS) \
+    -Wno-incompatible-pointer-types \
+    -Wno-discarded-qualifiers \
+    -Wno-deprecated-declarations
 
 bin_PROGRAMS = roobuilder
-
+1
  
 roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg gobject-2.0  \
