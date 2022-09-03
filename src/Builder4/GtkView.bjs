@@ -854,7 +854,7 @@
     "\t\treturn;",
     "\t}",
     "\tthis.notebook.el.page = 1;",
-    "\tGtk.TextIter beg, st,en, stl;",
+    "\tGtk.TextIter beg, st,en;",
     "\t",
     "\tvar buf = this.sourceview.el.get_buffer();",
     "\tbuf.get_iter_at_offset(out beg, this.last_search_end);",
