@@ -124,7 +124,7 @@
 				_self = FileUtils.read_link("/proc/self/exe");
 			} catch (Error e) {
 				// this should nto happen!!?
-				GLib.fatal("could not read /proc/self/exe");
+				GLib.error("could not read /proc/self/exe");
 			}
 			GLib.debug("SELF = %s", _self);
 			
@@ -186,11 +186,19 @@
 		
 			if (!FileUtils.test(dirname,FileTest.IS_DIR)) {
 				var dir = File.new_for_path(dirname);
-				dir.make_directory();	 
+				try {
+					dir.make_directory();	
+				} catch (Error e) {
+					GLib.error("Failed to make directory %s", dirname);
+				} 
 			}
 			if (!FileUtils.test(dirname + "/resources",FileTest.IS_DIR)) {
 				var dir = File.new_for_path(dirname + "/resources");
-				dir.make_directory();	 
+				try {
+					dir.make_directory();	
+				} catch (Error e) {
+					GLib.error("Failed to make directory %s", dirname + "/resources");
+				} 
 			}
 
 		
@@ -332,8 +340,12 @@
 			
 				GLib.error("missing file %s in project %s", BuilderApplication.opt_bjs_compile, cur_project.name);
 			}
-			file.loadItems();
-						
+			try {
+				file.loadItems();
+			} catch(Error e) {
+				GLib.debug("Load items failed");
+			}
+					
 			if (BuilderApplication.opt_bjs_compile_glade) {
 				var str = file.toGlade();
 				print("%s", str);
@@ -413,7 +425,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					break;
 				case "flutter-project":
 			        Project.Project.loadAll();
-					var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
+					//var p =   Project.Project.factory("Flutter", "/tmp/test-flutter");
 					/*var pa = p.palete as Palete.Flutter;
 					pa.dumpusage();
 					 var ar = pa.getChildList("material.Scaffold");
