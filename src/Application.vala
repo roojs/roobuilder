@@ -274,23 +274,27 @@
 				GLib.error("missing project, use --project to select which project");
 			}
 			print("Checking files\n");
-			var ar = cur_project.sortedFiles();
-			foreach(var file in ar) {
-				string oldstr;
+			try { 
+				var ar = cur_project.sortedFiles();
+				foreach(var file in ar) {
+					string oldstr;
 
-				file.loadItems();
-				GLib.FileUtils.get_contents(file.path, out oldstr);				
-				var outstr = file.toJsonString();
-				if (outstr != oldstr) { 
+					file.loadItems();
+					GLib.FileUtils.get_contents(file.path, out oldstr);				
+					var outstr = file.toJsonString();
+					if (outstr != oldstr) { 
+						
+						GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
+						print("meld  %s /tmp/%s\n", file.path,  file.name);
+						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
+					}
+					print("# Files match %s\n", file.name);
 					
-					GLib.FileUtils.set_contents("/tmp/" + file.name ,   outstr);
-					print("meld  %s /tmp/%s\n", file.path,  file.name);
-					//GLib.Process.exit(Posix.EXIT_SUCCESS);		
 				}
-				print("# Files match %s\n", file.name);
-				
+			} catch (Error e) {
+				GLib.debug("Got error %s", e.message);
 			}
-			
+				
 			print("All files pass");
 			GLib.Process.exit(Posix.EXIT_SUCCESS);
 		}
@@ -305,24 +309,29 @@
 			}
 			
 			if (BuilderApplication.opt_bjs_compile == "all") {
-				var ar = cur_project.sortedFiles();
-				foreach(var file in ar) {
-					string oldstr;
-
-					file.loadItems();
-					var oldfn = file.targetName();
-					GLib.FileUtils.get_contents(oldfn, out oldstr);
-									
-					var outstr = file.toSourceCode();
-					if (outstr != oldstr) { 
-						
-						GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
-						print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
-						//GLib.Process.exit(Posix.EXIT_SUCCESS);		
-					}
-					print("# Files match %s\n", file.name);
+				try { 
+					var ar = cur_project.sortedFiles();
 					
+					foreach(var file in ar) {
+						string oldstr;
+
+						file.loadItems();
+						var oldfn = file.targetName();
+						GLib.FileUtils.get_contents(oldfn, out oldstr);
+										
+						var outstr = file.toSourceCode();
+						if (outstr != oldstr) { 
+							
+							GLib.FileUtils.set_contents("/tmp/" + file.name   + ".out",   outstr);
+							print("meld   %s /tmp/%s\n", oldfn,  file.name + ".out");
+							//GLib.Process.exit(Posix.EXIT_SUCCESS);		
+						}
+						print("# Files match %s\n", file.name);
+					}		
+				} catch (Error e) {
+					GLib.debug("got error ", e.message);
 				}
+				
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 			}
