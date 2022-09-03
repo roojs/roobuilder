@@ -884,7 +884,7 @@ public class JsRender.NodeToVala : Object {
 				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
 				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
 				if (title.length > 0) {
-					this.addLine(this.ipad + "this.el.add_titled(  child_%d.el, \"%\", \"%s\" );".printf(i,named,title));	
+					this.addLine(this.ipad + "this.el.add_titled(  child_%d.el, \"%s\", \"%s\" );".printf(i,named,title));	
 				} else {
 					this.addLine(this.ipad + "this.el.add_named(  child_%d.el, \"%s\" );".printf(i,named));
 				}
