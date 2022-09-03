@@ -187,7 +187,7 @@
     "\t\tvar project = Project.Project.factory(_this.xtype.getValue(), fn);",
     "\t\tproject.save();",
     "\t\tProject.projects.set(project.name,project);",
-    "\t} catch (ProjectError e) {",
+    "\t} catch (Error e) {",
     "\t\tGLib.debug(\"got error? %s\" , e.message);",
     "\t}",
     "    //var pr = imports.Builder.Provider.ProjectManager.ProjectManager.update(this.project);",

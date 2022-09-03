@@ -101,7 +101,7 @@ public class EditProject : Object
     		var project = Project.Project.factory(_this.xtype.getValue(), fn);
     		project.save();
     		Project.projects.set(project.name,project);
-    	} catch (ProjectError e) {
+    	} catch (Error e) {
     		GLib.debug("got error? %s" , e.message);
     	}
         //var pr = imports.Builder.Provider.ProjectManager.ProjectManager.update(this.project);
