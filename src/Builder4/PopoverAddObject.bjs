@@ -208,7 +208,7 @@
     "    var ic = Gtk.IconTheme.get_default();",
     "    Gdk.Pixbuf pixbuf = null;",
     "    try {",
-    "\t\tvar pixdef = ic.load_icon(\"emblem-new\", 16,0);",
+    "\t\tpixdef = ic.load_icon(\"emblem-new\", 16,0);",
     "\t} catch (Error e) {",
     "\t}",
     "",
