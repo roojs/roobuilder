@@ -206,7 +206,7 @@
     "",
     "    Gtk.TreeIter citer;",
     "    var ic = Gtk.IconTheme.get_default();",
-    "    Gdk.Pixbuf pixbuf = null;",
+    "    Gdk.Pixbuf pixdef = null;",
     "    try {",
     "\t\tpixdef = ic.load_icon(\"emblem-new\", 16,0);",
     "\t} catch (Error e) {",

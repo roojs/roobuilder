@@ -55,7 +55,7 @@ public class Xcls_PopoverAddObject : Object
     
         Gtk.TreeIter citer;
         var ic = Gtk.IconTheme.get_default();
-        Gdk.Pixbuf pixbuf = null;
+        Gdk.Pixbuf pixdef = null;
         try {
     		pixdef = ic.load_icon("emblem-new", 16,0);
     	} catch (Error e) {
