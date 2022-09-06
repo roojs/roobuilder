@@ -44,7 +44,7 @@ e26f2b77170e288058a09a96c68f2b24  ./src/Builder4/Editor.vala
 bd95ff872bc3552a40b0a3205ae9d85e  ./src/Builder4/WindowLeftProjects.bjs
 6278ccc0f64f5c2757895aacda602251  ./src/Builder4/CompileState.vala
 b820b28e73a88990451a207bb5a71d46  ./src/Builder4/GladeuiView.vala
-db9a4b3027a413542aeb9695d120900d  ./src/Builder4/WindowState.vala
+60c3267f992111e2ed9c3414fdba7ec4  ./src/Builder4/WindowState.vala
 1e9b152618fa18adcc4d9231764ae7a4  ./src/Builder4/.deps/PopoverEditor.Po
 a186c7efef54e7e96f2b4488bc63ca49  ./src/Builder4/.deps/ClutterFiles.Po
 dad0227408777290e6c56afc03cf6e12  ./src/Builder4/.deps/WindowRightPalete.Po
@@ -234,7 +234,7 @@ d743438c4e4b765b7ce4b7e1c98b3b31  ./config.h.in~
 9580a33f9516167b4a1a72fe4fee31ae  ./.gitignore
 737061c1c974f84326be8b9281180af9  ./README.md
 959bffe2993816eb32ec4bc1ec1d5875  ./LICENSE
-612dda08bf50a96385318367dfcb6e88  ./autom4te.cache/requests
+e05d68f931de5f6693f3d213776c9f50  ./autom4te.cache/requests
 4ab5d64b369bac36c4c5ea81ef5e82f1  ./autom4te.cache/traces.2
 4ab5d64b369bac36c4c5ea81ef5e82f1  ./autom4te.cache/traces.1
 35d73aa64bd0b12a1f9172b40e9f62b2  ./autom4te.cache/output.1
@@ -242,7 +242,7 @@ d743438c4e4b765b7ce4b7e1c98b3b31  ./config.h.in~
 99d97fe84a1747c45d8bd23c7ab9b8c4  ./autom4te.cache/traces.0
 35d73aa64bd0b12a1f9172b40e9f62b2  ./autom4te.cache/output.0
 d32239bcb673463ab874e80d47fae504  ./COPYING
-a6990f5331cc22822f44ec5fd99de437  ./.gdb_history
+2a75a2459687c6d023da4ae3c18ee5e9  ./.gdb_history
 e194375eb17ee97cc2db1c3e680412a3  ./INSTALL.txt
 234ae97ddd94d5596656997f26bdd94a  ./AUTHORS
 e93be940bda9805b18b8ca846d2de2a3  ./resources/mailer.builder.html

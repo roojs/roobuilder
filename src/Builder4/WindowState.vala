@@ -382,6 +382,7 @@ public class WindowState : Object
  
 		this.roo_projectsettings_pop.buttonPressed.connect((btn) => {
 			if (btn == "save" || btn == "apply") {
+				this.roo_projectsettings_pop.save();
 				this.roo_projectsettings_pop.project.save();
 		 
 			}
@@ -389,7 +390,9 @@ public class WindowState : Object
 			// in theory active file can only be rooo...
 			var ep = this.roo_projectsettings_pop.project;
 			foreach(var ww in BuilderApplication.windows) {
-				if (ww.windowstate.project.fn == ep.fn && ww.windowstate.file.xtype == "Roo") {
+				if (ww.windowstate.file != null && 
+					ww.windowstate.project.fn == ep.fn && 
+					ww.windowstate.file.xtype == "Roo") {
 					 
 				    ww.windowstate.window_rooview.view.renderJS(true);
 						 
