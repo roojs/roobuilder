@@ -381,22 +381,25 @@ public class WindowState : Object
  
  
 		this.roo_projectsettings_pop.buttonPressed.connect((btn) => {
-			// in theory active file can only be rooo...
-			 if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				if (btn == "save") {
-					this.window_rooview.view.renderJS(true);
-					this.roo_projectsettings_pop.el.hide();
-				}
-				if (btn == "apply") {
-					this.window_rooview.view.renderJS(true);
-					return;
-				}
-			} else {
-				// do nothing for gtk..
-			}
 			if (btn == "save" || btn == "apply") {
-				this.win.project.save();
+				this.roo_projectsettings_pop.project.save();
 		 
+			}
+		
+			// in theory active file can only be rooo...
+			var ep = this.roo_projectsettings_pop.project;
+			foreach(var ww in BuilderApplication.windows) {
+				if (ww.windowstate.project.fn == ep.fn && ww.windowstate.file.xtype == "Roo") {
+					 
+				    ww.windowstate.window_rooview.view.renderJS(true);
+						 
+				}
+			}
+			
+			 
+			
+			if (btn == "save") {
+				this.roo_projectsettings_pop.el.hide();
 			}
 			//this.switchState (State.PREVIEW); 
 			 
