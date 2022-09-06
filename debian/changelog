@@ -1,4 +1,12 @@
-roobuilder (4.4.1) UNRELEASED; urgency=medium
+roobuilder (4.4.2) UNRELEASED; urgency=medium
+
+  * file search tool in project navigator
+  * build compliler warnings
+  * project save fixed
+
+ -- Alan <alan@roojs.com>  Tue, 06 Sep 2022 11:44:46 +0800
+
+roobuilder (4.4.1) unstable; urgency=medium
 
   * fix issue with old js files using user defined properties
   * Project properties now shows full path 
