@@ -382,6 +382,7 @@ public class WindowState : Object
  
 		this.roo_projectsettings_pop.buttonPressed.connect((btn) => {
 			if (btn == "save" || btn == "apply") {
+				this.roo_projectsettings_pop.save();
 				this.roo_projectsettings_pop.project.save();
 		 
 			}
