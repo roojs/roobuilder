@@ -42,7 +42,7 @@ e26f2b77170e288058a09a96c68f2b24  ./src/Builder4/Editor.vala
 bd95ff872bc3552a40b0a3205ae9d85e  ./src/Builder4/WindowLeftProjects.bjs
 6278ccc0f64f5c2757895aacda602251  ./src/Builder4/CompileState.vala
 b820b28e73a88990451a207bb5a71d46  ./src/Builder4/GladeuiView.vala
-db9a4b3027a413542aeb9695d120900d  ./src/Builder4/WindowState.vala
+60c3267f992111e2ed9c3414fdba7ec4  ./src/Builder4/WindowState.vala
 1e9b152618fa18adcc4d9231764ae7a4  ./src/Builder4/.deps/PopoverEditor.Po
 a186c7efef54e7e96f2b4488bc63ca49  ./src/Builder4/.deps/ClutterFiles.Po
 dad0227408777290e6c56afc03cf6e12  ./src/Builder4/.deps/WindowRightPalete.Po
@@ -231,7 +231,7 @@ a7fef8cb9bd957f2b1bb09dd5d6e5251  ./src/vapi/seed.vapi
 737061c1c974f84326be8b9281180af9  ./README.md
 959bffe2993816eb32ec4bc1ec1d5875  ./LICENSE
 d32239bcb673463ab874e80d47fae504  ./COPYING
-a6990f5331cc22822f44ec5fd99de437  ./.gdb_history
+2a75a2459687c6d023da4ae3c18ee5e9  ./.gdb_history
 e194375eb17ee97cc2db1c3e680412a3  ./INSTALL.txt
 234ae97ddd94d5596656997f26bdd94a  ./AUTHORS
 e93be940bda9805b18b8ca846d2de2a3  ./resources/mailer.builder.html
