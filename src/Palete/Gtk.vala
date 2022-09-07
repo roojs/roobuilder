@@ -133,6 +133,8 @@ namespace Palete {
 			this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name"); // fake property
 			
 			this.add_special_children("Gtk.ButtonBox","Gtk.Button", "");
+ 
+			
 			
 			this.init_node_defaults();
 		    this.init_child_defaults();  
@@ -198,6 +200,7 @@ namespace Palete {
 			"Gtk.Notebook",
 			"Gtk.ApplicationWindow",
 			"Gtk.Grid",
+			"Gtk.SearchBar",
 			
 		};
 		
