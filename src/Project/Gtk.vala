@@ -182,7 +182,7 @@ namespace Project
 					return prefix + target.substring(bb.length );
 				}
 				if (bb.length < 1) {
-					throw new Error.INVALID_FORMAT ("Could not work out relative path %s to %s",
+					GLib.error("Could not work out relative path %s to %s",
 					                                basename, target);
 				}
 				bb = GLib.Path.get_dirname(bb);
