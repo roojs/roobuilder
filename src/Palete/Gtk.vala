@@ -516,7 +516,7 @@ namespace Palete {
 		}
 
 
-		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, JsRender.NodePropType ptype)  
+		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, JsRender.NodePropType ptype)  throws Error.INVALID_VALUE 
 		{
 			//print("Loading for " + ename);
 		    
