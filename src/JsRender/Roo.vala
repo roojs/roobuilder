@@ -783,46 +783,7 @@ namespace JsRender {
               
         }
             
-        public new string? guessName (Node? ar) // turns the object into full name.
-        {
-             // eg. xns: Roo, xtype: XXX -> Roo.xxx
-            if (ar == null) {
-                return null;
-            }
-            
-            string[] ret = {} ;
-            ret += (ar.get("|xns").length < 1 ? "Roo": ar.get("|xns"));
-             
-            
-            if ( ar.get("xtype").length < 1) {
-                return null;
-            }
-                    
-            var xtype = ar.get("xtype");
-
-            if (xtype[0] == '*') { // prefixes????
-                xtype  = xtype.substring(1);
-            }
-            if (! Regex.match_simple("^Roo", xtype)) {
-                
-                // already starts with roo...
-                ret = {};
-            }
-            ret += xtype;
-            var str =  string.joinv(".", ret);
-            
-            return str;
-           // 
-            //Palete.Palete.factory("Roo").guessName(str);
-            
-                            
-                                 
-        }
         
-        string getHelpUrl(string cls)
-        {
-            return "http://www.roojs.com/roojs1/docs/symbols/" + cls + ".html";
-        }
 		 public override string toGlade() 
 		{
 			return "Roo files do not convert to glade";
