@@ -130,7 +130,7 @@ namespace Palete {
 			DataOutputStream dostream = new DataOutputStream (ostream);
 			try {
 				dostream.put_string (contents);
-			catch(GLib.Error e) {
+			} catch(GLib.Error e) {
 				GLib.debug("failed to write to temporary file");
 				return false;
 			}
