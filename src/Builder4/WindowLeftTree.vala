@@ -1150,7 +1150,7 @@ typeof(Gdk.Pixbuf) }  );
         }
         public void iterSetValues (Gtk.TreeIter iter, JsRender.Node node)   {
         	var ic = Gtk.IconTheme.get_default();
-            Gdk.Pixbuf pix;
+            Gdk.Pixbuf pix = null,addi = null;
             
             var o =   GLib.Value(typeof(Object));
             o.set_object((Object)node);
@@ -1159,15 +1159,18 @@ typeof(Gdk.Pixbuf) }  );
             var clsb = clsname.split(".");
             var sub = clsb.length > 1 ? clsb[1].down()  : "";
             
-            var addi =  ic.load_icon("list-add", 16,0);
-            var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
             
-            pix = ic.load_icon("emblem-new", 16,0);
-            if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
-            	try { 
-                	pix = new Gdk.Pixbuf.from_file (fn);
-            	} catch (GLib.Error e) {}
-            }  
+            var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
+            try { 
+        		addi =  ic.load_icon("list-add", 16,0);
+        		if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
+        			
+        		    	pix = new Gdk.Pixbuf.from_file (fn);
+        			
+        		}  else {
+        		 	pix = ic.load_icon("emblem-new", 16,0);
+        	 	}
+         	} catch (GLib.Error e) {}
             
             var fqn = node.fqn();
             var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
