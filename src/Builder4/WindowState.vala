@@ -806,7 +806,11 @@ public class WindowState : Object
 				}
 				// normally we are going from preview to another state.
 				// and different windows hide the preview in differnt ways..
+				break;
 				
+			case State.CODEONLY:
+			case State.CODE:
+			case State.NONE:
 				break;
 				
 	 }
@@ -847,69 +851,7 @@ public class WindowState : Object
   
 
 	// -- buttons show hide.....
-
-	public void buttonsShowHide()
-	{
-		// basically hide everything, then show the relivant..
-
-		// top bar btns
-		//this.win.openbtn.el.hide();
-		//this.win.openbackbtn.el.hide();
-		
-		//this.win.backbutton.el.hide();
-		
-
-		 
-	 
-	
-	
-		 
-		switch (this.state) {
-			
-			case State.PREVIEW:  // this is the default state when working...
-			   
-				 
-				 
-				
-				 
-			 
-				
-			//	this.win.openbtn.el.show();
-				
-				break;
-			
-			case State.CODEONLY: 
-			//	this.win.openbtn.el.show();
-				 
-				break;
-		 
-			 
-		 /*
-			case State.FILES:
-				if (this.left_projects.getSelectedProject() != null ) {
-					if (this.left_tree.getActiveFile() != null) {
-					 
-						this.win.openbackbtn.el.show();
-					}
-					this.win.addfilebutton.el.show();
-					this.win.search_entry.el.show();
-					this.win.projecteditbutton.el.show(); 
-				} 
-				
-					 
-				this.win.addprojectbutton.el.show();
-				this.win.delprojectbutton.el.show();
-				
-				
-				
-				
-				break;
-				*/
-		}
-		
-		
-
-	}
+ 
 	
 	
 	public void showCompileResult(Json.Object obj)
