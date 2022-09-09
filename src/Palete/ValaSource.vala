@@ -336,8 +336,12 @@ namespace Palete {
 			}
 			OutputStream ostream = iostream.output_stream;
 			DataOutputStream dostream = new DataOutputStream (ostream);
-			dostream.put_string (contents);
-			
+			try {
+				dostream.put_string (contents);
+			} catch(GLib.Error e) {
+				GLib.debug("Failed to write to tempoary file %s", e.message);
+				return false;
+			}
 			var target = pr.firstBuildModule();
 			if (target.length < 1) {
 				return false;
