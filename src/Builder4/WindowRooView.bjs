@@ -1295,7 +1295,7 @@
              "    ",
              "  ",
              " \tif (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {",
-             "\t\tvar res = _this.search(this.el.text);",
+             "\t\t _this.search(this.el.text);",
              "\t\t _this.search_results.updateResults();",
              "",
              "\t\tGLib.Timeout.add_seconds(2,() => {",
