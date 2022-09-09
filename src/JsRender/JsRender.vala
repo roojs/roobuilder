@@ -287,7 +287,7 @@ namespace JsRender {
 		   ;
 		     
 		    
-		    print("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
+		    GLib.debug("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
 		    try {
 				this.writeFile(this.path, this.toJsonString());
 		         
