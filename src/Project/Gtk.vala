@@ -260,7 +260,7 @@ namespace Project
 			var allfiles = this.filesAll(in_path,abspath);
 			var ret =  new Gee.ArrayList<string>();
 			
-			var is_c = new Regex("\\.c$"));
+			var is_c = new Regex("\\.c$");
 			
 			for (var i = 0; i < allfiles.size; i ++) {
 				var fn = allfiles.get(i);
