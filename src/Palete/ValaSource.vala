@@ -468,10 +468,14 @@ namespace Palete {
 		    // should be home directory...
 		    
 		    
-		    
-            var exec = new Spawn(GLib.Environment.get_home_dir() , args);
-            exec.detach = true;
-		    exec.run(); 
+		    try {
+		        var exec = new Spawn(GLib.Environment.get_home_dir() , args);
+		        exec.detach = true;
+				exec.run(); 
+		    } catch(GLib.Error e) {
+				GLib.debug("Failed to spawn: %s", e.message);
+				return;
+			}
 			
 		}
 	}
