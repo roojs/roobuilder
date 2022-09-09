@@ -535,7 +535,7 @@ public class JsRender.NodeToVala : Object {
 				
 				this.addLine(this.ipad + "this.el = new " + this.node.fqn() + ".newv( " + args_str + " );");
 				return;
-				break;
+ 
 				
 			case "Gtk.LinkButton": // args filled with values.
 				if (this.node.has("label")) {
