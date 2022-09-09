@@ -90,7 +90,11 @@ namespace Palete {
 			var add_to =  new Gee.HashMap<string,Gee.ArrayList<string>>();
 				
 			var pa = new Json.Parser();
-			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/roodata.json");
+			try { 
+				pa.load_from_file(BuilderApplication.configDirectory() + "/resources/roodata.json");
+			} catch(GLib.Error e) {
+				GLib.error("Could not load %s",BuilderApplication.configDirectory() + "/resources/roodata.json");
+			}
 			var node = pa.get_root();
 
 			var clist =  node.get_object(); /// was in data... .get_object_member("data");
@@ -266,7 +270,7 @@ namespace Palete {
 				case JsRender.NodePropType.CTOR:
 					return ret;
 				default:
-					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + ptype.to_string());
+					GLib.error( "getPropertiesFor called with: " + ptype.to_string()); 
 					//var ret = new Gee.HashMap<string,GirObject>();
 					//return ret;
 			
