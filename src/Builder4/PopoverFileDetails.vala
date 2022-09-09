@@ -1342,13 +1342,13 @@ public class Xcls_PopoverFileDetails : Object
             	//}
             
             	if (!isNew) {
-            	    try {
+            	  //  try {
             	         _this.updateFileFromEntry();
-            	     } catch( JsRender.Error.RENAME_FILE_EXISTS er) {
-            	          Xcls_StandardErrorDialog.singleton().show(
-            	            _this.mainwindow.el,
-            	            "The name you used already exists "
-            	        );
+            	   //  } catch( JsRender.Error.RENAME_FILE_EXISTS er) {
+            	     //     Xcls_StandardErrorDialog.singleton().show(
+            	      //      _this.mainwindow.el,
+            	       //     "The name you used already exists "
+            	       // );
             	        return;
             	         
             	     }
