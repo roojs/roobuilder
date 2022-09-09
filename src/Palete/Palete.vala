@@ -110,11 +110,7 @@ namespace Palete
         
 
 
-        string  guessName(JsRender.Node ar) throws Error // turns the object into full name.
-        {
-            throw new Error.NEED_IMPLEMENTING("xxx. guessName needs implimenting");
-        }
-            
+       
 
             
          
@@ -211,13 +207,15 @@ namespace Palete
             // store it in user's directory..
             var appdir =  GLib.Environment.get_home_dir() + "/.Builder"; 
 
-			
-            if (!GLib.FileUtils.test(appdir+ "/" + gn, GLib.FileTest.IS_DIR)) {
-				GLib.File.new_for_path (appdir+ "/" + gn).make_directory ();
-				
-            }
-            GLib.FileUtils.set_contents(appdir+ "/" + gn + "/" +  name + ".json", data.toJsonString());
-            
+			try {
+		        if (!GLib.FileUtils.test(appdir+ "/" + gn, GLib.FileTest.IS_DIR)) {
+					GLib.File.new_for_path (appdir+ "/" + gn).make_directory ();
+					
+		        }
+		        GLib.FileUtils.set_contents(appdir+ "/" + gn + "/" +  name + ".json", data.toJsonString());
+	    	} catch (Error e) {
+	    		GLib.debug("Error : %s", e.message);
+    		}    
         }
 	
         /**
