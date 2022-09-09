@@ -654,7 +654,7 @@ public class JsRender.NodeToVala : Object {
 			var k = iter.get();
 			
 			var ar  = k.strip().split(" ");
-			var kname = ar[ar.length-1];
+ 
 			
 			var prop = this.node.props.get(k);
 			
