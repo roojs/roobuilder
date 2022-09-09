@@ -143,7 +143,7 @@ namespace Palete {
 
 		public static  Gee.HashMap<string,Gir> global_cache = null;
 		
-		public static Gir?  factory(Project.Project  project, string ns) 
+		public static Gir?  factory(Project.Project?  project, string ns) 
 		{
 			if (global_cache == null) {
 				global_cache = new Gee.HashMap<string,Gir>();
