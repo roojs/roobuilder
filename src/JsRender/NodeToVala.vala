@@ -406,7 +406,7 @@ public class JsRender.NodeToVala : Object {
 		
 		// .vala props.. 
 		
-		string[] cargs = {};
+ 
 		var cargs_str = "";
 		// ctor..
 		this.addLine();
