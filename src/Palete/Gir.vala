@@ -115,7 +115,7 @@ namespace Palete {
 					return;
 					//throw new GirError.INVALID_FORMAT ("Error loading gir.overides : Unexpected element type %s", node.type_name ());
 				}
-			} catch (Error e) {
+			} catch (GLib.Error e) {
 				return;
 			}
 			
