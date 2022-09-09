@@ -1349,9 +1349,9 @@ public class Xcls_PopoverFileDetails : Object
             	      //      _this.mainwindow.el,
             	       //     "The name you used already exists "
             	       // );
-            	        return;
+            	      //  return;
             	         
-            	     }
+            	     //}
             
             	      _this.done = true;
             	    _this.file.save();
