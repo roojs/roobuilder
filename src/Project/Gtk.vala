@@ -313,6 +313,15 @@ namespace Project
 			var ret =  new Gee.ArrayList<string>();
 			GLib.debug("SCAN %s - %d files",in_path, allfiles.size);
 			
+			Regex is_c, is_vala;
+			try {
+				is_c = new Regex("\\.c$");
+				is_vala = new Regex("\\.vala$");
+			} catch (RegexError e) {
+				GLib.error("Regex failed :%s", e.message);
+			}
+			
+			
 			for (var i = 0; i < allfiles.size; i ++) {
 				var fn = allfiles.get(i);
 				var bn  = GLib.Path.get_basename(fn);
@@ -360,7 +369,7 @@ namespace Project
 						continue;
 					}
 					if (Regex.match_simple("\\.vala$", fn)) {
-						var vv = (new Regex("\\.vala$")).replace( fn, fn.length, 0, ".bjs");
+						var vv = is_vala.replace( fn, fn.length, 0, ".bjs");
 						if (allfiles.index_of( vv) > -1) {
 							GLib.debug("SKIP %s - .vala (got bjs)",fn);
 							continue;
@@ -374,7 +383,7 @@ namespace Project
 					// not a c file...
 					if (Regex.match_simple("\\.c$", fn)) {
 						
-						var vv = (new Regex("\\.c$")).replace( fn, fn.length, 0, ".vala");
+						var vv = is_c.replace( fn, fn.length, 0, ".vala");
 						if (allfiles.index_of( vv) > -1) {
 							GLib.debug("SKIP %s - .c (got vala)",fn);
 							continue;
@@ -392,7 +401,7 @@ namespace Project
 					GLib.debug("ADD %s",fn);
 					// add the 'c' file..
 					ret.add(fn);
-				} catch (Error e) {
+				} catch (GLib.Error e) {
 					GLib.debug("Exception %s",e.message);
 					continue;
 				}
