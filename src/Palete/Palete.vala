@@ -265,7 +265,7 @@ namespace Palete
 				pa.load_from_file(path);
 			} catch(GLib.Error e) {
 							GLib.debug("Error : %s", e.message);
-				return "";
+				return null;
 			}
 			var node = pa.get_root();
 
