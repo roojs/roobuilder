@@ -1412,13 +1412,16 @@ public class Xcls_PopoverFileDetails : Object
             	    ); 
             	    return;
             	}
-               
-               var f =  JsRender.JsRender.factory(
-            		ext == "bjs" ? _this.file.project.xtype : "PlainFile",  
-            		_this.file.project, 
-            		targetfile + "." + ext);
-            
+               try {
+            	   var f =  JsRender.JsRender.factory(
+            			ext == "bjs" ? _this.file.project.xtype : "PlainFile",  
+            			_this.file.project, 
+            			targetfile + "." + ext);
+            	} catch (JsRender.Error e) {
+            		return;
+            	}
             	_this.file = f;
+            	
             	
             
             	
@@ -1426,9 +1429,9 @@ public class Xcls_PopoverFileDetails : Object
             	_this.file.loaded = true;
             	_this.file.save();
             	if (ext == "bjs") {
-            		try {
+            		
             			_this.file.project.addFile(_this.file);
-            		} catch (JsRender.Error e ) {}
+            		 
             	}
             	
              
