@@ -223,10 +223,7 @@ namespace JsRender {
 	    */
 	    
    
-	    string getHelpUrl(string cls)
-	    {
-	        return "http://devel.akbkhome.com/seed/" + cls + ".html";
-	    }
+	     
 	    public override void  findTransStrings(Node? node )
 		{
 			// not yet..
