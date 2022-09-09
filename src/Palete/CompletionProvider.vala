@@ -128,13 +128,13 @@ namespace Palete {
 		{
 			return -1;
 		}
-
-		public bool get_start_iter (SourceCompletionContext context, SourceCompletionProposal proposal, out TextIter? iter)
+/*
+		public bool get_start_iter (SourceCompletionContext context, SourceCompletionProposal proposal, out TextIter iter)
 		{
-			iter = null;
+			iter = new TextIter();
 			return false;
 		}
-
+*/
 		public void update_info (SourceCompletionProposal proposal, SourceCompletionInfo info)
 		{
 
