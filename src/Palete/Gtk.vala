@@ -306,7 +306,7 @@ namespace Palete {
 		
 		public void add_special_children(string parent, string child, string prop)
 		{
-			var cls = this.getClass(parent);
+			this.getClass(parent);
 			var cls_cn = this.getClass(child);
 			var localopts_r = new Gee.ArrayList<string>();
 			var localopts_l = new Gee.ArrayList<string>();
