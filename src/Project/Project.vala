@@ -358,7 +358,6 @@ namespace Project {
 		}
 
 		
-		
 		public string toJSON(bool show_all)
 		{
 			
