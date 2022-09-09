@@ -311,7 +311,7 @@ public class JsRender.NodeProp : Object {
 			case "float":
 			case "double":
 			default:
-				return this.val;
+				break;
 				
 			
 		
