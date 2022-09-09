@@ -71,7 +71,7 @@ namespace Palete {
 			}
 			
 			 
-			var hash = prop.ptype == JsRender.NodePropType.LISTENER ? node.listeners : node.props;
+			prop.ptype == JsRender.NodePropType.LISTENER ? node.listeners : node.props;
 			
 			// untill we get a smarter renderer..
 			// we have some scenarios where changing the value does not work
@@ -118,10 +118,15 @@ namespace Palete {
 				return false;
 			}
  
- 			
+ 			File tmpfile;
 			FileIOStream iostream;
-			var tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
-			tmpfile.ref();
+			try {
+				tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
+				tmpfile.ref(); // why??
+			} catch(e) {
+				GLib.debug("failed to create temporary file");
+				retur;
+			}
 
 			OutputStream ostream = iostream.output_stream;
 			DataOutputStream dostream = new DataOutputStream (ostream);
