@@ -118,13 +118,18 @@ namespace Project
 
 			 
 			var f = GLib.File.new_for_path(fn);
-			var data_out = new GLib.DataOutputStream(
-					f.replace(null, false, GLib.FileCreateFlags.NONE, null)
-			);
-			data_out.put_string(this.configToString(), null);
-			data_out.close(null);
+			try [
+				var data_out = new GLib.DataOutputStream(
+						f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+				);
+				data_out.put_string(this.configToString(), null);
+				data_out.close(null);
+			} catch (GLib.Error e) {
+				GLib.debug("Error writing config: %s", e.message);
+				return;
+			}
 			this.gir_cache_loaded = false; // force a reload.
-			return ;
+			
 			 
 		}
 		/**
