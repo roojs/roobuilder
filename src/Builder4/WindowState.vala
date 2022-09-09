@@ -816,7 +816,7 @@ public class WindowState : Object
 	 }
 			 
 		this.state = new_state;
-		this.buttonsShowHide();
+		 
 		
 		switch (this.state) {
 
