@@ -324,7 +324,7 @@ public class JsRender.NodeToGtk : Object {
 		    
 		var parent = this.parentObj.wrapped_object;
 		
-		var do_pack =true;
+ 
 
 		if (parent == null) { // no parent.. can not pack.
 			return; /// 
@@ -480,7 +480,7 @@ public class JsRender.NodeToGtk : Object {
 				Palete.Gir.checkParamOverride(mparams.get(i));
 				var k = mparams.get(i).name;
 
-				Value cur_val;
+ 
 				 
 				var type = mparams.get(i).type;
 				type = Palete.Gir.fqtypeLookup(this.project, type, ns);
