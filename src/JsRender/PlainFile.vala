@@ -32,7 +32,7 @@ namespace JsRender {
 				    var info = f.query_info ("standard::*", 0);
 				    var ct = info.get_content_type();
 			        this.content_type = ct;
-		        } catch (Error e) {}
+		        } catch (GLib.Error e) {}
 		       
             } else {
         		this.content_type = "text/plain"; // hopefully..
