@@ -39,20 +39,24 @@ public class ResourcesItem : Object {
 		}
 		uint8[] data;
 		uint8[] zero = { 0 };
-		GLib.FileUtils.get_data(tfn, out data);
-		
-		var  file = File.new_for_path (tfn);
-		 
-		var info = file.query_info(
-				 "standard::*",
-				FileQueryInfoFlags.NONE
-		);
-		var csdata = new GLib.ByteArray.take("blob %s".printf(info.get_size().to_string()).data);
-		csdata.append(zero);
-		csdata.append(data);
-		 
-		// git method... blob %d\0...string...
-		this.cur_sha = GLib.Checksum.compute_for_data(GLib.ChecksumType.SHA1, csdata.data 	);
+		try {
+			GLib.FileUtils.get_data(tfn, out data);
+			
+			var  file = File.new_for_path (tfn);
+			 
+			var info = file.query_info(
+					 "standard::*",
+					FileQueryInfoFlags.NONE
+			);
+			var csdata = new GLib.ByteArray.take("blob %s".printf(info.get_size().to_string()).data);
+			csdata.append(zero);
+			csdata.append(data);
+			 
+			// git method... blob %d\0...string...
+			this.cur_sha = GLib.Checksum.compute_for_data(GLib.ChecksumType.SHA1, csdata.data 	);
+		} catch (GLib.Error e) {
+			GLib.debug("Failed to update SHA: %s", e.message);
+		}
  	}
 	
 }
