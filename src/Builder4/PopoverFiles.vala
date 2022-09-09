@@ -348,17 +348,12 @@ public class Xcls_PopoverFiles : Object
             m.set(iter,   2,file.nickType() ); // file type?
             
            
+     
+    	    
+    	    pixbuf = file.getIcon(92);
+    		bigpixbuf = file.getIcon(368);
     
-            try {
-    		    
-    		    pixbuf = file.getIcon(92);
-    			bigpixbuf = file.getIcon(368);
-    
-    		} catch (Error e) {
-    		    // noop
-    		
-    		} 
-            
+    		 
              
             if (pixbuf == null) {
             	GLib.debug("PIXBUF is null? %s", file.name);
