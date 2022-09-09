@@ -190,8 +190,10 @@ namespace JsRender {
 				return;
 			}
 			var fn = this.targetName();
-			print("WRITE :%s\n " , fn);
-			this.writeFile(fn,  NodeToVala.mungeFile(this));
+			GLib.debug("WRITE :%s\n " , fn);
+			try {
+				this.writeFile(fn,  NodeToVala.mungeFile(this));
+	        } catch (GLib.IOError e) {}
 	        
 	        
 	    }
