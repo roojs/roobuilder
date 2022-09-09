@@ -118,7 +118,7 @@ namespace Project
 
 			 
 			var f = GLib.File.new_for_path(fn);
-			try [
+			try {
 				var data_out = new GLib.DataOutputStream(
 						f.replace(null, false, GLib.FileCreateFlags.NONE, null)
 				);
