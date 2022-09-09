@@ -196,7 +196,7 @@ namespace Project {
 		
 		
 		
-		public static Project getProjectByHash(string fn)
+		public static Project? getProjectByHash(string fn)
 		{
 			
 			var iter = projects.map_iterator();
