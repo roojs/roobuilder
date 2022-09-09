@@ -248,7 +248,7 @@ namespace Project
 	    			
 				}
 				
-			} catch(Error e) {
+			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}	
 			
@@ -260,6 +260,7 @@ namespace Project
 			var allfiles = this.filesAll(in_path,abspath);
 			var ret =  new Gee.ArrayList<string>();
 			
+			var is_c = new Regex("\\.c$"));
 			
 			for (var i = 0; i < allfiles.size; i ++) {
 				var fn = allfiles.get(i);
@@ -280,9 +281,10 @@ namespace Project
 					// is the c file the same as a vala file...
 					
 					 
+				 
+					var vv = is_c.replace( fn, fn.length, 0, ".vala");
 					
-					var vv = (new Regex("\\.c$")).replace( fn, fn.length, 0, ".vala");
-				
+						
 				 	
 						
 					if (allfiles.index_of( vv) > -1) {
