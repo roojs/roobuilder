@@ -1426,7 +1426,9 @@ public class Xcls_PopoverFileDetails : Object
             	_this.file.loaded = true;
             	_this.file.save();
             	if (ext == "bjs") {
-            		_this.file.project.addFile(_this.file);
+            		try {
+            			_this.file.project.addFile(_this.file);
+            		} catch (JsRender.Error e ) {}
             	}
             	
              
