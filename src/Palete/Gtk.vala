@@ -516,7 +516,7 @@ namespace Palete {
 		}
 
 
-		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, JsRender.NodePropType ptype)  throws Error.INVALID_VALUE 
+		public override Gee.HashMap<string,GirObject> getPropertiesFor( string ename, JsRender.NodePropType ptype) 
 		{
 			//print("Loading for " + ename);
 		    
@@ -559,7 +559,7 @@ namespace Palete {
 				case JsRender.NodePropType.CTOR:  // needed to query the arguments of a ctor.
 					return cls.ctors;
 				default:
-					throw new Error.INVALID_VALUE( "getPropertiesFor called with: " + ptype.to_string());
+					GLib.error( "getPropertiesFor called with: " + ptype.to_string());
 					//var ret = new Gee.HashMap<string,GirObject>();
 					//return ret;
 				
@@ -920,7 +920,7 @@ namespace Palete {
 					}
 					ret.add(Path.get_basename(fn).replace(".vapi", ""));
 				}       
-   			} catch(Error e) {
+   			} catch(GLib.Error e) {
 				print("oops - something went wrong scanning the packages\n");
 			}
 			return ret;
