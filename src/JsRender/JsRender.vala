@@ -225,10 +225,16 @@ namespace JsRender {
 		
 		public void writeIcon(Gdk.Pixbuf pixbuf) {
 			
-			pixbuf.save(this.getIconFileName( ),"png");
-			this.screenshot = pixbuf;
 			this.screenshot92 = null;
 			this.screenshot368 = null;
+			this.screenshot = null;
+			try {
+				pixbuf.save(this.getIconFileName( ),"png");
+				this.screenshot = pixbuf;
+			
+			} catch (Error e) {}
+				
+			 
 			
 		
 		}
