@@ -110,11 +110,7 @@ namespace Palete
         
 
 
-        string  guessName(JsRender.Node ar) throws Error // turns the object into full name.
-        {
-            throw new Error.NEED_IMPLEMENTING("xxx. guessName needs implimenting");
-        }
-            
+       
 
             
          
@@ -211,13 +207,15 @@ namespace Palete
             // store it in user's directory..
             var appdir =  GLib.Environment.get_home_dir() + "/.Builder"; 
 
-			
-            if (!GLib.FileUtils.test(appdir+ "/" + gn, GLib.FileTest.IS_DIR)) {
-				GLib.File.new_for_path (appdir+ "/" + gn).make_directory ();
-				
-            }
-            GLib.FileUtils.set_contents(appdir+ "/" + gn + "/" +  name + ".json", data.toJsonString());
-            
+			try {
+		        if (!GLib.FileUtils.test(appdir+ "/" + gn, GLib.FileTest.IS_DIR)) {
+					GLib.File.new_for_path (appdir+ "/" + gn).make_directory ();
+					
+		        }
+		        GLib.FileUtils.set_contents(appdir+ "/" + gn + "/" +  name + ".json", data.toJsonString());
+	    	} catch (GLib.Error e) {
+	    		GLib.debug("Error : %s", e.message);
+    		}    
         }
 	
         /**
@@ -241,7 +239,7 @@ namespace Palete
 
 			            
 			var f = File.new_for_path(dir);
-			
+			try {
 				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
 				 
 				FileInfo next_file; 
@@ -252,6 +250,9 @@ namespace Palete
 					}
 					ret.append( dir + "/" + n);
 				}
+			} catch (GLib.Error e) {
+				GLib.debug("Error : %s", e.message);
+    		}   
 				return ret;
             
 		}
@@ -260,7 +261,12 @@ namespace Palete
         {
 
 			var pa = new Json.Parser();
-			pa.load_from_file(path);
+			try {
+				pa.load_from_file(path);
+			} catch(GLib.Error e) {
+							GLib.debug("Error : %s", e.message);
+				return null;
+			}
 			var node = pa.get_root();
 
 			if (node.get_node_type () != Json.NodeType.OBJECT) {
@@ -287,10 +293,14 @@ namespace Palete
 		 		print("Palete Load called\n");
 			string raw;
 			if (!FileUtils.test (fname, FileTest.EXISTS)) {
-				throw new Error.MISSING_FILE(fname + " not found");
+				GLib.error("Missing File: %s", fname);
+				; 
 			}
-	
-			FileUtils.get_contents(fname, out raw);
+			try {
+				FileUtils.get_contents(fname, out raw);
+			} catch (GLib.Error e) {
+				GLib.error("Error %s", e.message);
+			}
 	  	      // print(data);
 			var data  = raw.split("\n");
 			var state = 0;

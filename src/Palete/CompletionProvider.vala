@@ -128,12 +128,13 @@ namespace Palete {
 		{
 			return -1;
 		}
-
+/*
 		public bool get_start_iter (SourceCompletionContext context, SourceCompletionProposal proposal, out TextIter iter)
 		{
+			iter = new TextIter();
 			return false;
 		}
-
+*/
 		public void update_info (SourceCompletionProposal proposal, SourceCompletionInfo info)
 		{
 
@@ -143,20 +144,7 @@ namespace Palete {
 			return space.isspace() || space.to_string() == "";
 		}
 		
-		private bool is_forward_space(unichar space){
-			return !(
-				space.to_string() == " "
-				||
-				space.to_string() == ""
-				||
-				space.to_string() == "\n"
-				||
-				space.to_string() == ")"
-				||
-				space.to_string() == "("
-				
-			);
-		}
+		 
 	}
 
 

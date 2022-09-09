@@ -190,8 +190,10 @@ namespace JsRender {
 				return;
 			}
 			var fn = this.targetName();
-			print("WRITE :%s\n " , fn);
-			this.writeFile(fn,  NodeToVala.mungeFile(this));
+			GLib.debug("WRITE :%s\n " , fn);
+			try {
+				this.writeFile(fn,  NodeToVala.mungeFile(this));
+	        } catch (GLib.Error e) {}
 	        
 	        
 	    }
@@ -221,10 +223,7 @@ namespace JsRender {
 	    */
 	    
    
-	    string getHelpUrl(string cls)
-	    {
-	        return "http://devel.akbkhome.com/seed/" + cls + ".html";
-	    }
+	     
 	    public override void  findTransStrings(Node? node )
 		{
 			// not yet..

@@ -565,7 +565,12 @@ namespace Palete {
 				}
 			}
 			string  ostr;
-			FileUtils.get_contents(fn, out ostr);
+			try {
+				FileUtils.get_contents(fn, out ostr);
+			} catch (GLib.Error e) {
+				GLib.debug("failed loading deps %s", e.message);
+				return {};
+			}
 			return ostr.split("\n");
 			
 			
@@ -699,9 +704,9 @@ namespace Palete {
 			if (context.report.get_errors () > 0) {
 				GLib.error("failed check VAPIS, so we can not write file correctly");
 				// throw new VapiParserError.PARSE_FAILED("failed check VAPIS, so we can not write file correctly");
-				Vala.CodeContext.pop ();
+				//Vala.CodeContext.pop ();
 				 
-				return;
+				//return;
 				
 			}
 			 

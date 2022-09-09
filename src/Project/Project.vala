@@ -102,8 +102,12 @@ namespace Project {
 
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			var dir = File.new_for_path(dirname);
-				if (!dir.query_exists()) {
-				dir.make_directory();
+			if (!dir.query_exists()) {
+				try {
+					dir.make_directory();
+				} catch(GLib.Error e) {
+					GLib.error("could not make builder directory");
+				}
 				return;
 			}
 			projects = new  Gee.HashMap<string,Project>();
@@ -125,7 +129,7 @@ namespace Project {
 					}
 					factoryFromFile(dirname + "/" + fn);
 				}       
-			} catch(Error e) {
+			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}
 			
@@ -144,7 +148,7 @@ namespace Project {
 		
 		}
 		
-		public static Project getProject(string name)
+		public static Project? getProject(string name)
 		{
 			
 			var iter = projects.map_iterator();
@@ -192,7 +196,7 @@ namespace Project {
 		
 		
 		
-		public static Project getProjectByHash(string fn)
+		public static Project? getProjectByHash(string fn)
 		{
 			
 			var iter = projects.map_iterator();
@@ -214,7 +218,11 @@ namespace Project {
 			GLib.debug("parse %s", jsonfile);
 
 			var pa = new Json.Parser();
-			pa.load_from_file(jsonfile);
+			try { 
+				pa.load_from_file(jsonfile);
+			} catch (GLib.Error e) {
+				GLib.error("could not load json file %s", e.message);
+			}
 			var node = pa.get_root();
 
 			
@@ -336,17 +344,19 @@ namespace Project {
 				//var str = "%l:%l".printf(tv.tv_sec,tv.tv_usec);
 				var str = this.firstPath();
 				
-					this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, str, str.length);
+				this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, str, str.length);
 			}
 
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			var  s =  this.toJSON(false);
-			FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
-			
+			try {
+				FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
+			} catch (GLib.Error e) {
+				GLib.error("failed  to save file %s", e.message);
+			}
 			
 		}
 
-		
 		
 		public string toJSON(bool show_all)
 		{
@@ -523,17 +533,25 @@ namespace Project {
 
 		public JsRender.JsRender newFile (string name)
 		{
-			var ret =  JsRender.JsRender.factory(this.xtype, 
+			try {
+				var ret =  JsRender.JsRender.factory(this.xtype, 
 											 this, 
 											 this.firstPath() + "/" + name + ".bjs");
-			this.addFile(ret);
-			return ret;
+				this.addFile(ret);
+				return ret;
+			} catch (JsRender.Error e) {
+				GLib.error("failed to create file %s", e.message);
+			}
 		}
 		
 		public JsRender.JsRender loadFileOnly (string path)
 		{
 			var xt = this.xtype;
-			return JsRender.JsRender.factory(xt, this, path);
+			try {
+				return JsRender.JsRender.factory(xt, this, path);
+			} catch (JsRender.Error e) {
+				GLib.error("failed to create file %s", e.message);
+			} 
 			
 		} 
 		

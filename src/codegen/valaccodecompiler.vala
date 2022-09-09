@@ -97,15 +97,16 @@ public class Vala.CCodeCompiler {
 			stdout.printf ("%s\n", cmdline);
 		}
 
+		int exit_status = 0;
 		try {
-			int exit_status;
 			Process.spawn_command_line_sync (cmdline, null, null, out exit_status);
-			if (exit_status != 0) {
-				Report.error (null, "cc exited with status %d", exit_status);
-			}
-		} catch (SpawnError e) {
+		} catch (Error e) {
 			Report.error (null, e.message);
 		}
+		if (exit_status != 0) {
+				Report.error (null, "cc exited with status %d", exit_status);
+			}
+		
 
 		/* remove generated C source and header files */
 		if (!context.save_csources) {

@@ -189,7 +189,9 @@ namespace JsRender {
 			switch (size) {
 				case 0:
 					if (this.screenshot == null) {
-						this.screenshot = new Gdk.Pixbuf.from_file(fname);
+						try { 
+							this.screenshot = new Gdk.Pixbuf.from_file(fname);
+						} catch (GLib.Error e) {}
 					}
 					return this.screenshot;
 				
@@ -223,10 +225,16 @@ namespace JsRender {
 		
 		public void writeIcon(Gdk.Pixbuf pixbuf) {
 			
-			pixbuf.save(this.getIconFileName( ),"png");
-			this.screenshot = pixbuf;
 			this.screenshot92 = null;
 			this.screenshot368 = null;
+			this.screenshot = null;
+			try {
+				pixbuf.save(this.getIconFileName( ),"png");
+				this.screenshot = pixbuf;
+			
+			} catch (GLib.Error e) {}
+				
+			 
 			
 		
 		}
@@ -279,11 +287,11 @@ namespace JsRender {
 		   ;
 		     
 		    
-		    print("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
+		    GLib.debug("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
 		    try {
 				this.writeFile(this.path, this.toJsonString());
 		         
-		    } catch(Error e) {
+		    } catch(GLib.Error e) {
 		        print("Save failed");
 		    }
 		}

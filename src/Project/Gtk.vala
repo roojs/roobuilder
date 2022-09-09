@@ -118,13 +118,18 @@ namespace Project
 
 			 
 			var f = GLib.File.new_for_path(fn);
-			var data_out = new GLib.DataOutputStream(
-					f.replace(null, false, GLib.FileCreateFlags.NONE, null)
-			);
-			data_out.put_string(this.configToString(), null);
-			data_out.close(null);
+			try {
+				var data_out = new GLib.DataOutputStream(
+						f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+				);
+				data_out.put_string(this.configToString(), null);
+				data_out.close(null);
+			} catch (GLib.Error e) {
+				GLib.debug("Error writing config: %s", e.message);
+				return;
+			}
 			this.gir_cache_loaded = false; // force a reload.
-			return ;
+			
 			 
 		}
 		/**
@@ -177,7 +182,7 @@ namespace Project
 					return prefix + target.substring(bb.length );
 				}
 				if (bb.length < 1) {
-					throw new Error.INVALID_FORMAT ("Could not work out relative path %s to %s",
+					GLib.error("Could not work out relative path %s to %s",
 					                                basename, target);
 				}
 				bb = GLib.Path.get_dirname(bb);
@@ -243,7 +248,7 @@ namespace Project
 	    			
 				}
 				
-			} catch(Error e) {
+			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}	
 			
@@ -254,8 +259,12 @@ namespace Project
 		{
 			var allfiles = this.filesAll(in_path,abspath);
 			var ret =  new Gee.ArrayList<string>();
-			
-			
+			Regex is_c;
+			try {
+				is_c = new Regex("\\.c$");
+			} catch (RegexError e) {
+				GLib.error("Regex failed :%s", e.message);
+			}
 			for (var i = 0; i < allfiles.size; i ++) {
 				var fn = allfiles.get(i);
 				try {
@@ -275,9 +284,10 @@ namespace Project
 					// is the c file the same as a vala file...
 					
 					 
+				 
+					var vv = is_c.replace( fn, fn.length, 0, ".vala");
 					
-					var vv = (new Regex("\\.c$")).replace( fn, fn.length, 0, ".vala");
-				
+						
 				 	
 						
 					if (allfiles.index_of( vv) > -1) {
@@ -285,7 +295,7 @@ namespace Project
 					}
 					// add the 'c' file..
 					ret.add(fn);
-				} catch (Error e) {
+				} catch (GLib.Error e) {
 					continue;
 				}
 			}
@@ -302,6 +312,15 @@ namespace Project
 			var allfiles = this.filesAll(in_path);
 			var ret =  new Gee.ArrayList<string>();
 			GLib.debug("SCAN %s - %d files",in_path, allfiles.size);
+			
+			Regex is_c, is_vala;
+			try {
+				is_c = new Regex("\\.c$");
+				is_vala = new Regex("\\.vala$");
+			} catch (RegexError e) {
+				GLib.error("Regex failed :%s", e.message);
+			}
+			
 			
 			for (var i = 0; i < allfiles.size; i ++) {
 				var fn = allfiles.get(i);
@@ -350,7 +369,7 @@ namespace Project
 						continue;
 					}
 					if (Regex.match_simple("\\.vala$", fn)) {
-						var vv = (new Regex("\\.vala$")).replace( fn, fn.length, 0, ".bjs");
+						var vv = is_vala.replace( fn, fn.length, 0, ".bjs");
 						if (allfiles.index_of( vv) > -1) {
 							GLib.debug("SKIP %s - .vala (got bjs)",fn);
 							continue;
@@ -364,7 +383,7 @@ namespace Project
 					// not a c file...
 					if (Regex.match_simple("\\.c$", fn)) {
 						
-						var vv = (new Regex("\\.c$")).replace( fn, fn.length, 0, ".vala");
+						var vv = is_c.replace( fn, fn.length, 0, ".vala");
 						if (allfiles.index_of( vv) > -1) {
 							GLib.debug("SKIP %s - .c (got vala)",fn);
 							continue;
@@ -382,7 +401,7 @@ namespace Project
 					GLib.debug("ADD %s",fn);
 					// add the 'c' file..
 					ret.add(fn);
-				} catch (Error e) {
+				} catch (GLib.Error e) {
 					GLib.debug("Exception %s",e.message);
 					continue;
 				}

@@ -39,20 +39,24 @@ public class ResourcesItem : Object {
 		}
 		uint8[] data;
 		uint8[] zero = { 0 };
-		GLib.FileUtils.get_data(tfn, out data);
-		
-		var  file = File.new_for_path (tfn);
-		 
-		var info = file.query_info(
-				 "standard::*",
-				FileQueryInfoFlags.NONE
-		);
-		var csdata = new GLib.ByteArray.take("blob %s".printf(info.get_size().to_string()).data);
-		csdata.append(zero);
-		csdata.append(data);
-		 
-		// git method... blob %d\0...string...
-		this.cur_sha = GLib.Checksum.compute_for_data(GLib.ChecksumType.SHA1, csdata.data 	);
+		try {
+			GLib.FileUtils.get_data(tfn, out data);
+			
+			var  file = File.new_for_path (tfn);
+			 
+			var info = file.query_info(
+					 "standard::*",
+					FileQueryInfoFlags.NONE
+			);
+			var csdata = new GLib.ByteArray.take("blob %s".printf(info.get_size().to_string()).data);
+			csdata.append(zero);
+			csdata.append(data);
+			 
+			// git method... blob %d\0...string...
+			this.cur_sha = GLib.Checksum.compute_for_data(GLib.ChecksumType.SHA1, csdata.data 	);
+		} catch (GLib.Error e) {
+			GLib.debug("Failed to update SHA: %s", e.message);
+		}
  	}
 	
 }
@@ -192,9 +196,14 @@ public class Resources : Object
 		 
 	public void parseDirectory(string json, string target)
 	{
-		print("%s\n", json);
+		GLib.debug("%s\n", json);
 		var pa = new Json.Parser();
-		pa.load_from_data(json);
+		try {
+			pa.load_from_data(json);
+		} catch (GLib.Error e) {
+			GLib.debug("Faile dto load json file %s", e.message);
+			return;
+		}
 		var node = pa.get_root();
 		if (node.get_node_type () != Json.NodeType.ARRAY) {
 			return;
@@ -270,15 +279,22 @@ public class Resources : Object
 			// create parent directory if needed
 			if (!GLib.FileUtils.test (GLib.Path.get_dirname(tfn), FileTest.IS_DIR)) {
 				var f =  GLib.File.new_for_path(GLib.Path.get_dirname(tfn));
-				f.make_directory_with_parents ();
+				try {
+					f.make_directory_with_parents ();
+				} catch(GLib.Error e) {
+					GLib.error("Problem creating directory %s", e.message);
+				}
 			}
 			
 			
 			
 			
 			// set data??? - if it's binary?
-            FileUtils.set_contents(  tfn, (string) message.response_body.data );
-            
+			try {
+           		 FileUtils.set_contents(  tfn, (string) message.response_body.data );
+            } catch(GLib.Error e) {
+					GLib.error("Problem writing data %s", e.message);
+				}
             switch (item.target) {
 				case "Gir.overides":
 					// clear all the project caches....

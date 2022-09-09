@@ -160,7 +160,7 @@ public class Xcls_PopoverFiles : Object
         // min 450?
     	// max hieght ...
     	
-    	var  ww =  on_el.get_allocated_width();
+    	//var  ww =  on_el.get_allocated_width();
     	
     	// width = should be max = w-ww , or 600 at best..?
     	 
@@ -348,17 +348,12 @@ public class Xcls_PopoverFiles : Object
             m.set(iter,   2,file.nickType() ); // file type?
             
            
+     
+    	    
+    	    pixbuf = file.getIcon(92);
+    		bigpixbuf = file.getIcon(368);
     
-            try {
-    		    
-    		    pixbuf = file.getIcon(92);
-    			bigpixbuf = file.getIcon(368);
-    
-    		} catch (Error e) {
-    		    // noop
-    		
-    		} 
-            
+    		 
              
             if (pixbuf == null) {
             	GLib.debug("PIXBUF is null? %s", file.name);
@@ -628,10 +623,10 @@ public class Xcls_PopoverFiles : Object
                 if (_this.selectedProject == null) {
                 	return;
                 }
-                
-                var f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, "");
-                 _this.win.windowstate.file_details.show( f, this.el, _this.new_window );
-                 
+                try {
+                	var f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, "");
+                 	_this.win.windowstate.file_details.show( f, this.el, _this.new_window );
+                 } catch (JsRender.Error e) {}
             
             });
         }
@@ -1047,7 +1042,7 @@ public class Xcls_PopoverFiles : Object
             
             	Gtk.TreePath path;
             	Gtk.CellRenderer cell;
-            	var s = _this.iconview.el.get_item_at_pos(x,y + (int) _this.iconscroll.el.vadjustment.value, out path, out cell);
+            	_this.iconview.el.get_item_at_pos(x,y + (int) _this.iconscroll.el.vadjustment.value, out path, out cell);
             	
             	
                // GLib.debug("Tooltip? %d,%d scroll: %d",x,y, (int)_this.iconscroll.el.vadjustment.value);
@@ -1185,12 +1180,10 @@ public class Xcls_PopoverFiles : Object
             	}
                 _this.win.windowstate.project = _this.selectedProject;
                  _this.el.hide();
-                
-                var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
-               
-               
-                _this.win.windowstate.fileViewOpen(f, _this.new_window);
-               
+                try {
+            		var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
+            		_this.win.windowstate.fileViewOpen(f, _this.new_window);
+            	} catch (JsRender.Error e) {}   
                 
             });
             this.el.cursor_changed.connect( () => {

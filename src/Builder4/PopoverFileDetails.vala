@@ -167,7 +167,9 @@ public class Xcls_PopoverFileDetails : Object
             _this.file.modOrder = _this.modOrder.el.get_text();
             
             if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {
-                _this.file.renameTo(_this.name.el.get_text());
+                try {
+                	_this.file.renameTo(_this.name.el.get_text());
+            	} catch (JsRender.Error e) { } // do nothing?
             }
             // store the module...
             _this.file.build_module = "";        
@@ -1340,16 +1342,16 @@ public class Xcls_PopoverFileDetails : Object
             	//}
             
             	if (!isNew) {
-            	    try {
+            	  //  try {
             	         _this.updateFileFromEntry();
-            	     } catch( JsRender.Error.RENAME_FILE_EXISTS er) {
-            	          Xcls_StandardErrorDialog.singleton().show(
-            	            _this.mainwindow.el,
-            	            "The name you used already exists "
-            	        );
-            	        return;
+            	   //  } catch( JsRender.Error.RENAME_FILE_EXISTS er) {
+            	     //     Xcls_StandardErrorDialog.singleton().show(
+            	      //      _this.mainwindow.el,
+            	       //     "The name you used already exists "
+            	       // );
+            	      //  return;
             	         
-            	     }
+            	     //}
             
             	      _this.done = true;
             	    _this.file.save();
@@ -1398,10 +1400,11 @@ public class Xcls_PopoverFileDetails : Object
             	
             	// strip the file type off the end..
             	
-            	
-                var rx = new GLib.Regex("\\." + ext + "$",GLib.RegexCompileFlags.CASELESS);
-                targetfile = rx.replace(targetfile, targetfile.length, 0, ""); 
-               
+            	try {
+            		var rx = new GLib.Regex("\\." + ext + "$",GLib.RegexCompileFlags.CASELESS);
+            		targetfile = rx.replace(targetfile, targetfile.length, 0, ""); 
+            	  } catch (RegexError e) {} // ignore.
+            	  
             	if (GLib.FileUtils.test(targetfile + "." + ext, GLib.FileTest.EXISTS)) {
             	    Xcls_StandardErrorDialog.singleton().show(
             	        _this.mainwindow.el,
@@ -1409,13 +1412,17 @@ public class Xcls_PopoverFileDetails : Object
             	    ); 
             	    return;
             	}
-               
-               var f =  JsRender.JsRender.factory(
-            		ext == "bjs" ? _this.file.project.xtype : "PlainFile",  
-            		_this.file.project, 
-            		targetfile + "." + ext);
-            
+            	JsRender.JsRender f;
+               try {
+            	   f =  JsRender.JsRender.factory(
+            			ext == "bjs" ? _this.file.project.xtype : "PlainFile",  
+            			_this.file.project, 
+            			targetfile + "." + ext);
+            	} catch (JsRender.Error e) {
+            		return;
+            	}
             	_this.file = f;
+            	
             	
             
             	
@@ -1423,7 +1430,9 @@ public class Xcls_PopoverFileDetails : Object
             	_this.file.loaded = true;
             	_this.file.save();
             	if (ext == "bjs") {
-            		_this.file.project.addFile(_this.file);
+            		
+            			_this.file.project.addFile(_this.file);
+            		 
             	}
             	
              

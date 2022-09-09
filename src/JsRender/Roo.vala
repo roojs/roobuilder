@@ -18,7 +18,7 @@ namespace JsRender {
    
     class Roo : JsRender 
     {
-        string region;
+         
         bool disabled;
 
  
@@ -176,7 +176,7 @@ namespace JsRender {
 			//print("TO SOURCE in " + ((new Date()) - d) + "ms");
 			try {
 				this.writeFile(js, js_src);            
-			} catch (FileError e ) {
+			} catch (GLib.Error e ) {
 				print("Save failed\n");
 			}
 			// for bootstrap - we can write the HTML to the templates directory..
@@ -233,7 +233,7 @@ namespace JsRender {
 	   print("SAVE HTML (%d) -- %s\n",html.length, targetdir + "/" +  bn);
 		try {
 			this.writeFile(targetdir + "/" +  bn , html);            
-		} catch (FileError e ) {
+		} catch (GLib.Error e ) {
 			print("SaveHtml failed\n");
 		}
             
@@ -400,14 +400,15 @@ namespace JsRender {
 						print("Failed to find file by name?\n");
 						continue;
 					}
-
-					sf.loadItems();
-					sf.findTransStrings(sf.tree);
-					var xinc_str = sf.toSource();
-					
-					//string xinc_str;
-					//FileUtils.get_contents(js, out xinc_str);
-					prefix_data += "\n" + xinc_str + "\n";
+					try {
+						sf.loadItems();
+						sf.findTransStrings(sf.tree);
+						var xinc_str = sf.toSource();
+						
+						//string xinc_str;
+						//FileUtils.get_contents(js, out xinc_str);
+						prefix_data += "\n" + xinc_str + "\n";
+					} catch (GLib.Error e) {}
 					
 				}
 
@@ -782,46 +783,7 @@ namespace JsRender {
               
         }
             
-        public new string? guessName (Node? ar) // turns the object into full name.
-        {
-             // eg. xns: Roo, xtype: XXX -> Roo.xxx
-            if (ar == null) {
-                return null;
-            }
-            
-            string[] ret = {} ;
-            ret += (ar.get("|xns").length < 1 ? "Roo": ar.get("|xns"));
-             
-            
-            if ( ar.get("xtype").length < 1) {
-                return null;
-            }
-                    
-            var xtype = ar.get("xtype");
-
-            if (xtype[0] == '*') { // prefixes????
-                xtype  = xtype.substring(1);
-            }
-            if (! Regex.match_simple("^Roo", xtype)) {
-                
-                // already starts with roo...
-                ret = {};
-            }
-            ret += xtype;
-            var str =  string.joinv(".", ret);
-            
-            return str;
-           // 
-            //Palete.Palete.factory("Roo").guessName(str);
-            
-                            
-                                 
-        }
         
-        string getHelpUrl(string cls)
-        {
-            return "http://www.roojs.com/roojs1/docs/symbols/" + cls + ".html";
-        }
 		 public override string toGlade() 
 		{
 			return "Roo files do not convert to glade";

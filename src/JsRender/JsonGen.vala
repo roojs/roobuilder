@@ -108,7 +108,7 @@ namespace JsRender {
 		  var array_len = array.get_length();
 		  
 		  var pretty = this.pretty;
-		  var  indent = this.indent;
+ 
 
 		  buffer.append_c( '[');
 
@@ -150,7 +150,7 @@ namespace JsRender {
 
 
 		  var  pretty = this.pretty;
-		  var  indent = this.indent;
+
 
 
 		  buffer.append_c('{');

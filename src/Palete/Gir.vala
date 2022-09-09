@@ -87,6 +87,7 @@ namespace Palete {
 		{
 			// overrides should be in a file Gir.overides
 			// in that "Gtk.Label.new.str" : "label"
+			
 			loadOverrides();
 			var key = "%s.%s.%s".printf(cls,method,param);
 			 //print("Chekcing for key %s\n", key);
@@ -98,19 +99,26 @@ namespace Palete {
 
 		}
 		 
-		public static void loadOverrides(bool force = false)
+		public static void loadOverrides(bool force = false) 
 		{
 			if (overrides_loaded && ! force) {
 				return;
 			}
-		
+			Json.Node node = null;
 			var pa = new Json.Parser();
-			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/Gir.overides");
-			var node = pa.get_root();
-		    
-			if (node.get_node_type () != Json.NodeType.OBJECT) {
-				throw new GirError.INVALID_FORMAT ("Error loading gir.overides : Unexpected element type %s", node.type_name ());
+			try {
+				pa.load_from_file(BuilderApplication.configDirectory() + "/resources/Gir.overides");
+				node = pa.get_root();
+				if (node.get_node_type () != Json.NodeType.OBJECT) {
+					GLib.debug("Error loading gir.overides : Unexpected element type %s", node.type_name ());
+					
+					return;
+					//throw new GirError.INVALID_FORMAT ("Error loading gir.overides : Unexpected element type %s", node.type_name ());
+				}
+			} catch (GLib.Error e) {
+				return;
 			}
+			
 			overrides = new Gee.HashMap<string,string>();
 		
 		
@@ -135,7 +143,7 @@ namespace Palete {
 
 		public static  Gee.HashMap<string,Gir> global_cache = null;
 		
-		public static Gir?  factory(Project.Project  project, string ns) 
+		public static Gir?  factory(Project.Project?  project, string ns) 
 		{
 			if (global_cache == null) {
 				global_cache = new Gee.HashMap<string,Gir>();

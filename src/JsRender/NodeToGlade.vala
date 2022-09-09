@@ -90,51 +90,9 @@ public class JsRender.NodeToGlade : Object {
 		}
 		var cls = this.node.fqn().replace(".", "");
 		
-		var girdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
+		Palete.Gir.factoryFqn(this.project, this.node.fqn());
 		
-		
-		
-		/// check if it's a GtkWidget?
-		// maybe not?
-		// how are models handled?
-		
-		
-		//var b = new global::Gtk.Builder();
-
-		// this might be needed if we are using non-Gtk elements?
-		//var gtype = b.get_type_from_name(cls);
-		//GLib.debug ("Type: %s ?= %s\n", this.node.fqn(), gtype.name());
-
-		
-		/*
-		var ns = this.node.fqn().split(".")[0];
-		if (ns == "Clutter") {
-			return "";
-		}
-		//if (ns == "GtkClutter") {
-		//	return "";
-		//}
-		if (ns == "WebKit") {
-			return "";
-		}
-		*/
-		/*
-		
-		switch(cls) {
-			// things we can not do yet...
-			
-			//case "GtkView": // SourceView?
-			case "GtkTreeStore": // top level.. - named and referenced
-			case "GtkListStore": // top level.. - named and referenced
-			case "GtkTreeViewColumn": // part of liststore?!?!
-			case "GtkMenu": // top level..
-			case "GtkCellRendererText":
-			case "GtkSourceBuffer":				
-			case "GtkClutterActor"://fixme..
-			///case "GtkClutterEmbed"://fixme..
-				return "";
-		}
-		*/
+	 
 		
 		// should really use GXml... 
 		var obj = this.create_element("object");

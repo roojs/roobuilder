@@ -246,6 +246,7 @@ public class JsRender.Node : Object {
 	
 	public bool getPropertyRange(string prop, out int start, out int end)
 	{
+		end = 0;
 		start = -1;
 		foreach(int el in this.lines) {
 			if (start < 0) {
@@ -725,7 +726,7 @@ public class JsRender.Node : Object {
 		var funcs = "";
 		var props = "";
 		var listen = "";
-		var signals = "";
+ 
 		var uprops = "";
 		// sort?
 		

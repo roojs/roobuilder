@@ -70,8 +70,6 @@ namespace Palete {
 				return false;
 			}
 			
-			 
-			var hash = prop.ptype == JsRender.NodePropType.LISTENER ? node.listeners : node.props;
 			
 			// untill we get a smarter renderer..
 			// we have some scenarios where changing the value does not work
@@ -118,15 +116,24 @@ namespace Palete {
 				return false;
 			}
  
- 			
+ 			File tmpfile;
 			FileIOStream iostream;
-			var tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
-			tmpfile.ref();
+			try {
+				tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
+				tmpfile.ref(); // why??
+			} catch(GLib.Error e) {
+				GLib.debug("failed to create temporary file");
+				return false;
+			}
 
 			OutputStream ostream = iostream.output_stream;
 			DataOutputStream dostream = new DataOutputStream (ostream);
-			dostream.put_string (contents);
-			
+			try {
+				dostream.put_string (contents);
+			} catch(GLib.Error e) {
+				GLib.debug("failed to write to temporary file");
+				return false;
+			}
 			var valafn = "";
 			try {             
 			   var  regex = new Regex("\\.bjs$");
@@ -149,14 +156,18 @@ namespace Palete {
 			args += valafn;
 			
 			 
-			
-			this.compiler = new Spawn("/tmp", args);
+			try {
+				this.compiler = new Spawn("/tmp", args);
+			} catch (GLib.Error e) {
+				GLib.debug("Spawn failed: %s", e.message);
+				return false;
+			}
 			this.compiler.complete.connect(spawnResult);
 	        this.spinner(true);
 			try {
 				this.compiler.run(); 
-			} catch (GLib.SpawnError e) {
-			        GLib.debug(e.message);
+			} catch (GLib.Error e) {
+			        GLib.debug("Error %s",e.message);
 			        this.spinner(false);
          			this.compiler = null;
 			        return false;
@@ -315,13 +326,22 @@ namespace Palete {
 			
  			
  			FileIOStream iostream;
-			var tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
-			tmpfile.ref();
-
+ 			File tmpfile;
+		 	try {
+			 	tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
+				tmpfile.ref();
+			} catch(GLib.Error e) {
+				GLib.debug("Failed to create tempoary file %s", e.message);
+				return false;
+			}
 			OutputStream ostream = iostream.output_stream;
 			DataOutputStream dostream = new DataOutputStream (ostream);
-			dostream.put_string (contents);
-			
+			try {
+				dostream.put_string (contents);
+			} catch(GLib.Error e) {
+				GLib.debug("Failed to write to tempoary file %s", e.message);
+				return false;
+			}
 			var target = pr.firstBuildModule();
 			if (target.length < 1) {
 				return false;
@@ -448,10 +468,14 @@ namespace Palete {
 		    // should be home directory...
 		    
 		    
-		    
-            var exec = new Spawn(GLib.Environment.get_home_dir() , args);
-            exec.detach = true;
-		    exec.run(); 
+		    try {
+		        var exec = new Spawn(GLib.Environment.get_home_dir() , args);
+		        exec.detach = true;
+				exec.run(); 
+		    } catch(GLib.Error e) {
+				GLib.debug("Failed to spawn: %s", e.message);
+				return;
+			}
 			
 		}
 	}

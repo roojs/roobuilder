@@ -406,7 +406,7 @@ public class JsRender.NodeToVala : Object {
 		
 		// .vala props.. 
 		
-		string[] cargs = {};
+ 
 		var cargs_str = "";
 		// ctor..
 		this.addLine();
@@ -535,7 +535,7 @@ public class JsRender.NodeToVala : Object {
 				
 				this.addLine(this.ipad + "this.el = new " + this.node.fqn() + ".newv( " + args_str + " );");
 				return;
-				break;
+ 
 				
 			case "Gtk.LinkButton": // args filled with values.
 				if (this.node.has("label")) {
@@ -653,9 +653,7 @@ public class JsRender.NodeToVala : Object {
 			
 			var k = iter.get();
 			
-			var ar  = k.strip().split(" ");
-			var kname = ar[ar.length-1];
-			
+			 
 			var prop = this.node.props.get(k);
 			
 			var v = prop.val.strip();			
@@ -943,7 +941,7 @@ public class JsRender.NodeToVala : Object {
 						return;
 					default:
 						// do nothing
-						return;
+						break;
 				}
 				return;
 				
