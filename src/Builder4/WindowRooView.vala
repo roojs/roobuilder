@@ -148,7 +148,7 @@ public class Xcls_WindowRooView : Object
     		return;
     	}
     	this.notebook.el.page = 1;
-    	Gtk.TextIter beg, st,en, stl;
+    	Gtk.TextIter beg, st,en;
     	
     	var buf = this.sourceview.el.get_buffer();
     	buf.get_iter_at_offset(out beg, this.last_search_end);
