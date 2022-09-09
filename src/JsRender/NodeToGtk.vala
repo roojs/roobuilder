@@ -570,7 +570,7 @@ public class JsRender.NodeToGtk : Object {
 				return ret;
 
 			default:
-				return null;
+				break;
 				/*
 				var sval =  GLib.Value(typeof(string));
 				sval.set_string(val);
