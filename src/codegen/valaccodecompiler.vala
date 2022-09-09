@@ -103,7 +103,7 @@ public class Vala.CCodeCompiler {
 			if (exit_status != 0) {
 				Report.error (null, "cc exited with status %d", exit_status);
 			}
-		} catch (SpawnError e) {
+		} catch (GLib.SpawnError e) {
 			Report.error (null, e.message);
 		}
 
