@@ -523,17 +523,25 @@ namespace Project {
 
 		public JsRender.JsRender newFile (string name)
 		{
-			var ret =  JsRender.JsRender.factory(this.xtype, 
+			try {
+				var ret =  JsRender.JsRender.factory(this.xtype, 
 											 this, 
 											 this.firstPath() + "/" + name + ".bjs");
-			this.addFile(ret);
-			return ret;
+				this.addFile(ret);
+				return ret;
+			} catch (JsRender.Error e) {
+				GLib.error("failed to create file %s", e.message);
+			}
 		}
 		
 		public JsRender.JsRender loadFileOnly (string path)
 		{
 			var xt = this.xtype;
-			return JsRender.JsRender.factory(xt, this, path);
+			try {
+				return JsRender.JsRender.factory(xt, this, path);
+			} catch (JsRender.Error e) {
+				GLib.error("failed to create file %s", e.message);
+			} 
 			
 		} 
 		
