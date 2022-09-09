@@ -213,7 +213,7 @@ namespace Palete
 					
 		        }
 		        GLib.FileUtils.set_contents(appdir+ "/" + gn + "/" +  name + ".json", data.toJsonString());
-	    	} catch (Error e) {
+	    	} catch (GLib.Error e) {
 	    		GLib.debug("Error : %s", e.message);
     		}    
         }
@@ -239,7 +239,7 @@ namespace Palete
 
 			            
 			var f = File.new_for_path(dir);
-			
+			try {
 				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
 				 
 				FileInfo next_file; 
@@ -250,6 +250,9 @@ namespace Palete
 					}
 					ret.append( dir + "/" + n);
 				}
+			} catch (GLib.Error e) {
+				GLib.debug("Error : %s", e.message);
+    		}   
 				return ret;
             
 		}
@@ -258,7 +261,12 @@ namespace Palete
         {
 
 			var pa = new Json.Parser();
-			pa.load_from_file(path);
+			try {
+				pa.load_from_file(path);
+			} catch(GLib.Error e) {
+							GLib.debug("Error : %s", e.message);
+				return "";
+			}
 			var node = pa.get_root();
 
 			if (node.get_node_type () != Json.NodeType.OBJECT) {
