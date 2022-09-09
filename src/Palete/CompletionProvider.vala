@@ -144,20 +144,7 @@ namespace Palete {
 			return space.isspace() || space.to_string() == "";
 		}
 		
-		private bool is_forward_space(unichar space){
-			return !(
-				space.to_string() == " "
-				||
-				space.to_string() == ""
-				||
-				space.to_string() == "\n"
-				||
-				space.to_string() == ")"
-				||
-				space.to_string() == "("
-				
-			);
-		}
+		 
 	}
 
 
