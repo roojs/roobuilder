@@ -259,9 +259,12 @@ namespace Project
 		{
 			var allfiles = this.filesAll(in_path,abspath);
 			var ret =  new Gee.ArrayList<string>();
-			
-			var is_c = new Regex("\\.c$");
-			
+			Regex is_c;
+			try {
+				is_c = new Regex("\\.c$");
+			} catch (Error e) {
+				GLib.error("Regex failed :%s", e.message);
+			}
 			for (var i = 0; i < allfiles.size; i ++) {
 				var fn = allfiles.get(i);
 				try {
@@ -292,7 +295,7 @@ namespace Project
 					}
 					// add the 'c' file..
 					ret.add(fn);
-				} catch (Error e) {
+				} catch (GLib.Error e) {
 					continue;
 				}
 			}
