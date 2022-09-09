@@ -191,7 +191,7 @@ namespace JsRender {
 					if (this.screenshot == null) {
 						try { 
 							this.screenshot = new Gdk.Pixbuf.from_file(fname);
-						} catch (Error e) {}
+						} catch (GLib.Error e) {}
 					}
 					return this.screenshot;
 				
@@ -232,7 +232,7 @@ namespace JsRender {
 				pixbuf.save(this.getIconFileName( ),"png");
 				this.screenshot = pixbuf;
 			
-			} catch (Error e) {}
+			} catch (GLib.Error e) {}
 				
 			 
 			
@@ -291,7 +291,7 @@ namespace JsRender {
 		    try {
 				this.writeFile(this.path, this.toJsonString());
 		         
-		    } catch(Error e) {
+		    } catch(GLib.Error e) {
 		        print("Save failed");
 		    }
 		}
