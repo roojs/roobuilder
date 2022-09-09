@@ -1400,10 +1400,11 @@ public class Xcls_PopoverFileDetails : Object
             	
             	// strip the file type off the end..
             	
-            	
-                var rx = new GLib.Regex("\\." + ext + "$",GLib.RegexCompileFlags.CASELESS);
-                targetfile = rx.replace(targetfile, targetfile.length, 0, ""); 
-               
+            	try {
+            		var rx = new GLib.Regex("\\." + ext + "$",GLib.RegexCompileFlags.CASELESS);
+            		targetfile = rx.replace(targetfile, targetfile.length, 0, ""); 
+            	  } catch (RegexError e) {} // ignore.
+            	  
             	if (GLib.FileUtils.test(targetfile + "." + ext, GLib.FileTest.EXISTS)) {
             	    Xcls_StandardErrorDialog.singleton().show(
             	        _this.mainwindow.el,
