@@ -196,9 +196,14 @@ public class Resources : Object
 		 
 	public void parseDirectory(string json, string target)
 	{
-		print("%s\n", json);
+		GLib.debug("%s\n", json);
 		var pa = new Json.Parser();
-		pa.load_from_data(json);
+		try {
+			pa.load_from_data(json);
+		} catch (GLib.Error e) {
+			GLib.debug("Faile dto load json file %s", e.message);
+			return;
+		}
 		var node = pa.get_root();
 		if (node.get_node_type () != Json.NodeType.ARRAY) {
 			return;
