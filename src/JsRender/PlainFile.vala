@@ -24,6 +24,7 @@ namespace JsRender {
             aconstruct( project, path);
             this.xtype = "PlainFile";
             this.content_type = "text/plain";
+            
             // if the file does not exist...
             if (GLib.FileUtils.test(path, GLib.FileTest.EXISTS)) {
 		        var f = File.new_for_path (path) ;
@@ -142,10 +143,7 @@ namespace JsRender {
          */ 
          
    
-        string getHelpUrl(string cls)
-        {
-            return ""; 
-        }
+        
         public override void  findTransStrings(Node? node )
 		{
 			// not yet..
