@@ -943,7 +943,7 @@ public class JsRender.NodeToVala : Object {
 						return;
 					default:
 						// do nothing
-						return;
+						break;
 				}
 				return;
 				
