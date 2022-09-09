@@ -105,9 +105,12 @@ namespace Palete {
 			}
 		
 			var pa = new Json.Parser();
-			pa.load_from_file(BuilderApplication.configDirectory() + "/resources/Gir.overides");
-			var node = pa.get_root();
-		    
+			try {
+				pa.load_from_file(BuilderApplication.configDirectory() + "/resources/Gir.overides");
+				var node = pa.get_root();
+			} catch (Error e) {
+				return;
+			}
 			if (node.get_node_type () != Json.NodeType.OBJECT) {
 				throw new GirError.INVALID_FORMAT ("Error loading gir.overides : Unexpected element type %s", node.type_name ());
 			}
