@@ -18,7 +18,7 @@ namespace JsRender {
    
     class Roo : JsRender 
     {
-        string region;
+         
         bool disabled;
 
  
