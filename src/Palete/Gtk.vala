@@ -81,7 +81,7 @@ namespace Palete {
 		public override void  load () 
 		{
 			
-			var gtk = Gir.factory(this.project, "Gtk"); // triggers a load...
+			Gir.factory(this.project, "Gtk"); // triggers a load...
 			var pr = (Project.Gtk) this.project;
 			
 			
