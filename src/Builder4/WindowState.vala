@@ -648,7 +648,9 @@ public class WindowState : Object
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
-			file.loadItems();
+			try {
+				file.loadItems();
+			} catch (Error e) {}
 			this.code_editor_tab.show(file, null, null);
 			 
 		} else {
