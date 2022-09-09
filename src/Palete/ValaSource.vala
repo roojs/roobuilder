@@ -71,7 +71,7 @@ namespace Palete {
 			}
 			
 			 
-			prop.ptype == JsRender.NodePropType.LISTENER ? node.listeners : node.props;
+			//prop.ptype == JsRender.NodePropType.LISTENER ? node.listeners : node.props;
 			
 			// untill we get a smarter renderer..
 			// we have some scenarios where changing the value does not work
@@ -125,7 +125,7 @@ namespace Palete {
 				tmpfile.ref(); // why??
 			} catch(Error e) {
 				GLib.debug("failed to create temporary file");
-				retur;
+				return;
 			}
 
 			OutputStream ostream = iostream.output_stream;
