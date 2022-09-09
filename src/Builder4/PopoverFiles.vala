@@ -623,10 +623,10 @@ public class Xcls_PopoverFiles : Object
                 if (_this.selectedProject == null) {
                 	return;
                 }
-                
-                var f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, "");
-                 _this.win.windowstate.file_details.show( f, this.el, _this.new_window );
-                 
+                try {
+                	var f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, "");
+                 	_this.win.windowstate.file_details.show( f, this.el, _this.new_window );
+                 } catch (JsRender.Error e) {}
             
             });
         }
