@@ -193,7 +193,7 @@ namespace JsRender {
 			GLib.debug("WRITE :%s\n " , fn);
 			try {
 				this.writeFile(fn,  NodeToVala.mungeFile(this));
-	        } catch (Error e) {}
+	        } catch (GLib.Error e) {}
 	        
 	        
 	    }
