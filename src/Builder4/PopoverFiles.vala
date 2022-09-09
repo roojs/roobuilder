@@ -1180,12 +1180,10 @@ public class Xcls_PopoverFiles : Object
             	}
                 _this.win.windowstate.project = _this.selectedProject;
                  _this.el.hide();
-                
-                var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
-               
-               
-                _this.win.windowstate.fileViewOpen(f, _this.new_window);
-               
+                try {
+            		var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
+            		_this.win.windowstate.fileViewOpen(f, _this.new_window);
+            	} catch (JsRender.Error e) {}   
                 
             });
             this.el.cursor_changed.connect( () => {
