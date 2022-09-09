@@ -876,7 +876,7 @@
     "    // min 450?",
     "\t// max hieght ...",
     "\t",
-    "\tvar  ww =  on_el.get_allocated_width();",
+    "\t//var  ww =  on_el.get_allocated_width();",
     "\t",
     "\t// width = should be max = w-ww , or 600 at best..?",
     "\t ",

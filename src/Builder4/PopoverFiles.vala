@@ -160,7 +160,7 @@ public class Xcls_PopoverFiles : Object
         // min 450?
     	// max hieght ...
     	
-    	var  ww =  on_el.get_allocated_width();
+    	//var  ww =  on_el.get_allocated_width();
     	
     	// width = should be max = w-ww , or 600 at best..?
     	 
