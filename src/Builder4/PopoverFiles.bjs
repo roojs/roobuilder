@@ -376,7 +376,7 @@
                "",
                "\tGtk.TreePath path;",
                "\tGtk.CellRenderer cell;",
-               "\tvar s = _this.iconview.el.get_item_at_pos(x,y + (int) _this.iconscroll.el.vadjustment.value, out path, out cell);",
+               "\t//var s = _this.iconview.el.get_item_at_pos(x,y + (int) _this.iconscroll.el.vadjustment.value, out path, out cell);",
                "\t",
                "\t",
                "   // GLib.debug(\"Tooltip? %d,%d scroll: %d\",x,y, (int)_this.iconscroll.el.vadjustment.value);",
