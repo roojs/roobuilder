@@ -102,8 +102,12 @@ namespace Project {
 
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			var dir = File.new_for_path(dirname);
-				if (!dir.query_exists()) {
-				dir.make_directory();
+			if (!dir.query_exists()) {
+				try {
+					dir.make_directory();
+				} catch(GLib.Error e) {
+					GLib.error("could not make builder directory");
+				}
 				return;
 			}
 			projects = new  Gee.HashMap<string,Project>();
@@ -125,7 +129,7 @@ namespace Project {
 					}
 					factoryFromFile(dirname + "/" + fn);
 				}       
-			} catch(Error e) {
+			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}
 			
@@ -144,7 +148,7 @@ namespace Project {
 		
 		}
 		
-		public static Project getProject(string name)
+		public static Project? getProject(string name)
 		{
 			
 			var iter = projects.map_iterator();
