@@ -189,7 +189,9 @@ namespace JsRender {
 			switch (size) {
 				case 0:
 					if (this.screenshot == null) {
-						this.screenshot = new Gdk.Pixbuf.from_file(fname);
+						try { 
+							this.screenshot = new Gdk.Pixbuf.from_file(fname);
+						} catch (Error e) {}
 					}
 					return this.screenshot;
 				
