@@ -1412,8 +1412,9 @@ public class Xcls_PopoverFileDetails : Object
             	    ); 
             	    return;
             	}
+            	JsRender.JsRender f;
                try {
-            	   var f =  JsRender.JsRender.factory(
+            	   f =  JsRender.JsRender.factory(
             			ext == "bjs" ? _this.file.project.xtype : "PlainFile",  
             			_this.file.project, 
             			targetfile + "." + ext);
