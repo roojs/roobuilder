@@ -70,8 +70,6 @@ namespace Palete {
 				return false;
 			}
 			
-			 
-			//prop.ptype == JsRender.NodePropType.LISTENER ? node.listeners : node.props;
 			
 			// untill we get a smarter renderer..
 			// we have some scenarios where changing the value does not work
