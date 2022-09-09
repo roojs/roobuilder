@@ -262,7 +262,7 @@ namespace Project
 			Regex is_c;
 			try {
 				is_c = new Regex("\\.c$");
-			} catch (Error e) {
+			} catch (RegexError e) {
 				GLib.error("Regex failed :%s", e.message);
 			}
 			for (var i = 0; i < allfiles.size; i ++) {
