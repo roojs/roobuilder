@@ -27,9 +27,12 @@ namespace JsRender {
             // if the file does not exist...
             if (GLib.FileUtils.test(path, GLib.FileTest.EXISTS)) {
 		        var f = File.new_for_path (path) ;
-		        var info = f.query_info ("standard::*", 0);
-		        var ct = info.get_content_type();
-	            this.content_type = ct;
+		        try {
+				    var info = f.query_info ("standard::*", 0);
+				    var ct = info.get_content_type();
+			        this.content_type = ct;
+		        } catch (Error e) {}
+		       
             } else {
         		this.content_type = "text/plain"; // hopefully..
 //        		var ar = path.split(".");
