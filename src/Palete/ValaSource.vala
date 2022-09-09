@@ -326,9 +326,14 @@ namespace Palete {
 			
  			
  			FileIOStream iostream;
-			var tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
-			tmpfile.ref();
-
+ 			File tmpfile;
+		 	try {
+			 	tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
+				tmpfile.ref();
+			} catch(GLib.Error e) {
+				GLib.debug("Failed to create tempoary file %s", e.message);
+				return false;
+			}
 			OutputStream ostream = iostream.output_stream;
 			DataOutputStream dostream = new DataOutputStream (ostream);
 			dostream.put_string (contents);
