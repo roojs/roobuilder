@@ -131,6 +131,7 @@ namespace Palete {
 
 		public bool get_start_iter (SourceCompletionContext context, SourceCompletionProposal proposal, out TextIter iter)
 		{
+			iter = null;
 			return false;
 		}
 
