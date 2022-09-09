@@ -279,15 +279,22 @@ public class Resources : Object
 			// create parent directory if needed
 			if (!GLib.FileUtils.test (GLib.Path.get_dirname(tfn), FileTest.IS_DIR)) {
 				var f =  GLib.File.new_for_path(GLib.Path.get_dirname(tfn));
-				f.make_directory_with_parents ();
+				try {
+					f.make_directory_with_parents ();
+				} catch(GLib.Error e) {
+					GLib.error("Problem creating directory %s", e.message);
+				}
 			}
 			
 			
 			
 			
 			// set data??? - if it's binary?
-            FileUtils.set_contents(  tfn, (string) message.response_body.data );
-            
+			try {
+           		 FileUtils.set_contents(  tfn, (string) message.response_body.data );
+            } catch(GLib.Error e) {
+					GLib.error("Problem writing data %s", e.message);
+				}
             switch (item.target) {
 				case "Gir.overides":
 					// clear all the project caches....
