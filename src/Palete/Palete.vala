@@ -293,10 +293,14 @@ namespace Palete
 		 		print("Palete Load called\n");
 			string raw;
 			if (!FileUtils.test (fname, FileTest.EXISTS)) {
-				throw new Error.MISSING_FILE(fname + " not found");
+				GLib.error("Missing File: %s", fname);
+				; 
 			}
-	
-			FileUtils.get_contents(fname, out raw);
+			try {
+				FileUtils.get_contents(fname, out raw);
+			} catch (GLib.Error e) {
+				GLib.error("Error %s", e.message);
+			}
 	  	      // print(data);
 			var data  = raw.split("\n");
 			var state = 0;
