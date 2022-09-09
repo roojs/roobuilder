@@ -98,7 +98,7 @@ namespace Palete {
 
 		}
 		 
-		public static void loadOverrides(bool force = false)
+		public static void loadOverrides(bool force = false) throws GirError
 		{
 			if (overrides_loaded && ! force) {
 				return;
