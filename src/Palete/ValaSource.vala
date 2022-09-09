@@ -123,7 +123,7 @@ namespace Palete {
 			try {
 				tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
 				tmpfile.ref(); // why??
-			} catch(e) {
+			} catch(Error e) {
 				GLib.debug("failed to create temporary file");
 				retur;
 			}
