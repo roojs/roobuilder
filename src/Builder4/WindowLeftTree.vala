@@ -1161,11 +1161,13 @@ typeof(Gdk.Pixbuf) }  );
             
             var addi =  ic.load_icon("list-add", 16,0);
             var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
+            
+            pix = ic.load_icon("emblem-new", 16,0);
             if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
-                pix = new Gdk.Pixbuf.from_file (fn);
-            } else {
-            	pix = ic.load_icon("emblem-new", 16,0);
-            }
+            	try { 
+                	pix = new Gdk.Pixbuf.from_file (fn);
+            	} catch (GLib.Error e) {}
+            }  
             
             var fqn = node.fqn();
             var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
@@ -1731,6 +1733,7 @@ typeof(Gdk.Pixbuf) }  );
 
             // set gobject values
             this.el.label = "Delete Element";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -1763,6 +1766,7 @@ typeof(Gdk.Pixbuf) }  );
 
             // set gobject values
             this.el.label = "Save as Template";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( () => {
@@ -1798,6 +1802,7 @@ typeof(Gdk.Pixbuf) }  );
 
             // set gobject values
             this.el.label = "Save as Module";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( () => {
