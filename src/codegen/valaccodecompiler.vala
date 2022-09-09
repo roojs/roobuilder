@@ -100,7 +100,7 @@ public class Vala.CCodeCompiler {
 		int exit_status = 0;
 		try {
 			Process.spawn_command_line_sync (cmdline, null, null, out exit_status);
-		} catch (SpawnError e) {
+		} catch (Error e) {
 			Report.error (null, e.message);
 		}
 		if (exit_status != 0) {
