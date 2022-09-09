@@ -218,7 +218,11 @@ namespace Project {
 			GLib.debug("parse %s", jsonfile);
 
 			var pa = new Json.Parser();
-			pa.load_from_file(jsonfile);
+			try { 
+				pa.load_from_file(jsonfile);
+			} catch (GLib.Error e) {
+				GLib.error("could not load json file %s", e.message);
+			}
 			var node = pa.get_root();
 
 			
@@ -340,13 +344,16 @@ namespace Project {
 				//var str = "%l:%l".printf(tv.tv_sec,tv.tv_usec);
 				var str = this.firstPath();
 				
-					this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, str, str.length);
+				this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, str, str.length);
 			}
 
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			var  s =  this.toJSON(false);
-			FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
-			
+			try {
+				FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
+			} catch (GLib.Error e) {
+				GLib.error("failed  to save file %s", e.message);
+			}
 			
 		}
 
