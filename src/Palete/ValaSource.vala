@@ -121,15 +121,19 @@ namespace Palete {
 			try {
 				tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
 				tmpfile.ref(); // why??
-			} catch(Error e) {
+			} catch(GLib.Error e) {
 				GLib.debug("failed to create temporary file");
-				return;
+				return false;
 			}
 
 			OutputStream ostream = iostream.output_stream;
 			DataOutputStream dostream = new DataOutputStream (ostream);
-			dostream.put_string (contents);
-			
+			try {
+				dostream.put_string (contents);
+			catch(GLib.Error e) {
+				GLib.debug("failed to write to temporary file");
+				return false;
+			}
 			var valafn = "";
 			try {             
 			   var  regex = new Regex("\\.bjs$");
@@ -152,13 +156,17 @@ namespace Palete {
 			args += valafn;
 			
 			 
-			
-			this.compiler = new Spawn("/tmp", args);
+			try {
+				this.compiler = new Spawn("/tmp", args);
+			} catch (GLib.Error e) {
+				GLib.debug("Spawn failed: %s", e.message);
+				return false;
+			}
 			this.compiler.complete.connect(spawnResult);
 	        this.spinner(true);
 			try {
 				this.compiler.run(); 
-			} catch (GLib.SpawnError e) {
+			} catch (GLib.Error e) {
 			        GLib.debug(e.message);
 			        this.spinner(false);
          			this.compiler = null;
