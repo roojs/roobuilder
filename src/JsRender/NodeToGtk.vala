@@ -61,7 +61,6 @@ public class JsRender.NodeToGtk : Object {
 				);
 				var new_node = new Node();
 				var pa = new Json.Parser();
-				 
 				pa.load_from_data(ret);
 				
 				var rnode = pa.get_root();
