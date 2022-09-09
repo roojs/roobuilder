@@ -82,7 +82,7 @@ namespace Palete {
 		{
 			JSCore.Value ex;
 			unowned   JSCore.GlobalContext ctx = this.js_global_context;
-			var ret = this.js_global_context.check_script_syntax(
+			this.js_global_context.check_script_syntax(
 	                           new JSCore.String.with_utf8_c_string(code),
 	                           null,
 	                           0,
@@ -95,7 +95,7 @@ namespace Palete {
 
 	 		
 			var exo = ex.to_object(ctx, null);
-			unowned JSCore.PropertyNameArray property_names = exo.copy_property_names (ctx);
+			//unowned JSCore.PropertyNameArray property_names = exo.copy_property_names (ctx);
 
 			
 			
@@ -132,15 +132,18 @@ namespace Palete {
 			if (!FileUtils.test (fname, FileTest.EXISTS)) {
 				throw new JavascriptError.MISSING_FILE("Plugin: file not found %s", fname);
 			}
-		
-			FileUtils.get_contents(fname, out file_data);
-			
+			try {
+				FileUtils.get_contents(fname, out file_data);
+			} catch (GLib.Error e) {
+				GLib.debug("Error file load failed: %s", e.message);
+				return "";
+			}
 			var jfile_data = new JSCore.String.with_utf8_c_string(file_data);
 			var jmethod = new JSCore.String.with_utf8_c_string(call_method);
 			//var json_args = new JSCore.String.with_utf8_c_string(js_data);
 			
-			     JSCore.Value exa;
-			  JSCore.Value exb;
+			JSCore.Value exa;
+			JSCore.Value exb;
 			unowned JSCore.Value exc;
 			   JSCore.Value exd;
 			   unowned JSCore.Value exe;
@@ -149,7 +152,7 @@ namespace Palete {
 			var ctx = new JSCore.GlobalContext(goc);
 			var othis = ctx.get_global_object();
 			
-			var eval = ctx.evaluate_script (
+			ctx.evaluate_script (
 						jfile_data,
 						othis,
 						null,
