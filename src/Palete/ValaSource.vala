@@ -167,7 +167,7 @@ namespace Palete {
 			try {
 				this.compiler.run(); 
 			} catch (GLib.Error e) {
-			        GLib.debug("Error %w",e.message);
+			        GLib.debug("Error %s",e.message);
 			        this.spinner(false);
          			this.compiler = null;
 			        return false;
