@@ -87,8 +87,8 @@ namespace Palete {
 		{
 			// overrides should be in a file Gir.overides
 			// in that "Gtk.Label.new.str" : "label"
-			try {
-				loadOverrides();
+			
+			loadOverrides();
 			var key = "%s.%s.%s".printf(cls,method,param);
 			 //print("Chekcing for key %s\n", key);
 			if (!overrides.has_key(key)) {
