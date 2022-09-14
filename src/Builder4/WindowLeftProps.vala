@@ -456,8 +456,8 @@ public class Xcls_LeftProps : Object
        
        this.view.el.get_selection().unselect_all();
        
-       
-       
+       _this.keycol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
+       _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
        
     }
     public void addProp (JsRender.NodeProp prop) {
@@ -840,6 +840,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Using _this.{ID} will map to this element";
             this.el.label = "id: _this.{ID} (Vala)";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -870,6 +871,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element";
             this.el.label = "pack: Pack method (Vala)";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -900,6 +902,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "eg. \n\nnew Clutter.Image.from_file(.....)";
             this.el.label = "ctor: Alterative to default contructor (Vala)";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -930,6 +933,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "This code is called after the ctor";
             this.el.label = "init: initialziation code (vala)";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -960,6 +964,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})\n";
             this.el.label = "cms-id: (Roo JS/Pman library)";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -991,6 +996,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show();
         }
 
         // user defined functions
@@ -1015,6 +1021,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a user defined string property";
             this.el.label = "String";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( (self) => {
@@ -1052,6 +1059,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a user defined number property";
             this.el.label = "Number";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1088,6 +1096,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a user defined boolean property";
             this.el.label = "Boolean";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1124,6 +1133,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show();
         }
 
         // user defined functions
@@ -1148,6 +1158,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a user function boolean property";
             this.el.label = "Javascript Function";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1186,6 +1197,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a user function boolean property";
             this.el.label = "Vala Method";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1222,6 +1234,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a vala signal";
             this.el.label = "Vala Signal";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1255,6 +1268,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show();
         }
 
         // user defined functions
@@ -1279,6 +1293,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a flexy if (for HTML templates)";
             this.el.label = "Flexy - If";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1316,6 +1331,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a flexy include (for HTML templates)";
             this.el.label = "Flexy - Include";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1353,6 +1369,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.tooltip_markup = "Add a flexy foreach (for HTML templates)";
             this.el.label = "Flexy - Foreach";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) =>{
@@ -1660,6 +1677,8 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.title = "Property";
+            this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
+            this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_keyrender( _this );
             child_0.ref();
@@ -1716,6 +1735,8 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.title = "Value";
+            this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
+            this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_valrender( _this );
             child_0.ref();
@@ -1894,6 +1915,7 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.label = "Delete";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( )  =>{

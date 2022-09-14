@@ -55,10 +55,9 @@
           {
            "$ xns" : "Gtk",
            "* init" : [
-            "{",
+            " ",
             "  this.el.show_all();",
-            "}",
-            ""
+            " "
            ],
            "* prop" : "popup",
            "items" : [
