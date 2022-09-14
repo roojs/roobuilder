@@ -105,13 +105,13 @@ public class GladeView : Object
             var child_0 = new Xcls_ButtonBox5( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_Menu9( _this );
+            var child_1 = new Xcls_Menu10( _this );
             child_1.ref();
             this.el._menu = child_1.el;
-            var child_2 = new Xcls_ComboBox10( _this );
+            var child_2 = new Xcls_ComboBox11( _this );
             child_2.ref();
             this.el.add(  child_2.el );
-            var child_3 = new Xcls_GLArea11( _this );
+            var child_3 = new Xcls_GLArea12( _this );
             child_3.ref();
             this.el.add(  child_3.el );
         }
@@ -138,12 +138,15 @@ public class GladeView : Object
             var child_0 = new Xcls_Button6( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_Button7( _this );
+            var child_1 = new Xcls_MenuButton7( _this );
             child_1.ref();
             this.el.add(  child_1.el );
             var child_2 = new Xcls_Button8( _this );
             child_2.ref();
             this.el.add(  child_2.el );
+            var child_3 = new Xcls_Button9( _this );
+            child_3.ref();
+            this.el.add(  child_3.el );
         }
 
         // user defined functions
@@ -171,24 +174,23 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_Button7 : Object
+    public class Xcls_MenuButton7 : Object
     {
-        public Gtk.Button el;
+        public Gtk.MenuButton el;
         private GladeView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Button7(GladeView _owner )
+        public Xcls_MenuButton7(GladeView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.MenuButton();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "xxxcc";
         }
 
         // user defined functions
@@ -217,8 +219,31 @@ public class GladeView : Object
         // user defined functions
     }
 
+    public class Xcls_Button9 : Object
+    {
+        public Gtk.Button el;
+        private GladeView  _this;
 
-    public class Xcls_Menu9 : Object
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button9(GladeView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "xxxcc";
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Menu10 : Object
     {
         public Gtk.Menu el;
         private GladeView  _this;
@@ -227,7 +252,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Menu9(GladeView _owner )
+        public Xcls_Menu10(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Menu();
@@ -240,7 +265,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_ComboBox10 : Object
+    public class Xcls_ComboBox11 : Object
     {
         public Gtk.ComboBox el;
         private GladeView  _this;
@@ -249,7 +274,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ComboBox10(GladeView _owner )
+        public Xcls_ComboBox11(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ComboBox();
@@ -263,7 +288,7 @@ public class GladeView : Object
         // user defined functions
     }
 
-    public class Xcls_GLArea11 : Object
+    public class Xcls_GLArea12 : Object
     {
         public Gtk.GLArea el;
         private GladeView  _this;
@@ -272,7 +297,7 @@ public class GladeView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_GLArea11(GladeView _owner )
+        public Xcls_GLArea12(GladeView _owner )
         {
             _this = _owner;
             this.el = new Gtk.GLArea();

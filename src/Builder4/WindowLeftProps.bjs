@@ -507,6 +507,7 @@
          "xtype" : "TreeStore"
         },
         {
+         "$ Gtk.TreeViewColumnSizing sizing" : "Gtk.TreeViewColumnSizing.FIXED",
          "$ resizable" : true,
          "$ xns" : "Gtk",
          "* init" : [
@@ -515,6 +516,7 @@
           "  "
          ],
          "* pack" : "append_column",
+         "bool expand" : true,
          "id" : "keycol",
          "items" : [
           {
@@ -528,6 +530,7 @@
          "xtype" : "TreeViewColumn"
         },
         {
+         "$ Gtk.TreeViewColumnSizing sizing" : "Gtk.TreeViewColumnSizing.FIXED",
          "$ resizable" : true,
          "$ xns" : "Gtk",
          "* init" : [
@@ -542,6 +545,7 @@
           ""
          ],
          "* pack" : "append_column",
+         "bool expand" : true,
          "id" : "valcol",
          "items" : [
           {
@@ -1213,8 +1217,8 @@
     "   ",
     "   this.view.el.get_selection().unselect_all();",
     "   ",
-    "   ",
-    "   ",
+    "   _this.keycol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);",
+    "   _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);",
     "   ",
     "}",
     ""
