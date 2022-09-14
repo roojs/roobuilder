@@ -315,9 +315,7 @@ public class Xcls_MainWindow : Object
 
             // init method
 
-            {
-              this.el.show_all();
-            }
+            this.el.show_all();
         }
 
         // user defined functions
@@ -340,7 +338,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.label = "New Window";
-            this.el.show_all();
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -369,7 +367,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.show_all();
+            this.el.show();
         }
 
         // user defined functions
@@ -934,7 +932,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.label = "Download updated Resources";
-            this.el.show_all();
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -963,7 +961,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.label = "About the Builder";
-            this.el.show_all();
+            this.el.show();
 
             //listeners
             this.el.activate.connect( () => {
@@ -1120,7 +1118,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.label = "Compile Status:";
-            this.el.show_all();
+            this.el.show();
         }
 
         // user defined functions
@@ -1152,7 +1150,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Image35( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
-            this.el.show_all();
+            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1225,7 +1223,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Image37( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
-            this.el.show_all();
+            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1297,7 +1295,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Image39( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
-            this.el.show_all();
+            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1368,7 +1366,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Image41( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
-            this.el.show_all();
+            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
