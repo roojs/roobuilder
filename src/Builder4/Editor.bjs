@@ -666,6 +666,11 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "string label" : "Label",
+         "xtype" : "MenuItem"
+        },
+        {
+         "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
          "bool visible" : false,
