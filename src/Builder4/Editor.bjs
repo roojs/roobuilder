@@ -666,26 +666,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "int spacing" : 0,
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "string label" : "Label",
-             "xtype" : "Label"
-            }
-           ],
-           "xtype" : "Box"
-          }
-         ],
-         "string label" : "Label",
-         "xtype" : "MenuItem"
-        },
-        {
-         "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
          "bool visible" : false,
@@ -706,7 +686,7 @@
            "}"
           ]
          },
-         "xtype" : "ImageMenuItem",
+         "xtype" : "ImageItem",
          "| void updateResults" : [
           "() {",
           "\tthis.el.visible = true;",
