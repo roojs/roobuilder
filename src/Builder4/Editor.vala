@@ -378,7 +378,7 @@ public class Editor : Object
             	  		"#editor-view { font: Monospace %d;".printf((int)val*10)
             	  		);
                   } catch (Error e) {}
-             
+             	return true;
             });
         }
 

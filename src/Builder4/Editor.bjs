@@ -83,7 +83,7 @@
          "\t  \t\t\"#editor-view { font: Monospace %d;\".printf((int)val*10)",
          "\t  \t\t);",
          "      } catch (Error e) {}",
-         " ",
+         " \treturn true;",
          "}"
         ]
        },
