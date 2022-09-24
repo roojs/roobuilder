@@ -351,14 +351,13 @@ public class Editor : Object
         public Xcls_Scale6(Editor _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Scale.with_range (6, 30, 1);
+            this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
 
             // my vars (dec)
 
             // set gobject values
             this.el.width_request = 200;
             this.el.has_origin = true;
-            this.el.orientation = Gtk.Orientation.HORIZONTAL;
             this.el.draw_value = true;
             this.el.digits = 0;
             this.el.sensitive = true;
