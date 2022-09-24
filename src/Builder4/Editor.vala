@@ -568,6 +568,11 @@ Gtk.SourceDrawSpacesFlags.SPACE;
                 });
                 
                 this.el.set_mark_attributes ("DEPR", dattrs, 1);
+                
+                
+                this.el.get_space_drawer().set_matrix( new Variant(
+                
+                Gtk.SourceSpaceTypeFlags.NEWLINE
 
             //listeners
             this.el.key_release_event.connect( (event) => {
