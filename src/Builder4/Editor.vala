@@ -557,7 +557,7 @@ Gtk.SourceDrawSpacesFlags.SPACE;
                 
              
                 
-                 var dattrs ,= new Gtk.SourceMarkAttributes();
+                 var dattrs = new Gtk.SourceMarkAttributes();
                 var  purple =   Gdk.RGBA();
                 purple.parse ( "#EEA9FF");
                 dattrs.set_background ( purple);
