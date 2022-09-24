@@ -493,6 +493,7 @@ public class Editor : Object
             // set gobject values
             this.el.auto_indent = true;
             this.el.indent_width = 4;
+            this.el.name = "editor-view";
             this.el.show_line_marks = true;
             this.el.insert_spaces_instead_of_tabs = true;
             this.el.show_line_numbers = true;
@@ -505,7 +506,12 @@ public class Editor : Object
 
             // init method
 
-            var description =   Pango.FontDescription.from_string("monospace");
+            this.css = new Gtk.CssProvider();
+            		this.css.load_from_data("#editor-view { font: Monospace 10;");
+            		 Gtk.StyleContext.addProvider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            		 
+            		
+            		var description =   Pango.FontDescription.from_string("monospace");
             		description.set_size(8000);
             
             		 this.el.set_property("font-desc", description);
