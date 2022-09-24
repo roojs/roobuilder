@@ -79,7 +79,8 @@
          "(st, val ) => {",
          "\t ",
          "\t  ",
-         "\t  _this.view.css.load_from_data(\"#editor-view { font: Monospace %d;\", val*10);",
+         "\t  _this.view.css.load_from_data(",
+         "\t  \t\t\"#editor-view { font: Monospace %d;\".printf(val*10));",
          "      ",
          "      return false;",
          "}"

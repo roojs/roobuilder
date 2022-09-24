@@ -374,7 +374,8 @@ public class Editor : Object
             this.el.change_value.connect( (st, val ) => {
             	 
             	  
-            	  _this.view.css.load_from_data("#editor-view { font: Monospace %d;", val*10);
+            	  _this.view.css.load_from_data(
+            	  		"#editor-view { font: Monospace %d;".printf(val*10));
                   
                   return false;
             });
