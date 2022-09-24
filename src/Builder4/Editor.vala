@@ -507,7 +507,7 @@ public class Editor : Object
 
             this.css = new Gtk.CssProvider();
             		this.css.load_from_data("#editor-view { font: Monospace 10;");
-            		 Gtk.StyleContext.addProvider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            		 Gtk.StyleContext.add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             		 
             		
             		var description =   Pango.FontDescription.from_string("monospace");

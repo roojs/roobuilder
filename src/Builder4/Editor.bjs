@@ -133,7 +133,7 @@
         "",
         "\t\tthis.css = new Gtk.CssProvider();",
         "\t\tthis.css.load_from_data(\"#editor-view { font: Monospace 10;\");",
-        "\t\t Gtk.StyleContext.addProvider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+        "\t\t Gtk.StyleContext.add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
         "\t\t ",
         "\t\t",
         "\t\tvar description =   Pango.FontDescription.from_string(\"monospace\");",
