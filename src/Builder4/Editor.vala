@@ -954,7 +954,7 @@ public class Editor : Object
 
             var description =   Pango.FontDescription.from_string("monospace");
             	description.set_size(8000);
-            	 this.el.override_font(description);
+            	 this.el.set_property("font-desc",description);
 
             //listeners
             this.el.key_press_event.connect( (event) => {

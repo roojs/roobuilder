@@ -544,7 +544,7 @@
        "* init" : [
         "var description =   Pango.FontDescription.from_string(\"monospace\");",
         "\tdescription.set_size(8000);",
-        "\t this.el.override_font(description);",
+        "\t this.el.set_property(\"font-desc\",description);",
         "",
         ""
        ],
