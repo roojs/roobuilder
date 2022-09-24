@@ -78,10 +78,9 @@
         "change_value" : [
          "(st, val ) => {",
          "\t ",
-         "\t  var description =   Pango.FontDescription.from_string(\"monospace\");",
-         "\t  //print(\"resize to %d\", (int)val*1000);",
-         "      description.set_size((int)val*1000);",
-         "      _this.view.el.set_property(\"font-desc\",description);",
+         "\t  ",
+         "\t  this.css.load_from_data(\"#editor-view { font: Monospace %d;\", val*10);",
+         "      ",
          "      return false;",
          "}"
         ]
