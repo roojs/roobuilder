@@ -572,7 +572,7 @@ Gtk.SourceDrawSpacesFlags.SPACE;
                 
                 this.el.get_space_drawer().set_matrix( new Variant(
                 
-                Gtk.SourceSpaceTypeFlags.NEWLINE
+                Gtk.SourceSpaceTypeFlags.ALL)
 
             //listeners
             this.el.key_release_event.connect( (event) => {

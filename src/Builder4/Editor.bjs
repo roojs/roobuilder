@@ -200,10 +200,7 @@
         "    ",
         "    this.el.get_space_drawer().set_matrix( new Variant(",
         "    ",
-        "    Gtk.SourceSpaceTypeFlags.NEWLINE",
-        "    ",
-        "    ",
-        "    "
+        "    Gtk.SourceSpaceTypeFlags.ALL)"
        ],
        "* pack" : "add",
        "Gtk.CssProvider css" : "null",
