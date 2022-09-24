@@ -351,7 +351,7 @@ public class Editor : Object
         public Xcls_Scale6(Editor _owner )
         {
             _this = _owner;
-            this.el = new Gtk.HScale.with_range (6, 30, 1);
+            this.el = new Gtk.Scale.with_range (6, 30, 1);
 
             // my vars (dec)
 
