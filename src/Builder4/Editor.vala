@@ -506,7 +506,9 @@ public class Editor : Object
             // init method
 
             this.css = new Gtk.CssProvider();
+            		try {
             		this.css.load_from_data("#editor-view { font: Monospace 10;");
+            		} catch (Error e) {}
             		 this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             		 
             		
