@@ -478,6 +478,7 @@ public class Editor : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_view(Editor _owner )
@@ -487,6 +488,7 @@ public class Editor : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
+            this.css = null;
 
             // set gobject values
             this.el.auto_indent = true;

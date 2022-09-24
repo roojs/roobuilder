@@ -188,6 +188,7 @@
         "    "
        ],
        "* pack" : "add",
+       "Gtk.CssProvider css" : "null",
        "bool insert_spaces_instead_of_tabs" : true,
        "gboolean highlight_current_line" : true,
        "gboolean show_line_marks" : true,
