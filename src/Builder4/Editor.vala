@@ -377,7 +377,9 @@ public class Editor : Object
             	  _this.view.css.load_from_data(
             	  		"#editor-view { font: Monospace %d;".printf((int)val*10)
             	  		);
-                  } catch (Error e) {});
+                  } catch (Error e) {}
+             
+            });
         }
 
         // user defined functions

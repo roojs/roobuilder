@@ -84,7 +84,7 @@
          "\t  \t\t);",
          "      } catch (Error e) {}",
          " ",
-         ""
+         "}"
         ]
        },
        "xtype" : "Scale"
