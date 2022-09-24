@@ -58,6 +58,7 @@
        "xtype" : "Label"
       },
       {
+       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "* ctor" : "new Gtk.HScale.with_range (6, 30, 1)",
        "* init" : [
