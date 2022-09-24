@@ -571,7 +571,7 @@ Gtk.SourceDrawSpacesFlags.SPACE;
                 
                 
                 this.el.get_space_drawer().set_matrix( new Variant(  "au",
-                 Gtk.SourceSpaceTypeFlags.ALL );
+                    {Gtk.SourceSpaceTypeFlags.ALL } ));
                 
                 /*
                 Gtk.SourceDrawSpacesFlags.LEADING + 
