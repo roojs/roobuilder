@@ -85,7 +85,7 @@
          "}"
         ]
        },
-       "xtype" : "HScale"
+       "xtype" : "Scale"
       },
       {
        "$ xns" : "Gtk",

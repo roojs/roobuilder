@@ -250,7 +250,7 @@ public class Editor : Object
             var child_1 = new Xcls_Label5( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_HScale6( _this );
+            var child_2 = new Xcls_Scale6( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
             var child_3 = new Xcls_close_btn( _this );
@@ -339,16 +339,16 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_HScale6 : Object
+    public class Xcls_Scale6 : Object
     {
-        public Gtk.HScale el;
+        public Gtk.Scale el;
         private Editor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_HScale6(Editor _owner )
+        public Xcls_Scale6(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.HScale.with_range (6, 30, 1);
