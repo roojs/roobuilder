@@ -58,7 +58,6 @@
        "xtype" : "Label"
       },
       {
-       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "* ctor" : "new Gtk.Scale.with_range (6, 30, 1)",
        "* init" : [
@@ -69,6 +68,7 @@
         ""
        ],
        "* pack" : "add",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool draw_value" : true,
        "bool has_origin" : true,
        "bool sensitive" : true,
