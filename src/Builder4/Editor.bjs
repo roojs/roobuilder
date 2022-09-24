@@ -135,7 +135,7 @@
         "\t\tvar description =   Pango.FontDescription.from_string(\"monospace\");",
         "\t\tdescription.set_size(8000);",
         "",
-        "\t\t this.el.override_font(description);",
+        "\t\t this.el.set_property(\"font-desc\", description);",
         "",
         "\ttry {        ",
         "\t\tthis.el.completion.add_provider(new Palete.CompletionProvider(_this));",
