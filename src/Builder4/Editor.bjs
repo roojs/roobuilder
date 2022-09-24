@@ -125,12 +125,6 @@
      "id" : "RightEditor",
      "items" : [
       {
-       "$ Gtk.SourceDrawSpacesFlags draw_spaces" : [
-        "Gtk.SourceDrawSpacesFlags.LEADING + ",
-        "Gtk.SourceDrawSpacesFlags.TRAILING + ",
-        "Gtk.SourceDrawSpacesFlags.TAB + ",
-        "Gtk.SourceDrawSpacesFlags.SPACE"
-       ],
        "$ gboolean auto_indent" : true,
        "$ show_line_numbers" : true,
        "$ xns" : "Gtk",
