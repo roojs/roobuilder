@@ -83,8 +83,8 @@
          "\t  \t\t\"#editor-view { font: Monospace %d;\".printf((int)val*10)",
          "\t  \t\t);",
          "      ",
-         "      return false;",
-         "}"
+         " ",
+         ""
         ]
        },
        "xtype" : "Scale"
