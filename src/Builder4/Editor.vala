@@ -557,7 +557,7 @@ Gtk.SourceDrawSpacesFlags.SPACE;
                 
              
                 
-                 var dattrs = new Gtk.SourceMarkAttributes();
+                 var dattrs ,= new Gtk.SourceMarkAttributes();
                 var  purple =   Gdk.RGBA();
                 purple.parse ( "#EEA9FF");
                 dattrs.set_background ( purple);
@@ -571,7 +571,7 @@ Gtk.SourceDrawSpacesFlags.SPACE;
                 
                 
                 this.el.get_space_drawer().set_matrix( new Variant(  "au",
-                    {Gtk.SourceSpaceTypeFlags.ALL } ));
+                    Gtk.SourceSpaceTypeFlags.ALL  ));
                 
                 /*
                 Gtk.SourceDrawSpacesFlags.LEADING + 
