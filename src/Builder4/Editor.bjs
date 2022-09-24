@@ -79,7 +79,7 @@
          "(st, val ) => {",
          "\t ",
          "\t  ",
-         "\t  this.css.load_from_data(\"#editor-view { font: Monospace %d;\", val*10);",
+         "\t  _this.view.css.load_from_data(\"#editor-view { font: Monospace %d;\", val*10);",
          "      ",
          "      return false;",
          "}"
