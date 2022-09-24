@@ -59,7 +59,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* ctor" : "new Gtk.HScale.with_range (6, 30, 1)",
+       "* ctor" : "new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1)",
        "* init" : [
         "{",
         "\tthis.el.set_range(6,30);",
@@ -77,15 +77,16 @@
         "change_value" : [
          "(st, val ) => {",
          "\t ",
-         "\t  var description =   Pango.FontDescription.from_string(\"monospace\");",
-         "\t  print(\"resize to %d\", (int)val*1000);",
-         "      description.set_size((int)val*1000);",
-         "      _this.view.el.override_font(description);",
-         "      return false;",
+         "\t  try {",
+         "\t  _this.view.css.load_from_data(",
+         "\t  \t\t\"#editor-view { font: %dpx Monospace; }\".printf((int)val)",
+         "\t  \t\t);",
+         "      } catch (Error e) {}",
+         " \treturn false;",
          "}"
         ]
        },
-       "xtype" : "HScale"
+       "xtype" : "Scale"
       },
       {
        "$ xns" : "Gtk",
@@ -124,17 +125,19 @@
      "id" : "RightEditor",
      "items" : [
       {
-       "$ Gtk.SourceDrawSpacesFlags draw_spaces" : "Gtk.SourceDrawSpacesFlags.LEADING + Gtk.SourceDrawSpacesFlags.TRAILING + Gtk.SourceDrawSpacesFlags.TAB + Gtk.SourceDrawSpacesFlags.SPACE",
        "$ gboolean auto_indent" : true,
        "$ show_line_numbers" : true,
        "$ xns" : "Gtk",
        "* init" : [
         " ",
         "",
-        "\t\tvar description =   Pango.FontDescription.from_string(\"monospace\");",
-        "\t\tdescription.set_size(8000);",
-        "",
-        "\t\t this.el.override_font(description);",
+        "\t\tthis.css = new Gtk.CssProvider();",
+        "\t\ttry {",
+        "\t\tthis.css.load_from_data(\"#editor-view { font: 10px Monospace;}\");",
+        "\t\t} catch (Error e) {}",
+        "\t\t this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+        "\t\t ",
+        "\t\t ",
         "",
         "\ttry {        ",
         "\t\tthis.el.completion.add_provider(new Palete.CompletionProvider(_this));",
@@ -184,9 +187,22 @@
         "    ",
         "    this.el.set_mark_attributes (\"DEPR\", dattrs, 1);",
         "    ",
-        "    "
+        "  ",
+        "     this.el.get_space_drawer().set_matrix(null);",
+        "     this.el.get_space_drawer().set_types_for_locations( ",
+        "\t\tGtk.SourceSpaceLocationFlags.ALL,",
+        "\t\tGtk.SourceSpaceTypeFlags.ALL",
+        "    );",
+        "    this.el.get_space_drawer().set_enable_matrix(true);",
+        "    /*",
+        "    Gtk.SourceDrawSpacesFlags.LEADING + ",
+        "Gtk.SourceDrawSpacesFlags.TRAILING + ",
+        "Gtk.SourceDrawSpacesFlags.TAB + ",
+        "Gtk.SourceDrawSpacesFlags.SPACE",
+        "    */"
        ],
        "* pack" : "add",
+       "Gtk.CssProvider css" : "null",
        "bool insert_spaces_instead_of_tabs" : true,
        "gboolean highlight_current_line" : true,
        "gboolean show_line_marks" : true,
@@ -488,6 +504,7 @@
          " "
         ]
        },
+       "string name" : "editor-view",
        "uint tab_width" : 4,
        "xtype" : "SourceView",
        "| void load" : [
@@ -543,7 +560,7 @@
        "* init" : [
         "var description =   Pango.FontDescription.from_string(\"monospace\");",
         "\tdescription.set_size(8000);",
-        "\t this.el.override_font(description);",
+        "\t this.el.set_property(\"font-desc\",description);",
         "",
         ""
        ],
@@ -676,7 +693,7 @@
            "}"
           ]
          },
-         "xtype" : "ImageMenuItem",
+         "xtype" : "MenuItem",
          "| void updateResults" : [
           "() {",
           "\tthis.el.visible = true;",

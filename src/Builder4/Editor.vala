@@ -250,7 +250,7 @@ public class Editor : Object
             var child_1 = new Xcls_Label5( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_HScale6( _this );
+            var child_2 = new Xcls_Scale6( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
             var child_3 = new Xcls_close_btn( _this );
@@ -339,19 +339,19 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_HScale6 : Object
+    public class Xcls_Scale6 : Object
     {
-        public Gtk.HScale el;
+        public Gtk.Scale el;
         private Editor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_HScale6(Editor _owner )
+        public Xcls_Scale6(Editor _owner )
         {
             _this = _owner;
-            this.el = new Gtk.HScale.with_range (6, 30, 1);
+            this.el = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL,6, 30, 1);
 
             // my vars (dec)
 
@@ -372,11 +372,12 @@ public class Editor : Object
             //listeners
             this.el.change_value.connect( (st, val ) => {
             	 
-            	  var description =   Pango.FontDescription.from_string("monospace");
-            	  print("resize to %d", (int)val*1000);
-                  description.set_size((int)val*1000);
-                  _this.view.el.override_font(description);
-                  return false;
+            	  try {
+            	  _this.view.css.load_from_data(
+            	  		"#editor-view { font: %dpx Monospace; }".printf((int)val)
+            	  		);
+                  } catch (Error e) {}
+             	return false;
             });
         }
 
@@ -477,6 +478,7 @@ public class Editor : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_view(Editor _owner )
@@ -486,14 +488,15 @@ public class Editor : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
+            this.css = null;
 
             // set gobject values
             this.el.auto_indent = true;
             this.el.indent_width = 4;
+            this.el.name = "editor-view";
             this.el.show_line_marks = true;
             this.el.insert_spaces_instead_of_tabs = true;
             this.el.show_line_numbers = true;
-            this.el.draw_spaces = Gtk.SourceDrawSpacesFlags.LEADING + Gtk.SourceDrawSpacesFlags.TRAILING + Gtk.SourceDrawSpacesFlags.TAB + Gtk.SourceDrawSpacesFlags.SPACE;
             this.el.tab_width = 4;
             this.el.highlight_current_line = true;
             var child_0 = new Xcls_buffer( _this );
@@ -502,10 +505,13 @@ public class Editor : Object
 
             // init method
 
-            var description =   Pango.FontDescription.from_string("monospace");
-            		description.set_size(8000);
-            
-            		 this.el.override_font(description);
+            this.css = new Gtk.CssProvider();
+            		try {
+            		this.css.load_from_data("#editor-view { font: 10px Monospace;}");
+            		} catch (Error e) {}
+            		 this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            		 
+            		 
             
             	try {        
             		this.el.completion.add_provider(new Palete.CompletionProvider(_this));
@@ -554,6 +560,20 @@ public class Editor : Object
                 });
                 
                 this.el.set_mark_attributes ("DEPR", dattrs, 1);
+                
+              
+                 this.el.get_space_drawer().set_matrix(null);
+                 this.el.get_space_drawer().set_types_for_locations( 
+            		Gtk.SourceSpaceLocationFlags.ALL,
+            		Gtk.SourceSpaceTypeFlags.ALL
+                );
+                this.el.get_space_drawer().set_enable_matrix(true);
+                /*
+                Gtk.SourceDrawSpacesFlags.LEADING + 
+            Gtk.SourceDrawSpacesFlags.TRAILING + 
+            Gtk.SourceDrawSpacesFlags.TAB + 
+            Gtk.SourceDrawSpacesFlags.SPACE
+                */
 
             //listeners
             this.el.key_release_event.connect( (event) => {
@@ -953,7 +973,7 @@ public class Editor : Object
 
             var description =   Pango.FontDescription.from_string("monospace");
             	description.set_size(8000);
-            	 this.el.override_font(description);
+            	 this.el.set_property("font-desc",description);
 
             //listeners
             this.el.key_press_event.connect( (event) => {
@@ -1074,23 +1094,24 @@ public class Editor : Object
     }
     public class Xcls_search_results : Object
     {
-        public Gtk.ImageMenuItem el;
+        public Gtk.MenuItem el;
         private Editor  _this;
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_search_results(Editor _owner )
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.ImageMenuItem();
+            this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.visible = false;
             this.el.show();
 
