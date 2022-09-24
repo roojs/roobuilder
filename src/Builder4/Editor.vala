@@ -515,11 +515,7 @@ Gtk.SourceDrawSpacesFlags.SPACE;
             		} catch (Error e) {}
             		 this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             		 
-            		
-            		var description =   Pango.FontDescription.from_string("monospace");
-            		description.set_size(8000);
-            
-            		 this.el.set_property("font-desc", description);
+            		 
             
             	try {        
             		this.el.completion.add_provider(new Palete.CompletionProvider(_this));
