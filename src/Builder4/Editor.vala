@@ -567,6 +567,7 @@ public class Editor : Object
             		Gtk.SourceSpaceLocationFlags.ALL,
             		Gtk.SourceSpaceTypeFlags.ALL
                 );
+                this.el.get_space_drawer().set_enable_matrix(true);
                 /*
                 Gtk.SourceDrawSpacesFlags.LEADING + 
             Gtk.SourceDrawSpacesFlags.TRAILING + 
