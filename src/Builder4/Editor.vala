@@ -374,9 +374,9 @@ public class Editor : Object
             this.el.change_value.connect( (st, val ) => {
             	 
             	  var description =   Pango.FontDescription.from_string("monospace");
-            	  print("resize to %d", (int)val*1000);
+            	  //print("resize to %d", (int)val*1000);
                   description.set_size((int)val*1000);
-                  _this.view.el.override_font(description);
+                  _this.view.el.set_property("font-desc",description);
                   return false;
             });
         }
