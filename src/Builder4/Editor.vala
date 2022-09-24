@@ -373,10 +373,11 @@ public class Editor : Object
             //listeners
             this.el.change_value.connect( (st, val ) => {
             	 
-            	  
+            	  try {
             	  _this.view.css.load_from_data(
             	  		"#editor-view { font: Monospace %d;".printf((int)val*10)
-            	  		););
+            	  		);
+                  } catch (Error e) {});
         }
 
         // user defined functions
