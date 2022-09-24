@@ -921,7 +921,7 @@ public class Editor : Object
             var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
             this.el.add(  child_3.el );
-            var child_4 = new Xcls_MenuButton21( _this );
+            var child_4 = new Xcls_MenuButton20( _this );
             child_4.ref();
             this.el.add(  child_4.el );
         }
@@ -1066,40 +1066,13 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem15( _this );
+            var child_0 = new Xcls_search_results( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
-            var child_1 = new Xcls_search_results( _this );
-            child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.add (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_MenuItem15 : Object
-    {
-        public Gtk.MenuItem el;
-        private Editor  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_MenuItem15(Editor _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.MenuItem();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Label";
-            this.el.show();
-        }
-
-        // user defined functions
-    }
-
     public class Xcls_search_results : Object
     {
         public Gtk.ImageMenuItem el;
@@ -1183,7 +1156,7 @@ public class Editor : Object
             this.el.always_show_image = true;
             this.el.label = "Next";
             this.el.sensitive = false;
-            var child_0 = new Xcls_Image18( _this );
+            var child_0 = new Xcls_Image17( _this );
             child_0.ref();
             this.el.image = child_0.el;
 
@@ -1198,7 +1171,7 @@ public class Editor : Object
 
         // user defined functions
     }
-    public class Xcls_Image18 : Object
+    public class Xcls_Image17 : Object
     {
         public Gtk.Image el;
         private Editor  _this;
@@ -1207,7 +1180,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image18(Editor _owner )
+        public Xcls_Image17(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1243,7 +1216,7 @@ public class Editor : Object
             this.el.always_show_image = true;
             this.el.label = "Previous";
             this.el.sensitive = false;
-            var child_0 = new Xcls_Image20( _this );
+            var child_0 = new Xcls_Image19( _this );
             child_0.ref();
             this.el.image = child_0.el;
 
@@ -1258,7 +1231,7 @@ public class Editor : Object
 
         // user defined functions
     }
-    public class Xcls_Image20 : Object
+    public class Xcls_Image19 : Object
     {
         public Gtk.Image el;
         private Editor  _this;
@@ -1267,7 +1240,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image20(Editor _owner )
+        public Xcls_Image19(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1282,7 +1255,7 @@ public class Editor : Object
     }
 
 
-    public class Xcls_MenuButton21 : Object
+    public class Xcls_MenuButton20 : Object
     {
         public Gtk.MenuButton el;
         private Editor  _this;
@@ -1291,7 +1264,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_MenuButton21(Editor _owner )
+        public Xcls_MenuButton20(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -1301,7 +1274,7 @@ public class Editor : Object
             // set gobject values
             this.el.always_show_image = true;
             this.el.label = "Settings";
-            var child_0 = new Xcls_Image22( _this );
+            var child_0 = new Xcls_Image21( _this );
             child_0.ref();
             this.el.image = child_0.el;
             var child_1 = new Xcls_search_settings( _this );
@@ -1311,7 +1284,7 @@ public class Editor : Object
 
         // user defined functions
     }
-    public class Xcls_Image22 : Object
+    public class Xcls_Image21 : Object
     {
         public Gtk.Image el;
         private Editor  _this;
@@ -1320,7 +1293,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image22(Editor _owner )
+        public Xcls_Image21(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
