@@ -497,7 +497,10 @@ public class Editor : Object
             this.el.show_line_marks = true;
             this.el.insert_spaces_instead_of_tabs = true;
             this.el.show_line_numbers = true;
-            this.el.draw_spaces = Gtk.SourceDrawSpacesFlags.LEADING + Gtk.SourceDrawSpacesFlags.TRAILING + Gtk.SourceDrawSpacesFlags.TAB + Gtk.SourceDrawSpacesFlags.SPACE;
+            this.el.draw_spaces = Gtk.SourceDrawSpacesFlags.LEADING + 
+Gtk.SourceDrawSpacesFlags.TRAILING + 
+Gtk.SourceDrawSpacesFlags.TAB + 
+Gtk.SourceDrawSpacesFlags.SPACE;
             this.el.tab_width = 4;
             this.el.highlight_current_line = true;
             var child_0 = new Xcls_buffer( _this );
