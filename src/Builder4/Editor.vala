@@ -562,7 +562,8 @@ public class Editor : Object
                 this.el.set_mark_attributes ("DEPR", dattrs, 1);
                 
               
-                this.el.get_space_drawer().set_types_for_locations( 
+                 this.el.get_space_drawer().set_matrix(null);
+                 this.el.get_space_drawer().set_types_for_locations( 
             		Gtk.SourceSpaceLocationFlags.ALL,
             		Gtk.SourceSpaceTypeFlags.ALL
                 );
