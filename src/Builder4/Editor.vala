@@ -1085,20 +1085,26 @@ public class Editor : Object
     }
     public class Xcls_search_results : Object
     {
-        public Gtk.ImageItem el;
+        public Gtk.MenuItem el;
         private Editor  _this;
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_search_results(Editor _owner )
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.ImageItem();
+            this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+            this.always_show_image = true;
+
+            // set gobject values
+            this.el.visible = false;
+            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
