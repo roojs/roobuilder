@@ -565,9 +565,9 @@ Gtk.SourceDrawSpacesFlags.SPACE;
                 
                 this.el.set_mark_attributes ("DEPR", dattrs, 1);
                 
-                
-               // this.el.get_space_drawer().set_matrix( new GLib.Variant(  "au",
-               //     Gtk.SourceSpaceTypeFlags.ALL  ));
+                Variant[] ar =  {};
+                ar += new Variant.uint(Gtk.SourceSpaceTypeFlags.ALL )
+                this.el.get_space_drawer().set_matrix( new GLib.Variant.array(GLib.VariantType.UNIT, ar));
                 
                 /*
                 Gtk.SourceDrawSpacesFlags.LEADING + 
