@@ -789,13 +789,9 @@ public class Xcls_RooProjectSettings : Object
 
             // init method
 
-            var description =   Pango.FontDescription.from_string("monospace");
-                description.set_size(9000);
-                this.el.override_font(description);
-                
             this.css = new Gtk.CssProvider();
             try {
-            	this.css.load_from_data("#popover-files-fileview { font: monospace 10px;}");
+            	this.css.load_from_data("#roo-project-settings-view{ font: monospace 10px;}");
             } catch (Error e) {}
             this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
