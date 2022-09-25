@@ -1256,7 +1256,6 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
-        public bool always_show_image;
         public Xcls_ValaCompileErrors popup;
         public Json.Object notices;
 
@@ -1268,7 +1267,6 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-            this.always_show_image = true;
             this.notices = new Json.Object();
 
             // set gobject values
@@ -1380,7 +1378,6 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
-        public bool always_show_image;
         public Xcls_ValaCompileErrors popup;
         public Json.Object notices;
 
@@ -1392,7 +1389,6 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-            this.always_show_image = true;
             this.notices = new Json.Object();
 
             // set gobject values
