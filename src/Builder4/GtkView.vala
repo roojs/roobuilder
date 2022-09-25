@@ -1149,7 +1149,7 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_search_results : Object
     {
-        public Gtk.ImageMenuItem el;
+        public Gtk.MenuItem el;
         private Xcls_GtkView  _this;
 
 
@@ -1160,12 +1160,11 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.ImageMenuItem();
+            this.el = new Gtk.MenuItem();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.visible = false;
             this.el.show();
 
