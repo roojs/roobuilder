@@ -36,10 +36,7 @@
         "    this.el.set_size_request(150,-1);",
         "                          //  set_reorderable: [1]",
         "                                  ",
-        "    var description = new Pango.FontDescription();",
-        "    description.set_size(10000);",
-        "    this.el.override_font(description);",
-        "    ",
+        " ",
         "\tthis.css = new Gtk.CssProvider();",
         "\ttry {",
         "\t\tthis.css.load_from_data(\"#popover-add-object-view { font-szie: 12px;}\");",
@@ -182,6 +179,7 @@
          "}"
         ]
        },
+       "string name" : "popover-add-object-view",
        "xtype" : "TreeView"
       }
      ],

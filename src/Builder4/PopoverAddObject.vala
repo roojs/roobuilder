@@ -174,6 +174,7 @@ public class Xcls_PopoverAddObject : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "popover-add-object-view";
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
             var child_0 = new Xcls_model( _this );
@@ -189,10 +190,7 @@ public class Xcls_PopoverAddObject : Object
                 this.el.set_size_request(150,-1);
                                       //  set_reorderable: [1]
                                               
-                var description = new Pango.FontDescription();
-                description.set_size(10000);
-                this.el.override_font(description);
-                
+             
             	this.css = new Gtk.CssProvider();
             	try {
             		this.css.load_from_data("#popover-add-object-view { font-szie: 12px;}");
