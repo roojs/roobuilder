@@ -30,6 +30,7 @@ public class Xcls_GtkView : Object
 
         // my vars (def)
     public Gtk.Widget lastObj;
+    public Gtk.CssProvider css;
     public Xcls_MainWindow main_window;
     public Gtk.SourceSearchContext searchcontext;
     public int last_search_end;
@@ -56,6 +57,22 @@ public class Xcls_GtkView : Object
         var child_0 = new Xcls_notebook( _this );
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
+
+        // init method
+
+        {
+        
+        	this.css = new Gtk.CssProvider();
+        	try {
+        		this.css.load_from_data("#gtkview-view-layout { background-color: #ccc; }");
+        	} catch (Error e) {}
+        	this.el.get_style_context().add_provider(this.css,
+        		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        	 
+         
+                
+                
+        }
 
         //listeners
         this.el.size_allocate.connect( (aloc) => {
@@ -102,11 +119,9 @@ public class Xcls_GtkView : Object
             _this.container.el.set_size_request(w,h);
             
             _this.view_layout.el.set_size(w,h); // should be baded on calc.. -- see update_scrolled.
-            var rgba = Gdk.RGBA ();
-            rgba.parse ("#ccc");
-            _this.view_layout.el.override_background_color(Gtk.StateFlags.NORMAL, rgba);
-            
-            
+           
+           
+           
     	var x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);
         var obj = x.munge() as Gtk.Widget;
         this.lastObj = null;
@@ -460,6 +475,7 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "gtkview-view-layout";
             var child_0 = new Xcls_container( _this );
             child_0.ref();
             this.el.put (  child_0.el , 10,10 );
@@ -554,6 +570,7 @@ public class Xcls_GtkView : Object
         public bool loading;
         public string prop_selected;
         public bool allow_node_scroll;
+        public Gtk.CssProvider css;
         public JsRender.Node? node_selected;
 
         // ctor
@@ -569,6 +586,7 @@ public class Xcls_GtkView : Object
             this.allow_node_scroll = true;
 
             // set gobject values
+            this.el.name = "gtkview-view";
             this.el.editable = false;
             this.el.show_line_marks = true;
             this.el.show_line_numbers = true;
@@ -580,10 +598,15 @@ public class Xcls_GtkView : Object
 
             {
                
-                var description =   Pango.FontDescription.from_string("monospace");
-                description.set_size(8000);
-                this.el.override_font(description);
-            
+               
+               	this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#gtkview-view { font: 10px Monospace;}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	 
+            		 
                 this.loading = true;
                 var buf = this.el.get_buffer();
                 buf.notify.connect((ps) => {
@@ -982,6 +1005,7 @@ public class Xcls_GtkView : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_search_entry(Xcls_GtkView _owner )
@@ -994,14 +1018,18 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.width_request = 300;
+            this.el.name = "gtkview-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
 
             // init method
 
-            var description =   Pango.FontDescription.from_string("monospace");
-            	description.set_size(8000);
-            	 this.el.override_font(description);
+            this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#gtkview-search-entry { font: 10px Monospace;}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
             this.el.key_press_event.connect( (event) => {
@@ -1121,7 +1149,7 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_search_results : Object
     {
-        public Gtk.ImageMenuItem el;
+        public Gtk.MenuItem el;
         private Xcls_GtkView  _this;
 
 
@@ -1132,12 +1160,11 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.ImageMenuItem();
+            this.el = new Gtk.MenuItem();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.visible = false;
             this.el.show();
 

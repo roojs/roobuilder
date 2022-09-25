@@ -36,9 +36,15 @@
         "    this.el.set_size_request(150,-1);",
         "                          //  set_reorderable: [1]",
         "                                  ",
-        "    var description = new Pango.FontDescription();",
-        "    description.set_size(10000);",
-        "    this.el.override_font(description);",
+        " ",
+        "\tthis.css = new Gtk.CssProvider();",
+        "\ttry {",
+        "\t\tthis.css.load_from_data(\"#popover-add-object-view { font-szie: 12px;}\");",
+        "\t} catch (Error e) {}",
+        "\tthis.el.get_style_context().add_provider(this.css,",
+        "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+        "\t ",
+        "\t ",
         "    ",
         "    var selection = this.el.get_selection();",
         "    selection.set_mode( Gtk.SelectionMode.SINGLE);",
@@ -62,6 +68,7 @@
         ""
        ],
        "* pack" : "add",
+       "Gtk.CssProvider css" : "",
        "items" : [
         {
          "$ columns" : "typeof(string),typeof(string),typeof(Gdk.Pixbuf)",
@@ -174,6 +181,7 @@
          "}"
         ]
        },
+       "string name" : "popover-add-object-view",
        "xtype" : "TreeView"
       }
      ],

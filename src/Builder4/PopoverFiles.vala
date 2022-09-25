@@ -705,6 +705,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_view(Xcls_PopoverFiles _owner )
@@ -716,6 +717,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "popover-files-view";
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
             var child_0 = new Xcls_model( _this );
@@ -727,12 +729,17 @@ public class Xcls_PopoverFiles : Object
 
             // init method
 
-            var description = new Pango.FontDescription();
-                 description.set_size(9000);
-                this.el.override_font(description);     
-                                
-                var selection = this.el.get_selection();
-                selection.set_mode( Gtk.SelectionMode.SINGLE);
+            this.css = new Gtk.CssProvider();
+            try {
+            	this.css.load_from_data("#popover-files-view { font-size: 10px;}");
+            } catch (Error e) {}
+            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+                    
+                    
+                    
+                    
+            var selection = this.el.get_selection();
+            selection.set_mode( Gtk.SelectionMode.SINGLE);
 
             //listeners
             this.el.cursor_changed.connect( () => {
@@ -916,6 +923,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_iconsearch(Xcls_PopoverFiles _owner )
@@ -927,14 +935,17 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "popover-files-iconsearch";
             this.el.hexpand = true;
             this.el.placeholder_text = "type to filter results";
 
             // init method
 
-            var description =   Pango.FontDescription.from_string("monospace");
-            	description.set_size(8000);
-            	 this.el.override_font(description);
+            this.css = new Gtk.CssProvider();
+            try {
+            	this.css.load_from_data("#popover-files-iconsearch { font: monospace 10px;}");
+            } catch (Error e) {}
+            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
             this.el.changed.connect( ( ) => {
@@ -1132,6 +1143,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_fileview(Xcls_PopoverFiles _owner )
@@ -1143,6 +1155,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "popover-files-fileview";
             this.el.activate_on_single_click = false;
             this.el.expand = true;
             this.el.enable_tree_lines = true;
@@ -1156,12 +1169,18 @@ public class Xcls_PopoverFiles : Object
 
             // init method
 
-            var description = new Pango.FontDescription();
-                 description.set_size(9000);
-                this.el.override_font(description);     
-                                
-                var selection = this.el.get_selection();
-                selection.set_mode( Gtk.SelectionMode.SINGLE);
+            this.css = new Gtk.CssProvider();
+            try {
+            	this.css.load_from_data("#popover-files-fileview { font-size: 12px;}");
+            } catch (Error e) {}
+            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+                    
+                    
+                    
+             
+                            
+            var selection = this.el.get_selection();
+            selection.set_mode( Gtk.SelectionMode.SINGLE);
 
             //listeners
             this.el.row_activated.connect( (path, col) => {

@@ -46,8 +46,8 @@
            "$ xns" : "Gtk",
            "* pack" : "pack_start,false,false,4",
            "id" : "grid",
-           "int margin_left" : 4,
-           "int margin_right" : 4,
+           "int margin_end" : 4,
+           "int margin_start" : 4,
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -270,11 +270,17 @@
              "$ xns" : "Gtk",
              "* init" : [
               " ",
-              "    var description =   Pango.FontDescription.from_string(\"monospace\");",
-              "    description.set_size(9000);",
-              "    this.el.override_font(description);"
+              "    ",
+              "this.css = new Gtk.CssProvider();",
+              "try {",
+              "\tthis.css.load_from_data(\"#roo-project-settings-view{ font: monospace 10px;}\");",
+              "} catch (Error e) {}",
+              "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+              "        ",
+              "        "
              ],
              "* pack" : "add",
+             "Gtk.CssProvider css" : "",
              "id" : "view",
              "listeners" : {
               "key_release_event" : [
@@ -301,6 +307,7 @@
                "}"
               ]
              },
+             "string name" : "roo-project-settings-view",
              "xtype" : "SourceView"
             }
            ],

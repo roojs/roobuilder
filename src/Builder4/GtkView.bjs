@@ -6,6 +6,23 @@
    "# JsRender.JsRender file" : "null",
    "# Xcls_MainWindow main_window" : "",
    "$ xns" : "Gtk",
+   "* init" : [
+    "{",
+    "",
+    "\tthis.css = new Gtk.CssProvider();",
+    "\ttry {",
+    "\t\tthis.css.load_from_data(\"#gtkview-view-layout { background-color: #ccc; }\");",
+    "\t} catch (Error e) {}",
+    "\tthis.el.get_style_context().add_provider(this.css,",
+    "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+    "\t ",
+    " ",
+    "        ",
+    "        ",
+    "}",
+    ""
+   ],
+   "Gtk.CssProvider css" : "",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "Gtk.SourceSearchContext searchcontext" : "",
    "bool hexpand" : true,
@@ -51,6 +68,7 @@
            "xtype" : "Box"
           }
          ],
+         "string name" : "gtkview-view-layout",
          "xtype" : "Layout"
         }
        ],
@@ -73,10 +91,15 @@
            "* init" : [
             "{",
             "   ",
-            "    var description =   Pango.FontDescription.from_string(\"monospace\");",
-            "    description.set_size(8000);",
-            "    this.el.override_font(description);",
-            "",
+            "   ",
+            "   \tthis.css = new Gtk.CssProvider();",
+            "\ttry {",
+            "\t\tthis.css.load_from_data(\"#gtkview-view { font: 10px Monospace;}\");",
+            "\t} catch (Error e) {}",
+            "\tthis.el.get_style_context().add_provider(this.css,",
+            "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+            "\t ",
+            "\t\t ",
             "    this.loading = true;",
             "    var buf = this.el.get_buffer();",
             "    buf.notify.connect((ps) => {",
@@ -174,6 +197,7 @@
             " "
            ],
            "* pack" : "add",
+           "Gtk.CssProvider css" : "",
            "bool allow_node_scroll" : true,
            "bool loading" : true,
            "gboolean editable" : false,
@@ -210,6 +234,7 @@
              ""
             ]
            },
+           "string name" : "gtkview-view",
            "xtype" : "SourceView",
            "| string toString" : [
             "() {",
@@ -445,12 +470,19 @@
           {
            "$ xns" : "Gtk",
            "* init" : [
-            "var description =   Pango.FontDescription.from_string(\"monospace\");",
-            "\tdescription.set_size(8000);",
-            "\t this.el.override_font(description);",
+            " ",
+            "this.css = new Gtk.CssProvider();",
+            "\ttry {",
+            "\t\tthis.css.load_from_data(\"#gtkview-search-entry { font: 10px Monospace;}\");",
+            "\t} catch (Error e) {}",
+            "\tthis.el.get_style_context().add_provider(this.css,",
+            "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+            "\t ",
+            "\t\t",
             "",
             ""
            ],
+           "Gtk.CssProvider css" : "",
            "bool hexpand" : true,
            "id" : "search_entry",
            "int width_request" : 300,
@@ -521,6 +553,7 @@
              "} "
             ]
            },
+           "string name" : "gtkview-search-entry",
            "string placeholder_text" : "Press enter to search",
            "xtype" : "SearchEntry",
            "| void forwardSearch" : [
@@ -560,7 +593,6 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "add",
-             "bool always_show_image" : true,
              "bool visible" : false,
              "id" : "search_results",
              "listeners" : {
@@ -579,7 +611,7 @@
                "}"
               ]
              },
-             "xtype" : "ImageMenuItem",
+             "xtype" : "MenuItem",
              "| void updateResults" : [
               "() {",
               "\tthis.el.visible = true;",
@@ -990,11 +1022,9 @@
     "        _this.container.el.set_size_request(w,h);",
     "        ",
     "        _this.view_layout.el.set_size(w,h); // should be baded on calc.. -- see update_scrolled.",
-    "        var rgba = Gdk.RGBA ();",
-    "        rgba.parse (\"#ccc\");",
-    "        _this.view_layout.el.override_background_color(Gtk.StateFlags.NORMAL, rgba);",
-    "        ",
-    "        ",
+    "       ",
+    "       ",
+    "       ",
     "\tvar x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);",
     "    var obj = x.munge() as Gtk.Widget;",
     "    this.lastObj = null;",

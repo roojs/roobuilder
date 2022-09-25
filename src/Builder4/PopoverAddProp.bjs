@@ -29,9 +29,14 @@
        "$ xns" : "Gtk",
        "* init" : [
         "{  ",
-        "       var description = new Pango.FontDescription();",
-        "     description.set_size(10000);",
-        "    this.el.override_font(description);     ",
+        "   ",
+        "\tthis.css = new Gtk.CssProvider();",
+        "\ttry {",
+        "\t\tthis.css.load_from_data(\"#popover-add-prop-view { font-sze: 12px;}\");",
+        "\t} catch (Error e) {}",
+        "   this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+        "\t ",
+        "\t ",
         "                    ",
         "    this.el.get_selection().set_mode( Gtk.SelectionMode.SINGLE);",
         " ",
@@ -43,6 +48,7 @@
         ""
        ],
        "* pack" : "add",
+       "Gtk.CssProvider css" : "",
        "items" : [
         {
          "$ columns" : [
@@ -162,6 +168,7 @@
          " "
         ]
        },
+       "string name" : "popover-add-prop-view",
        "tooltip_column" : 2,
        "xtype" : "TreeView"
       }
