@@ -30,6 +30,7 @@ public class Xcls_GtkView : Object
 
         // my vars (def)
     public Gtk.Widget lastObj;
+    public Gtk.CssProvider css;
     public Xcls_MainWindow main_window;
     public Gtk.SourceSearchContext searchcontext;
     public int last_search_end;
@@ -60,6 +61,15 @@ public class Xcls_GtkView : Object
         // init method
 
         {
+        
+        	this.css = new Gtk.CssProvider();
+        	try {
+        		this.css.load_from_data("#editor-view { font: 10px Monospace;}");
+        	} catch (Error e) {}
+        	this.el.get_style_context().add_provider(this.css,
+        		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        	 
+        		 
         
         }
 
