@@ -585,6 +585,7 @@ public class Xcls_GtkView : Object
             this.allow_node_scroll = true;
 
             // set gobject values
+            this.el.name = "gtkview-view";
             this.el.editable = false;
             this.el.show_line_marks = true;
             this.el.show_line_numbers = true;

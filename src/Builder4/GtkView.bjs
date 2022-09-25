@@ -237,6 +237,7 @@
              ""
             ]
            },
+           "string name" : "gtkview-view",
            "xtype" : "SourceView",
            "| string toString" : [
             "() {",
