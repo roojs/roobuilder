@@ -467,9 +467,22 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "set_image",
-             "utf8 icon_name" : "dialog-warning",
-             "xtype" : "Image"
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "utf8 icon_name" : "dialog-warning",
+               "xtype" : "Image"
+              },
+              {
+               "$ xns" : "Gtk",
+               "id" : "statusbar_warnings_label",
+               "string label" : "Errors",
+               "xtype" : "Label"
+              }
+             ],
+             "xtype" : "Box"
             }
            ],
            "listeners" : {
@@ -486,7 +499,7 @@
             ]
            },
            "string label" : "Warnings",
-           "xtype" : "ImageMenuItem",
+           "xtype" : "MenuItem",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
             "    this.el.show();",
