@@ -1197,7 +1197,7 @@ public class Xcls_MainWindow : Object
             this.el.add(  child_0.el );
             var child_1 = new Xcls_Image37( _this );
             child_1.ref();
-            this.el.set_image (  child_1.el  );
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
