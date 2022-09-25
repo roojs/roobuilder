@@ -934,6 +934,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "popover-files-iconsearch";
             this.el.hexpand = true;
             this.el.placeholder_text = "type to filter results";
 

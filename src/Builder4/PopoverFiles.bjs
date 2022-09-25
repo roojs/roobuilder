@@ -318,6 +318,7 @@
                ""
               ]
              },
+             "string name" : "popover-files-iconsearch",
              "string placeholder_text" : "type to filter results",
              "xtype" : "SearchEntry"
             }
