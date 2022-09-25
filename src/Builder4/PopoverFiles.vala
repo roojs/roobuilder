@@ -923,6 +923,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_iconsearch(Xcls_PopoverFiles _owner )

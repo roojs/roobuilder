@@ -303,6 +303,7 @@
               "        ",
               ""
              ],
+             "Gtk.CssProvider css" : "",
              "bool hexpand" : true,
              "id" : "iconsearch",
              "listeners" : {
