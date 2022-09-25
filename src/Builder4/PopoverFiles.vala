@@ -728,11 +728,20 @@ public class Xcls_PopoverFiles : Object
             // init method
 
             var description = new Pango.FontDescription();
-                 description.set_size(9000);
-                this.el.override_font(description);     
-                                
-                var selection = this.el.get_selection();
-                selection.set_mode( Gtk.SelectionMode.SINGLE);
+            description.set_size(9000);
+            this.el.override_font(description);     
+                    
+            this.css = new Gtk.CssProvider();
+            try {
+            	this.css.load_from_data("#popover-files-view { font-szie: 10px;}");
+            } catch (Error e) {}
+            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+                    
+                    
+                    
+                    
+            var selection = this.el.get_selection();
+            selection.set_mode( Gtk.SelectionMode.SINGLE);
 
             //listeners
             this.el.cursor_changed.connect( () => {
