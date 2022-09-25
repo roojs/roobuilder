@@ -292,10 +292,15 @@
             {
              "$ xns" : "Gtk",
              "* init" : [
-              "var description =   Pango.FontDescription.from_string(\"monospace\");",
-              "\tdescription.set_size(8000);",
-              "\t this.el.override_font(description);",
+              " ",
               "",
+              "this.css = new Gtk.CssProvider();",
+              "try {",
+              "\tthis.css.load_from_data(\"#popover-files-iconsearch { font-size: monospace 10px;}\");",
+              "} catch (Error e) {}",
+              "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+              "        ",
+              "        ",
               ""
              ],
              "bool hexpand" : true,

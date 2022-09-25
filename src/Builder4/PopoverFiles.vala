@@ -939,9 +939,11 @@ public class Xcls_PopoverFiles : Object
 
             // init method
 
-            var description =   Pango.FontDescription.from_string("monospace");
-            	description.set_size(8000);
-            	 this.el.override_font(description);
+            this.css = new Gtk.CssProvider();
+            try {
+            	this.css.load_from_data("#popover-files-iconsearch { font-size: monospace 10px;}");
+            } catch (Error e) {}
+            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
             this.el.changed.connect( ( ) => {
