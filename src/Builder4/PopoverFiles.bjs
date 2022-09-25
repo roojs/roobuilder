@@ -441,7 +441,7 @@
             "",
             "this.css = new Gtk.CssProvider();",
             "try {",
-            "\tthis.css.load_from_data(\"#popover-files-view { font-file: 12px;}\");",
+            "\tthis.css.load_from_data(\"#popover-files-fileview { font-file: 12px;}\");",
             "} catch (Error e) {}",
             "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
             "        ",
@@ -557,6 +557,7 @@
              "}"
             ]
            },
+           "string name" : "popover-files-fileview",
            "xtype" : "TreeView"
           }
          ],

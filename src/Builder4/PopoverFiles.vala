@@ -1154,6 +1154,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "popover-files-fileview";
             this.el.activate_on_single_click = false;
             this.el.expand = true;
             this.el.enable_tree_lines = true;
@@ -1169,7 +1170,7 @@ public class Xcls_PopoverFiles : Object
 
             this.css = new Gtk.CssProvider();
             try {
-            	this.css.load_from_data("#popover-files-view { font-file: 12px;}");
+            	this.css.load_from_data("#popover-files-fileview { font-file: 12px;}");
             } catch (Error e) {}
             this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
                     
