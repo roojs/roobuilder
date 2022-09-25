@@ -775,6 +775,7 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_view(Xcls_RooProjectSettings _owner )

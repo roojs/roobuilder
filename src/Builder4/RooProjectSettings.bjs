@@ -280,6 +280,7 @@
               "        "
              ],
              "* pack" : "add",
+             "Gtk.CssProvider css" : "",
              "id" : "view",
              "listeners" : {
               "key_release_event" : [
