@@ -473,7 +473,7 @@
             " ",
             "this.css = new Gtk.CssProvider();",
             "\ttry {",
-            "\t\tthis.css.load_from_data(\"#gtkview-saerch-entry { font: 10px Monospace;}\");",
+            "\t\tthis.css.load_from_data(\"#gtkview-search-entry { font: 10px Monospace;}\");",
             "\t} catch (Error e) {}",
             "\tthis.el.get_style_context().add_provider(this.css,",
             "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
@@ -553,6 +553,7 @@
              "} "
             ]
            },
+           "string name" : "gtkview-search-entry",
            "string placeholder_text" : "Press enter to search",
            "xtype" : "SearchEntry",
            "| void forwardSearch" : [

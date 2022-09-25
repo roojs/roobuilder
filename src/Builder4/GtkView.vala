@@ -1018,6 +1018,7 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.width_request = 300;
+            this.el.name = "gtkview-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
 
@@ -1025,7 +1026,7 @@ public class Xcls_GtkView : Object
 
             this.css = new Gtk.CssProvider();
             	try {
-            		this.css.load_from_data("#gtkview-saerch-entry { font: 10px Monospace;}");
+            		this.css.load_from_data("#gtkview-search-entry { font: 10px Monospace;}");
             	} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
