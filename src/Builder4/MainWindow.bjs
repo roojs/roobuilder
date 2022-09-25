@@ -406,13 +406,37 @@
            "xtype" : "MenuItem"
           },
           {
+           "$ xns" : "Gtk",
+           "string label" : "Label",
+           "xtype" : "MenuItem"
+          },
+          {
            "# Json.Object notices" : "new Json.Object() ",
            "$ xns" : "Gtk",
            "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
-           "bool always_show_image" : true,
            "id" : "statusbar_errors",
            "items" : [
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "id" : "statusbar_errors_label",
+               "string label" : "Errors",
+               "xtype" : "Label"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "set_image",
+               "utf8 icon_name" : "dialog-error",
+               "xtype" : "Image"
+              }
+             ],
+             "xtype" : "Box"
+            },
             {
              "$ xns" : "Gtk",
              "* pack" : "set_image",
@@ -434,8 +458,7 @@
              "}"
             ]
            },
-           "string label" : "Errors",
-           "xtype" : "ImageMenuItem",
+           "xtype" : "MenuItem",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
             "    this.el.show();",
