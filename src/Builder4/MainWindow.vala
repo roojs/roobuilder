@@ -29,7 +29,7 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar_errors statusbar_errors;
     public Xcls_statusbar_errors_label statusbar_errors_label;
     public Xcls_statusbar_warnings statusbar_warnings;
-    public Xcls_statusbar_warning_label statusbar_warning_label;
+    public Xcls_statusbar_warnings_label statusbar_warnings_label;
     public Xcls_statusbar_depricated statusbar_depricated;
     public Xcls_statusbar_depricated_label statusbar_depricated_label;
     public Xcls_statusbar_run statusbar_run;
@@ -1291,7 +1291,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
         public void setNotices (Json.Object nots, int qty) {
             this.el.show();
-            _this.statusbar_warning_label.el.label = qty.to_string() + " Warnings";
+            _this.statusbar_warnings_label.el.label = qty.to_string() + " Warnings";
             this.notices = nots;
         
         }
@@ -1316,7 +1316,7 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Image40( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_statusbar_warning_label( _this );
+            var child_1 = new Xcls_statusbar_warnings_label( _this );
             child_1.ref();
             this.el.add(  child_1.el );
         }
@@ -1346,7 +1346,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_statusbar_warning_label : Object
+    public class Xcls_statusbar_warnings_label : Object
     {
         public Gtk.Label el;
         private Xcls_MainWindow  _this;
@@ -1355,10 +1355,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_statusbar_warning_label(Xcls_MainWindow _owner )
+        public Xcls_statusbar_warnings_label(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.statusbar_warning_label = this;
+            _this.statusbar_warnings_label = this;
             this.el = new Gtk.Label( "Errors" );
 
             // my vars (dec)

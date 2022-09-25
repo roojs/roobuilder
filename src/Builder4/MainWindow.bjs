@@ -476,7 +476,7 @@
               },
               {
                "$ xns" : "Gtk",
-               "id" : "statusbar_warning_label",
+               "id" : "statusbar_warnings_label",
                "string label" : "Errors",
                "xtype" : "Label"
               }
@@ -502,7 +502,7 @@
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
             "    this.el.show();",
-            "    _this.statusbar_warning_label.el.label = qty.to_string() + \" Warnings\";",
+            "    _this.statusbar_warnings_label.el.label = qty.to_string() + \" Warnings\";",
             "    this.notices = nots;",
             "",
             "}",
