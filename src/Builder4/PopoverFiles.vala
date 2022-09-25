@@ -1167,11 +1167,14 @@ public class Xcls_PopoverFiles : Object
 
             // init method
 
-            var description = new Pango.FontDescription();
-             description.set_size(9000);
-            this.el.override_font(description);     
-             
-             
+            this.css = new Gtk.CssProvider();
+            try {
+            	this.css.load_from_data("#popover-files-view { font-file: 12px;}");
+            } catch (Error e) {}
+            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+                    
+                    
+                    
              
                             
             var selection = this.el.get_selection();
