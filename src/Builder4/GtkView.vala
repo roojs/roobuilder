@@ -596,6 +596,15 @@ public class Xcls_GtkView : Object
 
             {
                
+               
+               	this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#gtkview-view { font: 10px Monospace;}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	 
+            		
                 var description =   Pango.FontDescription.from_string("monospace");
                 description.set_size(8000);
                 this.el.override_font(description);
