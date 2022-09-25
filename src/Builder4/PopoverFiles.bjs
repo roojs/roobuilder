@@ -271,6 +271,7 @@
              "}  "
             ]
            },
+           "string name" : "popover-files-view",
            "xtype" : "TreeView"
           }
          ],
