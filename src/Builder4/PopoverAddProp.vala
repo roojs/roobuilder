@@ -167,6 +167,7 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "popover-add-prop-view";
             this.el.tooltip_column = 2;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
