@@ -186,9 +186,14 @@ public class Xcls_PopoverAddProp : Object
             // init method
 
             {  
-                   var description = new Pango.FontDescription();
-                 description.set_size(10000);
-                this.el.override_font(description);     
+               
+            	this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#editor-view { font-sze: 12px;}");
+            	} catch (Error e) {}
+               this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	 
+            	 
                                 
                 this.el.get_selection().set_mode( Gtk.SelectionMode.SINGLE);
              
@@ -236,7 +241,7 @@ public class Xcls_PopoverAddProp : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 6, 
+            this.el = new Gtk.ListStore.newv(  { 
 typeof(JsRender.NodeProp),  // 0 real key
 typeof(string),  // 1 text display
 typeof(string),  // 2 tooltip
@@ -244,7 +249,7 @@ typeof(string),  // 3 sortable string
 typeof(string), // 4  prop type
 typeof(string) // 5 from interface
 
-  );
+  }  );
 
             // my vars (dec)
 
