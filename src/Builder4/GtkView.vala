@@ -606,11 +606,7 @@ public class Xcls_GtkView : Object
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	 
-            		
-                var description =   Pango.FontDescription.from_string("monospace");
-                description.set_size(8000);
-                this.el.override_font(description);
-            
+            		 
                 this.loading = true;
                 var buf = this.el.get_buffer();
                 buf.notify.connect((ps) => {
