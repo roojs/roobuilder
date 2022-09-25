@@ -199,6 +199,7 @@ public class Xcls_PopoverAddObject : Object
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	 
+            	 
                 
                 var selection = this.el.get_selection();
                 selection.set_mode( Gtk.SelectionMode.SINGLE);

@@ -44,6 +44,7 @@
         "\tthis.el.get_style_context().add_provider(this.css,",
         "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
         "\t ",
+        "\t ",
         "    ",
         "    var selection = this.el.get_selection();",
         "    selection.set_mode( Gtk.SelectionMode.SINGLE);",
