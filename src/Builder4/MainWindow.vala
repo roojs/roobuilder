@@ -1196,8 +1196,8 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
         public void setNotices (Json.Object nots, int qty) {
-            this.el.show();
-            this.el.label = qty.to_string() + " Errors";
+            this.el.show_all();
+            _this.statusbar_errors_label.el.label = qty.to_string() + " Errors";
             this.notices = nots;
         
         }
