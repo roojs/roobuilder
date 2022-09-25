@@ -537,7 +537,7 @@
               },
               {
                "$ xns" : "Gtk",
-               "id" : "statusbar_warnings_label",
+               "id" : "statusbar_depricated_label",
                "string label" : "Errors",
                "xtype" : "Label"
               }
