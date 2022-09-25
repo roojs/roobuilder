@@ -199,6 +199,7 @@
             " "
            ],
            "* pack" : "add",
+           "Gtk.CssProvider css" : "",
            "id" : "view",
            "items" : [
             {

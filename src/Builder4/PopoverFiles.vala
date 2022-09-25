@@ -705,6 +705,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_view(Xcls_PopoverFiles _owner )
