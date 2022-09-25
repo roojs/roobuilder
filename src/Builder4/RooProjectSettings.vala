@@ -288,8 +288,8 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.margin_right = 4;
-            this.el.margin_left = 4;
+            this.el.margin_end = 4;
+            this.el.margin_start = 4;
             this.el.row_spacing = 2;
             var child_0 = new Xcls_Label8( _this );
             child_0.ref();
@@ -792,6 +792,12 @@ public class Xcls_RooProjectSettings : Object
             var description =   Pango.FontDescription.from_string("monospace");
                 description.set_size(9000);
                 this.el.override_font(description);
+                
+            this.css = new Gtk.CssProvider();
+            try {
+            	this.css.load_from_data("#popover-files-fileview { font: monospace 10px;}");
+            } catch (Error e) {}
+            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
             this.el.key_release_event.connect( ( event) =>{
