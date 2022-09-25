@@ -1186,7 +1186,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Box35(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 2 );
 
             // my vars (dec)
 
@@ -1219,7 +1219,6 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.icon_name = "dialog-error";
-            this.el.margin_end = 2;
         }
 
         // user defined functions
@@ -1291,7 +1290,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
         public void setNotices (Json.Object nots, int qty) {
-            this.el.show();
+            this.el.show_all();
             _this.statusbar_warnings_label.el.label = qty.to_string() + " Warnings";
             this.notices = nots;
         
@@ -1309,7 +1308,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Box39(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 2 );
 
             // my vars (dec)
 
@@ -1414,7 +1413,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
         public void setNotices (Json.Object nots, int qty) {
-            this.el.show();
+            this.el.show_all();
             _this.statusbar_depricated_label.el.label = qty.to_string() + " Depricated";
             this.notices = nots;
         
@@ -1432,7 +1431,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Box43(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 2 );
 
             // my vars (dec)
 

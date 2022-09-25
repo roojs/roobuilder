@@ -415,11 +415,10 @@
             {
              "$ xns" : "Gtk",
              "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 0,
+             "int spacing" : 2,
              "items" : [
               {
                "$ xns" : "Gtk",
-               "int margin_end" : 2,
                "utf8 icon_name" : "dialog-error",
                "xtype" : "Image"
               },
@@ -468,7 +467,7 @@
             {
              "$ xns" : "Gtk",
              "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 0,
+             "int spacing" : 2,
              "items" : [
               {
                "$ xns" : "Gtk",
@@ -502,7 +501,7 @@
            "xtype" : "MenuItem",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
-            "    this.el.show();",
+            "    this.el.show_all();",
             "    _this.statusbar_warnings_label.el.label = qty.to_string() + \" Warnings\";",
             "    this.notices = nots;",
             "",
@@ -520,7 +519,7 @@
             {
              "$ xns" : "Gtk",
              "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 0,
+             "int spacing" : 2,
              "items" : [
               {
                "$ xns" : "Gtk",
@@ -555,7 +554,7 @@
            "xtype" : "MenuItem",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
-            "    this.el.show();",
+            "    this.el.show_all();",
             "    _this.statusbar_depricated_label.el.label = qty.to_string() + \" Depricated\";",
             "    this.notices = nots;",
             "",
