@@ -1168,11 +1168,14 @@ public class Xcls_PopoverFiles : Object
             // init method
 
             var description = new Pango.FontDescription();
-                 description.set_size(9000);
-                this.el.override_font(description);     
-                                
-                var selection = this.el.get_selection();
-                selection.set_mode( Gtk.SelectionMode.SINGLE);
+             description.set_size(9000);
+            this.el.override_font(description);     
+             
+             
+             
+                            
+            var selection = this.el.get_selection();
+            selection.set_mode( Gtk.SelectionMode.SINGLE);
 
             //listeners
             this.el.row_activated.connect( (path, col) => {
