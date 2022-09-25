@@ -177,9 +177,7 @@
            "$ headers_visible" : true,
            "$ xns" : "Gtk",
            "* init" : [
-            "var description = new Pango.FontDescription();",
-            "description.set_size(9000);",
-            "this.el.override_font(description);     ",
+            "   ",
             "        ",
             "this.css = new Gtk.CssProvider();",
             "try {",
