@@ -6,6 +6,12 @@
    "# JsRender.JsRender file" : "null",
    "# Xcls_MainWindow main_window" : "",
    "$ xns" : "Gtk",
+   "* init" : [
+    "{",
+    "",
+    "}",
+    ""
+   ],
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "Gtk.SourceSearchContext searchcontext" : "",
    "bool hexpand" : true,
@@ -990,6 +996,9 @@
     "        _this.container.el.set_size_request(w,h);",
     "        ",
     "        _this.view_layout.el.set_size(w,h); // should be baded on calc.. -- see update_scrolled.",
+    "       ",
+    "       ",
+    "       ",
     "        var rgba = Gdk.RGBA ();",
     "        rgba.parse (\"#ccc\");",
     "        _this.view_layout.el.override_background_color(Gtk.StateFlags.NORMAL, rgba);",

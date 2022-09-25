@@ -57,6 +57,12 @@ public class Xcls_GtkView : Object
         child_0.ref();
         this.el.pack_start (  child_0.el , true,true,0 );
 
+        // init method
+
+        {
+        
+        }
+
         //listeners
         this.el.size_allocate.connect( (aloc) => {
          
@@ -102,6 +108,9 @@ public class Xcls_GtkView : Object
             _this.container.el.set_size_request(w,h);
             
             _this.view_layout.el.set_size(w,h); // should be baded on calc.. -- see update_scrolled.
+           
+           
+           
             var rgba = Gdk.RGBA ();
             rgba.parse ("#ccc");
             _this.view_layout.el.override_background_color(Gtk.StateFlags.NORMAL, rgba);
