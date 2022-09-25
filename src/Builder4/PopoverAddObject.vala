@@ -164,6 +164,7 @@ public class Xcls_PopoverAddObject : Object
 
             // my vars (def)
         public string dragData;
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_TreeView3(Xcls_PopoverAddObject _owner )

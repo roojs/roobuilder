@@ -67,6 +67,7 @@
         ""
        ],
        "* pack" : "add",
+       "Gtk.CssProvider css" : "",
        "items" : [
         {
          "$ columns" : "typeof(string),typeof(string),typeof(Gdk.Pixbuf)",
