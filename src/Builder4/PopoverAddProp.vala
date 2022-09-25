@@ -157,6 +157,7 @@ public class Xcls_PopoverAddProp : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_TreeView3(Xcls_PopoverAddProp _owner )

@@ -48,6 +48,7 @@
         ""
        ],
        "* pack" : "add",
+       "Gtk.CssProvider css" : "",
        "items" : [
         {
          "$ columns" : [
