@@ -193,6 +193,14 @@ public class Xcls_PopoverAddObject : Object
                 description.set_size(10000);
                 this.el.override_font(description);
                 
+            	this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#popover-add-object-view { font-szie: 12px;}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	 
+                
                 var selection = this.el.get_selection();
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
                // this.selection.signal['changed'].connect(function() {
