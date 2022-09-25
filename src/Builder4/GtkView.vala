@@ -121,11 +121,6 @@ public class Xcls_GtkView : Object
            
            
            
-            var rgba = Gdk.RGBA ();
-            rgba.parse ("#ccc");
-            _this.view_layout.el.override_background_color(Gtk.StateFlags.NORMAL, rgba);
-            
-            
     	var x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);
         var obj = x.munge() as Gtk.Widget;
         this.lastObj = null;
