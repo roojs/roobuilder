@@ -201,6 +201,7 @@
             " "
            ],
            "* pack" : "add",
+           "Gtk.CssProvider css" : "",
            "bool allow_node_scroll" : true,
            "bool loading" : true,
            "gboolean editable" : false,
