@@ -568,7 +568,6 @@
            "$ xns" : "Gtk",
            "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
-           "bool always_show_image" : true,
            "id" : "statusbar_run",
            "items" : [
             {
@@ -604,7 +603,6 @@
              "}"
             ]
            },
-           "string label" : "Run",
            "xtype" : "MenuItem"
           }
          ],

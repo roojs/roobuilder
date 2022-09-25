@@ -1505,7 +1505,6 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
-        public bool always_show_image;
         public Xcls_ValaCompileErrors popup;
 
         // ctor
@@ -1516,10 +1515,8 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-            this.always_show_image = true;
 
             // set gobject values
-            this.el.label = "Run";
             var child_0 = new Xcls_Box47( _this );
             child_0.ref();
             this.el.add(  child_0.el );
