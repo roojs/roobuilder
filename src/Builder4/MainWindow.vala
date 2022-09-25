@@ -1270,7 +1270,6 @@ public class Xcls_MainWindow : Object
             this.notices = new Json.Object();
 
             // set gobject values
-            this.el.label = "Warnings";
             var child_0 = new Xcls_Box39( _this );
             child_0.ref();
             this.el.add(  child_0.el );
@@ -1392,7 +1391,6 @@ public class Xcls_MainWindow : Object
             this.notices = new Json.Object();
 
             // set gobject values
-            this.el.label = "Depricated";
             var child_0 = new Xcls_Box43( _this );
             child_0.ref();
             this.el.add(  child_0.el );
@@ -1545,7 +1543,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Box47(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 2 );
 
             // my vars (dec)
 

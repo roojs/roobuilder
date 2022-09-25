@@ -497,7 +497,6 @@
              "}"
             ]
            },
-           "string label" : "Warnings",
            "xtype" : "MenuItem",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
@@ -550,7 +549,6 @@
              "}"
             ]
            },
-           "string label" : "Depricated",
            "xtype" : "MenuItem",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
@@ -571,7 +569,7 @@
             {
              "$ xns" : "Gtk",
              "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 0,
+             "int spacing" : 2,
              "items" : [
               {
                "$ xns" : "Gtk",
