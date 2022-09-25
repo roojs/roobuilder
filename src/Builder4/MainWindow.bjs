@@ -406,11 +406,6 @@
            "xtype" : "MenuItem"
           },
           {
-           "$ xns" : "Gtk",
-           "string label" : "Label",
-           "xtype" : "MenuItem"
-          },
-          {
            "# Json.Object notices" : "new Json.Object() ",
            "$ xns" : "Gtk",
            "* pack" : "add",
