@@ -786,6 +786,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "roo-project-settings-view";
 
             // init method
 

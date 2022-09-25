@@ -306,6 +306,7 @@
                "}"
               ]
              },
+             "string name" : "roo-project-settings-view",
              "xtype" : "SourceView"
             }
            ],
