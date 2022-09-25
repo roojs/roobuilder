@@ -419,6 +419,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "int margin_end" : 2,
                "utf8 icon_name" : "dialog-error",
                "xtype" : "Image"
               },

@@ -1219,6 +1219,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.icon_name = "dialog-error";
+            this.el.margin_end = 2;
         }
 
         // user defined functions
