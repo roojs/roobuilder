@@ -593,7 +593,7 @@
             ]
            },
            "string label" : "Run",
-           "xtype" : "ImageMenuItem"
+           "xtype" : "MenuItem"
           }
          ],
          "xtype" : "MenuBar"

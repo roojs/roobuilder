@@ -1500,11 +1500,12 @@ public class Xcls_MainWindow : Object
 
     public class Xcls_statusbar_run : Object
     {
-        public Gtk.ImageMenuItem el;
+        public Gtk.MenuItem el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
+        public bool always_show_image;
         public Xcls_ValaCompileErrors popup;
 
         // ctor
@@ -1512,12 +1513,12 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.statusbar_run = this;
-            this.el = new Gtk.ImageMenuItem();
+            this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Run";
             var child_0 = new Xcls_Image47( _this );
             child_0.ref();
