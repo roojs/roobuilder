@@ -64,13 +64,14 @@ public class Xcls_GtkView : Object
         
         	this.css = new Gtk.CssProvider();
         	try {
-        		this.css.load_from_data("#editor-view { font: 10px Monospace;}");
+        		this.css.load_from_data("#gtkview-view-layout { background-color: #ccc; }");
         	} catch (Error e) {}
         	this.el.get_style_context().add_provider(this.css,
         		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         	 
-        		 
-        
+         
+                
+                
         }
 
         //listeners
@@ -474,6 +475,7 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "gtkview-view-layout";
             var child_0 = new Xcls_container( _this );
             child_0.ref();
             this.el.put (  child_0.el , 10,10 );
