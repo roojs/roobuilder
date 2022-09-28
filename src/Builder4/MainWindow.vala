@@ -255,7 +255,7 @@ public class Xcls_MainWindow : Object
         	 
         	 });
         	 
-        	 
+        	 var p = "";
         	 foreach(var w in BuilderApplication.windows) {
         	 	var wid = BuilderApplication.windows.index_of(w);
         	 	// fixme find a better way to display this.
@@ -266,10 +266,19 @@ public class Xcls_MainWindow : Object
          			 ) { 
          			continue;
         		}
-        	 	
+        	 	// should not happen...
         	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
         	 		continue;
          		}
+         		if (w.windowstate.file.project.name != p) {
+         			var ms = new Gtk.SeparatorMenuItem();
+         			this.el.popup.append(ms);
+        		 	ms.show();
+        		 	this.mitems.add(ms);
+         		}
+         		
+         		p = w.windowstate.file.project.name;
+         		
         
          		GLib.debug("add menuitem %s", w.windowstate.file.path);
          		
