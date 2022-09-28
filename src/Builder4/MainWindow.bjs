@@ -117,7 +117,7 @@
           "\t\t \tfile.project.name + \" : \" + file.getTitle()",
           "\t \t);",
           "\t \t",
-          "\t \tw.windowstate.file.path);",
+          "\t \t//w.windowstate.file.path);",
           "\t \tm.activate.connect(() => {",
           "\t \t\t BuilderApplication.windows.get(wid).el.present();",
           "\t \t});",

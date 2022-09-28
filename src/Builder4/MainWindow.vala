@@ -266,7 +266,7 @@ public class Xcls_MainWindow : Object
         		 	file.project.name + " : " + file.getTitle()
         	 	);
         	 	
-        	 	w.windowstate.file.path);
+        	 	//w.windowstate.file.path);
         	 	m.activate.connect(() => {
         	 		 BuilderApplication.windows.get(wid).el.present();
         	 	});
