@@ -244,8 +244,19 @@ public class Xcls_MainWindow : Object
         	 this.mitems.clear();
         	 
         	 BuilderApplication.windows.sort((a,b) => {
+        	 	if (a.windowstate == null ||
+         			 a.windowstate.file == null || 
+         			 b.windowstate == null ||
+         			 b.windowstate.file == null
+         			 ) { 
+         			return 0;
+        		}
+        
         	 	var ap = a.windowstate.file.project.name;
         	 	var bp = b.windowstate.file.project.name;
+        	 	
+        
+        	 	
         	 	if (ap != bp) {
         	 		return ap.collate(bp);
         	 	}
