@@ -242,7 +242,31 @@ public class Xcls_MainWindow : Object
         	 	 this.el.popup.remove(m);
         	 }
         	 this.mitems.clear();
-        	   
+        	 
+        	 BuilderApplication.windows.sort((a,b) => {
+        	 	if (a.windowstate == null ||
+         			 a.windowstate.file == null || 
+         			 b.windowstate == null ||
+         			 b.windowstate.file == null
+         			 ) { 
+         			return 0;
+        		}
+        
+        	 	var ap = a.windowstate.file.project.name;
+        	 	var bp = b.windowstate.file.project.name;
+        	 	
+        
+        	 	
+        	 	if (ap != bp) {
+        	 		return ap.collate(bp);
+        	 	}
+        	 	var af = a.windowstate.file.getTitle();
+        	 	var bf = b.windowstate.file.getTitle();	 	
+        		return af.collate(bf);
+        	 
+        	 });
+        	 
+        	 var p = "";
         	 foreach(var w in BuilderApplication.windows) {
         	 	var wid = BuilderApplication.windows.index_of(w);
         	 	// fixme find a better way to display this.
@@ -253,13 +277,29 @@ public class Xcls_MainWindow : Object
          			 ) { 
          			continue;
         		}
-        	 	
+        	 	// should not happen...
         	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
         	 		continue;
          		}
+         		if (w.windowstate.file.project.name != p || p != "") {
+         			var ms = new Gtk.SeparatorMenuItem();
+         			this.el.popup.append(ms);
+        		 	ms.show();
+        		 	this.mitems.add(ms);
+         		}
+         		
+         		p = w.windowstate.file.project.name;
+         		
         
          		GLib.debug("add menuitem %s", w.windowstate.file.path);
-        	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
+         		
+         		
+         		
+        	 	var m = new Gtk.MenuItem.with_label(
+        		 	w.windowstate.file.project.name + " : " + w.windowstate.file.getTitle()
+        	 	);
+        	 	
+        	 	//w.windowstate.file.path);
         	 	m.activate.connect(() => {
         	 		 BuilderApplication.windows.get(wid).el.present();
         	 	});
