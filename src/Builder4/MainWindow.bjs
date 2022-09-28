@@ -132,7 +132,7 @@
           "\t \tif (w.windowstate.file.path == _this.windowstate.file.path) {",
           "\t \t\tcontinue;",
           " \t\t}",
-          " \t\tif (w.windowstate.file.project.name != p) {",
+          " \t\tif (w.windowstate.file.project.name != p || p != \"\") {",
           " \t\t\tvar ms = new Gtk.SeparatorMenuItem();",
           " \t\t\tthis.el.popup.append(ms);",
           "\t\t \tms.show();",

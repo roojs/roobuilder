@@ -281,7 +281,7 @@ public class Xcls_MainWindow : Object
         	 	if (w.windowstate.file.path == _this.windowstate.file.path) {
         	 		continue;
          		}
-         		if (w.windowstate.file.project.name != p) {
+         		if (w.windowstate.file.project.name != p || p != "") {
          			var ms = new Gtk.SeparatorMenuItem();
          			this.el.popup.append(ms);
         		 	ms.show();
