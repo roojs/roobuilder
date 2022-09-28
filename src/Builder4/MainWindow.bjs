@@ -114,7 +114,7 @@
           " \t\t",
           " \t\t",
           "\t \tvar m = new Gtk.MenuItem.with_label(",
-          "\t\t \tfile.project.name + \" : \" + file.getTitle()",
+          "\t\t \tw.windowstate.file.project.name + \" : \" + w.windowstate.file.getTitle()",
           "\t \t);",
           "\t \t",
           "\t \t//w.windowstate.file.path);",

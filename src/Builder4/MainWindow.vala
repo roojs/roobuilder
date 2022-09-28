@@ -263,7 +263,7 @@ public class Xcls_MainWindow : Object
          		
          		
         	 	var m = new Gtk.MenuItem.with_label(
-        		 	file.project.name + " : " + file.getTitle()
+        		 	w.windowstate.file.project.name + " : " + w.windowstate.file.getTitle()
         	 	);
         	 	
         	 	//w.windowstate.file.path);
