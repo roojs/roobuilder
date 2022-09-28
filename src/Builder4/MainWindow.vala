@@ -242,7 +242,20 @@ public class Xcls_MainWindow : Object
         	 	 this.el.popup.remove(m);
         	 }
         	 this.mitems.clear();
-        	   
+        	 
+        	 BuilderApplication.windows.sort((a,b) => {
+        	 	var ap = a.windowstate.file.project.name;
+        	 	var bp = b.windowstate.file.project.name;
+        	 	if (ap != bp) {
+        	 		return ap.collate(bp);
+        	 	}
+        	 	var af = a.windowstate.file.getTitle();
+        	 	var bf = b.windowstate.file.getTitle();	 	
+        		return af.collate(bf);
+        	 
+        	 });
+        	 
+        	 
         	 foreach(var w in BuilderApplication.windows) {
         	 	var wid = BuilderApplication.windows.index_of(w);
         	 	// fixme find a better way to display this.
