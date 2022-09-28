@@ -259,7 +259,14 @@ public class Xcls_MainWindow : Object
          		}
         
          		GLib.debug("add menuitem %s", w.windowstate.file.path);
-        	 	var m = new Gtk.MenuItem.with_label(w.windowstate.file.path);
+         		
+         		
+         		
+        	 	var m = new Gtk.MenuItem.with_label(
+        		 	file.project.name + " : " + file.getTitle()
+        	 	);
+        	 	
+        	 	w.windowstate.file.path);
         	 	m.activate.connect(() => {
         	 		 BuilderApplication.windows.get(wid).el.present();
         	 	});
