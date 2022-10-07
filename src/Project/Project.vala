@@ -572,6 +572,16 @@ namespace Project {
 			this.on_changed();
 		}
 		
+		public void deleteFile(JsRender.JsRender pfile)
+		{
+			this.files.unset(pfile.path); // duplicate check?
+			GLib.FileUtils.unlink(pfile.path);
+			
+		
+		}
+		
+		
+		
 		public void add(string path, string type)
 		{
 			this.paths.set(path,type);
