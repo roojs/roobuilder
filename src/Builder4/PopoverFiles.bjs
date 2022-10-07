@@ -186,7 +186,7 @@
              "    ",
              "    var project=  file.project;",
              "    project.deleteFile(file);",
-             "    this.loadIconView();",
+             "    _this.loadIconView();",
              "    ",
              "}"
             ]
