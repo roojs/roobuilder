@@ -649,26 +649,36 @@ public class Xcls_PopoverFiles : Object
         public Xcls_ToolButton9(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton( null, "New File" );
+            this.el = new Gtk.ToolButton( null, "Delete File" );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "document-new";
+            this.el.icon_name = "user-trash";
+            this.el.halign = Gtk.Align.END;
 
             //listeners
             this.el.clicked.connect( () => {
                 // create a new file in project..
-                print("add file selected\n");
                 
-                if (_this.selectedProject == null) {
-                	return;
-                }
-                try {
-                	var f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, "");
-                 	_this.win.windowstate.file_details.show( f, this.el, _this.new_window );
-                 } catch (JsRender.Error e) {}
+            	var tpa = _this.iconview.el.get_selected_items();
+            	if (tpa.length() < 1) {
+            		return;
+            	}
+            	var path = tpa.nth_data(0);
+            	Gtk.TreeIter iter;
+               
+                        
+            	this.el.model.get_iter(out iter, path);
+                
+                GLib.Value gval;
             
+                this.el.model.get_value(iter, 0 , out gval);
+                var file = (JsRender.JsRender)gval;
+                var project=  file.project;
+                project.delete_file();
+                this.loadIconView();
+                
             });
         }
 
@@ -1057,6 +1067,7 @@ public class Xcls_PopoverFiles : Object
             this.el.pixbuf_column = 3;
             this.el.has_tooltip = true;
             this.el.item_width = 100;
+            this.el.selection_mode = Gtk.SelectionMode.SINGLE;
             var child_0 = new Xcls_iconmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;

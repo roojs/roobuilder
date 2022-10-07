@@ -150,27 +150,37 @@
            "xtype" : "ToolButton"
           },
           {
+           "$ Gtk.Align halign" : "Gtk.Align.END",
            "$ xns" : "Gtk",
            "* pack" : "add",
            "listeners" : {
             "clicked" : [
              " () => {",
              "    // create a new file in project..",
-             "    print(\"add file selected\\n\");",
              "    ",
-             "    if (_this.selectedProject == null) {",
-             "    \treturn;",
-             "    }",
-             "    try {",
-             "    \tvar f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, \"\");",
-             "     \t_this.win.windowstate.file_details.show( f, this.el, _this.new_window );",
-             "     } catch (JsRender.Error e) {}",
+             "\tvar tpa = _this.iconview.el.get_selected_items();",
+             "\tif (tpa.length() < 1) {",
+             "\t\treturn;",
+             "\t}",
+             "\tvar path = tpa.nth_data(0);",
+             "\tGtk.TreeIter iter;",
+             "   ",
+             "            ",
+             "\tthis.el.model.get_iter(out iter, path);",
+             "    ",
+             "    GLib.Value gval;",
              "",
+             "    this.el.model.get_value(iter, 0 , out gval);",
+             "    var file = (JsRender.JsRender)gval;",
+             "    var project=  file.project;",
+             "    project.delete_file();",
+             "    this.loadIconView();",
+             "    ",
              "}"
             ]
            },
-           "string icon_name" : "document-new",
-           "string label" : "New File",
+           "string icon_name" : "user-trash",
+           "string label" : "Delete File",
            "xtype" : "ToolButton"
           }
          ],
@@ -363,6 +373,7 @@
            "int width_request" : 600,
            "items" : [
             {
+             "$ Gtk.SelectionMode selection_mode" : "Gtk.SelectionMode.SINGLE",
              "$ xns" : "Gtk",
              "* init" : [
               "{",
