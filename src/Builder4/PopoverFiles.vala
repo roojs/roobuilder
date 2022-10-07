@@ -663,15 +663,31 @@ public class Xcls_PopoverFiles : Object
                 // create a new file in project..
                 
             	var tpa = _this.iconview.el.get_selected_items();
-            	if (tpa.length() < 1) {
+            	
+            	var ts = _this.fileview.el.get_selection();
+            	
+            	if (tpa.length() < 1 && ts.count_selected_rows() < 1) {
             		return;
+            	} 
+            	if (tpa.length() > 0 && ts.count_selected_rows() > 0) {
+            		var dlg = new Gtk.MessageDialog(
+                		_this.win.el, Gtk.DialogFlags.MODAL,Gtk.MessageType.ERROR,Gtk.ButtonsType.CLOSE,
+                		"Select either icon or on the tree, not both.."
+            		);
+            		dlg.run();
+                	return;
             	}
-            	var path = tpa.nth_data(0);
             	Gtk.TreeIter iter;
-               
-                        
-            	_this.iconmodel.el.get_iter(out iter, path);
-                
+            	if (tpa.length() > 0) {
+            	
+            		var path = tpa.nth_data(0);
+            		_this.iconmodel.el.get_iter(out iter, path);
+            		
+            	} else {
+            		Gtk.TreeModel  tm;
+            		ts.get_selected(out tm, out iter);
+            	
+            	}
                 GLib.Value gval;
             
                 _this.iconmodel.el.get_value(iter, 0 , out gval);
@@ -690,7 +706,12 @@ public class Xcls_PopoverFiles : Object
                 
                 var project=  file.project;
                 project.deleteFile(file);
-                _this.loadIconView();
+                
+            	if (tpa.length() > 0) {
+               		 _this.loadIconView();
+            	 } else { 
+            	 	_this.loadTreeView();
+             	}
                 
             });
         }
