@@ -676,7 +676,11 @@ public class Xcls_PopoverFiles : Object
                 this.el.model.get_value(iter, 0 , out gval);
                 var file = (JsRender.JsRender)gval;
                 // is this file open??
+                var win = BuilderApplication.getWindow(file);
+                if (win != null) {
+                	
                 
+                }
                 
                 
                 var project=  file.project;
