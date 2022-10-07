@@ -678,8 +678,12 @@ public class Xcls_PopoverFiles : Object
                 // is this file open??
                 var win = BuilderApplication.getWindow(file);
                 if (win != null) {
-                	
-                
+                	var dlg = new Gtk.MessageDialog(
+                		win.el, Gtk.DialogFlags.MODAL,Gtk.MessageType.ERROR,Gtk.ButtonsType.CLOSE,
+                		"The file is being edited - Close this window first"
+            		);
+            		dlg.run();
+                	return;
                 }
                 
                 
