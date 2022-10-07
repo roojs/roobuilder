@@ -688,7 +688,7 @@ public class Xcls_PopoverFiles : Object
                 
                 
                 var project=  file.project;
-                project.delete_file();
+                project.deleteFile();
                 this.loadIconView();
                 
             });
