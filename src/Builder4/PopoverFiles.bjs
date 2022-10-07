@@ -181,6 +181,8 @@
              "\t\t_this.iconmodel.el.get_iter(out iter, path);",
              "\t\t",
              "\t} else {",
+             "\t",
+             "\t\t//fixme ... iter will not be a tree item...",
              "\t\tGtk.TreeModel  tm;",
              "\t\tts.get_selected(out tm, out iter);",
              "\t",

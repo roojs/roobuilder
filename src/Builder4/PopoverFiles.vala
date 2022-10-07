@@ -684,6 +684,8 @@ public class Xcls_PopoverFiles : Object
             		_this.iconmodel.el.get_iter(out iter, path);
             		
             	} else {
+            	
+            		//fixme ... iter will not be a tree item...
             		Gtk.TreeModel  tm;
             		ts.get_selected(out tm, out iter);
             	
