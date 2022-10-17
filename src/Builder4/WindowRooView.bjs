@@ -648,6 +648,7 @@
             " "
            ],
            "* pack" : "add",
+           "Gtk.CssProvider css" : "",
            "gboolean editable" : false,
            "gboolean show_line_marks" : true,
            "gboolean show_line_numbers" : true,

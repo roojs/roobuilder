@@ -1086,6 +1086,7 @@ public class Xcls_WindowRooView : Object
         public bool button_is_pressed;
         public string prop_selected;
         public bool key_is_pressed;
+        public Gtk.CssProvider css;
         public JsRender.Node? node_selected;
 
         // ctor
