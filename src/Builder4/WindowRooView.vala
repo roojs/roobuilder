@@ -1798,9 +1798,12 @@ public class Xcls_WindowRooView : Object
 
             // init method
 
-            var description =   Pango.FontDescription.from_string("monospace");
-            	description.set_size(8000);
-            	 this.el.override_font(description);
+            this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#roo-search-entry { background-color: #ccc; }");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
             this.el.key_press_event.connect( (event) => {
