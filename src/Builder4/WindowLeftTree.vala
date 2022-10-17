@@ -154,6 +154,15 @@ public class Xcls_WindowLeftTree : Object
             // init method
 
             {
+               this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#left-tree-view { font-size: 10px;}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	 
+            	 
+                
                 var description = new Pango.FontDescription();
                 description.set_size(8000);
                 this.el.override_font(description);
