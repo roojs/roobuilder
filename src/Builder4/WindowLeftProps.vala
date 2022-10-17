@@ -1470,6 +1470,7 @@ public class Xcls_LeftProps : Object
             this.popover = null;
 
             // set gobject values
+            this.el.name = "leftprops-view";
             this.el.tooltip_column = 3;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
@@ -1492,9 +1493,14 @@ public class Xcls_LeftProps : Object
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
             
             
-                var description = new Pango.FontDescription();
-                description.set_size(10000);
-                this.el.override_font(description);
+              	this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#leftprops-view { font: 10p; x}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            
+             
                 
             }
 
