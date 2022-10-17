@@ -714,7 +714,7 @@ public class Xcls_PopoverProperty : Object
             	// check if text is not empty..
             	if ( _this.kname.el.get_text().strip().length < 1) {
             		// error should already be showing?
-            		return;
+            		return false;
             	}
             	_this.updateProp();
             	
@@ -724,7 +724,7 @@ public class Xcls_PopoverProperty : Object
             	var prop = _this.prop;
             	if (_this.node.props.has_key(prop.to_index_key())) {
             		_this.error.setError("Property already exists");
-            		return;	
+            		return false;	
             	}
             	
             	
