@@ -164,11 +164,7 @@ public class Xcls_WindowLeftTree : Object
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	 
             	 
-                
-                var description = new Pango.FontDescription();
-                description.set_size(8000);
-                this.el.override_font(description);
-            
+                 
                 var selection = this.el.get_selection();
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
             
