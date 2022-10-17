@@ -1407,7 +1407,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "add";
+            this.el.icon_name = "list-add";
         }
 
         // user defined functions
