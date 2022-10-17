@@ -1105,6 +1105,7 @@ public class Xcls_WindowRooView : Object
             this.node_selected = null;
 
             // set gobject values
+            this.el.name = "roo-view";
             this.el.editable = false;
             this.el.show_line_marks = true;
             this.el.show_line_numbers = true;
