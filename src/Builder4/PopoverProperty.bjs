@@ -265,6 +265,7 @@
            "\t_this.is_new = false;",
            "\t_this.kname.el.set_text(\"Cancel\");",
            "\t_this.el.hide();",
+           "\treturn false;",
            "}"
           ]
          },
@@ -320,7 +321,7 @@
            "\t",
            "\t_this.mainwindow.windowstate.left_props.addProp(prop);\t\t",
            "\t",
-           "",
+           "\treturn false;",
            "}"
           ]
          },

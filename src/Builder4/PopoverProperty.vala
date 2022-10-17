@@ -655,6 +655,7 @@ public class Xcls_PopoverProperty : Object
             	_this.is_new = false;
             	_this.kname.el.set_text("Cancel");
             	_this.el.hide();
+            	return false;
             });
         }
 
@@ -743,7 +744,7 @@ public class Xcls_PopoverProperty : Object
             	
             	_this.mainwindow.windowstate.left_props.addProp(prop);		
             	
-            
+            	return false;
             });
         }
 
