@@ -36,10 +36,13 @@
          "* init" : [
           "{",
           "",
-          "    var description =   Pango.FontDescription.from_string(\"monospace\");",
-          "    description.set_size(8000);",
-          "    this.el.override_font(description);",
-          "",
+          "   \tthis.css = new Gtk.CssProvider();",
+          "\ttry {",
+          "\t\tthis.css.load_from_data(\"#compile-results-view { font: 10px Monospace;}\");",
+          "\t} catch (Error e) {}",
+          "\tthis.el.get_style_context().add_provider(this.css,",
+          "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+          "\t  ",
           "",
           "}",
           ""
@@ -48,6 +51,7 @@
          "bool editable" : false,
          "bool show_line_numbers" : false,
          "id" : "sourceview",
+         "string name" : "compile-results-view",
          "xtype" : "SourceView"
         }
        ],
