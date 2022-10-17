@@ -2000,7 +2000,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ButtonBox53(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ButtonBox(  );
+            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
 

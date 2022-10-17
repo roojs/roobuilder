@@ -981,7 +981,7 @@
        "xtype" : "Notebook"
       },
       {
-       "$ Gtk.Orientation orientation" : "",
+       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "* pack" : "add",
        "int margin_bottom" : 4,
