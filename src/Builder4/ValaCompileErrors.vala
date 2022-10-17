@@ -253,6 +253,7 @@ public class Xcls_ValaCompileErrors : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_compile_tree(Xcls_ValaCompileErrors _owner )

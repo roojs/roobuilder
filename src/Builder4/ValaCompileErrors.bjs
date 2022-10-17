@@ -63,6 +63,7 @@
           ""
          ],
          "* pack" : "add",
+         "Gtk.CssProvider css" : "",
          "id" : "compile_tree",
          "items" : [
           {
