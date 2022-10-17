@@ -1210,8 +1210,8 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.margin_right = 4;
-            this.el.margin_left = 4;
+            this.el.margin_end = 4;
+            this.el.margin_start = 4;
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
             var child_0 = new Xcls_Button32( _this );
