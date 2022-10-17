@@ -981,6 +981,7 @@
        "xtype" : "Notebook"
       },
       {
+       "$ Gtk.Orientation orientation" : "",
        "$ xns" : "Gtk",
        "* pack" : "add",
        "int margin_bottom" : 4,
@@ -1029,7 +1030,7 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "HButtonBox"
+       "xtype" : "ButtonBox"
       }
      ],
      "xtype" : "Box"
