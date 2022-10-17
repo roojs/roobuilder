@@ -258,14 +258,13 @@
           }
          ],
          "listeners" : {
-          "pressed" : [
+          "button_press_event" : [
            "() => { ",
            "",
            "\t_this.prop = null;",
            "\t_this.is_new = false;",
            "\t_this.kname.el.set_text(\"Cancel\");",
            "\t_this.el.hide();",
-           "",
            "}"
           ]
          },
@@ -286,7 +285,7 @@
           }
          ],
          "listeners" : {
-          "pressed" : [
+          "button_press_event" : [
            "() => {",
            "\t// check if text is not empty..",
            "\tif ( _this.kname.el.get_text().strip().length < 1) {",
