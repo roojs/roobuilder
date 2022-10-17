@@ -261,7 +261,9 @@ public class Xcls_PopoverFileDetails : Object
 
             // set gobject values
             this.el.margin_right = 4;
+            this.el.margin_end = 4;
             this.el.margin_left = 4;
+            this.el.margin_start = 4;
             this.el.hexpand = true;
             this.el.row_spacing = 2;
             var child_0 = new Xcls_filetypelbl( _this );
