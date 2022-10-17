@@ -670,7 +670,7 @@ public class ValaProjectSettingsPopover : Object
                     
                  _this.default_directory_menu.el.set_screen(Gdk.Screen.get_default());
                  _this.default_directory_menu.el.show_all();
-                  _this.default_directory_menu.el.popup(null, null, null,  3, ev.time);
+                  _this.default_directory_menu.el.popup_at_pointer(ev);
                  //   print("click:" + res.path.to_string());
                   return true;
             });
@@ -829,6 +829,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Add Directory";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -872,6 +873,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Add File";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -914,6 +916,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show();
         }
 
         // user defined functions
@@ -937,6 +940,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Remove File/Directory";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -1083,6 +1087,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Add Compile Target";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -1118,6 +1123,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show();
         }
 
         // user defined functions
@@ -1141,6 +1147,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Remove Target";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
