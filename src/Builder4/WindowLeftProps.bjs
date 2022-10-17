@@ -714,7 +714,7 @@
          "",
          "        p.el.set_screen(Gdk.Screen.get_default());",
          "        p.el.show_all();",
-         "        p.el.popup(null, null, null,  ev.button, ev.time);",
+         "        p.el.popup_at_pointer(ev);",
          "        //Seed.print(\"click:\" + res.column.title);",
          "        // select the ",
          "        GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {",
