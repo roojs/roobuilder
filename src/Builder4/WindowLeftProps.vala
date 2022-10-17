@@ -1501,8 +1501,7 @@ public class Xcls_LeftProps : Object
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             
-             
-                
+              
             }
 
             //listeners
