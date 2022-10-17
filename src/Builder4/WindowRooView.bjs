@@ -1324,6 +1324,8 @@
              "} "
             ]
            },
+           "string css" : "",
+           "string name" : "roo-search-entry",
            "string placeholder_text" : "Press enter to search",
            "xtype" : "SearchEntry",
            "| void forwardSearch" : [

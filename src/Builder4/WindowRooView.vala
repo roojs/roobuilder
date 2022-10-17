@@ -1782,6 +1782,7 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
+        public string css;
 
         // ctor
         public Xcls_search_entry(Xcls_WindowRooView _owner )
@@ -1794,6 +1795,7 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.width_request = 300;
+            this.el.name = "roo-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
 
