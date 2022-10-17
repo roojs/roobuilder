@@ -1782,7 +1782,7 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public string css;
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_search_entry(Xcls_WindowRooView _owner )
@@ -1926,23 +1926,24 @@ public class Xcls_WindowRooView : Object
     }
     public class Xcls_search_results : Object
     {
-        public Gtk.ImageMenuItem el;
+        public Gtk.MenuItem el;
         private Xcls_WindowRooView  _this;
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_search_results(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.ImageMenuItem();
+            this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.visible = false;
             this.el.show();
 

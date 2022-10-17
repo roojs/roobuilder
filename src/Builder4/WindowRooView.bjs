@@ -1254,6 +1254,7 @@
             " ",
             ""
            ],
+           "Gtk.CssProvider css" : "",
            "bool hexpand" : true,
            "id" : "search_entry",
            "int width_request" : 300,
@@ -1324,7 +1325,6 @@
              "} "
             ]
            },
-           "string css" : "",
            "string name" : "roo-search-entry",
            "string placeholder_text" : "Press enter to search",
            "xtype" : "SearchEntry",
@@ -1384,7 +1384,7 @@
                "}"
               ]
              },
-             "xtype" : "ImageMenuItem",
+             "xtype" : "MenuItem",
              "| void updateResults" : [
               "() {",
               "\tthis.el.visible = true;",
