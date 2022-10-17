@@ -400,10 +400,9 @@
          "xtype" : "Menu"
         },
         {
-         "$ Gtk.Stock stock" : "Gtk.Stock.ADD",
-         "$ icon_size" : "Gtk.IconSize.MENU",
          "$ xns" : "Gtk",
          "* pack" : "set_image",
+         "string icon_name" : "add",
          "xtype" : "Image"
         }
        ],

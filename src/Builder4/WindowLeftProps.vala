@@ -1407,8 +1407,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.stock = Gtk.Stock.ADD;
-            this.el.icon_size = Gtk.IconSize.MENU;
+            this.el.icon_name = "add";
         }
 
         // user defined functions
