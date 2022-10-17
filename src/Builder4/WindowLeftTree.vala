@@ -119,6 +119,7 @@ public class Xcls_WindowLeftTree : Object
         public string dragData;
         public bool button_is_pressed;
         public bool key_is_pressed;
+        public Gtk.CssProvider css;
         public int drag_x;
         public int drag_y;
         public string[] dropList;
@@ -137,6 +138,7 @@ public class Xcls_WindowLeftTree : Object
             this.key_is_pressed = false;
 
             // set gobject values
+            this.el.name = "left-tree-view";
             this.el.expand = true;
             this.el.tooltip_column = 1;
             this.el.enable_tree_lines = true;
@@ -154,10 +156,15 @@ public class Xcls_WindowLeftTree : Object
             // init method
 
             {
-                var description = new Pango.FontDescription();
-                description.set_size(8000);
-                this.el.override_font(description);
-            
+               this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#left-tree-view { font-size: 10px;}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	 
+            	 
+                 
                 var selection = this.el.get_selection();
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
             
@@ -266,7 +273,7 @@ public class Xcls_WindowLeftTree : Object
                     
                  _this.LeftTreeMenu.el.set_screen(Gdk.Screen.get_default());
                  _this.LeftTreeMenu.el.show_all();
-                  _this.LeftTreeMenu.el.popup(null, null, null,  3, ev.time);
+                  _this.LeftTreeMenu.el.popup_at_pointer(ev);
                  //   print("click:" + res.path.to_string());
                   return true;
             });

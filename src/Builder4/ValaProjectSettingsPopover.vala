@@ -132,7 +132,7 @@ public class ValaProjectSettingsPopover : Object
             var child_1 = new Xcls_Notebook4( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , true,true,0 );
-            var child_2 = new Xcls_HButtonBox53( _this );
+            var child_2 = new Xcls_ButtonBox53( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
         }
@@ -670,7 +670,7 @@ public class ValaProjectSettingsPopover : Object
                     
                  _this.default_directory_menu.el.set_screen(Gdk.Screen.get_default());
                  _this.default_directory_menu.el.show_all();
-                  _this.default_directory_menu.el.popup(null, null, null,  3, ev.time);
+                  _this.default_directory_menu.el.popup_at_pointer(ev);
                  //   print("click:" + res.path.to_string());
                   return true;
             });
@@ -829,6 +829,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Add Directory";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -872,6 +873,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Add File";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -914,6 +916,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show();
         }
 
         // user defined functions
@@ -937,6 +940,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Remove File/Directory";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -1083,6 +1087,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Add Compile Target";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -1118,6 +1123,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show();
         }
 
         // user defined functions
@@ -1141,6 +1147,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Remove Target";
+            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -1221,7 +1228,7 @@ public class ValaProjectSettingsPopover : Object
                     
                  _this.targets_tree_menu.el.set_screen(Gdk.Screen.get_default());
                  _this.targets_tree_menu.el.show_all();
-                  _this.targets_tree_menu.el.popup(null, null, null,  3, ev.time);
+                  _this.targets_tree_menu.el.popup_at_pointer(ev);
                  //   print("click:" + res.path.to_string());
                   return true;
             });
@@ -1981,25 +1988,25 @@ public class ValaProjectSettingsPopover : Object
 
 
 
-    public class Xcls_HButtonBox53 : Object
+    public class Xcls_ButtonBox53 : Object
     {
-        public Gtk.HButtonBox el;
+        public Gtk.ButtonBox el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_HButtonBox53(ValaProjectSettingsPopover _owner )
+        public Xcls_ButtonBox53(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.HButtonBox();
+            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.margin_right = 4;
-            this.el.margin_left = 4;
+            this.el.margin_end = 4;
+            this.el.margin_start = 4;
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
             var child_0 = new Xcls_Button54( _this );

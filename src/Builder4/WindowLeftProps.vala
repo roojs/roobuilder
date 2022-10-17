@@ -741,7 +741,7 @@ public class Xcls_LeftProps : Object
                 var p = _this.AddPropertyPopup;
                 p.el.set_screen(Gdk.Screen.get_default());
                 p.el.show_all();
-                 p.el.popup(null, null, null, ev.button, ev.time);
+                 p.el.popup_at_pointer(ev);
                  return true;
             });
         }
@@ -1407,8 +1407,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.stock = Gtk.Stock.ADD;
-            this.el.icon_size = Gtk.IconSize.MENU;
+            this.el.icon_name = "list-add";
         }
 
         // user defined functions
@@ -1458,6 +1457,7 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
         public Xcls_PopoverProperty popover;
 
         // ctor
@@ -1471,6 +1471,7 @@ public class Xcls_LeftProps : Object
             this.popover = null;
 
             // set gobject values
+            this.el.name = "leftprops-view";
             this.el.tooltip_column = 3;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
@@ -1493,10 +1494,14 @@ public class Xcls_LeftProps : Object
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
             
             
-                var description = new Pango.FontDescription();
-                description.set_size(10000);
-                this.el.override_font(description);
-                
+              	this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#leftprops-view { font: 10p; x}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            
+              
             }
 
             //listeners
@@ -1545,7 +1550,7 @@ public class Xcls_LeftProps : Object
             
                     p.el.set_screen(Gdk.Screen.get_default());
                     p.el.show_all();
-                    p.el.popup(null, null, null,  ev.button, ev.time);
+                    p.el.popup_at_pointer(ev);
                     //Seed.print("click:" + res.column.title);
                     // select the 
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {

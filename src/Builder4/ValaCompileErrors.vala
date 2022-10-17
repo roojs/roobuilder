@@ -253,6 +253,7 @@ public class Xcls_ValaCompileErrors : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_compile_tree(Xcls_ValaCompileErrors _owner )
@@ -264,6 +265,7 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "compile-erros-view";
             var child_0 = new Xcls_compile_result_store( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
@@ -274,10 +276,14 @@ public class Xcls_ValaCompileErrors : Object
             // init method
 
             {
-             var description = new Pango.FontDescription();
-                description.set_size(10000);
-                this.el.override_font(description);
-            
+              this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#compile-erros-view { font-size: 10px;}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	 
+            	 
             }
 
             //listeners

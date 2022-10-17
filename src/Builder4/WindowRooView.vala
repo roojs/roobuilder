@@ -1086,6 +1086,7 @@ public class Xcls_WindowRooView : Object
         public bool button_is_pressed;
         public string prop_selected;
         public bool key_is_pressed;
+        public Gtk.CssProvider css;
         public JsRender.Node? node_selected;
 
         // ctor
@@ -1104,6 +1105,7 @@ public class Xcls_WindowRooView : Object
             this.node_selected = null;
 
             // set gobject values
+            this.el.name = "roo-view";
             this.el.editable = false;
             this.el.show_line_marks = true;
             this.el.show_line_numbers = true;
@@ -1115,11 +1117,15 @@ public class Xcls_WindowRooView : Object
 
             {
                
-               
-                var description =   Pango.FontDescription.from_string("monospace");
-                description.set_size(8000);
-                this.el.override_font(description);
-            
+               this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#roo-view { font: 10px Monospace;}");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	 
+            	 
+                
                 this.loading = true;
                 //var buf = this.el.get_buffer();
                 //buf.notify.connect(this.onCursorChanged);
@@ -1776,6 +1782,7 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_search_entry(Xcls_WindowRooView _owner )
@@ -1788,14 +1795,18 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.width_request = 300;
+            this.el.name = "roo-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
 
             // init method
 
-            var description =   Pango.FontDescription.from_string("monospace");
-            	description.set_size(8000);
-            	 this.el.override_font(description);
+            this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#roo-search-entry { background-color: #ccc; }");
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
             this.el.key_press_event.connect( (event) => {
@@ -1915,23 +1926,24 @@ public class Xcls_WindowRooView : Object
     }
     public class Xcls_search_results : Object
     {
-        public Gtk.ImageMenuItem el;
+        public Gtk.MenuItem el;
         private Xcls_WindowRooView  _this;
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_search_results(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.ImageMenuItem();
+            this.el = new Gtk.MenuItem();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.visible = false;
             this.el.show();
 

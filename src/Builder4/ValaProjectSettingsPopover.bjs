@@ -286,7 +286,7 @@
                  "        ",
                  "     _this.default_directory_menu.el.set_screen(Gdk.Screen.get_default());",
                  "     _this.default_directory_menu.el.show_all();",
-                 "      _this.default_directory_menu.el.popup(null, null, null,  3, ev.time);",
+                 "      _this.default_directory_menu.el.popup_at_pointer(ev);",
                  "     //   print(\"click:\" + res.path.to_string());",
                  "      return true;",
                  "}"
@@ -600,7 +600,7 @@
                "        ",
                "     _this.targets_tree_menu.el.set_screen(Gdk.Screen.get_default());",
                "     _this.targets_tree_menu.el.show_all();",
-               "      _this.targets_tree_menu.el.popup(null, null, null,  3, ev.time);",
+               "      _this.targets_tree_menu.el.popup_at_pointer(ev);",
                "     //   print(\"click:\" + res.path.to_string());",
                "      return true;",
                "}"
@@ -981,11 +981,12 @@
        "xtype" : "Notebook"
       },
       {
+       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "* pack" : "add",
        "int margin_bottom" : 4,
-       "int margin_left" : 4,
-       "int margin_right" : 4,
+       "int margin_end" : 4,
+       "int margin_start" : 4,
        "int margin_top" : 4,
        "items" : [
         {
@@ -1029,7 +1030,7 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "HButtonBox"
+       "xtype" : "ButtonBox"
       }
      ],
      "xtype" : "Box"

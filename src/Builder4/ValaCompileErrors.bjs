@@ -51,14 +51,19 @@
          "$ xns" : "Gtk",
          "* init" : [
           "{",
-          " var description = new Pango.FontDescription();",
-          "    description.set_size(10000);",
-          "    this.el.override_font(description);",
-          "",
+          "  this.css = new Gtk.CssProvider();",
+          "\ttry {",
+          "\t\tthis.css.load_from_data(\"#compile-erros-view { font-size: 10px;}\");",
+          "\t} catch (Error e) {}",
+          "\tthis.el.get_style_context().add_provider(this.css,",
+          "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+          "\t ",
+          "\t ",
           "}",
           ""
          ],
          "* pack" : "add",
+         "Gtk.CssProvider css" : "",
          "id" : "compile_tree",
          "items" : [
           {
@@ -168,6 +173,7 @@
            "    "
           ]
          },
+         "string name" : "compile-erros-view",
          "xtype" : "TreeView"
         }
        ],

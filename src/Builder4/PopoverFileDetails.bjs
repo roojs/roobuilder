@@ -32,8 +32,8 @@
        "* pack" : "pack_start,false,false,4",
        "bool hexpand" : true,
        "id" : "grid",
-       "int margin_left" : 4,
-       "int margin_right" : 4,
+       "int margin_end" : 4,
+       "int margin_start" : 4,
        "items" : [
         {
          "$ justify" : "Gtk.Justification.RIGHT",
@@ -490,8 +490,8 @@
        "* pack" : "add",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "int margin_bottom" : 4,
-       "int margin_left" : 4,
-       "int margin_right" : 4,
+       "int margin_end" : 4,
+       "int margin_start" : 4,
        "int margin_top" : 4,
        "items" : [
         {

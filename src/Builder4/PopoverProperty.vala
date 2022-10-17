@@ -649,13 +649,13 @@ public class Xcls_PopoverProperty : Object
             this.el.image = child_0.el;
 
             //listeners
-            this.el.pressed.connect( () => { 
+            this.el.button_press_event.connect( () => { 
             
             	_this.prop = null;
             	_this.is_new = false;
             	_this.kname.el.set_text("Cancel");
             	_this.el.hide();
-            
+            	return false;
             });
         }
 
@@ -710,11 +710,11 @@ public class Xcls_PopoverProperty : Object
             this.el.image = child_0.el;
 
             //listeners
-            this.el.pressed.connect( () => {
+            this.el.button_press_event.connect( () => {
             	// check if text is not empty..
             	if ( _this.kname.el.get_text().strip().length < 1) {
             		// error should already be showing?
-            		return;
+            		return false;
             	}
             	_this.updateProp();
             	
@@ -724,7 +724,7 @@ public class Xcls_PopoverProperty : Object
             	var prop = _this.prop;
             	if (_this.node.props.has_key(prop.to_index_key())) {
             		_this.error.setError("Property already exists");
-            		return;	
+            		return false;	
             	}
             	
             	
@@ -744,7 +744,7 @@ public class Xcls_PopoverProperty : Object
             	
             	_this.mainwindow.windowstate.left_props.addProp(prop);		
             	
-            
+            	return false;
             });
         }
 

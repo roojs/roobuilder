@@ -34,10 +34,15 @@
        "$ xns" : "Gtk",
        "* init" : [
         "{",
-        "    var description = new Pango.FontDescription();",
-        "    description.set_size(8000);",
-        "    this.el.override_font(description);",
-        "",
+        "   this.css = new Gtk.CssProvider();",
+        "\ttry {",
+        "\t\tthis.css.load_from_data(\"#left-tree-view { font-size: 10px;}\");",
+        "\t} catch (Error e) {}",
+        "\tthis.el.get_style_context().add_provider(this.css,",
+        "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+        "\t ",
+        "\t ",
+        "     ",
         "    var selection = this.el.get_selection();",
         "    selection.set_mode( Gtk.SelectionMode.SINGLE);",
         "",
@@ -79,6 +84,7 @@
        ],
        "* pack" : "add",
        "Boolean id" : "view",
+       "Gtk.CssProvider css" : "",
        "bool button_is_pressed" : false,
        "bool expand" : true,
        "bool headers_visible" : false,
@@ -856,7 +862,7 @@
          "        ",
          "     _this.LeftTreeMenu.el.set_screen(Gdk.Screen.get_default());",
          "     _this.LeftTreeMenu.el.show_all();",
-         "      _this.LeftTreeMenu.el.popup(null, null, null,  3, ev.time);",
+         "      _this.LeftTreeMenu.el.popup_at_pointer(ev);",
          "     //   print(\"click:\" + res.path.to_string());",
          "      return true;",
          "}"
@@ -1558,6 +1564,7 @@
          ""
         ]
        },
+       "string name" : "left-tree-view",
        "tooltip_column" : 1,
        "xtype" : "TreeView",
        "| void highlightDropPath" : [

@@ -578,11 +578,15 @@
            "* init" : [
             "{",
             "   ",
-            "   ",
-            "    var description =   Pango.FontDescription.from_string(\"monospace\");",
-            "    description.set_size(8000);",
-            "    this.el.override_font(description);",
-            "",
+            "   this.css = new Gtk.CssProvider();",
+            "\ttry {",
+            "\t\tthis.css.load_from_data(\"#roo-view { font: 10px Monospace;}\");",
+            "\t} catch (Error e) {}",
+            "\tthis.el.get_style_context().add_provider(this.css,",
+            "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+            "\t ",
+            "\t ",
+            "    ",
             "    this.loading = true;",
             "    //var buf = this.el.get_buffer();",
             "    //buf.notify.connect(this.onCursorChanged);",
@@ -644,6 +648,7 @@
             " "
            ],
            "* pack" : "add",
+           "Gtk.CssProvider css" : "",
            "gboolean editable" : false,
            "gboolean show_line_marks" : true,
            "gboolean show_line_numbers" : true,
@@ -866,6 +871,7 @@
              ""
             ]
            },
+           "string name" : "roo-view",
            "xtype" : "SourceView",
            "| string toString" : [
             "() {",
@@ -1238,12 +1244,17 @@
           {
            "$ xns" : "Gtk",
            "* init" : [
-            "var description =   Pango.FontDescription.from_string(\"monospace\");",
-            "\tdescription.set_size(8000);",
-            "\t this.el.override_font(description);",
-            "",
+            "\tthis.css = new Gtk.CssProvider();",
+            "\ttry {",
+            "\t\tthis.css.load_from_data(\"#roo-search-entry { background-color: #ccc; }\");",
+            "\t} catch (Error e) {}",
+            "\tthis.el.get_style_context().add_provider(this.css,",
+            "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+            "\t ",
+            " ",
             ""
            ],
+           "Gtk.CssProvider css" : "",
            "bool hexpand" : true,
            "id" : "search_entry",
            "int width_request" : 300,
@@ -1314,6 +1325,7 @@
              "} "
             ]
            },
+           "string name" : "roo-search-entry",
            "string placeholder_text" : "Press enter to search",
            "xtype" : "SearchEntry",
            "| void forwardSearch" : [
@@ -1372,7 +1384,7 @@
                "}"
               ]
              },
-             "xtype" : "ImageMenuItem",
+             "xtype" : "MenuItem",
              "| void updateResults" : [
               "() {",
               "\tthis.el.visible = true;",
