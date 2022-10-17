@@ -260,9 +260,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.margin_right = 4;
             this.el.margin_end = 4;
-            this.el.margin_left = 4;
             this.el.margin_start = 4;
             this.el.hexpand = true;
             this.el.row_spacing = 2;

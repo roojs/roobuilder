@@ -33,8 +33,6 @@
        "bool hexpand" : true,
        "id" : "grid",
        "int margin_end" : 4,
-       "int margin_left" : 4,
-       "int margin_right" : 4,
        "int margin_start" : 4,
        "items" : [
         {
