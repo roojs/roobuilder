@@ -1567,6 +1567,7 @@
          ""
         ]
        },
+       "string name" : "left-tree-view",
        "tooltip_column" : 1,
        "xtype" : "TreeView",
        "| void highlightDropPath" : [
