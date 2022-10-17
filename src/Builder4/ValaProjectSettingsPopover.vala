@@ -1228,7 +1228,7 @@ public class ValaProjectSettingsPopover : Object
                     
                  _this.targets_tree_menu.el.set_screen(Gdk.Screen.get_default());
                  _this.targets_tree_menu.el.show_all();
-                  _this.targets_tree_menu.el.popup(null, null, null,  3, ev.time);
+                  _this.targets_tree_menu.el.popup_at_pointer(ev);
                  //   print("click:" + res.path.to_string());
                   return true;
             });
