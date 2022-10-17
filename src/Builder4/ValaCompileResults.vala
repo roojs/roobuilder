@@ -153,6 +153,7 @@ public class Xcls_ValaCompileResults : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_sourceview(Xcls_ValaCompileResults _owner )
