@@ -463,6 +463,7 @@
         ""
        ],
        "* pack" : "add",
+       "Gtk.CssProvider css" : "",
        "Xcls_PopoverProperty popover" : "null",
        "id" : "view",
        "items" : [

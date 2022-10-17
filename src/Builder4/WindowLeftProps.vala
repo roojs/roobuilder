@@ -1457,6 +1457,7 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
         public Xcls_PopoverProperty popover;
 
         // ctor
