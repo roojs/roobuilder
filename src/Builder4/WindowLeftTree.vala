@@ -119,6 +119,7 @@ public class Xcls_WindowLeftTree : Object
         public string dragData;
         public bool button_is_pressed;
         public bool key_is_pressed;
+        public Gtk.CssProvider css;
         public int drag_x;
         public int drag_y;
         public string[] dropList;
