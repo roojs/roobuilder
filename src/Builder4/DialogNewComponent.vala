@@ -44,7 +44,7 @@ public class Xcls_DialogNewComponent : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add(  child_0.el );
+        this.el.get_content_area().add( child_0.el );
         var child_1 = new Xcls_Button20( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 0 );
@@ -97,16 +97,8 @@ public class Xcls_DialogNewComponent : Object
                 //}
         
                 if (!isNew) {
-                    try {
-                         this.updateFileFromEntry();
-                     } catch( JsRender.Error.RENAME_FILE_EXISTS er) {
-                          Xcls_StandardErrorDialog.singleton().show(
-                            this.el,
-                            "The name you used already exists "
-                        );
-                        return;
-                         
-                     }
+                      
+                    this.updateFileFromEntry();
                                                                 
                 
                     _this.file.save();
@@ -123,15 +115,22 @@ public class Xcls_DialogNewComponent : Object
                     ); 
                     return;
                 }
-               
-               var f =  JsRender.JsRender.factory(
-                        _this.file.project.xtype,  
-                        _this.file.project, 
-                        dir + "/" + fn + ".bjs");
+                try {
+        		    var f =  JsRender.JsRender.factory(
+        		            _this.file.project.xtype,  
+        		            _this.file.project, 
+        		            dir + "/" + fn + ".bjs");
         
-                _this.file = f;
+        		    _this.file = f;
                 
-        
+        		} catch (JsRender.Error e) {
+        		   Xcls_StandardErrorDialog.singleton().show(
+                            this.el,
+                            "Error creating file? "
+                        );
+                        return;
+        			  
+        		}
                 
                 this.updateFileFromEntry();
                 _this.file.save();
@@ -222,7 +221,11 @@ public class Xcls_DialogNewComponent : Object
             _this.file.modOrder = _this.modOrder.el.get_text();
             
             if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {
-                _this.file.renameTo(_this.name.el.get_text());
+                try {
+                	_this.file.renameTo(_this.name.el.get_text());
+            	} catch (JsRender.Error e) {
+            		return;
+            	}
             }
             // store the module...
             _this.file.build_module = "";        
@@ -257,72 +260,72 @@ public class Xcls_DialogNewComponent : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Table3( _this );
+            var child_0 = new Xcls_Grid3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,0 );
         }
 
         // user defined functions
     }
-    public class Xcls_Table3 : Object
+    public class Xcls_Grid3 : Object
     {
-        public Gtk.Table el;
+        public Gtk.Grid el;
         private Xcls_DialogNewComponent  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Table3(Xcls_DialogNewComponent _owner )
+        public Xcls_Grid3(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Table( 3, 2, true );
+            this.el = new Gtk.Grid();
 
             // my vars (dec)
 
             // set gobject values
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
-            this.el.attach_defaults (  child_0.el , 0,1,0,1 );
+            this.el.attach (  child_0.el , 0,0 );
             var child_1 = new Xcls_name( _this );
             child_1.ref();
-            this.el.attach_defaults (  child_1.el , 1,2,0,1 );
+            this.el.attach (  child_1.el , 1,0 );
             var child_2 = new Xcls_Label6( _this );
             child_2.ref();
-            this.el.attach_defaults (  child_2.el , 0,1,1,2 );
+            this.el.attach (  child_2.el , 0,1 );
             var child_3 = new Xcls_title( _this );
             child_3.ref();
-            this.el.attach_defaults (  child_3.el , 1,2,1,2 );
+            this.el.attach (  child_3.el , 1,1 );
             var child_4 = new Xcls_Label8( _this );
             child_4.ref();
-            this.el.attach_defaults (  child_4.el , 0,1,2,3 );
+            this.el.attach (  child_4.el , 0,2 );
             var child_5 = new Xcls_region( _this );
             child_5.ref();
-            this.el.attach_defaults (  child_5.el , 1,2,2,3 );
+            this.el.attach (  child_5.el , 1,2 );
             var child_6 = new Xcls_Label10( _this );
             child_6.ref();
-            this.el.attach_defaults (  child_6.el , 0,1,3,4 );
+            this.el.attach (  child_6.el , 0,3 );
             var child_7 = new Xcls_parent( _this );
             child_7.ref();
-            this.el.attach_defaults (  child_7.el , 1,2,3,4 );
+            this.el.attach (  child_7.el , 1,3 );
             var child_8 = new Xcls_Label12( _this );
             child_8.ref();
-            this.el.attach_defaults (  child_8.el , 0,1,4,5 );
+            this.el.attach (  child_8.el , 0,4 );
             var child_9 = new Xcls_permname( _this );
             child_9.ref();
-            this.el.attach_defaults (  child_9.el , 1,2,4,5 );
+            this.el.attach (  child_9.el , 1,4 );
             var child_10 = new Xcls_Label14( _this );
             child_10.ref();
-            this.el.attach_defaults (  child_10.el , 0,1,5,6 );
+            this.el.attach (  child_10.el , 0,6 );
             var child_11 = new Xcls_modOrder( _this );
             child_11.ref();
-            this.el.attach_defaults (  child_11.el , 1,2,5,6 );
+            this.el.attach (  child_11.el , 1,6 );
             var child_12 = new Xcls_Label16( _this );
             child_12.ref();
-            this.el.attach_defaults (  child_12.el , 0,1,6,7 );
+            this.el.attach (  child_12.el , 0,7 );
             var child_13 = new Xcls_build_module( _this );
             child_13.ref();
-            this.el.attach_defaults (  child_13.el , 1,2,6,7 );
+            this.el.attach (  child_13.el , 1,7 );
         }
 
         // user defined functions

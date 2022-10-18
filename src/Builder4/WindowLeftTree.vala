@@ -118,8 +118,8 @@ public class Xcls_WindowLeftTree : Object
         public string lastEventSource;
         public string dragData;
         public bool button_is_pressed;
-        public bool key_is_pressed;
         public Gtk.CssProvider css;
+        public bool key_is_pressed;
         public int drag_x;
         public int drag_y;
         public string[] dropList;
@@ -1071,7 +1071,7 @@ typeof(Gdk.Pixbuf) }  );
             
             
             // pref : 3 = ontop - 0 = after, 1 = before
-            int pref = in_pref < 0  ?  Gtk.TreeViewDropPosition.INTO_OR_AFTER : in_pref;
+            int pref = in_pref < 0  ?  (int)Gtk.TreeViewDropPosition.INTO_OR_AFTER : in_pref;
             
             var last = "";
             

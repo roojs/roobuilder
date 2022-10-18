@@ -39,15 +39,11 @@ namespace Palete {
 					";PASSWORD=" + this.project.get_string_member("DBPASSWORD"),
 					Gda.ConnectionOptions.NONE
 				);
-			} catch(Gda.ConfigError e) {
+			} catch(GLib.Error e) {
 				GLib.warning("%s\n", e.message);
 				this.cnc  = null;
 				this.DBTYPE = "";
-			} catch(Gda.ConnectionError e) {
-				GLib.warning("%s\n", e.message);
-				this.cnc  = null;
-				this.DBTYPE = "";
-			}
+			}  
             
         }
        
@@ -63,15 +59,11 @@ namespace Palete {
 					";PASSWORD=" + dbpass,
 					Gda.ConnectionOptions.NONE
 				);
-			} catch(Gda.ConfigError e) {
+			} catch(GLib.Error e) {
 				this.cnc  = null;
 				this.DBTYPE = "";
-			} catch(Gda.ConnectionError e) {
-				this.cnc  = null;
-				this.DBTYPE = "";
-			}
-
-	    
+			}  
+ 
 	}
           
         

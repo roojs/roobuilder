@@ -991,10 +991,15 @@ namespace Palete {
 				for (var i =0; i < max;i++) {
 					var m = (Vala.TokenType)i;
 					var s = m.to_string();
-					var ss = s.slice(1,-1);
+					var ss = s.slice(1,-1); 
 					if (s[0] == '`' && GLib.Regex.match_simple("^[a-z]+$", ss) &&
 						complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-						ret.append(new SourceCompletionItem (ss, ss, null, "vala : " + ss));
+						var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = ss;
+						sci.text = ss;
+						sci.info = "vala : " + ss;
+						ret.append(sci);
 					}
 				}
 				var miter = ((Project.Gtk)this.project).gir_cache.map_iterator();
@@ -1002,13 +1007,25 @@ namespace Palete {
 					var ss = miter.get_key();
 					
 					if (complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-						ret.append(new SourceCompletionItem (ss, ss, null, "vala namespace : " + ss));
+					
+							var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = ss;
+						sci.text = ss;
+						sci.info = "vala namespace: " + ss;
+						ret.append(sci);
 					}
 				}
 				 
 				
 				if (complete_string != "_this" && "_this".index_of(complete_string,0) == 0 ) { // should we ignore exact matches... ???
-					ret.append(new SourceCompletionItem ("_this - the top level element", "_this", null, "Top level element"));
+					
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label = "_this - the top level element";
+					sci.text = "_this";
+					sci.info = "Reference to the container object instance of this file";
+					ret.append(sci);
 				}
 				// basic types..
 				
@@ -1113,11 +1130,13 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						ret.append(new SourceCompletionItem (
-							prevbits + scls,
-							prevbits + scls, 
-							null, 
-							scls));
+						var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = prevbits + scls;
+						sci.text = prevbits + scls;
+						sci.info = scls;
+						
+						ret.append(sci);
 					}
 					// methods.... 
 					citer = cls.methods.map_iterator();
@@ -1128,11 +1147,12 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						ret.append(new SourceCompletionItem (
-							prevbits + scls  + citer.get_value().sig ,
-							prevbits + scls, 
-							null, 
-							scls));
+							var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = prevbits + scls  + citer.get_value().sig;
+						sci.text = prevbits + scls;
+						sci.info = scls;
+						ret.append(sci);
 					}
 					
 					// enums.... 
@@ -1144,11 +1164,13 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						ret.append(new SourceCompletionItem (
-							prevbits + scls  + citer.get_value().sig ,
-							prevbits + scls, 
-							null, 
-							scls));
+						
+							var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = prevbits + scls  + citer.get_value().sig;
+						sci.text = prevbits + scls;
+						sci.info = scls;
+						ret.append(sci);
 					}
 					
 					
@@ -1169,11 +1191,13 @@ namespace Palete {
 					}
 					// got a matching property...
 					// return type?
-					ret.append(new SourceCompletionItem (
-							 cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")", 
-							prevbits + cprop.name + "(", 
-							null, 
-							cprop.doctxt));
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label =  cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")";
+					sci.text = prevbits + cprop.name + "(";
+					sci.info = cprop.doctxt;
+				
+					ret.append(sci);
 				}
 				
 				// get the properties / methods and subclasses.. of cls..
@@ -1186,12 +1210,12 @@ namespace Palete {
 						continue;
 					}
 					// got a matching property...
-					
-					ret.append(new SourceCompletionItem (
-							 cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")", 
-							prevbits + cprop.name, 
-							null, 
-							cprop.doctxt));
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label =  cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")";
+					sci.text = prevbits + cprop.name;
+					sci.info = cprop.doctxt;
+					ret.append(sci);
 				}
 					 
 					

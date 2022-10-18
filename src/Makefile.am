@@ -174,11 +174,11 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/JsonGen.vala \
 		JsRender/JsRender.vala \
 		JsRender/Lang.vala \
-		JsRender/NodeProp.vala \		
+		JsRender/NodeProp.vala \
 		JsRender/NodeToGtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
-		JsRender/NodeToGlade.vala \		
+		JsRender/NodeToGlade.vala \
 		JsRender/Node.vala \
 		JsRender/Roo.vala
 
@@ -201,7 +201,7 @@ BUIDERPALETE =  Palete/Gir.vala \
 # Project/Flutter.vala 
 
 BUIDERPROJECT = Project/Gtk.vala \
-		Project/Project.vala \	
+		Project/Project.vala \
 		Project/Roo.vala \
 		Project/GtkValaSettings.vala
 
@@ -244,10 +244,10 @@ roobuilder_SOURCES =  Application.vala \
 
 		
 		
-		
+# removed   -X -lm 
 		
  
-roobuilder_VALAFLAGS =  --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
+roobuilder_VALAFLAGS =--target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
 
 roobuilder_LDADD =  $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
 

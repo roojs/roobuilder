@@ -149,10 +149,10 @@ public class Xcls_WindowRooView : Object
     	}
     	this.notebook.el.page = 1;
     	Gtk.TextIter beg, st,en;
-    	
+    	bool has_wrapped_around;
     	var buf = this.sourceview.el.get_buffer();
     	buf.get_iter_at_offset(out beg, this.last_search_end);
-    	if (!this.searchcontext.forward(beg, out st, out en)) {
+    	if (!this.searchcontext.forward2(beg, out st, out en, out has_wrapped_around)) {
     		this.last_search_end = 0;
     		return;
     	}
@@ -217,9 +217,9 @@ public class Xcls_WindowRooView : Object
     	
     	s.set_search_text(txt);
     	Gtk.TextIter beg, st,en;
-    	 
+    	bool has_wrapped_around;
     	this.buffer.el.get_start_iter(out beg);
-    	this.searchcontext.forward(beg, out st, out en);
+    	this.searchcontext.forward2(beg, out st, out en, out has_wrapped_around);
     	this.last_search_end = 0;
     	
     	return this.searchcontext.get_occurrences_count();
