@@ -123,15 +123,17 @@ public class Xcls_DialogNewComponent : Object
                     ); 
                     return;
                 }
-               
-               var f =  JsRender.JsRender.factory(
+                try {
+                var f =  JsRender.JsRender.factory(
                         _this.file.project.xtype,  
                         _this.file.project, 
                         dir + "/" + fn + ".bjs");
         
                 _this.file = f;
                 
-        
+        		} catch (JsRender.Error e) {
+        			return; // do not hide? // should show an error!?
+        		}
                 
                 this.updateFileFromEntry();
                 _this.file.save();
