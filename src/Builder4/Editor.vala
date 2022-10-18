@@ -194,7 +194,7 @@ public class Editor : Object
     	Gtk.TextIter beg, st,en;
     	 
     	this.buffer.el.get_start_iter(out beg);
-    	this.searchcontext.forward2(beg, out st, out en,true);
+    	this.searchcontext.forward2(beg, out st, out en,false);
     	this.last_search_end = 0;
     	
     	return this.searchcontext.get_occurrences_count();
