@@ -244,10 +244,10 @@ roobuilder_SOURCES =  Application.vala \
 
 		
 		
-		
+# removed   -X -lm 
 		
  
-roobuilder_VALAFLAGS =  --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
+roobuilder_VALAFLAGS =--target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
 
 roobuilder_LDADD =  $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
 
