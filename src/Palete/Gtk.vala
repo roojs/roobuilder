@@ -994,7 +994,12 @@ namespace Palete {
 					var ss = s.slice(1,-1);
 					if (s[0] == '`' && GLib.Regex.match_simple("^[a-z]+$", ss) &&
 						complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-						ret.append(new SourceCompletionItem (ss, ss, null, "vala : " + ss));
+						var sci = new SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = ss;
+						sci.text = ss;
+						sc.info = "vala : " + ss;
+						ret.append(sci);
 					}
 				}
 				var miter = ((Project.Gtk)this.project).gir_cache.map_iterator();
