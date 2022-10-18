@@ -284,7 +284,7 @@ public class Xcls_GtkView : Object
     	Gtk.TextIter beg, st,en;
     	 
     	this.buffer.el.get_start_iter(out beg);
-    	this.searchcontext.forward(beg, out st, out en);
+    	this.searchcontext.forward2(beg, out st, out en, false);
     	this.last_search_end = 0;
     	
     	return this.searchcontext.get_occurrences_count();
