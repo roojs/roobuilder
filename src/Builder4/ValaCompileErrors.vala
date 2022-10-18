@@ -278,7 +278,7 @@ public class Xcls_ValaCompileErrors : Object
             {
               this.css = new Gtk.CssProvider();
             	try {
-            		this.css.load_from_data("#compile-erros-view { font-size: 10px;}");
+            		this.css.load_from_data("#compile-erros-view { font-size: 12px;}");
             	} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
