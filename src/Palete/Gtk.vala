@@ -998,7 +998,7 @@ namespace Palete {
 						//string label, string text, Pixbuf? icon, string? info)
 						sci.label = ss;
 						sci.text = ss;
-						sc.info = "vala : " + ss;
+						sci.info = "vala : " + ss;
 						ret.append(sci);
 					}
 				}
