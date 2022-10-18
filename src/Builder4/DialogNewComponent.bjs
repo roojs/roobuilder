@@ -103,7 +103,7 @@
         {
          "$ visible" : true,
          "$ xns" : "Gtk",
-         "* pack" : "attach_defaults,1,2,4,5",
+         "* pack" : "attach,1,4",
          "id" : "permname",
          "xtype" : "Entry"
         },
@@ -111,7 +111,7 @@
          "$ justify" : "Gtk.Justification.RIGHT",
          "$ visible" : true,
          "$ xns" : "Gtk",
-         "* pack" : "attach_defaults,0,1,5,6",
+         "* pack" : "attach,0,6",
          "label" : "Order (for tabs)",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
