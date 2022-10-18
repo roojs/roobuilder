@@ -1071,7 +1071,7 @@ typeof(Gdk.Pixbuf) }  );
             
             
             // pref : 3 = ontop - 0 = after, 1 = before
-            int pref = in_pref < 0  ?  Gtk.TreeViewDropPosition.INTO_OR_AFTER : in_pref;
+            int pref = in_pref < 0  ?  (int)Gtk.TreeViewDropPosition.INTO_OR_AFTER : in_pref;
             
             var last = "";
             
