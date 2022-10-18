@@ -39,7 +39,6 @@
          "xtype" : "Entry"
         },
         {
-         "$ justify" : "Gtk.Justification.RIGHT",
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach_defaults,0,1,1,2",
@@ -335,7 +334,7 @@
    },
    "title" : "New Component",
    "xtype" : "Dialog",
-   "|   void show" : [
+   "| void show" : [
     "(JsRender.JsRender c) ",
     "{",
     "    this.project = c.project;",
@@ -385,7 +384,7 @@
     "    ",
     "}"
    ],
-   "|   void updateFileFromEntry" : [
+   "| void updateFileFromEntry" : [
     "() {",
     "",
     "        _this.file.title = _this.title.el.get_text();",
