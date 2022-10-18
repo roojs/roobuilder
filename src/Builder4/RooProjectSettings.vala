@@ -1134,13 +1134,10 @@ public class Xcls_RooProjectSettings : Object
             		);
                //} catch (Gda.ConnectionError ce) { 
                //   _this.database_ERROR.el.label = ce.message;        
-               } catch(Gda.ConnectionError ue) {
+               } catch(GLib.Error ue) {
                   _this.database_ERROR.el.label = ue.message;
                     return;
-               }  catch(Gda.ConfigError ue) {
-                  _this.database_ERROR.el.label = ue.message;
-                    return;
-               }
+               }  
               _this.database_ERROR.el.label = "Connection Succeeded";
                cnc.close();
             });
