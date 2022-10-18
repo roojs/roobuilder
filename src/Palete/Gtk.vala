@@ -1130,11 +1130,13 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						ret.append(new SourceCompletionItem (
-							prevbits + scls,
-							prevbits + scls, 
-							null, 
-							scls));
+						var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = prevbits + scls;
+						sci.text = prevbits + scls;
+						sci.info = scls;
+						
+						ret.append(sci);
 					}
 					// methods.... 
 					citer = cls.methods.map_iterator();
@@ -1145,11 +1147,12 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						ret.append(new SourceCompletionItem (
-							prevbits + scls  + citer.get_value().sig ,
-							prevbits + scls, 
-							null, 
-							scls));
+							var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = prevbits + scls  + citer.get_value().sig;
+						sci.text = prevbits + scls;
+						sci.info = scls;
+						ret.append(sci);
 					}
 					
 					// enums.... 
@@ -1161,11 +1164,13 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						ret.append(new SourceCompletionItem (
-							prevbits + scls  + citer.get_value().sig ,
-							prevbits + scls, 
-							null, 
-							scls));
+						
+							var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label = prevbits + scls  + citer.get_value().sig;
+						sci.text = prevbits + scls;
+						sci.info = scls;
+						ret.append(sci);
 					}
 					
 					
@@ -1186,11 +1191,13 @@ namespace Palete {
 					}
 					// got a matching property...
 					// return type?
-					ret.append(new SourceCompletionItem (
-							 cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")", 
-							prevbits + cprop.name + "(", 
-							null, 
-							cprop.doctxt));
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label =  cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")";
+					sci.text = prevbits + cprop.name + "(";
+					sci.info = cprop.doctxt;
+				
+					ret.append(sci);
 				}
 				
 				// get the properties / methods and subclasses.. of cls..
@@ -1203,12 +1210,12 @@ namespace Palete {
 						continue;
 					}
 					// got a matching property...
-					
-					ret.append(new SourceCompletionItem (
-							 cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")", 
-							prevbits + cprop.name, 
-							null, 
-							cprop.doctxt));
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label =  cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")";
+					sci.text = prevbits + cprop.name;
+					sci.info = cprop.doctxt;
+					ret.append(sci);
 				}
 					 
 					
