@@ -392,17 +392,38 @@ namespace Palete {
 				// offer up this / Roo / javascript keywords... / look for var string = .. in the code..
 				for(var i = 0; i <  JsRender.Lang.match_strings.size ; i++) {
 					var str = JsRender.Lang.match_strings.get(i);
-					if (complete_string != str && str.index_of(complete_string,0) == 0 ) { // should we ignore exact matches... ???
-						ret.append(new SourceCompletionItem (str, str, null, "javascript : " + str));
+					if (complete_string != str && str.index_of(complete_string,0) == 0 ) { 
+						// should we ignore exact matches... ???
+						var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label =  str;
+						sci.text = str;
+						sci.info = "javascript: " + str;
+						
+						ret.append(sci);
 					}
 					
 					
 				}
-				if (complete_string != "Roo" && "Roo".index_of(complete_string,0) == 0 ) { // should we ignore exact matches... ???
-					ret.append(new SourceCompletionItem ("Roo - A Roo class", "Roo", null, "Roo library"));
+				if (complete_string != "Roo" && "Roo".index_of(complete_string,0) == 0 ) { 
+					// should we ignore exact matches... ???
+				
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label =  "Roo - A Roo class";
+					sci.text = "Roo";
+					sci.info = "Roo Library";
+						
+					ret.append(sci);
 				}
-				if (complete_string != "_this" && "_this".index_of(complete_string,0) == 0 ) { // should we ignore exact matches... ???
-					ret.append(new SourceCompletionItem ("_this - the top level element", "_this", null, "Top level element"));
+				if (complete_string != "_this" && "_this".index_of(complete_string,0) == 0 ) { 
+					// should we ignore exact matches... ???
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label =  "_this - Reference to the global pointer to the files main class instance";
+					sci.text = "_this";
+					sci.info = "Reference to the global pointer to the files main class instance";
+					ret.append(sci);
 				}
 				return ret;
 			}
@@ -495,12 +516,14 @@ namespace Palete {
 						if (parts[i].length > 0 && scls.index_of(look,0) != 0) {
 							continue;
 						}
+						
 						// got a starting match..
-						ret.append(new SourceCompletionItem (
-							scls,
-							scls, 
-							null, 
-							scls));
+						var sci = SourceCompletionItem.new2();
+						//string label, string text, Pixbuf? icon, string? info)
+						sci.label =  scls;
+						sci.text = scls;
+						sci.info = scls;
+						ret.append(sci);
 					}
 					return ret;
 				}
@@ -517,11 +540,12 @@ namespace Palete {
 					}
 					// got a matching property...
 					// return type?
-					ret.append(new SourceCompletionItem (
-							 prop.name + prop.sig + " :  ("+ prop.propertyof + ")", 
-							prevbits + prop.name + "(", 
-							null, 
-							prop.doctxt));
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label =  prop.name + prop.sig + " :  ("+ prop.propertyof + ")";
+					sci.text = prevbits + prop.name + "(";
+					sci.info = prop.doctxt;
+					ret.append(sci);
 				}
 				
 				// get the properties / methods and subclasses.. of cls..
@@ -534,12 +558,12 @@ namespace Palete {
 						continue;
 					}
 					// got a matching property...
-					
-					ret.append(new SourceCompletionItem (
-							 prop.name + " : " + prop.type + " ("+ prop.propertyof + ")", 
-							prevbits + prop.name, 
-							null, 
-							prop.doctxt));
+					var sci = SourceCompletionItem.new2();
+					//string label, string text, Pixbuf? icon, string? info)
+					sci.label =  prop.name + " : " + prop.type + " ("+ prop.propertyof + ")";
+					sci.text = prevbits + prop.name;
+					sci.info = prop.doctxt;
+					ret.append(sci);
 				}
 					 
 					
