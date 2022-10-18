@@ -1558,7 +1558,7 @@
     "\tGtk.TextIter beg, st,en;",
     "\t ",
     "\tthis.buffer.el.get_start_iter(out beg);",
-    "\tthis.searchcontext.forward(beg, out st, out en);",
+    "\tthis.searchcontext.forward2(beg, out st, out en, false);",
     "\tthis.last_search_end = 0;",
     "\t",
     "\treturn this.searchcontext.get_occurrences_count();",
