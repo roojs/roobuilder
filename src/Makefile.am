@@ -174,11 +174,11 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/JsonGen.vala \
 		JsRender/JsRender.vala \
 		JsRender/Lang.vala \
-		JsRender/NodeProp.vala \		
+		JsRender/NodeProp.vala \
 		JsRender/NodeToGtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
-		JsRender/NodeToGlade.vala \		
+		JsRender/NodeToGlade.vala \	
 		JsRender/Node.vala \
 		JsRender/Roo.vala
 
@@ -201,7 +201,7 @@ BUIDERPALETE =  Palete/Gir.vala \
 # Project/Flutter.vala 
 
 BUIDERPROJECT = Project/Gtk.vala \
-		Project/Project.vala \	
+		Project/Project.vala \
 		Project/Roo.vala \
 		Project/GtkValaSettings.vala
 
