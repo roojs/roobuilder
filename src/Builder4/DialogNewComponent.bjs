@@ -34,7 +34,7 @@
         {
          "$ visible" : true,
          "$ xns" : "Gtk",
-         "* pack" : "attach_defaults,1,2,0,1",
+         "* pack" : "attach,1,0",
          "id" : "name",
          "xtype" : "Entry"
         },
