@@ -97,16 +97,8 @@ public class Xcls_DialogNewComponent : Object
                 //}
         
                 if (!isNew) {
-                    try {
-                         this.updateFileFromEntry();
-                     } catch( JsRender.Error.RENAME_FILE_EXISTS er) {
-                          Xcls_StandardErrorDialog.singleton().show(
-                            this.el,
-                            "The name you used already exists "
-                        );
-                        return;
-                         
-                     }
+                      
+                    this.updateFileFromEntry();
                                                                 
                 
                     _this.file.save();
@@ -124,15 +116,20 @@ public class Xcls_DialogNewComponent : Object
                     return;
                 }
                 try {
-                var f =  JsRender.JsRender.factory(
-                        _this.file.project.xtype,  
-                        _this.file.project, 
-                        dir + "/" + fn + ".bjs");
+        		    var f =  JsRender.JsRender.factory(
+        		            _this.file.project.xtype,  
+        		            _this.file.project, 
+        		            dir + "/" + fn + ".bjs");
         
-                _this.file = f;
+        		    _this.file = f;
                 
         		} catch (JsRender.Error e) {
-        			return; // do not hide? // should show an error!?
+        		   Xcls_StandardErrorDialog.singleton().show(
+                            this.el,
+                            "Error creating file? "
+                        );
+                        return;
+        			  
         		}
                 
                 this.updateFileFromEntry();
