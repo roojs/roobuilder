@@ -310,7 +310,7 @@ public class Xcls_DialogNewComponent : Object
             this.el.attach (  child_7.el , 1,3 );
             var child_8 = new Xcls_Label12( _this );
             child_8.ref();
-            this.el.attach_defaults (  child_8.el , 0,1,4,5 );
+            this.el.attach (  child_8.el , 0,4 );
             var child_9 = new Xcls_permname( _this );
             child_9.ref();
             this.el.attach_defaults (  child_9.el , 1,2,4,5 );
