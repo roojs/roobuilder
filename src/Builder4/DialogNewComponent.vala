@@ -260,26 +260,26 @@ public class Xcls_DialogNewComponent : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Table3( _this );
+            var child_0 = new Xcls_Grid3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false,0 );
         }
 
         // user defined functions
     }
-    public class Xcls_Table3 : Object
+    public class Xcls_Grid3 : Object
     {
-        public Gtk.Table el;
+        public Gtk.Grid el;
         private Xcls_DialogNewComponent  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Table3(Xcls_DialogNewComponent _owner )
+        public Xcls_Grid3(Xcls_DialogNewComponent _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Table( 3, 2, true );
+            this.el = new Gtk.Grid();
 
             // my vars (dec)
 

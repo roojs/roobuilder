@@ -197,7 +197,7 @@
        ],
        "n_columns" : 2,
        "n_rows" : 3,
-       "xtype" : "Table"
+       "xtype" : "Grid"
       }
      ],
      "xtype" : "Box"
