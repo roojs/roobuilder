@@ -322,10 +322,10 @@ public class Xcls_DialogNewComponent : Object
             this.el.attach (  child_11.el , 1,6 );
             var child_12 = new Xcls_Label16( _this );
             child_12.ref();
-            this.el.attach_defaults (  child_12.el , 0,1,6,7 );
+            this.el.attach (  child_12.el , 0,7 );
             var child_13 = new Xcls_build_module( _this );
             child_13.ref();
-            this.el.attach_defaults (  child_13.el , 1,2,6,7 );
+            this.el.attach (  child_13.el , 1,7 );
         }
 
         // user defined functions
@@ -676,7 +676,7 @@ public class Xcls_DialogNewComponent : Object
 
             // init method
 
-            this.el.add_attribute(_this.dbcellrenderer.el , "markup", 1 );
+            this.el.add_attribute(_this.dbcellrenderer.el , "markup", 1 );a
         }
 
         // user defined functions
