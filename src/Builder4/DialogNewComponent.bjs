@@ -41,7 +41,7 @@
         {
          "$ visible" : true,
          "$ xns" : "Gtk",
-         "* pack" : "attach_defaults,0,1,1,2",
+         "* pack" : "attach,0,1",
          "Gtk.Justification justify" : "Gtk.Justification.RIGHT",
          "label" : "Title",
          "x_options" : 4,
@@ -51,7 +51,7 @@
         {
          "$ visible" : true,
          "$ xns" : "Gtk",
-         "* pack" : "attach_defaults,1,2,1,2",
+         "* pack" : "attach,1,1",
          "id" : "title",
          "xtype" : "Entry"
         },
