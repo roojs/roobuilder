@@ -24,7 +24,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "attach_defaults,0,1,0,1",
+         "* pack" : "attach,0,0",
          "Gtk.Justification justify" : "Gtk.Justification.RIGHT",
          "label" : "Component Name",
          "x_options" : 4,

@@ -286,7 +286,7 @@ public class Xcls_DialogNewComponent : Object
             // set gobject values
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
-            this.el.attach_defaults (  child_0.el , 0,1,0,1 );
+            this.el.attach (  child_0.el , 0,0 );
             var child_1 = new Xcls_name( _this );
             child_1.ref();
             this.el.attach_defaults (  child_1.el , 1,2,0,1 );
