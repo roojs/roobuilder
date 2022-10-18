@@ -319,7 +319,7 @@ public class Xcls_DialogNewComponent : Object
             this.el.attach (  child_10.el , 0,6 );
             var child_11 = new Xcls_modOrder( _this );
             child_11.ref();
-            this.el.attach_defaults (  child_11.el , 1,2,5,6 );
+            this.el.attach (  child_11.el , 1,6 );
             var child_12 = new Xcls_Label16( _this );
             child_12.ref();
             this.el.attach_defaults (  child_12.el , 0,1,6,7 );
