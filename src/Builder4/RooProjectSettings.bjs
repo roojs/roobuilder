@@ -267,7 +267,7 @@
            "* pack" : "pack_start,true,true,0",
            "items" : [
             {
-             "$ xns" : "Gtk",
+             "$ xns" : "GtkSource",
              "* init" : [
               " ",
               "    ",
@@ -308,7 +308,7 @@
               ]
              },
              "string name" : "roo-project-settings-view",
-             "xtype" : "SourceView"
+             "xtype" : "View"
             }
            ],
            "xtype" : "ScrolledWindow"

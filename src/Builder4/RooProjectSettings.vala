@@ -31,22 +31,24 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_database_ERROR database_ERROR;
 
         // my vars (def)
+    public bool modal;
     public signal void buttonPressed (string btn);
     public Project.Project project;
     public bool done;
+    public uint border_width;
 
     // ctor
     public Xcls_RooProjectSettings()
     {
         _this = this;
-        this.el = new Gtk.Popover( null );
+        this.el = new Gtk.Popover();
 
         // my vars (dec)
+        this.modal = true;
         this.done = false;
+        this.border_width = 0;
 
         // set gobject values
-        this.el.border_width = 0;
-        this.el.modal = true;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
@@ -151,7 +153,6 @@ public class Xcls_RooProjectSettings : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            this.el.border_width = 5;
             var child_0 = new Xcls_Notebook3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true,true,0 );
@@ -326,6 +327,7 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
+        public gint margin;
 
         // ctor
         public Xcls_Label8(Xcls_RooProjectSettings _owner )
@@ -334,9 +336,9 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( "Filename" );
 
             // my vars (dec)
+            this.margin = 3;
 
             // set gobject values
-            this.el.margin = 3;
             this.el.xalign = 0f;
         }
 
@@ -350,6 +352,7 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
+        public gint margin;
 
         // ctor
         public Xcls_path(Xcls_RooProjectSettings _owner )
@@ -359,9 +362,9 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( "filename" );
 
             // my vars (dec)
+            this.margin = 3;
 
             // set gobject values
-            this.el.margin = 3;
             this.el.xalign = 0f;
         }
 
@@ -375,6 +378,7 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
+        public gint margin;
 
         // ctor
         public Xcls_Label10(Xcls_RooProjectSettings _owner )
@@ -383,9 +387,9 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( "HTML template file" );
 
             // my vars (dec)
+            this.margin = 3;
 
             // set gobject values
-            this.el.margin = 3;
         }
 
         // user defined functions
@@ -546,6 +550,7 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
+        public gint margin;
 
         // ctor
         public Xcls_Label14(Xcls_RooProjectSettings _owner )
@@ -554,9 +559,9 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( "root URL" );
 
             // my vars (dec)
+            this.margin = 3;
 
             // set gobject values
-            this.el.margin = 3;
         }
 
         // user defined functions
@@ -592,6 +597,7 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
+        public gint margin;
 
         // ctor
         public Xcls_Label16(Xcls_RooProjectSettings _owner )
@@ -600,9 +606,9 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( "Generate HTML in" );
 
             // my vars (dec)
+            this.margin = 3;
 
             // set gobject values
-            this.el.margin = 3;
         }
 
         // user defined functions
@@ -756,7 +762,7 @@ public class Xcls_RooProjectSettings : Object
         public Xcls_ScrolledWindow21(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -770,7 +776,7 @@ public class Xcls_RooProjectSettings : Object
     }
     public class Xcls_view : Object
     {
-        public Gtk.SourceView el;
+        public GtkSource.View el;
         private Xcls_RooProjectSettings  _this;
 
 
@@ -782,7 +788,7 @@ public class Xcls_RooProjectSettings : Object
         {
             _this = _owner;
             _this.view = this;
-            this.el = new Gtk.SourceView();
+            this.el = new GtkSource.View();
 
             // my vars (dec)
 
@@ -1153,6 +1159,7 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
+        public gint margin;
 
         // ctor
         public Xcls_database_ERROR(Xcls_RooProjectSettings _owner )
@@ -1162,9 +1169,9 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( " " );
 
             // my vars (dec)
+            this.margin = 3;
 
             // set gobject values
-            this.el.margin = 3;
             this.el.xalign = 0f;
         }
 
@@ -1185,15 +1192,9 @@ public class Xcls_RooProjectSettings : Object
         public Xcls_ButtonBox34(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
+            this.el = new Gtk.ButtonBox();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.margin_end = 4;
-            this.el.margin_start = 4;
-            this.el.margin_bottom = 4;
-            this.el.margin_top = 4;
             var child_0 = new Xcls_Button35( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
