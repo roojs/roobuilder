@@ -65,7 +65,7 @@
            },
            "string icon_name" : "folder-new",
            "string label" : "New Project",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",

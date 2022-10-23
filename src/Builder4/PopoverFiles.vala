@@ -447,7 +447,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ToolButton5( _this );
+            var child_0 = new Xcls_Button5( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_ToolButton6( _this );
@@ -466,21 +466,25 @@ public class Xcls_PopoverFiles : Object
 
         // user defined functions
     }
-    public class Xcls_ToolButton5 : Object
+    public class Xcls_Button5 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Button el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton5(Xcls_PopoverFiles _owner )
+        public Xcls_Button5(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "folder-new";
+            this.el.label = "New Project";
 
             //listeners
             this.el.clicked.connect( ( ) => {
