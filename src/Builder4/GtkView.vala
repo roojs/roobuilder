@@ -32,7 +32,7 @@ public class Xcls_GtkView : Object
     public Gtk.Widget lastObj;
     public Gtk.CssProvider css;
     public Xcls_MainWindow main_window;
-    public Gtk.SourceSearchContext searchcontext;
+    public GtkSource.SearchContext searchcontext;
     public int last_search_end;
     public int width;
     public JsRender.JsRender file;

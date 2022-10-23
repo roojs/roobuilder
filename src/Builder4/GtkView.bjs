@@ -3,6 +3,7 @@
  "items" : [
   {
    "# Gtk.Widget lastObj" : "null",
+   "# GtkSource.SearchContext searchcontext" : "",
    "# JsRender.JsRender file" : "null",
    "# Xcls_MainWindow main_window" : "",
    "$ xns" : "Gtk",
@@ -24,7 +25,6 @@
    ],
    "Gtk.CssProvider css" : "",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-   "Gtk.SourceSearchContext searchcontext" : "",
    "bool hexpand" : true,
    "bool vexpand" : true,
    "id" : "GtkView",
