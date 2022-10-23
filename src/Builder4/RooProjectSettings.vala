@@ -62,9 +62,9 @@ public class Xcls_RooProjectSettings : Object
         _this.project = project;
         _this.path.el.label = project.firstPath();
         // get the active project.
-         var lm = Gtk.SourceLanguageManager.get_default();
+         var lm = GtkSource.LanguageManager.get_default();
                     
-        ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(
+        ((GtkSource.Buffer)(_this.view.el.get_buffer())) .set_language(
             lm.get_language("html")
         );
       
@@ -156,7 +156,7 @@ public class Xcls_RooProjectSettings : Object
             var child_0 = new Xcls_Notebook3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true,true,0 );
-            var child_1 = new Xcls_ButtonBox34( _this );
+            var child_1 = new Xcls_Box34( _this );
             child_1.ref();
             this.el.add(  child_1.el );
         }
@@ -1180,21 +1180,27 @@ public class Xcls_RooProjectSettings : Object
 
 
 
-    public class Xcls_ButtonBox34 : Object
+    public class Xcls_Box34 : Object
     {
-        public Gtk.ButtonBox el;
+        public Gtk.Box el;
         private Xcls_RooProjectSettings  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ButtonBox34(Xcls_RooProjectSettings _owner )
+        public Xcls_Box34(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ButtonBox();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.margin_end = 4;
+            this.el.margin_start = 4;
+            this.el.margin_bottom = 4;
+            this.el.margin_top = 4;
             var child_0 = new Xcls_Button35( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
