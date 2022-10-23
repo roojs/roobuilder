@@ -668,6 +668,7 @@
        ]
       },
       {
+       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
        "* pack" : "add",
        "items" : [
@@ -719,7 +720,7 @@
          ]
         }
        ],
-       "xtype" : "MenuBar"
+       "xtype" : "Box"
       },
       {
        "$ xns" : "Gtk",

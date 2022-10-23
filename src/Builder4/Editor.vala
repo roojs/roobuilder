@@ -922,7 +922,7 @@ public class Editor : Object
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_MenuBar14( _this );
+            var child_1 = new Xcls_Box14( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_nextBtn( _this );
@@ -1059,21 +1059,23 @@ public class Editor : Object
         }
     }
 
-    public class Xcls_MenuBar14 : Object
+    public class Xcls_Box14 : Object
     {
-        public Gtk.MenuBar el;
+        public Gtk.Box el;
         private Editor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuBar14(Editor _owner )
+        public Xcls_Box14(Editor _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuBar();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
