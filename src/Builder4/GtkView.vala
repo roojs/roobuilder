@@ -459,7 +459,7 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_view_layout : Object
     {
-        public Gtk.Layout el;
+        public Gtk.Fixed el;
         private Xcls_GtkView  _this;
 
 
@@ -470,9 +470,12 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.view_layout = this;
-            this.el = new Gtk.Layout();
+            this.el = new Gtk.Fixed();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.name = "gtkview-view-layout";
             var child_0 = new Xcls_container( _this );
             child_0.ref();
             this.el.put (  child_0.el , 10,10 );
