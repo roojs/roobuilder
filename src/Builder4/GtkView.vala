@@ -853,7 +853,7 @@ public class Xcls_GtkView : Object
              Gtk.TextIter end;   
              
              var buf =  this.el.get_buffer();
-               var sbuf = (Gtk.SourceBuffer)buf;
+               var sbuf = (GtkSource.Buffer)buf;
                 buf.get_bounds (out start, out end);
                 
                 sbuf.remove_source_marks (start, end, type);
