@@ -33,7 +33,7 @@ namespace Palete {
 			this.fetchMatches(context, out has_matches);
 			return has_matches;
 		}
-
+/*
 		public List<GtkSource.CompletionItem>? fetchMatches(GtkSource.CompletionContext context, out bool has_matches)
 		{
 		     has_matches = false;
@@ -82,7 +82,7 @@ namespace Palete {
 		    return filtered_proposals;
 
 		}
-	
+	*/
 		public void populate (GtkSource.CompletionContext context)
 		{
 			bool has_matches = false;
@@ -135,6 +135,7 @@ namespace Palete {
 			return false;
 		}
 */
+/*
 		public void update_info (GtkSource.CompletionProposal proposal, GtkSource.CompletionInfo info)
 		{
 
@@ -146,7 +147,7 @@ namespace Palete {
 		
 		 
 	}
-
+*/
 
 } 
 
