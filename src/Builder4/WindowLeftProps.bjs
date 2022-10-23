@@ -150,7 +150,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "append",
+           "* pack" : "add_child",
            "label" : "init: initialziation code (vala)",
            "listeners" : {
             "activate" : [
@@ -161,7 +161,7 @@
             ]
            },
            "tooltip_markup" : "This code is called after the ctor",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -182,7 +182,7 @@
             "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})",
             ""
            ],
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",

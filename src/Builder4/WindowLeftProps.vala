@@ -778,10 +778,10 @@ public class Xcls_LeftProps : Object
             var child_2 = new Xcls_Button12( _this );
             child_2.ref();
             this.el.add_child (  child_2.el  );
-            var child_3 = new Xcls_MenuItem13( _this );
+            var child_3 = new Xcls_Button13( _this );
             child_3.ref();
-            this.el.append (  child_3.el  );
-            var child_4 = new Xcls_MenuItem14( _this );
+            this.el.add_child (  child_3.el  );
+            var child_4 = new Xcls_Button14( _this );
             child_4.ref();
             this.el.append (  child_4.el  );
             var child_5 = new Xcls_SeparatorMenuItem15( _this );
@@ -914,22 +914,25 @@ public class Xcls_LeftProps : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem13 : Object
+    public class Xcls_Button13 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem13(Xcls_LeftProps _owner )
+        public Xcls_Button13(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+
+            // set gobject values
+            this.el.tooltip_markup = "This code is called after the ctor";
+            this.el.label = "init: initialziation code (vala)";
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -941,22 +944,25 @@ public class Xcls_LeftProps : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem14 : Object
+    public class Xcls_Button14 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem14(Xcls_LeftProps _owner )
+        public Xcls_Button14(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+
+            // set gobject values
+            this.el.tooltip_markup = "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})\n";
+            this.el.label = "cms-id: (Roo JS/Pman library)";
 
             //listeners
             this.el.activate.connect( ()  => {
