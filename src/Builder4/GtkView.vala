@@ -725,7 +725,7 @@ public class Xcls_GtkView : Object
             this.loading = true;
             var buf = this.el.get_buffer();
             buf.set_text("",0);
-            var sbuf = (Gtk.SourceBuffer) buf;
+            var sbuf = (GtkSource.Buffer) buf;
         
             
         
