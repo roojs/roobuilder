@@ -632,8 +632,7 @@ public class Editor : Object
     }
     public class Xcls_buffer : Object
     {
-        public GtkSource.Buffer
-.Buffer el;
+        public GtkSource.Buffer. el;
         private Editor  _this;
 
 
@@ -644,8 +643,7 @@ public class Editor : Object
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new GtkSource.Buffer
-.Buffer();
+            this.el = new ();
 
             // my vars (dec)
 
