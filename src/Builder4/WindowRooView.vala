@@ -243,8 +243,8 @@ public class Xcls_WindowRooView : Object
         var width = win.get_width();
       //  var height = win.get_height();
         
-            Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, this.paned.el.position);
-            this.file.writeIcon(screenshot);
+        Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, this.paned.el.position);
+        this.file.writeIcon(screenshot);
             
         
     
