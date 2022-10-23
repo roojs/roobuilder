@@ -2222,7 +2222,7 @@ public class Xcls_WindowRooView : Object
 
     public class Xcls_regex : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Xcls_WindowRooView  _this;
 
 
@@ -2233,9 +2233,12 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.regex = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Regex";
 
             // init method
 
@@ -2249,7 +2252,7 @@ public class Xcls_WindowRooView : Object
 
     public class Xcls_multiline : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Xcls_WindowRooView  _this;
 
 
@@ -2260,9 +2263,12 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.multiline = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Multi-line (add \\n)";
 
             // init method
 

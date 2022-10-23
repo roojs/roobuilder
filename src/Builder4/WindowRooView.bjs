@@ -1504,7 +1504,7 @@
                ],
                "id" : "regex",
                "string label" : "Regex",
-               "xtype" : "CheckMenuItem"
+               "xtype" : "CheckButton"
               },
               {
                "$ xns" : "Gtk",
@@ -1516,7 +1516,7 @@
                ],
                "id" : "multiline",
                "string label" : "Multi-line (add \\n)",
-               "xtype" : "CheckMenuItem"
+               "xtype" : "CheckButton"
               }
              ],
              "xtype" : "PopoverMenu"
