@@ -510,7 +510,7 @@
           "clicked" : [
            "() => { ",
            "",
-           "  _this.done = true;",
+           "  \t_this.done = true;",
            "    _this.el.hide(); ",
            "}"
           ]

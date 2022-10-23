@@ -1254,7 +1254,7 @@ public class Xcls_PopoverFileDetails : Object
             //listeners
             this.el.clicked.connect( () => { 
             
-              _this.done = true;
+              	_this.done = true;
                 _this.el.hide(); 
             });
         }
