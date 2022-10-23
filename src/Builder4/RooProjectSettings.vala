@@ -605,7 +605,6 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
-        public gint margin;
 
         // ctor
         public Xcls_Label16(Xcls_RooProjectSettings _owner )
@@ -614,7 +613,6 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( "Generate HTML in" );
 
             // my vars (dec)
-            this.margin = 3;
 
             // set gobject values
         }
