@@ -397,7 +397,7 @@
            "xtype" : "MenuItem"
           }
          ],
-         "xtype" : "Menu"
+         "xtype" : "PopoverMenu"
         },
         {
          "$ xns" : "Gtk",

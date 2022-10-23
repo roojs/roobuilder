@@ -588,6 +588,7 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_Button4(Xcls_LeftProps _owner )
@@ -596,10 +597,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.always_show_image = true;
             this.el.tooltip_text = "Add Property";
             this.el.label = "Property";
             var child_0 = new Xcls_Image5( _this );
@@ -650,6 +651,7 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_Button6(Xcls_LeftProps _owner )
@@ -658,10 +660,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.always_show_image = true;
             this.el.tooltip_text = "Add Event Code";
             this.el.label = "Event";
             var child_0 = new Xcls_Image7( _this );
@@ -714,6 +716,7 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_Button8(Xcls_LeftProps _owner )
@@ -722,10 +725,10 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.always_show_image = true;
             this.el.label = "Other";
             var child_0 = new Xcls_AddPropertyPopup( _this );
             child_0.ref();
@@ -750,7 +753,7 @@ public class Xcls_LeftProps : Object
     }
     public class Xcls_AddPropertyPopup : Object
     {
-        public Gtk.Menu el;
+        public Gtk.PopoverMenu el;
         private Xcls_LeftProps  _this;
 
 
@@ -761,7 +764,7 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.AddPropertyPopup = this;
-            this.el = new Gtk.Menu();
+            this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
 
@@ -836,10 +839,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Using _this.{ID} will map to this element";
-            this.el.label = "id: _this.{ID} (Vala)";
             this.el.show();
 
             //listeners
@@ -867,10 +866,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element";
-            this.el.label = "pack: Pack method (Vala)";
             this.el.show();
 
             //listeners
@@ -898,10 +893,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "eg. \n\nnew Clutter.Image.from_file(.....)";
-            this.el.label = "ctor: Alterative to default contructor (Vala)";
             this.el.show();
 
             //listeners
@@ -929,10 +920,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "This code is called after the ctor";
-            this.el.label = "init: initialziation code (vala)";
             this.el.show();
 
             //listeners
@@ -960,10 +947,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})\n";
-            this.el.label = "cms-id: (Roo JS/Pman library)";
             this.el.show();
 
             //listeners
@@ -994,9 +977,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.show();
         }
 
         // user defined functions
@@ -1017,10 +997,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a user defined string property";
-            this.el.label = "String";
             this.el.show();
 
             //listeners
@@ -1055,10 +1031,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a user defined number property";
-            this.el.label = "Number";
             this.el.show();
 
             //listeners
@@ -1092,10 +1064,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a user defined boolean property";
-            this.el.label = "Boolean";
             this.el.show();
 
             //listeners
@@ -1131,9 +1099,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.show();
         }
 
         // user defined functions
@@ -1154,10 +1119,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a user function boolean property";
-            this.el.label = "Javascript Function";
             this.el.show();
 
             //listeners
@@ -1193,10 +1154,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a user function boolean property";
-            this.el.label = "Vala Method";
             this.el.show();
 
             //listeners
@@ -1230,10 +1187,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a vala signal";
-            this.el.label = "Vala Signal";
             this.el.show();
 
             //listeners
@@ -1266,9 +1219,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.show();
         }
 
         // user defined functions
@@ -1289,10 +1239,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a flexy if (for HTML templates)";
-            this.el.label = "Flexy - If";
             this.el.show();
 
             //listeners
@@ -1327,10 +1273,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a flexy include (for HTML templates)";
-            this.el.label = "Flexy - Include";
             this.el.show();
 
             //listeners
@@ -1365,10 +1307,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.tooltip_markup = "Add a flexy foreach (for HTML templates)";
-            this.el.label = "Flexy - Foreach";
             this.el.show();
 
             //listeners
@@ -1429,13 +1367,12 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.EditProps = this;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
             this.editing = false;
 
             // set gobject values
-            this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1893,8 +1830,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.Menu();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_MenuItem37( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
@@ -1917,9 +1852,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Delete";
             this.el.show();
 
             //listeners
