@@ -2,6 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# Gtk.SourceSearchContext searchcontext" : "null",
    "# JsRender.JsRender? file" : "null",
    "# JsRender.Node node" : "null",
    "# JsRender.NodeProp? prop" : "null",
@@ -16,7 +17,6 @@
    "* pack" : "add",
    "@ void save" : "()",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-   "Gtk.SourceSearchContext searchcontext" : "null",
    "bool hexpand" : true,
    "bool vexpand" : true,
    "int last_search_end" : 0,
