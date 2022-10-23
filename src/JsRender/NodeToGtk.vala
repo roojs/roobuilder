@@ -157,11 +157,10 @@ public class JsRender.NodeToGtk : Object {
 
 		// pack paramenters
 
-		
-		if (parent != null && parent.get_type().is_a(typeof(global::Gtk.Container))) {
+		// GTK 4 does not appear to have any way to determine if a element is a container..
+		//if (parent != null && parent.get_type().is_a(typeof(global::Gtk.Container))) {
 			this.packContainerParams();
-		}
-		
+		//}//
 		var cls_gir =Palete.Gir.factoryFqn(this.project, this.node.fqn()); 
 		if (cls_gir == null) {
 			return null;
