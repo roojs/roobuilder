@@ -423,28 +423,30 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Toolbar4( _this );
+            var child_0 = new Xcls_Box4( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Toolbar4 : Object
+    public class Xcls_Box4 : Object
     {
-        public Gtk.Toolbar el;
+        public Gtk.Box el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Toolbar4(Xcls_PopoverFiles _owner )
+        public Xcls_Box4(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Toolbar();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_ToolButton5( _this );
             child_0.ref();
             this.el.add (  child_0.el  );

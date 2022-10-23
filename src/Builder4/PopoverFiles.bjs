@@ -30,9 +30,9 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "items" : [
         {
+         "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "$ xns" : "Gtk",
          "* pack" : "add",
-         "Gtk.ToolbarStyle toolbar_style" : "Gtk.ToolbarStyle.BOTH",
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -174,7 +174,7 @@
            "xtype" : "ToolButton"
           }
          ],
-         "xtype" : "Toolbar"
+         "xtype" : "Box"
         }
        ],
        "xtype" : "Box"
