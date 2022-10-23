@@ -1757,7 +1757,7 @@ public class Xcls_WindowRooView : Object
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_MenuBar20( _this );
+            var child_1 = new Xcls_Box20( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_nextBtn( _this );
@@ -1898,21 +1898,23 @@ public class Xcls_WindowRooView : Object
         }
     }
 
-    public class Xcls_MenuBar20 : Object
+    public class Xcls_Box20 : Object
     {
-        public Gtk.MenuBar el;
+        public Gtk.Box el;
         private Xcls_WindowRooView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuBar20(Xcls_WindowRooView _owner )
+        public Xcls_Box20(Xcls_WindowRooView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuBar();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1922,21 +1924,25 @@ public class Xcls_WindowRooView : Object
     }
     public class Xcls_search_results : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_WindowRooView  _this;
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_search_results(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+            this.always_show_image = true;
+
+            // set gobject values
+            this.el.visible = false;
 
             //listeners
             this.el.button_press_event.connect( () => {

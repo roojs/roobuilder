@@ -1359,6 +1359,7 @@
            ]
           },
           {
+           "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "$ xns" : "Gtk",
            "* pack" : "add",
            "items" : [
@@ -1384,7 +1385,7 @@
                "}"
               ]
              },
-             "xtype" : "MenuItem",
+             "xtype" : "Button",
              "| void updateResults" : [
               "() {",
               "\tthis.el.visible = true;",
@@ -1410,7 +1411,7 @@
              ]
             }
            ],
-           "xtype" : "MenuBar"
+           "xtype" : "Box"
           },
           {
            "$ xns" : "Gtk",
