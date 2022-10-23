@@ -135,11 +135,8 @@ namespace Palete {
 			return false;
 		}
 */
-/*
-		public void update_info (GtkSource.CompletionProposal proposal, GtkSource.CompletionInfo info)
-		{
 
-		}
+	 
 
 		private bool is_space(unichar space){
 			return space.isspace() || space.to_string() == "";
@@ -147,7 +144,7 @@ namespace Palete {
 		
 		 
 	}
-*/
+
 
 } 
 
