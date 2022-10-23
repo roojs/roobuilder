@@ -1165,7 +1165,6 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
-        public gint margin;
 
         // ctor
         public Xcls_database_ERROR(Xcls_RooProjectSettings _owner )
@@ -1175,7 +1174,6 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( " " );
 
             // my vars (dec)
-            this.margin = 3;
 
             // set gobject values
             this.el.xalign = 0f;

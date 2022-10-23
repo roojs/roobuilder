@@ -466,7 +466,6 @@
           {
            "$ xns" : "Gtk",
            "* pack" : "pack_start,false,false,0",
-           "gint margin" : 3,
            "id" : "database_ERROR",
            "label" : " ",
            "xalign" : 0,
