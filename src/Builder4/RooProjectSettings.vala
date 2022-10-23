@@ -337,7 +337,11 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.margin_end = 3;
+            this.el.margin_start = 3;
             this.el.xalign = 0f;
+            this.el.margin_bottom = 3;
+            this.el.margin_top = 3;
         }
 
         // user defined functions
@@ -350,7 +354,6 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
-        public gint margin;
 
         // ctor
         public Xcls_path(Xcls_RooProjectSettings _owner )
@@ -360,10 +363,13 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( "filename" );
 
             // my vars (dec)
-            this.margin = 3;
 
             // set gobject values
+            this.el.margin_end = 3;
+            this.el.margin_start = 3;
             this.el.xalign = 0f;
+            this.el.margin_bottom = 3;
+            this.el.margin_top = 3;
         }
 
         // user defined functions
@@ -376,7 +382,6 @@ public class Xcls_RooProjectSettings : Object
 
 
             // my vars (def)
-        public gint margin;
 
         // ctor
         public Xcls_Label10(Xcls_RooProjectSettings _owner )
@@ -385,9 +390,9 @@ public class Xcls_RooProjectSettings : Object
             this.el = new Gtk.Label( "HTML template file" );
 
             // my vars (dec)
-            this.margin = 3;
 
             // set gobject values
+            this.el.margin_bottom = 0;
         }
 
         // user defined functions

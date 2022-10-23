@@ -52,6 +52,10 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,0,0,1,1",
+             "int margin_bottom" : 3,
+             "int margin_end" : 3,
+             "int margin_start" : 3,
+             "int margin_top" : 3,
              "label" : "Filename",
              "xalign" : 0,
              "xtype" : "Label"
@@ -59,8 +63,11 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,1,0,1,1",
-             "gint margin" : 3,
              "id" : "path",
+             "int margin_bottom" : 3,
+             "int margin_end" : 3,
+             "int margin_start" : 3,
+             "int margin_top" : 3,
              "label" : "filename",
              "xalign" : 0,
              "xtype" : "Label"
@@ -68,7 +75,7 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,0,1,1,1",
-             "gint margin" : 3,
+             "int margin_bottom" : 0,
              "label" : "HTML template file",
              "xtype" : "Label"
             },
