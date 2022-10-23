@@ -19,7 +19,7 @@
       ""
      ],
      "* pack" : "add",
-     "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
+     "bool has_frame" : true,
      "id" : "viewwin",
      "items" : [
       {

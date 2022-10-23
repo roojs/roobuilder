@@ -73,7 +73,6 @@ public class Xcls_WindowLeftTree : Object
 
 
             // my vars (def)
-        public Gtk.ShadowType shadow_type;
 
         // ctor
         public Xcls_viewwin(Xcls_WindowLeftTree _owner )
@@ -83,9 +82,9 @@ public class Xcls_WindowLeftTree : Object
             this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
-            this.shadow_type = Gtk.ShadowType.IN;
 
             // set gobject values
+            this.el.has_frame = true;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
