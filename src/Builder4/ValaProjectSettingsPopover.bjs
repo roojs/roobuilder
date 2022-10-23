@@ -446,12 +446,12 @@
                 ]
                },
                "utf8 label" : "Add Compile Target",
-               "xtype" : "MenuItem"
+               "xtype" : "Button"
               },
               {
                "$ xns" : "Gtk",
                "* pack" : "add",
-               "xtype" : "SeparatorMenuItem"
+               "xtype" : "Separator"
               },
               {
                "$ xns" : "Gtk",
@@ -485,10 +485,10 @@
                 ]
                },
                "utf8 label" : "Remove Target",
-               "xtype" : "MenuItem"
+               "xtype" : "Button"
               }
              ],
-             "xtype" : "Menu"
+             "xtype" : "PopoverMenu"
             },
             {
              "# string cursor" : "",
