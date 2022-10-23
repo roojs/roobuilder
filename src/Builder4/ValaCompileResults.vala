@@ -16,6 +16,7 @@ public class Xcls_ValaCompileResults : Object
     public Xcls_sourceview sourceview;
 
         // my vars (def)
+    public bool modal;
     public Xcls_MainWindow window;
     public bool active;
 
@@ -23,15 +24,15 @@ public class Xcls_ValaCompileResults : Object
     public Xcls_ValaCompileResults()
     {
         _this = this;
-        this.el = new Gtk.Popover( null );
+        this.el = new Gtk.Popover();
 
         // my vars (dec)
+        this.modal = true;
         this.active = true;
 
         // set gobject values
         this.el.width_request = 600;
         this.el.height_request = 400;
-        this.el.modal = true;
         this.el.position = Gtk.PositionType.TOP;
         var child_0 = new Xcls_compile_view( _this );
         child_0.ref();
@@ -60,7 +61,7 @@ public class Xcls_ValaCompileResults : Object
        // not sure why..
        
        if (reset) {
-    		var buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();
+    		var buf = (GtkSource.Buffer)this.sourceview.el.get_buffer();
     		buf.set_text("",0);
     	}
        
@@ -125,7 +126,7 @@ public class Xcls_ValaCompileResults : Object
         public Xcls_ScrolledWindow3(Xcls_ValaCompileResults _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -153,7 +154,6 @@ public class Xcls_ValaCompileResults : Object
 
 
             // my vars (def)
-        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_sourceview(Xcls_ValaCompileResults _owner )
@@ -163,11 +163,6 @@ public class Xcls_ValaCompileResults : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.name = "compile-results-view";
-            this.el.editable = false;
-            this.el.show_line_numbers = false;
 
             // init method
 

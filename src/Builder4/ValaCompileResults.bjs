@@ -104,7 +104,7 @@
     "   // not sure why..",
     "   ",
     "   if (reset) {",
-    "\t\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();",
+    "\t\tvar buf = (GtkSource.Buffer)this.sourceview.el.get_buffer();",
     "\t\tbuf.set_text(\"\",0);",
     "\t}",
     "   ",
