@@ -1360,7 +1360,7 @@ public class Editor : Object
     }
     public class Xcls_case_sensitive : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Editor  _this;
 
 
@@ -1371,9 +1371,12 @@ public class Editor : Object
         {
             _this = _owner;
             _this.case_sensitive = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Case Sensitive";
 
             // init method
 
@@ -1387,7 +1390,7 @@ public class Editor : Object
 
     public class Xcls_regex : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Editor  _this;
 
 
@@ -1398,9 +1401,12 @@ public class Editor : Object
         {
             _this = _owner;
             _this.regex = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Regex";
 
             // init method
 
@@ -1414,7 +1420,7 @@ public class Editor : Object
 
     public class Xcls_multiline : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Editor  _this;
 
 
@@ -1425,9 +1431,12 @@ public class Editor : Object
         {
             _this = _owner;
             _this.multiline = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Multi-line (add \\n)";
 
             // init method
 
