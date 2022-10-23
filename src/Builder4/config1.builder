@@ -184,19 +184,14 @@
             "../..//debian"
         ],
         "packages" : [
-            "gdk-3.0",
-            "gtk+-3.0",
             "gtksourceview-3.0",
             "libgda-5.0",
             "glib-2.0",
             "gobject-introspection-1.0",
             "gobject-2.0",
-            "javascriptcore",
             "json-glib-1.0",
             "libxml-2.0",
-            "libsoup-2.4",
             "libvala-0.26",
-            "webkit2gtk-4.0",
             "gee-1.0",
             "posix",
             "libvala-0.24",
@@ -207,7 +202,10 @@
             "libvala-0.36",
             "gee-0.8",
             "roojspacker-1.4",
-            "libvala-0.56"
+            "libvala-0.56",
+            "gtk4",
+            "javascriptcore",
+            "webkit2gtk-5.0"
         ]
     }
 ]

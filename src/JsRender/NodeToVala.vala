@@ -626,9 +626,11 @@ public class JsRender.NodeToVala : Object {
 			menuitem_children = new Gee.ArrayList<string>();
 			menuitem_children.add("Gtk.MenuItem");
 			var gir = this.file.project.palete.getClass("Gtk.MenuItem");
-			foreach(var impl in gir.implementations) {
-				menuitem_children.add(impl);
-			}
+			if (gir != null) {
+			    foreach(var impl in gir.implementations) {
+				    menuitem_children.add(impl);
+			    }
+		    }
 		}
 
 		if (menuitem_children.contains(this.node.fqn())) {
