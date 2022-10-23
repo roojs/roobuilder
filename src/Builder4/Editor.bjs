@@ -799,7 +799,7 @@
         },
         {
          "$ xns" : "Gtk",
-         "* prop" : "popup",
+         "* prop" : "popover",
          "id" : "search_settings",
          "items" : [
           {

@@ -1288,7 +1288,7 @@ public class Editor : Object
             this.el.image = child_0.el;
             var child_1 = new Xcls_search_settings( _this );
             child_1.ref();
-            this.el.popup = child_1.el;
+            this.el.popover = child_1.el;
 
             // init method
 
