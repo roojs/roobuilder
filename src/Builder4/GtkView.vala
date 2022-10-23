@@ -344,7 +344,7 @@ public class Xcls_GtkView : Object
     	   
     		  var buf = this.sourceview.el.get_buffer();
     	 
-    		var sbuf = (Gtk.SourceBuffer) buf;
+    		var sbuf = (GtkSource.Buffer) buf;
     
     
     		Gtk.TextIter iter;   
