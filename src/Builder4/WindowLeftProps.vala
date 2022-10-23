@@ -784,7 +784,7 @@ public class Xcls_LeftProps : Object
             var child_4 = new Xcls_Button14( _this );
             child_4.ref();
             this.el.append (  child_4.el  );
-            var child_5 = new Xcls_SeparatorMenuItem15( _this );
+            var child_5 = new Xcls_Separator15( _this );
             child_5.ref();
             this.el.add (  child_5.el  );
             var child_6 = new Xcls_MenuItem16( _this );
@@ -977,21 +977,23 @@ public class Xcls_LeftProps : Object
         // user defined functions
     }
 
-    public class Xcls_SeparatorMenuItem15 : Object
+    public class Xcls_Separator15 : Object
     {
-        public Gtk.SeparatorMenuItem el;
+        public Gtk.Separator el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_SeparatorMenuItem15(Xcls_LeftProps _owner )
+        public Xcls_Separator15(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.SeparatorMenuItem();
+            this.el = new Gtk.Separator( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
