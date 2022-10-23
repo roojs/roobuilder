@@ -574,7 +574,7 @@
            "# bool loading" : true,
            "# int editable_start_pos" : "-1",
            "# string prop_selected" : "\"\"",
-           "$ xns" : "Gtk",
+           "$ xns" : "GtkSource",
            "* init" : [
             "{",
             "   ",
@@ -655,7 +655,7 @@
            "id" : "sourceview",
            "items" : [
             {
-             "$ xns" : "Gtk",
+             "$ xns" : "GtkSource",
              "* pack" : "set_buffer",
              "bool dirty" : false,
              "id" : "buffer",
@@ -872,7 +872,7 @@
             ]
            },
            "string name" : "roo-view",
-           "xtype" : "SourceView",
+           "xtype" : "View",
            "| string toString" : [
             "() {",
             "   Gtk.TextIter s;",
