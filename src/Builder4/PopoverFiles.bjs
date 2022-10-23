@@ -162,7 +162,6 @@
        "bool homogeneous" : false,
        "items" : [
         {
-         "$ shadow_type" : "Gtk.ShadowType.IN",
          "$ xns" : "Gtk",
          "* init" : [
           "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
@@ -170,6 +169,7 @@
          ],
          "* pack" : "add",
          "bool expand" : true,
+         "bool has_frame" : true,
          "int width_request" : 150,
          "items" : [
           {
