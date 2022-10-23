@@ -632,28 +632,22 @@ public class Editor : Object
     }
     public class Xcls_buffer : Object
     {
-        public Gtk.SourceBuffer el;
+        public GtkSource.Buffer
+.Buffer el;
         private Editor  _this;
 
 
             // my vars (def)
-        public int error_line;
-        public bool check_queued;
-        public bool check_running;
 
         // ctor
         public Xcls_buffer(Editor _owner )
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new GtkSource.Buffer( null );
+            this.el = new GtkSource.Buffer
+.Buffer();
 
             // my vars (dec)
-            this.error_line = -1;
-            this.check_queued = false;
-            this.check_running = false;
-
-            // set gobject values
 
             //listeners
             this.el.changed.connect( () => {
