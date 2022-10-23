@@ -391,7 +391,7 @@
                   ]
                  },
                  "utf8 label" : "Remove File/Directory",
-                 "xtype" : "MenuItem"
+                 "xtype" : "Button"
                 }
                ],
                "xtype" : "PopoverMenu"

@@ -807,7 +807,7 @@ public class ValaProjectSettingsPopover : Object
             var child_2 = new Xcls_Separator26( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
-            var child_3 = new Xcls_MenuItem27( _this );
+            var child_3 = new Xcls_Button27( _this );
             child_3.ref();
             this.el.add (  child_3.el  );
         }
@@ -922,22 +922,24 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem27 : Object
+    public class Xcls_Button27 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem27(ValaProjectSettingsPopover _owner )
+        public Xcls_Button27(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+
+            // set gobject values
+            this.el.label = "Remove File/Directory";
 
             //listeners
             this.el.activate.connect( ()  => {
