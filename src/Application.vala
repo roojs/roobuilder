@@ -102,7 +102,7 @@
 		    ROOTWIN
 		}
 
-
+/*
 		public const Gtk.TargetEntry[] targetList = {
 		    { "INTEGER",    0, Target.INT32 },
 		    { "STRING",     0, Target.STRING },
@@ -110,6 +110,7 @@
 		    { "text/plain", 0, Target.STRING },
 		    { "application/x-rootwindow-drop", 0, Target.ROOTWIN }
 		};
+		*/
 		public AppSettings settings = null;
 
 
