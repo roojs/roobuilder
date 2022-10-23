@@ -735,35 +735,38 @@ namespace Palete {
 			 
 				//gtk box failing
 			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
+			var m = ar.get(method);
+			if (m != null) {
 			
-			foreach (var prop in ar.get(method).paramset.params) {
-				string[] opts;
-				
-				GLib.debug("adding proprty from ctor : %s, %s, %s", cls, prop.name, prop.type);
+			    
+			    foreach (var prop in m.paramset.params) {
+				    string[] opts;
+				    
+				    GLib.debug("adding proprty from ctor : %s, %s, %s", cls, prop.name, prop.type);
 
-				var sub = this.getClass(prop.type);
-				if (sub != null) { // can't add child classes here...
-					GLib.debug("skipping ctor argument proprty is an object");
-					continue;
-				}
-				var dval = "";
-				switch (prop.type) {
-					case "int":
-						dval = "0";break;
-					case "string": 
-						dval = ""; break;
-					// anything else?
-					default:
-						this.typeOptions(cls, prop.name, prop.type, out opts);
-						dval = opts.length > 0 ? opts[0] : "";
-						break;
-				}
-				
-				this.node_defaults.get(cls).add( new JsRender.NodeProp.prop( prop.name, prop.type, dval));
-			
-			
-			}
-			
+				    var sub = this.getClass(prop.type);
+				    if (sub != null) { // can't add child classes here...
+					    GLib.debug("skipping ctor argument proprty is an object");
+					    continue;
+				    }
+				    var dval = "";
+				    switch (prop.type) {
+					    case "int":
+						    dval = "0";break;
+					    case "string": 
+						    dval = ""; break;
+					    // anything else?
+					    default:
+						    this.typeOptions(cls, prop.name, prop.type, out opts);
+						    dval = opts.length > 0 ? opts[0] : "";
+						    break;
+				    }
+				    
+				    this.node_defaults.get(cls).add( new JsRender.NodeProp.prop( prop.name, prop.type, dval));
+			    
+			    
+			    }
+		    }
 		}
 		
 		public void add_node_default(string cls, string propname, string val = "")
