@@ -392,7 +392,10 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.margin_bottom = 0;
+            this.el.margin_end = 3;
+            this.el.margin_start = 3;
+            this.el.margin_bottom = 3;
+            this.el.margin_top = 3;
         }
 
         // user defined functions
