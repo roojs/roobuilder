@@ -52,7 +52,6 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,0,0,1,1",
-             "gint margin" : 3,
              "label" : "Filename",
              "xalign" : 0,
              "xtype" : "Label"
