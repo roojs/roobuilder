@@ -134,7 +134,7 @@ public class ValaProjectSettingsPopover : Object
             var child_1 = new Xcls_Notebook4( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , true,true,0 );
-            var child_2 = new Xcls_ButtonBox53( _this );
+            var child_2 = new Xcls_Box53( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
         }
@@ -1976,21 +1976,27 @@ public class ValaProjectSettingsPopover : Object
 
 
 
-    public class Xcls_ButtonBox53 : Object
+    public class Xcls_Box53 : Object
     {
-        public Gtk.ButtonBox el;
+        public Gtk.Box el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ButtonBox53(ValaProjectSettingsPopover _owner )
+        public Xcls_Box53(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ButtonBox();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.margin_end = 4;
+            this.el.margin_start = 4;
+            this.el.margin_bottom = 4;
+            this.el.margin_top = 4;
             var child_0 = new Xcls_Button54( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
