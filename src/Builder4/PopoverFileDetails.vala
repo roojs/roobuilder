@@ -33,28 +33,30 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_save_btn save_btn;
 
         // my vars (def)
+    public bool modal;
     public bool new_window;
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public JsRender.JsRender file;
     public Project.Project project;
     public Xcls_MainWindow mainwindow;
     public bool done;
+    public uint border_width;
 
     // ctor
     public Xcls_PopoverFileDetails()
     {
         _this = this;
-        this.el = new Gtk.Popover( null );
+        this.el = new Gtk.Popover();
 
         // my vars (dec)
+        this.modal = true;
         this.new_window = true;
         this.file = null;
         this.mainwindow = null;
         this.done = false;
+        this.border_width = 0;
 
         // set gobject values
-        this.el.border_width = 0;
-        this.el.modal = true;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
@@ -212,7 +214,7 @@ public class Xcls_PopoverFileDetails : Object
             var child_1 = new Xcls_grid( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , false,false,4 );
-            var child_2 = new Xcls_ButtonBox31( _this );
+            var child_2 = new Xcls_Box31( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
         }
@@ -226,6 +228,7 @@ public class Xcls_PopoverFileDetails : Object
 
 
             // my vars (def)
+        public string title;
 
         // ctor
         public Xcls_HeaderBar3(Xcls_PopoverFileDetails _owner )
@@ -234,9 +237,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
+            this.title = Add / Edit File;
 
             // set gobject values
-            this.el.title = "Add / Edit File";
         }
 
         // user defined functions
@@ -1193,19 +1196,19 @@ public class Xcls_PopoverFileDetails : Object
     }
 
 
-    public class Xcls_ButtonBox31 : Object
+    public class Xcls_Box31 : Object
     {
-        public Gtk.ButtonBox el;
+        public Gtk.Box el;
         private Xcls_PopoverFileDetails  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ButtonBox31(Xcls_PopoverFileDetails _owner )
+        public Xcls_Box31(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
 
@@ -1231,6 +1234,7 @@ public class Xcls_PopoverFileDetails : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_Button32(Xcls_PopoverFileDetails _owner )
@@ -1239,9 +1243,9 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Cancel";
             var child_0 = new Xcls_Image33( _this );
             child_0.ref();
@@ -1288,6 +1292,7 @@ public class Xcls_PopoverFileDetails : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_save_btn(Xcls_PopoverFileDetails _owner )
@@ -1297,10 +1302,10 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
             this.el.has_default = true;
-            this.el.always_show_image = true;
             this.el.label = "Save";
             var child_0 = new Xcls_Image35( _this );
             child_0.ref();

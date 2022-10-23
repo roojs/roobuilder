@@ -678,7 +678,7 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "ButtonBox"
+       "xtype" : "Box"
       }
      ],
      "xtype" : "Box"
