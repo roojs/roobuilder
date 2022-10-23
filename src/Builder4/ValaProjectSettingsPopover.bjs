@@ -17,9 +17,9 @@
      "bool vexpand" : true,
      "items" : [
       {
+       "$ string title" : "\"Change Vala Project Compile settings\"",
        "$ xns" : "Gtk",
        "* pack" : "add",
-       "string title" : "Change Vala Project Compile settings",
        "xtype" : "HeaderBar"
       },
       {

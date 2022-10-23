@@ -157,7 +157,7 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
-            this.title = Change Vala Project Compile settings;
+            this.title = "Change Vala Project Compile settings";
 
             // set gobject values
         }
