@@ -112,7 +112,7 @@
             ]
            },
            "tooltip_markup" : "Using _this.{ID} will map to this element",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -127,7 +127,7 @@
             ]
            },
            "tooltip_markup" : "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -146,7 +146,7 @@
             "",
             "new Clutter.Image.from_file(.....)"
            ],
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",

@@ -769,13 +769,13 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem10( _this );
+            var child_0 = new Xcls_Button10( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
-            var child_1 = new Xcls_MenuItem11( _this );
+            var child_1 = new Xcls_Button11( _this );
             child_1.ref();
             this.el.append (  child_1.el  );
-            var child_2 = new Xcls_MenuItem12( _this );
+            var child_2 = new Xcls_Button12( _this );
             child_2.ref();
             this.el.append (  child_2.el  );
             var child_3 = new Xcls_MenuItem13( _this );
@@ -824,22 +824,25 @@ public class Xcls_LeftProps : Object
 
         // user defined functions
     }
-    public class Xcls_MenuItem10 : Object
+    public class Xcls_Button10 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem10(Xcls_LeftProps _owner )
+        public Xcls_Button10(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+
+            // set gobject values
+            this.el.tooltip_markup = "Using _this.{ID} will map to this element";
+            this.el.label = "id: _this.{ID} (Vala)";
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -851,22 +854,25 @@ public class Xcls_LeftProps : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem11 : Object
+    public class Xcls_Button11 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem11(Xcls_LeftProps _owner )
+        public Xcls_Button11(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+
+            // set gobject values
+            this.el.tooltip_markup = "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element";
+            this.el.label = "pack: Pack method (Vala)";
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -878,22 +884,25 @@ public class Xcls_LeftProps : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem12 : Object
+    public class Xcls_Button12 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem12(Xcls_LeftProps _owner )
+        public Xcls_Button12(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+
+            // set gobject values
+            this.el.tooltip_markup = "eg. \n\nnew Clutter.Image.from_file(.....)";
+            this.el.label = "ctor: Alterative to default contructor (Vala)";
 
             //listeners
             this.el.activate.connect( ( ) => {
