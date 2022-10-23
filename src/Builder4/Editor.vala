@@ -268,6 +268,7 @@ public class Editor : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_save_button(Editor _owner )
@@ -277,9 +278,9 @@ public class Editor : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Save";
             var child_0 = new Xcls_Image4( _this );
             child_0.ref();
@@ -392,6 +393,7 @@ public class Editor : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_close_btn(Editor _owner )
@@ -401,9 +403,9 @@ public class Editor : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             var child_0 = new Xcls_Image8( _this );
             child_0.ref();
             this.el.image = child_0.el;
@@ -455,7 +457,7 @@ public class Editor : Object
         {
             _this = _owner;
             _this.RightEditor = this;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -479,7 +481,6 @@ public class Editor : Object
 
 
             // my vars (def)
-        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_view(Editor _owner )
@@ -489,17 +490,6 @@ public class Editor : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
-            this.css = null;
-
-            // set gobject values
-            this.el.auto_indent = true;
-            this.el.indent_width = 4;
-            this.el.name = "editor-view";
-            this.el.show_line_marks = true;
-            this.el.insert_spaces_instead_of_tabs = true;
-            this.el.show_line_numbers = true;
-            this.el.tab_width = 4;
-            this.el.highlight_current_line = true;
             var child_0 = new Xcls_buffer( _this );
             child_0.ref();
             this.el.set_buffer (  child_0.el  );
@@ -647,23 +637,15 @@ public class Editor : Object
 
 
             // my vars (def)
-        public int error_line;
-        public bool check_queued;
-        public bool check_running;
 
         // ctor
         public Xcls_buffer(Editor _owner )
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new Gtk.SourceBuffer( null );
+            this.el = new Gtk.SourceBuffer();
 
             // my vars (dec)
-            this.error_line = -1;
-            this.check_queued = false;
-            this.check_running = false;
-
-            // set gobject values
 
             //listeners
             this.el.changed.connect( () => {
@@ -1084,8 +1066,6 @@ public class Editor : Object
             this.el = new Gtk.MenuBar();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1100,7 +1080,6 @@ public class Editor : Object
 
 
             // my vars (def)
-        public bool always_show_image;
 
         // ctor
         public Xcls_search_results(Editor _owner )
@@ -1110,10 +1089,6 @@ public class Editor : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-            this.always_show_image = true;
-
-            // set gobject values
-            this.el.visible = false;
             this.el.show();
 
             //listeners
@@ -1163,6 +1138,7 @@ public class Editor : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_nextBtn(Editor _owner )
@@ -1172,9 +1148,9 @@ public class Editor : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Next";
             this.el.sensitive = false;
             var child_0 = new Xcls_Image17( _this );
@@ -1223,6 +1199,7 @@ public class Editor : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_backBtn(Editor _owner )
@@ -1232,9 +1209,9 @@ public class Editor : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Previous";
             this.el.sensitive = false;
             var child_0 = new Xcls_Image19( _this );
@@ -1283,6 +1260,7 @@ public class Editor : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_MenuButton20(Editor _owner )
@@ -1291,9 +1269,9 @@ public class Editor : Object
             this.el = new Gtk.MenuButton();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Settings";
             var child_0 = new Xcls_Image21( _this );
             child_0.ref();
@@ -1344,8 +1322,6 @@ public class Editor : Object
             this.el = new Gtk.Menu();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_case_sensitive( _this );
             child_0.ref();
             this.el.append(  child_0.el );
@@ -1376,10 +1352,6 @@ public class Editor : Object
 
             // my vars (dec)
 
-            // set gobject values
-            this.el.label = "Case Sensitive";
-            this.el.show();
-
             // init method
 
             {
@@ -1407,10 +1379,6 @@ public class Editor : Object
 
             // my vars (dec)
 
-            // set gobject values
-            this.el.label = "Regex";
-            this.el.show();
-
             // init method
 
             {
@@ -1437,10 +1405,6 @@ public class Editor : Object
             this.el = new Gtk.CheckMenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Multi-line (add \\n)";
-            this.el.show();
 
             // init method
 
