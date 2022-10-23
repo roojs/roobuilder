@@ -780,11 +780,12 @@
        "$ xns" : "Gtk",
        "* init" : [
         "{",
-        "\tthis.el.menu_model = new GLib.Menu();",
+        "\t/*this.el.menu_model = new GLib.Menu();",
         "\tvar mm = this.el.menu_model;",
         "\tmm.append_item( new GLib.MenuItem(\"Case Sensitive\") );",
         "\tmm.append_item( new GLib.MenuItem(\"Regex\") );",
         "\tmm.append_item( new GLib.MenuItem(\"Multi-line\") );",
+        "\t*/",
         "}",
         ""
        ],

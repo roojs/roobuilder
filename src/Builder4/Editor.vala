@@ -1293,11 +1293,12 @@ public class Editor : Object
             // init method
 
             {
-            	this.el.menu_model = new GLib.Menu();
+            	/*this.el.menu_model = new GLib.Menu();
             	var mm = this.el.menu_model;
             	mm.append_item( new GLib.MenuItem("Case Sensitive") );
             	mm.append_item( new GLib.MenuItem("Regex") );
             	mm.append_item( new GLib.MenuItem("Multi-line") );
+            	*/
             }
         }
 
