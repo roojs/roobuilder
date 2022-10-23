@@ -34,9 +34,9 @@ public class Editor : Object
     public bool pos;
     public GtkSource.SearchContext searchcontext;
     public int last_search_end;
-    public JsRender.NodeProp? prop;
-    public JsRender.JsRender? file;
     public JsRender.Node node;
+    public JsRender.JsRender? file;
+    public JsRender.NodeProp? prop;
     public signal void save ();
     public string activeEditor;
 
@@ -52,9 +52,9 @@ public class Editor : Object
         this.pos = false;
         this.searchcontext = null;
         this.last_search_end = 0;
-        this.prop = null;
-        this.file = null;
         this.node = null;
+        this.file = null;
+        this.prop = null;
         this.activeEditor = "";
 
         // set gobject values
@@ -632,7 +632,7 @@ public class Editor : Object
     }
     public class Xcls_buffer : Object
     {
-        public Gtk.SourceBuffer el;
+        public GtkSource.Buffer el;
         private Editor  _this;
 
 
