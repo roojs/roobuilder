@@ -1329,7 +1329,7 @@ public class Editor : Object
 
     public class Xcls_search_settings : Object
     {
-        public Gtk.Menu el;
+        public Gtk.PopoverMenu el;
         private Editor  _this;
 
 
@@ -1340,18 +1340,20 @@ public class Editor : Object
         {
             _this = _owner;
             _this.search_settings = this;
-            this.el = new Gtk.Menu();
+            this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_case_sensitive( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_regex( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
             var child_2 = new Xcls_multiline( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.add(  child_2.el );
         }
 
         // user defined functions

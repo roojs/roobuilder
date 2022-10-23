@@ -839,7 +839,7 @@
            "xtype" : "CheckMenuItem"
           }
          ],
-         "xtype" : "Menu"
+         "xtype" : "PopoverMenu"
         }
        ],
        "string label" : "Settings",
