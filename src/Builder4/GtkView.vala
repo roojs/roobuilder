@@ -982,7 +982,7 @@ public class Xcls_GtkView : Object
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            var child_1 = new Xcls_MenuBar14( _this );
+            var child_1 = new Xcls_Box14( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_nextBtn( _this );
@@ -1123,21 +1123,23 @@ public class Xcls_GtkView : Object
         }
     }
 
-    public class Xcls_MenuBar14 : Object
+    public class Xcls_Box14 : Object
     {
-        public Gtk.MenuBar el;
+        public Gtk.Box el;
         private Xcls_GtkView  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuBar14(Xcls_GtkView _owner )
+        public Xcls_Box14(Xcls_GtkView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuBar();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1147,7 +1149,7 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_search_results : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_GtkView  _this;
 
 
@@ -1158,10 +1160,12 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+
+            // set gobject values
+            this.el.visible = false;
 
             //listeners
             this.el.button_press_event.connect( () => {
