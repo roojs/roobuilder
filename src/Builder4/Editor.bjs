@@ -210,7 +210,7 @@
        "indent_width" : 4,
        "items" : [
         {
-         "$ xns" : "GtkSource.Buffer",
+         "$ xns" : "GtkSource",
          "$ xtype" : "Buffer",
          "* pack" : "set_buffer",
          "bool check_queued" : false,
