@@ -237,7 +237,7 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
-            this.title = Add / Edit File;
+            this.title = "Add / Edit File";
 
             // set gobject values
         }

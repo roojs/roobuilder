@@ -746,7 +746,7 @@
                "xtype" : "CheckButton"
               }
              ],
-             "xtype" : "Menu"
+             "xtype" : "PopoverMenu"
             }
            ],
            "string label" : "Settings",

@@ -22,9 +22,9 @@
      "bool homogeneous" : false,
      "items" : [
       {
+       "$ string title" : "\"Add / Edit File\"",
        "$ xns" : "Gtk",
        "* pack" : "pack_start,false,true,0",
-       "string title" : "Add / Edit File",
        "xtype" : "HeaderBar"
       },
       {

@@ -44,14 +44,13 @@ public class Xcls_MainWindow : Object
     public Xcls_MainWindow()
     {
         _this = this;
-        this.el = new Gtk.Window( Gtk.WindowType.TOPLEVEL );
+        this.el = new Gtk.Window();
 
         // my vars (dec)
         this.title = "Roo Application Builder";
         this.project = null;
 
         // set gobject values
-        this.el.border_width = 0;
         this.el.default_height = 850;
         this.el.default_width = 1200;
         var child_0 = new Xcls_headerbar( _this );
@@ -149,6 +148,8 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
+        public bool show_close_button;
+        public string title;
 
         // ctor
         public Xcls_headerbar(Xcls_MainWindow _owner )
@@ -158,10 +159,10 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
+            this.show_close_button = true;
+            this.title = "Application Builder";
 
             // set gobject values
-            this.el.title = "Application Builder";
-            this.el.show_close_button = true;
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el  );
@@ -203,7 +204,9 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
-        public Gee.ArrayList<Gtk.MenuItem> mitems;
+        public bool always_show_image;
+        public Gee.ArrayList<Gtk.Button> mitems;
+        public bool use_popover;
 
         // ctor
         public Xcls_windowbtn(Xcls_MainWindow _owner )
@@ -213,25 +216,25 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.MenuButton();
 
             // my vars (dec)
+            this.always_show_image = true;
+            this.use_popover = false;
 
             // set gobject values
             this.el.margin_end = 4;
             this.el.halign = Gtk.Align.START;
             this.el.direction = Gtk.ArrowType.DOWN;
-            this.el.use_popover = false;
-            this.el.always_show_image = true;
             this.el.label = "Windows";
             var child_0 = new Xcls_Image5( _this );
             child_0.ref();
             this.el.set_image (  child_0.el  );
-            var child_1 = new Xcls_Menu6( _this );
+            var child_1 = new Xcls_PopoverMenu6( _this );
             child_1.ref();
-            this.el.popup = child_1.el;
+            this.el.popover = child_1.el;
 
             // init method
 
             {
-            	this.mitems = new Gee.ArrayList<Gtk.MenuItem>();
+            	this.mitems = new Gee.ArrayList<Gtk.Button>();
             	
             }
         }
@@ -239,7 +242,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
         public void updateMenu () {
         	 foreach(var m in  this.mitems) {
-        	 	 this.el.popup.remove(m);
+        	 	 this.el.popover.remove(m);
         	 }
         	 this.mitems.clear();
         	 
@@ -282,8 +285,8 @@ public class Xcls_MainWindow : Object
         	 		continue;
          		}
          		if (w.windowstate.file.project.name != p || p != "") {
-         			var ms = new Gtk.SeparatorMenuItem();
-         			this.el.popup.append(ms);
+         			var ms = new Gtk.Separator(Gtk.Orientation.HORIZONTAL);
+         			this.el.popover.add_child(ms);
         		 	ms.show();
         		 	this.mitems.add(ms);
          		}
@@ -295,7 +298,7 @@ public class Xcls_MainWindow : Object
          		
          		
          		
-        	 	var m = new Gtk.MenuItem.with_label(
+        	 	var m = new Gtk.Button.with_label(
         		 	w.windowstate.file.project.name + " : " + w.windowstate.file.getTitle()
         	 	);
         	 	
@@ -303,7 +306,7 @@ public class Xcls_MainWindow : Object
         	 	m.activate.connect(() => {
         	 		 BuilderApplication.windows.get(wid).el.present();
         	 	});
-        	 	this.el.popup.append(m);
+        	 	this.el.popover.add_child(m);
         	 	m.show();
         	 	this.mitems.add(m);
         	 }
@@ -332,27 +335,27 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_Menu6 : Object
+    public class Xcls_PopoverMenu6 : Object
     {
-        public Gtk.Menu el;
+        public Gtk.PopoverMenu el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Menu6(Xcls_MainWindow _owner )
+        public Xcls_PopoverMenu6(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Menu();
+            this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem7( _this );
+            var child_0 = new Xcls_Button7( _this );
             child_0.ref();
-            this.el.append (  child_0.el  );
-            var child_1 = new Xcls_SeparatorMenuItem8( _this );
+            this.el.add_child (  child_0.el  );
+            var child_1 = new Xcls_Separator8( _this );
             child_1.ref();
             this.el.append (  child_1.el  );
 
@@ -363,25 +366,24 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_MenuItem7 : Object
+    public class Xcls_Button7 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem7(Xcls_MainWindow _owner )
+        public Xcls_Button7(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "New Window";
-            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -393,24 +395,23 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_SeparatorMenuItem8 : Object
+    public class Xcls_Separator8 : Object
     {
-        public Gtk.SeparatorMenuItem el;
+        public Gtk.Separator el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_SeparatorMenuItem8(Xcls_MainWindow _owner )
+        public Xcls_Separator8(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.SeparatorMenuItem();
+            this.el = new Gtk.Separator( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.show();
         }
 
         // user defined functions
@@ -425,6 +426,7 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_open_projects_btn(Xcls_MainWindow _owner )
@@ -434,9 +436,9 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Files / Projects";
             var child_0 = new Xcls_Image10( _this );
             child_0.ref();
@@ -758,7 +760,7 @@ public class Xcls_MainWindow : Object
             var child_4 = new Xcls_statusbar( _this );
             child_4.ref();
             this.el.pack_start (  child_4.el , true,true,0 );
-            var child_5 = new Xcls_MenuBar32( _this );
+            var child_5 = new Xcls_Box32( _this );
             child_5.ref();
             this.el.add (  child_5.el  );
             var child_6 = new Xcls_statusbar_compile_spinner( _this );
@@ -775,6 +777,7 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_Button21(Xcls_MainWindow _owner )
@@ -783,9 +786,9 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.tooltip_text = "Project Details";
             this.el.label = "Edit Project Settings";
             var child_0 = new Xcls_Image22( _this );
@@ -834,6 +837,7 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_Button23(Xcls_MainWindow _owner )
@@ -842,9 +846,9 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.tooltip_text = "File Details";
             this.el.label = "Edit File Properties";
             var child_0 = new Xcls_Image24( _this );
@@ -901,6 +905,7 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_MenuButton25(Xcls_MainWindow _owner )
@@ -909,13 +914,13 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.MenuButton();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "About";
             var child_0 = new Xcls_topbarmenu( _this );
             child_0.ref();
-            this.el.set_popup (  child_0.el  );
+            this.el.popover = child_0.el;
             var child_1 = new Xcls_Image29( _this );
             child_1.ref();
             this.el.set_image (  child_1.el  );
@@ -925,7 +930,7 @@ public class Xcls_MainWindow : Object
     }
     public class Xcls_topbarmenu : Object
     {
-        public Gtk.Menu el;
+        public Gtk.PopoverMenu el;
         private Xcls_MainWindow  _this;
 
 
@@ -936,17 +941,17 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.topbarmenu = this;
-            this.el = new Gtk.Menu();
+            this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem27( _this );
+            var child_0 = new Xcls_Button27( _this );
             child_0.ref();
-            this.el.append (  child_0.el  );
-            var child_1 = new Xcls_MenuItem28( _this );
+            this.el.add_child (  child_0.el  );
+            var child_1 = new Xcls_Button28( _this );
             child_1.ref();
-            this.el.append (  child_1.el  );
+            this.el.add_child (  child_1.el  );
 
             // init method
 
@@ -957,25 +962,24 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_MenuItem27 : Object
+    public class Xcls_Button27 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem27(Xcls_MainWindow _owner )
+        public Xcls_Button27(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "Download updated Resources";
-            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -986,25 +990,24 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem28 : Object
+    public class Xcls_Button28 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem28(Xcls_MainWindow _owner )
+        public Xcls_Button28(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "About the Builder";
-            this.el.show();
 
             //listeners
             this.el.activate.connect( () => {
@@ -1106,19 +1109,19 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_MenuBar32 : Object
+    public class Xcls_Box32 : Object
     {
-        public Gtk.MenuBar el;
+        public Gtk.Box el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuBar32(Xcls_MainWindow _owner )
+        public Xcls_Box32(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuBar();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
 
@@ -1144,7 +1147,7 @@ public class Xcls_MainWindow : Object
     }
     public class Xcls_statusbar_compilestatus_label : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
@@ -1155,13 +1158,12 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.statusbar_compilestatus_label = this;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "Compile Status:";
-            this.el.show();
         }
 
         // user defined functions
@@ -1169,7 +1171,7 @@ public class Xcls_MainWindow : Object
 
     public class Xcls_statusbar_errors : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
@@ -1182,7 +1184,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.statusbar_errors = this;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
             this.notices = new Json.Object();
@@ -1191,7 +1193,6 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Box35( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1291,7 +1292,7 @@ public class Xcls_MainWindow : Object
 
     public class Xcls_statusbar_warnings : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
@@ -1304,7 +1305,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.statusbar_warnings = this;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
             this.notices = new Json.Object();
@@ -1313,7 +1314,6 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Box39( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1412,7 +1412,7 @@ public class Xcls_MainWindow : Object
 
     public class Xcls_statusbar_depricated : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
@@ -1425,7 +1425,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.statusbar_depricated = this;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
             this.notices = new Json.Object();
@@ -1434,7 +1434,6 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Box43( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1534,7 +1533,7 @@ public class Xcls_MainWindow : Object
 
     public class Xcls_statusbar_run : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
@@ -1546,7 +1545,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.statusbar_run = this;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
@@ -1554,7 +1553,6 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_Box47( _this );
             child_0.ref();
             this.el.add(  child_0.el );
-            this.el.show();
 
             //listeners
             this.el.button_press_event.connect( () => {

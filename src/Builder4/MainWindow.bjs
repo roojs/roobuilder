@@ -19,6 +19,7 @@
    "id" : "MainWindow",
    "items" : [
     {
+     "$ string title" : "\"Application Builder\"",
      "$ xns" : "Gtk",
      "* pack" : "set_titlebar",
      "bool show_close_button" : true,
@@ -30,13 +31,13 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
-         "# Gee.ArrayList<Gtk.MenuItem> mitems" : "",
+         "# Gee.ArrayList<Gtk.Button> mitems" : "",
          "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ Gtk.ArrowType direction" : "Gtk.ArrowType.DOWN",
          "$ xns" : "Gtk",
          "* init" : [
           "{",
-          "\tthis.mitems = new Gee.ArrayList<Gtk.MenuItem>();",
+          "\tthis.mitems = new Gee.ArrayList<Gtk.Button>();",
           "\t",
           "}",
           ""
@@ -59,11 +60,11 @@
             "  this.el.show_all();",
             " "
            ],
-           "* prop" : "popup",
+           "* prop" : "popover",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "append",
+             "* pack" : "add_child",
              "listeners" : {
               "activate" : [
                "( ) => {",
@@ -74,15 +75,16 @@
               ]
              },
              "string label" : "New Window",
-             "xtype" : "MenuItem"
+             "xtype" : "Button"
             },
             {
+             "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
              "$ xns" : "Gtk",
              "* pack" : "append",
-             "xtype" : "SeparatorMenuItem"
+             "xtype" : "Separator"
             }
            ],
-           "xtype" : "Menu"
+           "xtype" : "PopoverMenu"
           }
          ],
          "string label" : "Windows",
@@ -90,7 +92,7 @@
          "| void updateMenu" : [
           "() {",
           "\t foreach(var m in  this.mitems) {",
-          "\t \t this.el.popup.remove(m);",
+          "\t \t this.el.popover.remove(m);",
           "\t }",
           "\t this.mitems.clear();",
           "\t ",
@@ -133,8 +135,8 @@
           "\t \t\tcontinue;",
           " \t\t}",
           " \t\tif (w.windowstate.file.project.name != p || p != \"\") {",
-          " \t\t\tvar ms = new Gtk.SeparatorMenuItem();",
-          " \t\t\tthis.el.popup.append(ms);",
+          " \t\t\tvar ms = new Gtk.Separator(Gtk.Orientation.HORIZONTAL);",
+          " \t\t\tthis.el.popover.add_child(ms);",
           "\t\t \tms.show();",
           "\t\t \tthis.mitems.add(ms);",
           " \t\t}",
@@ -146,7 +148,7 @@
           " \t\t",
           " \t\t",
           " \t\t",
-          "\t \tvar m = new Gtk.MenuItem.with_label(",
+          "\t \tvar m = new Gtk.Button.with_label(",
           "\t\t \tw.windowstate.file.project.name + \" : \" + w.windowstate.file.getTitle()",
           "\t \t);",
           "\t \t",
@@ -154,7 +156,7 @@
           "\t \tm.activate.connect(() => {",
           "\t \t\t BuilderApplication.windows.get(wid).el.present();",
           "\t \t});",
-          "\t \tthis.el.popup.append(m);",
+          "\t \tthis.el.popover.add_child(m);",
           "\t \tm.show();",
           "\t \tthis.mitems.add(m);",
           "\t }",
@@ -190,7 +192,6 @@
        "xtype" : "Box"
       }
      ],
-     "string title" : "Application Builder",
      "xtype" : "HeaderBar"
     },
     {
@@ -360,12 +361,12 @@
             "}",
             ""
            ],
-           "* pack" : "set_popup",
+           "* prop" : "popover",
            "id" : "topbarmenu",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "append",
+             "* pack" : "add_child",
              "listeners" : {
               "activate" : [
                " ( ) => {",
@@ -374,11 +375,11 @@
               ]
              },
              "string label" : "Download updated Resources",
-             "xtype" : "MenuItem"
+             "xtype" : "Button"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "append",
+             "* pack" : "add_child",
              "listeners" : {
               "activate" : [
                "() => {",
@@ -387,10 +388,10 @@
               ]
              },
              "string label" : "About the Builder",
-             "xtype" : "MenuItem"
+             "xtype" : "Button"
             }
            ],
-           "xtype" : "Menu"
+           "xtype" : "PopoverMenu"
           },
           {
            "$ xns" : "Gtk",
@@ -435,6 +436,7 @@
          "xtype" : "ProgressBar"
         },
         {
+         "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "$ xns" : "Gtk",
          "* pack" : "add",
          "items" : [
@@ -443,7 +445,7 @@
            "* pack" : "add",
            "id" : "statusbar_compilestatus_label",
            "string label" : "Compile Status:",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "# Json.Object notices" : "new Json.Object() ",
@@ -486,7 +488,7 @@
              "}"
             ]
            },
-           "xtype" : "MenuItem",
+           "xtype" : "Button",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
             "    this.el.show_all();",
@@ -537,7 +539,7 @@
              "}"
             ]
            },
-           "xtype" : "MenuItem",
+           "xtype" : "Button",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
             "    this.el.show_all();",
@@ -589,7 +591,7 @@
              "}"
             ]
            },
-           "xtype" : "MenuItem",
+           "xtype" : "Button",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
             "    this.el.show_all();",
@@ -639,10 +641,10 @@
              "}"
             ]
            },
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           }
          ],
-         "xtype" : "MenuBar"
+         "xtype" : "Box"
         },
         {
          "$ xns" : "Gtk",
