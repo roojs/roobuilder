@@ -210,7 +210,7 @@
             ]
            },
            "tooltip_markup" : "Add a user defined string property",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -231,7 +231,7 @@
             ]
            },
            "tooltip_markup" : "Add a user defined number property",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -254,12 +254,13 @@
             ]
            },
            "tooltip_markup" : "Add a user defined boolean property",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
+           "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "$ xns" : "Gtk",
            "* pack" : "add",
-           "xtype" : "SeparatorMenuItem"
+           "xtype" : "Separator"
           },
           {
            "$ xns" : "Gtk",
@@ -282,7 +283,7 @@
             ]
            },
            "tooltip_markup" : "Add a user function boolean property",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -303,7 +304,7 @@
             ]
            },
            "tooltip_markup" : "Add a user function boolean property",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -323,12 +324,13 @@
             ]
            },
            "tooltip_markup" : "Add a vala signal",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
+           "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "$ xns" : "Gtk",
            "* pack" : "add",
-           "xtype" : "SeparatorMenuItem"
+           "xtype" : "Separator"
           },
           {
            "$ xns" : "Gtk",
@@ -350,7 +352,7 @@
             ]
            },
            "tooltip_markup" : "Add a flexy if (for HTML templates)",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -372,7 +374,7 @@
             ]
            },
            "tooltip_markup" : "Add a flexy include (for HTML templates)",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -395,7 +397,7 @@
             ]
            },
            "tooltip_markup" : "Add a flexy foreach (for HTML templates)",
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           }
          ],
          "xtype" : "PopoverMenu"
