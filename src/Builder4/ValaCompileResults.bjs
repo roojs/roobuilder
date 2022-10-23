@@ -32,7 +32,7 @@
        "bool hexpand" : true,
        "items" : [
         {
-         "$ xns" : "Gtk",
+         "$ xns" : "GtkSource",
          "* init" : [
           "{",
           "",
@@ -53,7 +53,7 @@
          "bool show_line_numbers" : false,
          "id" : "sourceview",
          "string name" : "compile-results-view",
-         "xtype" : "SourceView"
+         "xtype" : "View"
         }
        ],
        "xtype" : "ScrolledWindow"
@@ -71,7 +71,7 @@
     "\t\treturn;",
     "\t}",
     "\t",
-    "\tvar buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();",
+    "\tvar buf = (GtkSource.Buffer)this.sourceview.el.get_buffer();",
     "\tGtk.TextIter iter;",
     "\tbuf.get_end_iter (out  iter);",
     "\tbuf.insert(ref iter, str, str.length);",

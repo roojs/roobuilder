@@ -79,7 +79,7 @@ public class Xcls_ValaCompileResults : Object
     		return;
     	}
     	
-    	var buf = (Gtk.SourceBuffer)this.sourceview.el.get_buffer();
+    	var buf = (GtkSource.Buffer)this.sourceview.el.get_buffer();
     	Gtk.TextIter iter;
     	buf.get_end_iter (out  iter);
     	buf.insert(ref iter, str, str.length);
@@ -149,20 +149,26 @@ public class Xcls_ValaCompileResults : Object
     }
     public class Xcls_sourceview : Object
     {
-        public Gtk.SourceView el;
+        public GtkSource.View el;
         private Xcls_ValaCompileResults  _this;
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_sourceview(Xcls_ValaCompileResults _owner )
         {
             _this = _owner;
             _this.sourceview = this;
-            this.el = new Gtk.SourceView();
+            this.el = new GtkSource.View();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.name = "compile-results-view";
+            this.el.editable = false;
+            this.el.show_line_numbers = false;
 
             // init method
 
