@@ -1131,6 +1131,7 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.width_request = 100;
+            this.el.has_frame = true;
             this.el.visible = false;
             var child_0 = new Xcls_fileview( _this );
             child_0.ref();

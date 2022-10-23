@@ -428,6 +428,7 @@
          "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
          "* pack" : "add",
          "bool expand" : true,
+         "bool has_frame" : true,
          "bool visible" : false,
          "id" : "file_container",
          "int width_request" : 100,
