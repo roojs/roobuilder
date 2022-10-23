@@ -73,18 +73,19 @@ public class Xcls_WindowLeftTree : Object
 
 
             // my vars (def)
+        public Gtk.ShadowType shadow_type;
 
         // ctor
         public Xcls_viewwin(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             _this.viewwin = this;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
+            this.shadow_type = Gtk.ShadowType.IN;
 
             // set gobject values
-            this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -123,6 +124,7 @@ public class Xcls_WindowLeftTree : Object
         public int drag_x;
         public int drag_y;
         public string[] dropList;
+        public bool expand;
 
         // ctor
         public Xcls_view(Xcls_WindowLeftTree _owner )
@@ -136,10 +138,10 @@ public class Xcls_WindowLeftTree : Object
             this.lastEventSource = "";
             this.button_is_pressed = false;
             this.key_is_pressed = false;
+            this.expand = true;
 
             // set gobject values
             this.el.name = "left-tree-view";
-            this.el.expand = true;
             this.el.tooltip_column = 1;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = false;
@@ -1696,7 +1698,7 @@ typeof(Gdk.Pixbuf) }  );
 
     public class Xcls_LeftTreeMenu : Object
     {
-        public Gtk.Menu el;
+        public Gtk.PopoverMenu el;
         private Xcls_WindowLeftTree  _this;
 
 
@@ -1707,43 +1709,42 @@ typeof(Gdk.Pixbuf) }  );
         {
             _this = _owner;
             _this.LeftTreeMenu = this;
-            this.el = new Gtk.Menu();
+            this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem11( _this );
+            var child_0 = new Xcls_Button11( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_MenuItem12( _this );
+            var child_1 = new Xcls_Button12( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_MenuItem13( _this );
+            var child_2 = new Xcls_Button13( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_MenuItem11 : Object
+    public class Xcls_Button11 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem11(Xcls_WindowLeftTree _owner )
+        public Xcls_Button11(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "Delete Element";
-            this.el.show();
 
             //listeners
             this.el.activate.connect( ( ) => {
@@ -1758,25 +1759,24 @@ typeof(Gdk.Pixbuf) }  );
         // user defined functions
     }
 
-    public class Xcls_MenuItem12 : Object
+    public class Xcls_Button12 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem12(Xcls_WindowLeftTree _owner )
+        public Xcls_Button12(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "Save as Template";
-            this.el.show();
 
             //listeners
             this.el.activate.connect( () => {
@@ -1794,25 +1794,24 @@ typeof(Gdk.Pixbuf) }  );
         // user defined functions
     }
 
-    public class Xcls_MenuItem13 : Object
+    public class Xcls_Button13 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem13(Xcls_WindowLeftTree _owner )
+        public Xcls_Button13(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "Save as Module";
-            this.el.show();
 
             //listeners
             this.el.activate.connect( () => {

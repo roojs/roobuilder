@@ -1622,7 +1622,7 @@
            "}"
           ]
          },
-         "xtype" : "MenuItem"
+         "xtype" : "Button"
         },
         {
          "$ xns" : "Gtk",
@@ -1642,7 +1642,7 @@
            "}"
           ]
          },
-         "xtype" : "MenuItem"
+         "xtype" : "Button"
         },
         {
          "$ xns" : "Gtk",
@@ -1692,10 +1692,10 @@
            "}"
           ]
          },
-         "xtype" : "MenuItem"
+         "xtype" : "Button"
         }
        ],
-       "xtype" : "Menu"
+       "xtype" : "PopoverMenu"
       }
      ],
      "listeners" : {
