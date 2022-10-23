@@ -1378,7 +1378,7 @@ public class Xcls_WindowRooView : Object
         	var sel = this.node_selected;
         	print("node selected\n");
             var buf = this.el.get_buffer();
-            var sbuf = (Gtk.SourceBuffer) buf;
+            var sbuf = (GtkSource.Buffer) buf;
         
            
            this.clearGreySelection();
