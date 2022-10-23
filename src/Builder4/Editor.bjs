@@ -979,7 +979,7 @@
     "   ",
     "\t\tvar buf = this.view.el.get_buffer();",
     "",
-    "\t\tvar sbuf = (Gtk.SourceBuffer) buf;",
+    "\t\tvar sbuf = (GtkSource.Buffer) buf;",
     "",
     "",
     "\t\tGtk.TextIter iter;   ",

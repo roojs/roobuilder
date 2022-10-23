@@ -218,7 +218,7 @@ public class Editor : Object
        
     		var buf = this.view.el.get_buffer();
     
-    		var sbuf = (Gtk.SourceBuffer) buf;
+    		var sbuf = (GtkSource.Buffer) buf;
     
     
     		Gtk.TextIter iter;   
