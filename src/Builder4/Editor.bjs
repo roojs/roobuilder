@@ -2,7 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
-   "# Gtk.SourceSearchContext searchcontext" : "null",
+   "# GtkSource.SearchContext searchcontext" : "null",
    "# JsRender.JsRender? file" : "null",
    "# JsRender.Node node" : "null",
    "# JsRender.NodeProp? prop" : "null",
@@ -210,7 +210,7 @@
        "indent_width" : 4,
        "items" : [
         {
-         "$ xns" : "Gtk",
+         "$ xns" : "GtkSource",
          "* pack" : "set_buffer",
          "bool check_queued" : false,
          "bool check_running" : false,

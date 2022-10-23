@@ -32,7 +32,7 @@ public class Editor : Object
     public bool dirty;
     public int pos_root_y;
     public bool pos;
-    public Gtk.SourceSearchContext searchcontext;
+    public GtkSource.SearchContext searchcontext;
     public int last_search_end;
     public JsRender.NodeProp? prop;
     public JsRender.JsRender? file;
@@ -632,7 +632,7 @@ public class Editor : Object
     }
     public class Xcls_buffer : Object
     {
-        public Gtk.SourceBuffer el;
+        public Gtk.SourceSourceBuffer el;
         private Editor  _this;
 
 
@@ -643,7 +643,7 @@ public class Editor : Object
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new Gtk.SourceBuffer();
+            this.el = new GtkSource.SourceBuffer();
 
             // my vars (dec)
 
