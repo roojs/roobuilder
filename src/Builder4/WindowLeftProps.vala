@@ -771,13 +771,13 @@ public class Xcls_LeftProps : Object
             // set gobject values
             var child_0 = new Xcls_Button10( _this );
             child_0.ref();
-            this.el.append (  child_0.el  );
+            this.el.add_child (  child_0.el  );
             var child_1 = new Xcls_Button11( _this );
             child_1.ref();
-            this.el.append (  child_1.el  );
+            this.el.add_child (  child_1.el  );
             var child_2 = new Xcls_Button12( _this );
             child_2.ref();
-            this.el.append (  child_2.el  );
+            this.el.add_child (  child_2.el  );
             var child_3 = new Xcls_MenuItem13( _this );
             child_3.ref();
             this.el.append (  child_3.el  );

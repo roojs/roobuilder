@@ -101,7 +101,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "append",
+           "* pack" : "add_child",
            "label" : "id: _this.{ID} (Vala)",
            "listeners" : {
             "activate" : [
@@ -116,7 +116,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "append",
+           "* pack" : "add_child",
            "label" : "pack: Pack method (Vala)",
            "listeners" : {
             "activate" : [
@@ -131,7 +131,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "append",
+           "* pack" : "add_child",
            "label" : "ctor: Alterative to default contructor (Vala)",
            "listeners" : {
             "activate" : [
