@@ -211,6 +211,7 @@
        "items" : [
         {
          "$ xns" : "GtkSource.Buffer",
+         "$ xtype" : "Buffer",
          "* pack" : "set_buffer",
          "bool check_queued" : false,
          "bool check_running" : false,
