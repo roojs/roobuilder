@@ -476,7 +476,7 @@ public class Editor : Object
     }
     public class Xcls_view : Object
     {
-        public Gtk.SourceView el;
+        public GtkSource	.View el;
         private Editor  _this;
 
 
@@ -487,7 +487,7 @@ public class Editor : Object
         {
             _this = _owner;
             _this.view = this;
-            this.el = new Gtk.SourceView();
+            this.el = new GtkSource	.View();
 
             // my vars (dec)
             var child_0 = new Xcls_buffer( _this );
@@ -632,20 +632,28 @@ public class Editor : Object
     }
     public class Xcls_buffer : Object
     {
-        public Gtk.SourceSourceBuffer el;
+        public Gtk.SourceBuffer el;
         private Editor  _this;
 
 
             // my vars (def)
+        public int error_line;
+        public bool check_queued;
+        public bool check_running;
 
         // ctor
         public Xcls_buffer(Editor _owner )
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new GtkSource.SourceBuffer();
+            this.el = new GtkSource.Buffer( null );
 
             // my vars (dec)
+            this.error_line = -1;
+            this.check_queued = false;
+            this.check_running = false;
+
+            // set gobject values
 
             //listeners
             this.el.changed.connect( () => {

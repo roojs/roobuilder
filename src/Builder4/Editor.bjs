@@ -127,7 +127,7 @@
       {
        "$ gboolean auto_indent" : true,
        "$ show_line_numbers" : true,
-       "$ xns" : "Gtk",
+       "$ xns" : "GtkSource\t",
        "* init" : [
         " ",
         "",
@@ -235,7 +235,7 @@
            ""
           ]
          },
-         "xtype" : "SourceBuffer",
+         "xtype" : "Buffer",
          "| bool checkSyntax" : [
           " () {",
           " ",
@@ -506,7 +506,7 @@
        },
        "string name" : "editor-view",
        "uint tab_width" : 4,
-       "xtype" : "SourceView",
+       "xtype" : "View",
        "| void load" : [
         " (string str) {",
         "",
