@@ -1234,7 +1234,7 @@ public class Xcls_WindowRooView : Object
             
          
             buf.set_text("",0);
-            var sbuf = (Gtk.SourceBuffer) buf;
+            var sbuf = (GtkSource.Buffer) buf;
         
             
         
@@ -1250,11 +1250,11 @@ public class Xcls_WindowRooView : Object
              
         //    print("setting str %d\n", str.length);
             buf.set_text(str, str.length);
-            var lm = Gtk.SourceLanguageManager.get_default();
+            var lm = GtkSource.LanguageManager.get_default();
              
             //?? is javascript going to work as js?
             
-            ((Gtk.SourceBuffer)(buf)) .set_language(lm.get_language(_this.file.language));
+            ((GtkSource.Buffer)(buf)) .set_language(lm.get_language(_this.file.language));
           
             
             Gtk.TextIter start;
