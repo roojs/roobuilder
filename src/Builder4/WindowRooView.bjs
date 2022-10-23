@@ -740,7 +740,7 @@
                ""
               ]
              },
-             "xtype" : "SourceBuffer",
+             "xtype" : "Buffer",
              "| bool checkSyntax" : [
               " () {",
               " ",

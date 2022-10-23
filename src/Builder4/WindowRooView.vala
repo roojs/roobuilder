@@ -1558,20 +1558,26 @@ public class Xcls_WindowRooView : Object
     }
     public class Xcls_buffer : Object
     {
-        public GtkSource.SourceBuffer el;
+        public GtkSource.Buffer el;
         private Xcls_WindowRooView  _this;
 
 
             // my vars (def)
+        public int error_line;
+        public bool dirty;
 
         // ctor
         public Xcls_buffer(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new GtkSource.SourceBuffer();
+            this.el = new GtkSource.Buffer( null );
 
             // my vars (dec)
+            this.error_line = -1;
+            this.dirty = false;
+
+            // set gobject values
 
             //listeners
             this.el.changed.connect( () => {
