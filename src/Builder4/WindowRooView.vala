@@ -202,12 +202,12 @@ public class Xcls_WindowRooView : Object
     	
      
        
-    	var s = new Gtk.SourceSearchSettings();
+    	var s = new GtkSource.SearchSettings();
     	s.case_sensitive = _this.case_sensitive.el.active;
     	s.regex_enabled = _this.regex.el.active;	
     	s.wrap_around = false;
     	
-    	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
+    	this.searchcontext = new GtkSource.SearchContext(this.buffer.el,s);
     	this.searchcontext.set_highlight(true);
     	var txt = in_txt;
     	
