@@ -655,7 +655,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "append",
+           "* pack" : "add_child",
            "label" : "Delete",
            "listeners" : {
             "activate" : [
@@ -664,10 +664,10 @@
              "}"
             ]
            },
-           "xtype" : "MenuItem"
+           "xtype" : "Button"
           }
          ],
-         "xtype" : "Menu"
+         "xtype" : "PopoverMenu"
         }
        ],
        "listeners" : {

@@ -1864,7 +1864,7 @@ public class Xcls_LeftProps : Object
 
     public class Xcls_ContextMenu : Object
     {
-        public Gtk.Menu el;
+        public Gtk.PopoverMenu el;
         private Xcls_LeftProps  _this;
 
 
@@ -1875,32 +1875,36 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.ContextMenu = this;
-            this.el = new Gtk.Menu();
+            this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
-            var child_0 = new Xcls_MenuItem37( _this );
+
+            // set gobject values
+            var child_0 = new Xcls_Button37( _this );
             child_0.ref();
-            this.el.append (  child_0.el  );
+            this.el.add_child (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_MenuItem37 : Object
+    public class Xcls_Button37 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem37(Xcls_LeftProps _owner )
+        public Xcls_Button37(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.el.show();
+
+            // set gobject values
+            this.el.label = "Delete";
 
             //listeners
             this.el.activate.connect( ( )  =>{
