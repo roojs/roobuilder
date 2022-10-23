@@ -1354,7 +1354,7 @@ public class Xcls_GtkView : Object
             this.el.image = child_0.el;
             var child_1 = new Xcls_search_settings( _this );
             child_1.ref();
-            this.el.popup = child_1.el;
+            this.el.popover = child_1.el;
         }
 
         // user defined functions
@@ -1413,7 +1413,7 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_case_sensitive : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Xcls_GtkView  _this;
 
 
@@ -1424,9 +1424,12 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.case_sensitive = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Case Sensitive";
 
             // init method
 
@@ -1440,7 +1443,7 @@ public class Xcls_GtkView : Object
 
     public class Xcls_regex : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Xcls_GtkView  _this;
 
 
@@ -1451,9 +1454,12 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.regex = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Regex";
 
             // init method
 
@@ -1467,7 +1473,7 @@ public class Xcls_GtkView : Object
 
     public class Xcls_multiline : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Xcls_GtkView  _this;
 
 
@@ -1478,9 +1484,12 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.multiline = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Multi-line (add \\n)";
 
             // init method
 

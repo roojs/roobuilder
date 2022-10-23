@@ -706,7 +706,7 @@
             },
             {
              "$ xns" : "Gtk",
-             "* prop" : "popup",
+             "* prop" : "popover",
              "id" : "search_settings",
              "items" : [
               {
@@ -719,7 +719,7 @@
                ],
                "id" : "case_sensitive",
                "string label" : "Case Sensitive",
-               "xtype" : "CheckMenuItem"
+               "xtype" : "CheckButton"
               },
               {
                "$ xns" : "Gtk",
@@ -731,7 +731,7 @@
                ],
                "id" : "regex",
                "string label" : "Regex",
-               "xtype" : "CheckMenuItem"
+               "xtype" : "CheckButton"
               },
               {
                "$ xns" : "Gtk",
@@ -743,7 +743,7 @@
                ],
                "id" : "multiline",
                "string label" : "Multi-line (add \\n)",
-               "xtype" : "CheckMenuItem"
+               "xtype" : "CheckButton"
               }
              ],
              "xtype" : "Menu"
