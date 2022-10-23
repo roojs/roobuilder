@@ -333,8 +333,8 @@
             "  "
            ],
            "* pack" : "add",
-           "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
            "bool expand" : true,
+           "bool has_frame" : true,
            "id" : "iconscroll",
            "int width_request" : 600,
            "items" : [
