@@ -35,7 +35,7 @@ public class Xcls_WindowRooView : Object
         // my vars (def)
     public Gtk.Widget lastObj;
     public Xcls_MainWindow main_window;
-    public Gtk.SourceSearchContext searchcontext;
+    public GtkSource.SearchContext searchcontext;
     public int last_search_end;
     public JsRender.JsRender file;
 

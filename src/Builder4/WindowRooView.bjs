@@ -7,7 +7,7 @@
    "# Xcls_MainWindow main_window" : "",
    "$ xns" : "Gtk",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-   "Gtk.SourceSearchContext searchcontext" : "",
+   "GtkSource.SearchContext searchcontext" : "",
    "bool hexpand" : true,
    "bool vexpand" : true,
    "id" : "WindowRooView",
