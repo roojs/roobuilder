@@ -184,7 +184,6 @@
             "../..//debian"
         ],
         "packages" : [
-            "gtksourceview-3.0",
             "libgda-5.0",
             "glib-2.0",
             "gobject-introspection-1.0",
