@@ -183,6 +183,9 @@
              "$ xns" : "Gtk",
              "* pack" : "attach,0,2,1,1",
              "int margin_bottom" : 3,
+             "int margin_end" : 3,
+             "int margin_start" : 3,
+             "int margin_top" : 3,
              "label" : "root URL",
              "xtype" : "Label"
             },
