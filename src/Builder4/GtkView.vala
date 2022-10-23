@@ -445,7 +445,7 @@ public class Xcls_GtkView : Object
         public Xcls_ScrolledWindow5(Xcls_GtkView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -470,12 +470,9 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.view_layout = this;
-            this.el = new Gtk.Layout( null, null );
+            this.el = new Gtk.Layout();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.name = "gtkview-view-layout";
             var child_0 = new Xcls_container( _this );
             child_0.ref();
             this.el.put (  child_0.el , 10,10 );
@@ -547,7 +544,7 @@ public class Xcls_GtkView : Object
         public Xcls_ScrolledWindow9(Xcls_GtkView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -562,7 +559,7 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_sourceview : Object
     {
-        public Gtk.SourceView el;
+        public GtkSource.View el;
         private Xcls_GtkView  _this;
 
 
@@ -578,7 +575,7 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.sourceview = this;
-            this.el = new Gtk.SourceView();
+            this.el = new GtkSource.View();
 
             // my vars (dec)
             this.loading = true;
@@ -933,7 +930,7 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_buffer : Object
     {
-        public Gtk.SourceBuffer el;
+        public GtkSource.Buffer el;
         private Xcls_GtkView  _this;
 
 
@@ -946,7 +943,7 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.buffer = this;
-            this.el = new Gtk.SourceBuffer( null );
+            this.el = new GtkSource.Buffer( null );
 
             // my vars (dec)
             this.error_line = -1;
@@ -1138,8 +1135,6 @@ public class Xcls_GtkView : Object
             this.el = new Gtk.MenuBar();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1163,9 +1158,6 @@ public class Xcls_GtkView : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.visible = false;
             this.el.show();
 
             //listeners
@@ -1215,6 +1207,7 @@ public class Xcls_GtkView : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_nextBtn(Xcls_GtkView _owner )
@@ -1224,9 +1217,9 @@ public class Xcls_GtkView : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Next";
             this.el.sensitive = false;
             var child_0 = new Xcls_Image17( _this );
@@ -1275,6 +1268,7 @@ public class Xcls_GtkView : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_backBtn(Xcls_GtkView _owner )
@@ -1284,9 +1278,9 @@ public class Xcls_GtkView : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Previous";
             this.el.sensitive = false;
             var child_0 = new Xcls_Image19( _this );
@@ -1335,6 +1329,7 @@ public class Xcls_GtkView : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_MenuButton20(Xcls_GtkView _owner )
@@ -1343,9 +1338,9 @@ public class Xcls_GtkView : Object
             this.el = new Gtk.MenuButton();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
-            this.el.always_show_image = true;
             this.el.label = "Settings";
             var child_0 = new Xcls_Image21( _this );
             child_0.ref();
@@ -1396,8 +1391,6 @@ public class Xcls_GtkView : Object
             this.el = new Gtk.Menu();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_case_sensitive( _this );
             child_0.ref();
             this.el.append(  child_0.el );
@@ -1428,10 +1421,6 @@ public class Xcls_GtkView : Object
 
             // my vars (dec)
 
-            // set gobject values
-            this.el.label = "Case Sensitive";
-            this.el.show();
-
             // init method
 
             {
@@ -1459,10 +1448,6 @@ public class Xcls_GtkView : Object
 
             // my vars (dec)
 
-            // set gobject values
-            this.el.label = "Regex";
-            this.el.show();
-
             // init method
 
             {
@@ -1489,10 +1474,6 @@ public class Xcls_GtkView : Object
             this.el = new Gtk.CheckMenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Multi-line (add \\n)";
-            this.el.show();
 
             // init method
 

@@ -87,7 +87,7 @@
           {
            "# JsRender.Node? node_selected" : "",
            "# string prop_selected" : "\"\"",
-           "$ xns" : "Gtk",
+           "$ xns" : "GtkSource",
            "* init" : [
             "{",
             "   ",
@@ -206,12 +206,12 @@
            "id" : "sourceview",
            "items" : [
             {
-             "$ xns" : "Gtk",
+             "$ xns" : "GtkSource",
              "* pack" : "set_buffer",
              "bool dirty" : false,
              "id" : "buffer",
              "int error_line" : "-1",
-             "xtype" : "SourceBuffer"
+             "xtype" : "Buffer"
             }
            ],
            "listeners" : {
@@ -235,7 +235,7 @@
             ]
            },
            "string name" : "gtkview-view",
-           "xtype" : "SourceView",
+           "xtype" : "View",
            "| string toString" : [
             "() {",
             "   Gtk.TextIter s;",
