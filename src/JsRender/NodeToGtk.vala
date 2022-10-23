@@ -385,7 +385,8 @@ public class JsRender.NodeToGtk : Object {
 			print("skip menu pack - parent is not a widget");
 			return;
 		}
-		
+		return;
+		/*
 		var p = (global::Gtk.Menu)this.wrapped_object;
 		((global::Gtk.Widget)parent).button_press_event.connect((s, ev) => { 
 			p.set_screen(Gdk.Screen.get_default());
@@ -393,6 +394,7 @@ public class JsRender.NodeToGtk : Object {
 			p.popup_at_pointer(ev);
 			return true;
 		});
+		*/
 	}
 
 	public void packTreeStore()
