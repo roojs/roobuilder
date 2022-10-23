@@ -204,7 +204,8 @@
             "libvala-0.56",
             "gtk4",
             "javascriptcore",
-            "webkit2gtk-5.0"
+            "webkit2gtk-5.0",
+            "gtksourceview-5"
         ]
     }
 ]
