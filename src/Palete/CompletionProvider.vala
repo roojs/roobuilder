@@ -4,7 +4,7 @@ using Gtk;
 // not sure why - but extending Gtk.SourceCompletionProvider seems to give an error..
 namespace Palete {
 
-    public class CompletionProvider : Object, SourceCompletionProvider
+    public class CompletionProvider : Object, GtkSource.CompletionProvider
     {
 		Editor editor; 
 		WindowState windowstate;
@@ -27,14 +27,14 @@ namespace Palete {
 		  return 200;
 		}
 
-		public bool match (SourceCompletionContext context)
+		public bool match (GtkSource.CompletionContext context)
 		{
 			bool has_matches = false;
 			this.fetchMatches(context, out has_matches);
 			return has_matches;
 		}
 
-		public List<SourceCompletionItem>? fetchMatches(SourceCompletionContext context, out bool has_matches)
+		public List<GtkSource.CompletionItem>? fetchMatches(GtkSource.CompletionContext context, out bool has_matches)
 		{
 		     has_matches = false;
 
@@ -83,7 +83,7 @@ namespace Palete {
 
 		}
 	
-		public void populate (SourceCompletionContext context)
+		public void populate (GtkSource.CompletionContext context)
 		{
 			bool has_matches = false;
 			var filtered_proposals = this.fetchMatches(context, out has_matches);
@@ -100,7 +100,7 @@ namespace Palete {
 
 
 
-		public bool activate_proposal (SourceCompletionProposal proposal, TextIter iter)
+		public bool activate_proposal (GtkSource.CompletionProposal proposal, TextIter iter)
 		{
 			var istart = iter;
 			istart.backward_find_char(is_space, null);
@@ -115,10 +115,10 @@ namespace Palete {
 			return true;
 		}
 
-		public SourceCompletionActivation get_activation ()
+		public GtkSource.CompletionActivation get_activation ()
 		{
 			//if(SettingsManager.Get_Setting("complete_auto") == "true"){
-				return SourceCompletionActivation.INTERACTIVE | SourceCompletionActivation.USER_REQUESTED;
+				return GtkSource.CompletionActivation.INTERACTIVE | GtkSource.CompletionActivation.USER_REQUESTED;
 			//} else {
 			//	return Gtk.SourceCompletionActivation.USER_REQUESTED;
 			//}
@@ -135,7 +135,7 @@ namespace Palete {
 			return false;
 		}
 */
-		public void update_info (SourceCompletionProposal proposal, SourceCompletionInfo info)
+		public void update_info (GtkSource.CompletionProposal proposal, GtkSource.CompletionInfo info)
 		{
 
 		}
