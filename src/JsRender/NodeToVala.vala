@@ -88,9 +88,9 @@ public class JsRender.NodeToVala : Object {
 	string toValaNS(Node item)
 	{
 		var ns = item.get("xns") ;
-		if (ns == "GtkSource") {
-			return "Gtk.Source";
-		}
+		//if (ns == "GtkSource") {  technically on Gtk3?
+		//	return "Gtk.Source";
+		//}
 		return ns + ".";
 	}
 	public void  toValaName(Node item, int depth =0) 
