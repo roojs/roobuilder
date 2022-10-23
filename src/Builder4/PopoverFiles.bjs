@@ -83,7 +83,7 @@
            },
            "string icon_name" : "emblem-system",
            "string label" : "Project Properties",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -123,7 +123,7 @@
            },
            "string icon_name" : "user-trash",
            "string label" : "Delete Project",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -147,7 +147,7 @@
            },
            "string icon_name" : "document-new",
            "string label" : "New File",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
@@ -171,7 +171,7 @@
            },
            "string icon_name" : "document-new",
            "string label" : "New File",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           }
          ],
          "xtype" : "Box"

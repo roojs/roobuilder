@@ -450,16 +450,16 @@ public class Xcls_PopoverFiles : Object
             var child_0 = new Xcls_Button5( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_ToolButton6( _this );
+            var child_1 = new Xcls_Button6( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_ToolButton7( _this );
+            var child_2 = new Xcls_Button7( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
-            var child_3 = new Xcls_ToolButton8( _this );
+            var child_3 = new Xcls_Button8( _this );
             child_3.ref();
             this.el.add (  child_3.el  );
-            var child_4 = new Xcls_ToolButton9( _this );
+            var child_4 = new Xcls_Button9( _this );
             child_4.ref();
             this.el.add (  child_4.el  );
         }
@@ -514,21 +514,25 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_ToolButton6 : Object
+    public class Xcls_Button6 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Button el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton6(Xcls_PopoverFiles _owner )
+        public Xcls_Button6(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "emblem-system";
+            this.el.label = "Project Properties";
 
             //listeners
             this.el.clicked.connect( ( ) => {
@@ -543,21 +547,25 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_ToolButton7 : Object
+    public class Xcls_Button7 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Button el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton7(Xcls_PopoverFiles _owner )
+        public Xcls_Button7(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "user-trash";
+            this.el.label = "Delete Project";
 
             //listeners
             this.el.clicked.connect( ( ) => {
@@ -594,21 +602,25 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_ToolButton8 : Object
+    public class Xcls_Button8 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Button el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton8(Xcls_PopoverFiles _owner )
+        public Xcls_Button8(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "document-new";
+            this.el.label = "New File";
 
             //listeners
             this.el.clicked.connect( () => {
@@ -629,21 +641,25 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_ToolButton9 : Object
+    public class Xcls_Button9 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Button el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton9(Xcls_PopoverFiles _owner )
+        public Xcls_Button9(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "document-new";
+            this.el.label = "New File";
 
             //listeners
             this.el.clicked.connect( () => {
