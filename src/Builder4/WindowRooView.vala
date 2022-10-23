@@ -2192,7 +2192,7 @@ public class Xcls_WindowRooView : Object
     }
     public class Xcls_case_sensitive : Object
     {
-        public Gtk.CheckMenuItem el;
+        public Gtk.CheckButton el;
         private Xcls_WindowRooView  _this;
 
 
@@ -2203,9 +2203,12 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.case_sensitive = this;
-            this.el = new Gtk.CheckMenuItem();
+            this.el = new Gtk.CheckButton();
 
             // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Case Sensitive";
 
             // init method
 
