@@ -694,7 +694,7 @@
            "}"
           ]
          },
-         "xtype" : "MenuItem",
+         "xtype" : "Button",
          "| void updateResults" : [
           "() {",
           "\tthis.el.visible = true;",
