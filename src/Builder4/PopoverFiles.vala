@@ -1117,7 +1117,6 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
-        public Gtk.ShadowType shadow_type;
         public bool expand;
 
         // ctor
@@ -1128,7 +1127,6 @@ public class Xcls_PopoverFiles : Object
             this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
-            this.shadow_type = Gtk.ShadowType.IN;
             this.expand = true;
 
             // set gobject values
