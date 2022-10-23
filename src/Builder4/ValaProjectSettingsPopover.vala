@@ -38,24 +38,26 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_save_btn save_btn;
 
         // my vars (def)
+    public bool modal;
     public Xcls_MainWindow window;
     public Project.Gtk project;
     public bool done;
+    public uint border_width;
 
     // ctor
     public ValaProjectSettingsPopover()
     {
         _this = this;
-        this.el = new Gtk.Popover( null );
+        this.el = new Gtk.Popover();
 
         // my vars (dec)
+        this.modal = true;
         this.window = null;
         this.project = null;
         this.done = false;
+        this.border_width = 0;
 
         // set gobject values
-        this.el.border_width = 0;
-        this.el.modal = true;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
@@ -146,6 +148,7 @@ public class ValaProjectSettingsPopover : Object
 
 
             // my vars (def)
+        public string title;
 
         // ctor
         public Xcls_HeaderBar3(ValaProjectSettingsPopover _owner )
@@ -154,9 +157,9 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
+            this.title = Change Vala Project Compile settings;
 
             // set gobject values
-            this.el.title = "Change Vala Project Compile settings";
         }
 
         // user defined functions
@@ -365,7 +368,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ScrolledWindow11(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -606,7 +609,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ScrolledWindow18(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -779,7 +782,7 @@ public class ValaProjectSettingsPopover : Object
 
     public class Xcls_default_directory_menu : Object
     {
-        public Gtk.Menu el;
+        public Gtk.PopoverMenu el;
         private ValaProjectSettingsPopover  _this;
 
 
@@ -790,15 +793,15 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.default_directory_menu = this;
-            this.el = new Gtk.Menu();
+            this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_MenuItem24( _this );
+            var child_0 = new Xcls_Button24( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_MenuItem25( _this );
+            var child_1 = new Xcls_Button25( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_SeparatorMenuItem26( _this );
@@ -811,25 +814,24 @@ public class ValaProjectSettingsPopover : Object
 
         // user defined functions
     }
-    public class Xcls_MenuItem24 : Object
+    public class Xcls_Button24 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem24(ValaProjectSettingsPopover _owner )
+        public Xcls_Button24(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "Add Directory";
-            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -855,25 +857,24 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_MenuItem25 : Object
+    public class Xcls_Button25 : Object
     {
-        public Gtk.MenuItem el;
+        public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_MenuItem25(ValaProjectSettingsPopover _owner )
+        public Xcls_Button25(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.MenuItem();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.label = "Add File";
-            this.el.show();
 
             //listeners
             this.el.activate.connect( ()  => {
@@ -914,9 +915,6 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.show();
         }
 
         // user defined functions
@@ -937,9 +935,6 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Remove File/Directory";
             this.el.show();
 
             //listeners
@@ -1016,7 +1011,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ScrolledWindow29(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -1054,8 +1049,6 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.Menu();
 
             // my vars (dec)
-
-            // set gobject values
             var child_0 = new Xcls_MenuItem31( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -1084,9 +1077,6 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Add Compile Target";
             this.el.show();
 
             //listeners
@@ -1121,9 +1111,6 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.SeparatorMenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.show();
         }
 
         // user defined functions
@@ -1144,9 +1131,6 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.MenuItem();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Remove Target";
             this.el.show();
 
             //listeners
@@ -1645,7 +1629,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ScrolledWindow46(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
@@ -2000,15 +1984,9 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ButtonBox53(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ButtonBox( Gtk.Orientation.HORIZONTAL );
+            this.el = new Gtk.ButtonBox();
 
             // my vars (dec)
-
-            // set gobject values
-            this.el.margin_end = 4;
-            this.el.margin_start = 4;
-            this.el.margin_bottom = 4;
-            this.el.margin_top = 4;
             var child_0 = new Xcls_Button54( _this );
             child_0.ref();
             this.el.add (  child_0.el  );

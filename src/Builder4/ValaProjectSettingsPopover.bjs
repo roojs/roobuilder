@@ -324,7 +324,7 @@
                   ]
                  },
                  "utf8 label" : "Add Directory",
-                 "xtype" : "MenuItem"
+                 "xtype" : "Button"
                 },
                 {
                  "$ xns" : "Gtk",
@@ -352,7 +352,7 @@
                   ]
                  },
                  "utf8 label" : "Add File",
-                 "xtype" : "MenuItem"
+                 "xtype" : "Button"
                 },
                 {
                  "$ xns" : "Gtk",
@@ -394,7 +394,7 @@
                  "xtype" : "MenuItem"
                 }
                ],
-               "xtype" : "Menu"
+               "xtype" : "PopoverMenu"
               }
              ],
              "xtype" : "ScrolledWindow"
