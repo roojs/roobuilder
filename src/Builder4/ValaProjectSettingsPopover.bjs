@@ -357,7 +357,7 @@
                 {
                  "$ xns" : "Gtk",
                  "* pack" : "add",
-                 "xtype" : "SeparatorMenuItem"
+                 "xtype" : "Separator"
                 },
                 {
                  "$ xns" : "Gtk",

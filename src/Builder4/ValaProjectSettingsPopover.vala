@@ -804,7 +804,7 @@ public class ValaProjectSettingsPopover : Object
             var child_1 = new Xcls_Button25( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
-            var child_2 = new Xcls_SeparatorMenuItem26( _this );
+            var child_2 = new Xcls_Separator26( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
             var child_3 = new Xcls_MenuItem27( _this );
@@ -900,21 +900,23 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_SeparatorMenuItem26 : Object
+    public class Xcls_Separator26 : Object
     {
-        public Gtk.SeparatorMenuItem el;
+        public Gtk.Separator el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_SeparatorMenuItem26(ValaProjectSettingsPopover _owner )
+        public Xcls_Separator26(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.SeparatorMenuItem();
+            this.el = new Gtk.Separator( null );
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
