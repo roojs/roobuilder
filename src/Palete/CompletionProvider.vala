@@ -176,7 +176,7 @@ namespace Palete {
  		
  		}
  		
- 		public string contextToSearch(context)
+ 		public string contextToSearch(GtkSource.CompletionContext context)
  		{
 		 	 
 
