@@ -8,7 +8,7 @@ namespace Palete {
     {
 		public Editor editor; 
 		public WindowState windowstate;
- 		public List<GtkSource.CompletionProposal> filtered_proposals;
+ 		public CompletionModel model;
 
 		public CompletionProvider(Editor editor)
 		{
@@ -103,28 +103,15 @@ namespace Palete {
 
 		public  async ListModel populate_async (GtkSource.CompletionContext context, Cancellable cancel)
 		{
-			bool has_matches = false;
 			
+			this.model = new CompletionModel(this, context); 
+			return this.model;
 			
-			
-			
-			this.fetchMatches(context, out has_matches);
-			return has_matches;
 		}
  
 		public void populate (GtkSource.CompletionContext context)
 		{
-			bool has_matches = false;
-			var filtered_proposals = this.fetchMatches(context, out has_matches);
-			if (!has_matches) {
-			    context.add_proposals (this, null, true);
-			    return;
-			}
-			// add proposals triggers a critical error in Gtk - try running gtksourceview/tests/test-completion.
-			// see https://bugzilla.gnome.org/show_bug.cgi?id=758646
-			var fe = GLib.Log.set_always_fatal(0); 
-			context.add_proposals (this, filtered_proposals, true);
-			GLib.Log.set_always_fatal(fe);
+			
 		}
 
 
@@ -143,28 +130,7 @@ namespace Palete {
 		
 			return true;
 		}
-
-		public GtkSource.CompletionActivation get_activation ()
-		{
-			//if(SettingsManager.Get_Setting("complete_auto") == "true"){
-				return GtkSource.CompletionActivation.INTERACTIVE | GtkSource.CompletionActivation.USER_REQUESTED;
-			//} else {
-			//	return Gtk.SourceCompletionActivation.USER_REQUESTED;
-			//}
-		}
-
-		public int get_interactive_delay ()
-		{
-			return -1;
-		}
-/*
-		public bool get_start_iter (SourceCompletionContext context, SourceCompletionProposal proposal, out TextIter iter)
-		{
-			iter = new TextIter();
-			return false;
-		}
-*/
-
+  
 	 
 
 		private bool is_space(unichar space){
