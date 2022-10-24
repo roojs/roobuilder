@@ -30,7 +30,7 @@ namespace Palete {
 		public  void display (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal, GtkSource.CompletionCell cell)
 		{
 			var col = cell.get_column();
-			var p = (Palete.CompletionProposal) proposal;
+			var p = (CompletionProposal) proposal;
 			switch(col) {
 				case GtkSource.CompletionColumn.TYPED_TEXT:
 					cell.set_icon_name("completion-snippet-symbolic");
