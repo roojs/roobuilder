@@ -1,5 +1,5 @@
  
-using Gtk;
+//using Gtk;
 
 // not sure why - but extending Gtk.SourceCompletionProvider seems to give an error..
 namespace Palete {
