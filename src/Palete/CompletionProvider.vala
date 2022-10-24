@@ -30,7 +30,7 @@ namespace Palete {
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
 			var  p = (CompletionProposal) proposal;
-			Gtk.TextMark end_mark = NULL;
+			Gtk.TextMark end_mark = null;
 			Gtk.TextIter begin, end;
 
 			if (!context.get_bounds(out begin, out end)) {
