@@ -131,21 +131,17 @@ namespace Palete {
 				this.model.cancel(); 
 				replaced_model = new CompletionModel(this, context, this.model.cancelleble);
 				context.set_proposals_for_provider(this, replaced_model);
+				return;
 			}
-			else
-			{
-				expression = gtk_property_expression_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL, "word");
-				filter = gtk_string_filter_new (g_steal_pointer (&expression));
-				gtk_string_filter_set_search (GTK_STRING_FILTER (filter), word);
-				filter_model = gtk_filter_list_model_new (g_object_ref (model),
-						                                  GTK_FILTER (g_steal_pointer (&filter)));
-				gtk_filter_list_model_set_incremental (filter_model, TRUE);
-				gtk_source_completion_context_set_proposals_for_provider (context, provider, G_LIST_MODEL (filter_model));
-			}
-
-			g_clear_object (&replaced_model);
-			g_clear_object (&filter_model);
-			g_clear_pointer (&word, g_free);
+			 
+			expression = gtk_property_expression_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL, "word");
+			filter = gtk_string_filter_new (g_steal_pointer (&expression));
+			gtk_string_filter_set_search (GTK_STRING_FILTER (filter), word);
+			filter_model = gtk_filter_list_model_new (g_object_ref (model),
+					                                  GTK_FILTER (g_steal_pointer (&filter)));
+			gtk_filter_list_model_set_incremental (filter_model, TRUE);
+			gtk_source_completion_context_set_proposals_for_provider (context, provider, G_LIST_MODEL (filter_model));
+		 
 
 		
 		}
