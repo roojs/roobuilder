@@ -109,9 +109,9 @@ namespace Palete {
 			
 		}
  
-		public  void refilter (GtkSource.CompletionContext context, GLib.ListModel model)
+		public  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
 		{
-		
+			
 		
 		}
 
@@ -144,11 +144,41 @@ namespace Palete {
  	{
  		CompletionProvider provider;
  		Gee.ArrayList<GtkSource.CompletionProposal> items;
+ 		string search;
  		
  		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context)
  		{
+ 		 	this.provider = provider;
+
  		 	this.items = new Gee.ArrayList<GtkSource.CompletionProposal>();
- 		 	has_matches = false;
+ 			this.search = this.contextToSearch(context);
+		    if (this.search.length < 2) {
+			    return null;
+		    }
+		 
+		    // now do our magic..
+		    this.items = this.provider.windowstate.file.palete().suggestComplete(
+			    this.windowstate.file,
+			    this.editor.node,
+			    this.editor.prop,
+			    this.search
+		    ); 
+		
+		    print("GOT %d results\n", (int) items.length); 
+		
+		    if (this.items.length < 2) {
+				return null;
+		    }
+		
+		    items.sort((a, b) => {
+			    return ((string)(a.text)).collate((string)(b.text));
+		    });
+ 		
+ 		}
+ 		
+ 		public string contextToSearch(context)
+ 		{
+		 	 
 
 		    if (this.provider.windowstate == null) {
 			    this.provider.windowstate = this.provider.editor.window.windowstate;
@@ -166,34 +196,12 @@ namespace Palete {
 		
 		    searchpos.backward_find_char(is_space, null);
 		    searchpos.forward_char();
-		    var search = endpos.get_text(searchpos);
+		    search = endpos.get_text(searchpos);
 		    print("got search %s\n", search);
+		    return search;
 		
-		    if (search.length < 2) {
-			    return null;
-		    }
-		 
-		    // now do our magic..
-		    var filtered_proposals = this.windowstate.file.palete().suggestComplete(
-			    this.windowstate.file,
-			    this.editor.node,
-			    this.editor.prop,
-			    search
-		    ); 
-		
-		    print("GOT %d results\n", (int) filtered_proposals.length()); 
-		
-		    if (filtered_proposals.length() < 2) {
-			return null;
-		    }
-		
-		    filtered_proposals.sort((a, b) => {
-			    return ((string)(a.text)).collate((string)(b.text));
-		    });
-		    has_matches = true;
-		    return filtered_proposals;
- 		
  		}
+ 		
  		public GLib.Object? get_item (uint pos)
  		{
  			return (Object) this.items.get(pos);
