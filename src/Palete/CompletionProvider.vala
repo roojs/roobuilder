@@ -87,7 +87,7 @@ namespace Palete {
 
 		}
 	*/
-		public void populate (GtkSource.CompletionContext context, GtkSource.CompletionContext context)
+		public void populate (GtkSource.CompletionContext context)
 		{
 			bool has_matches = false;
 			var filtered_proposals = this.fetchMatches(context, out has_matches);
@@ -152,7 +152,7 @@ namespace Palete {
  	{
  		CompletionProvider provider;
  		
- 		public CompletionModel(CompletionProvider provider)
+ 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext contexts)
  		{
  		 	has_matches = false;
 
