@@ -101,10 +101,10 @@ namespace Palete {
 			}	
 		}
 
-		public  async ListModel populate_async (GtkSource.CompletionContext context, Cancellable cancel)
+		public  async ListModel populate_async (GtkSource.CompletionContext context, Cancellable cancelleble)
 		{
 			
-			this.model = new CompletionModel(this, context); 
+			this.model = new CompletionModel(this, context, cancelleble); 
 			return this.model;
 			
 		}
@@ -127,8 +127,7 @@ namespace Palete {
 			}
  
 
-			if (!gtk_source_completion_words_model_can_filter (GTK_SOURCE_COMPLETION_WORDS_MODEL (model), word))
-			{
+			if (!model.can_filter(word)) {
 				gtk_source_completion_words_model_cancel (GTK_SOURCE_COMPLETION_WORDS_MODEL (model));
 				replaced_model = gtk_source_completion_words_model_new (priv->library,
 						                                                priv->proposals_batch_size,
@@ -245,6 +244,11 @@ namespace Palete {
 			 */
 			 return word.has_prefix(this.search); 
 		}
+		void  cancel ()
+		{
+		 	this.cancellable.cancel();
+		}
+
 
  		
  	}
