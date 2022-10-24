@@ -6,8 +6,8 @@ namespace Palete {
 
     public class CompletionProvider : Object, GtkSource.CompletionProvider
     {
-		Editor editor; 
-		WindowState windowstate;
+		public Editor editor; 
+		public WindowState windowstate;
  		//public List<Gtk.SourceCompletionItem> filtered_proposals;
 
 		public CompletionProvider(Editor editor)
@@ -27,9 +27,13 @@ namespace Palete {
 		  return 200;
 		}
 
-		public bool match (GtkSource.CompletionContext context)
+		public  async ListModel populate_async (GtkSource.CompletionContext context, Cancellable cancel)
 		{
 			bool has_matches = false;
+			
+			
+			
+			
 			this.fetchMatches(context, out has_matches);
 			return has_matches;
 		}
@@ -83,7 +87,7 @@ namespace Palete {
 
 		}
 	*/
-		public void populate (GtkSource.CompletionContext context)
+		public void populate (GtkSource.CompletionContext context, GtkSource.CompletionContext context)
 		{
 			bool has_matches = false;
 			var filtered_proposals = this.fetchMatches(context, out has_matches);
@@ -144,7 +148,60 @@ namespace Palete {
 		
 		 
 	}
+ 	public class CompletionModel : Object, GLib.ListModel 
+ 	{
+ 		CompletionProvider provider;
+ 		
+ 		public CompletionModel(CompletionProvider provider)
+ 		{
+ 		 	has_matches = false;
 
+		    if (this.provider.windowstate == null) {
+			    this.provider.windowstate = this.provider.editor.window.windowstate;
+		    }
+		
+		
+		    var buffer = context.completion.view.buffer;
+		    var  mark = buffer.get_insert ();
+		    TextIter end;
+
+		    buffer.get_iter_at_mark (out end, mark);
+		    var endpos = end;
+		
+		    var searchpos = endpos;
+		
+		    searchpos.backward_find_char(is_space, null);
+		    searchpos.forward_char();
+		    var search = endpos.get_text(searchpos);
+		    print("got search %s\n", search);
+		
+		    if (search.length < 2) {
+			    return null;
+		    }
+		 
+		    // now do our magic..
+		    var filtered_proposals = this.windowstate.file.palete().suggestComplete(
+			    this.windowstate.file,
+			    this.editor.node,
+			    this.editor.prop,
+			    search
+		    ); 
+		
+		    print("GOT %d results\n", (int) filtered_proposals.length()); 
+		
+		    if (filtered_proposals.length() < 2) {
+			return null;
+		    }
+		
+		    filtered_proposals.sort((a, b) => {
+			    return ((string)(a.text)).collate((string)(b.text));
+		    });
+		    has_matches = true;
+		    return filtered_proposals;
+ 		
+ 		}
+ 		
+ 	}
 
 } 
 
