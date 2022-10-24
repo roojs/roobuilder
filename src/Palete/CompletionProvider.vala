@@ -122,18 +122,15 @@ namespace Palete {
 	 
 
 			context.get_word();
-			if (model is Gtk.FilterListModel) { 
+			if (model is FilterListModel) { 
 				model = model.get_model ();
 			}
  
 
 			if (!model.can_filter(word)) {
-				gtk_source_completion_words_model_cancel (GTK_SOURCE_COMPLETION_WORDS_MODEL (model));
-				replaced_model = gtk_source_completion_words_model_new (priv->library,
-						                                                priv->proposals_batch_size,
-						                                                priv->minimum_word_size,
-						                                                word);
-				gtk_source_completion_context_set_proposals_for_provider (context, provider, replaced_model);
+				this.model.cancel(); 
+				replaced_model = new CompletionModel(this, context, this.model.cancelleble);
+				context.set_proposals_for_provider(this, replaced_model);
 			}
 			else
 			{
@@ -184,11 +181,12 @@ namespace Palete {
  		Gee.ArrayList<GtkSource.CompletionProposal> items;
  		string search;
  		int minimum_word_size = 2;
+ 		Cancellable cancelleble;
  		
- 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context)
+ 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context, Cancellable cancelleble)
  		{
  		 	this.provider = provider;
-
+			this.cancelleble = cancelleble;
  		 	this.items = new Gee.ArrayList<GtkSource.CompletionProposal>();
  			this.search = context.get_word();
 		    if (this.search.length < this.minimum_word_size) {
