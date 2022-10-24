@@ -151,11 +151,11 @@ namespace Palete {
  	public class CompletionModel : Object, GLib.ListModel 
  	{
  		CompletionProvider provider;
- 		Gee.ArrayList<GtkSource.Proposal> items;
+ 		Gee.ArrayList<GtkSource.CompletionProposal> items;
  		
  		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context)
  		{
- 		 	this.items = new Gee.ArrayList<GtkSource.Proposal>();
+ 		 	this.items = new Gee.ArrayList<GtkSource.CompletionProposal>();
  		 	has_matches = false;
 
 		    if (this.provider.windowstate == null) {
