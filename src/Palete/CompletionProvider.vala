@@ -122,13 +122,10 @@ namespace Palete {
 	 
 
 			context.get_word();
-
-			if (GTK_IS_FILTER_LIST_MODEL (model))
-			{
-				model = gtk_filter_list_model_get_model (GTK_FILTER_LIST_MODEL (model));
+			if (model is Gtk.FilterListModel) { 
+				model = model.get_model ();
 			}
-
-			g_assert (GTK_SOURCE_IS_COMPLETION_WORDS_MODEL (model));
+ 
 
 			if (!gtk_source_completion_words_model_can_filter (GTK_SOURCE_COMPLETION_WORDS_MODEL (model), word))
 			{
@@ -187,6 +184,7 @@ namespace Palete {
  		CompletionProvider provider;
  		Gee.ArrayList<GtkSource.CompletionProposal> items;
  		string search;
+ 		int minimum_word_size = 2;
  		
  		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context)
  		{
@@ -194,7 +192,7 @@ namespace Palete {
 
  		 	this.items = new Gee.ArrayList<GtkSource.CompletionProposal>();
  			this.search = context.get_word();
-		    if (this.search.length < 2) {
+		    if (this.search.length < this.minimum_word_size) {
 			    return null;
 		    }
 		 
@@ -207,9 +205,9 @@ namespace Palete {
 		    ); 
 		
 		    print("GOT %d results\n", (int) items.length); 
-		
-		    if (this.items.length < 2) {
-				return null;
+			// WHY TWICE?
+		    if (this.items.length < this.minimum_word_size) {
+				return;
 		    }
 		
 		    items.sort((a, b) => {
@@ -232,7 +230,22 @@ namespace Palete {
 		{
 			return this.items.length;
 		}
- 		
+ 		public bool can_filter (string word) 
+		{
+			if (word == null || word[0] == 0) {
+				return false;
+			}
+ 
+			if (word.length < this.minimum_word_size) {
+				return false;
+			}
+
+			/* If the new word starts with our initial word, then we can simply
+			 * refilter outside this model using a GtkFilterListModel.
+			 */
+			 return word.has_prefix(this.search); 
+		}
+
  		
  	}
 	public class CompletionProposal : Object, GtkSource.CompletionProposal 
