@@ -1,5 +1,5 @@
  
-//using Gtk;
+using Gtk;
 
 // not sure why - but extending Gtk.SourceCompletionProvider seems to give an error..
 namespace Palete {
@@ -30,8 +30,8 @@ namespace Palete {
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
 			var  p = (CompletionProposal) proposal;
-			Gtk.TextMark end_mark = null;
-			Gtk.TextIter begin, end;
+			TextMark end_mark = null;
+			TextIter begin, end;
 
 			if (!context.get_bounds(out begin, out end)) {
 				return;
