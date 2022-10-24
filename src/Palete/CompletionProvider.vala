@@ -109,9 +109,10 @@ namespace Palete {
 			
 		}
  
-		public void populate (GtkSource.CompletionContext context)
+		public  void refilter (GtkSource.CompletionContext context, GLib.ListModel model)
 		{
-			
+		
+		
 		}
 
 
