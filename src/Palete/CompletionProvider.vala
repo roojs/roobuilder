@@ -182,7 +182,7 @@ namespace Palete {
 		
 		 
 	}
- 	public class CompletionModel : Object, FilterListModel 
+ 	public class CompletionModel : FilterListModel 
  	{
  		CompletionProvider provider;
  		Gee.ArrayList<GtkSource.CompletionProposal> items;
