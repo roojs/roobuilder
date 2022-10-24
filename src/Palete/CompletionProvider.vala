@@ -27,6 +27,29 @@ namespace Palete {
 		  return 200;
 		}
 
+		public  void display (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal, GtkSource.CompletionCell cell)
+		{
+			var col = cell.get_column();
+			var p = (Palete.CompletionProposal) proposal;
+			switch(col) {
+				case GtkSource.CompletionColumn.TYPED_TEXT:
+					cell.set_icon_name("completion-snippet-symbolic");
+					break;
+				case GtkSource.CompletionColumn.ICON:
+					cell.set_text(col.text);
+					break;
+				case  GtkSource.CompletionColumn.COMMENT:
+					cell.set_text(col.text);
+					break;
+				case GtkSource.CompletionColumn.DETAILS:
+					cell.set_text(col.text);
+					break;
+				default:
+					cell.set_text(col.text);
+					break;
+			}	
+		}
+
 		public  async ListModel populate_async (GtkSource.CompletionContext context, Cancellable cancel)
 		{
 			bool has_matches = false;
@@ -37,56 +60,7 @@ namespace Palete {
 			this.fetchMatches(context, out has_matches);
 			return has_matches;
 		}
-/*
-		public List<GtkSource.CompletionItem>? fetchMatches(GtkSource.CompletionContext context, out bool has_matches)
-		{
-		     has_matches = false;
-
-		    if (this.windowstate == null) {
-			    this.windowstate = this.editor.window.windowstate;
-		    }
-		
-		
-		    var buffer = context.completion.view.buffer;
-		    var  mark = buffer.get_insert ();
-		    TextIter end;
-
-		    buffer.get_iter_at_mark (out end, mark);
-		    var endpos = end;
-		
-		    var searchpos = endpos;
-		
-		    searchpos.backward_find_char(is_space, null);
-		    searchpos.forward_char();
-		    var search = endpos.get_text(searchpos);
-		    print("got search %s\n", search);
-		
-		    if (search.length < 2) {
-			    return null;
-		    }
-		 
-		    // now do our magic..
-		    var filtered_proposals = this.windowstate.file.palete().suggestComplete(
-			    this.windowstate.file,
-			    this.editor.node,
-			    this.editor.prop,
-			    search
-		    ); 
-		
-		    print("GOT %d results\n", (int) filtered_proposals.length()); 
-		
-		    if (filtered_proposals.length() < 2) {
-			return null;
-		    }
-		
-		    filtered_proposals.sort((a, b) => {
-			    return ((string)(a.text)).collate((string)(b.text));
-		    });
-		    has_matches = true;
-		    return filtered_proposals;
-
-		}
-	*/
+ 
 		public void populate (GtkSource.CompletionContext context)
 		{
 			bool has_matches = false;
@@ -219,7 +193,7 @@ namespace Palete {
  	}
 	public class CompletionProposal : Object, GtkSource.CompletionProposal 
  	{
- 	
+ 		
  	}
 
 } 
