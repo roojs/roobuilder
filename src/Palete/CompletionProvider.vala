@@ -111,7 +111,49 @@ namespace Palete {
  
 		public  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
 		{
-			
+ 
+ 
+			//GtkFilterListModel *filter_model = NULL;
+			//G//tkExpression *expression = NULL;
+			//GtkStringFilter *filter = NULL;
+			//GListModel *replaced_model = NULL;
+			//char *word;
+
+	 
+
+			context.get_word();
+
+			if (GTK_IS_FILTER_LIST_MODEL (model))
+			{
+				model = gtk_filter_list_model_get_model (GTK_FILTER_LIST_MODEL (model));
+			}
+
+			g_assert (GTK_SOURCE_IS_COMPLETION_WORDS_MODEL (model));
+
+			if (!gtk_source_completion_words_model_can_filter (GTK_SOURCE_COMPLETION_WORDS_MODEL (model), word))
+			{
+				gtk_source_completion_words_model_cancel (GTK_SOURCE_COMPLETION_WORDS_MODEL (model));
+				replaced_model = gtk_source_completion_words_model_new (priv->library,
+						                                                priv->proposals_batch_size,
+						                                                priv->minimum_word_size,
+						                                                word);
+				gtk_source_completion_context_set_proposals_for_provider (context, provider, replaced_model);
+			}
+			else
+			{
+				expression = gtk_property_expression_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL, "word");
+				filter = gtk_string_filter_new (g_steal_pointer (&expression));
+				gtk_string_filter_set_search (GTK_STRING_FILTER (filter), word);
+				filter_model = gtk_filter_list_model_new (g_object_ref (model),
+						                                  GTK_FILTER (g_steal_pointer (&filter)));
+				gtk_filter_list_model_set_incremental (filter_model, TRUE);
+				gtk_source_completion_context_set_proposals_for_provider (context, provider, G_LIST_MODEL (filter_model));
+			}
+
+			g_clear_object (&replaced_model);
+			g_clear_object (&filter_model);
+			g_clear_pointer (&word, g_free);
+
 		
 		}
 
@@ -151,7 +193,7 @@ namespace Palete {
  		 	this.provider = provider;
 
  		 	this.items = new Gee.ArrayList<GtkSource.CompletionProposal>();
- 			this.search = this.contextToSearch(context);
+ 			this.search = context.get_word();
 		    if (this.search.length < 2) {
 			    return null;
 		    }
@@ -176,31 +218,7 @@ namespace Palete {
  		
  		}
  		
- 		public string contextToSearch(GtkSource.CompletionContext context)
- 		{
-		 	 
-
-		    if (this.provider.windowstate == null) {
-			    this.provider.windowstate = this.provider.editor.window.windowstate;
-		    }
-		
-		
-		    var buffer = context.completion.view.buffer;
-		    var  mark = buffer.get_insert ();
-		    TextIter end;
-
-		    buffer.get_iter_at_mark (out end, mark);
-		    var endpos = end;
-		
-		    var searchpos = endpos;
-		
-		    searchpos.backward_find_char(is_space, null);
-		    searchpos.forward_char();
-		    search = endpos.get_text(searchpos);
-		    print("got search %s\n", search);
-		    return search;
-		
- 		}
+ 		 
  		
  		public GLib.Object? get_item (uint pos)
  		{
