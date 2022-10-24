@@ -29,7 +29,7 @@ namespace Palete {
 		
 		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
-			var  *p = (CompletionProposal) proposal;
+			var  p = (CompletionProposal) proposal;
 			Gtk.TextMark end_mark = NULL;
 			Gtk.TextIter begin, end;
 
@@ -41,41 +41,41 @@ namespace Palete {
 			var  word = p.text;
 			var len = -1;
 
-					/* If the insertion cursor is within a word and the trailing characters
-					 * of the word match the suffix of the proposal, then limit how much
-					 * text we insert so that the word is completed properly.
-					 */
-					if (!end._ends_line() &&
-						!end.get_char().isspace() &&
-						!end.ends_word ())
-					{
-						var word_end = end;
+			/* If the insertion cursor is within a word and the trailing characters
+			 * of the word match the suffix of the proposal, then limit how much
+			 * text we insert so that the word is completed properly.
+			 */
+			if (!end._ends_line() &&
+				!end.get_char().isspace() &&
+				!end.ends_word ())
+			{
+				var word_end = end;
 
-						if (word_end.forward_word_end ()) {
-							var text = end.get_slice(word_end);
+				if (word_end.forward_word_end ()) {
+					var text = end.get_slice(word_end);
 
-							if (word.has_suffix (text)) {
-								//g_assert (strlen (word) >= strlen (text));
-								len = word.length - text.length;
-								end_mark = buffer.create_mark (null, out word_end, false); 
-							}
-						}
-					}
-
-					buffer.begin_user_action();
-					buffer.delete (begin, end);
-					buffer.insert ( begin, word, len);
-					buffer.end_user_action ();
-
-					if (end_mark != null)
-					{
-						buffer.get_iter_at_mark(out end, end_mark);
-						buffer.select_range(end,  end);
-						buffer.delete_mark(end_mark);
+					if (word.has_suffix (text)) {
+						//g_assert (strlen (word) >= strlen (text));
+						len = word.length - text.length;
+						end_mark = buffer.create_mark (null, out word_end, false); 
 					}
 				}
+			}
 
-		]
+			buffer.begin_user_action();
+			buffer.delete (begin, end);
+			buffer.insert ( begin, word, len);
+			buffer.end_user_action ();
+
+			if (end_mark != null)
+			{
+				buffer.get_iter_at_mark(out end, end_mark);
+				buffer.select_range(end,  end);
+				buffer.delete_mark(end_mark);
+			}
+		
+
+		}
 
 
 		public  void display (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal, GtkSource.CompletionCell cell)
