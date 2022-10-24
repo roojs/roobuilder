@@ -151,9 +151,11 @@ namespace Palete {
  	public class CompletionModel : Object, GLib.ListModel 
  	{
  		CompletionProvider provider;
+ 		Gee.ArrayList<GtkSource.Proposal> items;
  		
- 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext contexts)
+ 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context)
  		{
+ 		 	this.items = new Gee.ArrayList<GtkSource.Proposal>();
  		 	has_matches = false;
 
 		    if (this.provider.windowstate == null) {
@@ -200,6 +202,19 @@ namespace Palete {
 		    return filtered_proposals;
  		
  		}
+ 		public GLib.Object? get_item (uint pos)
+ 		{
+ 			return (Object) this.items.get(pos);
+ 		}
+		public GLib.Type  get_item_type ()
+		{
+			return typeof(GtkSource.CompletionProposal);
+		}
+		public   uint get_n_items () 
+		{
+			return this.items.length;
+		}
+ 
  		
  	}
 
