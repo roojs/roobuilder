@@ -193,6 +193,7 @@ namespace Palete {
  	}
 	public class CompletionProposal : Object, GtkSource.CompletionProposal 
  	{
+ 		string text;
  		
  	}
 
