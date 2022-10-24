@@ -8,7 +8,7 @@ namespace Palete {
     {
 		public Editor editor; 
 		public WindowState windowstate;
- 		//public List<Gtk.SourceCompletionItem> filtered_proposals;
+ 		public List<GtkSource.CompletionProposal> filtered_proposals;
 
 		public CompletionProvider(Editor editor)
 		{
@@ -26,6 +26,12 @@ namespace Palete {
 		{
 		  return 200;
 		}
+		
+		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
+		{
+			// in theory this is when a proposal is activated? - it should insert the proposal? is that done automaticall?
+		]
+
 
 		public  void display (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal, GtkSource.CompletionCell cell)
 		{
