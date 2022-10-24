@@ -214,8 +214,12 @@ namespace Palete {
 		{
 			return this.items.length;
 		}
- 
  		
+ 		
+ 	}
+	public class CompletionProposal : Object, GtkSource.CompletionProposal 
+ 	{
+ 	
  	}
 
 } 
