@@ -1122,13 +1122,10 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = prevbits + scls;
-						sci.text = prevbits + scls;
-						sci.info = scls;
-						
-						ret.append(sci);
+						var sci = CompletionProposal(prevbits + scls,prevbits + scls,scls);
+						ret.add(sci);
+					 
+						 
 					}
 					// methods.... 
 					citer = cls.methods.map_iterator();
