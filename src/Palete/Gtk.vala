@@ -1136,12 +1136,10 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-							var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = prevbits + scls  + citer.get_value().sig;
-						sci.text = prevbits + scls;
-						sci.info = scls;
-						ret.append(sci);
+						
+						var sci = CompletionProposal(prevbits + scls  + citer.get_value().sig,prevbits + scls,scls);
+						ret.add(sci);
+						 
 					}
 					
 					// enums.... 
@@ -1153,13 +1151,9 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						
-							var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = prevbits + scls  + citer.get_value().sig;
-						sci.text = prevbits + scls;
-						sci.info = scls;
-						ret.append(sci);
+						var sci = CompletionProposal(prevbits + scls  + citer.get_value().sig,prevbits + scls,scls);
+						ret.add(sci);
+						 
 					}
 					
 					
@@ -1180,13 +1174,11 @@ namespace Palete {
 					}
 					// got a matching property...
 					// return type?
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")";
-					sci.text = prevbits + cprop.name + "(";
-					sci.info = cprop.doctxt;
-				
-					ret.append(sci);
+					var sci = CompletionProposal( cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")",
+							prevbits + cprop.name + "(",cprop.doctxt);
+						ret.add(sci);
+						 
+					  
 				}
 				
 				// get the properties / methods and subclasses.. of cls..
@@ -1199,12 +1191,12 @@ namespace Palete {
 						continue;
 					}
 					// got a matching property...
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")";
-					sci.text = prevbits + cprop.name;
-					sci.info = cprop.doctxt;
-					ret.append(sci);
+					var sci = CompletionProposal(cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")",
+							prevbits + cprop.name,cprop.doctxt);
+						ret.add(sci);
+					
+					
+					 
 				}
 					 
 					
