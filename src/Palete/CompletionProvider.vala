@@ -147,7 +147,7 @@ namespace Palete {
 		}
 
 
-
+/*
 		public bool activate_proposal (GtkSource.CompletionProposal proposal, TextIter iter)
 		{
 			var istart = iter;
@@ -168,7 +168,7 @@ namespace Palete {
 		private bool is_space(unichar space){
 			return space.isspace() || space.to_string() == "";
 		}
-		
+		*/
 		 
 	}
  	public class CompletionModel : Object, GLib.ListModel 
@@ -248,7 +248,17 @@ namespace Palete {
  	}
 	public class CompletionProposal : Object, GtkSource.CompletionProposal 
  	{
+ 		
+ 		string label;
+ 		
  		string text;
+ 		string info;
+ 		public CompletionProposal(string label, string text, string info)
+ 		{
+ 			this.text = text;
+ 			this.label = label;
+ 			this.info = info;
+		}
  		
  	}
 
