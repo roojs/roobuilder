@@ -997,7 +997,7 @@ namespace Palete {
 					var ss = s.slice(1,-1); 
 					if (s[0] == '`' && GLib.Regex.match_simple("^[a-z]+$", ss) &&
 						complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-						var sci = CompletionProposal(ss,ss, "vala : " + ss);
+						var sci = new CompletionProposal(ss,ss, "vala : " + ss);
 						ret.add(sci);
 					}
 				}
@@ -1006,7 +1006,7 @@ namespace Palete {
 					var ss = miter.get_key();
 					
 					if (complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-						var sci = CompletionProposal(ss,ss, "vala namespace: " + ss);
+						var sci = new  CompletionProposal(ss,ss, "vala namespace: " + ss);
 						ret.add(sci);
 						
 					}
@@ -1014,7 +1014,7 @@ namespace Palete {
 				 
 				
 				if (complete_string != "_this" && "_this".index_of(complete_string,0) == 0 ) { // should we ignore exact matches... ???
-					var sci = CompletionProposal("_this - the top level element","_this",  
+					var sci = new CompletionProposal("_this - the top level element","_this",  
 						"Reference to the container object instance of this file");
 					ret.add(sci);
 					 
@@ -1122,7 +1122,7 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						var sci = CompletionProposal(prevbits + scls,prevbits + scls,scls);
+						var sci = new CompletionProposal(prevbits + scls,prevbits + scls,scls);
 						ret.add(sci);
 					 
 						 
@@ -1137,7 +1137,7 @@ namespace Palete {
 						}
 						// got a starting match..
 						
-						var sci = CompletionProposal(prevbits + scls  + citer.get_value().sig,prevbits + scls,scls);
+						var sci = new CompletionProposal(prevbits + scls  + citer.get_value().sig,prevbits + scls,scls);
 						ret.add(sci);
 						 
 					}
@@ -1174,7 +1174,7 @@ namespace Palete {
 					}
 					// got a matching property...
 					// return type?
-					var sci = CompletionProposal( cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")",
+					var sci = new CompletionProposal( cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")",
 							prevbits + cprop.name + "(",cprop.doctxt);
 						ret.add(sci);
 						 
@@ -1191,7 +1191,7 @@ namespace Palete {
 						continue;
 					}
 					// got a matching property...
-					var sci = CompletionProposal(cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")",
+					var sci = new CompletionProposal(cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")",
 							prevbits + cprop.name,cprop.doctxt);
 						ret.add(sci);
 					
