@@ -968,14 +968,14 @@ namespace Palete {
 			 
 		}
 		
-		public override  Gee.ArrayList<Palete.CompletionProposal> suggestComplete(
+		public override  Gee.ArrayList<CompletionProposal> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
 				JsRender.NodeProp? xxxprop, // is this even used?
 				string complete_string
 		) { 
 			
-			var ret =  new Gee.ArrayList<Palete.CompletionProposal>();
+			var ret =  new Gee.ArrayList<CompletionProposal>();
 			// completion rules??
 			
 			// make sure data is loaded
