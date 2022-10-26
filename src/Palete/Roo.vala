@@ -526,12 +526,12 @@ namespace Palete {
 					}
 					// got a matching property...
 					// return type?
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  prop.name + prop.sig + " :  ("+ prop.propertyof + ")";
-					sci.text = prevbits + prop.name + "(";
-					sci.info = prop.doctxt;
-					ret.append(sci);
+					
+					
+					var sci = new CompletionProposal(prop.name + prop.sig + " :  ("+ prop.propertyof + ")",
+						prevbits + prop.name + "(",prop.doctxt);
+					ret.add(sci);
+					 
 				}
 				
 				// get the properties / methods and subclasses.. of cls..
