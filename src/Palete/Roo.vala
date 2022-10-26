@@ -393,14 +393,10 @@ namespace Palete {
 				for(var i = 0; i <  JsRender.Lang.match_strings.size ; i++) {
 					var str = JsRender.Lang.match_strings.get(i);
 					if (complete_string != str && str.index_of(complete_string,0) == 0 ) { 
-						// should we ignore exact matches... ???
-						var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label =  str;
-						sci.text = str;
-						sci.info = "javascript: " + str;
-						
-						ret.append(sci);
+						// should we ignore exact matches... ???tr,str,
+						var sci = new CompletionProposal(str,str, "javascript: " + str);
+						ret.add(sci);
+						 
 					}
 					
 					
