@@ -547,8 +547,7 @@ namespace Palete {
 					var sci = new CompletionProposal(prop.name + prop.type + " :  ("+ prop.propertyof + ")",
 						prevbits + prop.name + "(",prop.doctxt);
 					ret.add(sci);
-					.
-					 
+				
 				}
 					 
 					
