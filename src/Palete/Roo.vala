@@ -372,14 +372,14 @@ namespace Palete {
 			 return true;
 			 
 		}
-		public override  List<SourceCompletionItem> suggestComplete(
+		public override  Gee.ArrayList<CompletionProposal> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
 				JsRender.NodeProp? xxprop,
 				string complete_string
 		) { 
 			
-			var ret =  new List<SourceCompletionItem>();
+			var ret =  new Gee.ArrayList<CompletionProposal>();
 			// completion rules??
 			
 			// Roo......
