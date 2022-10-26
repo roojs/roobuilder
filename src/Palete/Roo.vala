@@ -404,22 +404,16 @@ namespace Palete {
 				if (complete_string != "Roo" && "Roo".index_of(complete_string,0) == 0 ) { 
 					// should we ignore exact matches... ???
 				
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  "Roo - A Roo class";
-					sci.text = "Roo";
-					sci.info = "Roo Library";
-						
-					ret.append(sci);
+					var sci = new CompletionProposal("Roo - A Roo class","Roo", "Roo Library");
+					ret.add(sci);
+				 
 				}
 				if (complete_string != "_this" && "_this".index_of(complete_string,0) == 0 ) { 
 					// should we ignore exact matches... ???
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  "_this - Reference to the global pointer to the files main class instance";
-					sci.text = "_this";
-					sci.info = "Reference to the global pointer to the files main class instance";
-					ret.append(sci);
+					var sci = new CompletionProposal("_this - Reference to the global pointer to the files main class instance",
+						"_this", "Reference to the global pointer to the files main class instance");
+					ret.add(sci);
+					 
 				}
 				return ret;
 			}
@@ -514,12 +508,8 @@ namespace Palete {
 						}
 						
 						// got a starting match..
-						var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label =  scls;
-						sci.text = scls;
-						sci.info = scls;
-						ret.append(sci);
+						var sci = new CompletionProposal(scls,scls,scls);
+						ret.add(sci);
 					}
 					return ret;
 				}
