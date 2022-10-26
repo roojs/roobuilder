@@ -997,12 +997,8 @@ namespace Palete {
 					var ss = s.slice(1,-1); 
 					if (s[0] == '`' && GLib.Regex.match_simple("^[a-z]+$", ss) &&
 						complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-						var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = ss;
-						sci.text = ss;
-						sci.info = "vala : " + ss;
-						ret.append(sci);
+						var sci = CompletionProposal(ss,ss, "vala : " + ss);
+						ret.add(sci);
 					}
 				}
 				var miter = ((Project.Gtk)this.project).gir_cache.map_iterator();
@@ -1010,25 +1006,18 @@ namespace Palete {
 					var ss = miter.get_key();
 					
 					if (complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-					
-							var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = ss;
-						sci.text = ss;
-						sci.info = "vala namespace: " + ss;
-						ret.append(sci);
+						var sci = CompletionProposal(ss,ss, "vala namespace: " + ss);
+						ret.add(sci);
+						
 					}
 				}
 				 
 				
 				if (complete_string != "_this" && "_this".index_of(complete_string,0) == 0 ) { // should we ignore exact matches... ???
-					
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label = "_this - the top level element";
-					sci.text = "_this";
-					sci.info = "Reference to the container object instance of this file";
-					ret.append(sci);
+					var sci = CompletionProposal("_this - the top level element","_this",  
+						"Reference to the container object instance of this file");
+					ret.add(sci);
+					 
 				}
 				// basic types..
 				
