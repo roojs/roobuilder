@@ -484,7 +484,7 @@ namespace Palete
 		public abstract GirObject? getClass(string ename);
 	
 		public abstract bool typeOptions(string fqn, string key, string type, out string[] opts);
-		public abstract  List<SourceCompletionItem> suggestComplete(
+		public abstract  Gee.ArrayList<CompletionProposal> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
 				JsRender.NodeProp? prop,
