@@ -543,13 +543,12 @@ namespace Palete {
 					if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
 						continue;
 					}
-					// got a matching property...
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  prop.name + " : " + prop.type + " ("+ prop.propertyof + ")";
-					sci.text = prevbits + prop.name;
-					sci.info = prop.doctxt;
-					ret.append(sci);
+					// got a matching property..
+					var sci = new CompletionProposal(prop.name + prop.type + " :  ("+ prop.propertyof + ")",
+						prevbits + prop.name + "(",prop.doctxt);
+					ret.add(sci);
+					.
+					 
 				}
 					 
 					
