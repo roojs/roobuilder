@@ -21,6 +21,7 @@ public class DialogTemplateSelect : Object
 
         // my vars (def)
     public Xcls_MainWindow window;
+    public signal void complete (JsRender.Node? node);
     public Palete.Palete palete;
     public JsRender.Node node;
     public Project.Project project;

@@ -8,6 +8,7 @@
    "# Xcls_MainWindow window" : "",
    "$ modal" : true,
    "$ xns" : "Gtk",
+   "@ void complete" : "(JsRender.Node? node)",
    "default_height" : 200,
    "default_width" : 400,
    "items" : [
