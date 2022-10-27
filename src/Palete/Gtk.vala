@@ -1151,7 +1151,7 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						var sci = CompletionProposal(prevbits + scls  + citer.get_value().sig,prevbits + scls,scls);
+						var sci = new CompletionProposal(prevbits + scls  + citer.get_value().sig,prevbits + scls,scls);
 						ret.add(sci);
 						 
 					}
