@@ -99,8 +99,8 @@ public class Xcls_DialogPluginWebkit : Object
          var  db = project.roo_database;
          
         
-         this.el.show_all();
-         var   ret = "";
+         this.el.show();
+          
          while (true) {
         
             var runhtml = "<script type=\"text/javascript\">\n" ;
@@ -183,11 +183,7 @@ public class Xcls_DialogPluginWebkit : Object
            
         }
         
-        // now we save it..
-        this.el.hide();
-        
-        return ret;
-        
+        / 
         
         
     }
