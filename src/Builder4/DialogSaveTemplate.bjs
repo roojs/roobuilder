@@ -4,8 +4,8 @@
   {
    "# JsRender.Node data" : "",
    "# Palete.Palete palete" : "",
-   "$ modal" : true,
    "$ xns" : "Gtk",
+   "bool modal" : true,
    "default_height" : 200,
    "default_width" : 400,
    "items" : [
