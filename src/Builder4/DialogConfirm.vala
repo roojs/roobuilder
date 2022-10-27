@@ -39,14 +39,14 @@ public class DialogConfirm : Object
     }
 
     // user defined functions
-    public void showIt (string title, string msg, ) {
+    public void showIt // caller needs to connect to the  response -  to get the result.
+      
+      (string title, string msg) {
          //if (!this.el) { this.init(); } 
          //this.success = success;
          this.el.title = title;
         this.el.text =  msg;
         this.el.show();
-        var ret =   this.el.run();
-        //print("ret got %d", ret);
        
      
     }
