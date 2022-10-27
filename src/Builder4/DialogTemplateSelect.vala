@@ -160,7 +160,6 @@ public class DialogTemplateSelect : Object
     		this.complete(node);
     		return; 
     	}
-    	this.el.set_attached_to( mwindow.el);
     	this.el.set_transient_for( mwindow.el);
     
     	//opts.unshift({ path: '' , name :'Just add Element' });

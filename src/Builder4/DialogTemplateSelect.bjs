@@ -293,7 +293,6 @@
     "\t\tthis.complete(node);",
     "\t\treturn; ",
     "\t}",
-    "\tthis.el.set_attached_to( mwindow.el);",
     "\tthis.el.set_transient_for( mwindow.el);",
     "",
     "\t//opts.unshift({ path: '' , name :'Just add Element' });",
