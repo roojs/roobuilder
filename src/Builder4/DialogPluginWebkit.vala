@@ -75,8 +75,7 @@ public class Xcls_DialogPluginWebkit : Object
         		         this.complete("");
         		    }
         		    // keep showing...?
-         		}
-        });
+         		});
     }
 
     // user defined functions
