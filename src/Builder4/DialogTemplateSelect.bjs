@@ -2,9 +2,9 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# Xcls_MainWindow window" : "",
    "$ modal" : true,
    "$ xns" : "Gtk",
-   "Xcls_MainWindow window" : "",
    "default_height" : 200,
    "default_width" : 400,
    "items" : [
