@@ -59,9 +59,11 @@ public class DialogTemplateSelect : Object
     }
 
     // user defined functions
-    public void showIt (Xcls_MainWindow mwindow, Palete.Palete pal, JsRender.Node node, Project.Project project) {
+    public void showIt (Xcls_MainWindow mwindow, Palete.Palete pal, 
+     JsRender.Node node, 
+     Project.Project project) {
         
-        this.el.show_all();
+        this.el.show();
         var opts = pal.listTemplates(node);
         if (opts.length() < 1) {
             this.el.hide();
@@ -82,7 +84,9 @@ public class DialogTemplateSelect : Object
          
          _this.dbcombo.el.set_active(-1);
          
-         
+         this.window = mwindow;
+         this.palete = pal;
+         this.project = project;
        
         var res = this.el.run();
         this.el.hide();    
