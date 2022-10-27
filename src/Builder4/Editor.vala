@@ -281,6 +281,7 @@ public class Editor : Object
             this.always_show_image = true;
 
             // set gobject values
+            this.el.icon_name = "\"\"";
             this.el.label = "Save";
             var child_0 = new Xcls_Image4( _this );
             child_0.ref();

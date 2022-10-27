@@ -49,6 +49,7 @@
          "  "
         ]
        },
+       "string icon_name" : "\"\"",
        "xtype" : "Button"
       },
       {
