@@ -11,27 +11,27 @@
    "default_width" : 400,
    "items" : [
     {
-     "$ pack" : "get_content_area().add ",
+     "$ pack" : "get_content_area().append",
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,false,0",
+       "* pack" : "append",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "int margin_end" : 3,
        "int margin_start" : 3,
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "pack_start,false,false",
+         "* pack" : "append",
          "label" : "Select Template : ",
          "xtype" : "Label"
         },
         {
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.cellrenderer.el , \"markup\", 1 );",
-         "* pack" : "add",
+         "* pack" : "append",
          "id" : "combo",
          "items" : [
           {
@@ -85,21 +85,21 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,false,0",
+       "* pack" : "append",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "int margin_end" : 3,
        "int margin_start" : 3,
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "pack_start,false,false",
+         "* pack" : "append",
          "label" : "Select Database Table : ",
          "xtype" : "Label"
         },
         {
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
-         "* pack" : "add",
+         "* pack" : "append",
          "id" : "dbcombo",
          "items" : [
           {

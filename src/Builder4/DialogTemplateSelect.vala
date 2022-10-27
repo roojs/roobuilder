@@ -175,10 +175,10 @@ public class DialogTemplateSelect : Object
             // set gobject values
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false,0 );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_Box8( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , false,false,0 );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions
@@ -204,10 +204,10 @@ public class DialogTemplateSelect : Object
             this.el.margin_start = 3;
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_combo( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions
@@ -361,10 +361,10 @@ public class DialogTemplateSelect : Object
             this.el.margin_start = 3;
             var child_0 = new Xcls_Label9( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_dbcombo( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions
