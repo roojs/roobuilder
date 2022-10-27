@@ -176,11 +176,13 @@
     }
    ],
    "listeners" : {
-    "delete_event" : [
-     "  (self, event)  =>{",
-     "    this.el.hide();",
-     "    return true;",
-     "}"
+    "close_request" : [
+     "( ) => {",
+     "",
+     " this.el.hide();",
+     "    return true;;",
+     "}",
+     ""
     ],
     "response" : [
      "(res) => {",

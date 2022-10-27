@@ -51,9 +51,10 @@ public class DialogTemplateSelect : Object
         this.el.add_action_widget (  child_3.el , 2 );
 
         //listeners
-        this.el.delete_event.connect( (self, event)  =>{
-            this.el.hide();
-            return true;
+        this.el.close_request.connect( ( ) => {
+        
+         this.el.hide();
+            return true;;
         });
         this.el.response.connect( (res) => {
         
