@@ -95,7 +95,7 @@
    "| void showIt" : [
     " (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {",
     " ",
-    "    ",
+    "    \tthis.palete = palete;",
     "        this.el.set_transient_for(parent);",
     "        this.el.modal = true;",
     "        ",

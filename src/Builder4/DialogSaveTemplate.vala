@@ -83,7 +83,7 @@ public class DialogSaveTemplate : Object
     // user defined functions
     public void showIt (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {
      
-        
+        	this.palete = palete;
             this.el.set_transient_for(parent);
             this.el.modal = true;
             
