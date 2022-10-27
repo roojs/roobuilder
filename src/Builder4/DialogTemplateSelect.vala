@@ -36,7 +36,7 @@ public class DialogTemplateSelect : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.get_content_area().add( child_0.el );
         var child_1 = new Xcls_Button13( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 0 );
@@ -170,6 +170,7 @@ public class DialogTemplateSelect : Object
 
 
             // my vars (def)
+        public gint margin;
 
         // ctor
         public Xcls_Box3(DialogTemplateSelect _owner )
@@ -178,9 +179,9 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+            this.margin = 3;
 
             // set gobject values
-            this.el.margin = 3;
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false );
@@ -281,7 +282,7 @@ public class DialogTemplateSelect : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -326,6 +327,7 @@ public class DialogTemplateSelect : Object
 
 
             // my vars (def)
+        public gint margin;
 
         // ctor
         public Xcls_Box8(DialogTemplateSelect _owner )
@@ -334,9 +336,9 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
+            this.margin = 3;
 
             // set gobject values
-            this.el.margin = 3;
             var child_0 = new Xcls_Label9( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false );
@@ -437,7 +439,7 @@ public class DialogTemplateSelect : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
