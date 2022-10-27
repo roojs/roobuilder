@@ -66,7 +66,7 @@ public class DialogTemplateSelect : Object
         	var project = _this.project;
         	if (this.plugin == null) {
         	   this.plugin = new Xcls_DialogPluginWebkit();
-        	   this.plugin.complete((json_str) => {
+        	   this.plugin.connect.complete((json_str) => {
           			print("json_str = %s\n", json_str);
                     if (json_str.length < 1) {
         				this.complete(_this.node);
