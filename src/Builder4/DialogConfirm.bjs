@@ -23,7 +23,7 @@
    "text" : "Test",
    "title" : "Please Confirm ",
    "xtype" : "MessageDialog",
-   "| int show" : [
+   "| void showIt" : [
     "  (string title, string msg, ) {",
     "     //if (!this.el) { this.init(); } ",
     "     //this.success = success;",
