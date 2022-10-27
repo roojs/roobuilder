@@ -23,7 +23,6 @@
         ""
        ],
        "* pack" : "pack_start,false,true,3",
-       "gboolean expand" : true,
        "items" : [
         {
          "$ xns" : "WebKit",

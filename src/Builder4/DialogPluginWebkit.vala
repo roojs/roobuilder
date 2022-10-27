@@ -228,7 +228,6 @@ public class Xcls_DialogPluginWebkit : Object
 
 
             // my vars (def)
-        public gboolean expand;
 
         // ctor
         public Xcls_ScrolledWindow3(Xcls_DialogPluginWebkit _owner )
@@ -237,7 +236,6 @@ public class Xcls_DialogPluginWebkit : Object
             this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
-            this.expand = true;
 
             // set gobject values
             var child_0 = new Xcls_webview( _this );
