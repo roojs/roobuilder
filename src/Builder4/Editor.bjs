@@ -32,14 +32,6 @@
        "* pack" : "append",
        "bool always_show_image" : true,
        "id" : "save_button",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "image",
-         "string icon_name" : "document-save",
-         "xtype" : "Image"
-        }
-       ],
        "label" : "Save",
        "listeners" : {
         "clicked" : [
@@ -49,7 +41,7 @@
          "  "
         ]
        },
-       "string icon_name" : "\"\"",
+       "string icon_name" : "document-save",
        "xtype" : "Button"
       },
       {
@@ -94,14 +86,6 @@
        "* pack" : "append",
        "bool always_show_image" : true,
        "id" : "close_btn",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "image",
-         "string icon_name" : "window-close",
-         "xtype" : "Image"
-        }
-       ],
        "listeners" : {
         "clicked" : [
          " () => { ",
@@ -111,6 +95,7 @@
          "  "
         ]
        },
+       "string icon_name" : "window-close",
        "xtype" : "Button"
       }
      ],
@@ -751,6 +736,7 @@
          ""
         ]
        },
+       "string icon_name" : "\"\"",
        "string label" : "Next",
        "xtype" : "Button"
       },
