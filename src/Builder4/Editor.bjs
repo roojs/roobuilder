@@ -14,7 +14,7 @@
    "# string activeEditor" : "\"\"",
    "$ homogeneous" : false,
    "$ xns" : "Gtk",
-   "* pack" : "add",
+   "* pack" : "append",
    "@ void save" : "()",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "bool hexpand" : true,
@@ -24,7 +24,7 @@
     {
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
-     "* pack" : "pack_start,false,true",
+     "* pack" : "append",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "items" : [
       {

@@ -63,7 +63,7 @@ public class Editor : Object
         this.el.vexpand = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.pack_start (  child_0.el , false,true );
+        this.el.append (  child_0.el  );
         var child_1 = new Xcls_RightEditor( _this );
         child_1.ref();
         this.el.add(  child_1.el );
