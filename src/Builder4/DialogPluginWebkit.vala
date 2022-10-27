@@ -93,6 +93,8 @@ public class Xcls_DialogPluginWebkit : Object
      
      (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
      
+     	this.cls = cls;
+     	this.tbl = tbl;
         if (parent  != null) {
             this.el.set_transient_for(parent);
             this.el.modal = true;
@@ -100,7 +102,7 @@ public class Xcls_DialogPluginWebkit : Object
         this.result_json = "";
          var  db = project.roo_database;
          
-        
+        cl
          this.el.show();
           
      
