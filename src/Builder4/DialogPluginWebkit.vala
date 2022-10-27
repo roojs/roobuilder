@@ -102,8 +102,7 @@ public class Xcls_DialogPluginWebkit : Object
         }
         this.result_json = "";
          var  db = project.roo_database;
-         
-        cl
+          
          this.el.show();
           
      
