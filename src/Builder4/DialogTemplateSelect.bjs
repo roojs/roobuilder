@@ -184,7 +184,8 @@
     "response" : [
      "(res) => {",
      "",
-     "",
+     "\tvar node = _this.node;",
+     "\t",
      "     this.el.hide();    ",
      "    //var ix = _this.combo.el.get_active();",
      "    if (res < 1 ) {",

@@ -56,7 +56,8 @@ public class DialogTemplateSelect : Object
         });
         this.el.response.connect( (res) => {
         
-        
+        	var node = _this.node;
+        	
              this.el.hide();    
             //var ix = _this.combo.el.get_active();
             if (res < 1 ) {
