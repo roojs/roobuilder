@@ -193,7 +193,7 @@
      "",
      "\tvar node = _this.node;",
      "\tvar project = _this.project;",
-     "\t var plug = mwindow.windowstate.webkit_plugin;",
+     "\t var plug = this.window.windowstate.webkit_plugin;",
      "     ",
      "\t",
      "     this.el.hide();    ",
