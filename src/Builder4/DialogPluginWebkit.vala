@@ -48,7 +48,33 @@ public class Xcls_DialogPluginWebkit : Object
         //listeners
         this.el.response.connect( (response_id) => {
         
-        
+         		 
+        		     if (response_id == 1) { // OK...
+        		         var loop = new MainLoop();
+        		         // run toBJS to get the data... (calls back into alert handler)
+        		            _this.result_json = "";
+        		             this.webview.el.run_javascript.begin("Editor." + cls + ".panel.toBJS();", null, (obj, res) => {
+        		                 try {
+        		                    this.webview.el.run_javascript.end(res);
+        		                } catch(Error e) {
+        		            
+        		                 }
+        		                 loop.quit();
+        		             });
+        		             loop.run();
+        		             ret = _this.result_json;
+        		             
+        		         
+        		//           print("LOOP END?");
+        		         // try and get the resopse...
+        		        break;
+        		     }
+        		    if (response_id < 1) {
+        		        this.el.hide();
+        		         this.complete("");
+        		    }
+        		    // keep showing...?
+         		}
         });
     }
 
