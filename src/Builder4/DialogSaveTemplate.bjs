@@ -58,7 +58,7 @@
     ]
    },
    "xtype" : "Dialog",
-   "| void show" : [
+   "| void showIt" : [
     " (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {",
     " ",
     "    ",
