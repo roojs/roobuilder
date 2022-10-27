@@ -44,13 +44,6 @@ public class Xcls_DialogPluginWebkit : Object
         var child_3 = new Xcls_Button7( _this );
         child_3.ref();
         this.el.add_action_widget (  child_3.el , 1 );
-
-        //listeners
-        this.el.delete_event.connect( (self, event) => {
-            this.el.hide();
-            return true; 
-            //test  
-        });
     }
 
     // user defined functions

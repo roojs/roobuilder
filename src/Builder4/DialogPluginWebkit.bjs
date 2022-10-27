@@ -127,15 +127,6 @@
      "xtype" : "Button"
     }
    ],
-   "listeners" : {
-    "delete_event" : [
-     "(self, event) => {",
-     "    this.el.hide();",
-     "    return true; ",
-     "    //test  ",
-     "}  "
-    ]
-   },
    "string result_json" : "",
    "string tmpjs" : "",
    "utf8 title" : "Add / Edit Component",
