@@ -12,6 +12,7 @@
     {
      "$ pack" : "get_content_area().add",
      "$ xns" : "Gtk",
+     "* pack" : "append",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "gboolean homogeneous" : false,
      "items" : [

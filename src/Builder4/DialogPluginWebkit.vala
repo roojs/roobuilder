@@ -34,7 +34,7 @@ public class Xcls_DialogPluginWebkit : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.append (  child_0.el  );
         var child_1 = new Xcls_Button5( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 3 );
@@ -54,6 +54,16 @@ public class Xcls_DialogPluginWebkit : Object
     }
 
     // user defined functions
+    public bool has_plugin (string cls) {
+    
+         return GLib.FileUtils.test(
+                BuilderApplication.configDirectory() + "/resources/Editors/Editor." + cls + ".js",
+                GLib.FileTest.IS_REGULAR
+          );
+        
+    
+    
+    }
     public string show (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
      
         if (parent  != null) {
@@ -186,16 +196,6 @@ public class Xcls_DialogPluginWebkit : Object
         
         
     }
-    public bool has_plugin (string cls) {
-    
-         return GLib.FileUtils.test(
-                BuilderApplication.configDirectory() + "/resources/Editors/Editor." + cls + ".js",
-                GLib.FileTest.IS_REGULAR
-          );
-        
-    
-    
-    }
     public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
@@ -228,17 +228,18 @@ public class Xcls_DialogPluginWebkit : Object
 
 
             // my vars (def)
+        public gboolean expand;
 
         // ctor
         public Xcls_ScrolledWindow3(Xcls_DialogPluginWebkit _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
+            this.expand = true;
 
             // set gobject values
-            this.el.expand = true;
             var child_0 = new Xcls_webview( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
