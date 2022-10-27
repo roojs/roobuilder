@@ -22,7 +22,7 @@
         " ",
         ""
        ],
-       "* pack" : "pack_start,false,true,3",
+       "* pack" : "append",
        "bool hexpand" : true,
        "bool vexpand" : true,
        "items" : [

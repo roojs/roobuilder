@@ -216,7 +216,7 @@ public class Xcls_DialogPluginWebkit : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_ScrolledWindow3( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,true,3 );
+            this.el.append (  child_0.el  );
         }
 
         // user defined functions
