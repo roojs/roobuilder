@@ -104,7 +104,7 @@ public class Xcls_DialogPluginWebkit : Object
         
          this.el.show();
           
-         while (true) {
+     
         
             var runhtml = "<script type=\"text/javascript\">\n" ;
             string builderhtml;
@@ -184,9 +184,7 @@ public class Xcls_DialogPluginWebkit : Object
             );
         
            
-        }
         
-        / 
         
         
     }
