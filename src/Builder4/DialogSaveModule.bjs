@@ -20,13 +20,13 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "label" : "Name",
        "xtype" : "Label"
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "id" : "name",
        "xtype" : "Entry"
       }

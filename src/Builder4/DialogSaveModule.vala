@@ -115,10 +115,10 @@ public class DialogSaveModule : Object
             // set gobject values
             var child_0 = new Xcls_Label3( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_name( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions
