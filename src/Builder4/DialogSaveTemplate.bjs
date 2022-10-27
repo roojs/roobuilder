@@ -50,16 +50,11 @@
     "close_request" : [
      "( ) => {",
      "",
-     "\treturn bool;",
-     "}",
-     ""
-    ],
-    "delete_event" : [
-     " (self, event) => {",
-     "   this.el.response(Gtk.ResponseType.CANCEL);",
+     "\t this.el.response(Gtk.ResponseType.CANCEL);",
      "    return true;",
      " ",
-     "}"
+     "}",
+     ""
     ]
    },
    "xtype" : "Dialog",

@@ -43,10 +43,7 @@ public class DialogSaveTemplate : Object
         //listeners
         this.el.close_request.connect( ( ) => {
         
-        	return bool;
-        });
-        this.el.delete_event.connect( (self, event) => {
-           this.el.response(Gtk.ResponseType.CANCEL);
+        	 this.el.response(Gtk.ResponseType.CANCEL);
             return true;
          
         });
