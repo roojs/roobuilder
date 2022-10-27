@@ -19,7 +19,8 @@
        "$ xns" : "Gtk",
        "* pack" : "pack_start,false,false,0",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "gint margin" : 3,
+       "int margin_end" : 3,
+       "int margin_start" : 3,
        "items" : [
         {
          "$ xns" : "Gtk",
