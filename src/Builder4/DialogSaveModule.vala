@@ -48,7 +48,7 @@ public class DialogSaveModule : Object
     }
 
     // user defined functions
-    public string show (Gtk.Window parent, Project.Project project, JsRender.Node data) {
+    public void showIt (Gtk.Window parent, Project.Project project, JsRender.Node data) {
      
          
         this.el.set_transient_for(parent);
