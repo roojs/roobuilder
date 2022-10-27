@@ -29,7 +29,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "bool always_show_image" : true,
        "id" : "save_button",
        "items" : [
@@ -53,7 +53,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "bool hexpand" : true,
        "xtype" : "Label"
       },
@@ -67,7 +67,7 @@
         "}",
         ""
        ],
-       "* pack" : "add",
+       "* pack" : "append",
        "bool draw_value" : true,
        "bool has_origin" : true,
        "bool sensitive" : true,
@@ -90,7 +90,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "bool always_show_image" : true,
        "id" : "close_btn",
        "items" : [

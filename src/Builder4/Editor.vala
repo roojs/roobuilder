@@ -247,16 +247,16 @@ public class Editor : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_save_button( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_Label5( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
             var child_2 = new Xcls_Scale6( _this );
             child_2.ref();
-            this.el.add (  child_2.el  );
+            this.el.append (  child_2.el  );
             var child_3 = new Xcls_close_btn( _this );
             child_3.ref();
-            this.el.add (  child_3.el  );
+            this.el.append (  child_3.el  );
         }
 
         // user defined functions
