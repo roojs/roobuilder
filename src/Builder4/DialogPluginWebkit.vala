@@ -54,7 +54,7 @@ public class Xcls_DialogPluginWebkit : Object
         		         var loop = new MainLoop();
         		         // run toBJS to get the data... (calls back into alert handler)
         		            _this.result_json = "";
-        		             this.webview.el.run_javascript.begin("Editor." + cls + ".panel.toBJS();", null, (obj, res) => {
+        		             this.webview.el.run_javascript.begin("Editor." + this.cls + ".panel.toBJS();", null, (obj, res) => {
         		                 try {
         		                    this.webview.el.run_javascript.end(res);
         		                } catch(Error e) {
@@ -63,7 +63,7 @@ public class Xcls_DialogPluginWebkit : Object
         		                 loop.quit();
         		             });
         		             loop.run();
-        		             ret = _this.result_json;
+        		             this.complete(_this.result_json);
         		             
         		         
         		//           print("LOOP END?");
