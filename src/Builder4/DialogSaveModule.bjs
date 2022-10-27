@@ -46,6 +46,15 @@
      "xtype" : "Button"
     }
    ],
+   "listeners" : {
+    "response" : [
+     "(response_id) => {",
+     "",
+     "",
+     "}",
+     ""
+    ]
+   },
    "xtype" : "Dialog",
    "| string show" : [
     " (Gtk.Window parent, Project.Project project, JsRender.Node data) {",
