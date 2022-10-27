@@ -22,6 +22,7 @@ public class DialogTemplateSelect : Object
         // my vars (def)
     public Xcls_MainWindow window;
     public Palete.Palete palete;
+    public JsRender.Node node;
 
     // ctor
     public DialogTemplateSelect()

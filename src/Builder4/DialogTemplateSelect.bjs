@@ -2,6 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# JsRender.Node node" : "",
    "# Palete.Palete palete" : "",
    "# Xcls_MainWindow window" : "",
    "$ modal" : true,
