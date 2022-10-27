@@ -14,6 +14,7 @@ public class DialogConfirm : Object
     }
 
         // my vars (def)
+    public signal void closed (int response);
 
     // ctor
     public DialogConfirm()
