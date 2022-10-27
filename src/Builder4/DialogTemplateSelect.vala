@@ -52,10 +52,14 @@ public class DialogTemplateSelect : Object
             this.el.hide();
             return true;
         });
+        this.el.response.connect( (response_id) => {
+        
+        
+        });
     }
 
     // user defined functions
-    public JsRender.Node? show (Xcls_MainWindow mwindow, Palete.Palete pal, JsRender.Node node, Project.Project project) {
+    public void showIt (Xcls_MainWindow mwindow, Palete.Palete pal, JsRender.Node node, Project.Project project) {
         
         this.el.show_all();
         var opts = pal.listTemplates(node);

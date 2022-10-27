@@ -178,11 +178,18 @@
      "    this.el.hide();",
      "    return true;",
      "}"
+    ],
+    "response" : [
+     "(response_id) => {",
+     "",
+     "",
+     "}",
+     ""
     ]
    },
    "title" : "Add an Object",
    "xtype" : "Dialog",
-   "| JsRender.Node? show" : [
+   "| void showIt" : [
     " (Xcls_MainWindow mwindow, Palete.Palete pal, JsRender.Node node, Project.Project project) {",
     "    ",
     "    this.el.show_all();",
