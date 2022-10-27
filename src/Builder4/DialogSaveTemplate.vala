@@ -54,7 +54,7 @@ public class DialogSaveTemplate : Object
         	     return;
         	}
         	
-        	name = _this.name.el.get_text();
+        	var name = _this.name.el.get_text();
         	if (name.length < 1) {
         	    Xcls_StandardErrorDialog.singleton().show(
         	         _this.el,

@@ -64,7 +64,7 @@
      "\t     return;",
      "\t}",
      "\t",
-     "\tname = _this.name.el.get_text();",
+     "\tvar name = _this.name.el.get_text();",
      "\tif (name.length < 1) {",
      "\t    Xcls_StandardErrorDialog.singleton().show(",
      "\t         _this.el,",
