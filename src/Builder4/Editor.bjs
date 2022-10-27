@@ -960,7 +960,7 @@
     "\tGtk.TextIter beg, st,en;",
     "\t bool has_wrapped_around;",
     "\tthis.buffer.el.get_iter_at_offset(out beg, this.last_search_end);",
-    "\tif (!this.searchcontext.forward2(beg, out st, out en, out has_wrapped_around)) {",
+    "\tif (!this.searchcontext.forward(beg, out st, out en, out has_wrapped_around)) {",
     "\t",
     "\t\tthis.last_search_end = 0; // not sure if this should happen",
     "\t} else {",
