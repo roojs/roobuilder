@@ -64,7 +64,41 @@ public class DialogTemplateSelect : Object
         
         	var node = _this.node;
         	var project = _this.project;
-        	 var plug = this.window.windowstate.webkit_plugin;
+        	if (this.plugin == null) {
+        	   this.plugin = new Xcls_DialogPluginWebkit();
+        	   this.plugin.complete((json_str) => {
+          			print("json_str = %s\n", json_str);
+                    if (json_str.length < 1) {
+        				this.complete(_this.node);
+        				return; 
+                    }
+                    var pa = new Json.Parser();
+                    try {
+        
+        	        	pa.load_from_data(json_str);
+        			} catch(Error e) {
+        			     this.complete(node);
+                		return; // 1 = just add it..
+            		}
+            		var new_node = pa.get_root();
+        		
+        			if (new_node.get_node_type () != Json.NodeType.OBJECT) {
+        				 this.complete(node);
+        						return; 
+        			}
+        			var obj = new_node.get_object ();
+        
+        			var ret = new JsRender.Node();
+        
+        			ret.loadFromJson(obj, 1);
+        	 		this.complete(ret);
+          		});
+          
+           }
+           
+           
+           
+           
              
         	
              this.el.hide();    
@@ -78,6 +112,7 @@ public class DialogTemplateSelect : Object
                 return; // 1 = just add it..
             }
             
+            
             // have they selected a table??
             
            Gtk.TreeIter iter; 
@@ -86,33 +121,11 @@ public class DialogTemplateSelect : Object
                  this.dbmodel.el.get_value (iter, 0, out vfname);
                  if (((string)vfname).length > 0 && plug.has_plugin(node.fqn())) {
                     plug.show(this.window.el, project, node.fqn(), (string)vfname);
-                    print("json_str = %s\n", json_str);
-                    if (json_str.length < 1) {
-        			   this.complete(node);
-        					return; 
-                    }
-                    var pa = new Json.Parser();
-                    try {
-        
-        	        pa.load_from_data(json_str);
-        	    } catch(Error e) {
-        	         this.complete(node);
-                return; // 1 = just add it..
-        	    }
-        	    var new_node = pa.get_root();
-            
-        	    if (new_node.get_node_type () != Json.NodeType.OBJECT) {
-        		     this.complete(node);
-        					return; 
-        	    }
-        	    var obj = new_node.get_object ();
-        
-        	    var ret = new JsRender.Node();
-        
-        	    ret.loadFromJson(obj, 1);
-         		this.complete(ret);
-                return; // 1 = just add it..
-                 }
+                    return;
+                }
+        	    this.complete(node);
+                 return; // 1 = just add it..
+                 
                 
             }
         
@@ -125,8 +138,8 @@ public class DialogTemplateSelect : Object
             this.model.el.get_value (iter, 0, out vfname);
             
              this.complete(pal.loadTemplate((string)vfname));
-                return; // 1 = just add it..
-            return ;
+              return; // 1 = just add it..
+          
         
         });
     }
