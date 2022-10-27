@@ -64,7 +64,7 @@ public class Xcls_DialogPluginWebkit : Object
         		                 loop.quit();
         		             });
         		             loop.run();
-        		             this.complete(_this.result_json);
+        		             _this.complete(_this.result_json);
         		             
         		         
         		//           print("LOOP END?");
@@ -73,7 +73,7 @@ public class Xcls_DialogPluginWebkit : Object
         		     }
         		    if (response_id < 1) {
         		        this.el.hide();
-        		         this.complete("");
+        		         _this.complete("");
         		    }
         		    // keep showing...?
          		});
