@@ -202,7 +202,7 @@
         "Gtk.SourceDrawSpacesFlags.SPACE",
         "    */"
        ],
-       "* pack" : "add",
+       "* pack" : "set_child",
        "Gtk.CssProvider css" : "null",
        "bool insert_spaces_instead_of_tabs" : true,
        "gboolean highlight_current_line" : true,
