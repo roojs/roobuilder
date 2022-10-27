@@ -47,6 +47,10 @@ public class DialogSaveTemplate : Object
             return true;
          
         });
+        this.el.response.connect( (response_id) => {
+        
+        
+        });
     }
 
     // user defined functions
