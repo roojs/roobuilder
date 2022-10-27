@@ -43,7 +43,7 @@ public class WindowState : Object
 	public Xcls_ValaCompileResults compile_results;
 	
 	// dialogs??
-	public Xcls_DialogPluginWebkit webkit_plugin;
+
 	
 	
 	//public Palete.ValaSource valasource; // the spawner that runs the vala compiler.
@@ -79,7 +79,7 @@ public class WindowState : Object
 
  		this.fileDetailsInit();
 
-		this.webkit_plugin = new Xcls_DialogPluginWebkit();
+
 		this.template_select = new DialogTemplateSelect();
 		this.children_loaded = true;
 		
