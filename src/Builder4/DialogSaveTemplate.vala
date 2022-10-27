@@ -15,8 +15,8 @@ public class DialogSaveTemplate : Object
     public Xcls_name name;
 
         // my vars (def)
-    public Palete.Palete palete;
     public JsRender.Node data;
+    public Palete.Palete palete;
 
     // ctor
     public DialogSaveTemplate()
@@ -32,7 +32,7 @@ public class DialogSaveTemplate : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.get_content_area().add( child_0.el );
         var child_1 = new Xcls_Button5( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 0 );
@@ -49,7 +49,7 @@ public class DialogSaveTemplate : Object
     }
 
     // user defined functions
-    public    void show (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {
+    public void show (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {
      
         
             this.el.set_transient_for(parent);
@@ -111,10 +111,10 @@ public class DialogSaveTemplate : Object
             // set gobject values
             var child_0 = new Xcls_Label3( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_name( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions

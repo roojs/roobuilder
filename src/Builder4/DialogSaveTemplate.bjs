@@ -11,7 +11,7 @@
    "items" : [
     {
      "$ pack" : [
-      " get_content_area().add",
+      " get_content_area().append",
       "",
       ""
      ],
@@ -20,13 +20,13 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "label" : "Name",
        "xtype" : "Label"
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "id" : "name",
        "xtype" : "Entry"
       }
@@ -56,7 +56,7 @@
     ]
    },
    "xtype" : "Dialog",
-   "|    void show" : [
+   "| void show" : [
     " (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {",
     " ",
     "    ",
