@@ -121,6 +121,7 @@
       "this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
       ""
      ],
+     "* pack" : "append",
      "bool vexpand" : true,
      "id" : "RightEditor",
      "items" : [
