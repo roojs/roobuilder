@@ -15,7 +15,7 @@ public class Xcls_DialogPluginWebkit : Object
     public Xcls_webview webview;
 
         // my vars (def)
-    public signal void complete ();
+    public signal void complete (string result);
     public string cls;
     public string tmpjs;
     public string result_json;

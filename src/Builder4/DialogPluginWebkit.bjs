@@ -3,7 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
-   "@ void complete" : "()",
+   "@ void complete" : "(string result)",
    "gboolean deletable" : true,
    "gboolean modal" : true,
    "gint default_height" : 500,
