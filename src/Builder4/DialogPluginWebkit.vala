@@ -44,6 +44,12 @@ public class Xcls_DialogPluginWebkit : Object
         var child_3 = new Xcls_Button7( _this );
         child_3.ref();
         this.el.add_action_widget (  child_3.el , 1 );
+
+        //listeners
+        this.el.response.connect( (response_id) => {
+        
+        
+        });
     }
 
     // user defined functions
@@ -148,37 +154,34 @@ public class Xcls_DialogPluginWebkit : Object
                 "xhttp://localhost/roobuilder/"
             );
         
-            
-        
-       
-             var response_id = this.el.run();
-            
-             if (response_id == 1) { // OK...
-                 var loop = new MainLoop();
-                 // run toBJS to get the data... (calls back into alert handler)
-                    _this.result_json = "";
-                     this.webview.el.run_javascript.begin("Editor." + cls + ".panel.toBJS();", null, (obj, res) => {
-                         try {
-                            this.webview.el.run_javascript.end(res);
-                        } catch(Error e) {
-                    
-                         }
-                         loop.quit();
-                     });
-                     loop.run();
-                     ret = _this.result_json;
-                     
-                 
-        //           print("LOOP END?");
-                 // try and get the resopse...
-                break;
-             }
-            if (response_id < 1) {
-                this.el.hide();
-                 return "";
-            }
-            // keep showing...?
-            continue;
+            this.connect.response((response_id) => {
+    		 
+    		     if (response_id == 1) { // OK...
+    		         var loop = new MainLoop();
+    		         // run toBJS to get the data... (calls back into alert handler)
+    		            _this.result_json = "";
+    		             this.webview.el.run_javascript.begin("Editor." + cls + ".panel.toBJS();", null, (obj, res) => {
+    		                 try {
+    		                    this.webview.el.run_javascript.end(res);
+    		                } catch(Error e) {
+    		            
+    		                 }
+    		                 loop.quit();
+    		             });
+    		             loop.run();
+    		             ret = _this.result_json;
+    		             
+    		         
+    		//           print("LOOP END?");
+    		         // try and get the resopse...
+    		        break;
+    		     }
+    		    if (response_id < 1) {
+    		        this.el.hide();
+    		         this.complete("");
+    		    }
+    		    // keep showing...?
+     		}
         }
         
         // now we save it..
