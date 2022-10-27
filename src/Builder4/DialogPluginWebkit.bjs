@@ -3,6 +3,7 @@
  "items" : [
   {
    "$ xns" : "Gtk",
+   "@ void complete" : "()",
    "gboolean deletable" : true,
    "gboolean modal" : true,
    "gint default_height" : 500,
@@ -179,7 +180,7 @@
     "}",
     ""
    ],
-   "| string showIt" : [
+   "| void showIt" : [
     " (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {",
     " ",
     "    if (parent  != null) {",

@@ -15,6 +15,7 @@ public class Xcls_DialogPluginWebkit : Object
     public Xcls_webview webview;
 
         // my vars (def)
+    public signal void complete ();
     public string tmpjs;
     public string result_json;
 
@@ -89,7 +90,7 @@ public class Xcls_DialogPluginWebkit : Object
     
     
     }
-    public string showIt (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
+    public void showIt (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
      
         if (parent  != null) {
             this.el.set_transient_for(parent);
