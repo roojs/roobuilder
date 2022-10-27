@@ -181,6 +181,8 @@
     ""
    ],
    "| void showIt" : [
+    " // for result hook into complete",
+    " ",
     " (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {",
     " ",
     "    if (parent  != null) {",

@@ -90,7 +90,9 @@ public class Xcls_DialogPluginWebkit : Object
     
     
     }
-    public void showIt (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
+    public void showIt // for result hook into complete
+     
+     (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
      
         if (parent  != null) {
             this.el.set_transient_for(parent);
