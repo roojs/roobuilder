@@ -62,7 +62,8 @@ public class DialogTemplateSelect : Object
         
         	var node = _this.node;
         	var project = _this.project;
-        	
+        	 var plug = mwindow.windowstate.webkit_plugin;
+             
         	
              this.el.hide();    
             //var ix = _this.combo.el.get_active();
@@ -149,8 +150,7 @@ public class DialogTemplateSelect : Object
          var db =  new Palete.RooDatabase.from_project(project);
          _this.dbmodel.loadData(db.readTablesGee());
          
-         var plug = mwindow.windowstate.webkit_plugin;
-         
+        
          _this.dbcombo.el.set_active(-1);
          
          this.window = mwindow;
