@@ -112,7 +112,7 @@
      "id" : "RightEditor",
      "items" : [
       {
-       "# Gtk.CssProvider css" : "null",
+       "# Gtk.CssProvider css" : "",
        "$ gboolean auto_indent" : true,
        "$ show_line_numbers" : true,
        "$ xns" : "GtkSource\t",
