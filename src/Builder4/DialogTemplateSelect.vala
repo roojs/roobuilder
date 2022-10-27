@@ -138,7 +138,8 @@ public class DialogTemplateSelect : Object
         var opts = pal.listTemplates(node);
         if (opts.length() < 1) {
             this.el.hide();
-            return node;
+             this.complete(node);
+    			return; 
         }
         this.el.set_attached_to( mwindow.el);
         this.el.set_transient_for( mwindow.el);
