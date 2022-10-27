@@ -145,39 +145,42 @@ public class DialogTemplateSelect : Object
     }
 
     // user defined functions
-    public void showIt (Xcls_MainWindow mwindow, Palete.Palete pal, 
-     JsRender.Node node, 
-     Project.Project project) {
-        
-        this.el.show();
-        
-        
-        
-        
-        var opts = pal.listTemplates(node);
-        if (opts.length() < 1) {
-            this.el.hide();
-             this.complete(node);
-    			return; 
-        }
-        this.el.set_attached_to( mwindow.el);
-        this.el.set_transient_for( mwindow.el);
-        
-        //opts.unshift({ path: '' , name :'Just add Element' });
-         _this.model.loadData(opts);
-         _this.combo.el.set_active(-1);
-         
-         
-         var db =  new Palete.RooDatabase.from_project(project);
-         _this.dbmodel.loadData(db.readTablesGee());
-         
-        
-         _this.dbcombo.el.set_active(-1);
-         
-         this.window = mwindow;
-         this.palete = pal;
-         this.node = node;
-         this.project = project;
+    public void showIt (
+     	Xcls_MainWindow mwindow, 
+     	Palete.Palete pal, 
+    	 JsRender.Node node, 
+    	 Project.Project project
+     ) {
+    
+    	this.el.show();
+    
+    
+    
+    
+    	var opts = pal.listTemplates(node);
+    	if (opts.length() < 1) {
+    	this.el.hide();
+    		this.complete(node);
+    		return; 
+    	}
+    	this.el.set_attached_to( mwindow.el);
+    	this.el.set_transient_for( mwindow.el);
+    
+    	//opts.unshift({ path: '' , name :'Just add Element' });
+    	_this.model.loadData(opts);
+    	_this.combo.el.set_active(-1);
+    
+    
+    	var db =  new Palete.RooDatabase.from_project(project);
+    	_this.dbmodel.loadData(db.readTablesGee());
+    
+    
+    	_this.dbcombo.el.set_active(-1);
+    
+    	this.window = mwindow;
+    	this.palete = pal;
+    	this.node = node;
+    	this.project = project;
        
     }
     public class Xcls_Box2 : Object
