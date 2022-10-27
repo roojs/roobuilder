@@ -7,7 +7,6 @@
    "$ modal" : true,
    "$ use_markup" : true,
    "$ xns" : "Gtk",
-   "@ void closed" : "(int response)",
    "flags" : "Gtk.DialogFlags.MODAL",
    "listeners" : {
     "close_request" : [
@@ -25,7 +24,7 @@
    "title" : "Please Confirm ",
    "xtype" : "MessageDialog",
    "| int show" : [
-    "  (string title, string msg) {",
+    "  (string title, string msg, closed onClose) {",
     "     //if (!this.el) { this.init(); } ",
     "     //this.success = success;",
     "     this.el.title = title;",

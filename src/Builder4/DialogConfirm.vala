@@ -14,7 +14,6 @@ public class DialogConfirm : Object
     }
 
         // my vars (def)
-    public signal void closed (int response);
 
     // ctor
     public DialogConfirm()
@@ -40,7 +39,7 @@ public class DialogConfirm : Object
     }
 
     // user defined functions
-    public int show (string title, string msg) {
+    public int show (string title, string msg, closed onClose) {
          //if (!this.el) { this.init(); } 
          //this.success = success;
          this.el.title = title;
