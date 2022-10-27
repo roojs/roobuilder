@@ -47,8 +47,7 @@ public class DialogConfirm : Object
         this.el.show();
         var ret =   this.el.run();
         //print("ret got %d", ret);
-        this.el.hide();
-        return ret;
+       
      
     }
 }
