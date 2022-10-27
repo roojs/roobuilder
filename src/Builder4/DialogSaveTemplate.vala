@@ -48,6 +48,7 @@ public class DialogSaveTemplate : Object
          
         });
         this.el.response.connect( (response_id) => {
+        	 
              if (response_id < 1) {
         		    this.el.hide();
         		     return;
@@ -69,9 +70,8 @@ public class DialogSaveTemplate : Object
         		    );
         		    return;
         		}
-        		break;
-        	}
-                palete.saveTemplate(name, data);
+        		
+                this.palete.saveTemplate(name, data);
                 
                 // now we save it..
                 this.el.hide();
