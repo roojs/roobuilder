@@ -100,7 +100,8 @@ public class DialogTemplateSelect : Object
         	    var new_node = pa.get_root();
             
         	    if (new_node.get_node_type () != Json.NodeType.OBJECT) {
-        		    return node;
+        		     this.complete(node);
+        					return; 
         	    }
         	    var obj = new_node.get_object ();
         
