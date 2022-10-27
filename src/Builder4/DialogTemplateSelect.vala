@@ -20,6 +20,7 @@ public class DialogTemplateSelect : Object
     public Xcls_dbmodel dbmodel;
 
         // my vars (def)
+    public Xcls_MainWindow window;
 
     // ctor
     public DialogTemplateSelect()
