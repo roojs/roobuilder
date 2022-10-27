@@ -5,6 +5,7 @@
    "# JsRender.Node node" : "",
    "# Palete.Palete palete" : "",
    "# Project.Project project" : "",
+   "# Xcls_DialogPluginWebkit? plugin" : "null",
    "# Xcls_MainWindow window" : "",
    "$ modal" : true,
    "$ xns" : "Gtk",
