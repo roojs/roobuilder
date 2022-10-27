@@ -4,6 +4,7 @@
   {
    "# JsRender.Node node" : "",
    "# Palete.Palete palete" : "",
+   "# Project.Project project" : "",
    "# Xcls_MainWindow window" : "",
    "$ modal" : true,
    "$ xns" : "Gtk",

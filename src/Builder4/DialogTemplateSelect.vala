@@ -23,6 +23,7 @@ public class DialogTemplateSelect : Object
     public Xcls_MainWindow window;
     public Palete.Palete palete;
     public JsRender.Node node;
+    public Project.Project project;
 
     // ctor
     public DialogTemplateSelect()
