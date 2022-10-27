@@ -67,7 +67,37 @@ public class DialogTemplateSelect : Object
         	
            
            
-           
+           if (this.plugin == null) {
+        	   this.plugin = new Xcls_DialogPluginWebkit();
+        	   this.plugin.complete.connect((json_str) => {
+          			print("json_str = %s\n", json_str);
+                    if (json_str.length < 1) {
+        				this.complete(_this.node);
+        				return; 
+                    }
+                    var pa = new Json.Parser();
+                    try {
+        
+        	        	pa.load_from_data(json_str);
+        			} catch(Error e) {
+        			     this.complete(node);
+                		return; // 1 = just add it..
+            		}
+            		var new_node = pa.get_root();
+        		
+        			if (new_node.get_node_type () != Json.NodeType.OBJECT) {
+        				 this.complete(node);
+        						return; 
+        			}
+        			var obj = new_node.get_object ();
+        
+        			var ret = new JsRender.Node();
+        
+        			ret.loadFromJson(obj, 1);
+        	 		this.complete(ret);
+          		});
+          
+           }
            
              
         	
@@ -120,6 +150,10 @@ public class DialogTemplateSelect : Object
      Project.Project project) {
         
         this.el.show();
+        
+        
+        
+        
         var opts = pal.listTemplates(node);
         if (opts.length() < 1) {
             this.el.hide();
