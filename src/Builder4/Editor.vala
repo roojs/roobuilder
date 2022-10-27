@@ -930,10 +930,10 @@ public class Editor : Object
             this.el.append (  child_2.el  );
             var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
-            this.el.add (  child_3.el  );
+            this.el.append (  child_3.el  );
             var child_4 = new Xcls_MenuButton20( _this );
             child_4.ref();
-            this.el.add(  child_4.el );
+            this.el.append (  child_4.el  );
         }
 
         // user defined functions

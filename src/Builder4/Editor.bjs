@@ -755,7 +755,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "bool always_show_image" : true,
        "bool sensitive" : false,
        "id" : "backBtn",
@@ -794,6 +794,7 @@
         "}",
         ""
        ],
+       "* pack" : "append",
        "bool always_show_image" : true,
        "items" : [
         {
