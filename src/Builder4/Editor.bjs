@@ -738,14 +738,6 @@
        "bool always_show_image" : true,
        "bool sensitive" : false,
        "id" : "backBtn",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "image",
-         "string icon_name" : "go-up",
-         "xtype" : "Image"
-        }
-       ],
        "listeners" : {
         "button_press_event" : [
          "(event) => {",
@@ -828,6 +820,7 @@
          "xtype" : "PopoverMenu"
         }
        ],
+       "string icon_name" : "\"\"",
        "string label" : "Settings",
        "xtype" : "MenuButton"
       }
