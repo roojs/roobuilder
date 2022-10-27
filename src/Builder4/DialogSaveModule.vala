@@ -61,37 +61,7 @@ public class DialogSaveModule : Object
          var   name = "";
         while (true) {
             var response_id = this.el.run();
-            if (response_id < 1) {
-                this.el.hide();
-                 return "";
-            }
-            
-            name = _this.name.el.get_text();
-            if (name.length < 1) {
-                Xcls_StandardErrorDialog.singleton().show(
-                     _this.el,
-                    "You must give the template a name. "
-                );
-                continue;
-            }
-            if (!Regex.match_simple ("^[A-Za-z][A-Za-z0-9.]+$", name) )
-            {
-                Xcls_StandardErrorDialog.singleton().show(
-                     _this.el,
-                    "Template Name must contain only letters dots"
-                );
-                continue;
-            }
-            break;
-        }
-        var f = project.newFile(name);
-        f.tree =  _this.data.deepClone();
-        f.save();
-        
-        // now we save it..
-        this.el.hide();
-        
-        return name;
+           
         
         
         
