@@ -551,6 +551,7 @@
     },
     {
      "$ xns" : "Gtk",
+     "* pack" : "append",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "bool homogeneous" : false,
      "bool vexpand" : false,
@@ -565,6 +566,7 @@
         "",
         ""
        ],
+       "* pack" : "append",
        "bool hexpand" : true,
        "id" : "search_entry",
        "int width_request" : 300,
