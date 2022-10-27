@@ -57,7 +57,7 @@ public class DialogSaveTemplate : Object
             this.el.modal = true;
             
               this.name.el.set_text("");
-            this.el.show_all();
+            this.el.show();
              var   name = "";
             while (true) {
                 var response_id = this.el.run();
