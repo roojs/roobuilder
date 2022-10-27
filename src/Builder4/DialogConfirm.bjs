@@ -9,7 +9,7 @@
    "$ xns" : "Gtk",
    "flags" : "Gtk.DialogFlags.MODAL",
    "listeners" : {
-    "delete_event" : [
+    "close_request" : [
      " (event) => {",
      "    this.el.response(Gtk.ResponseType.CANCEL);",
      "    this.el.hide();",
@@ -23,13 +23,13 @@
    "text" : "Test",
    "title" : "Please Confirm ",
    "xtype" : "MessageDialog",
-   "|   int show" : [
+   "| int show" : [
     "  (string title, string msg) {",
     "     //if (!this.el) { this.init(); } ",
     "     //this.success = success;",
     "     this.el.title = title;",
     "    this.el.text =  msg;",
-    "    this.el.show_all();",
+    "    this.el.show();",
     "    var ret =   this.el.run();",
     "    //print(\"ret got %d\", ret);",
     "    this.el.hide();",

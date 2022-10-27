@@ -30,7 +30,7 @@ public class DialogConfirm : Object
         this.el.use_markup = true;
 
         //listeners
-        this.el.delete_event.connect( (event) => {
+        this.el.close_request.connect( (event) => {
             this.el.response(Gtk.ResponseType.CANCEL);
             this.el.hide();
             return true;
@@ -39,12 +39,12 @@ public class DialogConfirm : Object
     }
 
     // user defined functions
-    public   int show (string title, string msg) {
+    public int show (string title, string msg) {
          //if (!this.el) { this.init(); } 
          //this.success = success;
          this.el.title = title;
         this.el.text =  msg;
-        this.el.show_all();
+        this.el.show();
         var ret =   this.el.run();
         //print("ret got %d", ret);
         this.el.hide();
