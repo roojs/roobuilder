@@ -10,11 +10,7 @@
    "default_width" : 400,
    "items" : [
     {
-     "$ pack" : [
-      " get_content_area().append",
-      "",
-      ""
-     ],
+     "$ pack" : " get_content_area().append",
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "items" : [
