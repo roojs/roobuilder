@@ -15,6 +15,7 @@ public class DialogSaveModule : Object
     public Xcls_name name;
 
         // my vars (def)
+    public signal void complete (string result);
     public JsRender.Node data;
     public Project.Project project;
 

@@ -6,6 +6,7 @@
    "# Project.Project project" : "",
    "$ modal" : true,
    "$ xns" : "Gtk",
+   "@ void complete" : "(string result)",
    "default_height" : 200,
    "default_width" : 400,
    "items" : [
