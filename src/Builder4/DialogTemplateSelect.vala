@@ -54,8 +54,64 @@ public class DialogTemplateSelect : Object
             this.el.hide();
             return true;
         });
-        this.el.response.connect( (response_id) => {
+        this.el.response.connect( (res) => {
         
+        
+             this.el.hide();    
+            //var ix = _this.combo.el.get_active();
+            if (res < 1 ) {
+            	this.complete(null);
+                return; // 0 = cancel.
+            }
+            if (res < 2 ) {
+                this.complete(node);
+                return; // 1 = just add it..
+            }
+            
+            // have they selected a table??
+            
+           Gtk.TreeIter iter; 
+            Value vfname;   
+            if (_this.dbcombo.el.get_active_iter (out iter)) {    
+                 this.dbmodel.el.get_value (iter, 0, out vfname);
+                 if (((string)vfname).length > 0 && plug.has_plugin(node.fqn())) {
+                    var json_str = plug.show(mwindow.el, project, node.fqn(), (string)vfname);
+                    print("json_str = %s\n", json_str);
+                    if (json_str.length < 1) {
+        
+                        return node;
+                    }
+                    var pa = new Json.Parser();
+                    try {
+        
+        	        pa.load_from_data(json_str);
+        	    } catch(Error e) {
+        	        return node;
+        	    }
+        	    var new_node = pa.get_root();
+            
+        	    if (new_node.get_node_type () != Json.NodeType.OBJECT) {
+        		    return node;
+        	    }
+        	    var obj = new_node.get_object ();
+        
+        	    var ret = new JsRender.Node();
+        
+        	    ret.loadFromJson(obj, 1);
+        	    return ret;
+                 }
+                
+            }
+        
+            if (!_this.combo.el.get_active_iter (out iter)) {
+        
+                return node; // nothing selected...
+            }
+           
+            this.model.el.get_value (iter, 0, out vfname);
+            
+            
+            return pal.loadTemplate((string)vfname);
         
         });
     }
