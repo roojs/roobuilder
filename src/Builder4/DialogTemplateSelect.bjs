@@ -2,6 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# Palete.Palete palete" : "",
    "# Xcls_MainWindow window" : "",
    "$ modal" : true,
    "$ xns" : "Gtk",
