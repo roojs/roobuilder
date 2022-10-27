@@ -62,7 +62,7 @@ public class DialogTemplateSelect : Object
         
         	var node = _this.node;
         	var project = _this.project;
-        	 var plug = mwindow.windowstate.webkit_plugin;
+        	 var plug = this.window.windowstate.webkit_plugin;
              
         	
              this.el.hide();    
