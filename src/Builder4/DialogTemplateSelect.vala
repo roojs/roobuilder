@@ -347,7 +347,6 @@ public class DialogTemplateSelect : Object
 
 
             // my vars (def)
-        public gint margin;
 
         // ctor
         public Xcls_Box8(DialogTemplateSelect _owner )
@@ -356,9 +355,10 @@ public class DialogTemplateSelect : Object
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
-            this.margin = 3;
 
             // set gobject values
+            this.el.margin_end = 3;
+            this.el.margin_start = 3;
             var child_0 = new Xcls_Label9( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,false );
