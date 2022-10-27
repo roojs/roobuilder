@@ -673,11 +673,11 @@
       {
        "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
-       "* pack" : "add",
+       "* pack" : "append",
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
+         "* pack" : "append",
          "bool always_show_image" : true,
          "bool visible" : false,
          "id" : "search_results",
@@ -727,6 +727,7 @@
       },
       {
        "$ xns" : "Gtk",
+       "* pack" : "append",
        "bool always_show_image" : true,
        "bool sensitive" : false,
        "id" : "nextBtn",
@@ -754,6 +755,7 @@
       },
       {
        "$ xns" : "Gtk",
+       "* pack" : "add",
        "bool always_show_image" : true,
        "bool sensitive" : false,
        "id" : "backBtn",
