@@ -119,8 +119,8 @@ public class DialogTemplateSelect : Object
             Value vfname;   
             if (_this.dbcombo.el.get_active_iter (out iter)) {    
                  this.dbmodel.el.get_value (iter, 0, out vfname);
-                 if (((string)vfname).length > 0 && plug.has_plugin(node.fqn())) {
-                    plug.show(this.window.el, project, node.fqn(), (string)vfname);
+                 if (((string)vfname).length > 0 && this.plugin.has_plugin(node.fqn())) {
+                    this.plugin.showIt(this.window.el, project, node.fqn(), (string)vfname);
                     return;
                 }
         	    this.complete(node);
