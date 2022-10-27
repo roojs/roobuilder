@@ -464,7 +464,7 @@ public class Editor : Object
             	this.el.completion.remember_info_visibility		= true;
                 
               
-                var attrs = new Gtk.SourceMarkAttributes();
+                var attrs = new GtkSource.MarkAttributes();
                 var  pink =   Gdk.RGBA();
                 pink.parse ( "pink");
                 attrs.set_background ( pink);
@@ -476,7 +476,7 @@ public class Editor : Object
                 
                 this.el.set_mark_attributes ("ERR", attrs, 1);
                 
-                 var wattrs = new Gtk.SourceMarkAttributes();
+                 var wattrs = new GtkSource.MarkAttributes();
                 var  blue =   Gdk.RGBA();
                 blue.parse ( "#ABF4EB");
                 wattrs.set_background ( blue);
@@ -490,7 +490,7 @@ public class Editor : Object
                 
              
                 
-                 var dattrs = new Gtk.SourceMarkAttributes();
+                 var dattrs = new GtkSource.MarkAttributes();
                 var  purple =   Gdk.RGBA();
                 purple.parse ( "#EEA9FF");
                 dattrs.set_background ( purple);
@@ -505,8 +505,8 @@ public class Editor : Object
               
                  this.el.get_space_drawer().set_matrix(null);
                  this.el.get_space_drawer().set_types_for_locations( 
-            		Gtk.SourceSpaceLocationFlags.ALL,
-            		Gtk.SourceSpaceTypeFlags.ALL
+            		GtkSource.SpaceLocationFlags.ALL,
+            		GtkSource.SpaceTypeFlags.ALL
                 );
                 this.el.get_space_drawer().set_enable_matrix(true);
                 /*
