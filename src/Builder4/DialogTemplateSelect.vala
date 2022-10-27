@@ -154,9 +154,6 @@ public class DialogTemplateSelect : Object
     
     	this.el.show();
     
-    
-    
-    
     	var opts = pal.listTemplates(node);
     	if (opts.length() < 1) {
     	this.el.hide();
