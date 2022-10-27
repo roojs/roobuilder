@@ -57,7 +57,7 @@ public class Xcls_DialogPluginWebkit : Object
     
     
     }
-    public string show (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
+    public string showIt (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
      
         if (parent  != null) {
             this.el.set_transient_for(parent);
