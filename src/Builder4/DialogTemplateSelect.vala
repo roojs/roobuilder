@@ -78,15 +78,16 @@ public class DialogTemplateSelect : Object
                     var json_str = plug.show(mwindow.el, project, node.fqn(), (string)vfname);
                     print("json_str = %s\n", json_str);
                     if (json_str.length < 1) {
-        
-                        return node;
+        			   this.complete(node);
+        					return; 
                     }
                     var pa = new Json.Parser();
                     try {
         
         	        pa.load_from_data(json_str);
         	    } catch(Error e) {
-        	        return node;
+        	         this.complete(node);
+                return; // 1 = just add it..
         	    }
         	    var new_node = pa.get_root();
             
@@ -98,20 +99,23 @@ public class DialogTemplateSelect : Object
         	    var ret = new JsRender.Node();
         
         	    ret.loadFromJson(obj, 1);
-        	    return ret;
+         		this.complete(ret);
+                return; // 1 = just add it..
                  }
                 
             }
         
             if (!_this.combo.el.get_active_iter (out iter)) {
         
-                return node; // nothing selected...
+                 this.complete(node);
+                return; // 1 = just add it../ nothing selected...
             }
            
             this.model.el.get_value (iter, 0, out vfname);
             
-            
-            return pal.loadTemplate((string)vfname);
+             this.complete(pal.loadTemplate((string)vfname));
+                return; // 1 = just add it..
+            return ;
         
         });
     }
