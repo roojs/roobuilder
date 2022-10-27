@@ -137,7 +137,7 @@ public class DialogTemplateSelect : Object
            
             this.model.el.get_value (iter, 0, out vfname);
             
-             this.complete(pal.loadTemplate((string)vfname));
+             this.complete(this.palete.loadTemplate((string)vfname));
               return; // 1 = just add it..
           
         
