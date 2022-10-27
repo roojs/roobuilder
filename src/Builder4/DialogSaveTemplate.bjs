@@ -47,6 +47,13 @@
     }
    ],
    "listeners" : {
+    "close_request" : [
+     "( ) => {",
+     "",
+     "\treturn bool;",
+     "}",
+     ""
+    ],
     "delete_event" : [
      " (self, event) => {",
      "   this.el.response(Gtk.ResponseType.CANCEL);",

@@ -41,6 +41,10 @@ public class DialogSaveTemplate : Object
         this.el.add_action_widget (  child_2.el , 1 );
 
         //listeners
+        this.el.close_request.connect( ( ) => {
+        
+        	return bool;
+        });
         this.el.delete_event.connect( (self, event) => {
            this.el.response(Gtk.ResponseType.CANCEL);
             return true;
