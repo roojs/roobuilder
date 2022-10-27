@@ -89,10 +89,7 @@ public class DialogSaveTemplate : Object
             
               this.name.el.set_text("");
             this.el.show();
-             var   name = "";
-            while (true) {
-                var response_id = this.el.run();
-              
+             
              
       
        
