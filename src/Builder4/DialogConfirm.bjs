@@ -24,7 +24,7 @@
    "title" : "Please Confirm ",
    "xtype" : "MessageDialog",
    "| int show" : [
-    "  (string title, string msg, closed onClose) {",
+    "  (string title, string msg, ) {",
     "     //if (!this.el) { this.init(); } ",
     "     //this.success = success;",
     "     this.el.title = title;",

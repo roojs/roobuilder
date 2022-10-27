@@ -39,7 +39,7 @@ public class DialogConfirm : Object
     }
 
     // user defined functions
-    public int show (string title, string msg, closed onClose) {
+    public int show (string title, string msg, ) {
          //if (!this.el) { this.init(); } 
          //this.success = success;
          this.el.title = title;
