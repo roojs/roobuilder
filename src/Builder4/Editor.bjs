@@ -771,12 +771,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* prop" : "image",
-         "string icon_name" : "emblem-system",
-         "xtype" : "Image"
-        },
-        {
-         "$ xns" : "Gtk",
          "* prop" : "popover",
          "id" : "search_settings",
          "items" : [
@@ -820,7 +814,7 @@
          "xtype" : "PopoverMenu"
         }
        ],
-       "string icon_name" : "\"\"",
+       "string icon_name" : "emblem-system",
        "string label" : "Settings",
        "xtype" : "MenuButton"
       }
