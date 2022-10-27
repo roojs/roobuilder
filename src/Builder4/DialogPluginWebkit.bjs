@@ -23,6 +23,8 @@
         ""
        ],
        "* pack" : "pack_start,false,true,3",
+       "bool hexpand" : true,
+       "bool vexpand" : true,
        "items" : [
         {
          "$ xns" : "WebKit",
