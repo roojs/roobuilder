@@ -61,7 +61,7 @@
           "}",
           ""
          ],
-         "* pack" : "add",
+         "* pack" : "append",
          "id" : "webview",
          "listeners" : {
           "script_dialog" : [

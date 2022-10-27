@@ -235,7 +235,7 @@ public class Xcls_DialogPluginWebkit : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_webview( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append (  child_0.el  );
 
             // init method
 
