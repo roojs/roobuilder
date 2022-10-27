@@ -5,13 +5,6 @@
    "$ authors" : "{ \"Alan Knowles\" }",
    "$ modal" : true,
    "$ xns" : "Gtk",
-   "listeners" : {
-    "response" : [
-     "(rid) => {",
-     "    this.el.hide();",
-     "}"
-    ]
-   },
    "program_name" : "roobuilder",
    "string copyright" : "LGPL",
    "string license" : "LGPL",
