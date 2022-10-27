@@ -58,6 +58,8 @@ public class DialogTemplateSelect : Object
         this.el.response.connect( (res) => {
         
         	var node = _this.node;
+        	var project = _this.project;
+        	
         	
              this.el.hide();    
             //var ix = _this.combo.el.get_active();

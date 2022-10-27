@@ -186,6 +186,8 @@
      "(res) => {",
      "",
      "\tvar node = _this.node;",
+     "\tvar project = _this.project;",
+     "\t",
      "\t",
      "     this.el.hide();    ",
      "    //var ix = _this.combo.el.get_active();",
