@@ -87,11 +87,9 @@ public class DialogSaveModule : Object
         this.data = data;
         this.project = project;
         this.name.el.set_text("");
-        this.el.show_all();
-         var   name = "";
-        while (true) {
-            var response_id = this.el.run();
-           
+        this.el.show();
+    
+        
         
         
         
