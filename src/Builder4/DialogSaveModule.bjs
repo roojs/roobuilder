@@ -46,14 +46,6 @@
      "xtype" : "Button"
     }
    ],
-   "listeners" : {
-    "delete_event" : [
-     " (self, event) => {",
-     "    this.el.response(Gtk.ResponseType.CANCEL);",
-     "    return true;",
-     "} "
-    ]
-   },
    "xtype" : "Dialog",
    "| string show" : [
     " (Gtk.Window parent, Project.Project project, JsRender.Node data) {",

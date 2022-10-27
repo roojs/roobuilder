@@ -39,12 +39,6 @@ public class DialogSaveModule : Object
         var child_2 = new Xcls_Button6( _this );
         child_2.ref();
         this.el.add_action_widget (  child_2.el , 1 );
-
-        //listeners
-        this.el.delete_event.connect( (self, event) => {
-            this.el.response(Gtk.ResponseType.CANCEL);
-            return true;
-        });
     }
 
     // user defined functions
