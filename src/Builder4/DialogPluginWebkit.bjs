@@ -162,6 +162,7 @@
      ""
     ]
    },
+   "string cls" : "",
    "string result_json" : "",
    "string tmpjs" : "",
    "utf8 title" : "Add / Edit Component",
@@ -185,7 +186,7 @@
     " (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {",
     " ",
     " \tthis.cls = cls;",
-    " \tthis.tbl = tbl;",
+    " ",
     "    if (parent  != null) {",
     "        this.el.set_transient_for(parent);",
     "        this.el.modal = true;",

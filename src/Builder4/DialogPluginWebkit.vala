@@ -16,6 +16,7 @@ public class Xcls_DialogPluginWebkit : Object
 
         // my vars (def)
     public signal void complete ();
+    public string cls;
     public string tmpjs;
     public string result_json;
 
@@ -94,7 +95,7 @@ public class Xcls_DialogPluginWebkit : Object
      (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
      
      	this.cls = cls;
-     	this.tbl = tbl;
+     
         if (parent  != null) {
             this.el.set_transient_for(parent);
             this.el.modal = true;
