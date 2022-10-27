@@ -153,6 +153,7 @@ public class DialogTemplateSelect : Object
          
          this.window = mwindow;
          this.palete = pal;
+         this.node = node;
          this.project = project;
        
     }
