@@ -162,7 +162,7 @@ public class Editor : Object
     	bool has_wrapped_around;
     	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end -1 );
     	
-    	if (!this.searchcontext.backward2(beg, out st, out en, out has_wrapped_around)) {
+    	if (!this.searchcontext.backward(beg, out st, out en, out has_wrapped_around)) {
     	
     		this.last_search_end = 0;
     	} else {
@@ -195,7 +195,7 @@ public class Editor : Object
     	 
     	this.buffer.el.get_start_iter(out beg);
     	bool has_wrapped_around;
-    	this.searchcontext.forward2(beg, out st, out en, out has_wrapped_around);
+    	this.searchcontext.forward(beg, out st, out en, out has_wrapped_around);
     	this.last_search_end = 0;
     	
     	return this.searchcontext.get_occurrences_count();
