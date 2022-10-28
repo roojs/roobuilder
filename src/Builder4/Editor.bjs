@@ -461,36 +461,6 @@
          ]
         }
        ],
-       "listeners" : {
-        "key_release_event" : [
-         " (event) => {",
-         "    ",
-         "    if (event.keyval == Gdk.Key.s && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-         "        GLib.debug(\"SAVE: ctrl-S  pressed\");",
-         "        _this.saveContents();",
-         "        return false;",
-         "    }",
-         "    ",
-         "    if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-         "\t    GLib.debug(\"SAVE: ctrl-g  pressed\");",
-         "\t\t_this.forwardSearch(true);",
-         "\t    return true;",
-         "\t}",
-         "\tif (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-         "\t    GLib.debug(\"SAVE: ctrl-f  pressed\");",
-         "\t\t_this.search_entry.el.grab_focus();",
-         "\t    return true;",
-         "\t}",
-         "    ",
-         "   // print(event.key.keyval)",
-         "    ",
-         "    return false;",
-         "",
-         "} ",
-         "",
-         " "
-        ]
-       },
        "string name" : "editor-view",
        "uint tab_width" : 4,
        "xtype" : "View",
