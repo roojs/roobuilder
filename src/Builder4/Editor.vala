@@ -416,9 +416,9 @@ public class Editor : Object
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
-            var child_1 = new Xcls_Adjustment10( _this );
+            var child_1 = new Xcls_EventControllerKey10( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.add_controller (  child_1.el  );
 
             // init method
 
@@ -863,19 +863,19 @@ public class Editor : Object
     }
 
 
-    public class Xcls_Adjustment10 : Object
+    public class Xcls_EventControllerKey10 : Object
     {
-        public Gtk.Adjustment el;
+        public Gtk.EventControllerKey el;
         private Editor  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Adjustment10(Editor _owner )
+        public Xcls_EventControllerKey10(Editor _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Adjustment( null, null, null, null, null, null );
+            this.el = new Gtk.EventControllerKey();
 
             // my vars (dec)
 

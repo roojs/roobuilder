@@ -533,7 +533,8 @@
       },
       {
        "$ xns" : "Gtk",
-       "xtype" : "Adjustment"
+       "* pack" : "add_controller",
+       "xtype" : "EventControllerKey"
       }
      ],
      "xtype" : "ScrolledWindow"
