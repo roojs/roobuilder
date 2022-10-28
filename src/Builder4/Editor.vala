@@ -541,7 +541,7 @@ public class Editor : Object
           // this.get('/BottomPane').el.set_current_page(0);
             var buf = (GtkSource.Buffer)this.el.get_buffer();
             buf.set_text(str, str.length);
-            buf.set_undo_manager(null);
+            buf.end_irreversible_action();
             
             var lm = GtkSource.LanguageManager.get_default();
             var lang = "vala";
