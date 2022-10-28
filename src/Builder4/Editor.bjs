@@ -534,6 +534,15 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "add_controller",
+       "listeners" : {
+        "key_released" : [
+         "(keyval, keycode, state) => {",
+         "",
+         "",
+         "}",
+         ""
+        ]
+       },
        "xtype" : "EventControllerKey"
       }
      ],

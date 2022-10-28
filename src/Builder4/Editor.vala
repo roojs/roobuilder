@@ -880,6 +880,12 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.key_released.connect( (keyval, keycode, state) => {
+            
+            
+            });
         }
 
         // user defined functions
