@@ -426,20 +426,32 @@ public class Editor : Object
     }
     public class Xcls_view : Object
     {
-        public GtkSource	.View el;
+        public GtkSource.View el;
         private Editor  _this;
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_view(Editor _owner )
         {
             _this = _owner;
             _this.view = this;
-            this.el = new GtkSource	.View();
+            this.el = new GtkSource.View();
 
             // my vars (dec)
+            this.css = null;
+
+            // set gobject values
+            this.el.auto_indent = true;
+            this.el.indent_width = 4;
+            this.el.name = "editor-view";
+            this.el.show_line_marks = true;
+            this.el.insert_spaces_instead_of_tabs = true;
+            this.el.show_line_numbers = true;
+            this.el.tab_width = 4;
+            this.el.highlight_current_line = true;
             var child_0 = new Xcls_buffer( _this );
             child_0.ref();
             this.el.set_buffer (  child_0.el  );
