@@ -321,7 +321,7 @@ public class JsRender.NodeToVala : Object {
 		if (cls == null) {
 			GLib.debug("Gir factory failed to find class %s", this.node.fqn());
 			
-			return;
+			//return;
 		}
 	  
 		
@@ -358,7 +358,7 @@ public class JsRender.NodeToVala : Object {
 			}
 			
 			// is it a class property...
-			if (cls.props.has_key(prop.name) && prop.ptype != NodePropType.USER) {
+			if (cls != null && cls.props.has_key(prop.name) && prop.ptype != NodePropType.USER) {
 				continue;
 			}
 			
