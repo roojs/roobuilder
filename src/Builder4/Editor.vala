@@ -863,23 +863,23 @@ public class Editor : Object
                 if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
                     GLib.debug("SAVE: ctrl-S  pressed");
                     _this.saveContents();
-                    return false;
+                    return;
                 }
                 
                 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-g  pressed");
             		_this.forwardSearch(true);
-            	    return true;
+            	    return;
             	}
             	if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-f  pressed");
             		_this.search_entry.el.grab_focus();
-            	    return true;
+            	    return;
             	}
                 
                // print(event.key.keyval)
                 
-                return false;
+                return;
              
              
             });
