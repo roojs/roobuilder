@@ -67,7 +67,7 @@ public class Editor : Object
         var child_1 = new Xcls_RightEditor( _this );
         child_1.ref();
         this.el.append (  child_1.el  );
-        var child_2 = new Xcls_Box10( _this );
+        var child_2 = new Xcls_Box11( _this );
         child_2.ref();
         this.el.append (  child_2.el  );
     }
@@ -416,6 +416,9 @@ public class Editor : Object
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_Adjustment10( _this );
+            child_1.ref();
+            this.el.add(  child_1.el );
 
             // init method
 
@@ -860,8 +863,30 @@ public class Editor : Object
     }
 
 
+    public class Xcls_Adjustment10 : Object
+    {
+        public Gtk.Adjustment el;
+        private Editor  _this;
 
-    public class Xcls_Box10 : Object
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Adjustment10(Editor _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Adjustment( null, null, null, null, null, null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Box11 : Object
     {
         public Gtk.Box el;
         private Editor  _this;
@@ -870,7 +895,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box10(Editor _owner )
+        public Xcls_Box11(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -883,7 +908,7 @@ public class Editor : Object
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
-            var child_1 = new Xcls_Box12( _this );
+            var child_1 = new Xcls_Box13( _this );
             child_1.ref();
             this.el.append (  child_1.el  );
             var child_2 = new Xcls_nextBtn( _this );
@@ -892,7 +917,7 @@ public class Editor : Object
             var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
             this.el.append (  child_3.el  );
-            var child_4 = new Xcls_MenuButton16( _this );
+            var child_4 = new Xcls_MenuButton17( _this );
             child_4.ref();
             this.el.append (  child_4.el  );
         }
@@ -1020,7 +1045,7 @@ public class Editor : Object
         }
     }
 
-    public class Xcls_Box12 : Object
+    public class Xcls_Box13 : Object
     {
         public Gtk.Box el;
         private Editor  _this;
@@ -1029,7 +1054,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box12(Editor _owner )
+        public Xcls_Box13(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1178,7 +1203,7 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_MenuButton16 : Object
+    public class Xcls_MenuButton17 : Object
     {
         public Gtk.MenuButton el;
         private Editor  _this;
@@ -1188,7 +1213,7 @@ public class Editor : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_MenuButton16(Editor _owner )
+        public Xcls_MenuButton17(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();

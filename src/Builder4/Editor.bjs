@@ -530,6 +530,10 @@
         "    _this.save_button.el.sensitive = false;",
         "}"
        ]
+      },
+      {
+       "$ xns" : "Gtk",
+       "xtype" : "Adjustment"
       }
      ],
      "xtype" : "ScrolledWindow"
