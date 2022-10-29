@@ -255,8 +255,9 @@ namespace Palete {
 					//GLib.debug("Class %s is depricated", cls.fqn());
 					continue;
 				}
-					
-				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
+				var is_widget = cls.inherits.contains("Gtk.Widget") || cls.implements.contains("Gtk.Widget");
+				var is_event = cls.inherits.contains("Gtk.EventController") || cls.implements.contains("Gtk.EventController");
+				if (!is_widget && !is_event) {
 					continue;
 				}
 				if (cls.is_abstract) {
