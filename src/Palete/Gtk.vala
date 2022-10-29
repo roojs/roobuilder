@@ -857,7 +857,7 @@ namespace Palete {
 			
 			}
 			// is child a Event
-			 
+			// should we do it here.. or in the renderer...
 			
 			var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
 			if (is_event) {
