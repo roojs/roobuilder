@@ -862,7 +862,7 @@ namespace Palete {
 			var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
 			if (is_event) {
 			    child.set_prop(new JsRender.NodeProp.special("pack", "add_controller"));
-			}	
+			}
 			
 			// any other combo?
 			switch(parent.fqn()) {
