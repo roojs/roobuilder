@@ -1186,7 +1186,7 @@ public class Editor : Object
             this.el.sensitive = false;
 
             //listeners
-            this.el.button_press_event.connect( (event) => {
+            this.el.clicked.connect( (event) => {
             
             	_this.forwardSearch(true);
             	

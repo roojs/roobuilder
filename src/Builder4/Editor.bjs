@@ -733,7 +733,7 @@
        "bool sensitive" : false,
        "id" : "nextBtn",
        "listeners" : {
-        "button_press_event" : [
+        "clicked" : [
          "(event) => {",
          "",
          "\t_this.forwardSearch(true);",
