@@ -109,7 +109,7 @@ namespace Palete {
 			var u = new Usage( alltop,  this.generic_child_widgets);
 			this.map.add(u);
 			
-			var u = new Usage( this.widget_children,  this.generic_widget_children);
+			var u = new Usage( this.widget_implements,  this.generic_widget_children);
 			this.map.add(u);
 				 
 			foreach(var key in   pr.gir_cache.keys) {
