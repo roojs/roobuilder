@@ -150,6 +150,7 @@ namespace Palete {
 		
 		// containers that can contain only certial types of children, and should be ignored from the general bulk add.
 		Gee.ArrayList<string> generic_child_widgets;
+		Gee.ArrayList<string> generic_widget_children; // mostly events...
 		Gee.ArrayList<string> all_no_parent;		
 /*
 		string[] special_containers = {
