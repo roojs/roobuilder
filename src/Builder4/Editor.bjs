@@ -562,6 +562,12 @@
        "bool hexpand" : true,
        "id" : "search_entry",
        "int width_request" : 300,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "EventControllerKey"
+        }
+       ],
        "listeners" : {
         "changed" : [
          "() => {",
