@@ -825,7 +825,7 @@
            "xtype" : "CheckButton"
           }
          ],
-         "xtype" : "PopoverMenu"
+         "xtype" : "Popover"
         }
        ],
        "string icon_name" : "emblem-system",

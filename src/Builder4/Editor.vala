@@ -1273,7 +1273,7 @@ public class Editor : Object
     }
     public class Xcls_search_settings : Object
     {
-        public Gtk.PopoverMenu el;
+        public Gtk.Popover el;
         private Editor  _this;
 
 
@@ -1284,7 +1284,7 @@ public class Editor : Object
         {
             _this = _owner;
             _this.search_settings = this;
-            this.el = new Gtk.PopoverMenu();
+            this.el = new Gtk.Popover();
 
             // my vars (dec)
 
