@@ -415,6 +415,7 @@ namespace Palete {
 						// gtk4
 						prop.name == "default_widget" || 
 						prop.name == "focus_widget" || 
+						prop.name == "key_capture_widget" || 
 						prop.name == "root" || 
 						prop.name == "layout_manager" || 
 						1 == 0 
