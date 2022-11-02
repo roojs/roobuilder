@@ -1051,7 +1051,7 @@ public class Editor : Object
             	}
                 
               
-             	if (keyval == Gdk.Key.Return && this.el.text.length > 0) {
+             	if (keyval == Gdk.Key.Return && this.search_entry.el.text.length > 0) {
             		//var res =
             		 _this.search(this.search_entry.el.text);
             		 _this.search_results.updateResults();

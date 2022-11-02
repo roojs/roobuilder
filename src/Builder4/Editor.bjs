@@ -576,7 +576,7 @@
            "\t}",
            "    ",
            "  ",
-           " \tif (keyval == Gdk.Key.Return && this.el.text.length > 0) {",
+           " \tif (keyval == Gdk.Key.Return && this.search_entry.el.text.length > 0) {",
            "\t\t//var res =",
            "\t\t _this.search(this.search_entry.el.text);",
            "\t\t _this.search_results.updateResults();",
