@@ -139,9 +139,9 @@ namespace Palete {
 			this.init_node_defaults();
 		    this.init_child_defaults();  
 		    
-			//foreach(var m in this.map) {
-			//	GLib.debug("Usage: %s", m.to_string());
-		//	}
+			foreach(var m in this.map) {
+				GLib.debug("Usage: %s", m.to_string());
+			}
 			
 		}
 		
@@ -247,6 +247,8 @@ namespace Palete {
 		
 		public void build_generic_children(Gee.HashMap<string,GirObject> classes)
 		{
+			
+			GLib.debug("Build Generic Children");
 			foreach(var cls in classes.values) {
 				
 				var fqn = cls.fqn();
@@ -296,6 +298,7 @@ namespace Palete {
 				if (is_black) {
 					continue;
 				}
+				GLib.debug("Build Generic Children - add %s", fqn);
 				this.generic_child_widgets.add(fqn);
 				
 				
@@ -408,8 +411,13 @@ namespace Palete {
 						prop.name == "related_action" || // not sure if we should disable this.
 						prop.name == "visible_child"  || 
 						prop.name == "attach_widget" || // gtk menu
-						prop.name == "relative_to"   // popover
-						
+						prop.name == "relative_to"  || // popover
+						// gtk4
+						prop.name == "default_widget" || 
+						prop.name == "focus_widget" || 
+						prop.name == "root" || 
+						prop.name == "layout_manager" || 
+						1 == 0 
 						
 						) {
 						continue;
@@ -418,7 +426,7 @@ namespace Palete {
 					
 					
 					var propcls = this.getClass(prop.type);
-					if (propcls == null) {
+					if (propcls == null || propcls.name == "GLib.Object")) { // no point in adding generic glib objects
 						continue;
 					}
 					
