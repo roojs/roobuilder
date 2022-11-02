@@ -1190,7 +1190,7 @@ public class Editor : Object
             
             	_this.forwardSearch(true);
             	
-            	return true;
+            	 
             });
         }
 
@@ -1225,8 +1225,7 @@ public class Editor : Object
             this.el.clicked.connect( (event) => {
             
             	_this.backSearch(true);
-            	
-            	return;
+            	 
             });
         }
 

@@ -738,7 +738,7 @@
          "",
          "\t_this.forwardSearch(true);",
          "\t",
-         "\treturn true;",
+         "\t ",
          "}",
          ""
         ]
@@ -758,8 +758,7 @@
          "(event) => {",
          "",
          "\t_this.backSearch(true);",
-         "\t",
-         "\treturn;",
+         "\t ",
          "}",
          ""
         ]
