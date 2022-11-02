@@ -107,11 +107,11 @@ namespace Palete {
 				this.add_special_children(k, "Gtk.Menu", "_menu");
 			}
 			var u = new Usage( alltop,  this.generic_child_widgets);
-			//GLib.debug("add Usage: %s", u.to_string());
-			
 			this.map.add(u);
 			
-			 
+			var u = new Usage( this.widget_children,  this.generic_widget_children);
+			this.map.add(u);
+				 
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				this.build_class_children_from_props(gir.classes);
