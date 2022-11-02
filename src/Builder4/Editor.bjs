@@ -578,7 +578,7 @@
            "  ",
            " \tif (keyval == Gdk.Key.Return && this.el.text.length > 0) {",
            "\t\t//var res =",
-           "\t\t _this.search(this.el.text);",
+           "\t\t _this.search(this.search_entry.el.text);",
            "\t\t _this.search_results.updateResults();",
            "",
            "\t\tGLib.Timeout.add_seconds(2,() => {",
