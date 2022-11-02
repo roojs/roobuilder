@@ -87,6 +87,7 @@ namespace Palete {
 			
 			this.map = new Gee.ArrayList<Usage>();
  			this.generic_child_widgets = new Gee.ArrayList<string>();
+ 			this.generic_widget_children = new Gee.ArrayList<string>();
 			this.all_no_parent =  new Gee.ArrayList<string>();
 			var top =   new Gee.ArrayList<string>();
 			top.add("*top");
