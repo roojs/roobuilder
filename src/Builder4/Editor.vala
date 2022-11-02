@@ -1119,7 +1119,7 @@ public class Editor : Object
             this.always_show_image = true;
 
             // set gobject values
-            this.el.visible = false;
+            this.el.visible = true;
 
             //listeners
             this.el.clicked.connect( () => {
@@ -1132,7 +1132,7 @@ public class Editor : Object
                 
                 this.popup.show(this.notices, this.el);
                 */
-                return true;
+              
             });
         }
 

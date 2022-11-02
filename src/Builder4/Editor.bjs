@@ -680,7 +680,7 @@
          "$ xns" : "Gtk",
          "* pack" : "append",
          "bool always_show_image" : true,
-         "bool visible" : false,
+         "bool visible" : true,
          "id" : "search_results",
          "listeners" : {
           "clicked" : [
@@ -694,7 +694,7 @@
            "    ",
            "    this.popup.show(this.notices, this.el);",
            "    */",
-           "    return true;",
+           "  ",
            "}"
           ]
          },
