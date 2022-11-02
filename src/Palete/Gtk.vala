@@ -431,7 +431,7 @@ namespace Palete {
 					
 					
 					var propcls = this.getClass(prop.type);
-					if (propcls == null || propcls.name == "GLib.Object")) { // no point in adding generic glib objects
+					if (propcls == null || propcls.name == "GLib.Object") { // no point in adding generic glib objects
 						continue;
 					}
 					
