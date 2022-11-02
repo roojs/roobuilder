@@ -791,7 +791,7 @@ public class JsRender.NodeToVala : Object {
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
 					// columns[] ?
-					 this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+					this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
@@ -861,6 +861,14 @@ public class JsRender.NodeToVala : Object {
 						) + " );");
 			return;  
 		}
+		var childcls =  this.file.project.palete.getClass(child.fqn()); // very trusting..
+		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
+		if (is_event) {
+		    this.addLine(this.ipad + "this.el.add_controller(  child_%d.el );".printf(i) );
+		    return;
+		}
+		
+		
 		switch (this.node.fqn()) {
 			
 				
@@ -952,7 +960,8 @@ public class JsRender.NodeToVala : Object {
 				return;
 			
 			default:
-				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
+			    // gtk4 uses append!!!! - gtk3 - uses add..
+				this.addLine(this.ipad + "this.el.append(  child_" + "%d".printf(i) + ".el );");
 				return;
 		
 		

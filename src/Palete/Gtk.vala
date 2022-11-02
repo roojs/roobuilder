@@ -87,6 +87,7 @@ namespace Palete {
 			
 			this.map = new Gee.ArrayList<Usage>();
  			this.generic_child_widgets = new Gee.ArrayList<string>();
+ 			this.generic_widget_children = new Gee.ArrayList<string>();
 			this.all_no_parent =  new Gee.ArrayList<string>();
 			var top =   new Gee.ArrayList<string>();
 			top.add("*top");
@@ -106,11 +107,11 @@ namespace Palete {
 				this.add_special_children(k, "Gtk.Menu", "_menu");
 			}
 			var u = new Usage( alltop,  this.generic_child_widgets);
-			//GLib.debug("add Usage: %s", u.to_string());
-			
 			this.map.add(u);
 			
-			 
+			u = new Usage( this.generic_child_widgets,  this.generic_widget_children);
+			this.map.add(u);
+				 
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				this.build_class_children_from_props(gir.classes);
@@ -139,9 +140,9 @@ namespace Palete {
 			this.init_node_defaults();
 		    this.init_child_defaults();  
 		    
-			//foreach(var m in this.map) {
-			//	GLib.debug("Usage: %s", m.to_string());
-		//	}
+			foreach(var m in this.map) {
+				GLib.debug("Usage: %s", m.to_string());
+			}
 			
 		}
 		
@@ -150,6 +151,7 @@ namespace Palete {
 		
 		// containers that can contain only certial types of children, and should be ignored from the general bulk add.
 		Gee.ArrayList<string> generic_child_widgets;
+		Gee.ArrayList<string> generic_widget_children; // mostly events...
 		Gee.ArrayList<string> all_no_parent;		
 /*
 		string[] special_containers = {
@@ -247,6 +249,8 @@ namespace Palete {
 		
 		public void build_generic_children(Gee.HashMap<string,GirObject> classes)
 		{
+			
+			GLib.debug("Build Generic Children");
 			foreach(var cls in classes.values) {
 				
 				var fqn = cls.fqn();
@@ -255,8 +259,9 @@ namespace Palete {
 					//GLib.debug("Class %s is depricated", cls.fqn());
 					continue;
 				}
-					
-				if (!cls.inherits.contains("Gtk.Widget") && !cls.implements.contains("Gtk.Widget")) {
+				var is_widget = cls.inherits.contains("Gtk.Widget") || cls.implements.contains("Gtk.Widget");
+				var is_event = cls.inherits.contains("Gtk.EventController") || cls.implements.contains("Gtk.EventController");
+				if (!is_widget && !is_event) {
 					continue;
 				}
 				if (cls.is_abstract) {
@@ -295,10 +300,13 @@ namespace Palete {
 				if (is_black) {
 					continue;
 				}
-				this.generic_child_widgets.add(fqn);
+				GLib.debug("Build Generic Children - add %s", fqn);
 				
-				
-				
+				if (is_event) {
+				    this.generic_widget_children.add(fqn);
+				} else {
+				    this.generic_child_widgets.add(fqn);
+			    }
 				//this.add_special_children(fqn, "Gtk.Menu", "_menu"); // fake propety
 			}
 		
@@ -407,8 +415,14 @@ namespace Palete {
 						prop.name == "related_action" || // not sure if we should disable this.
 						prop.name == "visible_child"  || 
 						prop.name == "attach_widget" || // gtk menu
-						prop.name == "relative_to"   // popover
-						
+						prop.name == "relative_to"  || // popover
+						// gtk4
+						prop.name == "default_widget" || 
+						prop.name == "focus_widget" || 
+						prop.name == "key_capture_widget" || 
+						prop.name == "root" || 
+						prop.name == "layout_manager" || 
+						1 == 0 
 						
 						) {
 						continue;
@@ -417,7 +431,7 @@ namespace Palete {
 					
 					
 					var propcls = this.getClass(prop.type);
-					if (propcls == null) {
+					if (propcls == null || propcls.name == "GLib.Object") { // no point in adding generic glib objects
 						continue;
 					}
 					
@@ -855,6 +869,8 @@ namespace Palete {
 				
 			
 			}
+			// is child a Event - handled by nodetovala...
+			
 			// any other combo?
 			switch(parent.fqn()) {
 				case "Gtk.Dialog":
