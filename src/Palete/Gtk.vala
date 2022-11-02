@@ -300,11 +300,12 @@ namespace Palete {
 					continue;
 				}
 				GLib.debug("Build Generic Children - add %s", fqn);
-				this.generic_child_widgets.add(fqn);
+				
 				if (is_event) {
 				    this.generic_widget_children.add(fqn);
-				}
-				
+				} else {
+				    this.generic_child_widgets.add(fqn);
+			    }
 				//this.add_special_children(fqn, "Gtk.Menu", "_menu"); // fake propety
 			}
 		
