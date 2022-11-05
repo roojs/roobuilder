@@ -246,7 +246,7 @@ public class Xcls_GtkView : Object
     	bool has_wrapped_around;
     	this.buffer.el.get_iter_at_offset(out beg, this.last_search_end -1 );
     	
-    	if (!this.searchcontext.backward2(beg, out st, out en, out has_wrapped_around)) {
+    	if (!this.searchcontext.backward(beg, out st, out en, out has_wrapped_around)) {
     	
     		this.last_search_end = 0;
     		return;
@@ -527,10 +527,10 @@ public class Xcls_GtkView : Object
             // set gobject values
             var child_0 = new Xcls_ScrolledWindow9( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Box12( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -981,19 +981,19 @@ public class Xcls_GtkView : Object
             this.el.vexpand = false;
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Box14( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_nextBtn( _this );
             child_2.ref();
-            this.el.add(  child_2.el );
+            this.el.append(  child_2.el );
             var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
-            this.el.add(  child_3.el );
+            this.el.append(  child_3.el );
             var child_4 = new Xcls_MenuButton20( _this );
             child_4.ref();
-            this.el.add(  child_4.el );
+            this.el.append(  child_4.el );
         }
 
         // user defined functions
@@ -1402,13 +1402,13 @@ public class Xcls_GtkView : Object
             // set gobject values
             var child_0 = new Xcls_case_sensitive( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_regex( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_multiline( _this );
             child_2.ref();
-            this.el.add(  child_2.el );
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
