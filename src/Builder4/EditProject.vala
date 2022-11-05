@@ -67,55 +67,6 @@ public class EditProject : Object
     	// shouild set path..
         _this.model.loadData();
         this.el.show_all();
-        
-        var err_dialog = Xcls_StandardErrorDialog.singleton();
-    
-        var id = -1;
-        while (id < 0) {
-             id =  this.el.run();
-             if (id < 1) {
-                    this.el.hide();
-                    return null;
-            }
-     
-             
-          if (_this.xtype.getValue().length < 1) {
-               
-                err_dialog.show(_this.el,"You have to set Project type");             
-                id = -1;
-                continue;
-            }
-            if (_this.dir.el.get_filename().length < 1) {
-    
-                err_dialog.show(_this.el,"You have to select a folder");             
-                id = -1;
-                continue;
-            }
-               
-        }
-        
-        this.el.hide();
-        
-        
-        
-     
-        var fn = _this.dir.el.get_filename();
-        print("add %s\n" , fn);
-        try {
-    		var project = Project.Project.factory(_this.xtype.getValue(), fn);
-    		project.save();
-    		Project.projects.set(project.name,project);
-    		return project;
-    	} catch (Error e) {
-    		GLib.debug("got error? %s" , e.message);
-    	}
-        //var pr = imports.Builder.Provider.ProjectManager.ProjectManager.update(this.project);
-        return null;
-        
-    
-        
-        //this.success = c.success;
-    }
     public class Xcls_Box2 : Object
     {
         public Gtk.Box el;
