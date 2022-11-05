@@ -46,6 +46,10 @@ public class EditProject : Object
         this.el.add_action_widget (  child_2.el , 0 );
 
         //listeners
+        this.el.response.connect( (response_id) => {
+        
+        
+        });
         this.el.destroy_event.connect( (self, event) => {
         	this.el.response(0);
         //     this.el.hide();

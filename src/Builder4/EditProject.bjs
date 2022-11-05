@@ -130,6 +130,13 @@
      "//     this.el.hide();",
      "    return false;",
      "}"
+    ],
+    "response" : [
+     "(response_id) => {",
+     "",
+     "",
+     "}",
+     ""
     ]
    },
    "name" : "EditProject",
