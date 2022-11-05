@@ -53,7 +53,7 @@ public class EditProject : Object
     }
 
     // user defined functions
-    public Project.Project? show () {
+    public Project.Project? showIt () {
           
     
         //[ 'xtype'  ].forEach(function(k) {

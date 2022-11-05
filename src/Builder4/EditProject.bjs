@@ -134,7 +134,7 @@
    "name" : "EditProject",
    "title" : "Project Properties",
    "xtype" : "Dialog",
-   "| Project.Project? show" : [
+   "| Project.Project? showIt" : [
     "() {",
     "      ",
     "",
