@@ -46,14 +46,46 @@ public class EditProject : Object
         this.el.add_action_widget (  child_2.el , 0 );
 
         //listeners
-        this.el.response.connect( (response_id) => {
+        this.el.response.connect( (id) => {
         
+            var err_dialog = Xcls_StandardErrorDialog.singleton();
         
-        });
-        this.el.destroy_event.connect( (self, event) => {
-        	this.el.response(0);
-        //     this.el.hide();
-            return false;
+             if (id < 1) {
+                    this.el.hide();
+                    return;
+            }
+         
+                 
+              if (_this.xtype.getValue().length < 1) {
+                   
+                    err_dialog.show(_this.el,"You have to set Project type");             
+                    return;
+                }
+                if (_this.dir.el.get_filename().length < 1) {
+        
+                    err_dialog.show(_this.el,"You have to select a folder");             
+                    return;
+                }
+                   
+            }
+            
+            this.el.hide();
+            
+            
+            
+         
+            var fn = _this.dir.el.get_filename();
+            print("add %s\n" , fn);
+            try {
+        		var project = Project.Project.factory(_this.xtype.getValue(), fn);
+        		project.save();
+        		Project.projects.set(project.name,project);
+        		this.selected(project);
+        		return;
+        	} catch (Error e) {
+        		GLib.debug("got error? %s" , e.message);
+        	}
+        	 
         });
     }
 
