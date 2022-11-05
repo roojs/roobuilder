@@ -30,7 +30,6 @@ public class EditProject : Object
         // set gobject values
         this.el.title = "Project Properties";
         this.el.name = "EditProject";
-        this.el.border_width = 3;
         this.el.default_height = 500;
         this.el.default_width = 600;
         this.el.deletable = true;
@@ -119,6 +118,7 @@ public class EditProject : Object
 
 
             // my vars (def)
+        public bool expand;
 
         // ctor
         public Xcls_Box2(EditProject _owner )
@@ -127,10 +127,10 @@ public class EditProject : Object
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
+            this.expand = true;
 
             // set gobject values
             this.el.homogeneous = false;
-            this.el.expand = true;
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false,true,3 );
@@ -312,6 +312,7 @@ public class EditProject : Object
 
 
             // my vars (def)
+        public bool expand;
 
         // ctor
         public Xcls_dir(EditProject _owner )
@@ -321,9 +322,9 @@ public class EditProject : Object
             this.el = new Gtk.FileChooserWidget( Gtk.FileChooserAction.SELECT_FOLDER );
 
             // my vars (dec)
+            this.expand = true;
 
             // set gobject values
-            this.el.expand = true;
             this.el.create_folders = false;
             this.el.select_multiple = false;
         }

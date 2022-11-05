@@ -5,7 +5,6 @@
    "$ deletable" : true,
    "$ modal" : true,
    "$ xns" : "Gtk",
-   "border_width" : 3,
    "default_height" : 500,
    "default_width" : 600,
    "items" : [
