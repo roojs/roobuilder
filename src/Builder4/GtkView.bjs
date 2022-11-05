@@ -56,7 +56,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "id" : "view_layout",
          "items" : [
           {
