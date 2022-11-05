@@ -874,7 +874,7 @@
     "\tbool has_wrapped_around;",
     "\tvar buf = this.sourceview.el.get_buffer();",
     "\tbuf.get_iter_at_offset(out beg, this.last_search_end);",
-    "\tif (!this.searchcontext.forward2(beg, out st, out en, out has_wrapped_around)) {",
+    "\tif (!this.searchcontext.forward(beg, out st, out en, out has_wrapped_around)) {",
     "\t\tthis.last_search_end = 0;",
     "\t\treturn;",
     "\t}",
