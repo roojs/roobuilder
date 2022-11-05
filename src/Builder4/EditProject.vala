@@ -133,10 +133,10 @@ public class EditProject : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,true,3 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_dir( _this );
             child_1.ref();
-            this.el.pack_end (  child_1.el , true,true,5 );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -161,10 +161,10 @@ public class EditProject : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,true,3 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_xtype( _this );
             child_1.ref();
-            this.el.pack_end (  child_1.el , true,true,3 );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions

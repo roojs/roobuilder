@@ -22,12 +22,10 @@
       {
        "$ homogeneous" : false,
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,true,3",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "pack_start,false,true,3",
          "label" : "Project type :",
          "xtype" : "Label"
         },
@@ -37,7 +35,6 @@
           " this.el.add_attribute(_this.cellrender.el , \"markup\", 1 );  ",
           "  "
          ],
-         "* pack" : "pack_end,true,true,3",
          "id" : "xtype",
          "items" : [
           {
@@ -105,7 +102,6 @@
        "$ create_folders" : false,
        "$ select_multiple" : false,
        "$ xns" : "Gtk",
-       "* pack" : "pack_end,true,true,5",
        "bool expand" : true,
        "id" : "dir",
        "xtype" : "FileChooserWidget"
