@@ -98,6 +98,8 @@ public class EditProject : Object
     	// shouild set path..
         _this.model.loadData();
         this.el.show_all();
+        
+    }
     public class Xcls_Box2 : Object
     {
         public Gtk.Box el;

@@ -182,7 +182,7 @@
     "    _this.model.loadData();",
     "    this.el.show_all();",
     "    ",
-    ""
+    "}"
    ]
   }
  ],
