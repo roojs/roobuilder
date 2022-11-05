@@ -18,6 +18,7 @@ public class EditProject : Object
     public Xcls_dir dir;
 
         // my vars (def)
+    public signal void selected ();
 
     // ctor
     public EditProject()
