@@ -98,7 +98,7 @@ public class EditProject : Object
         //});
     	// shouild set path..
         _this.model.loadData();
-        this.el.show_all();
+        this.el.show();
         
     }
     public class Xcls_Box2 : Object
