@@ -11,7 +11,7 @@
     {
      "$ homogeneous" : false,
      "$ pack" : [
-      " get_content_area().add ",
+      " get_content_area().append ",
       " ",
       ""
      ],
