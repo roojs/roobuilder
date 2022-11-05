@@ -555,7 +555,7 @@ public class Xcls_GtkView : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_sourceview( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
         }
 
         // user defined functions
