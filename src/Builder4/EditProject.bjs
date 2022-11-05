@@ -10,12 +10,12 @@
    "items" : [
     {
      "$ homogeneous" : false,
-     "$ pack" : [
+     "$ xns" : "Gtk",
+     "* pack" : [
       " get_content_area().append ",
       " ",
       ""
      ],
-     "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool expand" : true,
      "items" : [
