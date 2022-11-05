@@ -66,8 +66,7 @@ public class EditProject : Object
                     err_dialog.show(_this.el,"You have to select a folder");             
                     return;
                 }
-                   
-            }
+              
             
             this.el.hide();
             
