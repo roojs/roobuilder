@@ -34,9 +34,7 @@ public class Xcls_GtkView : Object
     public Xcls_MainWindow main_window;
     public GtkSource.SearchContext searchcontext;
     public int last_search_end;
-    public int width;
     public JsRender.JsRender file;
-    public int height;
 
     // ctor
     public Xcls_GtkView()
@@ -47,9 +45,7 @@ public class Xcls_GtkView : Object
         // my vars (dec)
         this.lastObj = null;
         this.last_search_end = 0;
-        this.width = 0;
         this.file = null;
-        this.height = 0;
 
         // set gobject values
         this.el.hexpand = true;
@@ -73,13 +69,6 @@ public class Xcls_GtkView : Object
                 
                 
         }
-
-        //listeners
-        this.el.size_allocate.connect( (aloc) => {
-         
-            this.width = aloc.width;
-            this.height =aloc.height;
-        });
     }
 
     // user defined functions

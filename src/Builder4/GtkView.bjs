@@ -28,9 +28,7 @@
    "bool hexpand" : true,
    "bool vexpand" : true,
    "id" : "GtkView",
-   "int height" : 0,
    "int last_search_end" : 0,
-   "int width" : 0,
    "items" : [
     {
      "$ xns" : "Gtk",
@@ -757,16 +755,6 @@
      "xtype" : "Notebook"
     }
    ],
-   "listeners" : {
-    "size_allocate" : [
-     "(aloc) => {",
-     " ",
-     "    this.width = aloc.width;",
-     "    this.height =aloc.height;",
-     "}",
-     " "
-    ]
-   },
    "xtype" : "Box",
    "| int search" : [
     "(string in_txt) {",
