@@ -61,7 +61,7 @@ public class EditProject : Object
                     err_dialog.show(_this.el,"You have to set Project type");             
                     return;
                 }
-                if (_this.dir.el.get_filename().length < 1) {
+                if (_this.dir.el.get_file() == null) {
         
                     err_dialog.show(_this.el,"You have to select a folder");             
                     return;
@@ -73,7 +73,8 @@ public class EditProject : Object
             
             
          
-            var fn = _this.dir.el.get_filename();
+            var fn = _this.dir.el.file().get_path();
+            
             print("add %s\n" , fn);
             try {
         		var project = Project.Project.factory(_this.xtype.getValue(), fn);
