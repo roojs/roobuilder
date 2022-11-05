@@ -5,7 +5,7 @@
    "$ deletable" : true,
    "$ modal" : true,
    "$ xns" : "Gtk",
-   "@ void selected" : "()",
+   "@ void selected" : "(Project.Project? proj)",
    "default_height" : 500,
    "default_width" : 600,
    "items" : [
@@ -135,7 +135,7 @@
    "name" : "EditProject",
    "title" : "Project Properties",
    "xtype" : "Dialog",
-   "| Project.Project? showIt" : [
+   "| void showIt" : [
     "() {",
     "      ",
     "",

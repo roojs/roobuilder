@@ -18,7 +18,7 @@ public class EditProject : Object
     public Xcls_dir dir;
 
         // my vars (def)
-    public signal void selected ();
+    public signal void selected (Project.Project? proj);
 
     // ctor
     public EditProject()
@@ -54,7 +54,7 @@ public class EditProject : Object
     }
 
     // user defined functions
-    public Project.Project? showIt () {
+    public void showIt () {
           
     
         //[ 'xtype'  ].forEach(function(k) {
