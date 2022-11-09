@@ -296,7 +296,7 @@ public class Xcls_GtkView : Object
         
         
     
-        var  win = this.el.get_parent_window();
+        var  win = this.el.get_root();
         var width = win.get_width();
         var height = win.get_height();
         //try {
