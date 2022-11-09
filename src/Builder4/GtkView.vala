@@ -107,7 +107,8 @@ public class Xcls_GtkView : Object
             print("SET SIZES %d, %d\n", w,h);       
             _this.container.el.set_size_request(w,h);
             
-           // _this.view_layout.el.set_size(w,h); // should be baded on calc.. -- see update_scrolled.
+            _this.view_layout.el.set_size_request(w,h); 
+            // should be baded on calc.. -- see update_scrolled.
            
            
            
