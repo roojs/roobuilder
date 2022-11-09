@@ -120,7 +120,7 @@ public class Xcls_GtkView : Object
     	}
     	this.lastObj = obj;
             
-            this.container.el.add(obj);
+            this.container.el.append(obj);
             obj.show();
             
              

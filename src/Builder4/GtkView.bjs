@@ -1018,7 +1018,7 @@
     "\t}",
     "\tthis.lastObj = obj;",
     "        ",
-    "        this.container.el.add(obj);",
+    "        this.container.el.append(obj);",
     "        obj.show();",
     "        ",
     "         ",
