@@ -257,12 +257,12 @@ public class Xcls_GtkView : Object
     	
      
        
-    	var s = new Gtk.SourceSearchSettings();
+    	var s = new GtkSource.SearchSettings();
     	s.case_sensitive = _this.case_sensitive.el.active;
     	s.regex_enabled = _this.regex.el.active;	
     	s.wrap_around = false;
     	
-    	this.searchcontext = new Gtk.SourceSearchContext(this.buffer.el,s);
+    	this.searchcontext = new GtkSource.SearchContext(this.buffer.el,s);
     	this.searchcontext.set_highlight(true);
     	var txt = in_txt;
     	
@@ -274,7 +274,7 @@ public class Xcls_GtkView : Object
     	Gtk.TextIter beg, st,en;
     	bool has_wrapped_around;
     	this.buffer.el.get_start_iter(out beg);
-    	this.searchcontext.forward2(beg, out st, out en, out has_wrapped_around);
+    	this.searchcontext.forward(beg, out st, out en, out has_wrapped_around);
     	this.last_search_end = 0;
     	
     	return this.searchcontext.get_occurrences_count();
