@@ -638,7 +638,7 @@ public class Xcls_GtkView : Object
               
               
               
-                var attrs = new Gtk.SourceMarkAttributes();
+                var attrs = new GtkSource.MarkAttributes();
                 var  pink =   Gdk.RGBA();
                 pink.parse ( "pink");
                 attrs.set_background ( pink);
@@ -650,7 +650,7 @@ public class Xcls_GtkView : Object
                 
                 this.el.set_mark_attributes ("ERR", attrs, 1);
                 
-                 var wattrs = new Gtk.SourceMarkAttributes();
+                 var wattrs = new GtkSource.MarkAttributes();
                 var  blue =   Gdk.RGBA();
                 blue.parse ( "#ABF4EB");
                 wattrs.set_background ( blue);
@@ -664,7 +664,7 @@ public class Xcls_GtkView : Object
                 
              
                 
-                 var dattrs = new Gtk.SourceMarkAttributes();
+                 var dattrs = new GtkSource.MarkAttributes();
                 var  purple =   Gdk.RGBA();
                 purple.parse ( "#EEA9FF");
                 dattrs.set_background ( purple);
@@ -677,7 +677,7 @@ public class Xcls_GtkView : Object
                 this.el.set_mark_attributes ("DEPR", dattrs, 1);
                 
                 
-                var gattrs = new Gtk.SourceMarkAttributes();
+                var gattrs = new GtkSource.MarkAttributes();
                 var  grey =   Gdk.RGBA();
                 grey.parse ( "#ccc");
                 gattrs.set_background ( grey);
