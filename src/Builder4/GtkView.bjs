@@ -642,18 +642,10 @@
            "bool sensitive" : false,
            "id" : "nextBtn",
            "listeners" : {
-            "button_press_event" : [
-             "(event) => {",
-             "",
-             "\t_this.forwardSearch(true);",
-             "\t",
-             "\treturn true;",
-             "}",
-             ""
-            ],
             "clicked" : [
              "( ) => {",
-             "",
+             "_this.forwardSearch(true);",
+             "\t ",
              "",
              "}",
              ""

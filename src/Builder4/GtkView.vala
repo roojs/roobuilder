@@ -1270,14 +1270,9 @@ public class Xcls_GtkView : Object
             this.el.sensitive = false;
 
             //listeners
-            this.el.button_press_event.connect( (event) => {
-            
-            	_this.forwardSearch(true);
-            	
-            	return true;
-            });
             this.el.clicked.connect( ( ) => {
-            
+            _this.forwardSearch(true);
+            	 
             
             });
         }
