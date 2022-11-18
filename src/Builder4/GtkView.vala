@@ -700,23 +700,6 @@ public class Xcls_GtkView : Object
                 
                 
             }
-
-            //listeners
-            this.el.key_press_event.connect( (event) => {
-            	
-            	 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            	    GLib.debug("SAVE: ctrl-g  pressed");
-            		_this.forwardSearch(true);
-            	    return true;
-            	}
-                if (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            	    GLib.debug("SAVE: ctrl-f  pressed");
-            		_this.search_entry.el.grab_focus();
-            	    return true;
-            	}
-            	 
-            	return false;
-            });
         }
 
         // user defined functions
@@ -978,7 +961,20 @@ public class Xcls_GtkView : Object
             //listeners
             this.el.key_pressed.connect( (keyval, keycode, state) => {
             
-            	return bool;
+            	
+            	 
+            	 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
+            	}
+                if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-f  pressed");
+            		_this.search_entry.el.grab_focus();
+            	    return true;
+            	}
+            	 
+            	return false;
             });
         }
 
