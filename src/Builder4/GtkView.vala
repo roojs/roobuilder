@@ -304,7 +304,7 @@ public class Xcls_GtkView : Object
         //try {
         
         	screenshot = Gdk.pixbuf_get_from_surface (win.surface(), 
-        		0,0,  width,  height)
+        		0,0,  width,  height);
     
              this.file.writeIcon(screenshot);
         //} catch (Error e) {
