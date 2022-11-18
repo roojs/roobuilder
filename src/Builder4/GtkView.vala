@@ -304,7 +304,7 @@ public class Xcls_GtkView : Object
         //try {
         
         var	screenshot = Gdk.pixbuf_get_from_surface (
-        		win.get_surface(), 
+        		win.get_surface().create_similar_surface(Cairo.Content.COLOR, width,height), 
         		0,0,  width,  height);
     
              this.file.writeIcon(screenshot);

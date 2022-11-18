@@ -842,7 +842,7 @@
     "    //try {",
     "    ",
     "    var\tscreenshot = Gdk.pixbuf_get_from_surface (",
-    "    \t\twin.get_surface(), ",
+    "    \t\twin.get_surface().create_similar_surface(Cairo.Content.COLOR, width,height), ",
     "    \t\t0,0,  width,  height);",
     "",
     "         this.file.writeIcon(screenshot);",
