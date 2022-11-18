@@ -783,9 +783,9 @@ public class Xcls_GtkView : Object
             var sbuf = (GtkSource.Buffer) buf;
         
            
-            while(Gtk.events_pending()) {
-                Gtk.main_iteration();
-            }
+            // while(Gtk.events_pending()) {
+             //    Gtk.main_iteration();
+           //  }
             
            
             // clear all the marks..
