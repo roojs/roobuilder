@@ -1356,7 +1356,7 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.search_settings = this;
-            this.el = new Gtk.PopoverMenu();
+            this.el = ;
 
             // my vars (dec)
 

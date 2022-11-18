@@ -680,6 +680,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "* ctor" : "",
              "* prop" : "popover",
              "id" : "search_settings",
              "items" : [
