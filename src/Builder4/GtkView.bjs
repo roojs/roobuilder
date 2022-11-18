@@ -489,6 +489,21 @@
            "bool hexpand" : true,
            "id" : "search_entry",
            "int width_request" : 300,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "listeners" : {
+              "key_pressed" : [
+               "(keyval, keycode, state) => {",
+               "",
+               "\treturn bool;",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "EventControllerKey"
+            }
+           ],
            "listeners" : {
             "changed" : [
              "() => {",
