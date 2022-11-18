@@ -841,7 +841,7 @@
     "    //try {",
     "    ",
     "    var\tscreenshot = Gdk.pixbuf_get_from_surface (",
-    "    \t\twin.surface(), ",
+    "    \t\twin.get_surface(), ",
     "    \t\t0,0,  width,  height);",
     "",
     "         this.file.writeIcon(screenshot);",
