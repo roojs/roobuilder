@@ -1417,12 +1417,6 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.label = "Case Sensitive";
-
-            // init method
-
-            {
-            	this.el.show();
-            }
         }
 
         // user defined functions
@@ -1447,12 +1441,6 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.label = "Regex";
-
-            // init method
-
-            {
-            	this.el.show();
-            }
         }
 
         // user defined functions
@@ -1477,12 +1465,6 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.label = "Multi-line (add \\n)";
-
-            // init method
-
-            {
-            	this.el.show();
-            }
         }
 
         // user defined functions
