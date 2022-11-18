@@ -1336,40 +1336,15 @@ public class Xcls_GtkView : Object
             this.always_show_image = true;
 
             // set gobject values
-            this.el.label = "Settings";
-            var child_0 = new Xcls_Image21( _this );
-            child_0.ref();
-            this.el.image = child_0.el;
-            var child_1 = new Xcls_search_settings( _this );
-            child_1.ref();
-            this.el.popover = child_1.el;
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Image21 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_GtkView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image21(Xcls_GtkView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
             this.el.icon_name = "emblem-system";
+            this.el.label = "Settings";
+            var child_0 = new Xcls_search_settings( _this );
+            child_0.ref();
+            this.el.popover = child_0.el;
         }
 
         // user defined functions
     }
-
     public class Xcls_search_settings : Object
     {
         public Gtk.PopoverMenu el;
