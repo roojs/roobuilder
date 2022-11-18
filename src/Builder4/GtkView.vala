@@ -1305,11 +1305,10 @@ public class Xcls_GtkView : Object
             this.el.sensitive = false;
 
             //listeners
-            this.el.button_press_event.connect( (event) => {
+            this.el.clicked.connect( ( ) => {
             
-            	_this.backSearch(true);
+            _this.backSearch(true);
             	
-            	return true;
             });
         }
 

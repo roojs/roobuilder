@@ -661,12 +661,11 @@
            "bool sensitive" : false,
            "id" : "backBtn",
            "listeners" : {
-            "button_press_event" : [
-             "(event) => {",
+            "clicked" : [
+             "( ) => {",
              "",
-             "\t_this.backSearch(true);",
+             "_this.backSearch(true);",
              "\t",
-             "\treturn true;",
              "}",
              ""
             ]
