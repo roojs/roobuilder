@@ -1218,20 +1218,6 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.visible = false;
-
-            //listeners
-            this.el.button_press_event.connect( () => {
-            /*
-                if (this.popup == null) {
-                    this.popup = new Xcls_ValaCompileErrors();
-                    this.popup.window = _this;
-                }
-               
-                
-                this.popup.show(this.notices, this.el);
-                */
-                return true;
-            });
         }
 
         // user defined functions

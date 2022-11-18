@@ -608,22 +608,6 @@
              "$ xns" : "Gtk",
              "bool visible" : false,
              "id" : "search_results",
-             "listeners" : {
-              "button_press_event" : [
-               "() => {",
-               "/*",
-               "    if (this.popup == null) {",
-               "        this.popup = new Xcls_ValaCompileErrors();",
-               "        this.popup.window = _this;",
-               "    }",
-               "   ",
-               "    ",
-               "    this.popup.show(this.notices, this.el);",
-               "    */",
-               "    return true;",
-               "}"
-              ]
-             },
              "xtype" : "Button",
              "| void updateResults" : [
               "() {",
