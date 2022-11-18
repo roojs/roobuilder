@@ -1276,6 +1276,10 @@ public class Xcls_GtkView : Object
             	
             	return true;
             });
+            this.el.clicked.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions

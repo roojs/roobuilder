@@ -650,6 +650,13 @@
              "\treturn true;",
              "}",
              ""
+            ],
+            "clicked" : [
+             "( ) => {",
+             "",
+             "",
+             "}",
+             ""
             ]
            },
            "string icon_name" : "go-down",
