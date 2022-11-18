@@ -1014,7 +1014,7 @@ public class Xcls_GtkView : Object
             var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
             this.el.append(  child_3.el );
-            var child_4 = new Xcls_MenuButton21( _this );
+            var child_4 = new Xcls_MenuButton20( _this );
             child_4.ref();
             this.el.append(  child_4.el );
         }
@@ -1301,11 +1301,9 @@ public class Xcls_GtkView : Object
             this.always_show_image = true;
 
             // set gobject values
+            this.el.icon_name = "go-up";
             this.el.label = "Previous";
             this.el.sensitive = false;
-            var child_0 = new Xcls_Image20( _this );
-            child_0.ref();
-            this.el.image = child_0.el;
 
             //listeners
             this.el.button_press_event.connect( (event) => {
@@ -1318,31 +1316,8 @@ public class Xcls_GtkView : Object
 
         // user defined functions
     }
-    public class Xcls_Image20 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_GtkView  _this;
 
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image20(Xcls_GtkView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "go-up";
-        }
-
-        // user defined functions
-    }
-
-
-    public class Xcls_MenuButton21 : Object
+    public class Xcls_MenuButton20 : Object
     {
         public Gtk.MenuButton el;
         private Xcls_GtkView  _this;
@@ -1352,7 +1327,7 @@ public class Xcls_GtkView : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_MenuButton21(Xcls_GtkView _owner )
+        public Xcls_MenuButton20(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -1362,7 +1337,7 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.label = "Settings";
-            var child_0 = new Xcls_Image22( _this );
+            var child_0 = new Xcls_Image21( _this );
             child_0.ref();
             this.el.image = child_0.el;
             var child_1 = new Xcls_search_settings( _this );
@@ -1372,7 +1347,7 @@ public class Xcls_GtkView : Object
 
         // user defined functions
     }
-    public class Xcls_Image22 : Object
+    public class Xcls_Image21 : Object
     {
         public Gtk.Image el;
         private Xcls_GtkView  _this;
@@ -1381,7 +1356,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image22(Xcls_GtkView _owner )
+        public Xcls_Image21(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
