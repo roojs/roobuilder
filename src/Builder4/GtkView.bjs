@@ -680,7 +680,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* ctor" : "",
+             "* ctor" : "new Gtk.PopoverMenu.from_model()",
              "* prop" : "popover",
              "id" : "search_settings",
              "items" : [
