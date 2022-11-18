@@ -193,6 +193,7 @@
             "}",
             " "
            ],
+           "* pack" : "add_child",
            "Gtk.CssProvider css" : "",
            "bool allow_node_scroll" : true,
            "bool loading" : true,
