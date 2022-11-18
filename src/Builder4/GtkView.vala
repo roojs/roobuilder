@@ -974,6 +974,12 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.key_pressed.connect( (keyval, keycode, state) => {
+            
+            	return bool;
+            });
         }
 
         // user defined functions
