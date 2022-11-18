@@ -1058,32 +1058,6 @@ public class Xcls_GtkView : Object
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
-            this.el.key_press_event.connect( (event) => {
-                 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            	    GLib.debug("SAVE: ctrl-g  pressed");
-            		_this.forwardSearch(true);
-            	    return true;
-            	}
-                
-              
-             	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
-            		_this.search(this.el.text);
-            		 _this.search_results.updateResults();
-            
-            		GLib.Timeout.add_seconds(2,() => {
-            			 _this.search_results.updateResults();
-            			 return false;
-            		 });
-            	 
-            		
-            	    return true;
-            
-            	}    
-               // print(event.key.keyval)
-               
-                return false;
-            
-            });
             this.el.changed.connect( () => {
             	/*
             	if (this.el.text == "") {
@@ -1169,7 +1143,31 @@ public class Xcls_GtkView : Object
             //listeners
             this.el.key_pressed.connect( (keyval, keycode, state) => {
             
-            	return bool;
+            	 
+                 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
+            	}
+                
+              
+             	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
+            		_this.search(_this.search_entry.el.text);
+            		 _this.search_results.updateResults();
+            
+            		GLib.Timeout.add_seconds(2,() => {
+            			 _this.search_results.updateResults();
+            			 return false;
+            		 });
+            	 
+            		
+            	    return true;
+            
+            	}    
+               // print(event.key.keyval)
+               
+                return false;
+            
             });
         }
 
