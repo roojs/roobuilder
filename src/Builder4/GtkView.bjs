@@ -390,7 +390,7 @@
             "        this.highlightErrorsJson(\"WARN\", obj);",
             "        this.highlightErrorsJson(\"DEPR\", obj);\t\t\t",
             "    }",
-            "    //while (Gtk.events_pending()) {",
+            "    // while (Gtk.events_pending()) {",
             "     //   Gtk.main_iteration();",
             "   // }",
             "    ",
