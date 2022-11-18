@@ -209,6 +209,10 @@
              "id" : "buffer",
              "int error_line" : "-1",
              "xtype" : "Buffer"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "EventControllerKey"
             }
            ],
            "listeners" : {
