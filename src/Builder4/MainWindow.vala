@@ -93,8 +93,8 @@ public class Xcls_MainWindow : Object
          BuilderApplication.removeWindow(this);
          
          if (BuilderApplication.windows.size  < 1) {
-        
-             Gtk.main_quit();
+        BuilderApplication
+            BuilderApplication applicationq.quit();
          }
         });
     }
