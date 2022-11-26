@@ -371,7 +371,6 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* pack" : "add_child",
                "listeners" : {
                 "activate" : [
                  " ( ) => {",
@@ -384,7 +383,6 @@
               },
               {
                "$ xns" : "Gtk",
-               "* pack" : "add_child",
                "listeners" : {
                 "activate" : [
                  "() => {",
