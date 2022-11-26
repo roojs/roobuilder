@@ -1118,7 +1118,7 @@ public class Xcls_MainWindow : Object
             this.el.label = "0 Errors";
 
             //listeners
-            this.el.button_press_event.connect( () => {
+            this.el.clicked.connect( () => {
                 if (this.popup == null) {
                     this.popup = new Xcls_ValaCompileErrors();
                     this.popup.window = _this;
@@ -1126,7 +1126,7 @@ public class Xcls_MainWindow : Object
                
                 
                 this.popup.show(this.notices, this.el);
-                return true;
+                return;
             });
         }
 
@@ -1164,14 +1164,14 @@ public class Xcls_MainWindow : Object
             this.el.label = "0 Warnings";
 
             //listeners
-            this.el.button_press_event.connect( () => {
+            this.el.clicked.connect( () => {
                 if (this.popup == null) {
                     this.popup = new Xcls_ValaCompileErrors();
                     this.popup.window = _this;
                 }
                 
                 this.popup.show(this.notices, this.el);
-                return true;
+                return;
             });
         }
 
