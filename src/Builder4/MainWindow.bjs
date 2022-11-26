@@ -12,11 +12,7 @@
     " ",
     "     this.el.set_icon_name(\"roobuilder\");",
     "     ",
-    "     var sc = new Gtk.ShortcutController();",
-    "     sc.add_shortcut(",
-    "     \tnew Shortcut(Gtk.ShortcutTrigger.parse_string(\"<Control>S\"),",
-    "     \t",
-    "     ",
+    "   ",
     "     ",
     " "
    ],
