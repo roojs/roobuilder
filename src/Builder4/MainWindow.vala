@@ -93,8 +93,8 @@ public class Xcls_MainWindow : Object
          BuilderApplication.removeWindow(this);
          
          if (BuilderApplication.windows.size  < 1) {
-         	string[] args = {};
-            BuilderApplication.singleton( args ).quit();
+        
+            BuilderApplication.singleton(  ).quit();
          }
         });
     }
