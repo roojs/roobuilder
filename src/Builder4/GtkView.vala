@@ -1363,7 +1363,7 @@ public class Xcls_GtkView : Object
             // set gobject values
             var child_0 = new Xcls_Box22( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.set_child (  child_0.el  );
         }
 
         // user defined functions
@@ -1380,13 +1380,11 @@ public class Xcls_GtkView : Object
         public Xcls_Box22(Xcls_GtkView _owner )
         {
             _this = _owner;
-            this.el = set_child;
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.orientation = Gtk.Orientation.VERTICAL;
-            this.el.spacing = 0;
             var child_0 = new Xcls_case_sensitive( _this );
             child_0.ref();
             this.el.append(  child_0.el );
