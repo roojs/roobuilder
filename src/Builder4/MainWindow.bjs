@@ -558,7 +558,7 @@
              "}"
             ]
            },
-           "string label" : "\"\"",
+           "string label" : "0 Depricated",
            "xtype" : "Button",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
