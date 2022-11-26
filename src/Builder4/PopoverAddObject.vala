@@ -103,8 +103,11 @@ public class Xcls_PopoverAddObject : Object
         // set size up...
         
         this.model.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);
-        int w,h;
-        this.mainwindow.el.get_size(out w, out h);
+        
+        var win = this.mainwindow.el;
+        var  w = win.get_width();
+        var h = win.get_height();
+    
         
         // left tree = 250, editor area = 500?
         
