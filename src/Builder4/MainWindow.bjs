@@ -717,8 +717,8 @@
      " BuilderApplication.removeWindow(this);",
      " ",
      " if (BuilderApplication.windows.size  < 1) {",
-     " ",
-     "    BuilderApplication.singleton( [] ).quit();",
+     " \tstring[] args = {};",
+     "    BuilderApplication.singleton( args ).quit();",
      " }",
      "}"
     ],
