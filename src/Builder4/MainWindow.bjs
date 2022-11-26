@@ -26,28 +26,6 @@
    "id" : "MainWindow",
    "items" : [
     {
-     "$ xns" : "Gtk",
-     "listeners" : {
-      "key_pressed" : [
-       "(keyval, keycode, state) => {",
-       "",
-       "\t if (keyval == Gdk.Key.n && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-       "\t\tprint(\"New window: ctrl-n  pressed\");",
-       "\t\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
-       "\t\treturn false;",
-       "\t}",
-       "\t",
-       "   // print(event.key.keyval)",
-       "    ",
-       "    return false;",
-       "",
-       "} ",
-       ""
-      ]
-     },
-     "xtype" : "EventControllerKey"
-    },
-    {
      "$ string title" : "\"Application Builder\"",
      "$ xns" : "Gtk",
      "* pack" : "set_titlebar",
@@ -102,7 +80,10 @@
                  "$ xns" : "Gtk",
                  "* init" : [
                   "{",
-                  "",
+                  "\tthis.el.add_shortcut(",
+                  "\t\tnew Gtk.KeyValTrigger(\"N\",Gdk.ModifierType.CONTROL_MASK),",
+                  "\t\tnew Gtk.SignalAction(\"clicked\");",
+                  "\t);",
                   "}",
                   ""
                  ],
