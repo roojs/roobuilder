@@ -530,10 +530,10 @@ public class Xcls_MainWindow : Object
             this.el.position = 400;
             var child_0 = new Xcls_leftpane( _this );
             child_0.ref();
-            this.el.pack1( child_0.el );
+            this.el.start_child = child_0.el;
             var child_1 = new Xcls_Box17( _this );
             child_1.ref();
-            this.el.pack2( child_1.el );
+            this.el.pack1( child_1.el );
         }
 
         // user defined functions
