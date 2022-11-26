@@ -215,10 +215,10 @@
      "xtype" : "HeaderBar"
     },
     {
-     "$ homogeneous" : false,
      "$ xns" : "Gtk",
      "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "bool homogeneous" : false,
      "id" : "vbox",
      "items" : [
       {
