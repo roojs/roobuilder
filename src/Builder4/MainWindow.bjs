@@ -521,6 +521,7 @@
              "}"
             ]
            },
+           "string label" : "0 Warnings",
            "xtype" : "Button",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",

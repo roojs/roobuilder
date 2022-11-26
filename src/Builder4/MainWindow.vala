@@ -1162,6 +1162,7 @@ public class Xcls_MainWindow : Object
             this.notices = new Json.Object();
 
             // set gobject values
+            this.el.label = "0 Warnings";
             var child_0 = new Xcls_Box33( _this );
             child_0.ref();
             this.el.append(  child_0.el );
