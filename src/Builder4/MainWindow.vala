@@ -586,7 +586,7 @@ public class Xcls_MainWindow : Object
             this.el.start_child = child_0.el;
             var child_1 = new Xcls_props( _this );
             child_1.ref();
-            this.el.add2 (  child_1.el  );
+            this.el.end_child (  child_1.el  );
 
             //listeners
             this.el.accept_position.connect( () => {
