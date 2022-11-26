@@ -559,7 +559,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_run",
            "listeners" : {

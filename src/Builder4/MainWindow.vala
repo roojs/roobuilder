@@ -1064,7 +1064,7 @@ public class Xcls_MainWindow : Object
             this.el.add (  child_3.el  );
             var child_4 = new Xcls_statusbar_run( _this );
             child_4.ref();
-            this.el.add (  child_4.el  );
+            this.el.append(  child_4.el );
         }
 
         // user defined functions
