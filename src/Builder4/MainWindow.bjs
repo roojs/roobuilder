@@ -274,7 +274,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add2",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "items" : [
           {
