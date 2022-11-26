@@ -241,7 +241,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add1",
+             "* prop" : "start_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
              "id" : "tree",
              "xtype" : "Box"

@@ -583,7 +583,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_tree( _this );
             child_0.ref();
-            this.el.add1 (  child_0.el  );
+            this.el.start_child = child_0.el;
             var child_1 = new Xcls_props( _this );
             child_1.ref();
             this.el.add2 (  child_1.el  );
