@@ -451,7 +451,6 @@
           {
            "# Json.Object notices" : "new Json.Object() ",
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_errors",
            "listeners" : {
@@ -484,7 +483,6 @@
           {
            "# Json.Object notices" : "new Json.Object()",
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_warnings",
            "listeners" : {
@@ -521,7 +519,6 @@
           {
            "# Json.Object notices" : "new Json.Object()",
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_depricated",
            "listeners" : {
