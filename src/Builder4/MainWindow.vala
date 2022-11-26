@@ -764,7 +764,7 @@ public class Xcls_MainWindow : Object
             this.el.append(  child_5.el );
             var child_6 = new Xcls_statusbar_compile_spinner( _this );
             child_6.ref();
-            this.el.add (  child_6.el  );
+            this.el.append(  child_6.el );
         }
 
         // user defined functions
