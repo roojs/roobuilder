@@ -311,7 +311,7 @@ public class Xcls_MainWindow : Object
          		}
          		if (w.windowstate.file.project.name != p || p != "") {
          			var ms = new Gtk.Separator(Gtk.Orientation.HORIZONTAL);
-         			_this.popover_menu.el.add_child(ms);
+         			_this.popover_menu.el.append(ms);
         		 	ms.show();
         		 	this.mitems.add(ms);
          		}
@@ -331,7 +331,7 @@ public class Xcls_MainWindow : Object
         	 	m.activate.connect(() => {
         	 		 BuilderApplication.windows.get(wid).el.present();
         	 	});
-        	 	_this.popover_menu.el.add_child(m);
+        	 	_this.popover_menu.el.append(m);
         	 	m.show();
         	 	this.mitems.add(m);
         	 }
