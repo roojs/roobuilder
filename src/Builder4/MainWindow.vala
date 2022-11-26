@@ -888,7 +888,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.topbarmenu = this;
-            this.el = new Gtk.PopoverMenu();
+            this.el = new Gtk.PopoverMenu.from_model(null);
 
             // my vars (dec)
 
