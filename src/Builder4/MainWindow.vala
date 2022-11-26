@@ -753,13 +753,13 @@ public class Xcls_MainWindow : Object
             var child_2 = new Xcls_MenuButton23( _this );
             child_2.ref();
             this.el.append(  child_2.el );
-            var child_3 = new Xcls_Label27( _this );
+            var child_3 = new Xcls_Label28( _this );
             child_3.ref();
             this.el.append(  child_3.el );
             var child_4 = new Xcls_statusbar( _this );
             child_4.ref();
             this.el.append(  child_4.el );
-            var child_5 = new Xcls_Box29( _this );
+            var child_5 = new Xcls_Box30( _this );
             child_5.ref();
             this.el.append(  child_5.el );
             var child_6 = new Xcls_statusbar_compile_spinner( _this );
@@ -893,12 +893,15 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button25( _this );
+            var child_0 = new Xcls_Box25( _this );
             child_0.ref();
-            this.el.add_child (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Button26( _this );
             child_1.ref();
             this.el.add_child (  child_1.el  );
+            var child_2 = new Xcls_Button27( _this );
+            child_2.ref();
+            this.el.add_child (  child_2.el  );
 
             // init method
 
@@ -909,29 +912,23 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Button25 : Object
+    public class Xcls_Box25 : Object
     {
-        public Gtk.Button el;
+        public Gtk.Box el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Button25(Xcls_MainWindow _owner )
+        public Xcls_Box25(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Download updated Resources";
-
-            //listeners
-            this.el.activate.connect( ( ) => {
-                     Resources.singleton().fetchStart();
-            });
         }
 
         // user defined functions
@@ -954,6 +951,34 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.label = "Download updated Resources";
+
+            //listeners
+            this.el.activate.connect( ( ) => {
+                     Resources.singleton().fetchStart();
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Button27 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_MainWindow  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button27(Xcls_MainWindow _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
             this.el.label = "About the Builder";
 
             //listeners
@@ -967,7 +992,7 @@ public class Xcls_MainWindow : Object
 
 
 
-    public class Xcls_Label27 : Object
+    public class Xcls_Label28 : Object
     {
         public Gtk.Label el;
         private Xcls_MainWindow  _this;
@@ -976,7 +1001,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label27(Xcls_MainWindow _owner )
+        public Xcls_Label28(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "   " );
@@ -1033,7 +1058,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_Box29 : Object
+    public class Xcls_Box30 : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -1042,7 +1067,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box29(Xcls_MainWindow _owner )
+        public Xcls_Box30(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
