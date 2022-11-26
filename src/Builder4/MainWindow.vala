@@ -1117,6 +1117,7 @@ public class Xcls_MainWindow : Object
             this.notices = new Json.Object();
 
             // set gobject values
+            this.el.icon_name = "dialog-error";
             var child_0 = new Xcls_Box32( _this );
             child_0.ref();
             this.el.append(  child_0.el );

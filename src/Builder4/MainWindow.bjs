@@ -489,6 +489,7 @@
              "}"
             ]
            },
+           "string icon_name" : "dialog-error",
            "xtype" : "Button",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
