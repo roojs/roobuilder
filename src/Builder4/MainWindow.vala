@@ -64,6 +64,10 @@ public class Xcls_MainWindow : Object
         // init method
 
         this.el.set_icon_name("roobuilder");
+             
+             var sc = new Gtk.ShortcutController();
+             sc.add_shortcut(
+             	new Shortcut(Gtk.ShortcutTrigger.parse_string("<Control>S"),
 
         //listeners
         this.el.close_request.connect( ( ) => {
