@@ -197,14 +197,6 @@
          "* pack" : "append",
          "bool always_show_image" : true,
          "id" : "open_projects_btn",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "system-file-manager",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
@@ -321,14 +313,6 @@
          "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "emblem-system",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
@@ -339,6 +323,7 @@
            "}"
           ]
          },
+         "string icon_name" : "emblem-system",
          "string label" : "Edit Project Settings",
          "xtype" : "Button"
         },
@@ -347,14 +332,6 @@
          "$ xns" : "Gtk",
          "* pack" : "add",
          "bool always_show_image" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "document-properties",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
@@ -373,6 +350,7 @@
            "}"
           ]
          },
+         "string icon_name" : "document-properties",
          "string label" : "Edit File Properties",
          "xtype" : "Button"
         },
@@ -420,14 +398,9 @@
             }
            ],
            "xtype" : "PopoverMenu"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "dialog-information",
-           "xtype" : "Image"
           }
          ],
+         "string icon_name" : "dialog-information",
          "string label" : "About",
          "xtype" : "MenuButton"
         },
