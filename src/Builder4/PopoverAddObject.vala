@@ -18,6 +18,7 @@ public class Xcls_PopoverAddObject : Object
 
         // my vars (def)
     public signal void before_node_change (JsRender.Node? node);
+    public bool modal;
     public signal void after_node_change (JsRender.Node? node);
     public signal void drag_end ();
     public Xcls_MainWindow mainwindow;
@@ -27,16 +28,16 @@ public class Xcls_PopoverAddObject : Object
     public Xcls_PopoverAddObject()
     {
         _this = this;
-        this.el = new Gtk.Popover( null );
+        this.el = new Gtk.Popover();
 
         // my vars (dec)
+        this.modal = true;
         this.active = false;
 
         // set gobject values
         this.el.width_request = 900;
         this.el.height_request = 800;
         this.el.hexpand = false;
-        this.el.modal = true;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_ScrolledWindow2( _this );
         child_0.ref();
@@ -138,12 +139,11 @@ public class Xcls_PopoverAddObject : Object
         public Xcls_ScrolledWindow2(Xcls_PopoverAddObject _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_TreeView3( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
