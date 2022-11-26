@@ -311,7 +311,6 @@
         {
          "$ tooltip_text" : "\"Project Details\"",
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "bool always_show_image" : true,
          "listeners" : {
           "clicked" : [
@@ -330,7 +329,6 @@
         {
          "$ tooltip_text" : "\"File Details\"",
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "bool always_show_image" : true,
          "listeners" : {
           "clicked" : [
@@ -356,7 +354,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "bool always_show_image" : true,
          "items" : [
           {
