@@ -443,6 +443,12 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.scope = Gtk.ShortcutScope.GLOBAL;
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions

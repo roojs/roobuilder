@@ -100,6 +100,12 @@
                 {
                  "$ Gtk.ShortcutScope scope" : "Gtk.ShortcutScope.GLOBAL",
                  "$ xns" : "Gtk",
+                 "* init" : [
+                  "{",
+                  "",
+                  "}",
+                  ""
+                 ],
                  "xtype" : "ShortcutController"
                 }
                ],
