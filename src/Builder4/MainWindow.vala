@@ -1230,8 +1230,14 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
         public void setNotices (Json.Object nots, int qty) {
-            this.el.show_all();
-            _this.statusbar_depricated_label.el.label = qty.to_string() + " Depricated";
+            if (qty < 1) {
+            	this.el.hide();
+            	return;
+        	}
+            
+            this.el.show();
+            
+            this.el.label = qty.to_string() + " Depricated";
             this.notices = nots;
         
         }
