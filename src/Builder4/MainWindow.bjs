@@ -209,7 +209,6 @@
           "clicked" : [
            "  ( ) => {",
            "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
-           "",
            "}"
           ]
          },
