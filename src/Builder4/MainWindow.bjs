@@ -78,7 +78,7 @@
                   "{",
                   "\tthis.el.add_shortcut(",
                   "\t\tnew Gtk.KeyValTrigger(\"N\",Gdk.ModifierType.CONTROL_MASK),",
-                  "\t\tnew Gtk.SignalAction(\"clicked\");",
+                  "\t\tnew Gtk.SignalAction(\"clicked\")",
                   "\t);",
                   "}",
                   ""
