@@ -96,21 +96,6 @@ public class Xcls_MainWindow : Object
             Resources.singleton().checkResources();
         
         });
-        this.el.key_release_event.connect( (event) => {
-            
-            
-        	
-        	if (event.keyval == Gdk.Key.n && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-        		print("SAVE: ctrl-n  pressed");
-        		_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
-        		return false;
-        	}
-        	
-           // print(event.key.keyval)
-            
-            return false;
-        
-        });
     }
 
     // user defined functions
@@ -165,29 +150,14 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.key_pressed.connect( (keyval, keycode, state) => {
             
-            	 
-                 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            	    GLib.debug("SAVE: ctrl-g  pressed");
-            		_this.forwardSearch(true);
-            	    return true;
+            	 if (keyval == Gdk.Key.n && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            		print("SAVE: ctrl-n  pressed");
+            		_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
+            		return false;
             	}
-                
-              
-             	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
-            		_this.search(_this.search_entry.el.text);
-            		 _this.search_results.updateResults();
-            
-            		GLib.Timeout.add_seconds(2,() => {
-            			 _this.search_results.updateResults();
-            			 return false;
-            		 });
-            	 
-            		
-            	    return true;
-            
-            	}    
+            	
                // print(event.key.keyval)
-               
+                
                 return false;
             
             });
