@@ -68,8 +68,9 @@ public class Xcls_MainWindow : Object
         this.el.set_icon_name("roobuilder");
 
         //listeners
-        this.el.delete_event.connect( (   event) => {
-            return false;
+        this.el.close_request.connect( ( ) => {
+        
+        	return false;
         });
         this.el.destroy.connect( () =>  {
          

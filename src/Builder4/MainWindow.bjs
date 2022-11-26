@@ -697,10 +697,12 @@
     }
    ],
    "listeners" : {
-    "delete_event" : [
-     "(   event) => {",
-     "    return false;",
-     "} "
+    "close_request" : [
+     "( ) => {",
+     "",
+     "\treturn false;",
+     "}",
+     ""
     ],
     "destroy" : [
      "() =>  {",
