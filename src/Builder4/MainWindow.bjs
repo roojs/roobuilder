@@ -365,6 +365,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "* pack" : "set_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
              "int spacing" : 0,
              "xtype" : "Box"

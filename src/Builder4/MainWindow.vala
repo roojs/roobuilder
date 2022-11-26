@@ -895,7 +895,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Box25( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.set_child (  child_0.el  );
             var child_1 = new Xcls_Button26( _this );
             child_1.ref();
             this.el.add_child (  child_1.el  );
