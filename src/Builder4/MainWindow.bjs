@@ -32,7 +32,7 @@
        "(keyval, keycode, state) => {",
        "",
        "\t if (keyval == Gdk.Key.n && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-       "\t\tprint(\"SAVE: ctrl-n  pressed\");",
+       "\t\tprint(\"New window: ctrl-n  pressed\");",
        "\t\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
        "\t\treturn false;",
        "\t}",

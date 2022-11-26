@@ -154,7 +154,7 @@ public class Xcls_MainWindow : Object
             this.el.key_pressed.connect( (keyval, keycode, state) => {
             
             	 if (keyval == Gdk.Key.n && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            		print("SAVE: ctrl-n  pressed");
+            		print("New window: ctrl-n  pressed");
             		_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
             		return false;
             	}
