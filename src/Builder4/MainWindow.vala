@@ -502,7 +502,7 @@ public class Xcls_MainWindow : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_Box20( _this );
             child_1.ref();
-            this.el.pack_end (  child_1.el , false,true,0 );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions

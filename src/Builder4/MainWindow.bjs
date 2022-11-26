@@ -300,7 +300,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_end,false,true,0",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool homogeneous" : false,
        "items" : [
