@@ -755,10 +755,10 @@ public class Xcls_MainWindow : Object
             this.el.append(  child_2.el );
             var child_3 = new Xcls_Label27( _this );
             child_3.ref();
-            this.el.pack_start (  child_3.el , true,true,0 );
+            this.el.append(  child_3.el );
             var child_4 = new Xcls_statusbar( _this );
             child_4.ref();
-            this.el.pack_start (  child_4.el , true,true,0 );
+            this.el.append(  child_4.el );
             var child_5 = new Xcls_Box29( _this );
             child_5.ref();
             this.el.append(  child_5.el );
