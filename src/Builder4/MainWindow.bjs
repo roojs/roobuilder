@@ -119,7 +119,7 @@
          "| void updateMenu" : [
           "() {",
           "\t foreach(var m in  this.mitems) {",
-          "\t \t this.el.popover.remove(m);",
+          "\t \t _this.popover_menu.el.remove(m);",
           "\t }",
           "\t this.mitems.clear();",
           "\t ",

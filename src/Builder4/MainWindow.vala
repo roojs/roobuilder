@@ -267,7 +267,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
         public void updateMenu () {
         	 foreach(var m in  this.mitems) {
-        	 	 this.el.popover.remove(m);
+        	 	 _this.popover_menu.el.remove(m);
         	 }
         	 this.mitems.clear();
         	 
