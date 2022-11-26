@@ -98,6 +98,7 @@
                "* pack" : "append",
                "items" : [
                 {
+                 "$ Gtk.ShortcutScope scope" : "Gtk.ShortcutScope.GLOBAL",
                  "$ xns" : "Gtk",
                  "xtype" : "ShortcutController"
                 }

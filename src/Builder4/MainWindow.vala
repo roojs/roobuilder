@@ -442,6 +442,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.scope = Gtk.ShortcutScope.GLOBAL;
         }
 
         // user defined functions
