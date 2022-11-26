@@ -368,33 +368,35 @@
              "* pack" : "set_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
              "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "add_child",
+               "listeners" : {
+                "activate" : [
+                 " ( ) => {",
+                 "         Resources.singleton().fetchStart();",
+                 "}"
+                ]
+               },
+               "string label" : "Download updated Resources",
+               "xtype" : "Button"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "add_child",
+               "listeners" : {
+                "activate" : [
+                 "() => {",
+                 "    About.singleton().el.show();",
+                 "    }"
+                ]
+               },
+               "string label" : "About the Builder",
+               "xtype" : "Button"
+              }
+             ],
              "xtype" : "Box"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "add_child",
-             "listeners" : {
-              "activate" : [
-               " ( ) => {",
-               "         Resources.singleton().fetchStart();",
-               "}"
-              ]
-             },
-             "string label" : "Download updated Resources",
-             "xtype" : "Button"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "add_child",
-             "listeners" : {
-              "activate" : [
-               "() => {",
-               "    About.singleton().el.show();",
-               "    }"
-              ]
-             },
-             "string label" : "About the Builder",
-             "xtype" : "Button"
             }
            ],
            "xtype" : "PopoverMenu"
