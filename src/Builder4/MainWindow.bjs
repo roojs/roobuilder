@@ -96,6 +96,12 @@
               {
                "$ xns" : "Gtk",
                "* pack" : "append",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "xtype" : "ShortcutController"
+                }
+               ],
                "listeners" : {
                 "activate" : [
                  "( ) => {",
