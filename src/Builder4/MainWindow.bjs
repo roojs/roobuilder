@@ -526,7 +526,11 @@
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
             "    this.el.show();",
-            "   this.el.label = qty.to_string() + \" Warnings\";",
+            "    if (qty < 1 ) {",
+            "    \tthis.el.hide();",
+            "    \treturn;",
+            "    }",
+            "    this.el.label = qty.to_string() + \" Warnings\";",
             "    this.notices = nots;",
             "",
             "}",
