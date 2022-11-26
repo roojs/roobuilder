@@ -50,7 +50,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "items" : [
         {
          "# Gee.ArrayList<Gtk.Button> mitems" : "",
