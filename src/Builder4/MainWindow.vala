@@ -14,6 +14,7 @@ public class Xcls_MainWindow : Object
     }
     public Xcls_headerbar headerbar;
     public Xcls_windowbtn windowbtn;
+    public Xcls_Box7 Box7;
     public Xcls_open_projects_btn open_projects_btn;
     public Xcls_vbox vbox;
     public Xcls_mainpane mainpane;
@@ -376,6 +377,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Box7(Xcls_MainWindow _owner )
         {
             _this = _owner;
+            _this.Box7 = this;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)

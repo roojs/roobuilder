@@ -82,6 +82,7 @@
              "$ xns" : "Gtk",
              "* pack" : "set_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "id" : "",
              "int spacing" : 0,
              "items" : [
               {
