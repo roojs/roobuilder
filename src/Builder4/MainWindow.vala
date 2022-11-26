@@ -125,7 +125,7 @@ public class Xcls_MainWindow : Object
         var w = new Xcls_MainWindow();
         w.ref();
     	BuilderApplication.addWindow(w);
-        w.el.show_all();
+        w.el.show();
         w.initChildren();
         w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);
          
