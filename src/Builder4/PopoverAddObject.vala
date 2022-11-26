@@ -113,7 +113,7 @@ public class Xcls_PopoverAddObject : Object
         if (this.el.relative_to == null) {
             this.el.set_relative_to(onbtn);
         }
-        this.el.show_all();
+        this.el.show();
        
         while(Gtk.events_pending()) { 
                 Gtk.main_iteration();
