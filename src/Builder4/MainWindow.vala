@@ -29,7 +29,6 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar_compilestatus_label statusbar_compilestatus_label;
     public Xcls_statusbar_errors statusbar_errors;
     public Xcls_statusbar_warnings statusbar_warnings;
-    public Xcls_statusbar_warnings_label statusbar_warnings_label;
     public Xcls_statusbar_depricated statusbar_depricated;
     public Xcls_statusbar_depricated_label statusbar_depricated_label;
     public Xcls_statusbar_run statusbar_run;
@@ -1162,10 +1161,8 @@ public class Xcls_MainWindow : Object
             this.notices = new Json.Object();
 
             // set gobject values
+            this.el.icon_name = "dialog-warning";
             this.el.label = "0 Warnings";
-            var child_0 = new Xcls_Box33( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1191,80 +1188,6 @@ public class Xcls_MainWindow : Object
         
         }
     }
-    public class Xcls_Box33 : Object
-    {
-        public Gtk.Box el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Box33(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 2 );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_Image34( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_statusbar_warnings_label( _this );
-            child_1.ref();
-            this.el.append(  child_1.el );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Image34 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image34(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "dialog-warning";
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_statusbar_warnings_label : Object
-    {
-        public Gtk.Label el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_statusbar_warnings_label(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            _this.statusbar_warnings_label = this;
-            this.el = new Gtk.Label( "Errors" );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-
 
     public class Xcls_statusbar_depricated : Object
     {
@@ -1287,7 +1210,7 @@ public class Xcls_MainWindow : Object
             this.notices = new Json.Object();
 
             // set gobject values
-            var child_0 = new Xcls_Box37( _this );
+            var child_0 = new Xcls_Box34( _this );
             child_0.ref();
             this.el.append(  child_0.el );
 
@@ -1312,7 +1235,7 @@ public class Xcls_MainWindow : Object
         
         }
     }
-    public class Xcls_Box37 : Object
+    public class Xcls_Box34 : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -1321,7 +1244,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box37(Xcls_MainWindow _owner )
+        public Xcls_Box34(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 2 );
@@ -1329,7 +1252,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Image38( _this );
+            var child_0 = new Xcls_Image35( _this );
             child_0.ref();
             this.el.append(  child_0.el );
             var child_1 = new Xcls_statusbar_depricated_label( _this );
@@ -1339,7 +1262,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Image38 : Object
+    public class Xcls_Image35 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1348,7 +1271,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image38(Xcls_MainWindow _owner )
+        public Xcls_Image35(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1406,7 +1329,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box41( _this );
+            var child_0 = new Xcls_Box38( _this );
             child_0.ref();
             this.el.append(  child_0.el );
 
@@ -1425,7 +1348,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Box41 : Object
+    public class Xcls_Box38 : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -1434,7 +1357,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box41(Xcls_MainWindow _owner )
+        public Xcls_Box38(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 2 );
@@ -1442,17 +1365,17 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Image42( _this );
+            var child_0 = new Xcls_Image39( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Label43( _this );
+            var child_1 = new Xcls_Label40( _this );
             child_1.ref();
             this.el.append(  child_1.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Image42 : Object
+    public class Xcls_Image39 : Object
     {
         public Gtk.Image el;
         private Xcls_MainWindow  _this;
@@ -1461,7 +1384,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image42(Xcls_MainWindow _owner )
+        public Xcls_Image39(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1475,7 +1398,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
     }
 
-    public class Xcls_Label43 : Object
+    public class Xcls_Label40 : Object
     {
         public Gtk.Label el;
         private Xcls_MainWindow  _this;
@@ -1484,7 +1407,7 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label43(Xcls_MainWindow _owner )
+        public Xcls_Label40(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Run" );
