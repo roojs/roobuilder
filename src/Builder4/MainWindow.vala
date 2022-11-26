@@ -1271,8 +1271,7 @@ public class Xcls_MainWindow : Object
             	BuilderApplication.valasource.spawnExecute(_this.windowstate.file);
             	
             	_this.windowstate.compile_results.show(this.el,true);
-            	
-            	returns;
+            	 
             });
         }
 
