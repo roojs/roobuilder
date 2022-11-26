@@ -82,7 +82,7 @@
              "$ xns" : "Gtk",
              "* pack" : "set_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "id" : "",
+             "id" : "popover_menu",
              "int spacing" : 0,
              "items" : [
               {

@@ -14,7 +14,7 @@ public class Xcls_MainWindow : Object
     }
     public Xcls_headerbar headerbar;
     public Xcls_windowbtn windowbtn;
-    public Xcls_Box7 Box7;
+    public Xcls_popover_menu popover_menu;
     public Xcls_open_projects_btn open_projects_btn;
     public Xcls_vbox vbox;
     public Xcls_mainpane mainpane;
@@ -354,7 +354,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box7( _this );
+            var child_0 = new Xcls_popover_menu( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
 
@@ -365,7 +365,7 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Box7 : Object
+    public class Xcls_popover_menu : Object
     {
         public Gtk.Box el;
         private Xcls_MainWindow  _this;
@@ -374,10 +374,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box7(Xcls_MainWindow _owner )
+        public Xcls_popover_menu(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.Box7 = this;
+            _this.popover_menu = this;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
