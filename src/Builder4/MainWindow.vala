@@ -72,18 +72,6 @@ public class Xcls_MainWindow : Object
         
         	return false;
         });
-        this.el.destroy.connect( () =>  {
-         
-         
-         Resources.singleton().disconnect(_this.statusbar.handler_id);
-         
-         BuilderApplication.removeWindow(this);
-         
-         if (BuilderApplication.windows.size  < 1) {
-        
-             Gtk.main_quit();
-         }
-        });
         this.el.show.connect( ( ) => {
             // hide the file editing..
            
@@ -96,6 +84,18 @@ public class Xcls_MainWindow : Object
           
             Resources.singleton().checkResources();
         
+        });
+        this.el.hide.connect( () =>  {
+         
+         
+         Resources.singleton().disconnect(_this.statusbar.handler_id);
+         
+         BuilderApplication.removeWindow(this);
+         
+         if (BuilderApplication.windows.size  < 1) {
+        
+             Gtk.main_quit();
+         }
         });
     }
 
@@ -218,7 +218,7 @@ public class Xcls_MainWindow : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_open_projects_btn( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions

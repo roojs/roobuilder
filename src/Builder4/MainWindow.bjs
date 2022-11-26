@@ -188,7 +188,7 @@
         {
          "$ tooltop_text" : "\"Open File\"",
          "$ xns" : "Gtk",
-         "* pack" : "add",
+         "* pack" : "append",
          "bool always_show_image" : true,
          "id" : "open_projects_btn",
          "items" : [
@@ -704,7 +704,7 @@
      "}",
      ""
     ],
-    "destroy" : [
+    "hide" : [
      "() =>  {",
      " ",
      " ",
