@@ -404,7 +404,7 @@ public class Xcls_MainWindow : Object
 
             {
             	this.el.add_shortcut(
-            		new Gtk.ShortCut(
+            		new Gtk.Shortcut(
             			new Gtk.KeyValTrigger("N",Gdk.ModifierType.CONTROL_MASK),
             			new Gtk.SignalAction("clicked")
             		)

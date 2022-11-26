@@ -77,7 +77,7 @@
                  "* init" : [
                   "{",
                   "\tthis.el.add_shortcut(",
-                  "\t\tnew Gtk.ShortCut(",
+                  "\t\tnew Gtk.Shortcut(",
                   "\t\t\tnew Gtk.KeyValTrigger(\"N\",Gdk.ModifierType.CONTROL_MASK),",
                   "\t\t\tnew Gtk.SignalAction(\"clicked\")",
                   "\t\t)",
