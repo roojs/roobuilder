@@ -189,7 +189,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_windowbtn( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_open_projects_btn( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
@@ -1192,7 +1192,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Box35( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1234,10 +1234,10 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Image36( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_statusbar_errors_label( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -1313,7 +1313,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Box39( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1354,10 +1354,10 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Image40( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_statusbar_warnings_label( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -1433,7 +1433,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Box43( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1475,10 +1475,10 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Image44( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_statusbar_depricated_label( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -1552,7 +1552,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Box47( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -1588,10 +1588,10 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_Image48( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Label49( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
