@@ -1118,6 +1118,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.icon_name = "dialog-error";
+            this.el.label = "\"\"";
             var child_0 = new Xcls_Box32( _this );
             child_0.ref();
             this.el.append(  child_0.el );
@@ -1138,7 +1139,7 @@ public class Xcls_MainWindow : Object
         // user defined functions
         public void setNotices (Json.Object nots, int qty) {
             this.el.show_all();
-            _this.statusbar_errors_label.el.label = qty.to_string() + " Errors";
+            this.el.label = qty.to_string() + " Errors";
             this.notices = nots;
         
         }
