@@ -454,27 +454,6 @@
            "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_errors",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 2,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "utf8 icon_name" : "dialog-error",
-               "xtype" : "Image"
-              },
-              {
-               "$ xns" : "Gtk",
-               "id" : "statusbar_errors_label",
-               "string label" : "Errors",
-               "xtype" : "Label"
-              }
-             ],
-             "xtype" : "Box"
-            }
-           ],
            "listeners" : {
             "button_press_event" : [
              "() => {",
@@ -490,7 +469,7 @@
             ]
            },
            "string icon_name" : "dialog-error",
-           "string label" : "\"\"",
+           "string label" : "0 Errors",
            "xtype" : "Button",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
