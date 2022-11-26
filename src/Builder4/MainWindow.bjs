@@ -212,6 +212,7 @@
            "}"
           ]
          },
+         "string icon_name" : "system-file-manager",
          "string label" : "Files / Projects",
          "xtype" : "Button"
         }

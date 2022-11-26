@@ -467,6 +467,7 @@ public class Xcls_MainWindow : Object
             this.always_show_image = true;
 
             // set gobject values
+            this.el.icon_name = "system-file-manager";
             this.el.label = "Files / Projects";
             var child_0 = new Xcls_Image11( _this );
             child_0.ref();
