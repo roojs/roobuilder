@@ -505,11 +505,12 @@
            "xtype" : "Button",
            "| void setNotices" : [
             "(Json.Object nots, int qty) {",
-            "    this.el.show();",
+            "    ",
             "    if (qty < 1 ) {",
             "    \tthis.el.hide();",
             "    \treturn;",
             "    }",
+            "    this.el.show();",
             "    this.el.label = qty.to_string() + \" Warnings\";",
             "    this.notices = nots;",
             "",
