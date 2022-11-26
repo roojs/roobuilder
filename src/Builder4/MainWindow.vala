@@ -118,7 +118,7 @@ public class Xcls_MainWindow : Object
     
     }
     public void setTitle (string str) {
-        this.headerbar.el.set_title(this.title + " - " + str);
+        _this.el.set_title(this.title + " - " + str);
     }
     public void openNewWindow () {
      
