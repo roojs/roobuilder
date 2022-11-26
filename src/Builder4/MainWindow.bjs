@@ -219,7 +219,7 @@
     {
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
-     "* pack" : "add",
+     "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "id" : "vbox",
      "items" : [

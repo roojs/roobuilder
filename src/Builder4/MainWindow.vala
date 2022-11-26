@@ -61,7 +61,7 @@ public class Xcls_MainWindow : Object
         this.el.set_titlebar (  child_1.el  );
         var child_2 = new Xcls_vbox( _this );
         child_2.ref();
-        this.el.add (  child_2.el  );
+        this.el.set_child (  child_2.el  );
 
         // init method
 
