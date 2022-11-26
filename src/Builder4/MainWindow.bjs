@@ -80,24 +80,33 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
-             "listeners" : {
-              "activate" : [
-               "( ) => {",
-               "",
-               "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
-               "}",
-               ""
-              ]
-             },
-             "string label" : "New Window",
-             "xtype" : "Button"
-            },
-            {
-             "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "$ xns" : "Gtk",
-             "* pack" : "append",
-             "xtype" : "Separator"
+             "* pack" : "set_child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "add_child",
+               "listeners" : {
+                "activate" : [
+                 "( ) => {",
+                 "",
+                 "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
+                 "}",
+                 ""
+                ]
+               },
+               "string label" : "New Window",
+               "xtype" : "Button"
+              },
+              {
+               "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+               "$ xns" : "Gtk",
+               "* pack" : "append",
+               "xtype" : "Separator"
+              }
+             ],
+             "xtype" : "Box"
             }
            ],
            "xtype" : "PopoverMenu"
