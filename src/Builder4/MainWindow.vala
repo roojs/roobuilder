@@ -114,7 +114,7 @@ public class Xcls_MainWindow : Object
     }
     public void show () {
        
-        this.el.show_all();
+        this.el.show();
     
     }
     public void setTitle (string str) {
