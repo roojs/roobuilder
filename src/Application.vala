@@ -170,9 +170,9 @@
 
 
 		
-		public static BuilderApplication  singleton(  string[] args)
+		public static BuilderApplication  singleton(  string[]? args)
 		{
-			if (application==null) {
+			if (application==null && args != null) {
 				application = new BuilderApplication(  args);
  
 			
