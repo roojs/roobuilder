@@ -439,7 +439,6 @@
         {
          "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "items" : [
           {
            "$ xns" : "Gtk",

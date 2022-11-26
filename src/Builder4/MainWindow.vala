@@ -761,7 +761,7 @@ public class Xcls_MainWindow : Object
             this.el.pack_start (  child_4.el , true,true,0 );
             var child_5 = new Xcls_Box29( _this );
             child_5.ref();
-            this.el.add (  child_5.el  );
+            this.el.append(  child_5.el );
             var child_6 = new Xcls_statusbar_compile_spinner( _this );
             child_6.ref();
             this.el.add (  child_6.el  );
