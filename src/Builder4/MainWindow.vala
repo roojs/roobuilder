@@ -1260,12 +1260,11 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box35( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.icon_name = "media-playback-start";
+            this.el.label = "Run";
 
             //listeners
-            this.el.button_press_event.connect( () => {
+            this.el.clicked.connect( () => {
             	if (_this.windowstate.file == null) {
             		return true;
             	}
@@ -1279,79 +1278,6 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
     }
-    public class Xcls_Box35 : Object
-    {
-        public Gtk.Box el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Box35(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 2 );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_Image36( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Label37( _this );
-            child_1.ref();
-            this.el.append(  child_1.el );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Image36 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image36(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "media-playback-start";
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_Label37 : Object
-    {
-        public Gtk.Label el;
-        private Xcls_MainWindow  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Label37(Xcls_MainWindow _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Label( "Run" );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-
 
 
     public class Xcls_statusbar_compile_spinner : Object

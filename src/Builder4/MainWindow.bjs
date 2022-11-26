@@ -562,28 +562,8 @@
            "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_run",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 2,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "utf8 icon_name" : "media-playback-start",
-               "xtype" : "Image"
-              },
-              {
-               "$ xns" : "Gtk",
-               "string label" : "Run",
-               "xtype" : "Label"
-              }
-             ],
-             "xtype" : "Box"
-            }
-           ],
            "listeners" : {
-            "button_press_event" : [
+            "clicked" : [
              "() => {",
              "\tif (_this.windowstate.file == null) {",
              "\t\treturn true;",
@@ -596,6 +576,8 @@
              "}"
             ]
            },
+           "string icon_name" : "media-playback-start",
+           "string label" : "Run",
            "xtype" : "Button"
           }
          ],
