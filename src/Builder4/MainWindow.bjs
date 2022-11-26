@@ -718,7 +718,7 @@
      " ",
      " if (BuilderApplication.windows.size  < 1) {",
      " ",
-     "    BuilderApplication.singleton().quit();",
+     "    BuilderApplication.singleton( [] ).quit();",
      " }",
      "}"
     ],
