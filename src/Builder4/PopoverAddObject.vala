@@ -41,7 +41,7 @@ public class Xcls_PopoverAddObject : Object
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_ScrolledWindow2( _this );
         child_0.ref();
-        this.el.add (  child_0.el  );
+        this.el.set_child (  child_0.el  );
     }
 
     // user defined functions

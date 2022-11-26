@@ -24,7 +24,7 @@
       " ",
       ""
      ],
-     "* pack" : "add",
+     "* pack" : "set_child",
      "items" : [
       {
        "# string dragData" : "",
