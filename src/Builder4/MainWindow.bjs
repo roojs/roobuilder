@@ -235,7 +235,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,true,true,0",
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "id" : "editpane",
            "items" : [
@@ -248,7 +247,7 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "end_child",
+             "* prop" : "end_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
              "id" : "props",
              "xtype" : "Box"

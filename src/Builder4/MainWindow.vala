@@ -558,7 +558,7 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_editpane( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , true,true,0 );
+            this.el.append(  child_0.el );
         }
 
         // user defined functions
@@ -586,7 +586,7 @@ public class Xcls_MainWindow : Object
             this.el.start_child = child_0.el;
             var child_1 = new Xcls_props( _this );
             child_1.ref();
-            this.el.end_child (  child_1.el  );
+            this.el.end_child = child_1.el;
 
             //listeners
             this.el.accept_position.connect( () => {
