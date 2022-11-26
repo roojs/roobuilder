@@ -1214,7 +1214,7 @@ public class Xcls_MainWindow : Object
             this.el.label = "0 Depricated";
 
             //listeners
-            this.el.button_press_event.connect( () => {
+            this.el.clicked.connect( () => {
                 if (this.popup == null) {
                     this.popup = new Xcls_ValaCompileErrors();
                     this.popup.window = _this;
@@ -1222,7 +1222,7 @@ public class Xcls_MainWindow : Object
                 
                 
                 this.popup.show(this.notices, this.el);
-                return true;
+                return;
             });
         }
 
@@ -1266,13 +1266,13 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( () => {
             	if (_this.windowstate.file == null) {
-            		return true;
+            		return;
             	}
             	BuilderApplication.valasource.spawnExecute(_this.windowstate.file);
             	
             	_this.windowstate.compile_results.show(this.el,true);
             	
-            	return true;
+            	returns;
             });
         }
 

@@ -522,7 +522,7 @@
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_depricated",
            "listeners" : {
-            "button_press_event" : [
+            "clicked" : [
              "() => {",
              "    if (this.popup == null) {",
              "        this.popup = new Xcls_ValaCompileErrors();",
@@ -531,7 +531,7 @@
              "    ",
              "    ",
              "    this.popup.show(this.notices, this.el);",
-             "    return true;",
+             "    return;",
              "}"
             ]
            },
@@ -562,13 +562,13 @@
             "clicked" : [
              "() => {",
              "\tif (_this.windowstate.file == null) {",
-             "\t\treturn true;",
+             "\t\treturn;",
              "\t}",
              "\tBuilderApplication.valasource.spawnExecute(_this.windowstate.file);",
              "\t",
              "\t_this.windowstate.compile_results.show(this.el,true);",
              "\t",
-             "\treturn true;",
+             "\treturns;",
              "}"
             ]
            },
