@@ -94,7 +94,7 @@ public class Xcls_MainWindow : Object
          
          if (BuilderApplication.windows.size  < 1) {
         BuilderApplication
-            BuilderApplication applicationq.quit();
+            BuilderApplication.application.quit();
          }
         });
     }
