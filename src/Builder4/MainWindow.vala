@@ -533,7 +533,7 @@ public class Xcls_MainWindow : Object
             this.el.start_child = child_0.el;
             var child_1 = new Xcls_Box17( _this );
             child_1.ref();
-            this.el.pack1( child_1.el );
+            this.el.end_child = child_1.el;
         }
 
         // user defined functions
