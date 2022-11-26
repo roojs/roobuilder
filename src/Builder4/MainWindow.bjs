@@ -230,7 +230,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "id" : "leftpane",
          "items" : [
