@@ -668,10 +668,10 @@ public class Xcls_MainWindow : Object
             // set gobject values
             var child_0 = new Xcls_rooviewbox( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_codeeditviewbox( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
