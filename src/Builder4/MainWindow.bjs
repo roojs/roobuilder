@@ -53,7 +53,7 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "items" : [
         {
-         "# Gee.ArrayList<Gtk.Button> mitems" : "",
+         "# Gee.ArrayList<Gtk.Widget> mitems" : "",
          "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ Gtk.ArrowType direction" : "Gtk.ArrowType.DOWN",
          "$ xns" : "Gtk",
@@ -71,6 +71,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "* ctor" : "new Gtk.PopoverMenu.from_model(null)",
            "* init" : [
             " ",
             "  this.el.show();",

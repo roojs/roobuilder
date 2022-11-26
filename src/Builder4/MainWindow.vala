@@ -232,7 +232,7 @@ public class Xcls_MainWindow : Object
 
             // my vars (def)
         public bool always_show_image;
-        public Gee.ArrayList<Gtk.Button> mitems;
+        public Gee.ArrayList<Gtk.Widget> mitems;
         public bool use_popover;
 
         // ctor
@@ -349,7 +349,7 @@ public class Xcls_MainWindow : Object
         public Xcls_PopoverMenu6(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.PopoverMenu();
+            this.el = new Gtk.PopoverMenu.from_model(null);
 
             // my vars (dec)
 
