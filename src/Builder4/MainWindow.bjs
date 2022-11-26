@@ -73,7 +73,7 @@
            "$ xns" : "Gtk",
            "* init" : [
             " ",
-            "  this.el.show_all();",
+            "  this.el.show();",
             " "
            ],
            "* prop" : "popover",

@@ -362,7 +362,7 @@ public class Xcls_MainWindow : Object
 
             // init method
 
-            this.el.show_all();
+            this.el.show();
         }
 
         // user defined functions
