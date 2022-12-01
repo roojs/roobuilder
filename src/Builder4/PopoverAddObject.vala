@@ -246,34 +246,6 @@ public class Xcls_PopoverAddObject : Object
             //        }
                 return false;
             });
-            this.el.drag_begin.connect( ( ctx) => {
-                // we could fill this in now...
-            //        Seed.print('SOURCE: drag-begin');
-                    
-                    
-                    
-                    Gtk.TreeIter iter;
-                    var s = this.el.get_selection();
-                    
-                    Gtk.TreeModel mod;
-                    s.get_selected(out mod, out iter);
-                    var path = mod.get_path(iter);
-                    
-                    /// pix is a surface..
-                    var pix = this.el.create_row_drag_icon ( path);
-                        
-                            
-                    Gtk.drag_set_icon_surface (ctx, pix);
-                    GLib.Value value;
-                    
-            
-                    _this.model.el.get_value(iter, 0, out value);
-                    
-                    this.dragData = (string) value;
-                     
-                    
-                    return;
-            });
             this.el.drag_data_get.connect( (drag_context, selection_data, info, time) => {
              	//Seed.print('Palete: drag-data-get: ' + target_type);
                 if (this.dragData.length < 1 ) {
@@ -287,15 +259,6 @@ public class Xcls_PopoverAddObject : Object
                     //this.el.dragData = "TEST from source widget";
                     
                     
-            });
-            this.el.drag_end.connect( ( drag_context)  => {
-             	 GLib.debug("SOURCE: drag-end (call listener on this)\n");
-            	
-            	this.dragData = "";
-            	//this.dropList = null;
-            	_this.drag_end(); // call signal..
-            	//this.get('/LeftTree.view').highlight(false);
-            	 
             });
         }
 
