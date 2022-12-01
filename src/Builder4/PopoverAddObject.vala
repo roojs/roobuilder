@@ -125,9 +125,9 @@ public class Xcls_PopoverAddObject : Object
         //}
         this.el.show();
        
-        while(Gtk.events_pending()) { 
-                Gtk.main_iteration();
-        }       
+        //while(Gtk.events_pending()) { 
+          //      Gtk.main_iteration();
+        //}       
      //   this.hpane.el.set_position( 0);
     }
     public void clear () {
