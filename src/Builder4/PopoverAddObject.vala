@@ -218,6 +218,9 @@ public class Xcls_PopoverAddObject : Object
                 //});
                 // see: http://live.gnome.org/GnomeLove/DragNDropTutorial
                  
+                var ds = new DragSource();
+                
+                 
                 Gtk.drag_source_set (
                         this.el,            /* widget will be drag-able */
                         Gdk.ModifierType.BUTTON1_MASK,       /* modifier that will start a drag */
