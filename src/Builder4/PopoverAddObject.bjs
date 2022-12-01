@@ -113,6 +113,23 @@
          ],
          "utf8 title" : "Drag to add Object",
          "xtype" : "TreeViewColumn"
+        },
+        {
+         "$ xns" : "Gtk",
+         "listeners" : {
+          "drag_begin" : [
+           "( drag_context)  => {",
+           " \t GLib.debug(\"SOURCE: drag-end (call listener on this)\\n\");",
+           "\t",
+           "\tthis.dragData = \"\";",
+           "\t//this.dropList = null;",
+           "\t_this.drag_end(); // call signal..",
+           "\t//this.get('/LeftTree.view').highlight(false);",
+           "\t ",
+           "}"
+          ]
+         },
+         "xtype" : "DragSource"
         }
        ],
        "listeners" : {

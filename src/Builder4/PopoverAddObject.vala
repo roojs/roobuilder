@@ -194,6 +194,9 @@ public class Xcls_PopoverAddObject : Object
             var child_1 = new Xcls_TreeViewColumn5( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
+            var child_2 = new Xcls_DragSource8( _this );
+            child_2.ref();
+            this.el.add_controller(  child_2.el );
 
             // init method
 
@@ -406,6 +409,39 @@ public class Xcls_PopoverAddObject : Object
         // user defined functions
     }
 
+
+    public class Xcls_DragSource8 : Object
+    {
+        public Gtk.DragSource el;
+        private Xcls_PopoverAddObject  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_DragSource8(Xcls_PopoverAddObject _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.DragSource();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.drag_begin.connect( ( drag_context)  => {
+             	 GLib.debug("SOURCE: drag-end (call listener on this)\n");
+            	
+            	this.dragData = "";
+            	//this.dropList = null;
+            	_this.drag_end(); // call signal..
+            	//this.get('/LeftTree.view').highlight(false);
+            	 
+            });
+        }
+
+        // user defined functions
+    }
 
 
 
