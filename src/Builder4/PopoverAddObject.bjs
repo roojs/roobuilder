@@ -146,6 +146,13 @@
            "        ",
            "        return;",
            "}"
+          ],
+          "drag_end" : [
+           "(drag, delete_data) => {",
+           "",
+           "",
+           "}",
+           ""
           ]
          },
          "xtype" : "DragSource"

@@ -457,6 +457,10 @@ public class Xcls_PopoverAddObject : Object
                     
                     return;
             });
+            this.el.drag_end.connect( (drag, delete_data) => {
+            
+            
+            });
         }
 
         // user defined functions
