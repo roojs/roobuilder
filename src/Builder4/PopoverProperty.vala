@@ -22,6 +22,7 @@ public class Xcls_PopoverProperty : Object
     public Xcls_buttonbar buttonbar;
 
         // my vars (def)
+    public bool modal;
     public bool is_new;
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public string key_type;
@@ -29,26 +30,27 @@ public class Xcls_PopoverProperty : Object
     public JsRender.Node node;
     public Xcls_MainWindow mainwindow;
     public bool done;
+    public uint border_width;
     public string old_keyname;
 
     // ctor
     public Xcls_PopoverProperty()
     {
         _this = this;
-        this.el = new Gtk.Popover( null );
+        this.el = new Gtk.Popover();
 
         // my vars (dec)
+        this.modal = true;
         this.is_new = false;
         this.mainwindow = null;
         this.done = false;
+        this.border_width = 0;
 
         // set gobject values
-        this.el.border_width = 0;
-        this.el.modal = true;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.add(  child_0.el );
+        this.el.append(  child_0.el );
 
         //listeners
         this.el.closed.connect( () => {
@@ -232,6 +234,7 @@ public class Xcls_PopoverProperty : Object
 
 
             // my vars (def)
+        public string title;
 
         // ctor
         public Xcls_header(Xcls_PopoverProperty _owner )
@@ -241,9 +244,9 @@ public class Xcls_PopoverProperty : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
+            this.title = Modify / Create Property;
 
             // set gobject values
-            this.el.title = "Modify / Create Property";
         }
 
         // user defined functions
@@ -631,6 +634,7 @@ public class Xcls_PopoverProperty : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_Button14(Xcls_PopoverProperty _owner )
@@ -639,10 +643,10 @@ public class Xcls_PopoverProperty : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.always_show_image = true;
             this.el.label = "Cancel";
             var child_0 = new Xcls_Image15( _this );
             child_0.ref();
@@ -692,6 +696,7 @@ public class Xcls_PopoverProperty : Object
 
 
             // my vars (def)
+        public bool always_show_image;
 
         // ctor
         public Xcls_Button16(Xcls_PopoverProperty _owner )
@@ -700,10 +705,10 @@ public class Xcls_PopoverProperty : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.always_show_image = true;
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.always_show_image = true;
             this.el.label = "Add Property";
             var child_0 = new Xcls_Image17( _this );
             child_0.ref();

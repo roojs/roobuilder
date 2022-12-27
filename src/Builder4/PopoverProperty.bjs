@@ -4,6 +4,7 @@
   {
    "# JsRender.NodeProp? prop" : "",
    "$ xns" : "Gtk",
+   "* ctor" : "new Gtk.Popover()",
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "JsRender.Node node" : "",
