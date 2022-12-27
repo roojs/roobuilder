@@ -394,6 +394,9 @@ public class Xcls_PopoverAddObject : Object
             //listeners
             this.el.prepare.connect( (x, y) => {
             
+            	
+            	
+            	
             	return Gdk.ContentProvider;
             });
             this.el.drag_begin.connect( ( ctx) => {

@@ -165,6 +165,9 @@
           "prepare" : [
            "(x, y) => {",
            "",
+           "\t",
+           "\t",
+           "\t",
            "\treturn Gdk.ContentProvider;",
            "}",
            ""
