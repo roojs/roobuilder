@@ -17,7 +17,7 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "* pack" : "add",
+     "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool hexpand" : false,
      "gboolean homogeneous" : false,
@@ -25,12 +25,10 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,false,0",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "pack_start,true,true,0",
          "utf8 label" : "Compile and Run ",
          "xtype" : "Button"
         }
@@ -47,7 +45,6 @@
         "}",
         ""
        ],
-       "* pack" : "pack_end,true,true,0",
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -64,7 +61,7 @@
           "}",
           ""
          ],
-         "* pack" : "add",
+         "* pack" : "set_child",
          "Gtk.CssProvider css" : "",
          "id" : "compile_tree",
          "items" : [
