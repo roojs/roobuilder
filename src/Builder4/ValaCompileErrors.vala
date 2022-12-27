@@ -321,7 +321,7 @@ public class Xcls_ValaCompileErrors : Object
                 if (!_this.compile_tree.el.get_path_at_pos((int)x, (int) y, out path, out col, out cell_x, out cell_y )) {
                     print("nothing selected on click");
                     
-                    return false; //not on a element.
+                    return; //not on a element.
                 }
                 var ev = this.el.get_current_event();
                  
@@ -330,7 +330,7 @@ public class Xcls_ValaCompileErrors : Object
                     // show popup!.   
                         
                      
-                    return false;
+                    return;
                 }
                 Gtk.TreeIter iter;
                  var mod = _this.compile_result_store.el;
@@ -366,7 +366,7 @@ public class Xcls_ValaCompileErrors : Object
                 if (jsr != null) {
                     _this.window.windowstate.fileViewOpen(jsr, true, line);
                     
-                    return false;
+                    return;
                 
                 }
                 try {
@@ -375,7 +375,7 @@ public class Xcls_ValaCompileErrors : Object
                 } catch (JsRender.Error e) {}
                 // try hiding the left nav..
              
-                return false;
+                return;
             
             });
         }
