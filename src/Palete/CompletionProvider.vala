@@ -121,14 +121,14 @@ namespace Palete {
 
 	 		var model = in_model;
 
-			context.get_word();
+			var word = context.get_word();
 			if (model is FilterListModel) { 
 				model = model.get_model ();
 			}
  
 
 			if (!this.model.can_filter(word)) {
-			//	this.model.cancel(); 
+				this.model.cancel(); 
 				var replaced_model = new CompletionModel(this, context, this.model.cancellable);
 				context.set_proposals_for_provider(this, replaced_model);
 				
@@ -136,13 +136,12 @@ namespace Palete {
 				return;
 			}
 			 
-			expression = gtk_property_expression_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL, "word");
-			filter = gtk_string_filter_new (g_steal_pointer (&expression));
-			gtk_string_filter_set_search (GTK_STRING_FILTER (filter), word);
-			filter_model = gtk_filter_list_model_new (g_object_ref (model),
-					                                  GTK_FILTER (g_steal_pointer (&filter)));
-			gtk_filter_list_model_set_incremental (filter_model, TRUE);
-			gtk_source_completion_context_set_proposals_for_provider (context, provider, G_LIST_MODEL (filter_model));
+			var expression = new PropertyExpression(typeof(CompletionProposal), null, "word");
+			var filter = new StringFilter(expression);
+			filter.set_search( word);
+			var  filter_model = new FilterListModel(in_model, filter); 
+			filter_model.set_incremental(true);
+			context.set_proposals_for_provider(this, filter_model); 
 		 
 
 		
@@ -176,7 +175,7 @@ namespace Palete {
  	public class CompletionModel : Object, GLib.ListModel 
  	{
  		CompletionProvider provider;
- 		Gee.ArrayList<GtkSource.CompletionProposal> items;
+ 		Gee.ArrayList<CompletionProposal> items;
  		string search;
  		int minimum_word_size = 2;
  		public Cancellable cancellable;
@@ -190,18 +189,19 @@ namespace Palete {
 		    if (this.search.length < this.minimum_word_size) {
 			    return;
 		    }
+		    var prov  =  this.provider;
 		 
 		    // now do our magic..
-		    this.items = this.provider.windowstate.file.palete().suggestComplete(
-			    this.windowstate.file,
-			    this.editor.node,
-			    this.editor.prop,
+		    this.items = prov.windowstate.file.palete().suggestComplete(
+			    prov.windowstate.file,
+			    prov.editor.node,
+			    prov.editor.prop,
 			    this.search
 		    ); 
 		
-		    print("GOT %d results\n", (int) items.length); 
+		    print("GOT %d results\n", (int) items.size); 
 			// WHY TWICE?
-		    if (this.items.length < this.minimum_word_size) {
+		    if (this.items.size < this.minimum_word_size) {
 				return;
 		    }
 		
@@ -240,7 +240,7 @@ namespace Palete {
 			 */
 			 return word.has_prefix(this.search); 
 		}
-		void  cancel ()
+		public void  cancel ()
 		{
 		 	this.cancellable.cancel();
 		}
