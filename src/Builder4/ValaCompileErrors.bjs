@@ -68,6 +68,10 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "xtype" : "GestureClick"
+          },
+          {
+           "$ xns" : "Gtk",
            "* pack" : "set_model",
            "columns" : [
             "  typeof(string), ",
