@@ -498,14 +498,6 @@
          "$ xns" : "Gtk",
          "* pack" : "append",
          "bool always_show_image" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "window-close",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "() => { ",
@@ -515,6 +507,7 @@
            "}"
           ]
          },
+         "string icon_name" : "window-close",
          "string label" : "Cancel",
          "xtype" : "Button"
         },
@@ -524,14 +517,6 @@
          "bool always_show_image" : true,
          "bool has_default" : true,
          "id" : "save_btn",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "document-save",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "( ) =>  { ",
@@ -674,6 +659,7 @@
            "}"
           ]
          },
+         "string icon_name" : "document-save",
          "string label" : "Save",
          "xtype" : "Button"
         }

@@ -1251,10 +1251,8 @@ public class Xcls_PopoverFileDetails : Object
             this.always_show_image = true;
 
             // set gobject values
+            this.el.icon_name = "window-close";
             this.el.label = "Cancel";
-            var child_0 = new Xcls_Image33( _this );
-            child_0.ref();
-            this.el.set_image (  child_0.el  );
 
             //listeners
             this.el.clicked.connect( () => { 
@@ -1266,29 +1264,6 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
     }
-    public class Xcls_Image33 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_PopoverFileDetails  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image33(Xcls_PopoverFileDetails _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "window-close";
-        }
-
-        // user defined functions
-    }
-
 
     public class Xcls_save_btn : Object
     {
@@ -1311,10 +1286,8 @@ public class Xcls_PopoverFileDetails : Object
 
             // set gobject values
             this.el.has_default = true;
+            this.el.icon_name = "document-save";
             this.el.label = "Save";
-            var child_0 = new Xcls_Image35( _this );
-            child_0.ref();
-            this.el.set_image (  child_0.el  );
 
             //listeners
             this.el.clicked.connect( ( ) =>  { 
@@ -1459,29 +1432,6 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
     }
-    public class Xcls_Image35 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_PopoverFileDetails  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image35(Xcls_PopoverFileDetails _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "document-save";
-        }
-
-        // user defined functions
-    }
-
 
 
 
