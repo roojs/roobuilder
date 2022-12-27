@@ -10,7 +10,6 @@
    "bool active" : false,
    "bool autohide" : false,
    "bool hexpand" : false,
-   "bool modal" : true,
    "id" : "ValaCompileErrors",
    "int height_request" : 800,
    "int width_request" : 900,

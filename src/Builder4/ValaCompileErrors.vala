@@ -19,7 +19,6 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_renderer renderer;
 
         // my vars (def)
-    public bool modal;
     public Xcls_MainWindow window;
     public Json.Object notices;
     public bool active;
@@ -31,7 +30,6 @@ public class Xcls_ValaCompileErrors : Object
         this.el = new Gtk.Popover();
 
         // my vars (dec)
-        this.modal = true;
         this.active = false;
 
         // set gobject values
