@@ -9,9 +9,9 @@
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "JsRender.Node node" : "",
    "Xcls_MainWindow mainwindow" : "null",
+   "bool autohide" : false,
    "bool done" : false,
    "bool is_new" : false,
-   "bool modal" : true,
    "id" : "PopoverProperty",
    "items" : [
     {
@@ -393,7 +393,6 @@
    },
    "string key_type" : "",
    "string old_keyname" : "",
-   "uint border_width" : 0,
    "xtype" : "Popover",
    "| void show" : [
     "(",

@@ -22,7 +22,6 @@ public class Xcls_PopoverProperty : Object
     public Xcls_buttonbar buttonbar;
 
         // my vars (def)
-    public bool modal;
     public bool is_new;
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public string key_type;
@@ -30,7 +29,6 @@ public class Xcls_PopoverProperty : Object
     public JsRender.Node node;
     public Xcls_MainWindow mainwindow;
     public bool done;
-    public uint border_width;
     public string old_keyname;
 
     // ctor
@@ -40,13 +38,12 @@ public class Xcls_PopoverProperty : Object
         this.el = new Gtk.Popover();
 
         // my vars (dec)
-        this.modal = true;
         this.is_new = false;
         this.mainwindow = null;
         this.done = false;
-        this.border_width = 0;
 
         // set gobject values
+        this.el.autohide = false;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
