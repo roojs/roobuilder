@@ -28,7 +28,7 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_ValaCompileErrors()
     {
         _this = this;
-        this.el = new GtkPopover();
+        this.el = new Gtk.Popover();
 
         // my vars (dec)
         this.modal = true;
