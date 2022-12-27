@@ -68,6 +68,10 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "xtype" : "GestureClick"
+          },
+          {
+           "$ xns" : "Gtk",
            "* pack" : "set_model",
            "columns" : [
             "  typeof(string), ",
@@ -247,10 +251,6 @@
          },
          "string name" : "compile-erros-view",
          "xtype" : "TreeView"
-        },
-        {
-         "$ xns" : "Gtk",
-         "xtype" : "GestureClick"
         }
        ],
        "xtype" : "ScrolledWindow"
