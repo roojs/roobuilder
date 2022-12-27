@@ -146,16 +146,17 @@ public class Xcls_PopoverFiles : Object
     	this.new_window = new_window;
     		// save...
     	this.load();
-    	this.el.show_all(); // show first - so we can hide stuff later.	
+    	this.el.show(); // show first - so we can hide stuff later.	
     	if (project != null) {
     	
     		this.selectProject(project);
     	}
     	
     	
-        int w,h;
-        this.win.el.get_size(out w, out h);
-        
+         var win = this.mainwindow.el;
+        var  w = win.get_width();
+        var h = win.get_height();
+    
         // left tree = 250, editor area = 500?
         
         // min 450?
@@ -168,8 +169,10 @@ public class Xcls_PopoverFiles : Object
         this.el.set_size_request( w, h); // same as parent...
     
     
-    	this.el.set_modal(true);
-    	this.el.set_relative_to(on_el);
+    	this.el.set_autohide(false);
+    	Gtk.Allocation rect;
+    	onbtn.get_allocation(out rect);
+        this.el.set_pointing_to(rect);
     
     	 
     
