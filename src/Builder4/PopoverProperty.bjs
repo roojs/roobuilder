@@ -15,14 +15,13 @@
    "id" : "PopoverProperty",
    "items" : [
     {
-     "$ pack" : "add",
      "$ xns" : "Gtk",
+     "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool homogeneous" : false,
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,true,0",
        "id" : "header",
        "string title" : "Modify / Create Property",
        "xtype" : "HeaderBar"

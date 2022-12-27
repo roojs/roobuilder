@@ -47,7 +47,7 @@ public class Xcls_PopoverProperty : Object
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.append(  child_0.el );
+        this.el.set_child (  child_0.el  );
 
         //listeners
         this.el.closed.connect( () => {
@@ -195,7 +195,7 @@ public class Xcls_PopoverProperty : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_header( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,true,0 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Label4( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
