@@ -93,9 +93,7 @@ public class Xcls_PopoverAddProp : Object
         
         // set size up...
         
-    
-        int w,h;
-        
+     
          var win = this.mainwindow.el;
         var  w = win.get_width();
         var h = win.get_height();
