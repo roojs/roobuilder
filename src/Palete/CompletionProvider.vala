@@ -123,14 +123,14 @@ namespace Palete {
 
 			context.get_word();
 			if (model is FilterListModel) { 
-				var replaced_model = new CompletionModel(this, context, this.model.cancellable);
-				context.set_proposals_for_provider(this, replaced_model);
 				model = model.get_model ();
 			}
  
 
-			if (!model.can_filter(word)) {
+			if (!this.model.can_filter(word)) {
 			//	this.model.cancel(); 
+				var replaced_model = new CompletionModel(this, context, this.model.cancellable);
+				context.set_proposals_for_provider(this, replaced_model);
 				
 				context.set_proposals_for_provider(this, replaced_model);
 				return;
@@ -181,10 +181,10 @@ namespace Palete {
  		int minimum_word_size = 2;
  		public Cancellable cancellable;
  		
- 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context, Cancellable cancelleble)
+ 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context, Cancellable cancellable)
  		{
  		 	this.provider = provider;
-			this.cancelleble = cancelleble;
+			this.cancellable = cancellable;
  		 	this.items = new Gee.ArrayList<GtkSource.CompletionProposal>();
  			this.search = context.get_word();
 		    if (this.search.length < this.minimum_word_size) {
