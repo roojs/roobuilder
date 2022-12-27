@@ -8,6 +8,7 @@
    "* ctor" : "new GtkPopover()",
    "Gtk.PositionType position" : "Gtk.PositionType.TOP",
    "bool active" : false,
+   "bool autohide" : false,
    "bool hexpand" : false,
    "bool modal" : true,
    "id" : "ValaCompileErrors",
