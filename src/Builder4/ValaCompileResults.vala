@@ -36,7 +36,7 @@ public class Xcls_ValaCompileResults : Object
         this.el.position = Gtk.PositionType.TOP;
         var child_0 = new Xcls_compile_view( _this );
         child_0.ref();
-        this.el.add (  child_0.el  );
+        this.el.set_child (  child_0.el  );
     }
 
     // user defined functions
@@ -109,7 +109,7 @@ public class Xcls_ValaCompileResults : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_ScrolledWindow3( _this );
             child_0.ref();
-            this.el.pack_end (  child_0.el , true,true,0 );
+            this.el.append(  child_0.el );
         }
 
         // user defined functions
@@ -134,7 +134,7 @@ public class Xcls_ValaCompileResults : Object
             this.el.hexpand = true;
             var child_0 = new Xcls_sourceview( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.set_child (  child_0.el  );
 
             // init method
 

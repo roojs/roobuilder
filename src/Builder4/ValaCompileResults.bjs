@@ -13,7 +13,7 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "* pack" : "add",
+     "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "gboolean homogeneous" : false,
      "id" : "compile_view",
@@ -28,7 +28,6 @@
         "}",
         ""
        ],
-       "* pack" : "pack_end,true,true,0",
        "bool hexpand" : true,
        "items" : [
         {
@@ -47,7 +46,7 @@
           "}",
           ""
          ],
-         "* pack" : "add",
+         "* pack" : "set_child",
          "Gtk.CssProvider css" : "",
          "bool editable" : false,
          "bool show_line_numbers" : false,
