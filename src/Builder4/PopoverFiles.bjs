@@ -26,13 +26,11 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "items" : [
         {
          "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -157,7 +155,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool homogeneous" : false,
        "items" : [

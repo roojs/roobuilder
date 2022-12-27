@@ -398,10 +398,10 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Box9( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -425,7 +425,7 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             var child_0 = new Xcls_Box4( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
         }
 
         // user defined functions
