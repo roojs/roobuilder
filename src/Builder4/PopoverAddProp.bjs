@@ -4,6 +4,7 @@
   {
    "# JsRender.NodePropType ptype" : "",
    "$ xns" : "Gtk",
+   "* ctor" : "new Gtk.Popover()",
    "@ void select" : "(JsRender.NodeProp prop)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Xcls_MainWindow mainwindow" : "",
