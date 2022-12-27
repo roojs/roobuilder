@@ -141,7 +141,7 @@ public class Xcls_PopoverFileDetails : Object
         
         // window + header?
          print("SHOWALL - POPIP\n");
-        this.el.show_all();
+        this.el.show();
         this.name.el.grab_focus();
         
         
