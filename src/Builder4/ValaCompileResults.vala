@@ -41,7 +41,7 @@ public class Xcls_ValaCompileResults : Object
 
     // user defined functions
     public void show ( Gtk.Widget onbtn, bool reset) {
-    	 
+    	var win = this.window;
         var  w = win.get_width();
         var h = win.get_height();
     

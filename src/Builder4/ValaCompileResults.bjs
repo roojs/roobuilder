@@ -83,7 +83,7 @@
    ],
    "| void show" : [
     "( Gtk.Widget onbtn, bool reset) {",
-    "\t ",
+    "\tvar win = this.window;",
     "    var  w = win.get_width();",
     "    var h = win.get_height();",
     "",
