@@ -219,7 +219,7 @@ public class Xcls_PopoverFileDetails : Object
             this.el.append (  child_1.el  );
             var child_2 = new Xcls_Box31( _this );
             child_2.ref();
-            this.el.add (  child_2.el  );
+            this.el.append (  child_2.el  );
         }
 
         // user defined functions
