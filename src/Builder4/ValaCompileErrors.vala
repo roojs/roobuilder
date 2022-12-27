@@ -290,6 +290,10 @@ public class Xcls_ValaCompileErrors : Object
             }
 
             //listeners
+            this.el.row_activated.connect( (path, column) => {
+            
+            
+            });
             this.el.button_press_event.connect( ( ev)  => {
              
                 Gtk.TreeViewColumn col;

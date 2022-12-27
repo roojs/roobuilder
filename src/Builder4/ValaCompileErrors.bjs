@@ -171,6 +171,13 @@
            "    ",
            "  }",
            "    "
+          ],
+          "row_activated" : [
+           "(path, column) => {",
+           "",
+           "",
+           "}",
+           ""
           ]
          },
          "string name" : "compile-erros-view",
