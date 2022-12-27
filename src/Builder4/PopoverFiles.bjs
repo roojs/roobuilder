@@ -626,7 +626,7 @@
     "\t        if (_this.missing_thumb_pixbuf == null) {",
     "\t        ",
     "\t        \tvar icon_theme = Gtk.IconTheme.get_for_display(this.el.get_display());",
-    "\t        \t var icon = ic.lookup_icon (\"package-x-generic\", null,  92,1, ",
+    "\t        \t var icon = icon_theme.lookup_icon (\"package-x-generic\", null,  92,1, ",
     "    \t\t\t Gtk.TextDirection.NONE, 0);",
     "    \t\t \t_this.missing_thumb_pixbuf = new Gdk.Pixbuf.from_file (icon.file.get_path());",
     "",

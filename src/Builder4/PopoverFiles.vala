@@ -323,7 +323,7 @@ public class Xcls_PopoverFiles : Object
     	        if (_this.missing_thumb_pixbuf == null) {
     	        
     	        	var icon_theme = Gtk.IconTheme.get_for_display(this.el.get_display());
-    	        	 var icon = ic.lookup_icon ("package-x-generic", null,  92,1, 
+    	        	 var icon = icon_theme.lookup_icon ("package-x-generic", null,  92,1, 
         			 Gtk.TextDirection.NONE, 0);
         		 	_this.missing_thumb_pixbuf = new Gdk.Pixbuf.from_file (icon.file.get_path());
     
