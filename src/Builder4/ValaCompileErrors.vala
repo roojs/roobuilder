@@ -268,15 +268,12 @@ public class Xcls_ValaCompileErrors : Object
 
             // set gobject values
             this.el.name = "compile-erros-view";
-            var child_0 = new Xcls_GestureClick7( _this );
+            var child_0 = new Xcls_compile_result_store( _this );
             child_0.ref();
-            this.el.add_controller(  child_0.el );
-            var child_1 = new Xcls_compile_result_store( _this );
+            this.el.set_model (  child_0.el  );
+            var child_1 = new Xcls_column( _this );
             child_1.ref();
-            this.el.set_model (  child_1.el  );
-            var child_2 = new Xcls_column( _this );
-            child_2.ref();
-            this.el.append_column (  child_2.el  );
+            this.el.append_column (  child_1.el  );
 
             // init method
 
@@ -432,38 +429,6 @@ public class Xcls_ValaCompileErrors : Object
 
         // user defined functions
     }
-    public class Xcls_GestureClick7 : Object
-    {
-        public Gtk.GestureClick el;
-        private Xcls_ValaCompileErrors  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_GestureClick7(Xcls_ValaCompileErrors _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.GestureClick();
-
-            // my vars (dec)
-
-            // set gobject values
-
-            //listeners
-            this.el.released.connect( (n_press, x, y) => {
-            
-            
-            });
-            this.el.pressed.connect( (n_press, x, y) => {
-            
-            
-            });
-        }
-
-        // user defined functions
-    }
-
     public class Xcls_compile_result_store : Object
     {
         public Gtk.TreeStore el;

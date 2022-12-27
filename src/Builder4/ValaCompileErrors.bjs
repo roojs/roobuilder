@@ -68,26 +68,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "listeners" : {
-            "pressed" : [
-             "(n_press, x, y) => {",
-             "",
-             "",
-             "}",
-             ""
-            ],
-            "released" : [
-             "(n_press, x, y) => {",
-             "",
-             "",
-             "}",
-             ""
-            ]
-           },
-           "xtype" : "GestureClick"
-          },
-          {
-           "$ xns" : "Gtk",
            "* pack" : "set_model",
            "columns" : [
             "  typeof(string), ",
