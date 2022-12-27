@@ -112,7 +112,7 @@ public class Xcls_PopoverAddProp : Object
     	Gtk.Allocation rect;
     	onbtn.get_allocation(out rect);
     	this.el.set_pointing_to(rect);
-        //this.el.show_all();
+        this.el.show();
        
         //while(Gtk.events_pending()) { 
         //        Gtk.main_iteration();   // why?
