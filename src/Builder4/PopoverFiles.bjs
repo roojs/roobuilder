@@ -164,7 +164,6 @@
           "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
           " "
          ],
-         "* pack" : "add",
          "bool expand" : true,
          "bool has_frame" : true,
          "int width_request" : 150,
@@ -193,7 +192,7 @@
             "   ",
             " "
            ],
-           "* pack" : "add",
+           "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
            "id" : "view",
            "items" : [

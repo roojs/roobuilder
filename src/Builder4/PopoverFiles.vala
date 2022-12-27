@@ -660,7 +660,7 @@ public class Xcls_PopoverFiles : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_ScrolledWindow10( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Box15( _this );
             child_1.ref();
             this.el.append(  child_1.el );
@@ -694,7 +694,7 @@ public class Xcls_PopoverFiles : Object
             this.el.has_frame = true;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.set_child (  child_0.el  );
 
             // init method
 
