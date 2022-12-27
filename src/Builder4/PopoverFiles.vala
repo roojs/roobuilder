@@ -892,7 +892,7 @@ public class Xcls_PopoverFiles : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_iconscroll( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions

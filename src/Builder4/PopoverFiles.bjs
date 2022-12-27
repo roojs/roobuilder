@@ -328,7 +328,6 @@
             "  this.el.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);",
             "  "
            ],
-           "* pack" : "add",
            "bool expand" : true,
            "bool has_frame" : true,
            "id" : "iconscroll",
