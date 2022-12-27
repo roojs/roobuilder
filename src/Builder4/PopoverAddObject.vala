@@ -370,7 +370,7 @@ public class Xcls_PopoverAddObject : Object
                 var path = mod.get_path(iter);
                 
                 
-                Glib.Value value;
+                GLib.Value value;
                 _this.model.el.get_value(iter, 0, out value);
                                  
                 var str = (string) value;
