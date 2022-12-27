@@ -153,7 +153,7 @@ public class Xcls_PopoverFiles : Object
     	}
     	
     	
-         var win = this.mainwindow.el;
+         var win = this.win.el;
         var  w = win.get_width();
         var h = win.get_height();
     
