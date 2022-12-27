@@ -569,9 +569,6 @@ public class Xcls_PopoverProperty : Object
             this.el.add_controller(  child_0.el );
 
             //listeners
-            this.el.focus_out_event.connect( ()=>{
-            	
-            });
             this.el.key_release_event.connect( ()=>{
             	_this.error.setError("");
             	var val = this.el.get_text().strip(); 
@@ -605,8 +602,8 @@ public class Xcls_PopoverProperty : Object
             //listeners
             this.el.leave.connect( ( ) => {
             
-            _this.error.setError("");
-            	var val = this.el.get_text().strip(); 
+                _this.error.setError("");
+            	var val = _this.kname,el.get_text().strip(); 
             	if (val.length < 1) {
             		_this.error.setError("Name can not be empty");
             	}
