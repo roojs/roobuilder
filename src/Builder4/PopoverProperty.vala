@@ -731,7 +731,7 @@ public class Xcls_PopoverProperty : Object
             this.el.label = "Cancel";
 
             //listeners
-            this.el.button_press_event.connect( () => {
+            this.el.clicked.connect( () => {
             	_this.prop = null;
             	_this.is_new = false;
             	_this.kname.el.set_text("Cancel");

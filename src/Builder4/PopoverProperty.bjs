@@ -260,7 +260,7 @@
          "bool always_show_image" : true,
          "bool hexpand" : true,
          "listeners" : {
-          "button_press_event" : [
+          "clicked" : [
            "() => {",
            "\t_this.prop = null;",
            "\t_this.is_new = false;",
