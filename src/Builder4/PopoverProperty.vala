@@ -564,6 +564,9 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.visible = true;
+            var child_0 = new Xcls_EventControllerFocus13( _this );
+            child_0.ref();
+            this.el.add_controller(  child_0.el );
 
             //listeners
             this.el.focus_out_event.connect( ()=>{
@@ -586,6 +589,28 @@ public class Xcls_PopoverProperty : Object
 
         // user defined functions
     }
+    public class Xcls_EventControllerFocus13 : Object
+    {
+        public Gtk.EventControllerFocus el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_EventControllerFocus13(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.EventControllerFocus();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
     public class Xcls_error : Object
     {
@@ -644,17 +669,17 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.margin_top = 20;
-            var child_0 = new Xcls_Button15( _this );
+            var child_0 = new Xcls_Button16( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button16( _this );
+            var child_1 = new Xcls_Button17( _this );
             child_1.ref();
             this.el.append(  child_1.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button15 : Object
+    public class Xcls_Button16 : Object
     {
         public Gtk.Button el;
         private Xcls_PopoverProperty  _this;
@@ -664,7 +689,7 @@ public class Xcls_PopoverProperty : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_Button15(Xcls_PopoverProperty _owner )
+        public Xcls_Button16(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -689,7 +714,7 @@ public class Xcls_PopoverProperty : Object
         // user defined functions
     }
 
-    public class Xcls_Button16 : Object
+    public class Xcls_Button17 : Object
     {
         public Gtk.Button el;
         private Xcls_PopoverProperty  _this;
@@ -699,7 +724,7 @@ public class Xcls_PopoverProperty : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_Button16(Xcls_PopoverProperty _owner )
+        public Xcls_Button17(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();

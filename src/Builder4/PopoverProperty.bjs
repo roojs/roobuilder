@@ -184,6 +184,12 @@
        "$ visible" : true,
        "$ xns" : "Gtk",
        "id" : "kname",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "EventControllerFocus"
+        }
+       ],
        "listeners" : {
         "focus_out_event" : [
          "()=>{",
