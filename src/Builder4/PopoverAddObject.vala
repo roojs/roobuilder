@@ -168,7 +168,7 @@ public class Xcls_PopoverAddObject : Object
     }
     public class Xcls_treeview : Object
     {
-        public Gtk.ListView el;
+        public Gtk.ColumnView el;
         private Xcls_PopoverAddObject  _this;
 
 
@@ -180,7 +180,7 @@ public class Xcls_PopoverAddObject : Object
         {
             _this = _owner;
             _this.treeview = this;
-            this.el = new Gtk.ListView( null, null );
+            this.el = new Gtk.ColumnView( null );
 
             // my vars (dec)
 
