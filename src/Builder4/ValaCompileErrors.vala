@@ -326,12 +326,12 @@ public class Xcls_ValaCompileErrors : Object
                 var ev = this.el.get_current_event();
                  
                  // right click.
-                 if (ev.type != Gdk.EventType.2BUTTON_PRESS  || ev.button != 1  ) {    
+               //  if (ev.get_event_type != Gdk.EventType.2BUTTON_PRESS  || ev.button != 1  ) {    
                     // show popup!.   
                         
                      
-                    return;
-                }
+                 //   return;
+               // }
                 Gtk.TreeIter iter;
                  var mod = _this.compile_result_store.el;
                 mod.get_iter (out iter, path);
