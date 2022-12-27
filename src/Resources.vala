@@ -262,12 +262,14 @@ public class Resources : Object
 		var session = new Soup.Session ();
 		session.user_agent = "App Builder ";
 	    var message = new Soup.Message ("GET",  item.src );
-        session.queue_message (message, (sess, mess) => {
+        session.send_and_read_async.begin( (message, 0,  null, (obj, res) => {
+			var bytes = session.send_and_read_async.end(res);
+			
 			
 			if (item.target.contains("*")) {
 				// then it's a directory listing in JSON, and we need to add any new items to our list..
 				// it's used to fetch Editors (and maybe other stuff..)
-				this.parseDirectory((string) message.response_body.data,item.target );
+				this.parseDirectory(bytes.get_data(),item.target );
 				this.fetchNext();
 				return;
 			}
@@ -291,7 +293,7 @@ public class Resources : Object
 			
 			// set data??? - if it's binary?
 			try {
-           		 FileUtils.set_contents(  tfn, (string) message.response_body.data );
+           		 FileUtils.set_contents(  tfn, bytes.get_data());
             } catch(GLib.Error e) {
 					GLib.error("Problem writing data %s", e.message);
 				}
