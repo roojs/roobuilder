@@ -394,8 +394,18 @@ public class Xcls_PopoverAddObject : Object
             //listeners
             this.el.prepare.connect( (x, y) => {
             
-            	
-            	
+            	Gtk.TreeIter iter;
+                var s = this.el.get_selection();
+                
+                Gtk.TreeModel mod;
+                s.get_selected(out mod, out iter);
+                var path = mod.get_path(iter);
+                
+                var str = ""; // 
+                
+                new Gdk.ContentProvider.for_bytes("application/json",
+                	new Gdk.Bytes(str.data)
+            	); 
             	
             	return Gdk.ContentProvider;
             });
