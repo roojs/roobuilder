@@ -354,7 +354,7 @@
      "\tif (_this.is_new || this.kname.el.get_text().strip().length < 1) {",
      "\t\t// dont allow hiding if we are creating a new one.",
      "\t\tGLib.debug(\"prevent hiding as its new or text is empty\"); ",
-     "\t\tthis.el.show_all();",
+     "\t\tthis.el.show();",
      "\t\treturn;",
      "",
      "\t}",

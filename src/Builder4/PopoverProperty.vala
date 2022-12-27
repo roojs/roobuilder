@@ -93,7 +93,7 @@ public class Xcls_PopoverProperty : Object
         	if (_this.is_new || this.kname.el.get_text().strip().length < 1) {
         		// dont allow hiding if we are creating a new one.
         		GLib.debug("prevent hiding as its new or text is empty"); 
-        		this.el.show_all();
+        		this.el.show();
         		return;
         
         	}
