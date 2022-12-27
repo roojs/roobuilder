@@ -567,16 +567,9 @@ public class Xcls_PopoverProperty : Object
             var child_0 = new Xcls_EventControllerFocus13( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-
-            //listeners
-            this.el.key_release_event.connect( ()=>{
-            	_this.error.setError("");
-            	var val = this.el.get_text().strip(); 
-            	if (val.length < 1) {
-            		_this.error.setError("Name can not be empty");
-            	}
-            	return true;
-            });
+            var child_1 = new Xcls_EventControllerKey14( _this );
+            child_1.ref();
+            this.el.add_controller(  child_1.el );
         }
 
         // user defined functions
@@ -601,6 +594,39 @@ public class Xcls_PopoverProperty : Object
 
             //listeners
             this.el.leave.connect( ( ) => {
+            
+                _this.error.setError("");
+            	var val = _this.kname,el.get_text().strip(); 
+            	if (val.length < 1) {
+            		_this.error.setError("Name can not be empty");
+            	}
+            	return true;
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_EventControllerKey14 : Object
+    {
+        public Gtk.EventControllerKey el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_EventControllerKey14(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.EventControllerKey();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.key_released.connect( (keyval, keycode, state) => {
             
                 _this.error.setError("");
             	var val = _this.kname,el.get_text().strip(); 
@@ -672,17 +698,17 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.margin_top = 20;
-            var child_0 = new Xcls_Button16( _this );
+            var child_0 = new Xcls_Button17( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button17( _this );
+            var child_1 = new Xcls_Button18( _this );
             child_1.ref();
             this.el.append(  child_1.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button16 : Object
+    public class Xcls_Button17 : Object
     {
         public Gtk.Button el;
         private Xcls_PopoverProperty  _this;
@@ -692,7 +718,7 @@ public class Xcls_PopoverProperty : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_Button16(Xcls_PopoverProperty _owner )
+        public Xcls_Button17(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -717,7 +743,7 @@ public class Xcls_PopoverProperty : Object
         // user defined functions
     }
 
-    public class Xcls_Button17 : Object
+    public class Xcls_Button18 : Object
     {
         public Gtk.Button el;
         private Xcls_PopoverProperty  _this;
@@ -727,7 +753,7 @@ public class Xcls_PopoverProperty : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_Button17(Xcls_PopoverProperty _owner )
+        public Xcls_Button18(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
