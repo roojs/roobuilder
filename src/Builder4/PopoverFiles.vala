@@ -60,7 +60,7 @@ public class Xcls_PopoverFiles : Object
         this.el.position = Gtk.PositionType.TOP;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.add (  child_0.el  );
+        this.el.set_child (  child_0.el  );
 
         //listeners
         this.el.hide.connect( ( ) => {
@@ -663,7 +663,7 @@ public class Xcls_PopoverFiles : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_Box15( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_file_container( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
@@ -889,7 +889,7 @@ public class Xcls_PopoverFiles : Object
             this.el.width_request = 600;
             var child_0 = new Xcls_Box16( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_iconscroll( _this );
             child_1.ref();
             this.el.add (  child_1.el  );
@@ -917,7 +917,7 @@ public class Xcls_PopoverFiles : Object
             this.el.hexpand = true;
             var child_0 = new Xcls_iconsearch( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.append(  child_0.el );
         }
 
         // user defined functions
