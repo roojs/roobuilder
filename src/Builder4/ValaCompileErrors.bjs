@@ -68,6 +68,15 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "listeners" : {
+            "released" : [
+             "(n_press, x, y) => {",
+             "",
+             "",
+             "}",
+             ""
+            ]
+           },
            "xtype" : "GestureClick"
           },
           {
