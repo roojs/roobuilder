@@ -29,7 +29,7 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,false,4",
+       "* pack" : "append_child",
        "bool hexpand" : true,
        "id" : "grid",
        "int margin_end" : 4,
