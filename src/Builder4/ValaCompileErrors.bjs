@@ -247,6 +247,10 @@
          },
          "string name" : "compile-erros-view",
          "xtype" : "TreeView"
+        },
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "GestureClick"
         }
        ],
        "xtype" : "ScrolledWindow"

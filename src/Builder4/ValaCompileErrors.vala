@@ -236,6 +236,9 @@ public class Xcls_ValaCompileErrors : Object
             var child_0 = new Xcls_compile_tree( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_GestureClick10( _this );
+            child_1.ref();
+            this.el.add_controller(  child_1.el );
 
             // init method
 
@@ -512,6 +515,28 @@ public class Xcls_ValaCompileErrors : Object
     }
 
 
+
+    public class Xcls_GestureClick10 : Object
+    {
+        public Gtk.GestureClick el;
+        private Xcls_ValaCompileErrors  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_GestureClick10(Xcls_ValaCompileErrors _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.GestureClick();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
 
