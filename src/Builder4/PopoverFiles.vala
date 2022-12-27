@@ -171,7 +171,7 @@ public class Xcls_PopoverFiles : Object
     
     	this.el.set_autohide(false);
     	Gtk.Allocation rect;
-    	onbtn.get_allocation(out rect);
+    	on_el.get_allocation(out rect);
         this.el.set_pointing_to(rect);
     
     	 

@@ -898,7 +898,7 @@
     "",
     "\tthis.el.set_autohide(false);",
     "\tGtk.Allocation rect;",
-    "\tonbtn.get_allocation(out rect);",
+    "\ton_el.get_allocation(out rect);",
     "    this.el.set_pointing_to(rect);",
     "",
     "\t ",
