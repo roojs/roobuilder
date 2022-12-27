@@ -125,9 +125,12 @@ public class Xcls_PopoverFileDetails : Object
          
         _this.file = c;
         //console.log('show all');
-       this.el.set_modal(true);
-        this.el.set_relative_to(btn);
-    
+       this.el.set_autohide(false);
+       	Gtk.Allocation rect;
+    	btn.get_allocation(out rect);
+        this.el.set_pointing_to(rect);
+       
+       
         this.el.set_position(Gtk.PositionType.TOP);
     
          int w,h;
