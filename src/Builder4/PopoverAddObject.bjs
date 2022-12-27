@@ -5,7 +5,6 @@
    "$ xns" : "Gtk",
    "@ void after_node_change" : "(JsRender.Node? node)",
    "@ void before_node_change" : "(JsRender.Node? node)",
-   "@ void drag_end" : "()",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Xcls_MainWindow mainwindow" : "",
    "bool active" : false,

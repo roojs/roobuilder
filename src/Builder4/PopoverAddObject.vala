@@ -20,7 +20,6 @@ public class Xcls_PopoverAddObject : Object
     public signal void before_node_change (JsRender.Node? node);
     public bool modal;
     public signal void after_node_change (JsRender.Node? node);
-    public signal void drag_end ();
     public Xcls_MainWindow mainwindow;
     public bool active;
 
