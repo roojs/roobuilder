@@ -228,20 +228,6 @@ public class Xcls_PopoverAddObject : Object
             //        }
                 return false;
             });
-            this.el.drag_data_get.connect( (drag_context, selection_data, info, time) => {
-             	//Seed.print('Palete: drag-data-get: ' + target_type);
-                if (this.dragData.length < 1 ) {
-                    return; 
-                }
-                
-                GLib.debug("setting drag data to %s\n", this.dragData);
-               // selection_data.set_text(this.dragData ,this.dragData.length);
-               selection_data.set (selection_data.get_target (), 8, (uchar[]) this.dragData.to_utf8 ());
-            
-                    //this.el.dragData = "TEST from source widget";
-                    
-                    
-            });
         }
 
         // user defined functions

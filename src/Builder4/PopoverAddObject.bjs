@@ -174,22 +174,6 @@
          "//        }",
          "    return false;",
          "}"
-        ],
-        "drag_data_get" : [
-         "(drag_context, selection_data, info, time) => {",
-         " \t//Seed.print('Palete: drag-data-get: ' + target_type);",
-         "    if (this.dragData.length < 1 ) {",
-         "        return; ",
-         "    }",
-         "    ",
-         "    GLib.debug(\"setting drag data to %s\\n\", this.dragData);",
-         "   // selection_data.set_text(this.dragData ,this.dragData.length);",
-         "   selection_data.set (selection_data.get_target (), 8, (uchar[]) this.dragData.to_utf8 ());",
-         "",
-         "        //this.el.dragData = \"TEST from source widget\";",
-         "        ",
-         "        ",
-         "}"
         ]
        },
        "string name" : "popover-add-object-view",
