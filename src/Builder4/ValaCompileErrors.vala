@@ -451,6 +451,10 @@ public class Xcls_ValaCompileErrors : Object
             // set gobject values
 
             //listeners
+            this.el.released.connect( (n_press, x, y) => {
+            
+            
+            });
             this.el.pressed.connect( (n_press, x, y) => {
             
             
