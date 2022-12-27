@@ -766,7 +766,7 @@ public class Xcls_PopoverProperty : Object
             this.el.label = "Add Property";
 
             //listeners
-            this.el.button_press_event.connect( () => {
+            this.el.clicked.connect( () => {
             	// check if text is not empty..
             	if ( _this.kname.el.get_text().strip().length < 1) {
             		// error should already be showing?

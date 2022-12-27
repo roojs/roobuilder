@@ -278,7 +278,7 @@
          "bool always_show_image" : true,
          "bool hexpand" : true,
          "listeners" : {
-          "button_press_event" : [
+          "clicked" : [
            "() => {",
            "\t// check if text is not empty..",
            "\tif ( _this.kname.el.get_text().strip().length < 1) {",
