@@ -449,6 +449,7 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.button = 0;
 
             //listeners
             this.el.released.connect( (n_press, x, y) => {
