@@ -133,9 +133,9 @@ public class Xcls_PopoverFileDetails : Object
        
         this.el.set_position(Gtk.PositionType.TOP);
     
-     var win = this.mainwindow.el;
-        var  w = win.get_width();
-        var h = win.get_height();
+     //var win = this.mainwindow.el;
+       // var  w = win.get_width();
+      //  var h = win.get_height();
     
         this.el.set_size_request( 550, 100); // should expand height, but give  a min width.
     
