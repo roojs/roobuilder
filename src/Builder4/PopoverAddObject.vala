@@ -423,16 +423,11 @@ public class Xcls_PopoverAddObject : Object
                     var path = mod.get_path(iter);
                     
                     /// pix is a surface..
-                    var pix = this.el.create_row_drag_icon ( path);
-                        
+                    var paintable = this.el.create_row_drag_icon ( path);
+                
+                    this.el.set_icon(paintable, 0,0);
                             
-                    Gtk.drag_set_icon_surface (ctx, pix);
-                    GLib.Value value;
-                    
-            
-                    _this.model.el.get_value(iter, 0, out value);
-                    
-                    this.dragData = (string) value;
+                   
                      
                     
                     return;
