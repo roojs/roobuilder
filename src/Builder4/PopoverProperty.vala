@@ -619,7 +619,7 @@ public class Xcls_PopoverProperty : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_Button15( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -644,7 +644,7 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.label = "Add Property";
+            this.el.label = "Cancel";
 
             //listeners
             this.el.button_press_event.connect( () => {

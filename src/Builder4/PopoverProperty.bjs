@@ -280,12 +280,11 @@
            "}"
           ]
          },
-         "string label" : "Add Property",
+         "string label" : "Cancel",
          "xtype" : "Button"
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "bool always_show_image" : true,
          "bool hexpand" : true,
          "listeners" : {
