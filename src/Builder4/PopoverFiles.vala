@@ -1073,7 +1073,10 @@ public class Xcls_PopoverFiles : Object
             	GLib.Value val;
             	_this.iconmodel.el.get_value(iter, 4, out val);
             	
-            	tooltip.set_icon((Gdk.Pixbuf) val.get_object());
+            	tooltip.set_icon(  Gdk.Texture.for_pixbuf(
+            	
+            		(Gdk.Pixbuf) val.get_object()
+            	));
             	 _this.iconview.el.set_tooltip_item(tooltip, path);
             	return true;
             });
