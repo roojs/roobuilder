@@ -262,7 +262,7 @@ public class Resources : Object
 		var session = new Soup.Session ();
 		session.user_agent = "App Builder ";
 	    var message = new Soup.Message ("GET",  item.src );
-        session.send_and_read_async.begin( (message, 0,  null, (obj, res) => {
+        session.send_and_read_async.begin( message, 0,  null, (obj, res) => {
 			var bytes = session.send_and_read_async.end(res);
 			
 			
