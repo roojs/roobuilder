@@ -25,7 +25,7 @@ public class WindowState : Object
 	public Xcls_WindowLeftTree  left_tree;
 	public Xcls_PopoverAddProp   add_props;
 	public Xcls_LeftProps       left_props;
-	public Xcls_RooProjectSettings roo_projectsettings_pop;s
+	public Xcls_RooProjectSettings roo_projectsettings_pop;
 	public ValaProjectSettingsPopover  vala_projectsettings_pop; 
 	public Xcls_PopoverAddObject     rightpalete;
 	//public Xcls_PopoverEditor               code_editor_popover;
