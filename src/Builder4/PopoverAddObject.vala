@@ -366,11 +366,11 @@ public class Xcls_PopoverAddObject : Object
                 _this.model.el.get_value(iter, 0, out value);
                                  
                 var str = (string) value;
-                new Gdk.ContentProvider.for_bytes("text/plain",
+                return new Gdk.ContentProvider.for_bytes("text/plain",
                 	new GLib.Bytes(str.data)
             	); 
             	
-            	return Gdk.ContentProvider;
+            	 
             });
             this.el.drag_begin.connect( ( ctx) => {
                 // we could fill this in now...
