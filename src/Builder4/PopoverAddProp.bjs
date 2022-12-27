@@ -48,7 +48,7 @@
         "}",
         ""
        ],
-       "* pack" : "add",
+       "* pack" : "set_child",
        "Gtk.CssProvider css" : "",
        "items" : [
         {
