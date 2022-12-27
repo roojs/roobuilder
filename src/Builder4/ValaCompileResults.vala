@@ -55,7 +55,7 @@ public class Xcls_ValaCompileResults : Object
      
     
         Gtk.Allocation rect;
-    	on_el.get_allocation(out rect);
+    	onbtn.get_allocation(out rect);
         this.el.set_pointing_to(rect);
     
         this.el.show();

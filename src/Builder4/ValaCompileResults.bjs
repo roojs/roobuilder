@@ -97,7 +97,7 @@
     " ",
     "",
     "    Gtk.Allocation rect;",
-    "\ton_el.get_allocation(out rect);",
+    "\tonbtn.get_allocation(out rect);",
     "    this.el.set_pointing_to(rect);",
     "",
     "    this.el.show();",
