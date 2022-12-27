@@ -374,7 +374,7 @@ public class Xcls_PopoverAddObject : Object
                 _this.model.el.get_value(iter, 0, out value);
                                  
                 var str = (string) value;
-                new Gdk.ContentProvider.for_bytes("application/json",
+                new Gdk.ContentProvider.for_bytes("text/plain",
                 	new Gdk.Bytes(str.data)
             	); 
             	
