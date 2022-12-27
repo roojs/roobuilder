@@ -173,7 +173,6 @@ public class Xcls_PopoverAddObject : Object
 
 
             // my vars (def)
-        public string dragData;
         public Gtk.CssProvider css;
 
         // ctor
@@ -216,24 +215,7 @@ public class Xcls_PopoverAddObject : Object
                 
                 var selection = this.el.get_selection();
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
-               // this.selection.signal['changed'].connect(function() {
-                //    _view.listeners['cursor-changed'].apply(_view, [ _view, '']);
-                //});
-                // see: http://live.gnome.org/GnomeLove/DragNDropTutorial
-                 
-                var ds = new DragSource();
-                
-                 
-                Gtk.drag_source_set (
-                        this.el,            /* widget will be drag-able */
-                        Gdk.ModifierType.BUTTON1_MASK,       /* modifier that will start a drag */
-                        BuilderApplication.targetList,            /* lists of target to support */
-                        Gdk.DragAction.COPY         /* what to do with data after dropped */
-                );
-                //Gtk.drag_source_set_target_list(this.el, LeftTree.targetList);
                
-               // Gtk.drag_source_set_target_list(this.el, Application.targetList);
-               // Gtk.drag_source_add_text_targets(this.el); 
              
             }
 
