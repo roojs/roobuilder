@@ -341,7 +341,7 @@
               "}",
               ""
              ],
-             "* pack" : "add",
+             "* pack" : "set_child",
              "bool has_tooltip" : true,
              "id" : "iconview",
              "int item_width" : 100,
@@ -421,7 +421,6 @@
         {
          "$ xns" : "Gtk",
          "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-         "* pack" : "add",
          "bool expand" : true,
          "bool has_frame" : true,
          "bool visible" : false,
@@ -452,7 +451,7 @@
             "",
             ""
            ],
-           "* pack" : "add",
+           "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
            "bool activate_on_single_click" : false,
            "bool expand" : true,

@@ -666,7 +666,7 @@ public class Xcls_PopoverFiles : Object
             this.el.append(  child_1.el );
             var child_2 = new Xcls_file_container( _this );
             child_2.ref();
-            this.el.add (  child_2.el  );
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -992,7 +992,7 @@ public class Xcls_PopoverFiles : Object
             this.el.has_frame = true;
             var child_0 = new Xcls_iconview( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.set_child (  child_0.el  );
 
             // init method
 
@@ -1135,7 +1135,7 @@ public class Xcls_PopoverFiles : Object
             this.el.visible = false;
             var child_0 = new Xcls_fileview( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.set_child (  child_0.el  );
 
             // init method
 
