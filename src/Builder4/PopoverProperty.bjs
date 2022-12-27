@@ -23,6 +23,14 @@
       {
        "$ xns" : "Gtk",
        "id" : "header",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "title_widget",
+         "string label" : "Label",
+         "xtype" : "Label"
+        }
+       ],
        "xtype" : "HeaderBar"
       },
       {
