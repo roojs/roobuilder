@@ -216,7 +216,7 @@ public class Xcls_PopoverFileDetails : Object
             this.el.pack_start (  child_0.el , false,true,0 );
             var child_1 = new Xcls_grid( _this );
             child_1.ref();
-            this.el.append_child (  child_1.el  );
+            this.el.append (  child_1.el  );
             var child_2 = new Xcls_Box31( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
