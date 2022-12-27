@@ -379,7 +379,7 @@ public class Xcls_PopoverAddObject : Object
                     
                     
                     Gtk.TreeIter iter;
-                    var s = this.el.get_selection();
+                    var s = _this.treeview.el.get_selection();
                     
                     Gtk.TreeModel mod;
                     s.get_selected(out mod, out iter);
