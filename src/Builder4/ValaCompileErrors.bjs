@@ -74,7 +74,7 @@
              "    int cell_x;",
              "    int cell_y;",
              "    Gtk.TreePath path;",
-             "    if (!this.compile_tree.el.get_path_at_pos((int)x, (int) y, out path, out col, out cell_x, out cell_y )) {",
+             "    if (!_this.compile_tree.el.get_path_at_pos((int)x, (int) y, out path, out col, out cell_x, out cell_y )) {",
              "        print(\"nothing selected on click\");",
              "        ",
              "        return false; //not on a element.",
