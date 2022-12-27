@@ -168,7 +168,7 @@ public class Xcls_PopoverAddObject : Object
     }
     public class Xcls_treeview : Object
     {
-        public Gtk.ColumnView el;
+        public Gtk.TreeView el;
         private Xcls_PopoverAddObject  _this;
 
 
@@ -180,12 +180,14 @@ public class Xcls_PopoverAddObject : Object
         {
             _this = _owner;
             _this.treeview = this;
-            this.el = new Gtk.ColumnView( null );
+            this.el = new Gtk.TreeView();
 
             // my vars (dec)
 
             // set gobject values
             this.el.name = "popover-add-object-view";
+            this.el.enable_tree_lines = true;
+            this.el.headers_visible = true;
             var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
