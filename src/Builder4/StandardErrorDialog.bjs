@@ -10,14 +10,6 @@
    "Gtk.DialogFlags flags" : "Gtk.DialogFlags.MODAL",
    "id" : "StandardErrorDialog",
    "listeners" : {
-    "delete_event" : [
-     "  (self, event)  => {",
-     "    this.el.hide();",
-     "    return true;",
-     " ",
-     "} ",
-     ""
-    ],
     "response" : [
      "  (self, response_id) => {",
      "   this.el.hide();",

@@ -28,11 +28,6 @@ public class Xcls_StandardErrorDialog : Object
         this.el.use_markup = true;
 
         //listeners
-        this.el.delete_event.connect( (self, event)  => {
-            this.el.hide();
-            return true;
-         
-        });
         this.el.response.connect( (self, response_id) => {
            this.el.hide();
         });
