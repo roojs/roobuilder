@@ -570,12 +570,7 @@ public class Xcls_PopoverProperty : Object
 
             //listeners
             this.el.focus_out_event.connect( ()=>{
-            	_this.error.setError("");
-            	var val = this.el.get_text().strip(); 
-            	if (val.length < 1) {
-            		_this.error.setError("Name can not be empty");
-            	}
-            	return true;
+            	
             });
             this.el.key_release_event.connect( ()=>{
             	_this.error.setError("");
@@ -606,6 +601,12 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.leave.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions
