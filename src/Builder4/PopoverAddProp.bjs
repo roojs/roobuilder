@@ -22,7 +22,7 @@
       "    this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
       " "
      ],
-     "* pack" : "add",
+     "* pack" : "set_child",
      "items" : [
       {
        "$ enable_tree_lines" : true,
