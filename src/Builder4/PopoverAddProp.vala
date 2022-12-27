@@ -95,8 +95,12 @@ public class Xcls_PopoverAddProp : Object
         
     
         int w,h;
-        this.mainwindow.el.get_size(out w, out h);
         
+         var win = this.mainwindow.el;
+        var  w = win.get_width();
+        var h = win.get_height();
+    
+    
         // left tree = 250, editor area = 500?
         
         // min 450?
@@ -105,14 +109,14 @@ public class Xcls_PopoverAddProp : Object
     
         
     
-        if (this.el.relative_to == null) {
-            this.el.set_relative_to(onbtn);
-        }
-        this.el.show_all();
+    	Gtk.Allocation rect;
+    	onbtn.get_allocation(out rect);
+    	this.el.set_pointing_to(rect);
+        //this.el.show_all();
        
-        while(Gtk.events_pending()) { 
-                Gtk.main_iteration();   // why?
-        }       
+        //while(Gtk.events_pending()) { 
+        //        Gtk.main_iteration();   // why?
+        //}       
      //   this.hpane.el.set_position( 0);
     }
     public void clear () {
