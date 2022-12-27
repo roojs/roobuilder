@@ -23,7 +23,6 @@
       {
        "$ xns" : "Gtk",
        "id" : "header",
-       "string title" : "Modify / Create Property",
        "xtype" : "HeaderBar"
       },
       {

@@ -231,7 +231,6 @@ public class Xcls_PopoverProperty : Object
 
 
             // my vars (def)
-        public string title;
 
         // ctor
         public Xcls_header(Xcls_PopoverProperty _owner )
@@ -241,7 +240,6 @@ public class Xcls_PopoverProperty : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
-            this.title = Modify / Create Property;
 
             // set gobject values
         }
