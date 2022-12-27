@@ -156,7 +156,7 @@
            "                     ",
            "    var str = (string) value;",
            "    new Gdk.ContentProvider.for_bytes(\"text/plain\",",
-           "    \tnew Gdk.Bytes(str.data)",
+           "    \tnew GLib.Bytes(str.data)",
            "\t); ",
            "\t",
            "\treturn Gdk.ContentProvider;",

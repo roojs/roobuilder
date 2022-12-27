@@ -367,7 +367,7 @@ public class Xcls_PopoverAddObject : Object
                                  
                 var str = (string) value;
                 new Gdk.ContentProvider.for_bytes("text/plain",
-                	new Gdk.Bytes(str.data)
+                	new GLib.Bytes(str.data)
             	); 
             	
             	return Gdk.ContentProvider;
