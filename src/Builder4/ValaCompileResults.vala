@@ -174,7 +174,7 @@ public class Xcls_ValaCompileResults : Object
             
                	this.css = new Gtk.CssProvider();
             	try {
-            		this.css.load_from_data("#compile-results-view { font: 10px Monospace;}");
+            		this.css.load_from_data("#compile-results-view { font: 10px Monospace;}".data);
             	} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
