@@ -217,16 +217,6 @@ public class Xcls_PopoverAddObject : Object
                
              
             }
-
-            //listeners
-            this.el.button_press_event.connect( ( event) => {
-            
-             //	if (!this.get('/Editor').save()) {
-             //	    // popup!! - click handled.. 
-            // 	    return true;
-            //        }
-                return false;
-            });
         }
 
         // user defined functions

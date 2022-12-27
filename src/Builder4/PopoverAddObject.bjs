@@ -166,18 +166,6 @@
          "xtype" : "DragSource"
         }
        ],
-       "listeners" : {
-        "button_press_event" : [
-         " ( event) => {",
-         "",
-         " //\tif (!this.get('/Editor').save()) {",
-         " //\t    // popup!! - click handled.. ",
-         "// \t    return true;",
-         "//        }",
-         "    return false;",
-         "}"
-        ]
-       },
        "string name" : "popover-add-object-view",
        "xtype" : "TreeView"
       }
