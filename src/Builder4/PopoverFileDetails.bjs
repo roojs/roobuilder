@@ -496,7 +496,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
+         "* pack" : "append",
          "bool always_show_image" : true,
          "items" : [
           {
@@ -520,7 +520,7 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
+         "* pack" : "append",
          "bool always_show_image" : true,
          "bool has_default" : true,
          "id" : "save_btn",

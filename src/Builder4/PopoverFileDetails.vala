@@ -1224,10 +1224,10 @@ public class Xcls_PopoverFileDetails : Object
             this.el.margin_top = 4;
             var child_0 = new Xcls_Button32( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_save_btn( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions
