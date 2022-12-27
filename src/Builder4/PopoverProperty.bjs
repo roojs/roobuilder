@@ -36,7 +36,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "int margin_top" : 12,
