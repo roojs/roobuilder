@@ -370,8 +370,11 @@ public class Xcls_PopoverAddObject : Object
                 s.get_selected(out mod, out iter);
                 var path = mod.get_path(iter);
                 
-                var str = ""; // 
                 
+                Gdk.Value value;
+                _this.model.el.get_value(iter, 0, out value);
+                                 
+                var str = (string) value;
                 new Gdk.ContentProvider.for_bytes("application/json",
                 	new Gdk.Bytes(str.data)
             	); 
