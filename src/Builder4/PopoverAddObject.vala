@@ -437,12 +437,12 @@ public class Xcls_PopoverAddObject : Object
              
              	 GLib.debug("SOURCE: drag-end (call listener on this)\n");
             	
-            	this.dragData = "";
+            	
             	//this.dropList = null;
-            	_this.drag_end(); // call signal..
+            	//_this.drag_end(); // call signal..
             	//this.get('/LeftTree.view').highlight(false);
             	 
-            }
+            
             });
         }
 
