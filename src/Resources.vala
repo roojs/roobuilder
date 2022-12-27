@@ -293,7 +293,7 @@ public class Resources : Object
 			
 			// set data??? - if it's binary?
 			try {
-           		 FileUtils.set_contents(  tfn, bytes.get_data());
+           		 FileUtils.set_contents(  tfn,  (string) bytes.get_data());
             } catch(GLib.Error e) {
 					GLib.error("Problem writing data %s", e.message);
 				}
