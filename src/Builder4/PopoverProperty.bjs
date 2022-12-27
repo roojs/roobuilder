@@ -266,7 +266,7 @@
            "\t_this.is_new = false;",
            "\t_this.kname.el.set_text(\"Cancel\");",
            "\t_this.el.hide();",
-           "\treturn false;",
+           "\t",
            "}"
           ]
          },
@@ -283,7 +283,7 @@
            "\t// check if text is not empty..",
            "\tif ( _this.kname.el.get_text().strip().length < 1) {",
            "\t\t// error should already be showing?",
-           "\t\treturn false;",
+           "\t\treturn;",
            "\t}",
            "\t_this.updateProp();",
            "\t",
@@ -293,7 +293,7 @@
            "\tvar prop = _this.prop;",
            "\tif (_this.node.props.has_key(prop.to_index_key())) {",
            "\t\t_this.error.setError(\"Property already exists\");",
-           "\t\treturn false;\t",
+           "\t\treturn;\t",
            "\t}",
            "\t",
            "\t",
@@ -307,13 +307,11 @@
            "// add it, ",
            "\t// trigger editing of property.",
            "\t// allow hide to work?",
-           "\twhile (Gtk.events_pending()) {",
-           "\t\tGtk.main_iteration();",
-           "\t}",
+           "\t ",
            "\t",
            "\t_this.mainwindow.windowstate.left_props.addProp(prop);\t\t",
            "\t",
-           "\treturn false;",
+           "\t",
            "}"
           ]
          },

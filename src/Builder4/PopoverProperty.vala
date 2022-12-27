@@ -736,7 +736,7 @@ public class Xcls_PopoverProperty : Object
             	_this.is_new = false;
             	_this.kname.el.set_text("Cancel");
             	_this.el.hide();
-            	return false;
+            	
             });
         }
 
@@ -770,7 +770,7 @@ public class Xcls_PopoverProperty : Object
             	// check if text is not empty..
             	if ( _this.kname.el.get_text().strip().length < 1) {
             		// error should already be showing?
-            		return false;
+            		return;
             	}
             	_this.updateProp();
             	
@@ -780,7 +780,7 @@ public class Xcls_PopoverProperty : Object
             	var prop = _this.prop;
             	if (_this.node.props.has_key(prop.to_index_key())) {
             		_this.error.setError("Property already exists");
-            		return false;	
+            		return;	
             	}
             	
             	
@@ -794,13 +794,11 @@ public class Xcls_PopoverProperty : Object
             // add it, 
             	// trigger editing of property.
             	// allow hide to work?
-            	while (Gtk.events_pending()) {
-            		Gtk.main_iteration();
-            	}
+            	 
             	
             	_this.mainwindow.windowstate.left_props.addProp(prop);		
             	
-            	return false;
+            	
             });
         }
 
