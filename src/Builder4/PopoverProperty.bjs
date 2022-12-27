@@ -27,7 +27,7 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "title_widget",
-         "string label" : "Label",
+         "string label" : "Add / Edit property",
          "xtype" : "Label"
         }
        ],
