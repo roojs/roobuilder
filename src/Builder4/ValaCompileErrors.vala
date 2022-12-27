@@ -19,6 +19,7 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_renderer renderer;
 
         // my vars (def)
+    public bool modal;
     public Xcls_MainWindow window;
     public Json.Object notices;
     public bool active;
@@ -27,16 +28,16 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_ValaCompileErrors()
     {
         _this = this;
-        this.el = new Gtk.Popover( null );
+        this.el = new GtkPopover();
 
         // my vars (dec)
+        this.modal = true;
         this.active = false;
 
         // set gobject values
         this.el.width_request = 900;
         this.el.height_request = 800;
         this.el.hexpand = false;
-        this.el.modal = true;
         this.el.position = Gtk.PositionType.TOP;
         var child_0 = new Xcls_compile_view( _this );
         child_0.ref();
@@ -226,7 +227,7 @@ public class Xcls_ValaCompileErrors : Object
         public Xcls_ScrolledWindow5(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 

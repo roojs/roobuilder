@@ -5,6 +5,7 @@
    "# Json.Object notices" : "",
    "# Xcls_MainWindow window" : "",
    "$ xns" : "Gtk",
+   "* ctor" : "new GtkPopover()",
    "Gtk.PositionType position" : "Gtk.PositionType.TOP",
    "bool active" : false,
    "bool hexpand" : false,
