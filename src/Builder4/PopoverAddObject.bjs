@@ -168,7 +168,7 @@
         }
        ],
        "string name" : "popover-add-object-view",
-       "xtype" : "TreeView"
+       "xtype" : "ListView"
       }
      ],
      "xtype" : "ScrolledWindow"
