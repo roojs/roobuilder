@@ -386,7 +386,7 @@ public class Xcls_PopoverAddObject : Object
                     var path = mod.get_path(iter);
                     
                     /// pix is a surface..
-                    var paintable = this.el.create_row_drag_icon ( path);
+                    var paintable = _this.treeview.el.create_row_drag_icon ( path);
                 
                     this.el.set_icon(paintable, 0,0);
                             
