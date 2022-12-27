@@ -123,7 +123,7 @@ namespace Palete {
 
 			context.get_word();
 			if (model is FilterListModel) { 
-				var replaced_model = new CompletionModel(this, context, null);
+				var replaced_model = new CompletionModel(this, context, this.model.cancellable);
 				context.set_proposals_for_provider(this, replaced_model);
 				model = model.get_model ();
 			}
