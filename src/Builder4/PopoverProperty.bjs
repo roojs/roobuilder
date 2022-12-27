@@ -191,7 +191,12 @@
           "leave" : [
            "( ) => {",
            "",
-           "",
+           "_this.error.setError(\"\");",
+           "\tvar val = this.el.get_text().strip(); ",
+           "\tif (val.length < 1) {",
+           "\t\t_this.error.setError(\"Name can not be empty\");",
+           "\t}",
+           "\treturn true;",
            "}",
            ""
           ]

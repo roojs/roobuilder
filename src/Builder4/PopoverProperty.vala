@@ -605,7 +605,12 @@ public class Xcls_PopoverProperty : Object
             //listeners
             this.el.leave.connect( ( ) => {
             
-            
+            _this.error.setError("");
+            	var val = this.el.get_text().strip(); 
+            	if (val.length < 1) {
+            		_this.error.setError("Name can not be empty");
+            	}
+            	return true;
             });
         }
 
