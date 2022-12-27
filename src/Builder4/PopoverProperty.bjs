@@ -244,35 +244,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "composite_name",
-           "* prop" : "image",
-           "string icon_name" : "window-close",
-           "xtype" : "Image"
-          }
-         ],
-         "listeners" : {
-          "button_press_event" : [
-           "() => { ",
-           "",
-           "\t_this.prop = null;",
-           "\t_this.is_new = false;",
-           "\t_this.kname.el.set_text(\"Cancel\");",
-           "\t_this.el.hide();",
-           "\treturn false;",
-           "}"
-          ]
-         },
-         "string label" : "Cancel",
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "add",
-         "bool always_show_image" : true,
-         "bool hexpand" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
            "* prop" : "image",
            "string icon_name" : "list-add",
            "xtype" : "Image"

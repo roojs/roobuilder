@@ -617,9 +617,6 @@ public class Xcls_PopoverProperty : Object
             var child_0 = new Xcls_Button14( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
-            var child_1 = new Xcls_Button16( _this );
-            child_1.ref();
-            this.el.add (  child_1.el  );
         }
 
         // user defined functions
@@ -644,70 +641,8 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.label = "Cancel";
-            var child_0 = new Xcls_Image15( _this );
-            child_0.ref();
-            this.el.image = child_0.el;
-
-            //listeners
-            this.el.button_press_event.connect( () => { 
-            
-            	_this.prop = null;
-            	_this.is_new = false;
-            	_this.kname.el.set_text("Cancel");
-            	_this.el.hide();
-            	return false;
-            });
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Image15 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_PopoverProperty  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image15(Xcls_PopoverProperty _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "window-close";
-        }
-
-        // user defined functions
-    }
-
-
-    public class Xcls_Button16 : Object
-    {
-        public Gtk.Button el;
-        private Xcls_PopoverProperty  _this;
-
-
-            // my vars (def)
-        public bool always_show_image;
-
-        // ctor
-        public Xcls_Button16(Xcls_PopoverProperty _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-            this.always_show_image = true;
-
-            // set gobject values
-            this.el.hexpand = true;
             this.el.label = "Add Property";
-            var child_0 = new Xcls_Image17( _this );
+            var child_0 = new Xcls_Image15( _this );
             child_0.ref();
             this.el.image = child_0.el;
 
@@ -752,7 +687,7 @@ public class Xcls_PopoverProperty : Object
 
         // user defined functions
     }
-    public class Xcls_Image17 : Object
+    public class Xcls_Image15 : Object
     {
         public Gtk.Image el;
         private Xcls_PopoverProperty  _this;
@@ -761,7 +696,7 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image17(Xcls_PopoverProperty _owner )
+        public Xcls_Image15(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
