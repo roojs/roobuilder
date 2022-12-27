@@ -41,10 +41,10 @@ public class Xcls_ValaCompileResults : Object
 
     // user defined functions
     public void show ( Gtk.Widget onbtn, bool reset) {
-    	int w, h;
-     
-    	this.window.el.get_size(out w, out h);
-        
+    	 
+        var  w = win.get_width();
+        var h = win.get_height();
+    
         // left tree = 250, editor area = 500?
         
         var new_w = int.min(750, w-100);
@@ -54,10 +54,11 @@ public class Xcls_ValaCompileResults : Object
         this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
      
     
-        if (this.el.relative_to == null) {
-            this.el.set_relative_to(onbtn);
-        }
-        this.el.show_all();
+        Gtk.Allocation rect;
+    	on_el.get_allocation(out rect);
+        this.el.set_pointing_to(rect);
+    
+        this.el.show();
        // not sure why..
        
        if (reset) {
@@ -65,9 +66,6 @@ public class Xcls_ValaCompileResults : Object
     		buf.set_text("",0);
     	}
        
-        while(Gtk.events_pending()) { 
-                Gtk.main_iteration();
-        }
         
         
         
