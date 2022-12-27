@@ -495,18 +495,8 @@ public class Xcls_PopoverFiles : Object
                 //pe.el.set_transient_for(_this.el);
                 pe.el.set_modal(true);   
                
-                var p  = pe.show();
-            
-                if (p == null) {
-                    return;
-                }
-                
-                /*
-                _this.win.windowstate.left_projects.is_loaded = false;    
-                _this.win.windowstate.left_projects.load();
-                _this.win.windowstate.left_projects.selectProject(p);
-                */
-                return  ;    
+                pe.showit();
+               
             
             });
         }
