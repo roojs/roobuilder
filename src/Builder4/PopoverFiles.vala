@@ -1173,7 +1173,7 @@ public class Xcls_PopoverFiles : Object
 
             this.css = new Gtk.CssProvider();
             try {
-            	this.css.load_from_data("#popover-files-fileview { font-size: 12px;}");
+            	this.css.load_from_data("#popover-files-fileview { font-size: 12px;}".data);
             } catch (Error e) {}
             this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
                     
