@@ -201,25 +201,25 @@ public class Xcls_PopoverProperty : Object
             this.el.add (  child_1.el  );
             var child_2 = new Xcls_kflag( _this );
             child_2.ref();
-            this.el.add (  child_2.el  );
+            this.el.append(  child_2.el );
             var child_3 = new Xcls_Label8( _this );
             child_3.ref();
-            this.el.add (  child_3.el  );
+            this.el.append(  child_3.el );
             var child_4 = new Xcls_ktype( _this );
             child_4.ref();
-            this.el.add (  child_4.el  );
+            this.el.append(  child_4.el );
             var child_5 = new Xcls_Label10( _this );
             child_5.ref();
-            this.el.add (  child_5.el  );
+            this.el.append(  child_5.el );
             var child_6 = new Xcls_kname( _this );
             child_6.ref();
-            this.el.add (  child_6.el  );
+            this.el.append(  child_6.el );
             var child_7 = new Xcls_error( _this );
             child_7.ref();
-            this.el.add (  child_7.el  );
+            this.el.append(  child_7.el );
             var child_8 = new Xcls_buttonbar( _this );
             child_8.ref();
-            this.el.add (  child_8.el  );
+            this.el.append(  child_8.el );
         }
 
         // user defined functions

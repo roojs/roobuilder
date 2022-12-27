@@ -39,7 +39,6 @@
       {
        "$ xns" : "Gtk",
        "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
-       "* pack" : "add",
        "id" : "kflag",
        "items" : [
         {
@@ -150,7 +149,6 @@
       {
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "int margin_top" : 12,
@@ -161,14 +159,12 @@
       {
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "id" : "ktype",
        "xtype" : "Entry"
       },
       {
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "int margin_top" : 12,
@@ -180,7 +176,6 @@
       {
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "id" : "kname",
        "listeners" : {
         "focus_out_event" : [
@@ -213,7 +208,6 @@
       {
        "$ visible" : true,
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Align halign" : "Gtk.Align.START",
        "Gtk.Justification justify" : "Gtk.Justification.LEFT",
        "bool use_markup" : true,
@@ -238,7 +232,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "id" : "buttonbar",
        "int margin_top" : 20,
