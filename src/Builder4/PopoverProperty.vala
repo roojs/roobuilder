@@ -642,9 +642,6 @@ public class Xcls_PopoverProperty : Object
             // set gobject values
             this.el.hexpand = true;
             this.el.label = "Add Property";
-            var child_0 = new Xcls_Image15( _this );
-            child_0.ref();
-            this.el.image = child_0.el;
 
             //listeners
             this.el.button_press_event.connect( () => {
@@ -687,29 +684,6 @@ public class Xcls_PopoverProperty : Object
 
         // user defined functions
     }
-    public class Xcls_Image15 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_PopoverProperty  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image15(Xcls_PopoverProperty _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "list-add";
-        }
-
-        // user defined functions
-    }
-
 
 
 

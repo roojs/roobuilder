@@ -241,14 +241,6 @@
          "* pack" : "add",
          "bool always_show_image" : true,
          "bool hexpand" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "image",
-           "string icon_name" : "list-add",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "button_press_event" : [
            "() => {",
