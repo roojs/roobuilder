@@ -515,7 +515,6 @@
          "$ xns" : "Gtk",
          "* pack" : "append",
          "bool always_show_image" : true,
-         "bool has_default" : true,
          "id" : "save_btn",
          "listeners" : {
           "clicked" : [

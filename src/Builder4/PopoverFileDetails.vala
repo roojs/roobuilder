@@ -1285,7 +1285,6 @@ public class Xcls_PopoverFileDetails : Object
             this.always_show_image = true;
 
             // set gobject values
-            this.el.has_default = true;
             this.el.icon_name = "document-save";
             this.el.label = "Save";
 
