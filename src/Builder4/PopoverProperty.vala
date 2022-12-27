@@ -144,8 +144,13 @@ public class Xcls_PopoverProperty : Object
     
     	_this.node = node;
     	//console.log('show all');
-    	this.el.set_modal(true);
-    	this.el.set_relative_to(btn);
+    
+    	Gtk.Allocation rect;
+    	btn.get_allocation(out rect);
+        this.el.set_pointing_to(rect);
+    
+    
+    	 
     	if (y > -1) {
     		
     	
@@ -164,7 +169,7 @@ public class Xcls_PopoverProperty : Object
     
     	// window + header?
     	 print("SHOWALL - POPIP\n");
-    	this.el.show_all();
+    	this.el.show();
     	this.kname.el.grab_focus();
     	this.buttonbar.el.hide();
     	if (this.is_new) {
