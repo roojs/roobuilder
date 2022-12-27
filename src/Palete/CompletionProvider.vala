@@ -184,7 +184,7 @@ namespace Palete {
  		{
  		 	this.provider = provider;
 			this.cancellable = cancellable;
- 		 	this.items = new Gee.ArrayList<GtkSource.CompletionProposal>();
+ 		 	this.items = new Gee.ArrayList<CompletionProposal>();
  			this.search = context.get_word();
 		    if (this.search.length < this.minimum_word_size) {
 			    return;
@@ -253,7 +253,7 @@ namespace Palete {
  		
  		string label;
  		
- 		string text;
+ 		public string text;
  		string info;
  		public CompletionProposal(string label, string text, string info)
  		{
