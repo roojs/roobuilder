@@ -179,7 +179,7 @@ namespace Palete {
  		Gee.ArrayList<GtkSource.CompletionProposal> items;
  		string search;
  		int minimum_word_size = 2;
- 		public Cancellable cancelleble;
+ 		public Cancellable cancellable;
  		
  		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context, Cancellable cancelleble)
  		{
@@ -223,7 +223,7 @@ namespace Palete {
 		}
 		public   uint get_n_items () 
 		{
-			return this.items.length;
+			return this.items.size;
 		}
  		public bool can_filter (string word) 
 		{
