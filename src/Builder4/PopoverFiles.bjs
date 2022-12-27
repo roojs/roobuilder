@@ -34,7 +34,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -67,7 +66,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -85,7 +83,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -125,7 +122,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              " () => {",
