@@ -192,7 +192,7 @@
            "( ) => {",
            "",
            "    _this.error.setError(\"\");",
-           "\tvar val = _this.kname.l.get_text().strip(); ",
+           "\tvar val = _this.kname.el.get_text().strip(); ",
            "\tif (val.length < 1) {",
            "\t\t_this.error.setError(\"Name can not be empty\");",
            "\t}",

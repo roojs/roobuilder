@@ -596,7 +596,7 @@ public class Xcls_PopoverProperty : Object
             this.el.leave.connect( ( ) => {
             
                 _this.error.setError("");
-            	var val = _this.kname.l.get_text().strip(); 
+            	var val = _this.kname.el.get_text().strip(); 
             	if (val.length < 1) {
             		_this.error.setError("Name can not be empty");
             	}
