@@ -147,7 +147,7 @@ namespace Palete {
 
 		
 		}
-*/
+
 
 /*
 		public bool activate_proposal (GtkSource.CompletionProposal proposal, TextIter iter)
@@ -188,7 +188,7 @@ namespace Palete {
  		 	this.items = new Gee.ArrayList<GtkSource.CompletionProposal>();
  			this.search = context.get_word();
 		    if (this.search.length < this.minimum_word_size) {
-			    return null;
+			    return;
 		    }
 		 
 		    // now do our magic..
@@ -215,7 +215,7 @@ namespace Palete {
  		
  		public GLib.Object? get_item (uint pos)
  		{
- 			return (Object) this.items.get(pos);
+ 			return (Object) this.items.get((int) pos);
  		}
 		public GLib.Type  get_item_type ()
 		{
