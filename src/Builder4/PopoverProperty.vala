@@ -616,7 +616,10 @@ public class Xcls_PopoverProperty : Object
             this.el.margin_top = 20;
             var child_0 = new Xcls_Button14( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
+            var child_1 = new Xcls_Button15( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
         }
 
         // user defined functions
@@ -632,6 +635,70 @@ public class Xcls_PopoverProperty : Object
 
         // ctor
         public Xcls_Button14(Xcls_PopoverProperty _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+            this.always_show_image = true;
+
+            // set gobject values
+            this.el.hexpand = true;
+            this.el.label = "Add Property";
+
+            //listeners
+            this.el.button_press_event.connect( () => {
+            	// check if text is not empty..
+            	if ( _this.kname.el.get_text().strip().length < 1) {
+            		// error should already be showing?
+            		return false;
+            	}
+            	_this.updateProp();
+            	
+            	// since we can't add listeners?!?!?
+            	// only check props.
+            	// check if property already exists in node.	
+            	var prop = _this.prop;
+            	if (_this.node.props.has_key(prop.to_index_key())) {
+            		_this.error.setError("Property already exists");
+            		return false;	
+            	}
+            	
+            	
+            	 
+            	_this.is_new = false;	
+            	  
+            	// hide self
+            	_this.prop = null; // skip checks..
+            	_this.el.hide();
+            
+            // add it, 
+            	// trigger editing of property.
+            	// allow hide to work?
+            	while (Gtk.events_pending()) {
+            		Gtk.main_iteration();
+            	}
+            	
+            	_this.mainwindow.windowstate.left_props.addProp(prop);		
+            	
+            	return false;
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Button15 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_PopoverProperty  _this;
+
+
+            // my vars (def)
+        public bool always_show_image;
+
+        // ctor
+        public Xcls_Button15(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
