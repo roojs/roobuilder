@@ -129,9 +129,9 @@ public class Xcls_PopoverProperty : Object
     	this.is_new = is_new; 
     	var pref = is_new ? "Add " : "Modify ";
     	if (prop.ptype == JsRender.NodePropType.LISTENER) {
-    		this.header.el.title_widget.label = pref + "Event Listener"; // cant really happen yet?
+    		this.headertitle.el.label = pref + "Event Listener"; // cant really happen yet?
     	} else {
-    		this.header.el.title_widget.label = pref + "Property";
+    		this.headertitle.el.label = pref + "Property";
     	}
     	this.prop = prop;
     	this.node = node;
