@@ -108,7 +108,7 @@ namespace Palete {
 			return this.model;
 			
 		}
- 
+
 		public  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
 		{
  
@@ -119,17 +119,19 @@ namespace Palete {
 			//GListModel *replaced_model = NULL;
 			//char *word;
 
-	 
+	 		var model = in_model;
 
 			context.get_word();
-			//if (model is FilterListModel) { 
-			//	model = ((FilterListModel)model).model;
-			//}
+			if (model is FilterListModel) { 
+				var replaced_model = new CompletionModel(this, context, null);
+				context.set_proposals_for_provider(this, replaced_model);
+				model = model.get_model ();
+			}
  
 
 			if (!model.can_filter(word)) {
-				this.model.cancel(); 
-				replaced_model = new CompletionModel(this, context, this.model.cancelleble);
+			//	this.model.cancel(); 
+				
 				context.set_proposals_for_provider(this, replaced_model);
 				return;
 			}
@@ -145,7 +147,7 @@ namespace Palete {
 
 		
 		}
-
+*/
 
 /*
 		public bool activate_proposal (GtkSource.CompletionProposal proposal, TextIter iter)
@@ -177,7 +179,7 @@ namespace Palete {
  		Gee.ArrayList<GtkSource.CompletionProposal> items;
  		string search;
  		int minimum_word_size = 2;
- 		Cancellable cancelleble;
+ 		public Cancellable cancelleble;
  		
  		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context, Cancellable cancelleble)
  		{
