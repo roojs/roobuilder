@@ -499,7 +499,7 @@ public class Xcls_PopoverFiles : Object
                 //pe.el.set_transient_for(_this.el);
                 pe.el.set_modal(true);   
                
-                pe.showit();
+                pe.showIt();
                
             
             });
