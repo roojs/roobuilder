@@ -648,39 +648,10 @@ public class Xcls_PopoverProperty : Object
 
             //listeners
             this.el.button_press_event.connect( () => {
-            	// check if text is not empty..
-            	if ( _this.kname.el.get_text().strip().length < 1) {
-            		// error should already be showing?
-            		return false;
-            	}
-            	_this.updateProp();
-            	
-            	// since we can't add listeners?!?!?
-            	// only check props.
-            	// check if property already exists in node.	
-            	var prop = _this.prop;
-            	if (_this.node.props.has_key(prop.to_index_key())) {
-            		_this.error.setError("Property already exists");
-            		return false;	
-            	}
-            	
-            	
-            	 
-            	_this.is_new = false;	
-            	  
-            	// hide self
-            	_this.prop = null; // skip checks..
+            	_this.prop = null;
+            	_this.is_new = false;
+            	_this.kname.el.set_text("Cancel");
             	_this.el.hide();
-            
-            // add it, 
-            	// trigger editing of property.
-            	// allow hide to work?
-            	while (Gtk.events_pending()) {
-            		Gtk.main_iteration();
-            	}
-            	
-            	_this.mainwindow.windowstate.left_props.addProp(prop);		
-            	
             	return false;
             });
         }
