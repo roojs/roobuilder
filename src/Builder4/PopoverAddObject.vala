@@ -392,6 +392,10 @@ public class Xcls_PopoverAddObject : Object
             // set gobject values
 
             //listeners
+            this.el.prepare.connect( (x, y) => {
+            
+            	return Gdk.ContentProvider;
+            });
             this.el.drag_begin.connect( ( ctx) => {
                 // we could fill this in now...
             //        Seed.print('SOURCE: drag-begin');

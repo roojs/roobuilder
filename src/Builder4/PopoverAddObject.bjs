@@ -161,6 +161,13 @@
            "}",
            "}",
            ""
+          ],
+          "prepare" : [
+           "(x, y) => {",
+           "",
+           "\treturn Gdk.ContentProvider;",
+           "}",
+           ""
           ]
          },
          "xtype" : "DragSource"
