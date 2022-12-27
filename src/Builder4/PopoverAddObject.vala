@@ -12,6 +12,7 @@ public class Xcls_PopoverAddObject : Object
         }
         return _PopoverAddObject;
     }
+    public Xcls_treeview treeview;
     public Xcls_model model;
     public Xcls_iconrender iconrender;
     public Xcls_txtrender txtrender;
@@ -153,7 +154,7 @@ public class Xcls_PopoverAddObject : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TreeView3( _this );
+            var child_0 = new Xcls_treeview( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
 
@@ -165,7 +166,7 @@ public class Xcls_PopoverAddObject : Object
 
         // user defined functions
     }
-    public class Xcls_TreeView3 : Object
+    public class Xcls_treeview : Object
     {
         public Gtk.TreeView el;
         private Xcls_PopoverAddObject  _this;
@@ -175,9 +176,10 @@ public class Xcls_PopoverAddObject : Object
         public Gtk.CssProvider css;
 
         // ctor
-        public Xcls_TreeView3(Xcls_PopoverAddObject _owner )
+        public Xcls_treeview(Xcls_PopoverAddObject _owner )
         {
             _this = _owner;
+            _this.treeview = this;
             this.el = new Gtk.TreeView();
 
             // my vars (dec)

@@ -53,6 +53,7 @@
        ],
        "* pack" : "set_child",
        "Gtk.CssProvider css" : "",
+       "id" : "treeview",
        "items" : [
         {
          "$ columns" : "typeof(string),typeof(string),typeof(Gdk.Pixbuf)",
