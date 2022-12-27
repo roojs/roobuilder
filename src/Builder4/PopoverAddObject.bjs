@@ -115,6 +115,7 @@
          "xtype" : "TreeViewColumn"
         },
         {
+         "$ Gdk.DragAction actions" : "Gdk.DragAction.COPY",
          "$ xns" : "Gtk",
          "listeners" : {
           "drag_begin" : [

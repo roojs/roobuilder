@@ -390,6 +390,7 @@ public class Xcls_PopoverAddObject : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.actions = Gdk.DragAction.COPY;
 
             //listeners
             this.el.prepare.connect( (x, y) => {
