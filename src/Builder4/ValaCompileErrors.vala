@@ -109,10 +109,12 @@ public class Xcls_ValaCompileErrors : Object
           
         store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
     
-            
-        int w,h;
-        this.window.el.get_size(out w, out h);
-        
+        var win = this.window.el;
+        var  w = win.get_width();
+        var h = win.get_height();
+    
+      
+         
         // left tree = 250, editor area = 500?
         
         // min 450?
@@ -123,19 +125,17 @@ public class Xcls_ValaCompileErrors : Object
         this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
     
         
+    	Gtk.Allocation rect;
+    	onbtn.get_allocation(out rect);
+        this.el.set_pointing_to(rect);
     
-        if (this.el.relative_to == null) {
-            this.el.set_relative_to(onbtn);
-        }
-        this.el.show_all();
+        this.el.show();
        
        	if (expand != null) {
         	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
     	}
        
-        while(Gtk.events_pending()) { 
-                Gtk.main_iteration();
-        }       
+             
      //   this.hpane.el.set_position( 0);
     }
     public class Xcls_compile_view : Object
