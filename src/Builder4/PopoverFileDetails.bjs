@@ -24,7 +24,7 @@
       {
        "$ string title" : "\"Add / Edit File\"",
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,false,true,0",
+       "* pack" : "append",
        "xtype" : "HeaderBar"
       },
       {

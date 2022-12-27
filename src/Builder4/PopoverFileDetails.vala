@@ -215,7 +215,7 @@ public class Xcls_PopoverFileDetails : Object
             this.el.hexpand = true;
             var child_0 = new Xcls_HeaderBar3( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,true,0 );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_grid( _this );
             child_1.ref();
             this.el.append (  child_1.el  );
