@@ -80,7 +80,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* pack" : "add",
+               "* pack" : "set_child",
                "gboolean headers_visible" : true,
                "items" : [
                 {
