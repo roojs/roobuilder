@@ -730,16 +730,25 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Delete",
-           "listeners" : {
-            "activate" : [
-             "  ( )  =>{",
-             "\t_this.deleteSelected();",
-             "}"
-            ]
-           },
-           "xtype" : "Button"
+           "* prop" : "child",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "int spacing" : 0,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Delete",
+             "listeners" : {
+              "activate" : [
+               "  ( )  =>{",
+               "\t_this.deleteSelected();",
+               "}"
+              ]
+             },
+             "xtype" : "Button"
+            }
+           ],
+           "xtype" : "Box"
           }
          ],
          "xtype" : "Popover"

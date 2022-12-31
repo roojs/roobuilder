@@ -1861,14 +1861,38 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button36( _this );
+            var child_0 = new Xcls_Box36( _this );
+            child_0.ref();
+            this.el.child = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Box36 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_LeftProps  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box36(Xcls_LeftProps _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_Button37( _this );
             child_0.ref();
             this.el.add_child (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Button36 : Object
+    public class Xcls_Button37 : Object
     {
         public Gtk.Button el;
         private Xcls_LeftProps  _this;
@@ -1877,7 +1901,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button36(Xcls_LeftProps _owner )
+        public Xcls_Button37(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1895,6 +1919,7 @@ public class Xcls_LeftProps : Object
 
         // user defined functions
     }
+
 
 
 
