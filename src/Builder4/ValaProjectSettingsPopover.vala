@@ -67,7 +67,7 @@ public class ValaProjectSettingsPopover : Object
         //listeners
         this.el.closed.connect( ( ) => {
           if (!this.done) {
-            _this.el.show_all();
+            _this.el.show();
           
           }
         
