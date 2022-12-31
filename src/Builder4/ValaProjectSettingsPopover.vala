@@ -762,7 +762,7 @@ public class ValaProjectSettingsPopover : Object
             
                  //   print("click:" + res.path.to_string());
                   return true;
-            }
+            
             });
         }
 

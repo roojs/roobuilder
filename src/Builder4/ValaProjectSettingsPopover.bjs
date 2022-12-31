@@ -250,7 +250,7 @@
                    "",
                    "     //   print(\"click:\" + res.path.to_string());",
                    "      return true;",
-                   "}",
+                   "",
                    "}",
                    ""
                   ]
