@@ -88,14 +88,16 @@ public class Xcls_RooProjectSettings : Object
         _this.database_DBPASSWORD.el.set_text(    js.get_string_member("DBPASSWORD") );
         
         	//console.log('show all');
-    	this.el.set_modal(true);
-    	this.el.set_relative_to(btn);
     
-    	this.el.set_position(Gtk.PositionType.RIGHT);
+    	
+        Gtk.Allocation rect;
+    	btn.get_allocation(out rect);
+        this.el.set_pointing_to(rect);
+    
     
     	// window + header?
     	 print("SHOWALL - POPIP\n");
-    	this.el.show_all();
+    	this.el.show();
     	this.el.set_size_request(800,600);
     	this.view.el.grab_focus();
     	
