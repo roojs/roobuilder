@@ -195,218 +195,218 @@
              "$ xns" : "Gtk",
              "* pack" : "add_child",
              "xtype" : "Separator"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "String",
+             "listeners" : {
+              "activate" : [
+               "(self) => {",
+               "",
+               "\t_this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.prop(\"\", \"string\", \"\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t);",
+               "",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a user defined string property",
+             "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Number",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               "  _this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.prop(\"\", \"int\", \"0\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t);",
+               " ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a user defined number property",
+             "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Boolean",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               "  ",
+               "  \t",
+               "   _this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.prop(\"\", \"bool\", \"true\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t); ",
+               " ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a user defined boolean property",
+             "xtype" : "Button"
+            },
+            {
+             "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "xtype" : "Separator"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Javascript Function",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               "   ",
+               "   _this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.jsmethod(\"\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t);",
+               "   ",
+               " ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a user function boolean property",
+             "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Vala Method",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               "",
+               "    _this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.valamethod(\"\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t); ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a user function boolean property",
+             "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Vala Signal",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               "  _this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.sig(\"\" ) ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t);    ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a vala signal",
+             "xtype" : "Button"
+            },
+            {
+             "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "xtype" : "Separator"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Flexy - If",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               " \t_this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.prop(\"flexy:if\", \"string\", \"value_or_condition\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t);",
+               "",
+               "",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a flexy if (for HTML templates)",
+             "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Flexy - Include",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               " \t_this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.prop(\"flexy:include\", \"string\", \"name_of_file.html\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t);",
+               "",
+               "  ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a flexy include (for HTML templates)",
+             "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "Flexy - Foreach",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               "  ",
+               "   \t_this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.prop(\"flexy:foreach\", \"string\", \"array,key,value\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t);",
+               "",
+               "    ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a flexy foreach (for HTML templates)",
+             "xtype" : "Button"
             }
            ],
            "xtype" : "Box"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "String",
-           "listeners" : {
-            "activate" : [
-             "(self) => {",
-             "",
-             "\t_this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.prop(\"\", \"string\", \"\") ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t);",
-             "",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a user defined string property",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Number",
-           "listeners" : {
-            "activate" : [
-             "  ( ) =>{",
-             "  _this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.prop(\"\", \"int\", \"0\") ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t);",
-             " ",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a user defined number property",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Boolean",
-           "listeners" : {
-            "activate" : [
-             "  ( ) =>{",
-             "  ",
-             "  \t",
-             "   _this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.prop(\"\", \"bool\", \"true\") ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t); ",
-             " ",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a user defined boolean property",
-           "xtype" : "Button"
-          },
-          {
-           "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "xtype" : "Separator"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Javascript Function",
-           "listeners" : {
-            "activate" : [
-             "  ( ) =>{",
-             "   ",
-             "   _this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.jsmethod(\"\") ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t);",
-             "   ",
-             " ",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a user function boolean property",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Vala Method",
-           "listeners" : {
-            "activate" : [
-             "  ( ) =>{",
-             "",
-             "    _this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.valamethod(\"\") ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t); ",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a user function boolean property",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Vala Signal",
-           "listeners" : {
-            "activate" : [
-             "  ( ) =>{",
-             "  _this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.sig(\"\" ) ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t);    ",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a vala signal",
-           "xtype" : "Button"
-          },
-          {
-           "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "xtype" : "Separator"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Flexy - If",
-           "listeners" : {
-            "activate" : [
-             "  ( ) =>{",
-             " \t_this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.prop(\"flexy:if\", \"string\", \"value_or_condition\") ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t);",
-             "",
-             "",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a flexy if (for HTML templates)",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Flexy - Include",
-           "listeners" : {
-            "activate" : [
-             "  ( ) =>{",
-             " \t_this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.prop(\"flexy:include\", \"string\", \"name_of_file.html\") ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t);",
-             "",
-             "  ",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a flexy include (for HTML templates)",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "Flexy - Foreach",
-           "listeners" : {
-            "activate" : [
-             "  ( ) =>{",
-             "  ",
-             "   \t_this.view.popover.show(",
-             "\t\t_this.view.el, ",
-             "\t\t_this.node, ",
-             "\t\t new JsRender.NodeProp.prop(\"flexy:foreach\", \"string\", \"array,key,value\") ,",
-             "\t\t-1,  ",
-             "\t\ttrue",
-             "\t);",
-             "",
-             "    ",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "Add a flexy foreach (for HTML templates)",
-           "xtype" : "Button"
           }
          ],
          "xtype" : "Popover"

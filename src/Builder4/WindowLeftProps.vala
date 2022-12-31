@@ -772,39 +772,6 @@ public class Xcls_LeftProps : Object
             var child_0 = new Xcls_Box10( _this );
             child_0.ref();
             this.el.child = child_0.el;
-            var child_1 = new Xcls_Button17( _this );
-            child_1.ref();
-            this.el.add_child (  child_1.el  );
-            var child_2 = new Xcls_Button18( _this );
-            child_2.ref();
-            this.el.add_child (  child_2.el  );
-            var child_3 = new Xcls_Button19( _this );
-            child_3.ref();
-            this.el.add_child (  child_3.el  );
-            var child_4 = new Xcls_Separator20( _this );
-            child_4.ref();
-            this.el.add_child (  child_4.el  );
-            var child_5 = new Xcls_Button21( _this );
-            child_5.ref();
-            this.el.add_child (  child_5.el  );
-            var child_6 = new Xcls_Button22( _this );
-            child_6.ref();
-            this.el.add_child (  child_6.el  );
-            var child_7 = new Xcls_Button23( _this );
-            child_7.ref();
-            this.el.add_child (  child_7.el  );
-            var child_8 = new Xcls_Separator24( _this );
-            child_8.ref();
-            this.el.add_child (  child_8.el  );
-            var child_9 = new Xcls_Button25( _this );
-            child_9.ref();
-            this.el.add_child (  child_9.el  );
-            var child_10 = new Xcls_Button26( _this );
-            child_10.ref();
-            this.el.add_child (  child_10.el  );
-            var child_11 = new Xcls_Button27( _this );
-            child_11.ref();
-            this.el.add_child (  child_11.el  );
         }
 
         // user defined functions
@@ -844,6 +811,39 @@ public class Xcls_LeftProps : Object
             var child_5 = new Xcls_Separator16( _this );
             child_5.ref();
             this.el.add_child (  child_5.el  );
+            var child_6 = new Xcls_Button17( _this );
+            child_6.ref();
+            this.el.add_child (  child_6.el  );
+            var child_7 = new Xcls_Button18( _this );
+            child_7.ref();
+            this.el.add_child (  child_7.el  );
+            var child_8 = new Xcls_Button19( _this );
+            child_8.ref();
+            this.el.add_child (  child_8.el  );
+            var child_9 = new Xcls_Separator20( _this );
+            child_9.ref();
+            this.el.add_child (  child_9.el  );
+            var child_10 = new Xcls_Button21( _this );
+            child_10.ref();
+            this.el.add_child (  child_10.el  );
+            var child_11 = new Xcls_Button22( _this );
+            child_11.ref();
+            this.el.add_child (  child_11.el  );
+            var child_12 = new Xcls_Button23( _this );
+            child_12.ref();
+            this.el.add_child (  child_12.el  );
+            var child_13 = new Xcls_Separator24( _this );
+            child_13.ref();
+            this.el.add_child (  child_13.el  );
+            var child_14 = new Xcls_Button25( _this );
+            child_14.ref();
+            this.el.add_child (  child_14.el  );
+            var child_15 = new Xcls_Button26( _this );
+            child_15.ref();
+            this.el.add_child (  child_15.el  );
+            var child_16 = new Xcls_Button27( _this );
+            child_16.ref();
+            this.el.add_child (  child_16.el  );
         }
 
         // user defined functions
@@ -1022,7 +1022,6 @@ public class Xcls_LeftProps : Object
 
         // user defined functions
     }
-
 
     public class Xcls_Button17 : Object
     {
@@ -1399,6 +1398,7 @@ public class Xcls_LeftProps : Object
 
         // user defined functions
     }
+
 
 
     public class Xcls_Image28 : Object
