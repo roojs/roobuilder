@@ -1514,7 +1514,7 @@ public class Xcls_LeftProps : Object
                  
                  // single click on name..
                  //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
-                 if (this.get_current_button() == 1 && col.title == "Property") {    
+                 if (this.el.get_current_button() == 1 && col.title == "Property") {    
                  	// need to shift down, as ev.y does not inclucde header apparently..
                  	// or popover might be trying to do a central?
                     _this.view.editPropertyDetails(path, (int) y + 12); 
@@ -1526,7 +1526,7 @@ public class Xcls_LeftProps : Object
                 
                 
                  // right click.
-                 if (this.get_current_button() == 3) {    
+                 if (this.el.get_current_button() == 3) {    
                     // show popup!.   
                     //if (col.title == "Value") {
                      //     _this.before_edit();
