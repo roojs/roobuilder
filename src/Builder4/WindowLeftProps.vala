@@ -685,6 +685,10 @@ public class Xcls_LeftProps : Object
             child_0.ref();
 
             //listeners
+            this.el.activate.connect( ( ) => {
+            
+            
+            });
             this.el.button_press_event.connect( (self, ev) => {
                 _this.before_edit();
                 

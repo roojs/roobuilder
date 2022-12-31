@@ -375,6 +375,13 @@
         }
        ],
        "listeners" : {
+        "activate" : [
+         "( ) => {",
+         "",
+         "",
+         "}",
+         ""
+        ],
         "button_press_event" : [
          "  (self, ev) => {",
          "    _this.before_edit();",
