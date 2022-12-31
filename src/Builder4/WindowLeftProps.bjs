@@ -349,18 +349,17 @@
             },
             {
              "$ xns" : "Gtk",
-             "label" : "Flexy - Include",
+             "label" : "Flexy - Foreach",
              "listeners" : {
               "activate" : [
                "  ( ) =>{",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
-               "\t\t new JsRender.NodeProp.prop(\"flexy:include\", \"string\", \"name_of_file.html\") ,",
+               "\t\t new JsRender.NodeProp.prop(\"flexy:if\", \"string\", \"value_or_condition\") ,",
                "\t\t-1,  ",
                "\t\ttrue",
                "\t);",
-               "",
                "  ",
                "}"
               ]
@@ -373,12 +372,6 @@
           }
          ],
          "xtype" : "Popover"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "set_image",
-         "string icon_name" : "list-add",
-         "xtype" : "Image"
         }
        ],
        "listeners" : {
@@ -413,7 +406,6 @@
       "}",
       ""
      ],
-     "* pack" : "pack_end,true,true,0",
      "id" : "EditProps",
      "items" : [
       {
@@ -437,7 +429,7 @@
         "}",
         ""
        ],
-       "* pack" : "add",
+       "* pack" : "set_child",
        "Gtk.CssProvider css" : "",
        "Xcls_PopoverProperty popover" : "null",
        "id" : "view",
