@@ -17,12 +17,10 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "* pack" : "pack_start,false,true,0",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "int margin_end" : 5,
        "int margin_start" : 5,
        "string label" : "Add:",
@@ -31,7 +29,6 @@
       {
        "$ tooltip_text" : "\"Add Property\"",
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "bool always_show_image" : true,
        "bool hexpand" : true,
        "items" : [

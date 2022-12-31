@@ -47,7 +47,7 @@ public class Xcls_LeftProps : Object
         this.el.homogeneous = false   ;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.pack_start (  child_0.el , false,true,0 );
+        this.el.append(  child_0.el );
         var child_1 = new Xcls_EditProps( _this );
         child_1.ref();
         this.el.pack_end (  child_1.el , true,true,0 );
@@ -543,10 +543,10 @@ public class Xcls_LeftProps : Object
             // set gobject values
             var child_0 = new Xcls_Label3( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Button4( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_Button6( _this );
             child_2.ref();
             this.el.add (  child_2.el  );
