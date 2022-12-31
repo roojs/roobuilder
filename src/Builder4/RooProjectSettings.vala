@@ -260,7 +260,7 @@ public class Xcls_RooProjectSettings : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_grid( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false,4 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Label20( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , false,false,0 );

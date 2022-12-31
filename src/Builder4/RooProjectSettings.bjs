@@ -43,7 +43,6 @@
           {
            "$ homogeneous" : true,
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,4",
            "id" : "grid",
            "int margin_end" : 4,
            "int margin_start" : 4,
