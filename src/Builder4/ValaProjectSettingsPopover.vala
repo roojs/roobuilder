@@ -136,7 +136,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.pack_start (  child_1.el , true,true,0 );
             var child_2 = new Xcls_Box53( _this );
             child_2.ref();
-            this.el.add (  child_2.el  );
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -2007,10 +2007,10 @@ public class ValaProjectSettingsPopover : Object
             this.el.margin_top = 4;
             var child_0 = new Xcls_Button54( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_save_btn( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions

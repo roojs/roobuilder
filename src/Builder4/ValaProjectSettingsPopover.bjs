@@ -972,7 +972,6 @@
       {
        "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "int margin_bottom" : 4,
        "int margin_end" : 4,
        "int margin_start" : 4,
@@ -980,7 +979,6 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "listeners" : {
           "clicked" : [
            "() => { ",
@@ -995,7 +993,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "id" : "save_btn",
          "listeners" : {
           "clicked" : [
