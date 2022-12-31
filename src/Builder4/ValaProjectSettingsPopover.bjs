@@ -483,27 +483,6 @@
               {
                "$ xns" : "Gtk",
                "* pack" : "add",
-               "listeners" : {
-                "activate" : [
-                 "()  => {",
-                 "    ",
-                 "       if (_this.project.compilegroups.has_key(\"NEW GROUP\")) {",
-                 "        return;",
-                 "    }",
-                 "      ",
-                 "       // add the directory..",
-                 "       ",
-                 "       _this.project.compilegroups.set(\"NEW GROUP\", new Project.GtkValaSettings(\"NEW GROUP\"));",
-                 "       _this.targets_tree_store.load();",
-                 "}"
-                ]
-               },
-               "utf8 label" : "Add Compile Target",
-               "xtype" : "Button"
-              },
-              {
-               "$ xns" : "Gtk",
-               "* pack" : "add",
                "xtype" : "Separator"
               },
               {
@@ -539,6 +518,36 @@
                },
                "utf8 label" : "Remove Target",
                "xtype" : "Button"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* pack" : "add",
+                 "listeners" : {
+                  "activate" : [
+                   "()  => {",
+                   "    ",
+                   "       if (_this.project.compilegroups.has_key(\"NEW GROUP\")) {",
+                   "        return;",
+                   "    }",
+                   "      ",
+                   "       // add the directory..",
+                   "       ",
+                   "       _this.project.compilegroups.set(\"NEW GROUP\", new Project.GtkValaSettings(\"NEW GROUP\"));",
+                   "       _this.targets_tree_store.load();",
+                   "}"
+                  ]
+                 },
+                 "utf8 label" : "Add Compile Target",
+                 "xtype" : "Button"
+                }
+               ],
+               "xtype" : "Box"
               }
              ],
              "xtype" : "Popover"
