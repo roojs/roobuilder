@@ -52,7 +52,7 @@ public class Xcls_RooProjectSettings : Object
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.add (  child_0.el  );
+        this.el.set_child (  child_0.el  );
     }
 
     // user defined functions
@@ -155,10 +155,10 @@ public class Xcls_RooProjectSettings : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_Notebook3( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , true,true,0 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Box34( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions

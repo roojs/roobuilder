@@ -13,13 +13,12 @@
     {
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
-     "* pack" : "add",
+     "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "border_width" : 5,
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,true,true,0",
        "items" : [
         {
          "$ xns" : "Gtk",
