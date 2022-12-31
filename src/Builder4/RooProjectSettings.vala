@@ -1136,18 +1136,6 @@ public class Xcls_RooProjectSettings : Object
             var child_0 = new Xcls_EventControllerKey33( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-
-            //listeners
-            this.el.key_press_event.connect( (ev) => {
-            
-                if (ev.keyval == Gdk.Key.Tab) {
-                    _this.database_DBPASSWORD.el.grab_focus();
-                    return true;
-                }
-            
-            
-                return false;
-            });
         }
 
         // user defined functions
@@ -1173,7 +1161,7 @@ public class Xcls_RooProjectSettings : Object
             //listeners
             this.el.key_pressed.connect( (keyval, keycode, state) => {
                 if (keyval == Gdk.Key.Tab) {
-                    _this.database_DBUSERNAME.el.grab_focus();
+                    _this.database_DBPASSWORD.el.grab_focus();
                     return true;
                 }
             
