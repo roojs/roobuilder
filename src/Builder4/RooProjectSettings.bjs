@@ -348,6 +348,12 @@
           {
            "$ xns" : "Gtk",
            "id" : "database_DBTYPE",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "EventControllerKey"
+            }
+           ],
            "listeners" : {
             "key_press_event" : [
              "(ev) => {",
