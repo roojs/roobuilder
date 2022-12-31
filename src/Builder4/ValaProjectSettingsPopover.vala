@@ -854,10 +854,10 @@ public class ValaProjectSettingsPopover : Object
             this.el.append(  child_1.el );
             var child_2 = new Xcls_Separator28( _this );
             child_2.ref();
-            this.el.add (  child_2.el  );
+            this.el.append(  child_2.el );
             var child_3 = new Xcls_Button29( _this );
             child_3.ref();
-            this.el.add (  child_3.el  );
+            this.el.append(  child_3.el );
         }
 
         // user defined functions

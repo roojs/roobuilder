@@ -364,13 +364,11 @@
                   },
                   {
                    "$ xns" : "Gtk",
-                   "* pack" : "add",
                    "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
                    "xtype" : "Separator"
                   },
                   {
                    "$ xns" : "Gtk",
-                   "* pack" : "add",
                    "listeners" : {
                     "activate" : [
                      "()  => {",
