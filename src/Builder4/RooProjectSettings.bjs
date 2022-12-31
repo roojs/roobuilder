@@ -360,7 +360,7 @@
                "    }",
                "",
                "",
-               "\treturn true;",
+               "\treturn false;",
                "}",
                ""
               ]
@@ -386,12 +386,14 @@
               "key_pressed" : [
                "(keyval, keycode, state) => {",
                "    if (keyval == Gdk.Key.Tab) {",
-               "        _this.database_DBNAME.el.grab_focus();",
+               "        _this.database_DBUSERNAME.el.grab_focus();",
                "        return true;",
                "    }",
                "",
                "",
-               "\treturn true;",
+               "\treturn false;",
+               "\t ",
+               "",
                "}",
                ""
               ]
@@ -419,6 +421,28 @@
           {
            "$ xns" : "Gtk",
            "id" : "database_DBUSERNAME",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "listeners" : {
+              "key_pressed" : [
+               "(keyval, keycode, state) => {",
+               "    if (keyval == Gdk.Key.Tab) {",
+               "        _this.database_DBUSERNAME.el.grab_focus();",
+               "        return true;",
+               "    }",
+               "",
+               "",
+               "\treturn false;",
+               "\t ",
+               "",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "EventControllerKey"
+            }
+           ],
            "listeners" : {
             "key_press_event" : [
              "(ev) => {",
