@@ -841,17 +841,17 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_Box25(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
             var child_0 = new Xcls_Button26( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Button27( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_Separator28( _this );
             child_2.ref();
             this.el.add (  child_2.el  );

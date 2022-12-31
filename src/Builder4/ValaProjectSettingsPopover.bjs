@@ -305,12 +305,11 @@
                 {
                  "$ xns" : "Gtk",
                  "* pack" : "set_child",
-                 "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+                 "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
                  "int spacing" : 0,
                  "items" : [
                   {
                    "$ xns" : "Gtk",
-                   "* pack" : "add",
                    "listeners" : {
                     "activate" : [
                      "()  => {",
@@ -338,7 +337,6 @@
                   },
                   {
                    "$ xns" : "Gtk",
-                   "* pack" : "add",
                    "listeners" : {
                     "activate" : [
                      "()  => {",
