@@ -739,18 +739,6 @@
          "xtype" : "PopoverMenu"
         }
        ],
-       "listeners" : {
-        "button_press_event" : [
-         "  ( ev)  => {",
-         " ",
-         "    ",
-         "   ",
-         "",
-         "              ",
-         "   ",
-         "}"
-        ]
-       },
        "string name" : "leftprops-view",
        "tooltip_column" : 3,
        "xtype" : "TreeView",
