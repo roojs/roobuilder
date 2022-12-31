@@ -888,34 +888,34 @@ public class Xcls_RooProjectSettings : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_Label25( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false,0 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_database_DBTYPE( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , false,false,0 );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_Label27( _this );
             child_2.ref();
-            this.el.pack_start (  child_2.el , false,false,0 );
+            this.el.append(  child_2.el );
             var child_3 = new Xcls_database_DBNAME( _this );
             child_3.ref();
-            this.el.pack_start (  child_3.el , false,false,0 );
+            this.el.append(  child_3.el );
             var child_4 = new Xcls_Label29( _this );
             child_4.ref();
-            this.el.pack_start (  child_4.el , false,false,0 );
+            this.el.append(  child_4.el );
             var child_5 = new Xcls_database_DBUSERNAME( _this );
             child_5.ref();
-            this.el.pack_start (  child_5.el , false,false,0 );
+            this.el.append(  child_5.el );
             var child_6 = new Xcls_Label31( _this );
             child_6.ref();
-            this.el.pack_start (  child_6.el , false,false,0 );
+            this.el.append(  child_6.el );
             var child_7 = new Xcls_database_DBPASSWORD( _this );
             child_7.ref();
-            this.el.pack_start (  child_7.el , false,false,0 );
+            this.el.append(  child_7.el );
             var child_8 = new Xcls_Button33( _this );
             child_8.ref();
-            this.el.pack_start (  child_8.el , false,false,0 );
+            this.el.append(  child_8.el );
             var child_9 = new Xcls_database_ERROR( _this );
             child_9.ref();
-            this.el.pack_start (  child_9.el , false,false,0 );
+            this.el.append(  child_9.el );
         }
 
         // user defined functions

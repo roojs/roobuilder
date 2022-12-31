@@ -341,14 +341,12 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "Type (eg. MySQL or PostgreSQL)",
            "xalign" : 0,
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBTYPE",
            "listeners" : {
             "key_press_event" : [
@@ -369,14 +367,12 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "Name",
            "xalign" : 0,
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBNAME",
            "listeners" : {
             "key_press_event" : [
@@ -397,14 +393,12 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "Username",
            "xalign" : 0,
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBUSERNAME",
            "listeners" : {
             "key_press_event" : [
@@ -425,20 +419,17 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "Password",
            "xalign" : 0,
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBPASSWORD",
            "xtype" : "Entry"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "listeners" : {
             "clicked" : [
              "() => {",
@@ -471,7 +462,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_ERROR",
            "label" : " ",
            "xalign" : 0,
