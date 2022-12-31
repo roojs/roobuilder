@@ -734,7 +734,7 @@ public class ValaProjectSettingsPopover : Object
                 
                 if (this.el.get_current_button() != 3) {
                     //print("click" + ev.type);
-                    return false;
+                    return;
                 }
                 //Gtk.TreePath res;
                 //if (!this.el.get_path_at_pos((int)ev.x,(int)ev.y, out res, null, null, null) ) {
@@ -761,7 +761,7 @@ public class ValaProjectSettingsPopover : Object
             
             
                  //   print("click:" + res.path.to_string());
-                  return true;
+                  return;
             
             });
         }
