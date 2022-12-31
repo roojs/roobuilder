@@ -1531,7 +1531,7 @@ public class Xcls_LeftProps : Object
                 
                 
                  // right click.
-                 if (ev.get_current_button() == 3) {    
+                 if (this.get_current_button() == 3) {    
                     // show popup!.   
                     //if (col.title == "Value") {
                      //     _this.before_edit();
@@ -1540,9 +1540,17 @@ public class Xcls_LeftProps : Object
             
                     var p = _this.ContextMenu;
             
-                    p.el.set_screen(Gdk.Screen.get_default());
+             
                     p.el.show();
-                    p.el.popup_at_pointer(ev);
+                    
+                      var  r = Gdk.Rectangle() {
+                			x = (int) x, // align left...
+                			y = (int) y,
+                			width = 1,
+                			height = 1
+                		};
+            		 _p.el.set_pointing_to( r);
+            
                     //Seed.print("click:" + res.column.title);
                     // select the 
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
