@@ -299,6 +299,7 @@
               },
               {
                "$ xns" : "Gtk",
+               "* pack" : false,
                "id" : "default_directory_menu",
                "items" : [
                 {
