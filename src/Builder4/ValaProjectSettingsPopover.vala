@@ -710,7 +710,7 @@ public class ValaProjectSettingsPopover : Object
                 }
                
                     
-                 _this.default_directory_menu.el.set_screen(Gdk.Screen.get_default());
+                // _this.default_directory_menu.el.set_screen(Gdk.Screen.get_default());
                  _this.default_directory_menu.el.show();
                  
                  
