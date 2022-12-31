@@ -477,7 +477,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add",
+             "* pack" : false,
              "id" : "targets_tree_menu",
              "items" : [
               {
