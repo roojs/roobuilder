@@ -907,7 +907,7 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.activate.connect( ()  => {
-                
+                /*
                 var  chooser = new Gtk.FileDialog ();
                 
             	chooser.title -="Add a directory";
@@ -926,7 +926,31 @@ public class ValaProjectSettingsPopover : Object
             		   _this.default_directory_tree_store.load();
             		});
             	 
+                  */
                   
+            
+                  var  chooser = new Gtk.FileChooserDialog (
+                	"Add a directory", 
+                	_this.window.el, Gtk.FileChooserAction.SELECT_FOLDER ,
+                	"_Cancel",
+                	Gtk.ResponseType.CANCEL,
+                	"_Add",
+                	Gtk.ResponseType.ACCEPT);
+                	chooser.modal = true;
+                	
+                	chooser.response.connect((id) => {
+                		chooser.close();
+                		if (id == Gtk.ResponseType.CANCEL) {
+                			return;
+            			}
+            			 var fn = _this.project.relPath(chooser.get_filename());
+                       _this.project.compilegroups.get("_default_").sources.add(fn);
+                       _this.default_directory_tree_store.load();
+                	});
+                	
+                	chooser.show();
+                	 
+            
             });
         }
 
