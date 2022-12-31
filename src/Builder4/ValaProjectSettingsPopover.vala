@@ -1150,7 +1150,7 @@ public class ValaProjectSettingsPopover : Object
     }
     public class Xcls_targets_tree_menu : Object
     {
-        public Gtk.PopoverMenu el;
+        public Gtk.Popover el;
         private ValaProjectSettingsPopover  _this;
 
 
@@ -1161,7 +1161,7 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.targets_tree_menu = this;
-            this.el = new Gtk.PopoverMenu();
+            this.el = new Gtk.Popover();
 
             // my vars (dec)
 
