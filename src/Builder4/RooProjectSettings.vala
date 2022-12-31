@@ -266,10 +266,10 @@ public class Xcls_RooProjectSettings : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_Label20( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , false,false,0 );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_ScrolledWindow21( _this );
             child_2.ref();
-            this.el.pack_start (  child_2.el , true,true,0 );
+            this.el.append(  child_2.el );
         }
 
         // user defined functions

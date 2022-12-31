@@ -268,13 +268,11 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "HTML To insert at end of <HEAD>",
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,true,true,0",
            "items" : [
             {
              "$ xns" : "GtkSource",
