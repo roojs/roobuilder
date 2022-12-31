@@ -20,7 +20,6 @@
       {
        "$ string title" : "\"Change Vala Project Compile settings\"",
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "xtype" : "HeaderBar"
       },
       {

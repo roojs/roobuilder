@@ -132,7 +132,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_HeaderBar3( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Notebook4( _this );
             child_1.ref();
             this.el.pack_start (  child_1.el , true,true,0 );
