@@ -1496,10 +1496,10 @@ public class Xcls_LeftProps : Object
                 Gtk.TreePath path;
                 
                 // event x /y are relative to the widget..
-                if (!this.el.get_path_at_pos(x, y, out path, out col, out cell_x, out cell_y )) {
+                if (!_this.view.el.get_path_at_pos(x, y, out path, out col, out cell_x, out cell_y )) {
                     GLib.debug("nothing selected on click");
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                        this.el.get_selection().unselect_all();
+                        _this.view.el.get_selection().unselect_all();
                         return false;
                     });
                      _this.before_edit();
@@ -1512,7 +1512,7 @@ public class Xcls_LeftProps : Object
                  if (this.get_current_button() == 1 && col.title == "Property") {    
                  	// need to shift down, as ev.y does not inclucde header apparently..
                  	// or popover might be trying to do a central?
-                    this.editPropertyDetails(path, (int) y + 12); 
+                    _this.view.editPropertyDetails(path, (int) y + 12); 
                      
                     return false;
                 }
@@ -1545,7 +1545,7 @@ public class Xcls_LeftProps : Object
                     // select the 
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
               
-                        this.el.get_selection().select_path(path);
+                        _this.view.el.get_selection().select_path(path);
                         return false;
                     });
                      _this.before_edit();
@@ -1557,7 +1557,7 @@ public class Xcls_LeftProps : Object
                     GLib.debug("col title != Value");
                     
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                        this.el.get_selection().select_path(path);
+                        _this.view.el.get_selection().select_path(path);
                         return false;
                     });
                     
