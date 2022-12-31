@@ -167,7 +167,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "cms-id: (Roo JS/Pman library)",
              "listeners" : {
               "activate" : [
@@ -189,12 +188,10 @@
             {
              "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "xtype" : "Separator"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "String",
              "listeners" : {
               "activate" : [
@@ -216,7 +213,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Number",
              "listeners" : {
               "activate" : [
@@ -237,7 +233,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Boolean",
              "listeners" : {
               "activate" : [
@@ -261,12 +256,10 @@
             {
              "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "xtype" : "Separator"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Javascript Function",
              "listeners" : {
               "activate" : [
@@ -289,7 +282,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Vala Method",
              "listeners" : {
               "activate" : [
@@ -310,7 +302,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Vala Signal",
              "listeners" : {
               "activate" : [
@@ -331,12 +322,10 @@
             {
              "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "xtype" : "Separator"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Flexy - If",
              "listeners" : {
               "activate" : [
@@ -358,7 +347,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Flexy - Include",
              "listeners" : {
               "activate" : [
@@ -380,7 +368,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Flexy - Foreach",
              "listeners" : {
               "activate" : [
