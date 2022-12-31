@@ -135,7 +135,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_Notebook5( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , true,true,0 );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_Box54( _this );
             child_2.ref();
             this.el.append(  child_2.el );
