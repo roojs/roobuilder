@@ -691,10 +691,12 @@ public class Xcls_LeftProps : Object
                     
                 var p = _this.AddPropertyPopup;
                 
-                 
-                p.el.show_all();
-                 p.el.popup_at_pointer(ev);
-                 return true;
+                 	Gtk.Allocation rect;
+                	this.el.get_allocation(out rect);
+                    p.el.set_pointing_to(rect);
+                p.el();
+            
+                 return;
             
             });
         }
