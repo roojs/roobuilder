@@ -1408,17 +1408,20 @@ public class Xcls_LeftProps : Object
             this.el.tooltip_column = 3;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
-            var child_0 = new Xcls_model( _this );
+            var child_0 = new Xcls_GestureClick28( _this );
             child_0.ref();
-            this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_keycol( _this );
+            this.el.add_controller(  child_0.el );
+            var child_1 = new Xcls_model( _this );
             child_1.ref();
-            this.el.append_column (  child_1.el  );
-            var child_2 = new Xcls_valcol( _this );
+            this.el.set_model (  child_1.el  );
+            var child_2 = new Xcls_keycol( _this );
             child_2.ref();
             this.el.append_column (  child_2.el  );
-            var child_3 = new Xcls_ContextMenu( _this );
+            var child_3 = new Xcls_valcol( _this );
             child_3.ref();
+            this.el.append_column (  child_3.el  );
+            var child_4 = new Xcls_ContextMenu( _this );
+            child_4.ref();
 
             // init method
 
@@ -1560,6 +1563,34 @@ public class Xcls_LeftProps : Object
             
         }
     }
+    public class Xcls_GestureClick28 : Object
+    {
+        public Gtk.GestureClick el;
+        private Xcls_LeftProps  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_GestureClick28(Xcls_LeftProps _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.GestureClick();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.pressed.connect( (n_press, x, y) => {
+            
+            
+            });
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_model : Object
     {
         public Gtk.TreeStore el;
@@ -1828,14 +1859,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button35( _this );
+            var child_0 = new Xcls_Button36( _this );
             child_0.ref();
             this.el.add_child (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Button35 : Object
+    public class Xcls_Button36 : Object
     {
         public Gtk.Button el;
         private Xcls_LeftProps  _this;
@@ -1844,7 +1875,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button35(Xcls_LeftProps _owner )
+        public Xcls_Button36(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();

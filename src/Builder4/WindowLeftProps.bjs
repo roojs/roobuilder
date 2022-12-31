@@ -435,6 +435,19 @@
        "id" : "view",
        "items" : [
         {
+         "$ xns" : "Gtk",
+         "listeners" : {
+          "pressed" : [
+           "(n_press, x, y) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
+         "xtype" : "GestureClick"
+        },
+        {
          "$ changed" : [
           "function(str, doRefresh) {",
           "    if (!this.activePath) {",
