@@ -212,6 +212,19 @@
                "id" : "default_directory_tree",
                "items" : [
                 {
+                 "$ xns" : "Gtk",
+                 "listeners" : {
+                  "pressed" : [
+                   "(n_press, x, y) => {",
+                   "",
+                   "",
+                   "}",
+                   ""
+                  ]
+                 },
+                 "xtype" : "GestureClick"
+                },
+                {
                  "$ columns" : [
                   "    typeof(string)",
                   "     "
