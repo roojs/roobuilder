@@ -49,6 +49,7 @@ public class Xcls_RooProjectSettings : Object
         this.border_width = 0;
 
         // set gobject values
+        this.el.autohide = false;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();

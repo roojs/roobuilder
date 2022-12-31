@@ -6,6 +6,7 @@
    "@ void buttonPressed" : "(string btn)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Project.Project project" : "",
+   "bool autohide" : false,
    "bool done" : false,
    "bool modal" : true,
    "id" : "RooProjectSettings",
