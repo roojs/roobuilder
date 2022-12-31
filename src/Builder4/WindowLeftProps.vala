@@ -1500,7 +1500,90 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
             
+            	Gtk.TreeViewColumn col;
+                int cell_x;
+                int cell_y;
+                Gtk.TreePath path;
+                
+                // event x /y are relative to the widget..
+                if (!this.el.get_path_at_pos(x, y, out path, out col, out cell_x, out cell_y )) {
+                    GLib.debug("nothing selected on click");
+                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+                        this.el.get_selection().unselect_all();
+                        return false;
+                    });
+                     _this.before_edit();
+                    return false; //not on a element.
+                }
+                
+                 
+                 // single click on name..
+                 //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
+                 if (this.get_current_button() == 1 && col.title == "Property") {    
+                 	// need to shift down, as ev.y does not inclucde header apparently..
+                 	// or popover might be trying to do a central?
+                    this.editPropertyDetails(path, (int) y + 12); 
+                     
+                    return false;
+                }
+                
+                
+                
+                
+                 // right click.
+                 if (ev.get_current_button() == 3) {    
+                    // show popup!.   
+                    //if (col.title == "Value") {
+                     //     _this.before_edit();
+                     //    return false;
+                     //}
             
+                    var p = _this.ContextMenu;
+            
+                    p.el.set_screen(Gdk.Screen.get_default());
+                    p.el.show();
+                    p.el.popup_at_pointer(ev);
+                    //Seed.print("click:" + res.column.title);
+                    // select the 
+                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+              
+                        this.el.get_selection().select_path(path);
+                        return false;
+                    });
+                     _this.before_edit();
+                    return false;
+                }
+                
+                 
+                if (col.title != "Value") {
+                    GLib.debug("col title != Value");
+                    
+                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+                        this.el.get_selection().select_path(path);
+                        return false;
+                    });
+                    
+                    _this.before_edit();
+                      //  XObject.error("column is not value?");
+                    return false; // ignore.. - key click.. ??? should we do this??
+                }
+                
+                
+                // if the cell can be edited with a pulldown
+                // then we should return true... - and let the start_editing handle it?
+                
+                
+                
+                
+                
+                  
+               //             _this.before_edit(); <<< we really need to stop the other editor..
+                 _this.keyrender.el.stop_editing(false);
+                _this.keyrender.el.editable  =false;
+                
+                       
+                return _this.startEditingValue(path); // assumes selected row..
+                    
             });
         }
 
