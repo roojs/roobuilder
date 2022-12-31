@@ -1503,7 +1503,7 @@ public class Xcls_LeftProps : Object
                         return false;
                     });
                      _this.before_edit();
-                    return false; //not on a element.
+                    return; //not on a element.
                 }
                 
                  
@@ -1514,7 +1514,7 @@ public class Xcls_LeftProps : Object
                  	// or popover might be trying to do a central?
                     _this.view.editPropertyDetails(path, (int) y + 12); 
                      
-                    return false;
+                    return;
                 }
                 
                 
@@ -1549,7 +1549,7 @@ public class Xcls_LeftProps : Object
                         return false;
                     });
                      _this.before_edit();
-                    return false;
+                    return;
                 }
                 
                  
@@ -1563,7 +1563,7 @@ public class Xcls_LeftProps : Object
                     
                     _this.before_edit();
                       //  XObject.error("column is not value?");
-                    return false; // ignore.. - key click.. ??? should we do this??
+                    return; // ignore.. - key click.. ??? should we do this??
                 }
                 
                 
@@ -1580,7 +1580,7 @@ public class Xcls_LeftProps : Object
                 _this.keyrender.el.editable  =false;
                 
                        
-                return _this.startEditingValue(path); // assumes selected row..
+                 _this.startEditingValue(path); // assumes selected row..
                     
             });
         }
