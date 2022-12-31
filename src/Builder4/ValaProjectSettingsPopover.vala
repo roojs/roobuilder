@@ -1317,22 +1317,6 @@ public class ValaProjectSettingsPopover : Object
             this.el.append_column (  child_2.el  );
 
             //listeners
-            this.el.button_press_event.connect( ( ev) => {
-                //console.log("button press?");
-               
-                
-                if (ev.type != Gdk.EventType.BUTTON_PRESS  || ev.button != 3) {
-                    //print("click" + ev.type);
-                    return false;
-                }
-               
-                    
-                 _this.targets_tree_menu.el.set_screen(Gdk.Screen.get_default());
-                 _this.targets_tree_menu.el.show_all();
-                  _this.targets_tree_menu.el.popup_at_pointer(ev);
-                 //   print("click:" + res.path.to_string());
-                  return true;
-            });
             this.el.cursor_changed.connect( ( ) => {
             
             	if (this.cursor != "") {
@@ -1407,7 +1391,7 @@ public class ValaProjectSettingsPopover : Object
                
                     
                 // _this.default_directory_menu.el.set_screen(Gdk.Screen.get_default());
-                 _this.default_directory_menu.el.show();
+                 _this.targets_tree_menu.el.show();
                  // xy are double
                  
                  var  r = Gdk.Rectangle() {
@@ -1416,8 +1400,12 @@ public class ValaProjectSettingsPopover : Object
                 			width = 1,
                 			height = 1
                 		};
-            	 _this.default_directory_menu.el.set_pointing_to( r);
+            	 _this.targets_tree_menu.el.set_pointing_to( r);
              
+             
+             
+             
+              
             
             });
         }
