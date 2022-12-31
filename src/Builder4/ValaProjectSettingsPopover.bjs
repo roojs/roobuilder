@@ -48,13 +48,11 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "utf8 label" : "compile flags",
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "compile_flags",
            "listeners" : {
             "changed" : [
@@ -72,7 +70,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,true,true,0",
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "int position" : 300,
            "items" : [

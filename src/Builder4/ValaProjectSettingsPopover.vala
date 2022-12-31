@@ -262,13 +262,13 @@ public class ValaProjectSettingsPopover : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_Label8( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false,0 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_compile_flags( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , false,false,0 );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_Paned10( _this );
             child_2.ref();
-            this.el.pack_start (  child_2.el , true,true,0 );
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
