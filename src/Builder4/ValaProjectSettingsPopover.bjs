@@ -721,17 +721,15 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "pack_start,false,false,0",
              "utf8 label" : "Files to compile",
              "xtype" : "Label"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "pack_start,true,true,0",
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* pack" : "add",
+               "* pack" : "set_child",
                "items" : [
                 {
                  "$ columns" : [
