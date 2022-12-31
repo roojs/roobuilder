@@ -806,7 +806,7 @@ public class ValaProjectSettingsPopover : Object
 
     public class Xcls_default_directory_menu : Object
     {
-        public Gtk.PopoverMenu el;
+        public Gtk.Popover el;
         private ValaProjectSettingsPopover  _this;
 
 
@@ -817,7 +817,7 @@ public class ValaProjectSettingsPopover : Object
         {
             _this = _owner;
             _this.default_directory_menu = this;
-            this.el = new Gtk.PopoverMenu();
+            this.el = new Gtk.Popover();
 
             // my vars (dec)
 

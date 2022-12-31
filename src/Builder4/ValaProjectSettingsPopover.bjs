@@ -398,7 +398,7 @@
                  "xtype" : "Button"
                 }
                ],
-               "xtype" : "PopoverMenu"
+               "xtype" : "Popover"
               }
              ],
              "xtype" : "ScrolledWindow"
