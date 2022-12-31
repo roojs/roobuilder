@@ -728,8 +728,41 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
+             ( ev) => {
+                //console.log("button press?");
+               
+                
+                if (this.el.get_current_button() != 3) {
+                    //print("click" + ev.type);
+                    return false;
+                }
+                //Gtk.TreePath res;
+                //if (!this.el.get_path_at_pos((int)ev.x,(int)ev.y, out res, null, null, null) ) {
+                //    return true;
+                //}
+                 
+              //  this.el.get_selection().select_path(res);
+                 
+                  //if (!this.get('/LeftTreeMenu').el)  { 
+                  //      this.get('/LeftTreeMenu').init(); 
+                  //  }
+                    
+                 _this.default_directory_menu.el.set_screen(Gdk.Screen.get_default());
+                 _this.default_directory_menu.el.show();
+                 
+                 
+                 var  r = Gdk.Rectangle() {
+                			x = x, // align left...
+                			y = y,
+                			width = 1,
+                			height = 1
+                		};
+            	 _this.default_directory_menu.el.set_pointing_to( r);
             
             
+                 //   print("click:" + res.path.to_string());
+                  return true;
+            }
             });
         }
 
