@@ -377,14 +377,7 @@
        "listeners" : {
         "activate" : [
          "( ) => {",
-         "",
-         "",
-         "}",
-         ""
-        ],
-        "button_press_event" : [
-         "  (self, ev) => {",
-         "    _this.before_edit();",
+         " _this.before_edit();",
          "    ",
          "        ",
          "    var p = _this.AddPropertyPopup;",
@@ -392,7 +385,9 @@
          "    p.el.show_all();",
          "     p.el.popup_at_pointer(ev);",
          "     return true;",
-         "}"
+         "",
+         "}",
+         ""
         ]
        },
        "string icon_name" : "list-add",

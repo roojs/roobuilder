@@ -686,11 +686,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-            
-            
-            });
-            this.el.button_press_event.connect( (self, ev) => {
-                _this.before_edit();
+             _this.before_edit();
                 
                     
                 var p = _this.AddPropertyPopup;
@@ -698,6 +694,7 @@ public class Xcls_LeftProps : Object
                 p.el.show_all();
                  p.el.popup_at_pointer(ev);
                  return true;
+            
             });
         }
 
