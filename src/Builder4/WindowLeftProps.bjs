@@ -736,7 +736,6 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "Delete",
              "listeners" : {
               "activate" : [

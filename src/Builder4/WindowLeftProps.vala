@@ -1887,7 +1887,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             var child_0 = new Xcls_Button37( _this );
             child_0.ref();
-            this.el.add_child (  child_0.el  );
+            this.el.append(  child_0.el );
         }
 
         // user defined functions
