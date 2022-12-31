@@ -495,7 +495,7 @@
            "    \t\t\twidth = 1,",
            "    \t\t\theight = 1",
            "    \t\t};",
-           "\t\t _p.el.set_pointing_to( r);",
+           "\t\t p.el.set_pointing_to( r);",
            "",
            "        //Seed.print(\"click:\" + res.column.title);",
            "        // select the ",

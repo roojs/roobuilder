@@ -1544,7 +1544,7 @@ public class Xcls_LeftProps : Object
                 			width = 1,
                 			height = 1
                 		};
-            		 _p.el.set_pointing_to( r);
+            		 p.el.set_pointing_to( r);
             
                     //Seed.print("click:" + res.column.title);
                     // select the 
