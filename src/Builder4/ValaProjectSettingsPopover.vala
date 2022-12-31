@@ -712,11 +712,11 @@ public class ValaProjectSettingsPopover : Object
                     
                 // _this.default_directory_menu.el.set_screen(Gdk.Screen.get_default());
                  _this.default_directory_menu.el.show();
-                 
+                 // xy are double
                  
                  var  r = Gdk.Rectangle() {
-                			x = x, // align left...
-                			y = y,
+                			x = (int) x, // align left...
+                			y = (int) y,
                 			width = 1,
                 			height = 1
                 		};
