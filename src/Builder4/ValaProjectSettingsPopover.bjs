@@ -482,45 +482,6 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* pack" : "add",
-               "xtype" : "Separator"
-              },
-              {
-               "$ xns" : "Gtk",
-               "* pack" : "add",
-               "listeners" : {
-                "activate" : [
-                 "()  => {",
-                 "    ",
-                 "\t//",
-                 "\tGtk.TreeModel mod;",
-                 "\tGtk.TreeIter iter;",
-                 "\tif (!_this.targets_tree.el.get_selection().get_selected(out mod, out iter)) {",
-                 "\t\tGLib.debug(\"nothing selected\\n\");",
-                 "\t\treturn;",
-                 "\t}",
-                 "",
-                 "",
-                 "\t// add the directory..",
-                 "",
-                 "",
-                 "\tGLib.Value val;",
-                 "\tmod.get_value(iter,0, out val);",
-                 "\tvar fn =  (string) val;",
-                 "",
-                 "\tGLib.debug(\"remove: %s\\n\", fn);",
-                 "\tif (!_this.project.compilegroups.unset(fn)) {",
-                 "\t\tGLib.debug(\"remove failed\");",
-                 "\t}",
-                 "\t_this.targets_tree_store.load();",
-                 "}"
-                ]
-               },
-               "utf8 label" : "Remove Target",
-               "xtype" : "Button"
-              },
-              {
-               "$ xns" : "Gtk",
                "* prop" : "child",
                "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
                "int spacing" : 0,
@@ -544,6 +505,46 @@
                   ]
                  },
                  "utf8 label" : "Add Compile Target",
+                 "xtype" : "Button"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* pack" : "add",
+                 "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+                 "xtype" : "Separator"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* pack" : "add",
+                 "listeners" : {
+                  "activate" : [
+                   "()  => {",
+                   "    ",
+                   "\t//",
+                   "\tGtk.TreeModel mod;",
+                   "\tGtk.TreeIter iter;",
+                   "\tif (!_this.targets_tree.el.get_selection().get_selected(out mod, out iter)) {",
+                   "\t\tGLib.debug(\"nothing selected\\n\");",
+                   "\t\treturn;",
+                   "\t}",
+                   "",
+                   "",
+                   "\t// add the directory..",
+                   "",
+                   "",
+                   "\tGLib.Value val;",
+                   "\tmod.get_value(iter,0, out val);",
+                   "\tvar fn =  (string) val;",
+                   "",
+                   "\tGLib.debug(\"remove: %s\\n\", fn);",
+                   "\tif (!_this.project.compilegroups.unset(fn)) {",
+                   "\t\tGLib.debug(\"remove failed\");",
+                   "\t}",
+                   "\t_this.targets_tree_store.load();",
+                   "}"
+                  ]
+                 },
+                 "utf8 label" : "Remove Target",
                  "xtype" : "Button"
                 }
                ],
