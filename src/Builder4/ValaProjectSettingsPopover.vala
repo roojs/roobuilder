@@ -908,21 +908,25 @@ public class ValaProjectSettingsPopover : Object
             //listeners
             this.el.activate.connect( ()  => {
                 
-                var  chooser = new Gtk.FileChooserDialog (
-            	"Add a directory", _this.window.el, Gtk.FileChooserAction.SELECT_FOLDER ,
-            	"_Cancel",
-            	Gtk.ResponseType.CANCEL,
-            	"_Add",
-            	Gtk.ResponseType.ACCEPT);
-                if (chooser.run () != Gtk.ResponseType.ACCEPT) {
-                    chooser.close ();
-                       return;
-                   }
-                   chooser.close ();
-                   // add the directory..
-                   var fn = _this.project.relPath(chooser.get_filename());
-                   _this.project.compilegroups.get("_default_").sources.add(fn);
-                   _this.default_directory_tree_store.load();
+                var  chooser = new Gtk.FileDialog ();
+                
+            	chooser.title -="Add a directory";
+            	chooser.modal = true;
+            	chooser.select_folder.begin(
+            		_this.window.el,
+            		null, // fixme -should be project dir..
+            		null, // cancel
+            		(obj,res) => {
+            			var sfn = chooser.select_folder.end(res);
+            			if (sfn == null) {
+            				return;
+            			}
+            			var fn = _this.project.relPath(sfn.get_path());
+            			 _this.project.compilegroups.get("_default_").sources.add(fn);
+            		   _this.default_directory_tree_store.load();
+            		});
+            	 
+                  
             });
         }
 
