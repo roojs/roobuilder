@@ -660,13 +660,11 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "pack_start,false,false,0",
              "utf8 label" : "target filename",
              "xtype" : "Label"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "pack_start,false,false,0",
              "id" : "build_pack_target",
              "listeners" : {
               "changed" : [
@@ -682,13 +680,11 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "pack_start,false,false,0",
              "utf8 label" : "compile flags",
              "xtype" : "Label"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "pack_start,false,false,0",
              "id" : "build_compile_flags",
              "listeners" : {
               "changed" : [
@@ -704,13 +700,11 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "pack_start,false,false,0",
              "utf8 label" : "test argments - when run after a build",
              "xtype" : "Label"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "pack_start,false,false,0",
              "id" : "build_execute_args",
              "listeners" : {
               "changed" : [
