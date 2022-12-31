@@ -741,6 +741,7 @@
               "activate" : [
                "  ( )  =>{",
                "\t_this.deleteSelected();",
+               "\t",
                "}"
               ]
              },
