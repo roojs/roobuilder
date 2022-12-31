@@ -206,70 +206,51 @@
               "new Clutter.Image.from_file(.....)"
              ],
              "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "init: initialziation code (vala)",
+             "listeners" : {
+              "activate" : [
+               "  ( ) => {",
+               "      _this.addProp( new JsRender.NodeProp.special(\"init\",\"{\\n\\n}\\n\" ) );",
+               "",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "This code is called after the ctor",
+             "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "label" : "cms-id: (Roo JS/Pman library)",
+             "listeners" : {
+              "activate" : [
+               " ()  => {",
+               " ",
+               "    _this.addProp( new JsRender.NodeProp.prop(\"cms-id\",\"string\", \"\" ) );",
+               "",
+               " ",
+               "    ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : [
+              "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})",
+              ""
+             ],
+             "xtype" : "Button"
+            },
+            {
+             "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "$ xns" : "Gtk",
+             "* pack" : "add_child",
+             "xtype" : "Separator"
             }
            ],
            "xtype" : "Box"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "ctor: Alterative to default contructor (Vala)",
-           "listeners" : {
-            "activate" : [
-             "  ( ) => {",
-             "",
-             "      _this.addProp( new JsRender.NodeProp.special(\"ctor\") );",
-             "}"
-            ]
-           },
-           "tooltip_markup" : [
-            "eg. ",
-            "",
-            "new Clutter.Image.from_file(.....)"
-           ],
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "init: initialziation code (vala)",
-           "listeners" : {
-            "activate" : [
-             "  ( ) => {",
-             "      _this.addProp( new JsRender.NodeProp.special(\"init\",\"{\\n\\n}\\n\" ) );",
-             "",
-             "}"
-            ]
-           },
-           "tooltip_markup" : "This code is called after the ctor",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "label" : "cms-id: (Roo JS/Pman library)",
-           "listeners" : {
-            "activate" : [
-             " ()  => {",
-             " ",
-             "    _this.addProp( new JsRender.NodeProp.prop(\"cms-id\",\"string\", \"\" ) );",
-             "",
-             " ",
-             "    ",
-             "}"
-            ]
-           },
-           "tooltip_markup" : [
-            "set the cms-id for this element, when converted to javascript, the html value will be wrapped with Pman.Cms.content({cms-id},{original-html})",
-            ""
-           ],
-           "xtype" : "Button"
-          },
-          {
-           "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "$ xns" : "Gtk",
-           "* pack" : "add_child",
-           "xtype" : "Separator"
           },
           {
            "$ xns" : "Gtk",
