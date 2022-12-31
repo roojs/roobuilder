@@ -61,7 +61,7 @@ public class ValaProjectSettingsPopover : Object
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.add (  child_0.el  );
+        this.el.set_child (  child_0.el  );
 
         //listeners
         this.el.closed.connect( ( ) => {
@@ -620,7 +620,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_default_directory_menu( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
