@@ -1020,10 +1020,10 @@ public class ValaProjectSettingsPopover : Object
             this.el.position = 300;
             var child_0 = new Xcls_ScrolledWindow30( _this );
             child_0.ref();
-            this.el.start_child (  child_0.el  );
+            this.el.set_start_child (  child_0.el  );
             var child_1 = new Xcls_set_vbox( _this );
             child_1.ref();
-            this.el.end_child (  child_1.el  );
+            this.el.set_end_child (  child_1.el  );
         }
 
         // user defined functions

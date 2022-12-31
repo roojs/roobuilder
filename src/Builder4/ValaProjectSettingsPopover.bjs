@@ -423,7 +423,7 @@
             "}",
             ""
            ],
-           "* pack" : "start_child",
+           "* pack" : "set_start_child",
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -659,7 +659,7 @@
           {
            "# Project.GtkValaSettings cgroup" : "null",
            "$ xns" : "Gtk",
-           "* pack" : "end_child",
+           "* pack" : "set_end_child",
            "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
            "gboolean homogeneous" : false,
            "id" : "set_vbox",
