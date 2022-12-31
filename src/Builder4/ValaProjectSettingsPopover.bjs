@@ -81,7 +81,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "start_child",
+             "* pack" : "set_start_child",
              "bool hexpand" : true,
              "items" : [
               {
@@ -202,7 +202,7 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "end_child",
+             "* pack" : "set_end_child",
              "bool hexpand" : true,
              "items" : [
               {
