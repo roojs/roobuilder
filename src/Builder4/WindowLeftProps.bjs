@@ -31,14 +31,6 @@
        "$ xns" : "Gtk",
        "bool always_show_image" : true,
        "bool hexpand" : true,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "set_image",
-         "utf8 icon_name" : "format-justify-left",
-         "xtype" : "Image"
-        }
-       ],
        "listeners" : {
         "clicked" : [
          "  ( ) => {",
@@ -51,6 +43,7 @@
          "}"
         ]
        },
+       "string icon_name" : "format-justify-left",
        "string label" : "Property",
        "xtype" : "Button"
       },
