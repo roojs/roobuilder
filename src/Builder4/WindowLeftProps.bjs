@@ -742,7 +742,7 @@
            "xtype" : "Button"
           }
          ],
-         "xtype" : "PopoverMenu"
+         "xtype" : "Popover"
         }
        ],
        "string name" : "leftprops-view",
