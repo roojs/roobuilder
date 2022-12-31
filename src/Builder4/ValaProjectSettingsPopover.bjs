@@ -216,7 +216,6 @@
                  "listeners" : {
                   "pressed" : [
                    "(n_press, x, y) => {",
-                   " ( ev) => {",
                    "    //console.log(\"button press?\");",
                    "   ",
                    "    ",

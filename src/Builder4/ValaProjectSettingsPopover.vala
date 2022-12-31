@@ -728,7 +728,6 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
-             ( ev) => {
                 //console.log("button press?");
                
                 
