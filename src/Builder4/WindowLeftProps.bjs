@@ -138,59 +138,6 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "add_child",
-             "label" : "pack: Pack method (Vala)",
-             "listeners" : {
-              "activate" : [
-               "  ( ) => {",
-               "// is this userdef?",
-               "    _this.addProp( new JsRender.NodeProp.special(\"pack\", \"add\") );",
-               "}"
-              ]
-             },
-             "tooltip_markup" : "how to pack this element onto parent, (method, 2nd arg, 3rd arg) .. the 1st argument is filled by the element",
-             "xtype" : "Button"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "add_child",
-             "label" : "ctor: Alterative to default contructor (Vala)",
-             "listeners" : {
-              "activate" : [
-               "  ( ) => {",
-               "",
-               "      _this.addProp( new JsRender.NodeProp.special(\"ctor\") );",
-               "}"
-              ]
-             },
-             "tooltip_markup" : [
-              "eg. ",
-              "",
-              "new Clutter.Image.from_file(.....)"
-             ],
-             "xtype" : "Button"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "add_child",
-             "label" : "ctor: Alterative to default contructor (Vala)",
-             "listeners" : {
-              "activate" : [
-               "  ( ) => {",
-               "",
-               "      _this.addProp( new JsRender.NodeProp.special(\"ctor\") );",
-               "}"
-              ]
-             },
-             "tooltip_markup" : [
-              "eg. ",
-              "",
-              "new Clutter.Image.from_file(.....)"
-             ],
-             "xtype" : "Button"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "ctor: Alterative to default contructor (Vala)",
              "listeners" : {
               "activate" : [
