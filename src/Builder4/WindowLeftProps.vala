@@ -694,7 +694,7 @@ public class Xcls_LeftProps : Object
                  	Gtk.Allocation rect;
                 	this.el.get_allocation(out rect);
                     p.el.set_pointing_to(rect);
-                p.el();
+                p.el.show();
             
                  return;
             
