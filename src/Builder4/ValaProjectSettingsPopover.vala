@@ -995,7 +995,7 @@ public class ValaProjectSettingsPopover : Object
                 		if (id == Gtk.ResponseType.CANCEL) {
                 			return;
             			}
-            			 var fn = _this.project.relPath(chooser..get_file().get_path());
+            		 var fn = _this.project.relPath(chooser.get_file().get_path());
                    _this.project.compilegroups.get("_default_").sources.add(fn);
                    _this.default_directory_tree_store.load();
                  

@@ -389,7 +389,7 @@
                      "    \t\tif (id == Gtk.ResponseType.CANCEL) {",
                      "    \t\t\treturn;",
                      "\t\t\t}",
-                     "\t\t\t var fn = _this.project.relPath(chooser..get_file().get_path());",
+                     "\t\t var fn = _this.project.relPath(chooser.get_file().get_path());",
                      "       _this.project.compilegroups.get(\"_default_\").sources.add(fn);",
                      "       _this.default_directory_tree_store.load();",
                      "     ",
