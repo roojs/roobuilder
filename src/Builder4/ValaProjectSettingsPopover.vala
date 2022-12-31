@@ -822,26 +822,47 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button25( _this );
+            var child_0 = new Xcls_Box25( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
-            var child_1 = new Xcls_Button26( _this );
-            child_1.ref();
-            this.el.add (  child_1.el  );
-            var child_2 = new Xcls_Separator27( _this );
-            child_2.ref();
-            this.el.add (  child_2.el  );
-            var child_3 = new Xcls_Button28( _this );
-            child_3.ref();
-            this.el.add (  child_3.el  );
-            var child_4 = new Xcls_Box29( _this );
-            child_4.ref();
-            this.el.append(  child_4.el );
+            this.el.set_child (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Button25 : Object
+    public class Xcls_Box25 : Object
+    {
+        public Gtk.Box el;
+        private ValaProjectSettingsPopover  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box25(ValaProjectSettingsPopover _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_Button26( _this );
+            child_0.ref();
+            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_Button27( _this );
+            child_1.ref();
+            this.el.add (  child_1.el  );
+            var child_2 = new Xcls_Separator28( _this );
+            child_2.ref();
+            this.el.add (  child_2.el  );
+            var child_3 = new Xcls_Button29( _this );
+            child_3.ref();
+            this.el.add (  child_3.el  );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Button26 : Object
     {
         public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
@@ -850,7 +871,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button25(ValaProjectSettingsPopover _owner )
+        public Xcls_Button26(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -884,7 +905,7 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_Button26 : Object
+    public class Xcls_Button27 : Object
     {
         public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
@@ -893,7 +914,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button26(ValaProjectSettingsPopover _owner )
+        public Xcls_Button27(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -927,7 +948,7 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_Separator27 : Object
+    public class Xcls_Separator28 : Object
     {
         public Gtk.Separator el;
         private ValaProjectSettingsPopover  _this;
@@ -936,10 +957,10 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Separator27(ValaProjectSettingsPopover _owner )
+        public Xcls_Separator28(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Separator( null );
+            this.el = new Gtk.Separator( Gtk.Orientation.HORIZONTAL );
 
             // my vars (dec)
 
@@ -949,7 +970,7 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_Button28 : Object
+    public class Xcls_Button29 : Object
     {
         public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
@@ -958,7 +979,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button28(ValaProjectSettingsPopover _owner )
+        public Xcls_Button29(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -998,27 +1019,6 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_Box29 : Object
-    {
-        public Gtk.Box el;
-        private ValaProjectSettingsPopover  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Box29(ValaProjectSettingsPopover _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
 
 
 
