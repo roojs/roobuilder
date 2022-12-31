@@ -417,7 +417,7 @@
             "}",
             ""
            ],
-           "* pack" : "add1",
+           "* pack" : "start_child",
            "items" : [
             {
              "$ xns" : "Gtk",

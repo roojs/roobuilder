@@ -995,7 +995,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.position = 300;
             var child_0 = new Xcls_ScrolledWindow29( _this );
             child_0.ref();
-            this.el.add1 (  child_0.el  );
+            this.el.start_child (  child_0.el  );
             var child_1 = new Xcls_set_vbox( _this );
             child_1.ref();
             this.el.add2 (  child_1.el  );
