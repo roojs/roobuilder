@@ -814,9 +814,6 @@ public class Xcls_RooProjectSettings : Object
             	this.css.load_from_data("#roo-project-settings-view{ font: monospace 10px;}".data);
             } catch (Error e) {}
             this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-            //listeners
-            this.el.key_release_event.connect( );
         }
 
         // user defined functions
@@ -842,6 +839,26 @@ public class Xcls_RooProjectSettings : Object
             //listeners
             this.el.key_released.connect( (keyval, keycode, state) => {
             
+            
+                if (keyval != 115) {
+                    return false;
+                     
+                }
+                if   ( (state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {
+                    return false;
+                }
+                 var buf =    _this.view.el.get_buffer();
+                Gtk.TextIter s;
+                Gtk.TextIter e;
+                buf.get_start_iter(out s);
+                buf.get_end_iter(out e);
+                _this.project.runhtml = buf.get_text(s,e,true);
+                
+                      
+                _this.buttonPressed("save");
+                 
+                return false;
+                     
             
             });
         }
