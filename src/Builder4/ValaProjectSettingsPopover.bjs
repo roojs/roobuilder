@@ -75,7 +75,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add",
+             "* pack" : "start_child",
              "bool hexpand" : true,
              "items" : [
               {
@@ -196,7 +196,7 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add2",
+             "* pack" : "end_child",
              "bool hexpand" : true,
              "items" : [
               {
