@@ -58,6 +58,7 @@ public class ValaProjectSettingsPopover : Object
         this.border_width = 0;
 
         // set gobject values
+        this.el.autohide = false;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
@@ -94,15 +95,16 @@ public class ValaProjectSettingsPopover : Object
         this.files_tree_store.load();
     
     
-    	this.el.set_modal(true);
-    	this.el.set_relative_to(btn);
     
-    	this.el.set_position(Gtk.PositionType.RIGHT);
+    
+    	Gtk.Allocation rect;
+    	btn.get_allocation(out rect);
+        this.el.set_pointing_to(rect);
     
     	// window + header?
     	// print("SHOWALL - POPIP\n");
     	this.el.set_size_request(800,500);
-    	this.el.show_all();
+    	this.el.show();
     	//this.view.el.grab_focus();
     
     }
