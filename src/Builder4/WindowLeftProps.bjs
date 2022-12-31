@@ -446,7 +446,7 @@
            "    Gtk.TreePath path;",
            "    ",
            "    // event x /y are relative to the widget..",
-           "    if (!_this.view.el.get_path_at_pos(x, y, out path, out col, out cell_x, out cell_y )) {",
+           "    if (!_this.view.el.get_path_at_pos((int)x, (int)y, out path, out col, out cell_x, out cell_y )) {",
            "        GLib.debug(\"nothing selected on click\");",
            "        GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {",
            "            _this.view.el.get_selection().unselect_all();",
