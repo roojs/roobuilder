@@ -490,7 +490,7 @@
             {
              "# string cursor" : "",
              "$ xns" : "Gtk",
-             "* pack" : "add",
+             "* pack" : "set_child",
              "id" : "targets_tree",
              "items" : [
               {
@@ -653,7 +653,7 @@
           {
            "# Project.GtkValaSettings cgroup" : "null",
            "$ xns" : "Gtk",
-           "* pack" : "add2",
+           "* pack" : "end_child",
            "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
            "gboolean homogeneous" : false,
            "id" : "set_vbox",

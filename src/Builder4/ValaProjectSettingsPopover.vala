@@ -998,7 +998,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.start_child (  child_0.el  );
             var child_1 = new Xcls_set_vbox( _this );
             child_1.ref();
-            this.el.add2 (  child_1.el  );
+            this.el.end_child (  child_1.el  );
         }
 
         // user defined functions
@@ -1025,7 +1025,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.add (  child_0.el  );
             var child_1 = new Xcls_targets_tree( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.set_child (  child_1.el  );
 
             // init method
 
