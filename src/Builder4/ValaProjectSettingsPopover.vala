@@ -617,7 +617,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.hexpand = true;
             var child_0 = new Xcls_default_directory_tree( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.set_child (  child_0.el  );
             var child_1 = new Xcls_default_directory_menu( _this );
             child_1.ref();
             this.el.append(  child_1.el );
