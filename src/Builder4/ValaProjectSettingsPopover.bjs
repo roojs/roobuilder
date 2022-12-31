@@ -396,6 +396,12 @@
                  },
                  "utf8 label" : "Remove File/Directory",
                  "xtype" : "Button"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+                 "int spacing" : 0,
+                 "xtype" : "Box"
                 }
                ],
                "xtype" : "Popover"
