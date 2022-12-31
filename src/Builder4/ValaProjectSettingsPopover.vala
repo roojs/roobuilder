@@ -150,7 +150,6 @@ public class ValaProjectSettingsPopover : Object
 
 
             // my vars (def)
-        public string title;
 
         // ctor
         public Xcls_HeaderBar3(ValaProjectSettingsPopover _owner )
@@ -159,7 +158,6 @@ public class ValaProjectSettingsPopover : Object
             this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
-            this.title = "Change Vala Project Compile settings";
 
             // set gobject values
             var child_0 = new Xcls_Label4( _this );
@@ -181,7 +179,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_Label4(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Label" );
+            this.el = new Gtk.Label( "Change Vala Project Compile settings" );
 
             // my vars (dec)
 

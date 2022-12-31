@@ -18,13 +18,12 @@
      "bool vexpand" : true,
      "items" : [
       {
-       "$ string title" : "\"Change Vala Project Compile settings\"",
        "$ xns" : "Gtk",
        "items" : [
         {
          "$ xns" : "Gtk",
          "* prop" : "title_widget",
-         "string label" : "Label",
+         "string label" : "Change Vala Project Compile settings",
          "xtype" : "Label"
         }
        ],
