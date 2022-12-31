@@ -346,6 +346,27 @@
              },
              "tooltip_markup" : "Add a flexy include (for HTML templates)",
              "xtype" : "Button"
+            },
+            {
+             "$ xns" : "Gtk",
+             "label" : "Flexy - Include",
+             "listeners" : {
+              "activate" : [
+               "  ( ) =>{",
+               " \t_this.view.popover.show(",
+               "\t\t_this.view.el, ",
+               "\t\t_this.node, ",
+               "\t\t new JsRender.NodeProp.prop(\"flexy:include\", \"string\", \"name_of_file.html\") ,",
+               "\t\t-1,  ",
+               "\t\ttrue",
+               "\t);",
+               "",
+               "  ",
+               "}"
+              ]
+             },
+             "tooltip_markup" : "Add a flexy include (for HTML templates)",
+             "xtype" : "Button"
             }
            ],
            "xtype" : "Box"

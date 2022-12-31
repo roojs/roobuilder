@@ -683,7 +683,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Other";
             var child_0 = new Xcls_AddPropertyPopup( _this );
             child_0.ref();
-            var child_1 = new Xcls_Image25( _this );
+            var child_1 = new Xcls_Image26( _this );
             child_1.ref();
             this.el.set_image (  child_1.el  );
 
@@ -792,6 +792,9 @@ public class Xcls_LeftProps : Object
             var child_15 = new Xcls_Button24( _this );
             child_15.ref();
             this.el.append(  child_15.el );
+            var child_16 = new Xcls_Button25( _this );
+            child_16.ref();
+            this.el.append(  child_16.el );
         }
 
         // user defined functions
@@ -1309,9 +1312,46 @@ public class Xcls_LeftProps : Object
         // user defined functions
     }
 
+    public class Xcls_Button25 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_LeftProps  _this;
 
 
-    public class Xcls_Image25 : Object
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button25(Xcls_LeftProps _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.tooltip_markup = "Add a flexy include (for HTML templates)";
+            this.el.label = "Flexy - Include";
+
+            //listeners
+            this.el.activate.connect( ( ) =>{
+             	_this.view.popover.show(
+            		_this.view.el, 
+            		_this.node, 
+            		 new JsRender.NodeProp.prop("flexy:include", "string", "name_of_file.html") ,
+            		-1,  
+            		true
+            	);
+            
+              
+            });
+        }
+
+        // user defined functions
+    }
+
+
+
+    public class Xcls_Image26 : Object
     {
         public Gtk.Image el;
         private Xcls_LeftProps  _this;
@@ -1320,7 +1360,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Image25(Xcls_LeftProps _owner )
+        public Xcls_Image26(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Image();
@@ -1815,14 +1855,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button35( _this );
+            var child_0 = new Xcls_Button36( _this );
             child_0.ref();
             this.el.add_child (  child_0.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Button35 : Object
+    public class Xcls_Button36 : Object
     {
         public Gtk.Button el;
         private Xcls_LeftProps  _this;
@@ -1831,7 +1871,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button35(Xcls_LeftProps _owner )
+        public Xcls_Button36(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
