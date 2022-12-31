@@ -841,11 +841,11 @@ public class Xcls_RooProjectSettings : Object
             
             
                 if (keyval != 115) {
-                    return false;
+                    return;
                      
                 }
                 if   ( (state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {
-                    return false;
+                    return;
                 }
                  var buf =    _this.view.el.get_buffer();
                 Gtk.TextIter s;
@@ -856,8 +856,7 @@ public class Xcls_RooProjectSettings : Object
                 
                       
                 _this.buttonPressed("save");
-                 
-                return false;
+               
                      
             
             });
