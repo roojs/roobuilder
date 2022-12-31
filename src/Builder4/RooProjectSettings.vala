@@ -1078,7 +1078,6 @@ public class Xcls_RooProjectSettings : Object
             
             	return false;
             	 
-            
             });
         }
 
