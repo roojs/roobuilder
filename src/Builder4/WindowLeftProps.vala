@@ -788,23 +788,23 @@ public class Xcls_LeftProps : Object
         public Xcls_Box10(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
             var child_0 = new Xcls_Button11( _this );
             child_0.ref();
-            this.el.add_child (  child_0.el  );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Button12( _this );
             child_1.ref();
-            this.el.add_child (  child_1.el  );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_Button13( _this );
             child_2.ref();
-            this.el.add_child (  child_2.el  );
+            this.el.append(  child_2.el );
             var child_3 = new Xcls_Button14( _this );
             child_3.ref();
-            this.el.add_child (  child_3.el  );
+            this.el.append(  child_3.el );
             var child_4 = new Xcls_Button15( _this );
             child_4.ref();
             this.el.add_child (  child_4.el  );

@@ -102,12 +102,11 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "child",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
            "int spacing" : 0,
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "id: _this.{ID} (Vala)",
              "listeners" : {
               "activate" : [
@@ -122,7 +121,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "pack: Pack method (Vala)",
              "listeners" : {
               "activate" : [
@@ -137,7 +135,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "ctor: Alterative to default contructor (Vala)",
              "listeners" : {
               "activate" : [
@@ -156,7 +153,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add_child",
              "label" : "init: initialziation code (vala)",
              "listeners" : {
               "activate" : [
