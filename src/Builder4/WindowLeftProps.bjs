@@ -78,6 +78,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : false,
+         "bool autohide" : true,
          "id" : "AddPropertyPopup",
          "items" : [
           {
@@ -381,7 +382,8 @@
          "    ",
          "        ",
          "    var p = _this.AddPropertyPopup;",
-         "    p.el.set_screen(Gdk.Screen.get_default());",
+         "    ",
+         "     ",
          "    p.el.show_all();",
          "     p.el.popup_at_pointer(ev);",
          "     return true;",

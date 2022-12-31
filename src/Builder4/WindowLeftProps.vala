@@ -690,7 +690,8 @@ public class Xcls_LeftProps : Object
                 
                     
                 var p = _this.AddPropertyPopup;
-                p.el.set_screen(Gdk.Screen.get_default());
+                
+                 
                 p.el.show_all();
                  p.el.popup_at_pointer(ev);
                  return true;
@@ -718,6 +719,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.autohide = true;
             var child_0 = new Xcls_Box8( _this );
             child_0.ref();
             this.el.child = child_0.el;
