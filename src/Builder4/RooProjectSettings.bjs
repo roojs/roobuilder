@@ -401,15 +401,6 @@
              "xtype" : "EventControllerKey"
             }
            ],
-           "listeners" : {
-            "key_press_event" : [
-             "(ev) => {",
-             "",
-             "   ",
-             "}",
-             ""
-            ]
-           },
            "xtype" : "Entry"
           },
           {

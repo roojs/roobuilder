@@ -1046,12 +1046,6 @@ public class Xcls_RooProjectSettings : Object
             var child_0 = new Xcls_EventControllerKey30( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-
-            //listeners
-            this.el.key_press_event.connect( (ev) => {
-            
-               
-            });
         }
 
         // user defined functions
