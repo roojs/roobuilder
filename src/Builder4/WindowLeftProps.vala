@@ -753,7 +753,7 @@ public class Xcls_LeftProps : Object
     }
     public class Xcls_AddPropertyPopup : Object
     {
-        public Gtk.PopoverMenu el;
+        public Gtk.Popover el;
         private Xcls_LeftProps  _this;
 
 
@@ -764,7 +764,7 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.AddPropertyPopup = this;
-            this.el = new Gtk.PopoverMenu();
+            this.el = new Gtk.Popover();
 
             // my vars (dec)
 
