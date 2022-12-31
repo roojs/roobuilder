@@ -367,11 +367,6 @@
             "key_press_event" : [
              "(ev) => {",
              "",
-             "    if (ev.keyval == Gdk.Key.Tab) {",
-             "        _this.database_DBNAME.el.grab_focus();",
-             "        return true;",
-             "    }",
-             "",
              "",
              "    return false;",
              "}",

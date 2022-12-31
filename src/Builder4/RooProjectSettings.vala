@@ -968,11 +968,6 @@ public class Xcls_RooProjectSettings : Object
             //listeners
             this.el.key_press_event.connect( (ev) => {
             
-                if (ev.keyval == Gdk.Key.Tab) {
-                    _this.database_DBNAME.el.grab_focus();
-                    return true;
-                }
-            
             
                 return false;
             });
