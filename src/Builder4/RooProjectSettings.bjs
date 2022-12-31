@@ -354,8 +354,13 @@
              "listeners" : {
               "key_pressed" : [
                "(keyval, keycode, state) => {",
+               "    if (keyval == Gdk.Key.Tab) {",
+               "        _this.database_DBNAME.el.grab_focus();",
+               "        return true;",
+               "    }",
                "",
-               "\treturn bool;",
+               "",
+               "\treturn true;",
                "}",
                ""
               ]
@@ -363,16 +368,6 @@
              "xtype" : "EventControllerKey"
             }
            ],
-           "listeners" : {
-            "key_press_event" : [
-             "(ev) => {",
-             "",
-             "",
-             "    return false;",
-             "}",
-             ""
-            ]
-           },
            "xtype" : "Entry"
           },
           {
