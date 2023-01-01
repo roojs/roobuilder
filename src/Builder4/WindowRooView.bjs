@@ -1451,12 +1451,6 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* prop" : "image",
-             "string icon_name" : "emblem-system",
-             "xtype" : "Image"
-            },
-            {
-             "$ xns" : "Gtk",
              "* prop" : "popover",
              "id" : "search_settings",
              "items" : [
@@ -1497,9 +1491,10 @@
                "xtype" : "CheckButton"
               }
              ],
-             "xtype" : "PopoverMenu"
+             "xtype" : "Popover"
             }
            ],
+           "string icon_name" : "emblem-system",
            "string label" : "Settings",
            "xtype" : "MenuButton"
           }

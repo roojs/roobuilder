@@ -2075,43 +2075,18 @@ public class Xcls_WindowRooView : Object
             this.always_show_image = true;
 
             // set gobject values
-            this.el.label = "Settings";
-            var child_0 = new Xcls_Image25( _this );
-            child_0.ref();
-            this.el.image = child_0.el;
-            var child_1 = new Xcls_search_settings( _this );
-            child_1.ref();
-            this.el.popover = child_1.el;
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Image25 : Object
-    {
-        public Gtk.Image el;
-        private Xcls_WindowRooView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Image25(Xcls_WindowRooView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Image();
-
-            // my vars (dec)
-
-            // set gobject values
             this.el.icon_name = "emblem-system";
+            this.el.label = "Settings";
+            var child_0 = new Xcls_search_settings( _this );
+            child_0.ref();
+            this.el.popover = child_0.el;
         }
 
         // user defined functions
     }
-
     public class Xcls_search_settings : Object
     {
-        public Gtk.PopoverMenu el;
+        public Gtk.Popover el;
         private Xcls_WindowRooView  _this;
 
 
@@ -2122,7 +2097,7 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.search_settings = this;
-            this.el = new Gtk.PopoverMenu();
+            this.el = new Gtk.Popover();
 
             // my vars (dec)
 
