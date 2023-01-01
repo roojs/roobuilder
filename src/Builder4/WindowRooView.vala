@@ -404,7 +404,7 @@ public class Xcls_WindowRooView : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_viewcontainer( _this );
             child_1.ref();
-            this.el.end_child (  child_1.el  );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
