@@ -177,17 +177,7 @@ public class Xcls_GladeuiView : Object
             
         }
     
-       
-        return;
         
-        
-         
-         
-        
-        // should we hold until it's printed...
-        
-          
-    
         
         
     
@@ -300,6 +290,7 @@ public class Xcls_GladeuiView : Object
 
 
             // my vars (def)
+        public JsRender.JsRender file;
 
         // ctor
         public Xcls_designview(Xcls_GladeuiView _owner )
@@ -309,6 +300,7 @@ public class Xcls_GladeuiView : Object
             this.el = _this.main_window == null ? null : new Glade.DesignView(_this.main_window.gladeproject);
 
             // my vars (dec)
+            this.file = null;
 
             // init method
 
@@ -349,7 +341,10 @@ public class Xcls_GladeuiView : Object
 
             // my vars (def)
         public bool loading;
+        public gboolean show_line_numbers;
         public bool allow_node_scroll;
+        public gboolean show_line_marks;
+        public gboolean editable;
 
         // ctor
         public Xcls_sourceview(Xcls_GladeuiView _owner )
@@ -360,12 +355,10 @@ public class Xcls_GladeuiView : Object
 
             // my vars (dec)
             this.loading = true;
+            this.show_line_numbers = true;
             this.allow_node_scroll = true;
-
-            // set gobject values
-            this.el.editable = false;
-            this.el.show_line_marks = true;
-            this.el.show_line_numbers = true;
+            this.show_line_marks = true;
+            this.editable = false;
 
             // init method
 
