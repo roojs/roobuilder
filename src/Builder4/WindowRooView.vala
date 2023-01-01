@@ -375,7 +375,7 @@ public class Xcls_WindowRooView : Object
             this.el.start_child (  child_0.el  );
             var child_1 = new Xcls_inspectorcontainer( _this );
             child_1.ref();
-            this.el.pack2 (  child_1.el , true,true );
+            this.el.end_child (  child_1.el  );
         }
 
         // user defined functions
