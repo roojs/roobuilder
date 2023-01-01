@@ -111,11 +111,11 @@ public class WindowState : Object
 	
 		this.win.leftpane.el.remove(this.win.editpane.el);
     	//this.win.tree.el.remove(this.left_tree.el);
-    	this.win.leftpane.el.add(this.left_tree.el);
+    	this.win.leftpane.el.append(this.left_tree.el);
 	    
 	
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
-		this.left_tree.el.show_all();
+		this.left_tree.el.show();
 		   
 		this.left_tree.before_node_change.connect(() => {
 			// if the node change is caused by the editor (code preview)
@@ -210,12 +210,12 @@ public class WindowState : Object
 		        
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.left_tree.el);
-		    	this.win.leftpane.el.add(this.left_tree.el);
+		    	this.win.leftpane.el.append(this.left_tree.el);
 	    	}
 		    
 		
 			//GLib.debug("Hide Properties");
-			outerpane.show_all(); // make sure it's visiable..
+			outerpane.show(); // make sure it's visiable..
 			this.left_props.el.hide();
 			GLib.debug("set position: %d", this.tree_width);
  			outerpane.set_position(this.tree_width);
@@ -322,8 +322,8 @@ public class WindowState : Object
 		this.left_props =new Xcls_LeftProps();
 		this.left_props.ref();
 		this.left_props.main_window = this.win;
-		this.win.props.el.pack_start(this.left_props.el,true, true,0);
-		this.left_props.el.show_all();
+		this.win.props.el.append(this.left_props.el);
+		this.left_props.el.show();
 	
 		this.left_props.show_editor.connect( (file, node, prop) => {
 			this.switchState(State.CODE);
@@ -509,7 +509,7 @@ public class WindowState : Object
 	{
 		this.code_editor_tab  = new  Editor();
 		//this.code_editor.ref();  /// really?
-		this.win.codeeditviewbox.el.add(this.code_editor_tab.el);
+		this.win.codeeditviewbox.el.append(this.code_editor_tab.el);
 		
 		this.win.codeeditviewbox.el.hide();
 		this.code_editor_tab.window = this.win;
@@ -668,28 +668,31 @@ public class WindowState : Object
 	
 		if (file.project.xtype == "Roo" ) { 
 		    // removes all the childe elemnts from rooviewbox
-		
-			ctr.foreach( (w) => { ctr.remove(w); });
- 
-			ctr.add(this.window_rooview.el);
+			while( ctr.get_last_child() != null) {
+				ctr.remove(ctr.get_last_child());
+			}
+			
+			ctr.append(this.window_rooview.el);
  
 			if (file.xtype != "PlainFile") {       
  
 				this.window_rooview.loadFile(file);
-				this.window_rooview.el.show_all();
+				this.window_rooview.el.show();
 			}
  
 			
 
 		} else {
-			ctr.foreach( (w) => { ctr.remove(w); });
+			while( ctr.get_last_child() != null) {
+				ctr.remove(ctr.get_last_child());
+			}
 
-			ctr.add(this.window_gladeview.el);
+			ctr.append(this.window_gladeview.el);
  
 			if (file.xtype != "PlainFile") {    
 				
 				this.window_gladeview.loadFile(file);
-				this.window_gladeview.el.show_all();
+				this.window_gladeview.el.show();
 			}
  
 		}
@@ -720,9 +723,9 @@ public class WindowState : Object
 		this.window_rooview  =new Xcls_WindowRooView();
 		this.window_rooview.main_window = this.win;
 		this.window_rooview.ref();
-		this.win.rooviewbox.el.add(this.window_rooview.el);
+		this.win.rooviewbox.el.append(this.window_rooview.el);
 		
-		this.window_rooview.el.show_all();
+		this.window_rooview.el.show();
 		this.win.rooviewbox.el.hide();
 	
 	}
@@ -751,7 +754,7 @@ public class WindowState : Object
 		}
 		this.rightpalete.hide(); 
 		
-		this.add_props.el.show_all(); 
+		this.add_props.el.show(); 
 		this.add_props.show(
 			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
 			 sig_or_listen, //this.state == State.LISTENER ? "signals" : "props",
@@ -766,7 +769,7 @@ public class WindowState : Object
 	 
 		 var n = this.left_tree.getActiveElement();
 		this.add_props.hide();
-		this.rightpalete.el.show_all();
+		this.rightpalete.el.show();
 		this.rightpalete.show(
 			this.left_tree.getActiveFile().palete(), 
 			n == null ? "*top" : n.fqn(),
@@ -832,14 +835,14 @@ public class WindowState : Object
 		   		this.win.editpane.el.show();
 				this.win.rooviewbox.el.hide();
 				this.win.codeeditviewbox.el.show();
-				this.code_editor_tab.el.show_all();
+				this.code_editor_tab.el.show();
 		   		break;
 
 			case State.CODEONLY:
 				this.win.leftpane.el.hide();
 				this.win.codeeditviewbox.el.show();
 				this.win.rooviewbox.el.hide();
-				this.code_editor_tab.el.show_all();
+				this.code_editor_tab.el.show();
 				break;
 
 			case State.NONE:
