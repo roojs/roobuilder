@@ -1457,39 +1457,48 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* init" : [
-                "{",
-                "\tthis.el.show();",
-                "}",
-                ""
+               "* prop" : "child",
+               "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+               "int spacing" : 0,
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* init" : [
+                  "{",
+                  "\tthis.el.show();",
+                  "}",
+                  ""
+                 ],
+                 "id" : "case_sensitive",
+                 "string label" : "Case Sensitive",
+                 "xtype" : "CheckButton"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* init" : [
+                  "{",
+                  "\tthis.el.show();",
+                  "}",
+                  ""
+                 ],
+                 "id" : "regex",
+                 "string label" : "Regex",
+                 "xtype" : "CheckButton"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* init" : [
+                  "{",
+                  "\tthis.el.show();",
+                  "}",
+                  ""
+                 ],
+                 "id" : "multiline",
+                 "string label" : "Multi-line (add \\n)",
+                 "xtype" : "CheckButton"
+                }
                ],
-               "id" : "case_sensitive",
-               "string label" : "Case Sensitive",
-               "xtype" : "CheckButton"
-              },
-              {
-               "$ xns" : "Gtk",
-               "* init" : [
-                "{",
-                "\tthis.el.show();",
-                "}",
-                ""
-               ],
-               "id" : "regex",
-               "string label" : "Regex",
-               "xtype" : "CheckButton"
-              },
-              {
-               "$ xns" : "Gtk",
-               "* init" : [
-                "{",
-                "\tthis.el.show();",
-                "}",
-                ""
-               ],
-               "id" : "multiline",
-               "string label" : "Multi-line (add \\n)",
-               "xtype" : "CheckButton"
+               "xtype" : "Box"
               }
              ],
              "xtype" : "Popover"

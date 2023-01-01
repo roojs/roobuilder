@@ -2102,6 +2102,30 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_Box26( _this );
+            child_0.ref();
+            this.el.child = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Box26 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_WindowRooView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box26(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
             var child_0 = new Xcls_case_sensitive( _this );
             child_0.ref();
             this.el.append(  child_0.el );
@@ -2204,6 +2228,7 @@ public class Xcls_WindowRooView : Object
 
         // user defined functions
     }
+
 
 
 
