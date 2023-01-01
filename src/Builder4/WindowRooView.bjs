@@ -1355,11 +1355,9 @@
           {
            "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add",
              "bool always_show_image" : true,
              "bool visible" : false,
              "id" : "search_results",
@@ -1431,6 +1429,7 @@
              ""
             ]
            },
+           "string icon_name" : "\"\"",
            "string label" : "Next",
            "xtype" : "Button"
           },

@@ -1759,7 +1759,7 @@ public class Xcls_WindowRooView : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_Box20( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_nextBtn( _this );
             child_2.ref();
             this.el.append(  child_2.el );
@@ -1917,7 +1917,7 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append(  child_0.el );
         }
 
         // user defined functions
@@ -2004,6 +2004,7 @@ public class Xcls_WindowRooView : Object
             this.always_show_image = true;
 
             // set gobject values
+            this.el.icon_name = "\"\"";
             this.el.label = "Next";
             this.el.sensitive = false;
             var child_0 = new Xcls_Image23( _this );
