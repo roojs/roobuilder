@@ -687,28 +687,6 @@ public class Xcls_WindowRooView : Object
             this.el.show.connect( ( ) => {
                 this.initInspector();;
             });
-            this.el.drag_drop.connect( ( ctx, x, y,time, ud) => {
-                return false;
-                /*
-            	print("TARGET: drag-drop");
-                    var is_valid_drop_site = true;
-                    
-                     
-                    Gtk.drag_get_data
-                    (
-                            w,         // will receive 'drag-data-received' signal 
-                            ctx,        /* represents the current state of the DnD 
-                            this.get('/Window').atoms["STRING"],    /* the target type we want 
-                            time            /* time stamp 
-                    );
-                                    
-                                    
-                                    /* No target offered by source => error 
-                                   
-            
-            	return  is_valid_drop_site;
-            	*/
-            });
             this.el.load_changed.connect( (le) => {
                 if (le != WebKit.LoadEvent.FINISHED) {
                     return;
