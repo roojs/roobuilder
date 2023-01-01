@@ -821,8 +821,8 @@ public class Xcls_WindowRooView : Object
              _this.viewbox.el.append(nv.el);
                  
                  _this.viewcontainer = nv;
-             inv.el.show_all();
-             nv.el.show_all();
+             inv.el.show();
+             nv.el.show();
                  //while(Gtk.events_pending ()) Gtk.main_iteration ();
                  //_this.view.renderJS(true); 
              _this.view.refreshRequired  = true;
