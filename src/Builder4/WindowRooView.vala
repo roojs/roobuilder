@@ -401,7 +401,7 @@ public class Xcls_WindowRooView : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_Box7( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,true,0 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_viewcontainer( _this );
             child_1.ref();
             this.el.end_child (  child_1.el  );
@@ -431,13 +431,13 @@ public class Xcls_WindowRooView : Object
             this.el.vexpand = false;
             var child_0 = new Xcls_Button8( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false,0 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_AutoRedraw( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , false,false,0 );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_Button10( _this );
             child_2.ref();
-            this.el.pack_start (  child_2.el , false,false,0 );
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -554,7 +554,7 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             var child_0 = new Xcls_view( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.set_child (  child_0.el  );
 
             // init method
 
