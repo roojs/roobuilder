@@ -1542,7 +1542,7 @@
     "\tGtk.TextIter beg, st,en;",
     "\tbool has_wrapped_around;",
     "\tthis.buffer.el.get_start_iter(out beg);",
-    "\tthis.searchcontext.forward2(beg, out st, out en, out has_wrapped_around);",
+    "\tthis.searchcontext.forward(beg, out st, out en, out has_wrapped_around);",
     "\tthis.last_search_end = 0;",
     "\t",
     "\treturn this.searchcontext.get_occurrences_count();",

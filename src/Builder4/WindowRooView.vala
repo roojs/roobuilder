@@ -219,7 +219,7 @@ public class Xcls_WindowRooView : Object
     	Gtk.TextIter beg, st,en;
     	bool has_wrapped_around;
     	this.buffer.el.get_start_iter(out beg);
-    	this.searchcontext.forward2(beg, out st, out en, out has_wrapped_around);
+    	this.searchcontext.forward(beg, out st, out en, out has_wrapped_around);
     	this.last_search_end = 0;
     	
     	return this.searchcontext.get_occurrences_count();
