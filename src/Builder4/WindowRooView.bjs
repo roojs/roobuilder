@@ -520,7 +520,7 @@
           " ",
           ""
          ],
-         "* pack" : "end_child",
+         "* pack" : "set_end_child",
          "id" : "inspectorcontainer",
          "xtype" : "ScrolledWindow"
         }
