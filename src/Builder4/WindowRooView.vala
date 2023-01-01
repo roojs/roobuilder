@@ -812,7 +812,7 @@ public class Xcls_WindowRooView : Object
                  //_this.inspectorcontainer.el.destroy();
              var  inv =new Xcls_inspectorcontainer(_this);
               
-              _this.paned.el.end_child(inv.el,);
+              _this.paned.el.end_child(inv.el);
               _this.inspectorcontainer = inv;
               
              this.el = null;         
