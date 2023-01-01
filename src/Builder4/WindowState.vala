@@ -235,8 +235,8 @@ public class WindowState : Object
 		      
 		// remove this.ldeftree from this.win.leftpane
 		this.win.leftpane.el.remove(this.left_tree.el);
-		this.win.tree.el.add(this.left_tree.el);
-		this.win.leftpane.el.add(this.win.editpane.el);
+		this.win.tree.el.append(this.left_tree.el);
+		this.win.leftpane.el.append(this.win.editpane.el);
 		
 		
 		
@@ -245,8 +245,7 @@ public class WindowState : Object
 		// at start (hidden) - outer  = 400 inner = 399
 		// expanded out -> outer = 686, inner = 399 
 		//this.win.props.el.pack_start(this.left_props.el,true, true,0);
-		this.left_props.el.show_all();
-		//if (!this.left_props.el.visible) {
+		this.left_props.el.show();		//if (!this.left_props.el.visible) {
 		 
   			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
   			outerpane.set_position(this.tree_width + this.props_width);
