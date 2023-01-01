@@ -15,7 +15,6 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "* pack" : "pack_start,true,true,0",
      "id" : "notebook",
      "items" : [
       {
