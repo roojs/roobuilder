@@ -1410,14 +1410,6 @@
            "bool always_show_image" : true,
            "bool sensitive" : false,
            "id" : "nextBtn",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "image",
-             "string icon_name" : "go-down",
-             "xtype" : "Image"
-            }
-           ],
            "listeners" : {
             "button_press_event" : [
              "(event) => {",
@@ -1429,7 +1421,7 @@
              ""
             ]
            },
-           "string icon_name" : "\"\"",
+           "string icon_name" : "go-down",
            "string label" : "Next",
            "xtype" : "Button"
           },
