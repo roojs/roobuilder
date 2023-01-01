@@ -728,7 +728,7 @@ public class Xcls_WindowRooView : Object
                          _this.inspectorcontainer.el.set_child(null);
                      }
                     
-                    _this.inspectorcontainer.el.add(wv);
+                    _this.inspectorcontainer.el.set_child(wv);
                     wv.show();
                 } else {
                     //this.inspector.close();
