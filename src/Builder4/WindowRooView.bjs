@@ -40,7 +40,7 @@
         {
          "$ homogeneous" : false,
          "$ xns" : "Gtk",
-         "* pack" : "pack1,true,true",
+         "* pack" : "start_child",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "id" : "viewbox",
          "items" : [
@@ -109,7 +109,7 @@
             " ",
             ""
            ],
-           "* pack" : "pack_end,true,true,0",
+           "* pack" : "end_child",
            "id" : "viewcontainer",
            "items" : [
             {

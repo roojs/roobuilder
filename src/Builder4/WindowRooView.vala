@@ -372,7 +372,7 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             var child_0 = new Xcls_viewbox( _this );
             child_0.ref();
-            this.el.pack1 (  child_0.el , true,true );
+            this.el.start_child (  child_0.el  );
             var child_1 = new Xcls_inspectorcontainer( _this );
             child_1.ref();
             this.el.pack2 (  child_1.el , true,true );
@@ -404,7 +404,7 @@ public class Xcls_WindowRooView : Object
             this.el.pack_start (  child_0.el , false,true,0 );
             var child_1 = new Xcls_viewcontainer( _this );
             child_1.ref();
-            this.el.pack_end (  child_1.el , true,true,0 );
+            this.el.end_child (  child_1.el  );
         }
 
         // user defined functions
