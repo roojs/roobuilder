@@ -725,7 +725,7 @@ public class Xcls_WindowRooView : Object
                     
                     var cn = _this.inspectorcontainer.el.get_child();
                     if (cn != null) {
-                         _this.inspectorcontainer.el.remove(cn);
+                         _this.inspectorcontainer.el.set_child(null);
                      }
                     
                     _this.inspectorcontainer.el.add(wv);
