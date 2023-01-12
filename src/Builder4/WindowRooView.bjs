@@ -841,7 +841,7 @@
                "\tprint(\"BUTTON RELEASE EVENT\\n\");",
                "\t_this.sourceview.onCursorChanged();",
                "\t//this.button_is_pressed = false;",
-               "\treturn false;",
+               "\t ",
                "}",
                ""
               ]

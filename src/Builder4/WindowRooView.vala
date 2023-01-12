@@ -1761,7 +1761,7 @@ public class Xcls_WindowRooView : Object
             	print("BUTTON RELEASE EVENT\n");
             	_this.sourceview.onCursorChanged();
             	//this.button_is_pressed = false;
-            	return false;
+            	 
             });
         }
 
