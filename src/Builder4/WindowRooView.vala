@@ -241,7 +241,7 @@ public class Xcls_WindowRooView : Object
      
         var filename = this.file.getIconFileName();
         
-        var  win = this.el.get_parent_window();
+        var  win = this.el.get_root();
         var width = win.get_width();
         var height = win.get_height();
         try {
