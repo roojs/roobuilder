@@ -87,7 +87,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.has_frame = true;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.set_child (  child_0.el  );
             var child_1 = new Xcls_LeftTreeMenu( _this );
             child_1.ref();
 

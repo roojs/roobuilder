@@ -80,7 +80,7 @@
         "}",
         ""
        ],
-       "* pack" : "add",
+       "* pack" : "set_child",
        "Boolean id" : "view",
        "Gtk.CssProvider css" : "",
        "bool button_is_pressed" : false,
