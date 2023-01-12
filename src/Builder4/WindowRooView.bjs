@@ -1316,22 +1316,6 @@
              "bool always_show_image" : true,
              "bool visible" : false,
              "id" : "search_results",
-             "listeners" : {
-              "clicked" : [
-               "() => {",
-               "/*",
-               "    if (this.popup == null) {",
-               "        this.popup = new Xcls_ValaCompileErrors();",
-               "        this.popup.window = _this;",
-               "    }",
-               "   ",
-               "    ",
-               "    this.popup.show(this.notices, this.el);",
-               "    */",
-               "    return true;",
-               "}"
-              ]
-             },
              "xtype" : "Button",
              "| void updateResults" : [
               "() {",

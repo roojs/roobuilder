@@ -1970,20 +1970,6 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.visible = false;
-
-            //listeners
-            this.el.clicked.connect( () => {
-            /*
-                if (this.popup == null) {
-                    this.popup = new Xcls_ValaCompileErrors();
-                    this.popup.window = _this;
-                }
-               
-                
-                this.popup.show(this.notices, this.el);
-                */
-                return true;
-            });
         }
 
         // user defined functions
