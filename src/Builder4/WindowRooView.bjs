@@ -838,7 +838,10 @@
               "released" : [
                "(n_press, x, y) => {",
                "",
-               "",
+               "\tprint(\"BUTTON RELEASE EVENT\\n\");",
+               "\t_this.sourceview.onCursorChanged();",
+               "\t//this.button_is_pressed = false;",
+               "\treturn false;",
                "}",
                ""
               ]
@@ -846,25 +849,6 @@
              "xtype" : "GestureClick"
             }
            ],
-           "listeners" : {
-            "button_press_event" : [
-             "( ) => {",
-             " ",
-             "\tthis.button_is_pressed = true;",
-             "\treturn false;",
-             "}\t ",
-             ""
-            ],
-            "button_release_event" : [
-             "() => {",
-             "",
-             "\tprint(\"BUTTON RELEASE EVENT\\n\");",
-             "\tthis.onCursorChanged();",
-             "\tthis.button_is_pressed = false;",
-             "\treturn false;",
-             "}"
-            ]
-           },
            "string name" : "roo-view",
            "xtype" : "View",
            "| string toString" : [

@@ -1169,20 +1169,6 @@ public class Xcls_WindowRooView : Object
                 
                 
             }
-
-            //listeners
-            this.el.button_release_event.connect( () => {
-            
-            	print("BUTTON RELEASE EVENT\n");
-            	this.onCursorChanged();
-            	this.button_is_pressed = false;
-            	return false;
-            });
-            this.el.button_press_event.connect( ( ) => {
-             
-            	this.button_is_pressed = true;
-            	return false;
-            });
         }
 
         // user defined functions
@@ -1772,7 +1758,10 @@ public class Xcls_WindowRooView : Object
             //listeners
             this.el.released.connect( (n_press, x, y) => {
             
-            
+            	print("BUTTON RELEASE EVENT\n");
+            	_this.sourceview.onCursorChanged();
+            	//this.button_is_pressed = false;
+            	return false;
             });
         }
 
