@@ -2072,7 +2072,7 @@ public class Xcls_WindowRooView : Object
             this.el.sensitive = false;
 
             //listeners
-            this.el.button_press_event.connect( (event) => {
+            this.el.clicked.connect( (event) => {
             
             	_this.backSearch(true);
             	

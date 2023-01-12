@@ -1386,7 +1386,7 @@
            "bool sensitive" : false,
            "id" : "backBtn",
            "listeners" : {
-            "button_press_event" : [
+            "clicked" : [
              "(event) => {",
              "",
              "\t_this.backSearch(true);",
