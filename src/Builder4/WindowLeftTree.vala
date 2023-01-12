@@ -1695,7 +1695,7 @@ typeof(Gdk.Pixbuf) }  );
 
     public class Xcls_LeftTreeMenu : Object
     {
-        public Gtk.PopoverMenu el;
+        public Gtk.Popover el;
         private Xcls_WindowLeftTree  _this;
 
 
@@ -1706,7 +1706,7 @@ typeof(Gdk.Pixbuf) }  );
         {
             _this = _owner;
             _this.LeftTreeMenu = this;
-            this.el = new Gtk.PopoverMenu();
+            this.el = new Gtk.Popover();
 
             // my vars (dec)
 

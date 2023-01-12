@@ -1691,7 +1691,7 @@
          "xtype" : "Button"
         }
        ],
-       "xtype" : "PopoverMenu"
+       "xtype" : "Popover"
       }
      ],
      "listeners" : {
