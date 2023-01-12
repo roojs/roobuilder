@@ -1316,9 +1316,9 @@ public class Xcls_WindowRooView : Object
         
         
         	// not sure why....   
-            while(Gtk.events_pending()) {
-                Gtk.main_iteration();
-            }
+          //  while(Gtk.events_pending()) {
+           //     Gtk.main_iteration();
+         //   }
             
             this.node_selected = sel;
             
