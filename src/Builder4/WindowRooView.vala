@@ -2036,11 +2036,10 @@ public class Xcls_WindowRooView : Object
             this.el.sensitive = false;
 
             //listeners
-            this.el.button_press_event.connect( (event) => {
+            this.el.clicked.connect( (event) => {
             
             	_this.forwardSearch(true);
-            	
-            	return true;
+            	 
             });
         }
 
@@ -2076,7 +2075,7 @@ public class Xcls_WindowRooView : Object
             
             	_this.backSearch(true);
             	
-            	return true;
+            	 
             });
         }
 
