@@ -4,7 +4,6 @@
   {
    "# Xcls_MainWindow main_window" : "null",
    "$ xns" : "Gtk",
-   "* pack" : "add",
    "@ bool before_node_change" : "()",
    "@ void changed" : "()",
    "@ void node_selected" : "(JsRender.Node? node, string source)",
@@ -18,7 +17,6 @@
       " ",
       ""
      ],
-     "* pack" : "add",
      "bool has_frame" : true,
      "id" : "viewwin",
      "items" : [

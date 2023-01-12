@@ -39,7 +39,7 @@ public class Xcls_WindowLeftTree : Object
         // set gobject values
         var child_0 = new Xcls_viewwin( _this );
         child_0.ref();
-        this.el.add (  child_0.el  );
+        this.el.append(  child_0.el );
     }
 
     // user defined functions
