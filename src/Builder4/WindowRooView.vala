@@ -1180,26 +1180,6 @@ public class Xcls_WindowRooView : Object
             	this.button_is_pressed = true;
             	return false;
             });
-            this.el.key_press_event.connect( (event) => {
-            	
-            	if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            	    GLib.debug("SAVE: ctrl-g  pressed");
-            		_this.forwardSearch(true);
-            	    return true;
-            	}
-            	if (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            	    GLib.debug("SAVE: ctrl-f  pressed");
-            		_this.search_entry.el.grab_focus();
-            	    return true;
-            	}
-                
-            	this.button_is_pressed = true;
-            	return false;
-            });
-            this.el.key_release_event.connect( () => { 
-            	this.key_is_pressed = false;
-            	return false;
-            });
         }
 
         // user defined functions

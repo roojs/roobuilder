@@ -850,32 +850,6 @@
              "\tthis.button_is_pressed = false;",
              "\treturn false;",
              "}"
-            ],
-            "key_press_event" : [
-             " (event) => {",
-             "\t",
-             "\tif (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-             "\t    GLib.debug(\"SAVE: ctrl-g  pressed\");",
-             "\t\t_this.forwardSearch(true);",
-             "\t    return true;",
-             "\t}",
-             "\tif (event.keyval == Gdk.Key.f && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-             "\t    GLib.debug(\"SAVE: ctrl-f  pressed\");",
-             "\t\t_this.search_entry.el.grab_focus();",
-             "\t    return true;",
-             "\t}",
-             "    ",
-             "\tthis.button_is_pressed = true;",
-             "\treturn false;",
-             "}\t ",
-             " "
-            ],
-            "key_release_event" : [
-             "() => { ",
-             "\tthis.key_is_pressed = false;",
-             "\treturn false;",
-             "}",
-             ""
             ]
            },
            "string name" : "roo-view",
