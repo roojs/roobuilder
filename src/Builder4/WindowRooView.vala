@@ -1765,7 +1765,8 @@ public class Xcls_WindowRooView : Object
             });
             this.el.key_pressed.connect( (keyval, keycode, state) => {
             
-            	return bool;
+            	_this.sourceview.button_is_pressed = true;
+            	return false;
             });
         }
 

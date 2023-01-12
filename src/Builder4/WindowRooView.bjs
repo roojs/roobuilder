@@ -802,7 +802,8 @@
               "key_pressed" : [
                "(keyval, keycode, state) => {",
                "",
-               "\treturn bool;",
+               "\t_this.sourceview.button_is_pressed = true;",
+               "\treturn false;",
                "}",
                ""
               ],
