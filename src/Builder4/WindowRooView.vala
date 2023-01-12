@@ -244,12 +244,15 @@ public class Xcls_WindowRooView : Object
         var  win = this.el.get_root();
         var width = win.get_width();
         var height = win.get_height();
-        try {
-             Gdk.Pixbuf screenshot = Gdk.pixbuf_get_from_window(win, 0, 0, width, height); // this.el.position?
-             screenshot.save(filename,"png");
-        } catch (Error e) {
-            
-        }
+        
+        
+          
+        var	screenshot = Gdk.pixbuf_get_from_surface (
+        		win.get_surface().create_similar_surface(Cairo.Content.COLOR, width,height), 
+        		0,0,  width,  height);
+    
+             this.file.writeIcon(screenshot);
+        
     
         
          
