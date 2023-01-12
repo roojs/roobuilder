@@ -1734,6 +1734,35 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.key_released.connect( (keyval, keycode, state) => {
+            
+             
+                
+                if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                    GLib.debug("SAVE: ctrl-S  pressed");
+                    _this.saveContents();
+                    return;
+                }
+                
+                if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return;
+            	}
+            	if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-f  pressed");
+            		_this.search_entry.el.grab_focus();
+            	    return;
+            	}
+                
+               // print(event.key.keyval)
+                
+                return;
+             
+             
+            });
         }
 
         // user defined functions
