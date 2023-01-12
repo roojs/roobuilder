@@ -802,14 +802,6 @@
               "key_pressed" : [
                "(keyval, keycode, state) => {",
                "",
-               "\t_this.sourceview.button_is_pressed = true;",
-               "\treturn false;",
-               "}",
-               ""
-              ],
-              "key_released" : [
-               "(keyval, keycode, state) => {",
-               "",
                " ",
                "    ",
                "    if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",

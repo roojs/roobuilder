@@ -1736,7 +1736,7 @@ public class Xcls_WindowRooView : Object
             // set gobject values
 
             //listeners
-            this.el.key_released.connect( (keyval, keycode, state) => {
+            this.el.key_pressed.connect( (keyval, keycode, state) => {
             
              
                 
@@ -1762,11 +1762,6 @@ public class Xcls_WindowRooView : Object
                 return;
              
              
-            });
-            this.el.key_pressed.connect( (keyval, keycode, state) => {
-            
-            	_this.sourceview.button_is_pressed = true;
-            	return false;
             });
         }
 
