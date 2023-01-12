@@ -1768,6 +1768,12 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.released.connect( (n_press, x, y) => {
+            
+            
+            });
         }
 
         // user defined functions
