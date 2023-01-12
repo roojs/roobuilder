@@ -1972,7 +1972,7 @@ public class Xcls_WindowRooView : Object
             this.el.visible = false;
 
             //listeners
-            this.el.button_press_event.connect( () => {
+            this.el.clicked.connect( () => {
             /*
                 if (this.popup == null) {
                     this.popup = new Xcls_ValaCompileErrors();

@@ -1317,7 +1317,7 @@
              "bool visible" : false,
              "id" : "search_results",
              "listeners" : {
-              "button_press_event" : [
+              "clicked" : [
                "() => {",
                "/*",
                "    if (this.popup == null) {",
