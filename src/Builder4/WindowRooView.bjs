@@ -799,6 +799,13 @@
              "$ xns" : "Gtk",
              "* pack" : "add_controller",
              "listeners" : {
+              "key_pressed" : [
+               "(keyval, keycode, state) => {",
+               "",
+               "\treturn bool;",
+               "}",
+               ""
+              ],
               "key_released" : [
                "(keyval, keycode, state) => {",
                "",
