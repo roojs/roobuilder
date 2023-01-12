@@ -1021,7 +1021,7 @@ public class Xcls_WindowRooView : Object
             var child_0 = new Xcls_ScrolledWindow15( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box18( _this );
+            var child_1 = new Xcls_Box19( _this );
             child_1.ref();
             this.el.append(  child_1.el );
         }
@@ -1091,6 +1091,9 @@ public class Xcls_WindowRooView : Object
             var child_0 = new Xcls_buffer( _this );
             child_0.ref();
             this.el.set_buffer (  child_0.el  );
+            var child_1 = new Xcls_EventControllerKey18( _this );
+            child_1.ref();
+            this.el.add_controller (  child_1.el  );
 
             // init method
 
@@ -1714,9 +1717,60 @@ public class Xcls_WindowRooView : Object
         }
     }
 
+    public class Xcls_EventControllerKey18 : Object
+    {
+        public Gtk.EventControllerKey el;
+        private Xcls_WindowRooView  _this;
 
 
-    public class Xcls_Box18 : Object
+            // my vars (def)
+
+        // ctor
+        public Xcls_EventControllerKey18(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.EventControllerKey();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.key_released.connect( (keyval, keycode, state) => {
+            
+             
+                
+                if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+                    GLib.debug("SAVE: ctrl-S  pressed");
+                    _this.saveContents();
+                    return;
+                }
+                
+                if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return;
+            	}
+            	if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-f  pressed");
+            		_this.search_entry.el.grab_focus();
+            	    return;
+            	}
+                
+               // print(event.key.keyval)
+                
+                return;
+             
+             
+            });
+        }
+
+        // user defined functions
+    }
+
+
+
+    public class Xcls_Box19 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowRooView  _this;
@@ -1725,7 +1779,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box18(Xcls_WindowRooView _owner )
+        public Xcls_Box19(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1738,7 +1792,7 @@ public class Xcls_WindowRooView : Object
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box20( _this );
+            var child_1 = new Xcls_Box21( _this );
             child_1.ref();
             this.el.append(  child_1.el );
             var child_2 = new Xcls_nextBtn( _this );
@@ -1747,7 +1801,7 @@ public class Xcls_WindowRooView : Object
             var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
             this.el.append(  child_3.el );
-            var child_4 = new Xcls_MenuButton24( _this );
+            var child_4 = new Xcls_MenuButton25( _this );
             child_4.ref();
             this.el.append(  child_4.el );
         }
@@ -1879,7 +1933,7 @@ public class Xcls_WindowRooView : Object
         }
     }
 
-    public class Xcls_Box20 : Object
+    public class Xcls_Box21 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowRooView  _this;
@@ -1888,7 +1942,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box20(Xcls_WindowRooView _owner )
+        public Xcls_Box21(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -2037,7 +2091,7 @@ public class Xcls_WindowRooView : Object
         // user defined functions
     }
 
-    public class Xcls_MenuButton24 : Object
+    public class Xcls_MenuButton25 : Object
     {
         public Gtk.MenuButton el;
         private Xcls_WindowRooView  _this;
@@ -2047,7 +2101,7 @@ public class Xcls_WindowRooView : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_MenuButton24(Xcls_WindowRooView _owner )
+        public Xcls_MenuButton25(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -2083,14 +2137,14 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box26( _this );
+            var child_0 = new Xcls_Box27( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box26 : Object
+    public class Xcls_Box27 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowRooView  _this;
@@ -2099,7 +2153,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box26(Xcls_WindowRooView _owner )
+        public Xcls_Box27(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
