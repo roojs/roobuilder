@@ -1712,23 +1712,23 @@ public class Xcls_WindowRooView : Object
                 if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
                     GLib.debug("SAVE: ctrl-S  pressed");
                     _this.saveContents();
-                    return;
+                    return false;
                 }
                 
                 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-g  pressed");
             		_this.forwardSearch(true);
-            	    return;
+            	    return false;
             	}
             	if (keyval == Gdk.Key.f && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-f  pressed");
             		_this.search_entry.el.grab_focus();
-            	    return;
+            	    return false;
             	}
                 
                // print(event.key.keyval)
                 
-                return;
+                return false;
              
              
             });
