@@ -1763,7 +1763,7 @@ public class Xcls_WindowRooView : Object
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box21( _this );
+            var child_1 = new Xcls_Box22( _this );
             child_1.ref();
             this.el.append(  child_1.el );
             var child_2 = new Xcls_nextBtn( _this );
@@ -1772,7 +1772,7 @@ public class Xcls_WindowRooView : Object
             var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
             this.el.append(  child_3.el );
-            var child_4 = new Xcls_MenuButton25( _this );
+            var child_4 = new Xcls_MenuButton26( _this );
             child_4.ref();
             this.el.append(  child_4.el );
         }
@@ -1802,6 +1802,9 @@ public class Xcls_WindowRooView : Object
             this.el.name = "roo-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
+            var child_0 = new Xcls_EventControllerKey21( _this );
+            child_0.ref();
+            this.el.add_controller(  child_0.el );
 
             // init method
 
@@ -1811,68 +1814,6 @@ public class Xcls_WindowRooView : Object
             	} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-            //listeners
-            this.el.key_press_event.connect( (event) => {
-                 if (event.keyval == Gdk.Key.g && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            	    GLib.debug("SAVE: ctrl-g  pressed");
-            		_this.forwardSearch(true);
-            	    return true;
-            	}
-                
-              
-             	if (event.keyval == Gdk.Key.Return && this.el.text.length > 0) {
-            		 _this.search(this.el.text);
-            		 _this.search_results.updateResults();
-            
-            		GLib.Timeout.add_seconds(2,() => {
-            			 _this.search_results.updateResults();
-            			 return false;
-            		 });
-            	 
-            		
-            	    return true;
-            
-            	}    
-               // print(event.key.keyval)
-               
-                return false;
-            
-            });
-            this.el.changed.connect( () => {
-            	/*
-            	if (this.el.text == "") {
-            		_this.search_results.el.hide();
-            		return;
-            	}
-            	var res = 0;
-            	switch(_this.windowstate.state) {
-            		case WindowState.State.CODEONLY:
-            		///case WindowState.State.CODE:
-            			// search the code being edited..
-            			res = _this.windowstate.code_editor_tab.search(this.el.text);
-            			
-            			break;
-            		case WindowState.State.PREVIEW:
-            			if (_this.windowstate.file.xtype == "Gtk") {
-            				 res = _this.windowstate.window_gladeview.search(this.el.text);
-            			} else { 
-            				 res = _this.windowstate.window_rooview.search(this.el.text);			
-            			}
-            		
-            		
-            			break;
-            	}
-            	_this.search_results.el.show();
-            	if (res > 0) {
-            		_this.search_results.el.label = "%d Matches".printf(res);
-            	} else {
-            		_this.search_results.el.label = "No Matches";
-            	}
-            		
-            	*/
-            	
-            });
         }
 
         // user defined functions
@@ -1903,8 +1844,59 @@ public class Xcls_WindowRooView : Object
         	
         }
     }
+    public class Xcls_EventControllerKey21 : Object
+    {
+        public Gtk.EventControllerKey el;
+        private Xcls_WindowRooView  _this;
 
-    public class Xcls_Box21 : Object
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_EventControllerKey21(Xcls_WindowRooView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.EventControllerKey();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.key_pressed.connect( (keyval, keycode, state) => {
+            
+            	if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
+            	}
+                
+              
+             	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
+            		//var res =
+            		 _this.search(_this.search_entry.el.text);
+            		 _this.search_results.updateResults();
+            
+            		GLib.Timeout.add_seconds(2,() => {
+            			 _this.search_results.updateResults();
+            			 return false;
+            		 });
+            	 
+            		
+            	    return true;
+            
+            	}    
+               // print(event.key.keyval)
+               
+                return false;
+            });
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Box22 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowRooView  _this;
@@ -1913,7 +1905,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box21(Xcls_WindowRooView _owner )
+        public Xcls_Box22(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -2062,7 +2054,7 @@ public class Xcls_WindowRooView : Object
         // user defined functions
     }
 
-    public class Xcls_MenuButton25 : Object
+    public class Xcls_MenuButton26 : Object
     {
         public Gtk.MenuButton el;
         private Xcls_WindowRooView  _this;
@@ -2072,7 +2064,7 @@ public class Xcls_WindowRooView : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_MenuButton25(Xcls_WindowRooView _owner )
+        public Xcls_MenuButton26(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -2108,14 +2100,14 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box27( _this );
+            var child_0 = new Xcls_Box28( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box27 : Object
+    public class Xcls_Box28 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowRooView  _this;
@@ -2124,7 +2116,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box27(Xcls_WindowRooView _owner )
+        public Xcls_Box28(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
