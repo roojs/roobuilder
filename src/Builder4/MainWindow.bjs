@@ -254,10 +254,11 @@
            ],
            "listeners" : {
             "accept_position" : [
-             "() => {",
-             "\tGLib.debug(\"Accept postion\");",
+             "( ) => {",
+             "\t_this.windowstate.left_tree.onresize()",
              "\treturn true;",
-             "}"
+             "}",
+             ""
             ],
             "move_handle" : [
              "(scroll) => {",

@@ -592,8 +592,8 @@ public class Xcls_MainWindow : Object
             this.el.end_child = child_1.el;
 
             //listeners
-            this.el.accept_position.connect( () => {
-            	GLib.debug("Accept postion");
+            this.el.accept_position.connect( ( ) => {
+            	_this.windowstate.left_tree.onresize()
             	return true;
             });
             this.el.move_handle.connect( (scroll) => {
