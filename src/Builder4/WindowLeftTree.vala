@@ -51,8 +51,6 @@ public class Xcls_WindowLeftTree : Object
     	 	_this.viewwin.el.get_width()  - 32
      	);
     }
-    
-    }
     public string getActivePath () {
         
         var view = this.view.el;
