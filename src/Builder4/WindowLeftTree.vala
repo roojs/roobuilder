@@ -1010,6 +1010,7 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public DialogTemplateSelect template_select;
+        public bool template_connected;
         public string activePath;
 
         // ctor
@@ -1025,6 +1026,7 @@ typeof(Gdk.Pixbuf) }  );
 
             // my vars (dec)
             this.template_select = null;
+            this.template_connected = false;
             this.activePath = "";
 
             // set gobject values
@@ -1327,9 +1329,7 @@ typeof(Gdk.Pixbuf) }  );
                 
                 JsRender.Node parentNode = null;
                 
-                Gtk.TreeIter iter_after;
-                Gtk.TreeIter iter_par ;
-                
+             
                	// this appears to be done in drag_ddata_recieved as well.
                  if (target_data.length == 3 && target_data[2].length > 0) {
         	         node.set_prop(new JsRender.NodeProp.special("prop", target_data[2]));
@@ -1341,13 +1341,24 @@ typeof(Gdk.Pixbuf) }  );
                 // we only need to show the template if it's come from else where?
                  if (show_templates) {
                  
-                     var ts = _this.main_window.windowstate.template_select;
+                	var ts = _this.main_window.windowstate.template_select;
                  
-                     var new_node = ts.show(
+                 
+                 	ts.complete.connect((node) => {
+                 		 this.dropNode(target_date_str, node, false);
+                 		 
+                 	}
+                 	
+                    ts.show_it(
                           _this.main_window, // (Gtk.Window) _this.el.get_toplevel (),
                          _this.main_window.windowstate.file.palete(),
-                            node,
-                            _this.main_window.windowstate.project);
+                          node,
+                          _this.main_window.windowstate.project)
+                      ;
+                           
+                           
+                           
+                           
                            
                      if (new_node == null) {
                          return; // do not add?
@@ -1358,7 +1369,11 @@ typeof(Gdk.Pixbuf) }  );
                  //print("pos is %d  \n".printf(pos));
                 
                  Gtk.TreeIter n_iter; 
-                 
+                 Gtk.TreeIter iter_after;
+                 Gtk.TreeIter iter_par ;
+                
+                
+                
                  if ( parent_str.length < 1) {
                       this.el.append(out n_iter, null); // drop at top level..
                       node.parent = null;
