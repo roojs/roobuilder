@@ -1883,11 +1883,18 @@ typeof(Gdk.Pixbuf) }  );
             //listeners
             this.el.activate.connect( () => {
                 var node = _this.getActiveElement();
-                 var name = DialogSaveModule.singleton().show(
+                 var name = 
+                 
+                 var sm = DialogSaveModule.singleton();
+                 
+                 
+                sm.showIt(
                         (Gtk.Window) _this.el.get_toplevel (), 
                         _this.main_window.windowstate.project, 
                         node
                  );
+                 /*
+                 
                  if (name.length < 1) {
                         return;
               
@@ -1918,7 +1925,7 @@ typeof(Gdk.Pixbuf) }  );
                 }
                 _this.changed();
                 _this.node_selected(node, "tree");
-                 
+                 */
                 
             });
         }
