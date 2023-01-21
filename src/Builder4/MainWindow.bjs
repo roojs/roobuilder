@@ -294,6 +294,15 @@
          "xtype" : "Box"
         }
        ],
+       "listeners" : {
+        "accept_position" : [
+         "( ) => {",
+         "\t_this.windowstate.left_tree.onresize()",
+         "\treturn true;",
+         "}",
+         ""
+        ]
+       },
        "position" : 400,
        "xtype" : "Paned"
       },

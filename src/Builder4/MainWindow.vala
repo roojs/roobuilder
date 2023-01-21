@@ -531,6 +531,12 @@ public class Xcls_MainWindow : Object
             var child_1 = new Xcls_Box17( _this );
             child_1.ref();
             this.el.end_child = child_1.el;
+
+            //listeners
+            this.el.accept_position.connect( ( ) => {
+            	_this.windowstate.left_tree.onresize()
+            	return true;
+            });
         }
 
         // user defined functions
