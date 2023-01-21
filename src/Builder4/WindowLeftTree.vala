@@ -44,6 +44,13 @@ public class Xcls_WindowLeftTree : Object
 
     // user defined functions
     public void onresize () {
+     
+    	 
+    	//GLib.debug("Got allocation width of scrolled view %d", allocation.width );
+    	_this.maincol.el.set_max_width(
+    	 	_this.viewwin.el.get_width()  - 32
+     	);
+    }
     
     }
     public string getActivePath () {

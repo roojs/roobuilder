@@ -1749,6 +1749,13 @@
    ],
    "| void onresize" : [
     "() {",
+    " ",
+    "\t ",
+    "\t//GLib.debug(\"Got allocation width of scrolled view %d\", allocation.width );",
+    "\t_this.maincol.el.set_max_width(",
+    "\t \t_this.viewwin.el.get_width()  - 32",
+    " \t);",
+    "}",
     "",
     "}"
    ]
