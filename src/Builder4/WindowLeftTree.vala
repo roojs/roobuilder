@@ -1313,32 +1313,9 @@ typeof(Gdk.Pixbuf) }  );
           
                 // 0 = before , 1=after 2/3 onto
           
-          		GLib.debug("dropNode %s", target_data_str);
-                
-                var target_data= target_data_str.split("|");
-          
-                var parent_str = target_data[0].length > 0 ? target_data[0] : "";
-                var pos = target_data.length > 1 ? int.parse(target_data[1]) : 2; // ontop..
           
           
-                Gtk.TreePath tree_path  =   parent_str.length > 0 ? new  Gtk.TreePath.from_string( parent_str ) : null;
-                
-                
-                
-                //print("add " + tp + "@" + target_data[1]  );
-                
-                JsRender.Node parentNode = null;
-                
-             
-               	// this appears to be done in drag_ddata_recieved as well.
-                 if (target_data.length == 3 && target_data[2].length > 0) {
-        	         node.set_prop(new JsRender.NodeProp.special("prop", target_data[2]));
-        
-                }
-        
-                Gtk.TreePath expand_parent = null;
-                
-                // we only need to show the template if it's come from else where?
+            // we only need to show the template if it's come from else where?
                  if (show_templates) {
                  
                 	var ts = _this.main_window.windowstate.template_select;
@@ -1358,14 +1335,38 @@ typeof(Gdk.Pixbuf) }  );
                           _this.main_window.windowstate.project
                   	);
                     return;
-                           
-                           
-                           
                       
-                }        
+                }   
+          
+          		GLib.debug("dropNode %s", target_data_str);
+                
+                var target_data = target_data_str.split("|");
+          
+                var parent_str = target_data[0].length > 0 ? target_data[0] : "";
+                var pos = target_data.length > 1 ? int.parse(target_data[1]) : 2; // ontop..
+          
+          
+                Gtk.TreePath tree_path  =   parent_str.length > 0 ? new  Gtk.TreePath.from_string( parent_str ) : null;
+                
+                
+                
+                //print("add " + tp + "@" + target_data[1]  );
+                
+             
+               	// this appears to be done in drag_ddata_recieved as well.
+                 if (target_data.length == 3 && target_data[2].length > 0) {
+        	         node.set_prop(new JsRender.NodeProp.special("prop", target_data[2]));
+        
+                }
+        
+                
+                
+                   
                 
                  //print("pos is %d  \n".printf(pos));
-                
+                 Gtk.TreePath expand_parent = null;
+                 JsRender.Node parentNode = null;
+               
                  Gtk.TreeIter n_iter; 
                  Gtk.TreeIter iter_after;
                  Gtk.TreeIter iter_par ;
