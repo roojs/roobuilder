@@ -500,7 +500,7 @@
           "\t\t     \tts.complete.connect((node) => {",
           "\t\t     \t\t this.dropNode(target_date_str, node, false);",
           "\t\t     \t\t ",
-          "\t\t     \t}",
+          "\t\t     \t});",
           "\t\t     \tthis.template_connected = true;",
           "\t     \t}",
           "         \t",

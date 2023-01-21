@@ -1324,7 +1324,7 @@ typeof(Gdk.Pixbuf) }  );
         		     	ts.complete.connect((node) => {
         		     		 this.dropNode(target_date_str, node, false);
         		     		 
-        		     	}
+        		     	});
         		     	this.template_connected = true;
         	     	}
                  	
