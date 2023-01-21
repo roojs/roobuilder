@@ -339,9 +339,7 @@ public class Xcls_WindowLeftTree : Object
                         var node = (JsRender.Node)value.dup_object();
                         print ("calling left_tree.node_selected\n");
                         _this.node_selected(node, this.lastEventSource);
-                        while (Gtk.events_pending()) {
-                            Gtk.main_iteration();
-                       }
+                       
                         var cp = mod.get_path(iter);
                         Gtk.TreePath sp, ep;
                         this.el.get_visible_range(out sp, out ep);
