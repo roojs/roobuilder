@@ -504,7 +504,7 @@
           "\t\t     \tthis.template_connected = true;",
           "\t     \t}",
           "         \t",
-          "            ts.showit(",
+          "            ts.showIt(",
           "                  _this.main_window, // (Gtk.Window) _this.el.get_toplevel (),",
           "                 _this.main_window.windowstate.file.palete(),",
           "                  node,",
