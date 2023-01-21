@@ -1894,6 +1894,8 @@ typeof(Gdk.Pixbuf) }  );
                         node
                  );
                  /*
+                 gtk4 migration - disabled this part.. probably not used muchanyway
+                 
                  
                  if (name.length < 1) {
                         return;
