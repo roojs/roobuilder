@@ -1849,7 +1849,7 @@ typeof(Gdk.Pixbuf) }  );
             this.el.activate.connect( () => {
             
                  DialogSaveTemplate.singleton().showIt(
-                        (Gtk.Window) _this.el.get_toplevel (), 
+                        (Gtk.Window) _this.el.get_root (), 
                         _this.main_window.windowstate.file.palete(), 
                         _this.getActiveElement()
                 );
@@ -1889,7 +1889,7 @@ typeof(Gdk.Pixbuf) }  );
                  
                  
                 sm.showIt(
-                        (Gtk.Window) _this.el.get_toplevel (), 
+                        (Gtk.Window) _this.el.get_root (), 
                         _this.main_window.windowstate.project, 
                         node
                  );
