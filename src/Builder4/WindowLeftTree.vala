@@ -984,9 +984,16 @@ public class Xcls_WindowLeftTree : Object
                   //      this.get('/LeftTreeMenu').init(); 
                   //  }
                     
-                 _this.LeftTreeMenu.el.set_screen(Gdk.Screen.get_default());
-                 _this.LeftTreeMenu.el.show_all();
-                  _this.LeftTreeMenu.el.popup_at_pointer(this.el);
+                      var  r = Gdk.Rectangle() {
+                			x = (int) x, // align left...
+                			y = (int) y,
+                			width = 1,
+                			height = 1
+                		};
+                		_this.LeftTreeMenu.el.show();
+            		 _this.LeftTreeMenu.el.set_pointing_to( r);
+            
+                 
                  //   print("click:" + res.path.to_string());
                   return ;
             });
