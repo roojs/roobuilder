@@ -1178,7 +1178,9 @@ typeof(Gdk.Pixbuf) }  );
                     
         }
         public void iterSetValues (Gtk.TreeIter iter, JsRender.Node node)   {
-        	var ic = Gtk.IconTheme.get_default();
+        
+         
+        	var ic = Gtk.IconTheme.get_for_display(this.el.get_display());
             Gdk.Pixbuf pix = null,addi = null;
             
             var o =   GLib.Value(typeof(Object));

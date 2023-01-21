@@ -635,7 +635,9 @@
          ],
          "| void iterSetValues" : [
           "(Gtk.TreeIter iter, JsRender.Node node)   {",
-          "\tvar ic = Gtk.IconTheme.get_default();",
+          "",
+          " ",
+          "\tvar ic = Gtk.IconTheme.get_for_display(this.el.get_display());",
           "    Gdk.Pixbuf pix = null,addi = null;",
           "    ",
           "    var o =   GLib.Value(typeof(Object));",
