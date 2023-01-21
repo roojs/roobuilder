@@ -133,7 +133,7 @@
            "    ",
            "         _this.main_window.windowstate.leftTreeBeforeChange();",
            "         _this.view.el.get_selection().select_path(res);",
-           "     \t_this.main_window.windowstate.showAddObject(this.el);",
+           "     \t_this.main_window.windowstate.showAddObject(_this.view.el);",
            "     \treturn ;",
            "     }",
            "    ",

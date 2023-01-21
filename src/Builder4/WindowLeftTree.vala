@@ -964,7 +964,7 @@ public class Xcls_WindowLeftTree : Object
                 
                      _this.main_window.windowstate.leftTreeBeforeChange();
                      _this.view.el.get_selection().select_path(res);
-                 	_this.main_window.windowstate.showAddObject(this.el);
+                 	_this.main_window.windowstate.showAddObject(_this.view.el);
                  	return ;
                  }
                 
