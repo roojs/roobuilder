@@ -43,6 +43,9 @@ public class Xcls_WindowLeftTree : Object
     }
 
     // user defined functions
+    public void onresize () {
+    
+    }
     public string getActivePath () {
         
         var view = this.view.el;

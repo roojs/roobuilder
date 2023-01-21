@@ -1746,6 +1746,11 @@
     "    return mod.get_path(iter).to_string();",
     "}",
     " "
+   ],
+   "| void onresize" : [
+    "() {",
+    "",
+    "}"
    ]
   }
  ],
