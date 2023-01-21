@@ -930,6 +930,10 @@ public class Xcls_WindowLeftTree : Object
             // set gobject values
 
             //listeners
+            this.el.released.connect( (n_press, x, y) => {
+            
+            
+            });
             this.el.pressed.connect( (n_press, x, y) => {
              
                 //console.log("button press?");
