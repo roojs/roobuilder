@@ -208,10 +208,6 @@ public class Xcls_WindowLeftTree : Object
             }
 
             //listeners
-            this.el.button_release_event.connect( (ev) => { 
-                this.button_is_pressed = false;
-              return false;
-            });
             this.el.cursor_changed.connect( ( ) => {
                 print("LEFT TREE Cursor Changed\n");
             	//if (!this.button_is_pressed && !this.key_is_pressed) {
@@ -931,6 +927,8 @@ public class Xcls_WindowLeftTree : Object
 
             //listeners
             this.el.released.connect( (n_press, x, y) => {
+             
+                _this.view.button_is_pressed = false;
             
             
             });

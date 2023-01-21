@@ -164,6 +164,8 @@
           ],
           "released" : [
            "(n_press, x, y) => {",
+           " ",
+           "    _this.view.button_is_pressed = false;",
            "",
            "",
            "}",
@@ -876,12 +878,6 @@
         }
        ],
        "listeners" : {
-        "button_release_event" : [
-         "(ev) => { ",
-         "    this.button_is_pressed = false;",
-         "  return false;",
-         "}"
-        ],
         "cursor_changed" : [
          " ( ) => {",
          "    print(\"LEFT TREE Cursor Changed\\n\");",
