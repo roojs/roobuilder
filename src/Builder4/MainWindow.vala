@@ -534,7 +534,7 @@ public class Xcls_MainWindow : Object
 
             //listeners
             this.el.accept_position.connect( ( ) => {
-            	_this.windowstate.left_tree.onresize()
+            	_this.windowstate.left_tree.onresize();
             	return true;
             });
         }
@@ -593,7 +593,7 @@ public class Xcls_MainWindow : Object
 
             //listeners
             this.el.accept_position.connect( ( ) => {
-            	_this.windowstate.left_tree.onresize()
+            	_this.windowstate.left_tree.onresize();
             	return true;
             });
             this.el.move_handle.connect( (scroll) => {
