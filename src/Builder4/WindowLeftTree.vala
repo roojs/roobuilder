@@ -1883,7 +1883,7 @@ typeof(Gdk.Pixbuf) }  );
             //listeners
             this.el.activate.connect( () => {
                 var node = _this.getActiveElement();
-                 var name = 
+                  
                  
                  var sm = DialogSaveModule.singleton();
                  
