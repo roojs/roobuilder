@@ -1343,27 +1343,25 @@ typeof(Gdk.Pixbuf) }  );
                  
                 	var ts = _this.main_window.windowstate.template_select;
                  
-                 
-                 	ts.complete.connect((node) => {
-                 		 this.dropNode(target_date_str, node, false);
-                 		 
-                 	}
+                 	if (!this.template_connected) { 
+        		     	ts.complete.connect((node) => {
+        		     		 this.dropNode(target_date_str, node, false);
+        		     		 
+        		     	}
+        		     	this.template_connected = true;
+        	     	}
                  	
                     ts.show_it(
                           _this.main_window, // (Gtk.Window) _this.el.get_toplevel (),
                          _this.main_window.windowstate.file.palete(),
                           node,
-                          _this.main_window.windowstate.project)
-                      ;
+                          _this.main_window.windowstate.project
+                  	);
+                    return;
                            
                            
                            
-                           
-                           
-                     if (new_node == null) {
-                         return; // do not add?
-                     }
-                     node = new_node;
+                      
                 }        
                 
                  //print("pos is %d  \n".printf(pos));
