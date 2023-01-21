@@ -1322,7 +1322,7 @@ typeof(Gdk.Pixbuf) }  );
                  
                  	if (!this.template_connected) { 
         		     	ts.complete.connect((node) => {
-        		     		 this.dropNode(target_date_str, node, false);
+        		     		 this.dropNode(target_data_str, node, false);
         		     		 
         		     	});
         		     	this.template_connected = true;
