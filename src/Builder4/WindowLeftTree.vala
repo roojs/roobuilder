@@ -1000,8 +1000,72 @@ public class Xcls_WindowLeftTree : Object
 
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
+             
+                //console.log("button press?");
+                this.button_is_pressed = true;
+                print("BUTTON DOWN\n");
+                
+                this.lastEventSource = "tree";
+                if (! _this.before_node_change() ) {
+                
+                   return true;
+                }
+                
+            	 
+                if (_this.model.el.iter_n_children(null) < 1) {
+            	    _this.main_window.windowstate.showAddObject(_this.view.el);
+            	    return true;
+                }
+                
+               
+                Gtk.TreePath res;
+                Gtk.TreeViewColumn col;
+                if (!_this.view.el.get_path_at_pos((int)x,(int)y, out res, out col, null, null) ) {
+                    return true;
+                }
+                
+                if (col.title == "Add") {
+             		GLib.Value value;
+             		Gtk.TreeIter iter;
             
+            		_this.model.el.get_iter (out  iter, res);
+                    _this.model.el.get_value(iter, 2, out value);		
+                        // why dup_ - gets and and inc's ref count (which in theory should be freed at the end.?
+                        
+                    var node = (JsRender.Node)value.dup_object();
+                    var fqn = node.fqn();
+                	var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
+              		if (cn.length < 1) {
+              			return true;
+            		}
+                
+                     _this.main_window.windowstate.leftTreeBeforeChange();
+                     _this.view.el.get_selection().select_path(res);
+                 	_this.main_window.windowstate.showAddObject(this.el);
+                 	return true;
+                 }
+                
+            	if (  this.el.button != 3) {
+                    //print("click" + ev.type);
+                    return false;
+                 }
+                _this.main_window.windowstate.leftTreeBeforeChange();
             
+                
+                 
+                _this.view.el.get_selection().select_path(res);
+                 
+                  
+                 
+                  //if (!this.get('/LeftTreeMenu').el)  { 
+                  //      this.get('/LeftTreeMenu').init(); 
+                  //  }
+                    
+                 _this.LeftTreeMenu.el.set_screen(Gdk.Screen.get_default());
+                 _this.LeftTreeMenu.el.show_all();
+                  _this.LeftTreeMenu.el.popup_at_pointer(ev);
+                 //   print("click:" + res.path.to_string());
+                  return true;
             });
         }
 
