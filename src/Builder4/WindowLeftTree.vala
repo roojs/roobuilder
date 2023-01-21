@@ -928,7 +928,7 @@ public class Xcls_WindowLeftTree : Object
                 _this.view.button_is_pressed = true;
                 print("BUTTON DOWN\n");
                 
-                this.lastEventSource = "tree";
+                _this.view.lastEventSource = "tree";
                 if (! _this.before_node_change() ) {
                 
                    return true;
