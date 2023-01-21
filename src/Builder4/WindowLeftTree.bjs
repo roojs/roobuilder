@@ -86,7 +86,6 @@
        "bool button_is_pressed" : false,
        "bool expand" : true,
        "bool headers_visible" : false,
-       "bool key_is_pressed" : false,
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -1552,19 +1551,6 @@
          "       ",
          "       ",
          "}"
-        ],
-        "key_press_event" : [
-         "(ev) => {",
-         "   this.key_is_pressed = true;",
-         "    return false;",
-         "}"
-        ],
-        "key_release_event" : [
-         "(ev) => {",
-         "       this.key_is_pressed = false;",
-         "      return false;",
-         "}",
-         ""
         ]
        },
        "string name" : "left-tree-view",

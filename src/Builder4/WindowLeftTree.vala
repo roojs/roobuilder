@@ -119,7 +119,6 @@ public class Xcls_WindowLeftTree : Object
         public string dragData;
         public bool button_is_pressed;
         public Gtk.CssProvider css;
-        public bool key_is_pressed;
         public int drag_x;
         public int drag_y;
         public string[] dropList;
@@ -136,7 +135,6 @@ public class Xcls_WindowLeftTree : Object
             this.blockChanges = false;
             this.lastEventSource = "";
             this.button_is_pressed = false;
-            this.key_is_pressed = false;
             this.expand = true;
 
             // set gobject values
@@ -537,14 +535,6 @@ public class Xcls_WindowLeftTree : Object
                 return true;
                    
                    
-            });
-            this.el.key_press_event.connect( (ev) => {
-               this.key_is_pressed = true;
-                return false;
-            });
-            this.el.key_release_event.connect( (ev) => {
-                   this.key_is_pressed = false;
-                  return false;
             });
             this.el.drag_data_received.connect( (ctx, x, y, sel, info, time)  => {
             
