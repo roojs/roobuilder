@@ -931,20 +931,20 @@ public class Xcls_WindowLeftTree : Object
                 _this.view.lastEventSource = "tree";
                 if (! _this.before_node_change() ) {
                 
-                   return true;
+                   return ;
                 }
                 
             	 
                 if (_this.model.el.iter_n_children(null) < 1) {
             	    _this.main_window.windowstate.showAddObject(_this.view.el);
-            	    return true;
+            	    return ;
                 }
                 
                
                 Gtk.TreePath res;
                 Gtk.TreeViewColumn col;
                 if (!_this.view.el.get_path_at_pos((int)x,(int)y, out res, out col, null, null) ) {
-                    return true;
+                    return ;
                 }
                 
                 if (col.title == "Add") {
@@ -959,18 +959,18 @@ public class Xcls_WindowLeftTree : Object
                     var fqn = node.fqn();
                 	var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
               		if (cn.length < 1) {
-              			return true;
+              			return ;
             		}
                 
                      _this.main_window.windowstate.leftTreeBeforeChange();
                      _this.view.el.get_selection().select_path(res);
                  	_this.main_window.windowstate.showAddObject(this.el);
-                 	return true;
+                 	return ;
                  }
                 
             	if (  this.el.button != 3) {
                     //print("click" + ev.type);
-                    return false;
+                    return ;
                  }
                 _this.main_window.windowstate.leftTreeBeforeChange();
             
@@ -988,7 +988,7 @@ public class Xcls_WindowLeftTree : Object
                  _this.LeftTreeMenu.el.show_all();
                   _this.LeftTreeMenu.el.popup_at_pointer(this.el);
                  //   print("click:" + res.path.to_string());
-                  return true;
+                  return ;
             });
         }
 
