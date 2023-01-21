@@ -1700,17 +1700,6 @@
        "xtype" : "Popover"
       }
      ],
-     "listeners" : {
-      "size_allocate" : [
-       "(allocation) => {",
-       "",
-       "\t ",
-       "\t//GLib.debug(\"Got allocation width of scrolled view %d\", allocation.width );",
-       "\t_this.maincol.el.set_max_width(allocation.width - 32);",
-       "}",
-       ""
-      ]
-     },
      "xtype" : "ScrolledWindow"
     }
    ],

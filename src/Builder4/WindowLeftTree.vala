@@ -102,14 +102,6 @@ public class Xcls_WindowLeftTree : Object
             // init method
 
             this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
-
-            //listeners
-            this.el.size_allocate.connect( (allocation) => {
-            
-            	 
-            	//GLib.debug("Got allocation width of scrolled view %d", allocation.width );
-            	_this.maincol.el.set_max_width(allocation.width - 32);
-            });
         }
 
         // user defined functions
