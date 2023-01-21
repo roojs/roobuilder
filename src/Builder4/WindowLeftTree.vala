@@ -1328,7 +1328,7 @@ typeof(Gdk.Pixbuf) }  );
         		     	this.template_connected = true;
         	     	}
                  	
-                    ts.show_it(
+                    ts.showit(
                           _this.main_window, // (Gtk.Window) _this.el.get_toplevel (),
                          _this.main_window.windowstate.file.palete(),
                           node,
