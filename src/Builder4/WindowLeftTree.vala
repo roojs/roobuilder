@@ -997,6 +997,12 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.pressed.connect( (n_press, x, y) => {
+            
+            
+            });
         }
 
         // user defined functions
