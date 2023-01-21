@@ -1729,7 +1729,7 @@
     "        return null;",
     "     }",
     "     return _this.model.pathToNode(path);",
-    "     ",
+    "    ",
     "}",
     ""
    ],

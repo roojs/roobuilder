@@ -61,7 +61,7 @@ public class Xcls_WindowLeftTree : Object
             return null;
          }
          return _this.model.pathToNode(path);
-         
+        
     }
     public JsRender.JsRender getActiveFile () {
         return this.main_window.windowstate.file;
