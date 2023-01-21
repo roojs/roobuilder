@@ -1189,17 +1189,24 @@ typeof(Gdk.Pixbuf) }  );
             
             var clsb = clsname.split(".");
             var sub = clsb.length > 1 ? clsb[1].down()  : "";
-            
-            
+             
             var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
             try { 
-        		addi =  ic.load_icon("list-add", 16,0);
+            	 
+            		 
+            
+            	var icon = ic.lookup_icon ("list-add", null,  16,1, 
+            			 Gtk.TextDirection.NONE, 0);
+           
+        		addi =   new Gdk.Pixbuf.from_file (icon.file.get_path());
         		if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
-        			
-        		    	pix = new Gdk.Pixbuf.from_file (fn);
+        			 pix = new Gdk.Pixbuf.from_file (fn);
         			
         		}  else {
-        		 	pix = ic.load_icon("emblem-new", 16,0);
+        		   icon = ic.lookup_icon ("list-add", null,  16,1, 
+            			 Gtk.TextDirection.NONE, 0);
+           
+        		 	pix = new Gdk.Pixbuf.from_file (icon.file.get_path());
         	 	}
          	} catch (GLib.Error e) {}
             
