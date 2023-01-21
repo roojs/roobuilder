@@ -1848,7 +1848,7 @@ typeof(Gdk.Pixbuf) }  );
             //listeners
             this.el.activate.connect( () => {
             
-                 DialogSaveTemplate.singleton().show(
+                 DialogSaveTemplate.singleton().showIt(
                         (Gtk.Window) _this.el.get_toplevel (), 
                         _this.main_window.windowstate.file.palete(), 
                         _this.getActiveElement()
