@@ -933,7 +933,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.pressed.connect( (n_press, x, y) => {
              
                 //console.log("button press?");
-                this.button_is_pressed = true;
+                _this.view.button_is_pressed = true;
                 print("BUTTON DOWN\n");
                 
                 this.lastEventSource = "tree";
