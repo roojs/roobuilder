@@ -144,15 +144,18 @@ public class Xcls_WindowLeftTree : Object
             this.el.tooltip_column = 1;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = false;
-            var child_0 = new Xcls_model( _this );
+            var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();
-            this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_maincol( _this );
+            this.el.add_controller(  child_0.el );
+            var child_1 = new Xcls_model( _this );
             child_1.ref();
-            this.el.append_column (  child_1.el  );
-            var child_2 = new Xcls_TreeViewColumn8( _this );
+            this.el.set_model (  child_1.el  );
+            var child_2 = new Xcls_maincol( _this );
             child_2.ref();
             this.el.append_column (  child_2.el  );
+            var child_3 = new Xcls_TreeViewColumn9( _this );
+            child_3.ref();
+            this.el.append_column (  child_3.el  );
 
             // init method
 
@@ -977,6 +980,28 @@ public class Xcls_WindowLeftTree : Object
         	this.lastEventSource = "";
         }
     }
+    public class Xcls_GestureClick4 : Object
+    {
+        public Gtk.GestureClick el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_GestureClick4(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.GestureClick();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_model : Object
     {
         public Gtk.TreeStore el;
@@ -1633,7 +1658,7 @@ typeof(Gdk.Pixbuf) }  );
     }
 
 
-    public class Xcls_TreeViewColumn8 : Object
+    public class Xcls_TreeViewColumn9 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_WindowLeftTree  _this;
@@ -1642,7 +1667,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn8(Xcls_WindowLeftTree _owner )
+        public Xcls_TreeViewColumn9(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -1709,14 +1734,14 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box11( _this );
+            var child_0 = new Xcls_Box12( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box11 : Object
+    public class Xcls_Box12 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowLeftTree  _this;
@@ -1725,7 +1750,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Box11(Xcls_WindowLeftTree _owner )
+        public Xcls_Box12(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1733,20 +1758,20 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button12( _this );
+            var child_0 = new Xcls_Button13( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button13( _this );
+            var child_1 = new Xcls_Button14( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button14( _this );
+            var child_2 = new Xcls_Button15( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button12 : Object
+    public class Xcls_Button13 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1755,7 +1780,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button12(Xcls_WindowLeftTree _owner )
+        public Xcls_Button13(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1778,7 +1803,7 @@ typeof(Gdk.Pixbuf) }  );
         // user defined functions
     }
 
-    public class Xcls_Button13 : Object
+    public class Xcls_Button14 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1787,7 +1812,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button13(Xcls_WindowLeftTree _owner )
+        public Xcls_Button14(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1813,7 +1838,7 @@ typeof(Gdk.Pixbuf) }  );
         // user defined functions
     }
 
-    public class Xcls_Button14 : Object
+    public class Xcls_Button15 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1822,7 +1847,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button14(Xcls_WindowLeftTree _owner )
+        public Xcls_Button15(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
