@@ -1025,10 +1025,7 @@ public class Xcls_WindowLeftTree : Object
             	); 
             	
             
-            	//  print("return " + tp);
-            	}
-            	
-            	return Gdk.ContentProvider;
+            	 
             });
             this.el.drag_begin.connect( ( drag )  => {
             	//print('SOURCE: drag-begin');

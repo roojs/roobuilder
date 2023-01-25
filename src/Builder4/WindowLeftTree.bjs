@@ -281,10 +281,7 @@
            "\t); ",
            "\t",
            "",
-           "\t//  print(\"return \" + tp);",
-           "\t}",
-           "\t",
-           "\treturn Gdk.ContentProvider;",
+           "\t ",
            "}",
            ""
           ]
