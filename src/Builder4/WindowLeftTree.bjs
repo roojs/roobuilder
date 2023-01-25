@@ -467,6 +467,15 @@
         },
         {
          "$ xns" : "Gtk",
+         "listeners" : {
+          "drag_motion" : [
+           "(drop, x, y) => {",
+           "",
+           "\treturn Gdk.DragAction;",
+           "}",
+           ""
+          ]
+         },
          "xtype" : "DropTargetAsync"
         },
         {

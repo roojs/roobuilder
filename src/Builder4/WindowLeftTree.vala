@@ -1248,6 +1248,12 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.drag_motion.connect( (drop, x, y) => {
+            
+            	return Gdk.DragAction;
+            });
         }
 
         // user defined functions
