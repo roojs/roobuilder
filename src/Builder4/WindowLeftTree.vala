@@ -294,50 +294,6 @@ public class Xcls_WindowLeftTree : Object
                 return  ;
                             
             });
-            this.el.drag_begin.connect( ( ctx)  => {
-            	//print('SOURCE: drag-begin');
-                    
-                    
-                    //this.targetData = "";
-                    
-                    // find what is selected in our tree...
-                    
-                    var s = _this.view.el.get_selection();
-                    if (s.count_selected_rows() < 1) {
-                        return;
-                    }
-                    Gtk.TreeIter iter;
-                    Gtk.TreeModel mod;
-                    s.get_selected(out mod, out iter);
-            
-                    
-            
-                    // set some properties of the tree for use by the dropped element.
-                    GLib.Value value;
-                    _this.model.el.get_value(iter, 2, out value);
-                    var tp = mod.get_path(iter).to_string();
-                    var data = (JsRender.Node)(value.dup_object());
-                    var xname = data.fqn();
-                    print ("XNAME  IS " + xname+ "\n");
-                    this.dragData = tp;
-                    this.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
-                    
-                    print ("DROP LIST IS " + string.joinv(", ", this.dropList) + "\n");
-                    
-            
-                    // make the drag icon a picture of the node that was selected
-                
-                    
-                // by default returns the path..
-                   var path = _this.model.el.get_path(iter);
-            
-                     
-                    var pix = this.el.create_row_drag_icon ( path);
-                    
-                    Gtk.drag_set_icon_surface (ctx, pix) ;
-                    
-                    return;
-            });
             this.el.drag_data_get.connect( ( drag_context, data, info, time) => {
                         
             
@@ -1049,10 +1005,10 @@ public class Xcls_WindowLeftTree : Object
                     var data = (JsRender.Node)(value.dup_object());
                     var xname = data.fqn();
                     print ("XNAME  IS " + xname+ "\n");
-                    this.dragData = tp;
-                    this.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
+                    _this.view.dragData = tp;
+                    _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
                     
-                    print ("DROP LIST IS " + string.joinv(", ", this.dropList) + "\n");
+                    print ("DROP LIST IS " + string.joinv(", ", _this.view.dropList) + "\n");
                     
             
                     // make the drag icon a picture of the node that was selected
@@ -1062,9 +1018,15 @@ public class Xcls_WindowLeftTree : Object
                    var path = _this.model.el.get_path(iter);
             
                      
-                    var pix = this.el.create_row_drag_icon ( path);
+                    var pix = _this.view.el.create_row_drag_icon ( path);
                     
-                    Gtk.drag_set_icon_surface (ctx, pix) ;
+                    
+                     var paintable = _this.view.el.create_row_drag_icon ( path);
+                
+                    this.el.set_icon(paintable, 0,0);
+                            
+                   
+                    
                     
                     return;
             });
