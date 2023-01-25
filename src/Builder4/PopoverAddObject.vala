@@ -366,8 +366,14 @@ public class Xcls_PopoverAddObject : Object
                 _this.model.el.get_value(iter, 0, out value);
                                  
                 var str = (string) value;
+                
+                // what this passes to drag is just the classname:
+                // we should just pass it as xtype!?
+                
+                
+                
                 return new Gdk.ContentProvider.for_bytes("text/plain",
-                	new GLib.Bytes(str.data)
+                	new GLib.Bytes("{ 'xtype' : '%s' }",format(str).data)
             	); 
             	
             	 
