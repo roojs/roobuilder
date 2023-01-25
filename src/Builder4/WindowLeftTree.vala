@@ -1039,6 +1039,10 @@ public class Xcls_WindowLeftTree : Object
                     
                     return;
             });
+            this.el.drag_end.connect( (drag, delete_data) => {
+            
+            
+            });
         }
 
         // user defined functions

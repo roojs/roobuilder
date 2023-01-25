@@ -235,6 +235,13 @@
            "        return;",
            "}"
           ],
+          "drag_end" : [
+           "(drag, delete_data) => {",
+           "",
+           "",
+           "}",
+           ""
+          ],
           "prepare" : [
            "(x, y) => {",
            "",
