@@ -466,6 +466,10 @@
          "xtype" : "DropTarget"
         },
         {
+         "$ xns" : "Gtk",
+         "xtype" : "DropTargetAsync"
+        },
+        {
          "# DialogTemplateSelect template_select" : "null",
          "# string activePath" : "\"\"",
          "$ columns" : [
