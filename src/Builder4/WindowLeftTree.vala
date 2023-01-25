@@ -1041,7 +1041,14 @@ public class Xcls_WindowLeftTree : Object
             });
             this.el.drag_end.connect( (drag, delete_data) => {
             
-            
+             // (drag_context) => {
+            	//Seed.print('LEFT-TREE: drag-end');
+                    _this.view.dragData = "";
+                    _this.view.dropList = null;
+            //        this.targetData = "";
+                    _this.view.highlightDropPath("",0);
+            //        return true;
+            }
             });
         }
 

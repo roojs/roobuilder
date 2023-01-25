@@ -238,7 +238,14 @@
           "drag_end" : [
            "(drag, delete_data) => {",
            "",
-           "",
+           " // (drag_context) => {",
+           "\t//Seed.print('LEFT-TREE: drag-end');",
+           "        _this.view.dragData = \"\";",
+           "        _this.view.dropList = null;",
+           "//        this.targetData = \"\";",
+           "        _this.view.highlightDropPath(\"\",0);",
+           "//        return true;",
+           "}",
            "}",
            ""
           ],
