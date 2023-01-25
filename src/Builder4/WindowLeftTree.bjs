@@ -303,6 +303,19 @@
          "xtype" : "DragSource"
         },
         {
+         "$ xns" : "Gtk",
+         "listeners" : {
+          "motion" : [
+           "(x, y) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
+         "xtype" : "DropControllerMotion"
+        },
+        {
          "# DialogTemplateSelect template_select" : "null",
          "# string activePath" : "\"\"",
          "$ columns" : [
