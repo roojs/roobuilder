@@ -982,6 +982,49 @@ public class Xcls_WindowLeftTree : Object
             //listeners
             this.el.prepare.connect( (x, y) => {
             
+            	
+            	
+            ///	( drag_context, data, info, time) => {
+                        
+            
+            	//print("drag-data-get");
+            	var s = _this.view.el.get_selection();
+            	if (s.count_selected_rows() < 1) {
+            	 	print("return empty string - no selection..");
+            		return null;
+            		//data.set_text("",0);     
+            		// print("return empty string - no selection..");
+            		//return;
+            	}
+            
+            	Gtk.TreeIter iter;
+            	Gtk.TreeModel mod;
+            
+            	s.get_selected(out mod, out iter);
+            
+            
+            
+            	GLib.Value value;
+            	_this.model.el.get_value(iter, 2, out value);
+            	var ndata = (JsRender.Node)(value.dup_object());
+            
+            
+            
+            	var tp = mod.get_path(iter).to_string();
+            	// by default returns the path..
+            
+            	if ( info != Gdk.Atom.intern("STRING",true) ) {
+            		tp = ndata.toJsonString();
+            	}   
+            
+            	//data.set_text(tp,tp.length);   
+            
+            	data.set (data.get_target (), 8, (uchar[]) tp.to_utf8 ());
+            
+            
+            	//  print("return " + tp);
+            	}
+            	
             	return Gdk.ContentProvider;
             });
             this.el.drag_begin.connect( ( drag )  => {
