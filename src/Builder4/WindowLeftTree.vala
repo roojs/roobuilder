@@ -1019,8 +1019,11 @@ public class Xcls_WindowLeftTree : Object
             
             	//data.set_text(tp,tp.length);   
             
-            	data.set (data.get_target (), 8, (uchar[]) tp.to_utf8 ());
             
+             	return new Gdk.ContentProvider.for_bytes("text/plain",
+                	new GLib.Bytes(tp.data)
+            	); 
+            	
             
             	//  print("return " + tp);
             	}
