@@ -1450,16 +1450,6 @@
          " ",
          "}"
         ],
-        "drag_end" : [
-         "  (drag_context) => {",
-         "\t//Seed.print('LEFT-TREE: drag-end');",
-         "        this.dragData = \"\";",
-         "        this.dropList = null;",
-         "//        this.targetData = \"\";",
-         "        this.highlightDropPath(\"\",0);",
-         "//        return true;",
-         "}"
-        ],
         "drag_motion" : [
          " ( ctx, x, y, time)  => {",
          "   print(\"got drag motion\\n\");",

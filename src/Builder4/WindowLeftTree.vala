@@ -294,14 +294,6 @@ public class Xcls_WindowLeftTree : Object
                 return  ;
                             
             });
-            this.el.drag_end.connect( (drag_context) => {
-            	//Seed.print('LEFT-TREE: drag-end');
-                    this.dragData = "";
-                    this.dropList = null;
-            //        this.targetData = "";
-                    this.highlightDropPath("",0);
-            //        return true;
-            });
             this.el.drag_motion.connect( ( ctx, x, y, time)  => {
                print("got drag motion\n");
                 var src = Gtk.drag_get_source_widget(ctx);
