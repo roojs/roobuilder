@@ -1072,6 +1072,10 @@ public class Xcls_WindowLeftTree : Object
             // set gobject values
 
             //listeners
+            this.el.accept.connect( (drop) => {
+            
+            	return bool;
+            });
             this.el.motion.connect( (x, y) => {
                var src = Gtk.drag_get_source_widget(ctx);
                //this.drag_x = x;

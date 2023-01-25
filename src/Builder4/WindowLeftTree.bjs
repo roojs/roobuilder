@@ -305,6 +305,13 @@
         {
          "$ xns" : "Gtk",
          "listeners" : {
+          "accept" : [
+           "(drop) => {",
+           "",
+           "\treturn bool;",
+           "}",
+           ""
+          ],
           "motion" : [
            "(x, y) => {",
            "   var src = Gtk.drag_get_source_widget(ctx);",
