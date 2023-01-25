@@ -148,21 +148,18 @@ public class Xcls_WindowLeftTree : Object
             var child_1 = new Xcls_DragSource5( _this );
             child_1.ref();
             this.el.add_controller(  child_1.el );
-            var child_2 = new Xcls_DropControllerMotion6( _this );
+            var child_2 = new Xcls_DropTarget6( _this );
             child_2.ref();
             this.el.add_controller(  child_2.el );
-            var child_3 = new Xcls_DropTarget7( _this );
+            var child_3 = new Xcls_model( _this );
             child_3.ref();
-            this.el.add_controller(  child_3.el );
-            var child_4 = new Xcls_model( _this );
+            this.el.set_model (  child_3.el  );
+            var child_4 = new Xcls_maincol( _this );
             child_4.ref();
-            this.el.set_model (  child_4.el  );
-            var child_5 = new Xcls_maincol( _this );
+            this.el.append_column (  child_4.el  );
+            var child_5 = new Xcls_TreeViewColumn11( _this );
             child_5.ref();
             this.el.append_column (  child_5.el  );
-            var child_6 = new Xcls_TreeViewColumn12( _this );
-            child_6.ref();
-            this.el.append_column (  child_6.el  );
 
             // init method
 
@@ -1053,38 +1050,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_DropControllerMotion6 : Object
-    {
-        public Gtk.DropControllerMotion el;
-        private Xcls_WindowLeftTree  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_DropControllerMotion6(Xcls_WindowLeftTree _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.DropControllerMotion();
-
-            // my vars (dec)
-
-            // set gobject values
-
-            //listeners
-            this.el.motion.connect( (x, y) => {
-            
-               print("got drag motion\n");
-               
-               return;
-               
-             });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_DropTarget7 : Object
+    public class Xcls_DropTarget6 : Object
     {
         public Gtk.DropTarget el;
         private Xcls_WindowLeftTree  _this;
@@ -1093,7 +1059,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_DropTarget7(Xcls_WindowLeftTree _owner )
+        public Xcls_DropTarget6(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.DropTarget( null, null );
@@ -1104,7 +1070,157 @@ public class Xcls_WindowLeftTree : Object
 
             //listeners
             this.el.motion.connect( (x, y) => {
+               var src = Gtk.drag_get_source_widget(ctx);
+               //this.drag_x = x;
+               //this.drag_y = y;     
             
+               if (src != this.el) {
+               
+             
+             
+                // the point of this is to detect where an item could be dropped..
+                    print("requesting drag data\n");
+                   this.drag_in_motion = true;
+                   
+                        // request data that will be recieved by the recieve...              
+                    Gtk.drag_get_data
+                    (
+                            this.el,         // will receive 'drag-data-received' signal 
+                            ctx,        // represents the current state of the DnD 
+                            Gdk.Atom.intern("STRING",true),    // the target type we want 
+                            time            // time stamp 
+                    );
+                    return true;
+              }    
+            
+            
+              print("action: %d\n", ctx.get_actions());
+             //print("GETTING POS");
+                var  targetData = "";
+            
+                Gtk.TreePath path;
+                Gtk.TreeViewDropPosition pos;
+                var isOver = _this.view.el.get_dest_row_at_pos(this.drag_x,this.drag_y, out path, out pos);
+            
+                // if there are not items in the tree.. the we have to set isOver to true for anything..
+                var isEmpty = false;
+                if (_this.model.el.iter_n_children(null) < 1) {
+                    print("got NO children?\n");
+                    isOver = true; //??? 
+                    isEmpty = true;
+                    pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
+                }
+            
+            
+                // ------------- a drag from self..
+            
+            
+                //var action = Gdk.DragAction.COPY;
+                    // unless we are copying!!! ctl button..
+                
+                var action = (ctx.get_actions() & Gdk.DragAction.MOVE) > 0 ?
+                             Gdk.DragAction.COPY  : Gdk.DragAction.MOVE ;
+                            // Gdk.DragAction.MOVE : Gdk.DragAction.COPY ;
+            
+            
+                if (_this.model.el.iter_n_children(null) < 1) {
+                    // no children.. -- asume it's ok..
+                    
+                    targetData = "|%d|".printf((int)Gtk.TreeViewDropPosition.INTO_OR_AFTER);
+                       
+                    this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);        
+                    Gdk.drag_status(ctx, action ,time);
+                    return true;
+                    
+                    // continue through to allow drop...
+            
+                } 
+                    
+                    
+            
+                
+                
+                //print("ISOVER? " + isOver);
+                if (!isOver) {
+              
+                    Gdk.drag_status(ctx, 0 ,time);
+                     this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);                    
+                     return false;
+            
+                }
+                        
+                // drag node is parent of child..
+                //console.log("SRC TREEPATH: " + src.treepath);
+                //console.log("TARGET TREEPATH: " + data.path.to_string());
+                
+                // nned to check a  few here..
+                //Gtk.TreeViewDropPosition.INTO_OR_AFTER
+                //Gtk.TreeViewDropPosition.INTO_OR_BEFORE
+                //Gtk.TreeViewDropPosition.AFTER
+                //Gtk.TreeViewDropPosition.BEFORE
+                
+                // locally dragged items to not really use the 
+                var selection_text = this.dragData;
+                
+                        
+                        
+                if (selection_text == null || selection_text.length < 1) {
+                            //print("Error  - drag selection text returned NULL");
+                         Gdk.drag_status(ctx, 0 ,time);
+                        this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
+                         return false;
+                 }
+                                   
+                        
+                        // see if we are dragging into ourself?
+                var target_path = path.to_string();            
+                print ("Drag  %s onto %s--%d\n ", selection_text, target_path, pos);
+                
+                // pos : 3 = ontop - 0 = after, 1 = before
+                //print("target_path="+target_path);
+            
+                // 
+                if (selection_text  == target_path) {
+                    print("self drag ?? == we should perhaps allow copy onto self..\n");
+                            
+                     Gdk.drag_status(ctx, 0 ,time);
+                      this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
+                      return false;
+            //                 -- fixme -- this is not really correct..
+            
+                }
+                        
+                // check that 
+                //print("DUMPING DATA");
+                //console.dump(data);
+                // path, pos
+                
+                //print(data.path.to_string() +' => '+  data.pos);
+                
+                // dropList is a list of xtypes that this node could be dropped on.
+                // it is set up when we start to drag..
+                
+                
+                targetData = _this.model.findDropNodeByPath( path.to_string(), this.dropList, pos);
+                    
+                print("targetDAta: " + targetData +"\n");
+                
+                if (targetData.length < 1) {
+                    //print("Can not find drop node path");
+                   
+                    Gdk.drag_status(ctx, 0, time);
+                    this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
+                    return false;
+                }
+                
+                var td_ar = targetData.split("|");
+                  
+                
+            
+                Gdk.drag_status(ctx, action ,time);
+                this.highlightDropPath(td_ar[0], (Gtk.TreeViewDropPosition)int.parse(td_ar[1]));
+                return true;
+            }
             	return Gdk.DragAction;
             });
         }
@@ -1791,7 +1907,7 @@ typeof(Gdk.Pixbuf) }  );
     }
 
 
-    public class Xcls_TreeViewColumn12 : Object
+    public class Xcls_TreeViewColumn11 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_WindowLeftTree  _this;
@@ -1800,7 +1916,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn12(Xcls_WindowLeftTree _owner )
+        public Xcls_TreeViewColumn11(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -1867,14 +1983,14 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box15( _this );
+            var child_0 = new Xcls_Box14( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box15 : Object
+    public class Xcls_Box14 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowLeftTree  _this;
@@ -1883,7 +1999,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Box15(Xcls_WindowLeftTree _owner )
+        public Xcls_Box14(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1891,20 +2007,20 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button16( _this );
+            var child_0 = new Xcls_Button15( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button17( _this );
+            var child_1 = new Xcls_Button16( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button18( _this );
+            var child_2 = new Xcls_Button17( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button16 : Object
+    public class Xcls_Button15 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1913,7 +2029,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button16(Xcls_WindowLeftTree _owner )
+        public Xcls_Button15(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1936,7 +2052,7 @@ typeof(Gdk.Pixbuf) }  );
         // user defined functions
     }
 
-    public class Xcls_Button17 : Object
+    public class Xcls_Button16 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1945,7 +2061,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button17(Xcls_WindowLeftTree _owner )
+        public Xcls_Button16(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1971,7 +2087,7 @@ typeof(Gdk.Pixbuf) }  );
         // user defined functions
     }
 
-    public class Xcls_Button18 : Object
+    public class Xcls_Button17 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1980,7 +2096,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button18(Xcls_WindowLeftTree _owner )
+        public Xcls_Button17(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
