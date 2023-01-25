@@ -181,6 +181,10 @@
          "xtype" : "GestureClick"
         },
         {
+         "$ xns" : "Gtk",
+         "xtype" : "DragSource"
+        },
+        {
          "# DialogTemplateSelect template_select" : "null",
          "# string activePath" : "\"\"",
          "$ columns" : [
