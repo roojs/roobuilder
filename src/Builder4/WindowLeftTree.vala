@@ -1022,6 +1022,12 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.drag_begin.connect( (drag) => {
+            
+            
+            });
         }
 
         // user defined functions
