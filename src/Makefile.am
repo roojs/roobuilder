@@ -3,11 +3,7 @@
  
 
 
-if HAVE_LIBVALA36
-roobuilder_LIBVALA = --pkg libvala-0.36
-roobuilder_CODEGEN = 
-
-endif
+ 
 
 
 if HAVE_LIBVALA56
@@ -111,21 +107,17 @@ if HAVE_GDA5
 roobuilder_GDA = --pkg libgda-5.0
 endif
 
-if HAVE_GDA4
-roobuilder_GDA = --pkg libgda-4.0
-endif
+ 
 
 
 # webkit
 
 
-if HAVE_WEBKIT4
-roobuilder_WEBKKIT =   --pkg  webkit2gtk-4.0  
+if HAVE_WEBKIT5
+roobuilder_WEBKKIT =   --pkg  webkit2gtk-5.0  
 endif
 
-if HAVE_WEBKIT3
-roobuilder_WEBKKIT =   --pkg  webkit2gtk-3.0  
-endif
+
 
 # vte
  
@@ -149,16 +141,15 @@ bin_PROGRAMS = roobuilder
  
 roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg gobject-2.0  \
-		--pkg  gtk+-3.0 \
-		--pkg  gtksourceview-3.0 \
+		--pkg  gtk4 \
+		--pkg  gtksourceview-5 \
 		--pkg  libxml-2.0 \
 		--pkg json-glib-1.0 \
 		--pkg gee-0.8 \
 		--pkg gobject-introspection-1.0 \
 		--pkg libsoup-2.4 \
  		--pkg javascriptcore \
-		--pkg roojspacker-1.4 \
-		--pkg gladeui-2.0 \
+		--pkg roojspacker-1.4 \ 
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
