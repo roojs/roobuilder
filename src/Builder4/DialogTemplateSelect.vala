@@ -21,11 +21,10 @@ public class DialogTemplateSelect : Object
 
         // my vars (def)
     public Xcls_MainWindow window;
-    public Xcls_DialogPluginWebkit? plugin;
     public signal void complete (JsRender.Node? node);
     public Palete.Palete palete;
-    public JsRender.Node node;
     public Project.Project project;
+    public JsRender.Node node;
 
     // ctor
     public DialogTemplateSelect()
@@ -34,7 +33,6 @@ public class DialogTemplateSelect : Object
         this.el = new Gtk.Dialog();
 
         // my vars (dec)
-        this.plugin = null;
 
         // set gobject values
         this.el.title = "Add an Object";
