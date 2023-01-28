@@ -93,11 +93,11 @@ if test $webkit_5_0_enabled = yes; then
 
 fi
 
-AM_CONDITIONAL(HAVE_WEBKIT5, test "$webkit_4_0_enabled" = "yes")
+AM_CONDITIONAL(HAVE_WEBKIT5, test "$webkit_5_0_enabled" = "yes")
 
 
 
-dnl  -- javascriptcoregtk-4.0  ** not sure if this is needed....
+dnl  -- javascriptcoregtk-5.0  ** not sure if this is needed....
 
 
 PKG_CHECK_MODULES(JAVASCRIPTCOREGTK, [javascriptcoregtk-5.0],
