@@ -193,8 +193,8 @@
      "",
      "\tvar node = _this.node;",
      "\tvar project = _this.project;",
-     "\t",
-     "   ",
+     "\treturn;",
+     "   /*",
      "   ",
      "   if (this.plugin == null) {",
      "\t   this.plugin = new Xcls_DialogPluginWebkit();",
@@ -227,6 +227,7 @@
      "  \t\t});",
      "  ",
      "   }",
+     "   ",
      "   ",
      "     ",
      "\t",
@@ -269,7 +270,7 @@
      "     this.complete(this.palete.loadTemplate((string)vfname));",
      "      return; // 1 = just add it..",
      "  ",
-     "",
+     "*/",
      "}",
      ""
     ]

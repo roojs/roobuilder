@@ -62,8 +62,8 @@ public class DialogTemplateSelect : Object
         
         	var node = _this.node;
         	var project = _this.project;
-        	
-           
+        	return;
+           /*
            
            if (this.plugin == null) {
         	   this.plugin = new Xcls_DialogPluginWebkit();
@@ -96,6 +96,7 @@ public class DialogTemplateSelect : Object
           		});
           
            }
+           
            
              
         	
@@ -138,7 +139,7 @@ public class DialogTemplateSelect : Object
              this.complete(this.palete.loadTemplate((string)vfname));
               return; // 1 = just add it..
           
-        
+        */
         });
     }
 
