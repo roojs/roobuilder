@@ -303,6 +303,7 @@
          "xtype" : "DragSource"
         },
         {
+         "$ Gdk.DragAction actions" : "",
          "$ xns" : "Gtk",
          "listeners" : {
           "accept" : [
