@@ -147,7 +147,7 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg json-glib-1.0 \
 		--pkg gee-0.8 \
 		--pkg gobject-introspection-1.0 \
-		--pkg libsoup-2.4 \
+		--pkg libsoup-3.0 \
  		--pkg javascriptcore \
 		--pkg roojspacker-1.4 \
 		$(roobuilder_LIBVALA) \
