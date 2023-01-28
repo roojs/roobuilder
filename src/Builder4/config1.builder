@@ -158,8 +158,7 @@
             "../Builder4/PopoverFiles.vala",
             "../JsRender/NodeToGlade.vala",
             "../JsRender/NodeProp.vala",
-            "../Project/GtkValaSettings.vala",
-            "../Builder4/DialogNewComponent.vala"
+            "../Project/GtkValaSettings.vala"
         ],
         "packages" : []
     },
