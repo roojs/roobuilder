@@ -162,7 +162,7 @@
            "    ",
            "    ",
            "    return new Gdk.ContentProvider.for_bytes(\"text/plain\",",
-           "    \tnew GLib.Bytes(\"{ 'xtype' : '%s' }\".format(str))",
+           "    \tnew GLib.Bytes(\"{ 'xtype' : '%s' }\".printf(str))",
            "\t); ",
            "\t",
            "\t ",
