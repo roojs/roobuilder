@@ -58,6 +58,7 @@
             "  this.el.show();",
             " "
            ],
+           "* pack" : false,
            "items" : [
             {
              "$ xns" : "Gtk",
