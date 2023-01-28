@@ -299,6 +299,7 @@
         {
          "$ Gdk.DragAction[] actions" : "Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ",
          "$ xns" : "Gtk",
+         "* ctor" : "",
          "listeners" : {
           "accept" : [
            "(drop) => {",
