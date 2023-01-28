@@ -130,7 +130,7 @@ endif
  
 # - not sure if needed....  
 
-AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFLAGS) $(JAVASCRIPTCOREGTK_CFLAGS) $(VTE_CFLAGS) \
+AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFLAGS) $(JAVASCRIPTCOREGTK_CFLAGS)  \
     -Wno-incompatible-pointer-types \
     -Wno-discarded-qualifiers \
     -Wno-deprecated-declarations \
@@ -239,7 +239,7 @@ roobuilder_SOURCES =  Application.vala \
  
 roobuilder_VALAFLAGS =--target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
 
-roobuilder_LDADD =  $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
+roobuilder_LDADD =  $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
 
  
 
