@@ -7,7 +7,6 @@
         "sources" : [
             "../Builder4/About.vala",
             "../Builder4/DialogConfirm.vala",
-            "../Builder4/DialogPluginWebkit.vala",
             "../Builder4/DialogSaveModule.vala",
             "../Builder4/DialogSaveTemplate.vala",
             "../Builder4/DialogTemplateSelect.vala",
