@@ -1065,7 +1065,7 @@ public class Xcls_WindowLeftTree : Object
         public Xcls_DropTarget6(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
-            this.el = new Gtk.DropTarget( null,  );
+            this.el = new Gtk.DropTarget( null, Gdk.DragAction.COPY );
 
             // my vars (dec)
 
