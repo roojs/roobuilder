@@ -217,7 +217,6 @@ public class Xcls_MainWindow : Object
 
             {
             	this.mitems = new Gee.ArrayList<Gtk.Button>();
-            	
             }
         }
 

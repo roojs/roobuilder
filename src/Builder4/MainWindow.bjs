@@ -41,7 +41,6 @@
          "* init" : [
           "{",
           "\tthis.mitems = new Gee.ArrayList<Gtk.Button>();",
-          "\t",
           "}",
           ""
          ],
