@@ -296,7 +296,7 @@
          "xtype" : "DragSource"
         },
         {
-         "$ Gdk.DragAction[] actions" : "Gdk.DragAction.COPY",
+         "$ Gdk.DragAction[] actions" : "Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ",
          "$ xns" : "Gtk",
          "listeners" : {
           "accept" : [
