@@ -1387,6 +1387,10 @@ public class Xcls_WindowLeftTree : Object
             }
             	return Gdk.DragAction;
             });
+            this.el.on_drop.connect( (value, x, y) => {
+            
+            	return bool;
+            });
         }
 
         // user defined functions

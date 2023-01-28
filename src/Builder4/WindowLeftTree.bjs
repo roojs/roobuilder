@@ -625,6 +625,13 @@
            "\treturn Gdk.DragAction;",
            "}",
            ""
+          ],
+          "on_drop" : [
+           "(value, x, y) => {",
+           "",
+           "\treturn bool;",
+           "}",
+           ""
           ]
          },
          "xtype" : "DropTarget"
