@@ -575,7 +575,6 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.actions = Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ;
 
             //listeners
             this.el.accept.connect( (drop) => {
