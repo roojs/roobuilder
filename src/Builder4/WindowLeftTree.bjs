@@ -636,6 +636,8 @@
            "(drop, x, y) => {",
            "",
            "",
+           "\tvar data = drop.",
+           "",
            "(x, y) => {",
            "   var src = Gtk.drag_get_source_widget(ctx);",
            "   //this.drag_x = x;",

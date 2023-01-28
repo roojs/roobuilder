@@ -1414,6 +1414,8 @@ public class Xcls_WindowLeftTree : Object
             this.el.drag_motion.connect( (drop, x, y) => {
             
             
+            	var data = drop.
+            
             (x, y) => {
                var src = Gtk.drag_get_source_widget(ctx);
                //this.drag_x = x;
