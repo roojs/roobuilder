@@ -216,7 +216,6 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/MainWindow.vala \
 		Builder4/WindowState.vala \
 		Builder4/FakeServer.vala \
-		Builder4/DialogPluginWebkit.vala \
 		Builder4/PopoverFileDetails.vala \
 		Builder4/ValaCompileErrors.vala \
 		Builder4/ValaCompileResults.vala \
