@@ -22,7 +22,7 @@ int main (string[] args) {
 	GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR ); 
 	 
 
-	var w = Xcls_MainWindow.singleton();
+	var w = new Xcls_MainWindow();
 
 	BuilderApplication.addWindow(w);
 	w.el.show();
