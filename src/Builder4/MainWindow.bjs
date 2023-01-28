@@ -58,7 +58,6 @@
             "  this.el.show();",
             " "
            ],
-           "* prop" : "popover",
            "items" : [
             {
              "$ xns" : "Gtk",

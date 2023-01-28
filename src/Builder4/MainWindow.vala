@@ -211,7 +211,7 @@ public class Xcls_MainWindow : Object
             this.el.label = "Windows";
             var child_0 = new Xcls_PopoverMenu5( _this );
             child_0.ref();
-            this.el.popover = child_0.el;
+            this.el.append(  child_0.el );
 
             // init method
 
