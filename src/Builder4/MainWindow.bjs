@@ -364,7 +364,7 @@
            "* ctor" : "new Gtk.PopoverMenu.from_model(null)",
            "* init" : [
             "{",
-            "    this.el.show();",
+            "   // this.el.show();",
             "}",
             ""
            ],
