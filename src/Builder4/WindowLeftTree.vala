@@ -190,7 +190,7 @@ public class Xcls_WindowLeftTree : Object
             
                 Gtk.drag_dest_set
                 (
-                    this.el,              /* widget that will accept a drop */
+                    this.el,              // widget that will accept a drop 
                     Gtk.DestDefaults.MOTION  | Gtk.DestDefaults.HIGHLIGHT,
                     BuilderApplication.targetList,            /* lists of target to support */
                     Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   | Gdk.DragAction.LINK     /* what to do with data after dropped */
@@ -442,6 +442,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.actions = Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   ;
 
             //listeners
             this.el.prepare.connect( (x, y) => {
