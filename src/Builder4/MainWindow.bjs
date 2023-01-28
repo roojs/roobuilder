@@ -109,7 +109,7 @@
              "xtype" : "Box"
             }
            ],
-           "xtype" : "PopoverMenu"
+           "xtype" : "Popover"
           }
          ],
          "string icon_name" : "window-new",

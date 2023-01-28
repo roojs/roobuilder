@@ -209,7 +209,7 @@ public class Xcls_MainWindow : Object
             this.el.halign = Gtk.Align.START;
             this.el.direction = Gtk.ArrowType.DOWN;
             this.el.label = "Windows";
-            var child_0 = new Xcls_PopoverMenu5( _this );
+            var child_0 = new Xcls_Popover5( _this );
             child_0.ref();
             this.el.append(  child_0.el );
 
@@ -294,16 +294,16 @@ public class Xcls_MainWindow : Object
         	 }
         }
     }
-    public class Xcls_PopoverMenu5 : Object
+    public class Xcls_Popover5 : Object
     {
-        public Gtk.PopoverMenu el;
+        public Gtk.Popover el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_PopoverMenu5(Xcls_MainWindow _owner )
+        public Xcls_Popover5(Xcls_MainWindow _owner )
         {
             _this = _owner;
             this.el = new Gtk.PopoverMenu.from_model(null);
