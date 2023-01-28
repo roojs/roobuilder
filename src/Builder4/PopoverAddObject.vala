@@ -370,8 +370,7 @@ public class Xcls_PopoverAddObject : Object
                 // what this passes to drag is just the classname:
                 // we should just pass it as xtype!?
                 
-                
-                
+                 
                 return new Gdk.ContentProvider.for_bytes("text/plain",
                 	new GLib.Bytes("{ 'xtype' : '%s' }".printf(str).data)
             	); 
