@@ -207,7 +207,7 @@
     "    ",
     "    ",
     "    var ic = Gtk.IconTheme.get_for_display(this.el.get_display());",
-    "    Gdk.Pixbuf pixdef; ",
+    "    Gdk.Pixbuf pixdef = null; ",
     "    try {",
     "\t\t var icon = ic.lookup_icon (\"emblem-new\", null,  16,1, ",
     "\t\t\t Gtk.TextDirection.NONE, 0);",

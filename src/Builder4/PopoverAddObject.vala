@@ -58,7 +58,7 @@ public class Xcls_PopoverAddObject : Object
         
         
         var ic = Gtk.IconTheme.get_for_display(this.el.get_display());
-        Gdk.Pixbuf pixdef; 
+        Gdk.Pixbuf pixdef = null; 
         try {
     		 var icon = ic.lookup_icon ("emblem-new", null,  16,1, 
     			 Gtk.TextDirection.NONE, 0);
