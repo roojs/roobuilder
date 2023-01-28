@@ -245,7 +245,7 @@
            "//        this.targetData = \"\";",
            "        _this.view.highlightDropPath(\"\",0);",
            "//        return true;",
-           "}",
+           "",
            "}",
            ""
           ],

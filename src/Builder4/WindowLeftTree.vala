@@ -557,7 +557,7 @@ public class Xcls_WindowLeftTree : Object
             //        this.targetData = "";
                     _this.view.highlightDropPath("",0);
             //        return true;
-            }
+            
             });
         }
 
