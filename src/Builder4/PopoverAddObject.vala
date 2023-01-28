@@ -373,7 +373,7 @@ public class Xcls_PopoverAddObject : Object
                 
                 
                 return new Gdk.ContentProvider.for_bytes("text/plain",
-                	new GLib.Bytes("{ 'xtype' : '%s' }".printf(str))
+                	new GLib.Bytes("{ 'xtype' : '%s' }".printf(str).data)
             	); 
             	
             	 
