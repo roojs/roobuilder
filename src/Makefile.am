@@ -154,7 +154,6 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
 		$(roobuilder_JAVASCRIPTCOREGTK) \
-		$(roobuilder_VTE) \
 		--pkg posix
 
 
