@@ -205,7 +205,8 @@
             "gtk4",
             "javascriptcore",
             "webkit2gtk-5.0",
-            "gtksourceview-5"
+            "gtksourceview-5",
+            "javascriptcoregtk-5.0"
         ]
     }
 ]
