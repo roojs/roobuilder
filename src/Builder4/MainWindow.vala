@@ -315,7 +315,7 @@ public class Xcls_MainWindow : Object
 
             // init method
 
-            this.el.show();
+            // this.el.show();
         }
 
         // user defined functions
