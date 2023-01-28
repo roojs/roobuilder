@@ -177,19 +177,12 @@ public class Xcls_WindowLeftTree : Object
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
             
             
-                // is this really needed??
-                /*
-                this.selection.signal['changed'].connect(function() {
-            	    _this.get('/LeftTree.view').listeners.cursor_changed.apply(
-            	        _this.get('/LeftTree.view'), [ _this.get('/LeftTree.view'), '']
-            	    );
-                });
-                */
+             /*
                 Gtk.drag_source_set (
-            	    this.el,            /* widget will be drag-able */
-            	    Gdk.ModifierType.BUTTON1_MASK,       /* modifier that will start a drag */
-            	    BuilderApplication.targetList,            /* lists of target to support */
-            	    Gdk.DragAction.COPY   | Gdk.DragAction.MOVE    |  Gdk.DragAction.LINK           /* what to do with data after dropped */
+            	    this.el,            /// widget will be drag-able 
+            	    Gdk.ModifierType.BUTTON1_MASK,       //modifier that will start a drag 
+            	    BuilderApplication.targetList,            // lists of target to support  
+            	    Gdk.DragAction.COPY   | Gdk.DragAction.MOVE    |  Gdk.DragAction.LINK        
                 );
             
                 // ?? needed??
