@@ -31,7 +31,7 @@ PKG_CHECK_MODULES(ROOBUILDER, [ zlib
 		 json-glib-1.0
 		 gee-0.8
  		 libxml-2.0
-		 libsoup-2.4 
+		 libsoup-3.0 
 		 roojspacker-1.4
 ]) 
 
