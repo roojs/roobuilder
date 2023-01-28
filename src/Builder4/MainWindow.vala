@@ -225,7 +225,7 @@ public class Xcls_MainWindow : Object
         	 	 _this.popover_menu.el.remove(m);
         	 }
         	 this.mitems.clear();
-        	 
+        	
         	 BuilderApplication.windows.sort((a,b) => {
         	 	if (a.windowstate == null ||
          			 a.windowstate.file == null || 

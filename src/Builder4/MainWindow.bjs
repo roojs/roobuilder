@@ -121,7 +121,7 @@
           "\t \t _this.popover_menu.el.remove(m);",
           "\t }",
           "\t this.mitems.clear();",
-          "\t ",
+          "\t",
           "\t BuilderApplication.windows.sort((a,b) => {",
           "\t \tif (a.windowstate == null ||",
           " \t\t\t a.windowstate.file == null || ",
