@@ -192,13 +192,12 @@ public class Xcls_WindowLeftTree : Object
                 (
                     this.el,              // widget that will accept a drop 
                     Gtk.DestDefaults.MOTION  | Gtk.DestDefaults.HIGHLIGHT,
-                    BuilderApplication.targetList,            /* lists of target to support */
-                    Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   | Gdk.DragAction.LINK     /* what to do with data after dropped */
+                    BuilderApplication.targetList,            // lists of target to support 
+                    Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   | Gdk.DragAction.LINK     
+                   				 // what to do with data after dropped 
                 );
             
-                //Gtk.drag_dest_set_target_list(this.el, Builder.Application.targetList);
-                //Gtk.drag_dest_add_text_targets(this.el);
-                
+                 */
                 
                
                 
