@@ -131,7 +131,7 @@
 			
 			Object(
 			       application_id: "org.roojs.app-builder",
-				flags: ApplicationFlags.DEFAULT_FLAGS
+				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
 			BuilderApplication.valasource = new Palete.ValaSource();
