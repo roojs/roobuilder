@@ -33,7 +33,7 @@ int main (string[] args) {
 	
 	//w.windowstate.showPopoverFiles(w.open_projects_btn.el, null, false);
 //	w.windowstate.switchState(WindowState.State.FILES);
-	app.run(args);
+	return app.run(args);
 	
     
 	return 0;
