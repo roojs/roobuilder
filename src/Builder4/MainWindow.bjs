@@ -649,7 +649,7 @@
      "}"
     ]
    },
-   "xtype" : "Window",
+   "xtype" : "ApplicationWindow",
    "| void initChildren" : [
     " () {",
     "    // this needs putting in a better place..",
