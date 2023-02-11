@@ -552,6 +552,15 @@
       {
        "$ xns" : "Gtk",
        "* init" : [
+        "",
+        "",
+        "this.css = new Gtk.CssProvider();",
+        "\ttry {",
+        "\t\tthis.css.load_from_data(\"#editor-searchentry { font: monospace 12px;}\".data);",
+        "\t} catch (Error e) {}",
+        "   this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+        "",
+        "",
         "var description =   Pango.FontDescription.from_string(\"monospace\");",
         "\tdescription.set_size(8000);",
         "\t this.el.set_property(\"font-desc\",description);",
@@ -559,6 +568,7 @@
         ""
        ],
        "* pack" : "append",
+       "Gtk.CssProvider css" : "",
        "bool hexpand" : true,
        "id" : "search_entry",
        "int width_request" : 300,

@@ -934,6 +934,7 @@ public class Editor : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_search_entry(Editor _owner )
@@ -954,6 +955,13 @@ public class Editor : Object
 
             // init method
 
+            this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#editor-searchentry { font: monospace 12px;}".data);
+            	} catch (Error e) {}
+               this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            
+            
             var description =   Pango.FontDescription.from_string("monospace");
             	description.set_size(8000);
             	 this.el.set_property("font-desc",description);
