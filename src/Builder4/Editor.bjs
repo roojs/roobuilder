@@ -121,7 +121,7 @@
         "",
         "\tthis.css = new Gtk.CssProvider();",
         "\ttry {",
-        "\t\tthis.css.load_from_data(\"#editor-view { font: monospace 10px;}\".data);",
+        "\t\tthis.css.load_from_data(\"#editor-view { font:  10px monospace;}\".data);",
         "\t} catch (Error e) {}",
         "\tthis.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
         "\t ",
