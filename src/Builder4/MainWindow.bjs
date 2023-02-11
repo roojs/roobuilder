@@ -217,6 +217,7 @@
      "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool homogeneous" : false,
+     "bool vexpand" : true,
      "id" : "vbox",
      "items" : [
       {
