@@ -42,7 +42,7 @@ public class Xcls_MainWindow : Object
     public Xcls_MainWindow()
     {
         _this = this;
-        this.el = new Gtk.ApplicationWindow( null );
+        this.el = new Gtk.ApplicationWindow(BuilderApplication.application);
 
         // my vars (dec)
         this.title = "Roo Application Builder";
