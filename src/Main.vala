@@ -21,22 +21,20 @@ int main (string[] args) {
 	// GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR | LogLevelFlags.LEVEL_CRITICAL); 
 	GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR ); 
 	 
+	app.activate.connect(() => {
+		var w = new Xcls_MainWindow();
 
-	var w = new Xcls_MainWindow();
-
-	BuilderApplication.addWindow(w);
-	w.el.show();
-	// it looks like showall after children causes segfault on ubuntu 14.4
-	w.initChildren();
+		BuilderApplication.addWindow(w);
+		w.el.show();
+		// it looks like showall after children causes segfault on ubuntu 14.4
+		w.initChildren();
+	
+	});
+	
 	//w.windowstate.showPopoverFiles(w.open_projects_btn.el, null, false);
 //	w.windowstate.switchState(WindowState.State.FILES);
-	var mc = new GLib.MainContext();
-	while (BuilderApplication.windows.size > 0) {
-		 mc.iteration(true);
-	}
+	app.run(args);
 	
-	
-    app = null;
-	
+    
 	return 0;
 }
