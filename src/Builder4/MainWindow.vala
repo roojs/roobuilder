@@ -166,7 +166,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Box3(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
 

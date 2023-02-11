@@ -31,7 +31,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
          "# Gee.ArrayList<Gtk.Widget> mitems" : "",
