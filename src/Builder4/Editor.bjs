@@ -72,7 +72,7 @@
          "\t ",
          "\t  try {",
          "\t  _this.view.css.load_from_data(",
-         "\t  \t\t\"#editor-view { font: %dpx Monospace; }\".printf((int)val).data",
+         "\t  \t\t\"#editor-view { font: monospace %dpx ; }\".printf((int)val).data",
          "\t  \t\t);",
          "      } catch (Error e) {}",
          " \treturn false;",

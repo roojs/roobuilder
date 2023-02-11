@@ -351,7 +351,7 @@ public class Editor : Object
             	 
             	  try {
             	  _this.view.css.load_from_data(
-            	  		"#editor-view { font: %dpx Monospace; }".printf((int)val).data
+            	  		"#editor-view { font: monospace %dpx ; }".printf((int)val).data
             	  		);
                   } catch (Error e) {}
              	return false;
