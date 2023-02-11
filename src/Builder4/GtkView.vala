@@ -600,7 +600,7 @@ public class Xcls_GtkView : Object
                
                	this.css = new Gtk.CssProvider();
             	try {
-            		this.css.load_from_data("#gtkview-view { font: monospace 10px ;}".data);
+            		this.css.load_from_data("#gtkview-view { font: 10px monospace ;}".data);
             	} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
