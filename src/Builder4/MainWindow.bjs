@@ -311,6 +311,7 @@
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool homogeneous" : false,
+       "bool vexpand" : false,
        "items" : [
         {
          "$ tooltip_text" : "\"Project Details\"",

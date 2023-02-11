@@ -746,6 +746,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.homogeneous = false;
+            this.el.vexpand = false;
             var child_0 = new Xcls_Button21( _this );
             child_0.ref();
             this.el.append(  child_0.el );
