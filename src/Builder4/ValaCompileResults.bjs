@@ -37,7 +37,7 @@
           "",
           "   \tthis.css = new Gtk.CssProvider();",
           "\ttry {",
-          "\t\tthis.css.load_from_data(\"#compile-results-view { font: monospace 10px ;}\".data);",
+          "\t\tthis.css.load_from_data(\"#compile-results-view { font: 10px monospace ;}\".data);",
           "\t} catch (Error e) {}",
           "\tthis.el.get_style_context().add_provider(this.css,",
           "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
