@@ -29,9 +29,9 @@ int main (string[] args) {
 		// it looks like showall after children causes segfault on ubuntu 14.4
 		w.initChildren();
 		var mc = new GLib.MainContext();
--       while (BuilderApplication.windows.size > 0) {
--                mc.iteration(true);
--       }
+	    while (BuilderApplication.windows.size > 0) {
+                mc.iteration(true);
+       }
 	
 	});
 	
