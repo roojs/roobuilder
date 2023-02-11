@@ -37,10 +37,7 @@ int main (string[] args) {
 //	w.windowstate.switchState(WindowState.State.FILES);
 	var ret = app.run(args);
 	
-	var mc = new GLib.MainContext();
-	    while (BuilderApplication.windows.size > 0) {
-           mc.iteration(true);
-       }
+	 
 	
 	return ret;
      
