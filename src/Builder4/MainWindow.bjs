@@ -7,7 +7,7 @@
    "# string title" : "\"Roo Application Builder\"",
    "$ type" : "Gtk.WindowType.TOPLEVEL",
    "$ xns" : "Gtk",
-   "* ctor" : "new Gtk.ApplicationWindow(BuilderApplication.application)",
+   "* ctor" : "new Gtk.ApplicationWindow(BuilderApplication.singleton({}))",
    "* init" : [
     " ",
     " ",
