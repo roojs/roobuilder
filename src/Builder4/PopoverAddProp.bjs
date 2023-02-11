@@ -33,7 +33,7 @@
         "   ",
         "\tthis.css = new Gtk.CssProvider();",
         "\ttry {",
-        "\t\tthis.css.load_from_data(\"#popover-add-prop-view { font-sze: 12px;}\".data);",
+        "\t\tthis.css.load_from_data(\"#popover-add-prop-view { font-size: 12px;}\".data);",
         "\t} catch (Error e) {}",
         "   this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
         "\t ",
