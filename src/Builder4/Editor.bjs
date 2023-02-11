@@ -555,10 +555,10 @@
         "",
         "",
         "this.css = new Gtk.CssProvider();",
-        "\ttry {",
-        "\t\tthis.css.load_from_data(\"#editor-searchentry { font: monospace 8px;}\".data);",
-        "\t} catch (Error e) {}",
-        "   this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+        "try {",
+        "\tthis.css.load_from_data(\"#editor-search-entry { font: monospace 8px;}\".data);",
+        "} catch (Error e) {}",
+        "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
         "",
         "",
         ""
@@ -645,6 +645,7 @@
          ""
         ]
        },
+       "string name" : "editor-search-entry",
        "string placeholder_text" : "Press enter to search",
        "xtype" : "SearchEntry",
        "| void forwardSearch" : [
