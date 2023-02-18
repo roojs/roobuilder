@@ -418,6 +418,7 @@ public class Xcls_WindowLeftTree : Object
                 			width = 1,
                 			height = 1
                 		};
+                		_this.LeftTreeMenu.el.set_parent(_this.view.el);
                 		_this.LeftTreeMenu.el.show();
             		 _this.LeftTreeMenu.el.set_pointing_to( r);
             

@@ -157,6 +157,7 @@
            "    \t\t\twidth = 1,",
            "    \t\t\theight = 1",
            "    \t\t};",
+           "    \t\t_this.LeftTreeMenu.el.set_parent(_this.view.el);",
            "    \t\t_this.LeftTreeMenu.el.show();",
            "\t\t _this.LeftTreeMenu.el.set_pointing_to( r);",
            "",
