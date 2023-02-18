@@ -95,6 +95,8 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.has_frame = true;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );

@@ -20,6 +20,8 @@
       ""
      ],
      "bool has_frame" : true,
+     "bool hexpand" : true,
+     "bool vexpand" : true,
      "id" : "viewwin",
      "items" : [
       {
