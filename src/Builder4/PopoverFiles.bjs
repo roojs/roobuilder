@@ -422,8 +422,9 @@
         {
          "$ xns" : "Gtk",
          "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-         "bool expand" : true,
          "bool has_frame" : true,
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "bool visible" : false,
          "id" : "file_container",
          "int width_request" : 100,
