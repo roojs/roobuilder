@@ -322,6 +322,8 @@
             "  "
            ],
            "bool has_frame" : true,
+           "bool hexpand" : true,
+           "bool vexpand" : true,
            "id" : "iconscroll",
            "int width_request" : 600,
            "items" : [

@@ -993,6 +993,8 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             this.el.width_request = 600;
             this.el.has_frame = true;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_iconview( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
