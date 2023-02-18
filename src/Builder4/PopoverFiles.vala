@@ -1140,7 +1140,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.width_request = 100;
+            this.el.width_request = 200;
             this.el.has_frame = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
