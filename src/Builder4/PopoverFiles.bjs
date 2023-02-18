@@ -29,6 +29,7 @@
       {
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "bool hexpand" : true,
        "bool vexpand" : true,
        "items" : [
         {
