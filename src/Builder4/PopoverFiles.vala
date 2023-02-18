@@ -147,7 +147,7 @@ public class Xcls_PopoverFiles : Object
     		// save...
     	this.load();
     	this.el.set_parent(on_el);
-    	this.el.show(); // show first - so we can hide stuff later.	
+    	 // show first - so we can hide stuff later.	
     	if (project != null) {
     	
     		this.selectProject(project);
@@ -174,7 +174,7 @@ public class Xcls_PopoverFiles : Object
     	Gtk.Allocation rect;
     	on_el.get_allocation(out rect);
         this.el.set_pointing_to(rect);
-    
+    	this.el.show();
     	 
     
     }
