@@ -865,6 +865,7 @@
     "\tthis.new_window = new_window;",
     "\t\t// save...",
     "\tthis.load();",
+    "\tthis.el.set_parent(on_el);",
     "\tthis.el.show(); // show first - so we can hide stuff later.\t",
     "\tif (project != null) {",
     "\t",

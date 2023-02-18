@@ -146,6 +146,7 @@ public class Xcls_PopoverFiles : Object
     	this.new_window = new_window;
     		// save...
     	this.load();
+    	this.el.set_parent(on_el);
     	this.el.show(); // show first - so we can hide stuff later.	
     	if (project != null) {
     	
