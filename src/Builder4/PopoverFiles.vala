@@ -171,9 +171,10 @@ public class Xcls_PopoverFiles : Object
     
     
     	this.el.set_autohide(true); // can ide
-    	Gtk.Allocation rect;
-    	on_el.get_allocation(out rect);
-        this.el.set_pointing_to(rect);
+    	//Gtk.Allocation rect;
+    	//on_el.get_allocation(out rect);
+       // this.el.set_pointing_to(rect);
+       this.el.set_position(Gtk.PositionType.BOTTOM);
     	this.el.show();
     	 
     
