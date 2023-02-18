@@ -881,7 +881,6 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
-        public bool expand;
 
         // ctor
         public Xcls_Box15(Xcls_PopoverFiles _owner )
@@ -890,10 +889,11 @@ public class Xcls_PopoverFiles : Object
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
-            this.expand = true;
 
             // set gobject values
             this.el.width_request = 600;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_Box16( _this );
             child_0.ref();
             this.el.append(  child_0.el );

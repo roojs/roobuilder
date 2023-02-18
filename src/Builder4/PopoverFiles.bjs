@@ -270,7 +270,8 @@
         {
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-         "bool expand" : true,
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "int spacing" : 0,
          "int width_request" : 600,
          "items" : [
