@@ -523,6 +523,7 @@ public class Xcls_MainWindow : Object
             this.lastWidth = 0;
 
             // set gobject values
+            this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.position = 400;
             var child_0 = new Xcls_leftpane( _this );
