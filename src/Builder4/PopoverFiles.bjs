@@ -187,6 +187,8 @@
            ],
            "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
+           "bool hexpand" : true,
+           "bool vexpand" : true,
            "id" : "view",
            "items" : [
             {

@@ -728,6 +728,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.name = "popover-files-view";
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
             var child_0 = new Xcls_model( _this );
