@@ -25,7 +25,7 @@
         " ",
         ""
        ],
-       "* pack" : "pack_start,true,true,0",
+       "* pack" : "add",
        "items" : [
         {
          "# string dragData" : "",
