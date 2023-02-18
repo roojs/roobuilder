@@ -4,15 +4,15 @@
   {
    "$ xns" : "Gtk",
    "* pack" : "add",
-   "@ void after_node_change(JsRender.Node? node)" : "",
-   "@ void before_node_change(JsRender.Node? node)" : "",
+   "@ void after_node_change(JsRender.Node?" : "",
+   "@ void before_node_change(JsRender.Node?" : "",
    "@ void drag_end()" : "",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "id" : "RightPalete",
    "items" : [
     {
      "$ xns" : "Gtk",
-     "* pack" : "pack_start,true,true,0",
+     "* pack" : "add",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "id" : "viewbox",
      "items" : [

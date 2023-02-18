@@ -17,9 +17,9 @@ public class Xcls_RightPalete : Object
     public Xcls_txtrender txtrender;
 
         // my vars (def)
-    public signal void after_node_change(JsRender.Node? node) ;
-    public signal void before_node_change(JsRender.Node? node) ;
+    public signal void after_node_change(JsRender.Node? ;
     public signal void drag_end() ;
+    public signal void before_node_change(JsRender.Node? ;
 
     // ctor
     public Xcls_RightPalete()
@@ -32,10 +32,13 @@ public class Xcls_RightPalete : Object
         // set gobject values
         var child_0 = new Xcls_viewbox( _this );
         child_0.ref();
-        this.el.pack_start (  child_0.el , true,true,0 );
+        this.el.add (  child_0.el  );
     }
 
     // user defined functions
+    public void clear () {
+       this.model.el.clear();
+    }
     public void load (Palete.Palete pal, string cls ) {
        
        // this.get('model').expanded();
@@ -60,9 +63,6 @@ public class Xcls_RightPalete : Object
         }
         this.model.el.set_sort_column_id(1,Gtk.SortType.ASCENDING);
         
-    }
-    public void clear () {
-       this.model.el.clear();
     }
     public class Xcls_viewbox : Object
     {
@@ -101,12 +101,11 @@ public class Xcls_RightPalete : Object
         public Xcls_ScrolledWindow3(Xcls_RightPalete _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.shadow_type = Gtk.ShadowType.IN;
             var child_0 = new Xcls_TreeView4( _this );
             child_0.ref();
             this.el.add (  child_0.el  );
@@ -213,15 +212,6 @@ public class Xcls_RightPalete : Object
                     
                     return;
             });
-            this.el.drag_end.connect( ( drag_context)  => {
-             	 GLib.debug("SOURCE: drag-end (call listener on this)\n");
-            	
-            	this.dragData = "";
-            	//this.dropList = null;
-            	_this.drag_end(); // call signal..
-            	//this.get('/LeftTree.view').highlight(false);
-            	 
-            });
             this.el.drag_data_get.connect( (drag_context, selection_data, info, time) => {
              	//Seed.print('Palete: drag-data-get: ' + target_type);
                 if (this.dragData.length < 1 ) {
@@ -235,6 +225,15 @@ public class Xcls_RightPalete : Object
                     //this.el.dragData = "TEST from source widget";
                     
                     
+            });
+            this.el.drag_end.connect( ( drag_context)  => {
+             	 GLib.debug("SOURCE: drag-end (call listener on this)\n");
+            	
+            	this.dragData = "";
+            	//this.dropList = null;
+            	_this.drag_end(); // call signal..
+            	//this.get('/LeftTree.view').highlight(false);
+            	 
             });
         }
 
@@ -253,7 +252,7 @@ public class Xcls_RightPalete : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
