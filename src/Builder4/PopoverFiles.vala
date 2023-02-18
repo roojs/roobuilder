@@ -322,15 +322,15 @@ public class Xcls_PopoverFiles : Object
         
         
           try {
-    	        if (_this.missing_thumb_pixbuf == null) {
-    	        
-    	        	var icon_theme = Gtk.IconTheme.get_for_display(this.el.get_display());
-    	        	 var icon = icon_theme.lookup_icon ("package-x-generic", null,  92,1, 
-        			 Gtk.TextDirection.NONE, 0);
-        		 	_this.missing_thumb_pixbuf = new Gdk.Pixbuf.from_file (icon.file.get_path());
-    
-    	            _this.missing_thumb_pixbuf.ref();
-    	        }
+            if (_this.missing_thumb_pixbuf == null) {
+            
+            	var icon_theme = Gtk.IconTheme.get_for_display(this.el.get_display());
+            	 var icon = icon_theme.lookup_icon ("package-x-generic", null,  92,1, 
+    					 Gtk.TextDirection.NONE, 0);
+    		 	_this.missing_thumb_pixbuf = (new Gdk.Pixbuf.from_file (icon.file.get_path())).scale_simple(
+    		 		92, 92 	, Gdk.InterpType.NEAREST) ;
+                _this.missing_thumb_pixbuf.ref();
+            }
     	        
     
     	    } catch (Error e) {
