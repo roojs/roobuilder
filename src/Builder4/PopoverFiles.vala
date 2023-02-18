@@ -434,7 +434,6 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.vexpand = true;
             var child_0 = new Xcls_Box4( _this );
             child_0.ref();
             this.el.append(  child_0.el );
