@@ -980,7 +980,6 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
-        public bool expand;
 
         // ctor
         public Xcls_iconscroll(Xcls_PopoverFiles _owner )
@@ -990,7 +989,6 @@ public class Xcls_PopoverFiles : Object
             this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
-            this.expand = true;
 
             // set gobject values
             this.el.width_request = 600;

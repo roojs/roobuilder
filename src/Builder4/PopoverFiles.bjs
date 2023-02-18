@@ -321,7 +321,6 @@
             "  this.el.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);",
             "  "
            ],
-           "bool expand" : true,
            "bool has_frame" : true,
            "id" : "iconscroll",
            "int width_request" : 600,
