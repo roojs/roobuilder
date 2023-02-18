@@ -8,6 +8,8 @@
    "@ void changed" : "()",
    "@ void node_selected" : "(JsRender.Node? node, string source)",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+   "bool hexpand" : true,
+   "bool vexpand" : true,
    "id" : "WindowLeftTree",
    "items" : [
     {
