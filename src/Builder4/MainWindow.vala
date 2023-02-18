@@ -651,6 +651,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.hexpand = true;
+            this.el.vexpand = true;
         }
 
         // user defined functions

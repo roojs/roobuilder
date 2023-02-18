@@ -256,6 +256,7 @@
              "* prop" : "end_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
              "bool hexpand" : true,
+             "bool vexpand" : true,
              "id" : "props",
              "xtype" : "Box"
             }
