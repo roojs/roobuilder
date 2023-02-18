@@ -143,6 +143,7 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.name = "left-tree-view";
+            this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.tooltip_column = 1;
             this.el.enable_tree_lines = true;

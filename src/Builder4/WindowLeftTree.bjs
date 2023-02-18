@@ -82,6 +82,7 @@
        "bool button_is_pressed" : false,
        "bool expand" : true,
        "bool headers_visible" : false,
+       "bool hexpand" : true,
        "bool vexpand" : true,
        "items" : [
         {
