@@ -167,7 +167,7 @@ public class Xcls_PopoverFiles : Object
     	
     	// width = should be max = w-ww , or 600 at best..?
     	 
-        this.el.set_size_request( w, h); // same as parent...
+        this.el.set_size_request( w - 100, h - 100); // same as parent...
     
     
     	this.el.set_autohide(true); // can ide
