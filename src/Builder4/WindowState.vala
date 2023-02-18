@@ -768,7 +768,8 @@ public class WindowState : Object
 	 
 		 var n = this.left_tree.getActiveElement();
 		this.add_props.hide();
-		this.rightpalete.el.show();
+		this.rightpalete.el.set_parent(this.left_tree.view.el);
+		this.rightpalete.el.show(); // show a popover..
 		this.rightpalete.show(
 			this.left_tree.getActiveFile().palete(), 
 			n == null ? "*top" : n.fqn(),
