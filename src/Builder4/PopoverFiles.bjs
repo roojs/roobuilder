@@ -337,6 +337,8 @@
              ],
              "* pack" : "set_child",
              "bool has_tooltip" : true,
+             "bool hexpand" : true,
+             "bool vexpand" : true,
              "id" : "iconview",
              "int item_width" : 100,
              "int markup_column" : 1,

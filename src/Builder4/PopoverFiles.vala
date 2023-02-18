@@ -1025,6 +1025,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.markup_column = 1;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             this.el.pixbuf_column = 3;
             this.el.has_tooltip = true;
             this.el.item_width = 100;
