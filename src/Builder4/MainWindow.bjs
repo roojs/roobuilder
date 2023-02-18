@@ -244,6 +244,7 @@
              "$ xns" : "Gtk",
              "* prop" : "start_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "bool hexpand" : true,
              "id" : "tree",
              "xtype" : "Box"
             },
@@ -251,6 +252,7 @@
              "$ xns" : "Gtk",
              "* prop" : "end_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "bool hexpand" : true,
              "id" : "props",
              "xtype" : "Box"
             }
