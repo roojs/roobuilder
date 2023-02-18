@@ -1163,7 +1163,6 @@ public class Xcls_PopoverFiles : Object
 
             // my vars (def)
         public Gtk.CssProvider css;
-        public bool expand;
 
         // ctor
         public Xcls_fileview(Xcls_PopoverFiles _owner )
@@ -1173,11 +1172,12 @@ public class Xcls_PopoverFiles : Object
             this.el = new Gtk.TreeView();
 
             // my vars (dec)
-            this.expand = true;
 
             // set gobject values
             this.el.name = "popover-files-fileview";
             this.el.activate_on_single_click = false;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
             var child_0 = new Xcls_filemodel( _this );

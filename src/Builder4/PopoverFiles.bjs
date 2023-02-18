@@ -456,7 +456,8 @@
            "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
            "bool activate_on_single_click" : false,
-           "bool expand" : true,
+           "bool hexpand" : true,
+           "bool vexpand" : true,
            "id" : "fileview",
            "items" : [
             {
