@@ -23,6 +23,8 @@
      "$ xns" : "Gtk",
      "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "bool hexpand" : true,
+     "bool vexpand" : true,
      "items" : [
       {
        "$ xns" : "Gtk",
