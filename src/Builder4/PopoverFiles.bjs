@@ -904,7 +904,7 @@
     "    this.el.set_size_request( w, h); // same as parent...",
     "",
     "",
-    "\tthis.el.set_autohide(false);",
+    "\tthis.el.set_autohide(true); // can ide",
     "\tGtk.Allocation rect;",
     "\ton_el.get_allocation(out rect);",
     "    this.el.set_pointing_to(rect);",

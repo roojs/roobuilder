@@ -170,7 +170,7 @@ public class Xcls_PopoverFiles : Object
         this.el.set_size_request( w, h); // same as parent...
     
     
-    	this.el.set_autohide(false);
+    	this.el.set_autohide(true); // can ide
     	Gtk.Allocation rect;
     	on_el.get_allocation(out rect);
         this.el.set_pointing_to(rect);
