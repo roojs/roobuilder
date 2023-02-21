@@ -104,7 +104,7 @@ public class Xcls_PopoverAddProp : Object
         // min 450?
     	// max hieght ...
         this.el.set_size_request( 550, h);
-    
+        this.el.set_parent(onbtn);
         
     
     	Gtk.Allocation rect;

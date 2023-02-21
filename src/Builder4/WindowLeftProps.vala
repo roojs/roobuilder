@@ -270,9 +270,9 @@ public class Xcls_LeftProps : Object
     
          // ONLY return true if editing is allowed - eg. combo..
     
-        GLib.debug("start editing?\n");
+        GLib.debug("startEditingValue?");
         if (!this.stop_editor()) {
-            GLib.debug("stop editor failed\n");
+            GLib.debug("stop editor failed");
             return false;
         }
         
@@ -284,7 +284,7 @@ public class Xcls_LeftProps : Object
         GLib.Value gval;
         mod.get_value(iter, 0 , out gval);
         var prop  = (JsRender.NodeProp)gval;
-    
+        GLib.debug("startEditingValue prop=%s, val=%s?", prop.name, prop.val);
     
         
         var use_textarea = false;
@@ -368,7 +368,7 @@ public class Xcls_LeftProps : Object
          opts =  {  };
         this.valrender.setOptions(opts);
        
-       //GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+       GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
             
             // at this point - work out the type...
             // if its' a combo... then show the options..
@@ -390,8 +390,8 @@ public class Xcls_LeftProps : Object
                 true
             );
             return false;
-        //});
-        //return false;
+        });
+        return false;
     }
     public void load (JsRender.JsRender file, JsRender.Node? node) 
     {
@@ -1449,8 +1449,8 @@ public class Xcls_LeftProps : Object
             		this.css.load_from_data("#leftprops-view { font-size: 10px;}".data);
             	} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
-            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            
+            	Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+                
               
             }
         }
@@ -1502,12 +1502,19 @@ public class Xcls_LeftProps : Object
             // set gobject values
 
             //listeners
-            this.el.pressed.connect( (n_press, x, y) => {
+            this.el.pressed.connect( (n_press, in_x, in_y) => {
             
+            	
+            	this.el.set_state(Gtk.EventSequenceState.CLAIMED);
             	Gtk.TreeViewColumn col;
                 int cell_x;
                 int cell_y;
+                int x;
+                int y;
+                
                 Gtk.TreePath path;
+                
+                _this.view.el.convert_widget_to_bin_window_coords((int)in_x, (int)in_y, out x, out y);
                 
                 // event x /y are relative to the widget..
                 if (!_this.view.el.get_path_at_pos((int)x, (int)y, out path, out col, out cell_x, out cell_y )) {
@@ -1520,7 +1527,7 @@ public class Xcls_LeftProps : Object
                     return; //not on a element.
                 }
                 
-                 
+                  GLib.debug("treepath selected: %s",path.to_string()); 
                  // single click on name..
                  //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
                  if (this.el.get_current_button() == 1 && col.title == "Property") {    

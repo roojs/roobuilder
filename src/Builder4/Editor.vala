@@ -349,11 +349,11 @@ public class Editor : Object
             //listeners
             this.el.change_value.connect( (st, val ) => {
             	 
-            	  try {
+            	   
             	  _this.view.css.load_from_data(
             	  		"#editor-view { font: %dpx monospace; }".printf((int)val).data
-            	  		);
-                  } catch (Error e) {}
+            	   );
+                 
              	return false;
             });
         }
@@ -462,16 +462,16 @@ public class Editor : Object
             // init method
 
             this.css = new Gtk.CssProvider();
-            	try {
-            		this.css.load_from_data("#editor-view { font:  10px monospace;}".data);
-            	} catch (Error e) {}
+             
+            	this.css.load_from_data("#editor-view { font:  10px monospace;}".data);
+            	 
             	this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	 
             		 
             
-            	try {        
-            		this.el.completion.add_provider(new Palete.CompletionProvider(_this));
-                } catch (GLib.Error  e) {}
+            	       
+            	this.el.completion.add_provider(new Palete.CompletionProvider(_this));
+                 
                 
             	this.el.completion.unblock_interactive();
             	this.el.completion.select_on_show			= true; // select

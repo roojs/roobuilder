@@ -302,7 +302,7 @@ namespace JsRender {
 				var chksum = GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip());
 				
 				if (this.doubleStringProps.index_of(kname) > -1) {
-					GLib.debug("flag=%s type=%s name=%s : %s\n", prop.ptype.to_string(),ktype,kname,str);
+					//GLib.debug("flag=%s type=%s name=%s : %s\n", prop.ptype.to_string(),ktype,kname,str);
 					this.transStrings.set(str,  chksum);
 					named.set("_" + kname, chksum);
 					continue;

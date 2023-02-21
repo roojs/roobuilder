@@ -191,8 +191,8 @@
     "response" : [
      "(res) => {",
      "",
-     "\tvar node = _this.node;",
-     "\tvar project = _this.project;",
+     "\t//var node = _this.node;",
+     "\t//var project = _this.project;",
      "\treturn;",
      "   /*",
      "   ",

@@ -752,7 +752,8 @@ public class WindowState : Object
 				return;
 		}
 		this.rightpalete.hide(); 
-		
+		this.add_props.el.set_parent(btn);
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
 		this.add_props.el.show(); 
 		this.add_props.show(
 			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
@@ -768,6 +769,9 @@ public class WindowState : Object
 	 
 		 var n = this.left_tree.getActiveElement();
 		this.add_props.hide();
+		 
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+		
 		this.rightpalete.el.set_parent(this.left_tree.view.el);
 		this.rightpalete.el.show(); // show a popover..
 		this.rightpalete.show(

@@ -911,8 +911,7 @@
     "    this.el.set_offset(200,0);",
     "    this.el.set_position(Gtk.PositionType.BOTTOM);",
     "\tthis.el.show();",
-    "\t ",
-    "",
+    "\t  ",
     "}",
     ""
    ]

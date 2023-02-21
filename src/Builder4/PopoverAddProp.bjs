@@ -248,7 +248,7 @@
     "    // min 450?",
     "\t// max hieght ...",
     "    this.el.set_size_request( 550, h);",
-    "",
+    "    this.el.set_parent(onbtn);",
     "    ",
     "",
     "\tGtk.Allocation rect;",

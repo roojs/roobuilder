@@ -149,7 +149,7 @@ public class JsRender.Node : Object {
 			this.lines.add(line);
 		}
 		this.line_map.set(line, type + ":" + prop);
-		GLib.debug("setLine %d, %s", line, type + ":" + prop);
+		//GLib.debug("setLine %d, %s", line, type + ":" + prop);
 	}
 	public void sortLines() {
 		//print("sortLines\n");

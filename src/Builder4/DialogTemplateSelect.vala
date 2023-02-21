@@ -60,8 +60,8 @@ public class DialogTemplateSelect : Object
         });
         this.el.response.connect( (res) => {
         
-        	var node = _this.node;
-        	var project = _this.project;
+        	//var node = _this.node;
+        	//var project = _this.project;
         	return;
            /*
            
