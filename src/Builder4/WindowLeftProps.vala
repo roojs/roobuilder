@@ -45,6 +45,8 @@ public class Xcls_LeftProps : Object
 
         // set gobject values
         this.el.homogeneous = false   ;
+        this.el.hexpand = true;
+        this.el.vexpand = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.append(  child_0.el );
@@ -360,14 +362,13 @@ public class Xcls_LeftProps : Object
                                   
            // see if type is a Enum.
            
-           
-       
+            
             
        
          opts =  {  };
         this.valrender.setOptions(opts);
        
-       GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+       //GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
             
             // at this point - work out the type...
             // if its' a combo... then show the options..
@@ -389,8 +390,8 @@ public class Xcls_LeftProps : Object
                 true
             );
             return false;
-        });
-        return false;
+        //});
+        //return false;
     }
     public void load (JsRender.JsRender file, JsRender.Node? node) 
     {
@@ -541,6 +542,7 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             var child_0 = new Xcls_Label3( _this );
             child_0.ref();
             this.el.append(  child_0.el );
@@ -687,14 +689,17 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) => {
              _this.before_edit();
-                
+              
                     
                 var p = _this.AddPropertyPopup;
                 
                  	Gtk.Allocation rect;
                 	this.el.get_allocation(out rect);
+            		p.el.set_autohide(true); 
+                	p.el.set_parent(this.el);
                     p.el.set_pointing_to(rect);
-                p.el.show();
+                	p.el.show();
+                	p.el.set_position(Gtk.PositionType.BOTTOM);
             
                  return;
             
@@ -1374,6 +1379,8 @@ public class Xcls_LeftProps : Object
             this.editing = false;
 
             // set gobject values
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
@@ -1410,6 +1417,8 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.name = "leftprops-view";
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             this.el.tooltip_column = 3;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
@@ -1534,7 +1543,7 @@ public class Xcls_LeftProps : Object
                      //}
             
                     var p = _this.ContextMenu;
-            
+            		p.el.set_parent(_this.view.el);
              
                     p.el.show();
                     

@@ -13,11 +13,14 @@
    "@ void show_add_props" : "(string type)",
    "@ void show_editor" : "(JsRender.JsRender file, JsRender.Node node, JsRender.NodeProp prop)",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+   "bool hexpand" : true,
+   "bool vexpand" : true,
    "id" : "LeftProps",
    "items" : [
     {
      "$ xns" : "Gtk",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool hexpand" : true,
      "items" : [
       {
        "$ xns" : "Gtk",
@@ -379,14 +382,17 @@
         "activate" : [
          "( ) => {",
          " _this.before_edit();",
-         "    ",
+         "  ",
          "        ",
          "    var p = _this.AddPropertyPopup;",
          "    ",
          "     \tGtk.Allocation rect;",
          "    \tthis.el.get_allocation(out rect);",
+         "\t\tp.el.set_autohide(true); ",
+         "    \tp.el.set_parent(this.el);",
          "        p.el.set_pointing_to(rect);",
-         "    p.el.show();",
+         "    \tp.el.show();",
+         "    \tp.el.set_position(Gtk.PositionType.BOTTOM);",
          "",
          "     return;",
          "",
@@ -412,6 +418,8 @@
       "}",
       ""
      ],
+     "bool hexpand" : true,
+     "bool vexpand" : true,
      "id" : "EditProps",
      "items" : [
       {
@@ -438,6 +446,8 @@
        "* pack" : "set_child",
        "Gtk.CssProvider css" : "",
        "Xcls_PopoverProperty popover" : "null",
+       "bool hexpand" : true,
+       "bool vexpand" : true,
        "id" : "view",
        "items" : [
         {
@@ -485,7 +495,7 @@
            "         //}",
            "",
            "        var p = _this.ContextMenu;",
-           "",
+           "\t\tp.el.set_parent(_this.view.el);",
            " ",
            "        p.el.show();",
            "        ",
@@ -545,27 +555,6 @@
          "xtype" : "GestureClick"
         },
         {
-         "$ changed" : [
-          "function(str, doRefresh) {",
-          "    if (!this.activePath) {",
-          "        return;",
-          "    }",
-          "    var iter = new Gtk.TreeIter();",
-          "    ",
-          "    _this.setTreeIter(prop);",
-          "    this.el.get_iter(iter, new Gtk.TreePath.from_string(this.activePath));",
-          "    ",
-          "    this.el.set_value(iter, 1, '' +str);",
-          "    this.el.set_value(iter, 3, '' + this.toShort(str));",
-          "    var type = this.getIterValue(iter, 4);",
-          "",
-          "    this.el.set_value(iter, 5, type + ' : ' + str);",
-          "    // update the tree...  ",
-          "",
-          "    this.get('/LeftTree.model').changed(this.toJS(), doRefresh); ",
-          "}",
-          ""
-         ],
          "$ columns" : [
           "     typeof(JsRender.NodeProp),  // 0 key type",
           "     typeof(string),  // 1 display_key",
@@ -889,14 +878,13 @@
     "                              ",
     "       // see if type is a Enum.",
     "       ",
-    "       ",
-    "   ",
+    "        ",
     "        ",
     "   ",
     "     opts =  {  };",
     "    this.valrender.setOptions(opts);",
     "   ",
-    "   GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {",
+    "   //GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {",
     "        ",
     "        // at this point - work out the type...",
     "        // if its' a combo... then show the options..",
@@ -918,8 +906,8 @@
     "            true",
     "        );",
     "        return false;",
-    "    });",
-    "    return false;",
+    "    //});",
+    "    //return false;",
     "}",
     ""
    ],
