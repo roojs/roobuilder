@@ -26,7 +26,6 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (def)
     public Xcls_MainWindow win;
-    public bool modal;
     public string lastfilter;
     public bool in_onprojectselected;
     public Project.Project selectedProject;
@@ -41,10 +40,9 @@ public class Xcls_PopoverFiles : Object
     public Xcls_PopoverFiles()
     {
         _this = this;
-        this.el = new Gtk.Popover();
+        this.el = new Gtk.Popover( null );
 
         // my vars (dec)
-        this.modal = true;
         this.lastfilter = "";
         this.in_onprojectselected = false;
         this.is_loading = false;
@@ -57,6 +55,7 @@ public class Xcls_PopoverFiles : Object
         this.el.width_request = 900;
         this.el.height_request = 800;
         this.el.hexpand = false;
+        this.el.modal = true;
         this.el.position = Gtk.PositionType.TOP;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
@@ -174,7 +173,8 @@ public class Xcls_PopoverFiles : Object
     	//Gtk.Allocation rect;
     	//on_el.get_allocation(out rect);
        // this.el.set_pointing_to(rect);
-       this.el.set_position(Gtk.PositionType.BOTTOM);
+        this.el.set_offset(200,0);
+        this.el.set_position(Gtk.PositionType.BOTTOM);
     	this.el.show();
     	 
     
@@ -409,10 +409,10 @@ public class Xcls_PopoverFiles : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_Box9( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -437,7 +437,7 @@ public class Xcls_PopoverFiles : Object
             this.el.hexpand = true;
             var child_0 = new Xcls_Box4( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
         }
 
         // user defined functions
@@ -461,16 +461,16 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             var child_0 = new Xcls_Button5( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_Button6( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
             var child_2 = new Xcls_Button7( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.add(  child_2.el );
             var child_3 = new Xcls_Button8( _this );
             child_3.ref();
-            this.el.append(  child_3.el );
+            this.el.add(  child_3.el );
         }
 
         // user defined functions
@@ -482,6 +482,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public string icon_name;
 
         // ctor
         public Xcls_Button5(Xcls_PopoverFiles _owner )
@@ -490,9 +491,9 @@ public class Xcls_PopoverFiles : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.icon_name = folder-new;
 
             // set gobject values
-            this.el.icon_name = "folder-new";
             this.el.label = "New Project";
 
             //listeners
@@ -520,6 +521,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public string icon_name;
 
         // ctor
         public Xcls_Button6(Xcls_PopoverFiles _owner )
@@ -528,9 +530,9 @@ public class Xcls_PopoverFiles : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.icon_name = emblem-system;
 
             // set gobject values
-            this.el.icon_name = "emblem-system";
             this.el.label = "Project Properties";
 
             //listeners
@@ -553,6 +555,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public string icon_name;
 
         // ctor
         public Xcls_Button7(Xcls_PopoverFiles _owner )
@@ -561,9 +564,9 @@ public class Xcls_PopoverFiles : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.icon_name = user-trash;
 
             // set gobject values
-            this.el.icon_name = "user-trash";
             this.el.label = "Delete Project";
 
             //listeners
@@ -608,6 +611,7 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public string icon_name;
 
         // ctor
         public Xcls_Button8(Xcls_PopoverFiles _owner )
@@ -616,9 +620,9 @@ public class Xcls_PopoverFiles : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.icon_name = document-new;
 
             // set gobject values
-            this.el.icon_name = "document-new";
             this.el.label = "New File";
 
             //listeners
@@ -664,13 +668,13 @@ public class Xcls_PopoverFiles : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_ScrolledWindow10( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_Box15( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
             var child_2 = new Xcls_file_container( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.add(  child_2.el );
         }
 
         // user defined functions
@@ -682,20 +686,20 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
-        public bool expand;
+        public bool has_frame;
 
         // ctor
         public Xcls_ScrolledWindow10(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow();
+            this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)
-            this.expand = true;
+            this.has_frame = true;
 
             // set gobject values
             this.el.width_request = 150;
-            this.el.has_frame = true;
+            this.el.expand = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
             var child_0 = new Xcls_view( _this );
@@ -897,10 +901,10 @@ public class Xcls_PopoverFiles : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_Box16( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_iconscroll( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -925,7 +929,7 @@ public class Xcls_PopoverFiles : Object
             this.el.hexpand = true;
             var child_0 = new Xcls_iconsearch( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
         }
 
         // user defined functions
@@ -983,19 +987,20 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public bool has_frame;
 
         // ctor
         public Xcls_iconscroll(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             _this.iconscroll = this;
-            this.el = new Gtk.ScrolledWindow();
+            this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)
+            this.has_frame = true;
 
             // set gobject values
             this.el.width_request = 600;
-            this.el.has_frame = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
             var child_0 = new Xcls_iconview( _this );
@@ -1129,19 +1134,20 @@ public class Xcls_PopoverFiles : Object
 
 
             // my vars (def)
+        public bool has_frame;
 
         // ctor
         public Xcls_file_container(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             _this.file_container = this;
-            this.el = new Gtk.ScrolledWindow();
+            this.el = new Gtk.ScrolledWindow( null, null );
 
             // my vars (dec)
+            this.has_frame = true;
 
             // set gobject values
             this.el.width_request = 200;
-            this.el.has_frame = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.visible = false;
