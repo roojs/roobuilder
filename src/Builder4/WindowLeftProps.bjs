@@ -1103,7 +1103,8 @@
    "| void deleteSelected" : [
     " () {",
     "    ",
-    "",
+    "\t\treturn;",
+    "\t\t/*",
     "        ",
     "        Gtk.TreeIter iter;",
     "        Gtk.TreeModel mod;",
@@ -1135,6 +1136,7 @@
     "        this.load(this.file, this.node);",
     "        ",
     "        _this.changed();",
+    "        */",
     "}"
    ],
    "| void finish_editing" : [

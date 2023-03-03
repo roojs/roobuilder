@@ -201,7 +201,8 @@ public class Xcls_LeftProps : Object
     }
     public void deleteSelected () {
         
-    
+    		return;
+    		/*
             
             Gtk.TreeIter iter;
             Gtk.TreeModel mod;
@@ -233,6 +234,7 @@ public class Xcls_LeftProps : Object
             this.load(this.file, this.node);
             
             _this.changed();
+            */
     }
     public void startEditingKey ( Gtk.TreePath path) {
         
