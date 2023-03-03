@@ -1629,30 +1629,28 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SortListModel30( _this );
+            var child_0 = new Xcls_ListModel30( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SortListModel30 : Object
+    public class Xcls_ListModel30 : Object
     {
-        public Gtk.SortListModel el;
+        public Glib	.ListModel el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_SortListModel30(Xcls_LeftProps _owner )
+        public Xcls_ListModel30(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.SortListModel( null, null );
+            this.el = new Glib	.ListModel();
 
             // my vars (dec)
-
-            // set gobject values
         }
 
         // user defined functions

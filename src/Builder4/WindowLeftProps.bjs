@@ -566,9 +566,9 @@
          "* prop" : "model",
          "items" : [
           {
-           "$ xns" : "Gtk",
+           "$ xns" : "Glib\t",
            "* prop" : "model",
-           "xtype" : "SortListModel"
+           "xtype" : "ListModel"
           }
          ],
          "xtype" : "NoSelection"
