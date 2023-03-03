@@ -1397,7 +1397,7 @@ public class Xcls_LeftProps : Object
     }
     public class Xcls_view : Object
     {
-        public Gtk.TreeView el;
+        public Gtk.ListView el;
         private Xcls_LeftProps  _this;
 
 
@@ -1410,7 +1410,7 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.view = this;
-            this.el = new Gtk.TreeView();
+            this.el = new Gtk.ListView( null, null );
 
             // my vars (dec)
             this.popover = null;
@@ -1419,9 +1419,6 @@ public class Xcls_LeftProps : Object
             this.el.name = "leftprops-view";
             this.el.hexpand = true;
             this.el.vexpand = true;
-            this.el.tooltip_column = 3;
-            this.el.enable_tree_lines = true;
-            this.el.headers_visible = true;
             var child_0 = new Xcls_GestureClick28( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
