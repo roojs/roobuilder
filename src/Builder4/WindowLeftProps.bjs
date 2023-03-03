@@ -605,7 +605,7 @@
           }
          ],
          "title" : "Property",
-         "xtype" : "TreeViewColumn"
+         "xtype" : "ColumnViewColumn"
         },
         {
          "$ Gtk.TreeViewColumnSizing sizing" : "Gtk.TreeViewColumnSizing.FIXED",
@@ -717,7 +717,7 @@
           }
          ],
          "title" : "Value",
-         "xtype" : "TreeViewColumn"
+         "xtype" : "ColumnViewColumn"
         },
         {
          "$ xns" : "Gtk",
@@ -843,7 +843,8 @@
     "    if (use_textarea) {",
     "        GLib.debug(\"Call show editor\\n\");",
     "        GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {",
-    "            this.view.el.get_selection().select_path(path);",
+    "        \t//",
+    "            //this.view.el.get_selection().select_path(path);",
     "            ",
     "            this.show_editor(file, node, prop);",
     "            ",
@@ -1045,8 +1046,8 @@
     "    /// need to find the row which I've just added..",
     "    ",
     "    ",
-    "    var s = this.view.el.get_selection();",
-    "    s.unselect_all();",
+    "    //var s = this.view.el.get_selection();",
+    "    //s.unselect_all();",
     "    ",
     "    GLib.debug(\"trying to find new iter\");",
     "  ",
@@ -1208,7 +1209,7 @@
     "   // clear selection?",
     "   this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..",
     "   ",
-    "   this.view.el.get_selection().unselect_all();",
+    "   // this.view.el.get_selection().unselect_all();",
     "   ",
     "   _this.keycol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);",
     "   _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);",

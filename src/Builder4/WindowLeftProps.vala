@@ -322,7 +322,8 @@ public class Xcls_LeftProps : Object
         if (use_textarea) {
             GLib.debug("Call show editor\n");
             GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                this.view.el.get_selection().select_path(path);
+            	//
+                //this.view.el.get_selection().select_path(path);
                 
                 this.show_editor(file, node, prop);
                 
@@ -457,7 +458,7 @@ public class Xcls_LeftProps : Object
        // clear selection?
        this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..
        
-       this.view.el.get_selection().unselect_all();
+       // this.view.el.get_selection().unselect_all();
        
        _this.keycol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
        _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
@@ -493,8 +494,8 @@ public class Xcls_LeftProps : Object
         /// need to find the row which I've just added..
         
         
-        var s = this.view.el.get_selection();
-        s.unselect_all();
+        //var s = this.view.el.get_selection();
+        //s.unselect_all();
         
         GLib.debug("trying to find new iter");
       
@@ -1646,24 +1647,24 @@ public class Xcls_LeftProps : Object
 
     public class Xcls_keycol : Object
     {
-        public Gtk.TreeViewColumn el;
+        public Gtk.ColumnViewColumn el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
+        public Gtk.TreeViewColumnSizing sizing;
 
         // ctor
         public Xcls_keycol(Xcls_LeftProps _owner )
         {
             _this = _owner;
             _this.keycol = this;
-            this.el = new Gtk.TreeViewColumn();
+            this.el = new Gtk.ColumnViewColumn( "Property", null );
 
             // my vars (dec)
+            this.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
             // set gobject values
-            this.el.title = "Property";
-            this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
             this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_keyrender( _this );
@@ -1704,24 +1705,24 @@ public class Xcls_LeftProps : Object
 
     public class Xcls_valcol : Object
     {
-        public Gtk.TreeViewColumn el;
+        public Gtk.ColumnViewColumn el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
+        public Gtk.TreeViewColumnSizing sizing;
 
         // ctor
         public Xcls_valcol(Xcls_LeftProps _owner )
         {
             _this = _owner;
             _this.valcol = this;
-            this.el = new Gtk.TreeViewColumn();
+            this.el = new Gtk.ColumnViewColumn( "Value", null );
 
             // my vars (dec)
+            this.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
             // set gobject values
-            this.el.title = "Value";
-            this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
             this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_valrender( _this );
