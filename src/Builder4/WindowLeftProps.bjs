@@ -752,7 +752,7 @@
        ],
        "string name" : "leftprops-view",
        "tooltip_column" : 3,
-       "xtype" : "ListView",
+       "xtype" : "ColumnView",
        "| void editPropertyDetails" : [
         "(Gtk.TreePath path, int y) {",
         "",

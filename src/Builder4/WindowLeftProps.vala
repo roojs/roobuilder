@@ -1400,7 +1400,7 @@ public class Xcls_LeftProps : Object
     }
     public class Xcls_view : Object
     {
-        public Gtk.ListView el;
+        public Gtk.ColumnView el;
         private Xcls_LeftProps  _this;
 
 
@@ -1413,7 +1413,7 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.view = this;
-            this.el = new Gtk.ListView( null, null );
+            this.el = new Gtk.ColumnView( null );
 
             // my vars (dec)
             this.popover = null;
