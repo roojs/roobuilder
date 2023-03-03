@@ -1629,26 +1629,26 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ListModel30( _this );
+            var child_0 = new Xcls_ListStore30( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_ListModel30 : Object
+    public class Xcls_ListStore30 : Object
     {
-        public Glib	.ListModel el;
+        public Glib	.ListStore el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ListModel30(Xcls_LeftProps _owner )
+        public Xcls_ListStore30(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Glib	.ListModel();
+            this.el = new Glib	.ListStore();
 
             // my vars (dec)
         }

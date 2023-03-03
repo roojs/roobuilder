@@ -568,7 +568,7 @@
           {
            "$ xns" : "Glib\t",
            "* prop" : "model",
-           "xtype" : "ListModel"
+           "xtype" : "ListStore"
           }
          ],
          "xtype" : "NoSelection"
