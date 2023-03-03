@@ -562,6 +562,11 @@
          "xtype" : "GestureClick"
         },
         {
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "xtype" : "NoSelection"
+        },
+        {
          "$ columns" : [
           "     typeof(JsRender.NodeProp),  // 0 key type",
           "     typeof(string),  // 1 display_key",

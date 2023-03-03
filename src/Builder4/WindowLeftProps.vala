@@ -1425,17 +1425,20 @@ public class Xcls_LeftProps : Object
             var child_0 = new Xcls_GestureClick28( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-            var child_1 = new Xcls_model( _this );
+            var child_1 = new Xcls_NoSelection29( _this );
             child_1.ref();
-            this.el.set_model (  child_1.el  );
-            var child_2 = new Xcls_keycol( _this );
+            this.el.model = child_1.el;
+            var child_2 = new Xcls_model( _this );
             child_2.ref();
-            this.el.append_column (  child_2.el  );
-            var child_3 = new Xcls_valcol( _this );
+            this.el.set_model (  child_2.el  );
+            var child_3 = new Xcls_keycol( _this );
             child_3.ref();
             this.el.append_column (  child_3.el  );
-            var child_4 = new Xcls_ContextMenu( _this );
+            var child_4 = new Xcls_valcol( _this );
             child_4.ref();
+            this.el.append_column (  child_4.el  );
+            var child_5 = new Xcls_ContextMenu( _this );
+            child_5.ref();
 
             // init method
 
@@ -1604,6 +1607,28 @@ public class Xcls_LeftProps : Object
                  _this.startEditingValue(path); // assumes selected row..
                     
             });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_NoSelection29 : Object
+    {
+        public Gtk.NoSelection el;
+        private Xcls_LeftProps  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_NoSelection29(Xcls_LeftProps _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.NoSelection( null );
+
+            // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -1877,14 +1902,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box36( _this );
+            var child_0 = new Xcls_Box37( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box36 : Object
+    public class Xcls_Box37 : Object
     {
         public Gtk.Box el;
         private Xcls_LeftProps  _this;
@@ -1893,7 +1918,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box36(Xcls_LeftProps _owner )
+        public Xcls_Box37(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1901,14 +1926,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button37( _this );
+            var child_0 = new Xcls_Button38( _this );
             child_0.ref();
             this.el.append(  child_0.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button37 : Object
+    public class Xcls_Button38 : Object
     {
         public Gtk.Button el;
         private Xcls_LeftProps  _this;
@@ -1917,7 +1942,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button37(Xcls_LeftProps _owner )
+        public Xcls_Button38(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
