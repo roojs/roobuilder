@@ -746,6 +746,13 @@
            "$ xns" : "Gtk",
            "* prop" : "factory",
            "listeners" : {
+            "bind" : [
+             "(listitem) => {",
+             "",
+             "",
+             "}",
+             ""
+            ],
             "setup" : [
              "(listitem) => {",
              "\tvar hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
