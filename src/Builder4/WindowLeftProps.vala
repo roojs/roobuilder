@@ -1898,34 +1898,20 @@ public class Xcls_LeftProps : Object
             	var lbl = hb.get_last_child();
             	lbl.changed.connect(() => {
             		// notify and save the changed value...
-            	
-                    this.el.editable = false;
-                W
-                    Gtk.TreeIter  iter;
-                    _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
-                    GLib.Value gval;
-                    
-                     _this.model.el.get_value(iter,0, out gval);
-                    var prop = (JsRender.NodeProp)gval;
-                    prop.val = newtext;
-                    _this.updateIter(iter,prop);
+            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+                     
+                    prop.val = lbl.text;
+                    //_this.updateIter(iter,prop);
                     _this.changed();
             	});
             	
             	cb.notify["selected"].connect(() => {
             		// dropdown selection changed.
             		
-                    this.el.editable = false;
-                
-            
-                    Gtk.TreeIter  iter;
-                    _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
-                    GLib.Value gval;
+                    var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
                     
-                     _this.model.el.get_value(iter,0, out gval);
-                    var prop = (JsRender.NodeProp)gval;
-                    prop.val = newtext;
-                    _this.updateIter(iter,prop);
+                    prop.val = (String) cb.selected_item;
+                    //_this.updateIter(iter,prop);
                     _this.changed();
             		
             		
