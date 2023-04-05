@@ -1921,8 +1921,16 @@ public class Xcls_LeftProps : Object
             	var hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
             	hb.append(new Gtk.EditableLable());
             	hb.append(new Gtk.DropDown(new ListStore(typeof(String)));
-            	hb.get_first_child().hide();
-            	hb.get_first_child()
+            	val cb = hb.get_first_child();
+            	var lbl = hb.get_last_child();
+            	lbl.changed.connect(() => {
+            		// notify and save the changed value...
+            	
+            	});
+            	
+            	cb.notify["selected"].connect(() => {
+            		// dropdown selection changed.
+            	});
             	
             });
             this.el.bind.connect( (listitem) => {
