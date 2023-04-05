@@ -1697,6 +1697,9 @@ public class Xcls_LeftProps : Object
             var child_0 = new Xcls_keyrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , false );
+            var child_1 = new Xcls_ListItemFactory33( _this );
+            child_1.ref();
+            this.el.factory = child_1.el;
 
             // init method
 
@@ -1720,6 +1723,28 @@ public class Xcls_LeftProps : Object
             _this = _owner;
             _this.keyrender = this;
             this.el = new Gtk.CellRendererText();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_ListItemFactory33 : Object
+    {
+        public Gtk.ListItemFactory el;
+        private Xcls_LeftProps  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ListItemFactory33(Xcls_LeftProps _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ListItemFactory();
 
             // my vars (dec)
 
@@ -1904,14 +1929,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box37( _this );
+            var child_0 = new Xcls_Box38( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box37 : Object
+    public class Xcls_Box38 : Object
     {
         public Gtk.Box el;
         private Xcls_LeftProps  _this;
@@ -1920,7 +1945,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box37(Xcls_LeftProps _owner )
+        public Xcls_Box38(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1928,14 +1953,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button38( _this );
+            var child_0 = new Xcls_Button39( _this );
             child_0.ref();
             this.el.append(  child_0.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button38 : Object
+    public class Xcls_Button39 : Object
     {
         public Gtk.Button el;
         private Xcls_LeftProps  _this;
@@ -1944,7 +1969,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button38(Xcls_LeftProps _owner )
+        public Xcls_Button39(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
