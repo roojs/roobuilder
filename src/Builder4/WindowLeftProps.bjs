@@ -749,7 +749,7 @@
            "listeners" : {
             "bind" : [
              "(listitem) => {",
-             "",
+             "\tvar cb = ",
              "",
              "}",
              ""

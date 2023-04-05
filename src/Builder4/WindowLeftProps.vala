@@ -1926,7 +1926,7 @@ public class Xcls_LeftProps : Object
             	
             });
             this.el.bind.connect( (listitem) => {
-            
+            	var cb = 
             
             });
         }
