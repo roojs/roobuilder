@@ -741,6 +741,11 @@
             "",
             "}"
            ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "factory",
+           "xtype" : "SignalListItemFactory"
           }
          ],
          "title" : "Value",
