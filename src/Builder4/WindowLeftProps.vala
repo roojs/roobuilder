@@ -422,7 +422,7 @@ public class Xcls_LeftProps : Object
         
     
         //var provider = this.get('/LeftTree').getPaleteProvider();
-        Gtk.TreeIter iter;
+     
         
        
         
@@ -435,11 +435,8 @@ public class Xcls_LeftProps : Object
         var i = 0;
         
         while(miter.next()) {
-            i++;
-            m.append(out iter,null);
-            
-            this.updateIter(iter,  miter.get_value());
-            
+           
+            m.append(miter.get_value()); 
              
          }
          
