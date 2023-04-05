@@ -1913,6 +1913,12 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.setup.connect( (listitem) => {
+            
+            
+            });
         }
 
         // user defined functions
