@@ -606,12 +606,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false",
-           "id" : "keyrender",
-           "xtype" : "CellRendererText"
-          },
-          {
-           "$ xns" : "Gtk",
            "* prop" : "factory",
            "xtype" : "ListItemFactory"
           }
