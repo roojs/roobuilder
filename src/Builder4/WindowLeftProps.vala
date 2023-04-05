@@ -1914,6 +1914,38 @@ public class Xcls_LeftProps : Object
             	var cb  = bx.get_last_child();
             	// decide if it's a combo or editable text..
             	
+            	
+            	/*
+            	   GLib.debug("editing started called\n");
+                if (!_this.allow_edit) {
+                   
+                     GLib.debug("val - editing_Started\n");
+                    this.el.editable = false; // make sure it's not editor...
+               
+                     
+                    return;
+                }
+                 _this.allow_edit =false;
+                
+               
+                 if (  this.el.has_entry ) {
+               
+                     Gtk.TreeIter  iter;
+                    _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
+                    GLib.Value gval;
+                                  
+            
+                  
+                     //   this.get('/LeftPanel.model').activePath  = path;
+                   _this.model.el.get_value(iter,0, out gval);
+                
+            
+                    var prop = (JsRender.NodeProp)gval;
+                    var combo =        (Gtk.ComboBox)editable;
+            
+                    var entry =  (Gtk.Entry) combo.get_child();        
+                    entry.set_text(prop.val);
+                    */
             
             });
         }
