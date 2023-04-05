@@ -1756,7 +1756,7 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.ColumnViewColumn( "Value", null );
 
             // my vars (dec)
-            this.model = null;
+            this.model = new ListStore(typeof(String);
             this.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
             // set gobject values
