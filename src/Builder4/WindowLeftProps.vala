@@ -1776,7 +1776,7 @@ public class Xcls_LeftProps : Object
              
             
             	
-            	this.el.add_attribute(_this.valrender.el , "text", 2 );
+            	//this.el.add_attribute(_this.valrender.el , "text", 2 );
              
             }
         }

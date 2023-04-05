@@ -645,7 +645,7 @@
           " ",
           "",
           "\t",
-          "\tthis.el.add_attribute(_this.valrender.el , \"text\", 2 );",
+          "\t//this.el.add_attribute(_this.valrender.el , \"text\", 2 );",
           " ",
           "}",
           ""
