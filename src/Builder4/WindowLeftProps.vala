@@ -1918,8 +1918,8 @@ public class Xcls_LeftProps : Object
             this.el.setup.connect( (listitem) => {
             	var hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
             	hb.append(new Gtk.EditableLable());
-            	hb.append(new Gtk.DropDown());
-            
+            	hb.append(new Gtk.DropDown(new ListStore(typeof(String)));
+            	hb.get_first_child().hide();
             });
         }
 

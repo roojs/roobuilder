@@ -750,8 +750,8 @@
              "(listitem) => {",
              "\tvar hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
              "\thb.append(new Gtk.EditableLable());",
-             "\thb.append(new Gtk.DropDown());",
-             "",
+             "\thb.append(new Gtk.DropDown(new ListStore(typeof(String)));",
+             "\thb.get_first_child().hide();",
              "}",
              ""
             ]
