@@ -1726,7 +1726,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.setup.connect( (listitem) => {
             
-            
+             	listitem.set_item(new Gtk.Label());
             });
             this.el.bind.connect( (listitem) => {
             
