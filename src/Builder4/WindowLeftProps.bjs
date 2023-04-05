@@ -635,6 +635,7 @@
          "xtype" : "ColumnViewColumn"
         },
         {
+         "# GLib.ListStore model" : "null",
          "$ Gtk.TreeViewColumnSizing sizing" : "Gtk.TreeViewColumnSizing.FIXED",
          "$ resizable" : true,
          "$ xns" : "Gtk",
