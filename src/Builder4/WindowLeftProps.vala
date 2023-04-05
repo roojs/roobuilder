@@ -445,9 +445,7 @@ public class Xcls_LeftProps : Object
         
         
        while(miter.next()) {
-               i++;
-            m.append(out iter,null);
-             this.updateIter(iter, miter.get_value());
+            m.append(miter.get_value(
              
        }
        GLib.debug("clear selection\n");
@@ -456,8 +454,8 @@ public class Xcls_LeftProps : Object
        
        // this.view.el.get_selection().unselect_all();
        
-       _this.keycol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
-       _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
+      // _this.keycol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
+      // _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
        
     }
     public void addProp (JsRender.NodeProp prop) {
