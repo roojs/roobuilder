@@ -1926,7 +1926,12 @@ public class Xcls_LeftProps : Object
             	
             });
             this.el.bind.connect( (listitem) => {
-            	var cb = 
+            	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();;
+             	var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+            	
+            	var lbl = bx.get_first_child();
+            	var cb  = bx.get_last_child();
+            	
             
             });
         }

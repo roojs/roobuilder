@@ -749,7 +749,12 @@
            "listeners" : {
             "bind" : [
              "(listitem) => {",
-             "\tvar cb = ",
+             "\tvar bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();;",
+             " \tvar item = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();",
+             "\t",
+             "\tvar lbl = bx.get_first_child();",
+             "\tvar cb  = bx.get_last_child();",
+             "\t",
              "",
              "}",
              ""
