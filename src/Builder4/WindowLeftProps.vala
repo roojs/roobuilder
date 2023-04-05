@@ -1745,7 +1745,7 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
-        public GLib.ListStore model;
+        public GLib.ListStore? model;
         public Gtk.TreeViewColumnSizing sizing;
 
         // ctor
