@@ -660,17 +660,6 @@
            "$ xns" : "Gtk",
            "* pack" : "pack_start,true",
            "id" : "valrender",
-           "items" : [
-            {
-             "$ columns" : "typeof(string)",
-             "$ xns" : "Gtk",
-             "* pack" : false,
-             "* prop" : "model",
-             "id" : "valrendermodel",
-             "n_columns" : 1,
-             "xtype" : "ListStore"
-            }
-           ],
            "listeners" : {
             "edited" : [
              "  (path, newtext) => {",
