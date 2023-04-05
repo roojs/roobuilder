@@ -1732,6 +1732,8 @@ public class Xcls_LeftProps : Object
              var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();;
              var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
             
+            
+            // was item (1) in old layout
             lb.set_text(item.to_index_key());
             
             });
