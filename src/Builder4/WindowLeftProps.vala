@@ -1922,7 +1922,7 @@ public class Xcls_LeftProps : Object
             	hb.append(new Gtk.EditableLable());
             	hb.append(new Gtk.DropDown(new ListStore(typeof(String)));
             	hb.get_first_child().hide();
-            	
+            	hb.get_first_child()
             	
             });
             this.el.bind.connect( (listitem) => {
