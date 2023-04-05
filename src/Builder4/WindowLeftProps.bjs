@@ -607,7 +607,16 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "factory",
-           "xtype" : "ListItemFactory"
+           "listeners" : {
+            "bind" : [
+             "(listitem) => {",
+             "",
+             "",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "SignalListItemFactory"
           }
          ],
          "title" : "Property",

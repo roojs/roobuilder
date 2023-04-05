@@ -1693,7 +1693,7 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_ListItemFactory32( _this );
+            var child_0 = new Xcls_SignalListItemFactory32( _this );
             child_0.ref();
             this.el.factory = child_0.el;
 
@@ -1705,23 +1705,29 @@ public class Xcls_LeftProps : Object
 
         // user defined functions
     }
-    public class Xcls_ListItemFactory32 : Object
+    public class Xcls_SignalListItemFactory32 : Object
     {
-        public Gtk.ListItemFactory el;
+        public Gtk.SignalListItemFactory el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ListItemFactory32(Xcls_LeftProps _owner )
+        public Xcls_SignalListItemFactory32(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ListItemFactory();
+            this.el = new Gtk.SignalListItemFactory();
 
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.bind.connect( (listitem) => {
+            
+            
+            });
         }
 
         // user defined functions
