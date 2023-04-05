@@ -1729,7 +1729,10 @@ public class Xcls_LeftProps : Object
              	listitem.set_item(new Gtk.Label());
             });
             this.el.bind.connect( (listitem) => {
+             var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();;
+             var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
             
+            lb.set_text(item.to_index_key());
             
             });
         }
