@@ -1729,7 +1729,7 @@ public class Xcls_LeftProps : Object
             
             
             // was item (1) in old layout
-            lb.set_text(item.to_index_key());
+            lb.set_text(item.to_display_name(),);
             
             });
         }
