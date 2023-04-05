@@ -754,6 +754,7 @@
              "\t",
              "\tvar lbl = bx.get_first_child();",
              "\tvar cb  = bx.get_last_child();",
+             "\t// decide if it's a combo or editable text..",
              "\t",
              "",
              "}",

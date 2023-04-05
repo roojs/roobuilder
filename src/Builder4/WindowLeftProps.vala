@@ -1931,6 +1931,7 @@ public class Xcls_LeftProps : Object
             	
             	var lbl = bx.get_first_child();
             	var cb  = bx.get_last_child();
+            	// decide if it's a combo or editable text..
             	
             
             });
