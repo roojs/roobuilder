@@ -614,6 +614,13 @@
              "",
              "}",
              ""
+            ],
+            "setup" : [
+             "(listitem) => {",
+             "",
+             "",
+             "}",
+             ""
             ]
            },
            "xtype" : "SignalListItemFactory"

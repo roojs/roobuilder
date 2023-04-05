@@ -1724,6 +1724,10 @@ public class Xcls_LeftProps : Object
             // set gobject values
 
             //listeners
+            this.el.setup.connect( (listitem) => {
+            
+            
+            });
             this.el.bind.connect( (listitem) => {
             
             
