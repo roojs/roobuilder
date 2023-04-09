@@ -1588,7 +1588,7 @@ public class Xcls_LeftProps : Object
             	var lbl = hb.get_last_child();
             	lbl.changed.connect(() => {
             		// notify and save the changed value...
-            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
                      
                     prop.val = lbl.text;
                     //_this.updateIter(iter,prop);
@@ -1598,7 +1598,7 @@ public class Xcls_LeftProps : Object
             	cb.notify["selected"].connect(() => {
             		// dropdown selection changed.
             		
-                    var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+                    var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
                     
                     prop.val = (String) cb.selected_item;
                     //_this.updateIter(iter,prop);
