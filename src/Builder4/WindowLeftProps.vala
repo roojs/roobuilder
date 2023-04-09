@@ -1424,8 +1424,8 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
-        public array columns;
         public int n_columns;
+        public int item_type;
 
         // ctor
         public Xcls_model(Xcls_LeftProps _owner )
@@ -1435,21 +1435,8 @@ public class Xcls_LeftProps : Object
             this.el = new Glib	.ListStore();
 
             // my vars (dec)
-            this.columns = typeof(JsRender.NodeProp),  // 0 key type
-     typeof(string),  // 1 display_key
-     typeof(string),  // 2 display_value
-     typeof(string),  // 3 display_tooltip
- 		typeof(string)  // 4 sortable value
-/*
-   	0, prop,
-        	1, prop.to_display_name(),
-        	2, dis_val.
-            3,  "<tt>" +  GLib.Markup.escape_text(key + " " +kvalue) + "</tt>",
-            4, "0 " + prop.name
-            
-        ); 
-        */;
             this.n_columns = 5;
+            this.item_type = typeof(JsRender.NodeProp);
         }
 
         // user defined functions

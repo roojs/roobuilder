@@ -566,22 +566,7 @@
          "* prop" : "model",
          "items" : [
           {
-           "$ array columns" : [
-            "     typeof(JsRender.NodeProp),  // 0 key type",
-            "     typeof(string),  // 1 display_key",
-            "     typeof(string),  // 2 display_value",
-            "     typeof(string),  // 3 display_tooltip",
-            " \t\ttypeof(string)  // 4 sortable value",
-            "/*",
-            "   \t0, prop,",
-            "        \t1, prop.to_display_name(),",
-            "        \t2, dis_val.",
-            "            3,  \"<tt>\" +  GLib.Markup.escape_text(key + \" \" +kvalue) + \"</tt>\",",
-            "            4, \"0 \" + prop.name",
-            "            ",
-            "        ); ",
-            "        */"
-           ],
+           "$ int item_type" : "     typeof(JsRender.NodeProp)",
            "$ xns" : "Glib\t",
            "* prop" : "model",
            "id" : "model",
