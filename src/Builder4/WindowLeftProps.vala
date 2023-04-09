@@ -235,7 +235,7 @@ public class Xcls_LeftProps : Object
         
         
        while(miter.next()) {
-            m.append(miter.get_value(
+            m.append(miter.get_value());
              
        }
        GLib.debug("clear selection\n");
