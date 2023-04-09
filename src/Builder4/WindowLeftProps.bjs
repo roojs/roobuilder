@@ -570,7 +570,6 @@
            "$ xns" : "Glib\t",
            "* prop" : "model",
            "id" : "model",
-           "int n_columns" : 5,
            "xtype" : "ListStore"
           }
          ],

@@ -1424,7 +1424,6 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
-        public int n_columns;
         public int item_type;
 
         // ctor
@@ -1435,7 +1434,6 @@ public class Xcls_LeftProps : Object
             this.el = new Glib	.ListStore();
 
             // my vars (dec)
-            this.n_columns = 5;
             this.item_type = typeof(JsRender.NodeProp);
         }
 
