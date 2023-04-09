@@ -197,25 +197,18 @@ public class Xcls_LeftProps : Object
         
         
         GLib.debug("load leftprops\n");
-        this.before_edit();
+    
         this.node = node;
         this.file = file;
         
      
-        this.model.el.clear();
+        this.model.el.remove_all();
                   
         //this.get('/RightEditor').el.hide();
         if (node ==null) {
             return ;
         }
          
-        
-    
-        //var provider = this.get('/LeftTree').getPaleteProvider();
-     
-        
-       
-        
          
         
         // really need a way to sort the hashmap...
@@ -1419,7 +1412,7 @@ public class Xcls_LeftProps : Object
     }
     public class Xcls_model : Object
     {
-        public Glib	.ListStore el;
+        public GLib.ListStore el;
         private Xcls_LeftProps  _this;
 
 
@@ -1433,6 +1426,8 @@ public class Xcls_LeftProps : Object
             this.el = new GLib.ListStore(typeof(JsRender.NodeProp));
 
             // my vars (dec)
+
+            // set gobject values
         }
 
         // user defined functions
@@ -1493,20 +1488,20 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.setup.connect( (listitem) => {
-            	var lbl = new Gtk.EditableLable();
+            	var lbl = new Gtk.EditableLabel();
              	listitem.set_item(lbl);
              	lbl.changed.connect(() => {
             		// notify and save the changed value...
-            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
+            	 	//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
                      
-                    prop.val = lbl.text;
+                    //prop.val = lbl.text;
                     //_this.updateIter(iter,prop);
                     _this.changed();
             	});
             });
             this.el.bind.connect( (listitem) => {
-             var lb = (Gtk.EditableLable) ((Gtk.ListItem)listitem).get_child();;
-             var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+             var lb = (Gtk.EditableLabel) ((Gtk.ListItem)listitem).get_child();
+             var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
             
             
             // was item (1) in old layout
@@ -1526,7 +1521,6 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
-        public GLib.ListStore model;
         public Gtk.TreeViewColumnSizing sizing;
 
         // ctor
@@ -1537,7 +1531,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.ColumnViewColumn( "Value", null );
 
             // my vars (dec)
-            this.model = new ListStore(typeof(String);
             this.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
             // set gobject values
@@ -1583,12 +1576,14 @@ public class Xcls_LeftProps : Object
             this.el.setup.connect( (listitem) => {
             	var hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
             	hb.append(new Gtk.EditableLable());
-            	hb.append(new Gtk.DropDown(new ListStore(typeof(String)));
-            	val cb = hb.get_first_child();
+            	hb.append(new Gtk.DropDown(new ListStore(typeof(string))));
+            	
+            	
+            	var cb = hb.get_first_child();
             	var lbl = hb.get_last_child();
             	lbl.changed.connect(() => {
             		// notify and save the changed value...
-            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
+            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
                      
                     prop.val = lbl.text;
                     //_this.updateIter(iter,prop);
@@ -1598,19 +1593,18 @@ public class Xcls_LeftProps : Object
             	cb.notify["selected"].connect(() => {
             		// dropdown selection changed.
             		
-                    var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
+                    var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
                     
-                    prop.val = (String) cb.selected_item;
+                    prop.val = (string) cb.selected_item;
                     //_this.updateIter(iter,prop);
                     _this.changed();
-            		
             		
             	});
             	
             });
             this.el.bind.connect( (listitem) => {
-            	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();;
-             	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+            	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
+             	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
             	
             	var lbl = bx.get_first_child();
             	var cb  = bx.get_last_child();
