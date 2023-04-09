@@ -1497,7 +1497,7 @@ public class Xcls_LeftProps : Object
              	listitem.set_item(lbl);
              	lbl.changed.connect(() => {
             		// notify and save the changed value...
-            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
                      
                     prop.val = lbl.text;
                     //_this.updateIter(iter,prop);
