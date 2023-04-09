@@ -18,7 +18,6 @@ public class Xcls_LeftProps : Object
     public Xcls_model model;
     public Xcls_keycol keycol;
     public Xcls_valcol valcol;
-    public Xcls_valrender valrender;
     public Xcls_ContextMenu ContextMenu;
 
         // my vars (def)
@@ -1761,12 +1760,9 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_valrender( _this );
+            var child_0 = new Xcls_SignalListItemFactory34( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , true );
-            var child_1 = new Xcls_SignalListItemFactory35( _this );
-            child_1.ref();
-            this.el.factory = child_1.el;
+            this.el.factory = child_0.el;
 
             // init method
 
@@ -1782,96 +1778,7 @@ public class Xcls_LeftProps : Object
 
         // user defined functions
     }
-    public class Xcls_valrender : Object
-    {
-        public Gtk.CellRendererCombo el;
-        private Xcls_LeftProps  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_valrender(Xcls_LeftProps _owner )
-        {
-            _this = _owner;
-            _this.valrender = this;
-            this.el = new Gtk.CellRendererCombo();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.editable = false;
-            this.el.text_column = 0;
-            this.el.has_entry = true;
-
-            //listeners
-            this.el.editing_started.connect( ( editable, path) => {
-                //_this.editing = true;
-                GLib.debug("editing started called\n");
-                if (!_this.allow_edit) {
-                   
-                     GLib.debug("val - editing_Started\n");
-                    this.el.editable = false; // make sure it's not editor...
-               
-                     
-                    return;
-                }
-                 _this.allow_edit =false;
-                
-               
-                 if (  this.el.has_entry ) {
-               
-                     Gtk.TreeIter  iter;
-                    _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
-                    GLib.Value gval;
-                                  
-            
-                  
-                     //   this.get('/LeftPanel.model').activePath  = path;
-                   _this.model.el.get_value(iter,0, out gval);
-                
-            
-                    var prop = (JsRender.NodeProp)gval;
-                    var combo =        (Gtk.ComboBox)editable;
-            
-                    var entry =  (Gtk.Entry) combo.get_child();        
-                    entry.set_text(prop.val);
-                }
-               
-            });
-            this.el.edited.connect( (path, newtext) => {
-                GLib.debug("Valrender  - signal:edited\n");
-              
-                    this.el.editable = false;
-                
-            
-                    Gtk.TreeIter  iter;
-                    _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
-                    GLib.Value gval;
-                    
-                     _this.model.el.get_value(iter,0, out gval);
-                    var prop = (JsRender.NodeProp)gval;
-                    prop.val = newtext;
-                    _this.updateIter(iter,prop);
-                    _this.changed();
-                      
-            });
-        }
-
-        // user defined functions
-        public void setOptions (string[] ar) {
-        	var m = _this.valrendermodel.el;
-        	m.clear();
-        	Gtk.TreeIter iret;
-            for (var i =0; i < ar.length; i++) {
-                m.append(out iret);
-                m.set_value(iret, 0, ar[i]);
-            }
-        
-        }
-    }
-
-    public class Xcls_SignalListItemFactory35 : Object
+    public class Xcls_SignalListItemFactory34 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_LeftProps  _this;
@@ -1880,7 +1787,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory35(Xcls_LeftProps _owner )
+        public Xcls_SignalListItemFactory34(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -2027,14 +1934,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box37( _this );
+            var child_0 = new Xcls_Box36( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box37 : Object
+    public class Xcls_Box36 : Object
     {
         public Gtk.Box el;
         private Xcls_LeftProps  _this;
@@ -2043,7 +1950,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box37(Xcls_LeftProps _owner )
+        public Xcls_Box36(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -2051,14 +1958,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button38( _this );
+            var child_0 = new Xcls_Button37( _this );
             child_0.ref();
             this.el.append(  child_0.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button38 : Object
+    public class Xcls_Button37 : Object
     {
         public Gtk.Button el;
         private Xcls_LeftProps  _this;
@@ -2067,7 +1974,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button38(Xcls_LeftProps _owner )
+        public Xcls_Button37(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
