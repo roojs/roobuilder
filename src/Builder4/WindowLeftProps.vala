@@ -1431,7 +1431,7 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Glib	.ListStore();
+            this.el = ;
 
             // my vars (dec)
             this.item_type = typeof(JsRender.NodeProp);

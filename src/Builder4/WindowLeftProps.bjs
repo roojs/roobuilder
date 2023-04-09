@@ -568,6 +568,7 @@
           {
            "$ int item_type" : "     typeof(JsRender.NodeProp)",
            "$ xns" : "Glib\t",
+           "* ctor" : "",
            "* prop" : "model",
            "id" : "model",
            "xtype" : "ListStore"
