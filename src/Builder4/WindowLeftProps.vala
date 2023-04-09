@@ -1978,95 +1978,29 @@ public class Xcls_LeftProps : Object
                     // others... - fill in options for true/false?
                        // GLib.debug (ktype.up());
                     if (has_opts) {
-                           
-                            cb.
-                            this.valrender.setOptions(opts);
-                            
-                            this.valrender.el.has_entry = false;
-                            this.valrender.el.editable = true;
-                             this.allow_edit  = true;
-                             GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
-                                 this.view.el.set_cursor_on_cell(
-                	                path,
-                	                this.valcol.el,
-                	                this.valrender.el,
-                	                true
-                                );
-                                return false;
-                            });
-                            return true;
+                           lbl.hide();
+                           cb.ahow();
+                            cb.model.remove_all();
+                            var sel = -1;
+                            for(var i = 0; i < opts.length; i ++) {
+                            	cb.modelappend(opts[i]);
+                            	if (str == prop.value) {
+                            	 	sel = i;
+                        	 	}
+                        	}
+                        	cb.set_position(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
+                            return ;
                     }
                                               
                        // see if type is a Enum.
                        
-                        
-                        
-                   
-                     opts =  {  };
-                    this.valrender.setOptions(opts);
-                   
-                   GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                        
-                        // at this point - work out the type...
-                        // if its' a combo... then show the options..
-                        this.valrender.el.has_entry = true;
-                        
-                        this.valrender.el.editable = true;            
-                    
-                        
-                        this.allow_edit  = true;
-                        
-                        
-                        
-                        
-                
-                        this.view.el.set_cursor_on_cell(
-                            path,
-                            this.valcol.el,
-                            this.valrender.el,
-                            true
-                        );
-                        return false;
-                    });
-                    return false;
+                     lbl.set_text(prop.value);
+            		lbl.show();
+            		cb.hide();
             	
             	
             	
-            	
-            	
-            	
-            	
-            	/*
-            	   GLib.debug("editing started called\n");
-                if (!_this.allow_edit) {
-                   
-                     GLib.debug("val - editing_Started\n");
-                    this.el.editable = false; // make sure it's not editor...
-               
-                     
-                    return;
-                }
-                 _this.allow_edit =false;
-                
-               
-                 if (  this.el.has_entry ) {
-               
-                     Gtk.TreeIter  iter;
-                    _this.model.el.get_iter(out iter, new Gtk.TreePath.from_string(path));
-                    GLib.Value gval;
-                                  
-            
-                  
-                     //   this.get('/LeftPanel.model').activePath  = path;
-                   _this.model.el.get_value(iter,0, out gval);
-                
-            
-                    var prop = (JsRender.NodeProp)gval;
-                    var combo =        (Gtk.ComboBox)editable;
-            
-                    var entry =  (Gtk.Entry) combo.get_child();        
-                    entry.set_text(prop.val);
-                    */
+             
             
             });
         }
