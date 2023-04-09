@@ -622,8 +622,16 @@
             ],
             "setup" : [
              "(listitem) => {",
-             "",
-             " \tlistitem.set_item(new Gtk.EditableLable());",
+             "\tvar lbl = new Gtk.EditableLable();",
+             " \tlistitem.set_item(lbl);",
+             " \tlbl.changed.connect(() => {",
+             "\t\t// notify and save the changed value...",
+             "\t \tvar prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();",
+             "         ",
+             "        prop.val = lbl.text;",
+             "        //_this.updateIter(iter,prop);",
+             "        _this.changed();",
+             "\t});",
              "}",
              ""
             ]

@@ -1718,8 +1718,16 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.setup.connect( (listitem) => {
-            
-             	listitem.set_item(new Gtk.EditableLable());
+            	var lbl = new Gtk.EditableLable();
+             	listitem.set_item(lbl);
+             	lbl.changed.connect(() => {
+            		// notify and save the changed value...
+            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+                     
+                    prop.val = lbl.text;
+                    //_this.updateIter(iter,prop);
+                    _this.changed();
+            	});
             });
             this.el.bind.connect( (listitem) => {
              var lb = (Gtk.EditableLable) ((Gtk.ListItem)listitem).get_child();;
