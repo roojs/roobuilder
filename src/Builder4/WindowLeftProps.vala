@@ -145,41 +145,6 @@ public class Xcls_LeftProps : Object
         
     
     }
-    public void updateIter (Gtk.TreeIter iter, JsRender.NodeProp prop) {
-    
-        //print("update Iter %s, %s\n", key,kvalue);
-        
-        var dl = prop.val.strip().split("\n");
-    
-        var dis_val = dl.length > 1 ? (dl[0].strip()+ "...") : dl[0];
-        
-        if (prop.ptype == JsRender.NodePropType.LISTENER) {
-         
-           
-            
-            this.model.el.set(iter, 
-            	0, prop,
-            	1, prop.to_display_name(),
-            	2, dis_val,
-                3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
-                4,  prop.to_sort_key(),
-                -1
-            ); 
-            return;
-        }
-        
-    
-    
-        this.model.el.set(iter, 
-                0, prop,
-            	1, prop.to_display_name(),
-            	2, dis_val,
-                3,  "<tt>" +  GLib.Markup.escape_text(prop.to_tooltip()) + "</tt>",
-                4, prop.to_sort_key(),
-                -1
-                
-            ); 
-    }
     public void deleteSelected () {
         
     		return;
