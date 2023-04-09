@@ -1424,17 +1424,15 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
-        public int item_type;
 
         // ctor
         public Xcls_model(Xcls_LeftProps _owner )
         {
             _this = _owner;
             _this.model = this;
-            this.el = ;
+            this.el = new GLib.ListStore(typeof(JsRender.NodeProp));
 
             // my vars (dec)
-            this.item_type = typeof(JsRender.NodeProp);
         }
 
         // user defined functions
