@@ -610,7 +610,7 @@
            "listeners" : {
             "bind" : [
              "(listitem) => {",
-             " var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();;",
+             " var lb = (Gtk.EditableLable) ((Gtk.ListItem)listitem).get_child();;",
              " var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();",
              "",
              "",
@@ -623,7 +623,7 @@
             "setup" : [
              "(listitem) => {",
              "",
-             " \tlistitem.set_item(new Gtk.Label());",
+             " \tlistitem.set_item(new Gtk.EditableLable());",
              "}",
              ""
             ]

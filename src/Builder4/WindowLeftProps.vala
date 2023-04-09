@@ -1719,10 +1719,10 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.setup.connect( (listitem) => {
             
-             	listitem.set_item(new Gtk.Label());
+             	listitem.set_item(new Gtk.EditableLable());
             });
             this.el.bind.connect( (listitem) => {
-             var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();;
+             var lb = (Gtk.EditableLable) ((Gtk.ListItem)listitem).get_child();;
              var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
             
             
