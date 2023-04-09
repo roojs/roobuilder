@@ -1920,11 +1920,120 @@ public class Xcls_LeftProps : Object
             });
             this.el.bind.connect( (listitem) => {
             	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();;
-             	var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
+             	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item();
             	
             	var lbl = bx.get_first_child();
             	var cb  = bx.get_last_child();
             	// decide if it's a combo or editable text..
+            	
+            	
+             
+            
+                var use_textarea = false;
+            
+                //------------ things that require the text editor...
+                
+                if (prop.ptype == JsRender.NodePropType.LISTENER) {
+                    use_textarea = true;
+                }
+                if (prop.ptype == JsRender.NodePropType.METHOD) { 
+                    use_textarea = true;
+                }
+                    
+                if ( prop.name == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
+                    use_textarea = true;
+                }
+                if (prop.val.length > 40) { // long value...
+                    use_textarea = true;
+                }
+                var pal = _this.file.project.palete;
+                    
+                string[] opts;
+                var has_opts = pal.typeOptions(_this.node.fqn(), prop.name, prop.rtype, out opts);
+                
+                if (!has_opts && prop.ptype == JsRender.NodePropType.RAW) {
+                  	use_textarea = true;
+                }
+              /*   
+                
+                if (use_textarea) {
+                    GLib.debug("Call show editor\n");
+                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+                    	//
+                        //this.view.el.get_selection().select_path(path);
+                        
+                        this.show_editor(file, node, prop);
+                        
+                        return false;
+                    });
+                   
+                    
+                    return false;
+                }
+                */
+                    
+                    
+                    
+                    
+                    // others... - fill in options for true/false?
+                       // GLib.debug (ktype.up());
+                    if (has_opts) {
+                           
+                            cb.
+                            this.valrender.setOptions(opts);
+                            
+                            this.valrender.el.has_entry = false;
+                            this.valrender.el.editable = true;
+                             this.allow_edit  = true;
+                             GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
+                                 this.view.el.set_cursor_on_cell(
+                	                path,
+                	                this.valcol.el,
+                	                this.valrender.el,
+                	                true
+                                );
+                                return false;
+                            });
+                            return true;
+                    }
+                                              
+                       // see if type is a Enum.
+                       
+                        
+                        
+                   
+                     opts =  {  };
+                    this.valrender.setOptions(opts);
+                   
+                   GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+                        
+                        // at this point - work out the type...
+                        // if its' a combo... then show the options..
+                        this.valrender.el.has_entry = true;
+                        
+                        this.valrender.el.editable = true;            
+                    
+                        
+                        this.allow_edit  = true;
+                        
+                        
+                        
+                        
+                
+                        this.view.el.set_cursor_on_cell(
+                            path,
+                            this.valcol.el,
+                            this.valrender.el,
+                            true
+                        );
+                        return false;
+                    });
+                    return false;
+            	
+            	
+            	
+            	
+            	
             	
             	
             	/*
