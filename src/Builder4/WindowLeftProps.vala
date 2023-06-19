@@ -1662,7 +1662,7 @@ public class Xcls_LeftProps : Object
                        // GLib.debug (ktype.up());
                     if (has_opts) {
                            lbl.hide();
-                           cb.ahow();
+                           cb.show();
                             cb.model.remove_all();
                             var sel = -1;
                             for(var i = 0; i < opts.length; i ++) {
