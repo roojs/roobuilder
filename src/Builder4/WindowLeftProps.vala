@@ -1666,7 +1666,7 @@ public class Xcls_LeftProps : Object
                             model.remove_all();
                             var sel = -1;
                             for(var i = 0; i < opts.length; i ++) {
-                            	model.append(opts[i]);
+                            	model.append((GLib.Object) opts[i]);
                             	if (str == prop.value) {
                             	 	sel = i;
                         	 	}
