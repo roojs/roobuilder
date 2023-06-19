@@ -1503,7 +1503,7 @@ public class Xcls_LeftProps : Object
             
             
             // was item (1) in old layout
-            lb.set_markup(item.to_display_name());
+            lb.set_text(item.to_display_name());
             
             });
         }
