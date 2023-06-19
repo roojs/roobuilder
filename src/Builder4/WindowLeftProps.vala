@@ -1233,10 +1233,10 @@ public class Xcls_LeftProps : Object
             
         	
         
-             _this.before_edit();
+            // _this.before_edit();
               _this.stop_editor();
         	  
-             _this.keyrender.el.stop_editing(false);
+            /* _this.keyrender.el.stop_editing(false);
              _this.keyrender.el.editable  =false;
         
              _this.valrender.el.stop_editing(false);
@@ -1251,7 +1251,7 @@ public class Xcls_LeftProps : Object
              mod.get_value(iter,0, out gval);
         
             this.popover.show(_this.view.el, _this.node, (JsRender.NodeProp)gval,   y);
-               
+              */ 
             
         }
     }
