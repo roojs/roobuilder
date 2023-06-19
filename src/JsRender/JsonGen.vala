@@ -76,9 +76,10 @@ namespace JsRender {
 				  break;
 
 				case Json.NodeType.VALUE:
-				  size_t strlen;
+				  size_t sl;
 				  this.generator.set_root(node);
-		  		  buffer.append( this.generator.to_data(out strlen) );
+				  var str = this.generator.to_data(out sl);
+		  		  buffer.append( str );
 				  break;
 
 				case Json.NodeType.ARRAY:
