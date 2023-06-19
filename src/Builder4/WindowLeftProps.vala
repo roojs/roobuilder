@@ -1605,8 +1605,8 @@ public class Xcls_LeftProps : Object
             	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
              	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
             	
-            	var lbl = bx.get_first_child();
-            	var cb  = bx.get_last_child();
+            	var lbl = (Gtk.EditableLabel)bx.get_first_child();
+            	var cb  = (Gtk.DropDown)bx.get_last_child();
             	// decide if it's a combo or editable text..
             	
             	
