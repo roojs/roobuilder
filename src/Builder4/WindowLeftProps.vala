@@ -1312,7 +1312,7 @@ public class Xcls_LeftProps : Object
                     return;
                 }
                 
-                
+                /*
                 
                 
                  // right click.
@@ -1376,7 +1376,7 @@ public class Xcls_LeftProps : Object
                 
                        
                  _this.startEditingValue(path); // assumes selected row..
-                    
+                    */
             });
         }
 

@@ -492,7 +492,7 @@
            "        return;",
            "    }",
            "    ",
-           "    ",
+           "    /*",
            "    ",
            "    ",
            "     // right click.",
@@ -556,7 +556,7 @@
            "    ",
            "           ",
            "     _this.startEditingValue(path); // assumes selected row..",
-           "        ",
+           "        */",
            "}",
            ""
           ]
