@@ -275,7 +275,7 @@ public class Xcls_LeftProps : Object
         //s.unselect_all();
         
         GLib.debug("trying to find new iter");
-      
+      /*
         this.model.el.foreach((model, path, iter) => {
             GLib.Value gval;
             this.model.el.get_value(iter, 0 , out gval);
@@ -287,12 +287,7 @@ public class Xcls_LeftProps : Object
             
             // delay this?
             GLib.Timeout.add_full(GLib.Priority.DEFAULT,40 , () => {
-            	/*
-        		if (prop.name == "") { // empty string for key name.
-            		_this.view.editPropertyDetails(this.model.el.get_path(iter));
-            		return false;
-            	}
-            	*/
+            	 
             	
                 this.startEditingValue(this.model.el.get_path(iter));
                 return false;
@@ -300,7 +295,7 @@ public class Xcls_LeftProps : Object
             //s.select_iter(iter);
             return true; 
         });
-        
+        */
         
         
                   
