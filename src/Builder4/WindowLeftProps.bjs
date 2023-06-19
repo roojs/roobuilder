@@ -582,7 +582,7 @@
          "$ resizable" : true,
          "$ xns" : "Gtk",
          "* init" : [
-          " this.el.add_attribute(_this.keyrender.el , \"markup\", 1 ); // 1 is the key.",
+          " //this.el.add_attribute(_this.keyrender.el , \"markup\", 1 ); // 1 is the key.",
           " //this.el.add_attribute(_this.keyrender.el , \"text\", 1 );",
           "  "
          ],
