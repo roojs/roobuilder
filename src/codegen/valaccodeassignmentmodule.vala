@@ -226,7 +226,7 @@ public class Vala.CCodeAssignmentModule : CCodeMemberAccessModule {
 		store_value (get_parameter_cvalue (param), value, source_reference);
 	}
 
-	public override void store_field (Field field, TargetValue? instance, TargetValue value, bool initializer, SourceReference? source_reference = null) {
+	public override void store_field (Field field, TargetValue? instance, TargetValue value, bool initializer, SourceReference? source_reference = null, bool initializer = false) {
 		var lvalue = get_field_cvalue (field, instance);
 		var type = lvalue.value_type;
 		if (lvalue.actual_value_type != null) {
