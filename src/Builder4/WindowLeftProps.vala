@@ -1575,7 +1575,7 @@ public class Xcls_LeftProps : Object
             this.el.setup.connect( (listitem) => {
             	var hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
             	hb.append(new Gtk.EditableLabel(""));
-            	hb.append(new Gtk.DropDown(new Gtk.ListStore(typeof(string)), null));
+            	hb.append(new Gtk.DropDown(new Gtk.ListStore(1, typeof(string)), null));
             	listitem.set_child(hb);
             	
             	var cb = hb.get_first_child();
