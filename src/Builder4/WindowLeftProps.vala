@@ -468,13 +468,13 @@ public class Xcls_LeftProps : Object
                     
                 var p = _this.AddPropertyPopup;
                 
-                 	Gtk.Allocation rect;
-                	this.el.get_allocation(out rect);
-            		p.el.set_autohide(true); 
-                	p.el.set_parent(this.el);
-                    p.el.set_pointing_to(rect);
-                	p.el.show();
-                	p.el.set_position(Gtk.PositionType.BOTTOM);
+             	Gtk.Allocation rect;
+            	this.el.get_allocation(out rect);
+            	p.el.set_autohide(true); 
+            	p.el.set_parent(this.el);
+                p.el.set_pointing_to(rect);
+            	p.el.show();
+            	p.el.set_position(Gtk.PositionType.BOTTOM);
             
                  return;
             
