@@ -1212,8 +1212,8 @@ public class Xcls_LeftProps : Object
             // init method
 
             {
-                var selection = this.el.get_selection();
-                selection.set_mode( Gtk.SelectionMode.SINGLE);
+               // var selection = this.el.get_selection();
+               // selection.set_mode( Gtk.SelectionMode.SINGLE);
             
             
               	this.css = new Gtk.CssProvider();
