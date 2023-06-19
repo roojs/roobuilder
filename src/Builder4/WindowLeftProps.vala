@@ -1574,12 +1574,12 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.setup.connect( (listitem) => {
             	var hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-            	hb.append(new Gtk.EditableLabel(""));
-            	hb.append(new Gtk.DropDown(new GLib.ListStore(typeof(string)), null));
+            	var lbl  = new Gtk.EditableLabel("")
+            	hb.append(lbl);
+            	var cb = new Gtk.DropDown(new GLib.ListStore(typeof(string)), null);
+            	hb.append();
             	listitem.set_child(hb);
-            	
-            	var cb = (Gtk.DropDown)hb.get_first_child();
-            	var lbl = (Gtk.EditableLabel)hb.get_last_child();
+            	 
             	lbl.changed.connect(() => {
             		// notify and save the changed value...
             	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
