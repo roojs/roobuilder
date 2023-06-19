@@ -728,7 +728,7 @@
              "                                  ",
              "           // see if type is a Enum.",
              "           ",
-             "         lbl.set_text(prop.value);",
+             "         lbl.set_text(prop.val);",
              "\t\tlbl.show();",
              "\t\tcb.hide();",
              "\t",

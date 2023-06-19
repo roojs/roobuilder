@@ -1677,7 +1677,7 @@ public class Xcls_LeftProps : Object
                                               
                        // see if type is a Enum.
                        
-                     lbl.set_text(prop.value);
+                     lbl.set_text(prop.val);
             		lbl.show();
             		cb.hide();
             	
