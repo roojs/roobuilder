@@ -1285,7 +1285,7 @@ public class Xcls_LeftProps : Object
                 int y;
                 
                 Gtk.TreePath path;
-                
+                /*
                 _this.view.el.convert_widget_to_bin_window_coords((int)in_x, (int)in_y, out x, out y);
                 
                 // event x /y are relative to the widget..
@@ -1298,8 +1298,10 @@ public class Xcls_LeftProps : Object
                      _this.before_edit();
                     return; //not on a element.
                 }
+                */
                 
                   GLib.debug("treepath selected: %s",path.to_string()); 
+                  return;
                  // single click on name..
                  //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
                  if (this.el.get_current_button() == 1 && col.title == "Property") {    
