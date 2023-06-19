@@ -718,7 +718,7 @@
              "                var sel = -1;",
              "                for(var i = 0; i < opts.length; i ++) {",
              "                \tmodel.append((GLib.Object) opts[i]);",
-             "                \tif (opts[i] == prop.value) {",
+             "                \tif (opts[i] == prop.val) {",
              "                \t \tsel = i;",
              "            \t \t}",
              "            \t}",
