@@ -742,7 +742,7 @@
             "setup" : [
              "(listitem) => {",
              "\tvar hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
-             "\thb.append(new Gtk.EditableLable());",
+             "\thb.append(new Gtk.EditableLabel());",
              "\thb.append(new Gtk.DropDown(new ListStore(typeof(string))));",
              "\tlistitem.set_child(hb);",
              "\t",
