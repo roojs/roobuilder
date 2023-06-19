@@ -609,7 +609,7 @@
             "setup" : [
              "(listitem) => {",
              "\tvar lbl = new Gtk.EditableLabel(\"\");",
-             " \tlistitem.set_item(lbl);",
+             " \tlistitem.set_child(lbl);",
              " \tlbl.changed.connect(() => {",
              "\t\t// notify and save the changed value...",
              "\t \t//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());",
