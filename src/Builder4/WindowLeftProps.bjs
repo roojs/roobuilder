@@ -381,7 +381,7 @@
        "listeners" : {
         "activate" : [
          "( ) => {",
-         " _this.before_edit();",
+         "  //_this.before_edit();",
          "  ",
          "        ",
          "    var p = _this.AddPropertyPopup;",

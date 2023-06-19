@@ -463,7 +463,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-             _this.before_edit();
+              //_this.before_edit();
               
                     
                 var p = _this.AddPropertyPopup;
