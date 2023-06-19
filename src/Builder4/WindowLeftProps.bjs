@@ -745,7 +745,7 @@
              "\tvar lbl  = new Gtk.EditableLabel(\"\");",
              "\thb.append(lbl);",
              "\tvar cb = new Gtk.DropDown(new GLib.ListStore(typeof(string)), null);",
-             "\thb.append();",
+             "\thb.append(cb);",
              "\tlistitem.set_child(hb);",
              "\t ",
              "\tlbl.changed.connect(() => {",

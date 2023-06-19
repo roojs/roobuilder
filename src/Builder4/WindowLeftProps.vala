@@ -1577,7 +1577,7 @@ public class Xcls_LeftProps : Object
             	var lbl  = new Gtk.EditableLabel("");
             	hb.append(lbl);
             	var cb = new Gtk.DropDown(new GLib.ListStore(typeof(string)), null);
-            	hb.append();
+            	hb.append(cb);
             	listitem.set_child(hb);
             	 
             	lbl.changed.connect(() => {
