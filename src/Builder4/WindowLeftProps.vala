@@ -1299,8 +1299,9 @@ public class Xcls_LeftProps : Object
                     return; //not on a element.
                 }
                 */
+                GLib.debug("treepath selected: FIXME"); 
                 
-                  GLib.debug("treepath selected: %s",path.to_string()); 
+                  //GLib.debug("treepath selected: %s",path.to_string()); 
                   return;
                  // single click on name..
                  //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
