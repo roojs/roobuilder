@@ -660,7 +660,7 @@
              "\tvar cb  = (Gtk.DropDown)bx.get_last_child();",
              "\t// decide if it's a combo or editable text..",
              "\t",
-             "\tvar model = (Gtk.ListStore) cb.model;",
+             "\tvar model = (GLib.ListStore) cb.model;",
              " ",
              "",
              "    var use_textarea = false;",

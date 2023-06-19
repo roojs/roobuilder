@@ -1609,7 +1609,7 @@ public class Xcls_LeftProps : Object
             	var cb  = (Gtk.DropDown)bx.get_last_child();
             	// decide if it's a combo or editable text..
             	
-            	var model = (Gtk.ListStore) cb.model;
+            	var model = (GLib.ListStore) cb.model;
              
             
                 var use_textarea = false;
