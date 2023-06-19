@@ -1609,7 +1609,7 @@ public class Xcls_LeftProps : Object
             	var cb  = (Gtk.DropDown)bx.get_last_child();
             	// decide if it's a combo or editable text..
             	
-            	
+            	var model = (Gtk.ListStore) cb.model;
              
             
                 var use_textarea = false;
@@ -1663,15 +1663,15 @@ public class Xcls_LeftProps : Object
                     if (has_opts) {
                            lbl.hide();
                            cb.show();
-                            cb.model.remove_all();
+                            model.remove_all();
                             var sel = -1;
                             for(var i = 0; i < opts.length; i ++) {
-                            	cb.modelappend(opts[i]);
+                            	model.append(opts[i]);
                             	if (str == prop.value) {
                             	 	sel = i;
                         	 	}
                         	}
-                        	cb.set_position(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
+                        	cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
                             return ;
                     }
                                               
