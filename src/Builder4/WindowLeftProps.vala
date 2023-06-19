@@ -233,7 +233,7 @@ public class Xcls_LeftProps : Object
        }
        GLib.debug("clear selection\n");
        // clear selection?
-       this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..
+      //this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..
        
        // this.view.el.get_selection().unselect_all();
        
