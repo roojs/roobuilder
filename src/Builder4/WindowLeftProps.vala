@@ -1578,8 +1578,8 @@ public class Xcls_LeftProps : Object
             	hb.append(new Gtk.DropDown(new GLib.ListStore(typeof(string)), null));
             	listitem.set_child(hb);
             	
-            	var cb = hb.get_first_child();
-            	var lbl = hb.get_last_child();
+            	var cb = (Gtk.DropDown)hb.get_first_child();
+            	var lbl = (Gtk.EditableLabel)hb.get_last_child();
             	lbl.changed.connect(() => {
             		// notify and save the changed value...
             	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
