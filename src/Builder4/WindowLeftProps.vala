@@ -1454,6 +1454,7 @@ public class Xcls_LeftProps : Object
             this.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
             // set gobject values
+            this.el.id = "keycol";
             this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory32( _this );
@@ -1534,6 +1535,7 @@ public class Xcls_LeftProps : Object
             this.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
             // set gobject values
+            this.el.id = "valcol";
             this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory34( _this );
