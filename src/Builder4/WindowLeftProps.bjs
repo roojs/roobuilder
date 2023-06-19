@@ -744,7 +744,7 @@
              "\tvar hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
              "\thb.append(new Gtk.EditableLable());",
              "\thb.append(new Gtk.DropDown(new ListStore(typeof(string))));",
-             "\t",
+             "\tlistitem.set_child(hb);",
              "\t",
              "\tvar cb = hb.get_first_child();",
              "\tvar lbl = hb.get_last_child();",
