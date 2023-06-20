@@ -609,7 +609,7 @@
             ],
             "setup" : [
              "(listitem) => {",
-             "\tvar lbl = new Gtk.EditableLabel(\"\");",
+             "\tvar lbl = new Gtk.Label(\"\");",
              " \tlistitem.set_child(lbl);",
              " \tlbl.changed.connect(() => {",
              "\t\t// notify and save the changed value...",

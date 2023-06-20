@@ -1487,7 +1487,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.setup.connect( (listitem) => {
-            	var lbl = new Gtk.EditableLabel("");
+            	var lbl = new Gtk.Label("");
              	listitem.set_child(lbl);
              	lbl.changed.connect(() => {
             		// notify and save the changed value...
