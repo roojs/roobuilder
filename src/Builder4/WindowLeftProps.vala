@@ -1490,6 +1490,7 @@ public class Xcls_LeftProps : Object
             	var lbl = new Gtk.Label("");
              	listitem.set_child(lbl);
              	lbl.justify = Gtk.Justification.LEFT;
+             	lbl.xalign = 0;
              	/*lbl.changed.connect(() => {
             		// notify and save the changed value...
             	 	//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
