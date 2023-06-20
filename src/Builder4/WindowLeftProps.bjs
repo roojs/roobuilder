@@ -457,7 +457,7 @@
            "(n_press, in_x, in_y) => {",
            "",
            "\t",
-           "\tthis.el.set_state(Gtk.EventSequenceState.CLAIMED);",
+           "\t//this.el.set_state(Gtk.EventSequenceState.CLAIMED);",
            "\tGtk.TreeViewColumn col;",
            "    int cell_x;",
            "    int cell_y;",

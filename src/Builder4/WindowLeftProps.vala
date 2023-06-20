@@ -1277,7 +1277,7 @@ public class Xcls_LeftProps : Object
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
             	
-            	this.el.set_state(Gtk.EventSequenceState.CLAIMED);
+            	//this.el.set_state(Gtk.EventSequenceState.CLAIMED);
             	Gtk.TreeViewColumn col;
                 int cell_x;
                 int cell_y;
