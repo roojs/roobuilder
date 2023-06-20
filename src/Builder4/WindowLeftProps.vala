@@ -1499,12 +1499,12 @@ public class Xcls_LeftProps : Object
             	});
             });
             this.el.bind.connect( (listitem) => {
-             var lb = (Gtk.EditableLabel) ((Gtk.ListItem)listitem).get_child();
+             var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();
              var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
             
             
             // was item (1) in old layout
-            lb.set_text(item.to_display_name());
+            lb.set_markup(item.to_display_name());
             
             });
         }
