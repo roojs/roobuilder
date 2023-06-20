@@ -611,7 +611,7 @@
              "(listitem) => {",
              "\tvar lbl = new Gtk.Label(\"\");",
              " \tlistitem.set_child(lbl);",
-             " \t",
+             " \tlbl.justify = Gtk.Justification.LEFT;",
              " \t/*lbl.changed.connect(() => {",
              "\t\t// notify and save the changed value...",
              "\t \t//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());",
