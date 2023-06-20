@@ -562,7 +562,12 @@
            ""
           ]
          },
-         "xtype" : "GestureClick"
+         "xtype" : "GestureClick",
+         "| void clicked_row" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ xns" : "Gtk",

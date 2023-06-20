@@ -1382,6 +1382,9 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
+        public void clicked_row () {
+        
+        }
     }
 
     public class Xcls_NoSelection29 : Object
