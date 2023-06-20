@@ -1489,7 +1489,8 @@ public class Xcls_LeftProps : Object
             this.el.setup.connect( (listitem) => {
             	var lbl = new Gtk.Label("");
              	listitem.set_child(lbl);
-             	lbl.changed.connect(() => {
+             	
+             	/*lbl.changed.connect(() => {
             		// notify and save the changed value...
             	 	//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
                      
@@ -1497,6 +1498,7 @@ public class Xcls_LeftProps : Object
                     //_this.updateIter(iter,prop);
                     _this.changed();
             	});
+            	*/
             });
             this.el.bind.connect( (listitem) => {
              var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();
