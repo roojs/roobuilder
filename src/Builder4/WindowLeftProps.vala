@@ -1499,6 +1499,7 @@ public class Xcls_LeftProps : Object
                     _this.changed();
             	});
             	*/
+            	listitem.activatable = true;
             });
             this.el.bind.connect( (listitem) => {
              var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();

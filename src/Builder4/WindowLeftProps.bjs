@@ -621,6 +621,7 @@
              "        _this.changed();",
              "\t});",
              "\t*/",
+             "\tlistitem.activatable = true;",
              "}",
              ""
             ]
