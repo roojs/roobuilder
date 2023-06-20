@@ -1382,9 +1382,55 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
-        public void clicked_row () {
+        public void clicked_row (Gtk.Widget colview, gdouble x, gdouble y) {
+        /*
+            	var colview = gesture.widget;
+            	var line_no = check_list_widget(colview, x,y);
+                 if (line_no > -1) {
+            		var item = colview.model.get_item(line_no);
+            		 
+            	}
+            	*/
+                var  child = colview.get_first_child(); 
+            	GtkAllocation alloc;
+            	var line_no = -1; 
+            	var reading_header = true;
+            	
+            	while (child != null) {
+            	    if (reading_header) {
+                        Glib.debug("Got %s", child.get_type().name);
+                        if (child.get_type().name == "GtkListItemWidget") {
+                            child.get_allocation(out alloc);
+                        }
+                		if (child.get_type().name != "GtkColumnListView") {
+                		    child = child.get_next_sibling();
+                		    continue;
+        		        }
+        		        var child = child.get_first_child(); 
+        		        var header_height = alloc.y + alloc.height;
+        		        var curr_y = header_height; 
+        		        reading_header = false;
+        	        }
+        		    if (child.get_type().name != "GtkListItemWidget") {
+            		    child = child.get_next_sibling();
+            		    continue;
+        		    }
+        		    line_no++;
         
-        }
+                    child.get_allocation(out alloc)
+        
+        
+        		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
+        			    return line_no;
+        		    }
+        		    if (curr_y > y) {
+        		    //    return -1;
+        	        }
+        	        child = child.get_next_sibling(); 
+            	}
+                return -1;
+        
+         }
     }
 
     public class Xcls_NoSelection29 : Object
