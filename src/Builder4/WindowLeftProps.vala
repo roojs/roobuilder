@@ -1398,18 +1398,18 @@ public class Xcls_LeftProps : Object
             	
             	while (child != null) {
             	    if (reading_header) {
-                        Glib.debug("Got %s", child.get_type().name);
-                        if (child.get_type().name == "GtkListItemWidget") {
-                            child.get_allocation(out alloc);
-                        }
-                		if (child.get_type().name != "GtkColumnListView") {
-                		    child = child.get_next_sibling();
-                		    continue;
-        		        }
-        		        var child = child.get_first_child(); 
-        		        var header_height = alloc.y + alloc.height;
-        		        var curr_y = header_height; 
-        		        reading_header = false;
+        			    Glib.debug("Got %s", child.get_type().name);
+        			    if (child.get_type().name == "GtkListItemWidget") {
+        			        child.get_allocation(out alloc);
+        			    }
+        				if (child.get_type().name != "GtkColumnListView") {
+        					child = child.get_next_sibling();
+        					continue;
+        				}
+        				var child = child.get_first_child(); 
+        				var header_height = alloc.y + alloc.height;
+        				var curr_y = header_height; 
+        				reading_header = false;
         	        }
         		    if (child.get_type().name != "GtkListItemWidget") {
             		    child = child.get_next_sibling();
@@ -1417,7 +1417,7 @@ public class Xcls_LeftProps : Object
         		    }
         		    line_no++;
         
-                    child.get_allocation(out alloc);
+        			child.get_allocation(out alloc);
         
         
         		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
