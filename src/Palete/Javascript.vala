@@ -1,4 +1,4 @@
-
+/*
 extern JSCore.Value jscore_object_call_as_function(
 	JSCore.Context ctx,
 	JSCore.Object object, 
@@ -7,8 +7,8 @@ extern JSCore.Value jscore_object_call_as_function(
 	out JSCore.Value exception
 	);
 	
-
- 
+*/
+  
 
 namespace Palete {
 
@@ -176,8 +176,9 @@ namespace Palete {
 			if (!oval.is_function(ctx)) {
 				throw new JavascriptError.MISSING_METHOD ("Plugin: not a method  %s", call_method);
 			}
-			
-		 
+			throw new JavascriptError.MISSING_METHOD ("Plugin: not supported anymore");
+			return "";
+		 /*
 			 var res = jscore_object_call_as_function(
 				ctx, oval, othis, js_data, out exd
 				);
@@ -197,7 +198,7 @@ namespace Palete {
 			 
 			 print("ret:%s\n",(string)  buf);
 			 return (string) buf;
-			
+			*/
 		}
 		 
 		

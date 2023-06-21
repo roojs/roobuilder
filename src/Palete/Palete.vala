@@ -410,6 +410,9 @@ namespace Palete
 			//print("TESTING CODE %s\n", code);
 			string errmsg;
 			var testcode = prop == null ? code : "var __aaa___ = " + code;
+			
+			 
+			/*
 			var line = Javascript.singleton().validate(
 								  testcode, out errmsg);
 
@@ -437,7 +440,7 @@ namespace Palete
 			}
 			// now syntax is OK.. try the 
 			
-			
+			*/
 			
 			if (prop == null) {
 				 return this.javascriptHasCompressionErrors(file, state, code);

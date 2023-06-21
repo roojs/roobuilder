@@ -989,7 +989,7 @@
     "        // should be baded on calc.. -- see update_scrolled.",
     "       ",
     "       ",
-    "       ",
+    "       return;/*",
     "\tvar x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);",
     "    var obj = x.munge() as Gtk.Widget;",
     "    this.lastObj = null;",
@@ -1001,7 +1001,7 @@
     "        this.container.el.append(obj);",
     "        obj.show();",
     "        ",
-    "         ",
+    "         */",
     "        ",
     "}",
     " "

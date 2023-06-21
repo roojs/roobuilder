@@ -24,7 +24,6 @@
             "../JsRender/Gtk.vala",
             "../JsRender/JsRender.vala",
             "../JsRender/Lang.vala",
-            "../JsRender/NodeToGtk.vala",
             "../JsRender/NodeToJs.vala",
             "../JsRender/NodeToVala.vala",
             "../JsRender/Node.vala",
@@ -33,7 +32,6 @@
             "../JsRender",
             "../Palete/Gir.vala",
             "../Palete/Gtk.vala",
-            "../Palete/Javascript.vala",
             "../Palete/Palete.vala",
             "../Palete/RooDatabase.vala",
             "../Palete/Roo.vala",
@@ -203,9 +201,9 @@
             "libvala-0.56",
             "gtk4",
             "javascriptcore",
-            "webkit2gtk-5.0",
             "gtksourceview-5",
-            "javascriptcoregtk-5.0"
+            "javascriptcoregtk-6.0",
+            "webkitgtk-6.0"
         ]
     }
 ]

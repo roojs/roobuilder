@@ -1276,7 +1276,16 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
-            	
+            	var colview = (Gtk.ColumnView)this.el.widget;
+            	var line_no = this.clicked_row(colview, in_x,in_y);
+            	if (line_no < 0) {
+            		return;
+            
+            	}
+            	GLib.debug("hit row %d", line_no);
+            	var item = colview.model.get_item(line_no);
+            	//GLib.debug("key with is %d + %d pos is %d", alloc.x, alloc.width, in_x);
+            		 
             	//this.el.set_state(Gtk.EventSequenceState.CLAIMED);
             	Gtk.TreeViewColumn col;
                 int cell_x;
@@ -1382,7 +1391,7 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
-        public void clicked_row (Gtk.Widget colview,  double x,  double y) {
+        public int clicked_row (Gtk.Widget colview,  double x,  double y) {
         /*
             	
         from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
@@ -1394,11 +1403,11 @@ public class Xcls_LeftProps : Object
             	}
             	*/
                 var  child = colview.get_first_child(); 
-            	Gtk.Allocation alloc;
+            	Gtk.Allocation alloc = { 0, 0, 0, 0 };
             	var line_no = -1; 
             	var reading_header = true;
             	var curr_y = 0;
-            	
+            	var header_height  = 0;
             	while (child != null) {
         			GLib.debug("Got %s", child.get_type().name());
             	    if (reading_header) {
@@ -1411,7 +1420,7 @@ public class Xcls_LeftProps : Object
         					continue;
         				}
         				child = child.get_first_child(); 
-        				var header_height = alloc.y + alloc.height;
+        				header_height = alloc.y + alloc.height;
         				curr_y = header_height; 
         				reading_header = false;
         	        }
@@ -1422,7 +1431,7 @@ public class Xcls_LeftProps : Object
         		    line_no++;
         
         			child.get_allocation(out alloc);
-        
+        			GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
         
         		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
         			    return line_no;

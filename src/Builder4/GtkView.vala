@@ -111,7 +111,7 @@ public class Xcls_GtkView : Object
             // should be baded on calc.. -- see update_scrolled.
            
            
-           
+           return;/*
     	var x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);
         var obj = x.munge() as Gtk.Widget;
         this.lastObj = null;
@@ -123,7 +123,7 @@ public class Xcls_GtkView : Object
             this.container.el.append(obj);
             obj.show();
             
-             
+             */
             
     }
     public void highlightNodeAtLine (int ln) {

@@ -113,8 +113,8 @@ endif
 # webkit
 
 
-if HAVE_WEBKIT5
-roobuilder_WEBKKIT =   --pkg  webkit2gtk-5.0  
+if HAVE_WEBKIT6
+roobuilder_WEBKKIT =   --pkg  webkitgtk-6.0  
 endif
 
 
@@ -148,7 +148,6 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg gee-0.8 \
 		--pkg gobject-introspection-1.0 \
 		--pkg libsoup-3.0 \
- 		--pkg javascriptcore \
 		--pkg roojspacker-1.4 \
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
@@ -156,8 +155,9 @@ roobuilder_PKGS = --pkg glib-2.0  \
 		$(roobuilder_JAVASCRIPTCOREGTK) \
 		--pkg posix
 
-
+#
 #		JsRender/Flutter.vala 
+# 		--pkg javascriptcore 
 
 BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/PlainFile.vala \
@@ -165,13 +165,13 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/JsRender.vala \
 		JsRender/Lang.vala \
 		JsRender/NodeProp.vala \
-		JsRender/NodeToGtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/NodeToGlade.vala \
 		JsRender/Node.vala \
 		JsRender/Roo.vala
-
+		
+#		JsRender/NodeToGtk.vala 
 # Palete/Flutter.vala 
 
 BUIDERPALETE =  Palete/Gir.vala \
@@ -179,16 +179,17 @@ BUIDERPALETE =  Palete/Gir.vala \
 		Palete/VapiParser.vala \
 		Palete/Gtk.vala \
 		Palete/RooDatabase.vala \
-		c/jscore_object_call_as_function.c \
-		Palete/Javascript.vala \
 		Palete/Palete.vala \
 		Palete/Roo.vala \
 		Palete/ValaSource.vala \
 		Palete/ValaSourceCompiler.vala \
 		Palete/CompletionProvider.vala \
 		$(roobuilder_CODEGEN)
-
+		
+# 		c/jscore_object_call_as_function.c \
 # Project/Flutter.vala 
+# Palete/Javascript.vala 
+		
 
 BUIDERPROJECT = Project/Gtk.vala \
 		Project/Project.vala \
