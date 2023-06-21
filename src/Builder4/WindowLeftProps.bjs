@@ -564,7 +564,7 @@
          },
          "xtype" : "GestureClick",
          "| void clicked_row" : [
-          "(Gtk.Widget colview, gdouble x, gdouble y) {",
+          "(Gtk.Widget colview,  double x,  double y) {",
           "/*",
           "    \tvar colview = gesture.widget;",
           "    \tvar line_no = check_list_widget(colview, x,y);",
@@ -574,7 +574,7 @@
           "    \t}",
           "    \t*/",
           "        var  child = colview.get_first_child(); ",
-          "    \tGtkAllocation alloc;",
+          "    \tGtk.Allocation alloc;",
           "    \tvar line_no = -1; ",
           "    \tvar reading_header = true;",
           "    \t",

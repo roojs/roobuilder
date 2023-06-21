@@ -1382,7 +1382,7 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
-        public void clicked_row (Gtk.Widget colview, gdouble x, gdouble y) {
+        public void clicked_row (Gtk.Widget colview,  double x,  double y) {
         /*
             	var colview = gesture.widget;
             	var line_no = check_list_widget(colview, x,y);
@@ -1392,7 +1392,7 @@ public class Xcls_LeftProps : Object
             	}
             	*/
                 var  child = colview.get_first_child(); 
-            	GtkAllocation alloc;
+            	Gtk.Allocation alloc;
             	var line_no = -1; 
             	var reading_header = true;
             	
