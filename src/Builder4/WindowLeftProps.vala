@@ -1398,11 +1398,11 @@ public class Xcls_LeftProps : Object
             	
             	while (child != null) {
             	    if (reading_header) {
-        			    Glib.debug("Got %s", child.get_type().name);
-        			    if (child.get_type().name == "GtkListItemWidget") {
+        			    GLib.debug("Got %s", child.get_type().name());
+        			    if (child.get_type().name() == "GtkListItemWidget") {
         			        child.get_allocation(out alloc);
         			    }
-        				if (child.get_type().name != "GtkColumnListView") {
+        				if (child.get_type().name() != "GtkColumnListView") {
         					child = child.get_next_sibling();
         					continue;
         				}
@@ -1411,7 +1411,7 @@ public class Xcls_LeftProps : Object
         				var curr_y = header_height; 
         				reading_header = false;
         	        }
-        		    if (child.get_type().name != "GtkListItemWidget") {
+        		    if (child.get_type().name() != "GtkListItemWidget") {
             		    child = child.get_next_sibling();
             		    continue;
         		    }
