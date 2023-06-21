@@ -1384,6 +1384,8 @@ public class Xcls_LeftProps : Object
         // user defined functions
         public void clicked_row (Gtk.Widget colview,  double x,  double y) {
         /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
             	var colview = gesture.widget;
             	var line_no = check_list_widget(colview, x,y);
                  if (line_no > -1) {
@@ -1395,6 +1397,7 @@ public class Xcls_LeftProps : Object
             	Gtk.Allocation alloc;
             	var line_no = -1; 
             	var reading_header = true;
+            	var curr_y = 0;
             	
             	while (child != null) {
         			GLib.debug("Got %s", child.get_type().name());
@@ -1409,7 +1412,7 @@ public class Xcls_LeftProps : Object
         				}
         				child = child.get_first_child(); 
         				var header_height = alloc.y + alloc.height;
-        				var curr_y = header_height; 
+        				curr_y = header_height; 
         				reading_header = false;
         	        }
         		    if (child.get_type().name() != "GtkListItemWidget") {
@@ -1424,6 +1427,8 @@ public class Xcls_LeftProps : Object
         		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
         			    return line_no;
         		    }
+        		    curr_y = header_height + alloc.height + alloc.y;
+        
         		    if (curr_y > y) {
         		    //    return -1;
         	        }
