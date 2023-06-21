@@ -1407,7 +1407,7 @@ public class Xcls_LeftProps : Object
         					child = child.get_next_sibling();
         					continue;
         				}
-        				var child = child.get_first_child(); 
+        				child = child.get_first_child(); 
         				var header_height = alloc.y + alloc.height;
         				var curr_y = header_height; 
         				reading_header = false;

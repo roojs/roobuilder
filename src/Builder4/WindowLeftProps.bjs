@@ -589,7 +589,7 @@
           "\t\t\t\t\tchild = child.get_next_sibling();",
           "\t\t\t\t\tcontinue;",
           "\t\t\t\t}",
-          "\t\t\t\tvar child = child.get_first_child(); ",
+          "\t\t\t\tchild = child.get_first_child(); ",
           "\t\t\t\tvar header_height = alloc.y + alloc.height;",
           "\t\t\t\tvar curr_y = header_height; ",
           "\t\t\t\treading_header = false;",
