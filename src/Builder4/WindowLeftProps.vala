@@ -1417,7 +1417,7 @@ public class Xcls_LeftProps : Object
         		    }
         		    line_no++;
         
-                    child.get_allocation(out alloc)
+                    child.get_allocation(out alloc);
         
         
         		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {

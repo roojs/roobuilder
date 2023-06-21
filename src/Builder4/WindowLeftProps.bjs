@@ -599,7 +599,7 @@
           "\t\t    }",
           "\t\t    line_no++;",
           "",
-          "            child.get_allocation(out alloc)",
+          "            child.get_allocation(out alloc);",
           "",
           "",
           "\t\t    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {",
