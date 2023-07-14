@@ -65,7 +65,8 @@ namespace JsRender {
                 "dialogTitle",
                 "modalTitle",
                 "boxLabel",
-                "blankText"
+                "blankText",
+                "tooltip"
                 
                 };
             for (var i=0;i<dsp.length;i++) {
