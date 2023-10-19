@@ -212,6 +212,10 @@ public class Xcls_WindowLeftTree : Object
             //listeners
             this.el.cursor_changed.connect( ( ) => {
                 print("LEFT TREE Cursor Changed\n");
+                return; // disable are we showing the add 
+                
+                
+                
             	//if (!this.button_is_pressed && !this.key_is_pressed) {
             		// then event was started by some other action
             		// which should manually trigger all the events..
@@ -354,7 +358,7 @@ public class Xcls_WindowLeftTree : Object
              
                 //console.log("button press?");
                 _this.view.button_is_pressed = true;
-                print("BUTTON DOWN\n");
+                GLib.debug("BUTTON DOWN");
                 
                 _this.view.lastEventSource = "tree";
                 if (! _this.before_node_change() ) {
@@ -392,13 +396,104 @@ public class Xcls_WindowLeftTree : Object
                 
                      _this.main_window.windowstate.leftTreeBeforeChange();
                      _this.view.el.get_selection().select_path(res);
+                     	GLib.debug("Button Pressed - start show window");
                  	_this.main_window.windowstate.showAddObject(_this.view.el);
+                 	GLib.debug("Button Pressed - finsihed show window");
                  	return ;
                  }
                 
             	if (  this.el.button != 3) {
-                    //print("click" + ev.type);
-                    return ;
+            		// regular click... - same as selection change?
+            	
+            			print("LEFT TREE Cursor Changed\n");
+            			return; // disable are we showing the add 
+            			
+            			
+            			
+            			//if (!this.button_is_pressed && !this.key_is_pressed) {
+            				// then event was started by some other action
+            				// which should manually trigger all the events..
+            			//	print("SKIPPING select - no button or key pressed\n");
+            			//	return;
+            			//}
+            
+            
+            			 if (_this.view.blockChanges) { // probably not needed.. 
+            				print("SKIPPING select - blockchanges set..\n");     
+            			   return  ;
+            			 }
+            			  if (!_this.before_node_change( ) ) {
+            				 _this.view.blockChanges = true;
+            				 _this.view.el.get_selection().unselect_all();
+            				 _this.view.blockChanges = false;
+            				 
+            				 return;
+            			 }
+            			 if (_this.main_window.windowstate.file == null) {
+            		   		print("SKIPPING select windowstate file is not set...\n");     
+            				 return;
+            			 } 
+            			 
+            			 //var render = this.get('/LeftTree').getRenderer();                
+            			print("LEFT TREE -> view -> selection changed called\n");
+            			
+            			
+            			// -- it appears that the selection is not updated.
+            			  
+            			GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+            				 print("LEFT TREE -> view -> selection changed TIMEOUT CALLED\n");
+            
+            				    if (_this.view.el.get_selection().count_selected_rows() < 1) {
+            
+            				        print("selected rows < 1\n");
+            				        //??this.model.load( false);
+            				        _this.node_selected(null, _this.view.lastEventSource);
+            				        
+            				        return false ;
+            				    }
+            				        
+            				        //console.log('changed');
+            				    var s = _this.view.el.get_selection();
+            				     Gtk.TreeIter iter;
+            				     Gtk.TreeModel mod;
+            				    s.get_selected(out mod, out iter);
+            				    
+            				    
+            				    // var val = "";
+            				    GLib.Value value;
+            				    _this.model.el.get_value(iter, 2, out value);
+            				    _this.model.activePath = mod.get_path(iter).to_string();
+            				    
+            				    // why dup_?
+            				    
+            				    var node = (JsRender.Node)value.dup_object();
+            				    print ("calling left_tree.node_selected\n");
+            				    _this.node_selected(node, _this.view.lastEventSource);
+            				   
+            				    var cp = mod.get_path(iter);
+            				    Gtk.TreePath sp, ep;
+            				    _this.view.el.get_visible_range(out sp, out ep);
+            				    // if sp is before cp then retuns 1.
+            				    // if cp is before ep then retuns 1.
+            				    if (cp.compare(sp) >= 0 && ep.compare(cp) >=1) {
+            				        return false;
+            				    }
+            				    
+            				     
+            				    
+            				    _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
+            				    
+            				    return false;
+            			  });  
+            			//_this.after_node_change(node);
+            
+            		//        _this.model.file.changed(node, "tree");
+            		   
+            		 
+            			return  ;
+            	
+            	
+            	 
                  }
                 _this.main_window.windowstate.leftTreeBeforeChange();
             
