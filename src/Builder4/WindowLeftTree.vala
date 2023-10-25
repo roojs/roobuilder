@@ -783,7 +783,7 @@ public class Xcls_WindowLeftTree : Object
             */
             	return true;
             });
-            this.el.motion.connect( (v, x, y) => {
+            this.el.motion.connect( (  x, y) => {
             
             	
              	 
@@ -792,7 +792,11 @@ public class Xcls_WindowLeftTree : Object
             
                 GLib.debug("got drag motion");
             
-               ;
+                GLib.Value v = GLib.Value(typeof(string));
+               //var str = drop.read_text( [ "text/plain" ] 0);
+               var cont = this.el.current_drop.get_drag().content ;
+               cont.get_value(ref v);
+            
             	GLib.debug("got %s", v.get_string());
              
              
@@ -1151,7 +1155,7 @@ public class Xcls_WindowLeftTree : Object
             
             }
             */
-            	return true;
+            	return false;
             });
         }
 
