@@ -562,6 +562,8 @@ public class Xcls_WindowLeftTree : Object
             });
             this.el.drag_end.connect( (drag, delete_data) => {
             
+            
+            	GLib.debug("got drag end");
              // (drag_context) => {
             	//Seed.print('LEFT-TREE: drag-end');
              
@@ -597,6 +599,12 @@ public class Xcls_WindowLeftTree : Object
 
             //listeners
             this.el.accept.connect( (drop) => {
+            
+            	GLib.debug("got DropTarget:accept");
+             
+            // NOT REALLY NEEDED? = put stuff in drop?
+            
+            
             /* (  ctx, x, y, time)  => {
                   //Seed.print("TARGET: drag-drop");
                
@@ -775,7 +783,7 @@ public class Xcls_WindowLeftTree : Object
             */
             	return true;
             });
-            this.el.motion.connect( (drop, x, y) => {
+            this.el.motion.connect( (v, x, y) => {
             
             	
              	 
@@ -784,11 +792,7 @@ public class Xcls_WindowLeftTree : Object
             
                 GLib.debug("got drag motion");
             
-              
-            	GLib.Value v = GLib.Value(typeof(string));
-            	//var str = drop.read_text( [ "text/plain" ] 0);
-            	var cont = this.el.current_drop.get_drag().content ;
-            	cont.get_value(ref v);
+               ;
             	GLib.debug("got %s", v.get_string());
              
              
@@ -949,7 +953,47 @@ public class Xcls_WindowLeftTree : Object
             */
             	return Gdk.DragAction.COPY;
             });
-            this.el.drop.connect( (drop, x, y) => {
+            this.el.drop.connect( (v, x, y) => {
+            	
+            	
+            	Gtk.TreeViewDropPosition pos; // return..
+            
+                GLib.debug("got drop  ");
+            
+              
+            	 
+            	GLib.debug("got %s", v.get_string());
+             
+             
+             	// -- get position..
+             	
+             	
+             	 Gtk.TreePath path;
+             
+                var isOver = _this.view.el.get_dest_row_at_pos( (int)x, (int) y, out path, out pos);
+                var isEmpty = false;
+                // if there are not items in the tree.. the we have to set isOver to true for anything..
+            	if (_this.model.el.iter_n_children(null) < 1) {
+            		GLib.debug("got NO children?\n");
+            		isOver = true; //??? 
+            		isEmpty = true;
+            		pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
+            	}
+            
+            
+             	var pa = new Json.Parser();
+                pa.load_from_data(v.get_string());
+                var new_node = pa.get_root();
+                var obj = new_node.get_object ();
+                    
+             
+            
+            	var dropNode = new JsRender.Node(); 
+            	dropNode.loadFromJson(obj, 1);
+                
+             
+            	this.el.current_drop.drag.drop_done(true);
+            	
             	/*(ctx, x, y, sel, info, time)  => {
             
             	// THIS CODE ONLY RELATES TO drag  or drop of "NEW" elements or "FROM another tree.."
@@ -1213,7 +1257,7 @@ typeof(Gdk.Pixbuf) }  );
             
             //console.dump(this.treemap);
             
-            print("findDropNodeByPath : got path length %d / %s\n", path.length, path);
+            GLib.debug("findDropNodeByPath : got path length %d / %s ", path.length, path);
             
             if (path.length == 0) {
                 // top drop. // just return empty..
@@ -1230,7 +1274,7 @@ typeof(Gdk.Pixbuf) }  );
                     }
                     path = path.substring(0, path.last_index_of(":"));
                     last = treepath_str;
-                    print("DROP  before or after : using %s\n",path);
+                    GLib.debug("findDropNodeByPath: DROP  before or after : using %s\n",path);
                     continue;
                 }
             
@@ -1238,7 +1282,7 @@ typeof(Gdk.Pixbuf) }  );
                 var node_data = this.pathToNode(path);
                 
                 if (node_data == null) {
-                    print("node not found");
+                    GLib.debug("findDropNodeByPath:node not found");
                     return "";
                 }
                 
