@@ -112,7 +112,7 @@ public class Xcls_WindowLeftTree : Object
     }
     public class Xcls_view : Object
     {
-        public Gtk.TreeView el;
+        public Gtk.ColumnView el;
         private Xcls_WindowLeftTree  _this;
 
 
@@ -120,6 +120,7 @@ public class Xcls_WindowLeftTree : Object
         public bool blockChanges;
         public bool drag_in_motion;
         public string lastEventSource;
+        public bool headers_visible;
         public bool button_is_pressed;
         public Gtk.CssProvider css;
         public int drag_x;
@@ -132,11 +133,12 @@ public class Xcls_WindowLeftTree : Object
         {
             _this = _owner;
             _this.view = this;
-            this.el = new Gtk.TreeView();
+            this.el = new Gtk.ColumnView( null );
 
             // my vars (dec)
             this.blockChanges = false;
             this.lastEventSource = "";
+            this.headers_visible = false;
             this.button_is_pressed = false;
             this.expand = true;
 
@@ -144,9 +146,6 @@ public class Xcls_WindowLeftTree : Object
             this.el.name = "left-tree-view";
             this.el.hexpand = true;
             this.el.vexpand = true;
-            this.el.tooltip_column = 1;
-            this.el.enable_tree_lines = true;
-            this.el.headers_visible = false;
             var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
@@ -156,13 +155,13 @@ public class Xcls_WindowLeftTree : Object
             var child_2 = new Xcls_DropTarget6( _this );
             child_2.ref();
             this.el.add_controller(  child_2.el );
-            var child_3 = new Xcls_model( _this );
+            var child_3 = new Xcls_SingleSelection7( _this );
             child_3.ref();
-            this.el.set_model (  child_3.el  );
+            this.el.model = child_3.el;
             var child_4 = new Xcls_maincol( _this );
             child_4.ref();
             this.el.append_column (  child_4.el  );
-            var child_5 = new Xcls_TreeViewColumn11( _this );
+            var child_5 = new Xcls_TreeViewColumn12( _this );
             child_5.ref();
             this.el.append_column (  child_5.el  );
 
@@ -1170,38 +1169,48 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_model : Object
+    public class Xcls_SingleSelection7 : Object
     {
-        public Gtk.TreeStore el;
+        public Gtk.SingleSelection el;
         private Xcls_WindowLeftTree  _this;
 
 
             // my vars (def)
-        public DialogTemplateSelect template_select;
-        public bool template_connected;
-        public string activePath;
+
+        // ctor
+        public Xcls_SingleSelection7(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.SingleSelection( null );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_model( _this );
+            child_0.ref();
+            this.el.model = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_model : Object
+    {
+        public GLib.ListStore el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
 
         // ctor
         public Xcls_model(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.TreeStore.newv(  { typeof(string),
-typeof(string),
-typeof(Object),
-typeof(Gdk.Pixbuf),
-typeof(Gdk.Pixbuf) }  );
+            this.el = new GLib.ListStore(typeof(JsRender.Node));
 
             // my vars (dec)
-            this.template_select = null;
-            this.template_connected = false;
-            this.activePath = "";
 
             // set gobject values
-
-            // init method
-
-            print("model initialized");
         }
 
         // user defined functions
@@ -1257,7 +1266,7 @@ typeof(Gdk.Pixbuf) }  );
          
                     
         }
-        public string findDropNodeByPath (string treepath_str, string[] targets, int in_pref = -1) {
+        public void findDropNodeByPath (string treepath_str, string[] targets, int in_pref = -1) {
         
             var path = treepath_str; // dupe it..
             
@@ -1395,33 +1404,8 @@ typeof(Gdk.Pixbuf) }  );
             
         
         }
-        public string treePathFromNode (JsRender.Node node) {
-            // iterate through the tree and find the node
-            var ret = "";
-            
-            this.el.foreach((mod, pth, iter) => {
-                // get the node..
-              
-             
-                 GLib.Value value;
-                 _this.model.el.get_value(iter, 2, out value);
-                 
-        
-                 
-                 var n = (JsRender.Node)value;
-        
-                 print("compare %s to %s\n", n.fqn(), node.fqn());
-                if (node == n) {
-                    ret = pth.to_string();
-                    return true;
-                }
-                return false;
-            });
-            return ret;
-        
-        }
         public void deleteSelected () {
-            
+        /*    
             print("DELETE SELECTED?");
             //_this.view.blockChanges = true;
             print("GET SELECTION?");
@@ -1469,8 +1453,11 @@ typeof(Gdk.Pixbuf) }  );
             _this.changed();
             
             _this.view.blockChanges = false;
+            */
         }
         public void dropNode (string target_data_str, JsRender.Node node, bool show_templates) {
+        
+        /*
         //         print("drop Node");
              // console.dump(node);
           //    console.dump(target_data);
@@ -1565,16 +1552,10 @@ typeof(Gdk.Pixbuf) }  );
                     var relNode =  (JsRender.Node)value.dup_object();
                     
                     if ( pos  > 0 ) {
-                     
-                        this.el.insert_after(out n_iter,    iter_par  , iter_after);
-                        var ix = parentNode.items.index_of(relNode);
-                        parentNode.items.insert(ix+1, node);
+                     	parentNode.insertAfter(node, relNode);
                         
                     } else {
-                        this.el.insert_before(out n_iter,  iter_par  , iter_after);
-                        var ix = parentNode.items.index_of(relNode);
-                        parentNode.items.insert(ix, node);
-         
+                    	parentNode.insertBefore(node, relNode);;
                     }
                     node.parent = parentNode;
                     
@@ -1590,7 +1571,7 @@ typeof(Gdk.Pixbuf) }  );
                     this.el.get_value( iter_par, 2, out value);
                     parentNode =  (JsRender.Node)value.dup_object();
                     node.parent = parentNode;
-                    parentNode.items.add(node);
+                    parentNode.appendChild(node);
                 }
                 
                 
@@ -1609,14 +1590,14 @@ typeof(Gdk.Pixbuf) }  );
                 
                 
         		// load children - if it has any..
-              
+             
                 if (node.items.size > 0) {
                     this.load(node.items, n_iter);
                     _this.view.el.expand_row(this.el.get_path(n_iter), true);
                 } else if (expand_parent != null && !_this.view.el.is_row_expanded(expand_parent)) {
                    _this.view.el.expand_row(expand_parent,true);
                 }
-        
+         
                 //if (tp != null && (node.items.length() > 0 || pos > 1)) {
                 //    _this.view.el.expand_row(this.el.get_path(iter_par), true);
                // }
@@ -1633,7 +1614,7 @@ typeof(Gdk.Pixbuf) }  );
                 _this.view.button_is_pressed = false;
                 _this.changed();
              
-                
+                */
                     
         }
         public void moveNode (string target_data, Gdk.DragAction action) 
@@ -1702,7 +1683,7 @@ typeof(Gdk.Pixbuf) }  );
                         1, node.nodeTip(), -1
                 );
         }
-        public string findDropNode (string treepath_str, string[] targets) {
+        public void findDropNode (string treepath_str, string[] targets) {
         
             // this is used by the dragdrop code in the roo version AFAIR..
         
@@ -1762,7 +1743,33 @@ typeof(Gdk.Pixbuf) }  );
              return (JsRender.Node)value.dup_object();
         
         }
+        public string TreePathFromNode (JsRender.Node node) {
+            // iterate through the tree and find the node
+            var ret = "";
+            
+            this.el.foreach((mod, pth, iter) => {
+                // get the node..
+              
+             
+                 GLib.Value value;
+                 _this.model.el.get_value(iter, 2, out value);
+                 
+        
+                 
+                 var n = (JsRender.Node)value;
+        
+                 print("compare %s to %s\n", n.fqn(), node.fqn());
+                if (node == n) {
+                    ret = pth.to_string();
+                    return true;
+                }
+                return false;
+            });
+            return ret;
+        
+        }
     }
+
 
     public class Xcls_maincol : Object
     {
@@ -1849,7 +1856,7 @@ typeof(Gdk.Pixbuf) }  );
     }
 
 
-    public class Xcls_TreeViewColumn11 : Object
+    public class Xcls_TreeViewColumn12 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_WindowLeftTree  _this;
@@ -1858,7 +1865,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn11(Xcls_WindowLeftTree _owner )
+        public Xcls_TreeViewColumn12(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -1925,14 +1932,14 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box14( _this );
+            var child_0 = new Xcls_Box15( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box14 : Object
+    public class Xcls_Box15 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowLeftTree  _this;
@@ -1941,7 +1948,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Box14(Xcls_WindowLeftTree _owner )
+        public Xcls_Box15(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1949,20 +1956,20 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button15( _this );
+            var child_0 = new Xcls_Button16( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button16( _this );
+            var child_1 = new Xcls_Button17( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button17( _this );
+            var child_2 = new Xcls_Button18( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button15 : Object
+    public class Xcls_Button16 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1971,7 +1978,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button15(Xcls_WindowLeftTree _owner )
+        public Xcls_Button16(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1994,7 +2001,7 @@ typeof(Gdk.Pixbuf) }  );
         // user defined functions
     }
 
-    public class Xcls_Button16 : Object
+    public class Xcls_Button17 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -2003,7 +2010,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button16(Xcls_WindowLeftTree _owner )
+        public Xcls_Button17(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -2029,7 +2036,7 @@ typeof(Gdk.Pixbuf) }  );
         // user defined functions
     }
 
-    public class Xcls_Button17 : Object
+    public class Xcls_Button18 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -2038,7 +2045,7 @@ typeof(Gdk.Pixbuf) }  );
             // my vars (def)
 
         // ctor
-        public Xcls_Button17(Xcls_WindowLeftTree _owner )
+        public Xcls_Button18(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
