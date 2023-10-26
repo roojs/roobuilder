@@ -182,6 +182,13 @@ public class Xcls_WindowLeftTree : Object
                 selection.set_mode( Gtk.SelectionMode.SINGLE);
             	this.el.enable_model_drag_dest(new Gdk.ContentFormats.for_gtype(typeof(string)),
             		Gdk.DragAction.COPY | Gdk.DragAction.MOVE );
+            	this.el.enable_model_drag_source(
+            		Gdk.ModifierType.BUTTON1_MASK | Gdk.ModifierType.SHIFT_MASK,
+            		new Gdk.ContentFormats.for_gtype(typeof(string)),
+            		Gdk.DragAction.COPY | Gdk.DragAction.MOVE 
+            		
+            		
+            	 );
             
              /*
                 Gtk.drag_source_set (
