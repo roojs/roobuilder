@@ -1212,17 +1212,17 @@ public class Xcls_LeftProps : Object
             // init method
 
             {
-               // var selection = this.el.get_selection();
-               // selection.set_mode( Gtk.SelectionMode.SINGLE);
-            
-            
+               
+            /*
               	this.css = new Gtk.CssProvider();
             	try {
             		this.css.load_from_data("#leftprops-view { font-size: 10px;}".data);
             	} catch (Error e) {}
-            	this.el.get_style_context().add_provider(this.css,
-            	Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-                
+            	this.el.get_style_context().add_provider(
+            		this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            	);
+              */  
               
             }
         }
