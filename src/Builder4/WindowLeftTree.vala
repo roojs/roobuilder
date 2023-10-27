@@ -16,10 +16,6 @@ public class Xcls_WindowLeftTree : Object
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_maincol maincol;
-    public Xcls_maincol maincol;
-    public Xcls_iconrender iconrender;
-    public Xcls_renderer renderer;
-    public Xcls_addiconrender addiconrender;
     public Xcls_LeftTreeMenu LeftTreeMenu;
 
         // my vars (def)
@@ -50,28 +46,16 @@ public class Xcls_WindowLeftTree : Object
      
     	 
     	//GLib.debug("Got allocation width of scrolled view %d", allocation.width );
-    	_this.maincol.el.set_max_width(
-    	 	_this.viewwin.el.get_width()  - 32
-     	);
-    }
-    public string getActivePath () {
-        
-        var view = this.view.el;
-        if (view.get_selection().count_selected_rows() < 1) {
-            return "";
-        }
-        Gtk.TreeIter iter;
-        Gtk.TreeModel mod;
-        view.get_selection().get_selected(out mod, out iter);
-        return mod.get_path(iter).to_string();
+    //	_this.maincol.el.set_max_width( _this.viewwin.el.get_width()  - 32 );
     }
     public JsRender.Node? getActiveElement () { // return path to actie node.
     
-         var path = this.getActivePath();
-         if (path.length < 1) {
-            return null;
-         }
-         return _this.model.pathToNode(path);
+         var ret = ((Gtk.SingleSelection) this.view.el.model).get_selected_item();
+        if (ret == null) {
+        	return null;
+    	}
+    	return (JsRender.Node) ret;
+        
         
     }
     public JsRender.JsRender getActiveFile () {
@@ -162,16 +146,14 @@ public class Xcls_WindowLeftTree : Object
             var child_4 = new Xcls_maincol( _this );
             child_4.ref();
             this.el.append_column (  child_4.el  );
-            var child_5 = new Xcls_maincol( _this );
+            var child_5 = new Xcls_ColumnViewColumn11( _this );
             child_5.ref();
             this.el.append_column (  child_5.el  );
-            var child_6 = new Xcls_TreeViewColumn14( _this );
-            child_6.ref();
-            this.el.append_column (  child_6.el  );
 
             // init method
 
             {
+              /*
                this.css = new Gtk.CssProvider();
             	try {
             		this.css.load_from_data("#left-tree-view { font-size: 10px;}".data);
@@ -179,84 +161,133 @@ public class Xcls_WindowLeftTree : Object
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	 
-            	 
+            	*/ 
                  
-                var selection = this.el.get_selection();
-                selection.set_mode( Gtk.SelectionMode.SINGLE);
-            	/*
-            	this.el.enable_model_drag_dest(new Gdk.ContentFormats.for_gtype(typeof(string)),
-            		Gdk.DragAction.COPY | Gdk.DragAction.MOVE );
-            	this.el.enable_model_drag_source(
-            		Gdk.ModifierType.BUTTON1_MASK | Gdk.ModifierType.SHIFT_MASK,
-            		new Gdk.ContentFormats.for_gtype(typeof(string)),
-            		Gdk.DragAction.COPY | Gdk.DragAction.MOVE 
-            		
-            		
-            	 );
-            		*/
-             /*
-                Gtk.drag_source_set (
-            	    this.el,            /// widget will be drag-able 
-            	    Gdk.ModifierType.BUTTON1_MASK,       //modifier that will start a drag 
-            	    BuilderApplication.targetList,            // lists of target to support  
-            	    Gdk.DragAction.COPY   | Gdk.DragAction.MOVE    |  Gdk.DragAction.LINK        
-                );
-            
-                // ?? needed??
-                //Gtk.drag_source_add_text_targets(this.el); 
-            
-                Gtk.drag_dest_set
-                (
-                    this.el,              // widget that will accept a drop 
-                    Gtk.DestDefaults.MOTION  | Gtk.DestDefaults.HIGHLIGHT,
-                    BuilderApplication.targetList,            // lists of target to support 
-                    Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   | Gdk.DragAction.LINK     
-                   				 // what to do with data after dropped 
-                );
-            
-                 */
-                
+               
                
                 
             }
         }
 
         // user defined functions
-        public void highlightDropPath ( string treepath, Gtk.TreeViewDropPosition pos) {
+        public void a_highlightDropPath ( string treepath, Gtk.TreeViewDropPosition pos) {
         
-                // highlighting for drag/drop
+        	// highlighting for drag/drop
+        /*
         
-                
-                if (treepath.length > 0) {
-                
-        	 		var tp = new  Gtk.TreePath.from_string( treepath );
-        	 		GLib.debug("set drag dest row %s, %i", treepath, (int) pos);
-                
-                    this.el.set_drag_dest_row( tp , pos);
-                    
-                    GLib.debug("Done set drag dest row");
-                    return;
-                  } 
-                  
-                this.el.set_drag_dest_row(null, Gtk.TreeViewDropPosition.INTO_OR_AFTER);
-               
-                     
+        	if (treepath.length > 0) {
+        
+        		var tp = new  Gtk.TreePath.from_string( treepath );
+        		GLib.debug("set drag dest row %s, %i", treepath, (int) pos);
+        
+        		this.el.set_drag_dest_row( tp , pos);
+        
+        		GLib.debug("Done set drag dest row");
+        		return;
+        	} 
+        
+        	this.el.set_drag_dest_row(null, Gtk.TreeViewDropPosition.INTO_OR_AFTER);
+        
+          */           
         }
-        public void selectNode (string treepath_str, string source) {
+        public void a_selectNode (string treepath_str, string source) {
+        	/*
         	this.lastEventSource = source;
             //this.selection.select_path(new  Gtk.TreePath.from_string( treepath_str));
              var tp = new Gtk.TreePath.from_string(treepath_str);
              
              this.el.set_cursor(tp, null, false);  
              this.el.scroll_to_cell(tp, null, false, 0,0);
+             */
         }
-        public void setCursor (string treepath, string sourceEvent)   {
+        public int getRowAt (double x,  double y) {
+        /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+            	var colview = gesture.widget;
+            	var line_no = check_list_widget(colview, x,y);
+                 if (line_no > -1) {
+            		var item = colview.model.get_item(line_no);
+            		 
+            	}
+            	*/
+                var  child = this.el.get_first_child(); 
+            	Gtk.Allocation alloc = { 0, 0, 0, 0 };
+            	var line_no = -1; 
+            	var reading_header = true;
+            	var curr_y = 0;
+            	var header_height  = 0;
+            	while (child != null) {
+        			GLib.debug("Got %s", child.get_type().name());
+            	    if (reading_header) {
+        			   
+        			    if (child.get_type().name() == "GtkListItemWidget") {
+        			        child.get_allocation(out alloc);
+        			    }
+        				if (child.get_type().name() != "GtkColumnListView") {
+        					child = child.get_next_sibling();
+        					continue;
+        				}
+        				child = child.get_first_child(); 
+        				header_height = alloc.y + alloc.height;
+        				curr_y = header_height; 
+        				reading_header = false;
+        	        }
+        		    if (child.get_type().name() != "GtkListItemWidget") {
+            		    child = child.get_next_sibling();
+            		    continue;
+        		    }
+        		    line_no++;
+        
+        			child.get_allocation(out alloc);
+        			GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
+        
+        		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
+        			    return line_no;
+        		    }
+        		    curr_y = header_height + alloc.height + alloc.y;
+        
+        		    if (curr_y > y) {
+        		    //    return -1;
+        	        }
+        	        child = child.get_next_sibling(); 
+            	}
+                return -1;
+        
+         }
+        public int getColAt (double x,  double y) {
+        /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+            	  
+            	*/
+        		Gtk.Allocation alloc = { 0, 0, 0, 0 };
+                var  child = this.el.get_first_child(); 
+            	 
+            	var col = 0;
+            	while (child != null) {
+        			GLib.debug("Got %s", child.get_type().name());
+        			child.get_allocation(out alloc);
+        			if (x <  (alloc.width + alloc.x)) {
+        				return col;
+        			}
+        			col++;
+        			child = child.get_next_sibling();
+        		}
+            	     
+        			  
+                return -1;
+        
+         }
+        public void a_setCursor (string treepath, string sourceEvent)   {
+        	/*
         	this.lastEventSource = sourceEvent;
         	//this.blockChanges = true; << block changes prevents loading of 'node data' and firing of node_selected..
             this.el.set_cursor(new Gtk.TreePath.from_string(treepath), null, false); 
             // fire node_selected..
             //this.blockChanges = false;
         	this.lastEventSource = "";
+        	*/
         }
     }
     public class Xcls_GestureClick4 : Object
@@ -296,134 +327,135 @@ public class Xcls_WindowLeftTree : Object
                    return ;
                 }
                 
-            	 
-                if (_this.model.el.iter_n_children(null) < 1) {
+            	 // nothing there -show dialog
+                if (_this.model.el.get_n_items() < 1) {
             	    _this.main_window.windowstate.showAddObject(_this.view.el);
             	    return ;
                 }
                 
-               
-                Gtk.TreePath res;
-                Gtk.TreeViewColumn col;
-                if (!_this.view.el.get_path_at_pos((int)x,(int)y, out res, out col, null, null) ) {
-                    return ;
+                var row = _this.view.getRowAt(x,y);
+                if (row < 0) {
+            	    return;
                 }
                 
-                if (col.title == "Add") {
-             		GLib.Value value;
-             		Gtk.TreeIter iter;
+                var node = (JsRender.Node) _this.model.el.get_item(row);
+                if (node == null) {
+                	GLib.warning("No node found at row %d", row);
+                	return;
+            	}
             
-            		_this.model.el.get_iter (out  iter, res);
-                    _this.model.el.get_value(iter, 2, out value);		
-                        // why dup_ - gets and and inc's ref count (which in theory should be freed at the end.?
-                        
-                    var node = (JsRender.Node)value.dup_object();
+                 
+                 
+                if (_this.view.getColAt(x,y) > 0 ) {
+                
                     var fqn = node.fqn();
                 	var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
               		if (cn.length < 1) {
               			return ;
             		}
-                
-                     _this.main_window.windowstate.leftTreeBeforeChange();
-                     _this.view.el.get_selection().select_path(res);
-                     	GLib.debug("Button Pressed - start show window");
-                 	_this.main_window.windowstate.showAddObject(_this.view.el);
-                 	GLib.debug("Button Pressed - finsihed show window");
+            
+            		_this.main_window.windowstate.leftTreeBeforeChange();
+            		//_this.view.el.get_selection().select_path(res);
+            		GLib.debug("Button Pressed - start show window");
+            		_this.main_window.windowstate.showAddObject(_this.view.el);
+            		GLib.debug("Button Pressed - finsihed show window");
                  	return ;
-                 }
+            	}
                 
             	if (  this.el.button != 3) {
             		// regular click... - same as selection change?
-            	
-            			print("LEFT TREE Cursor Changed\n");
-            		 	
-            			
-            			
-            			//if (!this.button_is_pressed && !this.key_is_pressed) {
-            				// then event was started by some other action
-            				// which should manually trigger all the events..
-            			//	print("SKIPPING select - no button or key pressed\n");
-            			//	return;
-            			//}
+            		// we handle it here ?? not sure if we need to anymore?
+            		/*
+            		print("LEFT TREE Cursor Changed\n");
+            	 	
+            		
+            		
+            		//if (!this.button_is_pressed && !this.key_is_pressed) {
+            			// then event was started by some other action
+            			// which should manually trigger all the events..
+            		//	print("SKIPPING select - no button or key pressed\n");
+            		//	return;
+            		//}
             
             
-            			 if (_this.view.blockChanges) { // probably not needed.. 
-            				print("SKIPPING select - blockchanges set..\n");     
-            			   return  ;
-            			 }
-            			  if (!_this.before_node_change( ) ) {
-            				 _this.view.blockChanges = true;
-            				 _this.view.el.get_selection().unselect_all();
-            				 _this.view.blockChanges = false;
-            				 
-            				 return;
-            			 }
-            			 if (_this.main_window.windowstate.file == null) {
-            		   		print("SKIPPING select windowstate file is not set...\n");     
-            				 return;
-            			 } 
+            		 if (_this.view.blockChanges) { // probably not needed.. 
+            			print("SKIPPING select - blockchanges set..\n");     
+            		   return  ;
+            		 }
+            		  if (!_this.before_node_change( ) ) {
+            			 _this.view.blockChanges = true;
+            			 _this.view.el.get_selection().unselect_all();
+            			 _this.view.blockChanges = false;
             			 
-            			 //var render = this.get('/LeftTree').getRenderer();                
-            			print("LEFT TREE -> view -> selection changed called\n");
-            			
-            			
-            			// -- it appears that the selection is not updated.
-            			  
-            			GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-            				 print("LEFT TREE -> view -> selection changed TIMEOUT CALLED\n");
-            
-            				    if (_this.view.el.get_selection().count_selected_rows() < 1) {
-            
-            				        print("selected rows < 1\n");
-            				        //??this.model.load( false);
-            				        _this.node_selected(null, _this.view.lastEventSource);
-            				        
-            				        return false ;
-            				    }
-            				        
-            				        //console.log('changed');
-            				    var s = _this.view.el.get_selection();
-            				     Gtk.TreeIter iter;
-            				     Gtk.TreeModel mod;
-            				    s.get_selected(out mod, out iter);
-            				    
-            				    
-            				    // var val = "";
-            				    GLib.Value value;
-            				    _this.model.el.get_value(iter, 2, out value);
-            				    _this.model.activePath = mod.get_path(iter).to_string();
-            				    
-            				    // why dup_?
-            				    
-            				    var node = (JsRender.Node)value.dup_object();
-            				    print ("calling left_tree.node_selected\n");
-            				    _this.node_selected(node, _this.view.lastEventSource);
-            				   
-            				    var cp = mod.get_path(iter);
-            				    Gtk.TreePath sp, ep;
-            				    _this.view.el.get_visible_range(out sp, out ep);
-            				    // if sp is before cp then retuns 1.
-            				    // if cp is before ep then retuns 1.
-            				    if (cp.compare(sp) >= 0 && ep.compare(cp) >=1) {
-            				        return false;
-            				    }
-            				    
-            				     
-            				    
-            				    _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
-            				    
-            				    return false;
-            			  });  
-            			//_this.after_node_change(node);
-            
-            		//        _this.model.file.changed(node, "tree");
-            		   
+            			 return;
+            		 }
+            		 if (_this.main_window.windowstate.file == null) {
+            	   		print("SKIPPING select windowstate file is not set...\n");     
+            			 return;
+            		 } 
             		 
-            			return  ;
+            		 //var render = this.get('/LeftTree').getRenderer();                
+            		print("LEFT TREE -> view -> selection changed called\n");
+            		
+            		
+            		// -- it appears that the selection is not updated.
+            		  
+            		GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+            			 print("LEFT TREE -> view -> selection changed TIMEOUT CALLED\n");
+            
+            			    if (_this.view.el.get_selection().count_selected_rows() < 1) {
+            
+            			        print("selected rows < 1\n");
+            			        //??this.model.load( false);
+            			        _this.node_selected(null, _this.view.lastEventSource);
+            			        
+            			        return false ;
+            			    }
+            			        
+            			        //console.log('changed');
+            			    var s = _this.view.el.get_selection();
+            			     Gtk.TreeIter iter;
+            			     Gtk.TreeModel mod;
+            			    s.get_selected(out mod, out iter);
+            			    
+            			    
+            			    // var val = "";
+            			    GLib.Value value;
+            			    _this.model.el.get_value(iter, 2, out value);
+            			    _this.model.activePath = mod.get_path(iter).to_string();
+            			    
+            			    // why dup_?
+            			    
+            			    var node = (JsRender.Node)value.dup_object();
+            			    print ("calling left_tree.node_selected\n");
+            			    _this.node_selected(node, _this.view.lastEventSource);
+            			   
+            			    var cp = mod.get_path(iter);
+            			    Gtk.TreePath sp, ep;
+            			    _this.view.el.get_visible_range(out sp, out ep);
+            			    // if sp is before cp then retuns 1.
+            			    // if cp is before ep then retuns 1.
+            			    if (cp.compare(sp) >= 0 && ep.compare(cp) >=1) {
+            			        return false;
+            			    }
+            			    
+            			     
+            			    
+            			    _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
+            			    
+            			    return false;
+            		  });  
+            		//_this.after_node_change(node);
+            
+            	//        _this.model.file.changed(node, "tree");
+            	   */
+            	 
+            		return  ;
             	
             	
             	 
                  }
+                 /*
                 _this.main_window.windowstate.leftTreeBeforeChange();
             
                 
@@ -449,6 +481,7 @@ public class Xcls_WindowLeftTree : Object
                  
                  //   print("click:" + res.path.to_string());
                   return ;
+                  */
             });
         }
 
@@ -528,9 +561,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.drag_begin.connect( ( drag )  => {
             		GLib.debug("SOURCE: drag-begin");
             		
-                    
-                    
-                    //this.targetData = "";
+             
                     
                     // find what is selected in our tree...
                     
@@ -1614,54 +1645,6 @@ public class Xcls_WindowLeftTree : Object
                 */
                     
         }
-        public void a_iterSetValues (Gtk.TreeIter iter, JsRender.Node node)   {
-        
-         /*
-        	var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
-            Gdk.Pixbuf pix = null,addi = null;
-            
-            var o =   GLib.Value(typeof(Object));
-            o.set_object((Object)node);
-            var clsname = node.fqn();
-            
-            var clsb = clsname.split(".");
-            var sub = clsb.length > 1 ? clsb[1].down()  : "";
-             
-            var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
-            try { 
-            	 
-            		 
-            
-            	var icon = ic.lookup_icon ("list-add", null,  16,1, 
-            			 Gtk.TextDirection.NONE, 0);
-           
-        		addi =   new Gdk.Pixbuf.from_file (icon.file.get_path());
-        		if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
-        			 pix = new Gdk.Pixbuf.from_file (fn);
-        			
-        		}  else {
-        		   icon = ic.lookup_icon ("list-add", null,  16,1, 
-            			 Gtk.TextDirection.NONE, 0);
-           
-        		 	pix = new Gdk.Pixbuf.from_file (icon.file.get_path());
-        	 	}
-         	} catch (GLib.Error e) {}
-            
-            var fqn = node.fqn();
-            var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
-            
-            this.el.set(
-            		iter, 
-            		0, node.nodeTitle(),
-                    1, node.nodeTip(), 
-                    -1
-            );
-            this.el.set_value(iter, 2,o);
-            this.el.set_value(iter, 3,pix);    
-          	this.el.set_value(iter, 4, cn.length > 0 ? addi : null);   
-            */
-        
-        }
         public string a_treePathFromNode (JsRender.Node node) {
             // iterate through the tree and find the node
          /*
@@ -1761,7 +1744,6 @@ public class Xcls_WindowLeftTree : Object
 
 
             // my vars (def)
-        public Gtk.TreeViewColumnSizing sizing;
 
         // ctor
         public Xcls_maincol(Xcls_WindowLeftTree _owner )
@@ -1771,12 +1753,10 @@ public class Xcls_WindowLeftTree : Object
             this.el = new Gtk.ColumnViewColumn( "Property", null );
 
             // my vars (dec)
-            this.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
             // set gobject values
             this.el.id = "maincol";
             this.el.expand = true;
-            this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory10( _this );
             child_0.ref();
             this.el.factory = child_0.el;
@@ -1862,7 +1842,7 @@ public class Xcls_WindowLeftTree : Object
             	    			 Gtk.TextDirection.NONE, 0
                 			)
             			 );
-            	 	
+            	 	}
              	} catch (GLib.Error e) {}
                 
              	
@@ -1873,142 +1853,76 @@ public class Xcls_WindowLeftTree : Object
     }
 
 
-    public class Xcls_maincol : Object
+    public class Xcls_ColumnViewColumn11 : Object
     {
-        public Gtk.TreeViewColumn el;
+        public Gtk.ColumnViewColumn el;
         private Xcls_WindowLeftTree  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_maincol(Xcls_WindowLeftTree _owner )
+        public Xcls_ColumnViewColumn11(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
-            _this.maincol = this;
-            this.el = new Gtk.TreeViewColumn();
+            this.el = new Gtk.ColumnViewColumn( "Add", null );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.title = "Node";
-            this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
-            this.el.expand = true;
-            this.el.resizable = true;
-            var child_0 = new Xcls_iconrender( _this );
+            this.el.fixed_width = 25;
+            var child_0 = new Xcls_SignalListItemFactory12( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false );
-            var child_1 = new Xcls_renderer( _this );
-            child_1.ref();
-            this.el.pack_start (  child_1.el , true );
-
-            // init method
-
-            this.el.add_attribute(_this.renderer.el , "markup", 0 );
-              this.el.add_attribute(_this.iconrender.el , "pixbuf",  3 );
+            this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_iconrender : Object
+    public class Xcls_SignalListItemFactory12 : Object
     {
-        public Gtk.CellRendererPixbuf el;
+        public Gtk.SignalListItemFactory el;
         private Xcls_WindowLeftTree  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_iconrender(Xcls_WindowLeftTree _owner )
+        public Xcls_SignalListItemFactory12(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
-            _this.iconrender = this;
-            this.el = new Gtk.CellRendererPixbuf();
+            this.el = new Gtk.SignalListItemFactory();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.width = 16;
-        }
 
-        // user defined functions
-    }
-
-    public class Xcls_renderer : Object
-    {
-        public Gtk.CellRendererText el;
-        private Xcls_WindowLeftTree  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_renderer(Xcls_WindowLeftTree _owner )
-        {
-            _this = _owner;
-            _this.renderer = this;
-            this.el = new Gtk.CellRendererText();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-
-    public class Xcls_TreeViewColumn14 : Object
-    {
-        public Gtk.TreeViewColumn el;
-        private Xcls_WindowLeftTree  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_TreeViewColumn14(Xcls_WindowLeftTree _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.TreeViewColumn();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.max_width = 24;
-            this.el.title = "Add";
-            this.el.sizing = Gtk.TreeViewColumnSizing.FIXED;
-            this.el.expand = false;
-            var child_0 = new Xcls_addiconrender( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
-
-            // init method
-
-            this.el.add_attribute(_this.addiconrender.el , "pixbuf",  4 );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_addiconrender : Object
-    {
-        public Gtk.CellRendererPixbuf el;
-        private Xcls_WindowLeftTree  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_addiconrender(Xcls_WindowLeftTree _owner )
-        {
-            _this = _owner;
-            _this.addiconrender = this;
-            this.el = new Gtk.CellRendererPixbuf();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.width = 16;
+            //listeners
+            this.el.setup.connect( (listitem) => {
+            
+            	 
+            	var icon = new Gtk.Image();
+            	 
+            	listitem.set_child(icon);
+            });
+            this.el.bind.connect( (listitem) => {
+            
+             	var img = (Gtk.Image) ((Gtk.ListItem)listitem).get_child(); 
+             	var node = (JsRender.Node) ((Gtk.ListItem)listitem).get_item();
+              
+                var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
+            	img.set_from_gicon(
+            	 	ic.lookup_icon (
+            	 		"list-add", null,  16,1, 
+            			 Gtk.TextDirection.NONE, 0
+            		)
+            	 );
+            	 
+             	var fqn = node.fqn();
+                var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
+            
+            	img.set_visible(cn.length > 0 ? true : false);
+             	 
+            });
         }
 
         // user defined functions
@@ -2034,14 +1948,14 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box17( _this );
+            var child_0 = new Xcls_Box14( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box17 : Object
+    public class Xcls_Box14 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowLeftTree  _this;
@@ -2050,7 +1964,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box17(Xcls_WindowLeftTree _owner )
+        public Xcls_Box14(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -2058,20 +1972,20 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button18( _this );
+            var child_0 = new Xcls_Button15( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button19( _this );
+            var child_1 = new Xcls_Button16( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button20( _this );
+            var child_2 = new Xcls_Button17( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button18 : Object
+    public class Xcls_Button15 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -2080,7 +1994,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button18(Xcls_WindowLeftTree _owner )
+        public Xcls_Button15(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -2103,7 +2017,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_Button19 : Object
+    public class Xcls_Button16 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -2112,7 +2026,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button19(Xcls_WindowLeftTree _owner )
+        public Xcls_Button16(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -2138,7 +2052,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_Button20 : Object
+    public class Xcls_Button17 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -2147,7 +2061,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button20(Xcls_WindowLeftTree _owner )
+        public Xcls_Button17(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
