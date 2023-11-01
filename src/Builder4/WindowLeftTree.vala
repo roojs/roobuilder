@@ -200,6 +200,30 @@ public class Xcls_WindowLeftTree : Object
              this.el.scroll_to_cell(tp, null, false, 0,0);
              */
         }
+        public int getColAt (double x,  double y) {
+        /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+            	  
+            	*/
+        		Gtk.Allocation alloc = { 0, 0, 0, 0 };
+                var  child = this.el.get_first_child(); 
+            	 
+            	var col = 0;
+            	while (child != null) {
+        			GLib.debug("Got %s", child.get_type().name());
+        			child.get_allocation(out alloc);
+        			if (x <  (alloc.width + alloc.x)) {
+        				return col;
+        			}
+        			col++;
+        			child = child.get_next_sibling();
+        		}
+            	     
+        			  
+                return -1;
+        
+         }
         public int getRowAt (double x,  double y) {
         /*
             	
@@ -252,30 +276,6 @@ public class Xcls_WindowLeftTree : Object
         	        }
         	        child = child.get_next_sibling(); 
             	}
-                return -1;
-        
-         }
-        public int getColAt (double x,  double y) {
-        /*
-            	
-        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
-            	  
-            	*/
-        		Gtk.Allocation alloc = { 0, 0, 0, 0 };
-                var  child = this.el.get_first_child(); 
-            	 
-            	var col = 0;
-            	while (child != null) {
-        			GLib.debug("Got %s", child.get_type().name());
-        			child.get_allocation(out alloc);
-        			if (x <  (alloc.width + alloc.x)) {
-        				return col;
-        			}
-        			col++;
-        			child = child.get_next_sibling();
-        		}
-            	     
-        			  
                 return -1;
         
          }
@@ -1671,6 +1671,18 @@ public class Xcls_WindowLeftTree : Object
             return ret;
         */
         }
+        public JsRender.Node a_pathToNode (string path) {
+         
+         /*    
+             Gtk.TreeIter   iter;
+             _this.model.el.get_iter_from_string(out iter, path);
+             
+             GLib.Value value;
+             _this.model.el.get_value(iter, 2, out value);
+             
+             return (JsRender.Node)value.dup_object();
+        */
+        }
         public void a_deleteSelected () {
         /*    
             print("DELETE SELECTED?");
@@ -1721,18 +1733,6 @@ public class Xcls_WindowLeftTree : Object
             
             _this.view.blockChanges = false;
             */
-        }
-        public JsRender.Node a_pathToNode (string path) {
-         
-         /*    
-             Gtk.TreeIter   iter;
-             _this.model.el.get_iter_from_string(out iter, path);
-             
-             GLib.Value value;
-             _this.model.el.get_value(iter, 2, out value);
-             
-             return (JsRender.Node)value.dup_object();
-        */
         }
     }
 
