@@ -555,29 +555,25 @@ public class Xcls_WindowLeftTree : Object
              
                     
                     // find what is selected in our tree...
-                    
-                    var s = _this.view.el.get_selection();
-                    if (s.count_selected_rows() < 1) {
-                        return;
-                    }
-                    Gtk.TreeIter iter;
-                    Gtk.TreeModel mod;
-                    s.get_selected(out mod, out iter);
-            
-                    
-            
-                    // set some properties of the tree for use by the dropped element.
-                    GLib.Value value;
-                    _this.model.el.get_value(iter, 2, out value);
-                    var tp = mod.get_path(iter).to_string();
-            //        var data = (JsRender.Node)(value.dup_object());
-            		var data = (JsRender.Node)value;
+                    var s = _this.view.el.model;
+            	if (s.n_items() < 1) {
+            		return null;
+            		//data.set_text("",0);     
+            		// print("return empty string - no selection..");
+            		//return;
+            	}
+            	
+            	
+                
+                
+                 
+            		var data = (JsRender.Node)s.selected_item;
                     var xname = data.fqn();
-                    print ("XNAME  IS " + xname+ "\n");
+                    GLib.debug ("XNAME  IS %s", xname);
              
                     _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
                     
-                    print ("DROP LIST IS " + string.joinv(", ", _this.view.dropList) + "\n");
+            GLib.debug ("DROP LIST IS %s",  string.joinv(", ", _this.view.dropList))
                     
             
                     // make the drag icon a picture of the node that was selected
@@ -586,7 +582,7 @@ public class Xcls_WindowLeftTree : Object
                 // by default returns the path..
                 
                     var path = _this.model.el.get_path(iter);
-                    var pix = _this.view.el.create_row_drag_icon ( path);
+             
                     var paintable = _this.view.el.create_row_drag_icon ( path); 
                     this.el.set_icon(paintable, 0,0);
                             
