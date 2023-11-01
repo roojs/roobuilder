@@ -433,6 +433,14 @@ namespace JsRender {
 			
 		}
 		
+		public GLib.ListStore toListStore()
+		{
+			var ret = new GLib.ListStore(typeof(Node));
+			ret.append(this.tree);
+			return ret;
+		}
+		
+		
 		
 		public abstract void save();
 		public abstract void saveHTML(string html);

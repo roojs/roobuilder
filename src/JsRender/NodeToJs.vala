@@ -366,9 +366,9 @@ public class JsRender.NodeToJs : Object {
 			return;
 		}
 		// look for '*props'
-	   
-		for (var ii =0; ii< this.node.items.size; ii++) {
-			var pl = this.node.items.get(ii);
+	   var items = this.node.readItems(); 
+		for (var ii =0; ii< items.size; ii++) {
+			var pl =  items.get(ii);
 			if (!pl.props.has_key("* prop")) {
 				//newitems.add(pl);
 				continue;
@@ -699,15 +699,15 @@ public class JsRender.NodeToJs : Object {
 	public void iterChildren()
 	{
 		
-		
+		var items = this.node.readItems();
 		// finally munge the children...
-		if (this.node.items.size < 1) {
+		if (items.size < 1) {
 			return;
 		}
 		var itms = "items : [\n";
 		//var n = 0;
-		for(var i = 0; i < this.node.items.size;i++) {
-			var ele = this.node.items.get(i);
+		for(var i = 0; i < items.size;i++) {
+			var ele = items.get(i);
 			if (ele.props.has_key("* prop")) {
 				continue;
 			}

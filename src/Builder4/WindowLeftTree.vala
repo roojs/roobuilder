@@ -200,6 +200,47 @@ public class Xcls_WindowLeftTree : Object
              this.el.scroll_to_cell(tp, null, false, 0,0);
              */
         }
+        public Gtk.Widget getWidgetAtRow (uint row) {
+        /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+            	var colview = gesture.widget;
+            	var line_no = check_list_widget(colview, x,y);
+                 if (line_no > -1) {
+            		var item = colview.model.get_item(line_no);
+            		 
+            	}
+            	*/
+                var  child = this.el.get_first_child(); 
+            	var line_no = -1; 
+            	var reading_header = true;
+        
+            	while (child != null) {
+        			GLib.debug("Got %s", child.get_type().name());
+            	    if (reading_header) {
+        			   
+        			    if (child.get_type().name() == "GtkListItemWidget") {
+        			    }
+        				if (child.get_type().name() != "GtkColumnListView") {
+        					child = child.get_next_sibling();
+        					continue;
+        				}
+        				child = child.get_first_child(); 
+        				reading_header = false;
+        	        }
+        		    if (child.get_type().name() != "GtkListItemWidget") {
+            		    child = child.get_next_sibling();
+            		    continue;
+        		    }
+        		    line_no++;
+        			if (line_no == row) {
+        			    return (Gtk.Widget)child;
+        		    }
+        	        child = child.get_next_sibling(); 
+            	}
+                return null;
+        
+         }
         public int getColAt (double x,  double y) {
         /*
             	
@@ -289,6 +330,61 @@ public class Xcls_WindowLeftTree : Object
         	this.lastEventSource = "";
         	*/
         }
+        public Gtk.Widget? getWidgetAt (double x,  double y) {
+        /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+            	var colview = gesture.widget;
+            	var line_no = check_list_widget(colview, x,y);
+                 if (line_no > -1) {
+            		var item = colview.model.get_item(line_no);
+            		 
+            	}
+            	*/
+                var  child = this.el.get_first_child(); 
+            	Gtk.Allocation alloc = { 0, 0, 0, 0 };
+            	var line_no = -1; 
+            	var reading_header = true;
+            	var curr_y = 0;
+            	var header_height  = 0;
+            	while (child != null) {
+        			GLib.debug("Got %s", child.get_type().name());
+            	    if (reading_header) {
+        			   
+        			    if (child.get_type().name() == "GtkListItemWidget") {
+        			        child.get_allocation(out alloc);
+        			    }
+        				if (child.get_type().name() != "GtkColumnListView") {
+        					child = child.get_next_sibling();
+        					continue;
+        				}
+        				child = child.get_first_child(); 
+        				header_height = alloc.y + alloc.height;
+        				curr_y = header_height; 
+        				reading_header = false;
+        	        }
+        		    if (child.get_type().name() != "GtkListItemWidget") {
+            		    child = child.get_next_sibling();
+            		    continue;
+        		    }
+        		    line_no++;
+        
+        			child.get_allocation(out alloc);
+        			GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
+        
+        		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
+        			    return (Gtk.Widget)child;
+        		    }
+        		    curr_y = header_height + alloc.height + alloc.y;
+        
+        		    if (curr_y > y) {
+        		    //    return -1;
+        	        }
+        	        child = child.get_next_sibling(); 
+            	}
+                return null;
+        
+         }
     }
     public class Xcls_GestureClick4 : Object
     {
@@ -516,8 +612,8 @@ public class Xcls_WindowLeftTree : Object
                         
             
             	//print("drag-data-get");
-            	var s = _this.view.el.model;
-            	if (s.n_items() < 1) {
+            	var s = (Gtk. SingleSelection)_this.view.el.model;
+            	if (s.n_items < 1) {
             	 	print("return empty string - no selection..");
             		return null;
             		//data.set_text("",0);     
@@ -555,9 +651,9 @@ public class Xcls_WindowLeftTree : Object
              
                     
                     // find what is selected in our tree...
-                    var s = _this.view.el.model;
-            	if (s.n_items() < 1) {
-            		return null;
+                    var s = (Gtk.SingleSelection) _this.view.el.model;
+            	if (s.n_items < 1) {
+            		return  ;
             		//data.set_text("",0);     
             		// print("return empty string - no selection..");
             		//return;
@@ -573,17 +669,16 @@ public class Xcls_WindowLeftTree : Object
              
                     _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
                     
-            GLib.debug ("DROP LIST IS %s",  string.joinv(", ", _this.view.dropList))
+            GLib.debug ("DROP LIST IS %s",  string.joinv(", ", _this.view.dropList));
                     
             
                     // make the drag icon a picture of the node that was selected
                 
                     
                 // by default returns the path..
-                
-                    var path = _this.model.el.get_path(iter);
              
-                    var paintable = _this.view.el.create_row_drag_icon ( path); 
+            	 	var widget = _this.view.getWidgetAtRow(s.selected);
+                    var paintable = new Gtk.WidgetPaintable(widget);
                     this.el.set_icon(paintable, 0,0);
                             
                
@@ -1217,7 +1312,7 @@ public class Xcls_WindowLeftTree : Object
     }
     public class Xcls_model : Object
     {
-        public GLib.ListModel el;
+        public Gtk.TreeListModel el;
         private Xcls_WindowLeftTree  _this;
 
 

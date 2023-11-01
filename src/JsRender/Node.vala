@@ -95,8 +95,9 @@ public class JsRender.Node : Object {
 	public static int uid_count = 0;
 	
 	public Node parent;
-	public Gee.ArrayList<Node> items; // child items..
-	
+	private Gee.ArrayList<Node> items; // child items..
+	public GLib.ListStore  childstore; // must be kept in sync with items
+		
 	public Gee.HashMap<string,NodeProp> props; // the properties..
 	public Gee.HashMap<string,NodeProp> listeners; // the listeners..
 	public string  xvala_cls;
@@ -127,9 +128,15 @@ public class JsRender.Node : Object {
 		this.line_map = new Gee.HashMap<int,string>();
 		this.node_lines = new Gee.ArrayList<int>();
 		this.node_lines_map = new Gee.HashMap<int,Node>();
+		this.childstore = new GLib.ListStore( typeof(Node));
 		
 	}
 	
+	public  Gee.ArrayList<Node> readItems()
+	{
+		return this.items; // note should not modify add/remove from this directly..
+		
+	}
 	public void setNodeLine(int line, Node node) {
 		//print("Add node @ %d\n", line);
 		if (this.node_lines_map.has_key(line)) {
@@ -519,6 +526,7 @@ public class JsRender.Node : Object {
 					node.parent = this;
 					node.loadFromJson(el.get_object(), version);
 					this.items.add(node);
+					this.childstore.append(node);
 				});
 				return;
 			}
@@ -894,5 +902,27 @@ public class JsRender.Node : Object {
 		//if (sr) txt.push('</s>');
 		return (txt.length == 0) ? "Element" : string.joinv(" ", txt);
 	}
-
+ 
+	
+	 
+	
+	public void insertAfter(Node child, Node after)	
+	{
+		this.insertChild(this.items.index_of(after) + 1, child);
+	}
+	public void insertBefore(Node child, Node before)	
+	{
+		this.insertChild(this.items.index_of(before), child);
+	}
+	
+	public void insertChild(int pos, Node child)
+	{
+		this.items.insert(pos, child);
+		this.childstore.insert(pos, child);
+	}
+	public void appendChild(Node child)
+	{
+		this.items.add( child);
+		this.childstore.append(child);
+	}	
 }

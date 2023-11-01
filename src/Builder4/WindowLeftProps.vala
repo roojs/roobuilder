@@ -1395,12 +1395,7 @@ public class Xcls_LeftProps : Object
         /*
             	
         from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
-            	var colview = gesture.widget;
-            	var line_no = check_list_widget(colview, x,y);
-                 if (line_no > -1) {
-            		var item = colview.model.get_item(line_no);
-            		 
-            	}
+             
             	*/
                 var  child = colview.get_first_child(); 
             	Gtk.Allocation alloc = { 0, 0, 0, 0 };
@@ -1522,11 +1517,6 @@ public class Xcls_LeftProps : Object
             var child_0 = new Xcls_SignalListItemFactory32( _this );
             child_0.ref();
             this.el.factory = child_0.el;
-
-            // init method
-
-            //this.el.add_attribute(_this.keyrender.el , "markup", 1 ); // 1 is the key.
-             //this.el.add_attribute(_this.keyrender.el , "text", 1 );
         }
 
         // user defined functions
@@ -1607,17 +1597,6 @@ public class Xcls_LeftProps : Object
             var child_0 = new Xcls_SignalListItemFactory34( _this );
             child_0.ref();
             this.el.factory = child_0.el;
-
-            // init method
-
-            {
-            	
-             
-            
-            	
-            	//this.el.add_attribute(_this.valrender.el , "text", 2 );
-             
-            }
         }
 
         // user defined functions
