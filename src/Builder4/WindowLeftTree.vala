@@ -516,8 +516,8 @@ public class Xcls_WindowLeftTree : Object
                         
             
             	//print("drag-data-get");
-            	var s = _this.view.el.get_selection();
-            	if (s.count_selected_rows() < 1) {
+            	var s = _this.view.el.model;
+            	if (s.n_items() < 1) {
             	 	print("return empty string - no selection..");
             		return null;
             		//data.set_text("",0);     
@@ -525,23 +525,14 @@ public class Xcls_WindowLeftTree : Object
             		//return;
             	}
             
-            	Gtk.TreeIter iter;
-            	Gtk.TreeModel mod;
-            
-            	s.get_selected(out mod, out iter);
-            
-            
-            
-            	GLib.Value value;
-            	_this.model.el.get_value(iter, 2, out value);
-            	var ndata = (JsRender.Node)(value.dup_object());
+            	var ndata = (JsRender.Node)s.selected_item;
             
             
              
             
             	//data.set_text(tp,tp.length);   
             
-            var 	str = ndata.toJsonString();
+            	var 	str = ndata.toJsonString();
             		GLib.debug("prepare  store: %s", str);
             		GLib.Value ov = GLib.Value(typeof(string));
             		ov.set_string(str);
