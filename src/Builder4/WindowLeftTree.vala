@@ -175,7 +175,7 @@ public class Xcls_WindowLeftTree : Object
             #left-tree-view	 .drop-before  {
              border-top-width: 3px;
              border-top-style: solid;
-             border-top-color: #88a3bc;;
+             border-top-color: #88a3bc;
             }").data);
             /*#left-tree-view	 .drop-over  {
             	background-color:#88a3bc; 
