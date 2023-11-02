@@ -657,7 +657,7 @@ public class Xcls_WindowLeftTree : Object
                 // by default returns the path..
              
             	 	//var widget = _this.view.getWidgetAtRow(_this.selmodel.s.selected);
-            	 	var widget = _this.view.getWidgetAtRow(_this.selmodel.s.selected);
+            	 	var widget = _this.view.getWidgetAtRow(_this.selmodel.el.selected);
                     var paintable = new Gtk.WidgetPaintable(widget);
                     this.el.set_icon(paintable, 0,0);
                             
