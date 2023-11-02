@@ -171,7 +171,8 @@ public class Xcls_WindowLeftTree : Object
              border-bottom-width: 3px; 
              border-bottom-style: solid;
              border-bottom-color: #88a3bc;
-            }
+            }").data);
+            /*
             #left-tree-view	 .drop-before  {
             	border-top-width: 3px;
             	border-top-style: solid;
@@ -179,7 +180,7 @@ public class Xcls_WindowLeftTree : Object
             }
             #left-tree-view	 .drop-over  {
             	background-color:#88a3bc; 
-            }").data);
+            }
             /*
             
             		
