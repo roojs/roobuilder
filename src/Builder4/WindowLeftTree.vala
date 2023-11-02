@@ -14,6 +14,7 @@ public class Xcls_WindowLeftTree : Object
     }
     public Xcls_viewwin viewwin;
     public Xcls_view view;
+    public Xcls_selmodel selmodel;
     public Xcls_model model;
     public Xcls_maincol maincol;
     public Xcls_LeftTreeMenu LeftTreeMenu;
@@ -140,7 +141,7 @@ public class Xcls_WindowLeftTree : Object
             var child_2 = new Xcls_DropTarget6( _this );
             child_2.ref();
             this.el.add_controller(  child_2.el );
-            var child_3 = new Xcls_SingleSelection7( _this );
+            var child_3 = new Xcls_selmodel( _this );
             child_3.ref();
             this.el.model = child_3.el;
             var child_4 = new Xcls_maincol( _this );
@@ -461,8 +462,8 @@ public class Xcls_WindowLeftTree : Object
             	if (  this.el.button != 3) {
             		// regular click... - same as selection change?
             		// we handle it here ?? not sure if we need to anymore?
-            		/*
-            		print("LEFT TREE Cursor Changed\n");
+            		 
+            		GLib.debug("LEFT TREE Cursor Changed\n");
             	 	
             		
             		
@@ -475,9 +476,10 @@ public class Xcls_WindowLeftTree : Object
             
             
             		 if (_this.view.blockChanges) { // probably not needed.. 
-            			print("SKIPPING select - blockchanges set..\n");     
+            			GLib.debug("SKIPPING select - blockchanges set..\n");     
             		   return  ;
             		 }
+            
             		  if (!_this.before_node_change( ) ) {
             			 _this.view.blockChanges = true;
             			 _this.view.el.get_selection().unselect_all();
@@ -486,22 +488,22 @@ public class Xcls_WindowLeftTree : Object
             			 return;
             		 }
             		 if (_this.main_window.windowstate.file == null) {
-            	   		print("SKIPPING select windowstate file is not set...\n");     
-            			 return;
+            	   		GLib.debug("SKIPPING select windowstate file is not set...\n");     
+            			return;
             		 } 
             		 
             		 //var render = this.get('/LeftTree').getRenderer();                
-            		print("LEFT TREE -> view -> selection changed called\n");
+            		GLib.debug("LEFT TREE -> view -> selection changed called\n");
             		
             		
             		// -- it appears that the selection is not updated.
             		  
             		GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-            			 print("LEFT TREE -> view -> selection changed TIMEOUT CALLED\n");
+            			 GLib.debug("LEFT TREE -> view -> selection changed TIMEOUT CALLED\n");
             
-            			    if (_this.view.el.get_selection().count_selected_rows() < 1) {
+            			    if (_this.view.model. < 1) {
             
-            			        print("selected rows < 1\n");
+            			         GLib.debug("selected rows < 1\n");
             			        //??this.model.load( false);
             			        _this.node_selected(null, _this.view.lastEventSource);
             			        
@@ -1282,7 +1284,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_SingleSelection7 : Object
+    public class Xcls_selmodel : Object
     {
         public Gtk.SingleSelection el;
         private Xcls_WindowLeftTree  _this;
@@ -1291,9 +1293,10 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection7(Xcls_WindowLeftTree _owner )
+        public Xcls_selmodel(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
+            _this.selmodel = this;
             this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)
