@@ -146,11 +146,13 @@ public class Xcls_GtkView : Object
         // ---------- this selects the tree's node...
         
         var ltree = _this.main_window.windowstate.left_tree;
-        var tp = ltree.model.treePathFromNode(node);
-        print("got tree path %s\n", tp);
-        if (tp == "") {
-    		return;
-    	}
+        ltree.model.selectNode(node);
+        //var tp = ltree.model.treePathFromNode(node);
+        
+        //print("got tree path %s\n", tp);
+        //if (tp == "") {
+    	//	return;
+    	//}
         //_this.sourceview.allow_node_scroll = false; /// block node scrolling..
     	       
        
@@ -175,7 +177,7 @@ public class Xcls_GtkView : Object
     			
     		}
         }
-        ltree.view.setCursor(tp, "editor");
+        //ltree.view.setCursor(tp, "editor");
        // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); 
        _this.sourceview.nodeSelected(node,false);
         
@@ -628,18 +630,19 @@ public class Xcls_GtkView : Object
                         return;
                     }
                     var ltree = _this.main_window.windowstate.left_tree;
-                    var tp = ltree.model.treePathFromNode(node);
-                    print("got tree path %s\n", tp);
-                    if (tp != "") {
-            	       this.allow_node_scroll = false;        
-            	       print("changing cursor on tree..\n");
-                        ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false);
+                    ltree.model.selectNode(node);
+                     
+                    //print("got tree path %s\n", tp);
+                    //if (tp != "") {
+            	      // this.allow_node_scroll = false;        
+            	     //  print("changing cursor on tree..\n");
+                        //ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false);
                         // scrolling is disabled... as node selection calls scroll 10ms after it changes.
-                        GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
-            	            this.allow_node_scroll = true;
-            	            return false;
-                        });
-                    }
+                        ///GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
+            	         //   this.allow_node_scroll = true;
+            	         //   return false;
+                      //  });
+                   // }
                     
                     // highlight the node..
                     

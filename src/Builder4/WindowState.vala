@@ -355,7 +355,7 @@ public class WindowState : Object
 			} else {
 				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
-			this.left_tree.model.updateSelected();
+			//this.left_tree.model.updateSelected();
 			this.file.save();
 			if (this.file.xtype=="Gtk") {
 				BuilderApplication.valasource.checkFileSpawn(this.file);
@@ -517,7 +517,7 @@ public class WindowState : Object
 
 		this.code_editor_tab.save.connect( () => {
 			this.file.save();
-			this.left_tree.model.updateSelected();
+			//this.left_tree.model.updateSelected();
 			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
 				   this.window_rooview.requestRedraw();
 			} else {

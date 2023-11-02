@@ -87,11 +87,8 @@ public class Xcls_WindowRooView : Object
         // ---------- this selects the tree's node...
         
         var ltree = _this.main_window.windowstate.left_tree;
-        var tp = ltree.model.treePathFromNode(node);
-        print("got tree path %s\n", tp);
-        if (tp == "") {
-    		return;
-    	}
+       ltree.model.selectNode(node);
+            
         //_this.sourceview.allow_node_scroll = false; /// block node scrolling..
     	       
        
@@ -116,7 +113,7 @@ public class Xcls_WindowRooView : Object
     			
     		}
         }
-        ltree.view.setCursor(tp, "editor");
+        
        // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); 
        _this.sourceview.nodeSelected(node,false);
         
@@ -1275,39 +1272,36 @@ public class Xcls_WindowRooView : Object
                 // ---------- this selects the tree's node...
                 
                 var ltree = _this.main_window.windowstate.left_tree;
-                var tp = ltree.model.treePathFromNode(node);
-                print("got tree path %s\n", tp);
-                if (tp != "") {
-        	         
+                 ltree.model.selectNode(node);
+                
         	       
-        	        //print("changing cursor on tree..\n");
-        	       
-         
-                    
-                    // let's try allowing editing on the methods.
-                    // a little klunky at present..
-                    this.prop_selected = "";
-                    if (prop != null) {
-                		//see if we can find it..
-                		var kv = prop.split(":");
-                		if (kv[0] == "p") {
+                //print("changing cursor on tree..\n");
+               
+        
+                
+                // let's try allowing editing on the methods.
+                // a little klunky at present..
+                this.prop_selected = "";
+                if (prop != null) {
+            		//see if we can find it..
+            		var kv = prop.split(":");
+            		if (kv[0] == "p") {
+            		
+                		//var k = prop.get_key(kv[1]);
+                		// fixme -- need to determine if it's an editable property...
+                		this.prop_selected = prop;
                 		
-        	        		//var k = prop.get_key(kv[1]);
-        	        		// fixme -- need to determine if it's an editable property...
-        	        		this.prop_selected = prop;
-        	        		
-                		} else if (kv[0] == "l") {
-                			 this.prop_selected = prop;
-                			
-                		}
-                    }
-                    ltree.view.setCursor(tp, "editor");
+            		} else if (kv[0] == "l") {
+            			 this.prop_selected = prop;
+            			
+            		}
+                }
+               
                    // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); 
                    //this.nodeSelected(node,false);
                     
                     // scrolling is disabled... as node selection calls scroll 10ms after it changes.
-                     
-                }
+                   
                 
                 // highlight the node..
         }

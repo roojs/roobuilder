@@ -94,6 +94,7 @@ public class JsRender.Node : Object {
 
 	public static int uid_count = 0;
 	
+	public int oid { get; private set; }
 	public Node parent;
 	private Gee.ArrayList<Node> items; // child items..
 	public GLib.ListStore  childstore; // must be kept in sync with items
@@ -129,6 +130,7 @@ public class JsRender.Node : Object {
 		this.node_lines = new Gee.ArrayList<int>();
 		this.node_lines_map = new Gee.HashMap<int,Node>();
 		this.childstore = new GLib.ListStore( typeof(Node));
+		this.oid = uid_count++;
 		
 	}
 	
@@ -287,8 +289,7 @@ public class JsRender.Node : Object {
 	public string uid()
 	{
 		if (this.props.get("id") == null) {
-			uid_count++;
-			return "uid-%d".printf(uid_count);
+			return "uid-%d".printf(this.oid);
 		}
 		return this.props.get("id").val;
 	}
@@ -467,8 +468,7 @@ public class JsRender.Node : Object {
 	public void  remove()
 	{
 		if (this.parent == null) {
-			
-			
+			 
 			return;
 		}
 		var nlist = new Gee.ArrayList<Node>();
@@ -478,6 +478,11 @@ public class JsRender.Node : Object {
 			}
 			nlist.add(this.parent.items.get(i));
 		}
+		uint pos;
+		if ( this.parent.childstore.find(this, out pos)) {
+			this.parent.childstore.remove(pos);
+		}
+		
 		this.parent.items = nlist;
 		this.parent = null;
 
@@ -924,5 +929,8 @@ public class JsRender.Node : Object {
 	{
 		this.items.add( child);
 		this.childstore.append(child);
-	}	
+	}
+	
+	 
+	
 }

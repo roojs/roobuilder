@@ -693,7 +693,7 @@ public class Xcls_WindowLeftTree : Object
              
                     _this.view.dropList = null;
             //        this.targetData = "";
-                    _this.view.highlightDropPath("",0);
+                //    _this.view.highlightDropPath("",0);
             //        return true;
             
             });
@@ -910,7 +910,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.motion.connect( (  x, y) => {
             
             	
-             	 
+             	 var isOver = false;
             	
             	Gtk.TreeViewDropPosition pos; // return..
             
@@ -926,15 +926,11 @@ public class Xcls_WindowLeftTree : Object
              
              	// -- get position..
              	
-             	
-             	 Gtk.TreePath path;
-             
-                var isOver = _this.view.el.get_dest_row_at_pos( (int)x, (int) y, out path, out pos);
-                
+             	 
             
                 // if there are not items in the tree.. the we have to set isOver to true for anything..
                 var isEmpty = false;
-                if (_this.model.el.iter_n_children(null) < 1) {
+                if (_this.view.el.model.get_n_items() < 1) {
                     print("got NO children?\n");
                     isOver = true; //??? 
                     isEmpty = true;
@@ -942,29 +938,28 @@ public class Xcls_WindowLeftTree : Object
                 }
              
              	if (!isOver) {
-            	 	 _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
+            	 	 //_this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
             	 	  return Gdk.DragAction.COPY;
              	 
                 }
                 // if path of source and dest are inside each other..
                 // need to add source info to drag?
                 // the fail();
-            
-                 var targetData = _this.model.findDropNodeByPath( path.to_string(), _this.view.dropList, pos);
-                    
-                GLib.debug("targetata: %s" , targetData );
-                
-                if (targetData.length < 1) {
-                    //print("Can not find drop node path");
+             	var row = _this.view.getRowAt(x,y);
+             	if (row < 0) {
+            	 	 return Gdk.DragAction.COPY;
+             	 }
+             	var node = (JsRender.Node) _this.model.el.get_object(row);
+            		 	
                    
-                    _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
-            	 	  return Gdk.DragAction.COPY;
+                    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
+            	 	 
             
-                }
+                //}
                 
-                var td_ar = targetData.split("|");
+                //var td_ar = targetData.split("|");
                      
-               _this.view.highlightDropPath(td_ar[0], (Gtk.TreeViewDropPosition)int.parse(td_ar[1]));
+               //_this.view.highlightDropPath(td_ar[0], (Gtk.TreeViewDropPosition)int.parse(td_ar[1]));
                 return Gdk.DragAction.COPY;
               
              /*
@@ -1084,30 +1079,31 @@ public class Xcls_WindowLeftTree : Object
             this.el.drop.connect( (v, x, y) => {
             	
             	
-            	Gtk.TreeViewDropPosition pos; // return..
+             
             
                 GLib.debug("got drop  ");
             
-              
+              var isOver = false;
+             
             	 
             	GLib.debug("got %s", v.get_string());
              
              
              	// -- get position..
              	
-             	
-             	 Gtk.TreePath path;
-             
-                var isOver = _this.view.el.get_dest_row_at_pos( (int)x, (int) y, out path, out pos);
+             	 var row = _this.view.getRowAt(x,y);
+             	if (row < 0) {
+            	 	 return   true; //Gdk.DragAction.COPY;
+             	 }
+             	var node = (JsRender.Node) _this.model.el.get_object(row);
+            	
                 var isEmpty = false;
-                // if there are not items in the tree.. the we have to set isOver to true for anything..
-            	if (_this.model.el.iter_n_children(null) < 1) {
-            		GLib.debug("got NO children?\n");
-            		isOver = true; //??? 
-            		isEmpty = true;
-            		pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
-            	}
-            
+                if (_this.view.el.model.get_n_items() < 1) {
+                    print("got NO children?\n");
+                    isOver = true; //??? 
+                    isEmpty = true;
+                    //pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
+                }
             
              	var pa = new Json.Parser();
                 pa.load_from_data(v.get_string());
@@ -1120,7 +1116,7 @@ public class Xcls_WindowLeftTree : Object
             	dropNode.loadFromJson(obj, 1);
                 
              
-            	this.el.current_drop.drag.drop_done(true);
+            	//.el.current_drop.drag.drop_done(true);
             	
             	/*(ctx, x, y, sel, info, time)  => {
             
@@ -1279,7 +1275,7 @@ public class Xcls_WindowLeftTree : Object
             
             }
             */
-            	return false;
+            	return true; //Gdk.DragAction.COPY; 
             });
         }
 
@@ -1541,6 +1537,74 @@ public class Xcls_WindowLeftTree : Object
             //this.updateNode(false,true);
             */
         }
+        public void deleteSelected () {
+        
+        
+        	
+          var s = (Gtk.SingleSelection) _this.view.el.model;
+        	if (s.n_items < 1) {
+        		return  ;
+        		//data.set_text("",0);     
+        		// print("return empty string - no selection..");
+        		//return;
+        	}
+        	
+        	
+             var node = (JsRender.Node)s.selected_item;
+            s.unselect_all();
+            
+            node.remove();
+            
+        /*    
+            print("DELETE SELECTED?");
+            //_this.view.blockChanges = true;
+            print("GET SELECTION?");
+        
+            var s = _this.view.el.get_selection();
+            
+            print("GET  SELECTED?");
+           Gtk.TreeIter iter;
+            Gtk.TreeModel mod;
+        
+            
+            if (!s.get_selected(out mod, out iter)) {
+                return; // nothing seleted..
+            }
+              
+        
+        
+            this.activePath= "";      
+            print("GET  vnode value?");
+        
+            GLib.Value value;
+            this.el.get_value(iter, 2, out value);
+            var data = (JsRender.Node)(value.get_object());
+            print("removing node from Render\n");
+            if (data.parent == null) {
+               _this.main_window.windowstate.file.tree = null;
+            } else {
+                data.remove();
+            }
+            print("removing node from Tree\n");    
+            s.unselect_all();
+            this.el.remove(ref iter);
+        
+            
+            
+            
+            // 
+            
+            
+        
+        
+            this.activePath= ""; // again!?!?      
+            //this.changed(null,true);
+            
+            _this.changed();
+            
+            _this.view.blockChanges = false;
+            */
+        }
         public void a_findDropNode (string treepath_str, string[] targets) {
         
            /*
@@ -1727,6 +1791,25 @@ public class Xcls_WindowLeftTree : Object
                 */
                     
         }
+        public void selectNode (JsRender.Node node) 
+        {
+        	var row = -1;
+        	var s = (Gtk.SingleSelection)_this.view.el.model;
+        	for (var i = 0; i < s.n_items; i++) {
+        		if (((JsRender.Node)s.get_item(i)).oid == node.oid) {
+        			row  = i;
+        			break;
+        		}
+        	}
+        	if (row < 0) {
+        		// select none?
+        		return;
+        	}
+        	s.set_selected(row);
+        	
+        	
+        
+        }
         public string a_treePathFromNode (JsRender.Node node) {
             // iterate through the tree and find the node
          /*
@@ -1752,8 +1835,9 @@ public class Xcls_WindowLeftTree : Object
             });
             return ret;
         */
+        return "";
         }
-        public JsRender.Node a_pathToNode (string path) {
+        public JsRender.Node? a_pathToNode (string path) {
          
          /*    
              Gtk.TreeIter   iter;
@@ -1764,57 +1848,7 @@ public class Xcls_WindowLeftTree : Object
              
              return (JsRender.Node)value.dup_object();
         */
-        }
-        public void a_deleteSelected () {
-        /*    
-            print("DELETE SELECTED?");
-            //_this.view.blockChanges = true;
-            print("GET SELECTION?");
-        
-            var s = _this.view.el.get_selection();
-            
-            print("GET  SELECTED?");
-           Gtk.TreeIter iter;
-            Gtk.TreeModel mod;
-        
-            
-            if (!s.get_selected(out mod, out iter)) {
-                return; // nothing seleted..
-            }
-              
-        
-        
-            this.activePath= "";      
-            print("GET  vnode value?");
-        
-            GLib.Value value;
-            this.el.get_value(iter, 2, out value);
-            var data = (JsRender.Node)(value.get_object());
-            print("removing node from Render\n");
-            if (data.parent == null) {
-               _this.main_window.windowstate.file.tree = null;
-            } else {
-                data.remove();
-            }
-            print("removing node from Tree\n");    
-            s.unselect_all();
-            this.el.remove(ref iter);
-        
-            
-            
-            
-            // 
-            
-            
-        
-        
-            this.activePath= ""; // again!?!?      
-            //this.changed(null,true);
-            
-            _this.changed();
-            
-            _this.view.blockChanges = false;
-            */
+        return null;
         }
     }
 
@@ -1869,7 +1903,9 @@ public class Xcls_WindowLeftTree : Object
             	
             	var expand = new Gtk.TreeExpander();
             	 
-            	var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL);
+            	expand.set_indent_for_depth(true);
+            	expand.set_indent_for_icon(true);
+            	var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
             	var icon = new Gtk.Image();
             	var lbl = new Gtk.Label("");
             	
@@ -1887,24 +1923,27 @@ public class Xcls_WindowLeftTree : Object
             	
             });
             this.el.bind.connect( (listitem) => {
-            	 var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+            	 GLib.debug("listitme is is %s", listitem.get_type().name());
+            	
+            	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+            	var expand = (Gtk.TreeExpander)  listitem.get_child();
             	 
             	 
             	var hbox = (Gtk.Box) expand.child;
-            	var ar = hbox.get_children();
-            	
-            	var img = (Gtk.Image) ar.nth(0);
-            	var lbl = (Gtk.Label) ar.nth(1);
-            	
-            	// data.
-            	var node = (JsRender.Node) ((Gtk.ListItem)listitem).get_item();
              
+            	
+            	var img = (Gtk.Image) hbox.get_first_child();
+            	var lbl = (Gtk.Label) img.get_next_sibling();
+            	
+            	var lr = (Gtk.TreeListRow)listitem.get_item();
+            	var node = (JsRender.Node) lr.get_item();
+            	
+               GLib.debug("node is %s", node.get_type().name());
             // was item (1) in old layout
-            	lb.set_markup(node.nodeTitle());
-             	lb.set_tooltip_text( node.nodeTip() );
-             	
-             	
-             	 var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
+            	lbl.set_markup(node.nodeTitle());
+             	lbl.set_tooltip_text( node.nodeTip() );
+             	  
+             	var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
                 var clsname = node.fqn();
                 
                 var clsb = clsname.split(".");
@@ -1918,7 +1957,7 @@ public class Xcls_WindowLeftTree : Object
             		    img.set_from_file(fn);
             		 	 
             	 	} else {
-            	 		img.set_from_gicon(
+            	 		img.set_from_paintable(
             			 	ic.lookup_icon (
             			 		"media-playback-stop", null,  16,1, 
             	    			 Gtk.TextDirection.NONE, 0
@@ -1927,7 +1966,8 @@ public class Xcls_WindowLeftTree : Object
             	 	}
              	} catch (GLib.Error e) {}
                 
-             	
+                expand.set_hide_expander( !node.hasChildren() );
+             	expand.set_list_row(lr);
             });
         }
 
@@ -1989,10 +2029,12 @@ public class Xcls_WindowLeftTree : Object
             this.el.bind.connect( (listitem) => {
             
              	var img = (Gtk.Image) ((Gtk.ListItem)listitem).get_child(); 
-             	var node = (JsRender.Node) ((Gtk.ListItem)listitem).get_item();
+             	var lr = (Gtk.TreeListRow)listitem.get_item();
+            	var node = (JsRender.Node) lr.get_item();
+            	
               
                 var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
-            	img.set_from_gicon(
+            	img.set_from_paintable(
             	 	ic.lookup_icon (
             	 		"list-add", null,  16,1, 
             			 Gtk.TextDirection.NONE, 0
