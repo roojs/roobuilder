@@ -164,7 +164,7 @@ public class Xcls_WindowLeftTree : Object
             	 
             	*/ 
               this.css = new Gtk.CssProvider();
-            	try {
+            //	try {
             		this.css.load_from_data("
             #left-tree-view	    .drop-after  {
             	border-bottom-width: 3px;
@@ -182,7 +182,7 @@ public class Xcls_WindowLeftTree : Object
             }
             		
             	 	".data);
-            	} catch (Error e) {}
+            	//} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	
