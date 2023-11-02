@@ -165,12 +165,13 @@ public class Xcls_WindowLeftTree : Object
             	*/ 
               this.css = new Gtk.CssProvider();
             //	try {
-            		this.css.load_from_data(" #left-tree-view	    .drop-after  {
-            	border-bottom-width: 3px;
-            	border-bottom-style: solid;
-            	border-bottom-color: #88a3bc;
-            }
-            
+            		this.css.load_from_data(
+            		("#left-tree-view drop-after  { 	" 
+            			" border-bottom-width: 3px; "
+            			" border-bottom-style: solid;"
+            			" border-bottom-color: #88a3bc; "
+            			"}	").data);
+            /*
             #left-tree-view	 .drop-before  {
             	border-top-width: 3px;
             	border-top-style: solid;
@@ -181,6 +182,7 @@ public class Xcls_WindowLeftTree : Object
             }
             		
             	 	".data);
+            	 	*/
             	//} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
