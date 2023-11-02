@@ -166,18 +166,18 @@ public class Xcls_WindowLeftTree : Object
               this.css = new Gtk.CssProvider();
             	try {
             		this.css.load_from_data("
-            		    .drop-after  {
+            #left-tree-view	    .drop-after  {
             	border-bottom-width: 3px;
             	border-bottom-style: solid;
             	border-bottom-color: #88a3bc;
             }
             
-            .drop-before  {
+            #left-tree-view	 .drop-before  {
             	border-top-width: 3px;
             	border-top-style: solid;
             	border-top-color: #88a3bc;;
             }
-            .drop-over  {
+            #left-tree-view	 .drop-over  {
             	background-color:#88a3bc; 
             }
             		
