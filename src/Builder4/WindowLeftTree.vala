@@ -179,10 +179,11 @@ public class Xcls_WindowLeftTree : Object
             
             ".data);
             */
-            
-            
-            	this.el.get_style_context().add_provider(this.css,
-            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	Gtk.StyleContext.add_provider_for_display(
+            		this.el.get_display()
+            		this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            	);
             	
             	
             	
