@@ -463,7 +463,7 @@ public class Xcls_WindowLeftTree : Object
             		// regular click... - same as selection change?
             		// we handle it here ?? not sure if we need to anymore?
             		 
-            		GLib.debug("LEFT TREE Cursor Changed\n");
+            		GLib.debug("LEFT TREE Cursor Changed");
             	 	
             		
             		
@@ -476,7 +476,7 @@ public class Xcls_WindowLeftTree : Object
             
             
             		 if (_this.view.blockChanges) { // probably not needed.. 
-            			GLib.debug("SKIPPING select - blockchanges set..\n");     
+            			GLib.debug("SKIPPING select - blockchanges set..");     
             		   return  ;
             		 }
             
@@ -488,33 +488,33 @@ public class Xcls_WindowLeftTree : Object
             			 return;
             		 }
             		 if (_this.main_window.windowstate.file == null) {
-            	   		GLib.debug("SKIPPING select windowstate file is not set...\n");     
+            	   		GLib.debug("SKIPPING select windowstate file is not set...");     
             			return;
             		 } 
             		 
             		 //var render = this.get('/LeftTree').getRenderer();                
-            		GLib.debug("LEFT TREE -> view -> selection changed called\n");
+            		GLib.debug("LEFT TREE -> view -> selection changed called");
             		
             		
             		// -- it appears that the selection is not updated.
             		  
             		GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-            			 GLib.debug("LEFT TREE -> view -> selection changed TIMEOUT CALLED\n");
+            			 GLib.debug("LEFT TREE -> view -> selection changed TIMEOUT CALLED");
             
-            			    if (_this.selmodel.el.selected_item == null) {
+            			    var snode = _this.selmodel.getSelectedNode();
+            			    if (snode == null) {
             
-            			         GLib.debug("selected rows < 1\n");
+            			         GLib.debug("selected rows < 1");
             			        //??this.model.load( false);
             			        _this.node_selected(null, _this.view.lastEventSource);
             			        
             			        return false ;
             			    }
-            			     var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
-            	 
+            			 
             			    // why dup_?
             			    
-            			    var snode = (JsRender.Node)tr.get_item();
-            			    print ("calling left_tree.node_selected\n");
+            
+            			    GLib.debug ("calling left_tree.node_selected");
             			    _this.node_selected(snode, _this.view.lastEventSource);
             			   
             			     
