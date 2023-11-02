@@ -501,7 +501,7 @@ public class Xcls_WindowLeftTree : Object
             		GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
             			 GLib.debug("LEFT TREE -> view -> selection changed TIMEOUT CALLED\n");
             
-            			    if (_this.view.model. < 1) {
+            			    if (_this.selmodel.el.selected_item == null) {
             
             			         GLib.debug("selected rows < 1\n");
             			        //??this.model.load( false);
@@ -510,32 +510,14 @@ public class Xcls_WindowLeftTree : Object
             			        return false ;
             			    }
             			        
-            			        //console.log('changed');
-            			    var s = _this.view.el.get_selection();
-            			     Gtk.TreeIter iter;
-            			     Gtk.TreeModel mod;
-            			    s.get_selected(out mod, out iter);
-            			    
-            			    
-            			    // var val = "";
-            			    GLib.Value value;
-            			    _this.model.el.get_value(iter, 2, out value);
-            			    _this.model.activePath = mod.get_path(iter).to_string();
-            			    
+            	 
             			    // why dup_?
             			    
-            			    var node = (JsRender.Node)value.dup_object();
+            			    var node = (JsRender.Node)_this.selmodel.el.selected_item;
             			    print ("calling left_tree.node_selected\n");
             			    _this.node_selected(node, _this.view.lastEventSource);
             			   
-            			    var cp = mod.get_path(iter);
-            			    Gtk.TreePath sp, ep;
-            			    _this.view.el.get_visible_range(out sp, out ep);
-            			    // if sp is before cp then retuns 1.
-            			    // if cp is before ep then retuns 1.
-            			    if (cp.compare(sp) >= 0 && ep.compare(cp) >=1) {
-            			        return false;
-            			    }
+            			     
             			    
             			     
             			    
