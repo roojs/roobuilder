@@ -596,16 +596,16 @@ public class Xcls_WindowLeftTree : Object
                         
             
             	//print("drag-data-get");
-            	var s = (Gtk. SingleSelection)_this.view.el.model;
-            	if (s.n_items < 1) {
+            	var s = 
+            	if (_this.selmodel.n_items < 1) {
             	 	print("return empty string - no selection..");
             		return null;
             		//data.set_text("",0);     
             		// print("return empty string - no selection..");
             		//return;
             	}
-            
-            	var ndata = (JsRender.Node)s.selected_item;
+            	var si = (Gtk._this.selmodel.selected_item;
+            	var ndata = (JsRender.Node)si.get_item();;
             
             
              
