@@ -482,7 +482,7 @@ public class Xcls_WindowLeftTree : Object
             
             		  if (!_this.before_node_change( ) ) {
             			 _this.view.blockChanges = true;
-            			 _this.view.el.get_selection().unselect_all();
+            			 _this.selmodel.el.unselect_all();
             			 _this.view.blockChanges = false;
             			 
             			 return;
@@ -513,9 +513,9 @@ public class Xcls_WindowLeftTree : Object
             	 
             			    // why dup_?
             			    
-            			    var node = (JsRender.Node)_this.selmodel.el.selected_item;
+            			    var snode = (JsRender.Node)_this.selmodel.el.selected_item;
             			    print ("calling left_tree.node_selected\n");
-            			    _this.node_selected(node, _this.view.lastEventSource);
+            			    _this.node_selected(snode, _this.view.lastEventSource);
             			   
             			     
             			    
