@@ -937,7 +937,7 @@ public class Xcls_WindowLeftTree : Object
                     isEmpty = true;
                     pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
                 }
-             
+             GLib.debug("check is over");
              	if (!isOver) {
             	 	 //_this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
             	 	  return Gdk.DragAction.COPY;
@@ -947,6 +947,7 @@ public class Xcls_WindowLeftTree : Object
                 // need to add source info to drag?
                 // the fail();
              	var row = _this.view.getRowAt(x,y);
+             	 GLib.debug("check row %d", row);
              	if (row < 0) {
             	 	 return Gdk.DragAction.COPY;
              	 }
@@ -957,6 +958,7 @@ public class Xcls_WindowLeftTree : Object
             	var w = _this.view.getWidgetAt(x,y);
             	 
             	if (!w.has_css_class("drag-over")) {
+            	 GLib.debug("add drag over");
             		w.add_css_class("drag-over");
             	}
             		 	 
