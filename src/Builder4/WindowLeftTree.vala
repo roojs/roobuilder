@@ -1291,7 +1291,12 @@ public class Xcls_WindowLeftTree : Object
 
         // user defined functions
         public JsRender.Node? getSelectedNode () {
-        
+          if (this.el.selected_item == null) {
+        		return null;
+          }			        
+           var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
+           return (JsRender.Node)tr.get_item();
+        	 
         }
     }
     public class Xcls_model : Object
