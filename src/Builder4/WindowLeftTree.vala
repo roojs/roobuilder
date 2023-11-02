@@ -1293,7 +1293,7 @@ public class Xcls_WindowLeftTree : Object
           if (this.el.selected_item == null) {
         		return null;
           }			        
-           var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
+           var tr = (Gtk.TreeListRow)this.el.selected_item;
            return (JsRender.Node)tr.get_item();
         	 
         }
