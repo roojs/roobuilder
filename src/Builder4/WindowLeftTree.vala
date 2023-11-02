@@ -911,7 +911,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.motion.connect( (  x, y) => {
             
             	
-             	 var isOver = false;
+             	 var isOver = true;
             	
             	Gtk.TreeViewDropPosition pos; // return..
             
@@ -949,6 +949,7 @@ public class Xcls_WindowLeftTree : Object
              	var row = _this.view.getRowAt(x,y);
              	 GLib.debug("check row %d", row);
              	if (row < 0) {
+             	 GLib.debug("check row %d", row);
             	 	 return Gdk.DragAction.COPY;
              	 }
              	var node = (JsRender.Node) _this.model.el.get_object(row);
