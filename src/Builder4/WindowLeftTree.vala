@@ -163,7 +163,31 @@ public class Xcls_WindowLeftTree : Object
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	 
             	*/ 
-                 
+              this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("
+            		    .drop-after  {
+            	border-bottom-width: 3px;
+            	border-bottom-style: solid;
+            	border-bottom-color: #88a3bc;
+            }
+            
+            .drop-before  {
+            	border-top-width: 3px;
+            	border-top-style: solid;
+            	border-top-color: #88a3bc;;
+            }
+            .drop-over  {
+            	background-color:#88a3bc; 
+            }
+            		
+            	 	".data);
+            	} catch (Error e) {}
+            	this.el.get_style_context().add_provider(this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            	
+            	
+            	
                
                
                 
