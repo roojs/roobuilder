@@ -166,12 +166,12 @@ public class Xcls_WindowLeftTree : Object
               this.css = new Gtk.CssProvider();
             //	try {
             		this.css.load_from_data(
-            		("#left-tree-view drop-after  {   
-            			 border-bottom-width: 3px; 
-            			 border-bottom-style: solid;
-            			 border-bottom-color: #88a3bc;
-            			}").data);
-            /*
+            
+            ("#left-tree-view drop-after  {   
+             border-bottom-width: 3px; 
+             border-bottom-style: solid;
+             border-bottom-color: #88a3bc;
+            }
             #left-tree-view	 .drop-before  {
             	border-top-width: 3px;
             	border-top-style: solid;
@@ -179,7 +179,9 @@ public class Xcls_WindowLeftTree : Object
             }
             #left-tree-view	 .drop-over  {
             	background-color:#88a3bc; 
-            }
+            }").data);
+            /*
+            
             		
             	 	".data);
             	 	*/
