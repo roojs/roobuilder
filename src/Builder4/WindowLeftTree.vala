@@ -596,7 +596,7 @@ public class Xcls_WindowLeftTree : Object
                         
             
             	//print("drag-data-get");
-            	var s = 
+             
             	if (_this.selmodel.n_items < 1) {
             	 	print("return empty string - no selection..");
             		return null;

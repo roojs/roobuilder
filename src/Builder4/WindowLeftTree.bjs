@@ -298,7 +298,7 @@
            "            ",
            "",
            "\t//print(\"drag-data-get\");",
-           "\tvar s = ",
+           " ",
            "\tif (_this.selmodel.n_items < 1) {",
            "\t \tprint(\"return empty string - no selection..\");",
            "\t\treturn null;",
