@@ -635,8 +635,8 @@ public class Xcls_WindowLeftTree : Object
              
                     
                     // find what is selected in our tree...
-                    var s = (Gtk.SingleSelection) _this.view.el.model;
-            	if (s.n_items < 1) {
+                   var data = _this.selmodel.getSelectedNode();
+            	if (data == null) {
             		return  ;
             		//data.set_text("",0);     
             		// print("return empty string - no selection..");
@@ -646,8 +646,7 @@ public class Xcls_WindowLeftTree : Object
             	
                 
                 
-                 
-            		var data = (JsRender.Node)s.selected_item;
+                  
                     var xname = data.fqn();
                     GLib.debug ("XNAME  IS %s", xname);
              
