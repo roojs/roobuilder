@@ -954,7 +954,9 @@ public class Xcls_WindowLeftTree : Object
             		 	
                    
                     // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
-            	 	 
+            	var w = getWidgetAt(x,y);
+            	w.add_css_class("drag-over");
+            		 	 
             
                 //}
                 
