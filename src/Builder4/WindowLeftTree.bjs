@@ -800,7 +800,7 @@
            "\t\t \t",
            "       ",
            "        // _this.view.highlightDropPath(\"\", (Gtk.TreeViewDropPosition)0);",
-           "\tvar w = getWidgetAt(x,y);",
+           "\tvar w = _this.view.getWidgetAt(x,y);",
            "\tif (!w.has_css_class(\"drag-over\")) {",
            "\t\tw.add_css_class(\"drag-over\");",
            "\t}",
