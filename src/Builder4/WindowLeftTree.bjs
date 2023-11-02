@@ -1477,7 +1477,12 @@
            ]
           }
          ],
-         "xtype" : "SingleSelection"
+         "xtype" : "SingleSelection",
+         "| JsRender.Node? getSelectedNode" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ xns" : "Gtk",

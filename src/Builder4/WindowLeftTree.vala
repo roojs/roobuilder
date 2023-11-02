@@ -1290,6 +1290,9 @@ public class Xcls_WindowLeftTree : Object
         }
 
         // user defined functions
+        public JsRender.Node? getSelectedNode () {
+        
+        }
     }
     public class Xcls_model : Object
     {
