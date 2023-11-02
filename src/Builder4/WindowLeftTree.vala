@@ -605,8 +605,7 @@ public class Xcls_WindowLeftTree : Object
             		//return;
             	}
             
-             
-            
+              
             	//data.set_text(tp,tp.length);   
             
             	var 	str = ndata.toJsonString();
