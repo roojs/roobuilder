@@ -165,8 +165,9 @@ public class Xcls_WindowLeftTree : Object
             	*/ 
               this.css = new Gtk.CssProvider();
             //	try {
-            		this.css.load_from_data(".drag-over  { background-color:#88a3bc; ".data);
-            /*.drag-after  {   
+            		this.css.load_from_data("
+            .drag-over  { background-color:#88a3bc; }
+            .drag-after  {   
              border-bottom-width: 3px; 
              border-bottom-style: solid;
              border-bottom-color: #88a3bc;
@@ -178,7 +179,7 @@ public class Xcls_WindowLeftTree : Object
             }
             
             ".data);
-            */
+            
             	Gtk.StyleContext.add_provider_for_display(
             		this.el.get_display(),
             		this.css,
