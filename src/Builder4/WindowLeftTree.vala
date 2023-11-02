@@ -513,7 +513,7 @@ public class Xcls_WindowLeftTree : Object
             	 
             			    // why dup_?
             			    
-            			    var snode = (JsRender.Node)_this.selmodel.el.selected_item;
+            			    var snode = (JsRender.Node)_this.selmodel.el.selected_item.get_item();
             			    print ("calling left_tree.node_selected\n");
             			    _this.node_selected(snode, _this.view.lastEventSource);
             			   
