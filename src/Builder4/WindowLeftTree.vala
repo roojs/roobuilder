@@ -520,15 +520,15 @@ public class Xcls_WindowLeftTree : Object
             			     
             			    
             			     
-            			    
-            			    _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
+            			    // no need to scroll. it's in the view as we clicked on it.
+            			   // _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
             			    
             			    return false;
             		  });  
             		//_this.after_node_change(node);
             
             	//        _this.model.file.changed(node, "tree");
-            	   */
+            	  
             	 
             		return  ;
             	
