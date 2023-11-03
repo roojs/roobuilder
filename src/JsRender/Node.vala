@@ -523,11 +523,10 @@ public class JsRender.Node : Object {
 	public void loadFromJsonString(string str, int ver)
 	{
 		var pa = new Json.Parser();
-		pa.load_from_data(v.get_string());
+		pa.load_from_data(str);
 		var new_node = pa.get_root();
 		var obj = new_node.get_object ();
-		    
-	   
+		     
 		this.loadFromJson(obj, ver);
 	}
 	
