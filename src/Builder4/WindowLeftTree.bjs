@@ -754,8 +754,7 @@
           ],
           "motion" : [
            "(  x, y) => {",
-           "",
-           "\t ",
+           " ",
            "\tstring pos; // over / before / after..",
            "",
            "    GLib.debug(\"got drag motion\");",

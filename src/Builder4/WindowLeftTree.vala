@@ -930,8 +930,7 @@ public class Xcls_WindowLeftTree : Object
             	return true;
             });
             this.el.motion.connect( (  x, y) => {
-            
-            	 
+             
             	string pos; // over / before / after..
             
                 GLib.debug("got drag motion");
