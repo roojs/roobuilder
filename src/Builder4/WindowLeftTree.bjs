@@ -832,7 +832,7 @@
          "string lastDragString" : "\"\"",
          "xtype" : "DropTarget",
          "| void addHighlight" : [
-          "(Gtk.Widget w, string hl) {",
+          "(Gtk.Widget? w, string hl) {",
           "\tif (_this.highlightWidget != null) {",
           "\t\tvar ww  = _this.highlightWidget;",
           "\t\tif (!ww.has_css_class(\"drag-after\")) {",
