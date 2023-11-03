@@ -1678,7 +1678,7 @@
         "\t\t    line_no++;",
         "",
         "\t\t\tchild.get_allocation(out alloc);",
-        "\t\t\tGLib.debug(\"got cell xy = %d,%d  w,h= %d,%d\", alloc.x, alloc.y, alloc.width, alloc.height);",
+        "\t\t\t//GLib.debug(\"got cell xy = %d,%d  w,h= %d,%d\", alloc.x, alloc.y, alloc.width, alloc.height);",
         "",
         "\t\t    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {",
         "\t\t\t    return (Gtk.Widget)child;",
