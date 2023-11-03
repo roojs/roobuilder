@@ -598,7 +598,7 @@ namespace Palete {
     	
 
     	
-		public override string[] getDropList(string rval)
+		public override Gee.ArrayList<string> getDropList(string rval)
 		{
 			
 			if (this.dropCache.has_key(rval)) {
@@ -607,7 +607,7 @@ namespace Palete {
 			// we might be dragging  Roo.bootstrap.layout.Region:center
 			// in which case we need to lookup Roo.bootstrap.layout.Region
 			// and see if it's has can_drop_onto
-			string[] ret = {};
+			var  ret = new Gee.ArrayList<string>();
 			var cls = this.classes.get(rval);
 			// cls can be null.
 			if (cls == null && rval.contains(":")) {
@@ -621,9 +621,9 @@ namespace Palete {
 			
 			foreach(var str in cls.can_drop_onto) {
 
-				ret += str;
+				ret.add(str);
 			}
-			GLib.debug("getDropList for %s return[] %s", rval, string.joinv(", ", ret));
+			//GLib.debug("getDropList for %s return[] %s", rval, string.joinv(", ", ret));
 			this.dropCache.set(rval,ret);
 			return ret;
 				
