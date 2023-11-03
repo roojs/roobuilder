@@ -979,6 +979,7 @@ public class Xcls_WindowLeftTree : Object
             	 	return Gdk.DragAction.COPY;
              	}
             	var tr = (Gtk.TreeListRow)_this.view.el.model.get_object(row);
+            	
             	var node =  (JsRender.Node)tr.get_item();
             
              	if (pos == "above" || pos == "below") {

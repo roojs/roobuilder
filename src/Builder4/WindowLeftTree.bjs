@@ -810,6 +810,7 @@
            "\t \treturn Gdk.DragAction.COPY;",
            " \t}",
            "\tvar tr = (Gtk.TreeListRow)_this.view.el.model.get_object(row);",
+           "\t",
            "\tvar node =  (JsRender.Node)tr.get_item();",
            "",
            " \tif (pos == \"above\" || pos == \"below\") {",
