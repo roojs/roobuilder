@@ -310,7 +310,7 @@ public class Xcls_WindowLeftTree : Object
             	pos = "over";
             	
             	while (child != null) {
-        			GLib.debug("Got %s", child.get_type().name());
+        			//GLib.debug("Got %s", child.get_type().name());
             	    if (reading_header) {
         			   
         			    if (child.get_type().name() == "GtkListItemWidget") {

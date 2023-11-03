@@ -1741,7 +1741,7 @@
         "    \tpos = \"over\";",
         "    \t",
         "    \twhile (child != null) {",
-        "\t\t\tGLib.debug(\"Got %s\", child.get_type().name());",
+        "\t\t\t//GLib.debug(\"Got %s\", child.get_type().name());",
         "    \t    if (reading_header) {",
         "\t\t\t   ",
         "\t\t\t    if (child.get_type().name() == \"GtkListItemWidget\") {",
