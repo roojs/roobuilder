@@ -168,12 +168,12 @@ public class Xcls_WindowLeftTree : Object
             		this.css.load_from_data("
             .drag-over  { background-color:#88a3bc; }
             .drag-above  {   
-             border-bottom-width: 3px; 
+             border-bottom-width: 5px; 
              border-bottom-style: solid;
              border-bottom-color: #88a3bc;
             }
             .drag-below  {
-             border-top-width: 3px;
+             border-top-width: 5px;
              border-top-style: solid;
              border-top-color: #88a3bc;
             }
