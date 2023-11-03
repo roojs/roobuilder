@@ -997,6 +997,7 @@ public class Xcls_WindowLeftTree : Object
              	}
              	if (pos == "center") {
             	 	if (!drop_on_to.contains(node.fqn())) {
+            			GLib.log("drop on does not contain %s - try center" , node.fqn());
             			this.addHighlight(null, ""); 
             			return Gdk.DragAction.COPY;		
             		}
