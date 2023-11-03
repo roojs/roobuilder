@@ -1216,11 +1216,11 @@ public class Xcls_WindowLeftTree : Object
         	if (this.highlightWidget != null) {
         		var ww  = this.highlightWidget;
         		GLib.debug("clear drag from previous highlight");
-        		if (ww.has_css_class("drag-after")) {
-        			 ww.remove_css_class("drag-after");
+        		if (ww.has_css_class("drag-below")) {
+        			 ww.remove_css_class("drag-below");
         		}
-        		if (ww.has_css_class("drag-before")) {
-        			 ww.remove_css_class("drag-before");
+        		if (ww.has_css_class("drag-above")) {
+        			 ww.remove_css_class("drag-above");
         		}
         		if (ww.has_css_class("drag-over")) {
         			 ww.remove_css_class("drag-over");
