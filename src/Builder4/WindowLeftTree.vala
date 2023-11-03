@@ -984,10 +984,12 @@ public class Xcls_WindowLeftTree : Object
             
              	if (pos == "above" || pos == "below") {
             		if (node.parent == null) {
+            			GLib.log("no parent try center");
             			pos = "center";
             		} else {
             	 		 
             	 		if (!drop_on_to.contains(node.parent.fqn())) {
+            				GLib.log("drop on does not contain %s - try center" , node.parent.fqn());
             	 			pos = "center";
              			}
              		}
