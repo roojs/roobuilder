@@ -1455,6 +1455,9 @@
            "| void loadFile" : [
             "(JsRender.JsRender f) {",
             "    //console.dump(f);",
+            "    ",
+            "    this.drop.highlightWidget = null;",
+            "    ",
             "    var m = (GLib.ListStore) this.el.model;",
             "\tm.remove_all();",
             "    _this.main_window.windowstate.leftTreeNodeSelected(null, \"\");",
