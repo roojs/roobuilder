@@ -930,10 +930,20 @@ public class Xcls_WindowLeftTree : Object
               	cont.get_value(ref v);
             
             	GLib.debug("got %s", v.get_string());
+            	
+            	JsRender.dragNode node;
+            	if (this.lastDragString != v.get_string()) {
+            		// still dragging same node
+            		node = this.lastDragNode
+            		
              
              
              	// -- get position..
-             	
+             	 var xname = data.fqn();
+                    GLib.debug ("XNAME  IS %s", xname);
+             
+                    _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
+                   
              	 
             
                 // if there are not items in the tree.. the we have to set isOver to true for anything..
