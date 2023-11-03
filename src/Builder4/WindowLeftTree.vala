@@ -341,7 +341,7 @@ public class Xcls_WindowLeftTree : Object
         	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {
         	    			pos = "over";
             			} else {
-            				pos = "above"
+            				pos = "above";
         				}
         		    	
         			    return line_no;

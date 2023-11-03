@@ -1764,7 +1764,7 @@
         "\t    \t\t} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {",
         "\t    \t\t\tpos = \"over\";",
         "    \t\t\t} else {",
-        "    \t\t\t\tpos = \"above\"",
+        "    \t\t\t\tpos = \"above\";",
         "\t\t\t\t}",
         "\t\t    \t",
         "\t\t\t    return line_no;",
