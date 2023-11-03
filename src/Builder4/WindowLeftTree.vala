@@ -922,7 +922,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.motion.connect( (  x, y) => {
             
             	
-             	 var isOver = true;
+             
             	
             	string pos; // over / before / after..
             
@@ -961,12 +961,14 @@ public class Xcls_WindowLeftTree : Object
             		return Gdk.DragAction.COPY; // no need to highlight?
                  
                 }
+                
+                
              	GLib.debug("check is over");
              	 
                 // if path of source and dest are inside each other..
                 // need to add source info to drag?
                 // the fail();
-             	var row = _this.view.getRowAt(x,y);
+             	var row = _this.view.getRowAt(x,y, out pos);
              	 GLib.debug("check row %d", row);
              	if (row < 0) {
              	 GLib.debug("check row %d", row);
