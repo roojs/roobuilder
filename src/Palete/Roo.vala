@@ -596,10 +596,14 @@ namespace Palete {
         	//return this.original_getChildList(  in_rval);
     	}
     	
-		Gee.HashMap<string,string[]> dropCache;
+
     	
 		public override string[] getDropList(string rval)
 		{
+			
+			if (this.dropCache.has_key(rval)) {
+				return this.dropCache.get(rval);
+			}
 			// we might be dragging  Roo.bootstrap.layout.Region:center
 			// in which case we need to lookup Roo.bootstrap.layout.Region
 			// and see if it's has can_drop_onto
@@ -620,6 +624,7 @@ namespace Palete {
 				ret += str;
 			}
 			GLib.debug("getDropList for %s return[] %s", rval, string.joinv(", ", ret));
+			this.dropCache.set(rval,ret);
 			return ret;
 				
 			
