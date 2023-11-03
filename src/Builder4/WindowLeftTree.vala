@@ -991,7 +991,8 @@ public class Xcls_WindowLeftTree : Object
             	 		if (!drop_on_to.contains(node.parent.fqn())) {
             				GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
             	 			pos = "over";
-             			}
+             			} else {
+            				GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
              		}
              		
              	}
