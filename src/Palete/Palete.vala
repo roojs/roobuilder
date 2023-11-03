@@ -91,7 +91,7 @@ namespace Palete
 		public Gee.ArrayList<Usage> map;
 
 		public Gee.HashMap<string,GirObject> classes; // used in roo.. 
-		private Gee.HashMap<string,Gee.ArrayList<string>> dropCache;
+		public Gee.HashMap<string,Gee.ArrayList<string>> dropCache;
 		public Project.Project project;
 	
         public void aconstruct(Project.Project project)
