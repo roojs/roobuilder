@@ -939,32 +939,30 @@ public class Xcls_WindowLeftTree : Object
             	if (this.lastDragString != v.get_string()) {
             		// still dragging same node
             		node = this.lastDragNode
-            		
-             
-             
-             	// -- get position..
-             	 var xname = data.fqn();
-                    GLib.debug ("XNAME  IS %s", xname);
-             
-                    _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
+            		this.lastDragNode = new JsRender.Node(); 
+            		this.lastDragNode.loadFromJsonString(v.get_string(), 1);
+            	}
+                
+            
+            	var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(this.lastDragNode.fqn());
                    
              	 
             
                 // if there are not items in the tree.. the we have to set isOver to true for anything..
-                var isEmpty = false;
+             
                 if (_this.model.el.n_items < 1) {
                 	// FIXME check valid drop types?
-            		this.addHighlight(_this.view.el);
+                	if (drop_on_to.contains("*top")) {
+            			this.addHighlight(_this.view.el, "over");
+            		} else {
+            			this.addHighlight(null, "");		
+            		}
             
             		return Gdk.DragAction.COPY; // no need to highlight?
                  
                 }
              	GLib.debug("check is over");
-             	if (!isOver) {
-            	 	 //_this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
-            	 	  return Gdk.DragAction.COPY;
              	 
-                }
                 // if path of source and dest are inside each other..
                 // need to add source info to drag?
                 // the fail();
