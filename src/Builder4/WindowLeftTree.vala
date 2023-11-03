@@ -14,6 +14,7 @@ public class Xcls_WindowLeftTree : Object
     }
     public Xcls_viewwin viewwin;
     public Xcls_view view;
+    public Xcls_drop drop;
     public Xcls_selmodel selmodel;
     public Xcls_model model;
     public Xcls_maincol maincol;
@@ -138,7 +139,7 @@ public class Xcls_WindowLeftTree : Object
             var child_1 = new Xcls_DragSource5( _this );
             child_1.ref();
             this.el.add_controller(  child_1.el );
-            var child_2 = new Xcls_DropTarget6( _this );
+            var child_2 = new Xcls_drop( _this );
             child_2.ref();
             this.el.add_controller(  child_2.el );
             var child_3 = new Xcls_selmodel( _this );
@@ -706,7 +707,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_DropTarget6 : Object
+    public class Xcls_drop : Object
     {
         public Gtk.DropTarget el;
         private Xcls_WindowLeftTree  _this;
@@ -716,9 +717,10 @@ public class Xcls_WindowLeftTree : Object
         public Gtk.Widget highlightWidget?;
 
         // ctor
-        public Xcls_DropTarget6(Xcls_WindowLeftTree _owner )
+        public Xcls_drop(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
+            _this.drop = this;
             this.el = new Gtk.DropTarget ( typeof(string) ,
 		Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   );
 
