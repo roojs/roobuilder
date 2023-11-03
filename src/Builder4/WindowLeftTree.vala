@@ -704,8 +704,8 @@ public class Xcls_WindowLeftTree : Object
             	GLib.debug("got drag end");
              // (drag_context) => {
             	//Seed.print('LEFT-TREE: drag-end');
-             
-                    _this.view.dropList = null;
+             	
+                  //  _this.view.dropList = null;
             //        this.targetData = "";
                 //    _this.view.highlightDropPath("",0);
             //        return true;
