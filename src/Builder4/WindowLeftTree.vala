@@ -1201,8 +1201,8 @@ public class Xcls_WindowLeftTree : Object
 
         // user defined functions
         public void addHighlight (Gtk.Widget? w, string hl) {
-        	if (_this.highlightWidget != null) {
-        		var ww  = _this.highlightWidget;
+        	if (this.highlightWidget != null) {
+        		var ww  = this.highlightWidget;
         		if (!ww.has_css_class("drag-after")) {
         			 ww.remove_css_class("drag-after");
         		}
