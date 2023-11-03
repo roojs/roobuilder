@@ -1294,7 +1294,11 @@ public class Xcls_WindowLeftTree : Object
         }
 
         // user defined functions
-        public void addHighlight () {
+        public void addHighlight (Gtk.Widget w) {
+        	if (_this.highlightWidget != null) {
+        	
+        	}
+        	
         
         }
     }

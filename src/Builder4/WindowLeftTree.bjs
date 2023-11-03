@@ -940,7 +940,11 @@
          },
          "xtype" : "DropTarget",
          "| void addHighlight" : [
-          "() {",
+          "(Gtk.Widget w) {",
+          "\tif (_this.highlightWidget != null) {",
+          "\t",
+          "\t}",
+          "\t",
           "",
           "}"
          ]
