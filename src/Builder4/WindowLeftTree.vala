@@ -1059,11 +1059,52 @@ public class Xcls_WindowLeftTree : Object
             
             
             
-             	 var row = _this.view.getRowAt(x,y, out pos);
-             	 if (row < 0) {
-            	 	 return   false; //Gdk.DragAction.COPY;
-             	 }
+            	var row = _this.view.getRowAt(x,y, out pos);
+            	if (row < 0) {
+            		return   false; //Gdk.DragAction.COPY;
+            	}
+            	var tr = (Gtk.TreeListRow)_this.view.el.model.get_object(row);
+            	
+            	var node =  (JsRender.Node)tr.get_item();
             
+             	if (pos == "above" || pos == "below") {
+            		if (node.parent == null) {
+            			pos = "over";
+            		} else {
+            	 		if (!drop_on_to.contains(node.parent.fqn())) {
+            				pos = "over";
+             			} else {
+            				GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+            			}
+             		}
+             		
+             	}
+             	if (pos == "over") {
+            	 	if (!drop_on_to.contains(node.fqn())) {
+            			GLib.debug("drop on does not contain %s - try center" , node.fqn());
+            			return false;
+            
+            		}
+            	}
+             	
+             	switch(pos) {
+             		case "over":
+            	 		node.appendChild(dropNode);
+            	 		return true;
+            	 		
+             		case "above":
+             			node.parent.insertBefore(dropNode, node);
+             			return true;
+             			
+             		case "below":
+             			node.parent.insertAfter(dropNode, node);
+             			return true;
+             			
+             		default:
+             			// should not happen
+             			return false;
+             	}
+             	
             	
                 
              
