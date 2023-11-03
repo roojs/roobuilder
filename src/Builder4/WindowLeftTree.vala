@@ -993,6 +993,7 @@ public class Xcls_WindowLeftTree : Object
             	 			pos = "over";
              			} else {
             				GLib.debug("drop  contains %s - using %s" , node.parent.fqn(), pos);
+            			}
              		}
              		
              	}

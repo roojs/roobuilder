@@ -824,6 +824,7 @@
            "\t \t\t\tpos = \"over\";",
            " \t\t\t} else {",
            "\t\t\t\tGLib.debug(\"drop  contains %s - using %s\" , node.parent.fqn(), pos);",
+           "\t\t\t}",
            " \t\t}",
            " \t\t",
            " \t}",
