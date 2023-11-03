@@ -587,7 +587,7 @@
            "\t\t// add new node to top..",
            "\t\t",
            "\t\t",
-           "\t\t var m = (GLib.ListStore) this.el.model;",
+           "\t\t var m = (GLib.ListStore) _this.view.el.model;",
            "     \t_this.main_window.windowstate.file.tree = dropNode;  ",
            "    ",
            "   ",
