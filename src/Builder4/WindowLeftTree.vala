@@ -1060,7 +1060,7 @@ public class Xcls_WindowLeftTree : Object
             
             
              	 var row = _this.view.getRowAt(x,y, out pos);
-             	if (row < 0) {
+             	 if (row < 0) {
             	 	 return   false; //Gdk.DragAction.COPY;
              	 }
             
