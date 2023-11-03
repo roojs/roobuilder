@@ -1136,15 +1136,8 @@ public class Xcls_WindowLeftTree : Object
                     //pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
                 }
             
-             	var pa = new Json.Parser();
-                pa.load_from_data(v.get_string());
-                var new_node = pa.get_root();
-                var obj = new_node.get_object ();
-                    
-             
-            
             	var dropNode = new JsRender.Node(); 
-            	dropNode.loadFromJson(obj, 1);
+            	dropNode.loadFromJsonString(v.get_string(), 1);
                 
              
             	//.el.current_drop.drag.drop_done(true);
