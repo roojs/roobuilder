@@ -1023,21 +1023,30 @@ public class Xcls_WindowLeftTree : Object
              
              	var pos = "";
              	// -- get position..
-             	
+             	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
+            		// still dragging same node
+             
+            		this.lastDragNode = new JsRender.Node(); 
+            		this.lastDragNode.loadFromJsonString(v.get_string(), 1);
+            	}
+                
              	var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(this.lastDragNode.fqn());
                    
+                   
+                var dropNode = new JsRender.Node(); 
+            	dropNode.loadFromJsonString(v.get_string(), 1);
+            	
                 // if there are not items in the tree.. the we have to set isOver to true for anything..
              
                 if (_this.model.el.n_items < 1) {
                 	// FIXME check valid drop types?
-                	if (drop_on_to.contains("*top")) {
-            			
-            			
-            			this.addHighlight(_this.view.el, "over");
-            		} else {
+                	if (!drop_on_to.contains("*top")) {
+            			 
             			return false;	
             		}
-            
+            		// add new node to top..
+            		
+            		
             		return Gdk.DragAction.COPY; // no need to highlight?
                  
                 }
@@ -1049,8 +1058,7 @@ public class Xcls_WindowLeftTree : Object
             	 	 return   false; //Gdk.DragAction.COPY;
              	 }
             
-            	var dropNode = new JsRender.Node(); 
-            	dropNode.loadFromJsonString(v.get_string(), 1);
+            	
                 
              
             	//.el.current_drop.drag.drop_done(true);
