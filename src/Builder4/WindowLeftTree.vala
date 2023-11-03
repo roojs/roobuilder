@@ -984,12 +984,12 @@ public class Xcls_WindowLeftTree : Object
             
              	if (pos == "above" || pos == "below") {
             		if (node.parent == null) {
-            			GLib.log("no parent try center");
+            			GLib.debug("no parent try center");
             			pos = "center";
             		} else {
             	 		 
             	 		if (!drop_on_to.contains(node.parent.fqn())) {
-            				GLib.log("drop on does not contain %s - try center" , node.parent.fqn());
+            				GLib.debug("drop on does not contain %s - try center" , node.parent.fqn());
             	 			pos = "center";
              			}
              		}
@@ -997,7 +997,7 @@ public class Xcls_WindowLeftTree : Object
              	}
              	if (pos == "center") {
             	 	if (!drop_on_to.contains(node.fqn())) {
-            			GLib.log("drop on does not contain %s - try center" , node.fqn());
+            			GLib.debug("drop on does not contain %s - try center" , node.fqn());
             			this.addHighlight(null, ""); 
             			return Gdk.DragAction.COPY;		
             		}
