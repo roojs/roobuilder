@@ -570,7 +570,7 @@
            " \tvar pos = \"\";",
            " \t// -- get position..",
            " \t",
-           " \t var row = _this.view.getRowAt(x,y, pos);",
+           " \t var row = _this.view.getRowAt(x,y, out pos);",
            " \tif (row < 0) {",
            "\t \t return   true; //Gdk.DragAction.COPY;",
            " \t }",
