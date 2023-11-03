@@ -308,7 +308,7 @@ public class Xcls_WindowLeftTree : Object
             	var reading_header = true;
             	var curr_y = 0;
             	var header_height  = 0;
-            	pos = over;
+            	pos = "over";
             	
             	while (child != null) {
         			GLib.debug("Got %s", child.get_type().name());
