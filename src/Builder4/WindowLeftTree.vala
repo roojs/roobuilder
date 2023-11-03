@@ -716,7 +716,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
         public Gtk.Widget highlightWidget?;
         public string lastDragString;
-        public JsRender.Node lastDragNode;
+        public JsRender.Node? lastDragNode;
 
         // ctor
         public Xcls_drop(Xcls_WindowLeftTree _owner )
