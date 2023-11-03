@@ -850,7 +850,7 @@
           "\t\t\tw.add_css_class(\"drag-\" + hl);",
           "\t\t}",
           "\t}",
-          "\t_this.highlightWidget = w;",
+          "\tthis.highlightWidget = w;",
           "}"
          ]
         },

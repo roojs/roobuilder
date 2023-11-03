@@ -1218,7 +1218,7 @@ public class Xcls_WindowLeftTree : Object
         			w.add_css_class("drag-" + hl);
         		}
         	}
-        	_this.highlightWidget = w;
+        	this.highlightWidget = w;
         }
     }
 
