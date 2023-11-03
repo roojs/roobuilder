@@ -1047,7 +1047,13 @@ public class Xcls_WindowLeftTree : Object
             		// add new node to top..
             		
             		
-            		return Gdk.DragAction.COPY; // no need to highlight?
+            		 var m = (GLib.ListStore) this.el.model;
+                 	_this.main_window.windowstate.file.tree = dropNode;  
+                
+               
+              		m.append(f.tree);
+            		
+            		return true; // no need to highlight?
                  
                 }
             
