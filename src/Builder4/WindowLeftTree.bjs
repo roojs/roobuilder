@@ -950,6 +950,7 @@
            ""
           ]
          },
+         "string lastDragString" : "\"\"",
          "xtype" : "DropTarget",
          "| void addHighlight" : [
           "(Gtk.Widget w, string hl) {",
