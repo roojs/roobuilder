@@ -942,7 +942,7 @@ public class Xcls_WindowLeftTree : Object
                     isEmpty = true;
                     pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
                 }
-             GLib.debug("check is over");
+             	GLib.debug("check is over");
              	if (!isOver) {
             	 	 //_this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
             	 	  return Gdk.DragAction.COPY;
@@ -1294,6 +1294,9 @@ public class Xcls_WindowLeftTree : Object
         }
 
         // user defined functions
+        public void addHighlight () {
+        
+        }
     }
 
     public class Xcls_selmodel : Object

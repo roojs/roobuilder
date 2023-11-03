@@ -787,7 +787,7 @@
            "        isEmpty = true;",
            "        pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;",
            "    }",
-           " GLib.debug(\"check is over\");",
+           " \tGLib.debug(\"check is over\");",
            " \tif (!isOver) {",
            "\t \t //_this.view.highlightDropPath(\"\", (Gtk.TreeViewDropPosition)0);",
            "\t \t  return Gdk.DragAction.COPY;",
@@ -938,7 +938,12 @@
            ""
           ]
          },
-         "xtype" : "DropTarget"
+         "xtype" : "DropTarget",
+         "| void addHighlight" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ xns" : "Gtk",
