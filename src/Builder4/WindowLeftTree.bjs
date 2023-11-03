@@ -772,7 +772,7 @@
            "\t ",
            "\tif (this.lastDragString != v.get_string() || this.lastDragNode == null) {",
            "\t\t// still dragging same node",
-           "\t\tnode = this.lastDragNode",
+           "\t\tnode = this.lastDragNode;",
            "\t\tthis.lastDragNode = new JsRender.Node(); ",
            "\t\tthis.lastDragNode.loadFromJsonString(v.get_string(), 1);",
            "\t}",
