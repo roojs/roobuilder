@@ -682,7 +682,7 @@ public class Xcls_WindowLeftTree : Object
              
                   //  _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
                     
-            GLib.debug ("DROP LIST IS %s",  string.joinv(", ", _this.view.dropList));
+             
                     
             
                     // make the drag icon a picture of the node that was selected
