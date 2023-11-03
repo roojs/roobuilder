@@ -1051,7 +1051,7 @@ public class Xcls_WindowLeftTree : Object
                  	_this.main_window.windowstate.file.tree = dropNode;  
                 
                
-              		m.append(f.tree);
+              		m.append(dropNode);
             		
             		return true; // no need to highlight?
                  
