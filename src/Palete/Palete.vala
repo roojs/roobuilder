@@ -498,7 +498,7 @@ namespace Palete
 				string complete_string
 		);
 		public abstract string[] getChildList(string in_rval);
-		public abstract string[] getDropList(string rval);		
+		public abstract Gee.ArrayList<string> getDropList(string rval);		
 		
 		
 	}
