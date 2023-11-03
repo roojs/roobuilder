@@ -724,7 +724,7 @@ public class Xcls_WindowLeftTree : Object
 
 
             // my vars (def)
-        public Gtk.Widget highlightWidget?;
+        public Gtk.Widget? highlightWidget;
         public string lastDragString;
         public JsRender.Node? lastDragNode;
 
@@ -737,7 +737,7 @@ public class Xcls_WindowLeftTree : Object
 		Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   );
 
             // my vars (dec)
-            this.highlightWidget? = null;
+            this.highlightWidget = null;
             this.lastDragString = "";
             this.lastDragNode = null;
 
