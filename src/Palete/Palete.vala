@@ -161,7 +161,7 @@ namespace Palete
 
 	    
 	    
-        public string[] default_getDropList(string rval)
+        public Gee.ArrayList<string> default_getDropList(string rval)
         {
 			if (this.dropCache.has_key(rval)) {
 				return this.dropCache.get(rval);
@@ -173,8 +173,8 @@ namespace Palete
 					
 					// should be a bit more than this..
 				// -> it should look for all elements that inherit 
-				string[] ret = {};
-			var rt = new Gee.ArrayList<string>();
+			var ret = new Gee.ArrayList<string>();
+ 
 			for (var i = 0; i < this.map.size; i++) {
 				var m = this.map.get(i);
 					
@@ -186,17 +186,17 @@ namespace Palete
 				for(var ii =0; ii < m.left.size; ii++) {
 						var l = m.left.get(ii);
 						
-						if (rt.index_of(l) > -1) {
+						if (ret.index_of(l) > -1) {
 							continue;
 						}
 					//print("ADD " + string.joinv(", ", ret) + "\n");
-						ret += l;
-					rt.add(l);
+						ret.add(l);
+					 
 					}
 					
 					
 				}
-			 print ("drop list for %s is:\n%s\n", rval, string.joinv("\n", ret));
+			 //print ("drop list for %s is:\n%s\n", rval, string.joinv("\n", ret));
 			//console.log("DROP LIST:");
 			//console.dump(ret);
 			this.dropCache.set(rval,ret);
