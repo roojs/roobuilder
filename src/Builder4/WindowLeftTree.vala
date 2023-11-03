@@ -923,9 +923,9 @@ public class Xcls_WindowLeftTree : Object
                 GLib.debug("got drag motion");
             
                 GLib.Value v = GLib.Value(typeof(string));
-               //var str = drop.read_text( [ "text/plain" ] 0);
-               var cont = this.el.current_drop.get_drag().content ;
-               cont.get_value(ref v);
+               	//var str = drop.read_text( [ "text/plain" ] 0);
+               	var cont = this.el.current_drop.get_drag().content ;
+              	cont.get_value(ref v);
             
             	GLib.debug("got %s", v.get_string());
              
