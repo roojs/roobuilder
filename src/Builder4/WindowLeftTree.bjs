@@ -958,9 +958,10 @@
           "\t\t\t ww.remove_css_class(\"drag-over\");",
           "\t\t}",
           "\t}",
-          "\t",
-          "\tif (!w.has_css_class(\"drag-\" + hl)) {",
-          "\t\tw.add_css_class(\"drag-\" + hl);",
+          "\tif (w != null) {",
+          "\t\tif (!w.has_css_class(\"drag-\" + hl)) {",
+          "\t\t\tw.add_css_class(\"drag-\" + hl);",
+          "\t\t}",
           "\t}",
           "\t_this.highlightWidget = w;",
           "}"

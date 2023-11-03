@@ -1315,9 +1315,10 @@ public class Xcls_WindowLeftTree : Object
         			 ww.remove_css_class("drag-over");
         		}
         	}
-        	
-        	if (!w.has_css_class("drag-" + hl)) {
-        		w.add_css_class("drag-" + hl);
+        	if (w != null) {
+        		if (!w.has_css_class("drag-" + hl)) {
+        			w.add_css_class("drag-" + hl);
+        		}
         	}
         	_this.highlightWidget = w;
         }
