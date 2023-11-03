@@ -945,8 +945,8 @@ public class Xcls_WindowLeftTree : Object
             
             	GLib.debug("got %s", v.get_string());
             	
-            	JsRender.dragNode node;
-            	if (this.lastDragString != v.get_string()) {
+            	 
+            	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
             		// still dragging same node
             		node = this.lastDragNode
             		this.lastDragNode = new JsRender.Node(); 
@@ -979,134 +979,34 @@ public class Xcls_WindowLeftTree : Object
                 // need to add source info to drag?
                 // the fail();
              	var row = _this.view.getRowAt(x,y, out pos);
-             	 GLib.debug("check row %d", row);
+             	
              	if (row < 0) {
-             		 GLib.debug("check row %d", row);
-            	 	 return Gdk.DragAction.COPY;
-             	 }
+            		this.addHighlight(null, "");	
+            	 	return Gdk.DragAction.COPY;
+             	}
              	var node = (JsRender.Node) _this.model.el.get_object(row);
-            		 	
-                   
-                    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
+             	if (pos == "above" || pos == "below") {
+            		if (node.parent == null) {
+            			pos = "center";
+            		} else {
+            	 		 
+            	 		if (!drop_on_to.contains(node.parent.fqn())) {
+            	 			pos = "center";
+             			}
+             		}
+             		
+             	}
+             	if (pos == "center") {
+             	if (!drop_on_to.contains(node.fqn)) {
+            		this.addHighlight(null, ""); 
+            	    return Gdk.DragAction.COPY;		
+            	}
+             	
+             	
+             	    // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
             	var w = _this.view.getWidgetAt(x,y);
             	this.addHighlight(w, pos); 
-            	
-            	
-                return Gdk.DragAction.COPY;
-              
-             /*
-               if (src != this.el) {
-               
-             
-             
-                // the point of this is to detect where an item could be dropped..
-                    print("requesting drag data\n");
-                   this.drag_in_motion = true;
-                   
-                        // request data that will be recieved by the recieve...              
-                    Gtk.drag_get_data
-                    (
-                            this.el,         // will receive 'drag-data-received' signal 
-                            ctx,        // represents the current state of the DnD 
-                            Gdk.Atom.intern("STRING",true),    // the target type we want 
-                            time            // time stamp 
-                    );
-                    return true;
-              }    
-            
-            
-              print("action: %d\n", ctx.get_actions());
-              
-            
-            
-                // ------------- a drag from self..
-            
-            
-                //var action = Gdk.DragAction.COPY;
-                    // unless we are copying!!! ctl button..
-                
-                var action = (ctx.get_actions() & Gdk.DragAction.MOVE) > 0 ?
-                             Gdk.DragAction.COPY  : Gdk.DragAction.MOVE ;
-                            // Gdk.DragAction.MOVE : Gdk.DragAction.COPY ;
-            
-            
-                if (_this.model.el.iter_n_children(null) < 1) {
-                    // no children.. -- asume it's ok..
-                    
-                    targetData = "|%d|".printf((int)Gtk.TreeViewDropPosition.INTO_OR_AFTER);
-                       
-                    this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);        
-                    Gdk.drag_status(ctx, action ,time);
-                    return true;
-                    
-                    // continue through to allow drop...
-            
-                } 
-                    
-                    
-            
-                
-                
-                //print("ISOVER? " + isOver);
-                       
-                // drag node is parent of child..
-                //console.log("SRC TREEPATH: " + src.treepath);
-                //console.log("TARGET TREEPATH: " + data.path.to_string());
-                
-                // nned to check a  few here..
-                //Gtk.TreeViewDropPosition.INTO_OR_AFTER
-                //Gtk.TreeViewDropPosition.INTO_OR_BEFORE
-                //Gtk.TreeViewDropPosition.AFTER
-                //Gtk.TreeViewDropPosition.BEFORE
-                
-                // locally dragged items to not really use the 
-                var selection_text = this.dragData;
-                
-                        
-                        
-                if (selection_text == null || selection_text.length < 1) {
-                            //print("Error  - drag selection text returned NULL");
-                         Gdk.drag_status(ctx, 0 ,time);
-                        this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
-                         return false;
-                 }
-                                   
-                        
-                        // see if we are dragging into ourself?
-                var target_path = path.to_string();            
-                print ("Drag  %s onto %s--%d\n ", selection_text, target_path, pos);
-                
-                // pos : 3 = ontop - 0 = after, 1 = before
-                //print("target_path="+target_path);
-            
-                // 
-                if (selection_text  == target_path) {
-                    print("self drag ?? == we should perhaps allow copy onto self..\n");
-                            
-                     Gdk.drag_status(ctx, 0 ,time);
-                      this.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
-                      return false;
-            //                 -- fixme -- this is not really correct..
-            
-                }
-                        
-                // check that 
-                //print("DUMPING DATA");
-                //console.dump(data);
-                // path, pos
-                
-                //print(data.path.to_string() +' => '+  data.pos);
-                
-                // dropList is a list of xtypes that this node could be dropped on.
-                // it is set up when we start to drag..
-                
-                
-            
-                   
-                   
-            }
-            */
-            	return Gdk.DragAction.COPY;
+                return Gdk.DragAction.COPY;			
             });
             this.el.drop.connect( (v, x, y) => {
             	
