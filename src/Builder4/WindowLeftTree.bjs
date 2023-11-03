@@ -1348,7 +1348,7 @@
             "(JsRender.JsRender f) {",
             "    //console.dump(f);",
             "    ",
-            "    this.drop.highlightWidget = null;",
+            "    _this.drop.highlightWidget = null;",
             "    ",
             "    var m = (GLib.ListStore) this.el.model;",
             "\tm.remove_all();",

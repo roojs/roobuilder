@@ -1371,7 +1371,7 @@ public class Xcls_WindowLeftTree : Object
         public void loadFile (JsRender.JsRender f) {
             //console.dump(f);
             
-            this.drop.highlightWidget = null;
+            _this.drop.highlightWidget = null;
             
             var m = (GLib.ListStore) this.el.model;
         	m.remove_all();
