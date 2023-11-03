@@ -100,7 +100,7 @@ namespace Palete
 			this.project = project;
 			this.map = null;
 			this.classes = null;
-			this.dropCache = new Gee.HashMap<string,Gee.ArrayList<string>[]>() ;
+			this.dropCache = new Gee.HashMap<string,Gee.ArrayList<string>>() ;
         }
         
         
