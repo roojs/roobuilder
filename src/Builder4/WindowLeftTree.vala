@@ -931,9 +931,7 @@ public class Xcls_WindowLeftTree : Object
             });
             this.el.motion.connect( (  x, y) => {
             
-            	
-             
-            	
+            	 
             	string pos; // over / before / after..
             
                 GLib.debug("got drag motion");
@@ -956,8 +954,6 @@ public class Xcls_WindowLeftTree : Object
             
             	var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(this.lastDragNode.fqn());
                    
-             	 
-            
                 // if there are not items in the tree.. the we have to set isOver to true for anything..
              
                 if (_this.model.el.n_items < 1) {
@@ -997,9 +993,10 @@ public class Xcls_WindowLeftTree : Object
              		
              	}
              	if (pos == "center") {
-             	if (!drop_on_to.contains(node.fqn)) {
-            		this.addHighlight(null, ""); 
-            	    return Gdk.DragAction.COPY;		
+            	 	if (!drop_on_to.contains(node.fqn)) {
+            			this.addHighlight(null, ""); 
+            			return Gdk.DragAction.COPY;		
+            		}
             	}
              	
              	
