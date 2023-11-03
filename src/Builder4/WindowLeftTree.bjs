@@ -809,7 +809,7 @@
            "\t\tthis.addHighlight(null, \"\");\t",
            "\t \treturn Gdk.DragAction.COPY;",
            " \t}",
-           "\tvar tr = (Gtk.TreeListRow)this.el.get_object(row);",
+           "\tvar tr = (Gtk.TreeListRow)_this.view.el.model.get_object(row);",
            "\tvar node =  (JsRender.Node)tr.get_item();",
            "",
            " \tif (pos == \"above\" || pos == \"below\") {",

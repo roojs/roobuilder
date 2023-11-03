@@ -978,7 +978,7 @@ public class Xcls_WindowLeftTree : Object
             		this.addHighlight(null, "");	
             	 	return Gdk.DragAction.COPY;
              	}
-            	var tr = (Gtk.TreeListRow)this.el.get_object(row);
+            	var tr = (Gtk.TreeListRow)_this.view.el.model.get_object(row);
             	var node =  (JsRender.Node)tr.get_item();
             
              	if (pos == "above" || pos == "below") {
