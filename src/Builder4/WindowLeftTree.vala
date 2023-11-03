@@ -1210,17 +1210,19 @@ public class Xcls_WindowLeftTree : Object
         public void addHighlight (Gtk.Widget? w, string hl) {
         	if (this.highlightWidget != null) {
         		var ww  = this.highlightWidget;
-        		if (!ww.has_css_class("drag-after")) {
+        		GLib.debug("clear drag from previous highlight");
+        		if (ww.has_css_class("drag-after")) {
         			 ww.remove_css_class("drag-after");
         		}
-        		if (!ww.has_css_class("drag-before")) {
+        		if (ww.has_css_class("drag-before")) {
         			 ww.remove_css_class("drag-before");
         		}
-        		if (!ww.has_css_class("drag-over")) {
+        		if (ww.has_css_class("drag-over")) {
         			 ww.remove_css_class("drag-over");
         		}
         	}
         	if (w != null) {
+        		GLib.debug("aad drag from new highlight");	
         		if (!w.has_css_class("drag-" + hl)) {
         			w.add_css_class("drag-" + hl);
         		}
