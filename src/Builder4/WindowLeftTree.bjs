@@ -364,6 +364,7 @@
           "\t\tGdk.DragAction.COPY   | Gdk.DragAction.MOVE   )"
          ],
          "Gtk.Widget highlightWidget?" : "null",
+         "JsRender.Node lastDragNode" : "null",
          "id" : "drop",
          "listeners" : {
           "accept" : [

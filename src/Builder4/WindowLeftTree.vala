@@ -716,6 +716,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
         public Gtk.Widget highlightWidget?;
         public string lastDragString;
+        public JsRender.Node lastDragNode;
 
         // ctor
         public Xcls_drop(Xcls_WindowLeftTree _owner )
@@ -728,6 +729,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
             this.highlightWidget? = null;
             this.lastDragString = "";
+            this.lastDragNode = null;
 
             // set gobject values
 
