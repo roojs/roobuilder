@@ -336,9 +336,9 @@ public class Xcls_WindowLeftTree : Object
         			GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
         
         		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
-        		    	if (y > (header_height + alloc.y + (alloc.height * 0.8)) {
+        		    	if (y > (header_height + alloc.y + (alloc.height * 0.8))) {
         		    		pos = "below";
-        	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2)) {
+        	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {
         	    			pos = "over";
             			} else {
             				pos = "above"
