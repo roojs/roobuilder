@@ -763,7 +763,7 @@
            "\t",
            " \t var isOver = true;",
            "\t",
-           "\tGtk.TreeViewDropPosition pos; // return..",
+           "\tstring pos; // over / before / after..",
            "",
            "    GLib.debug(\"got drag motion\");",
            "",

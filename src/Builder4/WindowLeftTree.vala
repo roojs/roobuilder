@@ -918,7 +918,7 @@ public class Xcls_WindowLeftTree : Object
             	
              	 var isOver = true;
             	
-            	Gtk.TreeViewDropPosition pos; // return..
+            	string pos; // over / before / after..
             
                 GLib.debug("got drag motion");
             
