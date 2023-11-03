@@ -1015,10 +1015,10 @@ public class Xcls_WindowLeftTree : Object
             	 
             	GLib.debug("got %s", v.get_string());
              
-             
+             	var pos = "";
              	// -- get position..
              	
-             	 var row = _this.view.getRowAt(x,y);
+             	 var row = _this.view.getRowAt(x,y, pos);
              	if (row < 0) {
             	 	 return   true; //Gdk.DragAction.COPY;
              	 }
