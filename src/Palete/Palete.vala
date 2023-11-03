@@ -163,7 +163,9 @@ namespace Palete
 	    
         public string[] default_getDropList(string rval)
         {
-
+			if (this.dropCache.has_key(rval)) {
+				return this.dropCache.get(rval);
+			}
 			if (this.map == null) {
 				this.load();
 			}
@@ -197,6 +199,7 @@ namespace Palete
 			 print ("drop list for %s is:\n%s\n", rval, string.joinv("\n", ret));
 			//console.log("DROP LIST:");
 			//console.dump(ret);
+			this.dropCache.set(rval,ret);
 			return ret;
             
         }
