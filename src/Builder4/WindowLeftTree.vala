@@ -713,7 +713,7 @@ public class Xcls_WindowLeftTree : Object
 
 
             // my vars (def)
-        public Gtk.Widget highlightWidget;
+        public Gtk.Widget highlightWidget?;
 
         // ctor
         public Xcls_DropTarget6(Xcls_WindowLeftTree _owner )
@@ -723,7 +723,7 @@ public class Xcls_WindowLeftTree : Object
 		Gdk.DragAction.COPY   | Gdk.DragAction.MOVE   );
 
             // my vars (dec)
-            this.highlightWidget = null;
+            this.highlightWidget? = null;
 
             // set gobject values
 

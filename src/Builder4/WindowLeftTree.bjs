@@ -363,7 +363,7 @@
           "new Gtk.DropTarget ( typeof(string) ,",
           "\t\tGdk.DragAction.COPY   | Gdk.DragAction.MOVE   )"
          ],
-         "Gtk.Widget highlightWidget" : "null",
+         "Gtk.Widget highlightWidget?" : "null",
          "listeners" : {
           "accept" : [
            "(drop) => {",
