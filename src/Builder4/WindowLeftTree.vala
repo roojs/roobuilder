@@ -1101,6 +1101,7 @@ public class Xcls_WindowLeftTree : Object
              		case "below":
              			GLib.debug("Below - insertAfter"); 		
              			node.parent.insertAfter(dropNode, node);
+             			// select it
              			return true;
              			
              		default:
