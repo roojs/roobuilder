@@ -1019,29 +1019,35 @@ public class Xcls_WindowLeftTree : Object
             	
             	this.addHighlight(null,"");
              
-            
-                GLib.debug("got drop  ");
-            
              
-            	 
-            	GLib.debug("got %s", v.get_string());
              
              	var pos = "";
              	// -- get position..
              	
+             	var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(this.lastDragNode.fqn());
+                   
+                // if there are not items in the tree.. the we have to set isOver to true for anything..
+             
+                if (_this.model.el.n_items < 1) {
+                	// FIXME check valid drop types?
+                	if (drop_on_to.contains("*top")) {
+            			
+            			
+            			this.addHighlight(_this.view.el, "over");
+            		} else {
+            			return false;	
+            		}
+            
+            		return Gdk.DragAction.COPY; // no need to highlight?
+                 
+                }
+            
+            
+            
              	 var row = _this.view.getRowAt(x,y, out pos);
              	if (row < 0) {
-            	 	 return   true; //Gdk.DragAction.COPY;
+            	 	 return   false; //Gdk.DragAction.COPY;
              	 }
-             	var node = (JsRender.Node) _this.model.el.get_object(row);
-            	
-                var isEmpty = false;
-                if (_this.view.el.model.get_n_items() < 1) {
-                    print("got NO children?\n");
-                    isOver = true; //??? 
-                    isEmpty = true;
-                    //pos = Gtk.TreeViewDropPosition.INTO_OR_AFTER;
-                }
             
             	var dropNode = new JsRender.Node(); 
             	dropNode.loadFromJsonString(v.get_string(), 1);
