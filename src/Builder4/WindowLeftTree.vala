@@ -1003,6 +1003,10 @@ public class Xcls_WindowLeftTree : Object
             	this.addHighlight(w, pos); 
                 return Gdk.DragAction.COPY;			
             });
+            this.el.leave.connect( ( ) => {
+            
+            
+            });
             this.el.drop.connect( (v, x, y) => {
             	
             	
