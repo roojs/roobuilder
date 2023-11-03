@@ -978,7 +978,7 @@ public class Xcls_WindowLeftTree : Object
             		this.addHighlight(null, "");	
             	 	return Gdk.DragAction.COPY;
              	}
-             	var node = (JsRender.Node) _this.model.el.get_object(row);
+             	var node = (JsRender.Node) _this.model.el.get_object(row).get_item();
              	if (pos == "above" || pos == "below") {
             		if (node.parent == null) {
             			pos = "center";
