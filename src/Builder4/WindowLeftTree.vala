@@ -112,7 +112,6 @@ public class Xcls_WindowLeftTree : Object
         public Gtk.CssProvider css;
         public int drag_x;
         public int drag_y;
-        public string[] dropList;
         public bool expand;
 
         // ctor
@@ -681,7 +680,7 @@ public class Xcls_WindowLeftTree : Object
                     var xname = data.fqn();
                     GLib.debug ("XNAME  IS %s", xname);
              
-                    _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
+                  //  _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
                     
             GLib.debug ("DROP LIST IS %s",  string.joinv(", ", _this.view.dropList));
                     
