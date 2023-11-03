@@ -1226,7 +1226,7 @@ public class Xcls_WindowLeftTree : Object
         		}
         	}
         	if (w != null) {
-        		GLib.debug("aad drag from new highlight");	
+        		GLib.debug("add drag=%s to widget", %s);	
         		if (!w.has_css_class("drag-" + hl)) {
         			w.add_css_class("drag-" + hl);
         		}

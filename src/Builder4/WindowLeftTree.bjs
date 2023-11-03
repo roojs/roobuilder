@@ -861,7 +861,7 @@
           "\t\t}",
           "\t}",
           "\tif (w != null) {",
-          "\t\tGLib.debug(\"aad drag from new highlight\");\t",
+          "\t\tGLib.debug(\"add drag=%s to widget\", %s);\t",
           "\t\tif (!w.has_css_class(\"drag-\" + hl)) {",
           "\t\t\tw.add_css_class(\"drag-\" + hl);",
           "\t\t}",
