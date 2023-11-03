@@ -1294,12 +1294,22 @@ public class Xcls_WindowLeftTree : Object
         }
 
         // user defined functions
-        public void addHighlight (Gtk.Widget w) {
+        public void addHighlight (Gtk.Widget w, string hl) {
         	if (_this.highlightWidget != null) {
-        	
+        		if (!w.has_css_class("drag-over")) {
+        			 w.remove_css_class("drag-over");
+        		}
+        		if (!w.has_css_class("drag-over")) {
+        			 w.remove_css_class("drag-over");
+        		}
+        		if (!w.has_css_class("drag-over")) {
+        			 w.remove_css_class("drag-over");
+        		}
         	}
         	
-        
+        	if (!w.has_css_class(hl)) {
+        		w.add_css_class(hl);
+        	}
         }
     }
 
