@@ -1093,10 +1093,13 @@ public class Xcls_WindowLeftTree : Object
             	 		return true;
             	 		
              		case "above":
+             			Glib.debug("Above - insertBefore");
+             		
              			node.parent.insertBefore(dropNode, node);
              			return true;
              			
              		case "below":
+             			Glib.debug("Below - insertAfter"); 		
              			node.parent.insertAfter(dropNode, node);
              			return true;
              			
