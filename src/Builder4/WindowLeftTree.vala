@@ -971,7 +971,7 @@ public class Xcls_WindowLeftTree : Object
              	var row = _this.view.getRowAt(x,y, out pos);
              	 GLib.debug("check row %d", row);
              	if (row < 0) {
-             	 GLib.debug("check row %d", row);
+             		 GLib.debug("check row %d", row);
             	 	 return Gdk.DragAction.COPY;
              	 }
              	var node = (JsRender.Node) _this.model.el.get_object(row);
@@ -979,18 +979,9 @@ public class Xcls_WindowLeftTree : Object
                    
                     // _this.view.highlightDropPath("", (Gtk.TreeViewDropPosition)0);
             	var w = _this.view.getWidgetAt(x,y);
-            	 
-            	if (!w.has_css_class("drag-over")) {
-            	 GLib.debug("add drag over");
-            		w.add_css_class("drag-over");
-            	}
-            		 	 
-            
-                //}
-                
-                //var td_ar = targetData.split("|");
-                     
-               //_this.view.highlightDropPath(td_ar[0], (Gtk.TreeViewDropPosition)int.parse(td_ar[1]));
+            	this.addHighlight(w, pos); 
+            	
+            	
                 return Gdk.DragAction.COPY;
               
              /*
