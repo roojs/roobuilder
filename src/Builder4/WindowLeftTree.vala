@@ -336,11 +336,11 @@ public class Xcls_WindowLeftTree : Object
         
         		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
         		    	if (y > (header_height + alloc.y + (alloc.height * 0.8))) {
-        		    		pos = "above";
+        		    		pos = "below";
         	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {
         	    			pos = "over";
             			} else {
-            				pos = "below";
+            				pos = "above";
         				}
         		    	GLib.debug("getRowAt return : %d, %s", line_no, pos);
         			    return line_no;
