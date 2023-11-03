@@ -464,8 +464,8 @@ public class Xcls_WindowLeftTree : Object
             	    _this.main_window.windowstate.showAddObject(_this.view.el);
             	    return ;
                 }
-                
-                var row = _this.view.getRowAt(x,y);
+                string pos;
+                var row = _this.view.getRowAt(x,y, out pos );
                 if (row < 0) {
             	    return;
                 }
