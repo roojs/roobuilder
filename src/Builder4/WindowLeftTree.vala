@@ -945,7 +945,7 @@ public class Xcls_WindowLeftTree : Object
             	 
             	if (this.lastDragString != v.get_string() || this.lastDragNode == null) {
             		// still dragging same node
-            		node = this.lastDragNode;
+             
             		this.lastDragNode = new JsRender.Node(); 
             		this.lastDragNode.loadFromJsonString(v.get_string(), 1);
             	}
