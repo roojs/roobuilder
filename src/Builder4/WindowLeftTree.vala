@@ -1308,8 +1308,8 @@ public class Xcls_WindowLeftTree : Object
         		}
         	}
         	
-        	if (!w.has_css_class(hl)) {
-        		w.add_css_class(hl);
+        	if (!w.has_css_class("drag-" + hl)) {
+        		w.add_css_class("drag-" + hl);
         	}
         	_this.highlightWidget = w;
         }

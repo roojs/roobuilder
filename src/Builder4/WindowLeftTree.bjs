@@ -954,8 +954,8 @@
           "\t\t}",
           "\t}",
           "\t",
-          "\tif (!w.has_css_class(hl)) {",
-          "\t\tw.add_css_class(hl);",
+          "\tif (!w.has_css_class(\"drag-\" + hl)) {",
+          "\t\tw.add_css_class(\"drag-\" + hl);",
           "\t}",
           "\t_this.highlightWidget = w;",
           "}"
