@@ -34,7 +34,10 @@ namespace Palete {
             aconstruct(project);
             this.name = "Roo";
 			this.top_classes =  new Gee.ArrayList<string>();
+
+			
 			this.load(); // ? initialize the roodata?
+
         }
 
 		Gee.HashMap<string,GirObject> propsFromJSONArray(string type, Json.Array ar, GirObject cls)
@@ -592,6 +595,9 @@ namespace Palete {
         	
         	//return this.original_getChildList(  in_rval);
     	}
+    	
+		Gee.HashMap<string,string[]> dropCache;
+    	
 		public override string[] getDropList(string rval)
 		{
 			// we might be dragging  Roo.bootstrap.layout.Region:center
