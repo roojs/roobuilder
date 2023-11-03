@@ -991,7 +991,7 @@ public class Xcls_WindowLeftTree : Object
              		
              	}
              	if (pos == "center") {
-            	 	if (!drop_on_to.contains(node.fqn)) {
+            	 	if (!drop_on_to.contains(node.fqn())) {
             			this.addHighlight(null, ""); 
             			return Gdk.DragAction.COPY;		
             		}
