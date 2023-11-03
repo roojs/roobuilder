@@ -1220,7 +1220,7 @@ namespace Palete {
         {
         	return this.original_getChildList(  in_rval);
     	}
-		public override string[] getDropList(string rval)
+		public override Gee.ArrayList<string> getDropList(string rval)
 		{
 			return this.default_getDropList(rval);
 		}	
