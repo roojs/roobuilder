@@ -557,12 +557,11 @@
           "drop" : [
            "(v, x, y) => {",
            "\t",
-           "\t",
+           "\tthis.addHighlight(null,\"\");",
            " ",
            "",
            "    GLib.debug(\"got drop  \");",
            "",
-           "  var isOver = false;",
            " ",
            "\t ",
            "\tGLib.debug(\"got %s\", v.get_string());",

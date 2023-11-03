@@ -1017,12 +1017,11 @@ public class Xcls_WindowLeftTree : Object
             });
             this.el.drop.connect( (v, x, y) => {
             	
-            	
+            	this.addHighlight(null,"");
              
             
                 GLib.debug("got drop  ");
             
-              var isOver = false;
              
             	 
             	GLib.debug("got %s", v.get_string());
