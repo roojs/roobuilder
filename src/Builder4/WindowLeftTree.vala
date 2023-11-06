@@ -450,7 +450,7 @@ public class Xcls_WindowLeftTree : Object
              
                 //console.log("button press?");
                 
-                this.el.set_state(Gtk.EventSequenceState.CLAIMED)
+                this.el.set_state(Gtk.EventSequenceState.CLAIMED);
             
             
                 
