@@ -113,7 +113,7 @@ public class JsRender.Node : Object {
 	public Gee.ArrayList<int> node_lines; 
 	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
 	
-	public int updated_ctr = 0;
+	public int updated_count = 0;
 
 	public Node()
 	{
@@ -397,7 +397,7 @@ public class JsRender.Node : Object {
 		
 		  
 		this.props.set(prop.to_index_key(), prop);
-		this.updated_cnt++;
+		this.updated_count++;
 	}
 	
 	/*
