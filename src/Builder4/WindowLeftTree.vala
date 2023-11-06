@@ -301,6 +301,7 @@ public class Xcls_WindowLeftTree : Object
             		 
             	}
             	*/
+            	GLib.debug("getRowAt");
                 var  child = this.el.get_first_child(); 
             	Gtk.Allocation alloc = { 0, 0, 0, 0 };
             	var line_no = -1; 
@@ -383,7 +384,7 @@ public class Xcls_WindowLeftTree : Object
             	var curr_y = 0;
             	var header_height  = 0;
             	while (child != null) {
-        			GLib.debug("Got %s", child.get_type().name());
+        			//GLib.debug("Got %s", child.get_type().name());
             	    if (reading_header) {
         			   
         			    if (child.get_type().name() == "GtkListItemWidget") {
@@ -450,7 +451,7 @@ public class Xcls_WindowLeftTree : Object
              
                 //console.log("button press?");
                 
-                this.el.set_state(Gtk.EventSequenceState.CLAIMED);
+                //this.el.set_state(Gtk.EventSequenceState.CLAIMED);
             
             
                 
@@ -459,18 +460,20 @@ public class Xcls_WindowLeftTree : Object
                 
                 _this.view.lastEventSource = "tree";
                 if (! _this.before_node_change() ) {
-                
+                GLib.debug("before_node_change return false");
                    return ;
                 }
                 
             	 // nothing there -show dialog
                 if (_this.model.el.get_n_items() < 1) {
             	    _this.main_window.windowstate.showAddObject(_this.view.el);
+                    GLib.debug("no items");
             	    return ;
                 }
                 string pos;
                 var row = _this.view.getRowAt(x,y, out pos );
                 if (row < 0) {
+            	    GLib.debug("no row selected items");
             	    return;
                 }
                 
@@ -483,7 +486,7 @@ public class Xcls_WindowLeftTree : Object
                  
                  
                 if (_this.view.getColAt(x,y) > 0 ) {
-                
+            	    GLib.debug("add colum clicked.");
                     var fqn = node.fqn();
                 	var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
               		if (cn.length < 1) {
@@ -504,66 +507,7 @@ public class Xcls_WindowLeftTree : Object
             		 
             		GLib.debug("LEFT TREE Cursor Changed");
             	 	
-            		
-            		
-            		//if (!this.button_is_pressed && !this.key_is_pressed) {
-            			// then event was started by some other action
-            			// which should manually trigger all the events..
-            		//	print("SKIPPING select - no button or key pressed\n");
-            		//	return;
-            		//}
-            
-            
-            		 if (_this.view.blockChanges) { // probably not needed.. 
-            			GLib.debug("SKIPPING select - blockchanges set..");     
-            		   return  ;
-            		 }
-            
-            		  if (!_this.before_node_change( ) ) {
-            			 _this.view.blockChanges = true;
-            			 _this.selmodel.el.unselect_all();
-            			 _this.view.blockChanges = false;
-            			 
-            			 return;
-            		 }
-            		 if (_this.main_window.windowstate.file == null) {
-            	   		GLib.debug("SKIPPING select windowstate file is not set...");     
-            			return;
-            		 } 
-            		 
-            		 //var render = this.get('/LeftTree').getRenderer();                
-            		GLib.debug("LEFT TREE -> view -> selection changed called");
-            		
-            		
-            		// -- it appears that the selection is not updated.
-            		 // select the node...
-            		 _this.selmodel.el.set_selected(row);
-             
-            		 GLib.debug("LEFT TREE -> view -> selection changed TIMEOUT CALLED");
-            
-            	    var snode = _this.selmodel.getSelectedNode();
-            	    if (snode == null) {
-            
-            	         GLib.debug("selected rows < 1");
-            	        //??this.model.load( false);
-            	        _this.node_selected(null, _this.view.lastEventSource);
-            	        
-            	        return false ;
-            	    }
-            	 
-            	    // why dup_?
-            	    
-            
-            	    GLib.debug ("calling left_tree.node_selected");
-            	    _this.node_selected(snode, _this.view.lastEventSource);
-            	   
-            	     
-            	    
-            	     
-            	    // no need to scroll. it's in the view as we clicked on it.
-            	   // _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
-            	    
-            	    return  ;
+            	
               
             		//_this.after_node_change(node);
             
@@ -728,8 +672,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public Gtk.Widget? highlightWidget;
-        public string lastDragString;
         public JsRender.Node? lastDragNode;
+        public string lastDragString;
 
         // ctor
         public Xcls_drop(Xcls_WindowLeftTree _owner )
@@ -741,8 +685,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (dec)
             this.highlightWidget = null;
-            this.lastDragString = "";
             this.lastDragNode = null;
+            this.lastDragString = "";
 
             // set gobject values
 
@@ -1325,6 +1269,71 @@ public class Xcls_WindowLeftTree : Object
             var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.model = child_0.el;
+
+            //listeners
+            this.el.selection_changed.connect( (position, n_items) => {
+            
+            	
+            		
+            		//if (!this.button_is_pressed && !this.key_is_pressed) {
+            			// then event was started by some other action
+            			// which should manually trigger all the events..
+            		//	print("SKIPPING select - no button or key pressed\n");
+            		//	return;
+            		//}
+            
+            
+            		 if (_this.view.blockChanges) { // probably not needed.. 
+            			GLib.debug("SKIPPING select - blockchanges set..");     
+            		   return  ;
+            		 }
+            
+            		  if (!_this.before_node_change( ) ) {
+            			 _this.view.blockChanges = true;
+            			 _this.selmodel.el.unselect_all();
+            			 _this.view.blockChanges = false;
+            			 
+            			 return;
+            		 }
+            		 if (_this.main_window.windowstate.file == null) {
+            	   		GLib.debug("SKIPPING select windowstate file is not set...");     
+            			return;
+            		 } 
+            		 
+            		 //var render = this.get('/LeftTree').getRenderer();                
+            		GLib.debug("LEFT TREE -> view -> selection changed called");
+            		
+            		
+            		// -- it appears that the selection is not updated.
+            		 // select the node...
+            		 //_this.selmodel.el.set_selected(row);
+             
+            		 GLib.debug("LEFT TREE -> view -> selection changed TIMEOUT CALLED");
+            
+            	    var snode = _this.selmodel.getSelectedNode();
+            	    if (snode == null) {
+            
+            	         GLib.debug("selected rows < 1");
+            	        //??this.model.load( false);
+            	        _this.node_selected(null, _this.view.lastEventSource);
+            	        
+            	        return   ;
+            	    }
+            	 
+            	    // why dup_?
+            	    
+            
+            	    GLib.debug ("calling left_tree.node_selected");
+            	    _this.node_selected(snode, _this.view.lastEventSource);
+            	   
+            	     
+            	    
+            	     
+            	    // no need to scroll. it's in the view as we clicked on it.
+            	   // _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
+            	    
+            	    return  ;
+            });
         }
 
         // user defined functions
@@ -1953,14 +1962,14 @@ public class Xcls_WindowLeftTree : Object
             	hbox.append(icon);
             	hbox.append(lbl);
             	expand.set_child(hbox);
-            	listitem.set_child(expand);
+            	((Gtk.ListItem)listitem).set_child(expand);
             	
             });
             this.el.bind.connect( (listitem) => {
-            	 GLib.debug("listitme is is %s", listitem.get_type().name());
+            	 GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
             	
             	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
-            	var expand = (Gtk.TreeExpander)  listitem.get_child();
+            	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
             	 
             	 
             	var hbox = (Gtk.Box) expand.child;
@@ -1969,12 +1978,13 @@ public class Xcls_WindowLeftTree : Object
             	var img = (Gtk.Image) hbox.get_first_child();
             	var lbl = (Gtk.Label) img.get_next_sibling();
             	
-            	var lr = (Gtk.TreeListRow)listitem.get_item();
+            	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var node = (JsRender.Node) lr.get_item();
             	
                GLib.debug("node is %s", node.get_type().name());
             // was item (1) in old layout
-            	lbl.set_markup(node.nodeTitle());
+            	lbl.use_markup = true;
+            	
              	lbl.set_tooltip_text( node.nodeTip() );
              	  
              	var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
@@ -2002,6 +2012,14 @@ public class Xcls_WindowLeftTree : Object
                 
                 expand.set_hide_expander( !node.hasChildren() );
              	expand.set_list_row(lr);
+             	
+             	 node.bind_property("nodeTitleProp",
+                                lbl, "label",
+                               GLib.BindingFlags.SYNC_CREATE);
+             	node.bind_property("nodeTipProp",
+                                lbl, "tooltip_markup",
+                               GLib.BindingFlags.SYNC_CREATE);
+             	
             });
         }
 
@@ -2058,12 +2076,12 @@ public class Xcls_WindowLeftTree : Object
             	 
             	var icon = new Gtk.Image();
             	 
-            	listitem.set_child(icon);
+            	((Gtk.ListItem)listitem).set_child(icon);
             });
             this.el.bind.connect( (listitem) => {
             
              	var img = (Gtk.Image) ((Gtk.ListItem)listitem).get_child(); 
-             	var lr = (Gtk.TreeListRow)listitem.get_item();
+             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var node = (JsRender.Node) lr.get_item();
             	
               
