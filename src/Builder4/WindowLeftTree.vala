@@ -536,41 +536,40 @@ public class Xcls_WindowLeftTree : Object
             		
             		
             		// -- it appears that the selection is not updated.
-            		  
-            		GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-            			 GLib.debug("LEFT TREE -> view -> selection changed TIMEOUT CALLED");
+            		 // select the node...
+            		 _this.selmodel.el.set_selected(row);
+             
+            		 GLib.debug("LEFT TREE -> view -> selection changed TIMEOUT CALLED");
             
-            			    var snode = _this.selmodel.getSelectedNode();
-            			    if (snode == null) {
+            	    var snode = _this.selmodel.getSelectedNode();
+            	    if (snode == null) {
             
-            			         GLib.debug("selected rows < 1");
-            			        //??this.model.load( false);
-            			        _this.node_selected(null, _this.view.lastEventSource);
-            			        
-            			        return false ;
-            			    }
-            			 
-            			    // why dup_?
-            			    
+            	         GLib.debug("selected rows < 1");
+            	        //??this.model.load( false);
+            	        _this.node_selected(null, _this.view.lastEventSource);
+            	        
+            	        return false ;
+            	    }
+            	 
+            	    // why dup_?
+            	    
             
-            			    GLib.debug ("calling left_tree.node_selected");
-            			    _this.node_selected(snode, _this.view.lastEventSource);
-            			   
-            			     
-            			    
-            			     
-            			    // no need to scroll. it's in the view as we clicked on it.
-            			   // _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
-            			    
-            			    return false;
-            		  });  
+            	    GLib.debug ("calling left_tree.node_selected");
+            	    _this.node_selected(snode, _this.view.lastEventSource);
+            	   
+            	     
+            	    
+            	     
+            	    // no need to scroll. it's in the view as we clicked on it.
+            	   // _this.view.el.scroll_to_cell(new Gtk.TreePath.from_string(_this.model.activePath), null, true, 0.1f,0.0f);
+            	    
+            	    return  ;
+              
             		//_this.after_node_change(node);
             
             	//        _this.model.file.changed(node, "tree");
             	  
             	 
-            		return  ;
-            	
             	
             	 
                  }
