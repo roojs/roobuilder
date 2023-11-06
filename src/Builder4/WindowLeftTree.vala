@@ -640,6 +640,8 @@ public class Xcls_WindowLeftTree : Object
              
             	 	//var widget = _this.view.getWidgetAtRow(_this.selmodel.s.selected);
             	 	var widget = _this.view.getWidgetAtRow(_this.selmodel.el.selected);
+            	 	
+            	 	
                     var paintable = new Gtk.WidgetPaintable(widget);
                     this.el.set_icon(paintable, 0,0);
                             
