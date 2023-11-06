@@ -449,6 +449,11 @@ public class Xcls_WindowLeftTree : Object
             this.el.pressed.connect( (n_press, x, y) => {
              
                 //console.log("button press?");
+                
+                this.el.set_state(Gtk.EventSequenceState.CLAIMED)
+            
+            
+                
                 _this.view.button_is_pressed = true;
                 GLib.debug("BUTTON DOWN");
                 
