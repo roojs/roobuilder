@@ -21,6 +21,7 @@ public class Xcls_LeftProps : Object
     public Xcls_ContextMenu ContextMenu;
 
         // my vars (def)
+    public bool loading;
     public bool allow_edit;
     public signal void show_add_props (string type);
     public Xcls_MainWindow main_window;
@@ -37,6 +38,7 @@ public class Xcls_LeftProps : Object
         this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
         // my vars (dec)
+        this.loading = false;
         this.allow_edit = false;
         this.main_window = null;
 
@@ -188,6 +190,8 @@ public class Xcls_LeftProps : Object
     public void load (JsRender.JsRender file, JsRender.Node? node) 
     {
     	// not sure when to initialize this - we should do it on setting main window really.    
+    	
+    	this.loading = true;
         if (this.view.popover == null) {
      		   this.view.popover = new Xcls_PopoverProperty();
      		   this.view.popover.mainwindow = _this.main_window;
@@ -232,6 +236,9 @@ public class Xcls_LeftProps : Object
              
        }
        GLib.debug("clear selection\n");
+       
+       	this.loading = false;
+       
        // clear selection?
       //this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..
        
@@ -1542,7 +1549,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.setup.connect( (listitem) => {
             	var lbl = new Gtk.Label("");
-             	listitem.set_child(lbl);
+             	((Gtk.ListItem)listitem).set_child(lbl);
              	lbl.justify = Gtk.Justification.LEFT;
              	lbl.xalign = 0;
              	/*lbl.changed.connect(() => {
@@ -1554,7 +1561,7 @@ public class Xcls_LeftProps : Object
                     _this.changed();
             	});
             	*/
-            	listitem.activatable = true;
+            	((Gtk.ListItem)listitem).activatable = true;
             });
             this.el.bind.connect( (listitem) => {
              var lb = (Gtk.Label) ((Gtk.ListItem)listitem).get_child();
@@ -1608,6 +1615,7 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
+        public bool is_setting;
 
         // ctor
         public Xcls_SignalListItemFactory34(Xcls_LeftProps _owner )
@@ -1616,6 +1624,7 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.SignalListItemFactory();
 
             // my vars (dec)
+            this.is_setting = false;
 
             // set gobject values
 
@@ -1626,7 +1635,7 @@ public class Xcls_LeftProps : Object
             	hb.append(lbl);
             	var cb = new Gtk.DropDown(new GLib.ListStore(typeof(string)), null);
             	hb.append(cb);
-            	listitem.set_child(hb);
+            	((Gtk.ListItem)listitem).set_child(hb);
             	 
             	lbl.changed.connect(() => {
             		// notify and save the changed value...
@@ -1634,7 +1643,9 @@ public class Xcls_LeftProps : Object
                      
                     prop.val = lbl.text;
                     //_this.updateIter(iter,prop);
-                    _this.changed();
+                    if (!_this.loading && !this.is_setting) {
+            	        _this.changed();
+                    }
             	});
             	
             	cb.notify["selected"].connect(() => {
@@ -1643,8 +1654,11 @@ public class Xcls_LeftProps : Object
                     var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
                     
                     prop.val = (string) cb.selected_item;
+                    
                     //_this.updateIter(iter,prop);
-                    _this.changed();
+                    if (!_this.loading && !this.is_setting) {
+            	        _this.changed();
+                    }
             		
             	});
             	
@@ -1724,8 +1738,10 @@ public class Xcls_LeftProps : Object
                     }
                                               
                        // see if type is a Enum.
-                       
+                     // triggers a changed event
+                     this.is_setting =  true;  
                      lbl.set_text(prop.val);
+                     this.is_setting = false;
             		lbl.show();
             		cb.hide();
             	
