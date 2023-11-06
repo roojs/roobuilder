@@ -397,7 +397,7 @@ public class JsRender.Node : Object {
 		
 		  
 		this.props.set(prop.to_index_key(), prop);
-		this.updated_cnt++;.
+		this.updated_cnt++;
 	}
 	
 	/*
