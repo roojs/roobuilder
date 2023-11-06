@@ -1951,7 +1951,7 @@ public class Xcls_WindowLeftTree : Object
             	var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
             	var icon = new Gtk.Image();
             	var lbl = new Gtk.Label("");
-            	
+            	lbl.use_markup = true;
             	
             	
              	lbl.justify = Gtk.Justification.LEFT;
@@ -1983,9 +1983,9 @@ public class Xcls_WindowLeftTree : Object
             	
                GLib.debug("node is %s", node.get_type().name());
             // was item (1) in old layout
-            	lbl.use_markup = true;
+            
             	
-             	lbl.set_tooltip_text( node.nodeTip() );
+             
              	  
              	var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
                 var clsname = node.fqn();
@@ -2019,6 +2019,7 @@ public class Xcls_WindowLeftTree : Object
              	node.bind_property("nodeTipProp",
                                 lbl, "tooltip_markup",
                                GLib.BindingFlags.SYNC_CREATE);
+             	// bind image...
              	
             });
         }
