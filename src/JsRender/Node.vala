@@ -89,7 +89,7 @@
 
 
 
-public class JsRender.Node : Object {
+public class JsRender.Node : GLib.Object {
 	
 
 	public static int uid_count = 0;
@@ -113,7 +113,17 @@ public class JsRender.Node : Object {
 	public Gee.ArrayList<int> node_lines; 
 	public Gee.HashMap<int,Node> node_lines_map; // store of l:xxx or p:....
 	
-	public int updated_count = 0;
+	private int _updated_count = 0;
+	public int updated_count { 
+		get {
+			return this._updated_count; 
+		}
+		set  {
+			this.nodeTitleProp = ""; // ?? should trigger set?
+			this. _updated_count = value;
+		}
+ 
+	} // changes to this trigger updates on the tree..
 
 	public Node()
 	{
@@ -859,6 +869,28 @@ public class JsRender.Node : Object {
 		return ret;
 
 	}
+	
+	public string nodeTitleProp { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			 return  this.nodeTitle();
+		} 
+	}
+	
+	
+	
+	public string nodeTipProp { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			 return  this.nodeTitle(true);
+		} 
+	}
+	
+	
 	public string nodeTitle(bool for_tip = false) 
 	{
   		string[] txt = {};
