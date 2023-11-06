@@ -755,6 +755,16 @@ public class JsRender.Node : GLib.Object {
 		//o.set_string_member(key,val);
 		
 	}
+	
+	
+	public string nodeTipProp { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			 return  this.nodeTip();
+		} 
+	}
 	// fixme this needs to better handle 'user defined types etc..
 	public string nodeTip()
 	{
@@ -881,14 +891,7 @@ public class JsRender.Node : GLib.Object {
 	
 	
 	
-	public string nodeTipProp { 
-		set {
-			// NOOp ??? should 
-		}
-		owned get {
-			 return  this.nodeTitle(true);
-		} 
-	}
+	
 	
 	
 	public string nodeTitle(bool for_tip = false) 
