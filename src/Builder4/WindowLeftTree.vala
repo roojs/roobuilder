@@ -138,18 +138,21 @@ public class Xcls_WindowLeftTree : Object
             var child_1 = new Xcls_DragSource5( _this );
             child_1.ref();
             this.el.add_controller(  child_1.el );
-            var child_2 = new Xcls_drop( _this );
+            var child_2 = new Xcls_EventControllerKey6( _this );
             child_2.ref();
             this.el.add_controller(  child_2.el );
-            var child_3 = new Xcls_selmodel( _this );
+            var child_3 = new Xcls_drop( _this );
             child_3.ref();
-            this.el.model = child_3.el;
-            var child_4 = new Xcls_maincol( _this );
+            this.el.add_controller(  child_3.el );
+            var child_4 = new Xcls_selmodel( _this );
             child_4.ref();
-            this.el.append_column (  child_4.el  );
-            var child_5 = new Xcls_ColumnViewColumn11( _this );
+            this.el.model = child_4.el;
+            var child_5 = new Xcls_maincol( _this );
             child_5.ref();
             this.el.append_column (  child_5.el  );
+            var child_6 = new Xcls_ColumnViewColumn12( _this );
+            child_6.ref();
+            this.el.append_column (  child_6.el  );
 
             // init method
 
@@ -236,6 +239,7 @@ public class Xcls_WindowLeftTree : Object
             		 
             	}
             	*/
+        		GLib.debug("Get Widget At Row %d", (int)row);
                 var  child = this.el.get_first_child(); 
             	var line_no = -1; 
             	var reading_header = true;
@@ -243,9 +247,8 @@ public class Xcls_WindowLeftTree : Object
             	while (child != null) {
         			GLib.debug("Got %s", child.get_type().name());
             	    if (reading_header) {
+        			 
         			   
-        			    if (child.get_type().name() == "GtkListItemWidget") {
-        			    }
         				if (child.get_type().name() != "GtkColumnListView") {
         					child = child.get_next_sibling();
         					continue;
@@ -253,16 +256,18 @@ public class Xcls_WindowLeftTree : Object
         				child = child.get_first_child(); 
         				reading_header = false;
         	        }
-        		    if (child.get_type().name() != "GtkListItemWidget") {
+        		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
             		    child = child.get_next_sibling();
             		    continue;
         		    }
         		    line_no++;
         			if (line_no == row) {
+        				GLib.debug("Returning widget %s", child.get_type().name());
         			    return (Gtk.Widget)child;
         		    }
         	        child = child.get_next_sibling(); 
             	}
+        		GLib.debug("Rturning null");
                 return null;
         
          }
@@ -314,7 +319,7 @@ public class Xcls_WindowLeftTree : Object
         			//GLib.debug("Got %s", child.get_type().name());
             	    if (reading_header) {
         			   
-        			    if (child.get_type().name() == "GtkListItemWidget") {
+        			    if (child.get_type().name() == "GtkColumnViewRowWidget") {
         			        child.get_allocation(out alloc);
         			    }
         				if (child.get_type().name() != "GtkColumnListView") {
@@ -326,7 +331,7 @@ public class Xcls_WindowLeftTree : Object
         				curr_y = header_height; 
         				reading_header = false;
         	        }
-        		    if (child.get_type().name() != "GtkListItemWidget") {
+        		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
             		    child = child.get_next_sibling();
             		    continue;
         		    }
@@ -387,7 +392,7 @@ public class Xcls_WindowLeftTree : Object
         			//GLib.debug("Got %s", child.get_type().name());
             	    if (reading_header) {
         			   
-        			    if (child.get_type().name() == "GtkListItemWidget") {
+        		        if (child.get_type().name() == "GtkColumnViewRowWidget") {
         			        child.get_allocation(out alloc);
         			    }
         				if (child.get_type().name() != "GtkColumnListView") {
@@ -399,7 +404,7 @@ public class Xcls_WindowLeftTree : Object
         				curr_y = header_height; 
         				reading_header = false;
         	        }
-        		    if (child.get_type().name() != "GtkListItemWidget") {
+        		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
             		    child = child.get_next_sibling();
             		    continue;
         		    }
@@ -639,6 +644,7 @@ public class Xcls_WindowLeftTree : Object
                 // by default returns the path..
              
             	 	//var widget = _this.view.getWidgetAtRow(_this.selmodel.s.selected);
+            
             	 	var widget = _this.view.getWidgetAtRow(_this.selmodel.el.selected);
             	 	
             	 	
@@ -659,6 +665,42 @@ public class Xcls_WindowLeftTree : Object
             //        this.targetData = "";
                 //    _this.view.highlightDropPath("",0);
             //        return true;
+            
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_EventControllerKey6 : Object
+    {
+        public Gtk.EventControllerKey el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_EventControllerKey6(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.EventControllerKey();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.key_pressed.connect( (keyval, keycode, state) => {
+            
+             
+            
+            	if (keyval != Gdk.Key.Delete && keyval != Gdk.Key.BackSpace)  {
+            		return true;
+            	}
+            
+            	_this.model.deleteSelected();
+            	return true;
             
             });
         }
@@ -1586,20 +1628,18 @@ public class Xcls_WindowLeftTree : Object
         
         
         	
-          var s = (Gtk.SingleSelection) _this.view.el.model;
-        	if (s.n_items < 1) {
-        		return  ;
-        		//data.set_text("",0);     
-        		// print("return empty string - no selection..");
-        		//return;
-        	}
+        	var node = _this.selmodel.getSelectedNode();
         	
-        	
-             var node = (JsRender.Node)s.selected_item;
-            s.unselect_all();
+        
+             if (node == null) {
+             	GLib.debug("delete Selected - no node slected?");
+        	     return;
+             }
+            _this.selmodel.el.unselect_all();
             
             node.remove();
-            
+         	GLib.debug("delete Selected - done");
+            _this.changed();
         /*    
             print("DELETE SELECTED?");
             //_this.view.blockChanges = true;
@@ -1918,14 +1958,14 @@ public class Xcls_WindowLeftTree : Object
             // set gobject values
             this.el.id = "maincol";
             this.el.expand = true;
-            var child_0 = new Xcls_SignalListItemFactory10( _this );
+            var child_0 = new Xcls_SignalListItemFactory11( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory10 : Object
+    public class Xcls_SignalListItemFactory11 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_WindowLeftTree  _this;
@@ -1934,7 +1974,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory10(Xcls_WindowLeftTree _owner )
+        public Xcls_SignalListItemFactory11(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -2030,7 +2070,7 @@ public class Xcls_WindowLeftTree : Object
     }
 
 
-    public class Xcls_ColumnViewColumn11 : Object
+    public class Xcls_ColumnViewColumn12 : Object
     {
         public Gtk.ColumnViewColumn el;
         private Xcls_WindowLeftTree  _this;
@@ -2039,7 +2079,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnViewColumn11(Xcls_WindowLeftTree _owner )
+        public Xcls_ColumnViewColumn12(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.ColumnViewColumn( "Add", null );
@@ -2048,14 +2088,14 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.fixed_width = 25;
-            var child_0 = new Xcls_SignalListItemFactory12( _this );
+            var child_0 = new Xcls_SignalListItemFactory13( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory12 : Object
+    public class Xcls_SignalListItemFactory13 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_WindowLeftTree  _this;
@@ -2064,7 +2104,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory12(Xcls_WindowLeftTree _owner )
+        public Xcls_SignalListItemFactory13(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -2127,14 +2167,14 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box14( _this );
+            var child_0 = new Xcls_Box15( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box14 : Object
+    public class Xcls_Box15 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowLeftTree  _this;
@@ -2143,7 +2183,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box14(Xcls_WindowLeftTree _owner )
+        public Xcls_Box15(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -2151,20 +2191,20 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button15( _this );
+            var child_0 = new Xcls_Button16( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button16( _this );
+            var child_1 = new Xcls_Button17( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button17( _this );
+            var child_2 = new Xcls_Button18( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button15 : Object
+    public class Xcls_Button16 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -2173,7 +2213,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button15(Xcls_WindowLeftTree _owner )
+        public Xcls_Button16(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -2196,7 +2236,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_Button16 : Object
+    public class Xcls_Button17 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -2205,7 +2245,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button16(Xcls_WindowLeftTree _owner )
+        public Xcls_Button17(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -2231,7 +2271,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_Button17 : Object
+    public class Xcls_Button18 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -2240,7 +2280,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button17(Xcls_WindowLeftTree _owner )
+        public Xcls_Button18(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
