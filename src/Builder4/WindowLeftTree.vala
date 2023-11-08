@@ -283,6 +283,11 @@ public class Xcls_WindowLeftTree : Object
             	var col = 0;
             	while (child != null) {
         			GLib.debug("Got %s", child.get_type().name());
+        			
+        			if (child.get_type().name() == "GtkColumnViewRowWidget") {
+        				child = child.get_first_child();
+        				continue;
+        			}
         			child.get_allocation(out alloc);
         			if (x <  (alloc.width + alloc.x)) {
         				return col;
@@ -471,7 +476,7 @@ public class Xcls_WindowLeftTree : Object
                 
             	 // nothing there -show dialog
                 if (_this.model.el.get_n_items() < 1) {
-            	    _this.main_window.windowstate.showAddObject(_this.view.el);
+            	    _this.main_window.windowstate.showAddObject(_this.view.el, null);
                     GLib.debug("no items");
             	    return ;
                 }
@@ -482,7 +487,7 @@ public class Xcls_WindowLeftTree : Object
             	    return;
                 }
                 
-                var node = (JsRender.Node) _this.model.el.get_item(row);
+                var node =   _this.selmodel.getNodeAt(row);
                 if (node == null) {
                 	GLib.warning("No node found at row %d", row);
                 	return;
@@ -501,7 +506,7 @@ public class Xcls_WindowLeftTree : Object
             		_this.main_window.windowstate.leftTreeBeforeChange();
             		//_this.view.el.get_selection().select_path(res);
             		GLib.debug("Button Pressed - start show window");
-            		_this.main_window.windowstate.showAddObject(_this.view.el);
+            		_this.main_window.windowstate.showAddObject(_this.view.el, node);
             		GLib.debug("Button Pressed - finsihed show window");
                  	return ;
             	}
@@ -1389,6 +1394,24 @@ public class Xcls_WindowLeftTree : Object
            return (JsRender.Node)tr.get_item();
         	 
         }
+        public JsRender.Node getNodeAt (uint row) {
+        
+           var tr = (Gtk.TreeListRow)this.el.get_item(row);
+           
+           var a = tr.get_item();;   
+           GLib.debug("get_item (2) = %s", a.get_type().name());
+           /*
+           var a = this.el.get_item(row);
+           var b = this.el.get_object(row);
+           GLib.debug("get_item = %s, get_object = %s", 
+           		a.get_type().name(),
+           		b.get_type().name()
+        	);
+           	*/	
+           
+           return (JsRender.Node)tr.get_item();
+        	 
+        }
     }
     public class Xcls_model : Object
     {
@@ -1524,7 +1547,7 @@ public class Xcls_WindowLeftTree : Object
             }
             // if it's still null?
             if (f.tree == null) {
-        		_this.main_window.windowstate.showAddObject(_this.view.el);
+        		_this.main_window.windowstate.showAddObject(_this.view.el, null);
             
                 return;
             }
