@@ -198,36 +198,6 @@ public class Xcls_WindowLeftTree : Object
         }
 
         // user defined functions
-        public void a_highlightDropPath ( string treepath, Gtk.TreeViewDropPosition pos) {
-        
-        	// highlighting for drag/drop
-        /*
-        
-        	if (treepath.length > 0) {
-        
-        		var tp = new  Gtk.TreePath.from_string( treepath );
-        		GLib.debug("set drag dest row %s, %i", treepath, (int) pos);
-        
-        		this.el.set_drag_dest_row( tp , pos);
-        
-        		GLib.debug("Done set drag dest row");
-        		return;
-        	} 
-        
-        	this.el.set_drag_dest_row(null, Gtk.TreeViewDropPosition.INTO_OR_AFTER);
-        
-          */           
-        }
-        public void a_selectNode (string treepath_str, string source) {
-        	/*
-        	this.lastEventSource = source;
-            //this.selection.select_path(new  Gtk.TreePath.from_string( treepath_str));
-             var tp = new Gtk.TreePath.from_string(treepath_str);
-             
-             this.el.set_cursor(tp, null, false);  
-             this.el.scroll_to_cell(tp, null, false, 0,0);
-             */
-        }
         public Gtk.Widget getWidgetAtRow (uint row) {
         /*
             	
@@ -366,16 +336,6 @@ public class Xcls_WindowLeftTree : Object
                 return -1;
         
          }
-        public void a_setCursor (string treepath, string sourceEvent)   {
-        	/*
-        	this.lastEventSource = sourceEvent;
-        	//this.blockChanges = true; << block changes prevents loading of 'node data' and firing of node_selected..
-            this.el.set_cursor(new Gtk.TreePath.from_string(treepath), null, false); 
-            // fire node_selected..
-            //this.blockChanges = false;
-        	this.lastEventSource = "";
-        	*/
-        }
         public Gtk.Widget? getWidgetAt (double x,  double y) {
         /*
             	
