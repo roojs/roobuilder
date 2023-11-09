@@ -803,6 +803,8 @@
              "\tvar hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
              "\tvar lbl  = new Gtk.EditableLabel(\"\");",
              "\thb.append(lbl);",
+             "\tlbl  = new Gtk.Label(\"\");",
+             "\thb.append(lbl);",
              "\tvar cb = new Gtk.DropDown(new GLib.ListStore(typeof(string)), null);",
              "\thb.append(cb);",
              "\t((Gtk.ListItem)listitem).set_child(hb);",
