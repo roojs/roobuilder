@@ -1714,7 +1714,7 @@ public class Xcls_LeftProps : Object
                     // others... - fill in options for true/false?
                        // GLib.debug (ktype.up());
                     if (has_opts) {
-                           lbl.hide();
+                           
                            cb.show();
                             model.remove_all();
                             var sel = -1;
@@ -1731,10 +1731,10 @@ public class Xcls_LeftProps : Object
                        // see if type is a Enum.
                      // triggers a changed event
                      this.is_setting =  true;  
-                     lbl.set_text(prop.val);
+                     elbl.set_text(prop.val);
                      this.is_setting = false;
-            		lbl.show();
-            		cb.hide();
+            		elbl.show();
+            		 
             	
             	
             	
