@@ -1608,7 +1608,7 @@ public class Xcls_LeftProps : Object
             	 
             	elbl.changed.connect(() => {
             		// notify and save the changed value...
-            	 	var lr = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+            	 	var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
             		 
             	
                      
@@ -1629,10 +1629,8 @@ public class Xcls_LeftProps : Object
             		// dropdown selection changed.
             		
             		
-            		
-                    var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            		var prop = (JsRender.NodeProp) lr.get_item();
-            	
+            		var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+                     
                     prop.val = (string) cb.selected_item;
                     
                     //_this.updateIter(iter,prop);
@@ -1647,8 +1645,7 @@ public class Xcls_LeftProps : Object
             	var gc = new Gtk.GestureClick();
             	lbl.add_controller(gc);
             	gc.pressed.connect(() => {
-            	 	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            		var prop = (JsRender.NodeProp) lr.get_item();
+            	 	var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
             	
             	    _this.show_editor(_this.file, prop.parent, prop);
             	});
