@@ -1641,26 +1641,12 @@ public class Xcls_LeftProps : Object
             		
             	});
             	var gc = new Gtk.GestureClick();
-            		lbl.add_controler(gc);
-            		gc.pressed.connect(() {
-            		 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
-            		    this.show_editor(_this.file, prop.node, prop);
-            		});
-            	/*
-                	//lbl.connect
-                    GLib.debug("Call show editor\n");
-                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                    	//
-                        //this.view.el.get_selection().select_path(path);
-                        
-                        this.show_editor(file, node, prop);
-                        
-                        return false;
-                    });
-                   
-                    
-                    return false;
-                    */
+            	lbl.add_controler(gc);
+            	gc.pressed.connect(() => {
+            	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
+            	    this.show_editor(_this.file, prop.node, prop);
+            	});
+            	  
             	
             	
             });
