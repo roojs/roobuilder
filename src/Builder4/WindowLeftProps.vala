@@ -187,47 +187,6 @@ public class Xcls_LeftProps : Object
     public void reload () {
     	this.load(this.file, this.node);
     }
-    public void load (JsRender.JsRender file, JsRender.Node? node) 
-    {
-    	// not sure when to initialize this - we should do it on setting main window really.    
-    	
-    	this.loading = true;
-        if (this.view.popover == null) {
-     		   this.view.popover = new Xcls_PopoverProperty();
-     		   this.view.popover.mainwindow = _this.main_window;
-    	}
-        
-        
-        
-        
-        GLib.debug("load leftprops\n");
-    
-        this.node = node;
-        this.file = file;
-        
-     
-        this.model.el.remove_all();
-                  
-        //this.get('/RightEditor').el.hide();
-        if (node ==null) {
-            return ;
-        }
-        node.loadProps(this.model.el); 
-        
-        
-       //GLib.debug("clear selection\n");
-       
-       	this.loading = false;
-       
-       // clear selection?
-      //this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..
-       
-       // this.view.el.get_selection().unselect_all();
-       
-      // _this.keycol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
-      // _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
-       
-    }
     public void a_addProp (JsRender.NodeProp prop) {
           // info includes key, val, skel, etype..
           //console.dump(info);
@@ -260,6 +219,50 @@ public class Xcls_LeftProps : Object
      
         
                   
+    }
+    public void load (JsRender.JsRender file, JsRender.Node? node) 
+    {
+    	// not sure when to initialize this - we should do it on setting main window really.    
+    	
+    	this.loading = true;
+        if (this.view.popover == null) {
+     		   this.view.popover = new Xcls_PopoverProperty();
+     		   this.view.popover.mainwindow = _this.main_window;
+    	}
+        
+        
+        if (this.node != null) {
+        	this.node.dupeProps(); // ensures removeall will not do somethign silly
+        	
+        }
+        
+        GLib.debug("load leftprops\n");
+    
+        this.node = node;
+        this.file = file;
+        
+     
+        this.model.el.remove_all();
+                  
+        //this.get('/RightEditor').el.hide();
+        if (node ==null) {
+            return ;
+        }
+        node.loadProps(this.model.el); 
+        
+        
+       //GLib.debug("clear selection\n");
+       
+       	this.loading = false;
+       
+       // clear selection?
+      //this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..
+       
+       // this.view.el.get_selection().unselect_all();
+       
+      // _this.keycol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
+      // _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
+       
     }
     public class Xcls_Box2 : Object
     {
