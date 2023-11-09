@@ -1638,6 +1638,23 @@ public class Xcls_LeftProps : Object
             		
             	});
             	
+            	/*
+                	//lbl.connect
+                    GLib.debug("Call show editor\n");
+                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
+                    	//
+                        //this.view.el.get_selection().select_path(path);
+                        
+                        this.show_editor(file, node, prop);
+                        
+                        return false;
+                    });
+                   
+                    
+                    return false;
+                    */
+            	
+            	
             });
             this.el.bind.connect( (listitem) => {
             	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
