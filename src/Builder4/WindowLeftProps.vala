@@ -1656,7 +1656,7 @@ public class Xcls_LeftProps : Object
             	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
              
             	
-             
+            	 this.is_setting = true;
             	
             	
             	var elbl = (Gtk.EditableLabel)bx.get_first_child();
@@ -1710,6 +1710,7 @@ public class Xcls_LeftProps : Object
                                 lbl, "label",
                                GLib.BindingFlags.SYNC_CREATE);
                     lbl.show();
+            		this.is_setting = false;        
                     return;
                 	
                 }
@@ -1733,16 +1734,17 @@ public class Xcls_LeftProps : Object
             		}
             		GLib.debug("Set selected item to %d", sel);
             		cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
+            		this.is_setting = false;        
             		return ;
                 }
                                               
-                       // see if type is a Enum.
-                     // triggers a changed event
-                 this.is_setting =  true;  
-                 elbl.set_text(prop.val);
-                 this.is_setting = false;
-            		elbl.show();
-            		 
+            	// see if type is a Enum.
+            	// triggers a changed event
+            	this.is_setting =  true;  
+            	elbl.set_text(prop.val);
+            	this.is_setting = false;
+            	elbl.show();
+            	this.is_setting = false;        		 
             	
             	
             	
