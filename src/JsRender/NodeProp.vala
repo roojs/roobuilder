@@ -240,7 +240,17 @@ public class JsRender.NodeProp : Object {
 		return this.name;
 	
 	}
-	// how it appears on the property list. -- 
+	// how it appears on the property list. -
+	
+	public string to_display_name_prop { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			 return  this.to_display_name();
+		} 
+	}
+	- 
 	public string to_display_name()
 	{
 		
