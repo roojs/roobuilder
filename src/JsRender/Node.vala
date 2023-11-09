@@ -924,6 +924,17 @@ public class JsRender.Node : GLib.Object {
 		}
 	   
    }
+   // used to replace propstore, so it does not get wiped by editing a node
+   public void dupeprops()
+   {
+   		var oldstore = this.propstore;
+		this.propstore = new GLib.ListStore(typeof(NodeProp));;
+		for(var i =  0; i < oldstore.n_items; i++ ) {
+			var it = (NodeProp) oldstore.get_item(i);
+			this.propstore.append(it);
+		}
+	}
+	
    
    public void remove_prop(NodeProp prop)
 	{
