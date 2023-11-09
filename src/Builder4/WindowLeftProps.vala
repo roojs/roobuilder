@@ -1610,8 +1610,7 @@ public class Xcls_LeftProps : Object
             		// notify and save the changed value...
             	 	var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
             		 
-            	
-                     
+            	 
                     prop.val = elbl.text;
                     //_this.updateIter(iter,prop);
                     // this should happen automatically
@@ -1630,8 +1629,8 @@ public class Xcls_LeftProps : Object
             		
             		
             		var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
-                     
-                    prop.val = (string) cb.selected_item;
+                    var model = (Gtk.StringList)cb.model;
+                    prop.val =   model.get_string(cb.selected);
                     
                     //_this.updateIter(iter,prop);
                     if (!_this.loading && !this.is_setting) {
