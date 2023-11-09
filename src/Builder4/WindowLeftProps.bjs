@@ -674,7 +674,7 @@
              " \t((Gtk.ListItem)listitem).set_child(lbl);",
              " \tlbl.justify = Gtk.Justification.LEFT;",
              " \tlbl.xalign = 0;",
-             " \tlbl.set_markup = true;",
+             " \tlbl.use_markup = true;",
              " \t/*lbl.changed.connect(() => {",
              "\t\t// notify and save the changed value...",
              "\t \t//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());",
