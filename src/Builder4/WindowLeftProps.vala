@@ -1609,14 +1609,13 @@ public class Xcls_LeftProps : Object
                     prop.val = lbl.text;
                     //_this.updateIter(iter,prop);
                     // this should happen automatically
-                    /*
+                    
                     if (!_this.loading && !this.is_setting) {
-                    	GLib.debug("calling changed");
+                    	 GLib.debug("calling changed");
             	        _this.changed();
-            	        _this.node.updated_count++;
-            	        _this.node.notify_property("updated_count");
+            	       
                     }
-                    */
+                    
             	});
             	
             	
@@ -1626,15 +1625,14 @@ public class Xcls_LeftProps : Object
                     var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
                     
                     prop.val = (string) cb.selected_item;
-                    /*
+                    
                     //_this.updateIter(iter,prop);
                     if (!_this.loading && !this.is_setting) {
                     	GLib.debug("calling changed");
             	        _this.changed();
-            	        _this.node.updated_count++;
-            	        _this.node.notify_property("updated_count");
+            	         
                     }
-                    */
+                    
             		
             	});
             	
