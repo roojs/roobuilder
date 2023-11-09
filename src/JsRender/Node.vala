@@ -679,13 +679,16 @@ public class JsRender.Node : GLib.Object {
 			var prop = this.props.get(pk);
 			var i = prop.name.strip();
 			
+			var val = prop.val;
+			val = val == null ? "" : val;
+			
 			switch(prop.ptype) {
 				case PROP: 
 				case RAW: // should they be the same?
 				
 					props += "\n\t<b>" + 
 						GLib.Markup.escape_text(i) +"</b> : " + 
-						GLib.Markup.escape_text(prop.val.split("\n")[0]);
+						GLib.Markup.escape_text(val.split("\n")[0]);
 						
 					break;
 					
@@ -694,20 +697,20 @@ public class JsRender.Node : GLib.Object {
 				case METHOD :
 					funcs += "\n\t<b>" + 
 						GLib.Markup.escape_text(i.substring(1)).strip() +"</b> : " + 
-						GLib.Markup.escape_text(prop.val.split("\n")[0]);
+						GLib.Markup.escape_text(val.split("\n")[0]);
 					break;
 					
 				 
 				case USER : // user defined.
 					uprops += "\n\t<b>" + 
 						GLib.Markup.escape_text(i) +"</b> : " + 
-						GLib.Markup.escape_text(prop.val.split("\n")[0]);
+						GLib.Markup.escape_text(val.split("\n")[0]);
 					break;
 					
 				case SPECIAL : // * prop| args | ctor | init
 					spec += "\n\t<b>" + 
 						GLib.Markup.escape_text(i) +"</b> : " + 
-						GLib.Markup.escape_text(prop.val.split("\n")[0]);
+						GLib.Markup.escape_text(val.split("\n")[0]);
 					break;
 					
 		 		case LISTENER : return  "";  // always raw...
