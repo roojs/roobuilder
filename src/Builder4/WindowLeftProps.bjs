@@ -758,7 +758,7 @@
              "    ",
              "    ",
              "    if (use_textarea) {",
-             "    \tprop.bind_property(\"to_display_name_prop\",",
+             "    \tprop.bind_property(\"val_short\",",
              "                    lbl, \"label\",",
              "                   GLib.BindingFlags.SYNC_CREATE);",
              "        lbl.show();",
