@@ -90,6 +90,7 @@ public class JsRender.NodeProp : Object {
 			if (this.parent != null) {
 				this.parent.updated_count++;
 			}
+			this.val_short = "";
 			this.updated_count++;
 			this._val = value;
 		}
