@@ -1719,7 +1719,7 @@ public class Xcls_LeftProps : Object
             			model.remove_all();
             			var sel = -1;
             			for(var i = 0; i < opts.length; i ++) {
-            				model.append((GLib.Object) opts[i]);
+            				model.append( opts[i]);
             				if (opts[i] == prop.val) {
             					sel = i;
             				}

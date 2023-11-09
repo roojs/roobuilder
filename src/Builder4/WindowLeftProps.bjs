@@ -778,7 +778,7 @@
              "\t\t\tmodel.remove_all();",
              "\t\t\tvar sel = -1;",
              "\t\t\tfor(var i = 0; i < opts.length; i ++) {",
-             "\t\t\t\tmodel.append((GLib.Object) opts[i]);",
+             "\t\t\t\tmodel.append( opts[i]);",
              "\t\t\t\tif (opts[i] == prop.val) {",
              "\t\t\t\t\tsel = i;",
              "\t\t\t\t}",
