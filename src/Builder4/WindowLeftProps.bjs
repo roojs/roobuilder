@@ -759,7 +759,7 @@
              "    ",
              "    if (use_textarea) {",
              "    \tprop.bind_property(\"to_display_name_prop\",",
-             "                    lb, \"label\",",
+             "                    lbl, \"label\",",
              "                   GLib.BindingFlags.SYNC_CREATE);",
              "        lbl.show();",
              "        return;",

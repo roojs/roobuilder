@@ -1700,7 +1700,7 @@ public class Xcls_LeftProps : Object
                 
                 if (use_textarea) {
                 	prop.bind_property("to_display_name_prop",
-                                lb, "label",
+                                lbl, "label",
                                GLib.BindingFlags.SYNC_CREATE);
                     lbl.show();
                     return;
