@@ -853,7 +853,7 @@
              "\t\t",
              "\t});",
              "\tvar gc = new Gtk.GestureClick();",
-             "\tlbl.add_controler(gc);",
+             "\tlbl.add_controller(gc);",
              "\tgc.pressed.connect(() => {",
              "\t \tvar prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();",
              "\t    _this.show_editor(_this.file, prop.node, prop);",
