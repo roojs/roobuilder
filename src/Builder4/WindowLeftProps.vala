@@ -1631,7 +1631,7 @@ public class Xcls_LeftProps : Object
             		var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
                     var model = (Gtk.StringList)cb.model;
                     prop.val =   model.get_string(cb.selected);
-                    
+                    GLib.debug("property set to %s", prop.val);
                     //_this.updateIter(iter,prop);
                     if (!_this.loading && !this.is_setting) {
                     	GLib.debug("calling changed");
