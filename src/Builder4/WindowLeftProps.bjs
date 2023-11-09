@@ -844,6 +844,8 @@
              "\tcb.notify[\"selected\"].connect(() => {",
              "\t\t// dropdown selection changed.",
              "\t\t",
+             "\t\t",
+             "\t\t",
              "        var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();",
              "        ",
              "        prop.val = (string) cb.selected_item;",

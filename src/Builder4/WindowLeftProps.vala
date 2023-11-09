@@ -1622,6 +1622,8 @@ public class Xcls_LeftProps : Object
             	cb.notify["selected"].connect(() => {
             		// dropdown selection changed.
             		
+            		
+            		
                     var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
                     
                     prop.val = (string) cb.selected_item;
