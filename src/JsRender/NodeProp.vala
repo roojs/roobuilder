@@ -84,7 +84,7 @@ public class JsRender.NodeProp : Object {
 	private string _val = "";
 	public string val { 
 		get {
-			return this._val == null ? "" : this._val;
+			return this._val;
 		}
 		set {
 			if (this.parent != null) {
