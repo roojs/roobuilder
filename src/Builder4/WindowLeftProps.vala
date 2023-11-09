@@ -1661,8 +1661,7 @@ public class Xcls_LeftProps : Object
              
             	
              
-            	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            	var prop = (JsRender.NodeProp) lr.get_item();
+            	
             	
             	var elbl = (Gtk.EditableLabel)bx.get_first_child();
             	var lbl = (Gtk.Label) elbl.get_next_sibling();
@@ -1674,8 +1673,12 @@ public class Xcls_LeftProps : Object
             	lbl.hide();
             	cb.hide();
             	
+            	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+            	GLib.debug("lr = %s", lr.get_type().name());
             	
             	
+            	var prop = (JsRender.NodeProp) lr.get_item();
+            	GLib.debug("prop = %s", lr.get_item().get_type().name());
              
                 var use_textarea = false;
             
