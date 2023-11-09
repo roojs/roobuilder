@@ -809,7 +809,7 @@
              "\thb.append(elbl);",
              "\tvar lbl  = new Gtk.Label(\"\");",
              "\thb.append(lbl);",
-             "\tvar cb = new Gtk.DropDown(new GLib.ListStore(typeof(string)), null);",
+             "\tvar cb = new Gtk.DropDown(new GLib.StringList(null), null);",
              "\thb.append(cb);",
              "\t((Gtk.ListItem)listitem).set_child(hb);",
              "\t ",
