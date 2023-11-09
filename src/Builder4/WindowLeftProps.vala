@@ -1608,14 +1608,15 @@ public class Xcls_LeftProps : Object
             	 
             	elbl.changed.connect(() => {
             		// notify and save the changed value...
-            	 	var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
-            		 
-            	 
-                    prop.val = elbl.text;
+            	 	
                     //_this.updateIter(iter,prop);
                     // this should happen automatically
                     
                     if (!_this.loading && !this.is_setting) {
+            		    var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+            			 
+            		 
+            		    prop.val = elbl.text;
                     	 GLib.debug("calling changed");
             	        _this.changed();
             	       
@@ -1628,12 +1629,13 @@ public class Xcls_LeftProps : Object
             		// dropdown selection changed.
             		
             		
-            		var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
-                    var model = (Gtk.StringList)cb.model;
-                    prop.val =   model.get_string(cb.selected);
-                    GLib.debug("property set to %s", prop.val);
+            		
                     //_this.updateIter(iter,prop);
                     if (!_this.loading && !this.is_setting) {
+            		    var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+            		    var model = (Gtk.StringList)cb.model;
+            		    prop.val =   model.get_string(cb.selected);
+            		    GLib.debug("property set to %s", prop.val);
                     	GLib.debug("calling changed");
             	        _this.changed();
             	         
