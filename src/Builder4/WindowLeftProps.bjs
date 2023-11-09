@@ -788,7 +788,7 @@
              "\t\t\t\tsel = i;",
              "\t\t\t}",
              "\t\t}",
-             "",
+             "\t\tGLib.debug(\"Set selected item to %d\", i);",
              "\t\tcb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); ",
              "\t\treturn ;",
              "    }",
