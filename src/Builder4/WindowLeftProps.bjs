@@ -786,7 +786,7 @@
              "\t\tfor(var i = 0; i < opts.length; i ++) {",
              "\t\t\tmodel.append( opts[i]);",
              "\t\t\t// not sure this is a great idea... ",
-             "\t\t\tif (opts[i].lower() == prop.val.lower()) {",
+             "\t\t\tif (opts[i].down() == prop.val.down()) {",
              "\t\t\t\tsel = i;",
              "\t\t\t}",
              "\t\t}",
