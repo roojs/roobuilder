@@ -1593,13 +1593,14 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.setup.connect( (listitem) => {
             	var hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-            	var lbl  = new Gtk.EditableLabel("");
-            	hb.append(lbl);
-            	lbl  = new Gtk.Label("");
+            	var elbl  = new Gtk.EditableLabel("");
+            	hb.append(elbl);
+            	var lbl  = new Gtk.Label("");
             	hb.append(lbl);
             	var cb = new Gtk.DropDown(new GLib.ListStore(typeof(string)), null);
             	hb.append(cb);
             	((Gtk.ListItem)listitem).set_child(hb);
+            	 
             	 
             	lbl.changed.connect(() => {
             		// notify and save the changed value...
@@ -1607,13 +1608,17 @@ public class Xcls_LeftProps : Object
                      
                     prop.val = lbl.text;
                     //_this.updateIter(iter,prop);
+                    // this should happen automatically
+                    /*
                     if (!_this.loading && !this.is_setting) {
                     	GLib.debug("calling changed");
             	        _this.changed();
             	        _this.node.updated_count++;
             	        _this.node.notify_property("updated_count");
                     }
+                    */
             	});
+            	
             	
             	cb.notify["selected"].connect(() => {
             		// dropdown selection changed.
@@ -1621,14 +1626,15 @@ public class Xcls_LeftProps : Object
                     var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
                     
                     prop.val = (string) cb.selected_item;
-                    
+                    /*
                     //_this.updateIter(iter,prop);
                     if (!_this.loading && !this.is_setting) {
-                    GLib.debug("calling changed");
+                    	GLib.debug("calling changed");
             	        _this.changed();
             	        _this.node.updated_count++;
             	        _this.node.notify_property("updated_count");
                     }
+                    */
             		
             	});
             	
