@@ -1730,7 +1730,8 @@ public class Xcls_LeftProps : Object
             		var sel = -1;
             		for(var i = 0; i < opts.length; i ++) {
             			model.append( opts[i]);
-            			if (opts[i] == prop.val) {
+            			// not sure this is a great idea... 
+            			if (opts[i].lower() == prop.val.lower()) {
             				sel = i;
             			}
             		}
