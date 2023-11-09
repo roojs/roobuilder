@@ -810,6 +810,7 @@
              "\thb.append(elbl);",
              "\tvar lbl  = new Gtk.Label(\"\");",
              "\thb.append(lbl);",
+             "\tlbl.use_markup = true;",
              "\tvar cb = new Gtk.DropDown(new Gtk.StringList({}), null);",
              "\thb.append(cb);",
              "\t((Gtk.ListItem)listitem).set_child(hb);",
