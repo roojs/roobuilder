@@ -1605,11 +1605,11 @@ public class Xcls_LeftProps : Object
             	 
             	 
             	 
-            	lbl.changed.connect(() => {
+            	elbl.changed.connect(() => {
             		// notify and save the changed value...
             	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
                      
-                    prop.val = lbl.text;
+                    prop.val = elbl.text;
                     //_this.updateIter(iter,prop);
                     // this should happen automatically
                     
