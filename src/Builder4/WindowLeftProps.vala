@@ -1655,6 +1655,10 @@ public class Xcls_LeftProps : Object
             	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
              	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
             	
+            	var li = ((Gtk.ListItem)listitem).get_item();
+            	
+            	
+            	
             	var elbl = (Gtk.EditableLabel)bx.get_first_child();
             	var lbl = (Gtk.Label) elbl.get_next_sibling();
             	var cb  = (Gtk.DropDown) lbl.get_next_sibling();
