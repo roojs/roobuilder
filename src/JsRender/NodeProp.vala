@@ -104,6 +104,7 @@ public class JsRender.NodeProp : Object {
 		set  {
  
  			// set things that are used to display values.
+ 			this.to_display_name_prop = "";
 			this. _updated_count = value;
 		}
  
