@@ -728,7 +728,7 @@
              "\t",
              "\tvar prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();",
              "\tGLib.debug(\"prop = %s\", prop.get_type().name());",
-             "\t",
+             "\tGLib.debug(\"prop.val = %s\", prop.val);",
              "\t",
              "\t ",
              "    var use_textarea = false;",
