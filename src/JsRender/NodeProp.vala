@@ -261,7 +261,7 @@ public class JsRender.NodeProp : Object {
 			 if (this._val.index_of("\n") < 0) {
 			 	return this._val;
 		 	 }
-		 	 var vals = val.split("\n");
+		 	 var vals = this._val.split("\n");
 		 	 return vals[0];
 		} 
 	}
