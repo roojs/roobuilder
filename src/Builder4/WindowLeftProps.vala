@@ -1644,7 +1644,7 @@ public class Xcls_LeftProps : Object
             	lbl.add_controller(gc);
             	gc.pressed.connect(() => {
             	 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
-            	    _this.show_editor(_this.file, prop.node, prop);
+            	    _this.show_editor(_this.file, prop.parent, prop);
             	});
             	  
             	
