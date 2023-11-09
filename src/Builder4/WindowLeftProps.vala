@@ -1641,13 +1641,19 @@ public class Xcls_LeftProps : Object
             	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
              	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
             	
-            	var lbl = (Gtk.EditableLabel)bx.get_first_child();
-            	var cb  = (Gtk.DropDown)bx.get_last_child();
+            	var elbl = (Gtk.EditableLabel)bx.get_first_child();
+            	var lbl = (Gtk.Label).elbl.get_next_sibling();
+            	var cb  = (Gtk.DropDown)lbl.get_next_sibling();
             	// decide if it's a combo or editable text..
-            	
             	var model = (GLib.ListStore) cb.model;
+            	
+            	elbl.hide();
+            	lbl.hide();
+            	cb.hide();
+            	
+            	
+            	
              
-            
                 var use_textarea = false;
             
                 //------------ things that require the text editor...
@@ -1662,9 +1668,13 @@ public class Xcls_LeftProps : Object
                 if ( prop.name == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
                     use_textarea = true;
                 }
-                if (prop.val.length > 40) { // long value...
+                if (prop.val.length > 40 || prop.val.index_of("\n") > -1) { // long value...
                     use_textarea = true;
                 }
+                
+                
+                
+                
                 var pal = _this.file.project.palete;
                     
                 string[] opts;
@@ -1673,9 +1683,12 @@ public class Xcls_LeftProps : Object
                 if (!has_opts && prop.ptype == JsRender.NodePropType.RAW) {
                   	use_textarea = true;
                 }
-              /*   
+                
                 
                 if (use_textarea) {
+                	
+                	/*
+                	//lbl.connect
                     GLib.debug("Call show editor\n");
                     GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
                     	//
@@ -1688,6 +1701,7 @@ public class Xcls_LeftProps : Object
                    
                     
                     return false;
+                    */
                 }
                 */
                     
