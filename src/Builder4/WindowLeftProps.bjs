@@ -717,7 +717,7 @@
              "\tvar lbl = (Gtk.Label) elbl.get_next_sibling();",
              "\tvar cb  = (Gtk.DropDown) lbl.get_next_sibling();",
              "\t// decide if it's a combo or editable text..",
-             "\tvar model = (GLib.ListStore) cb.model;",
+             "\tvar model = (Gtk.StringList) cb.model;",
              "\t",
              "\telbl.hide();",
              "\tlbl.hide();",

@@ -1658,7 +1658,7 @@ public class Xcls_LeftProps : Object
             	var lbl = (Gtk.Label) elbl.get_next_sibling();
             	var cb  = (Gtk.DropDown) lbl.get_next_sibling();
             	// decide if it's a combo or editable text..
-            	var model = (GLib.ListStore) cb.model;
+            	var model = (Gtk.StringList) cb.model;
             	
             	elbl.hide();
             	lbl.hide();
