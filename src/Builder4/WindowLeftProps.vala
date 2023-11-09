@@ -1716,9 +1716,7 @@ public class Xcls_LeftProps : Object
                 if (has_opts) {
             
             		cb.show();
-             		while (model.strings.length > 0) {
-             			model.strings.remove(0);
-            		}
+             		// can not remove - hopefully always empty.
             		var sel = -1;
             		for(var i = 0; i < opts.length; i ++) {
             			model.append( opts[i]);
