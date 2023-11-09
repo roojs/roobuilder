@@ -1716,15 +1716,17 @@ public class Xcls_LeftProps : Object
                 if (has_opts) {
             
             		cb.show();
-             
+             		while (model.strings.length > 0) {
+             			model.strings.remove(0);
+            		}
             		var sel = -1;
             		for(var i = 0; i < opts.length; i ++) {
-            			//model.append( (GLib.Object) opts[i]);
+            			model.append( opts[i]);
             			if (opts[i] == prop.val) {
             				sel = i;
             			}
             		}
-            		model.strings = opts;
+            
             		cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
             		return ;
                 }
