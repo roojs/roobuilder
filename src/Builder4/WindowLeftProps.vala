@@ -1719,11 +1719,12 @@ public class Xcls_LeftProps : Object
             		model.remove_all();
             		var sel = -1;
             		for(var i = 0; i < opts.length; i ++) {
-            			model.append( (GLib.Object) opts[i]);
+            			//model.append( (GLib.Object) opts[i]);
             			if (opts[i] == prop.val) {
             				sel = i;
             			}
             		}
+            		model.strings = opts;
             		cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
             		return ;
                 }
