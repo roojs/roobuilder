@@ -1699,7 +1699,7 @@ public class Xcls_LeftProps : Object
                 
                 
                 if (use_textarea) {
-                	item.bind_property("to_display_name_prop",
+                	prop.bind_property("to_display_name_prop",
                                 lb, "label",
                                GLib.BindingFlags.SYNC_CREATE);
                     lbl.show();
@@ -1713,20 +1713,20 @@ public class Xcls_LeftProps : Object
                     
                     // others... - fill in options for true/false?
                        // GLib.debug (ktype.up());
-                    if (has_opts) {
+                if (has_opts) {
             
-            			cb.show();
-            			model.remove_all();
-            			var sel = -1;
-            			for(var i = 0; i < opts.length; i ++) {
-            				model.append( opts[i]);
-            				if (opts[i] == prop.val) {
-            					sel = i;
-            				}
+            		cb.show();
+            		model.remove_all();
+            		var sel = -1;
+            		for(var i = 0; i < opts.length; i ++) {
+            			model.append( opts[i]);
+            			if (opts[i] == prop.val) {
+            				sel = i;
             			}
-            			cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
-            			return ;
-                    }
+            		}
+            		cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
+            		return ;
+                }
                                               
                        // see if type is a Enum.
                      // triggers a changed event
