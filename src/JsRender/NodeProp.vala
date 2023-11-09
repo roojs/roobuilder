@@ -84,7 +84,7 @@ public class JsRender.NodeProp : Object {
 	private string _val = "";
 	public string val { 
 		get {
-			return this._val;
+			return this._val == null ? "" : this._val;
 		}
 		set {
 			if (this.parent != null) {
@@ -258,6 +258,7 @@ public class JsRender.NodeProp : Object {
 			// NOOp ??? should 
 		}
 		owned get {
+			
 			 if (this._val.index_of("\n") < 0) {
 			 	return this._val;
 		 	 }
