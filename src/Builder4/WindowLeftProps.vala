@@ -1688,24 +1688,14 @@ public class Xcls_LeftProps : Object
                 
                 
                 if (use_textarea) {
+                	item.bind_property("to_display_name_prop",
+                                lb, "label",
+                               GLib.BindingFlags.SYNC_CREATE);
+                    lbl.show();
+                    return;
                 	
-                	/*
-                	//lbl.connect
-                    GLib.debug("Call show editor\n");
-                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                    	//
-                        //this.view.el.get_selection().select_path(path);
-                        
-                        this.show_editor(file, node, prop);
-                        
-                        return false;
-                    });
-                   
-                    
-                    return false;
-                    */
                 }
-                */
+                 
                     
                     
                     
