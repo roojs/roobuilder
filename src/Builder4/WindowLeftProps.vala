@@ -1608,8 +1608,8 @@ public class Xcls_LeftProps : Object
             	 
             	elbl.changed.connect(() => {
             		// notify and save the changed value...
-            	 	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            		var prop = (JsRender.NodeProp) lr.get_item();
+            	 	var lr = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+            		 
             	
                      
                     prop.val = elbl.text;
