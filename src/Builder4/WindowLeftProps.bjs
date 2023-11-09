@@ -775,7 +775,7 @@
              "    if (has_opts) {",
              "",
              "\t\tcb.show();",
-             "\t\tmodel.remove_all();",
+             " ",
              "\t\tvar sel = -1;",
              "\t\tfor(var i = 0; i < opts.length; i ++) {",
              "\t\t\t//model.append( (GLib.Object) opts[i]);",
