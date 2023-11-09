@@ -1658,7 +1658,7 @@ public class Xcls_LeftProps : Object
             });
             this.el.bind.connect( (listitem) => {
             	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
-             	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
+             
             	
              
             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();

@@ -711,7 +711,7 @@
             "bind" : [
              "(listitem) => {",
              "\tvar bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();",
-             " \tvar prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();",
+             " ",
              "\t",
              " ",
              "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
