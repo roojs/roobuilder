@@ -93,8 +93,7 @@ public class WindowState : Object
 		
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
- 
-		
+  
 		this.popover_files = new Xcls_PopoverFiles();
 	 	this.popover_files.setMainWindow(this.win);
 	}
@@ -474,10 +473,7 @@ public class WindowState : Object
 		//stage.set_background_color(  Clutter.Color.from_string("#000"));
 
 
-		this.add_props.select.connect( (prop) => {
-			 
-			this.left_props.addProp(prop);
-		});
+	 
 
 	}
 	public void propsAddShow()
@@ -758,16 +754,16 @@ public class WindowState : Object
 		this.add_props.show(
 			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
 			 sig_or_listen, //this.state == State.LISTENER ? "signals" : "props",
-			ae.fqn(),
+			ae,
 			btn
 			
 		);
 	}
 	
-	public void showAddObject(Gtk.Widget btn)
+	public void showAddObject(Gtk.Widget btn, JsRender.Node? on_node)
 	{
 	 
-		 var n = this.left_tree.getActiveElement();
+		 
 		this.add_props.hide();
 		 
 		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
@@ -776,7 +772,7 @@ public class WindowState : Object
  
 		this.rightpalete.show(
 			this.left_tree.getActiveFile().palete(), 
-			n == null ? "*top" : n.fqn(),
+			on_node == null ? "*top" : on_node.fqn(),
 			btn
 		);
 	}

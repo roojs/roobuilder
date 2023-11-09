@@ -52,11 +52,8 @@ public class Xcls_WindowLeftTree : Object
     }
     public JsRender.Node? getActiveElement () { // return path to actie node.
     
-         var ret = ((Gtk.SingleSelection) this.view.el.model).get_selected_item();
-        if (ret == null) {
-        	return null;
-    	}
-    	return (JsRender.Node) ret;
+         
+    	return _this.selmodel.getSelectedNode();
         
         
     }
@@ -105,13 +102,10 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public bool blockChanges;
-        public bool drag_in_motion;
         public string lastEventSource;
         public bool headers_visible;
         public bool button_is_pressed;
         public Gtk.CssProvider css;
-        public int drag_x;
-        public int drag_y;
         public bool expand;
 
         // ctor
@@ -552,85 +546,47 @@ public class Xcls_WindowLeftTree : Object
             	if (ndata == null) {
             	 	GLib.debug("return empty string - no selection..");
             		return null;
-            		//data.set_text("",0);     
-            		// print("return empty string - no selection..");
-            		//return;
+            	 
             	}
             
               
             	//data.set_text(tp,tp.length);   
             
             	var 	str = ndata.toJsonString();
-            		GLib.debug("prepare  store: %s", str);
-            		GLib.Value ov = GLib.Value(typeof(string));
-            		ov.set_string(str);
-            	 	var cont = new Gdk.ContentProvider.for_value(ov);
-                    
-                	GLib.Value v = GLib.Value(typeof(string));
+            	GLib.debug("prepare  store: %s", str);
+            	GLib.Value ov = GLib.Value(typeof(string));
+            	ov.set_string(str);
+             	var cont = new Gdk.ContentProvider.for_value(ov);
+                
+            	GLib.Value v = GLib.Value(typeof(string));
             	//var str = drop.read_text( [ "text/plain" ] 0);
             	 
             	cont.get_value(ref v);
             	GLib.debug("set %s", v.get_string());
                     
              	return cont;
-            	
-            
+            	 
             	 
             });
             this.el.drag_begin.connect( ( drag )  => {
-            		GLib.debug("SOURCE: drag-begin");
-            		
-             
-                    
-                    // find what is selected in our tree...
-                   var data = _this.selmodel.getSelectedNode();
+            	GLib.debug("SOURCE: drag-begin");
+            	 
+                // find what is selected in our tree...
+               var data = _this.selmodel.getSelectedNode();
             	if (data == null) {
             		return  ;
-            		//data.set_text("",0);     
-            		// print("return empty string - no selection..");
-            		//return;
             	}
-            	
-            	
-                
-                
-                  
-                    var xname = data.fqn();
-                    GLib.debug ("XNAME  IS %s", xname);
-             
-                  //  _this.view.dropList = _this.main_window.windowstate.file.palete().getDropList(xname);
-                    
-             
-                    
+            	 
+                var xname = data.fqn();
+                GLib.debug ("XNAME  IS %s", xname);
             
-                    // make the drag icon a picture of the node that was selected
-                
-                    
-                // by default returns the path..
-             
-            	 	//var widget = _this.view.getWidgetAtRow(_this.selmodel.s.selected);
-            
-            	 	var widget = _this.view.getWidgetAtRow(_this.selmodel.el.selected);
-            	 	
-            	 	
-                    var paintable = new Gtk.WidgetPaintable(widget);
-                    this.el.set_icon(paintable, 0,0);
-                            
-               
-                    return;
-            });
-            this.el.drag_end.connect( (drag, delete_data) => {
-            
-            
-            	GLib.debug("got drag end");
-             // (drag_context) => {
-            	//Seed.print('LEFT-TREE: drag-end');
+             	var widget = _this.view.getWidgetAtRow(_this.selmodel.el.selected);
              	
-                  //  _this.view.dropList = null;
-            //        this.targetData = "";
-                //    _this.view.highlightDropPath("",0);
-            //        return true;
-            
+             	
+                var paintable = new Gtk.WidgetPaintable(widget);
+                this.el.set_icon(paintable, 0,0);
+                        
+             
             });
         }
 
@@ -1009,7 +965,7 @@ public class Xcls_WindowLeftTree : Object
                 
                
               		m.append(dropNode);
-            		
+            		_this.model.selectNode(dropNode); 					
             		return true; // no need to highlight?
                  
                 }
@@ -1047,17 +1003,20 @@ public class Xcls_WindowLeftTree : Object
              	switch(pos) {
              		case "over":
             	 		node.appendChild(dropNode);
+             			_this.model.selectNode(dropNode); 				 		
             	 		return true;
             	 		
              		case "above":
              			GLib.debug("Above - insertBefore");
              		
              			node.parent.insertBefore(dropNode, node);
+             			_this.model.selectNode(dropNode); 			
              			return true;
              			
              		case "below":
              			GLib.debug("Below - insertAfter"); 		
              			node.parent.insertAfter(dropNode, node);
+             			_this.model.selectNode(dropNode); 			
              			// select it
              			return true;
              			
@@ -1360,14 +1319,7 @@ public class Xcls_WindowLeftTree : Object
            
            var a = tr.get_item();;   
            GLib.debug("get_item (2) = %s", a.get_type().name());
-           /*
-           var a = this.el.get_item(row);
-           var b = this.el.get_object(row);
-           GLib.debug("get_item = %s, get_object = %s", 
-           		a.get_type().name(),
-           		b.get_type().name()
-        	);
-           	*/	
+          	
            
            return (JsRender.Node)tr.get_item();
         	 
@@ -1528,15 +1480,20 @@ public class Xcls_WindowLeftTree : Object
         	var row = -1;
         	var s = (Gtk.SingleSelection)_this.view.el.model;
         	for (var i = 0; i < s.n_items; i++) {
-        		if (((JsRender.Node)s.get_item(i)).oid == node.oid) {
+        		//GLib.debug("check node %s", s.get_item(i).get_type().name());
+        		var lr = (Gtk.TreeListRow)s.get_item(i);
+        		GLib.debug("check node %s", lr.get_item().get_type().name());
+        		if (((JsRender.Node)lr.get_item()).oid == node.oid) {
         			row  = i;
         			break;
         		}
         	}
         	if (row < 0) {
         		// select none?
+        		GLib.debug("Could not find node");
         		return;
         	}
+        	GLib.debug("Select %d", row);
         	s.set_selected(row);
         	
         	
@@ -1635,7 +1592,7 @@ public class Xcls_WindowLeftTree : Object
             
             	
              
-             	  
+             	 /* 
              	var ic = Gtk.IconTheme.get_for_display(_this.el.get_display());
                 var clsname = node.fqn();
                 
@@ -1658,11 +1615,15 @@ public class Xcls_WindowLeftTree : Object
             			 );
             	 	}
              	} catch (GLib.Error e) {}
-                
+                */
                 expand.set_hide_expander( !node.hasChildren() );
              	expand.set_list_row(lr);
              	
-             	 node.bind_property("nodeTitleProp",
+             	node.bind_property("iconFilename",
+                                img, "file",
+                               GLib.BindingFlags.SYNC_CREATE);
+             	
+             	node.bind_property("nodeTitleProp",
                                 lbl, "label",
                                GLib.BindingFlags.SYNC_CREATE);
              	node.bind_property("nodeTipProp",

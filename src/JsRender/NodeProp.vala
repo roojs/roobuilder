@@ -76,14 +76,49 @@ public enum JsRender.NodePropType
 public class JsRender.NodeProp : Object {
 
 
+	
+	public string name { get; private set; }  // can not be updated... ?? you have to remove / replace?
+	public NodePropType  ptype { get; private set; } // return or type
+	public string rtype { get; private set;} // return or type
+	
+	private string _val = "";
+	public string val { 
+		get {
+			return this._val;
+		}
+		set {
+			if (this.parent != null) {
+				this.parent.updated_count++;
+			}
+			this.updated_count++;
+			this._val = value;
+		}
+	}
 
-	public string name  = "";
-	public NodePropType ptype;  
-	public string rtype = ""; // return or type
-	public string val = "";
+
+	private int _updated_count = 0;
+	public int updated_count { 
+		get {
+			return this._updated_count; 
+		}
+		set  {
+ 
+ 			// set things that are used to display values.
+			this. _updated_count = value;
+		}
+ 
+	} // changes to this trigger updates on the tree..
+	public Node? parent; // the parent node.
+
+	
 	public int start_line = 0;
 	public int end_line = 0;
 	
+	// used by display list..
+	public GLib.ListStore  childstore; // WILL BE USED FOR properties with mutliple types 
+	public Node? add_node = null; // used when we list potentional nodes for properties in add list.
+
+	public string propertyof;
 	
 	
 	public NodeProp(string name, NodePropType ptype, string rtype, string val) {
@@ -91,6 +126,7 @@ public class JsRender.NodeProp : Object {
 		this.ptype = ptype;
 		this.rtype = rtype;
 		this.val = val;
+		this.childstore = new GLib.ListStore( typeof(NodeProp));
 	}
 	
 	public NodeProp dupe()
@@ -422,6 +458,10 @@ public class JsRender.NodeProp : Object {
 	{
 		this(name, NodePropType.SIGNAL, rtype, val);
 	}
-	
+	public void appendChild(NodeProp child)
+	{
+		this.childstore.append(child);
+
+	}
 }
 	

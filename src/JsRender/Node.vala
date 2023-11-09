@@ -98,9 +98,7 @@ public class JsRender.Node : GLib.Object {
 	public Node parent;
 	private Gee.ArrayList<Node> items; // child items..
 	public GLib.ListStore  childstore; // must be kept in sync with items
-		
-	public Gee.HashMap<string,NodeProp> props; // the properties..
-	public Gee.HashMap<string,NodeProp> listeners; // the listeners..
+	public GLib.ListStore?  propstore; // must be kept in sync with items
 	public string  xvala_cls;
 	public string xvala_xcls; // 'Xcls_' + id;
 	public string xvala_id; // item id or ""
@@ -120,6 +118,7 @@ public class JsRender.Node : GLib.Object {
 		}
 		set  {
 			this.nodeTitleProp = ""; // ?? should trigger set?
+			this.iconFilename = "";
 			this. _updated_count = value;
 		}
  
@@ -128,8 +127,9 @@ public class JsRender.Node : GLib.Object {
 	public Node()
 	{
 		this.items = new Gee.ArrayList<Node>();
-		this.props = new Gee.HashMap<string,NodeProp>();
-		this.listeners = new Gee.HashMap<string,NodeProp>(); // Nodeprop can include line numbers..
+		//this._props = new Gee.HashMap<string,NodeProp>();
+		//this._listeners = new Gee.HashMap<string,NodeProp>(); // Nodeprop can include line numbers..
+		this.propstore = new GLib.ListStore(typeof(NodeProp)); // Nodeprop can include line numbers..
 		this.xvala_cls = "";
 		this.xvala_xcls = "";
 		this.xvala_id = "";
@@ -344,57 +344,7 @@ public class JsRender.Node : GLib.Object {
 		var v = this.props.get(key);
 		return v == null ? "" : v.val;
 	}	
-		/*
-		var k = this.props.get(key);
-		if (k != null) {
-			return k;
-		}
-		
-		k = this.props.get("$ " + key);
-		if (k != null) {
-			return k;
-		}
-		
-		var iter = this.props.map_iterator();
-		while (iter.next()) {
-			var kk = iter.get_key().split(" ");
-			if (kk[kk.length-1] == key) {
-				return iter.get_value();
-			}
-		
-		
-		return "";
-		}
-		*/
-	 
-	/*
-	
-	SAMNE AS ABOVE
-	public string get_key(string key)
-	{
-		var k = this.props.get(key);
-		if (k != null) {
-			return key;
-		}
-		
-		k = this.props.get("$ " + key);
-		if (k != null) {
-			return "$ " + key;
-		}
-		
-		var iter = this.props.map_iterator();
-		while (iter.next()) {
-			var kk = iter.get_key().split(" ");
-			if (kk[kk.length-1] == key) {
-				return iter.get_key();
-			}
-		}
-		
-		
-		return "";
-		
-	}
-	*/
+		 
 	public  NodeProp? get_prop(string key)
 	{
 		
@@ -402,85 +352,21 @@ public class JsRender.Node : GLib.Object {
 		
 	}
 	
-	public void set_prop(NodeProp prop)
-	{
-		
-		  
-		this.props.set(prop.to_index_key(), prop);
-		this.updated_count++;
-	}
-	
-	/*
-	public void normalize_key(string key, out string kname, out string kflag, out string ktype)
-	{
-		// key formats : XXXX
-		// XXX - plain
-		// string XXX - with type
-		// $ XXX - with flag (no type)
-		// $ string XXX - with flag
-		kname = "";
-		ktype = ""; // these used to contain '-' ???
-		kflag = ""; // these used to contain '-' ???
-		var kkv = key.strip().split(" ");
-		string[] kk = {};
-		for (var i = 0; i < kkv.length; i++) {
-			if (kkv[i].length > 0 ) {
-				kk += kkv[i];
-			}
-		}
-		//print("normalize %s => %s\n", key,string.joinv("=:=",kk));
-		
-		switch(kk.length) {
-			case 1: 
-				kname = kk[0];
-				return;
-			case 2: 
-				kname = kk[1];
-				if (kk[0].length > 1) {
-					ktype = kk[0];
-				} else {
-					kflag = kk[0];
-				}
-				return;
-			case 3:
-				kname = kk[2];
-				kflag = kk[0];
-				ktype = kk[1];
-				return;
-		}
-		// everything blank otherwise...
-	}
-	*/
+ 
 	
 
-	public new void set(string key, NodeProp val) {
-		this.props.set(key,val);
-	}
 
 	public bool has(string key)
 	{
 		return this.props.has_key(key);
-		/*
-		var k = this.props.get(key);
-		if (k != null) {
-			return true;
-		}
-		var iter = this.props.map_iterator();
-		while (iter.next()) {
-			var kk = iter.get_key().strip().split(" ");
-			if (kk[kk.length-1] == key) {
-				return true;
-			}
-		}
-		
-		return false;
-		*/
+		 
+	 
 	}
 
 	public void  remove()
 	{
 		if (this.parent == null) {
-			 
+			GLib.debug("remove - parent is null?");
 			return;
 		}
 		var nlist = new Gee.ArrayList<Node>();
@@ -493,7 +379,7 @@ public class JsRender.Node : GLib.Object {
 		uint pos;
 		if ( this.parent.childstore.find(this, out pos)) {
 			this.parent.childstore.remove(pos);
-		}
+		} 
 		
 		this.parent.items = nlist;
 		this.parent = null;
@@ -562,7 +448,8 @@ public class JsRender.Node : GLib.Object {
 			if (key == "listeners") {
 				var li = value.get_object();
 				li.foreach_member((lio , li_key, li_value) => {
-					this.listeners.set(li_key,  new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
+					this.add_prop(new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
+					//this.listeners.set(li_key,  new NodeProp.listener(li_key, this.jsonNodeAsString(li_value)));
 				});
 				return;
 			}
@@ -576,7 +463,7 @@ public class JsRender.Node : GLib.Object {
 			}
 			var n =  new NodeProp.from_json(rkey, sval);
 				
-			this.props.set(n.to_index_key(),  n );
+			this.add_prop(n );
 
 
 		});
@@ -956,7 +843,24 @@ public class JsRender.Node : GLib.Object {
 		//if (sr) txt.push('</s>');
 		return (txt.length == 0) ? "Element" : string.joinv(" ", txt);
 	}
- 
+	// used by trees to display icons?
+	// needs more thought?!?
+ 	public string iconFilename { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+		  	var clsname = this.fqn();
+    
+			var clsb = clsname.split(".");
+		    var sub = clsb.length > 1 ? clsb[1].down()  : "";
+			var fn = "/usr/share/glade/pixmaps/hicolor/16x16/actions/widget-gtk-" + sub + ".png";
+			//if (FileUtils.test (fn, FileTest.IS_REGULAR)) {
+	   			return fn;
+   			//}
+   			//return "/dev/null"; //???
+		} 
+	}
 	
 	 
 	
@@ -973,13 +877,121 @@ public class JsRender.Node : GLib.Object {
 	{
 		this.items.insert(pos, child);
 		this.childstore.insert(pos, child);
+		child.parent = this;
 	}
 	public void appendChild(Node child)
 	{
 		this.items.add( child);
 		this.childstore.append(child);
+		child.parent = this;
 	}
 	
-	 
 	
+	/**
+	
+	properties
+		previous we had listeners / and props
+		
+		we really need to store this as flat array - keep it simple!?
+		
+		getValue(key)
+		update(key, value)
+		
+		
+	
+	*/
+	
+
+	
+	
+	public void loadProps(GLib.ListStore model) 
+	{
+	
+		// fixme sorting?? - no need to loop twice .. just use sorting.!
+		var oldstore = this.propstore;
+		this.propstore = model;
+		for(var i =  0; i < oldstore.n_items; i++ ) {
+			var it = (NodeProp) oldstore.get_item(i);
+			if (it.ptype == NodePropType.LISTENER) {
+				model.append(it);
+			}
+		}
+		for(var i =  0; i < oldstore.n_items; i++ ) {
+			var it = (NodeProp) oldstore.get_item(i);
+			if (it.ptype != NodePropType.LISTENER) {
+				model.append(it);
+			}
+		}
+	   
+   }
+   
+   public void remove_prop(NodeProp prop)
+	{
+		uint pos;
+		if (!this.propstore.find(prop, out pos)) {
+			return;
+		}
+		this.propstore.remove(pos);
+		this.updated_count++;
+		
+	}   
+   
+	public bool has_prop_key(NodeProp prop) 
+	{
+		for(var i =  0; i < this.propstore.n_items; i++ ) {
+			var it = (NodeProp) this.propstore.get_item(i);
+			if (it.ptype == prop.ptype && it.to_index_key() == prop.to_index_key()) {
+				return true;
+			}
+			
+		}
+		return false;
+	   
+	}
+	
+	public void add_prop(NodeProp prop)
+	{
+		if (this.has_prop_key(prop)) {
+			GLib.error("duplicate key - can not add - call has_prop_key first");
+		}
+		prop.parent = this;
+		this.propstore.append(prop);
+		
+		this.updated_count++;
+		
+	}   
+	 
+ 	public Gee.HashMap<string,NodeProp> props {
+ 		owned get {
+ 			var ret = new Gee.HashMap<string,NodeProp>(); // the properties..
+
+			for(var i =  0; i < this.propstore.n_items; i++ ) {
+				var it = (NodeProp) this.propstore.get_item(i);
+				if (it.ptype != NodePropType.LISTENER) {
+	 				ret.set( it.to_index_key() , it);
+	 			}
+ 			}
+ 			return ret;
+		}
+		private set {
+			GLib.error("do not set listerners direclty");
+		}
+	}
+	//private Gee.HashMap<string,NodeProp> _listeners; // the listeners..
+	public Gee.HashMap<string,NodeProp> listeners {
+ 		owned get {
+ 			var ret = new Gee.HashMap<string,NodeProp>(); // the properties..
+
+			for(var i =  0; i < this.propstore.n_items; i++ ) {
+				var it = (NodeProp) this.propstore.get_item(i);
+				if (it.ptype == NodePropType.LISTENER) {
+	 				ret.set( it.to_index_key() , it);
+	 			}
+ 			}
+ 			return ret;
+		}
+		private set {
+			GLib.error("do not set listerners direclty");
+		}
+	}
 }

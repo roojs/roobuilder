@@ -212,30 +212,10 @@ public class Xcls_LeftProps : Object
         if (node ==null) {
             return ;
         }
-         
-         
-        
-        // really need a way to sort the hashmap...
-        var m = this.model.el;
-        
-        var miter = node.listeners.map_iterator();
-        var i = 0;
-        
-        while(miter.next()) {
-           
-            m.append(miter.get_value()); 
-             
-         }
-         
-          
-        miter = node.props.map_iterator();
+        node.loadProps(this.model.el); 
         
         
-       while(miter.next()) {
-            m.append(miter.get_value());
-             
-       }
-       GLib.debug("clear selection\n");
+       //GLib.debug("clear selection\n");
        
        	this.loading = false;
        
@@ -248,7 +228,7 @@ public class Xcls_LeftProps : Object
       // _this.valcol.el.set_max_width(_this.EditProps.el.get_allocated_width()/ 2);
        
     }
-    public void addProp (JsRender.NodeProp prop) {
+    public void a_addProp (JsRender.NodeProp prop) {
           // info includes key, val, skel, etype..
           //console.dump(info);
             //type = info.type.toLowerCase();
@@ -274,36 +254,10 @@ public class Xcls_LeftProps : Object
         this.load(this.file, this.node);
         
         
-        
-        /// need to find the row which I've just added..
-        
-        
-        //var s = this.view.el.get_selection();
-        //s.unselect_all();
+         
         
         GLib.debug("trying to find new iter");
-      /*
-        this.model.el.foreach((model, path, iter) => {
-            GLib.Value gval;
-            this.model.el.get_value(iter, 0 , out gval);
-            
-            var iprop = (JsRender.NodeProp)gval;
-            if (iprop.to_index_key() != prop.to_index_key()) {
-            	return false; // continue?
-            }
-            
-            // delay this?
-            GLib.Timeout.add_full(GLib.Priority.DEFAULT,40 , () => {
-            	 
-            	
-                this.startEditingValue(this.model.el.get_path(iter));
-                return false;
-            });
-            //s.select_iter(iter);
-            return true; 
-        });
-        */
-        
+     
         
                   
     }
@@ -611,7 +565,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ()  => {
              	// is this userdef or special??
-                _this.addProp( new JsRender.NodeProp.prop("id") );
+                _this.node.add_prop( new JsRender.NodeProp.prop("id") );
             });
         }
 
@@ -641,7 +595,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) => {
             // is this userdef?
-                _this.addProp( new JsRender.NodeProp.special("pack", "add") );
+                _this.node.add_prop( new JsRender.NodeProp.special("pack", "add") );
             });
         }
 
@@ -671,7 +625,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ( ) => {
             
-                  _this.addProp( new JsRender.NodeProp.special("ctor") );
+                  _this.node.add_prop( new JsRender.NodeProp.special("ctor") );
             });
         }
 
@@ -700,7 +654,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-                  _this.addProp( new JsRender.NodeProp.special("init","{\n\n}\n" ) );
+                  _this.node.add_prop( new JsRender.NodeProp.special("init","{\n\n}\n" ) );
             
             });
         }
@@ -731,7 +685,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.activate.connect( ()  => {
              
-                _this.addProp( new JsRender.NodeProp.prop("cms-id","string", "" ) );
+                _this.node.add_prop( new JsRender.NodeProp.prop("cms-id","string", "" ) );
             
              
                 
@@ -1644,7 +1598,10 @@ public class Xcls_LeftProps : Object
                     prop.val = lbl.text;
                     //_this.updateIter(iter,prop);
                     if (!_this.loading && !this.is_setting) {
+                    	GLib.debug("calling changed");
             	        _this.changed();
+            	        _this.node.updated_count++;
+            	        _this.node.notify_property("updated_count");
                     }
             	});
             	
@@ -1657,7 +1614,10 @@ public class Xcls_LeftProps : Object
                     
                     //_this.updateIter(iter,prop);
                     if (!_this.loading && !this.is_setting) {
+                    GLib.debug("calling changed");
             	        _this.changed();
+            	        _this.node.updated_count++;
+            	        _this.node.notify_property("updated_count");
                     }
             		
             	});

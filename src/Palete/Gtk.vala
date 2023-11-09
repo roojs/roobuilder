@@ -828,7 +828,7 @@ namespace Palete {
 				if (this.child_defaults.has_key(parent.fqn())) {
 					foreach(var k in this.child_defaults.get(parent.fqn())) {
 						if (!child.has(k.to_index_key())) { 
-							child.set_prop(k.dupe());
+							child.add_prop(k.dupe());
 						}
 					}
 				}
@@ -838,7 +838,7 @@ namespace Palete {
 
 					if (!child.has(k.to_index_key())) { 
 						GLib.debug("Adding Property %s", k.to_tooltip());
-						child.set_prop(k.dupe());
+						child.add_prop(k.dupe());
 					}
 				}
 			}
@@ -848,7 +848,7 @@ namespace Palete {
 			if (childcls != null && childcls.nodetype == "Struct") {
 				// then we need to add all the props.
 				foreach(var prop in childcls.props.values) {
-					child.set_prop(prop.toNodeProp());
+					child.add_prop(prop.toNodeProp());
 					
 					
 				}
@@ -859,7 +859,7 @@ namespace Palete {
 			switch(parent.fqn()) {
 				case "Gtk.Dialog":
 					if (child.has("* prop") && child.get_prop("* prop").val == "buttons[]") {
-						child.set_prop( new JsRender.NodeProp.special("response_id", "1"));
+						child.add_prop( new JsRender.NodeProp.special("response_id", "1"));
 					}
 					break;
 					

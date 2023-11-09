@@ -440,8 +440,8 @@ namespace Palete {
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
 				// when we add properties, they are actually listeners attached to signals
-				var r =new JsRender.NodeProp.listener(this.name, this.sig);  
-				r.rtype = this.type;
+				// was a listener overrident?? why?
+				var r =new JsRender.NodeProp.sig(this.name, "", this.sig);  
 				return r;
 			}
 			
