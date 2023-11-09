@@ -1655,10 +1655,12 @@ public class Xcls_LeftProps : Object
             	
             });
             this.el.bind.connect( (listitem) => {
+            	 this.is_setting = true;
+            
+            
             	var bx = (Gtk.Box) ((Gtk.ListItem)listitem).get_child();
              
             	
-            	 this.is_setting = true;
             	
             	
             	var elbl = (Gtk.EditableLabel)bx.get_first_child();
@@ -1743,9 +1745,9 @@ public class Xcls_LeftProps : Object
                                               
             	// see if type is a Enum.
             	// triggers a changed event
-            	this.is_setting =  true;  
+             
             	elbl.set_text(prop.val);
-            	this.is_setting = false;
+             
             	elbl.show();
             	this.is_setting = false;        		 
             	
