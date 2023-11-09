@@ -1673,7 +1673,7 @@ public class Xcls_LeftProps : Object
             	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
             	GLib.debug("prop = %s", prop.get_type().name());
             	GLib.debug("prop.val = %s", prop.val);
-            	
+            	GLib.debug("prop.key = %s", prop.to_display_name());
             	 
                 var use_textarea = false;
             
