@@ -1643,7 +1643,8 @@ public class Xcls_LeftProps : Object
             	var gc = new Gtk.GestureClick();
             		lbl.add_controler(gc);
             		gc.pressed.connect(() {
-            		    this.show_editor(_this.file, _this.node, prop);
+            		 	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
+            		    this.show_editor(_this.file, prop.node, prop);
             		});
             	/*
                 	//lbl.connect
