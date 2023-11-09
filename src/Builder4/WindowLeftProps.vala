@@ -1731,7 +1731,7 @@ public class Xcls_LeftProps : Object
             				sel = i;
             			}
             		}
-            		GLib.debug("Set selected item to %d", i);
+            		GLib.debug("Set selected item to %d", sel);
             		cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
             		return ;
                 }
