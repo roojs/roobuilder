@@ -1714,25 +1714,25 @@ public class Xcls_LeftProps : Object
                     // others... - fill in options for true/false?
                        // GLib.debug (ktype.up());
                     if (has_opts) {
-                           
-                           cb.show();
-                            model.remove_all();
-                            var sel = -1;
-                            for(var i = 0; i < opts.length; i ++) {
-                            	model.append((GLib.Object) opts[i]);
-                            	if (opts[i] == prop.val) {
-                            	 	sel = i;
-                        	 	}
-                        	}
-                        	cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
-                            return ;
+            
+            			cb.show();
+            			model.remove_all();
+            			var sel = -1;
+            			for(var i = 0; i < opts.length; i ++) {
+            				model.append((GLib.Object) opts[i]);
+            				if (opts[i] == prop.val) {
+            					sel = i;
+            				}
+            			}
+            			cb.set_selected(sel > -1 ? sel : Gtk.INVALID_LIST_POSITION); 
+            			return ;
                     }
                                               
                        // see if type is a Enum.
                      // triggers a changed event
-                     this.is_setting =  true;  
-                     elbl.set_text(prop.val);
-                     this.is_setting = false;
+                 this.is_setting =  true;  
+                 elbl.set_text(prop.val);
+                 this.is_setting = false;
             		elbl.show();
             		 
             	
