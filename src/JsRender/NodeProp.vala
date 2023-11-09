@@ -251,7 +251,7 @@ public class JsRender.NodeProp : Object {
 			 return  this.to_display_name();
 		} 
 	}
-	- 
+ 
 	public string to_display_name()
 	{
 		
