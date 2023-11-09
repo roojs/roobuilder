@@ -1525,8 +1525,12 @@ public class Xcls_LeftProps : Object
              var item = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
             
             
+            item.bind_property("to_display_name_prop",
+                                lb, "label",
+                               GLib.BindingFlags.SYNC_CREATE);
+            
             // was item (1) in old layout
-            lb.set_markup(item.to_display_name());
+             
             
             });
         }
