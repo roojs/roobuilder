@@ -1356,7 +1356,7 @@ public class Xcls_LeftProps : Object
             	
             	    	// need to shift down, as ev.y does not inclucde header apparently..
                  	// or popover might be trying to do a central?
-                _this.view.editPropertyDetails(prop, (int) y + 12); 
+               		 _this.view.editPropertyDetails(prop, (int) in_y + 12); 
                      
                     return;
                 }
@@ -1365,13 +1365,6 @@ public class Xcls_LeftProps : Object
                 
                 
                   
-               //             _this.before_edit(); <<< we really need to stop the other editor..
-                 _this.keyrender.el.stop_editing(false);
-                _this.keyrender.el.editable  =false;
-                
-                       
-                 _this.startEditingValue(path); // assumes selected row..
-                    */
             });
         }
 
