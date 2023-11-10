@@ -48,6 +48,13 @@
        "$ xns" : "Gtk",
        "bool show_separators" : true,
        "id" : "ptype",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "xtype" : "SingleSelection"
+        }
+       ],
        "xtype" : "ListView",
        "| void setValue" : [
         "(JsRender.NodePropType pt) ",
