@@ -46,108 +46,115 @@
       },
       {
        "$ xns" : "Gtk",
-       "bool show_row_separators" : true,
-       "bool show_separators" : true,
-       "id" : "ptype",
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* prop" : "model",
-         "id" : "pselmodel",
-         "items" : [
-          {
-           "$ xns" : "GLib",
-           "* ctor" : "new GLib.ListStore(typeof(JsRender.NodeProp));",
-           "* init" : [
-            "{",
-            "",
-            "",
-            "\tthis.el.append( new JsRender.NodeProp.prop(\"\"));",
-            "\tthis.el.append( new JsRender.NodeProp.raw(\"\"));",
-            "\tthis.el.append( new JsRender.NodeProp.valamethod(\"\"));",
-            "\tthis.el.append( new JsRender.NodeProp.special(\"\"));\t",
-            "\tthis.el.append( new JsRender.NodeProp.listener(\"\"));\t\t",
-            "\tthis.el.append( new JsRender.NodeProp.user(\"\"));\t",
-            "\tthis.el.append( new JsRender.NodeProp.sig(\"\"));\t",
-            "\t",
-            "",
-            "}",
-            ""
-           ],
-           "* prop" : "model",
-           "id" : "pmodel",
-           "xtype" : "ListStore"
-          }
-         ],
-         "xtype" : "SingleSelection"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "append_column",
+         "bool show_row_separators" : true,
+         "bool show_separators" : true,
+         "id" : "ptype",
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* prop" : "factory",
-           "listeners" : {
-            "bind" : [
-             "(listitem) => {",
-             "",
-             " \tvar lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); ",
-             " \tvar np = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();",
-             " ",
-             "\t",
-             "  ",
-             "\tlbl.label = np.ptype.to_name();",
-             " \t ",
-             "}",
-             ""
-            ],
-            "setup" : [
-             "(listitem) => {",
-             "",
-             "\t ",
-             "\tvar label = new Gtk.Label(\"\");",
-             "\tlabel.xalign = 0;",
-             "\t ",
-             "\t((Gtk.ListItem)listitem).set_child(label);",
-             "\t((Gtk.ListItem)listitem).activatable = false;",
-             "\t",
-             "}",
-             ""
-            ]
-           },
-           "xtype" : "SignalListItemFactory"
+           "* prop" : "model",
+           "id" : "pselmodel",
+           "items" : [
+            {
+             "$ xns" : "GLib",
+             "* ctor" : "new GLib.ListStore(typeof(JsRender.NodeProp));",
+             "* init" : [
+              "{",
+              "",
+              "",
+              "\tthis.el.append( new JsRender.NodeProp.prop(\"\"));",
+              "\tthis.el.append( new JsRender.NodeProp.raw(\"\"));",
+              "\tthis.el.append( new JsRender.NodeProp.valamethod(\"\"));",
+              "\tthis.el.append( new JsRender.NodeProp.special(\"\"));\t",
+              "\tthis.el.append( new JsRender.NodeProp.listener(\"\"));\t\t",
+              "\tthis.el.append( new JsRender.NodeProp.user(\"\"));\t",
+              "\tthis.el.append( new JsRender.NodeProp.sig(\"\"));\t",
+              "\t",
+              "",
+              "}",
+              ""
+             ],
+             "* prop" : "model",
+             "id" : "pmodel",
+             "xtype" : "ListStore"
+            }
+           ],
+           "xtype" : "SingleSelection"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* pack" : "append_column",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "factory",
+             "listeners" : {
+              "bind" : [
+               "(listitem) => {",
+               "",
+               " \tvar lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); ",
+               " \tvar np = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();",
+               " ",
+               "\t",
+               "  ",
+               "\tlbl.label = np.ptype.to_name();",
+               " \t ",
+               "}",
+               ""
+              ],
+              "setup" : [
+               "(listitem) => {",
+               "",
+               "\t ",
+               "\tvar label = new Gtk.Label(\"\");",
+               "\tlabel.xalign = 0;",
+               "\t ",
+               "\t((Gtk.ListItem)listitem).set_child(label);",
+               "\t((Gtk.ListItem)listitem).activatable = false;",
+               "\t",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "SignalListItemFactory"
+            }
+           ],
+           "string title" : "Property Type",
+           "xtype" : "ColumnViewColumn"
           }
          ],
-         "string title" : "Property Type",
-         "xtype" : "ColumnViewColumn"
+         "xtype" : "ColumnView",
+         "| JsRender.NodePropType getValue" : [
+          "() {",
+          "\t",
+          "\tvar li =  (JsRender.NodeProp) _this.pmodel.el.get_item(",
+          "\t\t_this.pselmodel.el.get_selected()",
+          "\t\t);",
+          "\treturn li.ptype;",
+          "",
+          "}"
+         ],
+         "| void setValue" : [
+          "(JsRender.NodePropType pt) ",
+          "{",
+          " \tfor (var i = 0; i < _this.pmodel.el.n_items; i++) {",
+          "\t \tvar li = (JsRender.NodeProp) _this.pmodel.el.get_item(i);",
+          " \t\tif (li.ptype == pt) {",
+          " \t\t\t_this.pselmodel.el.set_selected(i);",
+          " \t\t\treturn;",
+          "\t\t}",
+          "\t}",
+          "\tGLib.debug(\"failed to set selected ptype\");",
+          "\t_this.pselmodel.el.set_selected(0);",
+          "}"
+         ]
         }
        ],
-       "xtype" : "ColumnView",
-       "| JsRender.NodePropType getValue" : [
-        "() {",
-        "\t",
-        "\tvar li =  (JsRender.NodeProp) _this.pmodel.el.get_item(",
-        "\t\t_this.pselmodel.el.get_selected()",
-        "\t\t);",
-        "\treturn li.ptype;",
-        "",
-        "}"
-       ],
-       "| void setValue" : [
-        "(JsRender.NodePropType pt) ",
-        "{",
-        " \tfor (var i = 0; i < _this.pmodel.el.n_items; i++) {",
-        "\t \tvar li = (JsRender.NodeProp) _this.pmodel.el.get_item(i);",
-        " \t\tif (li.ptype == pt) {",
-        " \t\t\t_this.pselmodel.el.set_selected(i);",
-        " \t\t\treturn;",
-        "\t\t}",
-        "\t}",
-        "\tGLib.debug(\"failed to set selected ptype\");",
-        "\t_this.pselmodel.el.set_selected(0);",
-        "}"
-       ]
+       "string label" : "Label",
+       "xtype" : "Frame"
       },
       {
        "$ visible" : true,
