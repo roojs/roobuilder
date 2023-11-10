@@ -1557,8 +1557,9 @@ public class Xcls_WindowLeftTree : Object
             	var icon = new Gtk.Image();
             	var lbl = new Gtk.Label("");
             	lbl.use_markup = true;
+            	lbl.ellipsize = Pango.EllipsizeMode.END;
             	
-            	
+            	icon.margin_right = 4;
              	lbl.justify = Gtk.Justification.LEFT;
              	lbl.xalign = 0;
             
