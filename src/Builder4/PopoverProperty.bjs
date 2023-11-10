@@ -46,6 +46,7 @@
       },
       {
        "$ xns" : "Gtk",
+       "bool show_separators" : true,
        "id" : "ptype",
        "xtype" : "ListView",
        "| void setValue" : [

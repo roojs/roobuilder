@@ -322,6 +322,7 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show_separators = true;
         }
 
         // user defined functions
