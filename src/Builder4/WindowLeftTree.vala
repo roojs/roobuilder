@@ -1559,7 +1559,7 @@ public class Xcls_WindowLeftTree : Object
             	lbl.use_markup = true;
             	lbl.ellipsize = Pango.EllipsizeMode.END;
             	
-            	icon.margin_right = 4;
+            	icon.margin_end = 4;
              	lbl.justify = Gtk.Justification.LEFT;
              	lbl.xalign = 0;
             

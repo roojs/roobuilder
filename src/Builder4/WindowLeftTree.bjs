@@ -1220,7 +1220,7 @@
              "\tlbl.use_markup = true;",
              "\tlbl.ellipsize = Pango.EllipsizeMode.END;",
              "\t",
-             "\ticon.margin_right = 4;",
+             "\ticon.margin_end = 4;",
              " \tlbl.justify = Gtk.Justification.LEFT;",
              " \tlbl.xalign = 0;",
              "",
