@@ -1192,6 +1192,35 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
+        public int getColAt (double x,  double y) {
+        /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+            	  
+            	*/
+        		Gtk.Allocation alloc = { 0, 0, 0, 0 };
+                var  child = this.el.get_first_child(); 
+            	 
+            	var col = 0;
+            	while (child != null) {
+        			GLib.debug("Got %s", child.get_type().name());
+        			
+        			if (child.get_type().name() == "GtkColumnViewRowWidget") {
+        				child = child.get_first_child();
+        				continue;
+        			}
+        			child.get_allocation(out alloc);
+        			if (x <  (alloc.width + alloc.x)) {
+        				return col;
+        			}
+        			col++;
+        			child = child.get_next_sibling();
+        		}
+            	     
+        			  
+                return -1;
+        
+         }
         public void editPropertyDetails (Gtk.TreePath path, int y) {
         
             
