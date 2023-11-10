@@ -68,6 +68,11 @@
          ],
          "* prop" : "model",
          "xtype" : "ListStore"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "list_factory",
+         "xtype" : "ListItemFactory"
         }
        ],
        "xtype" : "DropDown"
