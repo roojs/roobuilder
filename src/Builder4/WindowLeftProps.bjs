@@ -95,7 +95,7 @@
              "$ xns" : "Gtk",
              "label" : "id: _this.{ID} (Vala)",
              "listeners" : {
-              "activate" : [
+              "clicked" : [
                " ()  => {",
                " \t// is this userdef or special??",
                "    _this.node.add_prop( new JsRender.NodeProp.prop(\"id\") );",
@@ -109,7 +109,7 @@
              "$ xns" : "Gtk",
              "label" : "pack: Pack method (Vala)",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) => {",
                "// is this userdef?",
                "    _this.node.add_prop( new JsRender.NodeProp.special(\"pack\", \"add\") );",
@@ -123,7 +123,7 @@
              "$ xns" : "Gtk",
              "label" : "ctor: Alterative to default contructor (Vala)",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) => {",
                "",
                "      _this.node.add_prop( new JsRender.NodeProp.special(\"ctor\") );",
@@ -141,7 +141,7 @@
              "$ xns" : "Gtk",
              "label" : "init: initialziation code (vala)",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) => {",
                "      _this.node.add_prop( new JsRender.NodeProp.special(\"init\",\"{\\n\\n}\\n\" ) );",
                "",
@@ -155,7 +155,7 @@
              "$ xns" : "Gtk",
              "label" : "cms-id: (Roo JS/Pman library)",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                " ()  => {",
                " ",
                "    _this.node.add_prop( new JsRender.NodeProp.prop(\"cms-id\",\"string\", \"\" ) );",
@@ -180,7 +180,7 @@
              "$ xns" : "Gtk",
              "label" : "String",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "(self) => {",
                "",
                "\t_this.view.popover.show(",
@@ -201,7 +201,7 @@
              "$ xns" : "Gtk",
              "label" : "Number",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) =>{",
                "  _this.view.popover.show(",
                "\t\t_this.view.el, ",
@@ -221,7 +221,7 @@
              "$ xns" : "Gtk",
              "label" : "Boolean",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) =>{",
                "  ",
                "  \t",
@@ -248,7 +248,7 @@
              "$ xns" : "Gtk",
              "label" : "Javascript Function",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) =>{",
                "   ",
                "   _this.view.popover.show(",
@@ -270,7 +270,7 @@
              "$ xns" : "Gtk",
              "label" : "Vala Method",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) =>{",
                "",
                "    _this.view.popover.show(",
@@ -290,7 +290,7 @@
              "$ xns" : "Gtk",
              "label" : "Vala Signal",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) =>{",
                "  _this.view.popover.show(",
                "\t\t_this.view.el, ",
@@ -314,7 +314,7 @@
              "$ xns" : "Gtk",
              "label" : "Flexy - If",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) =>{",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",
@@ -335,7 +335,7 @@
              "$ xns" : "Gtk",
              "label" : "Flexy - Include",
              "listeners" : {
-              "click" : [
+              "clicked" : [
                "  ( ) =>{",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",

@@ -567,7 +567,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "id: _this.{ID} (Vala)";
 
             //listeners
-            this.el.activate.connect( ()  => {
+            this.el.clicked.connect( ()  => {
              	// is this userdef or special??
                 _this.node.add_prop( new JsRender.NodeProp.prop("id") );
             });
@@ -597,7 +597,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "pack: Pack method (Vala)";
 
             //listeners
-            this.el.click.connect( ( ) => {
+            this.el.clicked.connect( ( ) => {
             // is this userdef?
                 _this.node.add_prop( new JsRender.NodeProp.special("pack", "add") );
             });
@@ -627,7 +627,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "ctor: Alterative to default contructor (Vala)";
 
             //listeners
-            this.el.click.connect( ( ) => {
+            this.el.clicked.connect( ( ) => {
             
                   _this.node.add_prop( new JsRender.NodeProp.special("ctor") );
             });
@@ -657,7 +657,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "init: initialziation code (vala)";
 
             //listeners
-            this.el.click.connect( ( ) => {
+            this.el.clicked.connect( ( ) => {
                   _this.node.add_prop( new JsRender.NodeProp.special("init","{\n\n}\n" ) );
             
             });
@@ -687,7 +687,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "cms-id: (Roo JS/Pman library)";
 
             //listeners
-            this.el.click.connect( ()  => {
+            this.el.clicked.connect( ()  => {
              
                 _this.node.add_prop( new JsRender.NodeProp.prop("cms-id","string", "" ) );
             
@@ -742,7 +742,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "String";
 
             //listeners
-            this.el.click.connect( (self) => {
+            this.el.clicked.connect( (self) => {
             
             	_this.view.popover.show(
             		_this.view.el, 
@@ -779,7 +779,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Number";
 
             //listeners
-            this.el.click.connect( ( ) =>{
+            this.el.clicked.connect( ( ) =>{
               _this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -815,7 +815,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Boolean";
 
             //listeners
-            this.el.click.connect( ( ) =>{
+            this.el.clicked.connect( ( ) =>{
               
               	
                _this.view.popover.show(
@@ -875,7 +875,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Javascript Function";
 
             //listeners
-            this.el.click.connect( ( ) =>{
+            this.el.clicked.connect( ( ) =>{
                
                _this.view.popover.show(
             		_this.view.el, 
@@ -913,7 +913,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Vala Method";
 
             //listeners
-            this.el.click.connect( ( ) =>{
+            this.el.clicked.connect( ( ) =>{
             
                 _this.view.popover.show(
             		_this.view.el, 
@@ -949,7 +949,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Vala Signal";
 
             //listeners
-            this.el.click.connect( ( ) =>{
+            this.el.clicked.connect( ( ) =>{
               _this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -1006,7 +1006,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Flexy - If";
 
             //listeners
-            this.el.click.connect( ( ) =>{
+            this.el.clicked.connect( ( ) =>{
              	_this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -1043,7 +1043,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Flexy - Include";
 
             //listeners
-            this.el.click.connect( ( ) =>{
+            this.el.clicked.connect( ( ) =>{
              	_this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
