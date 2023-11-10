@@ -341,12 +341,12 @@ public class Xcls_PopoverProperty : Object
          	for (var i = 0; i < _this.pmodel.el.n_items; i++) {
         	 	var li = (JsRender.NodeProp) _this.pmodel.el.get_item(i);
          		if (li.ptype == pt) {
-         			this.el.set_selected(i);
+         			_this.pselmodel.el.set_selected(i);
          			return;
         		}
         	}
         	GLib.debug("failed to set selected ptype");
-        	this.el.set_selected(0);
+        	_this.pselmodel..el.set_selected(0);
         }
     }
     public class Xcls_pselmodel : Object
