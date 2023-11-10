@@ -1290,29 +1290,16 @@ public class Xcls_LeftProps : Object
                 return -1;
         
          }
-        public void editPropertyDetails (Gtk.TreePath path, int y) {
+        public void editPropertyDetails (JsRender.NodeProp prop, int y) {
         
             
         	
         
             // _this.before_edit();
-              _this.stop_editor();
+        //      _this.stop_editor();
         	  
-            /* _this.keyrender.el.stop_editing(false);
-             _this.keyrender.el.editable  =false;
-        
-             _this.valrender.el.stop_editing(false);
-             _this.valrender.el.editable  =false;
-             Gtk.TreeIter iter;
-              var mod = this.el.get_model();
-        	  mod.get_iter (out iter, path);
-        	  
-           
-        	GLib.Value gval;
-        
-             mod.get_value(iter,0, out gval);
-        
-            this.popover.show(_this.view.el, _this.node, (JsRender.NodeProp)gval,   y);
+          
+            this.popover.show(_this.view.el, _this.node, prop,   y);
               */ 
             
         }
