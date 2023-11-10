@@ -325,6 +325,12 @@ public class Xcls_PopoverProperty : Object
             var child_1 = new Xcls_SignalListItemFactory8( _this );
             child_1.ref();
             this.el.list_factory = child_1.el;
+
+            //listeners
+            this.el.activate.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions
