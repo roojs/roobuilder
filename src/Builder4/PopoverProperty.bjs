@@ -92,7 +92,7 @@
            "",
            " ",
            "\tvar label = new Gtk.Label(\"\");",
-           "\t ",
+           "\t label.xalign = 0;",
            "\t((Gtk.ListItem)listitem).set_child(label);",
            "}",
            ""

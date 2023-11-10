@@ -408,7 +408,7 @@ public class Xcls_PopoverProperty : Object
             
              
             	var label = new Gtk.Label("");
-            	 
+            	 label.xalign = 0;
             	((Gtk.ListItem)listitem).set_child(label);
             });
             this.el.bind.connect( (listitem) => {
