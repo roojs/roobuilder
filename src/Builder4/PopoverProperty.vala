@@ -463,9 +463,11 @@ public class Xcls_PopoverProperty : Object
             
             	 
             	var label = new Gtk.Label("");
+            	label.xalign = 0;
             	 
             	((Gtk.ListItem)listitem).set_child(label);
             	((Gtk.ListItem)listitem).activatable = false;
+            	
             });
             this.el.bind.connect( (listitem) => {
             

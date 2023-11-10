@@ -106,9 +106,11 @@
              "",
              "\t ",
              "\tvar label = new Gtk.Label(\"\");",
+             "\tlabel.xalign = 0;",
              "\t ",
              "\t((Gtk.ListItem)listitem).set_child(label);",
              "\t((Gtk.ListItem)listitem).activatable = false;",
+             "\t",
              "}",
              ""
             ]
