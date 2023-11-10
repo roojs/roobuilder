@@ -1326,7 +1326,7 @@ public class Xcls_LeftProps : Object
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
             	
-            	var col = _this.view.getCol(in_x, in_y);
+            	var col = _this.view.getColAt(in_x, in_y);
             	if (col != 0) {
             		return;
             	}

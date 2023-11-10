@@ -460,7 +460,7 @@
            "(n_press, in_x, in_y) => {",
            "",
            "\t",
-           "\tvar col = _this.view.getCol(in_x, in_y);",
+           "\tvar col = _this.view.getColAt(in_x, in_y);",
            "\tif (col != 0) {",
            "\t\treturn;",
            "\t}",
