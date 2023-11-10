@@ -1011,7 +1011,7 @@ public class JsRender.Node : GLib.Object {
 	
 		this.propstore.sort( (a, b) => {
 
-			return Posix.strcmp( ((NodeProp)a).to_sort_key(),  ((NodeProp)b)..to_sort_key());
+			return Posix.strcmp( ((NodeProp)a).to_sort_key(),  ((NodeProp)b).to_sort_key());
 			
 		});
 	 
