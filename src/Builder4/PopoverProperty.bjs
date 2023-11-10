@@ -425,7 +425,7 @@
     "\t//this.el.set_position(Gtk.PositionType.TOP);",
     "",
     "\t// window + header?",
-    "\t print(\"SHOWALL - POPIP\\n\");",
+    "\t GLib.debug(\"SHOWALL - POPIP\\n\");",
     "\tthis.el.show();",
     "\tthis.kname.el.grab_focus();",
     "\tthis.buttonbar.el.hide();",

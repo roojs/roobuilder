@@ -163,7 +163,7 @@ public class Xcls_PopoverProperty : Object
     	//this.el.set_position(Gtk.PositionType.TOP);
     
     	// window + header?
-    	 print("SHOWALL - POPIP\n");
+    	 GLib.debug("SHOWALL - POPIP\n");
     	this.el.show();
     	this.kname.el.grab_focus();
     	this.buttonbar.el.hide();
