@@ -52,6 +52,7 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "model",
+         "id" : "pselmodel",
          "items" : [
           {
            "$ xns" : "GLib",
@@ -73,6 +74,7 @@
             ""
            ],
            "* prop" : "model",
+           "id" : "pmodel",
            "xtype" : "ListStore"
           }
          ],

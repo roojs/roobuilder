@@ -15,6 +15,8 @@ public class Xcls_PopoverProperty : Object
     public Xcls_header header;
     public Xcls_headertitle headertitle;
     public Xcls_ptype ptype;
+    public Xcls_pselmodel pselmodel;
+    public Xcls_pmodel pmodel;
     public Xcls_ptype ptype;
     public Xcls_pmodel pmodel;
     public Xcls_ktype ktype;
@@ -323,7 +325,7 @@ public class Xcls_PopoverProperty : Object
 
             // set gobject values
             this.el.show_separators = true;
-            var child_0 = new Xcls_SingleSelection7( _this );
+            var child_0 = new Xcls_pselmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
@@ -342,7 +344,7 @@ public class Xcls_PopoverProperty : Object
         	this.el.set_selected(0);
         }
     }
-    public class Xcls_SingleSelection7 : Object
+    public class Xcls_pselmodel : Object
     {
         public Gtk.SingleSelection el;
         private Xcls_PopoverProperty  _this;
@@ -351,22 +353,23 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection7(Xcls_PopoverProperty _owner )
+        public Xcls_pselmodel(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
+            _this.pselmodel = this;
             this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ListStore8( _this );
+            var child_0 = new Xcls_pmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_ListStore8 : Object
+    public class Xcls_pmodel : Object
     {
         public GLib.ListStore el;
         private Xcls_PopoverProperty  _this;
@@ -375,9 +378,10 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListStore8(Xcls_PopoverProperty _owner )
+        public Xcls_pmodel(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
+            _this.pmodel = this;
             this.el = new GLib.ListStore(typeof(JsRender.NodeProp));;
 
             // my vars (dec)
