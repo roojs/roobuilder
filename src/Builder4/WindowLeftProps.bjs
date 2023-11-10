@@ -356,7 +356,7 @@
              "$ xns" : "Gtk",
              "label" : "Flexy - Foreach",
              "listeners" : {
-              "activate" : [
+              "click" : [
                "  ( ) =>{",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",

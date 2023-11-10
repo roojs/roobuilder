@@ -1080,7 +1080,7 @@ public class Xcls_LeftProps : Object
             this.el.label = "Flexy - Foreach";
 
             //listeners
-            this.el.activate.connect( ( ) =>{
+            this.el.click.connect( ( ) =>{
              	_this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
