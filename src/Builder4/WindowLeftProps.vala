@@ -1300,7 +1300,7 @@ public class Xcls_LeftProps : Object
         	  
           
             this.popover.show(_this.view.el, _this.node, prop,   y);
-              */ 
+             
             
         }
     }
