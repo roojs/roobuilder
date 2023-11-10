@@ -434,8 +434,7 @@
     "\tvar node = _this.prop.parent;",
     "\tnode.remove_prop(_this.prop);",
     "\tnode.add_prop(np);",
-    "\t ",
-    "",
+    "\t  ",
     "}",
     ""
    ]

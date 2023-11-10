@@ -102,8 +102,7 @@ public class Xcls_PopoverProperty : Object
     	var node = _this.prop.parent;
     	node.remove_prop(_this.prop);
     	node.add_prop(np);
-    	 
-    
+    	  
     }
     public void show (
     	Gtk.Widget btn, 
