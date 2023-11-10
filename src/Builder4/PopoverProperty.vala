@@ -321,6 +321,7 @@ public class Xcls_PopoverProperty : Object
             this.show_separators = true;
 
             // set gobject values
+            this.el.show_row_separators = true;
             var child_0 = new Xcls_pselmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;

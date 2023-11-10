@@ -46,6 +46,7 @@
       },
       {
        "$ xns" : "Gtk",
+       "bool show_row_separators" : true,
        "bool show_separators" : true,
        "id" : "ptype",
        "items" : [
