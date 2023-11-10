@@ -394,7 +394,7 @@
          "    //p.el.set_pointing_to(rect);",
          "\tp.el.show();",
          "\tp.el.set_position(Gtk.PositionType.BOTTOM);",
-         "",
+         "\tp.el.autohide = true;",
          "     return;",
          "",
          "}",

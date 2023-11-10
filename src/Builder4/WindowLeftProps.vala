@@ -440,7 +440,7 @@ public class Xcls_LeftProps : Object
                 //p.el.set_pointing_to(rect);
             	p.el.show();
             	p.el.set_position(Gtk.PositionType.BOTTOM);
-            
+            	p.el.autohide = true;
                  return;
             
             });
