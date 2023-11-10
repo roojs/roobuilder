@@ -114,6 +114,9 @@
        "xtype" : "DropDown",
        "| JsRender.NodePropType getValue" : [
         "() {",
+        "\t",
+        "\tvar li =  (JsRender.NodeProp) this.pmodel.el.get_item(this.el.get_selected());",
+        "\treturn li.ptype;",
         "",
         "}"
        ],
