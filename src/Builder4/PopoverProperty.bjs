@@ -343,7 +343,7 @@
      "\t\treturn;",
      "\t}",
      "\t",
-     "\tvar oldkey = this.prop.to_index_key();\t",
+     " ",
      "         \t",
      "         ",
      "  \tthis.updateProp();",

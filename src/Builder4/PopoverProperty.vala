@@ -67,7 +67,7 @@ public class Xcls_PopoverProperty : Object
         		return;
         	}
         	
-        	var oldkey = this.prop.to_index_key();	
+         
                  	
                  
           	this.updateProp();
