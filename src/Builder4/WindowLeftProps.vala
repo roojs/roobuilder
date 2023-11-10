@@ -1379,7 +1379,7 @@ public class Xcls_LeftProps : Object
                  _this.view.popover.show(
              			_this.view.el, 
              			_this.node, prop,  
-            		 6);
+            		 in_y);
                 
                 
                   

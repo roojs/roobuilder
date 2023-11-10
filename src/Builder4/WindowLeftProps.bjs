@@ -483,7 +483,7 @@
            "     _this.view.popover.show(",
            " \t\t\t_this.view.el, ",
            " \t\t\t_this.node, prop,  ",
-           "\t\t 6);",
+           "\t\t in_y);",
            "    ",
            "    ",
            "      ",
