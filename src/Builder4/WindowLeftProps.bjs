@@ -97,9 +97,10 @@
              "listeners" : {
               "clicked" : [
                " ()  => {",
+               " \t_this.AddPropertyPopup.el.hide();",
                " \t// is this userdef or special??",
                "    _this.node.add_prop( new JsRender.NodeProp.prop(\"id\") );",
-               "    _this.AddPropertyPopup.el.hide();",
+               "",
                "}"
               ]
              },
@@ -162,7 +163,7 @@
                " ()  => {",
                " ",
                "    _this.node.add_prop( new JsRender.NodeProp.prop(\"cms-id\",\"string\", \"\" ) );",
-               "this.AddPropertyPopup.el.hide();",
+               "_this.AddPropertyPopup.el.hide();",
                " ",
                "    ",
                "}"
@@ -193,7 +194,7 @@
                "\t\t-1,  ",
                "\t\ttrue",
                "\t);",
-               "this.AddPropertyPopup.el.hide();",
+               " _this.AddPropertyPopup.el.hide();",
                "}"
               ]
              },
@@ -213,7 +214,7 @@
                "\t\t-1,  ",
                "\t\ttrue",
                "\t);",
-               " this.AddPropertyPopup.el.hide();",
+               "_this.AddPropertyPopup.el.hide();",
                "}"
               ]
              },
@@ -235,7 +236,7 @@
                "\t\t-1,  ",
                "\t\ttrue",
                "\t); ",
-               " \tthis.AddPropertyPopup.el.hide();",
+               "_this.AddPropertyPopup.el.hide();",
                "}"
               ]
              },
@@ -253,7 +254,7 @@
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               "   ",
+               "  _this.AddPropertyPopup.el.hide(); ",
                "   _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -261,7 +262,7 @@
                "\t\t-1,  ",
                "\t\ttrue",
                "\t);",
-               "   this.AddPropertyPopup.el.hide();",
+               "",
                " ",
                "}"
               ]
@@ -275,7 +276,7 @@
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
-               "",
+               "_this.AddPropertyPopup.el.hide();",
                "    _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -295,6 +296,7 @@
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
+               "  _this.AddPropertyPopup.el.hide();",
                "  _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -319,6 +321,7 @@
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
+               " \t_this.AddPropertyPopup.el.hide();",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -340,6 +343,7 @@
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
+               " \t_this.AddPropertyPopup.el.hide();",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -361,6 +365,7 @@
              "listeners" : {
               "clicked" : [
                "  ( ) =>{",
+               " \t_this.AddPropertyPopup.el.hide();",
                " \t_this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",

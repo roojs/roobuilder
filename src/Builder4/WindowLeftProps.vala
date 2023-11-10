@@ -568,9 +568,10 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ()  => {
+             	_this.AddPropertyPopup.el.hide();
              	// is this userdef or special??
                 _this.node.add_prop( new JsRender.NodeProp.prop("id") );
-                _this.AddPropertyPopup.el.hide();
+            
             });
         }
 
@@ -693,7 +694,7 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ()  => {
              
                 _this.node.add_prop( new JsRender.NodeProp.prop("cms-id","string", "" ) );
-            this.AddPropertyPopup.el.hide();
+            _this.AddPropertyPopup.el.hide();
              
                 
             });
@@ -754,7 +755,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	);
-            this.AddPropertyPopup.el.hide();
+             _this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -790,7 +791,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	);
-             this.AddPropertyPopup.el.hide();
+            _this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -828,7 +829,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	); 
-             	this.AddPropertyPopup.el.hide();
+            _this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -879,7 +880,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ( ) =>{
-               
+              _this.AddPropertyPopup.el.hide(); 
                _this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -887,7 +888,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	);
-               this.AddPropertyPopup.el.hide();
+            
              
             });
         }
@@ -917,7 +918,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ( ) =>{
-            
+            _this.AddPropertyPopup.el.hide();
                 _this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -953,6 +954,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ( ) =>{
+              _this.AddPropertyPopup.el.hide();
               _this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -1010,6 +1012,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ( ) =>{
+             	_this.AddPropertyPopup.el.hide();
              	_this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -1047,6 +1050,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ( ) =>{
+             	_this.AddPropertyPopup.el.hide();
              	_this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -1084,6 +1088,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ( ) =>{
+             	_this.AddPropertyPopup.el.hide();
              	_this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
