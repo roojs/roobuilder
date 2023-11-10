@@ -37,15 +37,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "Gtk.Align halign" : "Gtk.Align.START",
-       "Gtk.Justification justify" : "Gtk.Justification.LEFT",
-       "int margin_top" : 12,
-       "label" : "Property Type",
-       "x_options" : 4,
-       "xtype" : "Label"
-      },
-      {
-       "$ xns" : "Gtk",
        "items" : [
         {
          "$ xns" : "Gtk",
