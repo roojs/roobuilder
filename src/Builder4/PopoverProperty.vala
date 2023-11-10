@@ -43,7 +43,7 @@ public class Xcls_PopoverProperty : Object
         this.done = false;
 
         // set gobject values
-        this.el.autohide = true;
+        this.el.autohide = false;
         this.el.position = Gtk.PositionType.RIGHT;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
