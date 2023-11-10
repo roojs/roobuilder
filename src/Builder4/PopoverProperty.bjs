@@ -74,9 +74,15 @@
          "* prop" : "list_factory",
          "listeners" : {
           "bind" : [
-           "(object) => {",
+           "(listitem) => {",
            "",
-           "",
+           "var lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); ",
+           " \tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
+           "\tvar np = (JsRender.NodeProp) lr.get_item();",
+           "\t",
+           "  ",
+           "\tlbl.label = np.ptype.to_name();",
+           " ",
            "}",
            ""
           ],
