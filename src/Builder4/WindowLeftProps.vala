@@ -1271,6 +1271,13 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
+            	
+            	var col = _this.view.getCol(in_x, in_y);
+            	if (col != 0) {
+            		return;
+            	}
+            	
+            	
             	var colview = (Gtk.ColumnView)this.el.widget;
             	var line_no = this.clicked_row(colview, in_x,in_y);
             	if (line_no < 0) {
