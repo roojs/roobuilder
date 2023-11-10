@@ -391,7 +391,7 @@
          "\tthis.el.get_allocation(out rect);",
          " ",
          "\t p.el.set_parent(this.el);",
-         "    p.el.set_pointing_to(rect);",
+         "    //p.el.set_pointing_to(rect);",
          "\tp.el.show();",
          "\tp.el.set_position(Gtk.PositionType.BOTTOM);",
          "",
