@@ -303,23 +303,24 @@ public class Xcls_PopoverProperty : Object
 
     public class Xcls_ptype : Object
     {
-        public Gtk.ListView el;
+        public Gtk.ColumnView el;
         private Xcls_PopoverProperty  _this;
 
 
             // my vars (def)
+        public bool show_separators;
 
         // ctor
         public Xcls_ptype(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
             _this.ptype = this;
-            this.el = new Gtk.ListView( null, null );
+            this.el = new Gtk.ColumnView( null );
 
             // my vars (dec)
+            this.show_separators = true;
 
             // set gobject values
-            this.el.show_separators = true;
             var child_0 = new Xcls_pselmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
