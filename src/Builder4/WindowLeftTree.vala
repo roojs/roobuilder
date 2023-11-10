@@ -106,7 +106,6 @@ public class Xcls_WindowLeftTree : Object
         public bool headers_visible;
         public bool button_is_pressed;
         public Gtk.CssProvider css;
-        public bool expand;
 
         // ctor
         public Xcls_view(Xcls_WindowLeftTree _owner )
@@ -120,7 +119,6 @@ public class Xcls_WindowLeftTree : Object
             this.lastEventSource = "";
             this.headers_visible = false;
             this.button_is_pressed = false;
-            this.expand = true;
 
             // set gobject values
             this.el.name = "left-tree-view";
