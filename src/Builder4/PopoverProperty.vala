@@ -131,7 +131,7 @@ public class Xcls_PopoverProperty : Object
     	_this.kname.el.set_text(prop.name);
     	_this.ktype.el.set_text(prop.rtype);
     	
-    	_this.dbmodel.loadData(prop );
+     	_this.ptype.setValue(prop.ptype);
     	// does node have this property...
     
     

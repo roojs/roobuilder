@@ -354,7 +354,7 @@
     "\t_this.kname.el.set_text(prop.name);",
     "\t_this.ktype.el.set_text(prop.rtype);",
     "\t",
-    "\t_this.dbmodel.loadData(prop );",
+    " \t_this.ptype.setValue(prop.ptype);",
     "\t// does node have this property...",
     "",
     "",
