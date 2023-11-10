@@ -338,7 +338,7 @@ public class Xcls_PopoverProperty : Object
         public Xcls_ListStore7(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
-            this.el = ;
+            this.el = new GLib.ListStore(typeof(JsRender.NodeProp));;
 
             // my vars (dec)
 

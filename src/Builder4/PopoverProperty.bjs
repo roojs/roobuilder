@@ -49,7 +49,7 @@
        "items" : [
         {
          "$ xns" : "GLib",
-         "* ctor" : "",
+         "* ctor" : "new GLib.ListStore(typeof(JsRender.NodeProp));",
          "* prop" : "model",
          "xtype" : "ListStore"
         }
