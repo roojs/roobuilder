@@ -155,7 +155,7 @@ public class Xcls_PopoverProperty : Object
     	Gtk.Allocation rect;
     	btn.get_allocation(out rect);
         this.el.set_pointing_to(rect);
-        this.el.set_parent(btn);
+        //this.el.set_parent(btn);
     
     	 
     	if (y > -1) {
