@@ -1195,6 +1195,49 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
+        public Gtk.Widget? getWidgetAtRow (uint row) {
+        /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+            	var colview = gesture.widget;
+            	var line_no = check_list_widget(colview, x,y);
+                 if (line_no > -1) {
+            		var item = colview.model.get_item(line_no);
+            		 
+            	}
+            	*/
+        		GLib.debug("Get Widget At Row %d", (int)row);
+                var  child = this.el.get_first_child(); 
+            	var line_no = -1; 
+            	var reading_header = true;
+        
+            	while (child != null) {
+        			GLib.debug("Got %s", child.get_type().name());
+            	    if (reading_header) {
+        			 
+        			   
+        				if (child.get_type().name() != "GtkColumnListView") {
+        					child = child.get_next_sibling();
+        					continue;
+        				}
+        				child = child.get_first_child(); 
+        				reading_header = false;
+        	        }
+        		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
+            		    child = child.get_next_sibling();
+            		    continue;
+        		    }
+        		    line_no++;
+        			if (line_no == row) {
+        				GLib.debug("Returning widget %s", child.get_type().name());
+        			    return (Gtk.Widget)child;
+        		    }
+        	        child = child.get_next_sibling(); 
+            	}
+        		GLib.debug("Rturning null");
+                return null;
+        
+         }
         public int getColAt (double x,  double y) {
         /*
             	
