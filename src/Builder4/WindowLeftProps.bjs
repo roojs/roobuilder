@@ -472,7 +472,7 @@
            "",
            "\t}",
            "\tGLib.debug(\"hit row %d\", row);",
-           "\tvar item = _this.model.setmodel.getPropAt(row);",
+           "\tvar item = _this.model.selmodel.getPropAt(row);",
            "\t",
            "\t",
            "\t    \t// need to shift down, as ev.y does not inclucde header apparently..",
