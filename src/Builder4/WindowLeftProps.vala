@@ -1223,6 +1223,72 @@ public class Xcls_LeftProps : Object
                 return -1;
         
          }
+        public int getRowAt (double x,  double y, out string pos) {
+        /*
+            	
+        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
+            	var colview = gesture.widget;
+            	var line_no = check_list_widget(colview, x,y);
+                 if (line_no > -1) {
+            		var item = colview.model.get_item(line_no);
+            		 
+            	}
+            	*/
+            	GLib.debug("getRowAt");
+                var  child = this.el.get_first_child(); 
+            	Gtk.Allocation alloc = { 0, 0, 0, 0 };
+            	var line_no = -1; 
+            	var reading_header = true;
+            	var curr_y = 0;
+            	var header_height  = 0;
+            	pos = "over";
+            	
+            	while (child != null) {
+        			//GLib.debug("Got %s", child.get_type().name());
+            	    if (reading_header) {
+        			   
+        			    if (child.get_type().name() == "GtkColumnViewRowWidget") {
+        			        child.get_allocation(out alloc);
+        			    }
+        				if (child.get_type().name() != "GtkColumnListView") {
+        					child = child.get_next_sibling();
+        					continue;
+        				}
+        				child = child.get_first_child(); 
+        				header_height = alloc.y + alloc.height;
+        				curr_y = header_height; 
+        				reading_header = false;
+        	        }
+        		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
+            		    child = child.get_next_sibling();
+            		    continue;
+        		    }
+        		    line_no++;
+        
+        			child.get_allocation(out alloc);
+        			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
+        
+        		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
+        		    	if (y > (header_height + alloc.y + (alloc.height * 0.8))) {
+        		    		pos = "below";
+        	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {
+        	    			pos = "over";
+            			} else {
+            				pos = "above";
+        				}
+        		    	GLib.debug("getRowAt return : %d, %s", line_no, pos);
+        			    return line_no;
+        		    }
+        		    curr_y = header_height + alloc.height + alloc.y;
+        
+        		    if (curr_y > y) {
+        		    //    return -1;
+        	        }
+        	        child = child.get_next_sibling(); 
+            	}
+                return -1;
+        
+         }
         public void editPropertyDetails (Gtk.TreePath path, int y) {
         
             
