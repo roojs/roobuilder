@@ -175,6 +175,7 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.single_click_activate = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
             var child_0 = new Xcls_GestureClick4( _this );
