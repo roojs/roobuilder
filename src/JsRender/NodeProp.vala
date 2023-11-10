@@ -68,6 +68,24 @@ public enum JsRender.NodePropType
 		return PROP;
 	
 	}
+	public string to_name()
+	{
+		switch (this) {
+			case RAW: 		return "Raw Property (not quoted or escaped)";
+			case METHOD : 	return "User Defined Method";	
+			case SIGNAL : 	return  "Vala Signal"; // vala signal
+			case USER : 	return  "User Defined Property"; // user defined.
+			case SPECIAL : return  "Special Property (eg. prop / arg / ctor / init)"; // * prop| args | ctor | init
+	 		case LISTENER : return  "Listener / Signal Handler";  // always raw...
+	 		// not used
+	 		case NONE:  return "None??";
+			case CTOR:  return "Constructor?";
+			case PROP:  return "Gtk/Roo Property";
+			default: return "oops";
+		
+		}
+	}
+	
 	
 }
 
