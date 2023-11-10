@@ -348,6 +348,16 @@ public class Xcls_PopoverProperty : Object
 
             {
             
+            
+            	this.el.append( new NodeProp.prop(""));
+            	this.el.append( new NodeProp.raw(""));
+            	this.el.append( new NodeProp.valamethod(""));
+            	this.el.append( new NodeProp.special(""));	
+            	this.el.append( new NodeProp.listener(""));		
+            	this.el.append( new NodeProp.user(""));	
+            	this.el.append( new NodeProp.sig(""));	
+            	
+            
             }
         }
 

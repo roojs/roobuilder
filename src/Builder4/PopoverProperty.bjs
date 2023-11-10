@@ -53,6 +53,16 @@
          "* init" : [
           "{",
           "",
+          "",
+          "\tthis.el.append( new NodeProp.prop(\"\"));",
+          "\tthis.el.append( new NodeProp.raw(\"\"));",
+          "\tthis.el.append( new NodeProp.valamethod(\"\"));",
+          "\tthis.el.append( new NodeProp.special(\"\"));\t",
+          "\tthis.el.append( new NodeProp.listener(\"\"));\t\t",
+          "\tthis.el.append( new NodeProp.user(\"\"));\t",
+          "\tthis.el.append( new NodeProp.sig(\"\"));\t",
+          "\t",
+          "",
           "}",
           ""
          ],
