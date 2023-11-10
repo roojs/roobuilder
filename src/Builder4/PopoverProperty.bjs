@@ -9,7 +9,7 @@
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "JsRender.Node node" : "",
    "Xcls_MainWindow mainwindow" : "null",
-   "bool autohide" : false,
+   "bool autohide" : true,
    "bool done" : false,
    "bool is_new" : false,
    "id" : "PopoverProperty",
