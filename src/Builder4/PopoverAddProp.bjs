@@ -115,6 +115,8 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "append_column",
+         "bool expand" : true,
+         "bool resizable" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -181,6 +183,8 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "append_column",
+         "bool expand" : true,
+         "bool resizable" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -220,6 +224,8 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "append_column",
+         "bool expand" : true,
+         "bool resizable" : true,
          "items" : [
           {
            "$ xns" : "Gtk",

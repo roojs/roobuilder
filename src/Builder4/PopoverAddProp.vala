@@ -403,6 +403,8 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.expand = true;
+            this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory8( _this );
             child_0.ref();
             this.el.factory = child_0.el;
@@ -497,6 +499,8 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.expand = true;
+            this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory10( _this );
             child_0.ref();
             this.el.factory = child_0.el;
@@ -564,6 +568,8 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.expand = true;
+            this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory12( _this );
             child_0.ref();
             this.el.factory = child_0.el;
