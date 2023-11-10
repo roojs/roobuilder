@@ -1655,7 +1655,7 @@ public class Xcls_LeftProps : Object
             	var cb  = (Gtk.DropDown) lbl.get_next_sibling();
             	// decide if it's a combo or editable text..
             	var model = (Gtk.StringList) cb.model;
-            	
+             
             	elbl.hide();
             	lbl.hide();
             	cb.hide();
@@ -1713,7 +1713,10 @@ public class Xcls_LeftProps : Object
                     // others... - fill in options for true/false?
                        // GLib.debug (ktype.up());
                 if (has_opts) {
-            
+            	
+            		while(model.get_n_items() > 0) {
+            			model.remove(0);
+            		}
             		cb.show();
              		// can not remove - hopefully always empty.
             		var sel = -1;
