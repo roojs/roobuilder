@@ -448,6 +448,7 @@
        "Gtk.CssProvider css" : "",
        "Xcls_PopoverProperty popover" : "null",
        "bool hexpand" : true,
+       "bool show_row_separators" : true,
        "bool vexpand" : true,
        "id" : "view",
        "items" : [

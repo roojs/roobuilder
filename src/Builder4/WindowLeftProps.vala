@@ -1158,6 +1158,7 @@ public class Xcls_LeftProps : Object
             this.el.name = "leftprops-view";
             this.el.hexpand = true;
             this.el.vexpand = true;
+            this.el.show_row_separators = true;
             var child_0 = new Xcls_GestureClick28( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
