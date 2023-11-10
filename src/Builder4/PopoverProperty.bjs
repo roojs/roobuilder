@@ -119,6 +119,7 @@
            "xtype" : "SignalListItemFactory"
           }
          ],
+         "string title" : "Property Type",
          "xtype" : "ColumnViewColumn"
         }
        ],

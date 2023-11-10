@@ -429,7 +429,7 @@ public class Xcls_PopoverProperty : Object
         public Xcls_ColumnViewColumn9(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ColumnViewColumn( null, null );
+            this.el = new Gtk.ColumnViewColumn( "Property Type", null );
 
             // my vars (dec)
 
