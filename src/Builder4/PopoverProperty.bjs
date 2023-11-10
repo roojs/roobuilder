@@ -52,6 +52,30 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "model",
+         "items" : [
+          {
+           "$ xns" : "GLib",
+           "* ctor" : "new GLib.ListStore(typeof(JsRender.NodeProp));",
+           "* init" : [
+            "{",
+            "",
+            "",
+            "\tthis.el.append( new JsRender.NodeProp.prop(\"\"));",
+            "\tthis.el.append( new JsRender.NodeProp.raw(\"\"));",
+            "\tthis.el.append( new JsRender.NodeProp.valamethod(\"\"));",
+            "\tthis.el.append( new JsRender.NodeProp.special(\"\"));\t",
+            "\tthis.el.append( new JsRender.NodeProp.listener(\"\"));\t\t",
+            "\tthis.el.append( new JsRender.NodeProp.user(\"\"));\t",
+            "\tthis.el.append( new JsRender.NodeProp.sig(\"\"));\t",
+            "\t",
+            "",
+            "}",
+            ""
+           ],
+           "* prop" : "model",
+           "xtype" : "ListStore"
+          }
+         ],
          "xtype" : "SingleSelection"
         }
        ],
