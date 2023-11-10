@@ -196,7 +196,7 @@
            "listeners" : {
             "bind" : [
              "(listitem) => {",
-             "",
+             "\t((Gtk.ListItem)listitem).activatable = false;",
              " \tvar lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); ",
              " \tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
              "\tvar np = (JsRender.NodeProp) lr.get_item();",

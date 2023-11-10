@@ -540,7 +540,7 @@ public class Xcls_PopoverAddProp : Object
             	((Gtk.ListItem)listitem).activatable = false;
             });
             this.el.bind.connect( (listitem) => {
-            
+            	((Gtk.ListItem)listitem).activatable = false;
              	var lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); 
              	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var np = (JsRender.NodeProp) lr.get_item();
