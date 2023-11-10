@@ -137,6 +137,8 @@ public class Xcls_PopoverProperty : Object
     
     	_this.node = node;
     	//console.log('show all');
+    	
+    	GLib.debug("set parent = %s", btn.get_type().name());
     	this.el.set_parent(btn);
     	Gtk.Allocation rect;
     	btn.get_allocation(out rect);
@@ -145,8 +147,7 @@ public class Xcls_PopoverProperty : Object
     
     	 
     	if (y > -1) {
-    		
-    	
+    		 
     		var  r = Gdk.Rectangle() {
     			x = btn.get_allocated_width(), // align left...
     			y = y,
