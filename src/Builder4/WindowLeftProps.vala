@@ -1340,6 +1340,7 @@ public class Xcls_LeftProps : Object
             	GLib.debug("hit row %d", row);
             	var prop = _this.selmodel.getPropAt(row);
             	
+            	var point_at = _this.view.getWidgetAt(in_x,in_y);
             	
             	    	// need to shift down, as ev.y does not inclucde header apparently..
                  	// or popover might be trying to do a central?
