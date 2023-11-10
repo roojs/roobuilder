@@ -601,6 +601,7 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
             // is this userdef?
                 _this.node.add_prop( new JsRender.NodeProp.special("pack", "add") );
+                this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -631,6 +632,7 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
             
                   _this.node.add_prop( new JsRender.NodeProp.special("ctor") );
+                  this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -660,7 +662,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                   _this.node.add_prop( new JsRender.NodeProp.special("init","{\n\n}\n" ) );
-            
+            this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -691,7 +693,7 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ()  => {
              
                 _this.node.add_prop( new JsRender.NodeProp.prop("cms-id","string", "" ) );
-            
+            this.AddPropertyPopup.el.hide();
              
                 
             });
@@ -752,7 +754,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	);
-            
+            this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -788,7 +790,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	);
-             
+             this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -885,7 +887,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	);
-               
+               this.AddPropertyPopup.el.hide();
              
             });
         }
