@@ -71,20 +71,8 @@ public class Xcls_PopoverProperty : Object
                  	
                  
           	this.updateProp();
-                 	
-         	var newkey = this.prop.to_index_key();	
-         	if (oldkey != newkey) {
-         	
-         		if (_this.prop.ptype == JsRender.NodePropType.LISTENER) {
-         			this.node.listeners.unset(oldkey);
-         			this.node.listeners.set(newkey, _this.prop);
-         		} else {
-         			this.node.props.unset(oldkey);
-         			this.node.props.set(newkey, _this.prop);
-         		}
-         	
-         	}
-        	_this.mainwindow.windowstate.left_props.reload();
+                
+        	 
         
         
           
