@@ -558,7 +558,7 @@
          "| JsRender.NodeProp getPropAt" : [
           "(uint row) {",
           "",
-          "\treturn  ((JsRender.NodeProp)this.el.get_item(row);",
+          "\treturn   (JsRender.NodeProp) this.el.get_item(row);",
           "",
           "\t ",
           "}"

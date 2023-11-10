@@ -1431,7 +1431,7 @@ public class Xcls_LeftProps : Object
         // user defined functions
         public JsRender.NodeProp getPropAt (uint row) {
         
-        	return  ((JsRender.NodeProp)this.el.get_item(row);
+        	return   (JsRender.NodeProp) this.el.get_item(row);
         
         	 
         }
