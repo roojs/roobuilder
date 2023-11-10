@@ -135,6 +135,12 @@ public class Xcls_PopoverProperty : Object
     	//console.log('show all');
     	
     	GLib.debug("set parent = %s", btn.get_type().name());
+    	var par = btn.get_parent();
+    	
+    	if (par == null) {
+    		GLib.debug("parent of that is null - not showing");
+    		return;
+    	}
     	this.el.set_parent(btn);
     	Gtk.Allocation rect;
     	btn.get_allocation(out rect);
