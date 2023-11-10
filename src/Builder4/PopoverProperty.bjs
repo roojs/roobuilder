@@ -83,6 +83,39 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "append_column",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "factory",
+           "listeners" : {
+            "bind" : [
+             "(listitem) => {",
+             "",
+             " \tvar lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); ",
+             " \tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
+             "\tvar np = (JsRender.NodeProp) lr.get_item();",
+             "\t",
+             "  ",
+             "\tlbl.label = np.propertyof;",
+             " \t ",
+             "}",
+             ""
+            ],
+            "setup" : [
+             "(listitem) => {",
+             "",
+             "\t ",
+             "\tvar label = new Gtk.Label(\"\");",
+             "\t ",
+             "\t((Gtk.ListItem)listitem).set_child(label);",
+             "\t((Gtk.ListItem)listitem).activatable = false;",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "SignalListItemFactory"
+          }
+         ],
          "xtype" : "ColumnViewColumn"
         }
        ],
