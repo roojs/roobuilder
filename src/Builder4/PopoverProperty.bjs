@@ -110,7 +110,12 @@
          ""
         ]
        },
-       "xtype" : "DropDown"
+       "xtype" : "DropDown",
+       "| void setValue" : [
+        "() {",
+        "",
+        "}"
+       ]
       },
       {
        "$ visible" : true,

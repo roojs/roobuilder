@@ -331,6 +331,9 @@ public class Xcls_PopoverProperty : Object
         }
 
         // user defined functions
+        public void setValue () {
+        
+        }
     }
     public class Xcls_ListStore7 : Object
     {
