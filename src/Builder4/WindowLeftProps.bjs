@@ -694,6 +694,7 @@
              "\thb.append(elbl);",
              "\tvar lbl  = new Gtk.Label(\"\");",
              "\thb.append(lbl);",
+             "\tlbl.hexpand = true;",
              "\tlbl.use_markup = true;",
              "\tvar cb = new Gtk.DropDown(new Gtk.StringList({}), null);",
              "\thb.append(cb);",
