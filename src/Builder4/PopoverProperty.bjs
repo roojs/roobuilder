@@ -116,7 +116,7 @@
         "(JsRender.NodePropType pt) ",
         "{",
         " \tfor (var i = 0; i < _this.pmodel.el.n_items; i++) {",
-        "\t \tvar li = (JsRender.NodeProp) _this.pmodel.el.get_item(i)",
+        "\t \tvar li = (JsRender.NodeProp) _this.pmodel.el.get_item(i);",
         " \t\tif (li.ptype == pt) {",
         " \t\t\tthis.el.set_selected(i);",
         " \t\t\treturn;",

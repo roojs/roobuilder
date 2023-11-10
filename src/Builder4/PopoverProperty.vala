@@ -335,7 +335,7 @@ public class Xcls_PopoverProperty : Object
         public void setValue (JsRender.NodePropType pt) 
         {
          	for (var i = 0; i < _this.pmodel.el.n_items; i++) {
-        	 	var li = (JsRender.NodeProp) _this.pmodel.el.get_item(i)
+        	 	var li = (JsRender.NodeProp) _this.pmodel.el.get_item(i);
          		if (li.ptype == pt) {
          			this.el.set_selected(i);
          			return;
