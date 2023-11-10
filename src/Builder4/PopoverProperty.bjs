@@ -82,10 +82,10 @@
         },
         {
          "$ xns" : "Gtk",
-         "xtype" : "DropTarget"
+         "xtype" : "ColumnViewColumn"
         }
        ],
-       "xtype" : "ListView",
+       "xtype" : "ColumnVew",
        "| JsRender.NodePropType getValue" : [
         "() {",
         "\t",

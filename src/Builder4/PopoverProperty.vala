@@ -323,9 +323,9 @@ public class Xcls_PopoverProperty : Object
             var child_0 = new Xcls_pselmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_DropTarget9( _this );
+            var child_1 = new Xcls_ColumnViewColumn9( _this );
             child_1.ref();
-            this.el.add_controller(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -413,19 +413,19 @@ public class Xcls_PopoverProperty : Object
     }
 
 
-    public class Xcls_DropTarget9 : Object
+    public class Xcls_ColumnViewColumn9 : Object
     {
-        public Gtk.DropTarget el;
+        public Gtk.ColumnViewColumn el;
         private Xcls_PopoverProperty  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_DropTarget9(Xcls_PopoverProperty _owner )
+        public Xcls_ColumnViewColumn9(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
-            this.el = new Gtk.DropTarget( null, null );
+            this.el = new Gtk.ColumnViewColumn( null, null );
 
             // my vars (dec)
 
