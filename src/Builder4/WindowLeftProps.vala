@@ -1353,56 +1353,6 @@ public class Xcls_LeftProps : Object
         }
 
         // user defined functions
-        public int clicked_row (Gtk.Widget colview,  double x,  double y) {
-        /*
-            	
-        from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
-             
-            	*/
-                var  child = colview.get_first_child(); 
-            	Gtk.Allocation alloc = { 0, 0, 0, 0 };
-            	var line_no = -1; 
-            	var reading_header = true;
-            	var curr_y = 0;
-            	var header_height  = 0;
-            	while (child != null) {
-        			GLib.debug("Got %s", child.get_type().name());
-            	    if (reading_header) {
-        			   
-        			    if (child.get_type().name() == "GtkListItemWidget") {
-        			        child.get_allocation(out alloc);
-        			    }
-        				if (child.get_type().name() != "GtkColumnListView") {
-        					child = child.get_next_sibling();
-        					continue;
-        				}
-        				child = child.get_first_child(); 
-        				header_height = alloc.y + alloc.height;
-        				curr_y = header_height; 
-        				reading_header = false;
-        	        }
-        		    if (child.get_type().name() != "GtkListItemWidget") {
-            		    child = child.get_next_sibling();
-            		    continue;
-        		    }
-        		    line_no++;
-        
-        			child.get_allocation(out alloc);
-        			GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
-        
-        		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
-        			    return line_no;
-        		    }
-        		    curr_y = header_height + alloc.height + alloc.y;
-        
-        		    if (curr_y > y) {
-        		    //    return -1;
-        	        }
-        	        child = child.get_next_sibling(); 
-            	}
-                return -1;
-        
-         }
     }
 
     public class Xcls_selmodel : Object
