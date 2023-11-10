@@ -15,6 +15,7 @@ public class Xcls_PopoverProperty : Object
     public Xcls_header header;
     public Xcls_headertitle headertitle;
     public Xcls_ptype ptype;
+    public Xcls_pmodel pmodel;
     public Xcls_ktype ktype;
     public Xcls_kname kname;
     public Xcls_error error;
@@ -316,7 +317,7 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ListStore7( _this );
+            var child_0 = new Xcls_pmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
             var child_1 = new Xcls_SignalListItemFactory8( _this );
@@ -337,14 +338,14 @@ public class Xcls_PopoverProperty : Object
         	 	var li = (JsRender.NodeProp) _this.pmodel.el.get_item(i)
          		if (li.ptype == pt) {
          			this.el.set_selected(i);
-         			break;
+         			return;
         		}
         	}
         	GLib.debug("failed to set selected ptype");
         	this.el.set_selected(0);
         }
     }
-    public class Xcls_ListStore7 : Object
+    public class Xcls_pmodel : Object
     {
         public GLib.ListStore el;
         private Xcls_PopoverProperty  _this;
@@ -353,9 +354,10 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListStore7(Xcls_PopoverProperty _owner )
+        public Xcls_pmodel(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
+            _this.pmodel = this;
             this.el = new GLib.ListStore(typeof(JsRender.NodeProp));;
 
             // my vars (dec)
