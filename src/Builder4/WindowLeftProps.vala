@@ -15,6 +15,7 @@ public class Xcls_LeftProps : Object
     public Xcls_AddPropertyPopup AddPropertyPopup;
     public Xcls_EditProps EditProps;
     public Xcls_view view;
+    public Xcls_selmodel selmodel;
     public Xcls_model model;
     public Xcls_keycol keycol;
     public Xcls_valcol valcol;
@@ -1163,7 +1164,7 @@ public class Xcls_LeftProps : Object
             var child_0 = new Xcls_GestureClick28( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-            var child_1 = new Xcls_NoSelection29( _this );
+            var child_1 = new Xcls_selmodel( _this );
             child_1.ref();
             this.el.model = child_1.el;
             var child_2 = new Xcls_keycol( _this );
@@ -1350,7 +1351,8 @@ public class Xcls_LeftProps : Object
             
             	}
             	GLib.debug("hit row %d", row);
-            	var item = _this.model.
+            	var item = _this.model.setmodel.getPropAt(row);
+            	
             	
             	
             	var item = colview.model.get_item(line_no);
@@ -1513,7 +1515,7 @@ public class Xcls_LeftProps : Object
          }
     }
 
-    public class Xcls_NoSelection29 : Object
+    public class Xcls_selmodel : Object
     {
         public Gtk.NoSelection el;
         private Xcls_LeftProps  _this;
@@ -1522,9 +1524,10 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_NoSelection29(Xcls_LeftProps _owner )
+        public Xcls_selmodel(Xcls_LeftProps _owner )
         {
             _this = _owner;
+            _this.selmodel = this;
             this.el = new Gtk.NoSelection( null );
 
             // my vars (dec)

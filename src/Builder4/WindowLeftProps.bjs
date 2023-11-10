@@ -472,7 +472,8 @@
            "",
            "\t}",
            "\tGLib.debug(\"hit row %d\", row);",
-           "\tvar item = _this.model.",
+           "\tvar item = _this.model.setmodel.getPropAt(row);",
+           "\t",
            "\t",
            "\t",
            "\tvar item = colview.model.get_item(line_no);",
@@ -640,6 +641,7 @@
         {
          "$ xns" : "Gtk",
          "* prop" : "model",
+         "id" : "selmodel",
          "items" : [
           {
            "$ xns" : "GLib",
