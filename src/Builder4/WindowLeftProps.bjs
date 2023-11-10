@@ -691,6 +691,7 @@
              "(listitem) => {",
              "\tvar hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
              "\tvar elbl  = new Gtk.EditableLabel(\"\");",
+             "\telbl.hexpand = true;",
              "\thb.append(elbl);",
              "\tvar lbl  = new Gtk.Label(\"\");",
              "\thb.append(lbl);",
