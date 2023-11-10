@@ -112,6 +112,11 @@
         ]
        },
        "xtype" : "DropDown",
+       "| JsRender.NodePropType getValue" : [
+        "() {",
+        "",
+        "}"
+       ],
        "| void setValue" : [
         "(JsRender.NodePropType pt) ",
         "{",

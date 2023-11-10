@@ -332,6 +332,9 @@ public class Xcls_PopoverProperty : Object
         }
 
         // user defined functions
+        public JsRender.NodePropType getValue () {
+        
+        }
         public void setValue (JsRender.NodePropType pt) 
         {
          	for (var i = 0; i < _this.pmodel.el.n_items; i++) {
