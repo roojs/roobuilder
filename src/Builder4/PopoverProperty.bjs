@@ -46,6 +46,13 @@
       },
       {
        "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "GLib",
+         "* prop" : "model",
+         "xtype" : "ListStore"
+        }
+       ],
        "xtype" : "DropDown"
       },
       {
