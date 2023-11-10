@@ -1010,4 +1010,15 @@ public class JsRender.Node : GLib.Object {
 			GLib.error("do not set listerners direclty");
 		}
 	}
+	private void sortProps ()
+	{
+	
+		this.propstore.sort( (a, b) => {
+
+			return Posix.strcmp( a.to_sort_key(),  b.to_sort_key());
+			
+		});
+	}
+	
+	}
 }
