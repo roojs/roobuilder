@@ -68,6 +68,20 @@
          ],
          "* prop" : "model",
          "xtype" : "ListStore"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "list_factory",
+         "listeners" : {
+          "setup" : [
+           "(object) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
+         "xtype" : "SignalListItemFactory"
         }
        ],
        "xtype" : "DropDown"
