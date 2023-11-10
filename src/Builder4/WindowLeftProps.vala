@@ -1354,100 +1354,13 @@ public class Xcls_LeftProps : Object
             	var item = _this.model.setmodel.getPropAt(row);
             	
             	
-            	
-            	var item = colview.model.get_item(line_no);
-            	//GLib.debug("key with is %d + %d pos is %d", alloc.x, alloc.width, in_x);
-            		 
-            	//this.el.set_state(Gtk.EventSequenceState.CLAIMED);
-            	Gtk.TreeViewColumn col;
-                int cell_x;
-                int cell_y;
-                int x;
-                int y;
-                
-                Gtk.TreePath path;
-                /*
-                _this.view.el.convert_widget_to_bin_window_coords((int)in_x, (int)in_y, out x, out y);
-                
-                // event x /y are relative to the widget..
-                if (!_this.view.el.get_path_at_pos((int)x, (int)y, out path, out col, out cell_x, out cell_y )) {
-                    GLib.debug("nothing selected on click");
-                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                        _this.view.el.get_selection().unselect_all();
-                        return false;
-                    });
-                     _this.before_edit();
-                    return; //not on a element.
-                }
-                */
-                GLib.debug("treepath selected: FIXME"); 
-                
-                  //GLib.debug("treepath selected: %s",path.to_string()); 
-                  return;
-                 // single click on name..
-                 //if (ev.type == Gdk.EventType.2BUTTON_PRESS  && ev.button == 1 && col.title == "Name") {    
-                 if (this.el.get_current_button() == 1 && col.title == "Property") {    
-                 	// need to shift down, as ev.y does not inclucde header apparently..
+            	    	// need to shift down, as ev.y does not inclucde header apparently..
                  	// or popover might be trying to do a central?
-                    _this.view.editPropertyDetails(path, (int) y + 12); 
+                _this.view.editPropertyDetails(prop, (int) y + 12); 
                      
                     return;
                 }
-                
-                /*
-                
-                
-                 // right click.
-                 if (this.el.get_current_button() == 3) {    
-                    // show popup!.   
-                    //if (col.title == "Value") {
-                     //     _this.before_edit();
-                     //    return false;
-                     //}
-            
-                    var p = _this.ContextMenu;
-            		p.el.set_parent(_this.view.el);
-             
-                    p.el.show();
-                    
-                      var  r = Gdk.Rectangle() {
-                			x = (int) x, // align left...
-                			y = (int) y,
-                			width = 1,
-                			height = 1
-                		};
-            		 p.el.set_pointing_to( r);
-            
-                    //Seed.print("click:" + res.column.title);
-                    // select the 
-                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-              
-                        _this.view.el.get_selection().select_path(path);
-                        return false;
-                    });
-                     _this.before_edit();
-                    return;
-                }
-                
                  
-                if (col.title != "Value") {
-                    GLib.debug("col title != Value");
-                    
-                    GLib.Timeout.add_full(GLib.Priority.DEFAULT,10 , () => {
-                        _this.view.el.get_selection().select_path(path);
-                        return false;
-                    });
-                    
-                    _this.before_edit();
-                      //  XObject.error("column is not value?");
-                    return; // ignore.. - key click.. ??? should we do this??
-                }
-                
-                
-                // if the cell can be edited with a pulldown
-                // then we should return true... - and let the start_editing handle it?
-                
-                
                 
                 
                 
