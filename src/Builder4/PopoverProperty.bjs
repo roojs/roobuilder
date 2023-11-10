@@ -85,7 +85,7 @@
          "xtype" : "ColumnViewColumn"
         }
        ],
-       "xtype" : "ColumnVew",
+       "xtype" : "ColumnView",
        "| JsRender.NodePropType getValue" : [
         "() {",
         "\t",
