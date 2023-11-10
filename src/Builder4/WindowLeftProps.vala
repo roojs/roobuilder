@@ -825,7 +825,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.clicked.connect( ( ) =>{
               
-              	
+              	     _this.AddPropertyPopup.el.hide();
                _this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -833,7 +833,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	); 
-            _this.AddPropertyPopup.el.hide();
+             
             });
         }
 

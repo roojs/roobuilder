@@ -232,7 +232,7 @@
               "clicked" : [
                "  ( ) =>{",
                "  ",
-               "  \t",
+               "  \t     _this.AddPropertyPopup.el.hide();",
                "   _this.view.popover.show(",
                "\t\t_this.view.el, ",
                "\t\t_this.node, ",
@@ -240,7 +240,7 @@
                "\t\t-1,  ",
                "\t\ttrue",
                "\t); ",
-               "_this.AddPropertyPopup.el.hide();",
+               " ",
                "}"
               ]
              },
