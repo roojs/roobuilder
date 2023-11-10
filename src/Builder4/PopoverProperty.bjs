@@ -85,7 +85,7 @@
        "| JsRender.NodePropType getValue" : [
         "() {",
         "\t",
-        "\tvar li =  (JsRender.NodeProp) _this.pmodel.el.get_item(this.el.get_selected());",
+        "\tvar li =  (JsRender.NodeProp) _this.pmodel.el.get_item(this.pselmodel.el.get_selected());",
         "\treturn li.ptype;",
         "",
         "}"
