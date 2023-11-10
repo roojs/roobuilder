@@ -49,6 +49,7 @@
        "items" : [
         {
          "$ xns" : "GLib",
+         "* ctor" : "",
          "* prop" : "model",
          "xtype" : "ListStore"
         }
