@@ -1522,6 +1522,7 @@ public class Xcls_WindowLeftTree : Object
             // set gobject values
             this.el.id = "maincol";
             this.el.expand = true;
+            this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory11( _this );
             child_0.ref();
             this.el.factory = child_0.el;
