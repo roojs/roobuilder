@@ -480,7 +480,7 @@
            "     \t// or popover might be trying to do a central?",
            "//\t _this.view.editPropertyDetails(prop, (int) in_y + 12); ",
            "  ",
-           "     this.view.popover.show(",
+           "     _this.view.popover.show(",
            " \t\t\t_this.view.el, ",
            " \t\t\t_this.node, prop,  ",
            "\t\t 6);",

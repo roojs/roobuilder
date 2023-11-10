@@ -1376,7 +1376,7 @@ public class Xcls_LeftProps : Object
                  	// or popover might be trying to do a central?
             //	 _this.view.editPropertyDetails(prop, (int) in_y + 12); 
               
-                 this.view.popover.show(
+                 _this.view.popover.show(
              			_this.view.el, 
              			_this.node, prop,  
             		 6);
