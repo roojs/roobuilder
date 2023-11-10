@@ -46,6 +46,10 @@
       },
       {
        "$ xns" : "Gtk",
+       "xtype" : "DropDown"
+      },
+      {
+       "$ xns" : "Gtk",
        "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
        "id" : "kflag",
        "items" : [
