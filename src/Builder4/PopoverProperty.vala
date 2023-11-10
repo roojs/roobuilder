@@ -15,6 +15,7 @@ public class Xcls_PopoverProperty : Object
     public Xcls_header header;
     public Xcls_headertitle headertitle;
     public Xcls_ptype ptype;
+    public Xcls_ptype ptype;
     public Xcls_pmodel pmodel;
     public Xcls_ktype ktype;
     public Xcls_kname kname;
@@ -200,7 +201,7 @@ public class Xcls_PopoverProperty : Object
             var child_1 = new Xcls_Label5( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_ListView6( _this );
+            var child_2 = new Xcls_ptype( _this );
             child_2.ref();
             this.el.append(  child_2.el );
             var child_3 = new Xcls_ptype( _this );
@@ -303,7 +304,7 @@ public class Xcls_PopoverProperty : Object
         // user defined functions
     }
 
-    public class Xcls_ListView6 : Object
+    public class Xcls_ptype : Object
     {
         public Gtk.ListView el;
         private Xcls_PopoverProperty  _this;
@@ -312,9 +313,10 @@ public class Xcls_PopoverProperty : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListView6(Xcls_PopoverProperty _owner )
+        public Xcls_ptype(Xcls_PopoverProperty _owner )
         {
             _this = _owner;
+            _this.ptype = this;
             this.el = new Gtk.ListView( null, null );
 
             // my vars (dec)
