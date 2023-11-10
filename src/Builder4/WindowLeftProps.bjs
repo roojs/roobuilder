@@ -641,7 +641,6 @@
          "xtype" : "NoSelection"
         },
         {
-         "$ Gtk.TreeViewColumnSizing sizing" : "Gtk.TreeViewColumnSizing.FIXED",
          "$ xns" : "Gtk",
          "* pack" : "append_column",
          "bool expand" : true,

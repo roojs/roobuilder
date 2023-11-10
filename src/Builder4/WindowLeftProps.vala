@@ -1491,7 +1491,6 @@ public class Xcls_LeftProps : Object
 
 
             // my vars (def)
-        public Gtk.TreeViewColumnSizing sizing;
 
         // ctor
         public Xcls_keycol(Xcls_LeftProps _owner )
@@ -1501,7 +1500,6 @@ public class Xcls_LeftProps : Object
             this.el = new Gtk.ColumnViewColumn( "Property", null );
 
             // my vars (dec)
-            this.sizing = Gtk.TreeViewColumnSizing.FIXED;
 
             // set gobject values
             this.el.id = "keycol";
