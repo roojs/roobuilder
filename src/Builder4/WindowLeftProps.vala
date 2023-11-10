@@ -570,6 +570,7 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ()  => {
              	// is this userdef or special??
                 _this.node.add_prop( new JsRender.NodeProp.prop("id") );
+                this.AddPropertyPopup.el.hide();
             });
         }
 
@@ -825,7 +826,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	); 
-             
+             	this.AddPropertyPopup.el.hide();
             });
         }
 

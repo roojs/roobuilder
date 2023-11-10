@@ -99,6 +99,7 @@
                " ()  => {",
                " \t// is this userdef or special??",
                "    _this.node.add_prop( new JsRender.NodeProp.prop(\"id\") );",
+               "    this.AddPropertyPopup.el.hide();",
                "}"
               ]
              },
@@ -232,7 +233,7 @@
                "\t\t-1,  ",
                "\t\ttrue",
                "\t); ",
-               " ",
+               " \tthis.AddPropertyPopup.el.hide();",
                "}"
               ]
              },
