@@ -46,6 +46,7 @@
       },
       {
        "$ xns" : "Gtk",
+       "id" : "ptype",
        "items" : [
         {
          "$ xns" : "GLib",
@@ -104,7 +105,7 @@
         "activate" : [
          "( ) => {",
          "",
-         "",
+         "\tGLib.debug(\"Dropdown activated\");",
          "}",
          ""
         ]
