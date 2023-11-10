@@ -915,16 +915,10 @@ public class JsRender.Node : GLib.Object {
 		this.propstore = model;
 		for(var i =  0; i < oldstore.n_items; i++ ) {
 			var it = (NodeProp) oldstore.get_item(i);
-			if (it.ptype == NodePropType.LISTENER) {
-				model.append(it);
-			}
+		    model.append(it);
+			
 		}
-		for(var i =  0; i < oldstore.n_items; i++ ) {
-			var it = (NodeProp) oldstore.get_item(i);
-			if (it.ptype != NodePropType.LISTENER) {
-				model.append(it);
-			}
-		}
+		this.sortProps();
 	   
    }
    // used to replace propstore, so it does not get wiped by editing a node
@@ -972,8 +966,10 @@ public class JsRender.Node : GLib.Object {
 		}
 		prop.parent = this;
 		this.propstore.append(prop);
+		this.sortProps();
 		
 		this.updated_count++;
+		
 		
 	}   
 	 
@@ -1018,7 +1014,7 @@ public class JsRender.Node : GLib.Object {
 			return Posix.strcmp( a.to_sort_key(),  b.to_sort_key());
 			
 		});
-	}
+	 
 	
 	}
 }
