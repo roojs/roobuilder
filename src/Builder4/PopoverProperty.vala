@@ -343,6 +343,12 @@ public class Xcls_PopoverProperty : Object
             // my vars (dec)
 
             // set gobject values
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions

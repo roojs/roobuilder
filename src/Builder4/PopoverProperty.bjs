@@ -50,6 +50,12 @@
         {
          "$ xns" : "GLib",
          "* ctor" : "new GLib.ListStore(typeof(JsRender.NodeProp));",
+         "* init" : [
+          "{",
+          "",
+          "}",
+          ""
+         ],
          "* prop" : "model",
          "xtype" : "ListStore"
         }
