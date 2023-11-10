@@ -1338,7 +1338,7 @@ public class Xcls_LeftProps : Object
             
             	}
             	GLib.debug("hit row %d", row);
-            	var item = _this.selmodel.getPropAt(row);
+            	var prop = _this.selmodel.getPropAt(row);
             	
             	
             	    	// need to shift down, as ev.y does not inclucde header apparently..
