@@ -286,7 +286,11 @@ public class Xcls_PopoverAddProp : Object
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
              
+            	if (n_press < 2) { /// doubleclick?
+            		return;
+            	}
             	string pos;
+            	
             	
             	// double press ? 
             	var row = _this.view.getRowAt(x,y, out pos );

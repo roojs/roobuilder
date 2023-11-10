@@ -40,7 +40,11 @@
           "pressed" : [
            "(n_press, x, y) => {",
            " ",
+           "\tif (n_press < 2) { /// doubleclick?",
+           "\t\treturn;",
+           "\t}",
            "\tstring pos;",
+           "\t",
            "\t",
            "\t// double press ? ",
            "\tvar row = _this.view.getRowAt(x,y, out pos );",
