@@ -427,7 +427,7 @@ public class Xcls_LeftProps : Object
             child_0.ref();
 
             //listeners
-            this.el.activate.connect( ( ) => {
+            this.el.clicked.connect( ( ) => {
               //_this.before_edit();
               
                     

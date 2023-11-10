@@ -380,7 +380,7 @@
         }
        ],
        "listeners" : {
-        "activate" : [
+        "clicked" : [
          "( ) => {",
          "  //_this.before_edit();",
          "  ",
