@@ -73,10 +73,20 @@
          "$ xns" : "Gtk",
          "* prop" : "list_factory",
          "listeners" : {
-          "setup" : [
+          "bind" : [
            "(object) => {",
            "",
            "",
+           "}",
+           ""
+          ],
+          "setup" : [
+           "(listitem) => {",
+           "",
+           " ",
+           "\tvar label = new Gtk.Label(\"\");",
+           "\t ",
+           "\t((Gtk.ListItem)listitem).set_child(label);",
            "}",
            ""
           ]

@@ -386,7 +386,14 @@ public class Xcls_PopoverProperty : Object
             // set gobject values
 
             //listeners
-            this.el.setup.connect( (object) => {
+            this.el.setup.connect( (listitem) => {
+            
+             
+            	var label = new Gtk.Label("");
+            	 
+            	((Gtk.ListItem)listitem).set_child(label);
+            });
+            this.el.bind.connect( (object) => {
             
             
             });
