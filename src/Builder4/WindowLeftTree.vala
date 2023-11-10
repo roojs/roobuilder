@@ -124,7 +124,6 @@ public class Xcls_WindowLeftTree : Object
             this.el.name = "left-tree-view";
             this.el.hexpand = false;
             this.el.vexpand = true;
-            this.el.hscroll_policy = ;
             var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
