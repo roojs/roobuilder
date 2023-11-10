@@ -694,9 +694,9 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ()  => {
-             
+                  _this.AddPropertyPopup.el.hide();
                 _this.node.add_prop( new JsRender.NodeProp.prop("cms-id","string", "" ) );
-            _this.AddPropertyPopup.el.hide();
+            
              
                 
             });
@@ -749,7 +749,7 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( (self) => {
-            
+                 _this.AddPropertyPopup.el.hide();
             	_this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
@@ -757,7 +757,7 @@ public class Xcls_LeftProps : Object
             		-1,  
             		true
             	);
-             _this.AddPropertyPopup.el.hide();
+             
             });
         }
 
@@ -786,14 +786,16 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ( ) =>{
-              _this.view.popover.show(
+                  _this.AddPropertyPopup.el.hide();
+                  
+                   _this.view.popover.show(
             		_this.view.el, 
             		_this.node, 
             		 new JsRender.NodeProp.prop("", "int", "0") ,
             		-1,  
             		true
             	);
-            _this.AddPropertyPopup.el.hide();
+             
             });
         }
 
