@@ -936,22 +936,6 @@
         "        return -1;",
         "",
         " }"
-       ],
-       "| void editPropertyDetails" : [
-        "(JsRender.NodeProp prop, int y) {",
-        "",
-        "    ",
-        "\t",
-        "",
-        "    // _this.before_edit();",
-        "//      _this.stop_editor();",
-        "\t  ",
-        "  ",
-        "    this.popover.show(_this.view.el, _this.node, prop,   y);",
-        "     ",
-        "    ",
-        "}",
-        ""
        ]
       }
      ],

@@ -1333,19 +1333,6 @@ public class Xcls_LeftProps : Object
                 return -1;
         
          }
-        public void editPropertyDetails (JsRender.NodeProp prop, int y) {
-        
-            
-        	
-        
-            // _this.before_edit();
-        //      _this.stop_editor();
-        	  
-          
-            this.popover.show(_this.view.el, _this.node, prop,   y);
-             
-            
-        }
     }
     public class Xcls_GestureClick28 : Object
     {
