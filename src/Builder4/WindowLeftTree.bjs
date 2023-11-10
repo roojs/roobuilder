@@ -26,6 +26,7 @@
      "items" : [
       {
        "# bool blockChanges" : false,
+       "$ Gtk.ScrollablePolicy hscroll_policy" : "",
        "$ string lastEventSource" : "\"\"",
        "$ xns" : "Gtk",
        "* init" : [
