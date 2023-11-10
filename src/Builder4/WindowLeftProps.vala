@@ -1585,6 +1585,7 @@ public class Xcls_LeftProps : Object
             	hb.append(lbl);
             	lbl.hexpand = true;
             	lbl.use_markup = true;
+            	lbl.xalign =0;
             	var cb = new Gtk.DropDown(new Gtk.StringList({}), null);
             	hb.append(cb);
             	((Gtk.ListItem)listitem).set_child(hb);
