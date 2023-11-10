@@ -131,7 +131,7 @@
            "\t\t_this.main_window.windowstate.leftTreeBeforeChange();",
            "\t\t//_this.view.el.get_selection().select_path(res);",
            "\t\tGLib.debug(\"Button Pressed - start show window\");",
-           "\t\t_this.main_window.windowstate.showAddObject(_this.view.el, node);",
+           "\t\t_this.main_window.windowstate.w(_this.view.el, node);",
            "\t\tGLib.debug(\"Button Pressed - finsihed show window\");",
            "     \treturn ;",
            "\t}",

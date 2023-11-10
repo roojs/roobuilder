@@ -458,7 +458,7 @@ public class Xcls_WindowLeftTree : Object
             		_this.main_window.windowstate.leftTreeBeforeChange();
             		//_this.view.el.get_selection().select_path(res);
             		GLib.debug("Button Pressed - start show window");
-            		_this.main_window.windowstate.showAddObject(_this.view.el, node);
+            		_this.main_window.windowstate.w(_this.view.el, node);
             		GLib.debug("Button Pressed - finsihed show window");
                  	return ;
             	}

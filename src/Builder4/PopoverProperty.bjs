@@ -46,6 +46,10 @@
       },
       {
        "$ xns" : "Gtk",
+       "xtype" : "ListView"
+      },
+      {
+       "$ xns" : "Gtk",
        "id" : "ptype",
        "items" : [
         {
