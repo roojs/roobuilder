@@ -1342,15 +1342,17 @@ public class Xcls_LeftProps : Object
             	if (col != 0) {
             		return;
             	}
+            	string pos;
+            	var row = _this.view.getRowAt(in_x, in_y, out pos);
             	
-            	
-            	var colview = (Gtk.ColumnView)this.el.widget;
-            	var line_no = this.clicked_row(colview, in_x,in_y);
-            	if (line_no < 0) {
+            	if (row < 0) {
             		return;
             
             	}
-            	GLib.debug("hit row %d", line_no);
+            	GLib.debug("hit row %d", row);
+            	var item = _this.model.
+            	
+            	
             	var item = colview.model.get_item(line_no);
             	//GLib.debug("key with is %d + %d pos is %d", alloc.x, alloc.width, in_x);
             		 
