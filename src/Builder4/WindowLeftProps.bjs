@@ -696,10 +696,10 @@
         },
         {
          "$ Gtk.TreeViewColumnSizing sizing" : "Gtk.TreeViewColumnSizing.FIXED",
-         "$ resizable" : true,
          "$ xns" : "Gtk",
          "* pack" : "append_column",
          "bool expand" : true,
+         "bool resizable" : true,
          "id" : "valcol",
          "items" : [
           {
