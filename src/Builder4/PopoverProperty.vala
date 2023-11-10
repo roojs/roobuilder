@@ -474,7 +474,7 @@ public class Xcls_PopoverProperty : Object
              
             	
               
-            	lbl.label = np.to_name();
+            	lbl.label = np.ptype.to_name();
              	 
             });
         }

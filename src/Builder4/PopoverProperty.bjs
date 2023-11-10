@@ -96,7 +96,7 @@
              " ",
              "\t",
              "  ",
-             "\tlbl.label = np.to_name();",
+             "\tlbl.label = np.ptype.to_name();",
              " \t ",
              "}",
              ""
