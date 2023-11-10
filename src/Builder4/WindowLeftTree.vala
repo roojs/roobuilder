@@ -122,7 +122,7 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.name = "left-tree-view";
-            this.el.hexpand = true;
+            this.el.hexpand = false;
             this.el.vexpand = true;
             var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();

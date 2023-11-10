@@ -75,7 +75,7 @@
        "Gtk.CssProvider css" : "",
        "bool button_is_pressed" : false,
        "bool headers_visible" : false,
-       "bool hexpand" : true,
+       "bool hexpand" : false,
        "bool vexpand" : true,
        "items" : [
         {
