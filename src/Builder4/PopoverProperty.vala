@@ -346,7 +346,7 @@ public class Xcls_PopoverProperty : Object
         		}
         	}
         	GLib.debug("failed to set selected ptype");
-        	_this.pselmodel..el.set_selected(0);
+        	_this.pselmodel.el.set_selected(0);
         }
     }
     public class Xcls_pselmodel : Object
