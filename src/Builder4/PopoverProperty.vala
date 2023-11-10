@@ -414,9 +414,8 @@ public class Xcls_PopoverProperty : Object
             this.el.bind.connect( (listitem) => {
             
             var lbl = (Gtk.Label) ((Gtk.ListItem)listitem).get_child(); 
-             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            	var np = (JsRender.NodeProp) lr.get_item();
-            	
+             	var np = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+             
               
             	lbl.label = np.ptype.to_name();
              
