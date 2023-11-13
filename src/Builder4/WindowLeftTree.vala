@@ -450,7 +450,7 @@ public class Xcls_WindowLeftTree : Object
                 if (_this.view.getColAt(x,y) > 0 ) {
             	    GLib.debug("add colum clicked.");
                     var fqn = node.fqn();
-                	var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
+                	var cn = _this.main_window.windowstate.project.palete.getChildList(fqn, false);
               		if (cn.length < 1) {
               			return ;
             		}
