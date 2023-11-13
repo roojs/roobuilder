@@ -558,7 +558,7 @@ public class Xcls_PopoverAddObject : Object
             	 
             });
             this.el.bind.connect( (listitem) => {
-            	 GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+            	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
             	
             	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
              
@@ -581,8 +581,8 @@ public class Xcls_PopoverAddObject : Object
             
             	 
              	img.file = node.iconFilename;
-             	lbl.label = node.nodeTitleProp;
-             	lbl.tooltip_markup = node.nodeTipProp;
+             	lbl.label = node.nodeTitle();
+             	lbl.tooltip_markup = node.nodeTip();
              
               
              	// bind image...
