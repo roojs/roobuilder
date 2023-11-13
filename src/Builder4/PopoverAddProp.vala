@@ -15,6 +15,7 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_view view;
     public Xcls_selmodel selmodel;
     public Xcls_model model;
+    public Xcls_"" "";
 
         // my vars (def)
     public bool modal;
@@ -189,7 +190,7 @@ public class Xcls_PopoverAddProp : Object
             var child_2 = new Xcls_selmodel( _this );
             child_2.ref();
             this.el.model = child_2.el;
-            var child_3 = new Xcls_ColumnViewColumn8( _this );
+            var child_3 = new Xcls_""( _this );
             child_3.ref();
             this.el.append_column (  child_3.el  );
             var child_4 = new Xcls_ColumnViewColumn10( _this );
@@ -333,7 +334,9 @@ public class Xcls_PopoverAddProp : Object
 
             //listeners
             this.el.changed.connect( (change) => {
-            
+            	var this.el.get_primary_sort_column();
+            	
+            	Glib.debug("Sort? %d", 
             
             });
         }
@@ -421,7 +424,7 @@ public class Xcls_PopoverAddProp : Object
     }
 
 
-    public class Xcls_ColumnViewColumn8 : Object
+    public class Xcls_"" : Object
     {
         public Gtk.ColumnViewColumn el;
         private Xcls_PopoverAddProp  _this;
@@ -430,14 +433,16 @@ public class Xcls_PopoverAddProp : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnViewColumn8(Xcls_PopoverAddProp _owner )
+        public Xcls_""(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
+            _this."" = this;
             this.el = new Gtk.ColumnViewColumn( "Double click to add", null );
 
             // my vars (dec)
 
             // set gobject values
+            this.el.id = "\"\"";
             this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory9( _this );

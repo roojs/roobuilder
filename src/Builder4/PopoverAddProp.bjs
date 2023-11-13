@@ -70,7 +70,9 @@
          "listeners" : {
           "changed" : [
            "(change) => {",
-           "",
+           "\tvar this.el.get_primary_sort_column();",
+           "\t",
+           "\tGlib.debug(\"Sort? %d\", ",
            "",
            "}",
            ""
@@ -195,6 +197,7 @@
            "xtype" : "SignalListItemFactory"
           }
          ],
+         "string id" : "\"\"",
          "string title" : "Double click to add",
          "xtype" : "ColumnViewColumn"
         },
