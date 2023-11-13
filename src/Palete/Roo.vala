@@ -576,11 +576,8 @@ namespace Palete {
         	if (this.top_classes.size < 1) {
         		this.load();
         	}
-        	if (this.child_list_cache.has_key(in_rval)) {
-	        	return  this.child_list_cache.get(in_rval);
-        	}
-        	
-        	
+        	 
+        	 
         	 
         	var ar = this.top_classes;
         	if (in_rval != "*top") {
