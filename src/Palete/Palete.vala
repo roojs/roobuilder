@@ -499,7 +499,7 @@ namespace Palete
 				JsRender.NodeProp? prop,
 				string complete_string
 		);
-		public abstract string[] getChildList(string in_rval);
+		public abstract Gee.ArrayList<string> getChildList(string in_rval);
 		public abstract Gee.ArrayList<string> getDropList(string rval);		
 		
 		
