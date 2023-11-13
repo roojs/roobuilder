@@ -571,7 +571,7 @@ namespace Palete {
 		}
 		
 		
-		public override Gee.ArrayList<string> getChildList(string in_rval)
+		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_prop)
         {
         	if (this.top_classes.size < 1) {
         		this.load();
@@ -589,7 +589,16 @@ namespace Palete {
     			}
         	}
         	
-         
+         	if (!with_prop) {
+         		var ret = new Gee.ArrayList<string>();
+         		foreach(var v in ar) {
+         			if (v.contains(":")) {
+         				continue;
+     				}
+     				ret.add(v);
+         		}
+         		return ret;
+         	}
     		 
         	GLib.debug("getChildList for %s returns %d items",  in_rval, ar.size);
         	return ar;	
