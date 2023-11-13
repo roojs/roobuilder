@@ -139,25 +139,25 @@ namespace Palete
 					if (!m.leftHas(rval)) {
 					continue;
 				}
-				print("found LEFT, adding right\n");
+				GLib.debug("found LEFT, adding right\n");
 			
 				for(var ii =0; ii < m.right.size; ii++) {
-						var l = m.right.get(ii);
-						
-						if (rt.index_of(l) > -1) {
-							continue;
-						}
-						if (!with_prop && l.contains(":")) {
-							continue;
-						}
-					//print("ADD " + string.joinv(", ", ret) + "\n");
-						//ret += l;
-						rt.add(l);
+					var l = m.right.get(ii);
+					
+					if (rt.index_of(l) > -1) {
+						continue;
 					}
-					
-					
+					if (!with_prop && l.contains(":")) {
+						continue;
+					}
+					//print("ADD " + string.joinv(", ", ret) + "\n");
+					//ret += l;
+					rt.add(l);
 				}
-				print ("drop list for %s is  %d", rval, rt.size);
+					
+					
+			}
+			GLib.debug("drop list for %s is  %d", rval, rt.size);
 			//console.log("DROP LIST:");
 			//console.dump(ret);
 			return rt;
