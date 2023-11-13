@@ -984,37 +984,53 @@ public class JsRender.Node : GLib.Object {
 		this.updated_count++;
 		
 		
-	}   
-	 
+	}
+	
+	int props_updated_count = -1;
+	Gee.HashMap<string,NodeProp> props_cache;
+	
  	public Gee.HashMap<string,NodeProp> props {
  		owned get {
- 			var ret = new Gee.HashMap<string,NodeProp>(); // the properties..
+ 			if (this.updated_count == this.props_updated_count) {
+ 				return this.props_cache;
+			}
+ 			 this.props_cache = new Gee.HashMap<string,NodeProp>(); // the properties..
 
 			for(var i =  0; i < this.propstore.n_items; i++ ) {
 				var it = (NodeProp) this.propstore.get_item(i);
 				if (it.ptype != NodePropType.LISTENER) {
 				//	GLib.debug("props add key %s", it.to_index_key());
-	 				ret.set( it.to_index_key() , it);
+	 				this.props_cache.set( it.to_index_key() , it);
 	 			}
  			}
- 			return ret;
+ 			this.props_updated_count = this.updated_count;
+ 			return this.props_cache;
 		}
 		private set {
 			GLib.error("do not set listerners direclty");
 		}
 	}
+	
+	int listeners_updated_count = -1;
+	Gee.HashMap<string,NodeProp> listeners_cache;
+	
 	//private Gee.HashMap<string,NodeProp> _listeners; // the listeners..
 	public Gee.HashMap<string,NodeProp> listeners {
  		owned get {
- 			var ret = new Gee.HashMap<string,NodeProp>(); // the properties..
+ 			if (this.updated_count == this.listeners_updated_count) {
+ 				return this.listeners_cache;
+			}
+ 			
+ 			this.listeners_cache = new Gee.HashMap<string,NodeProp>(); // the properties..
 
 			for(var i =  0; i < this.propstore.n_items; i++ ) {
 				var it = (NodeProp) this.propstore.get_item(i);
 				if (it.ptype == NodePropType.LISTENER) {
-	 				ret.set( it.to_index_key() , it);
+	 				this.listeners_cache.set( it.to_index_key() , it);
 	 			}
  			}
- 			return ret;
+ 			this.listeners_updated_count = this.updated_count;
+ 			return this.listeners_cache;;
 		}
 		private set {
 			GLib.error("do not set listerners direclty");
