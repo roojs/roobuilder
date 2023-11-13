@@ -582,8 +582,8 @@ public class Xcls_PopoverAddObject : Object
             
             	 
              	img.file = node.iconFilename;
-             	lbl.label = node.nodeTitle();
-             	lbl.tooltip_markup = node.nodeTip();
+             	lbl.set_label( node.fqn() );
+            // 	lbl.tooltip_markup = node.nodeTip();
              
               
              	// bind image...
