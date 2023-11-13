@@ -470,7 +470,7 @@
     "    //if (this.el.relative_to == null) {",
     "    \tGtk.Allocation rect;",
     "    \tonbtn.get_allocation(out rect);",
-    "        this.el.set_pointing_to(rect);",
+    "      //  this.el.set_pointing_to(rect);",
     "    //}",
     "    this.el.show();",
     "   ",

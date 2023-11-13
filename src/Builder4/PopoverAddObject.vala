@@ -95,7 +95,7 @@ public class Xcls_PopoverAddObject : Object
         //if (this.el.relative_to == null) {
         	Gtk.Allocation rect;
         	onbtn.get_allocation(out rect);
-            this.el.set_pointing_to(rect);
+          //  this.el.set_pointing_to(rect);
         //}
         this.el.show();
        
