@@ -26,18 +26,6 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* init" : [
-        "{",
-        "\tthis.el.sorter.changed.connect((change) => {",
-        "\t\tvar s = (Gtk.ColumnViewSorter)this.el.sorter;",
-        "\t\tvar col = s.get_primary_sort_column();",
-        "\t\t",
-        "\t\tGLib.debug(\"Sort? %s\", col.id);",
-        "\t});",
-        "",
-        "}",
-        ""
-       ],
        "* pack" : "set_child",
        "bool hexpand" : true,
        "bool reorderable" : true,

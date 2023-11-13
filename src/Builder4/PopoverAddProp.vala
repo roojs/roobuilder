@@ -200,18 +200,6 @@ public class Xcls_PopoverAddProp : Object
             var child_4 = new Xcls_propertyof( _this );
             child_4.ref();
             this.el.append_column (  child_4.el  );
-
-            // init method
-
-            {
-            	this.el.sorter.changed.connect((change) => {
-            		var s = (Gtk.ColumnViewSorter)this.el.sorter;
-            		var col = s.get_primary_sort_column();
-            		
-            		GLib.debug("Sort? %s", col.id);
-            	});
-            
-            }
         }
 
         // user defined functions
