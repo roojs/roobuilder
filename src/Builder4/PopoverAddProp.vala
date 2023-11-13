@@ -206,7 +206,7 @@ public class Xcls_PopoverAddProp : Object
             		var s = (Gtk.ColumnViewSorter)this.el.sorter;
             		var col = s.get_primary_sort_column();
             		
-            		Glib.debug("Sort? %s", col.name);
+            		GLib.debug("Sort? %s", col.name);
             	});
             
             }
