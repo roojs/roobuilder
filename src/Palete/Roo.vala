@@ -569,6 +569,9 @@ namespace Palete {
 			
 			return ret;
 		}
+		
+		Gee.HashMap<string,string[]> child_list_cache;
+		
 		public override string[] getChildList(string in_rval)
         {
         	if (this.top_classes.size < 1) {
