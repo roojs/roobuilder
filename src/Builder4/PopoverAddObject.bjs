@@ -185,6 +185,7 @@
              "\tvar node = (JsRender.Node) lr.get_item();",
              "\t",
              "   GLib.debug(\"node is %s\", node.get_type().name());",
+             "   GLib.debug(\"lbl is %s\", lbl.get_type().name());",
              "// was item (1) in old layout",
              "",
              "\t ",

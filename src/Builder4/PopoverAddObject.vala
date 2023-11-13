@@ -577,6 +577,7 @@ public class Xcls_PopoverAddObject : Object
             	var node = (JsRender.Node) lr.get_item();
             	
                GLib.debug("node is %s", node.get_type().name());
+               GLib.debug("lbl is %s", lbl.get_type().name());
             // was item (1) in old layout
             
             	 
