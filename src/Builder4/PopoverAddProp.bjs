@@ -70,9 +70,10 @@
          "listeners" : {
           "changed" : [
            "(change) => {",
-           "\tvar this.el.get_primary_sort_column();",
+           "\tvar col = this.el.get_primary_sort_column();",
            "\t",
-           "\tGlib.debug(\"Sort? %d\", ",
+           "\tGlib.debug(\"Sort? %s\", col.name);",
+           "\t",
            "",
            "}",
            ""

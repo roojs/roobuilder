@@ -336,9 +336,10 @@ public class Xcls_PopoverAddProp : Object
 
             //listeners
             this.el.changed.connect( (change) => {
-            	var this.el.get_primary_sort_column();
+            	var col = this.el.get_primary_sort_column();
             	
-            	Glib.debug("Sort? %d", 
+            	Glib.debug("Sort? %s", col.name);
+            	
             
             });
         }
