@@ -993,7 +993,7 @@ public class JsRender.Node : GLib.Object {
 			for(var i =  0; i < this.propstore.n_items; i++ ) {
 				var it = (NodeProp) this.propstore.get_item(i);
 				if (it.ptype != NodePropType.LISTENER) {
-					GLib.debug("props add key %s", it.to_index_key());
+				//	GLib.debug("props add key %s", it.to_index_key());
 	 				ret.set( it.to_index_key() , it);
 	 			}
  			}
