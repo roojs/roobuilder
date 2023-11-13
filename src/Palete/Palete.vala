@@ -117,7 +117,7 @@ namespace Palete
          
 		// this is the old verison using 'Usage'... see flutter for a better version..
 	    
-		public string[] original_getChildList(string in_rval)
+		public  Gee.ArrayList<string> original_getChildList(string in_rval)
         {
 
 			if (this.map == null) {
@@ -129,7 +129,9 @@ namespace Palete
 					
 					// should be a bit more than this..
 				// -> it should look for all elements that inherit 
-				string[] ret = {};
+				//string[] ret = {};
+				
+ 
 			var rt = new Gee.ArrayList<string>();
 			for (var i = 0; i < this.map.size; i++) {
 				var m = this.map.get(i);
@@ -146,16 +148,16 @@ namespace Palete
 							continue;
 						}
 					//print("ADD " + string.joinv(", ", ret) + "\n");
-						ret += l;
-					rt.add(l);
+						//ret += l;
+						rt.add(l);
 					}
 					
 					
 				}
-			print ("drop list for %s is:\n%s\n", rval, string.joinv("\n", ret));
+				print ("drop list for %s is  %d", rval, rt.size);
 			//console.log("DROP LIST:");
 			//console.dump(ret);
-			return ret;
+			return rt;
 				
         }
 
