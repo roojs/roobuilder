@@ -36,6 +36,13 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "sorter",
+           "xtype" : "ColumnViewSorter"
+          }
+         ],
          "listeners" : {
           "pressed" : [
            "(n_press, x, y) => {",
