@@ -25,7 +25,7 @@ namespace Palete {
 		Gee.ArrayList<string> top_classes;
 		public static Gee.HashMap<string,GirObject>? classes_cache = null;
 		public static Gee.ArrayList<string>? top_classes_cache = null;
-		public Gee.HashMap<string,string[]> child_list_cache;
+		public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache;
         public Roo(Project.Project project)
         {
 
