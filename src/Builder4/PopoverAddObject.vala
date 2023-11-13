@@ -90,7 +90,7 @@ public class Xcls_PopoverAddObject : Object
     	// max hieght ...
         this.el.set_size_request( 350, h); // full height?
     
-         //this.el.set_parent(onbtn);
+          this.el.set_parent(onbtn);
     
         //if (this.el.relative_to == null) {
         	Gtk.Allocation rect;
