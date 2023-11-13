@@ -286,6 +286,7 @@ namespace Palete {
 			 
 		}
 		
+		// removes all the properties where the type contains '.' ?? << disabled now..
 		
 		public Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
 		{
@@ -305,10 +306,10 @@ namespace Palete {
 				}
 				
 				 
-				if (!val.type.contains(".")) {
+				//if (!val.type.contains(".")) {
 					outprops.set(k,val);
 					continue;
-				}
+				//}
 				
 				
 				 
