@@ -441,7 +441,7 @@
     "\t// will change the return list above eventually?",
     "\t",
     " ",
-    "\tfor (var dname in tr) {",
+    "\tforeach (var dname in tr) {",
     "\t\t ",
     "\t\tvar c = new JsRender.Node();",
     "",

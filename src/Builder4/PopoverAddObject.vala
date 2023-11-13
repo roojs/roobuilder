@@ -66,7 +66,7 @@ public class Xcls_PopoverAddObject : Object
     	// will change the return list above eventually?
     	
      
-    	for (var dname in tr) {
+    	foreach (var dname in tr) {
     		 
     		var c = new JsRender.Node();
     
