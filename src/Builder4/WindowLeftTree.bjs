@@ -124,7 +124,7 @@
            "\t    GLib.debug(\"add colum clicked.\");",
            "        var fqn = node.fqn();",
            "    \tvar cn = _this.main_window.windowstate.project.palete.getChildList(fqn, false);",
-           "  \t\tif (cn.length < 1) {",
+           "  \t\tif (cn.size < 1) {",
            "  \t\t\treturn ;",
            "\t\t}",
            "",
