@@ -73,7 +73,9 @@ public class Xcls_PopoverAddObject : Object
     			continue;
      	 	}
     		var c = new JsRender.Node();
+    
     		c.setFqn(dname);
+    		GLib.debug("add to model: %s", dname);		
     		m.append(c);
     	}
     	 
