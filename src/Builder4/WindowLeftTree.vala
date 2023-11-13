@@ -1705,9 +1705,9 @@ public class Xcls_WindowLeftTree : Object
             	 );
             	 
              	var fqn = node.fqn();
-                var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);
+                var cn = _this.main_window.windowstate.project.palete.getChildList(fqn, false);
             
-            	img.set_visible(cn.length > 0 ? true : false);
+            	img.set_visible(cn.size > 0 ? true : false);
              	 
             });
         }

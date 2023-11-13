@@ -1267,9 +1267,9 @@
              "\t );",
              "\t ",
              " \tvar fqn = node.fqn();",
-             "    var cn = _this.main_window.windowstate.project.palete.getChildList(fqn);",
+             "    var cn = _this.main_window.windowstate.project.palete.getChildList(fqn, false);",
              "",
-             "\timg.set_visible(cn.length > 0 ? true : false);",
+             "\timg.set_visible(cn.size > 0 ? true : false);",
              " \t ",
              "}",
              ""
