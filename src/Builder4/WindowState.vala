@@ -768,7 +768,7 @@ public class WindowState : Object
 		 
 		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
 		
-		this.rightpalete.el.set_parent(btn);
+		//this.rightpalete.el.set_parent(btn);
  
 		this.rightpalete.show(
 			this.left_tree.getActiveFile().palete(), 
