@@ -425,7 +425,9 @@ public class Xcls_PopoverAddProp : Object
             {
             	var  s = new  CustomSorter ();
             	s.set_sort_func((a,b) => {
-            	
+            		//_this.node.fqn());
+            		GLib.log(a.get_type().name());
+            		return 0;
             	
             	});
             	
