@@ -28,6 +28,11 @@
        "$ xns" : "Gtk",
        "* init" : [
         "{",
+        "\tthis.el.sorter.connect.changed(change) => {",
+        "\t\tvar col = this.el.sorter.get_primary_sort_column();",
+        "\t\t",
+        "\t\tGlib.debug(\"Sort? %s\", col.name);",
+        "\t",
         "",
         "}",
         ""
@@ -69,23 +74,6 @@
           ]
          },
          "xtype" : "GestureClick"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "sorter",
-         "listeners" : {
-          "changed" : [
-           "(change) => {",
-           "\tvar col = this.el.get_primary_sort_column();",
-           "\t",
-           "\tGlib.debug(\"Sort? %s\", col.name);",
-           "\t",
-           "",
-           "}",
-           ""
-          ]
-         },
-         "xtype" : "ColumnViewSorter"
         },
         {
          "$ xns" : "Gtk",
