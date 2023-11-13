@@ -25,7 +25,7 @@ namespace Palete {
 		Gee.ArrayList<string> top_classes;
 		public static Gee.HashMap<string,GirObject>? classes_cache = null;
 		public static Gee.ArrayList<string>? top_classes_cache = null;
-		
+		public Gee.HashMap<string,string[]> child_list_cache;
         public Roo(Project.Project project)
         {
 
@@ -34,7 +34,7 @@ namespace Palete {
             aconstruct(project);
             this.name = "Roo";
 			this.top_classes =  new Gee.ArrayList<string>();
-
+			this.child_list_cache = new Gee.HashMap<string,string[]>();;
 			
 			this.load(); // ? initialize the roodata?
 
@@ -570,12 +570,14 @@ namespace Palete {
 			return ret;
 		}
 		
-		Gee.HashMap<string,string[]> child_list_cache;
 		
 		public override string[] getChildList(string in_rval)
         {
         	if (this.top_classes.size < 1) {
         		this.load();
+        	}
+        	if (this.child_list_cache.has_key(in_rval)) {
+	        	return  this.child_list_cache.get(in_rval);
         	}
         	
         	
@@ -593,6 +595,7 @@ namespace Palete {
         	foreach(var str in ar) {
         		ret += str;
     		} 
+    		this.child_list_cache.set(in_rval, ret);
         	GLib.debug("getChildList for %s returns %s", in_rval, string.joinv(", ", ret));
         	return ret;	
         	
