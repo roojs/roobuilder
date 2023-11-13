@@ -202,7 +202,7 @@ public class Xcls_PopoverAddProp : Object
             // init method
 
             {
-            	this.el.sorter.connect.changed(change) => {
+            	this.el.sorter.changed.connect(change) => {
             		var col = this.el.sorter.get_primary_sort_column();
             		
             		Glib.debug("Sort? %s", col.name);
