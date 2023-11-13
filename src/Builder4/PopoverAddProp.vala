@@ -423,10 +423,10 @@ public class Xcls_PopoverAddProp : Object
             // init method
 
             {
-            	var  s = new  CustomSorter ();
+            	var  s = new Gtk.CustomSorter ();
             	s.set_sort_func((a,b) => {
             		//_this.node.fqn());
-            		GLib.log(a.get_type().name());
+            		GLib.log("sort %s", a.get_type().name());
             		return 0;
             	
             	});
