@@ -117,7 +117,7 @@ namespace Palete
          
 		// this is the old verison using 'Usage'... see flutter for a better version..
 	    
-		public  Gee.ArrayList<string> original_getChildList(string in_rval)
+		public  Gee.ArrayList<string> original_getChildList(string in_rval, bool with_prop)
         {
 
 			if (this.map == null) {
@@ -145,6 +145,9 @@ namespace Palete
 						var l = m.right.get(ii);
 						
 						if (rt.index_of(l) > -1) {
+							continue;
+						}
+						if (!with_prop && l.contains(":")) {
 							continue;
 						}
 					//print("ADD " + string.joinv(", ", ret) + "\n");
