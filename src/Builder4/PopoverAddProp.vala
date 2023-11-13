@@ -203,7 +203,8 @@ public class Xcls_PopoverAddProp : Object
 
             {
             	this.el.sorter.changed.connect((change) => {
-            		var col = this.el.sorter.get_primary_sort_column();
+            		var s = (Gtk.ColumnViewSorter)this.el.sorter;
+            		var col = s.get_primary_sort_column();
             		
             		Glib.debug("Sort? %s", col.name);
             	});

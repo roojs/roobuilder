@@ -29,7 +29,8 @@
        "* init" : [
         "{",
         "\tthis.el.sorter.changed.connect((change) => {",
-        "\t\tvar col = this.el.sorter.get_primary_sort_column();",
+        "\t\tvar s = (Gtk.ColumnViewSorter)this.el.sorter;",
+        "\t\tvar col = s.get_primary_sort_column();",
         "\t\t",
         "\t\tGlib.debug(\"Sort? %s\", col.name);",
         "\t});",
