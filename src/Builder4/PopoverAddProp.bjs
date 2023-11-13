@@ -28,11 +28,11 @@
        "$ xns" : "Gtk",
        "* init" : [
         "{",
-        "\tthis.el.sorter.changed.connect(change) => {",
+        "\tthis.el.sorter.changed.connect((change) => {",
         "\t\tvar col = this.el.sorter.get_primary_sort_column();",
         "\t\t",
         "\t\tGlib.debug(\"Sort? %s\", col.name);",
-        "\t",
+        "\t});",
         "",
         "}",
         ""
