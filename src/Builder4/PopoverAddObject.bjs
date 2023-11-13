@@ -212,7 +212,7 @@
              "\t",
              " \tlbl.justify = Gtk.Justification.LEFT;",
              " \tlbl.xalign = 0;",
-             "\tlbl.margin_begin = 4;",
+             "\tlbl.margin_start = 4;",
              "//\tlistitem.activatable = true; ??",
              "\t",
              "\thbox.append(icon);",

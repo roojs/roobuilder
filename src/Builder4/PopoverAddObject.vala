@@ -546,7 +546,7 @@ public class Xcls_PopoverAddObject : Object
             	
              	lbl.justify = Gtk.Justification.LEFT;
              	lbl.xalign = 0;
-            	lbl.margin_begin = 4;
+            	lbl.margin_start = 4;
             //	listitem.activatable = true; ??
             	
             	hbox.append(icon);
