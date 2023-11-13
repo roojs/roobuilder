@@ -191,7 +191,7 @@
              "",
              "\t ",
              " \timg.file = node.iconFilename;",
-             " \tlbl.set_label( node.fqn() );",
+             " \tlbl.label =  node.fqn();",
              "// \tlbl.tooltip_markup = node.nodeTip();",
              " ",
              "  ",
