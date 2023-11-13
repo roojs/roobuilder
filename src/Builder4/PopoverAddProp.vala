@@ -183,6 +183,7 @@ public class Xcls_PopoverAddProp : Object
             this.el.vexpand = true;
             this.el.show_row_separators = true;
             this.el.show_column_separators = true;
+            this.el.reorderable = true;
             var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );

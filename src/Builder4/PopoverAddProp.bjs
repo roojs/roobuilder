@@ -40,6 +40,7 @@
        ],
        "* pack" : "set_child",
        "bool hexpand" : true,
+       "bool reorderable" : true,
        "bool show_column_separators" : true,
        "bool show_row_separators" : true,
        "bool single_click_activate" : true,
