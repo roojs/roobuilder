@@ -1216,7 +1216,7 @@ namespace Palete {
 			return ret;
 		}
 		
-		public override string[] getChildList(string in_rval)
+		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props)
         {
         	return this.original_getChildList(  in_rval);
     	}
