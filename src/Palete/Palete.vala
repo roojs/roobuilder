@@ -139,7 +139,7 @@ namespace Palete
 					if (!m.leftHas(rval)) {
 					continue;
 				}
-				GLib.debug("found LEFT, adding right\n");
+				GLib.debug("found LEFT, adding right");
 			
 				for(var ii =0; ii < m.right.size; ii++) {
 					var l = m.right.get(ii);
