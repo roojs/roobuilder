@@ -431,6 +431,12 @@ public class Xcls_PopoverAddProp : Object
             var child_0 = new Xcls_SignalListItemFactory8( _this );
             child_0.ref();
             this.el.factory = child_0.el;
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions
