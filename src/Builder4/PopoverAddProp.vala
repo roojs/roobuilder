@@ -110,7 +110,7 @@ public class Xcls_PopoverAddProp : Object
     	// max hieght ...
         this.el.set_size_request( 550, h);
         //this.el.set_parent(onbtn);
-        
+    	_this.view.el.sort_by_column(_this.name.el, Gtk.SortType.ASCENDING);
     
     	Gtk.Allocation rect;
     	onbtn.get_allocation(out rect);
