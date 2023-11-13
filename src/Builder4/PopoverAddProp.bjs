@@ -239,6 +239,7 @@
            "xtype" : "SignalListItemFactory"
           }
          ],
+         "string id" : "type",
          "string title" : "Type",
          "xtype" : "ColumnViewColumn"
         },
@@ -280,6 +281,7 @@
            "xtype" : "SignalListItemFactory"
           }
          ],
+         "string id" : "propertyof",
          "string title" : "Property of",
          "xtype" : "ColumnViewColumn"
         }
