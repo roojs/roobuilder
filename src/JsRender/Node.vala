@@ -334,10 +334,14 @@ public class JsRender.Node : GLib.Object {
 		var xt = new NodeProp.prop("xtype", "",  ar[ar.length-1]);
 		var xns = new NodeProp.raw("xns", "", name.substring(0, l));
 		
-		if (this.has_
-		this.props.set("xtype",new NodeProp.prop("xtype", "",  ar[ar.length-1]));
-		
-		this.props.set("xns", new NodeProp.raw("xns", "", name.substring(0, l)));
+		if (this.props.has_key("xtype")) {
+			this.remove_prop(this.props.get("xtype"));
+		}	
+		if (this.props.has_key("xns")) {
+			this.remove_prop(this.props.get("xns"));
+		}
+		this.add_prop(xt);
+		this.add_prop(xns);
 		//print("setFQN %s to %s\n", name , this.fqn());
 		               
 
