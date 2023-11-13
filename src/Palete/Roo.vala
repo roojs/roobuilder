@@ -571,7 +571,7 @@ namespace Palete {
 		}
 		
 		
-		public override string[] getChildList(string in_rval)
+		public override Gee.ArrayList<string> getChildList(string in_rval)
         {
         	if (this.top_classes.size < 1) {
         		this.load();
@@ -581,7 +581,7 @@ namespace Palete {
         	}
         	
         	
-        	string[] ret = {};
+        	 
         	var ar = this.top_classes;
         	if (in_rval != "*top") {
         		if (this.classes.has_key(in_rval)) {
@@ -592,12 +592,10 @@ namespace Palete {
     			}
         	}
         	
-        	foreach(var str in ar) {
-        		ret += str;
-    		} 
-    		this.child_list_cache.set(in_rval, ret);
-        	GLib.debug("getChildList for %s returns %s", in_rval, string.joinv(", ", ret));
-        	return ret;	
+         
+    		this.child_list_cache.set(in_rval, ar);
+        	GLib.debug("getChildList for %s returns %d items",  in_rval, ar.size);
+        	return ar;	
         	
         	//return this.original_getChildList(  in_rval);
     	}
