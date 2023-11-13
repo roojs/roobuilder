@@ -183,18 +183,21 @@ public class Xcls_PopoverAddProp : Object
             var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-            var child_1 = new Xcls_selmodel( _this );
+            var child_1 = new Xcls_ColumnViewSorter5( _this );
             child_1.ref();
-            this.el.model = child_1.el;
-            var child_2 = new Xcls_ColumnViewColumn8( _this );
+            this.el.sorter = child_1.el;
+            var child_2 = new Xcls_selmodel( _this );
             child_2.ref();
-            this.el.append_column (  child_2.el  );
-            var child_3 = new Xcls_ColumnViewColumn10( _this );
+            this.el.model = child_2.el;
+            var child_3 = new Xcls_ColumnViewColumn8( _this );
             child_3.ref();
             this.el.append_column (  child_3.el  );
-            var child_4 = new Xcls_ColumnViewColumn12( _this );
+            var child_4 = new Xcls_ColumnViewColumn10( _this );
             child_4.ref();
             this.el.append_column (  child_4.el  );
+            var child_5 = new Xcls_ColumnViewColumn12( _this );
+            child_5.ref();
+            this.el.append_column (  child_5.el  );
         }
 
         // user defined functions
@@ -282,9 +285,6 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ColumnViewSorter5( _this );
-            child_0.ref();
-            this.el.sorter = child_0.el;
 
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
@@ -312,6 +312,7 @@ public class Xcls_PopoverAddProp : Object
 
         // user defined functions
     }
+
     public class Xcls_ColumnViewSorter5 : Object
     {
         public Gtk.ColumnViewSorter el;
@@ -329,11 +330,16 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.changed.connect( (change) => {
+            
+            
+            });
         }
 
         // user defined functions
     }
-
 
     public class Xcls_selmodel : Object
     {
