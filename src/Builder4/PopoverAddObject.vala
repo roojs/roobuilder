@@ -578,6 +578,7 @@ public class Xcls_PopoverAddObject : Object
             	
                GLib.debug("node is %s", node.get_type().name());
                GLib.debug("lbl is %s", lbl.get_type().name());
+               GLib.debug("node fqn %s", node.fqn());
             // was item (1) in old layout
             
             	 
