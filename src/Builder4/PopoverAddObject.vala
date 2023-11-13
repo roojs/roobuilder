@@ -56,7 +56,7 @@ public class Xcls_PopoverAddObject : Object
     
          
     
-        var tr = pal.getChildList(cls);
+        var tr = pal.getChildList(cls, false);
         var m = (GLib.ListStore) _this.model.el.model;
     	m.remove_all();
     
@@ -66,12 +66,8 @@ public class Xcls_PopoverAddObject : Object
     	// will change the return list above eventually?
     	
      
-    	
-        for(var i =0 ; i < tr.length; i++) {
-    		var dname = tr[i];
-    		if (dname.contains(":")) {
-    			continue;
-     	 	}
+    	for (var dname in tr) {
+    		 
     		var c = new JsRender.Node();
     
     		c.setFqn(dname);
