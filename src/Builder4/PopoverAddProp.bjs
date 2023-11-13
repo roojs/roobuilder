@@ -133,7 +133,14 @@
          "$ xns" : "Gtk",
          "* init" : [
           "{",
-          "",
+          "\tvar  s = new  CustomSorter ();",
+          "\ts.set_sort_func((a,b) => {",
+          "\t",
+          "\t",
+          "\t});",
+          "\t",
+          "\t",
+          "\tthis.el.set_sorter(s);",
           "}",
           ""
          ],

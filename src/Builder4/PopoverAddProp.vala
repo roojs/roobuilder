@@ -435,7 +435,14 @@ public class Xcls_PopoverAddProp : Object
             // init method
 
             {
-            
+            	var  s = new  CustomSorter ();
+            	s.set_sort_func((a,b) => {
+            	
+            	
+            	});
+            	
+            	
+            	this.el.set_sorter(s);
             }
         }
 
