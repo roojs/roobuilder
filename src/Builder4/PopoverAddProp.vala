@@ -201,6 +201,12 @@ public class Xcls_PopoverAddProp : Object
             var child_5 = new Xcls_propertyof( _this );
             child_5.ref();
             this.el.append_column (  child_5.el  );
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions

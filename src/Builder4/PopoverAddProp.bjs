@@ -26,6 +26,12 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "* init" : [
+        "{",
+        "",
+        "}",
+        ""
+       ],
        "* pack" : "set_child",
        "bool hexpand" : true,
        "bool show_column_separators" : true,
