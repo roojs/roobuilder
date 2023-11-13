@@ -329,8 +329,14 @@ public class JsRender.Node : GLib.Object {
 	public void setFqn(string name)
 	{
 		var ar = name.split(".");
-		this.props.set("xtype",new NodeProp.prop("xtype", "",  ar[ar.length-1]));
 		var l = name.length - (ar[ar.length-1].length +1);
+		
+		var xt = new NodeProp.prop("xtype", "",  ar[ar.length-1]);
+		var xns = new NodeProp.raw("xns", "", name.substring(0, l));
+		
+		if (this.has_
+		this.props.set("xtype",new NodeProp.prop("xtype", "",  ar[ar.length-1]));
+		
 		this.props.set("xns", new NodeProp.raw("xns", "", name.substring(0, l)));
 		//print("setFQN %s to %s\n", name , this.fqn());
 		               
@@ -958,6 +964,9 @@ public class JsRender.Node : GLib.Object {
 		return false;
 	   
 	}
+	
+	 
+	
 	
 	public void add_prop(NodeProp prop)
 	{
