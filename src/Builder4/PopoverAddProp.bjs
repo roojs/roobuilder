@@ -197,7 +197,7 @@
            "xtype" : "SignalListItemFactory"
           }
          ],
-         "string id" : "\"\"",
+         "string id" : "name",
          "string title" : "Double click to add",
          "xtype" : "ColumnViewColumn"
         },
