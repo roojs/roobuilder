@@ -191,7 +191,6 @@
            "xtype" : "SignalListItemFactory"
           }
          ],
-         "string id" : "name",
          "string title" : "Double click to add",
          "xtype" : "ColumnViewColumn"
         },
@@ -242,7 +241,6 @@
            "xtype" : "SignalListItemFactory"
           }
          ],
-         "string id" : "type",
          "string title" : "Type",
          "xtype" : "ColumnViewColumn"
         },
@@ -250,7 +248,10 @@
          "$ xns" : "Gtk",
          "* init" : [
           "{",
-          "",
+          "\t this.el.set_sorter(  new Gtk.StringSorter(",
+          "\t \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"propertyof\")",
+          " \t));",
+          "\t\t",
           "}",
           ""
          ],
@@ -290,7 +291,6 @@
            "xtype" : "SignalListItemFactory"
           }
          ],
-         "string id" : "propertyof",
          "string title" : "Property of",
          "xtype" : "ColumnViewColumn"
         }

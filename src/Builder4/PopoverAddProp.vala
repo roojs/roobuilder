@@ -15,9 +15,6 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_view view;
     public Xcls_selmodel selmodel;
     public Xcls_model model;
-    public Xcls_name name;
-    public Xcls_type type;
-    public Xcls_propertyof propertyof;
 
         // my vars (def)
     public bool modal;
@@ -191,13 +188,13 @@ public class Xcls_PopoverAddProp : Object
             var child_1 = new Xcls_selmodel( _this );
             child_1.ref();
             this.el.model = child_1.el;
-            var child_2 = new Xcls_name( _this );
+            var child_2 = new Xcls_ColumnViewColumn7( _this );
             child_2.ref();
             this.el.append_column (  child_2.el  );
-            var child_3 = new Xcls_type( _this );
+            var child_3 = new Xcls_ColumnViewColumn9( _this );
             child_3.ref();
             this.el.append_column (  child_3.el  );
-            var child_4 = new Xcls_propertyof( _this );
+            var child_4 = new Xcls_ColumnViewColumn11( _this );
             child_4.ref();
             this.el.append_column (  child_4.el  );
         }
@@ -395,7 +392,7 @@ public class Xcls_PopoverAddProp : Object
     }
 
 
-    public class Xcls_name : Object
+    public class Xcls_ColumnViewColumn7 : Object
     {
         public Gtk.ColumnViewColumn el;
         private Xcls_PopoverAddProp  _this;
@@ -404,16 +401,14 @@ public class Xcls_PopoverAddProp : Object
             // my vars (def)
 
         // ctor
-        public Xcls_name(Xcls_PopoverAddProp _owner )
+        public Xcls_ColumnViewColumn7(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
-            _this.name = this;
             this.el = new Gtk.ColumnViewColumn( "Double click to add", null );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.id = "name";
             this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory8( _this );
@@ -502,7 +497,7 @@ public class Xcls_PopoverAddProp : Object
     }
 
 
-    public class Xcls_type : Object
+    public class Xcls_ColumnViewColumn9 : Object
     {
         public Gtk.ColumnViewColumn el;
         private Xcls_PopoverAddProp  _this;
@@ -511,16 +506,14 @@ public class Xcls_PopoverAddProp : Object
             // my vars (def)
 
         // ctor
-        public Xcls_type(Xcls_PopoverAddProp _owner )
+        public Xcls_ColumnViewColumn9(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
-            _this.type = this;
             this.el = new Gtk.ColumnViewColumn( "Type", null );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.id = "type";
             this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory10( _this );
@@ -582,7 +575,7 @@ public class Xcls_PopoverAddProp : Object
     }
 
 
-    public class Xcls_propertyof : Object
+    public class Xcls_ColumnViewColumn11 : Object
     {
         public Gtk.ColumnViewColumn el;
         private Xcls_PopoverAddProp  _this;
@@ -591,16 +584,14 @@ public class Xcls_PopoverAddProp : Object
             // my vars (def)
 
         // ctor
-        public Xcls_propertyof(Xcls_PopoverAddProp _owner )
+        public Xcls_ColumnViewColumn11(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
-            _this.propertyof = this;
             this.el = new Gtk.ColumnViewColumn( "Property of", null );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.id = "propertyof";
             this.el.expand = true;
             this.el.resizable = true;
             var child_0 = new Xcls_SignalListItemFactory12( _this );
@@ -610,7 +601,10 @@ public class Xcls_PopoverAddProp : Object
             // init method
 
             {
-            
+            	 this.el.set_sorter(  new Gtk.StringSorter(
+            	 	new Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, "propertyof")
+             	));
+            		
             }
         }
 
