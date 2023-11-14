@@ -257,7 +257,8 @@ namespace Palete {
 			 
 			
 			
-			foreach(var k in ar) {
+			foreach(var k in ar.keys) {
+			
 				var v = ar.get(k);
 				if (ptype == JsRender.NodePropType.LISTENER) {
 					ret.set(k, v.toNodeProp());
