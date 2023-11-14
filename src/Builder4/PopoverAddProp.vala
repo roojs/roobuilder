@@ -424,7 +424,7 @@ public class Xcls_PopoverAddProp : Object
 
             {
             	 this.el.set_sorter(  new Gtk.StringSorter(
-            	 	new Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, "FQN")
+            	 	new Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, "name")
              	));
             		
             }
@@ -526,6 +526,12 @@ public class Xcls_PopoverAddProp : Object
             var child_0 = new Xcls_SignalListItemFactory10( _this );
             child_0.ref();
             this.el.factory = child_0.el;
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions
