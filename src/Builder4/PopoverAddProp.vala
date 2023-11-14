@@ -372,7 +372,7 @@ public class Xcls_PopoverAddProp : Object
             // init method
 
             {
-            	this.el.set_sorter(_this.view.el.sorter);
+            	this.el.set_sorter(new Gtk.TreeListRowSorter(_this.view.el.sorter));
             }
         }
 
