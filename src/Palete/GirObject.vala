@@ -498,7 +498,18 @@ namespace Palete {
 				return;
 			}
 			var cls = classes.get(str);
-			if (!cls.
+			if (cls.implementations.length < 1) {
+				var add = new JsRender.NodeProp.raw(this.name, str, "");
+				// no propertyof ?
+				add.add_node = new JsRender.Node();
+				add.add_node.setFqn(str);
+				return;
+			}
+			for(var cname in cls.implementations.values) {
+				
+			
+			}
+			
 			
 			
 			
