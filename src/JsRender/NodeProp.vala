@@ -97,7 +97,18 @@ public class JsRender.NodeProp : Object {
 	
 	public string name { get; private set; }  // can not be updated... ?? you have to remove / replace?
 	public NodePropType  ptype { get; private set; } // return or type
-	public string rtype { get; private set;} // return or type
+	private string _rtype = "";
+	public string rtype { 
+		get { return this._rtype; }
+	 	set { 
+	 		this._rtype = value; 
+			if (this.parent != null) {
+				this.parent.updated_count++;
+			}
+			this.to_display_name_prop = "";
+			this.updated_count++;
+ 		}
+	 } // return or type
 	
 	private string _val = "";
 	public string val { 
