@@ -101,6 +101,11 @@
             "\t ",
             "}"
            ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "xtype" : "SortListModel"
           }
          ],
          "xtype" : "NoSelection",
