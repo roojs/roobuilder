@@ -80,7 +80,7 @@ public class Xcls_PopoverAddProp : Object
     		var prop = p.toNodeProp(pal.classes);
     		//JsRender.NodeProp
     	 	 m.append(prop);
-        
+        }
         
         // set size up...
         

@@ -435,7 +435,7 @@
     "\t\tvar prop = p.toNodeProp(pal.classes);",
     "\t\t//JsRender.NodeProp",
     "\t \t m.append(prop);",
-    "    ",
+    "    }",
     "    ",
     "    // set size up...",
     "    ",
