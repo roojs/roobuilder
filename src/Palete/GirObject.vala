@@ -498,7 +498,7 @@ namespace Palete {
 				return;
 			}
 			var cls = classes.get(str);
-			if (cls.implementations.length < 1) {
+			if (cls.implementations.size < 1) {
 				var add = new JsRender.NodeProp.raw(this.name, str, "");
 				// no propertyof ?
 				add.add_node = new JsRender.Node();
@@ -506,7 +506,7 @@ namespace Palete {
 				par.childstore.append( add);
 				return;
 			}
-			foreach (var cname in cls.implementations.values) {
+			foreach (var cname in cls.implementations) {
 				var add = new JsRender.NodeProp.raw(this.name, cname, "");
 				// no propertyof ?
 				add.add_node = new JsRender.Node();
