@@ -431,7 +431,17 @@ public class Xcls_PopoverAddProp : Object
         public Xcls_TreeListModel8(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
-            this.el = new Gtk.TreeListModel( null, true, true, null );
+            this.el = new Gtk.TreeListModel(
+    new GLib.ListStore(typeof(JsRender.NodeProp)), //..... << that's our store..
+    false, // passthru
+    false, // autexpand
+    (item) => {
+    	return ((JsRender.NodeProp)item).childstore;
+    
+    }
+    
+    
+);
 
             // my vars (dec)
 

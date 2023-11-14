@@ -108,6 +108,19 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "* ctor" : [
+              "new Gtk.TreeListModel(",
+              "    new GLib.ListStore(typeof(JsRender.NodeProp)), //..... << that's our store..",
+              "    false, // passthru",
+              "    false, // autexpand",
+              "    (item) => {",
+              "    \treturn ((JsRender.NodeProp)item).childstore;",
+              "    ",
+              "    }",
+              "    ",
+              "    ",
+              ")"
+             ],
              "* prop" : "model",
              "xtype" : "TreeListModel"
             }
