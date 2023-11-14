@@ -423,17 +423,10 @@ public class Xcls_PopoverAddProp : Object
             // init method
 
             {
-            	 var  s = new Gtk.StringSorter(
-            	 	new Gtk.PropertyExpression(typeof(JsRender.Node), null,
-            		//_this.node.fqn());
-            		GLib.log("sort %s", a.get_type().name());
-            		return 0;
-            	
-            	});
-            	
-            	
-            	this.el.set_sorter(s);
-            	*/
+            	 this.el.set_sorter(  new Gtk.StringSorter(
+            	 	new Gtk.PropertyExpression(typeof(JsRender.Node), null, "FQN")
+             	));
+            		
             }
         }
 
