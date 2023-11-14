@@ -466,21 +466,26 @@ namespace Palete {
 		}
 		public void nodePropAddChildren(JsRender.NodeProp par, string str, Gee.HashMap<string,GirObject> classes)
 		{
+			
+			
 			if (str.contains("|")) {
 				var ar = str.split("|");
 				for(var i = 0; i < ar.length; i++) {
-					this.nodePropAddChildren(par, ar[i]);
+					this.nodePropAddChildren(par, ar[i], classes);
 				}
 			}
 			if (str.contains("/")) {
 				var ar = str.split("/");
 				for(var i = 0; i < ar.length; i++) {
-					this.nodePropAddChildren(par, ar[i]);
+					this.nodePropAddChildren(par, ar[i], classes);
 				}
 			}
 			// it's an object..
 			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
-			
+			if (!classes.has_key(str) && par.childstore.n_items < 1 ) {
+				par.childstore.add( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
+				return;
+			}
 			
 			
 			
