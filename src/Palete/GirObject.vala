@@ -442,6 +442,7 @@ namespace Palete {
 				// when we add properties, they are actually listeners attached to signals
 				// was a listener overrident?? why?
 				var r =new JsRender.NodeProp.sig(this.name, "", this.sig);  
+				r.propertyof = this.propertyof;
 				return r;
 			}
 			
@@ -449,19 +450,29 @@ namespace Palete {
 			var def = this.type.contains(".") ?  "" :  Gir.guessDefaultValueForType(this.type);
 			if (this.type.contains(".") || this.type.contains("|") || this.type.contains("/")) {
 				var ret = new JsRender.NodeProp.raw(this.name, this.type, def);
+				ret.propertyof = this.propertyof;
 				this.nodePropAddChildren(ret, this.type, classes);
 				return ret;
 			}
 			if (this.type.down() == "function"  ) {
-				return  new JsRender.NodeProp.raw(this.name, this.type, "function()\n{\n\n}");
+				var  r =   new JsRender.NodeProp.raw(this.name, this.type, "function()\n{\n\n}");
+				r.propertyof = this.propertyof;
+				return  r;			
 			}
 			if (this.type.down() == "array"  ) {
-				return  new JsRender.NodeProp.raw(this.name, this.type, "[\n\n]");
+				var  r = JsRender.NodeProp.raw(this.name, this.type, "[\n\n]");
+				r.propertyof = this.propertyof;
+				return  r;			
 			}
 			if (this.type.down() == "object"  ) {
-				return  new JsRender.NodeProp.raw(this.name, this.type, "{\n\n}");
+				var  r =  new JsRender.NodeProp.raw(this.name, this.type, "{\n\n}");
+				r.propertyof = this.propertyof;
+				return  r;			
 			}
-			return  new JsRender.NodeProp.prop(this.name, this.type, def); // signature?
+			// plain property.. no children..
+			var r = new JsRender.NodeProp.prop(this.name, this.type, def); // signature?
+			r.propertyof = this.propertyof;
+			return  r;
 		
 		}
 		public void nodePropAddChildren(JsRender.NodeProp par, string str, Gee.HashMap<string,GirObject> classes)
@@ -483,11 +494,11 @@ namespace Palete {
 			// it's an object..
 			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
 			if (!classes.has_key(str) && par.childstore.n_items < 1 ) {
-				par.childstore.add( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
+				par.childstore.append( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
 				return;
 			}
-			
-			
+			var cls = classes.get(str);
+			if (!cls.
 			
 			
 			
