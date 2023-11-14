@@ -232,45 +232,7 @@ namespace Palete {
 			
 		}
 		
-		public   Gee.HashMap<string,JsRender.NodeProp> getNodePropTreeFor(string ename, JsRender.NodePropType ptype)
-		{
-			this.load();
-			var ret = new Gee.HashMap<string,JsRender.NodeProp>();
-			var cls = this.classes.get(ename);
-			if (cls == null) {
-				GLib.debug("could not find class: %s", ename);
-				return ret;
-		
-			}
-			
-			Gee.HashMap<string,GirObject> ar;
-			switch  (ptype) {
-				case JsRender.NodePropType.PROP:
-					ar = cls.props;
-					break;
-				case JsRender.NodePropType.LISTENER:
-					ar = cls.signals;
-					break;
-				default:
-					return ret;
-			}
-			 
-			
-			
-			foreach(var k in ar.keys) {
-			
-				var v = ar.get(k);
-				if (ptype == JsRender.NodePropType.LISTENER) {
-					ret.set(k, v.toNodeProp());
-					continue;
-				}
-				
-			
-			
-			}
-			return ret;
-		
-		}
+		 
 		
 		public override Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype)
 		{
