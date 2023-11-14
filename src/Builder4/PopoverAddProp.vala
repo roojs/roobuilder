@@ -77,22 +77,10 @@ public class Xcls_PopoverAddProp : Object
             var p = miter.get_value(); // nodeprop.
              
              
-    		var prop = p.toNodeProp();
+    		var prop = p.toNodeProp(pal.classes);
     		//JsRender.NodeProp
     	 	 m.append(prop);
-    /*
-            this.model.el.set(iter,
-                    0,  prop, 
-                    1,  prop.to_property_option_markup(p.propertyof == xtype),
-                    2,  prop.to_property_option_tooltip(),                
-                    3,  prop.name,
-                    4,  prop.rtype,
-                    5,  p.propertyof,
-                    -1
-            );
-            */
-        }
-        //this.model.el.set_sort_column_id(3,Gtk.SortType.ASCENDING);    
+        
         
         // set size up...
         
