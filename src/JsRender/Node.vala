@@ -318,6 +318,12 @@ public class JsRender.Node : GLib.Object {
 		}
 		return false;
 	}
+	
+	public string FQN {
+		get { return this.fqn; }
+		private set {}
+	}
+	
 	public string fqn()
 	{
 		if (!this.hasXnsType ()) {
