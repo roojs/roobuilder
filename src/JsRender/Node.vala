@@ -319,7 +319,7 @@ public class JsRender.Node : GLib.Object {
 		return false;
 	}
 	
-	public string FQN {
+	public string FQN { // for sorting
 		owned get { return this.fqn(); }
 		private set  {}
 	}
