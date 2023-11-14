@@ -503,10 +503,16 @@ namespace Palete {
 				// no propertyof ?
 				add.add_node = new JsRender.Node();
 				add.add_node.setFqn(str);
+				par.childstore.append( add);
 				return;
 			}
-			for(var cname in cls.implementations.values) {
-				
+			foreach (var cname in cls.implementations.values) {
+				var add = new JsRender.NodeProp.raw(this.name, cname, "");
+				// no propertyof ?
+				add.add_node = new JsRender.Node();
+				add.add_node.setFqn(cname);
+				par.childstore.append( add);
+				return;				
 			
 			}
 			
