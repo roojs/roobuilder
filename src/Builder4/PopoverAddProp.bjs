@@ -122,7 +122,7 @@
          "* init" : [
           "{",
           "\t this.el.set_sorter(  new Gtk.StringSorter(",
-          "\t \tnew Gtk.PropertyExpression(typeof(JsRender.Node), null, \"FQN\")",
+          "\t \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"FQN\")",
           " \t));",
           "\t\t",
           "}",

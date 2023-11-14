@@ -424,7 +424,7 @@ public class Xcls_PopoverAddProp : Object
 
             {
             	 this.el.set_sorter(  new Gtk.StringSorter(
-            	 	new Gtk.PropertyExpression(typeof(JsRender.Node), null, "FQN")
+            	 	new Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, "FQN")
              	));
             		
             }
