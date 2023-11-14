@@ -105,6 +105,13 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "xtype" : "TreeListModel"
+            }
+           ],
            "xtype" : "SortListModel"
           }
          ],
