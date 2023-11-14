@@ -238,7 +238,7 @@ namespace Palete {
 			var ret = new Gee.HashMap<string,JsRender.NodeProp>();
 			var cls = this.classes.get(ename);
 			if (cls == null) {
-				GLib.warn("could not find class: %s\n", ename);
+				GLib.debug("could not find class: %s", ename);
 				return ret;
 		
 			}
