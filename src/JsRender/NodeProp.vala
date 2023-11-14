@@ -138,7 +138,7 @@ public class JsRender.NodeProp : Object {
 	public GLib.ListStore  childstore; // WILL BE USED FOR properties with mutliple types 
 	public Node? add_node = null; // used when we list potentional nodes for properties in add list.
 
-	public string propertyof;
+	public string propertyof { get;   set; }
 	
 	
 	public NodeProp(string name, NodePropType ptype, string rtype, string val) {
