@@ -248,6 +248,12 @@
         },
         {
          "$ xns" : "Gtk",
+         "* init" : [
+          "{",
+          "",
+          "}",
+          ""
+         ],
          "* pack" : "append_column",
          "bool expand" : true,
          "bool resizable" : true,
