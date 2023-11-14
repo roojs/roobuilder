@@ -460,7 +460,7 @@ namespace Palete {
 				return  r;			
 			}
 			if (this.type.down() == "array"  ) {
-				var  r = JsRender.NodeProp.raw(this.name, this.type, "[\n\n]");
+				var  r = new JsRender.NodeProp.raw(this.name, this.type, "[\n\n]");
 				r.propertyof = this.propertyof;
 				return  r;			
 			}
