@@ -216,7 +216,7 @@
 				GLib.Log.set_handler(null, 
 					GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING, 
 					(dom, lvl, msg) => {
-					print("%s: %s\n", dom, msg);
+					print("%s: %s\n", (new DateTime.now_local()).format("%H%M%S%f"), msg);
 				});
 			}
 			
