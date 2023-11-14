@@ -235,13 +235,14 @@ namespace Palete {
 		public   Gee.HashMap<string,JsRender.NodeProp> getNodePropTreeFor(string ename, JsRender.NodePropType ptype)
 		{
 			this.load();
+			var ret = new Gee.HashMap<string,JsRender.NodeProp>();
 			var cls = this.classes.get(ename);
 			if (cls == null) {
 				GLib.warn("could not find class: %s\n", ename);
 				return ret;
 		
 			}
-			var ret = new Gee.HashMap<string,JsRender.NodeProp>();
+			
 			Gee.HashMap<string,GirObject> ar;
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
