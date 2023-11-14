@@ -320,7 +320,7 @@ public class JsRender.Node : GLib.Object {
 	}
 	
 	public string FQN {
-		get { return this.fqn(); }
+		owned get { return this.fqn(); }
 		private set {}
 	}
 	
