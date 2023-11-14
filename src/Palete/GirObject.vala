@@ -435,7 +435,7 @@ namespace Palete {
 		}
 		
 		
-		public JsRender.NodeProp toNodeProp(Gee.HashMap<string,GirObject> classes))
+		public JsRender.NodeProp toNodeProp(Gee.HashMap<string,GirObject> classes)
 		{
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
