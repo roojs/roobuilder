@@ -435,7 +435,7 @@ namespace Palete {
 		}
 		
 		
-		public JsRender.NodeProp toNodeProp()
+		public JsRender.NodeProp toNodeProp(Gee.HashMap<string,GirObject> classes))
 		{
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
@@ -447,8 +447,10 @@ namespace Palete {
 			
 			// does not handle Enums... - no need to handle anything else.
 			var def = this.type.contains(".") ?  "" :  Gir.guessDefaultValueForType(this.type);
-			if (this.type.contains(".") ) {
-				return  new JsRender.NodeProp.raw(this.name, this.type, def);
+			if (this.type.contains(".") || this.type.contains("|") || this.type.contains("/")) {
+				var ret = new JsRender.NodeProp.raw(this.name, this.type, def);
+				this.nodePropAddChildren(ret, this.type, classes);
+				return ret;
 			}
 			if (this.type.down() == "function"  ) {
 				return  new JsRender.NodeProp.raw(this.name, this.type, "function()\n{\n\n}");
@@ -462,7 +464,29 @@ namespace Palete {
 			return  new JsRender.NodeProp.prop(this.name, this.type, def); // signature?
 		
 		}
-		
+		public void nodePropAddChildren(JsRender.NodeProp par, string str, Gee.HashMap<string,GirObject> classes)
+		{
+			if (str.contains("|")) {
+				var ar = str.split("|");
+				for(var i = 0; i < ar.length; i++) {
+					this.nodePropAddChildren(par, ar[i]);
+				}
+			}
+			if (str.contains("/")) {
+				var ar = str.split("/");
+				for(var i = 0; i < ar.length; i++) {
+					this.nodePropAddChildren(par, ar[i]);
+				}
+			}
+			// it's an object..
+			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
+			
+			
+			
+			
+			
+			
+		}
 		/*
 		//public string fqtype() {
 		//	return Gir.fqtypeLookup(this.type, this.ns);
