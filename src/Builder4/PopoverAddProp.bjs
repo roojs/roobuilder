@@ -122,6 +122,7 @@
               ")"
              ],
              "* prop" : "model",
+             "id" : "model",
              "xtype" : "TreeListModel",
              "| JsRender.NodeProp getNodeAt" : [
               "(uint row) {",

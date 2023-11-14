@@ -15,6 +15,7 @@ public class Xcls_PopoverAddProp : Object
     public Xcls_view view;
     public Xcls_selmodel selmodel;
     public Xcls_model model;
+    public Xcls_model model;
     public Xcls_name name;
 
         // my vars (def)
@@ -412,14 +413,14 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TreeListModel8( _this );
+            var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_TreeListModel8 : Object
+    public class Xcls_model : Object
     {
         public Gtk.TreeListModel el;
         private Xcls_PopoverAddProp  _this;
@@ -428,9 +429,10 @@ public class Xcls_PopoverAddProp : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeListModel8(Xcls_PopoverAddProp _owner )
+        public Xcls_model(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
+            _this.model = this;
             this.el = new Gtk.TreeListModel(
     new GLib.ListStore(typeof(JsRender.NodeProp)), //..... << that's our store..
     false, // passthru
