@@ -72,6 +72,12 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            "\tthis.el.set_sorter(_this.view.el.sorter);",
+            "}",
+            ""
+           ],
            "* prop" : "model",
            "items" : [
             {
