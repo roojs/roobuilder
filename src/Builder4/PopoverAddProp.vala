@@ -288,10 +288,13 @@ public class Xcls_PopoverAddProp : Object
             	var prop  = _this.model.getNodeAt(row);
              
             //	_this.select(np);
-            
+            	
             	if (_this.node.has_prop_key(prop)) {
             		return; // cant add it twice? --  
             	}
+            	
+            	GLib.debug("Add %s", 
+            	
             	_this.node.add_prop(prop.dupe());
             	
             
