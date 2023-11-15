@@ -78,6 +78,9 @@ public class Xcls_PopoverAddProp : Object
             var p = miter.get_value(); // nodeprop.
               
     		var prop = p.toNodeProp(pal.classes);
+    		if (node.has_prop_key(prop)) {
+    			GLib.debug("Skip - has key already %s",  prop.name);			
+    		}
     		//JsRender.NodeProp
     		GLib.debug("Prop add %s",  prop.name);
     	 	 m.append(prop);
