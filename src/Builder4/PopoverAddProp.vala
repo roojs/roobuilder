@@ -291,8 +291,17 @@ public class Xcls_PopoverAddProp : Object
             //	_this.select(np);
             	
             	if (_this.node.has_prop_key(prop)) {
+            		GLib.debug("node already has this key.");
             		return; // cant add it twice? --  
             	}
+            	// you can not click on ones with children.
+            	
+            	if (prop.childstore.n_items > 0 ) {
+            		GLib.debug("no clicking on expandables");
+            		return;
+            	}
+            	
+            	
             	
             	GLib.debug("Add %s", prop.name);
             	
