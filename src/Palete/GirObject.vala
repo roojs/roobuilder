@@ -493,7 +493,7 @@ namespace Palete {
 			}
 			// it's an object..
 			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
-			if (!classes.has_key(str) && par.childstore.n_items < 1 ) {
+			if (!classes.has_key(str)) {
 				par.childstore.append( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
 				return;
 			}
