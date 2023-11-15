@@ -288,6 +288,12 @@ public class Xcls_PopoverAddProp : Object
             	string pos;
             	
             	
+            	// use selection?!
+            	var si = _this.selmodel.selected_item;
+            	GLib.debug("SELECTED = %s", si.get_type().name());
+            	return;
+            	
+            	
             	// double press ? 
             	var row = _this.view.getRowAt(x,y, out pos );
             	var prop  = _this.sortmodel.getNodeAt(row);
