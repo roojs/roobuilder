@@ -165,7 +165,7 @@ public class Xcls_PopoverAddProp : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.single_click_activate = true;
+            this.el.single_click_activate = false;
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.show_row_separators = true;
