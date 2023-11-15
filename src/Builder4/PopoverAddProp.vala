@@ -79,7 +79,8 @@ public class Xcls_PopoverAddProp : Object
               
     		var prop = p.toNodeProp(pal.classes);
     		if (node.has_prop_key(prop)) {
-    			GLib.debug("Skip - has key already %s",  prop.name);			
+    			GLib.debug("Skip - has key already %s",  prop.name);
+    			continue;			
     		}
     		//JsRender.NodeProp
     		GLib.debug("Prop add %s",  prop.name);
