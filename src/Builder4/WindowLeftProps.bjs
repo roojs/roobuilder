@@ -812,7 +812,6 @@
         }
        ],
        "string name" : "leftprops-view",
-       "tooltip_column" : 3,
        "xtype" : "ColumnView",
        "| Gtk.Widget? getWidgetAtRow" : [
         "(uint row) {",
