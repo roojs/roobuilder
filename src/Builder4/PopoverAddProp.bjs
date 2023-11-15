@@ -166,7 +166,7 @@
              "",
              "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
              "\tvar np = (JsRender.NodeProp) lr.get_item();",
-             "\t\tGLib.debug(\"add  %s\", np.name);",
+             "\tGLib.debug(\"change  %s to %s\", lbl.label, np.name);",
              "\tlbl.label = np.to_property_option_markup(np.propertyof == _this.node.fqn());",
              "\tlbl.tooltip_markup = np.to_property_option_tooltip();",
              "\t ",
