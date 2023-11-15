@@ -1606,15 +1606,12 @@ public class Xcls_LeftProps : Object
             	hb.append(cb);
             	((Gtk.ListItem)listitem).set_child(hb);
             	 
-            	 
-            	 elbl.activate.connect(() => {
-            		 _this.stop_editor();
-            	 	
+            	 var ef = new Gtk.EventControllerFocus();
+            	 ef.enter.connect(() {
+             		 _this.stop_editor();
             	 });
-            	  cb.activate.connect(() => {
-            		 _this.stop_editor();
-            	 	
-            	 });
+            	 elbl.add_controller(ef);
+            	 cb.add_controller(ef);
             	 
             	elbl.changed.connect(() => {
             		// notify and save the changed value...
