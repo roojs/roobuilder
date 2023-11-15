@@ -119,7 +119,7 @@
             }
            ],
            "xtype" : "SortListModel",
-           "| JsRender.NodeProp getNodeAtRow" : [
+           "| JsRender.NodeProp? getNodeAt" : [
             "(uint row) {",
             "",
             "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",

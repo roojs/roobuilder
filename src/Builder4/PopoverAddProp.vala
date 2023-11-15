@@ -371,7 +371,7 @@ public class Xcls_PopoverAddProp : Object
         }
 
         // user defined functions
-        public JsRender.NodeProp getNodeAtRow (uint row) {
+        public JsRender.NodeProp? getNodeAt (uint row) {
         
            var tr = (Gtk.TreeListRow)this.el.get_item(row);
            
