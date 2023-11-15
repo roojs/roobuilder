@@ -499,10 +499,10 @@ public class Xcls_PopoverAddProp : Object
              
              
             	var lbl = (Gtk.Label) expand.child;
-            	GLib.debug("add  %s", np.name);
+            
             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var np = (JsRender.NodeProp) lr.get_item();
-            	
+            		GLib.debug("add  %s", np.name);
             	lbl.label = np.to_property_option_markup(np.propertyof == _this.node.fqn());
             	lbl.tooltip_markup = np.to_property_option_tooltip();
             	 
