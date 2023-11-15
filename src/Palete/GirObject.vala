@@ -484,12 +484,14 @@ namespace Palete {
 				for(var i = 0; i < ar.length; i++) {
 					this.nodePropAddChildren(par, ar[i], classes);
 				}
+				return;
 			}
 			if (str.contains("/")) {
 				var ar = str.split("/");
 				for(var i = 0; i < ar.length; i++) {
 					this.nodePropAddChildren(par, ar[i], classes);
 				}
+				return;
 			}
 			// it's an object..
 			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
