@@ -154,15 +154,6 @@
            ]
           }
          ],
-         "listeners" : {
-          "selection_changed" : [
-           "(position, n_items) => {",
-           "",
-           "",
-           "}",
-           ""
-          ]
-         },
          "xtype" : "SingleSelection",
          "| JsRender.NodeProp? getNodeAt" : [
           "(uint row) {",

@@ -351,12 +351,6 @@ public class Xcls_PopoverAddProp : Object
             var child_0 = new Xcls_sortmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
-
-            //listeners
-            this.el.selection_changed.connect( (position, n_items) => {
-            
-            
-            });
         }
 
         // user defined functions
