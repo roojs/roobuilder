@@ -75,10 +75,10 @@ public class Xcls_PopoverAddProp : Object
         var miter = elementList.map_iterator();
         while (miter.next()) {
             var p = miter.get_value(); // nodeprop.
-             
-             
+              
     		var prop = p.toNodeProp(pal.classes);
     		//JsRender.NodeProp
+    		Glib.log("Prop add %s", p.name);
     	 	 m.append(prop);
         }
         
