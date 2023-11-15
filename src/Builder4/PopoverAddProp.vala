@@ -506,7 +506,7 @@ public class Xcls_PopoverAddProp : Object
             	lbl.label = np.to_property_option_markup(np.propertyof == _this.node.fqn());
             	lbl.tooltip_markup = np.to_property_option_tooltip();
             	 
-                expand.set_hide_expander( true) ; //!node.hasChildren() );
+                expand.set_hide_expander(  np.childstore.n_items < 1);
              	expand.set_list_row(lr);
              
              	 
