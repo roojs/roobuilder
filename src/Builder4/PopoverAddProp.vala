@@ -494,11 +494,14 @@ public class Xcls_PopoverAddProp : Object
             	
             	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
             	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
-            	 
-            	 
-             
+            	  
              
             	var lbl = (Gtk.Label) expand.child;
+            	
+            	 if (lbl.label != "") { // do not update
+            	 	return;
+             	}
+            	
             
             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var np = (JsRender.NodeProp) lr.get_item();
@@ -587,7 +590,9 @@ public class Xcls_PopoverAddProp : Object
              	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var np = (JsRender.NodeProp) lr.get_item();
             	
-              
+              if (lbl.label != "") { // do not update
+            	 	return;
+             	}
             	lbl.label = np.rtype;
              	 
             });
@@ -665,7 +670,9 @@ public class Xcls_PopoverAddProp : Object
              	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var np = (JsRender.NodeProp) lr.get_item();
             	
-              
+              if (lbl.label != "") { // do not update
+            	 	return;
+             	}
             	lbl.label = np.propertyof;
              	 
             });
