@@ -291,12 +291,13 @@ public class Xcls_PopoverAddProp : Object
             	// use selection?!
             	var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
             	GLib.debug("SELECTED = %s", tr.item.get_type().name());
-            	return;
+            	var prop = (JsRender.NodeProp) tr.item;
+            
             	
             	
             	// double press ? 
-            	var row = _this.view.getRowAt(x,y, out pos );
-            	var prop  = _this.sortmodel.getNodeAt(row);
+            //	var row = _this.view.getRowAt(x,y, out pos );
+            //	var prop  = _this.sortmodel.getNodeAt(row);
              
             //	_this.select(np);
             	
