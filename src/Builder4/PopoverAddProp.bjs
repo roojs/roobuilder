@@ -433,7 +433,7 @@
     "          ",
     "\t\tvar prop = p.toNodeProp(pal.classes);",
     "\t\t//JsRender.NodeProp",
-    "\t\tGlib.log(\"Prop add %s\", p.name);",
+    "\t\tGlib.log(\"Prop add %s\",  prop.name);",
     "\t \t m.append(prop);",
     "    }",
     "    ",
