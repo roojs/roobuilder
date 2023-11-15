@@ -78,7 +78,7 @@ public class Xcls_PopoverAddProp : Object
               
     		var prop = p.toNodeProp(pal.classes);
     		//JsRender.NodeProp
-    		Glib.log("Prop add %s",  prop.name);
+    		GLib.debug("Prop add %s",  prop.name);
     	 	 m.append(prop);
         }
         
