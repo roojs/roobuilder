@@ -306,7 +306,7 @@ public class Xcls_PopoverAddProp : Object
 
     public class Xcls_selmodel : Object
     {
-        public Gtk.NoSelection el;
+        public Gtk.SingleSelection el;
         private Xcls_PopoverAddProp  _this;
 
 
@@ -317,11 +317,12 @@ public class Xcls_PopoverAddProp : Object
         {
             _this = _owner;
             _this.selmodel = this;
-            this.el = new Gtk.NoSelection( null );
+            this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)
 
             // set gobject values
+            this.el.can_unselect = true;
             var child_0 = new Xcls_SortListModel6( _this );
             child_0.ref();
             this.el.model = child_0.el;
