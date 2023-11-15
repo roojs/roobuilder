@@ -716,6 +716,7 @@
              "\tlbl.xalign =0;",
              "\tlbl.ellipsize = Pango.EllipsizeMode.END;",
              "\tvar cb = new Gtk.DropDown(new Gtk.StringList({}), null);",
+             "\tcb.hexpand = true;",
              "\thb.append(cb);",
              "\t((Gtk.ListItem)listitem).set_child(hb);",
              "\t ",
