@@ -721,7 +721,7 @@
              "\t ",
              "\t ",
              "\t elbl.activate.connect(() => {",
-             "\t ",
+             "\t\t _this.stop_editor();",
              "\t \t",
              "\t });",
              "\t ",

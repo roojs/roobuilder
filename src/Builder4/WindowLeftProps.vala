@@ -1606,7 +1606,7 @@ public class Xcls_LeftProps : Object
             	 
             	 
             	 elbl.activate.connect(() => {
-            	 
+            		 _this.stop_editor();
             	 	
             	 });
             	 
