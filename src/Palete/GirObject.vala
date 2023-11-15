@@ -499,14 +499,16 @@ namespace Palete {
 				par.childstore.append( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
 				return;
 			}
-			var cls = classes.get(str);
+			
+			
 			var add = new JsRender.NodeProp.raw(this.name, str, "");
 			// no propertyof ?
 			add.add_node = new JsRender.Node();
 			add.add_node.setFqn(str);
+			add.add_node.add_prop(new JsRender.NodeProp.special("*prop", this.name));
 			par.childstore.append( add);
 		
-			
+			var cls = classes.get(str);
 			if (cls.implementations.size < 1) {
 				return;
 			}
