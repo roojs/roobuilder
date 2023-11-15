@@ -152,7 +152,7 @@
            "listeners" : {
             "bind" : [
              "(listitem) => {",
-             "\t GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
+             "\t //GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
              "\t",
              "\t",
              "\t",
@@ -163,7 +163,7 @@
              " ",
              " ",
              "\tvar lbl = (Gtk.Label) expand.child;",
-             "\t",
+             "\tGLib.debug(\"set %s\", _this.node.fqn());",
              "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
              "\tvar np = (JsRender.NodeProp) lr.get_item();",
              "\t",

@@ -488,7 +488,7 @@ public class Xcls_PopoverAddProp : Object
             	((Gtk.ListItem)listitem).activatable = false;
             });
             this.el.bind.connect( (listitem) => {
-            	 GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+            	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
             	
             	
             	
@@ -499,7 +499,7 @@ public class Xcls_PopoverAddProp : Object
              
              
             	var lbl = (Gtk.Label) expand.child;
-            	
+            	GLib.debug("set %s", _this.node.fqn());
             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var np = (JsRender.NodeProp) lr.get_item();
             	
