@@ -446,7 +446,7 @@ public class JsRender.Node : GLib.Object {
 	
 	public Node dupe()
 	{
-		var str = this.jsonNodeAsString(node);
+		var str = this.jsonNodeAsString(this);
 		var ret = new Node();
 		ret.loadFromJsonString(str, 2);
 		return ret;
