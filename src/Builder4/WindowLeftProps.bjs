@@ -722,7 +722,7 @@
              "\t((Gtk.ListItem)listitem).set_child(hb);",
              "\t ",
              "\t var ef = new Gtk.EventControllerFocus();",
-             "\t ef.enter.connect(() {",
+             "\t ef.enter.connect(() => {",
              " \t\t _this.stop_editor();",
              "\t });",
              "\t elbl.add_controller(ef);",

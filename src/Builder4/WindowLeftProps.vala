@@ -1607,7 +1607,7 @@ public class Xcls_LeftProps : Object
             	((Gtk.ListItem)listitem).set_child(hb);
             	 
             	 var ef = new Gtk.EventControllerFocus();
-            	 ef.enter.connect(() {
+            	 ef.enter.connect(() => {
              		 _this.stop_editor();
             	 });
             	 elbl.add_controller(ef);
