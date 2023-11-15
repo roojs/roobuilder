@@ -14,6 +14,7 @@ public class Xcls_PopoverAddProp : Object
     }
     public Xcls_view view;
     public Xcls_selmodel selmodel;
+    public Xcls_sortmodel sortmodel;
     public Xcls_model model;
     public Xcls_name name;
 
@@ -285,7 +286,7 @@ public class Xcls_PopoverAddProp : Object
             	
             	// double press ? 
             	var row = _this.view.getRowAt(x,y, out pos );
-            	var prop  = _this.model.getNodeAt(row);
+            	var prop  = _this.sortmodel.getNodeAt(row);
              
             //	_this.select(np);
             	
@@ -323,7 +324,7 @@ public class Xcls_PopoverAddProp : Object
 
             // set gobject values
             this.el.can_unselect = true;
-            var child_0 = new Xcls_SortListModel6( _this );
+            var child_0 = new Xcls_sortmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
@@ -340,7 +341,7 @@ public class Xcls_PopoverAddProp : Object
         	 
         }
     }
-    public class Xcls_SortListModel6 : Object
+    public class Xcls_sortmodel : Object
     {
         public Gtk.SortListModel el;
         private Xcls_PopoverAddProp  _this;
@@ -349,9 +350,10 @@ public class Xcls_PopoverAddProp : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SortListModel6(Xcls_PopoverAddProp _owner )
+        public Xcls_sortmodel(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
+            _this.sortmodel = this;
             this.el = new Gtk.SortListModel( null, null );
 
             // my vars (dec)
@@ -369,6 +371,17 @@ public class Xcls_PopoverAddProp : Object
         }
 
         // user defined functions
+        public JsRender.NodeProp getNodeAtRow (uint row) {
+        
+           var tr = (Gtk.TreeListRow)this.el.get_item(row);
+           
+           var a = tr.get_item();;   
+          // GLib.debug("get_item (2) = %s", a.get_type().name());
+          	
+           
+           return (JsRender.NodeProp)tr.get_item();
+        	 
+        }
     }
     public class Xcls_model : Object
     {

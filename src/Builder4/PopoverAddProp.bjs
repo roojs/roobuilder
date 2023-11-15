@@ -49,7 +49,7 @@
            "\t",
            "\t// double press ? ",
            "\tvar row = _this.view.getRowAt(x,y, out pos );",
-           "\tvar prop  = _this.model.getNodeAt(row);",
+           "\tvar prop  = _this.sortmodel.getNodeAt(row);",
            " ",
            "//\t_this.select(np);",
            "\t",
@@ -83,6 +83,7 @@
             ""
            ],
            "* prop" : "model",
+           "id" : "sortmodel",
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -117,7 +118,20 @@
              ]
             }
            ],
-           "xtype" : "SortListModel"
+           "xtype" : "SortListModel",
+           "| JsRender.NodeProp getNodeAtRow" : [
+            "(uint row) {",
+            "",
+            "   var tr = (Gtk.TreeListRow)this.el.get_item(row);",
+            "   ",
+            "   var a = tr.get_item();;   ",
+            "  // GLib.debug(\"get_item (2) = %s\", a.get_type().name());",
+            "  \t",
+            "   ",
+            "   return (JsRender.NodeProp)tr.get_item();",
+            "\t ",
+            "}"
+           ]
           }
          ],
          "xtype" : "SingleSelection",
