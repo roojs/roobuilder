@@ -444,7 +444,13 @@ public class JsRender.Node : GLib.Object {
 		this.loadFromJson(obj, ver);
 	}
 	
-
+	public Node dupe()
+	{
+		var str = this.jsonNodeAsString(node);
+		var ret = new Node();
+		ret.loadFromJsonString(str, 2);
+		return ret;
+	}
 
 	public void loadFromJson(Json.Object obj, int version) {
 		 
