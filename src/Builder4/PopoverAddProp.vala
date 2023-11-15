@@ -289,7 +289,7 @@ public class Xcls_PopoverAddProp : Object
             	
             	
             	// use selection?!
-            	var si = _this.selmodel.selected_item;
+            	var si = _this.selmodel.el.selected_item;
             	GLib.debug("SELECTED = %s", si.get_type().name());
             	return;
             	

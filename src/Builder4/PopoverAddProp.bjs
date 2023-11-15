@@ -48,7 +48,7 @@
            "\t",
            "\t",
            "\t// use selection?!",
-           "\tvar si = _this.selmodel.selected_item;",
+           "\tvar si = _this.selmodel.el.selected_item;",
            "\tGLib.debug(\"SELECTED = %s\", si.get_type().name());",
            "\treturn;",
            "\t",
