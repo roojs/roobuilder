@@ -706,7 +706,7 @@
             "setup" : [
              "(listitem) => {",
              "\tvar hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);",
-             "\tvar elbl  = new Gtk.EditableLabel(\"\");",
+             "\tvar elbl  = new Gtk.Entry();",
              "\telbl.hexpand = true;",
              "\thb.append(elbl);",
              "\tvar lbl  = new Gtk.Label(\"\");",

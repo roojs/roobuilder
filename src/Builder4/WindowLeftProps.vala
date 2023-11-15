@@ -1591,7 +1591,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.setup.connect( (listitem) => {
             	var hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-            	var elbl  = new Gtk.EditableLabel("");
+            	var elbl  = new Gtk.Entry();
             	elbl.hexpand = true;
             	hb.append(elbl);
             	var lbl  = new Gtk.Label("");
