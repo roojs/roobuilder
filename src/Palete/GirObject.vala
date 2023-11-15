@@ -500,16 +500,21 @@ namespace Palete {
 				return;
 			}
 			var cls = classes.get(str);
+			var add = new JsRender.NodeProp.raw(this.name, str, "");
+			// no propertyof ?
+			add.add_node = new JsRender.Node();
+			add.add_node.setFqn(str);
+			par.childstore.append( add);
+		
+			
 			if (cls.implementations.size < 1) {
-				var add = new JsRender.NodeProp.raw(this.name, str, "");
-				// no propertyof ?
-				add.add_node = new JsRender.Node();
-				add.add_node.setFqn(str);
-				par.childstore.append( add);
 				return;
 			}
+			
+			
+			
 			foreach (var cname in cls.implementations) {
-				var add = new JsRender.NodeProp.raw(this.name, cname, "");
+				 add = new JsRender.NodeProp.raw(this.name, cname, "");
 				// no propertyof ?
 				add.add_node = new JsRender.Node();
 				add.add_node.setFqn(cname);
