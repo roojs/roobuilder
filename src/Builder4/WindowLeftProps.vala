@@ -1169,7 +1169,7 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.name = "leftprops-view";
-            this.el.single_click_activate = true;
+            this.el.single_click_activate = false;
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.show_row_separators = true;
