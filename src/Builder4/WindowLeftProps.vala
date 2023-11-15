@@ -1602,7 +1602,7 @@ public class Xcls_LeftProps : Object
             	lbl.ellipsize = Pango.EllipsizeMode.END;
             	var cb = new Gtk.DropDown(new Gtk.StringList({}), null);
             	cb.hexpand = true;
-            	cb.xalign =0;
+             
             	hb.append(cb);
             	((Gtk.ListItem)listitem).set_child(hb);
             	 
