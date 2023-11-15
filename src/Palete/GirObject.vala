@@ -520,6 +520,7 @@ namespace Palete {
 				// no propertyof ?
 				add.add_node = new JsRender.Node();
 				add.add_node.setFqn(cname);
+				add.add_node.add_prop(new JsRender.NodeProp.special("*prop", this.name));
 				par.childstore.append( add);
 				return;				
 			
