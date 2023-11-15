@@ -318,9 +318,9 @@ public class Xcls_PopoverAddProp : Object
             			GLib.debug("Add Child already contains child with %s", prop.name);	
             			return;					
             		}
-            		GLib.debug("Add Child Node %s", prop.name);			
+            		 GLib.debug("Add Child Node %s", prop.name);			
             		_this.node.appendChild(prop.add_node);
-            		
+            		 _this.mainwindow.windowstate.left_props.changed();
             		return;
             	}
             	
@@ -328,7 +328,7 @@ public class Xcls_PopoverAddProp : Object
             	GLib.debug("Add %s", prop.name);
             	
             	_this.node.add_prop(prop.dupe());
-            	
+            	 _this.mainwindow.windowstate.left_props.changed();
             
             });
         }
