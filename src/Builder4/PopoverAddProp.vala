@@ -293,7 +293,7 @@ public class Xcls_PopoverAddProp : Object
             		return; // cant add it twice? --  
             	}
             	
-            	GLib.debug("Add %s", 
+            	GLib.debug("Add %s", prop.name);
             	
             	_this.node.add_prop(prop.dupe());
             	

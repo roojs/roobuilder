@@ -57,7 +57,7 @@
            "\t\treturn; // cant add it twice? --  ",
            "\t}",
            "\t",
-           "\tGLib.debug(\"Add %s\", ",
+           "\tGLib.debug(\"Add %s\", prop.name);",
            "\t",
            "\t_this.node.add_prop(prop.dupe());",
            "\t",
