@@ -500,6 +500,11 @@ namespace Palete {
 				return;
 			}
 			
+			if (!str.contains(".")) {
+				var add = new JsRender.NodeProp.raw(this.name, str, "");			
+				par.childstore.append( add);
+				return;
+			}
 			
 			var add = new JsRender.NodeProp.raw(this.name, str, "");
 			// no propertyof ?
