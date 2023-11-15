@@ -163,7 +163,7 @@
              " ",
              " ",
              "\tvar lbl = (Gtk.Label) expand.child;",
-             "\tGLib.debug(\"set %s\", _this.node.fqn());",
+             "\tGLib.debug(\"add  %s\", np.name);",
              "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
              "\tvar np = (JsRender.NodeProp) lr.get_item();",
              "\t",
