@@ -289,8 +289,8 @@ public class Xcls_PopoverAddProp : Object
             	
             	
             	// use selection?!
-            	var si = _this.selmodel.el.selected_item;
-            	GLib.debug("SELECTED = %s", si.get_type().name());
+            	var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
+            	GLib.debug("SELECTED = %s", tr.item.get_type().name());
             	return;
             	
             	
