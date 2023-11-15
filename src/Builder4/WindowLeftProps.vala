@@ -1605,7 +1605,10 @@ public class Xcls_LeftProps : Object
             	((Gtk.ListItem)listitem).set_child(hb);
             	 
             	 
+            	 elbl.activate.connect(() => {
             	 
+            	 	
+            	 });
             	 
             	 
             	elbl.changed.connect(() => {
