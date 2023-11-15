@@ -87,7 +87,7 @@ public class Xcls_PopoverAddProp : Object
      
          var win = this.mainwindow.el;
         var  w = win.get_width();
-        var h = win.get_height();
+        var h = win.get_height() - 50;
     
     
         // left tree = 250, editor area = 500?
