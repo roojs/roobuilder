@@ -500,7 +500,7 @@ namespace Palete {
 				return;
 			}
 			
-			if (!str.contains(".")) {
+			if (!str.contains(".") || !classes.has_key(str)) {
 				var add = new JsRender.NodeProp.raw(this.name, str, "");			
 				par.childstore.append( add);
 				return;
