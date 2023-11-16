@@ -1425,8 +1425,11 @@ public class Xcls_LeftProps : Object
         // user defined functions
         public void selectProp (JsRender.NodeProp prop) {
         	for (var i = 0 ; i < this.el.n_items; i++) {
-        		var r = this.el.get_item(i);
-        		GLib.debug("got item %s", r.get_type().name());
+        		var r = (JsRender.NodeProp)this.el.get_item(i);
+        		if (r.equals(prop)) {
+        			this.el.selection = i;
+        			return;
+        		}
         	}
         	
         	
