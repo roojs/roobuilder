@@ -32,6 +32,7 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "Gtk.Overflow overflow" : "Gtk.Overflow.VISIBLE",
      "id" : "notebook",
      "items" : [
       {

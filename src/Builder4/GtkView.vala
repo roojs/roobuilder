@@ -52,7 +52,7 @@ public class Xcls_GtkView : Object
         this.el.vexpand = true;
         var child_0 = new Xcls_notebook( _this );
         child_0.ref();
-        this.el.append(  child_0.el );
+        this.el.add(  child_0.el );
 
         // init method
 
@@ -371,6 +371,7 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.overflow = Gtk.Overflow.VISIBLE;
             var child_0 = new Xcls_label_preview( _this );
             child_0.ref();
             var child_1 = new Xcls_label_code( _this );
@@ -525,10 +526,10 @@ public class Xcls_GtkView : Object
             // set gobject values
             var child_0 = new Xcls_ScrolledWindow9( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_Box13( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -560,15 +561,15 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_sourceview : Object
     {
-        public GtkSource.View el;
+        public Gtk.SourceView el;
         private Xcls_GtkView  _this;
 
 
             // my vars (def)
         public bool loading;
         public string prop_selected;
-        public Gtk.CssProvider css;
         public bool allow_node_scroll;
+        public Gtk.CssProvider css;
         public JsRender.Node? node_selected;
 
         // ctor
@@ -593,7 +594,7 @@ public class Xcls_GtkView : Object
             this.el.set_buffer (  child_0.el  );
             var child_1 = new Xcls_EventControllerKey12( _this );
             child_1.ref();
-            this.el.add_controller(  child_1.el );
+            this.el.add(  child_1.el );
 
             // init method
 
@@ -918,7 +919,7 @@ public class Xcls_GtkView : Object
     }
     public class Xcls_buffer : Object
     {
-        public GtkSource.Buffer el;
+        public Gtk.SourceBuffer el;
         private Xcls_GtkView  _this;
 
 
@@ -1007,19 +1008,19 @@ public class Xcls_GtkView : Object
             this.el.vexpand = false;
             var child_0 = new Xcls_search_entry( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_Box16( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
             var child_2 = new Xcls_nextBtn( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.add(  child_2.el );
             var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
-            this.el.append(  child_3.el );
+            this.el.add(  child_3.el );
             var child_4 = new Xcls_MenuButton20( _this );
             child_4.ref();
-            this.el.append(  child_4.el );
+            this.el.add(  child_4.el );
         }
 
         // user defined functions
@@ -1049,7 +1050,7 @@ public class Xcls_GtkView : Object
             this.el.placeholder_text = "Press enter to search";
             var child_0 = new Xcls_EventControllerKey15( _this );
             child_0.ref();
-            this.el.add_controller(  child_0.el );
+            this.el.add(  child_0.el );
 
             // init method
 
@@ -1197,7 +1198,7 @@ public class Xcls_GtkView : Object
             // set gobject values
             var child_0 = new Xcls_search_results( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
         }
 
         // user defined functions
@@ -1390,13 +1391,13 @@ public class Xcls_GtkView : Object
             // set gobject values
             var child_0 = new Xcls_case_sensitive( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_regex( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
             var child_2 = new Xcls_multiline( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.add(  child_2.el );
         }
 
         // user defined functions
