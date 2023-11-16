@@ -502,7 +502,7 @@ namespace Palete {
 			if (gir == null) {
 				return null;
 			}
-			return gir.g.get(es[1]);
+			return gir.get(es[1]);
 		
 		}
 
