@@ -1608,9 +1608,13 @@ public class Xcls_LeftProps : Object
              		 _this.stop_editor();
             	 });
             	 elbl.add_controller(ef);
-            	 cb.add_controller(ef);
             	 
-            	elbl.changed.connect(() => {
+            	 
+            	 cb.activate.connect(() => {
+              		 _this.stop_editor();
+            	 });
+            	 
+             	elbl.changed.connect(() => {
             		// notify and save the changed value...
             	 	
                     //_this.updateIter(iter,prop);
