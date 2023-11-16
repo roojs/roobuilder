@@ -435,7 +435,7 @@ namespace Palete {
 		}
 		
 		
-		public JsRender.NodeProp toNodeProp(Gee.HashMap<string,GirObject> classes)
+		public JsRender.NodeProp toNodeProp(Palete.Palete pal)
 		{
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
@@ -451,7 +451,7 @@ namespace Palete {
 			if (this.type.contains(".") || this.type.contains("|") || this.type.contains("/")) {
 				var ret = new JsRender.NodeProp.prop(this.name, this.type, def);  ///< was raw..?
 				ret.propertyof = this.propertyof;
-				this.nodePropAddChildren(ret, this.type, classes);
+				this.nodePropAddChildren(ret, this.type, pak);
 				return ret;
 			}
 			if (this.type.down() == "function"  ) {
@@ -475,21 +475,21 @@ namespace Palete {
 			return  r;
 		
 		}
-		public void nodePropAddChildren(JsRender.NodeProp par, string str, Gee.HashMap<string,GirObject> classes)
+		public void nodePropAddChildren(JsRender.NodeProp par, string str, Palete.Palete pal)
 		{
 			
 			
 			if (str.contains("|")) {
 				var ar = str.split("|");
 				for(var i = 0; i < ar.length; i++) {
-					this.nodePropAddChildren(par, ar[i], classes);
+					this.nodePropAddChildren(par, ar[i], pal);
 				}
 				return;
 			}
 			if (str.contains("/")) {
 				var ar = str.split("/");
 				for(var i = 0; i < ar.length; i++) {
-					this.nodePropAddChildren(par, ar[i], classes);
+					this.nodePropAddChildren(par, ar[i], pal);
 				}
 				return;
 			}
