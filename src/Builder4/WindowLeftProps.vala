@@ -1615,7 +1615,11 @@ public class Xcls_LeftProps : Object
             	 });
             	 var tb = (Gtk.ToggleButton) cb.get_first_child();
             	 tb.clicked.connect(() => {
-            	  _this.stop_editor();
+            		 var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+            			
+            	 	 _this.stop_editor();
+            	 	 _this.selmodel.selectProp(prop);
+            	 	 
             	 });
              	elbl.changed.connect(() => {
             		// notify and save the changed value...
