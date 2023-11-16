@@ -98,6 +98,7 @@ public class JsRender.NodeProp : Object {
 	public string name { 
 		get {
 			return this._name;  
+		}
 		set {
 			this._name = value;
 			if (this.parent != null) {
@@ -111,6 +112,7 @@ public class JsRender.NodeProp : Object {
 	public NodePropType  ptype {		
 		get {
 			return this._ptype;  
+		}
 		set {
 			this._ptype = value;
 			if (this.parent != null) {
