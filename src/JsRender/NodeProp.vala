@@ -94,9 +94,31 @@ public enum JsRender.NodePropType
 public class JsRender.NodeProp : Object {
 
 
-	
-	public string name { get; private set; }  // can not be updated... ?? you have to remove / replace?
-	public NodePropType  ptype { get; private set; } // return or type
+	private string _name = "";
+	public string name { 
+		get {
+			return this._name;  
+		set {
+			this._name = value;
+			if (this.parent != null) {
+				// causes props/ listeners array to get updated.
+				this.parent.updated_count++;
+			}
+		}
+	 }  // can not be updated... ?? you have to remove / replace?
+	private NodePropType  _ptype;
+	 
+	public NodePropType  ptype {		
+		get {
+			return this._ptype;  
+		set {
+			this._ptype = value;
+			if (this.parent != null) {
+				// causes props/ listeners array to get updated.
+				this.parent.updated_count++;
+			}
+		}
+	}
 	private string _rtype = "";
 	public string rtype { 
 		get { return this._rtype; }
