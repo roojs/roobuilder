@@ -765,17 +765,20 @@ public class Xcls_PopoverProperty : Object
             	// only check props.
             	// check if property already exists in node.	
             
-            	if (_this.node.props.has_key(prop.to_index_key())) {
-            		_this.error.setError("Property already exists");
-            		return;	
-            	}
-            	
+            
             	var prop = new JsRender.NodeProp(
             		this.kname.el.get_text().strip(),
             		_this.ptype.getValue(),
             		this.ktype.el.get_text().strip(),
             		_this.prop.val
             	);
+            
+            	if (_this.node.props.has_key(prop.to_index_key())) {
+            		_this.error.setError("Property already exists");
+            		return;	
+            	}
+            	
+            	
             	
             	_this.node.add_prop(prop);
             	// hide self
