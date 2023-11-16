@@ -1384,7 +1384,7 @@ public class Xcls_LeftProps : Object
             	    	// need to shift down, as ev.y does not inclucde header apparently..
                  	// or popover might be trying to do a central?
             //	 _this.view.editPropertyDetails(prop, (int) in_y + 12); 
-              
+              	 _this.stop_editor();
                  _this.view.popover.show(
              			_this.view.el, 
              			_this.node, prop,  

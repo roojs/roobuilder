@@ -491,7 +491,7 @@
            "\t    \t// need to shift down, as ev.y does not inclucde header apparently..",
            "     \t// or popover might be trying to do a central?",
            "//\t _this.view.editPropertyDetails(prop, (int) in_y + 12); ",
-           "  ",
+           "  \t _this.stop_editor();",
            "     _this.view.popover.show(",
            " \t\t\t_this.view.el, ",
            " \t\t\t_this.node, prop,  ",
