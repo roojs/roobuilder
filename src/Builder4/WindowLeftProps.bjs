@@ -769,7 +769,7 @@
              "\tlbl.add_controller(gc);",
              "\tgc.pressed.connect(() => {",
              "\t \tvar prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();",
-             "\t",
+             "\t\t _this.stop_editor();",
              "\t    _this.show_editor(_this.file, prop.parent, prop);",
              "\t});",
              "\t  ",
