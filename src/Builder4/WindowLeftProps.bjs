@@ -533,7 +533,7 @@
           "\tfor (var i = 0 ; i < this.el.n_items; i++) {",
           "\t\tvar r = (JsRender.NodeProp)this.el.get_item(i);",
           "\t\tif (r.equals(prop)) {",
-          "\t\t\tthis.el.selection = i;",
+          "\t\t\tthis.el.selected = i;",
           "\t\t\treturn;",
           "\t\t}",
           "\t}",
