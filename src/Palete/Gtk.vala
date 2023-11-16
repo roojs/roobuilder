@@ -376,7 +376,7 @@ namespace Palete {
 				
 				var props = cls.props.values.to_array();
 				
-				GLib.debug("Fill Classes %s", cls.fqn());				
+				//GLib.debug("Fill Classes %s", cls.fqn());				
 				for (var i = 0 ;i < props.length;i++) {
 					var prop = props[i];
 				
@@ -416,7 +416,7 @@ namespace Palete {
 						continue;
 					}
 					
-					GLib.debug("Checking prop %s : [%s] %s", cls.fqn(), prop.type, prop.name  );				
+					//GLib.debug("Checking prop %s : [%s] %s", cls.fqn(), prop.type, prop.name  );				
 					
 					var propcls = this.getClass(prop.type);
 					if (propcls == null) {
@@ -446,7 +446,7 @@ namespace Palete {
 					
 					//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 					foreach(var impl in propcls.implementations) {
-						 GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
+						//GLib.debug("Add Widget Prop %s:%s (%s) - from %s", cls.fqn(), prop.name, prop.type, prop.propertyof);
 						// in theory these can not be abstract?
 						
 						var impcls = this.getClass(impl);
@@ -465,9 +465,7 @@ namespace Palete {
 					// if so then add it to localopts
 				
 				}
-				if (cls.fqn() == "Gtk.ColumnView") {
-					Posix.exit(0);
-				}
+				 
 				
 				
 				if (localopts_r.size > 0) { 
