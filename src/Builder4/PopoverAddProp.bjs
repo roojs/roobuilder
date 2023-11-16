@@ -486,7 +486,7 @@
     "    while (miter.next()) {",
     "        var p = miter.get_value(); // nodeprop.",
     "          ",
-    "\t\tvar prop = p.toNodeProp(pal.classes);",
+    "\t\tvar prop = p.toNodeProp(pal);",
     "\t\tif (prop == null) {",
     "\t\t\tcontinue;",
     "\t\t}",

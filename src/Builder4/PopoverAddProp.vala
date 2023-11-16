@@ -77,7 +77,7 @@ public class Xcls_PopoverAddProp : Object
         while (miter.next()) {
             var p = miter.get_value(); // nodeprop.
               
-    		var prop = p.toNodeProp(pal.classes);
+    		var prop = p.toNodeProp(pal);
     		if (prop == null) {
     			continue;
     		}
