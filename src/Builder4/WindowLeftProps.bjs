@@ -529,8 +529,13 @@
           "}"
          ],
          "| void selectProp" : [
-          "() {",
-          "",
+          "(JsRender.NodeProp prop) {",
+          "\tfor (var i = 0 ; i < this.el.n_items; i++) {",
+          "\t\tvar r = this.el.get_item(i);",
+          "\t\tGLib.debug(\"got item %s\", r.get_type().name());",
+          "\t}",
+          "\t",
+          "\t",
           "}"
          ]
         },
