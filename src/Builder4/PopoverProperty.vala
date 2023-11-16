@@ -765,7 +765,7 @@ public class Xcls_PopoverProperty : Object
             		// error should already be showing?
             		return;
             	}
-            	_this.updateProp();
+            	_ 
             	
             	// since we can't add listeners?!?!?
             	// only check props.
@@ -776,10 +776,7 @@ public class Xcls_PopoverProperty : Object
             		return;	
             	}
             	
-            	
             	 
-            	_this.is_new = false;	
-            	  
             	// hide self
             	_this.prop = null; // skip checks..
             	_this.el.hide();
