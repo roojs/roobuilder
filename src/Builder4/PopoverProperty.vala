@@ -772,9 +772,10 @@ public class Xcls_PopoverProperty : Object
             	}
             	
             	var prop = new JsRender.NodeProp(
-            	
-            	
-            	
+            		this.kname.el.get_text().strip(),
+            		_this.ptype.getValue(),
+            		this.ktype.el.get_text().strip(),
+            		_this.prop.val
             	);
             	// hide self
             	_this.prop = null; // skip checks..
