@@ -187,9 +187,13 @@ public class JsRender.NodeProp : Object {
 	
 	public bool equals(NodeProp p) 
 	{
-		return this.name = p.name && this.ptype == p.ptype && this.rtype == p.rtype && this.val == p.val;
-		
-	
+		return this.name == p.name 
+				&& 
+				this.ptype == p.ptype 
+				&& 
+				this.rtype == p.rtype 
+				&& 
+				this.val == p.val;
 	}
 	
 	public NodeProp dupe()
