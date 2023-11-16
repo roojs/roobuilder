@@ -854,7 +854,7 @@ namespace Palete {
 			if (childcls != null && childcls.nodetype == "Struct") {
 				// then we need to add all the props.
 				foreach(var prop in childcls.props.values) {
-					child.add_prop(prop.toNodeProp(this.classes));
+					child.add_prop(prop.toNodeProp(this));
 					
 					
 				}
