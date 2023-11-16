@@ -760,8 +760,7 @@ public class Xcls_PopoverProperty : Object
             		// error should already be showing?
             		return;
             	}
-            	_ 
-            	
+            	 
             	// since we can't add listeners?!?!?
             	// only check props.
             	// check if property already exists in node.	
