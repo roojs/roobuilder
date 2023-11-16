@@ -777,6 +777,8 @@ public class Xcls_PopoverProperty : Object
             		this.ktype.el.get_text().strip(),
             		_this.prop.val
             	);
+            	
+            	_this.node.add_prop(prop);
             	// hide self
             	_this.prop = null; // skip checks..
             	_this.el.hide();
@@ -786,7 +788,7 @@ public class Xcls_PopoverProperty : Object
             	// allow hide to work?
             	 
             	
-            	_this.node.add_prop(prop);
+            
             	
             	
             });
