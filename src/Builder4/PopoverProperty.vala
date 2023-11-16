@@ -100,9 +100,11 @@ public class Xcls_PopoverProperty : Object
     		this.ktype.el.get_text().strip(),
     		_this.prop.val
     	);
-    	var node = _this.prop.parent;
-    	node.remove_prop(_this.prop);
-    	node.add_prop(np);
+    	
+    	_this.prop.name = this.kname.el.get_text().strip();
+    	_this.prop.ptype = this.ptype.getValue();
+    	_this.prop.rtype = this.ktype.el.get_text().strip(),
+    	
     	  
     }
     public void show (
