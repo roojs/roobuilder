@@ -94,12 +94,7 @@ public class Xcls_PopoverProperty : Object
     public void updateProp () {
      	GLib.debug("updateProp called");
     
-    	var np = new JsRender.NodeProp(
-    		this.kname.el.get_text().strip(),
-    		_this.ptype.getValue(),
-    		this.ktype.el.get_text().strip(),
-    		_this.prop.val
-    	);
+    	
     	
     	_this.prop.name = this.kname.el.get_text().strip();
     	_this.prop.ptype = this.ptype.getValue();
@@ -770,13 +765,17 @@ public class Xcls_PopoverProperty : Object
             	// since we can't add listeners?!?!?
             	// only check props.
             	// check if property already exists in node.	
-            	var prop = _this.prop;
+            
             	if (_this.node.props.has_key(prop.to_index_key())) {
             		_this.error.setError("Property already exists");
             		return;	
             	}
             	
-            	 
+            	var prop = new JsRender.NodeProp(
+            	
+            	
+            	
+            	);
             	// hide self
             	_this.prop = null; // skip checks..
             	_this.el.hide();
