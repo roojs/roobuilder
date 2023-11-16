@@ -337,17 +337,20 @@ public class JsRender.Node : GLib.Object {
 		var ar = name.split(".");
 		var l = name.length - (ar[ar.length-1].length +1);
 		
-		var xt = new NodeProp.prop("xtype", "",  ar[ar.length-1]);
-		var xns = new NodeProp.raw("xns", "", name.substring(0, l));
+
 		
 		if (this.props.has_key("xtype")) {
-			this.remove_prop(this.props.get("xtype"));
+			this.props.get("xtype").val = ar[ar.length-1];
+		} else {
+			this.add_prop(new NodeProp.prop("xtype", "",  ar[ar.length-1]));		
 		}	
 		if (this.props.has_key("xns")) {
-			this.remove_prop(this.props.get("xns"));
-		}
-		this.add_prop(xt);
-		this.add_prop(xns);
+			this.props.get("xns").val = name.substring(0, l);
+		} else {
+			this.add_prop(new NodeProp.raw("xns", "", name.substring(0, l)));		
+		}	
+		
+		
 		//print("setFQN %s to %s\n", name , this.fqn());
 		               
 
