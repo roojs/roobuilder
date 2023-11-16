@@ -1606,13 +1606,13 @@ public class Xcls_LeftProps : Object
             	 var ef = new Gtk.EventControllerFocus();
             	 ef.enter.connect(() => {
              		 _this.stop_editor();
+             		  var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
+            		 _this.selmodel.selectProp(prop);		
             	 });
             	 elbl.add_controller(ef);
             	 
             	 
-            	 cb.activate.connect(() => {
-              		 _this.stop_editor();
-            	 });
+            	  
             	 var tb = (Gtk.ToggleButton) cb.get_first_child();
             	 tb.clicked.connect(() => {
             		 var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();
