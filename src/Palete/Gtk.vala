@@ -375,6 +375,8 @@ namespace Palete {
 				// we have a class that extends a widget - let's see if we can add the object based properties. here.
 				
 				var props = cls.props.values.to_array();
+				
+				GLib.debug("Fill Classes %s", cls.fqn());				
 				for (var i = 0 ;i < props.length;i++) {
 					var prop = props[i];
 				
@@ -390,7 +392,7 @@ namespace Palete {
 					if (prop.is_deprecated) {
 						continue;
 					}
-					
+
 					if (prop.name == "parent" || 
 						(prop.name == "child" && cls.fqn() != "Gtk.Popover") ||   // allow child only on popover.
 						prop.name == "attached_to" || 
@@ -414,7 +416,7 @@ namespace Palete {
 						continue;
 					}
 					
-					
+					GLib.debug("Checking prop %s : %s", cls.fqn(), prop.name);				
 					
 					var propcls = this.getClass(prop.type);
 					if (propcls == null) {
