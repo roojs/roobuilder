@@ -184,6 +184,14 @@ public class JsRender.NodeProp : Object {
 		this.childstore = new GLib.ListStore( typeof(NodeProp));
 	}
 	
+	
+	public bool equals(NodeProp p) 
+	{
+		return this.name = p.name && this.ptype == p.ptype && this.rtype == p.rtype && this.val == p.val;
+		
+	
+	}
+	
 	public NodeProp dupe()
 	{
 		return new NodeProp(this.name, this.ptype, this.rtype,  this.val);
