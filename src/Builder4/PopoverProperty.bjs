@@ -444,7 +444,7 @@
     "\t",
     "\t_this.prop.name = this.kname.el.get_text().strip();",
     "\t_this.prop.ptype = this.ptype.getValue();",
-    "\t_this.prop.rtype = this.ktype.el.get_text().strip(),",
+    "\t_this.prop.rtype = this.ktype.el.get_text().strip();",
     "\t",
     "\t  ",
     "}",
