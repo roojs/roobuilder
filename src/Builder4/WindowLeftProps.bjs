@@ -1185,12 +1185,6 @@
     "   ",
     "}",
     ""
-   ],
-   "| void reload" : [
-    "() {",
-    "\tthis.load(this.file, this.node);",
-    "}",
-    ""
    ]
   }
  ],

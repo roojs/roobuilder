@@ -185,9 +185,6 @@ public class Xcls_LeftProps : Object
             _this.changed();
             */
     }
-    public void reload () {
-    	this.load(this.file, this.node);
-    }
     public void a_addProp (JsRender.NodeProp prop) {
           // info includes key, val, skel, etype..
           //console.dump(info);
