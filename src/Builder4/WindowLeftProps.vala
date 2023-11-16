@@ -1613,7 +1613,10 @@ public class Xcls_LeftProps : Object
             	 cb.activate.connect(() => {
               		 _this.stop_editor();
             	 });
-            	 
+            	 var tb = (Gtk.ToggleButton) cb.get_first_child();
+            	 tb.clicked.connect(() => {
+            	  _this.stop_editor();
+            	 });
              	elbl.changed.connect(() => {
             		// notify and save the changed value...
             	 	
