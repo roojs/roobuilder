@@ -376,7 +376,7 @@ namespace Palete {
 				
 				var props = cls.props.values.to_array();
 				
-				GLib.debug("Fill Classes %s", cls.fqn());				
+				//GLib.debug("Fill Classes %s", cls.fqn());				
 				for (var i = 0 ;i < props.length;i++) {
 					var prop = props[i];
 				
@@ -416,7 +416,7 @@ namespace Palete {
 						continue;
 					}
 					
-					GLib.debug("Checking prop %s : %s", cls.fqn(), prop.name);				
+					//GLib.debug("Checking prop %s : %s", cls.fqn(), prop.name);				
 					
 					var propcls = this.getClass(prop.type);
 					if (propcls == null) {
@@ -464,6 +464,9 @@ namespace Palete {
 					// if so then add it to localopts
 				
 				}
+				 
+				
+				
 				if (localopts_r.size > 0) { 
 					this.map.add(new Usage(localopts_l, localopts_r));
 				}
