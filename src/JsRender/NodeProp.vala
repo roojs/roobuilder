@@ -100,7 +100,11 @@ public class JsRender.NodeProp : Object {
 			return this._name;  
 		}
 		set {
+			if (this._name == value) {
+				return;
+			}
 			this._name = value;
+
 			if (this.parent != null) {
 				// causes props/ listeners array to get updated.
 				this.parent.updated_count++;
@@ -114,6 +118,9 @@ public class JsRender.NodeProp : Object {
 			return this._ptype;  
 		}
 		set {
+			if (this._ptype == value) {
+				return;
+			}
 			this._ptype = value;
 			if (this.parent != null) {
 				// causes props/ listeners array to get updated.
@@ -123,8 +130,13 @@ public class JsRender.NodeProp : Object {
 	}
 	private string _rtype = "";
 	public string rtype { 
-		get { return this._rtype; }
+		get { 
+			return this._rtype; 
+		}
 	 	set { 
+	 		if (this._rtype == value) {
+	 			return;
+ 			}
 	 		this._rtype = value; 
 			if (this.parent != null) {
 				this.parent.updated_count++;
@@ -140,12 +152,17 @@ public class JsRender.NodeProp : Object {
 			return this._val;
 		}
 		set {
+			if (this._val == value) {
+				return;
+			}
+			this._val = value;
+			
 			if (this.parent != null) {
 				this.parent.updated_count++;
 			}
 			this.val_short = "";
 			this.updated_count++;
-			this._val = value;
+			
 		}
 	}
 
