@@ -416,7 +416,7 @@ namespace Palete {
 						continue;
 					}
 					
-					GLib.debug("Checking prop %s : %s", cls.fqn(), prop.name);				
+					GLib.debug("Checking prop %s : [%s] %s", cls.fqn(), prop.type, prop.name  );				
 					
 					var propcls = this.getClass(prop.type);
 					if (propcls == null) {
