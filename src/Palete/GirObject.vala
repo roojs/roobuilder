@@ -435,7 +435,7 @@ namespace Palete {
 		}
 		
 		
-		public JsRender.NodeProp toNodeProp(Palete.Palete pal)
+		public JsRender.NodeProp toNodeProp( Palete pal)
 		{
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
@@ -451,7 +451,7 @@ namespace Palete {
 			if (this.type.contains(".") || this.type.contains("|") || this.type.contains("/")) {
 				var ret = new JsRender.NodeProp.prop(this.name, this.type, def);  ///< was raw..?
 				ret.propertyof = this.propertyof;
-				this.nodePropAddChildren(ret, this.type, pak);
+				this.nodePropAddChildren(ret, this.type, pal);
 				return ret;
 			}
 			if (this.type.down() == "function"  ) {
@@ -475,7 +475,7 @@ namespace Palete {
 			return  r;
 		
 		}
-		public void nodePropAddChildren(JsRender.NodeProp par, string str, Palete.Palete pal)
+		public void nodePropAddChildren(JsRender.NodeProp par, string str,  Palete pal)
 		{
 			
 			
@@ -513,7 +513,7 @@ namespace Palete {
 			add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
 			par.childstore.append( add);
 		
-			var cls = classes.get(str);
+			var cls = pal.getClass(str);
 			if (cls.implementations.size < 1) {
 				return;
 			}
