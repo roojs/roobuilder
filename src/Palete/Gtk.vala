@@ -420,6 +420,7 @@ namespace Palete {
 					
 					var propcls = this.getClass(prop.type);
 					if (propcls == null) {
+						GLib.debug("Skip - can not load class");
 						continue;
 					}
 					
@@ -501,7 +502,7 @@ namespace Palete {
 			if (gir == null) {
 				return null;
 			}
-			return gir.classes.get(es[1]);
+			return gir.g.get(es[1]);
 		
 		}
 
