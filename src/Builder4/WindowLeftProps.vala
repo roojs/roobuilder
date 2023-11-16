@@ -1431,8 +1431,7 @@ public class Xcls_LeftProps : Object
         			return;
         		}
         	}
-        	
-        	
+        	 
         }
         public JsRender.NodeProp getPropAt (uint row) {
         
