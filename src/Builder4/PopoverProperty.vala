@@ -757,6 +757,7 @@ public class Xcls_PopoverProperty : Object
             this.el.clicked.connect( () => {
             	// check if text is not empty..
             	if ( _this.kname.el.get_text().strip().length < 1) {
+            	
             		// error should already be showing?
             		return;
             	}

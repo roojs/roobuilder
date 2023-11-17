@@ -269,6 +269,7 @@
            "() => {",
            "\t// check if text is not empty..",
            "\tif ( _this.kname.el.get_text().strip().length < 1) {",
+           "\t",
            "\t\t// error should already be showing?",
            "\t\treturn;",
            "\t}",
