@@ -296,6 +296,7 @@
            "\t_this.node.add_prop(prop);",
            "\t// hide self",
            "\t_this.prop = null; // skip checks..",
+           "\t_this.is_new = false;",
            "\t_this.el.hide();",
            "",
            "// add it, ",

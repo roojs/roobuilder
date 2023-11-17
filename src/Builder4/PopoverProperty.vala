@@ -784,6 +784,7 @@ public class Xcls_PopoverProperty : Object
             	_this.node.add_prop(prop);
             	// hide self
             	_this.prop = null; // skip checks..
+            	_this.is_new = false;
             	_this.el.hide();
             
             // add it, 
