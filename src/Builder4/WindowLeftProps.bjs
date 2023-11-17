@@ -1100,7 +1100,7 @@
         "\t\tvar b = cb.get_first_child();",
         "\t\tvar e = (Gtk.Entry) b.get_first_child();",
         "\t\tvar l = (Gtk.Label) e.get_next_sibling();",
-        "\t\tvar d = (Gtk.Dropdown) l.get_next_sibling();",
+        "\t\tvar d = (Gtk.DropDown) l.get_next_sibling();",
         "\t\t",
         "\t\tGLib.debug(\"row key = %s\", ll.label);",
         "\t\tif (e.get_visible()) {",
