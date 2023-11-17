@@ -1074,7 +1074,7 @@
        "| void editProp" : [
         "(JsRender.NodeProp prop) ",
         "{",
-        "\tvar sm = _this.selmodel.el.n_items;",
+        "\tvar sm = _this.selmodel.el;",
         "\t",
         "\tGLib.Timeout.add_once(500 , () => { ",
         "\t\tvar sr = -1;",

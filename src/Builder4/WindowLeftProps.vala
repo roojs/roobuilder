@@ -1263,7 +1263,7 @@ public class Xcls_LeftProps : Object
          }
         public void editProp (JsRender.NodeProp prop) 
         {
-        	var sm = _this.selmodel.el.n_items;
+        	var sm = _this.selmodel.el;
         	
         	GLib.Timeout.add_once(500 , () => { 
         		var sr = -1;
