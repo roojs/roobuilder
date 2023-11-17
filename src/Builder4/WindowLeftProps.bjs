@@ -491,7 +491,7 @@
           "pressed" : [
            "(n_press, in_x, in_y) => {",
            "",
-           "\tGLib.log(\"Prssed %d\", (int)  this.el.get_current_button());",
+           "\tGLib.debug(\"Prssed %d\", (int)  this.el.get_current_button());",
            "\t",
            "\tvar col = _this.view.getColAt(in_x, in_y);",
            "\tif (col != 0) {",
