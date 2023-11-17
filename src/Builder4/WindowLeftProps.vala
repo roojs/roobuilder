@@ -1482,10 +1482,9 @@ public class Xcls_LeftProps : Object
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
-            	 p.el.set_parent(_this.view.el);
-                //p.el.set_pointing_to(rect);
-            	p.el.show();
-            	p.el.set_position(Gtk.PositionType.BOTTOM); 
+            	_this.deletemenu.el.set_parent(_this.view.el);
+            
+            	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
                 _this.deletemenu.el.popup();
                   
             });
