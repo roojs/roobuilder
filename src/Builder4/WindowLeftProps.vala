@@ -1265,8 +1265,8 @@ public class Xcls_LeftProps : Object
         {
         	GLib.Timeout.add_once(500 , () => { 
         		var sr = -1;
-        		for (var i = 0 ; i < this.el.n_items; i++) {
-        			var r = (JsRender.NodeProp)this.selmodel.el.get_item(i);
+        		for (var i = 0 ; i < _this.selmodel.el.n_items; i++) {
+        			var r = (JsRender.NodeProp)_this.selmodel.el.get_item(i);
         			if (r.equals(prop)) {
         				sr = i;
         				break;
