@@ -451,7 +451,7 @@
     "\t}",
     "\t m.sort( (a, b) => {",
     "",
-    "\t\t\treturn Posix.strcmp( ((Node)a).fqn(),  ((Node)b).fqn());",
+    "\t\t\treturn Posix.strcmp( ((JsRender.Node)a).fqn(),  ((JsRender.Node)b).fqn());",
     "\t\t\t",
     "\t\t});",
     "\t ",
