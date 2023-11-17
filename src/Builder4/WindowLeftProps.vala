@@ -1170,9 +1170,8 @@ public class Xcls_LeftProps : Object
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.show_row_separators = true;
-            var child_0 = new Xcls_ShortcutController28( _this );
+            var child_0 = new Xcls_PopoverMenu28( _this );
             child_0.ref();
-            this.el.add_controller(  child_0.el );
             var child_1 = new Xcls_GestureClick29( _this );
             child_1.ref();
             this.el.add_controller(  child_1.el );
@@ -1346,19 +1345,19 @@ public class Xcls_LeftProps : Object
         
          }
     }
-    public class Xcls_ShortcutController28 : Object
+    public class Xcls_PopoverMenu28 : Object
     {
-        public Gtk.ShortcutController el;
+        public Gtk.PopoverMenu el;
         private Xcls_LeftProps  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ShortcutController28(Xcls_LeftProps _owner )
+        public Xcls_PopoverMenu28(Xcls_LeftProps _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ShortcutController();
+            this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
 

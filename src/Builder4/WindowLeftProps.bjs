@@ -467,7 +467,8 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "xtype" : "ShortcutController"
+         "* pack" : false,
+         "xtype" : "PopoverMenu"
         },
         {
          "$ xns" : "Gtk",
