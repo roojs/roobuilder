@@ -1282,6 +1282,16 @@ public class Xcls_LeftProps : Object
         		}
         		var r = this.getWidgetAtRow(sr);
         		GLib.debug("r = %s", r.get_type().name());
+        		var ca = r.get_first_child();
+        		var ll = (Gtk.Label)ca.get_first_child();
+        		var cb = ca.get_next_sibling();
+        		var b = cb.get_first_child();
+        		var e = b.get_first_child();
+        		var l = e.get_next_sibling();
+        		var d = l.get_next_sibling();
+        		
+        		GLib.debug("row key = %s", ll.label;
+        		
         		//gtkcolumnviewrowwidget
         		  // cell widet
         		  // cell widget
