@@ -1489,8 +1489,8 @@ public class Xcls_LeftProps : Object
             	_this.view.el.get_allocation(out rect);
              	
             	
-            	_this.deletemenu.el.set_offset((int)in_x - rect.width , (int)in_y - rect.height);
-            	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
+            	_this.deletemenu.el.set_offset((int)in_x  , (int)in_y - rect.height);
+            //	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
                 _this.deletemenu.el.popup();
                   
             });
