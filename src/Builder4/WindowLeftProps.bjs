@@ -467,7 +467,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* ctor" : "Gtk.new PopoverMenu.from_model(null)",
+         "* ctor" : "new Gtk.PopoverMenu.from_model(null)",
          "* pack" : false,
          "id" : "deletemenu",
          "items" : [
