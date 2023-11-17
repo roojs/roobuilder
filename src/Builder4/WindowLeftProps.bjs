@@ -472,6 +472,12 @@
          "items" : [
           {
            "$ xns" : "GLib",
+           "* init" : [
+            "{",
+            "\tthis.el.append(\"Delete\", \"leftprops:delete\");",
+            "}",
+            ""
+           ],
            "* prop" : "menu_model",
            "xtype" : "Menu"
           }

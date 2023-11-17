@@ -1388,6 +1388,12 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+
+            // init method
+
+            {
+            	this.el.append("Delete", "leftprops:delete");
+            }
         }
 
         // user defined functions
