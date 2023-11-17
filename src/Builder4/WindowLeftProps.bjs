@@ -100,7 +100,7 @@
                " \t_this.AddPropertyPopup.el.hide();",
                " \t// is this userdef or special??",
                " \tvar add = new JsRender.NodeProp.prop(\"id\");",
-               " \tif (_this.node.has_prop_key(add) {",
+               " \tif (_this.node.has_prop_key(add)) {",
                "\t \treturn;",
                " \t}",
                " \t",
