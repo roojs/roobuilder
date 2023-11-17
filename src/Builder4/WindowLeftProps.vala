@@ -1265,6 +1265,7 @@ public class Xcls_LeftProps : Object
         {
         	var sm = _this.selmodel.el;
         	sm.ref();
+        	prop.ref();
         	GLib.Timeout.add_once(500 , () => { 
         		var sr = -1;
         		GLib.debug("finding node");
@@ -1279,6 +1280,7 @@ public class Xcls_LeftProps : Object
         		if (sr < 0) {
         			GLib.debug("finding node - cant find it");
         			sm.unref();
+        			prop.unref();			
         			return;
         		}
         		var r = this.getWidgetAtRow(sr);
@@ -1291,6 +1293,7 @@ public class Xcls_LeftProps : Object
         		  		
         		
         		sm.unref();
+        		prop.unref();
         
         	});
         }
