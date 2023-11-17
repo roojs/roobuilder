@@ -86,7 +86,7 @@
            "\t\treturn;",
            "\t}",
            "\t",
-           "\t",
+           "\t_this.el.hide();",
            "\tGLib.debug(\"Add %s\", prop.name);",
            "\tvar add = prop.dupe();",
            "\t_this.node.add_prop(add);",

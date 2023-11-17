@@ -330,7 +330,7 @@ public class Xcls_PopoverAddProp : Object
             		return;
             	}
             	
-            	
+            	_this.el.hide();
             	GLib.debug("Add %s", prop.name);
             	var add = prop.dupe();
             	_this.node.add_prop(add);
