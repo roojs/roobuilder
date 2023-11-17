@@ -1476,37 +1476,13 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.button = 3;
 
             //listeners
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
-            	
-            	var col = _this.view.getColAt(in_x, in_y);
-            	if (col != 0) {
-            		return;
-            	}
-            	string pos;
-            	var row = _this.view.getRowAt(in_x, in_y, out pos);
-            	
-            	if (row < 0) {
-            		return;
-            
-            	}
-            	GLib.debug("hit row %d", row);
-            	var prop = _this.selmodel.getPropAt(row);
-            	
-            	var point_at = _this.view.getWidgetAtRow(row);
-            	
-            	    	// need to shift down, as ev.y does not inclucde header apparently..
-                 	// or popover might be trying to do a central?
-            //	 _this.view.editPropertyDetails(prop, (int) in_y + 12); 
-              	 _this.stop_editor();
-                 _this.view.popover.show(
-             			_this.view.el, 
-             			_this.node, prop,  
-            		 (int)in_y);
-                
+            	 
                 
                   
             });
