@@ -469,6 +469,13 @@
          "$ xns" : "Gtk",
          "* pack" : false,
          "id" : "deletemenu",
+         "items" : [
+          {
+           "$ xns" : "GLib",
+           "* prop" : "menu_model",
+           "xtype" : "Menu"
+          }
+         ],
          "xtype" : "PopoverMenu"
         },
         {
