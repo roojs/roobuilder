@@ -1072,8 +1072,12 @@
         " }"
        ],
        "| void editProp" : [
-        "() {",
+        "(JsRender.NodeProp prop) ",
+        "{",
+        "\tGLib.Timeout.add_once(500 , () => { ",
+        "\t\t",
         "",
+        "\t});",
         "}"
        ]
       }

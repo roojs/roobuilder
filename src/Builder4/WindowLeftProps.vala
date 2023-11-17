@@ -1261,8 +1261,12 @@ public class Xcls_LeftProps : Object
                 return null;
         
          }
-        public void editProp () {
+        public void editProp (JsRender.NodeProp prop) 
+        {
+        	GLib.Timeout.add_once(500 , () => { 
+        		
         
+        	});
         }
         public int getColAt (double x,  double y) {
         /*
