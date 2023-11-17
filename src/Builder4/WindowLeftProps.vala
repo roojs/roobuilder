@@ -1277,8 +1277,7 @@ public class Xcls_LeftProps : Object
         		}
         		if (sr < 0) {
         			GLib.debug("finding node - cant find it");
-        			sm.unref();
-        			prop.unref();			
+        			 		
         			return;
         		}
         		var r = this.getWidgetAtRow(sr);
@@ -1289,10 +1288,7 @@ public class Xcls_LeftProps : Object
         		  	// box
         		  		// entry / label / dropdown
         		  		
-        		
-        		sm.unref();
-        		prop.unref();
-         
+        		 
         }
         public int getColAt (double x,  double y) {
         /*
