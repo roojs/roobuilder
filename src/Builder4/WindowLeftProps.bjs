@@ -467,36 +467,9 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* ctor" : "new Gtk.PopoverMenu.from_model(null)",
          "* pack" : false,
          "id" : "deletemenu",
-         "items" : [
-          {
-           "$ xns" : "GLib",
-           "* init" : [
-            "{",
-            "\tthis.el.append(\"Delete\", \"leftprops.delete\");",
-            "",
-            "\tvar ag = new GLib.SimpleActionGroup();",
-            "\tag.add_action_entries({",
-            "\t\t{ ",
-            "\t\t\t\"leftprops.delete\", ",
-            "\t\t\t() => {",
-            "\t\t\t\tGLib.debug(\"DLETE?\");",
-            "\t\t\t}",
-            "\t\t}",
-            "\t\t",
-            "\t});",
-            "\tag.ref();",
-            "\t",
-            "}",
-            ""
-           ],
-           "* prop" : "menu_model",
-           "xtype" : "Menu"
-          }
-         ],
-         "xtype" : "PopoverMenu"
+         "xtype" : "Popover"
         },
         {
          "$ xns" : "Gtk",
