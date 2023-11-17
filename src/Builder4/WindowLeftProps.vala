@@ -1487,7 +1487,7 @@ public class Xcls_LeftProps : Object
             	
             	Gtk.Allocation rect;
             	_this.view.el.get_allocation(out rect);
-             	
+             	_this.deletemenu.el.set_has_arrow(false);
             	
             	_this.deletemenu.el.set_offset((int)in_x  - (rect.width / 2), (int)in_y - rect.height);
             	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
