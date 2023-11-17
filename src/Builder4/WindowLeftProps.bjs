@@ -480,13 +480,13 @@
              "listeners" : {
               "clicked" : [
                "( ) => {",
-               "",
+               "\t",
                "",
                "}",
                ""
               ]
              },
-             "string label" : "Label",
+             "string label" : "Delete",
              "xtype" : "Button"
             }
            ],

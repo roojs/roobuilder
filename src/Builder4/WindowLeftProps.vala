@@ -1415,11 +1415,11 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Label";
+            this.el.label = "Delete";
 
             //listeners
             this.el.clicked.connect( ( ) => {
-            
+            	
             
             });
         }
