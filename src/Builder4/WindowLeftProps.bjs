@@ -703,7 +703,7 @@
              "\t",
              "\t",
              "\t",
-             "\tvar elbl = (Gtk.EditableLabel)bx.get_first_child();",
+             "\tvar elbl = (Gtk.Label)bx.get_first_child();",
              "\tvar lbl = (Gtk.Entry) elbl.get_next_sibling();",
              "\tvar cb  = (Gtk.DropDown) lbl.get_next_sibling();",
              "\t// decide if it's a combo or editable text..",
