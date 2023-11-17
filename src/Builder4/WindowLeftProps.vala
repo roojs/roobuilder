@@ -1300,7 +1300,10 @@ public class Xcls_LeftProps : Object
         			d.activate();
         			return;
         		}
+        		if (l.get_visible()) {
         		
+        		
+        		}
         		
         		
         		
