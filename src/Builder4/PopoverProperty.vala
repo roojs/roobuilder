@@ -163,14 +163,14 @@ public class Xcls_PopoverProperty : Object
     
     	// window + header?
     	 GLib.debug("SHOWALL - POPIP\n");
-    	this.el.show();
+    	
     	this.kname.el.grab_focus();
     	this.buttonbar.el.hide();
     	if (this.is_new) {
     		this.buttonbar.el.show();
     	}
     	 this.error.setError("");
-    
+    	this.el.show();
     	//this.success = c.success;
      
     }
