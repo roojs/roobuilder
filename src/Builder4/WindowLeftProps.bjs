@@ -1275,7 +1275,7 @@
     "   //GLib.debug(\"clear selection\\n\");",
     "   ",
     "   \tthis.loading = false;",
-    "   ",
+    "    this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);",
     "   // clear selection?",
     "  //this.model.el.set_sort_column_id(4,Gtk.SortType.ASCENDING); // sort by real key..",
     "   ",
