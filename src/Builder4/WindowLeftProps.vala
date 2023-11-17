@@ -1396,6 +1396,19 @@ public class Xcls_LeftProps : Object
 
             {
             	this.el.append("Delete", "leftprops.delete");
+            
+            	var ag = new GLib.SimpleActionGroup();
+            	ag.add_action_entries({
+            		{ 
+            			"leftprops.delete", 
+            			() => {
+            				GLib.debug("DLETE?");
+            			}
+            		}
+            		
+            	});
+            	ag.ref();
+            	
             }
         }
 
