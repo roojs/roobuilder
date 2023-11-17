@@ -534,7 +534,7 @@
            "",
            "\tGLib.debug(\"Prssed %d\", (int)  this.el.get_current_button());",
            "\t ",
-           "    ",
+           "    _this.deletemenu.el.popup();",
            "      ",
            "}",
            ""

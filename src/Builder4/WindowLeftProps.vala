@@ -1483,7 +1483,7 @@ public class Xcls_LeftProps : Object
             
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
             	 
-                
+                _this.deletemenu.el.popup();
                   
             });
         }
