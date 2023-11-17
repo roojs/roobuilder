@@ -382,7 +382,7 @@
     "\t} else {",
     "\t\tthis.headertitle.el.label = pref + \"Property\";",
     "\t}",
-    "\tthis.prop = is_new ? null : prop;",
+    "\tthis.prop = prop;",
     "\tthis.node = node;",
     "\t",
     "\t_this.kname.el.set_text(prop.name);",

@@ -119,7 +119,7 @@ public class Xcls_PopoverProperty : Object
     	} else {
     		this.headertitle.el.label = pref + "Property";
     	}
-    	this.prop = is_new ? null : prop;
+    	this.prop = prop;
     	this.node = node;
     	
     	_this.kname.el.set_text(prop.name);
