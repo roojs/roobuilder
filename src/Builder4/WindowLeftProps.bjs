@@ -1097,9 +1097,9 @@
         "\t\tvar ll = (Gtk.Label)ca.get_first_child();",
         "\t\tvar cb = ca.get_next_sibling();",
         "\t\tvar b = cb.get_first_child();",
-        "\t\tvar e = b.get_first_child();",
-        "\t\tvar l = e.get_next_sibling();",
-        "\t\tvar d = l.get_next_sibling();",
+        "\t\tvar e = (Gtk.Edit) b.get_first_child();",
+        "\t\tvar l = (Gtk.Label) e.get_next_sibling();",
+        "\t\tvar d = (Gtk.Dropdown) l.get_next_sibling();",
         "\t\t",
         "\t\tGLib.debug(\"row key = %s\", ll.label);",
         "\t\t",
@@ -1108,7 +1108,7 @@
         "\t\t  // cell widget",
         "\t\t  \t// box",
         "\t\t  \t\t// entry / label / dropdown",
-        "\t\t  \t\t",
+        "\t\t \t\t",
         "\t\t ",
         "}"
        ]

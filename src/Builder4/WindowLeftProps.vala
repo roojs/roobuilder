@@ -1286,9 +1286,9 @@ public class Xcls_LeftProps : Object
         		var ll = (Gtk.Label)ca.get_first_child();
         		var cb = ca.get_next_sibling();
         		var b = cb.get_first_child();
-        		var e = b.get_first_child();
-        		var l = e.get_next_sibling();
-        		var d = l.get_next_sibling();
+        		var e = (Gtk.Edit) b.get_first_child();
+        		var l = (Gtk.Label) e.get_next_sibling();
+        		var d = (Gtk.Dropdown) l.get_next_sibling();
         		
         		GLib.debug("row key = %s", ll.label);
         		
@@ -1297,7 +1297,7 @@ public class Xcls_LeftProps : Object
         		  // cell widget
         		  	// box
         		  		// entry / label / dropdown
-        		  		
+        		 		
         		 
         }
         public int getColAt (double x,  double y) {
