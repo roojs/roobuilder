@@ -1507,6 +1507,20 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
+            	
+            	 
+            	string pos;
+            	var row = _this.view.getRowAt(in_x, in_y, out pos);
+            	
+            	if (row < 0) {
+            		return;
+            
+            	}
+            	GLib.debug("hit row %d", row);
+            	var prop = _this.selmodel.getPropAt(row);
+            	
+            	
+            	
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
             	//_this.deletemenu.el.set_parent(_this.view.el);
             	_this.deletemenu.el.set_parent(_this.main_window.el);
