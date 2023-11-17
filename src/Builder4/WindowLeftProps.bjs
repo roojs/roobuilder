@@ -474,6 +474,22 @@
            "$ xns" : "Gtk",
            "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
            "int spacing" : 0,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "listeners" : {
+              "clicked" : [
+               "( ) => {",
+               "",
+               "",
+               "}",
+               ""
+              ]
+             },
+             "string label" : "Label",
+             "xtype" : "Button"
+            }
+           ],
            "xtype" : "Box"
           }
          ],
