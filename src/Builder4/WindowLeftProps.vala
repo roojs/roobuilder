@@ -1264,7 +1264,21 @@ public class Xcls_LeftProps : Object
         public void editProp (JsRender.NodeProp prop) 
         {
         	GLib.Timeout.add_once(500 , () => { 
-        		_this.selmodel.
+        		var sr = -1;
+        		for (var i = 0 ; i < this.el.n_items; i++) {
+        			var r = (JsRender.NodeProp)this.selmodel.el.get_item(i);
+        			if (r.equals(prop)) {
+        				sr = i;
+        				break;
+        			}
+        		}
+        		if (sr < 0) {
+        			return;
+        		}
+        		var r = this.getWidgetRow(sr);
+        		
+        		
+        		
         
         	});
         }
