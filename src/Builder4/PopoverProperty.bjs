@@ -226,9 +226,9 @@
        "| void setError" : [
         "(string err)   {",
         "\tif (err == \"\") {",
-        "\t\tthis.el.hide();",
+        "\t\tthis.el.label = \"\";",
         "\t} else {",
-        "\t\tthis.el.show();",
+        "",
         "\t\t",
         "\t\tthis.el.label = \"<span color=\\\"red\\\">\" + err + \"</span>\";",
         "\t}",

@@ -658,9 +658,9 @@ public class Xcls_PopoverProperty : Object
         // user defined functions
         public void setError (string err)   {
         	if (err == "") {
-        		this.el.hide();
+        		this.el.label = "";
         	} else {
-        		this.el.show();
+        
         		
         		this.el.label = "<span color=\"red\">" + err + "</span>";
         	}
