@@ -1483,7 +1483,7 @@ public class Xcls_LeftProps : Object
             
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
             	_this.deletemenu.el.set_parent(_this.view.el);
-            	_this.deletemenu.el.set_offset(in_x,in_y);
+            	_this.deletemenu.el.set_offset((int)in_x , (int)in_y);
             	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
                 _this.deletemenu.el.popup();
                   
