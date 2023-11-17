@@ -1170,20 +1170,23 @@ public class Xcls_LeftProps : Object
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.show_row_separators = true;
-            var child_0 = new Xcls_GestureClick28( _this );
+            var child_0 = new Xcls_ShortcutController28( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-            var child_1 = new Xcls_selmodel( _this );
+            var child_1 = new Xcls_GestureClick29( _this );
             child_1.ref();
-            this.el.model = child_1.el;
-            var child_2 = new Xcls_keycol( _this );
+            this.el.add_controller(  child_1.el );
+            var child_2 = new Xcls_selmodel( _this );
             child_2.ref();
-            this.el.append_column (  child_2.el  );
-            var child_3 = new Xcls_valcol( _this );
+            this.el.model = child_2.el;
+            var child_3 = new Xcls_keycol( _this );
             child_3.ref();
             this.el.append_column (  child_3.el  );
-            var child_4 = new Xcls_ContextMenu( _this );
+            var child_4 = new Xcls_valcol( _this );
             child_4.ref();
+            this.el.append_column (  child_4.el  );
+            var child_5 = new Xcls_ContextMenu( _this );
+            child_5.ref();
 
             // init method
 
@@ -1343,7 +1346,29 @@ public class Xcls_LeftProps : Object
         
          }
     }
-    public class Xcls_GestureClick28 : Object
+    public class Xcls_ShortcutController28 : Object
+    {
+        public Gtk.ShortcutController el;
+        private Xcls_LeftProps  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ShortcutController28(Xcls_LeftProps _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ShortcutController();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_GestureClick29 : Object
     {
         public Gtk.GestureClick el;
         private Xcls_LeftProps  _this;
@@ -1352,7 +1377,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_GestureClick28(Xcls_LeftProps _owner )
+        public Xcls_GestureClick29(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.GestureClick();
@@ -1485,14 +1510,14 @@ public class Xcls_LeftProps : Object
             this.el.id = "keycol";
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory32( _this );
+            var child_0 = new Xcls_SignalListItemFactory33( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory32 : Object
+    public class Xcls_SignalListItemFactory33 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_LeftProps  _this;
@@ -1501,7 +1526,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory32(Xcls_LeftProps _owner )
+        public Xcls_SignalListItemFactory33(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1568,14 +1593,14 @@ public class Xcls_LeftProps : Object
             this.el.id = "valcol";
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory34( _this );
+            var child_0 = new Xcls_SignalListItemFactory35( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory34 : Object
+    public class Xcls_SignalListItemFactory35 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_LeftProps  _this;
@@ -1585,7 +1610,7 @@ public class Xcls_LeftProps : Object
         public bool is_setting;
 
         // ctor
-        public Xcls_SignalListItemFactory34(Xcls_LeftProps _owner )
+        public Xcls_SignalListItemFactory35(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1808,14 +1833,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box36( _this );
+            var child_0 = new Xcls_Box37( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box36 : Object
+    public class Xcls_Box37 : Object
     {
         public Gtk.Box el;
         private Xcls_LeftProps  _this;
@@ -1824,7 +1849,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box36(Xcls_LeftProps _owner )
+        public Xcls_Box37(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1832,14 +1857,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button37( _this );
+            var child_0 = new Xcls_Button38( _this );
             child_0.ref();
             this.el.append(  child_0.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button37 : Object
+    public class Xcls_Button38 : Object
     {
         public Gtk.Button el;
         private Xcls_LeftProps  _this;
@@ -1848,7 +1873,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button37(Xcls_LeftProps _owner )
+        public Xcls_Button38(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();

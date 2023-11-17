@@ -467,6 +467,10 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "xtype" : "ShortcutController"
+        },
+        {
+         "$ xns" : "Gtk",
          "listeners" : {
           "pressed" : [
            "(n_press, in_x, in_y) => {",
