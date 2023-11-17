@@ -1275,7 +1275,7 @@ public class Xcls_LeftProps : Object
         		if (sr < 0) {
         			return;
         		}
-        		var r = this.getWidgetRow(sr);
+        		var r = this.getWidgetAtRow(sr);
         		
         		
         		
