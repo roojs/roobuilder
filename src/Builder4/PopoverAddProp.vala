@@ -332,9 +332,12 @@ public class Xcls_PopoverAddProp : Object
             	
             	
             	GLib.debug("Add %s", prop.name);
+            	var add = prop.dupe();
+            	_this.node.add_prop(add);
+             _this.mainwindow.windowstate.left_props.view.editProp(add);
             	
-            	_this.node.add_prop(prop.dupe());
-            	 _this.mainwindow.windowstate.left_props.changed();
+            
+            	 //_this.mainwindow.windowstate.left_props.changed();
             
             });
         }
