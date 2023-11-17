@@ -467,6 +467,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "* ctor" : "",
          "* pack" : false,
          "id" : "deletemenu",
          "items" : [
