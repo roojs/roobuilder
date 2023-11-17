@@ -482,7 +482,9 @@
               "clicked" : [
                "( ) => {",
                "\t",
-               "\tGLib.debug(\"DELETE\");",
+               "",
+               "\tvar n = _this.selmodel.selected_item;",
+               "\tGLib.debug(\"DELETE %s\", n.get_type().name());",
                "}",
                ""
               ]

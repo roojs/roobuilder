@@ -1420,7 +1420,9 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.clicked.connect( ( ) => {
             	
-            	GLib.debug("DELETE");
+            
+            	var n = _this.selmodel.selected_item;
+            	GLib.debug("DELETE %s", n.get_type().name());
             });
         }
 
