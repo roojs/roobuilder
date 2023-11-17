@@ -469,6 +469,14 @@
          "$ xns" : "Gtk",
          "* pack" : false,
          "id" : "deletemenu",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "int spacing" : 0,
+           "xtype" : "Box"
+          }
+         ],
          "xtype" : "Popover"
         },
         {
