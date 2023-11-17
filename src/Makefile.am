@@ -142,7 +142,7 @@ bin_PROGRAMS = roobuilder
 roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg gobject-2.0  \
 		--pkg  gtk4 \
-		--pkg  gtksourceview-2.0 \
+		--pkg  gtksourceview-5 \
 		--pkg  libxml-2.0 \
 		--pkg json-glib-1.0 \
 		--pkg gee-0.8 \
