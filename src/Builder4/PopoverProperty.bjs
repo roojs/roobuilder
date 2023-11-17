@@ -430,7 +430,7 @@
     "\tif (this.is_new) {",
     "\t\tthis.buttonbar.el.show();",
     "\t}",
-    "\t this.error.setError(\"\");",
+    "\tthis.error.setError(\"\");",
     "\tthis.el.show();",
     "\t//this.success = c.success;",
     " ",

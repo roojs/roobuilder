@@ -169,7 +169,7 @@ public class Xcls_PopoverProperty : Object
     	if (this.is_new) {
     		this.buttonbar.el.show();
     	}
-    	 this.error.setError("");
+    	this.error.setError("");
     	this.el.show();
     	//this.success = c.success;
      
