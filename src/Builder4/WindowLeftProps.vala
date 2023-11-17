@@ -1421,6 +1421,7 @@ public class Xcls_LeftProps : Object
             //listeners
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
+            	GLib.log("Prssed %d", (int)  this.el.get_current_button());
             	
             	var col = _this.view.getColAt(in_x, in_y);
             	if (col != 0) {
