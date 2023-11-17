@@ -1293,15 +1293,18 @@ public class Xcls_LeftProps : Object
         		
         		GLib.debug("row key = %s", ll.label);
         		if (e.get_visible()) {
+        			_this.stop_editor();
         			e.grab_focus_without_selecting();
         			return;
         		}
         		if (d.get_visible()) {
+        			_this.stop_editor();
         			d.activate();
         			return;
         		}
         		if (l.get_visible()) {
-        		
+        		 	_this.stop_editor();
+        	    	_this.show_editor(_this.file, prop.parent, prop);
         		
         		}
         		
