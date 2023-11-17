@@ -468,6 +468,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : false,
+         "id" : "deletemenu",
          "xtype" : "PopoverMenu"
         },
         {

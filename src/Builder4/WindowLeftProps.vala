@@ -15,6 +15,7 @@ public class Xcls_LeftProps : Object
     public Xcls_AddPropertyPopup AddPropertyPopup;
     public Xcls_EditProps EditProps;
     public Xcls_view view;
+    public Xcls_deletemenu deletemenu;
     public Xcls_selmodel selmodel;
     public Xcls_model model;
     public Xcls_keycol keycol;
@@ -1170,7 +1171,7 @@ public class Xcls_LeftProps : Object
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.show_row_separators = true;
-            var child_0 = new Xcls_PopoverMenu28( _this );
+            var child_0 = new Xcls_deletemenu( _this );
             child_0.ref();
             var child_1 = new Xcls_GestureClick29( _this );
             child_1.ref();
@@ -1345,7 +1346,7 @@ public class Xcls_LeftProps : Object
         
          }
     }
-    public class Xcls_PopoverMenu28 : Object
+    public class Xcls_deletemenu : Object
     {
         public Gtk.PopoverMenu el;
         private Xcls_LeftProps  _this;
@@ -1354,9 +1355,10 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_PopoverMenu28(Xcls_LeftProps _owner )
+        public Xcls_deletemenu(Xcls_LeftProps _owner )
         {
             _this = _owner;
+            _this.deletemenu = this;
             this.el = new Gtk.PopoverMenu();
 
             // my vars (dec)
