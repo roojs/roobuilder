@@ -786,11 +786,7 @@ public class Xcls_PopoverProperty : Object
             	_this.prop = null; // skip checks..
             	_this.is_new = false;
             	_this.el.hide();
-            
-            // add it, 
-            	// trigger editing of property.
-            	// allow hide to work?
-            	 
+             
             	
             
             	
