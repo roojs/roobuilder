@@ -1101,7 +1101,7 @@
         "\t\tvar l = e.get_next_sibling();",
         "\t\tvar d = l.get_next_sibling();",
         "\t\t",
-        "\t\tGLib.debug(\"row key = %s\", ll.label;",
+        "\t\tGLib.debug(\"row key = %s\", ll.label);",
         "\t\t",
         "\t\t//gtkcolumnviewrowwidget",
         "\t\t  // cell widet",

@@ -1290,7 +1290,7 @@ public class Xcls_LeftProps : Object
         		var l = e.get_next_sibling();
         		var d = l.get_next_sibling();
         		
-        		GLib.debug("row key = %s", ll.label;
+        		GLib.debug("row key = %s", ll.label);
         		
         		//gtkcolumnviewrowwidget
         		  // cell widet
