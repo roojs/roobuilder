@@ -475,7 +475,7 @@
            "$ xns" : "GLib",
            "* init" : [
             "{",
-            "\tthis.el.append(\"Delete\", \"leftprops:delete\");",
+            "\tthis.el.append(\"Delete\", \"leftprops.delete\");",
             "}",
             ""
            ],

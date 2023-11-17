@@ -1392,7 +1392,7 @@ public class Xcls_LeftProps : Object
             // init method
 
             {
-            	this.el.append("Delete", "leftprops:delete");
+            	this.el.append("Delete", "leftprops.delete");
             }
         }
 
