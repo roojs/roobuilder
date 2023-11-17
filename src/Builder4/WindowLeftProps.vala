@@ -1509,7 +1509,7 @@ public class Xcls_LeftProps : Object
             
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
             	//_this.deletemenu.el.set_parent(_this.view.el);
-            	_this.deletemenu.el.set_parent(_this.mainwindow.el);
+            	_this.deletemenu.el.set_parent(_this.main_window.el);
             	
             	
             	Gtk.Allocation rect;
