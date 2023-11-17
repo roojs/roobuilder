@@ -1267,6 +1267,8 @@ public class Xcls_LeftProps : Object
         	sm.ref();
         	GLib.Timeout.add_once(500 , () => { 
         		var sr = -1;
+        		GLib.debug("finding node");
+        		
         		for (var i = 0 ; i < sm.n_items; i++) {
         			var r = (JsRender.NodeProp)sm.get_item(i);
         			if (r.equals(prop)) {
@@ -1275,6 +1277,7 @@ public class Xcls_LeftProps : Object
         			}
         		}
         		if (sr < 0) {
+        			GLib.debug("finding node - cant find it");
         			sm.unref();
         			return;
         		}
