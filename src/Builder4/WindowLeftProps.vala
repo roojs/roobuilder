@@ -1296,6 +1296,12 @@ public class Xcls_LeftProps : Object
         			e.grab_focus_without_selecting();
         			return;
         		}
+        		if (d.get_visible()) {
+        			d.activate();
+        			return;
+        		}
+        		
+        		
         		
         		
         		//gtkcolumnviewrowwidget
