@@ -1075,9 +1075,7 @@
         "(JsRender.NodeProp prop) ",
         "{",
         "\tvar sm = _this.selmodel.el;",
-        "\tsm.ref();",
-        "\tprop.ref();",
-        "\tGLib.Timeout.add_once(500 , () => { ",
+        " ",
         "\t\tvar sr = -1;",
         "\t\tGLib.debug(\"finding node\");",
         "\t\t",
@@ -1105,8 +1103,7 @@
         "\t\t",
         "\t\tsm.unref();",
         "\t\tprop.unref();",
-        "",
-        "\t});",
+        " ",
         "}"
        ]
       }

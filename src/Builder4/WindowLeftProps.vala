@@ -1264,9 +1264,7 @@ public class Xcls_LeftProps : Object
         public void editProp (JsRender.NodeProp prop) 
         {
         	var sm = _this.selmodel.el;
-        	sm.ref();
-        	prop.ref();
-        	GLib.Timeout.add_once(500 , () => { 
+         
         		var sr = -1;
         		GLib.debug("finding node");
         		
@@ -1294,8 +1292,7 @@ public class Xcls_LeftProps : Object
         		
         		sm.unref();
         		prop.unref();
-        
-        	});
+         
         }
         public int getColAt (double x,  double y) {
         /*
