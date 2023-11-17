@@ -121,9 +121,19 @@
              "listeners" : {
               "clicked" : [
                "  ( ) => {",
-               "      _this.AddPropertyPopup.el.hide();",
-               "// is this userdef?",
-               "    _this.node.add_prop( new JsRender.NodeProp.special(\"pack\", \"add\") );",
+               " ",
+               "",
+               "\t_this.AddPropertyPopup.el.hide();",
+               " \t// is this userdef or special??",
+               " \tvar add = new JsRender.NodeProp.special(\"pack\", \"add\");",
+               " \tif (_this.node.has_prop_key(add)) {",
+               "\t \treturn;",
+               " \t}",
+               " \t",
+               " \t_this.node.add_prop( add );",
+               " \t",
+               " \t_this.view.editProp( add );",
+               " \t",
                "",
                "}"
               ]
