@@ -1267,6 +1267,7 @@ public class Xcls_LeftProps : Object
          
         		var sr = -1;
         		GLib.debug("finding node");
+        		_this.selmodel.selectProp(prop);
         		
         		for (var i = 0 ; i < sm.n_items; i++) {
         			var r = (JsRender.NodeProp)sm.get_item(i);

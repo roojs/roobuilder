@@ -1078,6 +1078,7 @@
         " ",
         "\t\tvar sr = -1;",
         "\t\tGLib.debug(\"finding node\");",
+        "\t\t_this.selmodel.selectProp(prop);",
         "\t\t",
         "\t\tfor (var i = 0 ; i < sm.n_items; i++) {",
         "\t\t\tvar r = (JsRender.NodeProp)sm.get_item(i);",
