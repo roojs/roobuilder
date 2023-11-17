@@ -599,6 +599,8 @@
            "\t\treturn;",
            "",
            "\t}",
+           "\t",
+           "\t_this.stop_editor();",
            "\tGLib.debug(\"hit row %d\", row);",
            "\tvar prop = _this.selmodel.getPropAt(row);",
            "\t_this.selmodel.selectProp(prop);",

@@ -1620,6 +1620,8 @@ public class Xcls_LeftProps : Object
             		return;
             
             	}
+            	
+            	_this.stop_editor();
             	GLib.debug("hit row %d", row);
             	var prop = _this.selmodel.getPropAt(row);
             	_this.selmodel.selectProp(prop);
