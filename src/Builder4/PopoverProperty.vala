@@ -787,7 +787,7 @@ public class Xcls_PopoverProperty : Object
             	_this.is_new = false;
             	_this.el.hide();
              
-            	
+            	_this.mainwindow.windowstate.left_props.view.editProp(prop);
             
             	
             	

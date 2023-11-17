@@ -299,7 +299,7 @@
            "\t_this.is_new = false;",
            "\t_this.el.hide();",
            " ",
-           "\t",
+           "\t_this.mainwindow.windowstate.left_props.view.editProp(prop);",
            "",
            "\t",
            "\t",
