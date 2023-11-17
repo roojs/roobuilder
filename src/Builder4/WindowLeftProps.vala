@@ -1176,17 +1176,20 @@ public class Xcls_LeftProps : Object
             var child_1 = new Xcls_GestureClick30( _this );
             child_1.ref();
             this.el.add_controller(  child_1.el );
-            var child_2 = new Xcls_selmodel( _this );
+            var child_2 = new Xcls_GestureClick31( _this );
             child_2.ref();
-            this.el.model = child_2.el;
-            var child_3 = new Xcls_keycol( _this );
+            this.el.add_controller(  child_2.el );
+            var child_3 = new Xcls_selmodel( _this );
             child_3.ref();
-            this.el.append_column (  child_3.el  );
-            var child_4 = new Xcls_valcol( _this );
+            this.el.model = child_3.el;
+            var child_4 = new Xcls_keycol( _this );
             child_4.ref();
             this.el.append_column (  child_4.el  );
-            var child_5 = new Xcls_ContextMenu( _this );
+            var child_5 = new Xcls_valcol( _this );
             child_5.ref();
+            this.el.append_column (  child_5.el  );
+            var child_6 = new Xcls_ContextMenu( _this );
+            child_6.ref();
 
             // init method
 
@@ -1456,6 +1459,62 @@ public class Xcls_LeftProps : Object
         // user defined functions
     }
 
+    public class Xcls_GestureClick31 : Object
+    {
+        public Gtk.GestureClick el;
+        private Xcls_LeftProps  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_GestureClick31(Xcls_LeftProps _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.GestureClick();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.pressed.connect( (n_press, in_x, in_y) => {
+            
+            	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
+            	
+            	var col = _this.view.getColAt(in_x, in_y);
+            	if (col != 0) {
+            		return;
+            	}
+            	string pos;
+            	var row = _this.view.getRowAt(in_x, in_y, out pos);
+            	
+            	if (row < 0) {
+            		return;
+            
+            	}
+            	GLib.debug("hit row %d", row);
+            	var prop = _this.selmodel.getPropAt(row);
+            	
+            	var point_at = _this.view.getWidgetAtRow(row);
+            	
+            	    	// need to shift down, as ev.y does not inclucde header apparently..
+                 	// or popover might be trying to do a central?
+            //	 _this.view.editPropertyDetails(prop, (int) in_y + 12); 
+              	 _this.stop_editor();
+                 _this.view.popover.show(
+             			_this.view.el, 
+             			_this.node, prop,  
+            		 (int)in_y);
+                
+                
+                  
+            });
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_selmodel : Object
     {
         public Gtk.SingleSelection el;
@@ -1543,14 +1602,14 @@ public class Xcls_LeftProps : Object
             this.el.id = "keycol";
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory34( _this );
+            var child_0 = new Xcls_SignalListItemFactory35( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory34 : Object
+    public class Xcls_SignalListItemFactory35 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_LeftProps  _this;
@@ -1559,7 +1618,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory34(Xcls_LeftProps _owner )
+        public Xcls_SignalListItemFactory35(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1626,14 +1685,14 @@ public class Xcls_LeftProps : Object
             this.el.id = "valcol";
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory36( _this );
+            var child_0 = new Xcls_SignalListItemFactory37( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory36 : Object
+    public class Xcls_SignalListItemFactory37 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_LeftProps  _this;
@@ -1643,7 +1702,7 @@ public class Xcls_LeftProps : Object
         public bool is_setting;
 
         // ctor
-        public Xcls_SignalListItemFactory36(Xcls_LeftProps _owner )
+        public Xcls_SignalListItemFactory37(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1866,14 +1925,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box38( _this );
+            var child_0 = new Xcls_Box39( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box38 : Object
+    public class Xcls_Box39 : Object
     {
         public Gtk.Box el;
         private Xcls_LeftProps  _this;
@@ -1882,7 +1941,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box38(Xcls_LeftProps _owner )
+        public Xcls_Box39(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1890,14 +1949,14 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button39( _this );
+            var child_0 = new Xcls_Button40( _this );
             child_0.ref();
             this.el.append(  child_0.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button39 : Object
+    public class Xcls_Button40 : Object
     {
         public Gtk.Button el;
         private Xcls_LeftProps  _this;
@@ -1906,7 +1965,7 @@ public class Xcls_LeftProps : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button39(Xcls_LeftProps _owner )
+        public Xcls_Button40(Xcls_LeftProps _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
