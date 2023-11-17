@@ -1276,7 +1276,13 @@ public class Xcls_LeftProps : Object
         			return;
         		}
         		var r = this.getWidgetAtRow(sr);
-        		
+        		GLib.debug("r = %s", r.get_type().name());
+        		//gtkcolumnviewrowwidget
+        		  // cell widet
+        		  // cell widget
+        		  	// box
+        		  		// entry / label / dropdown
+        		  		
         		
         		
         
