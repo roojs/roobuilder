@@ -1518,6 +1518,7 @@ public class Xcls_LeftProps : Object
             	}
             	GLib.debug("hit row %d", row);
             	var prop = _this.selmodel.getPropAt(row);
+            	_this.selmodel.selectProp(prop);
             	
             	
             	
