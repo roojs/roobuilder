@@ -74,7 +74,11 @@ public class Xcls_PopoverAddObject : Object
     		GLib.debug("add to model: %s", dname);		
     		m.append(c);
     	}
-    	 
+    	 m.sort( (a, b) => {
+    
+    			return Posix.strcmp( ((Node)a).fqn(),  ((Node)b).fqn());
+    			
+    		});
     	 
         
         var win = this.mainwindow.el;
