@@ -648,9 +648,18 @@ public class Xcls_LeftProps : Object
 
             //listeners
             this.el.clicked.connect( ( ) => {
-                _this.AddPropertyPopup.el.hide();
-                  _this.node.add_prop( new JsRender.NodeProp.special("ctor") );
-             
+               
+             _this.AddPropertyPopup.el.hide();
+             	// is this userdef or special??
+             	var add = new JsRender.NodeProp.special("ctor");
+             	if (_this.node.has_prop_key(add)) {
+            	 	return;
+             	}
+             	
+             	_this.node.add_prop( add );
+             	
+             	_this.view.editProp( add );
+             	
             });
         }
 
