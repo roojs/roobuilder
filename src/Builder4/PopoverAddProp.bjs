@@ -78,6 +78,7 @@
            "\t\t\treturn;\t\t\t\t\t",
            "\t\t}",
            "\t\t GLib.debug(\"Add Child Node %s\", prop.name);\t\t\t",
+           "\t\t _this.el.hide();",
            "\t\t var add = prop.add_node.deepClone();",
            "\t\t_this.node.appendChild(add);",
            "\t\t _this.mainwindow.windowstate.left_props.changed();",

@@ -322,6 +322,7 @@ public class Xcls_PopoverAddProp : Object
             			return;					
             		}
             		 GLib.debug("Add Child Node %s", prop.name);			
+            		 _this.el.hide();
             		 var add = prop.add_node.deepClone();
             		_this.node.appendChild(add);
             		 _this.mainwindow.windowstate.left_props.changed();
