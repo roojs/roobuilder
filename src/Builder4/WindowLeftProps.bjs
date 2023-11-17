@@ -100,6 +100,7 @@
                " \t_this.AddPropertyPopup.el.hide();",
                " \t// is this userdef or special??",
                " \t_this.node.add_prop( new JsRender.NodeProp.prop(\"id\") );",
+               " \t",
                "\t",
                "}"
               ]

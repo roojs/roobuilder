@@ -569,6 +569,7 @@ public class Xcls_LeftProps : Object
              	_this.AddPropertyPopup.el.hide();
              	// is this userdef or special??
              	_this.node.add_prop( new JsRender.NodeProp.prop("id") );
+             	
             	
             });
         }
