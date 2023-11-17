@@ -1264,7 +1264,7 @@ public class Xcls_LeftProps : Object
         public void editProp (JsRender.NodeProp prop) 
         {
         	var sm = _this.selmodel.el;
-        	
+        	sm.ref();
         	GLib.Timeout.add_once(500 , () => { 
         		var sr = -1;
         		for (var i = 0 ; i < sm.n_items; i++) {
@@ -1275,6 +1275,7 @@ public class Xcls_LeftProps : Object
         			}
         		}
         		if (sr < 0) {
+        			sm.unref();
         			return;
         		}
         		var r = this.getWidgetAtRow(sr);
@@ -1286,7 +1287,7 @@ public class Xcls_LeftProps : Object
         		  		// entry / label / dropdown
         		  		
         		
-        		
+        		sm.unref();
         
         	});
         }
