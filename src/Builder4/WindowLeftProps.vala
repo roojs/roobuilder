@@ -1261,6 +1261,9 @@ public class Xcls_LeftProps : Object
                 return null;
         
          }
+        public void editProp () {
+        
+        }
         public int getColAt (double x,  double y) {
         /*
             	
