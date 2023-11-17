@@ -483,8 +483,10 @@
                "( ) => {",
                "\t",
                "",
-               "\tvar n = _this.selmodel.el.selected_item;",
-               "\tGLib.debug(\"DELETE %s\", n.get_type().name());",
+               "\tvar n = (JsRender.NodeProp) _this.selmodel.el.selected_item;",
+               "",
+               "\t_this.deletemenu.el.hide();",
+               "\t_this.node.remove_prop(n);",
                "}",
                ""
               ]

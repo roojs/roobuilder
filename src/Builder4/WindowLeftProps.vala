@@ -1421,8 +1421,10 @@ public class Xcls_LeftProps : Object
             this.el.clicked.connect( ( ) => {
             	
             
-            	var n = _this.selmodel.el.selected_item;
-            	GLib.debug("DELETE %s", n.get_type().name());
+            	var n = (JsRender.NodeProp) _this.selmodel.el.selected_item;
+            
+            	_this.deletemenu.el.hide();
+            	_this.node.remove_prop(n);
             });
         }
 
