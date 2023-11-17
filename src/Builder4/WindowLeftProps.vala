@@ -1359,7 +1359,7 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.deletemenu = this;
-            this.el = new PopoverMenu.from_model(null);
+            this.el = Gtk.new PopoverMenu.from_model(null);
 
             // my vars (dec)
 
