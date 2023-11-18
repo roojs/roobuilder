@@ -1355,16 +1355,14 @@ public class Xcls_WindowLeftTree : Object
 
         // user defined functions
         public void loadFile (JsRender.JsRender f) {
-            //console.dump(f);
-            
+              
             _this.drop.highlightWidget = null;
             
-            var m = (GLib.ListStore) this.el.model;
-        	m.remove_all();
+            var m = _this.model.el;
+        	_this.model.el.remove_all();
             _this.main_window.windowstate.leftTreeNodeSelected(null, "");
-            // needed???
-            _this.main_window.windowstate.file = f;
             
+            _this.main_window.windowstate.file = f;
            
             if (f.tree == null) {
         	    try {
@@ -1379,28 +1377,8 @@ public class Xcls_WindowLeftTree : Object
             
                 return;
             }
-          	m.append(f.tree);
-          	// expand???
-        
-        /*
-            if (f.tree.readItems().size < 1) {
-                // single item..
-                
-                //this.get('/Window.leftvpaned').el.set_position(80);
-                // select first...
-                _this.view.el.set_cursor( 
-                    new  Gtk.TreePath.from_string("0"), null, false);
-                
-                
-            } else {
-                  //this.get('/Window.leftvpaned').el.set_position(200);
-            }
-          */  
-            
-            
-        
-            //_this.maincol.el.set_max_width(_this.viewwin.el.get_allocated_width() - 32);
-         
+          	_this.model.el.append(f.tree);
+          	
             _this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
            
             return;
