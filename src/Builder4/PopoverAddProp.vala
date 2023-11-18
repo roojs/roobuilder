@@ -147,7 +147,7 @@ public class Xcls_PopoverAddProp : Object
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
-            var child_1 = new Xcls_ColumnViewColumn14( _this );
+            var child_1 = new Xcls_SingleSelection14( _this );
             child_1.ref();
             this.el.add(  child_1.el );
 
@@ -744,19 +744,19 @@ public class Xcls_PopoverAddProp : Object
 
 
 
-    public class Xcls_ColumnViewColumn14 : Object
+    public class Xcls_SingleSelection14 : Object
     {
-        public Gtk.ColumnViewColumn el;
+        public Gtk.SingleSelection el;
         private Xcls_PopoverAddProp  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnViewColumn14(Xcls_PopoverAddProp _owner )
+        public Xcls_SingleSelection14(Xcls_PopoverAddProp _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ColumnViewColumn( null, null );
+            this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)
 
