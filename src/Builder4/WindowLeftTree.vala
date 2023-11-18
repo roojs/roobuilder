@@ -40,7 +40,7 @@ public class Xcls_WindowLeftTree : Object
         this.el.vexpand = true;
         var child_0 = new Xcls_viewwin( _this );
         child_0.ref();
-        this.el.append(  child_0.el );
+        this.el.add(  child_0.el );
     }
 
     // user defined functions
@@ -102,8 +102,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public bool blockChanges;
-        public string lastEventSource;
         public bool headers_visible;
+        public string lastEventSource;
         public bool button_is_pressed;
         public Gtk.CssProvider css;
 
@@ -116,8 +116,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (dec)
             this.blockChanges = false;
-            this.lastEventSource = "";
             this.headers_visible = false;
+            this.lastEventSource = "";
             this.button_is_pressed = false;
 
             // set gobject values
@@ -126,16 +126,16 @@ public class Xcls_WindowLeftTree : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();
-            this.el.add_controller(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_DragSource5( _this );
             child_1.ref();
-            this.el.add_controller(  child_1.el );
+            this.el.add(  child_1.el );
             var child_2 = new Xcls_EventControllerKey6( _this );
             child_2.ref();
-            this.el.add_controller(  child_2.el );
+            this.el.add(  child_2.el );
             var child_3 = new Xcls_drop( _this );
             child_3.ref();
-            this.el.add_controller(  child_3.el );
+            this.el.add(  child_3.el );
             var child_4 = new Xcls_selmodel( _this );
             child_4.ref();
             this.el.model = child_4.el;
@@ -1761,13 +1761,13 @@ public class Xcls_WindowLeftTree : Object
             // set gobject values
             var child_0 = new Xcls_Button16( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_Button17( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
             var child_2 = new Xcls_Button18( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.add(  child_2.el );
         }
 
         // user defined functions
