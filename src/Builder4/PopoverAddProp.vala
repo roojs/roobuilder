@@ -21,9 +21,9 @@ public class Xcls_PopoverAddProp : Object
         // my vars (def)
     public bool modal;
     public JsRender.NodePropType ptype;
-    public bool active;
-    public Xcls_MainWindow mainwindow;
     public JsRender.Node? node;
+    public Xcls_MainWindow mainwindow;
+    public bool active;
 
     // ctor
     public Xcls_PopoverAddProp()
@@ -33,8 +33,8 @@ public class Xcls_PopoverAddProp : Object
 
         // my vars (dec)
         this.modal = true;
-        this.active = false;
         this.node = null;
+        this.active = false;
 
         // set gobject values
         this.el.width_request = 900;
@@ -181,7 +181,7 @@ public class Xcls_PopoverAddProp : Object
             this.el.reorderable = true;
             var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
+            this.el.add_controller(  child_0.el );
             var child_1 = new Xcls_selmodel( _this );
             child_1.ref();
             this.el.model = child_1.el;
