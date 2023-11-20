@@ -14,7 +14,7 @@ public class Xcls_MainWindow : Object
     }
     public Xcls_headerbar headerbar;
     public Xcls_windowbtn windowbtn;
-    public Xcls_Popover5 Popover5;
+    public Xcls_windowspopup windowspopup;
     public Xcls_popover_menu popover_menu;
     public Xcls_open_projects_btn open_projects_btn;
     public Xcls_vbox vbox;
@@ -211,7 +211,7 @@ public class Xcls_MainWindow : Object
             this.el.margin_end = 4;
             this.el.halign = Gtk.Align.START;
             this.el.label = "Windows (Add/List)";
-            var child_0 = new Xcls_Popover5( _this );
+            var child_0 = new Xcls_windowspopup( _this );
             child_0.ref();
 
             // init method
@@ -300,7 +300,7 @@ public class Xcls_MainWindow : Object
         	 }
         }
     }
-    public class Xcls_Popover5 : Object
+    public class Xcls_windowspopup : Object
     {
         public Gtk.Popover el;
         private Xcls_MainWindow  _this;
@@ -309,10 +309,10 @@ public class Xcls_MainWindow : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Popover5(Xcls_MainWindow _owner )
+        public Xcls_windowspopup(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            _this.Popover5 = this;
+            _this.windowspopup = this;
             this.el = new Gtk.PopoverMenu.from_model(null);
 
             // my vars (dec)

@@ -59,7 +59,7 @@
             " "
            ],
            "* pack" : false,
-           "id" : "",
+           "id" : "windowspopup",
            "items" : [
             {
              "$ xns" : "Gtk",
