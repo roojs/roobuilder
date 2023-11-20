@@ -521,14 +521,16 @@ public class Xcls_WindowLeftTree : Object
                  
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
             	//_this.deletemenu.el.set_parent(_this.view.el);
-            	_this.LeftTreeMenu.el.set_parent(_this.main_window.el);
+            	_this.LeftTreeMenu.el.set_parent(_this.view.el);
             	
             	
             	Gtk.Allocation rect;
             	_this.view.el.get_allocation(out rect);
              	//_this.deletemenu.el.set_has_arrow(false);
-            	_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 	
-            	_this.LeftTreeMenu.el.set_offset((int)rect.x + (int)x  , (int)y - (int)rect.height);
+            	_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 
+            	
+            		
+            	_this.LeftTreeMenu.el.set_offset(  (int)x  , (int)y - (int)rect.height);
             
                 _this.LeftTreeMenu.el.popup();
                   
