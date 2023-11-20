@@ -162,7 +162,7 @@
            "\t  ",
            "\t ",
            "    if (_this.model.el.get_n_items() < 1) {",
-           "\t    _this.main_window.windowstate.showAddObject(_this.view.el, null);",
+           " ",
            "        GLib.debug(\"no items\");",
            "\t    return ;",
            "    }",

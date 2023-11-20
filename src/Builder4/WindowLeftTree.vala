@@ -499,7 +499,7 @@ public class Xcls_WindowLeftTree : Object
             	  
             	 
                 if (_this.model.el.get_n_items() < 1) {
-            	    _this.main_window.windowstate.showAddObject(_this.view.el, null);
+             
                     GLib.debug("no items");
             	    return ;
                 }
