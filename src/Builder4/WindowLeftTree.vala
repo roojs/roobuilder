@@ -498,19 +498,30 @@ public class Xcls_WindowLeftTree : Object
             	
             	 
             	string pos;
-            	var row = _this.view.getRowAt(in_x, in_y, out pos);
-            	
-            	if (row < 0) {
-            		return;
-            
+            	 
+                if (_this.model.el.get_n_items() < 1) {
+            	    _this.main_window.windowstate.showAddObject(_this.view.el, null);
+                    GLib.debug("no items");
+            	    return ;
+                }
+                string pos;
+                var row = _this.view.getRowAt(x,y, out pos );
+                if (row < 0) {
+            	    GLib.debug("no row selected items");
+            	    return;
+                }
+                
+                var node =   _this.selmodel.getNodeAt(row);
+                if (node == null) {
+                	GLib.warning("No node found at row %d", row);
+                	return;
             	}
-            	
-            	_this.stop_editor();
-            	GLib.debug("hit row %d", row);
-            	var prop = _this.selmodel.getPropAt(row);
-            	_this.selmodel.selectProp(prop);
-            	
-            	
+            
+                 
+                 
+                if (_this.view.getColAt(x,y) < 1 ) {
+                
+                }
             	
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
             	//_this.deletemenu.el.set_parent(_this.view.el);
