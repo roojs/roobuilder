@@ -382,8 +382,8 @@ public class Xcls_MainWindow : Object
             this.el.add_controller(  child_0.el );
 
             //listeners
-            this.el.activate.connect( ( ) => {
-            _this.windowspopup.el.hide();
+            this.el.clicked.connect( ( ) => {
+            	_this.windowspopup.el.hide();
             	_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
             });
         }

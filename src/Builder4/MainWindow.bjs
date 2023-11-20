@@ -84,9 +84,9 @@
                 }
                ],
                "listeners" : {
-                "activate" : [
+                "clicked" : [
                  "( ) => {",
-                 "_this.windowspopup.el.hide();",
+                 "\t_this.windowspopup.el.hide();",
                  "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
                  "}",
                  ""
