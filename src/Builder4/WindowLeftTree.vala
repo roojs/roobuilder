@@ -466,49 +466,8 @@ public class Xcls_WindowLeftTree : Object
                  	return ;
             	}
                 
-            	if (  this.el.button != 3) {
-            		// regular click... - same as selection change?
-            		// we handle it here ?? not sure if we need to anymore?
-            		 
-            		GLib.debug("LEFT TREE Cursor Changed");
-            	 	
-            	
-              
-            		//_this.after_node_change(node);
-            
-            	//        _this.model.file.changed(node, "tree");
-            	  
             	 
-            	
-            	 
-                 }
-                 /*
-                _this.main_window.windowstate.leftTreeBeforeChange();
-            
-                
                  
-                _this.view.el.get_selection().select_path(res);
-                 
-                  
-                 
-                  //if (!this.get('/LeftTreeMenu').el)  { 
-                  //      this.get('/LeftTreeMenu').init(); 
-                  //  }
-                    
-                      var  r = Gdk.Rectangle() {
-                			x = (int) x, // align left...
-                			y = (int) y,
-                			width = 1,
-                			height = 1
-                		};
-                		_this.LeftTreeMenu.el.set_parent(_this.view.el);
-                		_this.LeftTreeMenu.el.show();
-            		 _this.LeftTreeMenu.el.set_pointing_to( r);
-            
-                 
-                 //   print("click:" + res.path.to_string());
-                  return ;
-                  */
             });
         }
 
