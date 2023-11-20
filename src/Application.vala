@@ -506,7 +506,8 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			w.ref();
 			BuilderApplication.addWindow(w);
 			w.initChildren();
-			w.windowstate. fileViewOpen(file, false, line);
+			w.windowstate.fileViewOpen(file, false, line);
+			w.el.present();
 			 
 		
 		}
