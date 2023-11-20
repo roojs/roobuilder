@@ -1521,7 +1521,7 @@
            "$ xns" : "Gtk",
            "label" : "Delete Element",
            "listeners" : {
-            "activate" : [
+            "clicked" : [
              "  ( ) => {",
              "    ",
              "    print(\"ACTIVATE?\");",
