@@ -115,7 +115,7 @@
          ],
          "string icon_name" : "window-new",
          "string label" : "Windows",
-         "xtype" : "MenuButton",
+         "xtype" : "Button",
          "| void updateMenu" : [
           "() {",
           "\t foreach(var m in  this.mitems) {",

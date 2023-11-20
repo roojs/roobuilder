@@ -183,12 +183,13 @@ public class Xcls_MainWindow : Object
     }
     public class Xcls_windowbtn : Object
     {
-        public Gtk.MenuButton el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
             // my vars (def)
         public bool always_show_image;
+        public Gtk.ArrowType direction;
         public Gee.ArrayList<Gtk.Widget> mitems;
         public bool use_popover;
 
@@ -197,17 +198,17 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.windowbtn = this;
-            this.el = new Gtk.MenuButton();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
             this.always_show_image = true;
+            this.direction = Gtk.ArrowType.DOWN;
             this.use_popover = false;
 
             // set gobject values
             this.el.icon_name = "window-new";
             this.el.margin_end = 4;
             this.el.halign = Gtk.Align.START;
-            this.el.direction = Gtk.ArrowType.DOWN;
             this.el.label = "Windows";
             var child_0 = new Xcls_Popover5( _this );
             child_0.ref();
