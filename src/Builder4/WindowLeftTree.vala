@@ -516,25 +516,22 @@ public class Xcls_WindowLeftTree : Object
                 	GLib.warning("No node found at row %d", row);
                 	return;
             	}
-            
-                 
-                 
-                if (_this.view.getColAt(x,y) < 1 ) {
-                
-                }
             	
+                 
+                 
+                 
             	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
             	//_this.deletemenu.el.set_parent(_this.view.el);
-            	_this.deletemenu.el.set_parent(_this.main_window.el);
+            	_this.LeftTreeMenu.el.set_parent(_this.main_window.el);
             	
             	
             	Gtk.Allocation rect;
             	_this.view.el.get_allocation(out rect);
              	//_this.deletemenu.el.set_has_arrow(false);
             	
-            	_this.deletemenu.el.set_offset((int)in_x  -  rect.width , (int)in_y - rect.height);
-            	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
-                _this.deletemenu.el.popup();
+            	_this.LeftTreeMenu.el.set_offset((int)in_x  -  rect.width , (int)in_y - rect.height);
+            	_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 
+                _this.LeftTreeMenu.el.popup();
                   
             });
         }
