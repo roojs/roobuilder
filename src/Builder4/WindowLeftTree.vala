@@ -496,8 +496,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.pressed.connect( (n_press, in_x, in_y) => {
             
             	
-            	 
-            	string pos;
+            	  
             	 
                 if (_this.model.el.get_n_items() < 1) {
             	    _this.main_window.windowstate.showAddObject(_this.view.el, null);
