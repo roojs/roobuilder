@@ -1526,7 +1526,7 @@
              "    ",
              "    print(\"ACTIVATE?\");",
              "    ",
-             "  ",
+             "  \t_this.LeftTreeMenu.el.hide();",
              "     _this.model.deleteSelected();",
              "}"
             ]
@@ -1537,9 +1537,9 @@
            "$ xns" : "Gtk",
            "label" : "Save as Template",
            "listeners" : {
-            "activate" : [
+            "clicked" : [
              "  () => {",
-             "",
+             "_this.LeftTreeMenu.el.hide();",
              "     DialogSaveTemplate.singleton().showIt(",
              "            (Gtk.Window) _this.el.get_root (), ",
              "            _this.main_window.windowstate.file.palete(), ",
@@ -1556,8 +1556,10 @@
            "$ xns" : "Gtk",
            "label" : "Save as Module",
            "listeners" : {
-            "activate" : [
+            "clicked" : [
              "  () => {",
+             "    ",
+             "    _this.LeftTreeMenu.el.hide();",
              "    var node = _this.getActiveElement();",
              "      ",
              "     ",

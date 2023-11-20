@@ -1824,7 +1824,7 @@ public class Xcls_WindowLeftTree : Object
                 
                 print("ACTIVATE?");
                 
-              
+              	_this.LeftTreeMenu.el.hide();
                  _this.model.deleteSelected();
             });
         }
@@ -1852,8 +1852,8 @@ public class Xcls_WindowLeftTree : Object
             this.el.label = "Save as Template";
 
             //listeners
-            this.el.activate.connect( () => {
-            
+            this.el.clicked.connect( () => {
+            _this.LeftTreeMenu.el.hide();
                  DialogSaveTemplate.singleton().showIt(
                         (Gtk.Window) _this.el.get_root (), 
                         _this.main_window.windowstate.file.palete(), 
@@ -1887,7 +1887,9 @@ public class Xcls_WindowLeftTree : Object
             this.el.label = "Save as Module";
 
             //listeners
-            this.el.activate.connect( () => {
+            this.el.clicked.connect( () => {
+                
+                _this.LeftTreeMenu.el.hide();
                 var node = _this.getActiveElement();
                   
                  
