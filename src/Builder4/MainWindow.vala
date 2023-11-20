@@ -297,6 +297,7 @@ public class Xcls_MainWindow : Object
         	 	
         	 	//w.windowstate.file.path);
         	 	m.clicked.connect(() => {
+        		 	_this.windowspopup.el.hide();
         	 		 BuilderApplication.windows.get(wid).el.present();
         	 	});
         	 	_this.popover_menu.el.append(m);
@@ -386,7 +387,7 @@ public class Xcls_MainWindow : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-            
+            _this.windowspopup.el.hide();
             	_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
             });
         }

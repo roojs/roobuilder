@@ -92,7 +92,7 @@
                "listeners" : {
                 "activate" : [
                  "( ) => {",
-                 "",
+                 "_this.windowspopup.el.hide();",
                  "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
                  "}",
                  ""
@@ -196,6 +196,7 @@
           "\t \t",
           "\t \t//w.windowstate.file.path);",
           "\t \tm.clicked.connect(() => {",
+          "\t\t \t_this.windowspopup.el.hide();",
           "\t \t\t BuilderApplication.windows.get(wid).el.present();",
           "\t \t});",
           "\t \t_this.popover_menu.el.append(m);",
