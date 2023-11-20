@@ -493,7 +493,7 @@ public class Xcls_WindowLeftTree : Object
             this.el.button = 3;
 
             //listeners
-            this.el.pressed.connect( (n_press, in_x, in_y) => {
+            this.el.pressed.connect( (n_press, x, y) => {
             
             	
             	  
