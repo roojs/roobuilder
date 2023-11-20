@@ -424,7 +424,7 @@ public class Xcls_WindowLeftTree : Object
                   
                 _this.view.lastEventSource = "tree";
                 if (! _this.before_node_change() ) {
-                GLib.debug("before_node_change return false");
+                	GLib.debug("before_node_change return false");
                    return ;
                 }
                 

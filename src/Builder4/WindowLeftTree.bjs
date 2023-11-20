@@ -94,7 +94,7 @@
            "      ",
            "    _this.view.lastEventSource = \"tree\";",
            "    if (! _this.before_node_change() ) {",
-           "    GLib.debug(\"before_node_change return false\");",
+           "    \tGLib.debug(\"before_node_change return false\");",
            "       return ;",
            "    }",
            "    ",
