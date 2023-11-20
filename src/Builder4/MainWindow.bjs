@@ -117,7 +117,12 @@
          "listeners" : {
           "clicked" : [
            "( ) => {",
+           "\tthis.updateMenu();",
            "",
+           "\t_this.deletemenu.el.set_parent(_this.el);",
+           "",
+           "\t_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); ",
+           "    _this.deletemenu.el.popup();",
            "",
            "}",
            ""
