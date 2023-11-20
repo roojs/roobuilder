@@ -179,7 +179,7 @@
            "    \tGLib.warning(\"No node found at row %d\", row);",
            "    \treturn;",
            "\t}",
-           "\t",
+           "\t_this.model.selectNode(node);",
            "     ",
            "     ",
            "     ",
