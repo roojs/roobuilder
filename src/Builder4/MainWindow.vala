@@ -209,7 +209,7 @@ public class Xcls_MainWindow : Object
             this.el.icon_name = "window-new";
             this.el.margin_end = 4;
             this.el.halign = Gtk.Align.START;
-            this.el.label = "Windows";
+            this.el.label = "Windows (Add/List)";
             var child_0 = new Xcls_Popover5( _this );
             child_0.ref();
 

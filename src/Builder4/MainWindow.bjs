@@ -114,7 +114,7 @@
           }
          ],
          "string icon_name" : "window-new",
-         "string label" : "Windows",
+         "string label" : "Windows (Add/List)",
          "xtype" : "Button",
          "| void updateMenu" : [
           "() {",
