@@ -200,7 +200,7 @@
           "\t \t\t BuilderApplication.windows.get(wid).el.present();",
           "\t \t});",
           "\t \t_this.popover_menu.el.append(m);",
-          "\t \tm.show();",
+          "\t \t//m.show();",
           "\t \tthis.mitems.add(m);",
           "\t }",
           "}"

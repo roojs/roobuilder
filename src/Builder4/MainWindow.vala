@@ -301,7 +301,7 @@ public class Xcls_MainWindow : Object
         	 		 BuilderApplication.windows.get(wid).el.present();
         	 	});
         	 	_this.popover_menu.el.append(m);
-        	 	m.show();
+        	 	//m.show();
         	 	this.mitems.add(m);
         	 }
         }
