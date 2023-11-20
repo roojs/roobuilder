@@ -224,10 +224,10 @@ public class Xcls_MainWindow : Object
             this.el.clicked.connect( ( ) => {
             	this.updateMenu();
             
-            	_this.deletemenu.el.set_parent(_this.el);
+            	_this.windowspopup.el.set_parent(_this.el);
             
-            	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
-                _this.deletemenu.el.popup();
+            	_this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); 
+                _this.windowspopup.el.popup();
             
             });
         }
