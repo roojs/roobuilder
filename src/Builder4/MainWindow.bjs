@@ -59,6 +59,7 @@
             " "
            ],
            "* pack" : false,
+           "id" : "",
            "items" : [
             {
              "$ xns" : "Gtk",

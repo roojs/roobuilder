@@ -14,6 +14,7 @@ public class Xcls_MainWindow : Object
     }
     public Xcls_headerbar headerbar;
     public Xcls_windowbtn windowbtn;
+    public Xcls_Popover5 Popover5;
     public Xcls_popover_menu popover_menu;
     public Xcls_open_projects_btn open_projects_btn;
     public Xcls_vbox vbox;
@@ -311,6 +312,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Popover5(Xcls_MainWindow _owner )
         {
             _this = _owner;
+            _this.Popover5 = this;
             this.el = new Gtk.PopoverMenu.from_model(null);
 
             // my vars (dec)
