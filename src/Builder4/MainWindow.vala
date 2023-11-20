@@ -319,7 +319,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.windowspopup = this;
-            this.el = new Gtk.PopoverMenu.from_model(null);
+            this.el = new Gtk.Popover();
 
             // my vars (dec)
 
@@ -327,10 +327,6 @@ public class Xcls_MainWindow : Object
             var child_0 = new Xcls_popover_menu( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
-
-            // init method
-
-            // this.el.show();
         }
 
         // user defined functions
