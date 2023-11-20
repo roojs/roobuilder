@@ -224,7 +224,7 @@ public class Xcls_MainWindow : Object
             this.el.clicked.connect( ( ) => {
             	this.updateMenu();
             
-            	_this.windowspopup.el.set_parent(_this.el);
+            	_this.windowspopup.el.set_parent(this.el);
             
             	_this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); 
                 _this.windowspopup.el.popup();
