@@ -195,7 +195,7 @@
           "\t \t);",
           "\t \t",
           "\t \t//w.windowstate.file.path);",
-          "\t \tm.activate.connect(() => {",
+          "\t \tm.clicked.connect(() => {",
           "\t \t\t BuilderApplication.windows.get(wid).el.present();",
           "\t \t});",
           "\t \t_this.popover_menu.el.append(m);",

@@ -296,7 +296,7 @@ public class Xcls_MainWindow : Object
         	 	);
         	 	
         	 	//w.windowstate.file.path);
-        	 	m.activate.connect(() => {
+        	 	m.clicked.connect(() => {
         	 		 BuilderApplication.windows.get(wid).el.present();
         	 	});
         	 	_this.popover_menu.el.append(m);
