@@ -40,7 +40,7 @@ public class Xcls_WindowLeftTree : Object
         this.el.vexpand = true;
         var child_0 = new Xcls_viewwin( _this );
         child_0.ref();
-        this.el.add(  child_0.el );
+        this.el.append(  child_0.el );
     }
 
     // user defined functions
@@ -102,8 +102,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public bool blockChanges;
-        public bool headers_visible;
         public string lastEventSource;
+        public bool headers_visible;
         public bool button_is_pressed;
         public Gtk.CssProvider css;
 
@@ -116,8 +116,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (dec)
             this.blockChanges = false;
-            this.headers_visible = false;
             this.lastEventSource = "";
+            this.headers_visible = false;
             this.button_is_pressed = false;
 
             // set gobject values
@@ -126,25 +126,28 @@ public class Xcls_WindowLeftTree : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_GestureClick4( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
-            var child_1 = new Xcls_DragSource5( _this );
+            this.el.add_controller(  child_0.el );
+            var child_1 = new Xcls_GestureClick5( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
-            var child_2 = new Xcls_EventControllerKey6( _this );
+            this.el.add_controller(  child_1.el );
+            var child_2 = new Xcls_DragSource6( _this );
             child_2.ref();
-            this.el.add(  child_2.el );
-            var child_3 = new Xcls_drop( _this );
+            this.el.add_controller(  child_2.el );
+            var child_3 = new Xcls_EventControllerKey7( _this );
             child_3.ref();
-            this.el.add(  child_3.el );
-            var child_4 = new Xcls_selmodel( _this );
+            this.el.add_controller(  child_3.el );
+            var child_4 = new Xcls_drop( _this );
             child_4.ref();
-            this.el.model = child_4.el;
-            var child_5 = new Xcls_maincol( _this );
+            this.el.add_controller(  child_4.el );
+            var child_5 = new Xcls_selmodel( _this );
             child_5.ref();
-            this.el.append_column (  child_5.el  );
-            var child_6 = new Xcls_ColumnViewColumn12( _this );
+            this.el.model = child_5.el;
+            var child_6 = new Xcls_maincol( _this );
             child_6.ref();
             this.el.append_column (  child_6.el  );
+            var child_7 = new Xcls_ColumnViewColumn13( _this );
+            child_7.ref();
+            this.el.append_column (  child_7.el  );
 
             // init method
 
@@ -512,7 +515,65 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_DragSource5 : Object
+    public class Xcls_GestureClick5 : Object
+    {
+        public Gtk.GestureClick el;
+        private Xcls_WindowLeftTree  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_GestureClick5(Xcls_WindowLeftTree _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.GestureClick();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.button = 3;
+
+            //listeners
+            this.el.pressed.connect( (n_press, in_x, in_y) => {
+            
+            	
+            	 
+            	string pos;
+            	var row = _this.view.getRowAt(in_x, in_y, out pos);
+            	
+            	if (row < 0) {
+            		return;
+            
+            	}
+            	
+            	_this.stop_editor();
+            	GLib.debug("hit row %d", row);
+            	var prop = _this.selmodel.getPropAt(row);
+            	_this.selmodel.selectProp(prop);
+            	
+            	
+            	
+            	GLib.debug("Prssed %d", (int)  this.el.get_current_button());
+            	//_this.deletemenu.el.set_parent(_this.view.el);
+            	_this.deletemenu.el.set_parent(_this.main_window.el);
+            	
+            	
+            	Gtk.Allocation rect;
+            	_this.view.el.get_allocation(out rect);
+             	//_this.deletemenu.el.set_has_arrow(false);
+            	
+            	_this.deletemenu.el.set_offset((int)in_x  -  rect.width , (int)in_y - rect.height);
+            	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
+                _this.deletemenu.el.popup();
+                  
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_DragSource6 : Object
     {
         public Gtk.DragSource el;
         private Xcls_WindowLeftTree  _this;
@@ -521,7 +582,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_DragSource5(Xcls_WindowLeftTree _owner )
+        public Xcls_DragSource6(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.DragSource();
@@ -591,7 +652,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_EventControllerKey6 : Object
+    public class Xcls_EventControllerKey7 : Object
     {
         public Gtk.EventControllerKey el;
         private Xcls_WindowLeftTree  _this;
@@ -600,7 +661,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_EventControllerKey6(Xcls_WindowLeftTree _owner )
+        public Xcls_EventControllerKey7(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.EventControllerKey();
@@ -1355,14 +1416,16 @@ public class Xcls_WindowLeftTree : Object
 
         // user defined functions
         public void loadFile (JsRender.JsRender f) {
-              
+            //console.dump(f);
+            
             _this.drop.highlightWidget = null;
             
-            var m = _this.model.el;
-        	_this.model.el.remove_all();
+            var m = (GLib.ListStore) this.el.model;
+        	m.remove_all();
             _this.main_window.windowstate.leftTreeNodeSelected(null, "");
-            
+            // needed???
             _this.main_window.windowstate.file = f;
+            
            
             if (f.tree == null) {
         	    try {
@@ -1377,8 +1440,28 @@ public class Xcls_WindowLeftTree : Object
             
                 return;
             }
-          	_this.model.el.append(f.tree);
-          	
+          	m.append(f.tree);
+          	// expand???
+        
+        /*
+            if (f.tree.readItems().size < 1) {
+                // single item..
+                
+                //this.get('/Window.leftvpaned').el.set_position(80);
+                // select first...
+                _this.view.el.set_cursor( 
+                    new  Gtk.TreePath.from_string("0"), null, false);
+                
+                
+            } else {
+                  //this.get('/Window.leftvpaned').el.set_position(200);
+            }
+          */  
+            
+            
+        
+            //_this.maincol.el.set_max_width(_this.viewwin.el.get_allocated_width() - 32);
+         
             _this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
            
             return;
@@ -1499,14 +1582,14 @@ public class Xcls_WindowLeftTree : Object
             this.el.id = "maincol";
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory11( _this );
+            var child_0 = new Xcls_SignalListItemFactory12( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory11 : Object
+    public class Xcls_SignalListItemFactory12 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_WindowLeftTree  _this;
@@ -1515,7 +1598,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory11(Xcls_WindowLeftTree _owner )
+        public Xcls_SignalListItemFactory12(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1616,7 +1699,7 @@ public class Xcls_WindowLeftTree : Object
     }
 
 
-    public class Xcls_ColumnViewColumn12 : Object
+    public class Xcls_ColumnViewColumn13 : Object
     {
         public Gtk.ColumnViewColumn el;
         private Xcls_WindowLeftTree  _this;
@@ -1625,7 +1708,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnViewColumn12(Xcls_WindowLeftTree _owner )
+        public Xcls_ColumnViewColumn13(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.ColumnViewColumn( "Add", null );
@@ -1634,14 +1717,14 @@ public class Xcls_WindowLeftTree : Object
 
             // set gobject values
             this.el.fixed_width = 25;
-            var child_0 = new Xcls_SignalListItemFactory13( _this );
+            var child_0 = new Xcls_SignalListItemFactory14( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory13 : Object
+    public class Xcls_SignalListItemFactory14 : Object
     {
         public Gtk.SignalListItemFactory el;
         private Xcls_WindowLeftTree  _this;
@@ -1650,7 +1733,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory13(Xcls_WindowLeftTree _owner )
+        public Xcls_SignalListItemFactory14(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1713,14 +1796,14 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box15( _this );
+            var child_0 = new Xcls_Box16( _this );
             child_0.ref();
             this.el.child = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box15 : Object
+    public class Xcls_Box16 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowLeftTree  _this;
@@ -1729,7 +1812,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box15(Xcls_WindowLeftTree _owner )
+        public Xcls_Box16(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1737,20 +1820,20 @@ public class Xcls_WindowLeftTree : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button16( _this );
+            var child_0 = new Xcls_Button17( _this );
             child_0.ref();
-            this.el.add(  child_0.el );
-            var child_1 = new Xcls_Button17( _this );
+            this.el.append(  child_0.el );
+            var child_1 = new Xcls_Button18( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
-            var child_2 = new Xcls_Button18( _this );
+            this.el.append(  child_1.el );
+            var child_2 = new Xcls_Button19( _this );
             child_2.ref();
-            this.el.add(  child_2.el );
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button16 : Object
+    public class Xcls_Button17 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1759,7 +1842,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button16(Xcls_WindowLeftTree _owner )
+        public Xcls_Button17(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1782,7 +1865,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_Button17 : Object
+    public class Xcls_Button18 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1791,7 +1874,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button17(Xcls_WindowLeftTree _owner )
+        public Xcls_Button18(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1817,7 +1900,7 @@ public class Xcls_WindowLeftTree : Object
         // user defined functions
     }
 
-    public class Xcls_Button18 : Object
+    public class Xcls_Button19 : Object
     {
         public Gtk.Button el;
         private Xcls_WindowLeftTree  _this;
@@ -1826,7 +1909,7 @@ public class Xcls_WindowLeftTree : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button18(Xcls_WindowLeftTree _owner )
+        public Xcls_Button19(Xcls_WindowLeftTree _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
