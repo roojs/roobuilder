@@ -218,6 +218,12 @@ public class Xcls_MainWindow : Object
             {
             	this.mitems = new Gee.ArrayList<Gtk.Button>();
             }
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions

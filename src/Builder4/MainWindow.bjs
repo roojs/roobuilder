@@ -113,6 +113,15 @@
            "xtype" : "Popover"
           }
          ],
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "string icon_name" : "window-new",
          "string label" : "Windows (Add/List)",
          "xtype" : "Button",
