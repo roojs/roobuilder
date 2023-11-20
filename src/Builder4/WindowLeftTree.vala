@@ -421,8 +421,7 @@ public class Xcls_WindowLeftTree : Object
             
                 
                 _this.view.button_is_pressed = true;
-                GLib.debug("BUTTON DOWN");
-                
+                  
                 _this.view.lastEventSource = "tree";
                 if (! _this.before_node_change() ) {
                 GLib.debug("before_node_change return false");
