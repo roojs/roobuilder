@@ -527,9 +527,9 @@ public class Xcls_WindowLeftTree : Object
             	Gtk.Allocation rect;
             	_this.view.el.get_allocation(out rect);
              	//_this.deletemenu.el.set_has_arrow(false);
-            	
-            	_this.LeftTreeMenu.el.set_offset(0 , (int)y - rect.height);
-            	_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 
+            	_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 	
+            	_this.LeftTreeMenu.el.set_offset((int)rect.x + x  , (int)y - rect.height);
+            
                 _this.LeftTreeMenu.el.popup();
                   
             });
