@@ -127,7 +127,7 @@ public class Xcls_ValaCompileErrors : Object
     	//onbtn.get_allocation(out rect);
         //this.el.set_pointing_to(rect);
     
-        this.el.show();
+        this.el.popup();
        
        	if (expand != null) {
         	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
