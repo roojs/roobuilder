@@ -697,7 +697,7 @@
              " \tlbl.justify = Gtk.Justification.LEFT;",
              " \tlbl.xalign = 0;",
              " \tlbl.use_markup = true;",
-             "\tlbl.ellipsize = Pango.EllipsizeMode.END;",
+             "\tlbl.ellipsize = Pango.EllipsizeMode.START;",
              " \t/*lbl.changed.connect(() => {",
              "\t\t// notify and save the changed value...",
              "\t \t//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());",
