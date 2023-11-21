@@ -122,10 +122,10 @@ public class Xcls_ValaCompileErrors : Object
         }
         this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
     
-        
-    	Gtk.Allocation rect;
-    	onbtn.get_allocation(out rect);
-        this.el.set_pointing_to(rect);
+        this.el.set_relative_to(onbtn);
+    	//Gtk.Allocation rect;
+    	//onbtn.get_allocation(out rect);
+        //this.el.set_pointing_to(rect);
     
         this.el.show();
        
