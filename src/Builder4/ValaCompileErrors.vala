@@ -121,11 +121,11 @@ public class Xcls_ValaCompileErrors : Object
             new_w = w-100;
         }
         this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
-    
-        this.el.set_relative_to(onbtn);
-    	//Gtk.Allocation rect;
-    	//onbtn.get_allocation(out rect);
-        //this.el.set_pointing_to(rect);
+    	this.el.set_parent(onbtn);
+       // this.el.set_relative_to(onbtn);
+    	Gtk.Allocation rect;
+    	onbtn.get_allocation(out rect);
+        this.el.set_pointing_to(rect);
     
         this.el.popup();
        
