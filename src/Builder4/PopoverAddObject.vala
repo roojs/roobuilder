@@ -99,6 +99,7 @@ public class Xcls_PopoverAddObject : Object
         	onbtn.get_allocation(out rect);
           //  this.el.set_pointing_to(rect);
         //}
+        this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
         this.el.show();
        
     }
