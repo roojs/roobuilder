@@ -25,6 +25,13 @@
         {
          "$ xns" : "GLib",
          "* prop" : "model",
+         "items" : [
+          {
+           "$ xns" : "GLib",
+           "* prop" : "item_type",
+           "xtype" : "Type"
+          }
+         ],
          "xtype" : "ListStore"
         }
        ],
