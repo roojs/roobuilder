@@ -490,7 +490,6 @@
              "        this.popup = new Xcls_ValaCompileErrors();",
              "        this.popup.window = _this;",
              "    }",
-             "   ",
              "    ",
              "    this.popup.show(this.notices, this.el);",
              "    return;",
@@ -505,7 +504,7 @@
             "    this.el.show();",
             "    this.el.label = qty.to_string() + \" Errors\";",
             "    this.notices = nots;",
-            "vasdv",
+            "",
             "}",
             ""
            ]
