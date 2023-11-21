@@ -1766,6 +1766,7 @@ public class Xcls_LeftProps : Object
              	lbl.justify = Gtk.Justification.LEFT;
              	lbl.xalign = 0;
              	lbl.use_markup = true;
+            	lbl.ellipsize = Pango.EllipsizeMode.END;
              	/*lbl.changed.connect(() => {
             		// notify and save the changed value...
             	 	//var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem.get_item());
