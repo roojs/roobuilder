@@ -133,11 +133,11 @@ public class JsRender.NodeToVala : Object {
 		}
 		// loop children..
 															   
-		if (item.items.size < 1) {
+		if (item.readItems().size < 1) {
 			return;
 		}
-		for(var i =0;i<item.items.size;i++) {
-			this.toValaName(item.items.get(i), depth+1);
+		for(var i =0;i<item.readItems().size;i++) {
+			this.toValaName(item.readItems().get(i), depth+1);
 		}
 					  
 	}
@@ -380,10 +380,10 @@ public class JsRender.NodeToVala : Object {
 	// if id of child is '+' then it's a property of this..
 	void addPlusProperties()
 	{
-		if (this.node.items.size < 1) {
+		if (this.node.readItems().size < 1) {
 			return;
 		}
-		var iter = this.node.items.list_iterator();
+		var iter = this.node.readItems().list_iterator();
 		while (iter.next()) {
 			var ci = iter.get();
 				
@@ -750,14 +750,14 @@ public class JsRender.NodeToVala : Object {
 	void addChildren()
 	{
 				//code
-		if (this.node.items.size < 1) {
+		if (this.node.readItems().size < 1) {
 			return;
 		}
 		this.pane_number = 0;
 		var cols = this.node.has("* columns") ? int.parse(this.node.get_prop("* columns").val) : 1;
 		var colpos = 0;
 		
-		var iter = this.node.items.list_iterator();
+		var iter = this.node.readItems().list_iterator();
 		var i = -1;
 		while (iter.next()) {
 			i++;
@@ -1107,7 +1107,7 @@ public class JsRender.NodeToVala : Object {
 			this.addLine(this.inpad + "}");
 		}
 		
-		var iter = this.node.items.list_iterator();
+		var iter = this.node.readItems().list_iterator();
 		 
 		while (iter.next()) {
 			this.addMultiLine(this.mungeChild(iter.get()));
