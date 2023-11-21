@@ -15,7 +15,7 @@ public class WindowState : Object
 		CODE,
 		CODEONLY  
 	}  
-
+ 
 	public State state = State.NONE;
 	public bool children_loaded = false;
  
