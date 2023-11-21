@@ -274,35 +274,10 @@ public class Xcls_GladeuiView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Type5( _this );
-            child_0.ref();
-            this.el.item_type = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Type5 : Object
-    {
-        public GLib.Type el;
-        private Xcls_GladeuiView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Type5(Xcls_GladeuiView _owner )
-        {
-            _this = _owner;
-            this.el = GLib.Type();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
 
 
 
