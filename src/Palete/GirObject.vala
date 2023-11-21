@@ -521,14 +521,18 @@ namespace Palete {
 			par.childstore.append( add);
 		
 			var cls = pal.getClass(str);
+
+			
 			if (cls.implementations.size < 1) {
+				GLib.debug("nodepropaddchildren: check class %s - no implementations", str);
 				return;
 			}
 			
-			
+			GLib.debug("nodepropaddchildren: check class %s", str);			
 			
 			foreach (var cname in cls.implementations) {
-				 add = new JsRender.NodeProp.raw(this.name, cname, "");
+				GLib.debug("nodepropaddchildren: check class %s add %s", str, cname);
+				add = new JsRender.NodeProp.raw(this.name, cname, "");
 				// no propertyof ?
 				add.add_node = new JsRender.Node();
 				add.add_node.setFqn(cname);
