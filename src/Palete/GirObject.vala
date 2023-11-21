@@ -453,8 +453,8 @@ namespace Palete {
 				ret.propertyof = this.propertyof;
 				this.nodePropAddChildren(ret, this.type, pal);
 				if (ret.childstore.n_items == 1) {
-					var np = (JsRender.NodeProp)ret.childstore.get_item(0);
-					this.add_node = np.add_node;
+					var np = (JsRender.NodeProp) ret.childstore.get_item(0);
+					ret.add_node = np.add_node;
 					ret.childstore.remove_all();
 				}
 				
