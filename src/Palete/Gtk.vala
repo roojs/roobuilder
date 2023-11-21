@@ -592,6 +592,9 @@ namespace Palete {
 				if (val.is_deprecated) {
 					continue;
 				}
+				if (val.type == "GLib.Object") { /// this is practually everything? ?? shoud we display it as a property?
+					continue;
+				}
 				if (!val.type.contains(".")) {
 					outprops.set(k,val);
 					continue;
