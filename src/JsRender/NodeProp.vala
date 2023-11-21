@@ -368,7 +368,7 @@ public class JsRender.NodeProp : Object {
 		// before we showed "@" for signals
 		switch(this.ptype) {
 			case NodePropType.PROP:
-				return  this.name;
+				return   GLib.Markup.escape_text(this.name);
 				
 			case NodePropType.RAW:
 				return "<span style=\"italic\">" + GLib.Markup.escape_text(this.name) + "</span>";
@@ -397,7 +397,33 @@ public class JsRender.NodeProp : Object {
 		}
 		return this.name;
  	}
- 	
+	public string to_tooltip_name()
+	{
+		
+		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+		// before we showed "@" for signals
+		switch(this.ptype) {
+			case NodePropType.PROP:
+			case NodePropType.SIGNAL:
+			case NodePropType.RAW:
+			case NodePropType.SPECIAL : 
+			case NodePropType.LISTENER :
+				return GLib.Markup.escape_text(this.name) ;
+				
+			case NodePropType.METHOD :
+			case NodePropType.USER : 			
+				return  GLib.Markup.escape_text(this.rtype)  + " " + GLib.Markup.escape_text( this.name) ;
+			 	
+			
+				
+	 		case NodePropType.NONE: // not used
+			case NodePropType.CTOR:
+				 return "";
+		
+				
+		}
+		return this.name;
+ 	}
  	// used ot sort the dispaly list of properties.
  	public string to_sort_key()
 	{
