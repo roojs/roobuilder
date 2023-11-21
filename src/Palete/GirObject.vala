@@ -510,7 +510,14 @@ namespace Palete {
 				return;
 			}
 			
-			if (cls.nodetype != "Interface") {
+			if (cls.nodetype == "Enum") {			
+				var add = new JsRender.NodeProp.raw(this.name, str, "");
+				par.childstore.append( add);
+				return ;
+			}
+			
+				
+			if (cls.nodetype == "Class") {
 				var add = new JsRender.NodeProp.raw(this.name, str, "");
 				// no propertyof ?
 				
@@ -518,7 +525,6 @@ namespace Palete {
 				add.add_node.setFqn(str);
 				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
 				par.childstore.append( add);
-		
 			}
 
 
@@ -534,7 +540,7 @@ namespace Palete {
 				GLib.debug("nodepropaddchildren: check class %s add %s", str, cname);
 				
 				var subcls = pal.getClass(cname);
-				if (subcls.nodetype == "Interface") {
+				if (subcls.nodetype != "Class") {
 					continue;
 				}
 			 
