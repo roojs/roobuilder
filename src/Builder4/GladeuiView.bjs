@@ -25,7 +25,7 @@
         {
          "$ xns" : "GLib",
          "* prop" : "model",
-         "GLib.Type item_type" : "typeof(string)",
+         "GLib.Type item_type" : "typeof(string) ",
          "xtype" : "ListStore"
         }
        ],

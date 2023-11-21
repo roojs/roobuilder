@@ -269,7 +269,7 @@ public class Xcls_GladeuiView : Object
         public Xcls_ListStore4(Xcls_GladeuiView _owner )
         {
             _this = _owner;
-            this.el = new GLib.ListStore( typeof(string) );
+            this.el = new GLib.ListStore( typeof(string)  );
 
             // my vars (dec)
 
