@@ -537,8 +537,8 @@ namespace Palete {
 				if (subcls.nodetype == "Interface") {
 					continue;
 				}
-				
-				add = new JsRender.NodeProp.raw(this.name, cname, "");
+			 
+				var add = new JsRender.NodeProp.raw(this.name, cname, "");
 				// no propertyof ?
 				add.add_node = new JsRender.Node();
 				add.add_node.setFqn(cname);
