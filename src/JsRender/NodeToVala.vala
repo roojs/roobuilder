@@ -88,9 +88,9 @@ public class JsRender.NodeToVala : Object {
 	string toValaNS(Node item)
 	{
 		var ns = item.get("xns") ;
-		if (ns == "GtkSource") {
-			return "Gtk.Source";
-		}
+		//if (ns == "GtkSource") {  technically on Gtk3?
+		//	return "Gtk.Source";
+		//}
 		return ns + ".";
 	}
 	public void  toValaName(Node item, int depth =0) 
@@ -132,12 +132,12 @@ public class JsRender.NodeToVala : Object {
 
 		}
 		// loop children..
-		var items = item.readItems();													   
-		if (items.size < 1) {
+															   
+		if (item.items.size < 1) {
 			return;
 		}
-		for(var i =0;i<items.size;i++) {
-			this.toValaName(items.get(i), depth+1);
+		for(var i =0;i<item.items.size;i++) {
+			this.toValaName(item.items.get(i), depth+1);
 		}
 					  
 	}
@@ -321,7 +321,7 @@ public class JsRender.NodeToVala : Object {
 		if (cls == null) {
 			GLib.debug("Gir factory failed to find class %s", this.node.fqn());
 			
-			return;
+			//return;
 		}
 	  
 		
@@ -358,7 +358,7 @@ public class JsRender.NodeToVala : Object {
 			}
 			
 			// is it a class property...
-			if (cls.props.has_key(prop.name) && prop.ptype != NodePropType.USER) {
+			if (cls != null && cls.props.has_key(prop.name) && prop.ptype != NodePropType.USER) {
 				continue;
 			}
 			
@@ -380,11 +380,10 @@ public class JsRender.NodeToVala : Object {
 	// if id of child is '+' then it's a property of this..
 	void addPlusProperties()
 	{
-		var items = this.node.readItems();
-		if (items.size < 1) {
+		if (this.node.items.size < 1) {
 			return;
 		}
-		var iter = items.list_iterator();
+		var iter = this.node.items.list_iterator();
 		while (iter.next()) {
 			var ci = iter.get();
 				
@@ -750,16 +749,15 @@ public class JsRender.NodeToVala : Object {
 
 	void addChildren()
 	{
-		var items = this.node.readItems();
 				//code
-		if (items.size < 1) {
+		if (this.node.items.size < 1) {
 			return;
 		}
 		this.pane_number = 0;
 		var cols = this.node.has("* columns") ? int.parse(this.node.get_prop("* columns").val) : 1;
 		var colpos = 0;
 		
-		var iter = items.list_iterator();
+		var iter = this.node.items.list_iterator();
 		var i = -1;
 		while (iter.next()) {
 			i++;
@@ -793,7 +791,7 @@ public class JsRender.NodeToVala : Object {
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
 					// columns[] ?
-					 this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+					this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
@@ -863,6 +861,14 @@ public class JsRender.NodeToVala : Object {
 						) + " );");
 			return;  
 		}
+		var childcls =  this.file.project.palete.getClass(child.fqn()); // very trusting..
+		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
+		if (is_event) {
+		    this.addLine(this.ipad + "this.el.add_controller(  child_%d.el );".printf(i) );
+		    return;
+		}
+		
+		
 		switch (this.node.fqn()) {
 			
 				
@@ -954,7 +960,8 @@ public class JsRender.NodeToVala : Object {
 				return;
 			
 			default:
-				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
+			    // gtk4 uses append!!!! - gtk3 - uses add..
+				this.addLine(this.ipad + "this.el.append(  child_" + "%d".printf(i) + ".el );");
 				return;
 		
 		
@@ -1100,7 +1107,7 @@ public class JsRender.NodeToVala : Object {
 			this.addLine(this.inpad + "}");
 		}
 		
-		var iter = this.node.readItems().list_iterator();
+		var iter = this.node.items.list_iterator();
 		 
 		while (iter.next()) {
 			this.addMultiLine(this.mungeChild(iter.get()));
