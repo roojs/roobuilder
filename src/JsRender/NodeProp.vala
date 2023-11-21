@@ -405,7 +405,7 @@ public class JsRender.NodeProp : Object {
 		return this.name;
  	}
  	
- 	public string to_tooltip__name_prop { 
+ 	public string to_tooltip_name_prop { 
 		set {
 			// NOOp ??? should 
 		}
