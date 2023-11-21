@@ -63,6 +63,8 @@
          ],
          "* pack" : "set_child",
          "Gtk.CssProvider css" : "",
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "id" : "compile_tree",
          "items" : [
           {

@@ -266,6 +266,8 @@ public class Xcls_ValaCompileErrors : Object
 
             // set gobject values
             this.el.name = "compile-erros-view";
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_GestureClick7( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
