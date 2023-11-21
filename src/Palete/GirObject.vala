@@ -510,14 +510,16 @@ namespace Palete {
 				return;
 			}
 			
-			
-			var add = new JsRender.NodeProp.raw(this.name, str, "");
-			// no propertyof ?
-			add.add_node = new JsRender.Node();
-			add.add_node.setFqn(str);
-			add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
-			par.childstore.append( add);
+			if (cls.nodetype != "Interface") {
+				var add = new JsRender.NodeProp.raw(this.name, str, "");
+				// no propertyof ?
+				
+				add.add_node = new JsRender.Node();
+				add.add_node.setFqn(str);
+				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
+				par.childstore.append( add);
 		
+			}
 
 
 			
@@ -530,6 +532,12 @@ namespace Palete {
 			
 			foreach (var cname in cls.implementations) {
 				GLib.debug("nodepropaddchildren: check class %s add %s", str, cname);
+				
+				var subcls = pal.getClass(cname);
+				if (subcls.nodetype == "Interface") {
+					continue;
+				}
+				
 				add = new JsRender.NodeProp.raw(this.name, cname, "");
 				// no propertyof ?
 				add.add_node = new JsRender.Node();
