@@ -250,10 +250,35 @@ public class Xcls_GladeuiView : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_ListStore4( _this );
+            child_0.ref();
+            this.el.model = child_0.el;
         }
 
         // user defined functions
     }
+    public class Xcls_ListStore4 : Object
+    {
+        public GLib.ListStore el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ListStore4(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new GLib.ListStore( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
     public class Xcls_notebook : Object
