@@ -158,10 +158,10 @@ public class Xcls_ValaCompileErrors : Object
             this.el.hexpand = false;
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
             var child_1 = new Xcls_ScrolledWindow5( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.add(  child_1.el );
         }
 
         // user defined functions
@@ -185,7 +185,7 @@ public class Xcls_ValaCompileErrors : Object
             // set gobject values
             var child_0 = new Xcls_Button4( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.add(  child_0.el );
         }
 
         // user defined functions
@@ -270,7 +270,7 @@ public class Xcls_ValaCompileErrors : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_GestureClick7( _this );
             child_0.ref();
-            this.el.add_controller(  child_0.el );
+            this.el.append_column(  child_0.el );
             var child_1 = new Xcls_compile_result_store( _this );
             child_1.ref();
             this.el.set_model (  child_1.el  );
