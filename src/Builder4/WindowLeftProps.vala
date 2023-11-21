@@ -1951,9 +1951,9 @@ public class Xcls_LeftProps : Object
             	cb.hide();
             	
             	var prop = (JsRender.NodeProp) ((Gtk.ListItem)listitem).get_item();
-            	GLib.debug("prop = %s", prop.get_type().name());
-            	GLib.debug("prop.val = %s", prop.val);
-            	GLib.debug("prop.key = %s", prop.to_display_name());
+            	//GLib.debug("prop = %s", prop.get_type().name());
+            	//GLib.debug("prop.val = %s", prop.val);
+            	//GLib.debug("prop.key = %s", prop.to_display_name());
             	 
                 var use_textarea = false;
             
@@ -1989,6 +1989,9 @@ public class Xcls_LeftProps : Object
                 if (use_textarea) {
                 	prop.bind_property("val_short",
                                 lbl, "label",
+                               GLib.BindingFlags.SYNC_CREATE);
+                    prop.bind_property("val",
+                                lbl, "tooltip_markup",
                                GLib.BindingFlags.SYNC_CREATE);
                     lbl.show();
             		this.is_setting = false;        
