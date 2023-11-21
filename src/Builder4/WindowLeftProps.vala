@@ -1786,7 +1786,7 @@ public class Xcls_LeftProps : Object
             item.bind_property("to_display_name_prop",
                                 lb, "label",
                                GLib.BindingFlags.SYNC_CREATE);
-            item.bind_property("to_display_name_prop",
+            item.bind_property("to_tooltip_name_prop",
                                 lb, "tooltip_markup",
                                GLib.BindingFlags.SYNC_CREATE);
             // was item (1) in old layout
