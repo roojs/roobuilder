@@ -161,6 +161,7 @@ public class JsRender.NodeProp : Object {
 				this.parent.updated_count++;
 			}
 			this.val_short = "";
+			this.val_markup = "";			
 			this.updated_count++;
 			
 		}
@@ -349,7 +350,17 @@ public class JsRender.NodeProp : Object {
 		} 
 	}
  
- 
+    public string val_tooltip { 
+    	set {
+			// NOOp ??? should 
+		}
+		owned get {
+			
+			 	return "<tt>" + GLib.Markup.escape_text(this.name) + "</tt>";
+		} 
+    
+    
+    }
 	public string to_display_name()
 	{
 		
@@ -573,4 +584,5 @@ public class JsRender.NodeProp : Object {
 
 	}
 }
+	
 	
