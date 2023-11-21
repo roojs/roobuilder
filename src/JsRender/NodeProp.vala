@@ -410,7 +410,7 @@ public class JsRender.NodeProp : Object {
 			// NOOp ??? should 
 		}
 		owned get {
-			 return  this.to_tooltip__name();
+			 return  this.to_tooltip_name();
 		} 
 	}
  	
