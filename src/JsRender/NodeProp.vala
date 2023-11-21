@@ -162,7 +162,7 @@ public class JsRender.NodeProp : Object {
 				this.parent.updated_count++;
 			}
 			this.val_short = "";
-			this.val_markup = "";			
+			this.val_tooltip = "";			
 			this.updated_count++;
 			
 		}
