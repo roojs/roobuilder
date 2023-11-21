@@ -142,6 +142,7 @@ public class JsRender.NodeProp : Object {
 				this.parent.updated_count++;
 			}
 			this.to_display_name_prop = "";
+			this.to_tooltip_name_prop = "";
 			this.updated_count++;
  		}
 	 } // return or type
@@ -177,6 +178,7 @@ public class JsRender.NodeProp : Object {
  
  			// set things that are used to display values.
  			this.to_display_name_prop = "";
+			this.to_tooltip_name_prop = "";
 			this. _updated_count = value;
 		}
  
@@ -327,14 +329,7 @@ public class JsRender.NodeProp : Object {
 	}
 	// how it appears on the property list. -
 	
-	public string to_display_name_prop { 
-		set {
-			// NOOp ??? should 
-		}
-		owned get {
-			 return  this.to_display_name();
-		} 
-	}
+	
  
  	public string val_short { 
 		set {
@@ -361,6 +356,18 @@ public class JsRender.NodeProp : Object {
     
     
     }
+    
+    public string to_display_name_prop { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			 return  this.to_display_name();
+		} 
+	}
+	
+	
+    
 	public string to_display_name()
 	{
 		
@@ -397,6 +404,16 @@ public class JsRender.NodeProp : Object {
 		}
 		return this.name;
  	}
+ 	
+ 	public string to_tooltip__name_prop { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			 return  this.to_tooltip__name();
+		} 
+	}
+ 	
 	public string to_tooltip_name()
 	{
 		
