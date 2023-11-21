@@ -21,8 +21,8 @@ public class Xcls_GladeuiView : Object
         // my vars (def)
     public Gtk.Widget lastObj;
     public Xcls_MainWindow main_window;
-    public Gtk.SourceSearchContext searchcontext;
     public int last_search_end;
+    public Gtk.SourceSearchContext searchcontext;
     public int width;
     public JsRender.JsRender file;
     public int height;
@@ -43,9 +43,12 @@ public class Xcls_GladeuiView : Object
         // set gobject values
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_0 = new Xcls_notebook( _this );
+        var child_0 = new Xcls_ColumnView2( _this );
         child_0.ref();
-        this.el.pack_start (  child_0.el , true,true,0 );
+        this.el.add(  child_0.el );
+        var child_1 = new Xcls_notebook( _this );
+        child_1.ref();
+        this.el.pack_start (  child_1.el , true,true,0 );
 
         //listeners
         this.el.size_allocate.connect( (aloc) => {
@@ -206,6 +209,28 @@ public class Xcls_GladeuiView : Object
     
        
     }
+    public class Xcls_ColumnView2 : Object
+    {
+        public Gtk.ColumnView el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ColumnView2(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ColumnView( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_notebook : Object
     {
         public Gtk.Notebook el;
@@ -290,7 +315,6 @@ public class Xcls_GladeuiView : Object
 
 
             // my vars (def)
-        public JsRender.JsRender file;
 
         // ctor
         public Xcls_designview(Xcls_GladeuiView _owner )
@@ -300,7 +324,6 @@ public class Xcls_GladeuiView : Object
             this.el = _this.main_window == null ? null : new Glade.DesignView(_this.main_window.gladeproject);
 
             // my vars (dec)
-            this.file = null;
 
             // init method
 
@@ -340,11 +363,6 @@ public class Xcls_GladeuiView : Object
 
 
             // my vars (def)
-        public bool loading;
-        public gboolean show_line_numbers;
-        public bool allow_node_scroll;
-        public gboolean show_line_marks;
-        public gboolean editable;
 
         // ctor
         public Xcls_sourceview(Xcls_GladeuiView _owner )
@@ -354,11 +372,6 @@ public class Xcls_GladeuiView : Object
             this.el = new Gtk.SourceView();
 
             // my vars (dec)
-            this.loading = true;
-            this.show_line_numbers = true;
-            this.allow_node_scroll = true;
-            this.show_line_marks = true;
-            this.editable = false;
 
             // init method
 
