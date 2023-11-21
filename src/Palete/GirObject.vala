@@ -500,19 +500,16 @@ namespace Palete {
 				}
 				return;
 			}
+			var cls = pal.getClass(str);
 			// it's an object..
 			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
-			if (!classes.has_key(str)) {
+			// note all classes are expected to have '.' seperators
+			if (cls == null || !str.contains(".")) {
 				GLib.debug("nodepropaddchildren: check class %s - not found in classes", str);
 				par.childstore.append( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
 				return;
 			}
 			
-			if (!str.contains(".") || !classes.has_key(str)) {
-				var add = new JsRender.NodeProp.raw(this.name, str, "");			
-				par.childstore.append( add);
-				return;
-			}
 			
 			var add = new JsRender.NodeProp.raw(this.name, str, "");
 			// no propertyof ?
@@ -521,7 +518,7 @@ namespace Palete {
 			add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
 			par.childstore.append( add);
 		
-			var cls = pal.getClass(str);
+
 
 			
 			if (cls.implementations.size < 1) {
