@@ -695,7 +695,7 @@
              "\tvar lbl = new Gtk.Label(\"\");",
              " \t((Gtk.ListItem)listitem).set_child(lbl);",
              " \tlbl.justify = Gtk.Justification.LEFT;",
-             " \tlbl.xalign = 0;",
+             " \tlbl.xalign = 1;",
              " \tlbl.use_markup = true;",
              "\tlbl.ellipsize = Pango.EllipsizeMode.START;",
              " \t/*lbl.changed.connect(() => {",

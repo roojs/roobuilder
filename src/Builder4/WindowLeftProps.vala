@@ -1764,7 +1764,7 @@ public class Xcls_LeftProps : Object
             	var lbl = new Gtk.Label("");
              	((Gtk.ListItem)listitem).set_child(lbl);
              	lbl.justify = Gtk.Justification.LEFT;
-             	lbl.xalign = 0;
+             	lbl.xalign = 1;
              	lbl.use_markup = true;
             	lbl.ellipsize = Pango.EllipsizeMode.START;
              	/*lbl.changed.connect(() => {
