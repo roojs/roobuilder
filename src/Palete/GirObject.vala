@@ -452,6 +452,13 @@ namespace Palete {
 				var ret = new JsRender.NodeProp.prop(this.name, this.type, def);  ///< was raw..?
 				ret.propertyof = this.propertyof;
 				this.nodePropAddChildren(ret, this.type, pal);
+				if (ret.childstore.n_items == 1) {
+					var np = (NodeProp)ret.childstore.get_item(0);
+					this.add_node = np.add_node;
+					ret.childstore.remove_all();
+				}
+				
+				
 				return ret;
 			}
 			if (this.type.down() == "function"  ) {
