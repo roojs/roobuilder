@@ -585,6 +585,7 @@ namespace Palete {
 			
 			foreach(var k in props.keys) {
 				var val = props.get(k);
+				GLib.debug("FilterProp: %s", k);
 				if (k == "___") {
 					continue;
 				}
