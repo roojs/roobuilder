@@ -361,7 +361,7 @@ public class Xcls_ValaCompileErrors : Object
         public Xcls_ListStore10(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
-            this.el = new GLib.ListStore( null );
+            this.el = new GLib.ListStore( typeof(Json.Object) );
 
             // my vars (dec)
 

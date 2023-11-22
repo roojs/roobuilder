@@ -65,6 +65,7 @@
                 {
                  "$ xns" : "GLib",
                  "* prop" : "model",
+                 "GLib.Type item_type" : "typeof(Json.Object)",
                  "xtype" : "ListStore"
                 }
                ],
