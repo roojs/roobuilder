@@ -179,6 +179,10 @@
            ],
            "string title" : "Compile Result",
            "xtype" : "ColumnViewColumn"
+          },
+          {
+           "$ xns" : "Gtk",
+           "xtype" : "G"
           }
          ],
          "xtype" : "ColumnView"

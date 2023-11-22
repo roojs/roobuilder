@@ -275,6 +275,9 @@ public class Xcls_ValaCompileErrors : Object
             var child_1 = new Xcls_ColumnViewColumn10( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
+            var child_2 = new Xcls_Sorter12( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -487,6 +490,28 @@ public class Xcls_ValaCompileErrors : Object
     }
 
 
+    public class Xcls_Sorter12 : Object
+    {
+        public Gtk.Sorter el;
+        private Xcls_ValaCompileErrors  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Sorter12(Xcls_ValaCompileErrors _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Sorter();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
     public class Xcls_compile_tree : Object
     {
@@ -510,7 +535,7 @@ public class Xcls_ValaCompileErrors : Object
             this.el.name = "compile-erros-view";
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_GestureClick13( _this );
+            var child_0 = new Xcls_GestureClick14( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
             var child_1 = new Xcls_compile_result_store( _this );
@@ -537,7 +562,7 @@ public class Xcls_ValaCompileErrors : Object
 
         // user defined functions
     }
-    public class Xcls_GestureClick13 : Object
+    public class Xcls_GestureClick14 : Object
     {
         public Gtk.GestureClick el;
         private Xcls_ValaCompileErrors  _this;
@@ -546,7 +571,7 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (def)
 
         // ctor
-        public Xcls_GestureClick13(Xcls_ValaCompileErrors _owner )
+        public Xcls_GestureClick14(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
             this.el = new Gtk.GestureClick();
