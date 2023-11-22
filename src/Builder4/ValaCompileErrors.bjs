@@ -127,6 +127,13 @@
               "}",
               ""
              ],
+             "@ setup" : [
+              "(object) => {",
+              "",
+              "",
+              "}",
+              ""
+             ],
              "xtype" : "SignalListItemFactory"
             }
            ],

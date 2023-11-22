@@ -421,6 +421,11 @@ public class Xcls_ValaCompileErrors : Object
 
 
             // my vars (def)
+        public signal  setup (object) => {
+
+
+}
+;
         public signal  bind (object) => {
 
 
