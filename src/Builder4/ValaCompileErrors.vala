@@ -43,7 +43,7 @@ public class Xcls_ValaCompileErrors : Object
     }
 
     // user defined functions
-    public void show (Json.Object tree, Gtk.Widget onbtn) {
+    public void show (Gee.ArrayList<Compiler.Result> tree, Gtk.Widget onbtn) {
     
         
      
