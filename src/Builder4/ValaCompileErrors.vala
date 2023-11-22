@@ -274,7 +274,7 @@ public class Xcls_ValaCompileErrors : Object
             this.el.model = child_0.el;
             var child_1 = new Xcls_ColumnViewColumn10( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append_column (  child_1.el  );
         }
 
         // user defined functions

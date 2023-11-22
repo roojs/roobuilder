@@ -113,6 +113,7 @@
           },
           {
            "$ xns" : "Gtk",
+           "* pack" : "append_column",
            "bool expand" : true,
            "bool resizable" : true,
            "string title" : "Compile Result",
