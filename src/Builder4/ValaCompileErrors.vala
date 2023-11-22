@@ -483,6 +483,12 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.bind.connect( (object) => {
+            
+            
+            });
         }
 
         // user defined functions
