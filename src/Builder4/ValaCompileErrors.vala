@@ -59,13 +59,17 @@ public class Xcls_ValaCompileErrors : Object
      	Gtk.TreeIter? expand = null;
         
         tree.foreach_member((obj, file, node) => {
+        
+        	obj.set_string_member("file", file); // not sure if needed..
+        	_this.model.el.append(obj);
+        	
+        
             // id line "display text", file
-            
+    /*        
             var title = GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) ;
             Gtk.TreeIter iter;
             GLib.debug("Add file %s", title);
             store.append(out iter, null);
-            var lines = tree.get_object_member(file);
             title += " (" + lines.get_size().to_string() + ")";
             store.set(iter, 
             	0, file, 
@@ -80,6 +84,7 @@ public class Xcls_ValaCompileErrors : Object
     
             
             }
+            var lines = tree.get_object_member(file);
             
             
             lines.foreach_member((obja, line, nodea) => {
