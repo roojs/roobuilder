@@ -82,7 +82,12 @@
                "xtype" : "TreeListModel"
               }
              ],
-             "xtype" : "SortListModel"
+             "xtype" : "SortListModel",
+             "| Json.Object getNodeAt" : [
+              "() {",
+              "",
+              "}"
+             ]
             }
            ],
            "xtype" : "SingleSelection"

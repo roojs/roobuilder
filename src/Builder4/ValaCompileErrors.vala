@@ -324,6 +324,9 @@ public class Xcls_ValaCompileErrors : Object
         }
 
         // user defined functions
+        public Json.Object getNodeAt () {
+        
+        }
     }
     public class Xcls_TreeListModel9 : Object
     {
