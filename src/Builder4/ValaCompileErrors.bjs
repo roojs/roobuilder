@@ -60,17 +60,22 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "* ctor" : [
+                "new Gtk.TreeListModel(",
+                "    new GLib.ListStore(typeof(JsRender.NodeProp)), //..... << that's our store..",
+                "    false, // passthru",
+                "    false, // autexpand",
+                "    (item) => {",
+                "    \treturn ((JsRender.NodeProp)item).childstore;",
+                "    ",
+                "    }",
+                "    ",
+                "    ",
+                ")"
+               ],
                "* prop" : "model",
                "bool autoexpand" : false,
                "bool passthrough" : false,
-               "items" : [
-                {
-                 "$ xns" : "GLib",
-                 "* prop" : "model",
-                 "GLib.Type item_type" : "typeof(Json.Object)",
-                 "xtype" : "ListStore"
-                }
-               ],
                "xtype" : "TreeListModel"
               }
              ],
