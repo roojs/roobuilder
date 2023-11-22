@@ -47,6 +47,10 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "xtype" : "ColumnView"
+        },
+        {
+         "$ xns" : "Gtk",
          "* init" : [
           "{",
           "  this.css = new Gtk.CssProvider();",
