@@ -120,6 +120,13 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "factory",
+             "@ bind" : [
+              "(object) => {",
+              "",
+              "",
+              "}",
+              ""
+             ],
              "xtype" : "SignalListItemFactory"
             }
            ],

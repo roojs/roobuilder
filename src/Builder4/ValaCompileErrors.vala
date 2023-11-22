@@ -421,6 +421,11 @@ public class Xcls_ValaCompileErrors : Object
 
 
             // my vars (def)
+        public signal  bind (object) => {
+
+
+}
+;
 
         // ctor
         public Xcls_SignalListItemFactory11(Xcls_ValaCompileErrors _owner )
