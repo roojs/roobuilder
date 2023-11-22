@@ -116,6 +116,13 @@
            "* pack" : "append_column",
            "bool expand" : true,
            "bool resizable" : true,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "factory",
+             "xtype" : "SignalListItemFactory"
+            }
+           ],
            "string title" : "Compile Result",
            "xtype" : "ColumnViewColumn"
           }
