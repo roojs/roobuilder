@@ -52,6 +52,13 @@
            "$ xns" : "Gtk",
            "* prop" : "model",
            "id" : "selmodel",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "xtype" : "SortListModel"
+            }
+           ],
            "xtype" : "SingleSelection"
           }
          ],
