@@ -17,8 +17,6 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_sortmodel sortmodel;
     public Xcls_model model;
     public Xcls_compile_tree compile_tree;
-    public Xcls_column column;
-    public Xcls_renderer renderer;
 
         // my vars (def)
     public Xcls_MainWindow window;
@@ -601,9 +599,6 @@ public class Xcls_ValaCompileErrors : Object
             this.el.name = "compile-erros-view";
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_column( _this );
-            child_0.ref();
-            this.el.append_column (  child_0.el  );
 
             // init method
 
@@ -622,63 +617,6 @@ public class Xcls_ValaCompileErrors : Object
 
         // user defined functions
     }
-    public class Xcls_column : Object
-    {
-        public Gtk.TreeViewColumn el;
-        private Xcls_ValaCompileErrors  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_column(Xcls_ValaCompileErrors _owner )
-        {
-            _this = _owner;
-            _this.column = this;
-            this.el = new Gtk.TreeViewColumn();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.title = "Compile output";
-            var child_0 = new Xcls_renderer( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
-
-            // init method
-
-            {
-              this.el.add_attribute(_this.renderer.el , "markup", 2 );
-             
-            }
-        }
-
-        // user defined functions
-    }
-    public class Xcls_renderer : Object
-    {
-        public Gtk.CellRendererText el;
-        private Xcls_ValaCompileErrors  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_renderer(Xcls_ValaCompileErrors _owner )
-        {
-            _this = _owner;
-            _this.renderer = this;
-            this.el = new Gtk.CellRendererText();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-
 
 
 

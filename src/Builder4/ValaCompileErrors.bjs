@@ -277,30 +277,6 @@
          "bool hexpand" : true,
          "bool vexpand" : true,
          "id" : "compile_tree",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* init" : [
-            "{",
-            "  this.el.add_attribute(_this.renderer.el , \"markup\", 2 );",
-            " ",
-            "}",
-            ""
-           ],
-           "* pack" : "append_column",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "pack_start,true",
-             "id" : "renderer",
-             "xtype" : "CellRendererText"
-            }
-           ],
-           "string id" : "column",
-           "utf8 title" : "Compile output",
-           "xtype" : "TreeViewColumn"
-          }
-         ],
          "string name" : "compile-erros-view",
          "xtype" : "TreeView"
         }
