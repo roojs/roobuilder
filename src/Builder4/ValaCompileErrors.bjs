@@ -110,6 +110,10 @@
             "\t ",
             "}"
            ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "xtype" : "ColumnViewColumn"
           }
          ],
          "xtype" : "ColumnView"
