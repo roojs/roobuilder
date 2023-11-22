@@ -342,7 +342,10 @@ public class Xcls_ValaCompileErrors : Object
     false, // passthru
     false, // autexpand
     (item) => {
-    	return ((JsRender.NodeProp)item).childstore;
+    
+    	return  new GLib.ListStore(typeof(Json.Object));
+    	
+    	//return ((Json.Object)item).childstore;
     
     }
     
