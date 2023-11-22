@@ -113,6 +113,7 @@
           },
           {
            "$ xns" : "Gtk",
+           "bool resizable" : true,
            "xtype" : "ColumnViewColumn"
           }
          ],
