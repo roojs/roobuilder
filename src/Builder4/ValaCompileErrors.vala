@@ -441,9 +441,34 @@ public class Xcls_ValaCompileErrors : Object
 	((Gtk.ListItem)listitem).activatable = false;
 }
 ;
-        public signal  bind (object) => {
+        public signal  bind (listitem) => {
+	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+	
+	
+	
+	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+	  
+ 
+	var lbl = (Gtk.Label) expand.child;
+	
+	 if (lbl.label != "") { // do not update
+	 	return;
+ 	}
+	
 
-
+	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+	var np = (Json.Object) lr.get_item();
+	//GLib.debug("change  %s to %s", lbl.label, np.name);
+//	lbl.label = np.to_property_option_markup(np.propertyof == _this.node.fqn());
+	//lbl.tooltip_markup = np.to_property_option_tooltip();
+	 
+  //  expand.set_hide_expander(  np.childstore.n_items < 1);
+// 	expand.set_list_row(lr);
+ 
+ 	 
+ 	// bind image...
+ 	
 }
 ;
 
