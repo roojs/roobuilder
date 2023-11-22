@@ -337,7 +337,7 @@ public class Xcls_ValaCompileErrors : Object
         public Xcls_TreeListModel9(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
-            this.el = new Gtk.TreeListModel( null, true, true, null );
+            this.el = new Gtk.TreeListModel( null, false, false, null );
 
             // my vars (dec)
 

@@ -61,6 +61,8 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
+               "bool autoexpand" : false,
+               "bool passthrough" : false,
                "items" : [
                 {
                  "$ xns" : "GLib",
