@@ -497,6 +497,72 @@ public class Xcls_ValaCompileErrors : Object
 
 
             // my vars (def)
+        public signal  pressed (n_press, x, y) => {
+	Gtk.TreeViewColumn col;
+    int cell_x;
+    int cell_y;
+    Gtk.TreePath path;
+    if (!_this.compile_tree.el.get_path_at_pos((int)x, (int) y, out path, out col, out cell_x, out cell_y )) {
+        print("nothing selected on click");
+        
+        return; //not on a element.
+    }
+    var ev = this.el.get_current_event();
+     
+     // right click.
+   //  if (ev.get_event_type != Gdk.EventType.2BUTTON_PRESS  || ev.button != 1  ) {    
+        // show popup!.   
+            
+         
+     //   return;
+   // }
+    Gtk.TreeIter iter;
+     var mod = _this.compile_result_store.el;
+    mod.get_iter (out iter, path);
+    
+      
+    
+    // var val = "";
+    GLib.Value value;
+    _this.compile_result_store.el.get_value(iter, 3, out value);
+    var fname = (string)value;
+    GLib.Value lvalue;
+    _this.compile_result_store.el.get_value(iter, 1, out lvalue);
+    var line = (int) lvalue;
+    
+    print("open %s @ %d\n", fname, line);
+    
+    
+   var  bjsf = "";
+    try {             
+       var  regex = new Regex("\\.vala$");
+    
+     
+        bjsf = regex.replace(fname,fname.length , 0 , ".bjs");
+     } catch (GLib.RegexError e) {
+        return;
+    }   
+    var p = _this.window.project;
+        
+        
+        
+    var jsr = p.getByPath(bjsf);
+    if (jsr != null) {
+        _this.window.windowstate.fileViewOpen(jsr, true, line);
+        
+        return;
+    
+    }
+    try {
+		var pf = JsRender.JsRender.factory("PlainFile", p, fname);
+		_this.window.windowstate.fileViewOpen(pf, true, line);
+    } catch (JsRender.Error e) {}
+    // try hiding the left nav..
+ 
+    return;
+
+}
+;
 
         // ctor
         public Xcls_GestureClick12(Xcls_ValaCompileErrors _owner )
