@@ -14,6 +14,7 @@ public class Xcls_ValaCompileErrors : Object
     }
     public Xcls_compile_view compile_view;
     public Xcls_selmodel selmodel;
+    public Xcls_sortmodel sortmodel;
     public Xcls_compile_tree compile_tree;
     public Xcls_compile_result_store compile_result_store;
     public Xcls_column column;
@@ -292,14 +293,14 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SortListModel8( _this );
+            var child_0 = new Xcls_sortmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SortListModel8 : Object
+    public class Xcls_sortmodel : Object
     {
         public Gtk.SortListModel el;
         private Xcls_ValaCompileErrors  _this;
@@ -308,9 +309,10 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SortListModel8(Xcls_ValaCompileErrors _owner )
+        public Xcls_sortmodel(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
+            _this.sortmodel = this;
             this.el = new Gtk.SortListModel( null, null );
 
             // my vars (dec)
