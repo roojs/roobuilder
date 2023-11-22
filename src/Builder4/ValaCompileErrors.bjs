@@ -77,7 +77,7 @@
                 ")"
                ],
                "* prop" : "model",
-               "bool passthrough" : false,
+               "id" : "model",
                "xtype" : "TreeListModel"
               }
              ],

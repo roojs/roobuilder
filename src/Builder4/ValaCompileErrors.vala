@@ -15,6 +15,7 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_compile_view compile_view;
     public Xcls_selmodel selmodel;
     public Xcls_sortmodel sortmodel;
+    public Xcls_model model;
     public Xcls_compile_tree compile_tree;
     public Xcls_compile_result_store compile_result_store;
     public Xcls_column column;
@@ -328,7 +329,7 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TreeListModel9( _this );
+            var child_0 = new Xcls_model( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
@@ -346,7 +347,7 @@ public class Xcls_ValaCompileErrors : Object
         	 
         }
     }
-    public class Xcls_TreeListModel9 : Object
+    public class Xcls_model : Object
     {
         public Gtk.TreeListModel el;
         private Xcls_ValaCompileErrors  _this;
@@ -355,9 +356,10 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeListModel9(Xcls_ValaCompileErrors _owner )
+        public Xcls_model(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
+            _this.model = this;
             this.el = new Gtk.TreeListModel(
     new GLib.ListStore(typeof(Json.Object)), //..... << that's our store..
     false, // passthru
@@ -376,7 +378,6 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.passthrough = false;
         }
 
         // user defined functions
