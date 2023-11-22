@@ -423,56 +423,6 @@ public class Xcls_ValaCompileErrors : Object
 
 
             // my vars (def)
-        public signal  setup (listitem) => {
-	
-	var expand = new Gtk.TreeExpander();
-	 
-	expand.set_indent_for_depth(true);
-	expand.set_indent_for_icon(true);
-	 
-	var lbl = new Gtk.Label("");
-	lbl.use_markup = true;
-	
-	
- 	lbl.justify = Gtk.Justification.LEFT;
- 	lbl.xalign = 0;
-
- 
-	expand.set_child(lbl);
-	((Gtk.ListItem)listitem).set_child(expand);
-	((Gtk.ListItem)listitem).activatable = false;
-}
-;
-        public signal  bind (listitem) => {
-	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
-	
-	
-	
-	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
-	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
-	  
- 
-	var lbl = (Gtk.Label) expand.child;
-	
-	 if (lbl.label != "") { // do not update
-	 	return;
- 	}
-	
-
-	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-	var np = (Json.Object) lr.get_item();
-	//GLib.debug("change  %s to %s", lbl.label, np.name);
-//	lbl.label = np.to_property_option_markup(np.propertyof == _this.node.fqn());
-	//lbl.tooltip_markup = np.to_property_option_tooltip();
-	 
-  //  expand.set_hide_expander(  np.childstore.n_items < 1);
-// 	expand.set_list_row(lr);
- 
- 	 
- 	// bind image...
- 	
-}
-;
 
         // ctor
         public Xcls_SignalListItemFactory11(Xcls_ValaCompileErrors _owner )
@@ -485,9 +435,53 @@ public class Xcls_ValaCompileErrors : Object
             // set gobject values
 
             //listeners
-            this.el.bind.connect( (object) => {
+            this.el.setup.connect( (listitem) => {
+            	
+            	var expand = new Gtk.TreeExpander();
+            	 
+            	expand.set_indent_for_depth(true);
+            	expand.set_indent_for_icon(true);
+            	 
+            	var lbl = new Gtk.Label("");
+            	lbl.use_markup = true;
+            	
+            	
+             	lbl.justify = Gtk.Justification.LEFT;
+             	lbl.xalign = 0;
             
+             
+            	expand.set_child(lbl);
+            	((Gtk.ListItem)listitem).set_child(expand);
+            	((Gtk.ListItem)listitem).activatable = false;
+            });
+            this.el.bind.connect( (listitem) => {
+            	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+            	
+            	
+            	
+            	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+            	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+            	  
+             
+            	var lbl = (Gtk.Label) expand.child;
+            	
+            	 if (lbl.label != "") { // do not update
+            	 	return;
+             	}
+            	
             
+            	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+            	var np = (Json.Object) lr.get_item();
+            	//GLib.debug("change  %s to %s", lbl.label, np.name);
+            //	lbl.label = np.to_property_option_markup(np.propertyof == _this.node.fqn());
+            	//lbl.tooltip_markup = np.to_property_option_tooltip();
+            	 
+              //  expand.set_hide_expander(  np.childstore.n_items < 1);
+            // 	expand.set_list_row(lr);
+             
+             	 
+             	// bind image...
+             	
             });
         }
 
