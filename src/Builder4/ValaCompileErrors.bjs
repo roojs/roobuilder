@@ -47,6 +47,13 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "xtype" : "SingleSelection"
+          }
+         ],
          "xtype" : "ColumnView"
         },
         {
