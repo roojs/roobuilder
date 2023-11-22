@@ -306,7 +306,7 @@ public class Xcls_ValaCompileErrors : Object
            var a = tr.get_item();;   
            GLib.debug("get_item (2) = %s", a.get_type().name());
             
-           return (JsRender.NodeProp)tr.get_item();
+           return (Json.Object)tr.get_item();
         	 
         }
     }
