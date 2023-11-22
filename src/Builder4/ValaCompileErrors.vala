@@ -496,6 +496,9 @@ public class Xcls_ValaCompileErrors : Object
 
             // my vars (def)
         public signal  pressed (n_press, x, y) => {
+	
+	
+	
 	Gtk.TreeViewColumn col;
     int cell_x;
     int cell_y;

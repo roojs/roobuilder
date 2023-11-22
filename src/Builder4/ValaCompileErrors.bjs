@@ -184,6 +184,9 @@
            "$ xns" : "Gtk",
            "@ pressed" : [
             "(n_press, x, y) => {",
+            "\t",
+            "\t",
+            "\t",
             "\tGtk.TreeViewColumn col;",
             "    int cell_x;",
             "    int cell_y;",
