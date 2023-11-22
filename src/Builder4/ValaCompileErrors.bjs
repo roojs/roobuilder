@@ -272,7 +272,7 @@
    ],
    "xtype" : "Popover",
    "| void show" : [
-    "(Gee.ArrayList<Compiler.Result> tree, Gtk.Widget onbtn) {",
+    "(Gee.ArrayList<Json.Object> tree, Gtk.Widget onbtn) {",
     "",
     "    ",
     " ",
