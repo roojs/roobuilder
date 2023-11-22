@@ -531,7 +531,7 @@
            "string label" : "0 Warnings",
            "xtype" : "Button",
            "| void setNotices" : [
-            "(Json.Object nots, int qty) {",
+            "(Gee.ArrayList<Json.Object> nots, int qty) {",
             "    ",
             "    if (qty < 1 ) {",
             "    \tthis.el.hide();",
