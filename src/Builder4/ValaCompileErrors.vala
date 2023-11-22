@@ -16,7 +16,6 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_selmodel selmodel;
     public Xcls_sortmodel sortmodel;
     public Xcls_model model;
-    public Xcls_compile_tree compile_tree;
 
         // my vars (def)
     public Xcls_MainWindow window;
@@ -234,9 +233,6 @@ public class Xcls_ValaCompileErrors : Object
             var child_0 = new Xcls_ColumnView6( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_compile_tree( _this );
-            child_1.ref();
-            this.el.set_child (  child_1.el  );
 
             // init method
 
@@ -576,47 +572,6 @@ public class Xcls_ValaCompileErrors : Object
         // user defined functions
     }
 
-
-    public class Xcls_compile_tree : Object
-    {
-        public Gtk.TreeView el;
-        private Xcls_ValaCompileErrors  _this;
-
-
-            // my vars (def)
-        public Gtk.CssProvider css;
-
-        // ctor
-        public Xcls_compile_tree(Xcls_ValaCompileErrors _owner )
-        {
-            _this = _owner;
-            _this.compile_tree = this;
-            this.el = new Gtk.TreeView();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.name = "compile-erros-view";
-            this.el.hexpand = true;
-            this.el.vexpand = true;
-
-            // init method
-
-            {
-              this.css = new Gtk.CssProvider();
-            	try {
-            		this.css.load_from_data(
-            			"#compile-erros-view { font-size: 12px;}".data);
-            	} catch (Error e) {}
-            	this.el.get_style_context().add_provider(this.css,
-            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            	 
-            	 
-            }
-        }
-
-        // user defined functions
-    }
 
 
 

@@ -255,30 +255,6 @@
           }
          ],
          "xtype" : "ColumnView"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* init" : [
-          "{",
-          "  this.css = new Gtk.CssProvider();",
-          "\ttry {",
-          "\t\tthis.css.load_from_data(",
-          "\t\t\t\"#compile-erros-view { font-size: 12px;}\".data);",
-          "\t} catch (Error e) {}",
-          "\tthis.el.get_style_context().add_provider(this.css,",
-          "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
-          "\t ",
-          "\t ",
-          "}",
-          ""
-         ],
-         "* pack" : "set_child",
-         "Gtk.CssProvider css" : "",
-         "bool hexpand" : true,
-         "bool vexpand" : true,
-         "id" : "compile_tree",
-         "string name" : "compile-erros-view",
-         "xtype" : "TreeView"
         }
        ],
        "xtype" : "ScrolledWindow"
