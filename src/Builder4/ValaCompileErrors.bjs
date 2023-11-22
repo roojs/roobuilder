@@ -182,7 +182,7 @@
           },
           {
            "$ xns" : "Gtk",
-           "xtype" : "G"
+           "xtype" : "GestureClick"
           }
          ],
          "xtype" : "ColumnView"
