@@ -400,7 +400,7 @@ public class Xcls_ValaCompileErrors : Object
         public Xcls_ColumnViewColumn10(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ColumnViewColumn( null, null );
+            this.el = new Gtk.ColumnViewColumn( "\"\"", null );
 
             // my vars (dec)
 

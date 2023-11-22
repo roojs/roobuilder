@@ -114,6 +114,7 @@
           {
            "$ xns" : "Gtk",
            "bool resizable" : true,
+           "string title" : "\"\"",
            "xtype" : "ColumnViewColumn"
           }
          ],
