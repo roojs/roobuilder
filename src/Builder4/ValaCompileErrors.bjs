@@ -61,6 +61,13 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
+               "items" : [
+                {
+                 "$ xns" : "GLib",
+                 "* prop" : "model",
+                 "xtype" : "ListStore"
+                }
+               ],
                "xtype" : "TreeListModel"
               }
              ],
