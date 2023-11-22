@@ -299,6 +299,16 @@ public class Xcls_ValaCompileErrors : Object
         }
 
         // user defined functions
+        public Json.Object getNodeAt (uint row) {
+        
+           var tr = (Gtk.TreeListRow)this.el.get_item(row);
+           
+           var a = tr.get_item();;   
+           GLib.debug("get_item (2) = %s", a.get_type().name());
+            
+           return (JsRender.NodeProp)tr.get_item();
+        	 
+        }
     }
     public class Xcls_sortmodel : Object
     {
