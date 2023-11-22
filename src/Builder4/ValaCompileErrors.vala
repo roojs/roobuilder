@@ -17,7 +17,6 @@ public class Xcls_ValaCompileErrors : Object
     public Xcls_sortmodel sortmodel;
     public Xcls_model model;
     public Xcls_compile_tree compile_tree;
-    public Xcls_compile_result_store compile_result_store;
     public Xcls_column column;
     public Xcls_renderer renderer;
 
@@ -602,12 +601,9 @@ public class Xcls_ValaCompileErrors : Object
             this.el.name = "compile-erros-view";
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_compile_result_store( _this );
+            var child_0 = new Xcls_column( _this );
             child_0.ref();
-            this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_column( _this );
-            child_1.ref();
-            this.el.append_column (  child_1.el  );
+            this.el.append_column (  child_0.el  );
 
             // init method
 
@@ -626,32 +622,6 @@ public class Xcls_ValaCompileErrors : Object
 
         // user defined functions
     }
-    public class Xcls_compile_result_store : Object
-    {
-        public Gtk.TreeStore el;
-        private Xcls_ValaCompileErrors  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_compile_result_store(Xcls_ValaCompileErrors _owner )
-        {
-            _this = _owner;
-            _this.compile_result_store = this;
-            this.el = new Gtk.TreeStore.newv(  {   typeof(string), 
-  typeof(int),
-   typeof(string),
-    typeof(string)  }  );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
     public class Xcls_column : Object
     {
         public Gtk.TreeViewColumn el;

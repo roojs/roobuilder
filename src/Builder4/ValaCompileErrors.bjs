@@ -280,19 +280,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "set_model",
-           "columns" : [
-            "  typeof(string), ",
-            "  typeof(int),",
-            "   typeof(string),",
-            "    typeof(string) "
-           ],
-           "gint n_columns" : 4,
-           "id" : "compile_result_store",
-           "xtype" : "TreeStore"
-          },
-          {
-           "$ xns" : "Gtk",
            "* init" : [
             "{",
             "  this.el.add_attribute(_this.renderer.el , \"markup\", 2 );",
