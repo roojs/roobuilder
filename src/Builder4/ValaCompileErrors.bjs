@@ -51,6 +51,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
+           "id" : "selmodel",
            "xtype" : "SingleSelection"
           }
          ],

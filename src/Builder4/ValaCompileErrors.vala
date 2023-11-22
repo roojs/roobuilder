@@ -13,6 +13,7 @@ public class Xcls_ValaCompileErrors : Object
         return _ValaCompileErrors;
     }
     public Xcls_compile_view compile_view;
+    public Xcls_selmodel selmodel;
     public Xcls_compile_tree compile_tree;
     public Xcls_compile_result_store compile_result_store;
     public Xcls_column column;
@@ -266,14 +267,14 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SingleSelection7( _this );
+            var child_0 = new Xcls_selmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SingleSelection7 : Object
+    public class Xcls_selmodel : Object
     {
         public Gtk.SingleSelection el;
         private Xcls_ValaCompileErrors  _this;
@@ -282,9 +283,10 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection7(Xcls_ValaCompileErrors _owner )
+        public Xcls_selmodel(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
+            _this.selmodel = this;
             this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)
