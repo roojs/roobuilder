@@ -275,9 +275,9 @@ public class Xcls_ValaCompileErrors : Object
             var child_1 = new Xcls_ColumnViewColumn10( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
-            var child_2 = new Xcls_Sorter12( _this );
+            var child_2 = new Xcls_GestureClick12( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.add_controller(  child_2.el );
         }
 
         // user defined functions
@@ -490,19 +490,19 @@ public class Xcls_ValaCompileErrors : Object
     }
 
 
-    public class Xcls_Sorter12 : Object
+    public class Xcls_GestureClick12 : Object
     {
-        public Gtk.Sorter el;
+        public Gtk.GestureClick el;
         private Xcls_ValaCompileErrors  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Sorter12(Xcls_ValaCompileErrors _owner )
+        public Xcls_GestureClick12(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Sorter();
+            this.el = new Gtk.GestureClick();
 
             // my vars (dec)
 
