@@ -75,7 +75,7 @@ namespace Palate {
 		 
 		
 		
-		public static Gee.ArrayList<CompilerError> jsonToListStore(Json.Object tree, GLib.listStore ls)
+		public static Gee.ArrayList<CompilerError> jsonToListStore(Json.Object tree, GLib.ListStore ls)
 		{
 
 	        tree.foreach_member((obj, file, node) => {
