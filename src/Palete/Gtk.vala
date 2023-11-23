@@ -130,7 +130,7 @@ namespace Palete {
 			
 			this.add_special_children("Gtk.ButtonBox","Gtk.Button", "");
  
-			
+			this.add_special_children("Gtk.Widget","Gtk.EventController", "");
 			
 			this.init_node_defaults();
 		    this.init_child_defaults();  
