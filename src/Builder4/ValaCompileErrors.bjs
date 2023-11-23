@@ -139,7 +139,7 @@
                "\t",
                "",
                "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
-               "\tvar np = (Palete.CompilerError) lr.get_item();",
+               "\tvar np = (Palete.CompileError) lr.get_item();",
                "\t",
                "\t",
                "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",

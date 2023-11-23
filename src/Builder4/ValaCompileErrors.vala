@@ -418,7 +418,7 @@ public class Xcls_ValaCompileErrors : Object
             	
             
             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            	var np = (Palete.CompilerError) lr.get_item();
+            	var np = (Palete.CompileError) lr.get_item();
             	
             	
             	//GLib.debug("change  %s to %s", lbl.label, np.name);
