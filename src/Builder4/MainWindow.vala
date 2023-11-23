@@ -521,7 +521,7 @@ public class Xcls_MainWindow : Object
 
     public class Xcls_open_projects_btn : Object
     {
-        public Gtk.Button el;
+        public Gtk.MenuButton el;
         private Xcls_MainWindow  _this;
 
 
@@ -533,7 +533,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.open_projects_btn = this;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.MenuButton();
 
             // my vars (dec)
             this.always_show_image = true;

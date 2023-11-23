@@ -215,7 +215,6 @@
          ]
         },
         {
-         "$ tooltop_text" : "\"Open File\"",
          "$ xns" : "Gtk",
          "* pack" : "append",
          "bool always_show_image" : true,
@@ -229,7 +228,8 @@
          },
          "string icon_name" : "system-file-manager",
          "string label" : "Files / Projects",
-         "xtype" : "Button"
+         "tooltop_text" : "\"Open File\"",
+         "xtype" : "MenuButton"
         }
        ],
        "xtype" : "Box"
