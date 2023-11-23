@@ -59,14 +59,14 @@ namespace Palate {
 		
 		public string file_line { // sorting?
 			set {}
-			get { 
+			owned get { 
 				return this.parent == null ? this.file : 
  					(this.parent.file + ":" + this.line.to_string("%09d")); 
 			}
 		}
 		public string line_msg {
 			set {}
-			get {
+			owned  get {
 			 	return GLib.Markup.escape_text(this.line.to_string() + ": " + this.msg);
 		 	}
 	 	}
