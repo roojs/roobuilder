@@ -119,6 +119,12 @@
              "$ xns" : "Gtk",
              "string label" : "Windows (Add/List)",
              "xtype" : "Label"
+            },
+            {
+             "$ xns" : "Gtk",
+             "int margin_start" : 4,
+             "string icon_name" : "window-new",
+             "xtype" : "Image"
             }
            ],
            "xtype" : "Box"
@@ -129,10 +135,10 @@
            "( ) => {",
            "\tthis.updateMenu();",
            "",
-           "//\t_this.windowspopup.el.set_parent(this.el);",
+           "\t _this.windowspopup.el.set_parent(this.el);",
            "",
-           "\t//_this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); ",
-           "//    _this.windowspopup.el.popup(); ",
+           "\t _this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); ",
+           "\t _this.windowspopup.el.popup(); ",
            "",
            "}",
            ""
