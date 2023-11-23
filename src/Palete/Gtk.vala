@@ -2,6 +2,16 @@ using Gtk;
 
 
 /**
+
+Palete.map
+ -> contains a list of parent and child classes
+ // eg. what can be added to what.
+ 
+// defaults
+
+// node properties??
+  (mostly from 
+
 Known issues with Palete
 
 
@@ -222,10 +232,10 @@ namespace Palete {
 			
 		/**
 		 * Gtk's heirachy of parent/children is not particulaly logical
-		 * Gtk.Containers - some are not really that good t being containers.  Gtk.Bin (single only) - is a good flag for indicating 
-		 * Gtk.Widgets - some are not great at being widgets
-		 * Gtk.Menu - should really only contain menuitems, but the API doesnt really restrict this.
-		 * The list goes on.
+		 * 
+		 this fills in 
+		 a) all_no_parent ??
+		 b) generic_child_widgets
 		 * 
 		 *
 		*/
@@ -283,8 +293,7 @@ namespace Palete {
 				this.generic_child_widgets.add(fqn);
 				
 				
-				
-				//this.add_special_children(fqn, "Gtk.Menu", "_menu"); // fake propety
+				 
 			}
 		
 		}
@@ -324,7 +333,12 @@ namespace Palete {
 		}
 		
 		 
+		/**
+		 adds to the map a list of parent / child combinations
+		 based on properties of objects
+		 Note - this is needed for the drag/drop (so the sytem knows if something can be dropped.
 		
+		*/
 		
 		
 		public void build_class_children_from_props(Gee.HashMap<string,GirObject> classes)
@@ -379,7 +393,8 @@ namespace Palete {
 					}
 
 					if (prop.name == "parent" || 
-						(prop.name == "child" && cls.fqn() != "Gtk.Popover") ||   // allow child only on popover.
+						// (prop.name == "child" && cls.fqn() != "Gtk.Popover") ||   // allow child only on popover.
+						 
 						prop.name == "attached_to" || 
 						prop.name == "mnemonic_widget" ||
 						prop.name == "application" ||
