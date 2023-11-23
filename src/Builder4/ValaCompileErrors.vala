@@ -186,7 +186,7 @@ public class Xcls_ValaCompileErrors : Object
             // set gobject values
             var child_0 = new Xcls_ColumnView6( _this );
             child_0.ref();
-            this.el.add_child (  child_0.el  );
+            this.el.set_child (  child_0.el  );
 
             // init method
 

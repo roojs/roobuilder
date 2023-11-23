@@ -47,7 +47,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add_child",
+         "* pack" : "set_child",
          "items" : [
           {
            "$ xns" : "Gtk",
