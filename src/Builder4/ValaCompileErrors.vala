@@ -82,9 +82,9 @@ public class Xcls_ValaCompileErrors : Object
     
         this.el.popup();
        
-       	if (expand != null) {
-        	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
-    	}
+       	//if (expand != null) {
+        //	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
+    //	}
        
              
      //   this.hpane.el.set_position( 0);
