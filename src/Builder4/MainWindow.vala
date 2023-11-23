@@ -370,7 +370,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
             	_this.windowspopup.el.hide();
-            	_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);
+            	_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true); 
             });
         }
 
