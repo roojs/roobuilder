@@ -220,7 +220,7 @@
          "bool always_show_image" : true,
          "id" : "open_projects_btn",
          "listeners" : {
-          "clicked" : [
+          "activate" : [
            "  ( ) => {",
            "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
            "}"

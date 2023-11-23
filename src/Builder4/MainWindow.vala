@@ -543,7 +543,7 @@ public class Xcls_MainWindow : Object
             this.el.label = "Files / Projects";
 
             //listeners
-            this.el.clicked.connect( ( ) => {
+            this.el.activate.connect( ( ) => {
               	_this.windowstate.showPopoverFiles(this.el, _this.project, false);
             });
         }
