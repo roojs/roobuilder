@@ -16,7 +16,7 @@ namespace Palate {
 
 		CompilerError? parent = null;
 		string msg;
-		int line { get; set; default = 0 }
+		int line { get; set; default = 0; }
 
 		public CompilerError.new_line(CompilerError parent, int line, string msg) 
 		{
@@ -33,8 +33,8 @@ namespace Palate {
 		public CompilerError.new_file(string file, Json.Array jlines) 
 		{
 			this.file = file;
-			this.title = var title = GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) ;
-				+ " (" + lines.get_size().to_string() + ")";
+			this.title =  GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) 
+				+ " (" + jlines.get_size().to_string() + ")";
 			
             this.lines = new GLib.ListStore(typeof(CompilerError));
             
