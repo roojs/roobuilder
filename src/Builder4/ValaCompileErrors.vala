@@ -319,9 +319,8 @@ public class Xcls_ValaCompileErrors : Object
     false, // autexpand
     (item) => {
     
-    	return  new GLib.ListStore(typeof(Palate.CompilerError));
-    	
-    	//return ((Json.Object)item).childstore;
+    	 
+    	 return ((Palate.CompilerError)item).limes;
     
     }
     
