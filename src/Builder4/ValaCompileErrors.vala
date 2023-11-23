@@ -53,7 +53,7 @@ public class Xcls_ValaCompileErrors : Object
         // loop through parent childnre
           
         
-        Palete.CompilerError.jsonToListStore(tree, (GLib.ListStore)_this.model.el.model);
+        Palete.CompileError.jsonToListStore(tree, (GLib.ListStore)_this.model.el.model);
     
     
      
