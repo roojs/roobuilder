@@ -45,7 +45,7 @@ public class Xcls_GladeuiView : Object
         this.el.vexpand = true;
         var child_0 = new Xcls_GestureClick2( _this );
         child_0.ref();
-        this.el.add_controller(  child_0.el );
+        this.el.add_controller (  child_0.el  );
         var child_1 = new Xcls_ColumnView3( _this );
         child_1.ref();
         this.el.append(  child_1.el );
