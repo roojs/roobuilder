@@ -431,7 +431,7 @@
               {
                "$ xns" : "Gtk",
                "listeners" : {
-                "activate" : [
+                "clicked" : [
                  "() => {",
                  "    About.singleton().el.show();",
                  "    }"

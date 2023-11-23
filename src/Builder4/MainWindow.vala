@@ -1076,7 +1076,7 @@ public class Xcls_MainWindow : Object
             this.el.label = "About the Builder";
 
             //listeners
-            this.el.activate.connect( () => {
+            this.el.clicked.connect( () => {
                 About.singleton().el.show();
                 });
         }
