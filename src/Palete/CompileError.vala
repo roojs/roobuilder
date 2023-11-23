@@ -49,7 +49,7 @@ namespace Palete {
     				msg += (msg.length > 0) ? "\n" : "";
     				msg += ar.get_string_element(i);
     		    }
-    		    this.lines.append(new CompilerError.new_line(this, int.parse(line) ,msg));
+    		    this.lines.append(new CompileError.new_line(this, int.parse(line) ,msg));
     	 
             
             });
