@@ -369,11 +369,12 @@ public class WindowState : Object
 	public void projectEditInit()
 	{
 		this.roo_projectsettings_pop  =new Xcls_RooProjectSettings();
-		this.roo_projectsettings_pop.ref();  /// really?
+		//this.roo_projectsettings_pop.ref();  /// really?
 	
 		this.vala_projectsettings_pop  =new  ValaProjectSettingsPopover();
-		this.vala_projectsettings_pop.ref();
-		this.vala_projectsettings_pop.window = this.win;
+	//	this.vala_projectsettings_pop.ref();
+   		this.vala_projectsettings_pop.window = this.win;
+		this.vala_projectsettings_pop.el.set_parent(this.win.el); // = this.win;
 	
 		//((Gtk.Container)(this.win.projecteditview.el.get_widget())).add(this.projectsettings.el);
  
@@ -414,20 +415,7 @@ public class WindowState : Object
 		    pr = this.project;
 	    }
 	  
-	    /*
-        var active_file = this.left_tree.getActiveFile() ;
-        if (active_file != null) {
-            xtype = active_file.xtype;
-        } else {
-        
-        	return; // no active project
-            // we might be on the file brower..
-            //pr = this.left_projects.getSelectedProject();        
-            //if (pr != null) {
-            //    xtype = pr.xtype;
-            //}
-        } 
-        */
+	    
         if (pr.xtype == "") {
             return;
         }
@@ -437,6 +425,7 @@ public class WindowState : Object
 		}
 
 		// gtk..
+		
 		this.vala_projectsettings_pop.show(btn,(Project.Gtk)pr);
 	
 	}
@@ -579,6 +568,7 @@ public class WindowState : Object
 	{
 		this.file_details = new Xcls_PopoverFileDetails();
 		this.file_details.mainwindow = this.win;
+		this.file_details.el.set_parent(this.win.el);
 		// force it modal to the main window..
 		
 		this.file_details.success.connect((project,file) =>
