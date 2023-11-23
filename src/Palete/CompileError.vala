@@ -48,7 +48,7 @@ namespace Palate {
     				msg += (msg.length > 0) ? "\n" : "";
     				msg += ar.get_string_element(i);
     		    }
-    		    this.lines.append(neew CompilerError.new_line(this, int.parse(line) ,msg);
+    		    this.lines.append(neew CompilerError.new_line(this, int.parse(line) ,msg));
     	 
             
             });
