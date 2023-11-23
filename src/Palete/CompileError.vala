@@ -35,7 +35,7 @@ namespace Palate {
 		{
 			this.file = file;
 			this.title =  GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) 
-				+ " (" + jlines.get_size().to_string() + ")";
+				+ " (" + jlines.get_length().to_string() + ")";
 			
             this.lines = new GLib.ListStore(typeof(CompilerError));
             
@@ -72,8 +72,7 @@ namespace Palate {
 	 	}
 		
 		
-		
-		public CompilerError.new_line(CompilerError file, Json.Object line) 
+		 
 		
 		
 		public static Gee.ArrayList<CompilerError> fromResult(Json.Object tree)
