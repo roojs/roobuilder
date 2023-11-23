@@ -68,7 +68,7 @@
                 "    (item) => {",
                 "    ",
                 "    \t ",
-                "    \t return ((Palate.CompilerError)item).limes;",
+                "    \t return ((Palate.CompilerError)item).lines;",
                 "    ",
                 "    }",
                 "    ",

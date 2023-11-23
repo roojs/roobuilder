@@ -320,7 +320,7 @@ public class Xcls_ValaCompileErrors : Object
     (item) => {
     
     	 
-    	 return ((Palate.CompilerError)item).limes;
+    	 return ((Palate.CompilerError)item).lines;
     
     }
     
