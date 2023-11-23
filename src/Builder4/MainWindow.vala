@@ -203,6 +203,8 @@ public class Xcls_MainWindow : Object
             // set gobject values
             this.el.margin_end = 4;
             this.el.halign = Gtk.Align.START;
+            this.el.active = true;
+            this.el.popover =  _this.windowspopup.el;
             var child_0 = new Xcls_windowspopup( _this );
             child_0.ref();
             var child_1 = new Xcls_Box10( _this );

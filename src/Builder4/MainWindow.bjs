@@ -37,6 +37,7 @@
         {
          "# Gee.ArrayList<Gtk.Widget> mitems" : "",
          "$ Gtk.Align halign" : "Gtk.Align.START",
+         "$ Gtk.Popover popover" : " _this.windowspopup.el",
          "$ xns" : "Gtk",
          "* init" : [
           "{",
@@ -44,6 +45,7 @@
           "}",
           ""
          ],
+         "bool active" : true,
          "id" : "windowbtn",
          "int margin_end" : 4,
          "items" : [
