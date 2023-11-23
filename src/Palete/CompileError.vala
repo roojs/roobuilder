@@ -7,7 +7,7 @@ so they can be passed off to trees.
 
 namespace Palete {
 
-	public class  CompilerError : Object
+	public class  CompileError : Object
 	{
 		
 		public string file = "";
