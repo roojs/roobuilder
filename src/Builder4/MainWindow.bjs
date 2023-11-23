@@ -119,12 +119,6 @@
              "$ xns" : "Gtk",
              "string label" : "Windows (Add/List)",
              "xtype" : "Label"
-            },
-            {
-             "$ xns" : "Gtk",
-             "int margin_start" : 4,
-             "string icon_name" : "window-new",
-             "xtype" : "Image"
             }
            ],
            "xtype" : "Box"
