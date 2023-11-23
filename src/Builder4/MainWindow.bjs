@@ -37,7 +37,6 @@
         {
          "# Gee.ArrayList<Gtk.Widget> mitems" : "",
          "$ Gtk.Align halign" : "Gtk.Align.START",
-         "$ Gtk.ArrowType direction" : "Gtk.ArrowType.DOWN",
          "$ xns" : "Gtk",
          "* init" : [
           "{",
@@ -45,8 +44,6 @@
           "}",
           ""
          ],
-         "bool always_show_image" : true,
-         "bool use_popover" : false,
          "id" : "windowbtn",
          "int margin_end" : 4,
          "items" : [
@@ -116,7 +113,7 @@
            "\t_this.windowspopup.el.set_parent(this.el);",
            "",
            "\t_this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); ",
-           "    _this.windowspopup.el.popup();",
+           "    _this.windowspopup.el.popup(); ",
            "",
            "}",
            ""
