@@ -669,7 +669,7 @@ namespace Palete {
 			
 			// does this need to add properties to methods?
 			// these are fake methods.
-		 
+			 
 			
 			
 			this.add_node_default_from_ctor("Gtk.Box", "new");
