@@ -216,7 +216,7 @@ public class Xcls_MainWindow : Object
             }
 
             //listeners
-            this.el.clicked.connect( ( ) => {
+            this.el.activate.connect( ( ) => {
             	this.updateMenu();
             
             	_this.windowspopup.el.set_parent(this.el);
