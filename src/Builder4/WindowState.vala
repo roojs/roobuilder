@@ -373,7 +373,7 @@ public class WindowState : Object
 	
 		this.vala_projectsettings_pop  =new  ValaProjectSettingsPopover();
 		this.vala_projectsettings_pop.ref();
-		this.vala_projectsettings_pop.window = this.win;
+		this.vala_projectsettings_pop.set_parent(window); // = this.win;
 	
 		//((Gtk.Container)(this.win.projecteditview.el.get_widget())).add(this.projectsettings.el);
  
@@ -414,20 +414,7 @@ public class WindowState : Object
 		    pr = this.project;
 	    }
 	  
-	    /*
-        var active_file = this.left_tree.getActiveFile() ;
-        if (active_file != null) {
-            xtype = active_file.xtype;
-        } else {
-        
-        	return; // no active project
-            // we might be on the file brower..
-            //pr = this.left_projects.getSelectedProject();        
-            //if (pr != null) {
-            //    xtype = pr.xtype;
-            //}
-        } 
-        */
+	    
         if (pr.xtype == "") {
             return;
         }
@@ -437,6 +424,7 @@ public class WindowState : Object
 		}
 
 		// gtk..
+		
 		this.vala_projectsettings_pop.show(btn,(Project.Gtk)pr);
 	
 	}
