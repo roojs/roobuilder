@@ -60,7 +60,6 @@
              "int spacing" : 0,
              "items" : [
               {
-               "$ string label" : "\"New Window\"",
                "$ xns" : "Gtk",
                "* pack" : "append",
                "items" : [
@@ -85,11 +84,12 @@
                 "clicked" : [
                  "( ) => {",
                  "\t_this.windowspopup.el.hide();",
-                 "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);  ",
+                 "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
                  "}",
                  ""
                 ]
                },
+               "string label" : "New Window",
                "xtype" : "Button"
               },
               {
@@ -125,7 +125,7 @@
           }
          ],
          "listeners" : {
-          "clicked" : [
+          "activate" : [
            "( ) => {",
            "\tthis.updateMenu();",
            "",
@@ -220,7 +220,7 @@
          "bool always_show_image" : true,
          "id" : "open_projects_btn",
          "listeners" : {
-          "clicked" : [
+          "activate" : [
            "  ( ) => {",
            "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
            "}"
@@ -353,6 +353,7 @@
         {
          "$ tooltip_text" : "\"Project Details\"",
          "$ xns" : "Gtk",
+         "bool always_show_image" : true,
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
