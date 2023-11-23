@@ -641,6 +641,10 @@ namespace Palete {
 			// user defined ones..
 			
 			var dcg = this.project.compilegroups.get("_default_");
+			if (dcg == null) {
+			  GLib.debug("no compiler group _default_ available? );
+			  return;
+			}
 			var pkgs = this.fillDeps(dcg.packages);
 			
 	    	
