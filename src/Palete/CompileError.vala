@@ -81,7 +81,7 @@ namespace Palete {
 		{
 
 	        tree.foreach_member((obj, file, node) => {
-		        var fe = new CompilerError.new_file(file, tree.get_object_member(file));
+		        var fe = new CompileError.new_file(file, tree.get_object_member(file));
         		ls.append(fe);
              
 		    
