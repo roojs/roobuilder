@@ -107,6 +107,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "child",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -136,7 +137,6 @@
            ""
           ]
          },
-         "string icon_name" : "window-new",
          "xtype" : "Button",
          "| void updateMenu" : [
           "() {",

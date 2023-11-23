@@ -201,7 +201,6 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "window-new";
             this.el.margin_end = 4;
             this.el.halign = Gtk.Align.START;
             var child_0 = new Xcls_windowspopup( _this );
@@ -457,7 +456,7 @@ public class Xcls_MainWindow : Object
         public Xcls_Box10(Xcls_MainWindow _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
 
