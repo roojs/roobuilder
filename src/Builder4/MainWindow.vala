@@ -221,10 +221,10 @@ public class Xcls_MainWindow : Object
             this.el.activate.connect( ( ) => {
             	this.updateMenu();
             
-            	_this.windowspopup.el.set_parent(this.el);
+            //	_this.windowspopup.el.set_parent(this.el);
             
-            	_this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); 
-                _this.windowspopup.el.popup(); 
+            	//_this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); 
+            //    _this.windowspopup.el.popup(); 
             
             });
         }
