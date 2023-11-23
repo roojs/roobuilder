@@ -84,7 +84,7 @@
                 "clicked" : [
                  "( ) => {",
                  "\t_this.windowspopup.el.hide();",
-                 "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true); ",
+                 "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);  ",
                  "}",
                  ""
                 ]

@@ -363,14 +363,14 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.label = "New Window";
+            this.label = New Window;
             var child_0 = new Xcls_ShortcutController8( _this );
             child_0.ref();
 
             //listeners
             this.el.clicked.connect( ( ) => {
             	_this.windowspopup.el.hide();
-            	_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true); 
+            	_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);  
             });
         }
 
