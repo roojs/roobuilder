@@ -864,9 +864,8 @@ public class Xcls_MainWindow : Object
 
 
             // my vars (def)
-        public string label;
-        public bool always_show_image;
         public string icon_name;
+        public string label;
 
         // ctor
         public Xcls_Button24(Xcls_MainWindow _owner )
@@ -875,9 +874,8 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.label = Edit Project Settings;
-            this.always_show_image = true;
             this.icon_name = emblem-system;
+            this.label = Edit Project Settings;
 
             //listeners
             this.el.clicked.connect( ( ) => {

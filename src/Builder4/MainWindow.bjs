@@ -353,7 +353,6 @@
         {
          "$ tooltip_text" : "\"Project Details\"",
          "$ xns" : "Gtk",
-         "bool always_show_image" : true,
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
