@@ -216,7 +216,7 @@ public class Xcls_MainWindow : Object
             }
 
             //listeners
-            this.el.activate.connect( ( ) => {
+            this.el.clicked.connect( ( ) => {
             	this.updateMenu();
             
             	 _this.windowspopup.el.set_parent(this.el);
@@ -543,7 +543,7 @@ public class Xcls_MainWindow : Object
             this.el.label = "Files / Projects";
 
             //listeners
-            this.el.activate.connect( ( ) => {
+            this.el.clicked.connect( ( ) => {
               	_this.windowstate.showPopoverFiles(this.el, _this.project, false);
             });
         }
