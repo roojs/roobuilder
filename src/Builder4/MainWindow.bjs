@@ -60,6 +60,7 @@
              "int spacing" : 0,
              "items" : [
               {
+               "$ string label" : "New Window",
                "$ xns" : "Gtk",
                "* pack" : "append",
                "items" : [
@@ -89,7 +90,6 @@
                  ""
                 ]
                },
-               "string label" : "New Window",
                "xtype" : "Button"
               },
               {
