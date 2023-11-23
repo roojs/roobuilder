@@ -19,7 +19,7 @@ namespace Palete {
 		public string msg;
 		public  int line { get; set; default = -1; }
 
-		public CompileError.new_line(CompilerError parent, int line, string msg) 
+		public CompileError.new_line(CompileError parent, int line, string msg) 
 		{
 			this.lines = new GLib.ListStore(typeof(CompileError));
 			this.parent = parent;
