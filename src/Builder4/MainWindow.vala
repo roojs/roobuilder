@@ -489,6 +489,7 @@ public class Xcls_MainWindow : Object
 
             // set gobject values
             this.el.icon_name = "window-new";
+            this.el.margin_start = 4;
         }
 
         // user defined functions
