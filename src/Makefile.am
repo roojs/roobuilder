@@ -184,7 +184,7 @@ BUIDERPALETE =  Palete/Gir.vala \
 		Palete/ValaSource.vala \
 		Palete/ValaSourceCompiler.vala \
 		Palete/CompletionProvider.vala \
-		Palete/CompilerError.vala \		
+		Palete/CompileError.vala \		
 		$(roobuilder_CODEGEN)
 		
 # 		c/jscore_object_call_as_function.c \
