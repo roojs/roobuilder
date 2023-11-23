@@ -369,7 +369,7 @@ public class WindowState : Object
 	public void projectEditInit()
 	{
 		this.roo_projectsettings_pop  =new Xcls_RooProjectSettings();
-		this.roo_projectsettings_pop.ref();  /// really?
+		//this.roo_projectsettings_pop.ref();  /// really?
 	
 		this.vala_projectsettings_pop  =new  ValaProjectSettingsPopover();
 	//	this.vala_projectsettings_pop.ref();
@@ -568,6 +568,7 @@ public class WindowState : Object
 	{
 		this.file_details = new Xcls_PopoverFileDetails();
 		this.file_details.mainwindow = this.win;
+		this.file_details.el.set_parent(this.win.el);
 		// force it modal to the main window..
 		
 		this.file_details.success.connect((project,file) =>
