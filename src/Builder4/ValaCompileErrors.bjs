@@ -62,7 +62,7 @@
                "$ xns" : "Gtk",
                "* ctor" : [
                 "new Gtk.TreeListModel(",
-                "    new GLib.ListStore(typeof(Json.Object)), //..... << that's our store..",
+                "    new GLib.ListStore(typeof(Palate.CompilerError)), //..... << that's our store..",
                 "    false, // passthru",
                 "    false, // autexpand",
                 "    (item) => {",

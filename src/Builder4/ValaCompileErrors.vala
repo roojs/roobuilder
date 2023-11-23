@@ -314,7 +314,7 @@ public class Xcls_ValaCompileErrors : Object
             _this = _owner;
             _this.model = this;
             this.el = new Gtk.TreeListModel(
-    new GLib.ListStore(typeof(Json.Object)), //..... << that's our store..
+    new GLib.ListStore(typeof(Palate.CompilerError)), //..... << that's our store..
     false, // passthru
     false, // autexpand
     (item) => {
