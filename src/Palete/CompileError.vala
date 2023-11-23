@@ -17,7 +17,7 @@ namespace Palate {
 
 		public CompilerError? parent = null;
 		public string msg;
-		public  int line { get; set; default = 0; }
+		public  int line { get; set; default = -1; }
 
 		public CompilerError.new_line(CompilerError parent, int line, string msg) 
 		{
