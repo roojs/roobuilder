@@ -477,7 +477,7 @@ public class Xcls_ValaCompileErrors : Object
             		// did not click on a line.
             		return;
             	}
-            	 
+            	 x
             	 
                 var fname  = ce.parent.file;
               	var line = ce.line;  
