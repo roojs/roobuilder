@@ -15,13 +15,13 @@ namespace Palete {
 		
 		public GLib.ListStore lines;
 
-		public CompilerError? parent = null;
+		public CompileError? parent = null;
 		public string msg;
 		public  int line { get; set; default = -1; }
 
-		public CompilerError.new_line(CompilerError parent, int line, string msg) 
+		public CompileError.new_line(CompilerError parent, int line, string msg) 
 		{
-			this.lines = new GLib.ListStore(typeof(CompilerError));
+			this.lines = new GLib.ListStore(typeof(CompileError));
 			this.parent = parent;
 			this.line = line;
 			this.msg = msg;
@@ -31,13 +31,13 @@ namespace Palete {
 		
 
 
-		public CompilerError.new_file(string file, Json.Object jlines) 
+		public CompileError.new_file(string file, Json.Object jlines) 
 		{
 			this.file = file;
 			this.title =  GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) 
 				+ " (" + jlines.get_size().to_string() + ")";
 			
-            this.lines = new GLib.ListStore(typeof(CompilerError));
+            this.lines = new GLib.ListStore(typeof(CompileError));
             
             jlines.foreach_member((obja, line, nodea) => {
                 var msg  = "";
