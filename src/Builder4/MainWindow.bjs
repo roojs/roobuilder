@@ -107,6 +107,17 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "child",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "string icon_name" : "window-new",
+             "xtype" : "Image"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "Label"
+            }
+           ],
            "xtype" : "Box"
           }
          ],
