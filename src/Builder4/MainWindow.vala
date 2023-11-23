@@ -184,7 +184,7 @@ public class Xcls_MainWindow : Object
     }
     public class Xcls_windowbtn : Object
     {
-        public Gtk.MenuButton el;
+        public Gtk.Button el;
         private Xcls_MainWindow  _this;
 
 
@@ -196,15 +196,13 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.windowbtn = this;
-            this.el = new Gtk.MenuButton();
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.margin_end = 4;
             this.el.halign = Gtk.Align.START;
-            this.el.active = true;
-            this.el.popover =  _this.windowspopup.el;
             var child_0 = new Xcls_windowspopup( _this );
             child_0.ref();
             var child_1 = new Xcls_Box10( _this );
