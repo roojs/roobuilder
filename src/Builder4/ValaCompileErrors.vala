@@ -217,6 +217,7 @@ public class Xcls_ValaCompileErrors : Object
 
             // set gobject values
             this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_selmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;

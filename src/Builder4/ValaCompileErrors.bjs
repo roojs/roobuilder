@@ -49,6 +49,7 @@
          "$ xns" : "Gtk",
          "* pack" : "set_child",
          "bool hexpand" : true,
+         "bool vexpand" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
