@@ -82,11 +82,12 @@ namespace Palate {
 		        var fe = new CompilerError.new_file(file, tree.get_object_member(file));
         		ret.add(fe);
              
-        
-        });
+		    
+		    });
           
 		
 		}
+	 
 		
 	}
 	
