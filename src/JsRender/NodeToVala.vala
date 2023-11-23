@@ -862,7 +862,7 @@ public class JsRender.NodeToVala : Object {
 			return;  
 		}
 		var childcls =  this.file.project.palete.getClass(child.fqn()); // very trusting..
-		if (!childcls) {
+		if (childcls == null) {
 		  return;
 		}
 		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
