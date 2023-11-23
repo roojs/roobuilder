@@ -67,7 +67,9 @@ namespace Palete {
 		public string line_msg {
 			set {}
 			owned  get {
-			 	return GLib.Markup.escape_text(this.line.to_string() + ": " + this.msg);
+				return this.parent == null ? 
+					 GLib.Markup.escape_text(string.format("%s (%d)", this.file, this.lines.n_items)) : 			
+					 GLib.Markup.escape_text(this.line.to_string() + ": " + this.msg);
 		 	}
 	 	}
 		
