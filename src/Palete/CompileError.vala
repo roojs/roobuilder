@@ -5,7 +5,7 @@ so they can be passed off to trees.
 
 */
 
-namespace Palate {
+namespace Palete {
 
 	public class  CompilerError : Object
 	{
