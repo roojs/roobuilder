@@ -1227,7 +1227,7 @@ public class Xcls_MainWindow : Object
         }
 
         // user defined functions
-        public void setNotices (Gee.ArrayList<Json.Object> nots, int qty) {
+        public void setNotices ( Json.Object nots, int qty) {
             
             if (qty < 1 ) {
             	this.el.hide();
