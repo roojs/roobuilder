@@ -115,6 +115,7 @@
             },
             {
              "$ xns" : "Gtk",
+             "string label" : "Windows (Add/List)",
              "xtype" : "Label"
             }
            ],
@@ -136,7 +137,6 @@
           ]
          },
          "string icon_name" : "window-new",
-         "string label" : "Windows (Add/List)",
          "xtype" : "Button",
          "| void updateMenu" : [
           "() {",
