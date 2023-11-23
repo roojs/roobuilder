@@ -199,7 +199,7 @@
              "\t// use selection?!",
              "\tvar tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;",
              "\tGLib.debug(\"SELECTED = %s\", tr.item.get_type().name());",
-             "\tvar ce = (Palete.CompilerError) tr.item;",
+             "\tvar ce = (Palete.CompileError) tr.item;",
              "",
              "\tif (ce.line < 0) {",
              "\t\t// did not click on a line.",

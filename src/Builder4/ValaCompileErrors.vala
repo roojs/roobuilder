@@ -469,7 +469,7 @@ public class Xcls_ValaCompileErrors : Object
             	// use selection?!
             	var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
             	GLib.debug("SELECTED = %s", tr.item.get_type().name());
-            	var ce = (Palete.CompilerError) tr.item;
+            	var ce = (Palete.CompileError) tr.item;
             
             	if (ce.line < 0) {
             		// did not click on a line.
