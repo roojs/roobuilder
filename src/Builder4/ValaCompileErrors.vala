@@ -43,7 +43,7 @@ public class Xcls_ValaCompileErrors : Object
     }
 
     // user defined functions
-    public void show (Gee.ArrayList<Json.Object> tree, Gtk.Widget onbtn) {
+    public void show ( Json.Object , Gtk.Widget onbtn) {
     
         
      
@@ -53,64 +53,12 @@ public class Xcls_ValaCompileErrors : Object
         // loop through parent childnre
           
         
-        var store = this.compile_result_store.el;    
-        
-        store.clear();
-     	Gtk.TreeIter? expand = null;
-        
-        tree.foreach_member((obj, file, node) => {
-        
-        	obj.set_string_member("file", file); // not sure if needed..
-        	_this.model.el.append(obj);
-        	
-        
-            // id line "display text", file
-    /*        
-            var title = GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) ;
-            Gtk.TreeIter iter;
-            GLib.debug("Add file %s", title);
-            store.append(out iter, null);
-            title += " (" + lines.get_size().to_string() + ")";
-            store.set(iter, 
-            	0, file, 
-            	1, -1, 
-            	2, title, 
-            	3, file,
-        	-1);
-            
-            if (this.window.windowstate.file.path == file) {
-                GLib.debug("Expanding Row: %s", file);
-                expand =  iter  ;
+        Palate.CompileError.jsonToListStore(tree, _this.model.el);
     
-            
-            }
-            var lines = tree.get_object_member(file);
-            
-            
-            lines.foreach_member((obja, line, nodea) => {
-                var msg  = "";
-                var ar = lines.get_array_member(line);
-                for (var i = 0 ; i < ar.get_length(); i++) {
-    				msg += (msg.length > 0) ? "\n" : "";
-    				msg += ar.get_string_element(i);
-    		    }
-    		    Gtk.TreeIter citer;  
-    		    GLib.debug("Add line %s", line);
-    		    store.append(out citer, iter);
-    		    store.set(citer, 
-    		            0, file + ":" + int.parse(line).to_string("%09d"), 
-    		            1, int.parse(line), 
-    		            2, GLib.Markup.escape_text(line + ": " + msg), 
-    		            3, file, 
-    		            -1);
-            
-            });
-            */
-             
-        
-        });
+    
+     
           
-        store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
+       // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
     
         var win = this.window.el;
         var  w = win.get_width();
