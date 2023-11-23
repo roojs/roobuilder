@@ -59,7 +59,7 @@ namespace Palate {
 		
 		public string file_line { // sorting?
 			set {}
-			get { 
+			owned get { 
 				return this.parent == null ? this.file : 
  					(this.parent.file + ":" + int.parse(this.line).to_string("%09d")); 
 			}
