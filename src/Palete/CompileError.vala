@@ -31,11 +31,11 @@ namespace Palate {
 		
 
 
-		public CompilerError.new_file(string file, Json.Array jlines) 
+		public CompilerError.new_file(string file, Json.Object jlines) 
 		{
 			this.file = file;
 			this.title =  GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) 
-				+ " (" + jlines.get_length().to_string() + ")";
+				+ " (" + jlines.get_size().to_string() + ")";
 			
             this.lines = new GLib.ListStore(typeof(CompilerError));
             
