@@ -77,7 +77,7 @@ namespace Palete {
 		 
 		
 		
-		public static Gee.ArrayList<CompilerError> jsonToListStore(Json.Object tree, GLib.ListStore ls)
+		public static void jsonToListStore(Json.Object tree, GLib.ListStore ls)
 		{
 
 	        tree.foreach_member((obj, file, node) => {
