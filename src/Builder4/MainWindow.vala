@@ -363,7 +363,7 @@ public class Xcls_MainWindow : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.label = New Window;
+            this.label = "New Window";
             var child_0 = new Xcls_ShortcutController8( _this );
             child_0.ref();
 
