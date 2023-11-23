@@ -113,9 +113,7 @@ namespace Palete {
 			this.add_special_children("Gtk.Window","Gtk.HeaderBar", "titlebar");
 		
 			this.add_special_children("Gtk.Stack","Gtk.Label", "titles[]");
-			this.add_special_children("Gtk.TreeView","Gtk.TreeViewColumn", ""); // any viewcolum added..
- 			this.add_special_children("Gtk.TreeViewColumn","Gtk.CellRenderer", "");
- 			
+		 
  			this.add_special_children("Gtk.Dialog","Gtk.Button", "buttons[]");
 		 	//this.add_special_children("Gtk.Dialog","Gtk.Button", "response_id");
 			this.add_special_children("Gtk.RadioButton","Gtk.Button", "_group_name"); // fake property
@@ -193,8 +191,7 @@ namespace Palete {
 		};
 		
 		string[] widgets_blacklist = {
-			"Gtk.Arrow", //Depricated
-			
+		 	
 			"Gtk.ShortcutLabel",
 			"Gtk.ShortcutsGroup",
 			"Gtk.ShortcutsSection",
@@ -212,7 +209,7 @@ namespace Palete {
 			"Gtk.OffscreenWindow",
 			"Gtk.Plug",
 			"Gtk.HSV",
-			"Gtk.ImageMenuItem", //deprecated? (not sure why it's not been picked up)
+ 
 			
 			"Gtk.Menu", // it's added as a special only?
 			"Gtk.MenuItem",
@@ -273,7 +270,7 @@ namespace Palete {
 					
 					if (fqn == black || cls.implements.contains(black) || cls.inherits.contains(black)) {
 						is_black = true;
-						all_no_parent.add(fqn);
+						this.all_no_parent.add(fqn);
 						
 						break;
 					}
