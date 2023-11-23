@@ -229,7 +229,7 @@
          "string icon_name" : "system-file-manager",
          "string label" : "Files / Projects",
          "tooltop_text" : "\"Open File\"",
-         "xtype" : "MenuButton"
+         "xtype" : "Button"
         }
        ],
        "xtype" : "Box"
