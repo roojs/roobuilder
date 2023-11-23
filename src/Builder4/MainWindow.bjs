@@ -103,6 +103,11 @@
             }
            ],
            "xtype" : "Popover"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "child",
+           "xtype" : "Box"
           }
          ],
          "listeners" : {
