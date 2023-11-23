@@ -9,14 +9,15 @@ namespace Palate {
 
 	public class  CompilerError : Object
 	{
-		string file = "";
-		string title = "";
 		
-		GLib.ListStore lines;
+		public string file = "";
+		public string title = "";
+		
+		public GLib.ListStore lines;
 
-		CompilerError? parent = null;
-		string msg;
-		int line { get; set; default = 0; }
+		public CompilerError? parent = null;
+		public string msg;
+		public  int line { get; set; default = 0; }
 
 		public CompilerError.new_line(CompilerError parent, int line, string msg) 
 		{
@@ -48,7 +49,7 @@ namespace Palate {
     				msg += (msg.length > 0) ? "\n" : "";
     				msg += ar.get_string_element(i);
     		    }
-    		    this.lines.append(neew CompilerError.new_line(this, int.parse(line) ,msg));
+    		    this.lines.append(new CompilerError.new_line(this, int.parse(line) ,msg));
     	 
             
             });
@@ -56,14 +57,14 @@ namespace Palate {
 		
 		}
 		
-		public file_line { // sorting?
+		public string file_line { // sorting?
 			set {}
 			get { 
 				return this.parent == null ? this.file : 
  					(this.parent.file + ":" + int.parse(this.line).to_string("%09d")); 
 			}
 		}
-		public line_msg {
+		public string line_msg {
 			set {}
 			get {
 			 	return GLib.Markup.escape_text(this.line + ": " + this.msg);
