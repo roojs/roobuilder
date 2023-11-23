@@ -138,7 +138,7 @@
            ""
           ]
          },
-         "xtype" : "MButton",
+         "xtype" : "MenuButton",
          "| void updateMenu" : [
           "() {",
           "\t foreach(var m in  this.mitems) {",

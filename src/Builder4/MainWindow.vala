@@ -184,7 +184,7 @@ public class Xcls_MainWindow : Object
     }
     public class Xcls_windowbtn : Object
     {
-        public Gtk.Button el;
+        public Gtk.MenuButton el;
         private Xcls_MainWindow  _this;
 
 
@@ -196,7 +196,7 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.windowbtn = this;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.MenuButton();
 
             // my vars (dec)
 
