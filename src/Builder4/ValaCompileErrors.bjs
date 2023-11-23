@@ -67,7 +67,7 @@
                 "    false, // autexpand",
                 "    (item) => {",
                 "    ",
-                "    \treturn  new GLib.ListStore(typeof(Json.Object));",
+                "    \treturn  new GLib.ListStore(typeof(Palate.CompilerError));",
                 "    \t",
                 "    \t//return ((Json.Object)item).childstore;",
                 "    ",
