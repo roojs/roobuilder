@@ -314,13 +314,13 @@ public class Xcls_ValaCompileErrors : Object
             _this = _owner;
             _this.model = this;
             this.el = new Gtk.TreeListModel(
-    new GLib.ListStore(typeof(Palate.CompilerError)), //..... << that's our store..
+    new GLib.ListStore(typeof(Palete.CompilerError)), //..... << that's our store..
     false, // passthru
     false, // autexpand
     (item) => {
     
     	 
-    	 return ((Palate.CompilerError)item).lines;
+    	 return ((Palete.CompilerError)item).lines;
     
     }
     
