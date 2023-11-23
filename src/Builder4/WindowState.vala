@@ -372,8 +372,8 @@ public class WindowState : Object
 		this.roo_projectsettings_pop.ref();  /// really?
 	
 		this.vala_projectsettings_pop  =new  ValaProjectSettingsPopover();
-		this.vala_projectsettings_pop.ref();
-		this.vala_projectsettings_pop.set_parent(window); // = this.win;
+	//	this.vala_projectsettings_pop.ref();
+		this.vala_projectsettings_pop.el.set_parent(window); // = this.win;
 	
 		//((Gtk.Container)(this.win.projecteditview.el.get_widget())).add(this.projectsettings.el);
  
