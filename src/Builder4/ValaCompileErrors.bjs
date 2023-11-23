@@ -207,7 +207,7 @@
              "\t\t// did not click on a line.",
              "\t\treturn;",
              "\t}",
-             "\t x",
+             "\t ",
              "\t ",
              "    var fname  = ce.parent.file;",
              "  \tvar line = ce.line;  ",
