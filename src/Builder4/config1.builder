@@ -155,7 +155,8 @@
             "../Builder4/PopoverFiles.vala",
             "../JsRender/NodeToGlade.vala",
             "../JsRender/NodeProp.vala",
-            "../Project/GtkValaSettings.vala"
+            "../Project/GtkValaSettings.vala",
+            "../Palete/CompileError.vala"
         ],
         "packages" : []
     },
