@@ -458,6 +458,21 @@ public class Xcls_ValaCompileErrors : Object
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
             	
+            	if (n_press < 2) { /// doubleclick?
+            		return;
+            	}
+            	string pos;
+            	
+            	
+            	// use selection?!
+            	var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
+            	GLib.debug("SELECTED = %s", tr.item.get_type().name());
+            	var ce = (Palete.ComplierError) tr.item;
+            
+            	if (ce.line < 0) {
+            		// did not click on a line.
+            		return;
+            	}
             	
             	
             	Gtk.TreeViewColumn col;
