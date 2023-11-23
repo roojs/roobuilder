@@ -17,6 +17,10 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "xtype" : "GestureClick"
+    },
+    {
+     "$ xns" : "Gtk",
      "items" : [
       {
        "$ xns" : "Gtk",
