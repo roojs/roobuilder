@@ -1224,14 +1224,62 @@ namespace Palete {
 			return ret;
 		}
 		
+		
+		void add_classes_from_method(GirObject cls, string method , Gee.ArrayList<string> ret)
+		{
+		
+		}
+		/**
+		  this is the real list of objects that appear in the add object pulldown
+		  @param in_rval "*top" || "Gtk.Widget"
+		  
+		*/
 		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props)
         {
         	return this.original_getChildList(  in_rval, with_props);
+        	
+        	// CACHE ?	
+        	var ret = new Gee.ArrayList<string>();
+        	
+        	if (in_rval == "*top") {
+        		// everythign that's not depricated and extends Gtk.Widget
+        		
+        	
+        	
+        	}
+        	var cls = this.getClass(in_rval);
+        	// look through methods of in_rval
+        	// set_X << ignore
+        	// probably methods:
+        	this.add_classes_from_method(cls, "add_controller", ret);
+        	this.add_classes_from_method(cls, "add_shortcut", ret);
+        	this.add_classes_from_method(cls, "add_tick_callback", ret); // wtf does this do.
+        	this.add_classes_from_method(cls, "append", ret);
+        	  // add_controller 1st arge = ??
+        	  // add_menomic_label ??? << no ???
+        	  // add_shortcut? 
+        	 // add_tick_callback ?
+        	 // append << core one to add stuff..
+        	 
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
     	}
 		public override Gee.ArrayList<string> getDropList(string rval)
 		{
 			return this.default_getDropList(rval);
-		}	
+		}
+		
+		
+		
+		
+		
     }
 }
  
