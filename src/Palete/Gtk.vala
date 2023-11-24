@@ -1227,7 +1227,9 @@ namespace Palete {
 		
 		void add_classes_from_method(GirObject cls, string method , Gee.ArrayList<string> ret)
 		{
-		
+			// does class have this method?
+			// add all the possible classes to ret based on first arguemnt?
+			
 		}
 		/**
 		  this is the real list of objects that appear in the add object pulldown
