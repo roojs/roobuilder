@@ -1229,6 +1229,8 @@ namespace Palete {
 		{
 			// does class have this method?
 			// add all the possible classes to ret based on first arguemnt?
+			// skip dupe // skip depricated
+			// skip not object // skip GLib.Object (base)
 			
 		}
 		/**
