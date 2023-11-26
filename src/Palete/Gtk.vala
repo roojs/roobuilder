@@ -1227,8 +1227,15 @@ namespace Palete {
 		
 		void add_classes_from_method(GirObject cls, string method , Gee.ArrayList<string> ret)
 		{
+			
+			
 			// does class have this method?
+			if (!cls.methods.has_key(method)) {
+				return;
+			}
 			// add all the possible classes to ret based on first arguemnt?
+			var m = cls.methods.get(method);
+			
 			// skip dupe // skip depricated
 			// skip not object // skip GLib.Object (base)
 			
