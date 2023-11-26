@@ -1247,10 +1247,21 @@ namespace Palete {
 		
 		void addRealClasses(Gee.ArrayList<string>  ret, string cn)
 		{
+			if (!cn.contains(".")) {
+				return;
+			}
+			
 			var w = this.getClass(cn);
 			if (w == null) {
 				return;
 			}
+			if (ret.contains(cn)) {
+				return;
+			}
+			if (!w.is_deprecated &&  !w.is_abstract) {
+    			ret.add(cn);
+			}
+			
     		foreach (var str in w.implementations) {
     			var c = this.getClass(str);
     			if (c.is_deprecated || c.is_abstract) {
@@ -1301,10 +1312,18 @@ namespace Palete {
         	 // append << core one to add stuff..
         	 
         	if (!with_props) {
+        		
+        	
         		return ret;. 
         	}
+        	foreach(var pn in cls.props.values) {
         	
+        		if (!pn.is_writable && !pn.ctor_only) {
+        			continue;
+    			}
         	
+        		this.addRealClasses(pn.type);
+    		}
         	
         	
         	
