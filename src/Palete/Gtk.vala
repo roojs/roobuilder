@@ -1235,7 +1235,11 @@ namespace Palete {
 			}
 			// add all the possible classes to ret based on first arguemnt?
 			var m = cls.methods.get(method);
-			
+			var ty = m.params.get(0).type;
+			if (!ty.contains(".")) {
+				return;
+			}
+			this.addRealClasses(ret, ty);
 			// skip dupe // skip depricated
 			// skip not object // skip GLib.Object (base)
 			
@@ -1244,6 +1248,9 @@ namespace Palete {
 		void addRealClasses(Gee.ArrayList<string>  ret, string cn)
 		{
 			var w = this.getClass(cn);
+			if (w == null) {
+				return;
+			}
     		foreach (var str in w.implementations) {
     			var c = this.getClass(str);
     			if (c.is_deprecated || c.is_abstract) {
