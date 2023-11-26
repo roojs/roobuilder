@@ -1247,6 +1247,21 @@ namespace Palete {
         	
         	if (in_rval == "*top") {
         		// everythign that's not depricated and extends Gtk.Widget
+        		// even a gtk window and about dialog are widgets
+        		
+        		var w = this.getClass("Gtk.Widget");
+        		foreach (var str in w.implementations) {
+        			var c = this.getClass(str);
+        			if (c.is_deprecated || c.is_abstract) {
+        				continue;
+    				}
+    				if (ret.contains(str)) {
+    					continue;
+					}
+					ret.append(str);
+        		}
+        		
+        		// windows?
         		
         	
         	
