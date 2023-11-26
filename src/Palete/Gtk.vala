@@ -1300,9 +1300,10 @@ namespace Palete {
         	 // add_tick_callback ?
         	 // append << core one to add stuff..
         	 
-        	if (with_props) {
-        		// .. 
+        	if (!with_props) {
+        		return ret;. 
         	}
+        	
         	
         	
         	
