@@ -1233,6 +1233,23 @@ namespace Palete {
 			// skip not object // skip GLib.Object (base)
 			
 		}
+		
+		void addRealClasses(Gee.ArrayList<string>  ret, string cn)
+		{
+			var w = this.getClass(cn);
+    		foreach (var str in w.implementations) {
+    			var c = this.getClass(str);
+    			if (c.is_deprecated || c.is_abstract) {
+    				continue;
+				}
+				if (ret.contains(str)) {
+					continue;
+				}
+				ret.add(str);
+    		}
+		}
+        		
+		
 		/**
 		  this is the real list of objects that appear in the add object pulldown
 		  @param in_rval "*top" || "Gtk.Widget"
@@ -1248,20 +1265,9 @@ namespace Palete {
         	if (in_rval == "*top") {
         		// everythign that's not depricated and extends Gtk.Widget
         		// even a gtk window and about dialog are widgets
+        		this.addRealClasses(ret, "Gtk.Widget");
         		
-        		var w = this.getClass("Gtk.Widget");
-        		foreach (var str in w.implementations) {
-        			var c = this.getClass(str);
-        			if (c.is_deprecated || c.is_abstract) {
-        				continue;
-    				}
-    				if (ret.contains(str)) {
-    					continue;
-					}
-					ret.append(str);
-        		}
-        		
-        		// windows?
+        		 return ret;
         		
         	
         	
@@ -1280,8 +1286,9 @@ namespace Palete {
         	 // add_tick_callback ?
         	 // append << core one to add stuff..
         	 
-        	
-        	
+        	if (with_props) {
+        		// .. 
+        	}
         	
         	
         	
@@ -1292,7 +1299,10 @@ namespace Palete {
     	}
 		public override Gee.ArrayList<string> getDropList(string rval)
 		{
+			
 			return this.default_getDropList(rval);
+			return this.getChildList(rval, true);
+			
 		}
 		
 		
