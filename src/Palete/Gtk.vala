@@ -1320,9 +1320,9 @@ namespace Palete {
         	if (in_rval == "*top") {
         		// everythign that's not depricated and extends Gtk.Widget
         		// even a gtk window and about dialog are widgets
-        		this.addRealClasses(ret, "Gtk.Widget");
+        		this.addRealClasses(ret, "Gtk.Widget", true);
         		
-        		 return ret;
+        		return ret;
         		
         	
         	
