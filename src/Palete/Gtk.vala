@@ -113,13 +113,14 @@ namespace Palete {
 			
 			this.map.add(u);
 			*/
-			 
+			/* 
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				this.build_class_children_from_props(gir.classes);
 			}
+			*/
 			// oddities.
-
+/*
 			this.add_special_children("Gtk.Menu","Gtk.MenuItem", "");
 			this.add_special_children("Gtk.MenuBar", "Gtk.MenuItem", "");
 			this.add_special_children("Gtk.Toolbar", "Gtk.ToolItem", "");
@@ -136,7 +137,7 @@ namespace Palete {
 			this.add_special_children("Gtk.ButtonBox","Gtk.Button", "");
  
 			this.add_special_children("Gtk.Widget","Gtk.EventController", "");
-			
+			*/
 			this.init_node_defaults();
 		    this.init_child_defaults();  
 		    
