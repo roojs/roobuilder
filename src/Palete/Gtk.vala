@@ -1390,13 +1390,13 @@ namespace Palete {
 			var pr = (Project.Gtk) this.project;
 			
 			if (pr.dropList != null) {
-				GLib.debugl("Drop list alreayd loaded");
+				GLib.debug("Drop list alreayd loaded");
 				return;
 			}
 			
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
-			 	GLib.debugl("building drop list for package %s", key);
+			 	GLib.debug("building drop list for package %s", key);
 				this.buildChildListForDropping(gir.classes);
 			}    	
 		}
@@ -1407,7 +1407,7 @@ namespace Palete {
 
 			
 			foreach(var cls in classes.keys) {
-			 	GLib.debugl("building drop list for class %s", cls);
+			 	GLib.debug("building drop list for class %s", cls);
 				this.buildDropList(cls, this.getChildList(cls, true));
 			}
 
