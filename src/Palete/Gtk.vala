@@ -1402,7 +1402,7 @@ namespace Palete {
 				
 				this.buildChildListForDropping(gir.classes);
 			}    	
-
+		}
 
 		public void buildChildListForDropping(Gee.HashMap<string,GirObject> classes)
 		{
