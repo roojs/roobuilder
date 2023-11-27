@@ -1441,6 +1441,7 @@ namespace Palete {
 			 	GLib.debug("returning empty drop list for  %s", rval);
 				return new Gee.ArrayList<string>();
 			}
+		 	GLib.debug("returning %d items in drop list  %s", pr.dropList.get(rval).size, rval);			
 			return  pr.dropList.get(rval);
 
 			
