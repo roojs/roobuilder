@@ -63,7 +63,7 @@ namespace Palete {
     	
 			
 		    
-			this.load();
+			//this.load(); // cant do this yet..
 			
 			
 			
