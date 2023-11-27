@@ -10,7 +10,7 @@ namespace Palete
 		MISSING_FILE,
 		INVALID_VALUE
 	}
-
+/*
 	public class Usage : Object 
 	{
 		public Gee.ArrayList<string> left;
@@ -54,7 +54,7 @@ namespace Palete
 		}
 		
 	}
-
+*/
 	
 
    //static Gee.HashMap<string,Palete>? cache = null;
