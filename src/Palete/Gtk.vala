@@ -87,7 +87,7 @@ namespace Palete {
 			Gir.factory(this.project, "Gtk"); // triggers a load...
 			var pr = (Project.Gtk) this.project;
 			
-			
+			/*
 			this.map = new Gee.ArrayList<Usage>();
  			this.generic_child_widgets = new Gee.ArrayList<string>();
 			this.all_no_parent =  new Gee.ArrayList<string>();
@@ -112,7 +112,7 @@ namespace Palete {
 			//GLib.debug("add Usage: %s", u.to_string());
 			
 			this.map.add(u);
-			
+			*/
 			 
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
@@ -1241,9 +1241,7 @@ namespace Palete {
 			// add all the possible classes to ret based on first arguemnt?
 			var m = cls.methods.get(method);
 			var ty = m.params.get(0).type;
-			if (!ty.contains(".")) {
-				return;
-			}
+			 
 			this.addRealClasses(ret, ty);
 			// skip dupe // skip depricated
 			// skip not object // skip GLib.Object (base)
