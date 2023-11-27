@@ -59,6 +59,11 @@ namespace Palete {
 		    this.package_cache.add_all(
 			    this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
 		    );
+		    
+    		this.child_list_cache = new Gee.HashMap<string,Gee.ArrayList<string>>();
+			this.child_list_cache_props = new Gee.HashMap<string,Gee.ArrayList<string>>();
+		    
+		    
 				//this.load();
 		    // various loader methods..
 		      //this.map = [];
@@ -1275,6 +1280,8 @@ namespace Palete {
 		}
         		
 		
+		Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache;
+		Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props;
 		/**
 		  this is the real list of objects that appear in the add object pulldown
 		  @param in_rval "*top" || "Gtk.Widget"
@@ -1282,7 +1289,14 @@ namespace Palete {
 		*/
 		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props)
         {
-        	return this.original_getChildList(  in_rval, with_props);
+        	//return this.original_getChildList(  in_rval, with_props);
+        	
+        	if (with_props && this.child_list_cache_props.has_key(in_rval)) {
+        		return this.child_list_cache_props.get(in_rval);
+    		}
+        	if (!with_props && this.child_list_cache.has_key(in_rval)) {
+				return this.child_list_cache.get(in_rval);
+        	}
         	
         	// CACHE ?	
         	var ret = new Gee.ArrayList<string>();
@@ -1313,8 +1327,8 @@ namespace Palete {
         	 
         	if (!with_props) {
         		
-        	
-        		return ret;. 
+	        	this.child_list_cache.set(in_rval, ret);
+        		return ret; 
         	}
         	foreach(var pn in cls.props.values) {
         	
@@ -1322,10 +1336,10 @@ namespace Palete {
         			continue;
     			}
         	
-        		this.addRealClasses(pn.type);
+        		this.addRealClasses(ret, pn.type);
     		}
         	
-        	
+        	this.child_list_cache_props.set(in_rval, ret);        	
         	
         	
         	
