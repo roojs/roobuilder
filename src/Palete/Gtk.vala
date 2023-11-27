@@ -63,7 +63,7 @@ namespace Palete {
     	
 			
 		    
-			//this.load(); // cant do this yet..
+			//this.load(); // cant do this yet.. (tr
 			
 			
 			
@@ -1402,6 +1402,11 @@ namespace Palete {
 
 		public void buildChildListForDropping(Gee.HashMap<string,GirObject> classes)
 		{
+			
+			if (pr.dropList != null) {
+				return;
+			}
+			
 			foreach(var cls in classes.keys) {
 				this.buildDropList(cls, this.getChildList(cls, true));
 			}
