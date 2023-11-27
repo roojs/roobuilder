@@ -1243,6 +1243,14 @@ namespace Palete {
 			}
 			// add all the possible classes to ret based on first arguemnt?
 			var m = cls.methods.get(method);
+			
+			if (m.params.size < 1) {
+				GLib.debug("%s: %s does not have any params?", cls.fqn(), method);
+				return;
+			}
+				
+			
+			
 			var ty = m.params.get(0).type;
 			 
 			this.addRealClasses(ret, ty);
