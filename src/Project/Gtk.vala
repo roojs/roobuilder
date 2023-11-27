@@ -32,7 +32,7 @@ namespace Project
 		*/
 		public Gee.HashMap<string,Palete.Gir> gir_cache = null;
 		public bool gir_cache_loaded = false;
- 
+ 		public Gee.HashMap<string,Gee.ArrayList<string>>? dropList = null;
 	  
 		public Gtk(string path) {
 		  
