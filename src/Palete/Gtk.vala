@@ -62,9 +62,13 @@ namespace Palete {
 		    
     		this.child_list_cache = new Gee.HashMap<string,Gee.ArrayList<string>>();
 			this.child_list_cache_props = new Gee.HashMap<string,Gee.ArrayList<string>>();
+		    this.dropList =  new Gee.HashMap<string,Gee.ArrayList<string>>();
+			
 		    
-		    
-				//this.load();
+			this.load();
+			
+			
+			
 		    // various loader methods..
 		      //this.map = [];
 		    //this.load();
@@ -86,6 +90,14 @@ namespace Palete {
 			
 			Gir.factory(this.project, "Gtk"); // triggers a load...
 			var pr = (Project.Gtk) this.project;
+		
+			foreach(var key in   pr.gir_cache.keys) {
+				var gir = pr.gir_cache.get(key);
+				
+				this.getChildListForDropping(gir.classes);
+			}
+			
+
 			
 			/*
 			this.map = new Gee.ArrayList<Usage>();
@@ -1278,7 +1290,7 @@ namespace Palete {
 				return;
 			}
 			
-			if (!allow_root && w.implements.contains("Gtk.Root")) {
+			if (!allow_root && w.implements.contains("Gtk.Native")) { // removes popover + window
 				return;
 			}
 			
@@ -1297,7 +1309,7 @@ namespace Palete {
 				if (ret.contains(str)) {
 					continue;
 				}
-				if (!allow_root && c.implements.contains("Gtk.Root")) {
+				if (!allow_root && c.implements.contains("Gtk.Native")) { // removes popover + window
 					continue;
 				}
 				
@@ -1381,9 +1393,27 @@ namespace Palete {
         	
         	
     	}
-		public override Gee.ArrayList<string> getDropList(string rval)
+    	
+		public void buildChildListForDropping(Gee.HashMap<string,GirObject> classes)
 		{
 			
+
+			foreach(var cls in classes.keys) {
+				this.buildDropList( this.getChildList(cls, true));
+			}
+
+			
+		
+		}
+		
+		
+		Gee.HashMap<string,Gee.ArrayList<string>> dropList;
+    	
+    	
+    	
+		public override Gee.ArrayList<string> getDropList(string rval)
+		{
+			// this is anything a widget can be dropped on.
 			//return this.default_getDropList(rval);
 			return this.getChildList(rval, true);
 			
