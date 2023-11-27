@@ -1260,7 +1260,7 @@ namespace Palete {
 			
 		}
 		
-		void addRealClasses(Gee.ArrayList<string>  ret, string cn)
+		void addRealClasses(Gee.ArrayList<string>  ret, string cn, bool allow_root = false)
 		{
 			if (!cn.contains(".")) {
 				return;
