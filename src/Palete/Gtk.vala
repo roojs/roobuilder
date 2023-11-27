@@ -303,7 +303,7 @@ namespace Palete {
 			}
 		
 		}
-		
+		/*
 		public void add_special_children(string parent, string child, string prop)
 		{
 			this.getClass(parent);
@@ -337,7 +337,7 @@ namespace Palete {
 			this.map.add(new Usage(localopts_l, localopts_r));
 			 
 		}
-		
+		*/
 		 
 		/**
 		 adds to the map a list of parent / child combinations
@@ -346,7 +346,7 @@ namespace Palete {
 		
 		*/
 		
-		
+		/*
 		public void build_class_children_from_props(Gee.HashMap<string,GirObject> classes)
 		{
 			
@@ -484,6 +484,7 @@ namespace Palete {
 			   
 		     
 		}
+		*/
 		
 		public string doc(string what) 
 		{
