@@ -31,9 +31,14 @@ namespace Project
 		*
 		*/
 		public Gee.HashMap<string,Palete.Gir> gir_cache = null;
+		
 		public bool gir_cache_loaded = false;
+		
+		// these are loaded / created by the palete.. but are project specific.
  		public Gee.HashMap<string,Gee.ArrayList<string>>? dropList = null;
-	  
+ 	    public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache;
+		public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props;
+		
 		public Gtk(string path) {
 		  
 		  
