@@ -88,7 +88,7 @@ namespace Palete
        
         public string name;
 
-		public Gee.ArrayList<Usage> map;
+		//public Gee.ArrayList<Usage> map;
 
 		public Gee.HashMap<string,GirObject> classes; // used in roo.. 
 		public Gee.HashMap<string,Gee.ArrayList<string>> dropCache;
@@ -98,7 +98,7 @@ namespace Palete
         {
 				// nothing?
 			this.project = project;
-			this.map = null;
+			//this.map = null;
 			this.classes = null;
 			this.dropCache = new Gee.HashMap<string,Gee.ArrayList<string>>() ;
         }
@@ -116,7 +116,7 @@ namespace Palete
             
          
 		// this is the old verison using 'Usage'... see flutter for a better version..
-	    
+	    /*
 		public  Gee.ArrayList<string> original_getChildList(string in_rval, bool with_prop)
         {
 
@@ -208,7 +208,7 @@ namespace Palete
 			return ret;
             
         }
-      
+      */
         public void saveTemplate (string name, JsRender.Node data)
         {
 
@@ -293,7 +293,7 @@ namespace Palete
 		}
 
 
-
+/*
 		public   void  loadUsageFile (string fname) {
 
 
@@ -325,7 +325,7 @@ namespace Palete
 					||
 					 Regex.match_simple ("^\\s+$", d)
 					||
-					Regex.match_simple ("^\\s*/", d)
+					Regex.match_simple ("^\\s" + "*" + "/", d)
 				 ){
 					continue;
 				}
@@ -359,6 +359,7 @@ namespace Palete
 			this.map = cfg;
 
 	   }
+	   */
 
 	 
 	 	public   void validateVala(
