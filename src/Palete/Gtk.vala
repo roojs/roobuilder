@@ -1239,6 +1239,7 @@ namespace Palete {
 			
 			// does class have this method?
 			if (!cls.methods.has_key(method)) {
+				GLib.debug("skip  %s does not have method ", cls.fqn(), method);
 				return;
 			}
 			// add all the possible classes to ret based on first arguemnt?
@@ -1328,7 +1329,7 @@ namespace Palete {
         	}
         	var cls = this.getClass(in_rval);
         	if (cls == null) {
-        		GLib.dbug("could not get class for %s", in_rval);
+        		GLib.debug("could not get class for %s", in_rval);
 	    		return ret;
 			}
         	
