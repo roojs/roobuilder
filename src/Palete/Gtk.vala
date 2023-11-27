@@ -1438,6 +1438,7 @@ namespace Palete {
 			this.buildChildListForDroppingProject();
 			var pr = (Project.Gtk) this.project;
 			if (!pr.dropList.has_key(rval)) {
+			 	GLib.debug("returning empty drop list for  %s", rval);
 				return new Gee.ArrayList<string>();
 			}
 			return  pr.dropList.get(rval);
