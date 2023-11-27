@@ -1252,7 +1252,7 @@ namespace Palete {
 				
 			
 			
-			var ty = m.params.get(0).type;
+			var ty = m.paramset.params.get(0).type;
 		 	GLib.debug("add  %s   method %s arg0 = %s", cls.fqn(), method, ty);
 			this.addRealClasses(ret, ty);
 			// skip dupe // skip depricated
