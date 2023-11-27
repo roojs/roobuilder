@@ -1408,7 +1408,7 @@ namespace Palete {
 			
 			foreach(var cls in classes.keys) {
 			 	GLib.debug("building drop list for class %s.%s", pkg, cls);
-				this.buildDropList(cls, this.getChildList(pkg + "." + cls, true));
+				this.buildDropList((pkg + "." + cls, this.getChildList(pkg + "." + cls, true));
 			}
 
 		}
