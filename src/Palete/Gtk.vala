@@ -1396,26 +1396,39 @@ namespace Palete {
     	
 		public void buildChildListForDropping(Gee.HashMap<string,GirObject> classes)
 		{
-			
-
 			foreach(var cls in classes.keys) {
-				this.buildDropList( this.getChildList(cls, true));
+				this.buildDropList(cls, this.getChildList(cls, true));
 			}
 
-			
-		
 		}
 		
 		
 		Gee.HashMap<string,Gee.ArrayList<string>> dropList;
     	
+    	public void buildDropList(string parent, Gee.ArrayList<string> children) 
+    	{
+    		foreach(var c in children) {
+    			if (!this.dropList.has_key(c)) {
+    				this.dropList.set(c, new Gee.ArrayList<string>());
+				}
+	    		var dl = this.dropList.get(c);
+	    		if (dl.contains(parent)) {
+	    			continue;
+    			}
+    			dl.add(parent);
+    		}
     	
+    	
+    	}
     	
 		public override Gee.ArrayList<string> getDropList(string rval)
 		{
-			// this is anything a widget can be dropped on.
-			//return this.default_getDropList(rval);
-			return this.getChildList(rval, true);
+			
+			if (!this.dropList.has_key(rvalc)) {
+				return new Gee.ArrayList<string>();
+			}
+			return  this.dropList.get(rval);
+
 			
 		}
 		
