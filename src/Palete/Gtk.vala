@@ -1412,8 +1412,7 @@ namespace Palete {
 
 		}
 		
-		
-		Gee.HashMap<string,Gee.ArrayList<string>> dropList;
+		 
     	
     	public void buildDropList(string parent, Gee.ArrayList<string> children) 
     	{
