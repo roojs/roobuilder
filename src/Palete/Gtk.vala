@@ -245,7 +245,7 @@ namespace Palete {
 		 * 
 		 *
 		*/
-		
+		/*
 		public void build_generic_children(Gee.HashMap<string,GirObject> classes)
 		{
 			foreach(var cls in classes.values) {
@@ -304,6 +304,7 @@ namespace Palete {
 			}
 		
 		}
+		*/
 		/*
 		public void add_special_children(string parent, string child, string prop)
 		{
