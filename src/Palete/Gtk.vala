@@ -1270,15 +1270,24 @@ namespace Palete {
 			if (w == null) {
 				return;
 			}
+			
 			if (w.nodetype != "Class" && w.nodetype != "Interface" ) {
 				return;
 			}
 			if (ret.contains(cn)) {
 				return;
 			}
+			
+			if (!allow_root && w.implements.contains("Gtk.Root")) {
+				return;
+			}
+			
 			if (!w.is_deprecated &&  !w.is_abstract && w.nodetype == "Class" ) {
     			ret.add(cn);
 			}
+			
+			
+			
 			
     		foreach (var str in w.implementations) {
     			var c = this.getClass(str);
@@ -1288,6 +1297,12 @@ namespace Palete {
 				if (ret.contains(str)) {
 					continue;
 				}
+				if (!allow_root && c.implements.contains("Gtk.Root")) {
+					continue;
+				}
+				
+				
+				
 				ret.add(str);
     		}
 		}
