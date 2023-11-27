@@ -1239,7 +1239,7 @@ namespace Palete {
 			
 			// does class have this method?
 			if (!cls.methods.has_key(method)) {
-				GLib.debug("skip  %s does not have method ", cls.fqn(), method);
+				GLib.debug("skip  %s does not have method %s", cls.fqn(), method);
 				return;
 			}
 			// add all the possible classes to ret based on first arguemnt?
@@ -1253,7 +1253,7 @@ namespace Palete {
 			
 			
 			var ty = m.params.get(0).type;
-			 
+		 	GLib.debug("add  %s   method %s arg0 = %s", cls.fqn(), method, ty);
 			this.addRealClasses(ret, ty);
 			// skip dupe // skip depricated
 			// skip not object // skip GLib.Object (base)
