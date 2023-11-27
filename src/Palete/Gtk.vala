@@ -1397,18 +1397,18 @@ namespace Palete {
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 			 	GLib.debug("building drop list for package %s", key);
-				this.buildChildListForDropping(gir.classes);
+				this.buildChildListForDropping(key, gir.classes);
 			}    	
 		}
 
-		public void buildChildListForDropping(Gee.HashMap<string,GirObject> classes)
+		public void buildChildListForDropping(string pkg, Gee.HashMap<string,GirObject> classes)
 		{
 			
 
 			
 			foreach(var cls in classes.keys) {
-			 	GLib.debug("building drop list for class %s", cls);
-				this.buildDropList(cls, this.getChildList(cls, true));
+			 	GLib.debug("building drop list for class %s.%s", pkg, cls);
+				this.buildDropList(cls, this.getChildList(pkg + "." + cls, true));
 			}
 
 		}
