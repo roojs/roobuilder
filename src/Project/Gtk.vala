@@ -43,6 +43,11 @@ namespace Project
 		  
 		  
 	  		base(path);
+	  		
+	  		
+  			this.child_list_cache = new Gee.HashMap<string,Gee.ArrayList<string>>();
+			this.child_list_cache_props = new Gee.HashMap<string,Gee.ArrayList<string>>();
+		   
 	  		this.palete = new Palete.Gtk(this);
 	  		
 	  		this.gir_cache = new Gee.HashMap<string,Palete.Gir>();
