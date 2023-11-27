@@ -1301,6 +1301,9 @@ namespace Palete {
 		*/
 		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props)
         {
+        	
+        	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
+        	
         	//return this.original_getChildList(  in_rval, with_props);
         	
         	if (with_props && this.child_list_cache_props.has_key(in_rval)) {
@@ -1324,6 +1327,11 @@ namespace Palete {
         	
         	}
         	var cls = this.getClass(in_rval);
+        	if (cls == null) {
+        		GLib.dbug("could not get class for %s", in_rval);
+	    		return ret;
+			}
+        	
         	// look through methods of in_rval
         	// set_X << ignore
         	// probably methods:
