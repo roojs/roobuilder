@@ -89,13 +89,7 @@ namespace Palete {
 		{
 			
 			Gir.factory(this.project, "Gtk"); // triggers a load...
-			var pr = (Project.Gtk) this.project;
-		
-			foreach(var key in   pr.gir_cache.keys) {
-				var gir = pr.gir_cache.get(key);
-				
-				this.buildChildListForDropping(gir.classes);
-			}
+			
 			
 
 			
@@ -1394,6 +1388,22 @@ namespace Palete {
         	
     	}
     	
+    	public void buildChildListForDroppingProject()
+    	{
+
+			var pr = (Project.Gtk) this.project;
+			
+			if (pr.dropList != null) {
+				return;
+			}
+			
+			foreach(var key in   pr.gir_cache.keys) {
+				var gir = pr.gir_cache.get(key);
+				
+				this.buildChildListForDropping(gir.classes);
+			}    	
+
+
 		public void buildChildListForDropping(Gee.HashMap<string,GirObject> classes)
 		{
 			foreach(var cls in classes.keys) {
@@ -1407,11 +1417,13 @@ namespace Palete {
     	
     	public void buildDropList(string parent, Gee.ArrayList<string> children) 
     	{
+    		
+    		var pr = (Project.Gtk) this.project;
     		foreach(var c in children) {
-    			if (!this.dropList.has_key(c)) {
-    				this.dropList.set(c, new Gee.ArrayList<string>());
+    			if (!pr.dropList.has_key(c)) {
+    				pr.dropList.set(c, new Gee.ArrayList<string>());
 				}
-	    		var dl = this.dropList.get(c);
+	    		var dl = pr.dropList.get(c);
 	    		if (dl.contains(parent)) {
 	    			continue;
     			}
@@ -1423,11 +1435,12 @@ namespace Palete {
     	
 		public override Gee.ArrayList<string> getDropList(string rval)
 		{
-			
-			if (!this.dropList.has_key(rval)) {
+			this.buildChildListForDroppingProject();
+			var pr = (Project.Gtk) this.project;
+			if (!pr.dropList.has_key(rval)) {
 				return new Gee.ArrayList<string>();
 			}
-			return  this.dropList.get(rval);
+			return  pr.dropList.get(rval);
 
 			
 		}
