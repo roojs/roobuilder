@@ -94,7 +94,7 @@ namespace Palete {
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 				
-				this.getChildListForDropping(gir.classes);
+				this.buildChildListForDropping(gir.classes);
 			}
 			
 
