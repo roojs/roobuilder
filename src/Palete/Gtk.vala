@@ -1424,7 +1424,7 @@ namespace Palete {
 		public override Gee.ArrayList<string> getDropList(string rval)
 		{
 			
-			if (!this.dropList.has_key(rvalc)) {
+			if (!this.dropList.has_key(rval)) {
 				return new Gee.ArrayList<string>();
 			}
 			return  this.dropList.get(rval);
