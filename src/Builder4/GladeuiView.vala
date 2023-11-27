@@ -43,15 +43,18 @@ public class Xcls_GladeuiView : Object
         // set gobject values
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_0 = new Xcls_GestureClick2( _this );
+        var child_0 = new Xcls_Button2( _this );
         child_0.ref();
-        this.el.add_controller (  child_0.el  );
-        var child_1 = new Xcls_ColumnView3( _this );
+        this.el.append(  child_0.el );
+        var child_1 = new Xcls_GestureClick4( _this );
         child_1.ref();
-        this.el.append(  child_1.el );
-        var child_2 = new Xcls_notebook( _this );
+        this.el.add_controller (  child_1.el  );
+        var child_2 = new Xcls_ColumnView5( _this );
         child_2.ref();
-        this.el.pack_start (  child_2.el , true,true,0 );
+        this.el.append(  child_2.el );
+        var child_3 = new Xcls_notebook( _this );
+        child_3.ref();
+        this.el.pack_start (  child_3.el , true,true,0 );
 
         //listeners
         this.el.size_allocate.connect( (aloc) => {
@@ -212,7 +215,54 @@ public class Xcls_GladeuiView : Object
     
        
     }
-    public class Xcls_GestureClick2 : Object
+    public class Xcls_Button2 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button2(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_Box3( _this );
+            child_0.ref();
+            this.el.child = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Box3 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box3(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( null, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_GestureClick4 : Object
     {
         public Gtk.GestureClick el;
         private Xcls_GladeuiView  _this;
@@ -221,7 +271,7 @@ public class Xcls_GladeuiView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_GestureClick2(Xcls_GladeuiView _owner )
+        public Xcls_GestureClick4(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             this.el = new Gtk.GestureClick();
@@ -234,7 +284,7 @@ public class Xcls_GladeuiView : Object
         // user defined functions
     }
 
-    public class Xcls_ColumnView3 : Object
+    public class Xcls_ColumnView5 : Object
     {
         public Gtk.ColumnView el;
         private Xcls_GladeuiView  _this;
@@ -243,7 +293,7 @@ public class Xcls_GladeuiView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnView3(Xcls_GladeuiView _owner )
+        public Xcls_ColumnView5(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             this.el = new Gtk.ColumnView( null );
@@ -251,14 +301,14 @@ public class Xcls_GladeuiView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SingleSelection4( _this );
+            var child_0 = new Xcls_SingleSelection6( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SingleSelection4 : Object
+    public class Xcls_SingleSelection6 : Object
     {
         public Gtk.SingleSelection el;
         private Xcls_GladeuiView  _this;
@@ -267,7 +317,7 @@ public class Xcls_GladeuiView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection4(Xcls_GladeuiView _owner )
+        public Xcls_SingleSelection6(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             this.el = new Gtk.SingleSelection( null );
@@ -275,14 +325,14 @@ public class Xcls_GladeuiView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ListStore5( _this );
+            var child_0 = new Xcls_ListStore7( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_ListStore5 : Object
+    public class Xcls_ListStore7 : Object
     {
         public GLib.ListStore el;
         private Xcls_GladeuiView  _this;
@@ -291,7 +341,7 @@ public class Xcls_GladeuiView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListStore5(Xcls_GladeuiView _owner )
+        public Xcls_ListStore7(Xcls_GladeuiView _owner )
         {
             _this = _owner;
             this.el = new GLib.ListStore( typeof(string)  );

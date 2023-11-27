@@ -17,6 +17,17 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "child",
+       "xtype" : "Box"
+      }
+     ],
+     "xtype" : "Button"
+    },
+    {
+     "$ xns" : "Gtk",
      "* pack" : "add_controller",
      "xtype" : "GestureClick"
     },
