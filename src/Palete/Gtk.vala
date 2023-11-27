@@ -1314,8 +1314,6 @@ namespace Palete {
 		}
         		
 		
-		Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache;
-		Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props;
 		/**
 		  this is the real list of objects that appear in the add object pulldown
 		  @param in_rval "*top" || "Gtk.Widget"
@@ -1327,12 +1325,12 @@ namespace Palete {
         	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
         	
         	//return this.original_getChildList(  in_rval, with_props);
-        	
-        	if (with_props && this.child_list_cache_props.has_key(in_rval)) {
-        		return this.child_list_cache_props.get(in_rval);
+        	var pr = (Project.Gtk) this.project;
+        	if (with_props && pr.child_list_cache_props.has_key(in_rval)) {
+        		return pr.child_list_cache_props.get(in_rval);
     		}
-        	if (!with_props && this.child_list_cache.has_key(in_rval)) {
-				return this.child_list_cache.get(in_rval);
+        	if (!with_props && pr.child_list_cache.has_key(in_rval)) {
+				return pr.child_list_cache.get(in_rval);
         	}
         	
         	// CACHE ?	
@@ -1369,7 +1367,7 @@ namespace Palete {
         	 
         	if (!with_props) {
         		
-	        	this.child_list_cache.set(in_rval, ret);
+	        	pr.child_list_cache.set(in_rval, ret);
         		return ret; 
         	}
         	foreach(var pn in cls.props.values) {
@@ -1381,7 +1379,7 @@ namespace Palete {
         		this.addRealClasses(ret, pn.type);
     		}
         	
-        	this.child_list_cache_props.set(in_rval, ret);        	
+        	pr.child_list_cache_props.set(in_rval, ret);        	
         	
         	return ret;
         	
