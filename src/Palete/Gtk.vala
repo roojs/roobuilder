@@ -1351,7 +1351,7 @@ namespace Palete {
 		public override Gee.ArrayList<string> getDropList(string rval)
 		{
 			
-			return this.default_getDropList(rval);
+			//return this.default_getDropList(rval);
 			return this.getChildList(rval, true);
 			
 		}
