@@ -1260,10 +1260,13 @@ namespace Palete {
 			if (w == null) {
 				return;
 			}
+			if (w.nodetype != "Class" && w.nodetype != "Interface" ) {
+				return;
+			}
 			if (ret.contains(cn)) {
 				return;
 			}
-			if (!w.is_deprecated &&  !w.is_abstract) {
+			if (!w.is_deprecated &&  !w.is_abstract && w.nodetype == "Class" ) {
     			ret.add(cn);
 			}
 			
@@ -1341,7 +1344,7 @@ namespace Palete {
         	
         	this.child_list_cache_props.set(in_rval, ret);        	
         	
-        	
+        	return ret;
         	
         	
     	}
