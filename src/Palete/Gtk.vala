@@ -60,9 +60,7 @@ namespace Palete {
 			    this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
 		    );
 		    
-    		this.child_list_cache = new Gee.HashMap<string,Gee.ArrayList<string>>();
-			this.child_list_cache_props = new Gee.HashMap<string,Gee.ArrayList<string>>();
-		    this.dropList =  new Gee.HashMap<string,Gee.ArrayList<string>>();
+    	
 			
 		    
 			this.load();
