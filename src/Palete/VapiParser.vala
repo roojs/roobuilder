@@ -641,6 +641,9 @@ namespace Palete {
 			// user defined ones..
 			
 			var dcg = this.project.compilegroups.get("_default_");
+			if (dcg == null) {
+				return;
+			}
 			var pkgs = this.fillDeps(dcg.packages);
 			
 	    	
