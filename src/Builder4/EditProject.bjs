@@ -99,11 +99,11 @@
        "xtype" : "Box"
       },
       {
-       "$ action" : "Gtk.FileChooserAction.SELECT_FOLDER",
-       "$ select_multiple" : false,
+       "$ Gtk.FileChooserAction action" : "Gtk.FileChooserAction.SELECT_FOLDER",
        "$ xns" : "Gtk",
        "bool create_folders" : true,
        "bool expand" : true,
+       "bool select_multiple" : false,
        "bool vexpand" : true,
        "id" : "dir",
        "xtype" : "FileChooserWidget"
