@@ -415,7 +415,7 @@ public class WindowState : Object
 
 	}
 	
-	public void projectPopoverShow(Gtk.Widget btn, Project.Project? pr) 
+	public void projectPopoverShow(Gtk.Window pwin, Project.Project? pr) 
 	{ 
 		if (pr == null) {
 		    pr = this.project;
@@ -426,13 +426,13 @@ public class WindowState : Object
             return;
         }
         if (pr.xtype  == "Roo" ) {
-			this.roo_projectsettings_pop.show(btn,pr);
+			this.roo_projectsettings_pop.show(pwin,pr);
 			return;
 		}
 
 		// gtk..
 		
-		this.vala_projectsettings_pop.show(btn,(Project.Gtk)pr);
+		this.vala_projectsettings_pop.show(pwin,(Project.Gtk)pr);
 	
 	}
 	
