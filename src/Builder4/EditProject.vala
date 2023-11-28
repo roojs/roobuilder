@@ -132,6 +132,7 @@ public class EditProject : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.margin_end = 4;
         }
 
         // user defined functions
