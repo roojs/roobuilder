@@ -16,6 +16,9 @@
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool expand" : true,
      "int margin_bottom" : 10,
+     "int margin_end" : 10,
+     "int margin_start" : 10,
+     "int margin_top" : 10,
      "items" : [
       {
        "$ homogeneous" : false,
