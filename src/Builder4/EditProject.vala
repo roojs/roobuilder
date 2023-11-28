@@ -38,12 +38,6 @@ public class EditProject : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.child = child_0.el;
-
-        //listeners
-        this.el.response.connect( (id) => {
-        
-          
-        });
     }
 
     // user defined functions

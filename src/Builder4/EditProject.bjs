@@ -180,15 +180,6 @@
      "xtype" : "Box"
     }
    ],
-   "listeners" : {
-    "response" : [
-     "(id) => {",
-     "",
-     "  ",
-     "}",
-     ""
-    ]
-   },
    "name" : "EditProject",
    "title" : "New Project",
    "xtype" : "Window",
