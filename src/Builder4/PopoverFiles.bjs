@@ -50,7 +50,7 @@
               },
               {
                "$ xns" : "Gtk",
-               "string label" : "Label",
+               "string label" : "New Project",
                "xtype" : "Label"
               }
              ],
@@ -73,7 +73,6 @@
              "}"
             ]
            },
-           "string icon_name" : "folder-new",
            "string label" : "New Project",
            "xtype" : "Button"
           },

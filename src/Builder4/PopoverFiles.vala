@@ -492,7 +492,6 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "folder-new";
             this.el.label = "New Project";
             var child_0 = new Xcls_Box6( _this );
             child_0.ref();
@@ -578,7 +577,7 @@ public class Xcls_PopoverFiles : Object
         public Xcls_Label8(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Label" );
+            this.el = new Gtk.Label( "New Project" );
 
             // my vars (dec)
 
