@@ -2,7 +2,7 @@ static Xcls_RooProjectSettings  _RooProjectSettings;
 
 public class Xcls_RooProjectSettings : Object
 {
-    public Gtk.Popover el;
+    public Gtk.Window el;
     private Xcls_RooProjectSettings  _this;
 
     public static Xcls_RooProjectSettings singleton()
@@ -31,26 +31,27 @@ public class Xcls_RooProjectSettings : Object
     public Xcls_database_ERROR database_ERROR;
 
         // my vars (def)
-    public bool modal;
     public signal void buttonPressed (string btn);
+    public Gtk.PositionType position;
     public Project.Project project;
     public bool done;
     public uint border_width;
+    public bool autohide;
 
     // ctor
     public Xcls_RooProjectSettings()
     {
         _this = this;
-        this.el = new Gtk.Popover();
+        this.el = new Gtk.Window();
 
         // my vars (dec)
-        this.modal = true;
+        this.position = Gtk.PositionType.RIGHT;
         this.done = false;
         this.border_width = 0;
+        this.autohide = false;
 
         // set gobject values
-        this.el.autohide = false;
-        this.el.position = Gtk.PositionType.RIGHT;
+        this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.set_child (  child_0.el  );

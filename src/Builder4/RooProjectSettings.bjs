@@ -559,7 +559,7 @@
     }
    ],
    "uint border_width" : 0,
-   "xtype" : "Popover",
+   "xtype" : "Window",
    "| void save" : [
     "() {",
     "   var buf =    _this.view.el.get_buffer();",
