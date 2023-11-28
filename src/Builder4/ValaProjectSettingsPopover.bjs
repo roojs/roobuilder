@@ -1101,9 +1101,9 @@
     "close_request" : [
      "( ) => {",
      "\tif (!this.done) {",
-     "\t\treturn false;",
+     "\t\treturn true;",
      "\t}",
-     "\treturn true;",
+     "\treturn false;",
      "}",
      ""
     ],
