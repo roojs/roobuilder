@@ -2,7 +2,7 @@ static EditProject  _EditProject;
 
 public class EditProject : Object
 {
-    public Gtk.Dialog el;
+    public Gtk.Window el;
     private EditProject  _this;
 
     public static EditProject singleton()
@@ -24,7 +24,7 @@ public class EditProject : Object
     public EditProject()
     {
         _this = this;
-        this.el = new Gtk.Dialog();
+        this.el = new Gtk.Window();
 
         // my vars (dec)
 
