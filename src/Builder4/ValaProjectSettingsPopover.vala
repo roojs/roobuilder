@@ -1108,6 +1108,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             this.el.position = 300;
             var child_0 = new Xcls_ScrolledWindow32( _this );
             child_0.ref();

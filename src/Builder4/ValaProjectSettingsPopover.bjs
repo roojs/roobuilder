@@ -468,6 +468,7 @@
          "$ xns" : "Gtk",
          "* pack" : "append_page,_this.label_targets.el",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "bool vexpand" : true,
          "gint position" : 300,
          "items" : [
           {
