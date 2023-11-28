@@ -510,7 +510,7 @@ public class EditProject : Object
         public Xcls_Label14(EditProject _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Label" );
+            this.el = new Gtk.Label( "" );
 
             // my vars (dec)
 

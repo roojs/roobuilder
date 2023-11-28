@@ -233,7 +233,7 @@
         {
          "$ xns" : "Gtk",
          "bool hexpand" : true,
-         "string label" : "Label",
+         "string label" : "",
          "xtype" : "Label"
         },
         {
