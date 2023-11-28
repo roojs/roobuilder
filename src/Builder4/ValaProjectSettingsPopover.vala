@@ -1819,6 +1819,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             var child_0 = new Xcls_files_tree( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );

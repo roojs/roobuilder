@@ -808,6 +808,7 @@
             },
             {
              "$ xns" : "Gtk",
+             "bool vexpand" : true,
              "items" : [
               {
                "$ xns" : "Gtk",
