@@ -481,6 +481,7 @@
             ""
            ],
            "* pack" : "set_start_child",
+           "bool vexpand" : true,
            "items" : [
             {
              "$ xns" : "Gtk",
