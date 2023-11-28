@@ -350,7 +350,7 @@ public class EditProject : Object
 
         // user defined functions
         public void reset () {
-        
+        	this.el.label = "Select Folder";
         }
     }
 
