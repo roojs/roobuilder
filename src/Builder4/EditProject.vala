@@ -42,44 +42,7 @@ public class EditProject : Object
         //listeners
         this.el.response.connect( (id) => {
         
-            var err_dialog = Xcls_StandardErrorDialog.singleton();
-        
-             if (id < 1) {
-                    this.el.hide();
-                    return;
-            }
-         
-                 
-              if (_this.xtype.getValue().length < 1) {
-                   
-                    err_dialog.show(_this.el,"You have to set Project type");             
-                    return;
-                }
-                if (_this.dir.el.get_file() == null) {
-        
-                    err_dialog.show(_this.el,"You have to select a folder");             
-                    return;
-                }
-              
-            
-            this.el.hide();
-            
-            
-            
-         
-            var fn = _this.dir.el.get_file().get_path();
-            
-            print("add %s\n" , fn);
-            try {
-        		var project = Project.Project.factory(_this.xtype.getValue(), fn);
-        		project.save();
-        		Project.projects.set(project.name,project);
-        		this.selected(project);
-        		return;
-        	} catch (Error e) {
-        		GLib.debug("got error? %s" , e.message);
-        	}
-        	 
+          
         });
     }
 
@@ -367,7 +330,41 @@ public class EditProject : Object
 
             //listeners
             this.el.clicked.connect( ( ) => {
+              var err_dialog = Xcls_StandardErrorDialog.singleton();
             
+               
+             
+                     
+                  if (_this.xtype.getValue().length < 1) {
+                       
+                        err_dialog.show(_this.el,"You have to set Project type");             
+                        return;
+                    }
+                    if (_this.dir.el.get_file() == null) {
+            
+                        err_dialog.show(_this.el,"You have to select a folder");             
+                        return;
+                    }
+                  
+                
+                this.el.hide();
+                
+                
+                
+             
+                var fn = _this.dir.el.get_file().get_path();
+                
+                print("add %s\n" , fn);
+                try {
+            		var project = Project.Project.factory(_this.xtype.getValue(), fn);
+            		project.save();
+            		Project.projects.set(project.name,project);
+            		this.selected(project);
+            		return;
+            	} catch (Error e) {
+            		GLib.debug("got error? %s" , e.message);
+            	}
+            	 
             
             });
         }
@@ -393,6 +390,12 @@ public class EditProject : Object
 
             // set gobject values
             this.el.label = "Cancel";
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions
