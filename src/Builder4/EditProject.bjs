@@ -111,6 +111,11 @@
          "int margin_end" : 4,
          "label" : "Folder:",
          "xtype" : "Label"
+        },
+        {
+         "$ xns" : "Gtk",
+         "string label" : "Select Folder",
+         "xtype" : "Button"
         }
        ],
        "xtype" : "Box"
