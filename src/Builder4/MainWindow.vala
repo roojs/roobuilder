@@ -894,7 +894,7 @@ public class Xcls_MainWindow : Object
             //listeners
             this.el.clicked.connect( ( ) => {
                  
-                 _this.windowstate.projectPopoverShow(_this.el, _this.project);
+                 _this.windowstate.projectPopoverShow(_this.el);
                
               
             });
