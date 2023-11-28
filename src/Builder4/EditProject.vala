@@ -376,7 +376,7 @@ public class EditProject : Object
             //listeners
             this.el.clicked.connect( ( ) => {
             	var fd = new Gtk.FileDialog();
-            	fd.title = "Select Folder";
+            	fd.title = "Create folder - then close this (it's buggy yes)";
             	fd.modal = true;
             	
             	fd.select_folder.begin(_this.el, null, (obj, res) => {

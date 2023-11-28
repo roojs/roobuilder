@@ -145,7 +145,7 @@
           "clicked" : [
            "( ) => {",
            "\tvar fd = new Gtk.FileDialog();",
-           "\tfd.title = \"Select Folder\";",
+           "\tfd.title = \"Create folder - then close this (it's buggy yes)\";",
            "\tfd.modal = true;",
            "\t",
            "\tfd.select_folder.begin(_this.el, null, (obj, res) => {",
