@@ -2,7 +2,7 @@ static Xcls_PopoverFiles  _PopoverFiles;
 
 public class Xcls_PopoverFiles : Object
 {
-    public Gtk.Popover el;
+    public Gtk.Window el;
     private Xcls_PopoverFiles  _this;
 
     public static Xcls_PopoverFiles singleton()
@@ -26,12 +26,12 @@ public class Xcls_PopoverFiles : Object
 
         // my vars (def)
     public Xcls_MainWindow win;
-    public bool modal;
     public string lastfilter;
     public bool in_onprojectselected;
     public Project.Project selectedProject;
     public bool is_loading;
     public bool new_window;
+    public Gtk.PositionType position;
     public Gdk.Pixbuf missing_thumb_pixbuf;
     public Gee.HashMap<string,Gdk.Pixbuf> image_cache;
     public bool active;
@@ -41,14 +41,14 @@ public class Xcls_PopoverFiles : Object
     public Xcls_PopoverFiles()
     {
         _this = this;
-        this.el = new Gtk.Popover();
+        this.el = new Gtk.Window();
 
         // my vars (dec)
-        this.modal = true;
         this.lastfilter = "";
         this.in_onprojectselected = false;
         this.is_loading = false;
         this.new_window = false;
+        this.position = Gtk.PositionType.TOP;
         this.image_cache = null;
         this.active = false;
         this.is_loaded = false;
@@ -57,7 +57,7 @@ public class Xcls_PopoverFiles : Object
         this.el.width_request = 900;
         this.el.height_request = 800;
         this.el.hexpand = false;
-        this.el.position = Gtk.PositionType.TOP;
+        this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.set_child (  child_0.el  );

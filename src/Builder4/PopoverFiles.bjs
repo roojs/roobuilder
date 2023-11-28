@@ -620,7 +620,7 @@
     ]
    },
    "string lastfilter" : "\"\"",
-   "xtype" : "Popover",
+   "xtype" : "Window",
    "| void load" : [
     "() {",
     "     // clear list...",
