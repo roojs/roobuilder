@@ -167,9 +167,53 @@
           "\tthis.el.label = \"Select Folder\";",
           "}"
          ]
+        },
+        {
+         "$ string? path" : "null",
+         "$ xns" : "Gtk",
+         "bool hexpand" : true,
+         "id" : "ndir",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "\tvar fd = new Gtk.FileDialog();",
+           "\tfd.title = \"Create folder - then close this (it's buggy yes)\";",
+           "\tfd.modal = true;",
+           "\t",
+           "\tfd.save.begin(_this.el, null, (obj, res) => {",
+           "\t \t ",
+           "\t});",
+           "}",
+           ""
+          ]
+         },
+         "string label" : "New Folder",
+         "xtype" : "Button"
         }
        ],
        "xtype" : "Box"
+      },
+      {
+       "$ string? path" : "null",
+       "$ xns" : "Gtk",
+       "bool hexpand" : true,
+       "id" : "ndir",
+       "listeners" : {
+        "clicked" : [
+         "( ) => {",
+         "\tvar fd = new Gtk.FileDialog();",
+         "\tfd.title = \"Create folder - then close this (it's buggy yes)\";",
+         "\tfd.modal = true;",
+         "\t",
+         "\tfd.save.begin(_this.el, null, (obj, res) => {",
+         "\t \t ",
+         "\t});",
+         "}",
+         ""
+        ]
+       },
+       "string label" : "New Folder",
+       "xtype" : "Button"
       },
       {
        "$ Gtk.Align halign" : "Gtk.Align.FILL",
