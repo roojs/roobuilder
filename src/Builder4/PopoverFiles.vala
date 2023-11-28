@@ -516,6 +516,14 @@ public class Xcls_PopoverFiles : Object
             	     _this.show(null, pr, _this.new_window);
             
                 });
+                
+                pe.selected.cancelled((pr) => {
+                 	
+             
+            	     _this.show(null, null, _this.new_window);
+            
+                });
+                
                 pe.showIt();
                
             
