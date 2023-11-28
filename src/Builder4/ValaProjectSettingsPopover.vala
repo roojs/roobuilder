@@ -82,7 +82,7 @@ public class ValaProjectSettingsPopover : Object
     }
 
     // user defined functions
-    public void show (Gtk.Widget btn, Project.Gtk project) {
+    public void show (Gtk.Window pwin, Project.Gtk project) {
          
         //print("ValaProjectSettings show\n");
         
@@ -98,9 +98,9 @@ public class ValaProjectSettingsPopover : Object
     
     
     
-    	Gtk.Allocation rect;
-    	btn.get_allocation(out rect);
-        this.el.set_pointing_to(rect);
+    //	Gtk.Allocation rect;
+    	//btn.get_allocation(out rect);
+     //   this.el.set_pointing_to(rect);
     
     	// window + header?
     	// print("SHOWALL - POPIP\n");

@@ -1123,7 +1123,7 @@
     "}"
    ],
    "| void show" : [
-    "(Gtk.Widget btn, Project.Gtk project) {",
+    "(Gtk.Window pwin, Project.Gtk project) {",
     "     ",
     "    //print(\"ValaProjectSettings show\\n\");",
     "    ",
@@ -1139,9 +1139,9 @@
     "",
     "",
     "",
-    "\tGtk.Allocation rect;",
-    "\tbtn.get_allocation(out rect);",
-    "    this.el.set_pointing_to(rect);",
+    "//\tGtk.Allocation rect;",
+    "\t//btn.get_allocation(out rect);",
+    " //   this.el.set_pointing_to(rect);",
     "",
     "\t// window + header?",
     "\t// print(\"SHOWALL - POPIP\\n\");",
