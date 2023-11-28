@@ -562,6 +562,7 @@
              "# string cursor" : "",
              "$ xns" : "Gtk",
              "* pack" : "set_child",
+             "bool vexpand" : true,
              "id" : "targets_tree",
              "items" : [
               {

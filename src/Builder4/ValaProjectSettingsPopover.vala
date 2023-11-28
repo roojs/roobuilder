@@ -1337,6 +1337,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             var child_0 = new Xcls_GestureClick39( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
