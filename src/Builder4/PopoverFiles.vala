@@ -508,8 +508,8 @@ public class Xcls_PopoverFiles : Object
              
                _this.el.hide();
                
-                pe.selected.connect(pr) {
-                 
+                pe.selected.connect((pr) => 
+                 	
             	     _this.is_loading = false;
             	     _this.load();
                 
