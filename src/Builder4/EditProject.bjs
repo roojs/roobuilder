@@ -113,7 +113,7 @@
          "xtype" : "Label"
         },
         {
-         "$ string? null" : "",
+         "$ string? path" : "null",
          "$ xns" : "Gtk",
          "id" : "dir",
          "listeners" : {

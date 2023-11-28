@@ -313,7 +313,7 @@ public class EditProject : Object
 
 
             // my vars (def)
-        public string? null;
+        public string? path;
 
         // ctor
         public Xcls_dir(EditProject _owner )
@@ -323,6 +323,7 @@ public class EditProject : Object
             this.el = new Gtk.Button();
 
             // my vars (dec)
+            this.path = null;
 
             // set gobject values
             this.el.label = "Select Folder";
