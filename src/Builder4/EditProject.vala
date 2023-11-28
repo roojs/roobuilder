@@ -326,6 +326,7 @@ public class EditProject : Object
             this.path = null;
 
             // set gobject values
+            this.el.hexpand = true;
             this.el.label = "Select Folder";
 
             //listeners

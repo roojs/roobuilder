@@ -115,6 +115,7 @@
         {
          "$ string? path" : "null",
          "$ xns" : "Gtk",
+         "bool hexpand" : true,
          "id" : "dir",
          "listeners" : {
           "clicked" : [
