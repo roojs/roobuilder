@@ -172,12 +172,12 @@ public class Xcls_PopoverFiles : Object
         this.el.set_size_request( w - 100, h - 100); // same as parent...
     
     
-    	this.el.set_autohide(true); // can hide
+    	//this.el.set_autohide(true); // can hide
     	//Gtk.Allocation rect;
     	//on_el.get_allocation(out rect);
        // this.el.set_pointing_to(rect);
-        this.el.set_offset(200,0);
-        this.el.set_position(Gtk.PositionType.BOTTOM);
+        //this.el.set_offset(200,0);
+        //this.el.set_position(Gtk.PositionType.BOTTOM);
     	this.el.show();
     	  
     }
