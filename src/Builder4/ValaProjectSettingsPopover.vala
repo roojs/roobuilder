@@ -2,7 +2,7 @@ static ValaProjectSettingsPopover  _ValaProjectSettingsPopover;
 
 public class ValaProjectSettingsPopover : Object
 {
-    public Gtk.Popover el;
+    public Gtk.Window el;
     private ValaProjectSettingsPopover  _this;
 
     public static ValaProjectSettingsPopover singleton()
@@ -38,28 +38,29 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_save_btn save_btn;
 
         // my vars (def)
-    public bool modal;
     public Xcls_MainWindow window;
+    public Gtk.PositionType position;
     public Project.Gtk project;
     public bool done;
     public uint border_width;
+    public bool autohide;
 
     // ctor
     public ValaProjectSettingsPopover()
     {
         _this = this;
-        this.el = new Gtk.Popover();
+        this.el = new Gtk.Window();
 
         // my vars (dec)
-        this.modal = true;
         this.window = null;
+        this.position = Gtk.PositionType.RIGHT;
         this.project = null;
         this.done = false;
         this.border_width = 0;
+        this.autohide = false;
 
         // set gobject values
-        this.el.autohide = false;
-        this.el.position = Gtk.PositionType.RIGHT;
+        this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.set_child (  child_0.el  );
