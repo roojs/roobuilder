@@ -373,10 +373,11 @@ public class WindowState : Object
 	public void projectEditInit()
 	{
 		this.roo_projectsettings_pop  =new Xcls_RooProjectSettings();
-		//this.roo_projectsettings_pop.ref();  /// really?
+		this.roo_projectsettings_pop.el.application = this.win.el.application;
+
 	
 		this.vala_projectsettings_pop  =new  ValaProjectSettingsPopover();
-	//	this.vala_projectsettings_pop.ref();
+
    		this.vala_projectsettings_pop.window = this.win;
    		this.vala_projectsettings_pop.el.application = this.win.el.application;
    		
