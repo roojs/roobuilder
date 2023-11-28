@@ -513,9 +513,8 @@ public class Xcls_PopoverFiles : Object
                 pe.selected.connect((pr) => 
                  	
             	     _this.is_loading = false;
-            	     _this.load();
-                
-                	_this.el.show();
+            	     _this.show(null, pr, _this.new_window) {
+            
                 });
                 pe.showIt();
                
