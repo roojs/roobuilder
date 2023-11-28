@@ -182,9 +182,9 @@
        "items" : [
         {
          "$ Gtk.Align halign" : "Gtk.Align.START",
+         "$ css_classes" : "{ \"suggested-action\" }",
          "$ xns" : "Gtk",
          "bool hexpand" : false,
-         "css_classes" : "suggested-action",
          "label" : "OK",
          "listeners" : {
           "clicked" : [
@@ -229,7 +229,6 @@
            ""
           ]
          },
-         "string css_name" : "\"\"",
          "xtype" : "Button"
         },
         {

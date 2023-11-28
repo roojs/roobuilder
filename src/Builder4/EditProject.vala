@@ -450,10 +450,9 @@ public class EditProject : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.css_name = "\"\"";
             this.el.halign = Gtk.Align.START;
             this.el.hexpand = false;
-            this.el.css_classes = suggested-action;
+            this.el.css_classes = { "suggested-action" };
             this.el.label = "OK";
 
             //listeners

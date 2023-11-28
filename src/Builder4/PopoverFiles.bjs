@@ -37,7 +37,6 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "css_classes" : "{ \"suggested-action\" }",
            "items" : [
             {
              "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
