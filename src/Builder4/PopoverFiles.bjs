@@ -37,6 +37,12 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "Box"
+            }
+           ],
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
