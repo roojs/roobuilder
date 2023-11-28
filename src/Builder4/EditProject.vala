@@ -457,7 +457,7 @@ public class EditProject : Object
                     }
                   
                 
-                this.el.hide();
+                _this.el.hide();
                 
                 
             
