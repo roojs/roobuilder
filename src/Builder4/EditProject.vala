@@ -15,9 +15,7 @@ public class EditProject : Object
     public Xcls_xtype xtype;
     public Xcls_cellrender cellrender;
     public Xcls_model model;
-    public Xcls_xtype xtype;
-    public Xcls_cellrender cellrender;
-    public Xcls_model model;
+    public Xcls_filename filename;
     public Xcls_dir dir;
 
         // my vars (def)
@@ -84,7 +82,7 @@ public class EditProject : Object
             var child_2 = new Xcls_dir( _this );
             child_2.ref();
             this.el.append(  child_2.el );
-            var child_3 = new Xcls_Box15( _this );
+            var child_3 = new Xcls_Box12( _this );
             child_3.ref();
             this.el.append(  child_3.el );
         }
@@ -282,12 +280,9 @@ public class EditProject : Object
             var child_0 = new Xcls_Label9( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Entry10( _this );
+            var child_1 = new Xcls_filename( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_xtype( _this );
-            child_2.ref();
-            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -315,7 +310,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_Entry10 : Object
+    public class Xcls_filename : Object
     {
         public Gtk.Entry el;
         private EditProject  _this;
@@ -324,9 +319,10 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Entry10(EditProject _owner )
+        public Xcls_filename(EditProject _owner )
         {
             _this = _owner;
+            _this.filename = this;
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -336,120 +332,6 @@ public class EditProject : Object
 
         // user defined functions
     }
-
-    public class Xcls_xtype : Object
-    {
-        public Gtk.ComboBox el;
-        private EditProject  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_xtype(EditProject _owner )
-        {
-            _this = _owner;
-            _this.xtype = this;
-            this.el = new Gtk.ComboBox();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.hexpand = true;
-            var child_0 = new Xcls_cellrender( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
-            var child_1 = new Xcls_model( _this );
-            child_1.ref();
-            this.el.set_model (  child_1.el  );
-
-            // init method
-
-            this.el.add_attribute(_this.cellrender.el , "markup", 1 );
-        }
-
-        // user defined functions
-        public string getValue () {
-             var ix = this.el.get_active();
-                if (ix < 0 ) {
-                    return "";
-                }
-                switch(ix) {
-                    case 0:
-                        return "Roo";
-                    case 1:
-                        return "Gtk";
-                   case 2:
-                        return "Flutter";
-                }
-                return "";
-        }
-    }
-    public class Xcls_cellrender : Object
-    {
-        public Gtk.CellRendererText el;
-        private EditProject  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_cellrender(EditProject _owner )
-        {
-            _this = _owner;
-            _this.cellrender = this;
-            this.el = new Gtk.CellRendererText();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_model : Object
-    {
-        public Gtk.ListStore el;
-        private EditProject  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_model(EditProject _owner )
-        {
-            _this = _owner;
-            _this.model = this;
-            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-        public void loadData ( ) {
-                this.el.clear();
-                              
-                Gtk.TreeIter iter;
-                        
-                el.append(out iter);
-                el.set_value(iter, 0, "Roo");
-                el.set_value(iter, 1, "Roo Project");
-                
-                el.append(out iter);
-                el.set_value(iter, 0, "Gtk");
-                el.set_value(iter, 1, "Gtk Project");
-                 
-                el.append(out iter);
-                el.set_value(iter, 0, "Flutter");
-                el.set_value(iter, 1, "Flutter Project");
-                      
-                                             
-        }
-    }
-
 
 
     public class Xcls_dir : Object
@@ -480,7 +362,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_Box15 : Object
+    public class Xcls_Box12 : Object
     {
         public Gtk.Box el;
         private EditProject  _this;
@@ -489,7 +371,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box15(EditProject _owner )
+        public Xcls_Box12(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -498,17 +380,17 @@ public class EditProject : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_Button16( _this );
+            var child_0 = new Xcls_Button13( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button17( _this );
+            var child_1 = new Xcls_Button14( _this );
             child_1.ref();
             this.el.append(  child_1.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button16 : Object
+    public class Xcls_Button13 : Object
     {
         public Gtk.Button el;
         private EditProject  _this;
@@ -517,7 +399,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button16(EditProject _owner )
+        public Xcls_Button13(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -572,7 +454,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_Button17 : Object
+    public class Xcls_Button14 : Object
     {
         public Gtk.Button el;
         private EditProject  _this;
@@ -581,7 +463,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button17(EditProject _owner )
+        public Xcls_Button14(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
