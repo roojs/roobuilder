@@ -78,7 +78,7 @@
              "",
              "    });",
              "    ",
-             "    pe.selected.canceled((pr) => {",
+             "    pe.canceled.connect((pr) => {",
              "     \t",
              " ",
              "\t     _this.show(null, null, _this.new_window);",
