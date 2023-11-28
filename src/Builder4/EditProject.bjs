@@ -109,6 +109,32 @@
         {
          "$ xns" : "Gtk",
          "int margin_end" : 4,
+         "items" : [
+          {
+           "$ string? path" : "null",
+           "$ xns" : "Gtk",
+           "bool hexpand" : true,
+           "id" : "dir",
+           "listeners" : {
+            "clicked" : [
+             "( ) => {",
+             "\tvar fd = new Gtk.FileDialog();",
+             "\tfd.title = \"Select Folder\";",
+             "\tfd.modal = true;",
+             "\t",
+             "\tfd.select_folder.begin(_this.el, null, (obj, res) => {",
+             "\t \tvar f = fd.select_folder.end(res);",
+             "\t\tthis.path = f.get_path();",
+             "\t\tthis.el.label = this.path;",
+             "\t});",
+             "}",
+             ""
+            ]
+           },
+           "string label" : "Select Folder",
+           "xtype" : "Button"
+          }
+         ],
          "label" : "Folder:",
          "xtype" : "Label"
         },
