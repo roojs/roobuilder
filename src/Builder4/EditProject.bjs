@@ -33,6 +33,7 @@
           " this.el.add_attribute(_this.cellrender.el , \"markup\", 1 );  ",
           "  "
          ],
+         "bool hexpand" : true,
          "id" : "xtype",
          "items" : [
           {

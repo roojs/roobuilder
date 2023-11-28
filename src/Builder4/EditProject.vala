@@ -154,6 +154,7 @@ public class EditProject : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             var child_0 = new Xcls_cellrender( _this );
             child_0.ref();
             this.el.pack_start (  child_0.el , true );
