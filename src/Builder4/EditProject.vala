@@ -415,6 +415,7 @@ public class EditProject : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.halign = Gtk.Align.END;
             this.el.hexpand = true;
             var child_0 = new Xcls_Button13( _this );
             child_0.ref();

@@ -172,6 +172,7 @@
        "xtype" : "Box"
       },
       {
+       "$ Gtk.Align halign" : "Gtk.Align.END",
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool hexpand" : true,
