@@ -67,7 +67,7 @@
              "    //Xcls_DialogNewComponent.singleton().show(",
              "   var  pe =      EditProject.singleton();",
              "   pe.el.application = _this.win.el.application;",
-             "    pe.el.parent = this.el;",
+             "    pe.el.set_transient_for( _this.win.el );",
              " ",
              "   ",
              "    pe.showIt();",
