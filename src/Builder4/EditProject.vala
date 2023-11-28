@@ -313,6 +313,7 @@ public class EditProject : Object
 
 
             // my vars (def)
+        public string? null;
 
         // ctor
         public Xcls_dir(EditProject _owner )
