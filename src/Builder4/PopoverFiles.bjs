@@ -40,7 +40,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "child",
+             "* prop" : "child",
              "xtype" : "Box"
             }
            ],
