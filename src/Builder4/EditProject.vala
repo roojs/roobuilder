@@ -453,7 +453,7 @@ public class EditProject : Object
             this.el.css_name = "\"\"";
             this.el.halign = Gtk.Align.START;
             this.el.hexpand = false;
-            this.el.css_classes = null;
+            this.el.css_classes = suggested-action;
             this.el.label = "OK";
 
             //listeners

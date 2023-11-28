@@ -184,7 +184,7 @@
          "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ xns" : "Gtk",
          "bool hexpand" : false,
-         "css_classes" : "null",
+         "css_classes" : "suggested-action",
          "label" : "OK",
          "listeners" : {
           "clicked" : [
