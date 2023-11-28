@@ -140,13 +140,15 @@ public class Xcls_PopoverFiles : Object
     	    print("tried to select %s, could not find it", project.name);
         }
     }
-    public void show (Gtk.Widget on_el, Project.Project? project, bool new_window) {
+    public void show (Gtk.Widget? on_el, Project.Project? project, bool new_window) {
     	//this.editor.show( file, node, ptype, key);
     	
     	this.new_window = new_window;
     		// save...
     	this.load();
-    	this.el.set_parent(on_el);
+    	if (on_el != null) {
+    		this.el.set_parent(on_el);
+    	}
     	 // show first - so we can hide stuff later.	
     	if (project != null) {
     	

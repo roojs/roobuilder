@@ -904,13 +904,15 @@
     ""
    ],
    "| void show" : [
-    "(Gtk.Widget on_el, Project.Project? project, bool new_window) {",
+    "(Gtk.Widget? on_el, Project.Project? project, bool new_window) {",
     "\t//this.editor.show( file, node, ptype, key);",
     "\t",
     "\tthis.new_window = new_window;",
     "\t\t// save...",
     "\tthis.load();",
-    "\tthis.el.set_parent(on_el);",
+    "\tif (on_el != null) {",
+    "\t\tthis.el.set_parent(on_el);",
+    "\t}",
     "\t // show first - so we can hide stuff later.\t",
     "\tif (project != null) {",
     "\t",
