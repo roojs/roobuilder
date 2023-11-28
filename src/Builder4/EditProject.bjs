@@ -184,6 +184,7 @@
          "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ xns" : "Gtk",
          "bool hexpand" : false,
+         "css_classes" : "null",
          "label" : "OK",
          "listeners" : {
           "clicked" : [
@@ -228,6 +229,7 @@
            ""
           ]
          },
+         "string css_name" : "\"\"",
          "xtype" : "Button"
         },
         {
