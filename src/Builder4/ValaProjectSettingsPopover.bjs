@@ -1142,7 +1142,7 @@
     "//\tGtk.Allocation rect;",
     "\t//btn.get_allocation(out rect);",
     " //   this.el.set_pointing_to(rect);",
-    "",
+    "\tthis.el.set_transient_for(pwin);",
     "\t// window + header?",
     "\t// print(\"SHOWALL - POPIP\\n\");",
     "\tthis.el.set_size_request(800,500);",

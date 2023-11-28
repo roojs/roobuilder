@@ -101,7 +101,7 @@ public class ValaProjectSettingsPopover : Object
     //	Gtk.Allocation rect;
     	//btn.get_allocation(out rect);
      //   this.el.set_pointing_to(rect);
-    
+    	this.el.set_transient_for(pwin);
     	// window + header?
     	// print("SHOWALL - POPIP\n");
     	this.el.set_size_request(800,500);
