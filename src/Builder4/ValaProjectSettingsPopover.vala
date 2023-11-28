@@ -89,8 +89,8 @@ public class ValaProjectSettingsPopover : Object
         //print("ValaProjectSettings show\n");
         
         this.project=  project;
-    
-        this.compile_flags.el.text = _this.project.compilegroups.get("_default_").compile_flags;
+    	var cg = _this.project.firstBuildModule();
+        this.compile_flags.el.text = _this.project.compilegroups.get(cg).compile_flags;
         
         this.default_directory_tree_store.load();    
         this.default_packages_tree_store.load();            
