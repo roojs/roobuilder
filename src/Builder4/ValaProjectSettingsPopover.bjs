@@ -1082,6 +1082,7 @@
         },
         {
          "$ xns" : "Gtk",
+         "css_classes" : "null",
          "id" : "save_btn",
          "listeners" : {
           "clicked" : [
