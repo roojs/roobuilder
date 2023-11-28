@@ -22,6 +22,19 @@
        "$ xns" : "Gtk",
        "* prop" : "child",
        "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
+       "listeners" : {
+        "pressed" : [
+         "(n_press, x, y) => {",
+         "",
+         "",
+         "}",
+         ""
+        ]
+       },
+       "xtype" : "GestureClick"
       }
      ],
      "xtype" : "Button"
