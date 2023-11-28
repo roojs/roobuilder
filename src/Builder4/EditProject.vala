@@ -381,7 +381,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.label = "New Folder";
+            this.el.label = "Create a new Folder (use this to create folder as the select folder cant do it)";
 
             //listeners
             this.el.clicked.connect( ( ) => {

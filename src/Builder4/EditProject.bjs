@@ -168,7 +168,7 @@
          ""
         ]
        },
-       "string label" : "New Folder",
+       "string label" : "Create a new Folder (use this to create folder as the select folder cant do it)",
        "xtype" : "Button"
       },
       {
