@@ -546,7 +546,7 @@ public class EditProject : Object
             this.el.clicked.connect( ( ) => {
                
                 _this.el.hide();
-            	_this.cancelled();
+            	_this.canceled();
                 
             
             });
