@@ -109,7 +109,7 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool hexpand" : true,
        "bool vexpand" : false,
-       "int margin_bottom" : 50,
+       "int margin_bottom" : 10,
        "int spacing" : 0,
        "items" : [
         {
@@ -155,6 +155,7 @@
        "$ xns" : "Gtk",
        "bool hexpand" : true,
        "id" : "ndir",
+       "int margin_bottom" : 0,
        "listeners" : {
         "clicked" : [
          "( ) => {",

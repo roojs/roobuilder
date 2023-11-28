@@ -283,7 +283,7 @@ public class EditProject : Object
             this.el.homogeneous = false;
             this.el.hexpand = true;
             this.el.vexpand = false;
-            this.el.margin_bottom = 50;
+            this.el.margin_bottom = 10;
             var child_0 = new Xcls_Label9( _this );
             child_0.ref();
             this.el.append(  child_0.el );
@@ -382,6 +382,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.hexpand = true;
+            this.el.margin_bottom = 0;
             this.el.label = "Create a new Folder (use this to create folder as the select folder cant do it)";
 
             //listeners
