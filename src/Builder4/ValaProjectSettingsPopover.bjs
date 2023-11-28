@@ -1054,6 +1054,7 @@
       {
        "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "$ xns" : "Gtk",
+       "bool hexpand" : true,
        "int margin_bottom" : 4,
        "int margin_end" : 4,
        "int margin_start" : 4,
