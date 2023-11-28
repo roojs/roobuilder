@@ -516,7 +516,8 @@ public class Xcls_PopoverFileDetails : Object
         			_this.filetype.el.set_active_iter(iter);
         		}
         		break;
-        	default;
+        	default:
+        		break;
         }
         
         
