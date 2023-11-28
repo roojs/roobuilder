@@ -148,10 +148,8 @@
            "\tfd.title = \"Create folder - then close this (it's buggy yes)\";",
            "\tfd.modal = true;",
            "\t",
-           "\tfd.select_folder.begin(_this.el, null, (obj, res) => {",
-           "\t \tvar f = fd.select_folder.end(res);",
-           "\t\tthis.path = f.get_path();",
-           "\t\tthis.el.label = this.path;",
+           "\tfd.save.begin(_this.el, null, (obj, res) => {",
+           "\t \t ",
            "\t});",
            "}",
            ""

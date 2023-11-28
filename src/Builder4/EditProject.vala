@@ -379,10 +379,8 @@ public class EditProject : Object
             	fd.title = "Create folder - then close this (it's buggy yes)";
             	fd.modal = true;
             	
-            	fd.select_folder.begin(_this.el, null, (obj, res) => {
-            	 	var f = fd.select_folder.end(res);
-            		this.path = f.get_path();
-            		this.el.label = this.path;
+            	fd.save.begin(_this.el, null, (obj, res) => {
+            	 	 
             	});
             });
         }
