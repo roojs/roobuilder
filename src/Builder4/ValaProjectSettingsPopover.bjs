@@ -12,6 +12,12 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "* prop" : "titlebar",
+     "* title" : "Window Title",
+     "xtype" : "HeaderBar"
+    },
+    {
+     "$ xns" : "Gtk",
      "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool hexpand" : true,
