@@ -507,6 +507,12 @@ public class Xcls_PopoverFiles : Object
                 pe.el.set_transient_for( _this.win.el );
              
                _this.el.hide();
+               
+                pe.selected.connect(pr) {
+                
+                	
+                	_this.el.show();
+                });
                 pe.showIt();
                
             
