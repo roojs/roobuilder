@@ -412,7 +412,7 @@ public class EditProject : Object
                 
                 
              
-                var fn = _this.dir.el.get_file().get_path();
+                var fn = _this.dirbtn.path;
                 
                 print("add %s\n" , fn);
                 try {
