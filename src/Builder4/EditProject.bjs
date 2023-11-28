@@ -176,7 +176,6 @@
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool hexpand" : true,
-       "int spacing" : 0,
        "items" : [
         {
          "$ Gtk.Align halign" : "Gtk.Align.START",
