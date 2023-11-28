@@ -162,7 +162,7 @@
     },
     {
         "name" : "_default_",
-        "compile_flags" : "--thread -X -lm --target-glib=2.32 -g  ",
+        "compile_flags" : "½á\u00061PU",
         "execute_args" : "",
         "target_bin" : "",
         "sources" : [
