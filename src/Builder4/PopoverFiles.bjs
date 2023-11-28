@@ -906,7 +906,7 @@
    "| void setMainWindow" : [
     "(Xcls_MainWindow win) {",
     "\tthis.win = win;",
-    "\t ",
+    "\tthis.el.application = win.el.application;",
     "}",
     ""
    ],
