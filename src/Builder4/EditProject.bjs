@@ -121,7 +121,8 @@
            "\tfd.title = \"Select Folder\";",
            "\tfd.modal = true;",
            "\t",
-           "\tfd.select_folder(_this.el, null);",
+           "\tvar f = fd.select_folder(_this.el, null);",
+           "\tthis.",
            "",
            "}",
            ""

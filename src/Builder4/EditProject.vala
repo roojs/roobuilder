@@ -330,7 +330,8 @@ public class EditProject : Object
             	fd.title = "Select Folder";
             	fd.modal = true;
             	
-            	fd.select_folder(_this.el, null);
+            	var f = fd.select_folder(_this.el, null);
+            	this.
             
             });
         }
