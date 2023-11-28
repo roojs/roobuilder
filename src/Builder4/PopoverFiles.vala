@@ -506,7 +506,7 @@ public class Xcls_PopoverFiles : Object
                pe.el.application = _this.win.el.application;
                 pe.el.set_transient_for( _this.win.el );
              
-               this.el.hide();
+               _this.el.hide();
                 pe.showIt();
                
             
