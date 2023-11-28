@@ -106,21 +106,29 @@
        "bool expand" : true,
        "id" : "dir",
        "xtype" : "FileChooserWidget"
+      },
+      {
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "int spacing" : 0,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "add_action_widget,1",
+         "label" : "OK",
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* pack" : "add_action_widget,0",
+         "label" : "Cancel",
+         "xtype" : "Button"
+        }
+       ],
+       "xtype" : "Box"
       }
      ],
      "xtype" : "Box"
-    },
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "add_action_widget,1",
-     "label" : "OK",
-     "xtype" : "Button"
-    },
-    {
-     "$ xns" : "Gtk",
-     "* pack" : "add_action_widget,0",
-     "label" : "Cancel",
-     "xtype" : "Button"
     }
    ],
    "listeners" : {

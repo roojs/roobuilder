@@ -38,12 +38,6 @@ public class EditProject : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.get_content_area().append (  child_0.el  );
-        var child_1 = new Xcls_Button9( _this );
-        child_1.ref();
-        this.el.add_action_widget (  child_1.el , 1 );
-        var child_2 = new Xcls_Button10( _this );
-        child_2.ref();
-        this.el.add_action_widget (  child_2.el , 0 );
 
         //listeners
         this.el.response.connect( (id) => {
@@ -127,6 +121,9 @@ public class EditProject : Object
             var child_1 = new Xcls_dir( _this );
             child_1.ref();
             this.el.append(  child_1.el );
+            var child_2 = new Xcls_Box9( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -322,30 +319,33 @@ public class EditProject : Object
         // user defined functions
     }
 
-
-    public class Xcls_Button9 : Object
+    public class Xcls_Box9 : Object
     {
-        public Gtk.Button el;
+        public Gtk.Box el;
         private EditProject  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Button9(EditProject _owner )
+        public Xcls_Box9(EditProject _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "OK";
+            var child_0 = new Xcls_Button10( _this );
+            child_0.ref();
+            this.el.add_action_widget (  child_0.el , 1 );
+            var child_1 = new Xcls_Button11( _this );
+            child_1.ref();
+            this.el.add_action_widget (  child_1.el , 0 );
         }
 
         // user defined functions
     }
-
     public class Xcls_Button10 : Object
     {
         public Gtk.Button el;
@@ -363,10 +363,35 @@ public class EditProject : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.label = "OK";
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Button11 : Object
+    {
+        public Gtk.Button el;
+        private EditProject  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button11(EditProject _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
             this.el.label = "Cancel";
         }
 
         // user defined functions
     }
+
+
 
 }
