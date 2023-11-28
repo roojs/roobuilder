@@ -104,6 +104,7 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool hexpand" : true,
        "bool vexpand" : false,
+       "int margin_bottom" : 50,
        "int spacing" : 0,
        "items" : [
         {
