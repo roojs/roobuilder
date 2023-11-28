@@ -2181,9 +2181,12 @@ public class ValaProjectSettingsPopover : Object
             var child_0 = new Xcls_Button59( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_save_btn( _this );
+            var child_1 = new Xcls_Label60( _this );
             child_1.ref();
             this.el.append(  child_1.el );
+            var child_2 = new Xcls_save_btn( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -2213,6 +2216,29 @@ public class ValaProjectSettingsPopover : Object
               _this.done = true;
                 _this.el.hide(); 
             });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Label60 : Object
+    {
+        public Gtk.Label el;
+        private ValaProjectSettingsPopover  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label60(ValaProjectSettingsPopover _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( "" );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
         }
 
         // user defined functions

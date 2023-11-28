@@ -1075,6 +1075,12 @@
         },
         {
          "$ xns" : "Gtk",
+         "bool hexpand" : true,
+         "string label" : "",
+         "xtype" : "Label"
+        },
+        {
+         "$ xns" : "Gtk",
          "id" : "save_btn",
          "listeners" : {
           "clicked" : [
