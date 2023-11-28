@@ -107,9 +107,11 @@
       {
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "bool hexpand" : true,
        "int spacing" : 0,
        "items" : [
         {
+         "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ xns" : "Gtk",
          "label" : "OK",
          "listeners" : {
@@ -158,6 +160,7 @@
          "xtype" : "Button"
         },
         {
+         "$ Gtk.Align halign" : "Gtk.Align.END",
          "$ xns" : "Gtk",
          "label" : "Cancel",
          "listeners" : {
