@@ -46,6 +46,7 @@
               {
                "$ Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
                "$ xns" : "Gtk",
+               "int margin_end" : 4,
                "string icon_name" : "folder-new",
                "xtype" : "Image"
               },
