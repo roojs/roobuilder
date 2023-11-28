@@ -155,7 +155,7 @@
        "$ xns" : "Gtk",
        "bool hexpand" : true,
        "id" : "ndir",
-       "int margin_bottom" : 0,
+       "int margin_bottom" : 10,
        "listeners" : {
         "clicked" : [
          "( ) => {",
