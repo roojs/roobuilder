@@ -304,7 +304,7 @@ public class EditProject : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_Button11( _this );
             child_1.ref();
-            this.el.add_action_widget (  child_1.el , 0 );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -393,7 +393,10 @@ public class EditProject : Object
 
             //listeners
             this.el.clicked.connect( ( ) => {
-            
+               
+                _this.el.hide();
+                return;
+                
             
             });
         }

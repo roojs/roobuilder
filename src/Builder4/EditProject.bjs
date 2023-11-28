@@ -162,12 +162,14 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add_action_widget,0",
          "label" : "Cancel",
          "listeners" : {
           "clicked" : [
            "( ) => {",
-           "",
+           "   ",
+           "    _this.el.hide();",
+           "    return;",
+           "    ",
            "",
            "}",
            ""
