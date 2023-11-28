@@ -338,7 +338,7 @@ public class EditProject : Object
             	fd.select_folder.begin(_this.el, null, (obj, res) => {
             	 	var f = fd.select_folder.end(res);
             		this.path = f.get_path();
-            		this.el.lbl = this.path;
+            		this.el.label = this.path;
             	});
             });
         }

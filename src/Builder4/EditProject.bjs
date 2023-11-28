@@ -127,7 +127,7 @@
            "\tfd.select_folder.begin(_this.el, null, (obj, res) => {",
            "\t \tvar f = fd.select_folder.end(res);",
            "\t\tthis.path = f.get_path();",
-           "\t\tthis.el.lbl = this.path;",
+           "\t\tthis.el.label = this.path;",
            "\t});",
            "}",
            ""
