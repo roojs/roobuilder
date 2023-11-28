@@ -114,8 +114,16 @@
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add_action_widget,1",
          "label" : "OK",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "xtype" : "Button"
         },
         {

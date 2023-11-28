@@ -338,7 +338,7 @@ public class EditProject : Object
             // set gobject values
             var child_0 = new Xcls_Button10( _this );
             child_0.ref();
-            this.el.add_action_widget (  child_0.el , 1 );
+            this.el.append(  child_0.el );
             var child_1 = new Xcls_Button11( _this );
             child_1.ref();
             this.el.add_action_widget (  child_1.el , 0 );
@@ -364,6 +364,12 @@ public class EditProject : Object
 
             // set gobject values
             this.el.label = "OK";
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions
