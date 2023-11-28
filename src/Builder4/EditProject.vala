@@ -280,6 +280,9 @@ public class EditProject : Object
             var child_1 = new Xcls_dir( _this );
             child_1.ref();
             this.el.append(  child_1.el );
+            var child_2 = new Xcls_dir( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -302,13 +305,11 @@ public class EditProject : Object
 
             // set gobject values
             this.el.margin_end = 4;
-            var child_0 = new Xcls_dir( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
         }
 
         // user defined functions
     }
+
     public class Xcls_dir : Object
     {
         public Gtk.Button el;
@@ -348,7 +349,6 @@ public class EditProject : Object
 
         // user defined functions
     }
-
 
     public class Xcls_dir : Object
     {
