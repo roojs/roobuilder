@@ -272,6 +272,7 @@ public class EditProject : Object
             this.expand = true;
 
             // set gobject values
+            this.el.vexpand = true;
             this.el.create_folders = true;
             this.el.select_multiple = false;
         }

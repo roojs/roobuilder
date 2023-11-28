@@ -103,6 +103,7 @@
        "$ xns" : "Gtk",
        "bool create_folders" : true,
        "bool expand" : true,
+       "bool vexpand" : true,
        "id" : "dir",
        "xtype" : "FileChooserWidget"
       },
