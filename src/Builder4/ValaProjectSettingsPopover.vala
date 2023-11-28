@@ -207,6 +207,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             var child_0 = new Xcls_label_global( _this );
             child_0.ref();
             var child_1 = new Xcls_label_targets( _this );
