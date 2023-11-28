@@ -114,6 +114,10 @@
         },
         {
          "$ xns" : "Gtk",
+         "xtype" : "Entry"
+        },
+        {
+         "$ xns" : "Gtk",
          "* init" : [
           " this.el.add_attribute(_this.cellrender.el , \"markup\", 1 );  ",
           "  "
