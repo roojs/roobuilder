@@ -272,7 +272,7 @@ public class EditProject : Object
             this.expand = true;
 
             // set gobject values
-            this.el.create_folders = false;
+            this.el.create_folders = true;
             this.el.select_multiple = false;
         }
 

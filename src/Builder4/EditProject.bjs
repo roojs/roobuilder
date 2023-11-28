@@ -99,9 +99,9 @@
       },
       {
        "$ action" : "Gtk.FileChooserAction.SELECT_FOLDER",
-       "$ create_folders" : false,
        "$ select_multiple" : false,
        "$ xns" : "Gtk",
+       "bool create_folders" : true,
        "bool expand" : true,
        "id" : "dir",
        "xtype" : "FileChooserWidget"
