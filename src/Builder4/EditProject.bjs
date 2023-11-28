@@ -12,11 +12,7 @@
     {
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
-     "* pack" : [
-      " get_content_area().append ",
-      " ",
-      ""
-     ],
+     "* prop" : "child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool expand" : true,
      "items" : [

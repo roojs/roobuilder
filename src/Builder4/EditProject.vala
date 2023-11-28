@@ -37,7 +37,7 @@ public class EditProject : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().append (  child_0.el  );
+        this.el.child = child_0.el;
 
         //listeners
         this.el.response.connect( (id) => {
