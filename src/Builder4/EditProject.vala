@@ -335,10 +335,11 @@ public class EditProject : Object
             	fd.title = "Select Folder";
             	fd.modal = true;
             	
-            	var f = fd.select_folder(_this.el, null);
-            	this.path = f.get_path();
-            	this.el.lbl = this.path;
-            
+            	fd.select_folder.begin(_this.el, null, (obj, f) => {
+            	 
+            		this.path = f.get_path();
+            		this.el.lbl = this.path;
+            	});
             });
         }
 

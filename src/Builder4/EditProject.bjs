@@ -124,10 +124,11 @@
            "\tfd.title = \"Select Folder\";",
            "\tfd.modal = true;",
            "\t",
-           "\tvar f = fd.select_folder(_this.el, null);",
-           "\tthis.path = f.get_path();",
-           "\tthis.el.lbl = this.path;",
-           "",
+           "\tfd.select_folder.begin(_this.el, null, (obj, f) => {",
+           "\t ",
+           "\t\tthis.path = f.get_path();",
+           "\t\tthis.el.lbl = this.path;",
+           "\t});",
            "}",
            ""
           ]
