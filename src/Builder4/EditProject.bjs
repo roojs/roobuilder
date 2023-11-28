@@ -170,7 +170,7 @@
     ]
    },
    "name" : "EditProject",
-   "title" : "Project Properties",
+   "title" : "New Project",
    "xtype" : "Dialog",
    "| void showIt" : [
     "() {",

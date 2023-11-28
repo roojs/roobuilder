@@ -29,7 +29,7 @@ public class EditProject : Object
         // my vars (dec)
 
         // set gobject values
-        this.el.title = "Project Properties";
+        this.el.title = "New Project";
         this.el.name = "EditProject";
         this.el.default_height = 500;
         this.el.default_width = 600;
