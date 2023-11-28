@@ -422,9 +422,12 @@ public class EditProject : Object
             var child_0 = new Xcls_Button13( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button14( _this );
+            var child_1 = new Xcls_Label14( _this );
             child_1.ref();
             this.el.append(  child_1.el );
+            var child_2 = new Xcls_Button15( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -447,6 +450,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.halign = Gtk.Align.START;
+            this.el.hexpand = false;
             this.el.label = "OK";
 
             //listeners
@@ -493,7 +497,30 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_Button14 : Object
+    public class Xcls_Label14 : Object
+    {
+        public Gtk.Label el;
+        private EditProject  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label14(EditProject _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( "Label" );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Button15 : Object
     {
         public Gtk.Button el;
         private EditProject  _this;
@@ -502,7 +529,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button14(EditProject _owner )
+        public Xcls_Button15(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -511,6 +538,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.halign = Gtk.Align.END;
+            this.el.hexpand = false;
             this.el.label = "Cancel";
 
             //listeners

@@ -182,6 +182,7 @@
         {
          "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ xns" : "Gtk",
+         "bool hexpand" : false,
          "label" : "OK",
          "listeners" : {
           "clicked" : [
@@ -229,8 +230,15 @@
          "xtype" : "Button"
         },
         {
+         "$ xns" : "Gtk",
+         "bool hexpand" : true,
+         "string label" : "Label",
+         "xtype" : "Label"
+        },
+        {
          "$ Gtk.Align halign" : "Gtk.Align.END",
          "$ xns" : "Gtk",
+         "bool hexpand" : false,
          "label" : "Cancel",
          "listeners" : {
           "clicked" : [
