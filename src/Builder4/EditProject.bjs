@@ -246,7 +246,7 @@
            "( ) => {",
            "   ",
            "    _this.el.hide();",
-           "    return;",
+           "\t_this.cancelled();",
            "    ",
            "",
            "}",
