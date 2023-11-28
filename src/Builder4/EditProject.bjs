@@ -4,6 +4,7 @@
   {
    "$ deletable" : true,
    "$ xns" : "Gtk",
+   "@ void cancelled" : "()",
    "@ void selected" : "(Project.Project? proj)",
    "bool modal" : true,
    "default_height" : 500,
