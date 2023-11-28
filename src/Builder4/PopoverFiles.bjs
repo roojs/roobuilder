@@ -43,7 +43,9 @@
              "* prop" : "child",
              "items" : [
               {
+               "$ Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
                "$ xns" : "Gtk",
+               "string icon_name" : "folder-new",
                "xtype" : "Image"
               },
               {

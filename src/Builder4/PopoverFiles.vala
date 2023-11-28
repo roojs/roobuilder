@@ -559,6 +559,8 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.icon_name = "folder-new";
+            this.el.icon_size = Gtk.IconSize.NORMAL;
         }
 
         // user defined functions
