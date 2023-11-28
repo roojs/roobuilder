@@ -327,6 +327,12 @@ public class EditProject : Object
 
             // set gobject values
             this.el.label = "Select Folder";
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions

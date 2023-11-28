@@ -114,6 +114,15 @@
         },
         {
          "$ xns" : "Gtk",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "string label" : "Select Folder",
          "xtype" : "Button"
         }
