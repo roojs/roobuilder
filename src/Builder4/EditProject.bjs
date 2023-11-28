@@ -26,6 +26,7 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool hexpand" : true,
        "bool vexpand" : false,
+       "int margin_bottom" : 10,
        "items" : [
         {
          "$ xns" : "Gtk",
