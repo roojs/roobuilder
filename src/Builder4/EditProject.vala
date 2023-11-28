@@ -15,6 +15,7 @@ public class EditProject : Object
     public Xcls_xtype xtype;
     public Xcls_cellrender cellrender;
     public Xcls_model model;
+    public Xcls_dir dir;
 
         // my vars (def)
     public signal void selected (Project.Project? proj);
@@ -275,7 +276,7 @@ public class EditProject : Object
             var child_0 = new Xcls_Label9( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button10( _this );
+            var child_1 = new Xcls_dir( _this );
             child_1.ref();
             this.el.append(  child_1.el );
         }
@@ -305,7 +306,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_Button10 : Object
+    public class Xcls_dir : Object
     {
         public Gtk.Button el;
         private EditProject  _this;
@@ -314,9 +315,10 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button10(EditProject _owner )
+        public Xcls_dir(EditProject _owner )
         {
             _this = _owner;
+            _this.dir = this;
             this.el = new Gtk.Button();
 
             // my vars (dec)
@@ -400,7 +402,7 @@ public class EditProject : Object
                         err_dialog.show(_this.el,"You have to set Project type");             
                         return;
                     }
-                    if (_this.dir.el.get_file() == null) {
+                    if (_this.dir.path == null) {
             
                         err_dialog.show(_this.el,"You have to select a folder");             
                         return;
@@ -410,9 +412,9 @@ public class EditProject : Object
                 this.el.hide();
                 
                 
-                
+            
              
-                var fn = _this.dirbtn.path;
+                var fn = _this.dir.path;
                 
                 print("add %s\n" , fn);
                 try {

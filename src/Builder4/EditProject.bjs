@@ -114,6 +114,7 @@
         },
         {
          "$ xns" : "Gtk",
+         "id" : "dir",
          "listeners" : {
           "clicked" : [
            "( ) => {",
@@ -157,7 +158,7 @@
            "            err_dialog.show(_this.el,\"You have to set Project type\");             ",
            "            return;",
            "        }",
-           "        if (_this.dir.el.get_file() == null) {",
+           "        if (_this.dir.path == null) {",
            "",
            "            err_dialog.show(_this.el,\"You have to select a folder\");             ",
            "            return;",
@@ -167,9 +168,9 @@
            "    this.el.hide();",
            "    ",
            "    ",
-           "    ",
+           "",
            " ",
-           "    var fn = _this.dirbtn.path;",
+           "    var fn = _this.dir.path;",
            "    ",
            "    print(\"add %s\\n\" , fn);",
            "    try {",
