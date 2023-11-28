@@ -50,6 +50,7 @@ public class EditProject : Object
         //});
     	// shouild set path..
         _this.model.loadData();
+        _this.dir.reset();
         this.el.show();
         
     }
