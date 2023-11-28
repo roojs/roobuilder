@@ -41,6 +41,13 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "child",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "string label" : "Label",
+               "xtype" : "Label"
+              }
+             ],
              "xtype" : "Box"
             }
            ],
