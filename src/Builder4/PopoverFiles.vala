@@ -526,7 +526,7 @@ public class Xcls_PopoverFiles : Object
         public Xcls_Box6(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 

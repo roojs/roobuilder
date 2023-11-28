@@ -39,6 +39,7 @@
            "$ xns" : "Gtk",
            "items" : [
             {
+             "$ Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
              "$ xns" : "Gtk",
              "* prop" : "child",
              "items" : [
