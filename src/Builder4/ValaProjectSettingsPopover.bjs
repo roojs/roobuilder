@@ -1100,8 +1100,10 @@
    "listeners" : {
     "close_request" : [
      "( ) => {",
-     "",
-     "\treturn bool;",
+     "\tif (!this.done) {",
+     "\t\treturn false;",
+     "\t}",
+     "\treturn true;",
      "}",
      ""
     ],

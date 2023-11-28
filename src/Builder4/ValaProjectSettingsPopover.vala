@@ -70,8 +70,10 @@ public class ValaProjectSettingsPopover : Object
 
         //listeners
         this.el.close_request.connect( ( ) => {
-        
-        	return bool;
+        	if (!this.done) {
+        		return false;
+        	}
+        	return true;
         });
         this.el.hide.connect( () => {
         	  if (!this.done) {
