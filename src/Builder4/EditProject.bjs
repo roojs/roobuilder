@@ -15,6 +15,7 @@
      "* prop" : "child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "bool expand" : true,
+     "int margin_bottom" : 10,
      "items" : [
       {
        "$ homogeneous" : false,

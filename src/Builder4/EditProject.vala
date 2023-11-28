@@ -74,6 +74,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.homogeneous = false;
+            this.el.margin_bottom = 10;
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
             this.el.append(  child_0.el );
