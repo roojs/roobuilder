@@ -143,7 +143,7 @@
            "\t\tvar project = Project.Project.factory(_this.xtype.getValue(), fn);",
            "\t\tproject.save();",
            "\t\tProject.projects.set(project.name,project);",
-           "\t\tthis.selected(project);",
+           "\t\t_this.selected(project);",
            "\t\treturn;",
            "\t} catch (Error e) {",
            "\t\tGLib.debug(\"got error? %s\" , e.message);",

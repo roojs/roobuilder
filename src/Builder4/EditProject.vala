@@ -353,7 +353,7 @@ public class EditProject : Object
             		var project = Project.Project.factory(_this.xtype.getValue(), fn);
             		project.save();
             		Project.projects.set(project.name,project);
-            		this.selected(project);
+            		_this.selected(project);
             		return;
             	} catch (Error e) {
             		GLib.debug("got error? %s" , e.message);
