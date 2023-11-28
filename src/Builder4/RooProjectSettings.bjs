@@ -597,7 +597,7 @@
     "}"
    ],
    "| void show" : [
-    " (Gtk.Widget btn, Project.Project project) {",
+    " (Gtk.Window pwin, Project.Project project) {",
     "    _this.done = false;",
     "    ",
     "    _this.project = project;",
@@ -630,11 +630,7 @@
     "    \t//console.log('show all');",
     "",
     "\t",
-    "    Gtk.Allocation rect;",
-    "\tbtn.get_allocation(out rect);",
-    "    this.el.set_pointing_to(rect);",
-    "",
-    "",
+    "    this.el.set_transient_for(pwin);",
     "\t// window + header?",
     "\t print(\"SHOWALL - POPIP\\n\");",
     "\tthis.el.show();",
