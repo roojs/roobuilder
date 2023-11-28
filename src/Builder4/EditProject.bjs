@@ -111,11 +111,6 @@
          "int margin_end" : 4,
          "label" : "Folder:",
          "xtype" : "Label"
-        },
-        {
-         "$ xns" : "Gtk",
-         "id" : "filename",
-         "xtype" : "Entry"
         }
        ],
        "xtype" : "Box"
