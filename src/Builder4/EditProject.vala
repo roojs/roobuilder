@@ -335,8 +335,8 @@ public class EditProject : Object
             	fd.title = "Select Folder";
             	fd.modal = true;
             	
-            	fd.save.begin(_this.el, null, (obj, res) => {
-            	 	var f = fd.save.end(res);
+            	fd.select_folder.begin(_this.el, null, (obj, res) => {
+            	 	var f = fd.select_folder.end(res);
             		this.path = f.get_path();
             		this.el.label = this.path;
             	});
