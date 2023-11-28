@@ -15,8 +15,8 @@ public class EditProject : Object
     public Xcls_xtype xtype;
     public Xcls_cellrender cellrender;
     public Xcls_model model;
-    public Xcls_dir dir;
     public Xcls_ndir ndir;
+    public Xcls_dir dir;
 
         // my vars (def)
     public signal void selected (Project.Project? proj);
@@ -81,7 +81,7 @@ public class EditProject : Object
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box8( _this );
+            var child_1 = new Xcls_Box9( _this );
             child_1.ref();
             this.el.append(  child_1.el );
             var child_2 = new Xcls_Box12( _this );
@@ -117,6 +117,9 @@ public class EditProject : Object
             var child_1 = new Xcls_xtype( _this );
             child_1.ref();
             this.el.append(  child_1.el );
+            var child_2 = new Xcls_ndir( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -258,8 +261,46 @@ public class EditProject : Object
     }
 
 
+    public class Xcls_ndir : Object
+    {
+        public Gtk.Button el;
+        private EditProject  _this;
 
-    public class Xcls_Box8 : Object
+
+            // my vars (def)
+        public string? path;
+
+        // ctor
+        public Xcls_ndir(EditProject _owner )
+        {
+            _this = _owner;
+            _this.ndir = this;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+            this.path = null;
+
+            // set gobject values
+            this.el.hexpand = true;
+            this.el.label = "New Folder";
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+            	var fd = new Gtk.FileDialog();
+            	fd.title = "Create folder - then close this (it's buggy yes)";
+            	fd.modal = true;
+            	
+            	fd.save.begin(_this.el, null, (obj, res) => {
+            	 	 
+            	});
+            });
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Box9 : Object
     {
         public Gtk.Box el;
         private EditProject  _this;
@@ -268,7 +309,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box8(EditProject _owner )
+        public Xcls_Box9(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -280,20 +321,17 @@ public class EditProject : Object
             this.el.hexpand = true;
             this.el.vexpand = false;
             this.el.margin_bottom = 50;
-            var child_0 = new Xcls_Label9( _this );
+            var child_0 = new Xcls_Label10( _this );
             child_0.ref();
             this.el.append(  child_0.el );
             var child_1 = new Xcls_dir( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_ndir( _this );
-            child_2.ref();
-            this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Label9 : Object
+    public class Xcls_Label10 : Object
     {
         public Gtk.Label el;
         private EditProject  _this;
@@ -302,7 +340,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label9(EditProject _owner )
+        public Xcls_Label10(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Folder:" );
@@ -357,44 +395,6 @@ public class EditProject : Object
         public void reset () {
         	this.el.label = "Select Folder";
         }
-    }
-
-    public class Xcls_ndir : Object
-    {
-        public Gtk.Button el;
-        private EditProject  _this;
-
-
-            // my vars (def)
-        public string? path;
-
-        // ctor
-        public Xcls_ndir(EditProject _owner )
-        {
-            _this = _owner;
-            _this.ndir = this;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-            this.path = null;
-
-            // set gobject values
-            this.el.hexpand = true;
-            this.el.label = "New Folder";
-
-            //listeners
-            this.el.clicked.connect( ( ) => {
-            	var fd = new Gtk.FileDialog();
-            	fd.title = "Create folder - then close this (it's buggy yes)";
-            	fd.modal = true;
-            	
-            	fd.save.begin(_this.el, null, (obj, res) => {
-            	 	 
-            	});
-            });
-        }
-
-        // user defined functions
     }
 
 
