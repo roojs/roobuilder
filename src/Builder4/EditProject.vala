@@ -16,7 +16,7 @@ public class EditProject : Object
     public Xcls_cellrender cellrender;
     public Xcls_model model;
     public Xcls_dir dir;
-    public Xcls_dir dir;
+    public Xcls_ndir ndir;
 
         // my vars (def)
     public signal void selected (Project.Project? proj);
@@ -280,7 +280,7 @@ public class EditProject : Object
             var child_1 = new Xcls_dir( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_dir( _this );
+            var child_2 = new Xcls_ndir( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
@@ -351,7 +351,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_dir : Object
+    public class Xcls_ndir : Object
     {
         public Gtk.Button el;
         private EditProject  _this;
@@ -361,10 +361,10 @@ public class EditProject : Object
         public string? path;
 
         // ctor
-        public Xcls_dir(EditProject _owner )
+        public Xcls_ndir(EditProject _owner )
         {
             _this = _owner;
-            _this.dir = this;
+            _this.ndir = this;
             this.el = new Gtk.Button();
 
             // my vars (dec)
