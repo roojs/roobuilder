@@ -1082,7 +1082,7 @@
         },
         {
          "$ xns" : "Gtk",
-         "css_classes" : "null",
+         "css_classes" : "{ \"suggested-action\" }",
          "id" : "save_btn",
          "listeners" : {
           "clicked" : [

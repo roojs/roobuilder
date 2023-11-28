@@ -2263,7 +2263,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.css_classes = null;
+            this.el.css_classes = { "suggested-action" };
             this.el.label = "Save";
 
             //listeners
