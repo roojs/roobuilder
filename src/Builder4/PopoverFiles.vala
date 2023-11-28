@@ -503,8 +503,9 @@ public class Xcls_PopoverFiles : Object
                 // create a new file in project..
                 //Xcls_DialogNewComponent.singleton().show(
                var  pe =      EditProject.singleton();
-                pe.el.set_parent(_this.el);
-                pe.el.set_modal(true);   
+               pe.el.application = _this.win.el.application;
+                pe.el.parent = this.el;
+             
                
                 pe.showIt();
                
