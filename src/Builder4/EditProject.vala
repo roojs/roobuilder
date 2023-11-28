@@ -19,7 +19,7 @@ public class EditProject : Object
     public Xcls_ndir ndir;
 
         // my vars (def)
-    public signal void cancelled ();
+    public signal void canceled ();
     public signal void selected (Project.Project? proj);
 
     // ctor
