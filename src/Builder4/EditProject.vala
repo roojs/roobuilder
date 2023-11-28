@@ -349,6 +349,9 @@ public class EditProject : Object
         }
 
         // user defined functions
+        public void reset () {
+        
+        }
     }
 
     public class Xcls_ndir : Object

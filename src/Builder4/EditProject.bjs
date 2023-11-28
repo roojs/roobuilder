@@ -135,7 +135,12 @@
           ]
          },
          "string label" : "Select Folder",
-         "xtype" : "Button"
+         "xtype" : "Button",
+         "| void reset" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ string? path" : "null",
