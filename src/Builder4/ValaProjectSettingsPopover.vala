@@ -69,6 +69,10 @@ public class ValaProjectSettingsPopover : Object
         this.el.set_child (  child_1.el  );
 
         //listeners
+        this.el.close_request.connect( ( ) => {
+        
+        	return bool;
+        });
         this.el.hide.connect( () => {
         	  if (!this.done) {
             _this.el.show();

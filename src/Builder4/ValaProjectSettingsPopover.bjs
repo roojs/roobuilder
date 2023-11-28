@@ -1098,6 +1098,13 @@
     }
    ],
    "listeners" : {
+    "close_request" : [
+     "( ) => {",
+     "",
+     "\treturn bool;",
+     "}",
+     ""
+    ],
     "hide" : [
      "() => {",
      "\t  if (!this.done) {",
