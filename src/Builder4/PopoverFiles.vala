@@ -388,6 +388,7 @@ public class Xcls_PopoverFiles : Object
     }
     public void setMainWindow (Xcls_MainWindow win) {
     	this.win = win;
+    	this.el.set_transient_for(win.el);
     	this.el.application = win.el.application;
     }
     public class Xcls_Box2 : Object
