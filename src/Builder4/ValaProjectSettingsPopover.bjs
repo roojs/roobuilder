@@ -14,6 +14,14 @@
      "$ xns" : "Gtk",
      "* prop" : "titlebar",
      "* title" : "Window Title",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "title_widget",
+       "string label" : "Change Vala Project Compile settings",
+       "xtype" : "Label"
+      }
+     ],
      "xtype" : "HeaderBar"
     },
     {
@@ -23,18 +31,6 @@
      "bool hexpand" : true,
      "bool vexpand" : true,
      "items" : [
-      {
-       "$ xns" : "Gtk",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "title_widget",
-         "string label" : "Change Vala Project Compile settings",
-         "xtype" : "Label"
-        }
-       ],
-       "xtype" : "HeaderBar"
-      },
       {
        "$ xns" : "Gtk",
        "items" : [
