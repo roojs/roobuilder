@@ -124,7 +124,8 @@
            "\tfd.modal = true;",
            "\t",
            "\tvar f = fd.select_folder(_this.el, null);",
-           "\tthis.",
+           "\tthis.path = f.get_path();",
+           "\tthis.el.lbl = this.path;",
            "",
            "}",
            ""

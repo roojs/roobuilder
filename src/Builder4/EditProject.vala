@@ -335,7 +335,8 @@ public class EditProject : Object
             	fd.modal = true;
             	
             	var f = fd.select_folder(_this.el, null);
-            	this.
+            	this.path = f.get_path();
+            	this.el.lbl = this.path;
             
             });
         }
