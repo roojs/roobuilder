@@ -504,7 +504,7 @@ public class Xcls_PopoverFiles : Object
                 //Xcls_DialogNewComponent.singleton().show(
                var  pe =      EditProject.singleton();
                 pe.el.set_parent(_this.el);
-                pe.el.set_modal(true);   
+                
                
                 pe.showIt();
                
