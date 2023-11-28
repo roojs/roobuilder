@@ -598,9 +598,9 @@
      "\t//if (project != null) {",
      "//\t\tthis.selectProject(project);",
      "//\t}",
-     " \tif (_this.win.windowstate.project == null) {",
-     " \t\tthis.el.show();",
-     "\t}",
+     " \t//if (_this.win.windowstate.project == null) {",
+     " \t//\tthis.el.show();",
+     "\t//}",
      "}"
     ]
    },
