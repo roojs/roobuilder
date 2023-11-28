@@ -79,6 +79,8 @@ public class Xcls_MainWindow : Object
             _this.statusbar_compile_spinner.el.hide();
           
             Resources.singleton().checkResources();
+            
+          
         
         });
         this.el.hide.connect( () =>  {
@@ -111,7 +113,9 @@ public class Xcls_MainWindow : Object
     public void show () {
        
         this.el.show();
-    
+        if (this.windowstate.file  == null) {
+        	this.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);
+        }
     }
     public void setTitle (string str) {
         _this.el.set_title(this.title + " - " + str);
@@ -930,7 +934,7 @@ public class Xcls_MainWindow : Object
                     return  ;
                 }
                  _this.windowstate.file_details.show(
-                    _this.windowstate.file, this.el, false
+                    _this.windowstate.file, _this.el, false
                 );
                  
                 return  ;    

@@ -55,6 +55,7 @@ public class Xcls_PopoverFiles : Object
 
         // set gobject values
         this.el.width_request = 900;
+        this.el.title = "Select Project /File";
         this.el.height_request = 800;
         this.el.hexpand = false;
         this.el.modal = true;
@@ -156,9 +157,9 @@ public class Xcls_PopoverFiles : Object
     	}
     	
     	
-         var win = this.win.el;
-        var  w = win.get_width();
-        var h = win.get_height();
+      //   var win = this.win.el;
+      //  var  w = win.get_width();
+      //  var h = win.get_height();
     
         // left tree = 250, editor area = 500?
         
@@ -169,7 +170,7 @@ public class Xcls_PopoverFiles : Object
     	
     	// width = should be max = w-ww , or 600 at best..?
     	 
-        this.el.set_size_request( w - 100, h - 100); // same as parent...
+        //this.el.set_size_request( w - 100, h - 100); // same as parent...
     
     
     	//this.el.set_autohide(true); // can hide
@@ -389,7 +390,7 @@ public class Xcls_PopoverFiles : Object
     public void setMainWindow (Xcls_MainWindow win) {
     	this.win = win;
     	this.el.set_transient_for(win.el);
-    	this.el.application = win.el.application;
+    	this.el.application = BuilderApplication.singleton({});
     }
     public class Xcls_Box2 : Object
     {

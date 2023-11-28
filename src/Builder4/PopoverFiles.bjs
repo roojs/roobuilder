@@ -620,6 +620,7 @@
     ]
    },
    "string lastfilter" : "\"\"",
+   "string title" : "Select Project /File",
    "xtype" : "Window",
    "| void load" : [
     "() {",
@@ -907,7 +908,7 @@
     "(Xcls_MainWindow win) {",
     "\tthis.win = win;",
     "\tthis.el.set_transient_for(win.el);",
-    "\tthis.el.application = win.el.application;",
+    "\tthis.el.application = BuilderApplication.singleton({});",
     "}",
     ""
    ],
@@ -928,9 +929,9 @@
     "\t}",
     "\t",
     "\t",
-    "     var win = this.win.el;",
-    "    var  w = win.get_width();",
-    "    var h = win.get_height();",
+    "  //   var win = this.win.el;",
+    "  //  var  w = win.get_width();",
+    "  //  var h = win.get_height();",
     "",
     "    // left tree = 250, editor area = 500?",
     "    ",
@@ -941,7 +942,7 @@
     "\t",
     "\t// width = should be max = w-ww , or 600 at best..?",
     "\t ",
-    "    this.el.set_size_request( w - 100, h - 100); // same as parent...",
+    "    //this.el.set_size_request( w - 100, h - 100); // same as parent...",
     "",
     "",
     "\t//this.el.set_autohide(true); // can hide",

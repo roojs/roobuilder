@@ -206,7 +206,6 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/DialogTemplateSelect.vala \
 		Builder4/EditProject.vala \
 		Builder4/Editor.vala \
-		Builder4/PopoverFiles.vala \
 		Builder4/RooProjectSettings.vala \
 		Builder4/PopoverAddObject.vala \
 		Builder4/WindowLeftTree.vala \
@@ -221,7 +220,8 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/PopoverFileDetails.vala \
 		Builder4/ValaCompileErrors.vala \
 		Builder4/ValaCompileResults.vala \
-		Builder4/PopoverProperty.vala
+		Builder4/PopoverProperty.vala \
+		Builder4/DialogFiles.vala
         
 roobuilder_SOURCES =  Application.vala \
 		Main.vala \

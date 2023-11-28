@@ -152,11 +152,11 @@
             "../Builder4/PopoverAddProp.vala",
             "../Builder4/PopoverAddObject.vala",
             "../Builder4/Editor.vala",
-            "../Builder4/PopoverFiles.vala",
             "../JsRender/NodeToGlade.vala",
             "../JsRender/NodeProp.vala",
             "../Project/GtkValaSettings.vala",
-            "../Palete/CompileError.vala"
+            "../Palete/CompileError.vala",
+            "../Builder4/DialogFiles.vala"
         ],
         "packages" : []
     },

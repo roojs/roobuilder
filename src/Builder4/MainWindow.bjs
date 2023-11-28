@@ -381,7 +381,7 @@
            "        return  ;",
            "    }",
            "     _this.windowstate.file_details.show(",
-           "        _this.windowstate.file, this.el, false",
+           "        _this.windowstate.file, _this.el, false",
            "    );",
            "     ",
            "    return  ;    ",
@@ -682,6 +682,8 @@
      "    _this.statusbar_compile_spinner.el.hide();",
      "  ",
      "    Resources.singleton().checkResources();",
+     "    ",
+     "  ",
      "",
      "}"
     ]
@@ -725,7 +727,9 @@
     "() {",
     "   ",
     "    this.el.show();",
-    "",
+    "    if (this.windowstate.file  == null) {",
+    "    \tthis.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);",
+    "    }",
     "}"
    ]
   }

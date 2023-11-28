@@ -19,8 +19,8 @@ public class WindowState : Object
 	public State state = State.NONE;
 	public bool children_loaded = false;
  
-	public Project.Project project;
-	public JsRender.JsRender file;
+	public Project.Project? project = null;
+	public JsRender.JsRender? file = null;
 	  
 	public Xcls_WindowLeftTree  left_tree;
 	public Xcls_PopoverAddProp   add_props;
@@ -32,7 +32,7 @@ public class WindowState : Object
 	public Editor					 code_editor_tab; 
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
-	public Xcls_PopoverFiles popover_files;
+	public DialogFiles popover_files;
 	
 	//public Xcls_ClutterFiles     clutterfiles;
 	//public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
@@ -94,8 +94,12 @@ public class WindowState : Object
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
   
-		this.popover_files = new Xcls_PopoverFiles();
-	 	this.popover_files.setMainWindow(this.win);
+		this.popover_files = new DialogFiles();
+		 this.popover_files.win = this.win;
+	    this.popover_files.el.application = this.win.el.application;
+	    this.popover_files.el.set_transient_for( this.win.el );
+ 
+
 	}
 
 
@@ -558,7 +562,7 @@ public class WindowState : Object
 	// ----------- file view
 	public void showPopoverFiles(Gtk.Widget btn, Project.Project? project, bool new_window)
 	{
-		this.popover_files.show(btn, project, new_window);
+		this.popover_files.show(  project, new_window);
 	
 	}
 	
@@ -568,11 +572,13 @@ public class WindowState : Object
 	{
 		this.file_details = new Xcls_PopoverFileDetails();
 		this.file_details.mainwindow = this.win;
-		this.file_details.el.set_parent(this.win.el);
+		this.file_details.el.application = this.win.el.application;
+//		this.file_details.el.set_parent(this.win.el);
 		// force it modal to the main window..
 		
 		this.file_details.success.connect((project,file) =>
 		{
+			this.popover_files.el.hide();
 			this.fileViewOpen(file, this.file_details.new_window,  -1);
 			// if it's comming from the file dialog -> hide it...
 			
