@@ -305,6 +305,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.margin_end = 4;
+            this.el.margin_bottom = 50;
         }
 
         // user defined functions

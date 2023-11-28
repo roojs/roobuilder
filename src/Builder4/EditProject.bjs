@@ -108,6 +108,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "int margin_bottom" : 50,
          "int margin_end" : 4,
          "label" : "Folder:",
          "xtype" : "Label"
