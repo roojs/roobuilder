@@ -157,7 +157,7 @@
            ""
           ]
          },
-         "string label" : "Select Folder",
+         "string label" : "New Folder",
          "xtype" : "Button"
         }
        ],

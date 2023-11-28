@@ -371,7 +371,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.label = "Select Folder";
+            this.el.label = "New Folder";
 
             //listeners
             this.el.clicked.connect( ( ) => {
