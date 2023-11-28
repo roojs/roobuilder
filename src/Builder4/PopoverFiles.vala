@@ -496,7 +496,7 @@ public class Xcls_PopoverFiles : Object
             this.el.label = "New Project";
             var child_0 = new Xcls_Box6( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.child (  child_0.el  );
 
             //listeners
             this.el.clicked.connect( ( ) => {
