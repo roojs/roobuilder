@@ -116,6 +116,15 @@
            "xtype" : "StringList"
           }
          ],
+         "listeners" : {
+          "notify[\"selected\"]" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "xtype" : "DropDown",
          "| void load" : [
           "() {",
