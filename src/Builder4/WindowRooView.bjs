@@ -191,6 +191,13 @@
                "    this.runjs = \"\";",
                "}"
               ],
+              "ready_to_show" : [
+               "( ) => {",
+               "  this.initInspector();",
+               "",
+               "}",
+               ""
+              ],
               "script_dialog" : [
                " (dialog) => {",
                "    ",
