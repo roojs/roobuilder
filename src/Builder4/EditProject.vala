@@ -410,8 +410,14 @@ public class EditProject : Object
             	
             	// folder selected...
             	switch(_this.type_dd.getValue()) {
-            		case "
-            	
+            		case "New Folder":
+            		
+            		case "Existing Folder":
+            		
+            		case "Checkout from git":
+            			
+            		
+            		
             	
             
             });
