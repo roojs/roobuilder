@@ -74,6 +74,9 @@ public class EditProject : Object
         this.el.show();
         
     }
+    public void hideAll () {
+    
+    }
     public class Xcls_Box2 : Object
     {
         public Gtk.Box el;

@@ -376,6 +376,11 @@
    "name" : "EditProject",
    "title" : "New Project",
    "xtype" : "Window",
+   "| void hideAll" : [
+    "() {",
+    "",
+    "}"
+   ],
    "| void show" : [
     "() {",
     "     ",
