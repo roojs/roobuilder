@@ -49,13 +49,14 @@
         },
         {
          "$ xns" : "Gtk",
-         "id" : "",
+         "id" : "folder_lbl",
          "string label" : "In Folder:",
          "xtype" : "Label"
         },
         {
          "$ xns" : "Gtk",
          "bool hexpand" : true,
+         "id" : "folder_dd",
          "items" : [
           {
            "$ xns" : "Gtk",

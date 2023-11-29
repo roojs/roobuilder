@@ -14,6 +14,8 @@ public class EditProject : Object
     }
     public Xcls_type_lbl type_lbl;
     public Xcls_type_dd type_dd;
+    public Xcls_folder_lbl folder_lbl;
+    public Xcls_folder_dd folder_dd;
     public Xcls_xtype xtype;
     public Xcls_cellrender cellrender;
     public Xcls_model model;
@@ -128,10 +130,10 @@ public class EditProject : Object
             var child_1 = new Xcls_type_dd( _this );
             child_1.ref();
             this.el.attach(  child_1.el, 1, 0, 1, 1 );
-            var child_2 = new Xcls_Label7( _this );
+            var child_2 = new Xcls_folder_lbl( _this );
             child_2.ref();
             this.el.attach(  child_2.el, 0, 1, 1, 1 );
-            var child_3 = new Xcls_DropDown8( _this );
+            var child_3 = new Xcls_folder_dd( _this );
             child_3.ref();
             this.el.attach(  child_3.el, 1, 1, 1, 1 );
             var child_4 = new Xcls_Label10( _this );
@@ -222,7 +224,7 @@ public class EditProject : Object
     }
 
 
-    public class Xcls_Label7 : Object
+    public class Xcls_folder_lbl : Object
     {
         public Gtk.Label el;
         private EditProject  _this;
@@ -231,9 +233,10 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label7(EditProject _owner )
+        public Xcls_folder_lbl(EditProject _owner )
         {
             _this = _owner;
+            _this.folder_lbl = this;
             this.el = new Gtk.Label( "In Folder:" );
 
             // my vars (dec)
@@ -244,7 +247,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_DropDown8 : Object
+    public class Xcls_folder_dd : Object
     {
         public Gtk.DropDown el;
         private EditProject  _this;
@@ -253,9 +256,10 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_DropDown8(EditProject _owner )
+        public Xcls_folder_dd(EditProject _owner )
         {
             _this = _owner;
+            _this.folder_dd = this;
             this.el = new Gtk.DropDown( null, null );
 
             // my vars (dec)
