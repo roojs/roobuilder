@@ -45,6 +45,15 @@
            "xtype" : "StringList"
           }
          ],
+         "listeners" : {
+          "activate" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "xtype" : "DropDown"
         },
         {

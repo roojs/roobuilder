@@ -207,6 +207,12 @@ public class EditProject : Object
             var child_0 = new Xcls_StringList6( _this );
             child_0.ref();
             this.el.model = child_0.el;
+
+            //listeners
+            this.el.activate.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions
