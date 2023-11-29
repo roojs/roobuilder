@@ -70,7 +70,10 @@ public class EditProject : Object
         
     }
     public void hideAll () {
-     _this.folder_lbl.el.hide();
+     	_this.parent_lbl.el.hide();
+         _this.parent_dd.el.hide();   
+     	
+     	_this.folder_lbl.el.hide();
          _this.folder_dd.el.hide();     
          _this.name_lbl.el.hide();          
          _this.name_entry.el.hide();     
