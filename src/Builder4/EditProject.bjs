@@ -272,7 +272,8 @@
          ],
          "| void load" : [
           "() {",
-          "",
+          "\tvar p  = _this.parent_dd.getValue();",
+          "\t",
           "}"
          ]
         },

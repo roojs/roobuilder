@@ -547,7 +547,8 @@ public class EditProject : Object
         	
         }
         public void load () {
-        
+        	var p  = _this.parent_dd.getValue();
+        	
         }
     }
     public class Xcls_StringList13 : Object
