@@ -581,7 +581,7 @@ public class EditProject : Object
         		strs, 
         		strs.length, 
         		sizeof(string), 
-        		(Posix.compar_fn_t) (ref string x, ref string y) => {
+        		(ref string x, ref string y) => {
         			return Posix.strcmp(x, y);
         		}
         	);
