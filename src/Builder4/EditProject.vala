@@ -225,18 +225,37 @@ public class EditProject : Object
             var m = (Gtk.StringList) this.el.model;
             	GLib.debug("selected item: %s", m.get_string(this.el.selected));
             	
-            	
-            	_this.hideAll();	
-            	switch (m.get_string(this.el.selected)) {
+            	_this.hideAll();
+            	_this.ptype_lbl.el.hide();          
+            	_this.ptype_dd.el.hide(); 
+             	
+             	switch (m.get_string(this.el.selected)) {
             		case "New Folder":
-            		
+            		    _this.name_lbl.el.show();          
+                 		_this.name_entry.el.show();     
+            			 break;
             		case "Existing Folder":
-            		
+            			_this.folder_lbl.el.show();
+            			 _this.folder_dd.el.show();     	
+            			 break;
+            			 
             		case "Checkout from git":
-            		
+            		    _this.name_lbl.el.show();          
+            			_this.name_entry.el.show();  
+            			break;   
             		default:
+            			_this.hideAll();
+            			break;
             
-            	}		
+            	}	
+            	
+            	
+            	 
+             
+                          
+                      
+                
+            		
             });
         }
 
