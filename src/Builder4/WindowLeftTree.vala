@@ -1019,12 +1019,12 @@ public class Xcls_WindowLeftTree : Object
             		this.lastDragNode.loadFromJsonString(v.get_string(), 1);
             	}
                 
-             	var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(this.lastDragNode.fqn());
-                   
+             	     
                    
                 var dropNode = new JsRender.Node(); 
             	dropNode.loadFromJsonString(v.get_string(), 1);
-            	
+            	var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(dropNode.fqn());
+               
                 // if there are not items in the tree.. the we have to set isOver to true for anything..
              
                 if (_this.model.el.n_items < 1) {
