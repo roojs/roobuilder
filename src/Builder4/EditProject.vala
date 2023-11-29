@@ -575,15 +575,15 @@ public class EditProject : Object
         		
         		 
         	}
-        	 
+        	 int cmpfunc(ref string a, ref string b) {
+        		return Posix.strcmp(a, b);
+        	}
         		 
         	Posix.qsort (
         		strs, 
         		strs.length, 
         		sizeof(string), 
-        		(ref string x, ref string y) => {
-        			return Posix.strcmp(x, y);
-        		}
+        		(Posix.compar_fn_t) cmpfunc
         	);
         	for (var i =0 ; i < strs.lengthl i++) {
         		sl.append(fn);
