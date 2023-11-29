@@ -156,6 +156,7 @@ public class EditProject : Object
             // set gobject values
             this.el.column_spacing = 4;
             this.el.row_spacing = 4;
+            this.el.margin_bottom = 20;
             var child_0 = new Xcls_type_lbl( _this );
             child_0.ref();
             this.el.attach(  child_0.el, 0, 0, 1, 1 );
@@ -812,7 +813,7 @@ public class EditProject : Object
                     err_dialog.show(_this.el,"You have to set Project type");             
                     return;
                 }
-               
+               var fn = _this.parent_dd.getValue();
                
                switch (_this.type_dd.getValue()) {
             	   	case "Existing Folder":
@@ -820,44 +821,31 @@ public class EditProject : Object
             				err_dialog.show(_this.el,"You have to set Folder");             
             				return;
             			}
+            			fn += "/" + _this.folder_dd.getValue();
             			break;
             	   	
             	   	case "New Folder":
-            		   	if (_this.folder_dd.getValue().length < 1) {
+            		   	if (_this.name_entry.getValue().length < 1) {
             				err_dialog.show(_this.el,"You have enter a Project Name");             
             				return;
             			}
-            	   
+            			fn += "/" + _this.name_entry.getValue();	   
             	   	default:
             	   		return;
                		
-            }
+                }
                
                
-             
-                     
-                  	if (_this.name_entry.getValue().length < 1) {
-                       
-                        err_dialog.show(_this.el,"You have to set Project type");             
-                        return;
-                    }
-                    if (_this.dir.path == null) {
-            
-                        err_dialog.show(_this.el,"You have to select a folder");             
-                        return;
-                    }
-                  
+              
                 
                 _this.el.hide();
                 
                 
             
-             
-                var fn = _this.dir.path;
-                
+              
                 print("add %s\n" , fn);
                 try {
-            		var project = Project.Project.factory(_this.xtype.getValue(), fn);
+            		var project = Project.Project.factory(_this.ptype.getValue(), fn);
             		project.save();
             		Project.projects.set(project.name,project);
             		_this.selected(project);
