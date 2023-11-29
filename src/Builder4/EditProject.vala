@@ -82,16 +82,16 @@ public class EditProject : Object
             var child_0 = new Xcls_Grid3( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box10( _this );
+            var child_1 = new Xcls_Box11( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Box15( _this );
+            var child_2 = new Xcls_Box16( _this );
             child_2.ref();
             this.el.append(  child_2.el );
             var child_3 = new Xcls_ndir( _this );
             child_3.ref();
             this.el.append(  child_3.el );
-            var child_4 = new Xcls_Box19( _this );
+            var child_4 = new Xcls_Box20( _this );
             child_4.ref();
             this.el.append(  child_4.el );
         }
@@ -129,6 +129,9 @@ public class EditProject : Object
             var child_3 = new Xcls_DropDown8( _this );
             child_3.ref();
             this.el.attach(  child_3.el, 1, 1, 1, 1 );
+            var child_4 = new Xcls_Label10( _this );
+            child_4.ref();
+            this.el.attach(  child_4.el, 0, 2, 1, 1 );
         }
 
         // user defined functions
@@ -271,8 +274,30 @@ public class EditProject : Object
     }
 
 
+    public class Xcls_Label10 : Object
+    {
+        public Gtk.Label el;
+        private EditProject  _this;
 
-    public class Xcls_Box10 : Object
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label10(EditProject _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( "Named (New Folder Name)" );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Box11 : Object
     {
         public Gtk.Box el;
         private EditProject  _this;
@@ -281,7 +306,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box10(EditProject _owner )
+        public Xcls_Box11(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -293,7 +318,7 @@ public class EditProject : Object
             this.el.hexpand = true;
             this.el.vexpand = false;
             this.el.margin_bottom = 10;
-            var child_0 = new Xcls_Label11( _this );
+            var child_0 = new Xcls_Label12( _this );
             child_0.ref();
             this.el.append(  child_0.el );
             var child_1 = new Xcls_xtype( _this );
@@ -303,7 +328,7 @@ public class EditProject : Object
 
         // user defined functions
     }
-    public class Xcls_Label11 : Object
+    public class Xcls_Label12 : Object
     {
         public Gtk.Label el;
         private EditProject  _this;
@@ -312,7 +337,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label11(EditProject _owner )
+        public Xcls_Label12(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Project type :" );
@@ -441,7 +466,7 @@ public class EditProject : Object
 
 
 
-    public class Xcls_Box15 : Object
+    public class Xcls_Box16 : Object
     {
         public Gtk.Box el;
         private EditProject  _this;
@@ -450,7 +475,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box15(EditProject _owner )
+        public Xcls_Box16(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -462,7 +487,7 @@ public class EditProject : Object
             this.el.hexpand = true;
             this.el.vexpand = false;
             this.el.margin_bottom = 10;
-            var child_0 = new Xcls_Label16( _this );
+            var child_0 = new Xcls_Label17( _this );
             child_0.ref();
             this.el.append(  child_0.el );
             var child_1 = new Xcls_dir( _this );
@@ -472,7 +497,7 @@ public class EditProject : Object
 
         // user defined functions
     }
-    public class Xcls_Label16 : Object
+    public class Xcls_Label17 : Object
     {
         public Gtk.Label el;
         private EditProject  _this;
@@ -481,7 +506,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label16(EditProject _owner )
+        public Xcls_Label17(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Folder:" );
@@ -578,7 +603,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_Box19 : Object
+    public class Xcls_Box20 : Object
     {
         public Gtk.Box el;
         private EditProject  _this;
@@ -587,7 +612,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box19(EditProject _owner )
+        public Xcls_Box20(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -597,20 +622,20 @@ public class EditProject : Object
             // set gobject values
             this.el.halign = Gtk.Align.FILL;
             this.el.hexpand = true;
-            var child_0 = new Xcls_Button20( _this );
+            var child_0 = new Xcls_Button21( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Label21( _this );
+            var child_1 = new Xcls_Label22( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button22( _this );
+            var child_2 = new Xcls_Button23( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button20 : Object
+    public class Xcls_Button21 : Object
     {
         public Gtk.Button el;
         private EditProject  _this;
@@ -619,7 +644,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button20(EditProject _owner )
+        public Xcls_Button21(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -676,7 +701,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_Label21 : Object
+    public class Xcls_Label22 : Object
     {
         public Gtk.Label el;
         private EditProject  _this;
@@ -685,7 +710,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label21(EditProject _owner )
+        public Xcls_Label22(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "" );
@@ -699,7 +724,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_Button22 : Object
+    public class Xcls_Button23 : Object
     {
         public Gtk.Button el;
         private EditProject  _this;
@@ -708,7 +733,7 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button22(EditProject _owner )
+        public Xcls_Button23(EditProject _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();

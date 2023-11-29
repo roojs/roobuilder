@@ -60,6 +60,11 @@
           }
          ],
          "xtype" : "DropDown"
+        },
+        {
+         "$ xns" : "Gtk",
+         "string label" : "Named (New Folder Name)",
+         "xtype" : "Label"
         }
        ],
        "xtype" : "Grid"
