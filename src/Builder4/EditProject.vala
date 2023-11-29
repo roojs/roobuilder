@@ -275,7 +275,9 @@ public class EditProject : Object
 
         // user defined functions
         public string getValue () {
-        
+        	var m = (Gtk.StringList) this.el.model;
+        	return  m.get_string(this.el.selected);
+        	
         }
     }
     public class Xcls_StringList6 : Object

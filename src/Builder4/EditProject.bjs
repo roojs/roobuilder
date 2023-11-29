@@ -99,7 +99,9 @@
          "xtype" : "DropDown",
          "| string getValue" : [
           "() {",
-          "",
+          "\tvar m = (Gtk.StringList) this.el.model;",
+          "\treturn  m.get_string(this.el.selected);",
+          "\t",
           "}"
          ]
         },
