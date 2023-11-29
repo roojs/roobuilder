@@ -601,7 +601,7 @@ public class Xcls_WindowRooView : Object
                         // or should we catch stuff and fix it up..
                         "http://localhost/app.Builder/"
                 );
-                    
+                 this.initInspector();   
                     
                //this.el.open('file:///' + __script_path__ + '/../builder.html');
                 /*
