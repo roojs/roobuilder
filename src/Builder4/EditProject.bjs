@@ -513,27 +513,29 @@
         {
          "$ xns" : "Gtk",
          "bool hexpand" : true,
+         "items" : [
+          {
+           "$ Gtk.Align halign" : "Gtk.Align.END",
+           "$ xns" : "Gtk",
+           "bool hexpand" : false,
+           "label" : "Cancel",
+           "listeners" : {
+            "clicked" : [
+             "( ) => {",
+             "   ",
+             "    _this.el.hide();",
+             "\t_this.canceled();",
+             "    ",
+             "",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "Button"
+          }
+         ],
          "string label" : "",
          "xtype" : "Label"
-        },
-        {
-         "$ Gtk.Align halign" : "Gtk.Align.END",
-         "$ xns" : "Gtk",
-         "bool hexpand" : false,
-         "label" : "Cancel",
-         "listeners" : {
-          "clicked" : [
-           "( ) => {",
-           "   ",
-           "    _this.el.hide();",
-           "\t_this.canceled();",
-           "    ",
-           "",
-           "}",
-           ""
-          ]
-         },
-         "xtype" : "Button"
         }
        ],
        "xtype" : "Box"
@@ -556,7 +558,7 @@
     "     _this.name_entry.el.hide();     ",
     "     _this.ptype_lbl.el.hide();          ",
     "     _this.ptype_dd.el.hide();          ",
-    "          ",
+    "       _this.ok_btn.el.hide();   ",
     "    ",
     "}"
    ],
