@@ -389,7 +389,7 @@ public class EditProject : Object
         public Xcls_StringList14(EditProject _owner )
         {
             _this = _owner;
-            this.el = new Gtk.StringList( { "Roo", "Gtk", "Gtk"Flutter" } );
+            this.el = new Gtk.StringList( { "Roo", "Gtk", "WrappedGtk", "Flutter" } );
 
             // my vars (dec)
 
