@@ -27,6 +27,7 @@ public class EditProject : Object
     public Xcls_model model;
     public Xcls_dir dir;
     public Xcls_ndir ndir;
+    public Xcls_ok_btn ok_btn;
 
         // my vars (def)
     public signal void canceled ();
@@ -1021,7 +1022,7 @@ public class EditProject : Object
             // set gobject values
             this.el.halign = Gtk.Align.FILL;
             this.el.hexpand = true;
-            var child_0 = new Xcls_Button29( _this );
+            var child_0 = new Xcls_ok_btn( _this );
             child_0.ref();
             this.el.append(  child_0.el );
             var child_1 = new Xcls_Label30( _this );
@@ -1034,7 +1035,7 @@ public class EditProject : Object
 
         // user defined functions
     }
-    public class Xcls_Button29 : Object
+    public class Xcls_ok_btn : Object
     {
         public Gtk.Button el;
         private EditProject  _this;
@@ -1043,9 +1044,10 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button29(EditProject _owner )
+        public Xcls_ok_btn(EditProject _owner )
         {
             _this = _owner;
+            _this.ok_btn = this;
             this.el = new Gtk.Button();
 
             // my vars (dec)
