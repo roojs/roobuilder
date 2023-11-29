@@ -572,6 +572,7 @@ public class Xcls_WindowRooView : Object
             this.lastRedraw = null;
 
             // set gobject values
+            this.el.vexpand = true;
 
             // init method
 
@@ -677,20 +678,13 @@ public class Xcls_WindowRooView : Object
         // user defined functions
         public void initInspector () {
             
-           /* if (this.inspector == this.el.get_inspector()) {
-                this.inspector.show();
-                this.inspector.open_window();        
-                print("init inspecter called, and inspector is the same as existing\n");
-                return;
-            }
-            print("new inspector?\n");
-        */
+         
             this.inspector = this.el.get_inspector();
             //this.inspector.ref();
             
             // got a new inspector...
                 
-            this.inspector.open_window.connect(() => {
+           // this.inspector.open_window.connect(() => {
                  this.inspector = this.el.get_inspector();
                 print("inspector attach\n");
                 var wv = this.inspector.get_web_view();
@@ -712,9 +706,9 @@ public class Xcls_WindowRooView : Object
                    
          
                 }
-                return true;
+              //  return true;
                
-            });
+           / });
             /*
             this.inspector.closed.connect(() => {
                  print("inspector closed?!?");
