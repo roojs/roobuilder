@@ -415,7 +415,7 @@ public class EditProject : Object
             	}
             	_this.hideAll();
             	_this.parent_lbl.el.show();
-                 _this.parent_dd.el.show();   
+             	_this.parent_dd.el.show();   
              	
             	
                _this.ptype_lbl.el.show();          

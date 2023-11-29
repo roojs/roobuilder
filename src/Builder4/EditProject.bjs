@@ -170,7 +170,7 @@
            "\t}",
            "\t_this.hideAll();",
            "\t_this.parent_lbl.el.show();",
-           "     _this.parent_dd.el.show();   ",
+           " \t_this.parent_dd.el.show();   ",
            " \t",
            "\t",
            "   _this.ptype_lbl.el.show();          ",
