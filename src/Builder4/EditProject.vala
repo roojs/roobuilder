@@ -121,9 +121,7 @@ public class EditProject : Object
 
             // init method
 
-            {
-            
-            }
+            2
         }
 
         // user defined functions
