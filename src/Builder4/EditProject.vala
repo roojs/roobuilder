@@ -675,7 +675,8 @@ public class EditProject : Object
             this.el.notify["selected"].connect( ( ) => {
             
             	
-            	this.getValue() == "" ? this.ok_btn.el.hide() : this.ok_btn.el.show();
+            	this.getValue() == "" ? 
+            		_this.ok_btn.el.hide() : _this.ok_btn.el.show();
             
             });
         }

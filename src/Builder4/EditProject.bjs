@@ -318,7 +318,8 @@
            "( ) => {",
            "",
            "\t",
-           "\tthis.getValue() == \"\" ? this.ok_btn.el.hide() : this.ok_btn.el.show();",
+           "\tthis.getValue() == \"\" ? ",
+           "\t\t_this.ok_btn.el.hide() : _this.ok_btn.el.show();",
            "",
            "}",
            ""
