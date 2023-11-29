@@ -43,7 +43,6 @@ public class EditProject : Object
         // set gobject values
         this.el.title = "New Project";
         this.el.name = "EditProject";
-        this.el.default_height = 500;
         this.el.default_width = 600;
         this.el.deletable = true;
         this.el.modal = true;

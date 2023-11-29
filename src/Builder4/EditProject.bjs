@@ -7,7 +7,6 @@
    "@ void canceled" : "()",
    "@ void selected" : "(Project.Project? proj)",
    "bool modal" : true,
-   "default_height" : 500,
    "default_width" : 600,
    "items" : [
     {
