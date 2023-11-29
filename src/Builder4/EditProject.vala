@@ -183,7 +183,7 @@ public class EditProject : Object
         public Xcls_StringList6(EditProject _owner )
         {
             _this = _owner;
-            this.el = new Gtk.StringList( { " );
+            this.el = new Gtk.StringList( { "New Folder", "Existing Folder", "Checkout from git" } );
 
             // my vars (dec)
 
