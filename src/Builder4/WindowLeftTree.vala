@@ -1036,7 +1036,7 @@ public class Xcls_WindowLeftTree : Object
             		// add new node to top..
             		
             		
-            		 var m = (GLib.ListStore) _this.view.el.model;
+            		 var m = (GLib.ListStore) _this.model.el.model;
                  	_this.main_window.windowstate.file.tree = dropNode;  
                 
                
