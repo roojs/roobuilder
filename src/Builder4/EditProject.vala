@@ -116,6 +116,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.column_spacing = 4;
+            this.el.row_spacing = 4;
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
             this.el.attach(  child_0.el, 0, 0, 1, 1 );

@@ -25,6 +25,7 @@
        "$ xns" : "Gtk",
        "* columns" : 2,
        "int column_spacing" : 4,
+       "int row_spacing" : 4,
        "items" : [
         {
          "$ xns" : "Gtk",
