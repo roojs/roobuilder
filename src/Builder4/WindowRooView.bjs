@@ -106,6 +106,7 @@
             " ",
             ""
            ],
+           "bool vexpand" : true,
            "id" : "viewcontainer",
            "items" : [
             {
