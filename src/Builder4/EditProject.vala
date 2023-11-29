@@ -429,8 +429,8 @@ public class EditProject : Object
                 	   break;
                 	   
             		case "Existing Folder":
-            			_this.folder_lbl.el.hide();
-            		 	_this.folder_dd.el.hide();
+            			_this.folder_lbl.el.show();
+            		 	_this.folder_dd.el.show();
             		 	_this.folder_dd.load();
             		 	break;
             		 	
