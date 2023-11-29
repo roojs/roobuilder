@@ -55,9 +55,7 @@
          "listeners" : {
           "notify[\"selected\"]" : [
            "( ) => {",
-           "\tif (this.loading) {",
-           "\t\treturn;",
-           "\t}",
+           "\t ",
            "\t",
            "\tvar m = (Gtk.StringList) this.el.model;",
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",

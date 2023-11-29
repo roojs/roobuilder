@@ -233,9 +233,7 @@ public class EditProject : Object
 
             //listeners
             this.el.notify["selected"].connect( ( ) => {
-            	if (this.loading) {
-            		return;
-            	}
+            	 
             	
             	var m = (Gtk.StringList) this.el.model;
             	GLib.debug("selected item: %s", m.get_string(this.el.selected));
