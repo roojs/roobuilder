@@ -697,12 +697,12 @@ public class Xcls_WindowRooView : Object
                 if (wv != null) {
                     print("got inspector web view\n");
                     
-                    var cn = _this.inspectorcontainer.el.get_child();
+                    var cn = _this.inspectorcontainer.el.get_first_child();
                     if (cn != null) {
-                         _this.inspectorcontainer.el.set_child(null);
+                         _this.inspectorcontainer.el.remove(cn);
                      }
                     
-                    _this.inspectorcontainer.el.set_child(wv);
+                    _this.inspectorcontainer.el.append(wv);
                     wv.show();
                 } else {
         	         print("got inspector web view FAILED\n");
