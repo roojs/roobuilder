@@ -35,6 +35,12 @@
         },
         {
          "$ xns" : "Gtk",
+         "* init" : [
+          "{",
+          "",
+          "}",
+          ""
+         ],
          "bool hexpand" : true,
          "id" : "type_dd",
          "items" : [

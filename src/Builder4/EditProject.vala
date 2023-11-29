@@ -208,6 +208,12 @@ public class EditProject : Object
             child_0.ref();
             this.el.model = child_0.el;
 
+            // init method
+
+            {
+            
+            }
+
             //listeners
             this.el.activate.connect( ( ) => {
             	var m = (Gtk.StringList) this.el.model;
