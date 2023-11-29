@@ -265,7 +265,8 @@
          "| string getValue" : [
           "() {",
           "\tvar m = (Gtk.StringList) this.el.model;",
-          "\treturn this.el.selected) == Gtk.INVALID_ m.get_string(this.el.selected);",
+          "\treturn this.el.selected) == Gtk.Gtk.INVALID_LIST_POSITION ?",
+          "\t\t\t \"\" : m.get_string(this.el.selected);",
           "\t",
           "}"
          ],

@@ -542,7 +542,8 @@ public class EditProject : Object
         // user defined functions
         public string getValue () {
         	var m = (Gtk.StringList) this.el.model;
-        	return this.el.selected) == Gtk.INVALID_ m.get_string(this.el.selected);
+        	return this.el.selected) == Gtk.Gtk.INVALID_LIST_POSITION ?
+        			 "" : m.get_string(this.el.selected);
         	
         }
         public void load () {
