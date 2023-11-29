@@ -295,6 +295,7 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             var child_0 = new Xcls_label_preview( _this );
             child_0.ref();
             var child_1 = new Xcls_label_code( _this );

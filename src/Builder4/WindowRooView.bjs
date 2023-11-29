@@ -15,6 +15,7 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "bool vexpand" : true,
      "id" : "notebook",
      "items" : [
       {
