@@ -611,6 +611,9 @@ public class EditProject : Object
         }
 
         // user defined functions
+        public void getValue () {
+        	return this.el.text;
+        }
     }
 
     public class Xcls_ptype_lbl : Object

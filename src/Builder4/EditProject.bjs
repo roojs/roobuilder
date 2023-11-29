@@ -277,7 +277,12 @@
          "$ xns" : "Gtk",
          "bool hexpand" : true,
          "id" : "name_entry",
-         "xtype" : "Entry"
+         "xtype" : "Entry",
+         "| void getValue" : [
+          "() {",
+          "\treturn this.el.text;",
+          "}"
+         ]
         },
         {
          "$ xns" : "Gtk",
