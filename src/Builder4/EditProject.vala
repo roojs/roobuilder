@@ -386,7 +386,7 @@ public class EditProject : Object
         	var sl = (Gtk.StringList) this.el.model;	
         	var hd = GLib.Environment.get_home_dir();
         	while(sl.get_n_items() > 0)  {
-        		sl.remove(0)
+        		sl.remove(0);
         	}
         	if (!FileUtils.test(hd + "/gitlive" ,FileTest.IS_DIR)) {
         		sl.append(hd + "/gitlive");
