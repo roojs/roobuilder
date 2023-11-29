@@ -961,7 +961,7 @@
     "        if (file.tree == null) {",
     "            return;",
     "        }",
-    "        this.notebook.el.page = 0;// gtk preview ",
+    "        this.notebook.el.page = 1;// gtk preview ",
     "   ",
     "  ",
     "        ",

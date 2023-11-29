@@ -79,7 +79,7 @@ public class Xcls_GtkView : Object
             if (file.tree == null) {
                 return;
             }
-            this.notebook.el.page = 0;// gtk preview 
+            this.notebook.el.page = 1;// gtk preview 
        
       
             
@@ -568,8 +568,8 @@ public class Xcls_GtkView : Object
             // my vars (def)
         public bool loading;
         public string prop_selected;
-        public Gtk.CssProvider css;
         public bool allow_node_scroll;
+        public Gtk.CssProvider css;
         public JsRender.Node? node_selected;
 
         // ctor
