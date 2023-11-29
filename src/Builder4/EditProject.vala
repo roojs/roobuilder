@@ -399,7 +399,6 @@ public class EditProject : Object
         		sl.append(this.extra_value);
         	}
         	
-        	
         	sl.append("Select Folder");
         	this.el.selected = Gtk.Gtk.INVALID_LIST_POSITION;
         	
