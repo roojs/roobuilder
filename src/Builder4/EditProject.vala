@@ -851,7 +851,7 @@ public class EditProject : Object
             			try {
             				dir.make_directory();	
             			} catch (Error e) {
-            				GLib.error("Failed to make directory %s", dirname);
+            				GLib.error("Failed to make directory %s", fn);
             			} 
             			break;
             			

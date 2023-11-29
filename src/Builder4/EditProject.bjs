@@ -400,7 +400,7 @@
            "\t\t\ttry {",
            "\t\t\t\tdir.make_directory();\t",
            "\t\t\t} catch (Error e) {",
-           "\t\t\t\tGLib.error(\"Failed to make directory %s\", dirname);",
+           "\t\t\t\tGLib.error(\"Failed to make directory %s\", fn);",
            "\t\t\t} ",
            "\t\t\tbreak;",
            "\t\t\t",
