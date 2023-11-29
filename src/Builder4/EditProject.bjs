@@ -22,6 +22,16 @@
      "int margin_top" : 10,
      "items" : [
       {
+       "$ xns" : "Gtk",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "Label"
+        }
+       ],
+       "xtype" : "Grid"
+      },
+      {
        "$ homogeneous" : false,
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
