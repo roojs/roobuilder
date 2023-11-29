@@ -118,6 +118,12 @@ public class EditProject : Object
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
             this.el.attach(  child_0.el, 0, 0, 1, 1 );
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions
