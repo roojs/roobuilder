@@ -43,6 +43,23 @@
           }
          ],
          "xtype" : "DropDown"
+        },
+        {
+         "$ xns" : "Gtk",
+         "string label" : "In Folder:",
+         "xtype" : "Label"
+        },
+        {
+         "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "strings" : "{ \"New Folder\", \"Existing Folder\", \"Checkout from git\" }",
+           "xtype" : "StringList"
+          }
+         ],
+         "xtype" : "DropDown"
         }
        ],
        "xtype" : "Grid"
