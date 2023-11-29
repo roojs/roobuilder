@@ -317,6 +317,8 @@
           "notify[\"selected\"]" : [
            "( ) => {",
            "",
+           "\t",
+           "\tthis.getValue() == \"\" ? this.ok_btn.el.hide() : this.ok_btn.el.show();",
            "",
            "}",
            ""
