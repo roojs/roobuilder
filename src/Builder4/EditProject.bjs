@@ -52,7 +52,7 @@
           }
          ],
          "listeners" : {
-          "notify_selected_item" : [
+          "notify[\"selected_item\"]" : [
            "( ) => {",
            "var m = (Gtk.StringList) this.el.model;",
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",
