@@ -204,6 +204,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.hexpand = true;
+            this.el.selected = ?uint?;
             var child_0 = new Xcls_StringList6( _this );
             child_0.ref();
             this.el.model = child_0.el;
