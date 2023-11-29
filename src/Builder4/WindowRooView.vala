@@ -682,9 +682,8 @@ public class Xcls_WindowRooView : Object
                   
            // this.inspector.open_window.connect(() => {
                  this.inspector = this.el.get_inspector();
-                   this.inspector.show();
                  
-                 
+                 this.inspector.open_window.connect(() => {
                 print("inspector attach\n");
                 var wv = this.inspector.get_web_view();
                 if (wv != null) {
@@ -705,9 +704,11 @@ public class Xcls_WindowRooView : Object
                    
          
                 }
-              //  return true;
+              return true;
                
-           
+           });
+             this.inspector.show();
+                 
             
           
         }
