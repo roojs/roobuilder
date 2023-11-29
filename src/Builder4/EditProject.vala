@@ -407,6 +407,12 @@ public class EditProject : Object
             		return;
             
             	}
+            	
+            	// folder selected...
+            	switch(_this.type_dd.getValue()) {
+            		case "
+            	
+            	
             
             });
         }

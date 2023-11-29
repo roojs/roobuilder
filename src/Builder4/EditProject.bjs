@@ -162,6 +162,12 @@
            "\t\treturn;",
            "",
            "\t}",
+           "\t",
+           "\t// folder selected...",
+           "\tswitch(_this.type_dd.getValue()) {",
+           "\t\tcase \"",
+           "\t",
+           "\t",
            "",
            "}",
            ""
