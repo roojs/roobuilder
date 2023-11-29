@@ -835,6 +835,7 @@ public class EditProject : Object
             				err_dialog.show(_this.el,"That folder already exists");             
             				return;			
             			}
+            			break;
             			
             	   	default:
             	   		return;

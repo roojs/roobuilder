@@ -380,6 +380,7 @@
            "\t\t\t\terr_dialog.show(_this.el,\"That folder already exists\");             ",
            "\t\t\t\treturn;\t\t\t",
            "\t\t\t}",
+           "\t\t\tbreak;",
            "\t\t\t",
            "\t   \tdefault:",
            "\t   \t\treturn;",
