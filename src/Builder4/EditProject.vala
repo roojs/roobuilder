@@ -567,7 +567,7 @@ public class EditProject : Object
         			continue;
         		}
         		
-        		if (!FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
+        		if (FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
         			 strs +=  fn;
         			continue;
         		}

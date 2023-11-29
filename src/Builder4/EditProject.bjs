@@ -292,7 +292,7 @@
           "\t\t\tcontinue;",
           "\t\t}",
           "\t\t",
-          "\t\tif (!FileUtils.test(p  + \"/\" + fn, GLib.FileTest.IS_DIR)) {",
+          "\t\tif (FileUtils.test(p  + \"/\" + fn, GLib.FileTest.IS_DIR)) {",
           "\t\t\t strs +=  fn;",
           "\t\t\tcontinue;",
           "\t\t}",
