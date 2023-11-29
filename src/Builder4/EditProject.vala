@@ -351,7 +351,9 @@ public class EditProject : Object
 
             //listeners
             this.el.notify["selected"].connect( ( ) => {
-            
+            	if (this.getValue() == "Select Folder") {
+            		
+            	}
             
             });
         }

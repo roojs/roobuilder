@@ -126,7 +126,9 @@
          "listeners" : {
           "notify[\"selected\"]" : [
            "( ) => {",
-           "",
+           "\tif (this.getValue() == \"Select Folder\") {",
+           "\t\t",
+           "\t}",
            "",
            "}",
            ""
