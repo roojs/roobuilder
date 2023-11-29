@@ -48,8 +48,8 @@
          "listeners" : {
           "activate" : [
            "( ) => {",
-           "",
-           "\tGLib.debug(\"selected item: %s\", _this.model.el.get_string(_this.el.selected));",
+           "\tvar m = (Gtk.StringList) _this.model.el;",
+           "\tGLib.debug(\"selected item: %s\", m.get_string(_this.el.selected));",
            "}",
            ""
           ]
