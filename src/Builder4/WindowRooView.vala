@@ -704,44 +704,7 @@ public class Xcls_WindowRooView : Object
                 }
               //  return true;
                
-           / });
-            /*
-            this.inspector.closed.connect(() => {
-                 print("inspector closed?!?");
-                 // if this happens destroy the webkit..
-                 // recreate it..
-                 this.el.stop_loading();
-                 
-                 if (_this.viewbox.el.get_parent() == null) {
-                    return;
-                 }
-                 
-                 
-                _this.viewbox.el.remove(_this.viewcontainer.el);
-                _this.el.remove(_this.inspectorcontainer.el);        
-                 
-                 // destory seems to cause problems.
-                 //this.el.destroy();
-                //_this.viewcontainer.el.destroy();
-                 //_this.inspectorcontainer.el.destroy();
-        
-                 this.el = null;         
-                 var nv =new Xcls_viewcontainer(_this);
-                 nv.ref();
-                 _this.viewbox.el.pack_end(nv.el,true,true,0);
-                 
-                  var  inv =new Xcls_inspectorcontainer(_this);
-                  inv.ref();
-                  _this.el.pack2(inv.el,true,true);
-                 
-                 inv.el.show_all();
-                 nv.el.show_all();
-                 //while(Gtk.events_pending ()) Gtk.main_iteration ();
-                 //_this.view.renderJS(true); 
-                 _this.view.refreshRequired  = true;
-               
-            }); 
-            */
+           
             
             this.inspector.show();
         }
