@@ -152,8 +152,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (def)
         public bool blockChanges;
-        public bool headers_visible;
         public string lastEventSource;
+        public bool headers_visible;
         public bool button_is_pressed;
         public Gtk.CssProvider css;
 
@@ -166,8 +166,8 @@ public class Xcls_WindowLeftTree : Object
 
             // my vars (dec)
             this.blockChanges = false;
-            this.headers_visible = false;
             this.lastEventSource = "";
+            this.headers_visible = false;
             this.button_is_pressed = false;
 
             // set gobject values
