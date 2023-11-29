@@ -52,16 +52,10 @@
           }
          ],
          "listeners" : {
-          "activate" : [
+          "notify_selected_item" : [
            "( ) => {",
-           "\tvar m = (Gtk.StringList) this.el.model;",
+           "var m = (Gtk.StringList) this.el.model;",
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",
-           "}",
-           ""
-          ],
-          "notify" : [
-           "(pspec) => {",
-           "",
            "",
            "}",
            ""

@@ -215,12 +215,9 @@ public class EditProject : Object
             }
 
             //listeners
-            this.el.activate.connect( ( ) => {
-            	var m = (Gtk.StringList) this.el.model;
+            this.el.notify_selected_item.connect( ( ) => {
+            var m = (Gtk.StringList) this.el.model;
             	GLib.debug("selected item: %s", m.get_string(this.el.selected));
-            });
-            this.el.notify.connect( (pspec) => {
-            
             
             });
         }
