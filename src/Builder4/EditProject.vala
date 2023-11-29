@@ -60,7 +60,7 @@ public class EditProject : Object
          _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;
          _this.folder_dd.el.selected = Gtk.INVALID_LIST_POSITION;
          _this.ptype_dd.el.selected = Gtk.INVALID_LIST_POSITION;
-         
+         _this.parent_dd.extra_value = "";
         //[ 'xtype'  ].forEach(function(k) {
         //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);
         //});
