@@ -949,7 +949,7 @@ public class Xcls_WindowRooView : Object
 
     public class Xcls_inspectorcontainer : Object
     {
-        public Gtk.ScrolledWindow el;
+        public Gtk.Box el;
         private Xcls_WindowRooView  _this;
 
 
@@ -960,7 +960,7 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.inspectorcontainer = this;
-            this.el = new Gtk.ScrolledWindow();
+            this.el = new Gtk.Box( null, 0 );
 
             // my vars (dec)
 

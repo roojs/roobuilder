@@ -516,7 +516,7 @@
          "* pack" : "set_end_child",
          "bool vexpand" : true,
          "id" : "inspectorcontainer",
-         "xtype" : "ScrolledWindow"
+         "xtype" : "Box"
         }
        ],
        "xtype" : "Paned"
