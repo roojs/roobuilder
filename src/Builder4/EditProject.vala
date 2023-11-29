@@ -843,7 +843,7 @@ public class EditProject : Object
             			}
             			fn += "/" + _this.name_entry.getValue();	   
             			
-            			if (FileUtils.test(fh ,FileTest.IS_DIR)) {
+            			if (FileUtils.test( fn ,FileTest.IS_DIR)) {
             				err_dialog.show(_this.el,"That folder already exists");             
             				return;			
             			}
