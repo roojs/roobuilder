@@ -966,10 +966,6 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.vexpand = true;
-
-            // init method
-
-            this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         }
 
         // user defined functions

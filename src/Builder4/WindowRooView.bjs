@@ -507,11 +507,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* init" : [
-          "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-          " ",
-          ""
-         ],
          "* pack" : "set_end_child",
          "bool vexpand" : true,
          "id" : "inspectorcontainer",
