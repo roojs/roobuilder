@@ -1062,6 +1062,10 @@ public class Xcls_GtkView : Object
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
+            this.el.search_changed.connect( ( ) => {
+            
+            
+            });
             this.el.changed.connect( () => {
             	/*
             	if (this.el.text == "") {
