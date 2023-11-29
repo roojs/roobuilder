@@ -116,7 +116,12 @@
            "xtype" : "StringList"
           }
          ],
-         "xtype" : "DropDown"
+         "xtype" : "DropDown",
+         "| void load" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ xns" : "Gtk",

@@ -346,6 +346,9 @@ public class EditProject : Object
         }
 
         // user defined functions
+        public void load () {
+        
+        }
     }
     public class Xcls_StringList9 : Object
     {
