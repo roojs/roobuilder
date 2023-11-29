@@ -89,8 +89,13 @@ public class ValaProjectSettingsPopover : Object
         //print("ValaProjectSettings show\n");
         
         this.project=  project;
-    	var cg = _this.project.firstBuildModule();
-        this.compile_flags.el.text = _this.project.compilegroups.get("_default_").compile_flags;
+    	 if (!project.compilegroups.has_key("_default_")) {
+    	 	GLib.debug("cant get default?");
+     	} else {
+    	    this.compile_flags.el.buffer.set_text(
+    	    	project.compilegroups.get("_default_").compile_flags.data
+        	);
+    	   }
         
         this.default_directory_tree_store.load();    
         this.default_packages_tree_store.load();            
@@ -344,7 +349,7 @@ public class ValaProjectSettingsPopover : Object
             //listeners
             this.el.changed.connect( () => {
                 
-               _this.project.compilegroups.get("_default_").compile_flags = this.el.text;
+               _this.project.compilegroups.get("_default_").compile_flags = this.el.buffer.text;
                _this.project.writeConfig();
             //    _this.project.save();
             

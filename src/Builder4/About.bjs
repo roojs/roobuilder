@@ -3,8 +3,8 @@
  "items" : [
   {
    "$ authors" : "{ \"Alan Knowles\" }",
-   "$ modal" : true,
    "$ xns" : "Gtk",
+   "bool modal" : true,
    "program_name" : "roobuilder",
    "string copyright" : "LGPL",
    "string license" : "LGPL",
@@ -13,8 +13,9 @@
    "xtype" : "AboutDialog",
    "| void show" : [
     "(Gtk.Window parent) {",
+    "\tthis.el.application = parent.application;",
     "    this.el.set_transient_for(parent);",
-    "    this.el.modal = true;",
+    "    ",
     "    this.el.show();",
     "}"
    ]

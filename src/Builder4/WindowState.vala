@@ -416,11 +416,11 @@ public class WindowState : Object
 
 	}
 	
-	public void projectPopoverShow(Gtk.Window pwin) 
+	public void projectPopoverShow(Gtk.Window pwin, Project.Project? pr) 
 	{ 
-
-		var    pr = this.project;
-
+		if (pr == null) {
+		    pr = this.project;
+	    }
 	  
 	    
         if (pr.xtype == "") {
