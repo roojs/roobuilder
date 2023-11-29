@@ -427,13 +427,15 @@ public class EditProject : Object
             		   _this.name_lbl.el.show();          
                 	   _this.name_entry.el.show(); 
                 	   _this.name_entry.el.text = "";
-               
+            		   _this.ptype_lbl.el.show();          
+            		   _this.ptype_dd.el.show();  
                 	   break;
                 	   
             		case "Existing Folder":
             			_this.folder_lbl.el.show();
             		 	_this.folder_dd.el.show();
             		 	_this.folder_dd.load();
+            		   
             		 	break;
             		 	
             		case "Checkout from git":
