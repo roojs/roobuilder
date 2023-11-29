@@ -427,6 +427,7 @@ public class EditProject : Object
             		   _this.name_lbl.el.show();          
                 	   _this.name_entry.el.show(); 
                 	   _this.name_entry.el.text = "";
+               
                 	   break;
                 	   
             		case "Existing Folder":

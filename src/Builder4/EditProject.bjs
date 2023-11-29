@@ -181,6 +181,7 @@
            "\t\t   _this.name_lbl.el.show();          ",
            "    \t   _this.name_entry.el.show(); ",
            "    \t   _this.name_entry.el.text = \"\";",
+           "   ",
            "    \t   break;",
            "    \t   ",
            "\t\tcase \"Existing Folder\":",
