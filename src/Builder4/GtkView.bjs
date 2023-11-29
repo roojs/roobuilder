@@ -498,7 +498,7 @@
               "key_pressed" : [
                "(keyval, keycode, state) => {",
                "",
-               "\t GLib.log(\"Got search key press\");",
+               "\t GLib.debug(\"Got search key press\");",
                "     if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
                "\t    GLib.debug(\"SAVE: ctrl-g  pressed\");",
                "\t\t_this.forwardSearch(true);",
