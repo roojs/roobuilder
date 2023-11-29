@@ -613,7 +613,7 @@ public class EditProject : Object
         }
 
         // user defined functions
-        public void getValue () {
+        public string getValue () {
         	return this.el.text;
         }
     }

@@ -280,7 +280,7 @@
          "bool hexpand" : true,
          "id" : "name_entry",
          "xtype" : "Entry",
-         "| void getValue" : [
+         "| string getValue" : [
           "() {",
           "\treturn this.el.text;",
           "}"
