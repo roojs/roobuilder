@@ -555,6 +555,7 @@ public class EditProject : Object
         	 	while(sl.get_n_items() > 0)  {
         		sl.remove(0);
         	}
+        	sting[] strs = {};
         	FileInfo next_file; 
         	while ((next_file = file_enum.next_file(null)) != null) {
         		var fn = next_file.get_display_name();
@@ -567,14 +568,26 @@ public class EditProject : Object
         		}
         		
         		if (!FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
-        			 sl.append(fn);
+        			 strs +=  fn;
         			continue;
         		}
         		
         		
         		 
         	}
-        	
+        	 
+        		 
+        	Posix.qsort (
+        		strs, 
+        		strs.length, 
+        		sizeof(string), 
+        		(Posix.compar_fn_t) (ref string x, ref string y) => {
+        			return Posix.strcmp(x, y);
+        		}
+        	);
+        	for (var i =0 ; i < strs.lengthl i++) {
+        		sl.append(fn);
+        	}
         	 
         }
     }
