@@ -317,9 +317,10 @@
           "notify[\"selected\"]" : [
            "( ) => {",
            "",
-           "\t",
-           "\tthis.getValue() == \"\" ? ",
-           "\t\t_this.ok_btn.el.hide() : _this.ok_btn.el.show();",
+           "\t_this.ok_btn.el.hide();\t",
+           "\tif (this.getValue() != \"\") {",
+           "\t   _this.ok_btn.el.show();",
+           "\t}",
            "",
            "}",
            ""
