@@ -36,6 +36,7 @@
         {
          "$ xns" : "Gtk",
          "bool hexpand" : true,
+         "id" : "type_dd",
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -48,6 +49,7 @@
         },
         {
          "$ xns" : "Gtk",
+         "id" : "",
          "string label" : "In Folder:",
          "xtype" : "Label"
         },

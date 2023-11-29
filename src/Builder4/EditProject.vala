@@ -13,6 +13,7 @@ public class EditProject : Object
         return _EditProject;
     }
     public Xcls_type_lbl type_lbl;
+    public Xcls_type_dd type_dd;
     public Xcls_xtype xtype;
     public Xcls_cellrender cellrender;
     public Xcls_model model;
@@ -124,7 +125,7 @@ public class EditProject : Object
             var child_0 = new Xcls_type_lbl( _this );
             child_0.ref();
             this.el.attach(  child_0.el, 0, 0, 1, 1 );
-            var child_1 = new Xcls_DropDown5( _this );
+            var child_1 = new Xcls_type_dd( _this );
             child_1.ref();
             this.el.attach(  child_1.el, 1, 0, 1, 1 );
             var child_2 = new Xcls_Label7( _this );
@@ -172,7 +173,7 @@ public class EditProject : Object
         // user defined functions
     }
 
-    public class Xcls_DropDown5 : Object
+    public class Xcls_type_dd : Object
     {
         public Gtk.DropDown el;
         private EditProject  _this;
@@ -181,9 +182,10 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_DropDown5(EditProject _owner )
+        public Xcls_type_dd(EditProject _owner )
         {
             _this = _owner;
+            _this.type_dd = this;
             this.el = new Gtk.DropDown( null, null );
 
             // my vars (dec)
