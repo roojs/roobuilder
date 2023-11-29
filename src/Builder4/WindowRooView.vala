@@ -993,6 +993,7 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
 
             // init method
 
