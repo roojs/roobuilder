@@ -384,8 +384,8 @@ public class EditProject : Object
             //listeners
             this.el.notify["selected"].connect( ( ) => {
             	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-            		_this.hideAll();
-            	
+            		//_this.hideAll();
+            		
             		return;
             	}
             	
