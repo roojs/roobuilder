@@ -540,6 +540,9 @@ public class EditProject : Object
         }
 
         // user defined functions
+        public string getValue () {
+        
+        }
         public void load () {
         
         }

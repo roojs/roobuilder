@@ -262,6 +262,11 @@
           }
          ],
          "xtype" : "DropDown",
+         "| string getValue" : [
+          "() {",
+          "",
+          "}"
+         ],
          "| void load" : [
           "() {",
           "",
