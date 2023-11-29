@@ -548,9 +548,13 @@ public class EditProject : Object
         }
         public void load () {
         	var p  = _this.parent_dd.getValue();
+        		var f = File.new_for_path(p);
         	var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
-        	
-        	 
+        	var sl = (Gtk.StringList) this.el.model;	
+        
+        	 	while(sl.get_n_items() > 0)  {
+        		sl.remove(0);
+        	}
         	FileInfo next_file; 
         	while ((next_file = file_enum.next_file(null)) != null) {
         		var fn = next_file.get_display_name();
@@ -562,13 +566,19 @@ public class EditProject : Object
         			continue;
         		}
         		
-        		if (!FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
-        			 
+        		if (!FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
+        			 sl.append(fn);
         			continue;
         		}
         		
         		
         		 
+        	}
+        	
+        	
+        
+        	if (FileUtils.test(hd + "/gitlive" ,FileTest.IS_DIR)) {
+        		sl.append(hd + "/gitlive");
         	}
         }
     }
