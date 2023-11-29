@@ -599,9 +599,17 @@ namespace Palete {
 			foreach(var k in props.keys) {
 				var val = props.get(k);
 //				GLib.debug("FilterProp: %s", k);
-				if (k == "___") {
+				if (
+					k == "___" ||
+					k == "parent" ||
+					k == "default_widget" ||
+					k == "root" ||
+					k == "layout_manager" || // ??
+					k == "widget"  // gestures..
+				) {
 					continue;
 				}
+				
 				if (val.is_deprecated) {
 					continue;
 				}
@@ -1357,6 +1365,7 @@ namespace Palete {
         	this.add_classes_from_method(cls, "add_shortcut", ret);
         	this.add_classes_from_method(cls, "add_tick_callback", ret); // wtf does this do.
         	this.add_classes_from_method(cls, "append", ret);
+        	this.add_classes_from_method(cls, "append_column", ret); // columnview column
         	  // add_controller 1st arge = ??
         	  // add_menomic_label ??? << no ???
         	  // add_shortcut? 
