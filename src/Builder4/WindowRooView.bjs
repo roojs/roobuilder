@@ -35,6 +35,7 @@
        "$ xns" : "Gtk",
        "* pack" : "append_page,_this.label_preview.el",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "bool vexpand" : true,
        "id" : "paned",
        "items" : [
         {
