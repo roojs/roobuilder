@@ -53,7 +53,7 @@ public class EditProject : Object
     // user defined functions
     public void show () {
          
-         
+        _this.hideAll(); 
          // hide stuff..
          _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;
          _this.folder_dd.el.selected = Gtk.INVALID_LIST_POSITION;
@@ -68,7 +68,14 @@ public class EditProject : Object
         
     }
     public void hideAll () {
-    
+     _this.folder_lbl.el.hide();
+         _this.folder_dd.el.hide();     
+         _this.name_lbl.el.hide();          
+         _this.name_entry.el.hide();     
+         _this.ptype_lbl.el.hide();          
+         _this.ptype_dd.el.hide();          
+              
+        
     }
     public class Xcls_Box2 : Object
     {
