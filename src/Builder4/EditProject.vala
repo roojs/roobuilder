@@ -357,6 +357,11 @@ public class EditProject : Object
         }
 
         // user defined functions
+        public string getValue () {
+        	var m = (Gtk.StringList) this.el.model;
+        	return  m.get_string(this.el.selected);
+        	
+        }
         public void load () {
         
         	var sl = (Gtk.StringList) this.el.model;	
