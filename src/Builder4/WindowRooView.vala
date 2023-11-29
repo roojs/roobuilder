@@ -735,6 +735,7 @@ public class Xcls_WindowRooView : Object
                     _this.inspectorcontainer.el.set_child(wv);
                     wv.show();
                 } else {
+        	         print("got inspector web view FAILED\n");
                     //this.inspector.close();
                     
                     //this.inspector = null;
