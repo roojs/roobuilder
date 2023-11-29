@@ -13,7 +13,8 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "titlebar",
-     "* title" : "Window Title",
+     "* title" : "New Project",
+     "bool show_title_buttons" : false,
      "xtype" : "HeaderBar"
     },
     {

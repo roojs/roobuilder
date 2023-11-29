@@ -102,6 +102,7 @@ public class EditProject : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show_title_buttons = false;
         }
 
         // user defined functions
