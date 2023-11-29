@@ -803,12 +803,31 @@ public class EditProject : Object
 
             //listeners
             this.el.clicked.connect( ( ) => {
-              var err_dialog = Xcls_StandardErrorDialog.singleton();
-            
+               var err_dialog = Xcls_StandardErrorDialog.singleton();
+               
+               
+               	if (_this.ptype_dd.getValue().length < 1) {
+                    err_dialog.show(_this.el,"You have to set Project type");             
+                    return;
+                }
+               
+               
+               switch (_this.type_dd.getValue()) {
+            	   	case "Existing Folder":
+            		   	
+            	   	
+            	   	case "New Folder":
+            	   	
+            	   
+            	   	default:
+            	   		return;
+               		
+            }
+               
                
              
                      
-                  if (_this.name_entry.getValue().length < 1) {
+                  	if (_this.name_entry.getValue().length < 1) {
                        
                         err_dialog.show(_this.el,"You have to set Project type");             
                         return;
