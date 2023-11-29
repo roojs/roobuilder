@@ -47,12 +47,12 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{ \"Select\", \"New Folder\", \"Existing Folder\", \"Checkout from git\" }",
+           "strings" : "{  \"New Folder\", \"Existing Folder\", \"Checkout from git\" }",
            "xtype" : "StringList"
           }
          ],
          "listeners" : {
-          "notify[\"selected-item\"]" : [
+          "notify[\"selected\"]" : [
            "( ) => {",
            "var m = (Gtk.StringList) this.el.model;",
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",
