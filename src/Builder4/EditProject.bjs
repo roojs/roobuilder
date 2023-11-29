@@ -23,11 +23,16 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* init" : 2,
+       "* columns" : 2,
        "items" : [
         {
          "$ xns" : "Gtk",
+         "string label" : "Create a Project from:",
          "xtype" : "Label"
+        },
+        {
+         "$ xns" : "Gtk",
+         "xtype" : "DropDown"
         }
        ],
        "xtype" : "Grid"
