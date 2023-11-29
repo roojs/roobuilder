@@ -575,11 +575,7 @@ public class EditProject : Object
         		 
         	}
         	
-        	
-        
-        	if (FileUtils.test(hd + "/gitlive" ,FileTest.IS_DIR)) {
-        		sl.append(hd + "/gitlive");
-        	}
+        	 
         }
     }
     public class Xcls_StringList13 : Object

@@ -300,11 +300,7 @@
           "\t\t ",
           "\t}",
           "\t",
-          "\t",
-          "",
-          "\tif (FileUtils.test(hd + \"/gitlive\" ,FileTest.IS_DIR)) {",
-          "\t\tsl.append(hd + \"/gitlive\");",
-          "\t}",
+          "\t ",
           "}"
          ]
         },
