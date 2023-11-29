@@ -1147,7 +1147,7 @@ public class Xcls_GtkView : Object
             //listeners
             this.el.key_pressed.connect( (keyval, keycode, state) => {
             
-            	 
+            	 GLib.log("Got search key press");
                  if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-g  pressed");
             		_this.forwardSearch(true);
