@@ -352,7 +352,17 @@ public class EditProject : Object
             //listeners
             this.el.notify["selected"].connect( ( ) => {
             	if (this.getValue() == "Select Folder") {
+            		var fd = new Gtk.FileDialog();
+            		fd.title = "Select Folder";
+            		fd.modal = true;
             		
+            		fd.select_folder.begin(_this.el, null, (obj, res) => {
+            		 	var f = fd.select_folder.end(res);
+            			this.extra_value = f.get_path();
+            			var sl = (Gtk.StringList) this.el.model;	
+            			
+            		});
+            
             	}
             
             });
