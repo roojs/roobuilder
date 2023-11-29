@@ -777,7 +777,7 @@ public class Xcls_WindowRooView : Object
                 return;
              }
                  
-                 
+                 /*
             _this.viewbox.el.remove(_this.viewcontainer.el);
             //_this.paned.el.remove(_this.inspectorcontainer.el);        
                  
@@ -801,6 +801,8 @@ public class Xcls_WindowRooView : Object
                  //while(Gtk.events_pending ()) Gtk.main_iteration ();
                  //_this.view.renderJS(true); 
              _this.view.refreshRequired  = true;
+             
+             */
         }
         public void runRefresh () 
         {
