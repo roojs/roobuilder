@@ -144,6 +144,8 @@
            "\t\treturn;",
            "\t}",
            "\t",
+           "\t",
+           "\t",
            "\tif (this.getValue() == \"Select Folder\") {",
            "\t\tvar fd = new Gtk.FileDialog();",
            "\t\tfd.title = \"Select Folder\";",

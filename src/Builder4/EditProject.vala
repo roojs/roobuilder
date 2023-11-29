@@ -389,6 +389,8 @@ public class EditProject : Object
             		return;
             	}
             	
+            	
+            	
             	if (this.getValue() == "Select Folder") {
             		var fd = new Gtk.FileDialog();
             		fd.title = "Select Folder";
