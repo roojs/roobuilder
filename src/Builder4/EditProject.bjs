@@ -217,7 +217,6 @@
          "$ xns" : "Gtk",
          "bool hexpand" : true,
          "id" : "folder_dd",
-         "int colspan" : 1,
          "items" : [
           {
            "$ xns" : "Gtk",
