@@ -62,7 +62,7 @@ public class EditProject : Object
          _this.ptype_lbl.el.hide();          
          _this.ptype_dd.el.hide();          
               
-          _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION.;
+          _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;
     
         //[ 'xtype'  ].forEach(function(k) {
         //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);
@@ -204,7 +204,7 @@ public class EditProject : Object
 
             // set gobject values
             this.el.hexpand = true;
-            this.el.selected = Gtk.INVALID_LIST_POSITION.;
+            this.el.selected = Gtk.INVALID_LIST_POSITION;
             var child_0 = new Xcls_StringList6( _this );
             child_0.ref();
             this.el.model = child_0.el;
