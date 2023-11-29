@@ -534,6 +534,7 @@
        "$ xns" : "Gtk",
        "* pack" : "append_page,_this.label_code.el",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "bool vexpand" : true,
        "int spacing" : 0,
        "items" : [
         {
