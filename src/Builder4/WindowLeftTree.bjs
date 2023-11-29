@@ -527,7 +527,7 @@
            "    if (_this.model.el.n_items < 1) {",
            "    \t// FIXME check valid drop types?",
            "    \tif (!drop_on_to.contains(\"*top\")) {",
-           "\t\t\t ",
+           "\t\t\tGLib.debug(\"drop on to list does not contain top?\");",
            "\t\t\treturn false;\t",
            "\t\t}",
            "\t\t// add new node to top..",

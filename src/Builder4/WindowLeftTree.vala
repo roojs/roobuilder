@@ -1030,7 +1030,7 @@ public class Xcls_WindowLeftTree : Object
                 if (_this.model.el.n_items < 1) {
                 	// FIXME check valid drop types?
                 	if (!drop_on_to.contains("*top")) {
-            			 
+            			GLib.debug("drop on to list does not contain top?");
             			return false;	
             		}
             		// add new node to top..
