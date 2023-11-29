@@ -55,7 +55,7 @@
          "listeners" : {
           "notify[\"selected\"]" : [
            "( ) => {",
-           "var m = (Gtk.StringList) this.el.model;",
+           "\tvar m = (Gtk.StringList) this.el.model;",
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",
            "\t",
            "\t_this.hideAll();",
@@ -96,7 +96,12 @@
            ""
           ]
          },
-         "xtype" : "DropDown"
+         "xtype" : "DropDown",
+         "| string getValue" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ xns" : "Gtk",

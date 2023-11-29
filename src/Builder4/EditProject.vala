@@ -233,7 +233,7 @@ public class EditProject : Object
 
             //listeners
             this.el.notify["selected"].connect( ( ) => {
-            var m = (Gtk.StringList) this.el.model;
+            	var m = (Gtk.StringList) this.el.model;
             	GLib.debug("selected item: %s", m.get_string(this.el.selected));
             	
             	_this.hideAll();
@@ -274,6 +274,9 @@ public class EditProject : Object
         }
 
         // user defined functions
+        public string getValue () {
+        
+        }
     }
     public class Xcls_StringList6 : Object
     {
