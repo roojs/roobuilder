@@ -401,7 +401,7 @@
            "    ",
            "",
            "  ",
-           "    print(\"add %s\\n\" , fn);",
+           "    GLib.debug(\"add %s\\n\" , fn);",
            "    try {",
            "\t\tvar project = Project.Project.factory(_this.ptype.getValue(), fn);",
            "\t\tproject.save();",

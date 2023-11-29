@@ -856,7 +856,7 @@ public class EditProject : Object
                 
             
               
-                print("add %s\n" , fn);
+                GLib.debug("add %s\n" , fn);
                 try {
             		var project = Project.Project.factory(_this.ptype.getValue(), fn);
             		project.save();
