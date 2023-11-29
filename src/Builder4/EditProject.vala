@@ -389,12 +389,17 @@ public class EditProject : Object
         	while(sl.get_n_items() > 0)  {
         		sl.remove(0);
         	}
-        	if (!FileUtils.test(hd + "/gitlive" ,FileTest.IS_DIR)) {
+        	if (FileUtils.test(hd + "/gitlive" ,FileTest.IS_DIR)) {
         		sl.append(hd + "/gitlive");
         	}
-        	if (!FileUtils.test(hd + "/Projects" ,FileTest.IS_DIR)) {
+        	if (FileUtils.test(hd + "/Projects" ,FileTest.IS_DIR)) {
         		sl.append(hd + "/gitlive");
         	}
+        	if (this.extra_value != "" && FileUtils.test(this.extra_value ,FileTest.IS_DIR)) {
+        		sl.append(this.extra_value);
+        	}
+        	
+        	
         	sl.append("Select Folder");
         	this.el.selected = Gtk.Gtk.INVALID_LIST_POSITION;
         	
