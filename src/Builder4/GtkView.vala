@@ -1048,6 +1048,7 @@ public class Xcls_GtkView : Object
             this.el.name = "gtkview-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
+            this.el.search_delay = 3;
             var child_0 = new Xcls_EventControllerKey15( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
@@ -1062,9 +1063,31 @@ public class Xcls_GtkView : Object
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
-            this.el.search_changed.connect( ( ) => {
+            this.el.search_changed.connect( () => {
+             	GLib.debug("Got search key press");
+                 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	    GLib.debug("SAVE: ctrl-g  pressed");
+            		_this.forwardSearch(true);
+            	    return true;
+            	}
+                
+              
+             	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
+            		_this.search(_this.search_entry.el.text);
+            		 _this.search_results.updateResults();
             
+            		GLib.Timeout.add_seconds(2,() => {
+            			 _this.search_results.updateResults();
+            			 return false;
+            		 });
+            	 
+            		
+            	    return true;
             
+            	}    
+               // print(event.key.keyval)
+               
+                
             });
             this.el.changed.connect( () => {
             	/*
