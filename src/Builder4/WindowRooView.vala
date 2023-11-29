@@ -716,7 +716,7 @@ public class Xcls_WindowRooView : Object
             print("new inspector?\n");
         */
             this.inspector = this.el.get_inspector();
-            this.inspector.ref();
+            //this.inspector.ref();
             
             // got a new inspector...
                 
