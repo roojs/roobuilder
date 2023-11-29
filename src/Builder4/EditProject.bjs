@@ -43,7 +43,6 @@
           ""
          ],
          "bool hexpand" : true,
-         "bool loading" : false,
          "id" : "type_dd",
          "items" : [
           {
