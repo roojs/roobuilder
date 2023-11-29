@@ -412,6 +412,10 @@ public class EditProject : Object
             
             	}
             	_this.hideAll();
+            	_this.parent_lbl.el.hide();
+                 _this.parent_dd.el.hide();   
+             	
+            	
                _this.ptype_lbl.el.show();          
                _this.ptype_dd.el.show();  
             	// folder selected...
