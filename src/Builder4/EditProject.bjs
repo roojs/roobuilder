@@ -72,6 +72,12 @@
          "$ xns" : "Gtk",
          "bool hexpand" : true,
          "xtype" : "Entry"
+        },
+        {
+         "$ xns" : "Gtk",
+         "int margin_end" : 4,
+         "label" : "Project type :",
+         "xtype" : "Label"
         }
        ],
        "xtype" : "Grid"
