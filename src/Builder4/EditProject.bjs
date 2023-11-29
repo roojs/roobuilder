@@ -313,6 +313,15 @@
            "xtype" : "StringList"
           }
          ],
+         "listeners" : {
+          "notify[\"selected\"]" : [
+           "( ) => {",
+           "",
+           "",
+           "}",
+           ""
+          ]
+         },
          "xtype" : "DropDown",
          "| string getValue" : [
           "() {",
