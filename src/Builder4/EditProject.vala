@@ -548,7 +548,28 @@ public class EditProject : Object
         }
         public void load () {
         	var p  = _this.parent_dd.getValue();
+        	var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
         	
+        	 
+        	FileInfo next_file; 
+        	while ((next_file = file_enum.next_file(null)) != null) {
+        		var fn = next_file.get_display_name();
+        
+        		 
+        		//print("trying"  + dir + "/" + fn +"\n");
+        		
+        		if (fn[0] == '.') { // skip hidden
+        			continue;
+        		}
+        		
+        		if (!FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
+        			 
+        			continue;
+        		}
+        		
+        		
+        		 
+        	}
         }
     }
     public class Xcls_StringList13 : Object
