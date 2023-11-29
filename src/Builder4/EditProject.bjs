@@ -136,7 +136,7 @@
            "\t\t\tthis.extra_value = f.get_path();",
            "\t\t\tvar sl = (Gtk.StringList) this.el.model;\t",
            "\t\t\t",
-           "\t\t\tsl.remove(sl.get_n_items()-1)",
+           "\t\t\tsl.remove(sl.get_n_items()-1);",
            "\t\t\t",
            "\t\t\tsl.append(this.extra_value);",
            "\t\t\tsl.append(\"Select Folder\");",
