@@ -179,7 +179,7 @@
           "\t}",
           "\t",
           "\tsl.append(\"Select Folder\");",
-          "\tthis.el.selected = Gtk.Gtk.INVALID_LIST_POSITION;",
+          "\tthis.el.selected = Gtk.INVALID_LIST_POSITION;",
           "\t",
           "}"
          ]

@@ -400,7 +400,7 @@ public class EditProject : Object
         	}
         	
         	sl.append("Select Folder");
-        	this.el.selected = Gtk.Gtk.INVALID_LIST_POSITION;
+        	this.el.selected = Gtk.INVALID_LIST_POSITION;
         	
         }
     }
