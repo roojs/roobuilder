@@ -459,6 +459,31 @@
        "bool hexpand" : true,
        "items" : [
         {
+         "$ Gtk.Align halign" : "Gtk.Align.END",
+         "$ xns" : "Gtk",
+         "bool hexpand" : false,
+         "label" : "Cancel",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "   ",
+           "    _this.el.hide();",
+           "\t_this.canceled();",
+           "    ",
+           "",
+           "}",
+           ""
+          ]
+         },
+         "xtype" : "Button"
+        },
+        {
+         "$ xns" : "Gtk",
+         "bool hexpand" : true,
+         "string label" : "",
+         "xtype" : "Label"
+        },
+        {
          "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ css_classes" : "{ \"suggested-action\" }",
          "$ xns" : "Gtk",
@@ -509,33 +534,6 @@
           ]
          },
          "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "bool hexpand" : true,
-         "items" : [
-          {
-           "$ Gtk.Align halign" : "Gtk.Align.END",
-           "$ xns" : "Gtk",
-           "bool hexpand" : false,
-           "label" : "Cancel",
-           "listeners" : {
-            "clicked" : [
-             "( ) => {",
-             "   ",
-             "    _this.el.hide();",
-             "\t_this.canceled();",
-             "    ",
-             "",
-             "}",
-             ""
-            ]
-           },
-           "xtype" : "Button"
-          }
-         ],
-         "string label" : "",
-         "xtype" : "Label"
         }
        ],
        "xtype" : "Box"

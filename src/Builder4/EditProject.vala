@@ -1022,16 +1022,76 @@ public class EditProject : Object
             // set gobject values
             this.el.halign = Gtk.Align.FILL;
             this.el.hexpand = true;
-            var child_0 = new Xcls_ok_btn( _this );
+            var child_0 = new Xcls_Button29( _this );
             child_0.ref();
             this.el.append(  child_0.el );
             var child_1 = new Xcls_Label30( _this );
             child_1.ref();
             this.el.append(  child_1.el );
+            var child_2 = new Xcls_ok_btn( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
     }
+    public class Xcls_Button29 : Object
+    {
+        public Gtk.Button el;
+        private EditProject  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button29(EditProject _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.halign = Gtk.Align.END;
+            this.el.hexpand = false;
+            this.el.label = "Cancel";
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+               
+                _this.el.hide();
+            	_this.canceled();
+                
+            
+            });
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Label30 : Object
+    {
+        public Gtk.Label el;
+        private EditProject  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label30(EditProject _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( "" );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.hexpand = true;
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_ok_btn : Object
     {
         public Gtk.Button el;
@@ -1098,66 +1158,6 @@ public class EditProject : Object
 
         // user defined functions
     }
-
-    public class Xcls_Label30 : Object
-    {
-        public Gtk.Label el;
-        private EditProject  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Label30(EditProject _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Label( "" );
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.hexpand = true;
-            var child_0 = new Xcls_Button31( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Button31 : Object
-    {
-        public Gtk.Button el;
-        private EditProject  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button31(EditProject _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.halign = Gtk.Align.END;
-            this.el.hexpand = false;
-            this.el.label = "Cancel";
-
-            //listeners
-            this.el.clicked.connect( ( ) => {
-               
-                _this.el.hide();
-            	_this.canceled();
-                
-            
-            });
-        }
-
-        // user defined functions
-    }
-
 
 
 
