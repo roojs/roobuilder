@@ -211,7 +211,7 @@ public class EditProject : Object
             //listeners
             this.el.activate.connect( ( ) => {
             
-            
+            	GLib.debug("selected item: %s", _this.model.el.get_string(_this.el.selected));
             });
         }
 

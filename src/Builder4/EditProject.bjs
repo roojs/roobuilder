@@ -49,7 +49,7 @@
           "activate" : [
            "( ) => {",
            "",
-           "",
+           "\tGLib.debug(\"selected item: %s\", _this.model.el.get_string(_this.el.selected));",
            "}",
            ""
           ]
