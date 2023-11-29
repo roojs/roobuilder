@@ -313,7 +313,15 @@
            "xtype" : "StringList"
           }
          ],
-         "xtype" : "DropDown"
+         "xtype" : "DropDown",
+         "| string getValue" : [
+          "() {",
+          "\tvar m = (Gtk.StringList) this.el.model;",
+          "\treturn this.el.selected) == Gtk.Gtk.INVALID_LIST_POSITION ?",
+          "\t\t\t \"\" : m.get_string(this.el.selected);",
+          "\t",
+          "}"
+         ]
         }
        ],
        "xtype" : "Grid"

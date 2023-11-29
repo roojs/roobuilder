@@ -673,6 +673,12 @@ public class EditProject : Object
         }
 
         // user defined functions
+        public string getValue () {
+        	var m = (Gtk.StringList) this.el.model;
+        	return this.el.selected) == Gtk.Gtk.INVALID_LIST_POSITION ?
+        			 "" : m.get_string(this.el.selected);
+        	
+        }
     }
     public class Xcls_StringList18 : Object
     {
