@@ -139,6 +139,8 @@
           "notify[\"selected\"]" : [
            "( ) => {",
            "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+           "\t\tthis.hideAll();",
+           "\t",
            "\t\treturn;",
            "\t}",
            "\t",
@@ -162,7 +164,7 @@
            "\t\treturn;",
            "",
            "\t}",
-           "\t",
+           "\t      ",
            "\t// folder selected...",
            "\tswitch(_this.type_dd.getValue()) {",
            "\t\tcase \"New Folder\":",

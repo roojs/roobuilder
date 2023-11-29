@@ -384,6 +384,8 @@ public class EditProject : Object
             //listeners
             this.el.notify["selected"].connect( ( ) => {
             	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+            		this.hideAll();
+            	
             		return;
             	}
             	
@@ -407,7 +409,7 @@ public class EditProject : Object
             		return;
             
             	}
-            	
+            	      
             	// folder selected...
             	switch(_this.type_dd.getValue()) {
             		case "New Folder":
