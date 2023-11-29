@@ -419,7 +419,7 @@
            "  ",
            "    GLib.debug(\"add %s\\n\" , fn);",
            "    try {",
-           "\t\tvar project = Project.Project.factory(_this.ptype.getValue(), fn);",
+           "\t\tvar project = Project.Project.factory(_this.ptype_dd.getValue(), fn);",
            "\t\tproject.save();",
            "\t\tProject.projects.set(project.name,project);",
            "\t\t_this.selected(project);",

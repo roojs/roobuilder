@@ -870,7 +870,7 @@ public class EditProject : Object
               
                 GLib.debug("add %s\n" , fn);
                 try {
-            		var project = Project.Project.factory(_this.ptype.getValue(), fn);
+            		var project = Project.Project.factory(_this.ptype_dd.getValue(), fn);
             		project.save();
             		Project.projects.set(project.name,project);
             		_this.selected(project);
