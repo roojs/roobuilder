@@ -54,15 +54,21 @@ public class EditProject : Object
     public void show () {
          
          
-         
+         // hide stuff..
+         _this.folder_lbl.el.hide();
+         _this.folder_dd.el.hide();     
+         _this.name_lbl.el.hide();          
+         _this.name_entry.hide();     
+         _this.ptype_lbl.el.hide();          
+         _this.ptype_dd.el.hide();          
+              
           
     
         //[ 'xtype'  ].forEach(function(k) {
         //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);
         //});
     	// shouild set path..
-        _this.model.loadData();
-        _this.dir.reset();
+       
         this.el.show();
         
     }
