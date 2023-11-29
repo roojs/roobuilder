@@ -814,10 +814,17 @@ public class EditProject : Object
                
                switch (_this.type_dd.getValue()) {
             	   	case "Existing Folder":
-            		   	
+            		   	if (_this.folder_dd.getValue().length < 1) {
+            				err_dialog.show(_this.el,"You have to set Folder");             
+            				return;
+            			}
+            			break;
             	   	
             	   	case "New Folder":
-            	   	
+            		   	if (_this.folder_dd.getValue().length < 1) {
+            				err_dialog.show(_this.el,"You have enter a Project Name");             
+            				return;
+            			}
             	   
             	   	default:
             	   		return;
