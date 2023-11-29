@@ -311,7 +311,7 @@
           "\t\t(Posix.compar_fn_t) cmpfunc",
           "\t);",
           "\tfor (var i =0 ; i < strs.length; i++) {",
-          "\t\tsl.append(fn);",
+          "\t\tsl.append(strs[i]);",
           "\t}",
           "\t ",
           "}"

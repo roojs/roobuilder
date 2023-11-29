@@ -586,7 +586,7 @@ public class EditProject : Object
         		(Posix.compar_fn_t) cmpfunc
         	);
         	for (var i =0 ; i < strs.length; i++) {
-        		sl.append(fn);
+        		sl.append(strs[i]);
         	}
         	 
         }
