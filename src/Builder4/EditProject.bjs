@@ -11,6 +11,12 @@
    "default_width" : 600,
    "items" : [
     {
+     "$ xns" : "Gtk",
+     "* prop" : "titlebar",
+     "* title" : "Window Title",
+     "xtype" : "HeaderBar"
+    },
+    {
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
      "* prop" : "child",
