@@ -191,6 +191,7 @@
          ]
         },
         {
+         "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ xns" : "Gtk",
          "id" : "folder_lbl",
          "string label" : "Add Folder",
