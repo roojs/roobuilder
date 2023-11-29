@@ -1065,19 +1065,14 @@ public class Xcls_GtkView : Object
             //listeners
             this.el.search_changed.connect( () => {
               	 
-            		_this.search(_this.search_entry.el.text);
+            	_this.search(_this.search_entry.el.text);
+            	 _this.search_results.updateResults();
+            
+            	GLib.Timeout.add_seconds(1,() => {
             		 _this.search_results.updateResults();
-            
-            		GLib.Timeout.add_seconds(1,() => {
-            			 _this.search_results.updateResults();
-            			 return false;
-            		 });
-            	 
-            		
-            	    return true;
-            
-            	}    
-               // print(event.key.keyval)
+            		 return false;
+            	 });
+            	  
                
                 
             });
