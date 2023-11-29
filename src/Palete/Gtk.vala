@@ -599,6 +599,7 @@ namespace Palete {
 			foreach(var k in props.keys) {
 				var val = props.get(k);
 //				GLib.debug("FilterProp: %s", k);
+				// properties that dont make any sense to display.
 				if (
 					k == "___" ||
 					k == "parent" ||
