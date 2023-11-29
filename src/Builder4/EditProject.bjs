@@ -286,6 +286,7 @@
          ]
         },
         {
+         "$ Gtk.Align halign" : "Gtk.Align.START",
          "$ xns" : "Gtk",
          "id" : "ptype_lbl",
          "label" : "Project type :",
