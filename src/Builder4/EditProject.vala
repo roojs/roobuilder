@@ -432,7 +432,7 @@ public class EditProject : Object
                 	   _this.name_lbl.el.label= "not yet";
                 	   _this.name_entry.el.text = "this is not supported yet";
             			break;
-            		default;
+            		default:
             			break;
             	}
                 

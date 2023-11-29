@@ -187,7 +187,7 @@
            "    \t   _this.name_lbl.el.label= \"not yet\";",
            "    \t   _this.name_entry.el.text = \"this is not supported yet\";",
            "\t\t\tbreak;",
-           "\t\tdefault;",
+           "\t\tdefault:",
            "\t\t\tbreak;",
            "\t}",
            "    ",
