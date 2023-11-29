@@ -75,9 +75,21 @@
         },
         {
          "$ xns" : "Gtk",
-         "int margin_end" : 4,
          "label" : "Project type :",
          "xtype" : "Label"
+        },
+        {
+         "$ xns" : "Gtk",
+         "bool hexpand" : true,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "strings" : "{ \"gitlive\", \"Projects\", \"Select\" }",
+           "xtype" : "StringList"
+          }
+         ],
+         "xtype" : "DropDown"
         }
        ],
        "xtype" : "Grid"
