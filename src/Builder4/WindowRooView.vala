@@ -34,8 +34,8 @@ public class Xcls_WindowRooView : Object
         // my vars (def)
     public Gtk.Widget lastObj;
     public Xcls_MainWindow main_window;
-    public int last_search_end;
     public GtkSource.SearchContext searchcontext;
+    public int last_search_end;
     public JsRender.JsRender file;
 
     // ctor
@@ -990,8 +990,8 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public int editable_start_pos;
         public bool loading;
+        public int editable_start_pos;
         public bool button_is_pressed;
         public string prop_selected;
         public bool key_is_pressed;
@@ -1006,8 +1006,8 @@ public class Xcls_WindowRooView : Object
             this.el = new GtkSource.View();
 
             // my vars (dec)
-            this.editable_start_pos = -1;
             this.loading = true;
+            this.editable_start_pos = -1;
             this.button_is_pressed = false;
             this.prop_selected = "";
             this.key_is_pressed = false;
@@ -1414,6 +1414,15 @@ public class Xcls_WindowRooView : Object
         
         
         }
+        public string toString () {
+           Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_buffer().get_start_iter(out s);
+            this.el.get_buffer().get_end_iter(out e);
+            var ret = this.el.get_buffer().get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
+        }
         public void clearGreySelection () {
          // clear all the marks..
             var sbuf = (GtkSource.Buffer)this.el.buffer;
@@ -1425,15 +1434,6 @@ public class Xcls_WindowRooView : Object
             sbuf.remove_source_marks (start, end, "grey");
             
             
-        }
-        public string toString () {
-           Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_buffer().get_start_iter(out s);
-            this.el.get_buffer().get_end_iter(out e);
-            var ret = this.el.get_buffer().get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
         }
     }
     public class Xcls_buffer : Object
