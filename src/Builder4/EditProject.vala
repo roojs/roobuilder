@@ -62,7 +62,7 @@ public class EditProject : Object
          _this.ptype_lbl.el.hide();          
          _this.ptype_dd.el.hide();          
               
-          
+          _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION.;
     
         //[ 'xtype'  ].forEach(function(k) {
         //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);
