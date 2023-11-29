@@ -333,6 +333,7 @@ public class EditProject : Object
 
 
             // my vars (def)
+        public string extra_value;
 
         // ctor
         public Xcls_parent_dd(EditProject _owner )
