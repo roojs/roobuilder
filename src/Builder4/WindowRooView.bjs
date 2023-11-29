@@ -224,7 +224,7 @@
               ],
               "show" : [
                "  ( ) => {",
-               "    this.initInspector();;",
+               "    this.initInspector();",
                "}"
               ]
              },

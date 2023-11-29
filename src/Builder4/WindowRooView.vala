@@ -689,7 +689,7 @@ public class Xcls_WindowRooView : Object
                 
             });
             this.el.show.connect( ( ) => {
-                this.initInspector();;
+                this.initInspector();
             });
             this.el.load_changed.connect( (le) => {
                 if (le != WebKit.LoadEvent.FINISHED) {
