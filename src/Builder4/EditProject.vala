@@ -43,7 +43,7 @@ public class EditProject : Object
     }
 
     // user defined functions
-    public void showIt () {
+    public void show () {
           
     
         //[ 'xtype'  ].forEach(function(k) {
