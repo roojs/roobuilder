@@ -12,6 +12,7 @@ public class EditProject : Object
         }
         return _EditProject;
     }
+    public Xcls_type_lbl type_lbl;
     public Xcls_xtype xtype;
     public Xcls_cellrender cellrender;
     public Xcls_model model;
@@ -44,6 +45,9 @@ public class EditProject : Object
 
     // user defined functions
     public void show () {
+         
+         
+         
           
     
         //[ 'xtype'  ].forEach(function(k) {
@@ -117,7 +121,7 @@ public class EditProject : Object
             // set gobject values
             this.el.column_spacing = 4;
             this.el.row_spacing = 4;
-            var child_0 = new Xcls_Label4( _this );
+            var child_0 = new Xcls_type_lbl( _this );
             child_0.ref();
             this.el.attach(  child_0.el, 0, 0, 1, 1 );
             var child_1 = new Xcls_DropDown5( _this );
@@ -145,7 +149,7 @@ public class EditProject : Object
 
         // user defined functions
     }
-    public class Xcls_Label4 : Object
+    public class Xcls_type_lbl : Object
     {
         public Gtk.Label el;
         private EditProject  _this;
@@ -154,9 +158,10 @@ public class EditProject : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label4(EditProject _owner )
+        public Xcls_type_lbl(EditProject _owner )
         {
             _this = _owner;
+            _this.type_lbl = this;
             this.el = new Gtk.Label( "Create a Project from:" );
 
             // my vars (dec)

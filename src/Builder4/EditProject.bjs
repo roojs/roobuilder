@@ -29,6 +29,7 @@
        "items" : [
         {
          "$ xns" : "Gtk",
+         "id" : "type_lbl",
          "string label" : "Create a Project from:",
          "xtype" : "Label"
         },
@@ -341,6 +342,9 @@
    "xtype" : "Window",
    "| void show" : [
     "() {",
+    "     ",
+    "     ",
+    "     ",
     "      ",
     "",
     "    //[ 'xtype'  ].forEach(function(k) {",
