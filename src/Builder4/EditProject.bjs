@@ -164,7 +164,7 @@
           "",
           "\tvar sl = (Gtk.StringList) this.el.model;\t",
           "\tvar hd = GLib.Environment.get_home_dir();",
-          "\twhile(sl.get_n_items() > 0). {",
+          "\twhile(sl.get_n_items() > 0)  {",
           "\t\tsl.remove(0)",
           "\t}",
           "\tif (!FileUtils.test(hd + \"/gitlive\" ,FileTest.IS_DIR)) {",
