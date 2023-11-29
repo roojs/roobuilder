@@ -183,7 +183,7 @@ public class EditProject : Object
         public Xcls_StringList6(EditProject _owner )
         {
             _this = _owner;
-            this.el = new Gtk.StringList( null );
+            this.el = new Gtk.StringList( { " );
 
             // my vars (dec)
 
