@@ -361,7 +361,14 @@ public class EditProject : Object
             			this.extra_value = f.get_path();
             			var sl = (Gtk.StringList) this.el.model;	
             			
+            			sl.remove(sl.get_n_items()-1)
+            			
+            			sl.append(this.extra_value);
+            			sl.append("Select Folder");
+            			this.el.selected = sl.get_n_items()-2;
+            			
             		});
+            		return;
             
             	}
             
