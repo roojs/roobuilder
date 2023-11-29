@@ -58,6 +58,13 @@
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",
            "}",
            ""
+          ],
+          "notify" : [
+           "(pspec) => {",
+           "",
+           "",
+           "}",
+           ""
           ]
          },
          "xtype" : "DropDown"
