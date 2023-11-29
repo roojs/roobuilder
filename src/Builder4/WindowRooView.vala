@@ -890,7 +890,7 @@ public class Xcls_WindowRooView : Object
                     //fixme - should be a config option!
                     (rootURL.length > 0 ? rootURL : "xhttp://localhost/roobuilder/")
                 );
-                
+                  this.initInspector();   
             // force the inspector...        
                //   this.initInspector();
                 
