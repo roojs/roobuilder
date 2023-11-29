@@ -403,6 +403,7 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.homogeneous = false;
+            this.el.vexpand = true;
             var child_0 = new Xcls_Box7( _this );
             child_0.ref();
             this.el.append(  child_0.el );

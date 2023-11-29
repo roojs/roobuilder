@@ -43,6 +43,7 @@
          "$ xns" : "Gtk",
          "* pack" : "set_start_child",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "bool vexpand" : true,
          "id" : "viewbox",
          "items" : [
           {
