@@ -32,6 +32,13 @@
         },
         {
          "$ xns" : "Gtk",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "xtype" : "StringList"
+          }
+         ],
          "xtype" : "DropDown"
         }
        ],
