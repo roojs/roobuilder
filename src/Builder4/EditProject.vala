@@ -210,8 +210,8 @@ public class EditProject : Object
 
             //listeners
             this.el.activate.connect( ( ) => {
-            	var m = (Gtk.StringList) _this.model.el;
-            	GLib.debug("selected item: %s", m.get_string(_this.el.selected));
+            	var m = (Gtk.StringList) this.el.model;
+            	GLib.debug("selected item: %s", m.get_string(this.el.selected));
             });
         }
 
