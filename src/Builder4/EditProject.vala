@@ -555,7 +555,7 @@ public class EditProject : Object
         	 	while(sl.get_n_items() > 0)  {
         		sl.remove(0);
         	}
-        	sting[] strs = {};
+        	string[] strs = {};
         	FileInfo next_file; 
         	while ((next_file = file_enum.next_file(null)) != null) {
         		var fn = next_file.get_display_name();
@@ -585,7 +585,7 @@ public class EditProject : Object
         		sizeof(string), 
         		(Posix.compar_fn_t) cmpfunc
         	);
-        	for (var i =0 ; i < strs.lengthl i++) {
+        	for (var i =0 ; i < strs.length; i++) {
         		sl.append(fn);
         	}
         	 
