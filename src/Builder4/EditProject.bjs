@@ -57,7 +57,12 @@
            "( ) => {",
            "var m = (Gtk.StringList) this.el.model;",
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",
-           "",
+           "switch (m.get_string(this.el.selected)) {",
+           "\tcase \"New Folder\":",
+           "\t",
+           "\t",
+           "\t",
+           "\tcase \"",
            "} ",
            ""
           ]

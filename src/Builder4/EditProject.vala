@@ -221,7 +221,12 @@ public class EditProject : Object
             this.el.notify["selected"].connect( ( ) => {
             var m = (Gtk.StringList) this.el.model;
             	GLib.debug("selected item: %s", m.get_string(this.el.selected));
-            
+            switch (m.get_string(this.el.selected)) {
+            	case "New Folder":
+            	
+            	
+            	
+            	case "
             });
         }
 
