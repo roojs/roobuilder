@@ -61,7 +61,7 @@
            ""
           ]
          },
-         "uint selected" : "?uint?",
+         "uint selected" : "Gtk.INVALID_LIST_POSITION.",
          "xtype" : "DropDown"
         },
         {
