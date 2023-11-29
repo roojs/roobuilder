@@ -120,6 +120,20 @@
          "| void load" : [
           "() {",
           "",
+          "\tvar sl = (Gtk.StringList) this.el.model;\t",
+          "\tvar hd = GLib.Environment.get_home_dir();",
+          "\twhile(sl.get_n_items() > 0). {",
+          "\t\tsl.remove(0)",
+          "\t}",
+          "\tif (!FileUtils.test(hd + \"/gitlive\" ,FileTest.IS_DIR)) {",
+          "\t\tsl.append(hd + \"/gitlive\");",
+          "\t}",
+          "\tif (!FileUtils.test(hd + \"/Projects\" ,FileTest.IS_DIR)) {",
+          "\t\tsl.append(hd + \"/gitlive\");",
+          "\t}",
+          "\tsl.append(\"Select Folder\");",
+          "\t",
+          "\t",
           "}"
          ]
         },
