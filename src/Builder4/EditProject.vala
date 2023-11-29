@@ -360,7 +360,7 @@ public class EditProject : Object
         		sl.append(hd + "/gitlive");
         	}
         	sl.append("Select Folder");
-        	
+        	this.el.selected = Gtk.Gtk.INVALID_LIST_POSITION;
         	
         }
     }

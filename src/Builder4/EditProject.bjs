@@ -132,7 +132,7 @@
           "\t\tsl.append(hd + \"/gitlive\");",
           "\t}",
           "\tsl.append(\"Select Folder\");",
-          "\t",
+          "\tthis.el.selected = Gtk.Gtk.INVALID_LIST_POSITION;",
           "\t",
           "}"
          ]
