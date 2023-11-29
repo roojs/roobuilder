@@ -208,6 +208,7 @@ public class EditProject : Object
 
 
             // my vars (def)
+        public bool loading;
 
         // ctor
         public Xcls_type_dd(EditProject _owner )
@@ -217,6 +218,7 @@ public class EditProject : Object
             this.el = new Gtk.DropDown( null, null );
 
             // my vars (dec)
+            this.loading = false;
 
             // set gobject values
             this.el.hexpand = true;
