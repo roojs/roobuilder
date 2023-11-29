@@ -1068,7 +1068,7 @@ public class Xcls_GtkView : Object
             		_this.search(_this.search_entry.el.text);
             		 _this.search_results.updateResults();
             
-            		GLib.Timeout.add_seconds(2,() => {
+            		GLib.Timeout.add_seconds(1,() => {
             			 _this.search_results.updateResults();
             			 return false;
             		 });

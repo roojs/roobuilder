@@ -574,7 +574,7 @@
              "\t\t_this.search(_this.search_entry.el.text);",
              "\t\t _this.search_results.updateResults();",
              "",
-             "\t\tGLib.Timeout.add_seconds(2,() => {",
+             "\t\tGLib.Timeout.add_seconds(1,() => {",
              "\t\t\t _this.search_results.updateResults();",
              "\t\t\t return false;",
              "\t\t });",
