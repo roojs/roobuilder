@@ -383,6 +383,10 @@ public class EditProject : Object
 
             //listeners
             this.el.notify["selected"].connect( ( ) => {
+            	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+            		return;
+            	}
+            	
             	if (this.getValue() == "Select Folder") {
             		var fd = new Gtk.FileDialog();
             		fd.title = "Select Folder";
