@@ -835,6 +835,12 @@ public class EditProject : Object
             				err_dialog.show(_this.el,"That folder already exists");             
             				return;			
             			}
+            			var dir = File.new_for_path(fn);
+            			try {
+            				dir.make_directory();	
+            			} catch (Error e) {
+            				GLib.error("Failed to make directory %s", dirname);
+            			} 
             			break;
             			
             	   	default:
