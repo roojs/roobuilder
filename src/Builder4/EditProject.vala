@@ -457,7 +457,7 @@ public class EditProject : Object
         		sl.append(hd + "/gitlive");
         	}
         	if (FileUtils.test(hd + "/Projects" ,FileTest.IS_DIR)) {
-        		sl.append(hd + "/gitlive");
+        		sl.append(hd + "/Projects");
         	}
         	if (this.extra_value != "" && FileUtils.test(this.extra_value ,FileTest.IS_DIR)) {
         		sl.append(this.extra_value);

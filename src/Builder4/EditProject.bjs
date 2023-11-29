@@ -230,7 +230,7 @@
           "\t\tsl.append(hd + \"/gitlive\");",
           "\t}",
           "\tif (FileUtils.test(hd + \"/Projects\" ,FileTest.IS_DIR)) {",
-          "\t\tsl.append(hd + \"/gitlive\");",
+          "\t\tsl.append(hd + \"/Projects\");",
           "\t}",
           "\tif (this.extra_value != \"\" && FileUtils.test(this.extra_value ,FileTest.IS_DIR)) {",
           "\t\tsl.append(this.extra_value);",
