@@ -56,7 +56,9 @@
           "notify[\"selected\"]" : [
            "( ) => {",
            "\t ",
-           "\t",
+           "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+           "\t\treturn;",
+           "\t}",
            "\tvar m = (Gtk.StringList) this.el.model;",
            "\tGLib.debug(\"selected item: %s\", m.get_string(this.el.selected));",
            "\t",

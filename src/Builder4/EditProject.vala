@@ -234,7 +234,9 @@ public class EditProject : Object
             //listeners
             this.el.notify["selected"].connect( ( ) => {
             	 
-            	
+            	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+            		return;
+            	}
             	var m = (Gtk.StringList) this.el.model;
             	GLib.debug("selected item: %s", m.get_string(this.el.selected));
             	
