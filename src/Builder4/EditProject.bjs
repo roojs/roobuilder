@@ -392,7 +392,7 @@
            "\t\t\t}",
            "\t\t\tfn += \"/\" + _this.name_entry.getValue();\t   ",
            "\t\t\t",
-           "\t\t\tif (FileUtils.test( fn ,FileTest.IS_DIR)) {",
+           "\t\t\tif (FileUtils.test( fn ,FileTest.EXISTS)) {",
            "\t\t\t\terr_dialog.show(_this.el,\"That folder already exists\");             ",
            "\t\t\t\treturn;\t\t\t",
            "\t\t\t}",
