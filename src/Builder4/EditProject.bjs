@@ -41,7 +41,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{ \"New Folder\", \"Existing Folder\", \"Checkout from git\" }",
+           "strings" : "{ \"Select\", \"New Folder\", \"Existing Folder\", \"Checkout from git\" }",
            "xtype" : "StringList"
           }
          ],
