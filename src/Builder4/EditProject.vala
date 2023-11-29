@@ -805,7 +805,7 @@ public class EditProject : Object
                
              
                      
-                  if (_this.xtype.getValue().length < 1) {
+                  if (_this.name_entry.getValue().length < 1) {
                        
                         err_dialog.show(_this.el,"You have to set Project type");             
                         return;
