@@ -506,7 +506,6 @@
          "xtype" : "Box"
         },
         {
-         "$ shadow_type" : "Gtk.ShadowType.IN",
          "$ xns" : "Gtk",
          "* init" : [
           "  this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
