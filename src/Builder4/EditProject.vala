@@ -576,7 +576,7 @@ public class EditProject : Object
         		 
         	}
         	 int cmpfunc(ref string a, ref string b) {
-        		return Posix.strcmp(a, b);
+        		return Posix.strcmp(a.down(), b.down());
         	}
         		 
         	Posix.qsort (

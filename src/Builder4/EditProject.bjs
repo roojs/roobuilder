@@ -301,7 +301,7 @@
           "\t\t ",
           "\t}",
           "\t int cmpfunc(ref string a, ref string b) {",
-          "\t\treturn Posix.strcmp(a, b);",
+          "\t\treturn Posix.strcmp(a.down(), b.down());",
           "\t}",
           "\t\t ",
           "\tPosix.qsort (",
