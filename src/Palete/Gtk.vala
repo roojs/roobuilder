@@ -1020,7 +1020,7 @@ namespace Palete {
 			 	GLib.debug("building drop list for class %s.%s", pkg, cls);
 				this.buildDropList(pkg + "." + cls, this.getChildList(pkg + "." + cls, true));
 			}
-
+			this.buildDropList("*top");
 		}
 		
 		 
