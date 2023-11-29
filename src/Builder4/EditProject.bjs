@@ -85,7 +85,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{ \"gitlive\", \"Projects\", \"Select\" }",
+           "strings" : "{ \"Roo\", \"Gtk\", \"Gtk\"Flutter\" }",
            "xtype" : "StringList"
           }
          ],
