@@ -548,7 +548,7 @@ public class EditProject : Object
         }
         public void load () {
         	var p  = _this.parent_dd.getValue();
-        		var f = File.new_for_path(p);
+        	var f = File.new_for_path(p);
         	var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
         	var sl = (Gtk.StringList) this.el.model;	
         
