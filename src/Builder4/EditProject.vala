@@ -237,8 +237,11 @@ public class EditProject : Object
             	GLib.debug("selected item: %s", m.get_string(this.el.selected));
             	
             	_this.hideAll();
-            	_this.ptype_lbl.el.hide();          
-            	_this.ptype_dd.el.hide(); 
+            	_this.parent_lbl.el.show();
+            	_this.parent_dd.el.show();
+            	_this.parent_dd.load();
+            	/*
+            			 break;
              	
              	switch (m.get_string(this.el.selected)) {
             		case "New Folder":
@@ -260,7 +263,7 @@ public class EditProject : Object
             
             	}	
             	
-            	
+            	*/
             	 
              
                           
