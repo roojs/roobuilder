@@ -409,7 +409,7 @@ public class Xcls_WindowRooView : Object
             this.el.append(  child_0.el );
             var child_1 = new Xcls_view( _this );
             child_1.ref();
-            this.el.set_child (  child_1.el  );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -962,7 +962,7 @@ public class Xcls_WindowRooView : Object
         {
             _this = _owner;
             _this.inspectorcontainer = this;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 

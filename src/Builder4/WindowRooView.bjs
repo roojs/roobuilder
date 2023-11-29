@@ -164,7 +164,6 @@
             "}",
             ""
            ],
-           "* pack" : "set_child",
            "id" : "view",
            "listeners" : {
             "load_changed" : [
@@ -510,6 +509,7 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "set_end_child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "bool vexpand" : true,
          "id" : "inspectorcontainer",
          "xtype" : "Box"
