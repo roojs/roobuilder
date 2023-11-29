@@ -69,22 +69,26 @@
         },
         {
          "$ xns" : "Gtk",
+         "id" : "name_lbl",
          "string label" : "Named (New Folder Name)",
          "xtype" : "Label"
         },
         {
          "$ xns" : "Gtk",
          "bool hexpand" : true,
+         "id" : "name_entry",
          "xtype" : "Entry"
         },
         {
          "$ xns" : "Gtk",
+         "id" : "ptype_lbl",
          "label" : "Project type :",
          "xtype" : "Label"
         },
         {
          "$ xns" : "Gtk",
          "bool hexpand" : true,
+         "id" : "ptype_dd",
          "items" : [
           {
            "$ xns" : "Gtk",
