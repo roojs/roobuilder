@@ -1064,15 +1064,7 @@ public class Xcls_GtkView : Object
 
             //listeners
             this.el.search_changed.connect( () => {
-             	GLib.debug("Got search key press");
-                 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
-            	    GLib.debug("SAVE: ctrl-g  pressed");
-            		_this.forwardSearch(true);
-            	    return true;
-            	}
-                
-              
-             	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
+              	 
             		_this.search(_this.search_entry.el.text);
             		 _this.search_results.updateResults();
             
