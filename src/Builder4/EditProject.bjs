@@ -139,8 +139,10 @@
           "notify[\"selected\"]" : [
            "( ) => {",
            "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
-           "\t\t//_this.hideAll();",
-           "\t\t",
+           "\t\t_this.hideAll();",
+           "\t\t_this.parent_lbl.el.show();",
+           "     \t_this.parent_dd.el.show();   ",
+           " \t",
            "\t\treturn;",
            "\t}",
            "\t",
