@@ -474,7 +474,7 @@ public class DialogFiles : Object
                 });
                 
                   
-                pe.showIt();
+                pe.show();
                
             
             });
