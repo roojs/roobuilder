@@ -830,6 +830,12 @@ public class EditProject : Object
             				return;
             			}
             			fn += "/" + _this.name_entry.getValue();	   
+            			
+            			if (FileUtils.test(fh ,FileTest.IS_DIR)) {
+            				err_dialog.show(_this.el,"That folder already exists");             
+            				return;			
+            			}
+            			
             	   	default:
             	   		return;
                		
