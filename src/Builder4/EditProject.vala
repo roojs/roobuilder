@@ -384,7 +384,7 @@ public class EditProject : Object
             //listeners
             this.el.notify["selected"].connect( ( ) => {
             	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-            		this.hideAll();
+            		_this.hideAll();
             	
             		return;
             	}
@@ -409,17 +409,30 @@ public class EditProject : Object
             		return;
             
             	}
-            	      
+            	_this.hideAll();
+               _this.ptype_lbl.el.show();          
+               _this.ptype_dd.el.show();  
             	// folder selected...
             	switch(_this.type_dd.getValue()) {
             		case "New Folder":
-            		
+            		   _this.name_lbl.el.show();          
+                	   _this.name_entry.el.show(); 
+                	   _this.name_entry.el.text = "";
+                	   break;
             		case "Existing Folder":
-            		
+            			_this.folder_lbl.el.hide();
+            		 	_this.folder_dd.el.hide();
+            		 	_this.folder_dd.load();
             		case "Checkout from git":
-            			
-            		
-            		
+            		   _this.name_lbl.el.show();          
+                	   _this.name_entry.el.show(); 
+                	   _this.name_lbl.el.label= "not yet";
+                	   _this.name_entry.el.text = "this is not supported yet";
+            			break;
+            		default;
+            			break;
+            	}
+                
             	
             
             });
