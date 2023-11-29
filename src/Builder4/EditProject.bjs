@@ -193,7 +193,6 @@
         {
          "$ xns" : "Gtk",
          "id" : "folder_lbl",
-         "int colspan" : 1,
          "string label" : "Add Folder",
          "xtype" : "Label"
         },

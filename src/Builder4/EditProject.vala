@@ -440,7 +440,6 @@ public class EditProject : Object
 
 
             // my vars (def)
-        public int colspan;
 
         // ctor
         public Xcls_folder_lbl(EditProject _owner )
@@ -450,7 +449,6 @@ public class EditProject : Object
             this.el = new Gtk.Label( "Add Folder" );
 
             // my vars (dec)
-            this.colspan = 1;
 
             // set gobject values
         }
