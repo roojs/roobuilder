@@ -378,7 +378,7 @@ public class EditProject : Object
         {
             _this = _owner;
             _this.folder_lbl = this;
-            this.el = new Gtk.Label( "In Folder:" );
+            this.el = new Gtk.Label( "Add Folder" );
 
             // my vars (dec)
             this.colspan = 1;
