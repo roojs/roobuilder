@@ -754,7 +754,7 @@ public class JsRender.NodeToVala : Object {
 			return;
 		}
 		this.pane_number = 0;
-		var cols = this.node.has("* columns") ? int.parse(this.node.get_prop("* columns").val) : 1;
+		var cols = this.node.has("* columns") ? int.min(1, int.parse(this.node.get_prop("* columns").val)) : 1;
 		var colpos = 0;
 		
 		var iter = this.node.readItems().list_iterator();
