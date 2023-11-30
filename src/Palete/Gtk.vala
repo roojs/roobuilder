@@ -359,9 +359,13 @@ namespace Palete {
 		
 		public void add_node_default_from_ctor_classes(GirObject cls)
 		{
-			
+			if (cls.ctors.has_key("new")) {
+				this.add_node_default_from_ctor(cls.ctors.get("new"));			
+			}
+			// does not have new ?? needed?
 			foreach(var ctor in cls.ctors.values) {
 				this.add_node_default_from_ctor(ctor);
+				break;
 			
 			}
 		}
@@ -1099,9 +1103,9 @@ namespace Palete {
 			if (!this.node_defaults.has_key(fqn)) {
 				return ret;
 			}
-			var ar = this.node_defaults.get(fqn);
-			for (var i = 0; i < ar.size; i++) {
-				ret.add_prop(ar.get(i).dupe());
+
+			foreach (var nv in this.node_default.get(fqn).values) {
+				ret.add_prop(nv.dupe());
 			}
 			return ret;
 			
