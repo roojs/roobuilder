@@ -403,7 +403,7 @@ namespace Palete {
 		    	}
 		    	
 			    
-			    GLib.debug("adding proprty from ctor : %s, %s, %s", cls, prop.name, prop.type);
+			    GLib.debug("adding proprty from ctor : %s, %s, %s", cname , prop.name, prop.type);
 
 			    var sub = this.getClass(prop.type);
 			    if (sub != null) { // can't add child classes here...
@@ -421,7 +421,7 @@ namespace Palete {
 				    // anything else?
 				    
 				    default: // enam? or bool?
-					    this.typeOptions(cls, prop.name, prop.type, out opts);
+					    this.typeOptions(cname, prop.name, prop.type, out opts);
 					    dval = opts.length > 0 ? opts[0] : "";
 					    break;
 			    }
@@ -436,7 +436,7 @@ namespace Palete {
 		public void add_node_default(string cls, string propname, string val = "")
 		{
 			if (!this.node_defaults.has_key(cls)) {
-				this.node_defaults.set(cls, new Gee.HashMap<JsRender.NodeProp>());
+				this.node_defaults.set(cls, new Gee.HashMap<string, JsRender.NodeProp>());
 			}
 			
 	  		var ar = this.getPropertiesFor( cls, JsRender.NodePropType.PROP);
@@ -484,7 +484,7 @@ namespace Palete {
 			this.child_defaults.get(cls).add( new JsRender.NodeProp.prop(propname, type, val));
 		
 		}
-		
+		/*
 		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
 		{   
 
@@ -537,6 +537,7 @@ namespace Palete {
 			
 			
 		}
+		*/
 		 
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
