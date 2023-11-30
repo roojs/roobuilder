@@ -1204,7 +1204,7 @@ public class Xcls_WindowLeftTree : Object
             
             	         GLib.debug("selected rows < 1");
             	        //??this.model.load( false);
-            	        _this.node_selected(null, _this.view.lastEventSource);
+            	        _this.node_selected(null);
             	        
             	        return   ;
             	    }
@@ -1213,7 +1213,7 @@ public class Xcls_WindowLeftTree : Object
             	    
             
             	    GLib.debug ("calling left_tree.node_selected");
-            	    _this.node_selected(snode, _this.view.lastEventSource);
+            	    _this.node_selected(snode);
             	   
             	     
             	    
