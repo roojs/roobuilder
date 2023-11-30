@@ -1107,9 +1107,6 @@ public class Xcls_WindowLeftTree : Object
             		
             		
             
-            }
-            */
-            	return true; //Gdk.DragAction.COPY; 
             });
         }
 
