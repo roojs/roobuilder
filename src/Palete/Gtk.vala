@@ -331,7 +331,7 @@ namespace Palete {
 			
 		}
 		
-		public void add_node_default_from_ctor_all()
+		private void add_node_default_from_ctor_all()
     	{
 
 			var pr = (Project.Gtk) this.project;
@@ -345,7 +345,7 @@ namespace Palete {
 			}    	
 		}
 
-		public void add_node_default_from_ctor_package(Gee.HashMap<string,GirObject> classes)
+		private void add_node_default_from_ctor_package(Gee.HashMap<string,GirObject> classes)
 		{
 			
 
@@ -357,7 +357,7 @@ namespace Palete {
 		 
 		}
 		
-		public void add_node_default_from_ctor_classes(GirObject cls)
+		private void add_node_default_from_ctor_classes(GirObject cls)
 		{
 			if (cls.ctors.has_key("new")) {
 				this.add_node_default_from_ctor(cls.ctors.get("new"));			
@@ -375,7 +375,7 @@ namespace Palete {
 		
 		
 		
-		public void add_node_default_from_ctor(GirObject ctor )
+		private void add_node_default_from_ctor(GirObject ctor )
 		{
 			var cname = ctor.gparent.fqn();
 			GLib.debug("Add node from ctor %s:%s", ctor.gparent.fqn(), ctor.name);
@@ -433,7 +433,7 @@ namespace Palete {
 		    }
 		}
 		
-		public void add_node_default(string cls, string propname, string val = "")
+		private void add_node_default(string cls, string propname, string val = "")
 		{
 			if (!this.node_defaults.has_key(cls)) {
 				var add = new Gee.HashMap<string, JsRender.NodeProp>();
@@ -460,7 +460,7 @@ namespace Palete {
 
 		
 		}
-		public void init_child_defaults()
+		private void init_child_defaults()
 		{
 			this.child_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
@@ -475,7 +475,7 @@ namespace Palete {
 			
 			
 		}
-		public void add_child_default(string cls, string propname, string type, string val)
+		private void add_child_default(string cls, string propname, string type, string val)
 		{
 			if (!this.child_defaults.has_key(cls)) {
 				this.child_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
