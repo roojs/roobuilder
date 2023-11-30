@@ -73,9 +73,13 @@ namespace Palete {
 		// c) build child list for all widgets (based on properties)
 		// d) handle oddities?
 		
+		bool loaded = false;
+
 		public override void  load () 
 		{
-			
+			if (this.loaded) {
+				return;
+			}
 			Gir.factory(this.project, "Gtk"); // triggers a load...
 			
 			
@@ -289,6 +293,9 @@ namespace Palete {
 			
 			// does this need to add properties to methods?
 			// these are fake methods.
+			
+			
+			
 		 
 		    
 			this.add_node_default_from_ctor("Gtk.Box", "new");
@@ -344,36 +351,59 @@ namespace Palete {
 			
 		}
 		
-		public override JsRender.Node fqnToNode(string fqn) 
+		public void add_node_default_from_ctor_all()
+    	{
+
+			var pr = (Project.Gtk) this.project;
+			
+			 
+			 
+			foreach(var key in   pr.gir_cache.keys) {
+				var gir = pr.gir_cache.get(key);
+			 	GLib.debug("building drop list for package %s", key);
+				this.add_node_default_from_ctor_packages(key, gir.classes);
+			}    	
+		}
+
+		public void add_node_default_from_ctor_packages(Gee.HashMap<string,GirObject> classes)
 		{
-			var ret = new JsRender.Node();
-			ret.setFqn(fqn);
-			if (!this.node_defaults.has_key(fqn)) {
-				return ret;
+			
+
+			
+			foreach(var cls in classes.values) {
+			 	GLib.debug("building drop list for class %s.%s", cls.package, cls.name);
+				this.add_node_default_from_ctor_classes(cls);
 			}
-			var ar = this.node_defaults.get(fqn);
-			for (var i = 0; i < ar.size; i++) {
-				ret.add_prop(ar.get(i).dupe());
+		 
+		}
+		
+		public void add_node_default_from_ctor_classes(GirObject cls)
+		{
+			
+			foreach(var ctor in cls.ctors.values) {
+				this.add_node_default_from_ctor(ctor) 
+			
 			}
-			return ret;
-			
-			
-			
 		}
 		
 		
-		public void add_node_default_from_ctor(string cls, string method )
+		
+		
+		
+		
+		public void add_node_default_from_ctor(GirObject ctor )
 		{
-			GLib.debug("Add node from ctor %s:%s", cls, method);
-			if (!this.node_defaults.has_key(cls)) {
-				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			var cname = ctor.gparent.fqn();
+			GLib.debug("Add node from ctor %s:%s", ctor.gparent.fqn(), ctor.name);
+			if (!this.node_defaults.has_key(cname)) {
+				this.node_defaults.set(cname, new Gee.ArrayList<JsRender.NodeProp>());
 			}
 			
 			
-			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
+			var ar = this.getPropertiesFor(cname, JsRender.NodePropType.CTOR);
 			
 			 
-			GLib.debug("ctor: %s", ar.get(method).asJSONString());
+			GLib.debug("ctor: %s: %s", cname , ctor.name);
 			 
 			
 			// assume we are calling this for a reason...
@@ -381,37 +411,37 @@ namespace Palete {
 			 
 				//gtk box failing
 			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
-			var m = ar.get(method);
-			if (m != null) {
-			
+			  
+		    foreach (var prop in ctor.paramset.params) {
+			    string[] opts;
 			    
-			    foreach (var prop in m.paramset.params) {
-				    string[] opts;
-				    
-				    GLib.debug("adding proprty from ctor : %s, %s, %s", cls, prop.name, prop.type);
+			    GLib.debug("adding proprty from ctor : %s, %s, %s", cls, prop.name, prop.type);
 
-				    var sub = this.getClass(prop.type);
-				    if (sub != null) { // can't add child classes here...
-					    GLib.debug("skipping ctor argument proprty is an object");
-					    continue;
-				    }
-				    var dval = "";
-				    switch (prop.type) {
-					    case "int":
-						    dval = "0";break;
-					    case "string": 
-						    dval = ""; break;
-					    // anything else?
-					    default:
-						    this.typeOptions(cls, prop.name, prop.type, out opts);
-						    dval = opts.length > 0 ? opts[0] : "";
-						    break;
-				    }
-				    
-				    this.node_defaults.get(cls).add( new JsRender.NodeProp.prop( prop.name, prop.type, dval));
-			    
-			    
+			    var sub = this.getClass(prop.type);
+			    if (sub != null) { // can't add child classes here...
+				    GLib.debug("skipping ctor argument proprty is an object");
+				    continue;
 			    }
+			    
+			    
+			    var dval = "";
+			    switch (prop.type) {
+				    case "int":
+					    dval = "0";break;
+				    case "string": 
+					    dval = ""; break;
+				    // anything else?
+				    
+				    default: // enam? or bool?
+					    this.typeOptions(cls, prop.name, prop.type, out opts);
+					    dval = opts.length > 0 ? opts[0] : "";
+					    break;
+			    }
+			    
+			    this.node_defaults.getcname).add( new JsRender.NodeProp.prop( prop.name, prop.type, dval));
+		    
+			    
+			     
 		    }
 		}
 		
@@ -1076,6 +1106,22 @@ namespace Palete {
 		}
 		 
 		 
+		public override JsRender.Node fqnToNode(string fqn) 
+		{
+			var ret = new JsRender.Node();
+			ret.setFqn(fqn);
+			if (!this.node_defaults.has_key(fqn)) {
+				return ret;
+			}
+			var ar = this.node_defaults.get(fqn);
+			for (var i = 0; i < ar.size; i++) {
+				ret.add_prop(ar.get(i).dupe());
+			}
+			return ret;
+			
+			
+			
+		}
 		
 		
 		
