@@ -1417,7 +1417,7 @@ public class Xcls_WindowLeftTree : Object
         	}
         	GLib.debug("Select %d", row);
         	s.set_selected(row);
-        	
+        	_this.node_selected(node);			
         	
         
         }

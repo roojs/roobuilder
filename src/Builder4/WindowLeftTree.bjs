@@ -899,7 +899,7 @@
             "\t}",
             "\tGLib.debug(\"Select %d\", row);",
             "\ts.set_selected(row);",
-            "\t",
+            "\t_this.node_selected(node);\t\t\t",
             "\t",
             "",
             "}"
