@@ -351,7 +351,7 @@ public class JsRender.NodeProp : Object {
 		}
 		owned get {
 			
-			 	return "<tt>" + GLib.Markup.escape_text(this.name) + "</tt>";
+			 	return "<tt>" + GLib.Markup.escape_text(this.val) + "</tt>";
 		} 
     
     
