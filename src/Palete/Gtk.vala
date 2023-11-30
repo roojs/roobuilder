@@ -452,12 +452,12 @@ namespace Palete {
 				//GLib.debug("Class %s has property %s from %s - adding normal property", cls, propname, ar.get(propname).asJSONString());
 				var add = ar.get(propname).toNodeProp(this); // our nodes dont have default values.
 				add.val = val;
-				this.node_defaults.get(cls).set(propname, add);
+				this.node_defaults.get(cname).set(propname, add);
 				return;
 				
 			} 
 			//GLib.debug("Class %s has property %s - adding special property", cls, propname);			
-			this.node_defaults.get(cls).set(propname,
+			this.node_defaults.get(cname).set(propname,
 				new  JsRender.NodeProp.special( propname, val) 
 			);
 
