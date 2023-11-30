@@ -375,7 +375,7 @@ public class Xcls_GladeuiView : Object
         public Xcls_TreeListModel8(Xcls_GladeuiView _owner )
         {
             _this = _owner;
-            this.el = new Gtk.TreeListModel( null, true, true,  );
+            this.el = new Gtk.TreeListModel( null, true, true, () => { } );
 
             // my vars (dec)
 
