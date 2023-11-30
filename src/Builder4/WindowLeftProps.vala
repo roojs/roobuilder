@@ -1990,7 +1990,7 @@ public class Xcls_LeftProps : Object
                 	prop.bind_property("val_short",
                                 lbl, "label",
                                GLib.BindingFlags.SYNC_CREATE);
-                    prop.bind_property("val_markup",
+                    prop.bind_property("val_tooltip",
                                 lbl, "tooltip_markup",
                                GLib.BindingFlags.SYNC_CREATE);
                     lbl.show();
