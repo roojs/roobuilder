@@ -651,7 +651,8 @@ namespace Palete {
 		{
 			var ret = new JsRender.Node();
 			ret.setFqn(fqn);
-			 
+			// any default requred proerties?
+			
 			return ret;
 			
 			
