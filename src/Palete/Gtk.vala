@@ -1105,7 +1105,7 @@ namespace Palete {
 				return ret;
 			}
 
-			foreach (var nv in this.node_default.get(fqn).values) {
+			foreach (var nv in this.node_defaults.get(fqn).values) {
 				ret.add_prop(nv.dupe());
 			}
 			return ret;
