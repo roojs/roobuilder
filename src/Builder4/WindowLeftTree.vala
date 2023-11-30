@@ -1041,7 +1041,8 @@ public class Xcls_WindowLeftTree : Object
                 
                
               		m.append(dropNode);
-            		_this.model.selectNode(dropNode); 					
+            		_this.model.selectNode(dropNode); 	
+            			
             		return true; // no need to highlight?
                  
                 }
@@ -1092,7 +1093,7 @@ public class Xcls_WindowLeftTree : Object
              		case "below":
              			GLib.debug("Below - insertAfter"); 		
              			node.parent.insertAfter(dropNode, node);
-             			_this.model.selectNode(dropNode); 			
+             			_this.model.selectNode(dropNode);	
              			// select it
              			return true;
              			
