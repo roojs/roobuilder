@@ -380,7 +380,7 @@ namespace Palete {
 			var cname = ctor.gparent.fqn();
 			GLib.debug("Add node from ctor %s:%s", ctor.gparent.fqn(), ctor.name);
 			if (!this.node_defaults.has_key(cname)) {
-				this.node_defaults.set(cname, new Gee.HashMap<JsRender.NodeProp>());
+				this.node_defaults.set(cname, new Gee.HashMap<string,JsRender.NodeProp>());
 			}
 			var defs=  this.node_defaults.get(cname);
 			
