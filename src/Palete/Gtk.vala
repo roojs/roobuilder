@@ -341,7 +341,7 @@ namespace Palete {
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
 			 	GLib.debug("building drop list for package %s", key);
-				this.add_node_default_from_ctor_packages(key, gir.classes);
+				this.add_node_default_from_ctor_packages(gir.classes);
 			}    	
 		}
 
