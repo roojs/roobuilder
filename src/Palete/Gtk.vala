@@ -82,11 +82,11 @@ namespace Palete {
 			}
 			Gir.factory(this.project, "Gtk"); // triggers a load...
 			
-			
- 
 			this.init_node_defaults();
+			this.add_node_default_from_ctor_all();
 		    this.init_child_defaults();  
 		    
+		    this.loaded = true;
 			 
 			
 		}
@@ -1108,6 +1108,7 @@ namespace Palete {
 		 
 		public override JsRender.Node fqnToNode(string fqn) 
 		{
+			this.load();	
 			var ret = new JsRender.Node();
 			ret.setFqn(fqn);
 			if (!this.node_defaults.has_key(fqn)) {
