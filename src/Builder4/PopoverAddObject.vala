@@ -68,11 +68,9 @@ public class Xcls_PopoverAddObject : Object
      
     	foreach (var dname in tr) {
     		 
-    		var c = new JsRender.Node();
     
-    		c.setFqn(dname);
     		GLib.debug("add to model: %s", dname);		
-    		m.append(c);
+    		m.append(pal.fqnToNode(dname));
     	}
     	 m.sort( (a, b) => {
     
