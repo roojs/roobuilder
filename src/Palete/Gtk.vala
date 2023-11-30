@@ -433,14 +433,19 @@ namespace Palete {
 		    }
 		}
 		
-		private void add_node_default(string cls, string propname, string val = "")
+		private void add_node_default(string cname, string propname, string val = "")
 		{
-			if (!this.node_defaults.has_key(cls)) {
+			if (!this.node_defaults.has_key(cname)) {
 				var add = new Gee.HashMap<string, JsRender.NodeProp>();
-				this.node_defaults.set(cls, add);
+				this.node_defaults.set(cname, add);
 			}
-			
-	  		var ar = this.getPropertiesFor( cls, JsRender.NodePropType.PROP);
+			// this recurses...
+			var cls = this.getClass(cname);
+			if (cls == null) {
+				GLib.debug("invalid class name %s", cname):
+				return;
+			}
+			var ar = cls.props;
 	  		
 	  		// liststore.columns - exists as a property but does not have a type (it's an array of typeofs()....
 			if (ar.has_key(propname) && ar.get(propname).type != "") { // must have  type (otherwise special)
