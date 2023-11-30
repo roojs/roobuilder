@@ -129,7 +129,7 @@ public class WindowState : Object
 
 		});
 		// node selected -- only by clicking?
-		this.left_tree.node_selected.connect((sel, source) => {
+		this.left_tree.node_selected.connect((sel) => {
 			//if (source == "editor") {
 			//	return;
 			//}
@@ -140,8 +140,8 @@ public class WindowState : Object
 			}
 		});
 		
-		this.left_tree.node_selected.connect((sel, source) => {
-			this.leftTreeNodeSelected(sel, source);
+		this.left_tree.node_selected.connect((sel) => {
+			this.leftTreeNodeSelected(sel);
 		});
 	 
 		this.left_tree.changed.connect(() => {
