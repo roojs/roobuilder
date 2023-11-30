@@ -1040,9 +1040,9 @@ public class Xcls_WindowLeftTree : Object
                  	_this.main_window.windowstate.file.tree = dropNode;  
                 
                
-              		m.append(dropNode);
+            		m.append(dropNode);
             		_this.model.selectNode(dropNode); 	
-            			
+            		_this.changed();
             		return true; // no need to highlight?
                  
                 }
@@ -1080,7 +1080,8 @@ public class Xcls_WindowLeftTree : Object
              	switch(pos) {
              		case "over":
             	 		node.appendChild(dropNode);
-             			_this.model.selectNode(dropNode); 				 		
+             			_this.model.selectNode(dropNode); 
+             			_this.changed();				 		
             	 		return true;
             	 		
              		case "above":
@@ -1088,12 +1089,14 @@ public class Xcls_WindowLeftTree : Object
              		
              			node.parent.insertBefore(dropNode, node);
              			_this.model.selectNode(dropNode); 			
+             			_this.changed();
              			return true;
              			
              		case "below":
              			GLib.debug("Below - insertAfter"); 		
              			node.parent.insertAfter(dropNode, node);
              			_this.model.selectNode(dropNode);	
+             			_this.changed();
              			// select it
              			return true;
              			
