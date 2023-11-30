@@ -81,7 +81,7 @@ namespace Palete {
 				return;
 			}
 			Gir.factory(this.project, "Gtk"); // triggers a load...
-			
+			 
 			this.init_node_defaults();
 			this.add_node_default_from_ctor_all();
 		    this.init_child_defaults();  
@@ -436,7 +436,8 @@ namespace Palete {
 		public void add_node_default(string cls, string propname, string val = "")
 		{
 			if (!this.node_defaults.has_key(cls)) {
-				this.node_defaults.set(cls, new Gee.HashMap<string, JsRender.NodeProp>());
+				var add = new Gee.HashMap<string, JsRender.NodeProp>();
+				this.node_defaults.set(cls, add);
 			}
 			
 	  		var ar = this.getPropertiesFor( cls, JsRender.NodePropType.PROP);
