@@ -6,7 +6,7 @@
    "$ xns" : "Gtk",
    "@ bool before_node_change" : "()",
    "@ void changed" : "()",
-   "@ void node_selected" : "(JsRender.Node? node, string source)",
+   "@ void node_selected" : "(JsRender.Node? node)",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "bool hexpand" : true,
    "bool vexpand" : true,

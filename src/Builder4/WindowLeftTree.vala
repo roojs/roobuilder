@@ -24,7 +24,7 @@ public class Xcls_WindowLeftTree : Object
     public signal bool before_node_change ();
     public Xcls_MainWindow main_window;
     public signal void changed ();
-    public signal void node_selected (JsRender.Node? node, string source);
+    public signal void node_selected (JsRender.Node? node);
 
     // ctor
     public Xcls_WindowLeftTree()
