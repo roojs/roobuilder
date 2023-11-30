@@ -10,78 +10,7 @@ namespace Palete
 		MISSING_FILE,
 		INVALID_VALUE
 	}
-/*
-	public class Usage : Object 
-	{
-		public Gee.ArrayList<string> left;
-		public Gee.ArrayList<string> right;
-		public Usage(Gee.ArrayList<string> ileft, Gee.ArrayList<string> iright)
-		{
-			this.left = ileft;
-			this.right=  iright;
-		}
-		public bool leftHas(string s)
-		{
-			for(var i = 0 ; i < this.left.size; i++) {
-				var m = this.left.get(i);
-				if (s == m) {
-					return true;
-				}
-				if (!m.contains(":")) {
-					continue;
-				}
-				var ar = m.split(":");
-				if (ar[0] == s) {
-					return true;
-				}
-			}
-			return false;
-				
-		}
-		
-		public string to_string()
-		{
-			var r = "left:\n";
-			foreach(var s in left) {
-				r+= "   " + s + "\n";
-			}
-		 	r+= "right:\n";
-			foreach(var s in right) {
-				r+= "   " + s + "\n";
-			}
-			return r;
-		
-		}
-		
-	}
-*/
-	
-
-   //static Gee.HashMap<string,Palete>? cache = null;
-    
-    /*
-    public static Palete factory(project)
-    {
-        if (cache == null) {
-            cache = new Gee.HashMap<string,Palete>();
-        }
-        if (cache.get(xtype) != null) {
-            return cache.get(xtype);
-        }
-        switch(xtype) {
-            case "Gtk":
-                cache.set(xtype, new Gtk());
-                break;
-            case "Roo":
-                cache.set(xtype, new Roo());
-                break;
-            default:
-                throw new Error.INVALID_TYPE("invalid argument to Palete factory");
-        }
-        return cache.get(xtype);
-    }
-     */ 
-
+ 
     public abstract class Palete : Object 
     {
         
@@ -103,112 +32,7 @@ namespace Palete
 			this.dropCache = new Gee.HashMap<string,Gee.ArrayList<string>>() ;
         }
         
-        
-        //map : false, // array of mappings   left: [] , right : []
-        
-        //items : false, // the tree of nodes.
-        
-        
-
-
-       
-
-            
          
-		// this is the old verison using 'Usage'... see flutter for a better version..
-	    /*
-		public  Gee.ArrayList<string> original_getChildList(string in_rval, bool with_prop)
-        {
-
-			if (this.map == null) {
-				this.load();
-			}
-			// empty == *top
-			
-			var rval = in_rval == "" ? "*top" : in_rval; 
-					
-					// should be a bit more than this..
-				// -> it should look for all elements that inherit 
-				//string[] ret = {};
-				
- 
-			var rt = new Gee.ArrayList<string>();
-			for (var i = 0; i < this.map.size; i++) {
-				var m = this.map.get(i);
-					
-					if (!m.leftHas(rval)) {
-					continue;
-				}
-				GLib.debug("found LEFT, adding right");
-			
-				for(var ii =0; ii < m.right.size; ii++) {
-					var l = m.right.get(ii);
-					
-					if (rt.index_of(l) > -1) {
-						continue;
-					}
-					if (!with_prop && l.contains(":")) {
-						continue;
-					}
-					//print("ADD " + string.joinv(", ", ret) + "\n");
-					//ret += l;
-					rt.add(l);
-				}
-					
-					
-			}
-			GLib.debug("drop list for %s is  %d", rval, rt.size);
-			//console.log("DROP LIST:");
-			//console.dump(ret);
-			return rt;
-				
-        }
-
-	    
-	    
-        public Gee.ArrayList<string> default_getDropList(string rval)
-        {
-			if (this.dropCache.has_key(rval)) {
-				return this.dropCache.get(rval);
-			}
-			if (this.map == null) {
-				this.load();
-			}
-
-					
-					// should be a bit more than this..
-				// -> it should look for all elements that inherit 
-			var ret = new Gee.ArrayList<string>();
- 
-			for (var i = 0; i < this.map.size; i++) {
-				var m = this.map.get(i);
-					
-					if (m.right.index_of(rval) < 0) {
-					continue;
-				}
-				//print("found RIGHT, adding left\n");
-			
-				for(var ii =0; ii < m.left.size; ii++) {
-						var l = m.left.get(ii);
-						
-						if (ret.index_of(l) > -1) {
-							continue;
-						}
-					//print("ADD " + string.joinv(", ", ret) + "\n");
-						ret.add(l);
-					 
-					}
-					
-					
-				}
-			 //print ("drop list for %s is:\n%s\n", rval, string.joinv("\n", ret));
-			//console.log("DROP LIST:");
-			//console.dump(ret);
-			this.dropCache.set(rval,ret);
-			return ret;
-            
-        }
-      */
         public void saveTemplate (string name, JsRender.Node data)
         {
 
@@ -505,7 +329,7 @@ namespace Palete
 		);
 		public abstract Gee.ArrayList<string> getChildList(string in_rval, bool with_prop);
 		public abstract Gee.ArrayList<string> getDropList(string rval);		
-		
+		public abstract JsRender.Node fqnToNode(string fqn);
 		
 	}
 

@@ -344,6 +344,24 @@ namespace Palete {
 			
 		}
 		
+		public JsRender.Node fqnToNode(string fqn) 
+		{
+			var ret = new JsRender.Node();
+			ret.setFqn(fqn);
+			if (!this.node_defaults.has_key(fqn)) {
+				return ret;
+			}
+			var ar = this.node_defaults.get(fqn);
+			for (var i = 0; i < ar.size; i++) {
+				ret.add_prop(ar.get(i).dupe());
+			}
+			return ret;
+			
+			
+			
+		}
+		
+		
 		public void add_node_default_from_ctor(string cls, string method )
 		{
 			GLib.debug("Add node from ctor %s:%s", cls, method);
