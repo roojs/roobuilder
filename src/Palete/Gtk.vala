@@ -143,7 +143,7 @@ namespace Palete {
 			//print("Loading for " + ename);
 		    
 
-
+			this.load();
 				// if (typeof(this.proplist[ename]) != 'undefined') {
 		        //print("using cache");
 			//   return this.proplist[ename][type];
@@ -282,12 +282,12 @@ namespace Palete {
 			
 
 		}
-		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> node_defaults;
+		Gee.HashMap<string,Gee.HashMap<string,JsRender.NodeProp>> node_defaults;
 		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
 		
 		public void init_node_defaults()
 		{
-			this.node_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
+			this.node_defaults = new Gee.HashMap<string,Gee.Hashmap<string,JsRender.NodeProp>>();
 			
 			// this lot could probably be configured?
 			
@@ -296,26 +296,10 @@ namespace Palete {
 			
 			
 			
-		 
-		    
-			this.add_node_default_from_ctor("Gtk.Box", "new");
-			
-			
-			this.add_node_default("Gtk.AccelLabel", "label", "Label");
-			
-			
-			this.add_node_default_from_ctor("Gtk.AppChooserButton", "new");
-			this.add_node_default_from_ctor("Gtk.AppChooserWidget", "new");
-			
-			this.add_node_default_from_ctor("Gtk.AspectFrame", "new");
-			
-			this.add_node_default("Gtk.Button", "label", "Label");  // these are not necessary
-			this.add_node_default("Gtk.CheckButton", "label", "Label");
-			
+		   
 			this.add_node_default("Gtk.ComboBox", "has_entry", "false");
 			this.add_node_default("Gtk.Expander", "label", "Label"); 
-			this.add_node_default_from_ctor("Gtk.FileChooserButton", "new"); 
-			this.add_node_default_from_ctor("Gtk.FileChooserWidget", "new"); 
+			 
 			this.add_node_default("Gtk.Frame", "label", "Label"); 
 			
 			this.add_node_default("Gtk.Grid", "columns", "2"); // special properties (is special as it's not part of the standard?!)
@@ -323,13 +307,9 @@ namespace Palete {
 		 
 			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
 			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
- 			this.add_node_default_from_ctor("Gtk.LinkButton", "with_label");  
- 			this.add_node_default_from_ctor("Gtk.Paned", "new");  
+ 		 
  			this.add_node_default("Gtk.Scale", "orientation");
- 			this.add_node_default_from_ctor("Gtk.ScaleButton", "new");   /// ctor ignore optional array of strings at end?
-			this.add_node_default_from_ctor("Gtk.Scrollbar", "new");
-			this.add_node_default_from_ctor("Gtk.Separator", "new");
-			this.add_node_default_from_ctor("Gtk.SpinButton", "new");
+ 			 
 			this.add_node_default("Gtk.ToggleButton", "label", "Label");  
 			this.add_node_default("Gtk.MenuItem", "label", "Label");
 			this.add_node_default("Gtk.CheckItem", "label", "Label");			
@@ -381,7 +361,7 @@ namespace Palete {
 		{
 			
 			foreach(var ctor in cls.ctors.values) {
-				this.add_node_default_from_ctor(ctor) 
+				this.add_node_default_from_ctor(ctor);
 			
 			}
 		}
@@ -396,11 +376,10 @@ namespace Palete {
 			var cname = ctor.gparent.fqn();
 			GLib.debug("Add node from ctor %s:%s", ctor.gparent.fqn(), ctor.name);
 			if (!this.node_defaults.has_key(cname)) {
-				this.node_defaults.set(cname, new Gee.ArrayList<JsRender.NodeProp>());
+				this.node_defaults.set(cname, new Gee.HashMap<JsRender.NodeProp>());
 			}
+			var defs=  this.node_defaults.get(cname);
 			
-			
-			var ar = this.getPropertiesFor(cname, JsRender.NodePropType.CTOR);
 			
 			 
 			GLib.debug("ctor: %s: %s", cname , ctor.name);
@@ -414,6 +393,11 @@ namespace Palete {
 			  
 		    foreach (var prop in ctor.paramset.params) {
 			    string[] opts;
+			    
+			    if (defs.has_key(prop.name)) {
+			    	continue;
+		    	}
+		    	
 			    
 			    GLib.debug("adding proprty from ctor : %s, %s, %s", cls, prop.name, prop.type);
 
@@ -438,7 +422,7 @@ namespace Palete {
 					    break;
 			    }
 			    
-			    this.node_defaults.getcname).add( new JsRender.NodeProp.prop( prop.name, prop.type, dval));
+			    this.node_defaults.get(cname).set(prop.name, new JsRender.NodeProp.prop( prop.name, prop.type, dval));
 		    
 			    
 			     
@@ -448,24 +432,25 @@ namespace Palete {
 		public void add_node_default(string cls, string propname, string val = "")
 		{
 			if (!this.node_defaults.has_key(cls)) {
-				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+				this.node_defaults.set(cls, new Gee.HashMap<JsRender.NodeProp>());
 			}
 			
-	  		var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
+	  		var ar = this.getPropertiesFor( cls, JsRender.NodePropType.PROP);
 	  		
 	  		// liststore.columns - exists as a property but does not have a type (it's an array of typeofs()....
 			if (ar.has_key(propname) && ar.get(propname).type != "") { // must have  type (otherwise special)
 				//GLib.debug("Class %s has property %s from %s - adding normal property", cls, propname, ar.get(propname).asJSONString());
 				var add = ar.get(propname).toNodeProp(this); // our nodes dont have default values.
 				add.val = val;
-				this.node_defaults.get(cls).add(add);
-			} else {
-				//GLib.debug("Class %s has property %s - adding special property", cls, propname);			
-				this.node_defaults.get(cls).add(
-					new  JsRender.NodeProp.special( propname, val) 
-				);
+				this.node_defaults.get(cls).set(propname, add);
+				return;
+				
+			} 
+			//GLib.debug("Class %s has property %s - adding special property", cls, propname);			
+			this.node_defaults.get(cls).set(propname,
+				new  JsRender.NodeProp.special( propname, val) 
+			);
 
-			}
 			
 
 		
