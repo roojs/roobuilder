@@ -382,6 +382,11 @@ namespace Palete {
 			if (!this.node_defaults.has_key(cname)) {
 				this.node_defaults.set(cname, new Gee.HashMap<string,JsRender.NodeProp>());
 			}
+			
+			if (ctor.paramset == null) {
+				return;
+			}
+			
 			var defs=  this.node_defaults.get(cname);
 			
 			
