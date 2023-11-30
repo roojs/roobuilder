@@ -335,6 +335,9 @@ public class Xcls_GladeuiView : Object
             var child_0 = new Xcls_SingleSelection7( _this );
             child_0.ref();
             this.el.model = child_0.el;
+            var child_1 = new Xcls_ColumnViewColumn9( _this );
+            child_1.ref();
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -385,6 +388,28 @@ public class Xcls_GladeuiView : Object
         // user defined functions
     }
 
+
+    public class Xcls_ColumnViewColumn9 : Object
+    {
+        public Gtk.ColumnViewColumn el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ColumnViewColumn9(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ColumnViewColumn( "", null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 
     public class Xcls_notebook : Object

@@ -61,6 +61,11 @@
         }
        ],
        "xtype" : "SingleSelection"
+      },
+      {
+       "$ xns" : "Gtk",
+       "string title" : "",
+       "xtype" : "ColumnViewColumn"
       }
      ],
      "xtype" : "ColumnView"
