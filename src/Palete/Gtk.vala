@@ -287,7 +287,7 @@ namespace Palete {
 		
 		public void init_node_defaults()
 		{
-			this.node_defaults = new Gee.HashMap<string,Gee.Hashmap<string,JsRender.NodeProp>>();
+			this.node_defaults = new Gee.HashMap<string,Gee.HashMap<string,JsRender.NodeProp>>();
 			
 			// this lot could probably be configured?
 			
