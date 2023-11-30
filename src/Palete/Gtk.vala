@@ -311,7 +311,7 @@ namespace Palete {
 			this.add_node_default_from_ctor("Gtk.FileChooserWidget", "new"); 
 			this.add_node_default("Gtk.Frame", "label", "Label"); 
 			
-			this.add_node_default("Gtk.Grid", "columns", "2"); // special properties
+			this.add_node_default("Gtk.Grid", "columns", "2"); // special properties (is special as it's not part of the standard?!)
 			//this.add_node_default("Gtk.Grid", "rows", "2");  << this is not really that important..
 		 
 			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
