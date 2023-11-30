@@ -180,7 +180,7 @@ public class WindowState : Object
 	int tree_width = 300;
 	int props_width = 300;
 	
-	public void leftTreeNodeSelected(JsRender.Node? sel, string source)
+	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
 		
 		// do we really want to flip paletes if differnt nodes are selected
