@@ -1282,7 +1282,7 @@ public class Xcls_WindowLeftTree : Object
             
             var m = (GLib.ListStore) this.el.model;
         	m.remove_all();
-            _this.main_window.windowstate.leftTreeNodeSelected(null, "");
+            _this.main_window.windowstate.leftTreeNodeSelected(null);
             // needed???
             _this.main_window.windowstate.file = f;
             

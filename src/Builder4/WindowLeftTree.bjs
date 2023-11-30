@@ -827,7 +827,7 @@
             "    ",
             "    var m = (GLib.ListStore) this.el.model;",
             "\tm.remove_all();",
-            "    _this.main_window.windowstate.leftTreeNodeSelected(null, \"\");",
+            "    _this.main_window.windowstate.leftTreeNodeSelected(null);",
             "    // needed???",
             "    _this.main_window.windowstate.file = f;",
             "    ",
