@@ -341,12 +341,7 @@ namespace Palete {
 
 		}
 
-
-		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
-		{   
-
-			 return;
-		}
+ 
 		/*
 		 *  Pulldown options for type
 		 */
