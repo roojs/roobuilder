@@ -521,8 +521,8 @@ namespace Palete {
 				var add = new JsRender.NodeProp.raw(this.name, str, "");
 				// no propertyof ?
 				
-				add.add_node = new JsRender.Node();
-				add.add_node.setFqn(str);
+				
+				add.add_node = pal.fqnToNode(str);
 				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
 				par.childstore.append( add);
 			}
@@ -546,8 +546,7 @@ namespace Palete {
 			 
 				var add = new JsRender.NodeProp.raw(this.name, cname, "");
 				// no propertyof ?
-				add.add_node = new JsRender.Node();
-				add.add_node.setFqn(cname);
+				add.add_node = pal.fqnToNode(cname);
 				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
 				par.childstore.append( add);
  
