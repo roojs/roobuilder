@@ -415,7 +415,7 @@ namespace Palete {
 				    GLib.debug("skipping ctor argument proprty is an object");
 				    continue;
 			    }
-			    
+			    // FIXME!!! - what about functions
 			    
 			    var dval = "";
 			    switch (prop.type) {
