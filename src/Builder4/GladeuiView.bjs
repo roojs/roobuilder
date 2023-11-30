@@ -50,14 +50,6 @@
       {
        "$ xns" : "Gtk",
        "* prop" : "model",
-       "items" : [
-        {
-         "$ xns" : "GLib",
-         "* prop" : "model",
-         "GLib.Type item_type" : "typeof(string) ",
-         "xtype" : "ListStore"
-        }
-       ],
        "xtype" : "SingleSelection"
       }
      ],
