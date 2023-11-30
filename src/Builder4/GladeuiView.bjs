@@ -50,6 +50,16 @@
       {
        "$ xns" : "Gtk",
        "* prop" : "model",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "Gtk.TreeListModelCreateModelFunc create_func" : "",
+         "bool autoexpand" : true,
+         "bool passthrough" : true,
+         "xtype" : "TreeListModel"
+        }
+       ],
        "xtype" : "SingleSelection"
       }
      ],
