@@ -356,35 +356,10 @@ public class Xcls_GladeuiView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TreeListModel8( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_TreeListModel8 : Object
-    {
-        public Gtk.TreeListModel el;
-        private Xcls_GladeuiView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_TreeListModel8(Xcls_GladeuiView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.TreeListModel( null, true, true, null );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
 
 
     public class Xcls_notebook : Object
