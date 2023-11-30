@@ -442,7 +442,7 @@ namespace Palete {
 			// this recurses...
 			var cls = this.getClass(cname);
 			if (cls == null) {
-				GLib.debug("invalid class name %s", cname):
+				GLib.debug("invalid class name %s", cname);
 				return;
 			}
 			var ar = cls.props;
