@@ -644,7 +644,7 @@ namespace Palete {
 			
 			//return this.default_getDropList(rval);
 		}	
-		public JsRender.Node fqnToNode(string fqn) 
+		public override JsRender.Node fqnToNode(string fqn) 
 		{
 			var ret = new JsRender.Node();
 			ret.setFqn(fqn);
