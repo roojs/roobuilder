@@ -537,7 +537,7 @@ namespace Project {
 			this.name = obj.get_string_member("name");
 
 			// used to load paths..
-			this.loadSubDirectories();
+			this.loadSubDirectories("", 0);
 			
 			 
 			this.initDatabase();
