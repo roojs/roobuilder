@@ -531,11 +531,11 @@ namespace Project
 			return ret;
 			
 		}	
-
-	}
-	  public override void   initDatabase()
+ public override void   initDatabase()
     {
          // nOOP
     }
+	}
+	 
    
 }
