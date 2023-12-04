@@ -114,6 +114,15 @@
                       },
                       {
                        "$ xns" : "Gtk",
+                       "listeners" : {
+                        "clicked" : [
+                         "( ) => {",
+                         "",
+                         "",
+                         "}",
+                         ""
+                        ]
+                       },
                        "string icon_name" : "",
                        "string label" : "Add",
                        "xtype" : "Button"
