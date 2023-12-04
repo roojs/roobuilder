@@ -1376,23 +1376,24 @@ public class ValaProjectSettingsPopover : Object
 
     public class Xcls_default_packages_tree : Object
     {
-        public Gtk.TreeView el;
+        public Gtk.Box el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
+        public gboolean headers_visible;
 
         // ctor
         public Xcls_default_packages_tree(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             _this.default_packages_tree = this;
-            this.el = new Gtk.TreeView();
+            this.el = new Gtk.Box( null, 0 );
 
             // my vars (dec)
+            this.headers_visible = true;
 
             // set gobject values
-            this.el.headers_visible = true;
             var child_0 = new Xcls_default_packages_tree_store( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );

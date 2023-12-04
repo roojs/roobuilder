@@ -713,7 +713,7 @@
                 }
                ],
                "string id" : "default_packages_tree",
-               "xtype" : "TreeView"
+               "xtype" : "Box"
               }
              ],
              "xtype" : "Box"
