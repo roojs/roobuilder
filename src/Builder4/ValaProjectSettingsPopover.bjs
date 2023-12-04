@@ -457,6 +457,13 @@
               }
              ],
              "xtype" : "ScrolledWindow"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "start_child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "xtype" : "Box"
             }
            ],
            "xtype" : "Paned"
