@@ -183,14 +183,14 @@ namespace Project {
 		public static Gee.ArrayList<Project> allProjectsByName()
 		{
 			
-			return Project.projects;
+			return projects;
 		
 		}
 		
 		public static Project? getProject(string name)
 		{
 			
-			foreach (var p in Project.projects) {
+			foreach (var p in projects) {
 				if (p.name == name) {
 					return p;
 				}
@@ -202,7 +202,7 @@ namespace Project {
 		
 		public static string listAllToString()
 		{
-			var all = Project.projects;
+			var all = projects;
 
 			 
 			
@@ -254,7 +254,7 @@ namespace Project {
 		
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			 
-			Project.projects = new  Gee.HashMap<string,Project>();
+			projects = new  Gee.ArrayList<Project>();
 			  
 		    var pa = new Json.Parser();
 			try { 
@@ -270,9 +270,9 @@ namespace Project {
 
 			
 			var obj = node.get_object ();
-			paths.foreach_member((sobj, key, val) => {
+			obj.foreach_member((sobj, key, val) => {
 				var p = Project.factory(key, val.get_string());
-				Project.projects.add(p);
+				projects.add(p);
 			});
 			
 		
