@@ -109,6 +109,7 @@
                      "items" : [
                       {
                        "$ xns" : "Gtk",
+                       "bool hexpand" : true,
                        "xtype" : "Entry"
                       },
                       {
