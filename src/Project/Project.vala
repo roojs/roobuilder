@@ -61,7 +61,7 @@ namespace Project {
 		public  string xtype;
 		
 		public Json.Object json_project_data;
-		public Palete.RooDatabase roo_database;
+
 		public Palete.Palete palete;
 		 
 		bool is_scanned; 
@@ -80,17 +80,11 @@ namespace Project {
 			if (path.length > 0) {
 				this.paths.set(path, "dir");
 			}
-			// dummy roo database...
-			this.initRooDatabase();
-			
-			
-			
-		}
-		public void  initRooDatabase()
-		{
 			 
-			this.roo_database = new Palete.RooDatabase.from_project(this);
+			
+			
 		}
+		 
 		
 		
 		
