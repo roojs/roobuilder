@@ -157,7 +157,7 @@ namespace Project {
     	{
     	
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
-			 dir = File.new_for_path(dir);
+			var  dir = File.new_for_path(dirname);
 			try {
 				var file_enum = dir.enumerate_children(
 								GLib.FileAttribute.STANDARD_DISPLAY_NAME, 
