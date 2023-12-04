@@ -96,6 +96,7 @@
                "items" : [
                 {
                  "$ xns" : "Gtk",
+                 "string label" : "Add Directory",
                  "xtype" : "MenuButton"
                 },
                 {

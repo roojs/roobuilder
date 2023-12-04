@@ -460,6 +460,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.label = "Add Directory";
         }
 
         // user defined functions
