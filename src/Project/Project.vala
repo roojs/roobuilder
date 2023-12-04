@@ -81,7 +81,7 @@ namespace Project {
 			this.json_project_data = new Json.Object();
 			
 			this.is_scanned = false;
-			this.sub_paths = new Gee.HashMap<string,string>();
+			this.sub_paths = new Gee.ArrayList<string>();
 			this.files = new Gee.HashMap<string,JsRender.JsRender>();
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
