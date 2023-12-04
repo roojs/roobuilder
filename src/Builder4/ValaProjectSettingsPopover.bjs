@@ -690,7 +690,7 @@
                   }
                  ],
                  "string id" : "default_packages_tree",
-                 "xtype" : "Box"
+                 "xtype" : "TreeView"
                 }
                ],
                "xtype" : "ScrolledWindow"
