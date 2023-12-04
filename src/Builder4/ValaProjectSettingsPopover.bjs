@@ -13,7 +13,7 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "titlebar",
-     "* title" : "Window Title",
+     "* title" : "Edit Project Details",
      "items" : [
       {
        "$ xns" : "Gtk",
