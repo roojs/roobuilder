@@ -110,6 +110,11 @@
                       {
                        "$ xns" : "Gtk",
                        "xtype" : "Entry"
+                      },
+                      {
+                       "$ xns" : "Gtk",
+                       "string icon_name" : "",
+                       "xtype" : "Button"
                       }
                      ],
                      "xtype" : "Box"
