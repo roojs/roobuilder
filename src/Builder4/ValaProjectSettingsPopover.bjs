@@ -97,7 +97,7 @@
                 {
                  "$ xns" : "Gtk",
                  "listeners" : {
-                  "activate" : [
+                  "clicked" : [
                    "()  => {",
                    "    /*",
                    "    var  chooser = new Gtk.FileDialog ();",
@@ -730,7 +730,7 @@
               {
                "$ xns" : "Gtk",
                "listeners" : {
-                "activate" : [
+                "clicked" : [
                  "()  => {",
                  "    ",
                  "       if (_this.project.compilegroups.has_key(\"NEW GROUP\")) {",

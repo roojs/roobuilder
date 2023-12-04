@@ -460,7 +460,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.label = "Add Directory";
 
             //listeners
-            this.el.activate.connect( ()  => {
+            this.el.clicked.connect( ()  => {
                 /*
                 var  chooser = new Gtk.FileDialog ();
                 
@@ -1674,7 +1674,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.label = "Add Compile Target";
 
             //listeners
-            this.el.activate.connect( ()  => {
+            this.el.clicked.connect( ()  => {
                 
                    if (_this.project.compilegroups.has_key("NEW GROUP")) {
                     return;
