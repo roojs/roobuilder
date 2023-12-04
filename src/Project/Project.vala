@@ -695,7 +695,7 @@ namespace Project {
 					}
 					
 					if (FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
-						subs.append(dir  + "/" + fn);
+						subs.add(dir  + "/" + fn);
 						continue;
 					}
 					
