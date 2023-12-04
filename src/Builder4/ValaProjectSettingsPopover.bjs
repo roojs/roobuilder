@@ -757,6 +757,12 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "int spacing" : 0,
+             "xtype" : "Box"
+            },
+            {
+             "$ xns" : "Gtk",
              "* init" : [
               "{  ",
               "this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
