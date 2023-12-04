@@ -1109,7 +1109,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_Box31(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
 
             // my vars (dec)
 
