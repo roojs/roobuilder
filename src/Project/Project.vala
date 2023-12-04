@@ -125,7 +125,7 @@ namespace Project {
     	}
     	
     	
-    	public static void saveProjectList()
+    	private static void saveProjectList()
     	{
 			var f = new Json.Object();
 			foreach(var p in projects) {
@@ -176,7 +176,7 @@ namespace Project {
 			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}
-			Project.saveProjectsList();
+			Project.saveProjectList();
 
 		}
 
