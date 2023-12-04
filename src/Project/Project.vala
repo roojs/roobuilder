@@ -455,6 +455,8 @@ namespace Project {
 			  
 		}
 		
+		// this will do a full scan - should only be done on viewing project..
+		// not initial load.. - may take time.
 		
 		public   void   loadJsonConfig()
 		{
@@ -516,7 +518,7 @@ namespace Project {
 			
 		}
 		
-		
+		/*
 		
 		public string firstPath()
 		{
@@ -551,6 +553,7 @@ namespace Project {
 		  
 			return "";
 		}
+		*/
 
 		public Gee.ArrayList<JsRender.JsRender> sortedFiles()
 		{
@@ -594,60 +597,42 @@ namespace Project {
 	 
 		public JsRender.JsRender? getByName(string name)
 		{
-			
-			var fiter = files.map_iterator();
-			while(fiter.next()) {
-			 
-				var f = fiter.get_value();
-				
-				
-				GLib.debug ("Project.getByName: %s ?= %s" ,f.name , name);
+			foreach(var f in this.files) {
 				if (f.name == name) {
 					return f;
 				}
 			};
 			return null;
 		}
+		
 		public JsRender.JsRender? getByPath(string path)
 		{
-			
-			var fiter = files.map_iterator();
-			while(fiter.next()) {
-			 
-				var f = fiter.get_value();
-				
-				
-				//GLib.debug ("Project.getByName: %s ?= %s" ,f.name , name);
+			foreach(var f in this.files) {
 				if (f.path == path) {
+					return f;
+				}
+			};
+			return null;			
+		}
+		
+		public JsRender.JsRender? getById(string id)
+		{
+			foreach(var f in this.files) {
+				if (f.id == id) {
 					return f;
 				}
 			};
 			return null;
 		}
-		
-		public JsRender.JsRender? getById(string id)
-		{
-			
-			var fiter = files.map_iterator();
-			while(fiter.next()) {
-			 
-				var f = fiter.get_value();
-				
-				
-				//console.log(f.id + '?=' + id);
-				if (f.id == id) {
-					return f;
-				}
-				};
-			return null;
-		}
 
-		public JsRender.JsRender newFile (string name)
+	
+		public JsRender.JsRender newFile (string sub_dir, string name)
 		{
 			try {
+				var fp = this.path + (sub_dir.length > 0) ? "/" : "") + sub_dir;
 				var ret =  JsRender.JsRender.factory(this.xtype, 
 											 this, 
-											 this.firstPath() + "/" + name + ".bjs");
+											 fp + "/" +  name + ".bjs");
 				this.addFile(ret);
 				return ret;
 			} catch (JsRender.Error e) {
@@ -675,8 +660,85 @@ namespace Project {
 			return ret;
 			
 		}
+		
+		public loadSubDirectories(string subdir, int dp) 
+		{
+			//dp = dp || 0;
+			//print("Project.Base: Running scandir on " + dir +"\n");
+			if (dp > 5) { // no more than 5 deep?
+				return;
+			}
+			this.sub_dir.add(subdir); // might be ''...
 			
-			 
+			
+			// this should be done async -- but since we are getting the proto up ...
+			var other_files = new Gee.ArrayList<string>();
+			var bjs_files = new Gee.ArrayList<string>();
+			
+			var subs = new Gee.ArrayList<string>();
+			var dir = this.path + (subdir.length > 0 ? "/" : "") + subdir;
+			
+			var f = File.new_for_path(dir);
+			try {
+				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
+				
+				 
+				FileInfo next_file; 
+				while ((next_file = file_enum.next_file(null)) != null) {
+					var fn = next_file.get_display_name();
+			
+					 
+					//print("trying"  + dir + "/" + fn +"\n");
+					
+					if (fn[0] == '.') { // skip hidden
+						continue;
+					}
+					
+					if (FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
+						subs.append(dir  + "/" + fn);
+						continue;
+					}
+					
+					if (!Regex.match_simple("\\.bjs$", fn)) {
+						other_files.add(fn);
+						//print("no a bjs\n");
+						continue;
+					}
+				 	bjs_files.add(fn.substring(0, fn.length-4));
+				 	
+					var xt = this.xtype;
+					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
+					this.files.set( dir + "/" + fn, el);
+					// parent ?? 
+					
+					 
+				}
+			} catch (Error e) {
+				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
+			} catch (GLib.Error e) {
+				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
+			}
+			foreach(var fn in other_files) {
+				var dpos = fn.last_index_of(".");
+				var without_ext = fn.substring(0, dpos);
+				if (bjs_files.contains(without_ext)) {
+					continue;
+				}
+				
+				GLib.debug("Could have added %s/%s", dir, fn);
+			     var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
+				this.files.set( dir + "/" + fn, el);
+			}
+			
+			foreach (var sd in subs) {
+				 this.loadSubDirectories(sd, dp+1);
+			}
+			
+		
+		}
+		
+			
+		/*	 
 		public void addFile(JsRender.JsRender pfile) { // add a single file, and trigger changed.
 		
 			this.files.set(pfile.path, pfile); // duplicate check?	
@@ -703,7 +765,10 @@ namespace Project {
 			this.on_changed();
 			
 		}
-		 
+		
+		
+		
+		
 		public void  scanDirs() // cached version
 		{
 			// -- why cache this - is it that slow?
@@ -726,7 +791,7 @@ namespace Project {
 				}
 				this.scanDir(iter.get_key());
 			}
-			//console.dump(this.files);
+ 
 			
 		}
 			// list files.
@@ -797,7 +862,10 @@ namespace Project {
 			}
 			
 		}
-		// wrapper around the javascript data...
+		
+		*/
+		
+		// wrapper around the json data...
 		public string get_string_member(string key) {
 			
 			if (!this.json_project_data.has_member(key)) {
