@@ -964,39 +964,9 @@ public class Editor : Object
             this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
-            this.el.changed.connect( () => {
-            	/*
-            	if (this.el.text == "") {
-            		_this.search_results.el.hide();
-            		return;
-            	}
-            	var res = 0;
-            	switch(_this.windowstate.state) {
-            		case WindowState.State.CODEONLY:
-            		///case WindowState.State.CODE:
-            			// search the code being edited..
-            			res = _this.windowstate.code_editor_tab.search(this.el.text);
-            			
-            			break;
-            		case WindowState.State.PREVIEW:
-            			if (_this.windowstate.file.xtype == "Gtk") {
-            				 res = _this.windowstate.window_gladeview.search(this.el.text);
-            			} else { 
-            				 res = _this.windowstate.window_rooview.search(this.el.text);			
-            			}
-            		
-            		
-            			break;
-            	}
-            	_this.search_results.el.show();
-            	if (res > 0) {
-            		_this.search_results.el.label = "%d Matches".printf(res);
-            	} else {
-            		_this.search_results.el.label = "No Matches";
-            	}
-            		
-            	*/
-            	
+            this.el.search_changed.connect( ( ) => {
+            
+            
             });
         }
 
