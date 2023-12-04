@@ -473,10 +473,10 @@ namespace Project {
 			var  root = new Json.Node(Json.NodeType.OBJECT);
 			root.init_object(this.json_project_data);
 			generator.set_root (root);
-			if (show_all) {
+			//if (show_all) {
 				generator.pretty = true;
 				generator.indent = 4;
-			}
+			//}
 
 			return  generator.to_data (null);
 			  
