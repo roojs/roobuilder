@@ -647,6 +647,7 @@
        },
        "string name" : "editor-search-entry",
        "string placeholder_text" : "Press enter to search",
+       "uint search_delay" : 3,
        "xtype" : "SearchEntry",
        "| void forwardSearch" : [
         "(bool change_focus) {",

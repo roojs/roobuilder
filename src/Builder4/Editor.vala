@@ -27,17 +27,17 @@ public class Editor : Object
     public Xcls_multiline multiline;
 
         // my vars (def)
-    public Xcls_MainWindow window;
     public int pos_root_x;
+    public Xcls_MainWindow window;
     public bool dirty;
     public int pos_root_y;
     public bool pos;
     public GtkSource.SearchContext searchcontext;
     public int last_search_end;
-    public JsRender.Node node;
-    public JsRender.JsRender? file;
-    public JsRender.NodeProp? prop;
     public signal void save ();
+    public JsRender.JsRender? file;
+    public JsRender.Node node;
+    public JsRender.NodeProp? prop;
     public string activeEditor;
 
     // ctor
@@ -52,8 +52,8 @@ public class Editor : Object
         this.pos = false;
         this.searchcontext = null;
         this.last_search_end = 0;
-        this.node = null;
         this.file = null;
+        this.node = null;
         this.prop = null;
         this.activeEditor = "";
 
@@ -175,6 +175,14 @@ public class Editor : Object
     	}
      
     }
+    public void reset () {
+    	 this.file = null;    
+         
+        this.node = null;
+        this.prop = null;
+    	this.searchcontext = null;
+      
+    }
     public int search (string in_txt) {
     
     	var s = new GtkSource.SearchSettings();
@@ -203,14 +211,6 @@ public class Editor : Object
      
        
     
-    }
-    public void reset () {
-    	 this.file = null;    
-         
-        this.node = null;
-        this.prop = null;
-    	this.searchcontext = null;
-      
     }
     public void scroll_to_line (int line) {
     
@@ -950,6 +950,7 @@ public class Editor : Object
             this.el.name = "editor-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
+            this.el.search_delay = 3;
             var child_0 = new Xcls_EventControllerKey13( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
