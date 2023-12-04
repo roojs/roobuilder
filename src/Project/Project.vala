@@ -368,10 +368,8 @@ namespace Project {
 
 			// check to see if it's already loaded..
 
-			 
-			var iter = projects.map_iterator();
-			while (iter.next()) {
-				if (iter.get_value().hasPath( path)) {
+			 foreach(var p in projects) {
+				  if (p.path == path) {
 					return iter.get_value();
 				 }
 			}
