@@ -138,7 +138,7 @@
                    "listeners" : {
                     "show" : [
                      "( ) => {",
-                     "",
+                     "\t_this.add_dir_entry.el.text = \"\";",
                      "",
                      "}",
                      ""

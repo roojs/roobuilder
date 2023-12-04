@@ -491,7 +491,7 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.show.connect( ( ) => {
-            
+            	_this.add_dir_entry.el.text = "";
             
             });
         }
