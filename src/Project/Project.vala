@@ -575,7 +575,7 @@ namespace Project {
 	 
 	 	public string listAllFilesToString()
 		{
-			this.scanDirs();
+		 
 			var iter = this.sortedFiles().list_iterator();
 			var ret = "ID\tName\tDirectory\n";
 			while (iter.next()) {
