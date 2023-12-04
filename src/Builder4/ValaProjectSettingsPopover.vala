@@ -488,6 +488,12 @@ public class ValaProjectSettingsPopover : Object
             var child_0 = new Xcls_Box16( _this );
             child_0.ref();
             this.el.child = child_0.el;
+
+            //listeners
+            this.el.show.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions

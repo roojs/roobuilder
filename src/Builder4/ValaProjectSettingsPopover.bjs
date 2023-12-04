@@ -135,6 +135,15 @@
                      "xtype" : "Box"
                     }
                    ],
+                   "listeners" : {
+                    "show" : [
+                     "( ) => {",
+                     "",
+                     "",
+                     "}",
+                     ""
+                    ]
+                   },
                    "xtype" : "Popover"
                   }
                  ],
