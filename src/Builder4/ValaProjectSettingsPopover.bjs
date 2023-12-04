@@ -148,6 +148,39 @@
                  },
                  "utf8 label" : "Add Directory",
                  "xtype" : "Button"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "listeners" : {
+                  "activate" : [
+                   "()  => {",
+                   "",
+                   "\t//",
+                   "\tGtk.TreeModel mod;",
+                   "\tGtk.TreeIter iter;",
+                   "\tif (!_this.default_directory_tree.el.get_selection().get_selected(out mod, out iter)) {",
+                   "\t\tGLib.debug(\"nothing selected\\n\");",
+                   "\t\treturn;",
+                   "\t}",
+                   "",
+                   "\t\t",
+                   "\t// add the directory..",
+                   "",
+                   "",
+                   "\tGLib.Value val;",
+                   "\tmod.get_value(iter,0, out val);",
+                   "\tvar fn =  (string) val;",
+                   "",
+                   "\tGLib.debug(\"remove: %s\\n\", fn);",
+                   "\tif (!_this.project.compilegroups.get(\"_default_\").sources.remove(fn)) {",
+                   "\t\tGLib.debug(\"remove failed\");",
+                   "\t}",
+                   "\t_this.default_directory_tree_store.load();",
+                   "}"
+                  ]
+                 },
+                 "utf8 label" : "Remove File/Directory",
+                 "xtype" : "Button"
                 }
                ],
                "xtype" : "Box"
@@ -252,154 +285,6 @@
                   }
                  ],
                  "xtype" : "TreeView"
-                },
-                {
-                 "$ xns" : "Gtk",
-                 "* pack" : false,
-                 "id" : "default_directory_menu",
-                 "items" : [
-                  {
-                   "$ xns" : "Gtk",
-                   "* pack" : "set_child",
-                   "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-                   "int spacing" : 0,
-                   "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "listeners" : {
-                      "activate" : [
-                       "()  => {",
-                       "    /*",
-                       "    var  chooser = new Gtk.FileDialog ();",
-                       "    ",
-                       "\tchooser.title -=\"Add a directory\";",
-                       "\tchooser.modal = true;",
-                       "\tchooser.select_folder.begin(",
-                       "\t\t_this.window.el,",
-                       "\t\tnull, // fixme -should be project dir..",
-                       "\t\tnull, // cancel",
-                       "\t\t(obj,res) => {",
-                       "\t\t\tvar sfn = chooser.select_folder.end(res);",
-                       "\t\t\tif (sfn == null) {",
-                       "\t\t\t\treturn;",
-                       "\t\t\t}",
-                       "\t\t\tvar fn = _this.project.relPath(sfn.get_path());",
-                       "\t\t\t _this.project.compilegroups.get(\"_default_\").sources.add(fn);",
-                       "\t\t   _this.default_directory_tree_store.load();",
-                       "\t\t});",
-                       "\t ",
-                       "      */",
-                       "      ",
-                       "",
-                       "      var  chooser = new Gtk.FileChooserDialog (",
-                       "    \t\"Add a directory\", ",
-                       "    \t_this.window.el, Gtk.FileChooserAction.SELECT_FOLDER ,",
-                       "    \t\"_Cancel\",",
-                       "    \tGtk.ResponseType.CANCEL,",
-                       "    \t\"_Add\",",
-                       "    \tGtk.ResponseType.ACCEPT);",
-                       "    \tchooser.modal = true;",
-                       "    \t",
-                       "    \tchooser.response.connect((id) => {",
-                       "    \t\tchooser.close();",
-                       "    \t\tif (id == Gtk.ResponseType.CANCEL) {",
-                       "    \t\t\treturn;",
-                       "\t\t\t}",
-                       "\t\t\t var fn = _this.project.relPath(chooser.get_file().get_path());",
-                       "           _this.project.compilegroups.get(\"_default_\").sources.add(fn);",
-                       "           _this.default_directory_tree_store.load();",
-                       "    \t});",
-                       "    \t",
-                       "    \tchooser.show();",
-                       "    \t ",
-                       "",
-                       "}"
-                      ]
-                     },
-                     "utf8 label" : "Add Directory",
-                     "xtype" : "Button"
-                    },
-                    {
-                     "$ xns" : "Gtk",
-                     "listeners" : {
-                      "activate" : [
-                       "()  => {",
-                       "    ",
-                       " ",
-                       "         var  chooser = new Gtk.FileChooserDialog (",
-                       "    \t\"Add a File\", ",
-                       "    \t_this.window.el, ",
-                       "    \tGtk.FileChooserAction.OPEN ,",
-                       "    \t\"_Cancel\",",
-                       "    \tGtk.ResponseType.CANCEL,",
-                       "    \t\"_Add\",",
-                       "    \tGtk.ResponseType.ACCEPT);",
-                       "    \tchooser.modal = true;",
-                       "    \t",
-                       "    \tchooser.response.connect((id) => {",
-                       "    \t\tchooser.close();",
-                       "    \t\tif (id == Gtk.ResponseType.CANCEL) {",
-                       "    \t\t\treturn;",
-                       "\t\t\t}",
-                       "\t\t var fn = _this.project.relPath(chooser.get_file().get_path());",
-                       "       _this.project.compilegroups.get(\"_default_\").sources.add(fn);",
-                       "       _this.default_directory_tree_store.load();",
-                       "     ",
-                       "    \t});",
-                       "    \t",
-                       "    \tchooser.show();",
-                       "    \t ",
-                       "       ",
-                       "       ",
-                       "}"
-                      ]
-                     },
-                     "utf8 label" : "Add File",
-                     "xtype" : "Button"
-                    },
-                    {
-                     "$ xns" : "Gtk",
-                     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-                     "xtype" : "Separator"
-                    },
-                    {
-                     "$ xns" : "Gtk",
-                     "listeners" : {
-                      "activate" : [
-                       "()  => {",
-                       "",
-                       "\t//",
-                       "\tGtk.TreeModel mod;",
-                       "\tGtk.TreeIter iter;",
-                       "\tif (!_this.default_directory_tree.el.get_selection().get_selected(out mod, out iter)) {",
-                       "\t\tGLib.debug(\"nothing selected\\n\");",
-                       "\t\treturn;",
-                       "\t}",
-                       "",
-                       "\t\t",
-                       "\t// add the directory..",
-                       "",
-                       "",
-                       "\tGLib.Value val;",
-                       "\tmod.get_value(iter,0, out val);",
-                       "\tvar fn =  (string) val;",
-                       "",
-                       "\tGLib.debug(\"remove: %s\\n\", fn);",
-                       "\tif (!_this.project.compilegroups.get(\"_default_\").sources.remove(fn)) {",
-                       "\t\tGLib.debug(\"remove failed\");",
-                       "\t}",
-                       "\t_this.default_directory_tree_store.load();",
-                       "}"
-                      ]
-                     },
-                     "utf8 label" : "Remove File/Directory",
-                     "xtype" : "Button"
-                    }
-                   ],
-                   "xtype" : "Box"
-                  }
-                 ],
-                 "xtype" : "Popover"
                 }
                ],
                "xtype" : "ScrolledWindow"
