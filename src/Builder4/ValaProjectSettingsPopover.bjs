@@ -578,6 +578,121 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* pack" : "set_child",
+                 "gboolean headers_visible" : true,
+                 "items" : [
+                  {
+                   "$ columns" : [
+                    "    typeof(string),  // 0 key type",
+                    "      typeof(bool)"
+                   ],
+                   "$ n_columns" : 2,
+                   "$ xns" : "Gtk",
+                   "* pack" : "set_model",
+                   "id" : "default_packages_tree_store",
+                   "xtype" : "ListStore",
+                   "| void load" : [
+                    "() {",
+                    " ",
+                    "    var def = _this.project.compilegroups.get(\"_default_\");",
+                    "    var items  = def.packages;",
+                    "    ",
+                    "    this.el.clear();",
+                    "    var pal = (Palete.Gtk) _this.project.palete;",
+                    "    var pkgs = pal.packages(_this.project);",
+                    "    GLib.debug(\"ValaProjectSettings:packages load %d\\n\", pkgs.size);",
+                    "",
+                    "    Gtk.TreeIter citer;",
+                    "",
+                    "    for(var i =0 ; i < pkgs.size; i++) {",
+                    "         this.el.append(out citer);   ",
+                    "         ",
+                    "        this.el.set_value(citer, 0,   pkgs.get(i) ); // title ",
+                    "        this.el.set_value(citer, 1,   items.contains(pkgs.get(i)) );",
+                    "    }",
+                    "    this.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);",
+                    "    ",
+                    "}",
+                    ""
+                   ]
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* init" : [
+                    " ",
+                    " this.el.add_attribute(_this.packages_render.el , \"text\", 0 );",
+                    "  "
+                   ],
+                   "* pack" : "append_column",
+                   "gboolean expand" : true,
+                   "gboolean resizable" : true,
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* pack" : "pack_start,false",
+                     "id" : "packages_render",
+                     "xtype" : "CellRendererText"
+                    }
+                   ],
+                   "utf8 title" : "package name",
+                   "xtype" : "TreeViewColumn"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* init" : [
+                    "{",
+                    " this.el.add_attribute(_this.packages_render_use.el , \"active\", 1 );",
+                    " }"
+                   ],
+                   "* pack" : "append_column",
+                   "gboolean resizable" : false,
+                   "gint fixed_width" : 50,
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* pack" : "pack_start,false",
+                     "gboolean activatable" : true,
+                     "id" : "packages_render_use",
+                     "listeners" : {
+                      "toggled" : [
+                       "(  path_string) =>  { ",
+                       "    var m = _this.default_packages_tree_store.el;",
+                       "   Gtk.TreeIter iter;",
+                       "   Gtk.TreePath path = new Gtk.TreePath.from_string (path_string);",
+                       "   m.get_iter (out iter, path);",
+                       "   GLib.Value val;",
+                       "   m.get_value(iter, 1, out val);",
+                       "   m.set_value(iter, 1,  ((bool) val) ? false :true); ",
+                       "     GLib.Value fval;  ",
+                       "   m.get_value(iter, 0, out fval);",
+                       "   var fn = (string)fval;",
+                       "    ",
+                       "    var def = _this.project.compilegroups.get(\"_default_\");",
+                       "    var items  = def.packages;",
+                       "    if ((bool)val) {",
+                       "        // renive",
+                       "        items.remove(fn);",
+                       "    } else {",
+                       "        items.add(fn);",
+                       "    }",
+                       "    ",
+                       "}"
+                      ]
+                     },
+                     "xtype" : "CellRendererToggle"
+                    }
+                   ],
+                   "utf8 title" : "use",
+                   "xtype" : "TreeViewColumn"
+                  }
+                 ],
+                 "string id" : "default_packages_tree",
+                 "xtype" : "Box"
+                }
+               ],
                "xtype" : "Box"
               }
              ],
