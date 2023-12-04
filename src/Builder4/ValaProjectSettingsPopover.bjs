@@ -39,7 +39,7 @@
         {
          "$ xns" : "Gtk",
          "string icon_name" : "",
-         "string label" : "Create / Recreate Build files (makefiles etc)",
+         "string label" : "Create / Recreate Build files (configure.ac / makefile.am etc)",
          "xtype" : "Button"
         }
        ],

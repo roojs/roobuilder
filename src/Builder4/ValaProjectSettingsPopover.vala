@@ -240,7 +240,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.icon_name = "";
-            this.el.label = "Create / Recreate Build files (makefiles etc)";
+            this.el.label = "Create / Recreate Build files (configure.ac / makefile.am etc)";
         }
 
         // user defined functions
