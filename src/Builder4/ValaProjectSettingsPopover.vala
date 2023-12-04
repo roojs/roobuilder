@@ -1644,6 +1644,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             var child_0 = new Xcls_Button47( _this );
             child_0.ref();
             this.el.append(  child_0.el );
