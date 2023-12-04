@@ -350,14 +350,14 @@ namespace Project {
 			proj.name = obj.get_string_member("name");
 
 			// used to load paths..
-			proj.initSubDirectories();
+			//proj.initSubDirectories();
 			
 			 
-			proj.initDatabase();
+			//proj.initDatabase();
 			
 			GLib.debug("Add Project %s", proj.id);
 			
-			Project.projects.add(proj);
+			projects.add(proj);
 			 
 			
 		}
