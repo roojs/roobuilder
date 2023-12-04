@@ -413,7 +413,7 @@ namespace Project {
 				//var str = "%l:%l".printf(tv.tv_sec,tv.tv_usec);
 				var str = this.firstPath();
 				
-				this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, str, str.length);
+				this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, this.path, this.path.length);
 			}
 
 			
