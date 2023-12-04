@@ -96,6 +96,13 @@
                "items" : [
                 {
                  "$ xns" : "Gtk",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "popover",
+                   "xtype" : "Popover"
+                  }
+                 ],
                  "string label" : "Add Directory",
                  "xtype" : "MenuButton"
                 },
