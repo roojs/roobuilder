@@ -215,6 +215,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.halign = Gtk.Align.END;
             var child_0 = new Xcls_Button6( _this );
             child_0.ref();
             this.el.append(  child_0.el );

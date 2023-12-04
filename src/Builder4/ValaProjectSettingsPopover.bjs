@@ -33,6 +33,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "Gtk.Align halign" : "Gtk.Align.END",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "int spacing" : 0,
        "items" : [
