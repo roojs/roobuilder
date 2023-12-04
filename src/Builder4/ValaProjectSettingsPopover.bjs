@@ -57,6 +57,7 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "Gtk.Align halign" : "Gtk.Align.START",
            "utf8 label" : "compile flags",
            "xtype" : "Label"
           },
