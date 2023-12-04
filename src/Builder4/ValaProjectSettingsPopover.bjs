@@ -300,6 +300,8 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "bool hexpand" : true,
+               "bool vexpand" : true,
                "items" : [
                 {
                  "$ xns" : "Gtk",
@@ -762,7 +764,6 @@
               "}",
               ""
              ],
-             "* pack" : "set_start_child",
              "bool vexpand" : true,
              "items" : [
               {

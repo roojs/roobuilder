@@ -810,6 +810,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             var child_0 = new Xcls_default_packages_tree( _this );
             child_0.ref();
             this.el.child = child_0.el;
@@ -1669,7 +1670,7 @@ public class ValaProjectSettingsPopover : Object
             // set gobject values
             var child_0 = new Xcls_ScrolledWindow47( _this );
             child_0.ref();
-            this.el.set_start_child (  child_0.el  );
+            this.el.append(  child_0.el );
         }
 
         // user defined functions
