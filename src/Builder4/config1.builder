@@ -179,7 +179,8 @@
             "../../..//gitlive",
             "..//codegen",
             "..//ccode",
-            "../..//debian"
+            "../..//debian",
+            null
         ],
         "packages" : [
             "libgda-5.0",
