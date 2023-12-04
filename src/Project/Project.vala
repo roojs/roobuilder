@@ -110,14 +110,14 @@ namespace Project {
 				}
 				return;
 			}
-			Project.projects = new  Gee.HashMap<string,Project>();
+			projects = new  Gee.ArrayList<Project>();
 			  
 		    
-		    if (FileUtils.test(dirname + "/Projects.list")) {
-		    	Projects.loadProjectList();
+		    if (FileUtils.test(dirname + "/Projects.list", GLib.FileTest.IS_REGULAR)) {
+		    	loadProjectList();
 		    	return;
 	    	}
-	    	foreach(var p in Project.project) {
+	    	foreach(var p in projects) {
 	    		p.save();
     		}
     		this.saveProjectList();
@@ -219,7 +219,7 @@ namespace Project {
 		}
 */		
 		
-		static void loadAllProjects()
+		static void loadProjectList()
 		{
 		
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
