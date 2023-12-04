@@ -447,13 +447,7 @@ namespace Project {
  
 			var paths = new Json.Object(); 
 
-
-			var iter = this.paths.map_iterator();
-			while (iter.next()) {
-				paths.set_string_member(iter.get_key(), "path");
-			}
-			this.json_project_data.set_object_member("paths", paths);
-
+ 
 			
 			if (show_all) {
 				var files = new Json.Array();
