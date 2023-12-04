@@ -240,7 +240,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.icon_name = "";
-            this.el.label = "\"\"";
+            this.el.label = "Create ";
         }
 
         // user defined functions
