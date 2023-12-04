@@ -578,7 +578,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "xtype" : "ScrolledWindow"
+               "xtype" : "Box"
               }
              ],
              "xtype" : "Box"
