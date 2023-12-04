@@ -629,7 +629,7 @@ namespace Project {
 		public JsRender.JsRender newFile (string sub_dir, string name)
 		{
 			try {
-				var fp = this.path + (sub_dir.length > 0) ? "/" : "") + sub_dir;
+				var fp = this.path + (sub_dir.length > 0  ? "/" : "") + sub_dir;
 				var ret =  JsRender.JsRender.factory(this.xtype, 
 											 this, 
 											 fp + "/" +  name + ".bjs");
