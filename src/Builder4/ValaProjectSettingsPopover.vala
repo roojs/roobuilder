@@ -1709,6 +1709,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.hexpand = true;
             this.el.label = "Remove Target";
 
             //listeners
