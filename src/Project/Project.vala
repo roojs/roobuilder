@@ -671,8 +671,7 @@ namespace Project {
 					continue;
 				}
 				GLib.debug("Could have added %s/%s", dir, fn);
-				//var el = JsRender.JsRender.factory("plain",this, dir + "/" + fn);
-				//this.files.set( dir + "/" + fn, el);
+				 
 			}
 			
 			for (var i = 0; i < subs.length(); i++) {
