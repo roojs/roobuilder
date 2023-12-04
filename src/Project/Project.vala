@@ -20,6 +20,12 @@
    should really store project data in the directory of the project?
    
    
+   // steps:
+   // List of projects - just an array of paths in .Builder/Projects.json
+   
+   // .roobuilder.jcfg  << hidden file with project details?
+   
+   
    
  
  * 
@@ -55,7 +61,9 @@ namespace Project {
 		public string rootURL = "";
 		public string html_gen = "";
 		
-		public Gee.HashMap<string,string> paths;
+		public string path = "";
+		public Gee.HashMap<string,string> sub_paths;
+		
 		public Gee.HashMap<string,JsRender.JsRender> files ;
 		//tree : false,
 		public  string xtype;
@@ -77,9 +85,7 @@ namespace Project {
 			this.files = new Gee.HashMap<string,JsRender.JsRender>();
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
-			if (path.length > 0) {
-				this.paths.set(path, "dir");
-			}
+			this.path = path;
 			 
 			
 			
@@ -106,7 +112,19 @@ namespace Project {
 			}
 			projects = new  Gee.HashMap<string,Project>();
 			  
-		   
+		    
+		    if (FileUtils.test(dirname + "/Projects.list")) {
+		    	Projects.loadProjectList();
+		    	return;
+	    	}
+	    	
+	    	Projects.convertOldProjects();
+    	}
+    	
+    	public static void convertOldProjects()
+    	{
+    	
+    	   
 			try {
 				var file_enum = dir.enumerate_children(
 								GLib.FileAttribute.STANDARD_DISPLAY_NAME, 
@@ -120,22 +138,22 @@ namespace Project {
 					if (!Regex.match_simple("\\.json$", fn)) {
 						continue;
 					}
-					Project.factoryFromFile(dirname + "/" + fn);
+					Project.factoryFromFileOld(dirname + "/" + fn);
 				}       
 			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}
-			
+			Projects.saveProjectsList();
 
 		}
 
 		public static Gee.ArrayList<Project> allProjectsByName()
 		{
+			
 			var ret = new Gee.ArrayList<Project>();
-			var iter = projects.map_iterator();
-				while (iter.next()) {
-					ret.add(iter.get_value());
-				}
+			foreach (var p in projects.values) {
+				ret.add(p);
+			}
 			// fixme -- sort...
 			return ret;
 		
@@ -144,12 +162,10 @@ namespace Project {
 		public static Project? getProject(string name)
 		{
 			
-			var iter = projects.map_iterator();
-			while (iter.next()) {
-				if (iter.get_value().name == name) {
-					return iter.get_value();
+			foreach (var p in projects.values) {
+				if (p.name == name) {
+					return p;
 				}
-				
 			}
 			
 			return null;
@@ -188,10 +204,14 @@ namespace Project {
 		}
 		
 		
-		
-		public static Project? getProjectByHash(string fn)
+		// ?? needed??
+/*		public static Project? getProjectByHash(string fn)
 		{
-			
+			foreach (var p in projects.values) {
+				if (p.fn == fn) {
+					return p;
+				}
+			}
 			var iter = projects.map_iterator();
 			while (iter.next()) {
 				if (iter.get_value().fn == fn) {
@@ -203,9 +223,9 @@ namespace Project {
 			return null;
 		
 		}
-		
+*/		
 		// load project data from project file.
-		public static void   factoryFromFile(string jsonfile)
+		public static void   factoryFromFileOld(string jsonfile)
 		{
 			 
 			GLib.debug("parse %s", jsonfile);
@@ -237,6 +257,11 @@ namespace Project {
 				}
 					
 			});
+			
+			if (fpath.length < 0 || !FileUtils.test(fpath,FileTest.IS_DIR)) {
+				return;
+			}
+			
 			Project proj;
 			try {
 				proj = factory(xtype, fpath);
@@ -248,6 +273,7 @@ namespace Project {
 			proj.json_project_data  = obj; // store the original object...
 			
 			proj.fn =  Path.get_basename(jsonfile).split(".")[0];
+
 
 			// might not exist?
 
@@ -269,18 +295,16 @@ namespace Project {
 			
 			proj.name = obj.get_string_member("name");
 
+			// used to load paths..
+			proj.initSubDirectories();
+			
 			 
-			paths.foreach_member((sobj, key, val) => {
-				proj.paths.set(key, "dir");
-			});
 			proj.initDatabase();
 			
 			GLib.debug("Add Project %s", proj.id);
 			
 			projects.set(proj.id,proj);
-			
-			
-			
+			 
 			
 		}
 		
@@ -340,10 +364,14 @@ namespace Project {
 				this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, str, str.length);
 			}
 
-			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+			
+
+			//var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+			
 			var  s =  this.toJSON(false);
 			try {
-				FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
+				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
+				FileUtils.set_contents(this.path + "/.roobuilder.jcfg", s, s.length);  
 			} catch (GLib.Error e) {
 				GLib.error("failed  to save file %s", e.message);
 			}
@@ -400,6 +428,70 @@ namespace Project {
 			  
 			  
 		}
+		
+		
+		public   void   loadJsonConfig()
+		{
+			 
+			GLib.debug("parse %s", jsonfile);
+
+			var pa = new Json.Parser();
+			try { 
+				pa.load_from_file(this.path + "/.roobuilder.jcfg");
+			} catch (GLib.Error e) {
+				GLib.error("could not load json file %s", e.message);
+			}
+			var node = pa.get_root();
+
+			
+			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+				GLib.debug("SKIP " + jsonfile + " - invalid format?");
+				return;
+			}
+			
+			var obj = node.get_object ();
+			var xtype =  obj.get_string_member("xtype");
+
+
+			 
+			
+			 
+
+			this.json_project_data  = obj; // store the original object...
+			
+
+			// might not exist?
+
+			if (json.has_member("runhtml")) {
+					this.runhtml  = obj.get_string_member("runhtml"); 
+			}
+			// might not exist?
+			if (obj.has_member("base_template")) {
+					this.base_template  = obj.get_string_member("base_template"); 
+			}
+			// might not exist?
+			if (obj.has_member("rootURL")) {
+					this.rootURL  = obj.get_string_member("rootURL"); 
+			}
+			
+			if (obj.has_member("html_gen")) {
+					this.html_gen  = obj.get_string_member("html_gen"); 
+			}
+			
+			this.name = obj.get_string_member("name");
+
+			// used to load paths..
+			this.initSubDirectories();
+			
+			 
+			this.initDatabase();
+
+			 
+			
+		}
+		
+		
+		
 		public string firstPath()
 		{
 			var iter = this.paths.map_iterator();
