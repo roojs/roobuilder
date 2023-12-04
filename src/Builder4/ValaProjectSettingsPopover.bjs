@@ -750,7 +750,7 @@
               {
                "$ xns" : "Gtk",
                "listeners" : {
-                "activate" : [
+                "clicked" : [
                  "()  => {",
                  "    ",
                  "\t//",

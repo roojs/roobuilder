@@ -1710,7 +1710,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.label = "Remove Target";
 
             //listeners
-            this.el.activate.connect( ()  => {
+            this.el.clicked.connect( ()  => {
                 
             	//
             	Gtk.TreeModel mod;
