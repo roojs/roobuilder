@@ -610,7 +610,13 @@
         "search_changed" : [
          "( ) => {",
          "",
+         "_this.search(_this.search_entry.el.text);",
+         "\t _this.search_results.updateResults();",
          "",
+         "\tGLib.Timeout.add_seconds(1,() => {",
+         "\t\t _this.search_results.updateResults();",
+         "\t\t return false;",
+         "\t });",
          "}",
          ""
         ]
