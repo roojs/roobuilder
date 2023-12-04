@@ -432,7 +432,7 @@ namespace Project {
 	
 		
 		
-		public string toJSON(bool show_all)
+		public string toJSON( )
 		{
 			
 			
@@ -444,10 +444,17 @@ namespace Project {
 			this.json_project_data.set_string_member("base_template", this.base_template);
 			this.json_project_data.set_string_member("rootURL", this.rootURL);
 			this.json_project_data.set_string_member("html_gen", this.html_gen);			
- 
+ 		/*
 			var paths = new Json.Object(); 
 
- 
+		
+			var iter = this.paths.map_iterator();
+			while (iter.next()) {
+				paths.set_string_member(iter.get_key(), "path");
+			}
+			this.json_project_data.set_object_member("paths", paths);
+
+			
 			
 			if (show_all) {
 				var files = new Json.Array();
@@ -460,7 +467,7 @@ namespace Project {
 				this.json_project_data.set_array_member("files", files);
 				
 			}
-
+			*/
 		
 			var  generator = new Json.Generator ();
 			var  root = new Json.Node(Json.NodeType.OBJECT);
