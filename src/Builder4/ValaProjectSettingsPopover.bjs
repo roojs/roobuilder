@@ -39,6 +39,7 @@
         {
          "$ xns" : "Gtk",
          "string icon_name" : "",
+         "string label" : "\"\"",
          "xtype" : "Button"
         }
        ],
