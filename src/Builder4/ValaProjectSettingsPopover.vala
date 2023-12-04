@@ -579,7 +579,7 @@ public class ValaProjectSettingsPopover : Object
             	var pp  = _this.project.firstPath();
             	_this.project.add(pp + "/" + _this.add_dir_entry.el.text, "dir");
             	 
-               _this.default_directory_tree_store.load();
+                _this.default_directory_tree_store.load();
             	_this.add_dir_popover.el.hide();
             });
         }
