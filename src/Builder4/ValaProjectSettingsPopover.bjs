@@ -449,7 +449,7 @@
                    "xtype" : "TreeViewColumn"
                   }
                  ],
-                 "xtype" : "Box"
+                 "xtype" : "TreeView"
                 },
                 {
                  "$ xns" : "Gtk",

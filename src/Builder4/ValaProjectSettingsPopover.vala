@@ -940,24 +940,23 @@ public class ValaProjectSettingsPopover : Object
     }
     public class Xcls_default_directory_tree : Object
     {
-        public Gtk.Box el;
+        public Gtk.TreeView el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
-        public gboolean headers_visible;
 
         // ctor
         public Xcls_default_directory_tree(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             _this.default_directory_tree = this;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.TreeView();
 
             // my vars (dec)
-            this.headers_visible = true;
 
             // set gobject values
+            this.el.headers_visible = true;
             var child_0 = new Xcls_GestureClick28( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
