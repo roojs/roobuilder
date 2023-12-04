@@ -114,6 +114,7 @@
                       {
                        "$ xns" : "Gtk",
                        "string icon_name" : "",
+                       "string label" : "Add",
                        "xtype" : "Button"
                       }
                      ],
