@@ -853,7 +853,7 @@
                  "xtype" : "Box"
                 }
                ],
-               "xtype" : "Box"
+               "xtype" : "ScrolledWindow"
               },
               {
                "$ xns" : "Gtk",

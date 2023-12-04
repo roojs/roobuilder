@@ -908,7 +908,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box26( _this );
+            var child_0 = new Xcls_ScrolledWindow26( _this );
             child_0.ref();
             this.el.set_end_child (  child_0.el  );
             var child_1 = new Xcls_default_packages_tree( _this );
@@ -921,19 +921,19 @@ public class ValaProjectSettingsPopover : Object
 
         // user defined functions
     }
-    public class Xcls_Box26 : Object
+    public class Xcls_ScrolledWindow26 : Object
     {
-        public Gtk.Box el;
+        public Gtk.ScrolledWindow el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Box26(ValaProjectSettingsPopover _owner )
+        public Xcls_ScrolledWindow26(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( null, 0 );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
