@@ -719,7 +719,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "start_child",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
            "int spacing" : 0,
            "items" : [
             {
