@@ -127,7 +127,20 @@ namespace Project {
     	
     	private static void saveProjectList()
     	{
-    		
+			var f = new Json.Object();
+			foreach(var p in projects) {
+				f.set_string_member(p.path, p.xtype);
+			}
+			
+			var  generator = new Json.Generator ();
+			var  root = new Json.Node(Json.NodeType.OBJECT);
+			root.init_object(f);
+			generator.set_root (root);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			var data = generator.to_data (null);
+
     	
     	}
     	
