@@ -489,7 +489,7 @@ namespace Project {
 		public   void   loadJsonConfig()
 		{
 			 
-			GLib.debug("parse %s", jsonfile);
+ 
 
 			var pa = new Json.Parser();
 			try { 
@@ -501,7 +501,7 @@ namespace Project {
 
 			
 			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
-				GLib.debug("SKIP " + jsonfile + " - invalid format?");
+				GLib.debug("SKIP %s  - invalid format?",this.path + "/.roobuilder.jcfg);
 				return;
 			}
 			
