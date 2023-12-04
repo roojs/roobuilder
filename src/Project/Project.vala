@@ -41,7 +41,7 @@ namespace Project {
 	}
 
 	// static array of all projects.
-	public Gee.ArrayList<Project>  projects;
+	private Gee.ArrayList<Project>  projects;
 	
 	
 	
@@ -117,8 +117,11 @@ namespace Project {
 		    	Projects.loadProjectList();
 		    	return;
 	    	}
-	    	
-	    	Projects.convertOldProjects();
+	    	foreach(var p in Project.project) {
+	    		p.save();
+    		}
+    		this.saveProjectList();
+ 
     	}
     	
     	public static void convertOldProjects()
@@ -324,7 +327,7 @@ namespace Project {
 			
 			GLib.debug("Add Project %s", proj.id);
 			
-			projects.add(proj);
+			Project.projects.add(proj);
 			 
 			
 		}
