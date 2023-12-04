@@ -600,7 +600,7 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "titlebar",
-     "* title" : "Window Title",
+     "* title" : "Select Project / File",
      "xtype" : "HeaderBar"
     }
    ],
