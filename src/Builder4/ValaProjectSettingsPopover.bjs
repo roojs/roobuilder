@@ -730,6 +730,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "bool hexpand" : true,
                "listeners" : {
                 "clicked" : [
                  "()  => {",
