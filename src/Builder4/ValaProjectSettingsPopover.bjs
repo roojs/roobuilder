@@ -110,6 +110,7 @@
                       {
                        "$ xns" : "Gtk",
                        "bool hexpand" : true,
+                       "id" : "add_dir_entry",
                        "xtype" : "Entry"
                       },
                       {
