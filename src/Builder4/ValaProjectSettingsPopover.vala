@@ -811,6 +811,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_default_packages_tree( _this );
             child_0.ref();
             this.el.child = child_0.el;
