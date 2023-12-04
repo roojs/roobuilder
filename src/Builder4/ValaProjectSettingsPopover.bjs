@@ -96,6 +96,10 @@
                "items" : [
                 {
                  "$ xns" : "Gtk",
+                 "xtype" : "MenuButton"
+                },
+                {
+                 "$ xns" : "Gtk",
                  "listeners" : {
                   "clicked" : [
                    "()  => {",
