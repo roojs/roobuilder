@@ -113,15 +113,14 @@ namespace Project {
 					GLib.FileQueryInfoFlags.NONE, 
 					null
 				);
-				
 				 
 				FileInfo next_file; 
 				while ((next_file = file_enum.next_file(null)) != null) {
-						var fn = next_file.get_display_name();
+					var fn = next_file.get_display_name();
 					if (!Regex.match_simple("\\.json$", fn)) {
 						continue;
 					}
-					factoryFromFile(dirname + "/" + fn);
+					Project.factoryFromFile(dirname + "/" + fn);
 				}       
 			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
