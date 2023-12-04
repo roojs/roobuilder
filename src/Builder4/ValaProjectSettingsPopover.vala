@@ -322,6 +322,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.halign = Gtk.Align.START;
+            this.el.hexpand = true;
         }
 
         // user defined functions

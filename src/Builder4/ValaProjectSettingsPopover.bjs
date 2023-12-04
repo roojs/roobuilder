@@ -58,6 +58,7 @@
           {
            "$ xns" : "Gtk",
            "Gtk.Align halign" : "Gtk.Align.START",
+           "bool hexpand" : true,
            "utf8 label" : "compile flags",
            "xtype" : "Label"
           },
