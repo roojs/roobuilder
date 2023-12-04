@@ -81,7 +81,7 @@ namespace Project {
 			this.json_project_data = new Json.Object();
 			
 			this.is_scanned = false;
-			this.paths = new Gee.HashMap<string,string>();
+			this.sub_paths = new Gee.HashMap<string,string>();
 			this.files = new Gee.HashMap<string,JsRender.JsRender>();
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
@@ -668,7 +668,7 @@ namespace Project {
 			if (dp > 5) { // no more than 5 deep?
 				return;
 			}
-			this.sub_dir.add(subdir); // might be ''...
+			this.sub_paths.add(subdir); // might be ''...
 			
 			
 			// this should be done async -- but since we are getting the proto up ...
