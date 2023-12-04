@@ -580,8 +580,8 @@ public class ValaProjectSettingsPopover : Object
             	_this.project.add(pp + "/" + _this.add_dir_entry.el.text, "dir");
             	 
                _this.default_directory_tree_store.load();
-            
-             });
+            	_this.add_dir_popover.el.hide();
+            });
         }
 
         // user defined functions

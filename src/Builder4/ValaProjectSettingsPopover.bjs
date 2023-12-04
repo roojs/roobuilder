@@ -125,8 +125,8 @@
                          "\t_this.project.add(pp + \"/\" + _this.add_dir_entry.el.text, \"dir\");",
                          "\t ",
                          "   _this.default_directory_tree_store.load();",
-                         "",
-                         " }"
+                         "\t_this.add_dir_popover.el.hide();",
+                         "}"
                         ]
                        },
                        "string icon_name" : "",
