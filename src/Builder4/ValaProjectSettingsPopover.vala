@@ -153,7 +153,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_Label3(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Change Vala Project Compile settings" );
+            this.el = new Gtk.Label( "Change Vala  Compile settings" );
 
             // my vars (dec)
 
@@ -531,7 +531,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.label = "Remove File/Directory";
 
             //listeners
-            this.el.activate.connect( ()  => {
+            this.el.clicked.connect( ()  => {
             
             	//
             	Gtk.TreeModel mod;

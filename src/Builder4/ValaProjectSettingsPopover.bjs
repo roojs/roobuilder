@@ -18,7 +18,7 @@
       {
        "$ xns" : "Gtk",
        "* prop" : "title_widget",
-       "string label" : "Change Vala Project Compile settings",
+       "string label" : "Change Vala  Compile settings",
        "xtype" : "Label"
       }
      ],
@@ -152,7 +152,7 @@
                 {
                  "$ xns" : "Gtk",
                  "listeners" : {
-                  "activate" : [
+                  "clicked" : [
                    "()  => {",
                    "",
                    "\t//",
