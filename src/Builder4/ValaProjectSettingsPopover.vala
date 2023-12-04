@@ -387,7 +387,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.end_child = child_0.el;
             var child_1 = new Xcls_Box37( _this );
             child_1.ref();
-            this.el.s_child = child_1.el;
+            this.el.start_child = child_1.el;
         }
 
         // user defined functions
