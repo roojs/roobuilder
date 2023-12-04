@@ -41,7 +41,7 @@ namespace Project {
 	}
 
 	// static array of all projects.
-	public Gee.HashMap<string,Project>  projects;
+	public Gee.ArrayList<Project>  projects;
 	
 	
 	
@@ -150,19 +150,14 @@ namespace Project {
 		public static Gee.ArrayList<Project> allProjectsByName()
 		{
 			
-			var ret = new Gee.ArrayList<Project>();
-			foreach (var p in projects.values) {
-				ret.add(p);
-			}
-			// fixme -- sort...
-			return ret;
+			return Project.projects;
 		
 		}
 		
 		public static Project? getProject(string name)
 		{
 			
-			foreach (var p in projects.values) {
+			foreach (var p in Project.projects) {
 				if (p.name == name) {
 					return p;
 				}
@@ -174,13 +169,9 @@ namespace Project {
 		
 		public static string listAllToString()
 		{
-			var all = new Gee.ArrayList<Project>();
+			var all = Project.projects;
 
-			var fiter = projects.map_iterator();
-			
-			while(fiter.next()) {
-				all.add(fiter.get_value());
-			}
+			 
 			
 			all.sort((fa,fb) => {
 				return ((Project)fa).name.collate(((Project)fb).name);
@@ -224,6 +215,36 @@ namespace Project {
 		
 		}
 */		
+		
+		static void loadAllProjects()
+		{
+		
+			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+			 
+			Project.projects = new  Gee.HashMap<string,Project>();
+			  
+		    var pa = new Json.Parser();
+			try { 
+				pa.load_from_file(dirname + "/Projects.list");  
+			} catch (GLib.Error e) {
+				GLib.error("could not load json file %s", e.message);
+			}
+			var node = pa.get_root();
+ 			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+				GLib.error( dirname + "/Projects.list - invalid format?");
+				return;
+			}
+
+			
+			var obj = node.get_object ();
+			paths.foreach_member((sobj, key, val) => {
+				var p = Project.factory(key, val.get_string());
+				Project.projects.add(p);
+			});
+			
+		
+		}
+		
 		// load project data from project file.
 		public static void   factoryFromFileOld(string jsonfile)
 		{
@@ -303,7 +324,7 @@ namespace Project {
 			
 			GLib.debug("Add Project %s", proj.id);
 			
-			projects.set(proj.id,proj);
+			projects.add(proj);
 			 
 			
 		}
@@ -378,6 +399,8 @@ namespace Project {
 			
 		}
 
+	
+		
 		
 		public string toJSON(bool show_all)
 		{
