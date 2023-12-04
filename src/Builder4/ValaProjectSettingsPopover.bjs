@@ -85,7 +85,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* prop" : "start_child",
+             "* prop" : "end_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
              "int spacing" : 0,
              "items" : [
@@ -572,7 +572,7 @@
             },
             {
              "$ xns" : "Gtk",
-             "* prop" : "end_child",
+             "* prop" : "st_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
              "int spacing" : 0,
              "items" : [

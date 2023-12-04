@@ -384,10 +384,10 @@ public class ValaProjectSettingsPopover : Object
             this.el.position = 300;
             var child_0 = new Xcls_Box12( _this );
             child_0.ref();
-            this.el.start_child = child_0.el;
+            this.el.end_child = child_0.el;
             var child_1 = new Xcls_Box37( _this );
             child_1.ref();
-            this.el.end_child = child_1.el;
+            this.el.s_child = child_1.el;
         }
 
         // user defined functions
