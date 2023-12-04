@@ -357,7 +357,7 @@
                "items" : [
                 {
                  "$ xns" : "Gtk",
-                 "* pack" : "set_child",
+                 "* prop" : "child",
                  "gboolean headers_visible" : true,
                  "id" : "default_directory_tree",
                  "items" : [
