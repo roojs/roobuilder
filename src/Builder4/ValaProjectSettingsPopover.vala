@@ -15,6 +15,7 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_label_global label_global;
     public Xcls_label_targets label_targets;
     public Xcls_compile_flags compile_flags;
+    public Xcls_add_dir_popover add_dir_popover;
     public Xcls_add_dir_entry add_dir_entry;
     public Xcls_default_directory_tree default_directory_tree;
     public Xcls_default_directory_tree_store default_directory_tree_store;
@@ -462,14 +463,14 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.label = "Add Directory";
-            var child_0 = new Xcls_Popover15( _this );
+            var child_0 = new Xcls_add_dir_popover( _this );
             child_0.ref();
             this.el.popover = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Popover15 : Object
+    public class Xcls_add_dir_popover : Object
     {
         public Gtk.Popover el;
         private ValaProjectSettingsPopover  _this;
@@ -478,9 +479,10 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Popover15(ValaProjectSettingsPopover _owner )
+        public Xcls_add_dir_popover(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
+            _this.add_dir_popover = this;
             this.el = new Gtk.Popover();
 
             // my vars (dec)
