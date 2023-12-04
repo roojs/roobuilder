@@ -273,7 +273,7 @@ namespace Project {
 			paths.foreach_member((sobj, key, val) => {
 				proj.paths.set(key, "dir");
 			});
-			proj.initRooDatabase();
+			proj.initDatabase();
 			
 			GLib.debug("Add Project %s", proj.id);
 			
