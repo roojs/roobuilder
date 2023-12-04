@@ -120,12 +120,12 @@ namespace Project {
 	    	foreach(var p in projects) {
 	    		p.save();
     		}
-    		this.saveProjectList();
+    		saveProjectList();
  
     	}
     	
     	
-    	private void saveProjectList()
+    	private static void saveProjectList()
     	{
     		
     	
