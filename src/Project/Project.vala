@@ -62,7 +62,7 @@ namespace Project {
 		public string html_gen = "";
 		
 		public string path = "";
-		public Gee.HashMap<string,string> sub_paths;
+		public Gee.ArrayList<string> sub_paths;
 		
 		public Gee.HashMap<string,JsRender.JsRender> files ;
 		//tree : false,
@@ -597,7 +597,7 @@ namespace Project {
 	 
 		public JsRender.JsRender? getByName(string name)
 		{
-			foreach(var f in this.files) {
+			foreach(var f in this.files.values) {
 				if (f.name == name) {
 					return f;
 				}
@@ -607,7 +607,7 @@ namespace Project {
 		
 		public JsRender.JsRender? getByPath(string path)
 		{
-			foreach(var f in this.files) {
+			foreach(var f in this.files.values) {
 				if (f.path == path) {
 					return f;
 				}
@@ -617,7 +617,7 @@ namespace Project {
 		
 		public JsRender.JsRender? getById(string id)
 		{
-			foreach(var f in this.files) {
+			foreach(var f in this.files.values) {
 				if (f.id == id) {
 					return f;
 				}
@@ -625,7 +625,7 @@ namespace Project {
 			return null;
 		}
 
-	
+	/*
 		public JsRender.JsRender newFile (string sub_dir, string name)
 		{
 			try {
@@ -639,7 +639,7 @@ namespace Project {
 				GLib.error("failed to create file %s", e.message);
 			}
 		}
-		
+		*/
 		public JsRender.JsRender loadFileOnly (string path)
 		{
 			var xt = this.xtype;
@@ -651,7 +651,7 @@ namespace Project {
 			
 		} 
 		
-		
+		/*
 		public JsRender.JsRender create(string filename)
 		{
 			var ret = this.loadFileOnly(filename);
@@ -660,7 +660,7 @@ namespace Project {
 			return ret;
 			
 		}
-		
+		*/
 		private void loadSubDirectories(string subdir, int dp) 
 		{
 			//dp = dp || 0;
