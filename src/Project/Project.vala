@@ -693,6 +693,7 @@ namespace Project {
 			return ret;
 			
 		}
+		 public abstract void initDatabase();
 		  
 	}
 }
