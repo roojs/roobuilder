@@ -501,7 +501,7 @@ namespace Project {
 
 			
 			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
-				GLib.debug("SKIP %s  - invalid format?",this.path + "/.roobuilder.jcfg);
+				GLib.debug("SKIP %s/.roobuilder.jcfg  - invalid format?",this.path);
 				return;
 			}
 			
@@ -518,7 +518,7 @@ namespace Project {
 
 			// might not exist?
 
-			if (json.has_member("runhtml")) {
+			if (obj.has_member("runhtml")) {
 					this.runhtml  = obj.get_string_member("runhtml"); 
 			}
 			// might not exist?
@@ -537,7 +537,7 @@ namespace Project {
 			this.name = obj.get_string_member("name");
 
 			// used to load paths..
-			this.initSubDirectories();
+			this.loadSubDirectories();
 			
 			 
 			this.initDatabase();
