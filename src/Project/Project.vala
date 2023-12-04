@@ -110,7 +110,7 @@ namespace Project {
 				}
 				return;
 			}
-			projects = new  Gee.HashMap<string,Project>();
+			Project.projects = new  Gee.HashMap<string,Project>();
 			  
 		    
 		    if (FileUtils.test(dirname + "/Projects.list")) {
