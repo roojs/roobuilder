@@ -581,7 +581,7 @@
                "items" : [
                 {
                  "$ xns" : "Gtk",
-                 "* pack" : "set_child",
+                 "* prop" : "child",
                  "gboolean headers_visible" : true,
                  "items" : [
                   {
