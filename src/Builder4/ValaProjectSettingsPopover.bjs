@@ -33,6 +33,12 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "int spacing" : 0,
+       "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
        "bool vexpand" : true,
        "items" : [
         {
