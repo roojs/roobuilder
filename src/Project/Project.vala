@@ -370,7 +370,7 @@ namespace Project {
 
 			 foreach(var p in projects) {
 				  if (p.path == path) {
-					return iter.get_value();
+					return p;
 				 }
 			}
 
