@@ -555,6 +555,7 @@ namespace Project {
 			
 		} 
 		
+		
 		public JsRender.JsRender create(string filename)
 		{
 			var ret = this.loadFileOnly(filename);
@@ -567,8 +568,7 @@ namespace Project {
 			 
 		public void addFile(JsRender.JsRender pfile) { // add a single file, and trigger changed.
 		
-		
-			this.files.set(pfile.path, pfile); // duplicate check?
+			this.files.set(pfile.path, pfile); // duplicate check?	
 			this.on_changed();
 		}
 		
@@ -577,8 +577,13 @@ namespace Project {
 			this.paths.set(path,type);
 			//Seed.print(" type is '" + type + "'");
 			if (type == "dir") {
-				this.scanDir(path);
+
+				var dir = File.new_for_path(path);
+				if (!dir.query_exists()) {
+					dir.make_directory();
+				}					
 			//    console.dump(this.files);
+				this.scanDir(path);			
 			}
 			if (type == "file" ) {
 			
