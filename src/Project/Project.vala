@@ -661,7 +661,7 @@ namespace Project {
 			
 		}
 		
-		public loadSubDirectories(string subdir, int dp) 
+		private void loadSubDirectories(string subdir, int dp) 
 		{
 			//dp = dp || 0;
 			//print("Project.Base: Running scandir on " + dir +"\n");
