@@ -35,6 +35,13 @@
        "$ xns" : "Gtk",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "int spacing" : 0,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "string icon_name" : "",
+         "xtype" : "Button"
+        }
+       ],
        "xtype" : "Box"
       },
       {
