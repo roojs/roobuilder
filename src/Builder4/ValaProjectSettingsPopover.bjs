@@ -116,11 +116,15 @@
                        "$ xns" : "Gtk",
                        "listeners" : {
                         "clicked" : [
-                         "( ) => {",
+                         "() => {",
+                         "\t",
+                         "\t// top level only to start with..",
+                         "\tvar pp  = _this.project.firstPath();",
+                         "\t_this.project.add(pp + \"/\" + _this.add_dir_entry.el.text, \"dir\");",
+                         "\t ",
+                         "   _this.default_directory_tree_store.load();",
                          "",
-                         "",
-                         "}",
-                         ""
+                         " }"
                         ]
                        },
                        "string icon_name" : "",
