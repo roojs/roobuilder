@@ -85,13 +85,6 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "set_start_child",
-             "bool hexpand" : true,
-             "bool vexpand" : true,
-             "xtype" : "ScrolledWindow"
-            },
-            {
-             "$ xns" : "Gtk",
              "* pack" : "set_end_child",
              "bool hexpand" : true,
              "bool vexpand" : true,
