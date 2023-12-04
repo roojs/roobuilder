@@ -156,7 +156,8 @@ namespace Project {
     	public static void convertOldProjects()
     	{
     	
-    	   var dir = GLib.Environment.get_home_dir() + "/.Builder";
+			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+			 dir = File.new_for_path(dir);
 			try {
 				var file_enum = dir.enumerate_children(
 								GLib.FileAttribute.STANDARD_DISPLAY_NAME, 
@@ -170,7 +171,7 @@ namespace Project {
 					if (!Regex.match_simple("\\.json$", fn)) {
 						continue;
 					}
-					Project.factoryFromFileOld(dir + "/" + fn);
+					Project.factoryFromFileOld(dirname + "/" + fn);
 				}       
 			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
