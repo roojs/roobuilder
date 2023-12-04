@@ -28,9 +28,9 @@ public class DialogFiles : Object
     public Xcls_MainWindow win;
     public string lastfilter;
     public bool in_onprojectselected;
-    public Project.Project selectedProject;
     public bool is_loading;
     public bool new_window;
+    public Project.Project selectedProject;
     public Gdk.Pixbuf missing_thumb_pixbuf;
     public Gee.HashMap<string,Gdk.Pixbuf> image_cache;
     public bool is_loaded;
@@ -54,6 +54,9 @@ public class DialogFiles : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.child = child_0.el;
+        var child_1 = new Xcls_HeaderBar29( _this );
+        child_1.ref();
+        this.el.titlebar = child_1.el;
     }
 
     // user defined functions
@@ -1393,5 +1396,27 @@ public class DialogFiles : Object
 
 
 
+
+    public class Xcls_HeaderBar29 : Object
+    {
+        public Gtk.HeaderBar el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_HeaderBar29(DialogFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.HeaderBar();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
 
 }

@@ -596,6 +596,12 @@
       }
      ],
      "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "titlebar",
+     "* title" : "Window Title",
+     "xtype" : "HeaderBar"
     }
    ],
    "name" : "DialogFiles",
