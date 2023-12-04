@@ -106,6 +106,12 @@
                      "* prop" : "child",
                      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
                      "int spacing" : 0,
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "xtype" : "Entry"
+                      }
+                     ],
                      "xtype" : "Box"
                     }
                    ],
