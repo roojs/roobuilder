@@ -140,8 +140,15 @@ namespace Project {
 			generator.indent = 4;
 
  			var data = generator.to_data (null);
-
-    	
+			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+    		
+    		try {
+				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
+				FileUtils.set_contents(dirname + "/Projects.list", data, data.length);  
+			} catch (GLib.Error e) {
+				GLib.error("failed  to save file %s", e.message);
+			}
+    		
     	}
     	
     	
@@ -149,7 +156,7 @@ namespace Project {
     	public static void convertOldProjects()
     	{
     	
-    	   
+    	   var dir = GLib.Environment.get_home_dir() + "/.Builder";
 			try {
 				var file_enum = dir.enumerate_children(
 								GLib.FileAttribute.STANDARD_DISPLAY_NAME, 
@@ -163,12 +170,12 @@ namespace Project {
 					if (!Regex.match_simple("\\.json$", fn)) {
 						continue;
 					}
-					Project.factoryFromFileOld(dirname + "/" + fn);
+					Project.factoryFromFileOld(dir + "/" + fn);
 				}       
 			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}
-			Projects.saveProjectsList();
+			Project.saveProjectsList();
 
 		}
 
