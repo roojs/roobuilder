@@ -498,7 +498,7 @@ namespace Project {
  
 			 
 
-			this.json_project_data  = obj; // store the original object...
+			//this.json_project_data  = obj; // store the original object...
 			
  
 			this.name = obj.get_string_member("name");  // ?? do we need this?
