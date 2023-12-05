@@ -63,7 +63,7 @@ namespace Project
 		}
 		public Gee.HashMap<string,GtkValaSettings> compilegroups;
 		
-		public void loadConfig() throws GLib.Error 
+		public override void loadJson() throws GLib.Error 
 		{
 			// load a builder.config JSON file.
 			// 
