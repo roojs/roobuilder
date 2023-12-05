@@ -427,7 +427,7 @@ public class WindowState : Object
             return;
         }
         if (pr.xtype  == "Roo" ) {
-			this.roo_projectsettings_pop.show(pwin,pr);
+			this.roo_projectsettings_pop.show(pwin,(Project.Roo)pr);
 			return;
 		}
 
