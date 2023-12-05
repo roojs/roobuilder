@@ -1098,8 +1098,8 @@ public class Xcls_PopoverFileDetails : Object
         
                 el.append(out iter);
                 
-                el.set_value(iter, 0, sd);
-                el.set_value(iter, 1, sd == "" ? "Top Folder" : sd);
+                el.set_value(iter, 0, dir);
+                el.set_value(iter, 1, dir == "" ? "Top Folder" : dir);
                 
                 //if (data.get(i) == cur) {
                 //    _this.build_module.el.set_active_iter(iter);
