@@ -1047,7 +1047,7 @@
    "xtype" : "Window",
    "| void save" : [
     "()  {",
-    "    this.project.writeConfig(); ",
+    "    this.project.save(); ",
     "}"
    ],
    "| void show" : [

@@ -117,7 +117,7 @@ public class ValaProjectSettingsPopover : Object
     
     }
     public void save ()  {
-        this.project.writeConfig(); 
+        this.project.save(); 
     }
     public class Xcls_HeaderBar2 : Object
     {
