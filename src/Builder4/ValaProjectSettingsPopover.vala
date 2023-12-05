@@ -405,7 +405,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.changed.connect( () => {
                 
                _this.project.compilegroups.get("_default_").compile_flags = this.el.buffer.text;
-               _this.project.writeConfig();
+               _this.project.save();
             //    _this.project.save();
             
             });
