@@ -25,6 +25,11 @@ public class Project.Roo : Project {
 	{
 		//NOOP
 	}
+	public override string saveJson(Json.Object obj
+	{
+	//NOOP
+	}
+
 }
  
  
