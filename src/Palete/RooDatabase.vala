@@ -23,8 +23,8 @@ namespace Palete {
 		public RooDatabase.from_project (Project.Project project)
         {
             this.project = project;
-			this.DBTYPE = this.project.get_string_member("DBTYPE");
-			this.DBNAME = this.project.get_string_member("DBNAME");
+			this.DBTYPE = this.project.DBTYPE;
+			this.DBNAME = this.project.DBNAME;
 			if (this.DBTYPE.length < 1) {
 				return;
 			}
