@@ -73,7 +73,7 @@
      "    ",
      "    if (GLib.FileUtils.test(targetfile, GLib.FileTest.EXISTS)) {",
      "\t    Xcls_StandardErrorDialog.singleton().show(",
-     "\t        _this.el.,",
+     "\t        _this.el.transient_for,",
      "\t        \"That file already exists\"",
      "\t    ); ",
      "\t    return;",

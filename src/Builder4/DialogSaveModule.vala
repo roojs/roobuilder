@@ -70,7 +70,7 @@ public class DialogSaveModule : Object
             
             if (GLib.FileUtils.test(targetfile, GLib.FileTest.EXISTS)) {
         	    Xcls_StandardErrorDialog.singleton().show(
-        	        _this.el.,
+        	        _this.el.transient_for,
         	        "That file already exists"
         	    ); 
         	    return;
