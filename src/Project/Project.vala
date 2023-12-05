@@ -461,30 +461,8 @@ namespace Project {
 			this.json_project_data.set_string_member("base_template", this.base_template);
 			this.json_project_data.set_string_member("rootURL", this.rootURL);
 			this.json_project_data.set_string_member("html_gen", this.html_gen);			
- 		/*
-			var paths = new Json.Object(); 
-
-		
-			var iter = this.paths.map_iterator();
-			while (iter.next()) {
-				paths.set_string_member(iter.get_key(), "path");
-			}
-			this.json_project_data.set_object_member("paths", paths);
-
-			
-			
-			if (show_all) {
-				var files = new Json.Array();
-				
-				
-				var fiter = this.files.map_iterator();
-				while (fiter.next()) {
-					files.add_string_element (fiter.get_key());
-				}
-				this.json_project_data.set_array_member("files", files);
-				
-			}
-			*/
+ 		 	
+ 		 	this.saveJSON(this.json_project_data);
 		
 			var  generator = new Json.Generator ();
 			var  root = new Json.Node(Json.NodeType.OBJECT);
@@ -565,7 +543,7 @@ namespace Project {
 		}
 		
 		public abstract void loadJson(Json.Object obj); 
-		
+		public abstract void saveJSON(Json.Object obj);
 		
 		/*
 		
