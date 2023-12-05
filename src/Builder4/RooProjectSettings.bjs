@@ -597,7 +597,7 @@
     "}"
    ],
    "| void show" : [
-    " (Gtk.Window pwin, Project.Project project) {",
+    " (Gtk.Window pwin, Project.Roo project) {",
     "    _this.done = false;",
     "    ",
     "    _this.project = project;",

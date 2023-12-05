@@ -58,7 +58,7 @@ public class Xcls_RooProjectSettings : Object
     }
 
     // user defined functions
-    public void show (Gtk.Window pwin, Project.Project project) {
+    public void show (Gtk.Window pwin, Project.Roo project) {
         _this.done = false;
         
         _this.project = project;
