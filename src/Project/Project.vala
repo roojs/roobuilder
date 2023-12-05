@@ -807,7 +807,7 @@ namespace Project {
 				dir.make_directory();
 			}
 			this.sub_paths.add(subdir);
-		
+			this.on_changed();  // not sure if it's needed - adding a dir doesnt really change much.
 		}
 		
 		
