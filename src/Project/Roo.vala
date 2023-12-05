@@ -65,13 +65,17 @@ public class Project.Roo : Project {
 	}
 	public override void saveJson(Json.Object obj)
 	{
-			obj.set_string_member("fn", this.fn);
+		obj.set_string_member("fn", this.fn);
 
-			obj.set_string_member("runhtml", this.runhtml);
-			obj.set_string_member("rootURL", this.rootURL);
-			obj.set_string_member("base_template", this.base_template);
-			obj.set_string_member("rootURL", this.rootURL);
-			obj.set_string_member("html_gen", this.html_gen);
+		obj.set_string_member("runhtml", this.runhtml);
+		obj.set_string_member("rootURL", this.rootURL);
+		obj.set_string_member("base_template", this.base_template);
+		obj.set_string_member("rootURL", this.rootURL);
+		obj.set_string_member("html_gen", this.html_gen);
+		obj.set_string_member("DBTYPE", this.DBTYPE);
+		obj.set_string_member("DBNAME", this.DBNAME);
+		obj.set_string_member("DBUSERNAME", this.DBUSERNAME);			
+		obj.set_string_member("DBPASSWORD", this.DBPASSWORD);
 	}
 
 }
