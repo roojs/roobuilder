@@ -35,8 +35,8 @@ namespace Palete {
 					this.cnc = Gda.Connection.open_from_string (
 					this.DBTYPE,
 					"DB_NAME=" + this.DBNAME, 
-					"USERNAME=" + this.project.get_string_member("DBUSERNAME") + 
-					";PASSWORD=" + this.project.get_string_member("DBPASSWORD"),
+					"USERNAME=" + this.project.DBUSERNAME + 
+					";PASSWORD=" + this.project.DBPASSWORD,
 					Gda.ConnectionOptions.NONE
 				);
 			} catch(GLib.Error e) {
