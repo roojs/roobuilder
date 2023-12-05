@@ -77,7 +77,7 @@ namespace Project
 			GLib.debug("Checking %s has file %s", this.name, file.path);
 			var pr = (Gtk) file.project;
 			for(var i = 0; i < this.sources.size;i++) {
-				var path = pr.path + , this.sources.get(i);
+				var path = pr.path +  this.sources.get(i);
 				GLib.debug("check %s", path);
 				
 				if (path == file.path) {
