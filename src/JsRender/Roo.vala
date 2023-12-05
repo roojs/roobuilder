@@ -191,12 +191,18 @@ namespace JsRender {
 		        
 		}
 
-	 
+	 public Project.Roo roo_project {
+	 	set {} ;
+	 	get { 
+	 		return (Project.Roo) this.project;
+ 		}
+	}
+	 		
 
 	 
 	public override void saveHTML ( string html )
 	{
-		GLib.debug ("SAVEHTML %s\n",  this.project.runhtml);		 
+		GLib.debug ("SAVEHTML %s\n",  this.roo_project.runhtml);		 
 		if (this.project.runhtml == "") {
 			return;
 		}
