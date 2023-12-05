@@ -789,13 +789,13 @@ namespace Project {
 		}
 		
 			
-		/*	 
+		 
 		public void addFile(JsRender.JsRender pfile) { // add a single file, and trigger changed.
 		
 			this.files.set(pfile.path, pfile); // duplicate check?	
 			this.on_changed();
 		}
-		
+		/*
 		public void add(string path, string type)
 		{
 			this.paths.set(path,type);
