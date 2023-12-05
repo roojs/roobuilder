@@ -122,15 +122,15 @@ public class Xcls_RooProjectSettings : Object
         // set by event changed...
         //_this.project.base_template = _this.base_template.el.get_text();    
         
-        var js = _this.project.json_project_data;
-        js.set_string_member("DBTYPE", _this.database_DBTYPE.el.get_text());
-       js.set_string_member("DBNAME", _this.database_DBNAME.el.get_text());
-        js.set_string_member("DBUSERNAME", _this.database_DBUSERNAME.el.get_text());
-        js.set_string_member("DBPASSWORD", _this.database_DBPASSWORD.el.get_text());
+        var js = _this.project;
+        js.DBTYPE = _this.database_DBTYPE.el.get_text();
+       js.DBNAME= _this.database_DBNAME.el.get_text();
+        js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();
+        js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();
     //    _this.project.set_string_member("DBHOST", _this.DBTYPE.el.get_text());    
         
         // need to re-init the database 
-        
+        	js.save();
         _this.project.initDatabase();
          
         
