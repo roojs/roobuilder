@@ -563,6 +563,11 @@ namespace Project {
 			
 		}
 		
+		public void loadJson(Json Object obj) {
+		
+		}
+		
+		
 		/*
 		
 		public string firstPath()
