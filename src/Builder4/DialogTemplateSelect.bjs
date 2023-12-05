@@ -300,7 +300,7 @@
     "\t_this.combo.el.set_active(-1);",
     "",
     "",
-    "\tvar db =  new Palete.RooDatabase.from_project(project);",
+    "\tvar db =  new Palete.RooDatabase.from_project((Project.Roo) project);",
     "\t_this.dbmodel.loadData(db.readTablesGee());",
     "",
     "",
