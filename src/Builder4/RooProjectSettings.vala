@@ -86,7 +86,7 @@ public class Xcls_RooProjectSettings : Object
         _this.database_DBTYPE.el.set_text(    _this.project.DBTYPE );
         _this.database_DBNAME.el.set_text(    _this.project.DBNAME );
         _this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );
-        _this.database_DBPASSWORD.el.set_text(  _this.project.BPASSWORD );
+        _this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );
         
         	//console.log('show all');
     
