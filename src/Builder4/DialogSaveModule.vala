@@ -65,10 +65,33 @@ public class DialogSaveModule : Object
                 return;;
             }
             
-            var f = project.newFile("/templates", name);
+            var targetfile = project.path + "/templates/" + name + ".bjs";
+            
+            
+            if (GLib.FileUtils.test(targetfile, GLib.FileTest.EXISTS)) {
+        	    Xcls_StandardErrorDialog.singleton().show(
+        	        _this.mainwindow.el,
+        	        "That file already exists"
+        	    ); 
+        	    return;
+        	}
+             try {
+        	   f =  JsRender.JsRender.factory(
+        			  project.xtype ,  
+        			project, 
+        			targetfile);
+        	} catch (JsRender.Error e) {
+        		Xcls_StandardErrorDialog.singleton().show(
+        	        _this.mainwindow.el,
+        	        "Error creating file"
+        	    ); 
+        		return;
+        	}
+            
+        
             f.tree =  _this.data.deepClone();
             f.save();
-            
+             project.addFile(f);
             // now we save it..
             this.el.hide();
             this.complete(name);
