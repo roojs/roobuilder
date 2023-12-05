@@ -503,33 +503,13 @@ namespace Project {
 			var obj = node.get_object ();
 			var xtype =  obj.get_string_member("xtype");
 
-
-			 
-			
+ 
 			 
 
 			this.json_project_data  = obj; // store the original object...
 			
-
-			// might not exist?
-
-			if (obj.has_member("runhtml")) {
-					this.runhtml  = obj.get_string_member("runhtml"); 
-			}
-			// might not exist?
-			if (obj.has_member("base_template")) {
-					this.base_template  = obj.get_string_member("base_template"); 
-			}
-			// might not exist?
-			if (obj.has_member("rootURL")) {
-					this.rootURL  = obj.get_string_member("rootURL"); 
-			}
-			
-			if (obj.has_member("html_gen")) {
-					this.html_gen  = obj.get_string_member("html_gen"); 
-			}
-			
-			this.name = obj.get_string_member("name");
+ 
+			this.name = obj.get_string_member("name");  // ?? do we need this?
 
 			this.loadJson(obj);
 			// used to load paths..
