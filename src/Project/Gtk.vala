@@ -167,7 +167,7 @@ namespace Project
 		 *   are vala based on a bjs file..
 		 *  
 		 */
-		
+		/*
 		public Gee.ArrayList<string> filesAll(string in_path,bool abspath = true)
 		{
 			var ret =  new Gee.ArrayList<string>();
@@ -219,7 +219,8 @@ namespace Project
 			
 			return ret;
 		}
-		
+		*/
+		/*
 		public Gee.ArrayList<string> filesForCompile(string in_path, bool abspath = true)
 		{
 			var allfiles = this.filesAll(in_path,abspath);
@@ -271,7 +272,8 @@ namespace Project
 			return ret;
 			
 		}
-		
+		*/
+		/*
 		public Gee.ArrayList<string> filesForOpen(string in_path)
 		{
 			var allfiles = this.filesAll(in_path);
@@ -447,6 +449,7 @@ namespace Project
 			}
 			return path;
 		}
+		*/
 		
 		public string[] vapidirs()
 		{
@@ -454,7 +457,7 @@ namespace Project
 			var sources = this.compilegroups.get("_default_").sources;
 			for(var i =0; i< sources.size; i++) {
 				
-				var path = this.resolve_path( this.firstPath(), sources.get(i));
+				var path = this.path + (sources.get(i) == "" ? "" : "/") + sources.get(i);
 				
 				if (Path.get_basename (path) == "vapi") {
 					GLib.debug("Adding VAPIDIR: %s\n", path);
