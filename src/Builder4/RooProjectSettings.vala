@@ -131,7 +131,7 @@ public class Xcls_RooProjectSettings : Object
         
         // need to re-init the database 
         
-        _this.project.initRooDatabase();
+        _this.project.initDatabase();
          
         
     }
