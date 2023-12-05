@@ -54,16 +54,12 @@ namespace Project
 			this.xtype = "Gtk";
 	  		var gid = "project-gtk-%d".printf(gtk_id++);
 	  		this.id = gid;
-	  		try {
-				this.loadConfig();
-			} catch (GLib.Error e )  {
-				// is tihs ok?
-			}
+	  		 
 		
 		}
 		public Gee.HashMap<string,GtkValaSettings> compilegroups;
 		
-		public override void loadJson(Json.Object obj) throws GLib.Error 
+		public override void loadJson(Json.Object obj)  
 		{
 			// load a builder.config JSON file.
 			// 
