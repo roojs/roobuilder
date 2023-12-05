@@ -1381,21 +1381,26 @@ public class Xcls_PopoverFileDetails : Object
             		fn = rx.replace(targetfile, targetfile.length, 0, ""); 
             	  } catch (RegexError e) {} // ignore.
             	  
-            	if (GLib.FileUtils.test(targetfile + "." + ext, GLib.FileTest.EXISTS)) {
-            	    Xcls_StandardErrorDialog.singleton().show(
-            	        _this.mainwindow.el,
-            	        "That file already exists"
-            	    ); 
-            	    return;
-            	}
-            	JsRender.JsRender f;
+            	 
+            	JsRender.JsRender? f;
                try {
             	   f =  JsRender.JsRender.factory(
             			ext == "bjs" ? _this.file.project.xtype : "PlainFile",  
             			_this.file.project, 
             			targetfile + "." + ext);
+            			
+            		if (f == null) {
+            			Xcls_StandardErrorDialog.singleton().show(
+            			    _this.mainwindow.el,
+            			    "File already exists "
+            			);
+            			return;
+            			
             	} catch (JsRender.Error e) {
-            		return;
+            			Xcls_StandardErrorDialog.singleton().show(
+            			    _this.mainwindow.el,
+            			    "File already exists "
+            			);
             	}
             	_this.file = f;
             	
@@ -1405,13 +1410,7 @@ public class Xcls_PopoverFileDetails : Object
             	_this.updateFileFromEntry();
             	_this.file.loaded = true;
             	_this.file.save();
-            	if (ext == "bjs") {
-            		
-            			_this.file.project.addFile(_this.file);
-            		 
-            	}
-            	
-             
+            	  
             	// what about .js ?
                _this.done = true;
             	_this.el.hide();
