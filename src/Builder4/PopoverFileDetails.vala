@@ -83,11 +83,7 @@ public class Xcls_PopoverFileDetails : Object
         _this.permname.el.set_text(c.permname);
         
         
-        
-        
-        
-        
-        
+         
         
          var ar = new Gee.ArrayList<string>();
          _this.dbmodel.loadData(ar,"");
