@@ -438,7 +438,7 @@ namespace Project {
 			obj.set_string_member("xtype", this.xtype);
 						
  		 	
- 		 	this.saveJSON(obj);
+ 		 	this.saveJson(obj);
 		
 			var  generator = new Json.Generator ();
 			var  root = new Json.Node(Json.NodeType.OBJECT);
