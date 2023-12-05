@@ -93,7 +93,7 @@ namespace Project
 			while(iter.next()) {
 				 ar.add_object_element(iter.get_value().toJson());
 			}
-			obj.set_array_member(ar);
+			obj.set_array_member("compilegroups", ar);
 		}
 		
 	 
@@ -130,7 +130,7 @@ namespace Project
 			}
 			return "";
 		}
-		
+		/*
 		public string relPath(string target)
 		{
 			var basename = this.firstPath();
@@ -156,6 +156,7 @@ namespace Project
 			}
 	 
 		}
+		*/
 		/**
 		 * get a list of files for a folder..
 		 * 
