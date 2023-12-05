@@ -153,7 +153,7 @@ namespace Palete {
 			}
 			
 			Project.Project.loadAll();
-			var proj = Project.Project.getProjectByHash(BuilderApplication.opt_compile_project);
+			var proj = Project.Project.getProjectByPath(BuilderApplication.opt_compile_project);
 			
 			if (proj == null) {
 				jerr("could not load test project %s".printf( BuilderApplication.opt_compile_project));
