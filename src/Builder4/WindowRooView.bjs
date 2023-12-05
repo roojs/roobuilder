@@ -355,7 +355,7 @@
             "//    var  data = js[0];",
             "    this.redraws++;",
             "  ",
-            "    var project = _this.file.project;  ",
+            "    var project = (Project.Roo) _this.file.project;  ",
             "",
             "     //print (project.fn);",
             "     // set it to non-empty.",
