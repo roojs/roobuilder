@@ -882,7 +882,7 @@ public class Xcls_WindowRooView : Object
                 "</head>");
                 //print("LOAD HTML " + html);
                 
-                 var rootURL = _this.file.project.rootURL;
+                 var rootURL = project.rootURL;
            
                 
                 
