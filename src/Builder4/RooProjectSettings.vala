@@ -33,7 +33,7 @@ public class Xcls_RooProjectSettings : Object
         // my vars (def)
     public signal void buttonPressed (string btn);
     public Gtk.PositionType position;
-    public Project.Project project;
+    public Project.Roo project;
     public bool done;
     public uint border_width;
     public bool autohide;
