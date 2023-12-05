@@ -75,6 +75,7 @@ public class DialogSaveModule : Object
         	    ); 
         	    return;
         	}
+        	JsRender.JsRender f;
              try {
         	   f =  JsRender.JsRender.factory(
         			  project.xtype ,  

@@ -78,6 +78,7 @@
      "\t    ); ",
      "\t    return;",
      "\t}",
+     "\tJsRender.JsRender f;",
      "     try {",
      "\t   f =  JsRender.JsRender.factory(",
      "\t\t\t  project.xtype ,  ",
