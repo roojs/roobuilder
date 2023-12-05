@@ -835,7 +835,7 @@ public class Xcls_WindowRooView : Object
             // need to modify paths
         
             string inhtml;
-            var base_template = _this.file.project.base_template;
+            var base_template = project.base_template;
             
             if (base_template.length > 0 && !FileUtils.test(
                 BuilderApplication.configDirectory() + "/resources/" +  base_template, FileTest.EXISTS)  
