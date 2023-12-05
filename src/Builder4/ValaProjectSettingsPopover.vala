@@ -40,9 +40,9 @@ public class ValaProjectSettingsPopover : Object
         // my vars (def)
     public Xcls_MainWindow window;
     public Gtk.PositionType position;
-    public uint border_width;
-    public bool done;
     public Project.Gtk project;
+    public bool done;
+    public uint border_width;
     public bool autohide;
 
     // ctor
@@ -54,9 +54,9 @@ public class ValaProjectSettingsPopover : Object
         // my vars (dec)
         this.window = null;
         this.position = Gtk.PositionType.RIGHT;
-        this.border_width = 0;
-        this.done = false;
         this.project = null;
+        this.done = false;
+        this.border_width = 0;
         this.autohide = false;
 
         // set gobject values
