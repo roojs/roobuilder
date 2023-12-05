@@ -56,10 +56,7 @@ namespace Project {
 		public string id;
 		public string fn = ""; // just a md5...
 		public string name = "";
-		public string runhtml = "";
-		public string base_template = "";
-		public string rootURL = "";
-		public string html_gen = "";
+		
 		
 		public string path = "";
 		public Gee.ArrayList<string> sub_paths;
@@ -68,7 +65,7 @@ namespace Project {
 		//tree : false,
 		public  string xtype;
 		
-		public Json.Object json_project_data;
+		//public Json.Object json_project_data;
 
 		public Palete.Palete palete;
 		 
@@ -454,13 +451,8 @@ namespace Project {
 			
 			
 			this.json_project_data.set_string_member("name", this.name);
-			this.json_project_data.set_string_member("fn", this.fn);
 			this.json_project_data.set_string_member("xtype", this.xtype);
-			this.json_project_data.set_string_member("runhtml", this.runhtml);
-			this.json_project_data.set_string_member("rootURL", this.rootURL);
-			this.json_project_data.set_string_member("base_template", this.base_template);
-			this.json_project_data.set_string_member("rootURL", this.rootURL);
-			this.json_project_data.set_string_member("html_gen", this.html_gen);			
+						
  		 	
  		 	this.saveJSON(this.json_project_data);
 		
