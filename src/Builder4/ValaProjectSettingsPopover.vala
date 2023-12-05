@@ -2220,7 +2220,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.clicked.connect( ( ) =>  { 
             
              
-            _this.project.writeConfig(); 
+            _this.project.save(); 
              
             	// what about .js ?
                _this.done = true;
