@@ -60,7 +60,7 @@
 		const OptionEntry[] options = {
 		
 			
-			{ "project", 0, 0, OptionArg.STRING, ref opt_compile_project, "Compile a project", null },
+			{ "project", 0, 0, OptionArg.STRING, ref opt_compile_project, "select a project", null },
 			{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
 			{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
@@ -238,12 +238,12 @@
 			 	return null;
 			 }
 			Project.Project cur_project = null;
-			cur_project = Project.Project.getProjectByHash( BuilderApplication.opt_compile_project);
+			cur_project = Project.Project.getProjectByPath( BuilderApplication.opt_compile_project);
 			
 			if (cur_project == null) {
 				GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
 			}
-			cur_project.scanDirs();
+			cur_project.load();
 				
 			return cur_project;
 		

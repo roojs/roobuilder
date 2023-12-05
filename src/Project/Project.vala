@@ -49,7 +49,7 @@ namespace Project {
 
 	
 	
-	public class Project : Object {
+	public abstract class Project : Object {
 		
 		public signal void on_changed (); 
 	
@@ -75,7 +75,7 @@ namespace Project {
 		bool is_scanned; 
 	   
 		
-		public Project (string path) {
+		protected Project (string path) {
 			
 			this.name = GLib.Path.get_basename(path); // default..
 			this.json_project_data = new Json.Object();
@@ -187,7 +187,7 @@ namespace Project {
 		
 		}
 		
-		public static Project? getProject(string name)
+		public static Project? getProjectByName(string name)
 		{
 			
 			foreach (var p in projects) {
@@ -199,7 +199,18 @@ namespace Project {
 			return null;
 		
 		}
+		public static Project? getProjectByPath(string path)
+		{
+			
+			foreach (var p in projects) {
+				if (p.path == path) {
+					return p;
+				}
+			}
+			
+			return null;
 		
+		}
 		public static string listAllToString()
 		{
 			var all = projects;
@@ -217,7 +228,7 @@ namespace Project {
 				ret += "%s\t%s\t%s\n".printf(
 						iter.get().fn,
 						iter.get().name,
-						iter.get().firstPath()
+						iter.get().path
 						);
 			 
 				
@@ -419,7 +430,7 @@ namespace Project {
 
 			//var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			
-			var  s =  this.toJSON(false);
+			var  s =  this.toJSON();
 			try {
 				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
 				FileUtils.set_contents(this.path + "/.roobuilder.jcfg", s, s.length);  
@@ -486,7 +497,7 @@ namespace Project {
 		// this will do a full scan - should only be done on viewing project..
 		// not initial load.. - may take time.
 		
-		public   void   loadJsonConfig()
+		public   void   load()
 		{
 			 
  
