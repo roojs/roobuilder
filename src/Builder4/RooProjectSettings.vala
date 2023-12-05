@@ -62,7 +62,7 @@ public class Xcls_RooProjectSettings : Object
         _this.done = false;
         
         _this.project = project;
-        _this.path.el.label = project.firstPath();
+        _this.path.el.label = project.path;
         // get the active project.
          var lm = GtkSource.LanguageManager.get_default();
                     
