@@ -806,7 +806,7 @@ namespace Project {
 			if (!dir.query_exists()) {
 				dir.make_directory();
 			}
-			this.sub_dirs.add(subdir);
+			this.sub_paths.add(subdir);
 		
 		}
 		
