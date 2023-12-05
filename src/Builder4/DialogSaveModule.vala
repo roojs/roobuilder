@@ -59,7 +59,7 @@ public class DialogSaveModule : Object
             if (!Regex.match_simple ("^[A-Za-z][A-Za-z0-9.]+$", name) )
             {
                 Xcls_StandardErrorDialog.singleton().show(
-                     _this.el,
+                     _this.el.transient_for,
                     "Template Name must contain only letters dots"
                 );
                 return;;
@@ -70,7 +70,7 @@ public class DialogSaveModule : Object
             
             if (GLib.FileUtils.test(targetfile, GLib.FileTest.EXISTS)) {
         	    Xcls_StandardErrorDialog.singleton().show(
-        	        _this.mainwindow.el,
+        	        _this.el.,
         	        "That file already exists"
         	    ); 
         	    return;
@@ -82,7 +82,7 @@ public class DialogSaveModule : Object
         			targetfile);
         	} catch (JsRender.Error e) {
         		Xcls_StandardErrorDialog.singleton().show(
-        	        _this.mainwindow.el,
+        	        _this.el.transient_for,
         	        "Error creating file"
         	    ); 
         		return;
