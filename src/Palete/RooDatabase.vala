@@ -13,7 +13,7 @@ namespace Palete {
   
     public class RooDatabase : Object 
     {
-        public Project.Project project;
+        public Project.Roo project;
 
 		public string DBTYPE;
 		public string DBNAME;
