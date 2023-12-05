@@ -76,7 +76,7 @@ public class Xcls_RooProjectSettings : Object
         
           
           
-        _this.rootURL.el.setW_text( _this.project.rootURL );
+        _this.rootURL.el.set_text( _this.project.rootURL );
         
         _this.html_gen_model.loadData(_this.project.html_gen);
     
