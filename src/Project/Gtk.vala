@@ -83,7 +83,7 @@ namespace Project
 				}
 				this.compilegroups.set(vs.name,vs);
 			}
-			GLib.debug("%s\n",this.configToString ());
+			//GLib.debug("%s\n",this.configToString ());
 			
 		}
 		public override string saveJson(Json.Object obj)
