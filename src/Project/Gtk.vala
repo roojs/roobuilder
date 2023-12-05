@@ -90,45 +90,17 @@ namespace Project
 			GLib.debug("%s\n",this.configToString ());
 			
 		}
-		public string configToString()
+		public override string saveJson(Json.Object obj
 		{
 			var ar = new Json.Array();
 			var iter = this.compilegroups.map_iterator();
 			while(iter.next()) {
-				 
-				ar.add_object_element(iter.get_value().toJson());
+				 ar.add_object_element(iter.get_value().toJson());
 			}
-
-			var generator = new Json.Generator ();
-			generator.indent = 4;
-			generator.pretty = true;
-			var node = new Json.Node(Json.NodeType.ARRAY);
-			node.set_array(ar);
-			generator.set_root(node);
-			return generator.to_data(null);
+			obj.set_array_member(ar);
 		}
 		
-		public void writeConfig()
-		{
-			var fn = this.firstPath() + "/config1.builder";
-			GLib.debug("write: " + fn );
-
-			 
-			var f = GLib.File.new_for_path(fn);
-			try {
-				var data_out = new GLib.DataOutputStream(
-						f.replace(null, false, GLib.FileCreateFlags.NONE, null)
-				);
-				data_out.put_string(this.configToString(), null);
-				data_out.close(null);
-			} catch (GLib.Error e) {
-				GLib.debug("Error writing config: %s", e.message);
-				return;
-			}
-			this.gir_cache_loaded = false; // force a reload.
-			
-			 
-		}
+	 
 		/**
 		 *  perhaps we should select the default in the window somewhere...
 		 */ 
