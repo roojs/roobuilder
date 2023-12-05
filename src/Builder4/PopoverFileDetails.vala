@@ -1402,6 +1402,10 @@ public class Xcls_PopoverFileDetails : Object
             			_this.file.project, 
             			targetfile);
             	} catch (JsRender.Error e) {
+            		Xcls_StandardErrorDialog.singleton().show(
+            	        _this.mainwindow.el,
+            	        "Error creating file"
+            	    ); 
             		return;
             	}
             	_this.file = f;
