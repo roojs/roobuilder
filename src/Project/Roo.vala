@@ -42,7 +42,7 @@ public class Project.Roo : Project {
 		}
 		
 	}
-	public override string saveJson(Json.Object obj
+	public override string saveJson(Json.Object obj)
 	{
 			obj.set_string_member("fn", this.fn);
 
