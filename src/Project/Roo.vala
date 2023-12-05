@@ -21,6 +21,10 @@ public class Project.Roo : Project {
     {
          this.roo_database = new Palete.RooDatabase.from_project(this);   
     }
+	public override void loadJson(Json.Object obj) throws GLib.Error 
+	{
+		//NOOP
+	}
 }
  
  
