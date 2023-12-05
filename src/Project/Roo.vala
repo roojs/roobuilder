@@ -6,6 +6,11 @@ public class Project.Roo : Project {
 
 	public Palete.RooDatabase roo_database;
 
+public string runhtml = "";
+		public string base_template = "";
+		public string rootURL = "";
+		public string html_gen = "";
+
     public Roo(string path) {
 
 		
@@ -21,7 +26,7 @@ public class Project.Roo : Project {
     {
          this.roo_database = new Palete.RooDatabase.from_project(this);   
     }
-	public override void loadJson(Json.Object obj) throws GLib.Error 
+	public override void loadJson(Json.Object obj) 
 	{
 		// might not exist?
 
