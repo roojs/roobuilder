@@ -670,15 +670,21 @@ namespace Project {
 			return null;
 		}
 
-	 
-		public JsRender.JsRender newFile (string sub_dir, string name)
+		// name should include extension.	 
+		public JsRender.JsRender? newFile (string xtype, string sub_dir, string name)
 		{
 			try {
 				var fp = this.path + (sub_dir.length > 0  ? "/" : "") + sub_dir;
-				var ret =  JsRender.JsRender.factory(this.xtype, 
+				if (this.files.has_key(fp + "/" +  name)) {
+					return null;
+				}
+				 
+				
+				var ret =  JsRender.JsRender.factory(xtype, 
 											 this, 
-											 fp + "/" +  name + ".bjs");
-				this.files.set(fp + "/" +  name + ".bjs", ret);
+											 fp + "/" +  name
+											 );
+				this.files.set(fp + "/" +  name , ret);
 				return ret;
 			} catch (JsRender.Error e) {
 				GLib.error("failed to create file %s", e.message);
