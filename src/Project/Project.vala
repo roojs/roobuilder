@@ -332,29 +332,13 @@ namespace Project {
 				return;
 			}
 
-			proj.json_project_data  = obj; // store the original object...
+			//proj.json_project_data  = obj; // store the original object...
 			
 			proj.fn =  Path.get_basename(jsonfile).split(".")[0];
 
-
+			proj.loadJson(obj);
 			// might not exist?
-
-			if (obj.has_member("runhtml")) {
-					proj.runhtml  = obj.get_string_member("runhtml"); 
-			}
-			// might not exist?
-			if (obj.has_member("base_template")) {
-					proj.base_template  = obj.get_string_member("base_template"); 
-			}
-			// might not exist?
-			if (obj.has_member("rootURL")) {
-					proj.rootURL  = obj.get_string_member("rootURL"); 
-			}
-			
-			if (obj.has_member("html_gen")) {
-					proj.html_gen  = obj.get_string_member("html_gen"); 
-			}
-			
+ 
 			proj.name = obj.get_string_member("name");
 
 			// used to load paths..
