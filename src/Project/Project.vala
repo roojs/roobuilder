@@ -433,16 +433,16 @@ namespace Project {
 		public string toJSON( )
 		{
 			
-			
-			this.json_project_data.set_string_member("name", this.name);
-			this.json_project_data.set_string_member("xtype", this.xtype);
+			var obj = new Json.Object();
+			obj.set_string_member("name", this.name);
+			obj.set_string_member("xtype", this.xtype);
 						
  		 	
- 		 	this.saveJSON(this.json_project_data);
+ 		 	this.saveJSON(obj);
 		
 			var  generator = new Json.Generator ();
 			var  root = new Json.Node(Json.NodeType.OBJECT);
-			root.init_object(this.json_project_data);
+			root.init_object(obj);
 			generator.set_root (root);
 			//if (show_all) {
 				generator.pretty = true;
@@ -872,6 +872,7 @@ namespace Project {
 		*/
 		
 		// wrapper around the json data...
+		/*
 		public string get_string_member(string key) {
 			
 			if (!this.json_project_data.has_member(key)) {
@@ -884,6 +885,7 @@ namespace Project {
 			return ret;
 			
 		}
+		*/
 		 public abstract void initDatabase();
 		  
 	}
