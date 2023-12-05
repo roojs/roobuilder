@@ -628,8 +628,8 @@ public class ValaProjectSettingsPopover : Object
             this.el.clicked.connect( () => {
             	
             	// top level only to start with..
-            	var pp  = _this.project.firstPath();
-            	_this.project.add(pp + "/" + _this.add_dir_entry.el.text, "dir");
+            
+            	_this.project.createDir(_this.add_dir_entry.el.text );
             	 
                 _this.default_directory_tree_store.load();
             	_this.add_dir_popover.el.hide();
