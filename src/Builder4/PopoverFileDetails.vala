@@ -1355,8 +1355,8 @@ public class Xcls_PopoverFileDetails : Object
             	Value ftypename;
             	_this.ftdbmodel.el.get_value (iter, 0, out ftypename);
             	var ext = ((string)ftypename);
-            	var dir = _this.project.firstPath(); 
-            	if (ext != "bjs") {
+            	//var dir = _this.project.path; 
+            	 
             	 
             		if (!_this.dir.el.get_active_iter(out iter)) {
             			// should not happen...
@@ -1369,16 +1369,16 @@ public class Xcls_PopoverFileDetails : Object
             		}
             		Value vdir;
             		_this.dirmodel.el.get_value (iter, 0, out vdir);
-            		dir = (string)vdir;
-            	}
+            		var dir = (string)vdir;
+            	 
             	
-            	var targetfile = dir + "/" + fn;
+            	 
             	
             	// strip the file type off the end..
             	
             	try {
             		var rx = new GLib.Regex("\\." + ext + "$",GLib.RegexCompileFlags.CASELESS);
-            		targetfile = rx.replace(targetfile, targetfile.length, 0, ""); 
+            		fn = rx.replace(targetfile, targetfile.length, 0, ""); 
             	  } catch (RegexError e) {} // ignore.
             	  
             	if (GLib.FileUtils.test(targetfile + "." + ext, GLib.FileTest.EXISTS)) {
