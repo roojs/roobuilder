@@ -499,7 +499,7 @@ namespace Project {
 		}
 		
 		public abstract void loadJson(Json.Object obj); 
-		public abstract void saveJSON(Json.Object obj);
+		public abstract void saveJson(Json.Object obj);
 		
 		/*
 		
