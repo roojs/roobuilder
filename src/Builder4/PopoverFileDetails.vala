@@ -1373,6 +1373,11 @@ public class Xcls_PopoverFileDetails : Object
             	 
             	
             	 
+            	var targetfile  = _this.project.path;
+            	if (dir != "") {
+            		targetfile += dir;
+            	}
+            	targetfile += fn;
             	
             	// strip the file type off the end..
             	
@@ -1381,26 +1386,24 @@ public class Xcls_PopoverFileDetails : Object
             		fn = rx.replace(targetfile, targetfile.length, 0, ""); 
             	  } catch (RegexError e) {} // ignore.
             	  
-            	 
-            	JsRender.JsRender? f;
+            	  targetfile += "." + ext;
+            	  
+            	  
+            	if (GLib.FileUtils.test(targetfile, GLib.FileTest.EXISTS)) {
+            	    Xcls_StandardErrorDialog.singleton().show(
+            	        _this.mainwindow.el,
+            	        "That file already exists"
+            	    ); 
+            	    return;
+            	}
+            	JsRender.JsRender f;
                try {
             	   f =  JsRender.JsRender.factory(
             			ext == "bjs" ? _this.file.project.xtype : "PlainFile",  
             			_this.file.project, 
-            			targetfile + "." + ext);
-            			
-            		if (f == null) {
-            			Xcls_StandardErrorDialog.singleton().show(
-            			    _this.mainwindow.el,
-            			    "File already exists "
-            			);
-            			return;
-            			
+            			targetfile);
             	} catch (JsRender.Error e) {
-            			Xcls_StandardErrorDialog.singleton().show(
-            			    _this.mainwindow.el,
-            			    "File already exists "
-            			);
+            		return;
             	}
             	_this.file = f;
             	
@@ -1410,7 +1413,10 @@ public class Xcls_PopoverFileDetails : Object
             	_this.updateFileFromEntry();
             	_this.file.loaded = true;
             	_this.file.save();
-            	  
+                 _this.file.project.addFile(_this.file);
+            		 
+            	 
+             
             	// what about .js ?
                _this.done = true;
             	_this.el.hide();
