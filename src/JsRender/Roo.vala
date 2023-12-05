@@ -23,7 +23,7 @@ namespace JsRender {
 
  
         
-        public Roo(Project.Project project, string path) 
+        public Roo(Project.Roo project, string path) 
         {
             aconstruct( project, path);
  
