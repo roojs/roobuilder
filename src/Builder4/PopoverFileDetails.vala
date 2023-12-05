@@ -1075,7 +1075,7 @@ public class Xcls_PopoverFileDetails : Object
             if (!(_this.project is Project.Gtk)) {
         		return;
         	}
-            var sd = ((Project.Gtk)_this.project).scandirs;
+            var sd = ((Project.Gtk)_this.project).sub_dirs;
             
             Gtk.TreeIter iter;
             var el = this.el;
