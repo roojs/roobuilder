@@ -86,7 +86,7 @@ namespace Project
 			//GLib.debug("%s\n",this.configToString ());
 			
 		}
-		public override string saveJson(Json.Object obj)
+		public override void saveJson(Json.Object obj)
 		{
 			var ar = new Json.Array();
 			var iter = this.compilegroups.map_iterator();
