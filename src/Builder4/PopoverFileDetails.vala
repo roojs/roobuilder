@@ -1309,8 +1309,7 @@ public class Xcls_PopoverFileDetails : Object
             	    return;
             	}
             	*/
-            	 
-            	
+            	  
               
             	// FIXME - this may be more complicated...
             	//for (var i in this.def) {
