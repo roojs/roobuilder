@@ -203,7 +203,7 @@ namespace JsRender {
 	public override void saveHTML ( string html )
 	{
 		GLib.debug ("SAVEHTML %s\n",  this.roo_project.runhtml);		 
-		if (this.project.runhtml == "") {
+		if (this.roo_project.runhtml == "") {
 			return;
 		}
 		 
