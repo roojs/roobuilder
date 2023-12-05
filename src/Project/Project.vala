@@ -59,9 +59,9 @@ namespace Project {
 		
 		
 		public string path = "";
-		public Gee.ArrayList<string> sub_paths;
+		private Gee.ArrayList<string> sub_paths;
 		
-		public Gee.HashMap<string,JsRender.JsRender> files ;
+		private Gee.HashMap<string,JsRender.JsRender> files ;
 		//tree : false,
 		public  string xtype;
 		
