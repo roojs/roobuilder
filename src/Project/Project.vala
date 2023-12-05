@@ -385,12 +385,18 @@ namespace Project {
 				 }
 			}
 
-
+			
 			switch(xtype) {
 				case "Gtk":
-					return new Gtk(path);
+					var ret =  new Gtk(path);
+					projects.add(ret);
+					saveProjectList();
+					return ret;
 				case "Roo":
-					return new Roo(path);
+					var ret = new Roo(path);
+					projects.add(ret);
+					saveProjectList();
+					return ret;
 				//case "Flutter":
 				//	return new Flutter(path);
 			}
