@@ -20,7 +20,7 @@ namespace Palete {
 		 
         public Gda.Connection cnc;
         
-		public RooDatabase.from_project (Project.Project project)
+		public RooDatabase.from_project (Project.Roo project)
         {
             this.project = project;
 			this.DBTYPE = this.project.DBTYPE;
