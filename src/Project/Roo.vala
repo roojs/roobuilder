@@ -6,11 +6,14 @@ public class Project.Roo : Project {
 
 	public Palete.RooDatabase roo_database;
 
-public string runhtml = "";
-		public string base_template = "";
-		public string rootURL = "";
-		public string html_gen = "";
-
+	public string runhtml = "";
+	public string base_template = "";
+	public string rootURL = "";
+	public string html_gen = "";
+	public string DBTYPE = "";
+	public string DBNAME = "";
+	public string DBUSERNAME = "";
+	public string DBPASSWORD = "";	 
     public Roo(string path) {
 
 		
@@ -44,6 +47,19 @@ public string runhtml = "";
 		
 		if (obj.has_member("html_gen")) {
 				this.html_gen  = obj.get_string_member("html_gen"); 
+		}
+		if (obj.has_member("DBTYPE")) {
+				this.DBTYPE  = obj.get_string_member("DBTYPE"); 
+		}
+		
+		if (obj.has_member("DBNAME")) {
+				this.DBNAME  = obj.get_string_member("DBNAME"); 
+		}
+		if (obj.has_member("DBUSERNAME")) {
+				this.DBUSERNAME  = obj.get_string_member("DBUSERNAME"); 
+		}
+		if (obj.has_member("DBPASSWORD")) {
+				this.DBPASSWORD  = obj.get_string_member("DBPASSWORD"); 
 		}
 		
 	}
