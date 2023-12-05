@@ -192,7 +192,7 @@ namespace JsRender {
 		}
 
 	 public Project.Roo roo_project {
-	 	set {} ;
+	 	set {}  
 	 	get { 
 	 		return (Project.Roo) this.project;
  		}
