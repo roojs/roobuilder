@@ -664,7 +664,7 @@ namespace Project {
 			return null;
 		}
 
-	/*
+	 
 		public JsRender.JsRender newFile (string sub_dir, string name)
 		{
 			try {
@@ -672,13 +672,13 @@ namespace Project {
 				var ret =  JsRender.JsRender.factory(this.xtype, 
 											 this, 
 											 fp + "/" +  name + ".bjs");
-				this.addFile(ret);
+				this.files.set(fp + "/" +  name + ".bjs", ret);
 				return ret;
 			} catch (JsRender.Error e) {
 				GLib.error("failed to create file %s", e.message);
 			}
 		}
-		*/
+	 
 		public JsRender.JsRender loadFileOnly (string path)
 		{
 			var xt = this.xtype;
