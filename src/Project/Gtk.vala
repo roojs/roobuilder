@@ -69,27 +69,14 @@ namespace Project
 			// 
 			this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
 			
+			 if (!obj.has_member("compilegroups") || obj.get_member("compilegroups").get_node_type () != Json.NodeType.ARRAY) {
+			 	return;
+			 }
 			
-			var fn = this.firstPath() + "/config1.builder";
-			GLib.debug("load: " + fn );
 			
-			if (!FileUtils.test(fn, FileTest.EXISTS)) {
-				this.compilegroups.set("_default_", new GtkValaSettings("_default_") );
-				return;
-			}
-
-			var pa = new Json.Parser();
-			pa.load_from_file(fn);
-			var node = pa.get_root();
-
-			// should be an array really.
-			if (node.get_node_type () != Json.NodeType.ARRAY) {
-				throw new Error.INVALID_FORMAT ("Unexpected element type %s", node.type_name ());
-			}
-			
-			var obj = node.get_array ();
-			for(var i= 0;i<obj.get_length();i++) {
-				var el = obj.get_object_element(i);
+			var ar = obj.get_array_member("compilegroups");
+			for(var i= 0;i<ar.get_length();i++) {
+				var el = ar.get_object_element(i);
 				var vs = new GtkValaSettings.from_json(el);
                 if (vs == null) {
                     print("problem loading json file");
