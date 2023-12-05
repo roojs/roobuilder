@@ -795,6 +795,23 @@ namespace Project {
 			this.files.set(pfile.path, pfile); // duplicate check?	
 			this.on_changed();
 		}
+		
+		public void createDir(string subdir)   // add a single dir, and trigger changed.
+		{
+			if (subdir.strip() == "" || this.sub_paths.contains(subdir)) {
+				return;
+			}
+			var dir= File.new_for_path(this.path + "/" + subdir);
+
+			if (!dir.query_exists()) {
+				dir.make_directory();
+			}
+			this.sub_dirs.add(subdir);
+		
+		}
+		
+		
+		
 		/*
 		public void add(string path, string type)
 		{
