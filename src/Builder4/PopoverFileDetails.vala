@@ -1075,7 +1075,7 @@ public class Xcls_PopoverFileDetails : Object
             if (!(_this.project is Project.Gtk)) {
         		return;
         	}
-            var sd = ((Project.Gtk)_this.project).sourcedirs();
+            var sd = ((Project.Gtk)_this.project).scandirs;
             
             Gtk.TreeIter iter;
             var el = this.el;
@@ -1093,13 +1093,13 @@ public class Xcls_PopoverFileDetails : Object
           //  el.set_value(iter, 1, "-- select a directoyr --");
             //_this.build_module.el.set_active_iter(iter);
             
-            for (var i = 0; i < sd.length;i++) {
+            foreach(var dir in sd) {
             
         
                 el.append(out iter);
                 
-                el.set_value(iter, 0, sd[i]);
-                el.set_value(iter, 1, sd[i]);
+                el.set_value(iter, 0, sd);
+                el.set_value(iter, 1, sd == "" ? "Top Folder" : sd);
                 
                 //if (data.get(i) == cur) {
                 //    _this.build_module.el.set_active_iter(iter);
