@@ -831,7 +831,7 @@
     "\t",
     "\t",
     "\tthis.selectedProject = project;",
-    "\tproject.scanDirs();",
+    "\tproject.load();",
     "\t//this.clutterfiles.loadProject(proj);",
     "\t",
     "\t",
