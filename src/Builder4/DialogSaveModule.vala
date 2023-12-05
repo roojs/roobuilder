@@ -65,7 +65,7 @@ public class DialogSaveModule : Object
                 return;;
             }
            
-            var f = project.newFile(name);
+            var f = project.newFile("/templates", name);
             f.tree =  _this.data.deepClone();
             f.save();
             
