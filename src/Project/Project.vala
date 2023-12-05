@@ -75,7 +75,7 @@ namespace Project {
 		protected Project (string path) {
 			
 			this.name = GLib.Path.get_basename(path); // default..
-			this.json_project_data = new Json.Object();
+			//this.json_project_data = new Json.Object();
 			
 			this.is_scanned = false;
 			this.sub_paths = new Gee.ArrayList<string>();
