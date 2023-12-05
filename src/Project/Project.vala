@@ -553,6 +553,7 @@ namespace Project {
 			
 			this.name = obj.get_string_member("name");
 
+			this.loadJson(obj);
 			// used to load paths..
 			this.loadSubDirectories("", 0);
 			
@@ -563,9 +564,7 @@ namespace Project {
 			
 		}
 		
-		public void loadJson(Json Object obj) {
-		
-		}
+		public abstract void loadJson(Json Object obj); 
 		
 		
 		/*
