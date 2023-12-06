@@ -402,7 +402,7 @@
                   {
                    "$ xns" : "Gtk",
                    "* prop" : "filter",
-                   "Gtk.CustomFilterFunc match_func" : "",
+                   "Gtk.CustomFilterFunc match_func" : "(item) => { return true; }",
                    "xtype" : "CustomFilter"
                   }
                  ],
