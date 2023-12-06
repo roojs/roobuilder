@@ -1290,6 +1290,7 @@ public class DialogFiles : Object
             	var gi = (Gtk.ListItem)item;
             	var b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);
             	var i = new Gtk.Image();
+            	i.pixel_size = 96;
             	var t = new Gtk.Label("");
             	b.append(i);
             	b.append(t);
