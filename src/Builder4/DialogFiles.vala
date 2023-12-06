@@ -1246,7 +1246,12 @@ public class DialogFiles : Object
         public Xcls_CustomFilter29(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.CustomFilter( (item) => {  return true;                              } );
+            this.el = new Gtk.CustomFilter( (item) => { 
+	
+	var j =  ((JsRender.JsRender) item);
+	return j.xtype == "Roo" || j.xtype == "Gtk";
+
+} );
 
             // my vars (dec)
 
