@@ -1297,8 +1297,15 @@ public class DialogFiles : Object
             	gi.set_child(b);
             	
             });
-            this.el.bind.connect( (object) => {
-            
+            this.el.bind.connect( (listitem) => {
+             
+            	var box = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();
+            	   
+            	var img = (Gtk.Image) box.get_first_child();
+            	var lbl = img.get_next_sibling();
+            	
+            	
+            	
             
             });
         }

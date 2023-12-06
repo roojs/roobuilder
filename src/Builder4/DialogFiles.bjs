@@ -423,8 +423,15 @@
                "* prop" : "factory",
                "listeners" : {
                 "bind" : [
-                 "(object) => {",
-                 "",
+                 "(listitem) => {",
+                 " ",
+                 "\tvar box = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();",
+                 "\t   ",
+                 "\tvar img = (Gtk.Image) box.get_first_child();",
+                 "\tvar lbl = img.get_next_sibling();",
+                 "\t",
+                 "\t",
+                 "\t",
                  "",
                  "}",
                  ""
