@@ -94,6 +94,7 @@ namespace JsRender {
 			this.fullname = (this.parent.length > 0 ? (this.parent + ".") : "" ) + this.name;
 
 			this.doubleStringProps = new Gee.ArrayList<string>();
+			this.childfiles = new GLib.ListStore(typeof(JsRender));
 
 		}
 		
