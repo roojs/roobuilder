@@ -1286,7 +1286,12 @@ public class DialogFiles : Object
 
             //listeners
             this.el.setup.connect( (item) => {
-            	var j = (JsRender.JsRender) item;
+            	//var j = (JsRender.JsRender) item;
+            	var gi= (Gtk.ListItem)item;
+            	var b  
+            	
+            	item.set_child(box);
+            	var 
             	
             
             });

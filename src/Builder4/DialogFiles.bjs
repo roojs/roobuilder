@@ -424,7 +424,12 @@
                "listeners" : {
                 "setup" : [
                  "(item) => {",
-                 "\tvar j = (JsRender.JsRender) item;",
+                 "\t//var j = (JsRender.JsRender) item;",
+                 "\tvar gi= (Gtk.ListItem)item;",
+                 "\tvar b  ",
+                 "\t",
+                 "\titem.set_child(box);",
+                 "\tvar ",
                  "\t",
                  "",
                  "}",
