@@ -374,6 +374,14 @@
                   {
                    "$ xns" : "Gtk",
                    "* prop" : "model",
+                   "items" : [
+                    {
+                     "$ xns" : "GLib",
+                     "* prop" : "model",
+                     "GLib.Type item_type" : "typeof(JsRender.JsRender)",
+                     "xtype" : "ListStore"
+                    }
+                   ],
                    "xtype" : "SortListModel"
                   }
                  ],
