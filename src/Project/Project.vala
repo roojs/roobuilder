@@ -763,7 +763,7 @@ namespace Project {
 		}
 		public void loadDirsIntoStore(GLib.ListStore ls) 
 		{
-			foreach(var f in this.sub_paths) {
+			foreach(var f in this.this.sub_paths) {
 				ls.append(f);
 			}
 		}
@@ -779,7 +779,18 @@ namespace Project {
 			return false;
 			
 		}
+		public void loadDirsToStringList(Gtk.StringList sl) 
+		{
+			while (sl.get_n_items() > 0) {
+				sl.remove(0);
+			}
+			
+			foreach(var sp in this.sub_paths) {
+				var add = sl.path == this.path ? "/" : sl.path.substring(this.path.length);
+				sl.apped(add);
+			}
 		
+		}
 		/*
 		public void add(string path, string type)
 		{
