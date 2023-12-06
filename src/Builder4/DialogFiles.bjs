@@ -422,17 +422,24 @@
                "$ xns" : "Gtk",
                "* prop" : "factory",
                "listeners" : {
+                "bind" : [
+                 "(object) => {",
+                 "",
+                 "",
+                 "}",
+                 ""
+                ],
                 "setup" : [
                  "(item) => {",
                  "\t//var j = (JsRender.JsRender) item;",
-                 "\tvar gi= (Gtk.ListItem)item;",
+                 "\tvar gi = (Gtk.ListItem)item;",
                  "\tvar b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);",
                  "\tvar i = new Gtk.Image();",
                  "\tvar t = new Gtk.Label(\"\");",
                  "\tb.append(i);",
                  "\tb.append(t);",
                  "\t",
-                 "\titem.set_child(b);",
+                 "\tgi.set_child(b);",
                  "\t",
                  "}",
                  ""
