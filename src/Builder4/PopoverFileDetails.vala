@@ -1015,6 +1015,9 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
+        public string getValue () {
+        
+        }
     }
     public class Xcls_dir_model : Object
     {

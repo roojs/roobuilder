@@ -386,7 +386,12 @@
            "xtype" : "StringList"
           }
          ],
-         "xtype" : "DropDown"
+         "xtype" : "DropDown",
+         "| string getValue" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ justify" : "Gtk.Justification.RIGHT",
