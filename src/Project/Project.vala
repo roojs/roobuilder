@@ -779,7 +779,7 @@ namespace Project {
 			return false;
 			
 		}
-		public void loadDirsToStringList(Gtk.StringList sl) 
+		public void loadDirsToStringList(GLib.ListModel sl) 
 		{
 			while (sl.get_n_items() > 0) {
 				sl.remove(0);
