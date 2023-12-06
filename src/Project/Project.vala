@@ -786,8 +786,8 @@ namespace Project {
 			}
 			
 			foreach(var sp in this.sub_paths) {
-				var add = sl.path == this.path ? "/" : sl.path.substring(this.path.length);
-				sl.apped(add);
+				 
+				sl.apped( sl.path == this.path ? "/" : sl.path.substring(this.path.length););
 			}
 		
 		}
