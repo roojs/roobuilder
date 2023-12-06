@@ -423,8 +423,9 @@
                "* prop" : "factory",
                "listeners" : {
                 "setup" : [
-                 "(object) => {",
-                 "",
+                 "(item) => {",
+                 "\tvar j = (JsRender.JsRender) item;",
+                 "\t",
                  "",
                  "}",
                  ""

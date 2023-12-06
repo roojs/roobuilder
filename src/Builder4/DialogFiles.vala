@@ -1285,8 +1285,9 @@ public class DialogFiles : Object
             // set gobject values
 
             //listeners
-            this.el.setup.connect( (object) => {
-            
+            this.el.setup.connect( (item) => {
+            	var j = (JsRender.JsRender) item;
+            	
             
             });
         }
