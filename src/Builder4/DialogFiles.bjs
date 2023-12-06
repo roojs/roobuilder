@@ -760,8 +760,8 @@
    "| void loadIconView" : [
     "() {",
     "\t",
-    "\tvar project =  this.selectedProject;",
-    "\tproject.loadFilesIntoStore(_this.gridmodel.el);",
+    " ",
+    "\tthis.selectedProject;.loadFilesIntoStore(_this.gridmodel.el);",
     "\t",
     "\t/*",
     "\t",

@@ -264,8 +264,8 @@ public class DialogFiles : Object
     }
     public void loadIconView () {
     	
-    	var project =  this.selectedProject;
-    	project.loadFilesIntoStore(_this.gridmodel.el);
+     
+    	this.selectedProject;.loadFilesIntoStore(_this.gridmodel.el);
     	
     	/*
     	
