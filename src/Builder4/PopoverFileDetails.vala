@@ -27,6 +27,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_dbcellrenderer dbcellrenderer;
     public Xcls_dbmodel dbmodel;
     public Xcls_dir_dropdown dir_dropdown;
+    public Xcls_dir_model dir_model;
     public Xcls_path path;
     public Xcls_save_btn save_btn;
 
@@ -1008,14 +1009,14 @@ public class Xcls_PopoverFileDetails : Object
             this.colspan = 1;
 
             // set gobject values
-            var child_0 = new Xcls_StringList26( _this );
+            var child_0 = new Xcls_dir_model( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_StringList26 : Object
+    public class Xcls_dir_model : Object
     {
         public Gtk.StringList el;
         private Xcls_PopoverFileDetails  _this;
@@ -1024,9 +1025,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_StringList26(Xcls_PopoverFileDetails _owner )
+        public Xcls_dir_model(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.dir_model = this;
             this.el = new Gtk.StringList( {} );
 
             // my vars (dec)
