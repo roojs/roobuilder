@@ -788,7 +788,7 @@ namespace Project {
 			
 			foreach(var sp in this.sub_paths) {
 				 
-				sl.apped( sl.path == this.path ? "/" : sl.path.substring(this.path.length));
+				sl.append( sl.path == this.path ? "/" : sl.path.substring(this.path.length));
 			}
 		
 		}
