@@ -389,7 +389,7 @@
          "xtype" : "DropDown",
          "| string getValue" : [
           "() {",
-          "",
+          "\treturn _this.dir_model.el.get_string(this.el.selected);",
           "}"
          ]
         },

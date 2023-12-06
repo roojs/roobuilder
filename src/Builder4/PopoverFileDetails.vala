@@ -1016,7 +1016,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
         public string getValue () {
-        
+        	return _this.dir_model.el.get_string(this.el.selected);
         }
     }
     public class Xcls_dir_model : Object
