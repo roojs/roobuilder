@@ -376,6 +376,13 @@
         {
          "$ xns" : "Gtk",
          "int colspan" : 1,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "xtype" : "StringList"
+          }
+         ],
          "xtype" : "DropDown"
         },
         {
