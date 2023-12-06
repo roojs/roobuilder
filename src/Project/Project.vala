@@ -779,8 +779,10 @@ namespace Project {
 			return false;
 			
 		}
-		public void loadDirsToStringList(GLib.ListModel sl) 
+		public void loadDirsToStringList(GLib.ListModel in_sl) 
 		{
+			
+			var sl = (Gtk.StringList) in_sl;
 			while (sl.get_n_items() > 0) {
 				sl.remove(0);
 			}
