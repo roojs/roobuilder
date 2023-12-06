@@ -1027,7 +1027,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_StringList26(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.StringList( null );
+            this.el = new Gtk.StringList( {} );
 
             // my vars (dec)
 
