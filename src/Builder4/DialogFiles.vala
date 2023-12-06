@@ -54,7 +54,7 @@ public class DialogFiles : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.child = child_0.el;
-        var child_1 = new Xcls_HeaderBar33( _this );
+        var child_1 = new Xcls_HeaderBar34( _this );
         child_1.ref();
         this.el.titlebar = child_1.el;
     }
@@ -1149,10 +1149,35 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_ListStore26( _this );
+            child_0.ref();
+            this.el.model = child_0.el;
         }
 
         // user defined functions
     }
+    public class Xcls_ListStore26 : Object
+    {
+        public GLib.ListStore el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ListStore26(DialogFiles _owner )
+        {
+            _this = _owner;
+            this.el = new GLib.ListStore( null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
 
 
 
@@ -1332,7 +1357,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_filemodel( _this );
             child_0.ref();
             this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn31( _this );
+            var child_1 = new Xcls_TreeViewColumn32( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
 
@@ -1440,7 +1465,7 @@ public class DialogFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn31 : Object
+    public class Xcls_TreeViewColumn32 : Object
     {
         public Gtk.TreeViewColumn el;
         private DialogFiles  _this;
@@ -1449,7 +1474,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn31(DialogFiles _owner )
+        public Xcls_TreeViewColumn32(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -1497,7 +1522,7 @@ public class DialogFiles : Object
 
 
 
-    public class Xcls_HeaderBar33 : Object
+    public class Xcls_HeaderBar34 : Object
     {
         public Gtk.HeaderBar el;
         private DialogFiles  _this;
@@ -1506,7 +1531,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HeaderBar33(DialogFiles _owner )
+        public Xcls_HeaderBar34(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.HeaderBar();
