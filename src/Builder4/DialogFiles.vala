@@ -1304,9 +1304,11 @@ public class DialogFiles : Object
             	var img = (Gtk.Image) box.get_first_child();
             	var lbl = img.get_next_sibling();
             
-            //	var f = (JsRender.JsRender) lr.get_item();
+            	var item = (JsRender.JsRender) lr.get_item();
             
-            	
+            	item.bind_property("name",
+                            lbl, "label",
+                       GLib.BindingFlags.SYNC_CREATE);
             	
             
             });
