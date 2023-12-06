@@ -763,7 +763,7 @@ namespace Project {
 		}
 		public void loadDirsIntoStore(GLib.ListStore ls) 
 		{
-			foreach(var f in this.this.sub_paths) {
+			foreach(var f in this.sub_paths) {
 				ls.append(f);
 			}
 		}
