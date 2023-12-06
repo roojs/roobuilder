@@ -385,6 +385,14 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "sorter",
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "expression",
+                       "string property_name" : "name",
+                       "xtype" : "PropertyExpression"
+                      }
+                     ],
                      "xtype" : "StringSorter"
                     }
                    ],
