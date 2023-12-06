@@ -59,7 +59,7 @@ namespace Project {
 		
 		
 		public string path = "";
-		private Gee.ArrayList<string> sub_paths;
+		private Gee.ArrayList<JsRender> sub_paths;
 		
 		private Gee.HashMap<string,JsRender.JsRender> files ;
 		//tree : false,
@@ -78,7 +78,7 @@ namespace Project {
 			//this.json_project_data = new Json.Object();
 			
 			this.is_scanned = false;
-			this.sub_paths = new Gee.ArrayList<string>();
+			this.sub_paths = new Gee.ArrayList<JsRender>();
 			this.files = new Gee.HashMap<string,JsRender.JsRender>();
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
@@ -657,7 +657,10 @@ namespace Project {
 			if (dp > 5) { // no more than 5 deep?
 				return;
 			}
-			this.sub_paths.add(subdir); // might be ''...
+			var dir = this.path + (subdir.length > 0 ? "/" : "") + subdir;
+			var jsDir = new JsRender.Dir(this, dir);
+			
+			this.sub_paths.add(jsDir); // might be ''...
 			
 			
 			// this should be done async -- but since we are getting the proto up ...
@@ -665,7 +668,7 @@ namespace Project {
 			var bjs_files = new Gee.ArrayList<string>();
 			
 			var subs = new Gee.ArrayList<string>();
-			var dir = this.path + (subdir.length > 0 ? "/" : "") + subdir;
+			
 			
 			var f = File.new_for_path(dir);
 			try {
@@ -698,6 +701,8 @@ namespace Project {
 					var xt = this.xtype;
 					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
 					this.files.set( dir + "/" + fn, el);
+					jsDir.childfiles.append(el);
+					
 					// parent ?? 
 					
 					 
@@ -717,6 +722,7 @@ namespace Project {
 				GLib.debug("Could have added %s/%s", dir, fn);
 			     var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
 				this.files.set( dir + "/" + fn, el);
+				jsDir.childfiles.append(el);
 			}
 			
 			foreach (var sd in subs) {
@@ -748,7 +754,19 @@ namespace Project {
 			this.on_changed();  // not sure if it's needed - adding a dir doesnt really change much.
 		}
 		
-		
+		// this store is used in the icon view ?? do we need to store and update it?
+		public void loadFilesIntoStore(GLib.ListStore ls) 
+		{
+			foreach(var f in this.files) {
+				ls.append(f);
+			}
+		}
+		public void loadDirsIntoStore(GLib.ListStore ls) 
+		{
+			foreach(var f in this.sub_paths) {
+				ls.append(f);
+			}
+		}
 		
 		/*
 		public void add(string path, string type)

@@ -362,6 +362,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "* prop" : "child",
              "items" : [
               {
                "$ xns" : "Gtk",
@@ -474,89 +475,6 @@
               }
              ],
              "xtype" : "GridView"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* init" : [
-              "{",
-              " ",
-              "}",
-              ""
-             ],
-             "* pack" : "set_child",
-             "bool has_tooltip" : true,
-             "bool hexpand" : true,
-             "bool vexpand" : true,
-             "id" : "iconview",
-             "int item_width" : 100,
-             "int markup_column" : 1,
-             "int pixbuf_column" : 3,
-             "items" : [
-              {
-               "$ columns" : "typeof(Object), typeof(string), typeof(string), typeof(Gdk.Pixbuf), typeof(Gdk.Pixbuf) ",
-               "$ xns" : "Gtk",
-               "* prop" : "model",
-               "id" : "iconmodel",
-               "int n_columns" : 4,
-               "xtype" : "ListStore"
-              }
-             ],
-             "listeners" : {
-              "item_activated" : [
-               "(path) => {",
-               "    ",
-               "    _this.win.windowstate.project = _this.selectedProject;",
-               "    _this.el.hide();",
-               "    ",
-               "    ",
-               " \tGtk.TreeIter iter;",
-               "   ",
-               "            ",
-               "\tthis.el.model.get_iter(out iter, path);",
-               "    ",
-               "    GLib.Value gval;",
-               "",
-               "    this.el.model.get_value(iter, 0 , out gval);",
-               "    var file = (JsRender.JsRender)gval;",
-               "    ",
-               "    ",
-               "    _this.win.windowstate.fileViewOpen(file, _this.new_window);",
-               "",
-               "    ",
-               "    ",
-               "}"
-              ],
-              "query_tooltip" : [
-               "(x, y, keyboard_tooltip, tooltip) => {",
-               "",
-               "\tGtk.TreePath path;",
-               "\tGtk.CellRenderer cell;",
-               "\t_this.iconview.el.get_item_at_pos(x,y + (int) _this.iconscroll.el.vadjustment.value, out path, out cell);",
-               "\t",
-               "\t",
-               "   // GLib.debug(\"Tooltip? %d,%d scroll: %d\",x,y, (int)_this.iconscroll.el.vadjustment.value);",
-               "\t ",
-               "\t",
-               "\tif (path == null) {",
-               "\t\t// GLib.debug(\"Tooltip? - no path\");",
-               "\t\treturn false;",
-               "\t}",
-               "\t",
-               "\tGtk.TreeIter iter;",
-               "\t_this.iconmodel.el.get_iter(out iter, path);",
-               "\tGLib.Value val;",
-               "\t_this.iconmodel.el.get_value(iter, 4, out val);",
-               "\t",
-               "\ttooltip.set_icon(  Gdk.Texture.for_pixbuf(",
-               "\t\t(Gdk.Pixbuf) val.get_object()",
-               "\t));",
-               "\t _this.iconview.el.set_tooltip_item(tooltip, path);",
-               "\treturn true;",
-               "}",
-               ""
-              ]
-             },
-             "xtype" : "IconView"
             }
            ],
            "xtype" : "ScrolledWindow"
@@ -702,6 +620,42 @@
            },
            "string name" : "popover-files-fileview",
            "xtype" : "TreeView"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "child",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "model",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
+                   "Gtk.TreeListModelCreateModelFunc create_func" : "",
+                   "bool autoexpand" : true,
+                   "bool passthrough" : true,
+                   "xtype" : "TreeListModel"
+                  }
+                 ],
+                 "xtype" : "SortListModel"
+                }
+               ],
+               "xtype" : "FilterListModel"
+              }
+             ],
+             "xtype" : "SingleSelection"
+            }
+           ],
+           "xtype" : "ColumnView"
           }
          ],
          "xtype" : "ScrolledWindow"
