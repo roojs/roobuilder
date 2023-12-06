@@ -1219,7 +1219,7 @@ public class DialogFiles : Object
         public Xcls_PropertyExpression28(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.PropertyExpression( null, null, "name" );
+            this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
 
             // my vars (dec)
 
