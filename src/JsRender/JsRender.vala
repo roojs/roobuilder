@@ -55,7 +55,7 @@ namespace JsRender {
 		 * 
 		 */
 		//public Xcls_Editor editor;
-		
+		public GLib.ListStore childfiles; // used by directories..
 		
 		
 		//abstract JsRender(Project.Project project, string path); 
