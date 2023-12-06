@@ -178,7 +178,7 @@
           "    //??? why can we not create bjs files in other directories??",
           "\t//if (!is_bjs && _this.file.path.length < 1) {",
           "\t",
-          "\t\t_this.dirmodel.loadData();",
+          " ",
           "\t\t",
           "\t\t",
           "\t//}",
