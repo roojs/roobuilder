@@ -426,12 +426,14 @@
                  "(item) => {",
                  "\t//var j = (JsRender.JsRender) item;",
                  "\tvar gi= (Gtk.ListItem)item;",
-                 "\tvar b  ",
+                 "\tvar b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);",
+                 "\tvar i = new Gtk.Image();",
+                 "\tvar t = new Gtk.Label(\"\");",
+                 "\tb.append(i);",
+                 "\tb.append(t);",
                  "\t",
-                 "\titem.set_child(box);",
-                 "\tvar ",
+                 "\titem.set_child(b);",
                  "\t",
-                 "",
                  "}",
                  ""
                 ]

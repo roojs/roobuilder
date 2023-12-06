@@ -1288,12 +1288,14 @@ public class DialogFiles : Object
             this.el.setup.connect( (item) => {
             	//var j = (JsRender.JsRender) item;
             	var gi= (Gtk.ListItem)item;
-            	var b  
+            	var b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);
+            	var i = new Gtk.Image();
+            	var t = new Gtk.Label("");
+            	b.append(i);
+            	b.append(t);
             	
-            	item.set_child(box);
-            	var 
+            	item.set_child(b);
             	
-            
             });
         }
 
