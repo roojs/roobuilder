@@ -1287,19 +1287,8 @@ public class Xcls_PopoverFileDetails : Object
             	var ext = ((string)ftypename);
             	//var dir = _this.project.path; 
             	 
-            	 
-            		if (!_this.dir.el.get_active_iter(out iter)) {
-            			// should not happen...
-            			// so we are jut going to return without 
-            			Xcls_StandardErrorDialog.singleton().show(
-            			    _this.mainwindow.el,
-            			    "You must select a directory "
-            			);
-            			return;
-            		}
-            		Value vdir;
-            		_this.dirmodel.el.get_value (iter, 0, out vdir);
-            		var dir = (string)vdir;
+            	 var dir = _this.dir_dropdown.getValue();
+            	
             	 
             	
             	 
