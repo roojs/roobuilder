@@ -1300,14 +1300,12 @@ public class DialogFiles : Object
             	b.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {
             		var j = (JsRender.JsRender) gi.get_item();
             		
-            		tooltip.set_custom( new Gtk.Image(
-            			j
-            			(Gdk.Pixbuf) val.get_object()
-            		));
-            	  
-            	 
-            	return true;
-            }
+            		var ti = new Gtk.Image.from_file ( j.getIconFileName());
+            		ti.pixel_size = 368;
+            		tooltip.set_custom( ti );
+            		return true;
+            	});
+            
             
             });
             this.el.bind.connect( (listitem) => {
