@@ -1326,17 +1326,7 @@ public class DialogFiles : Object
             	
                 img.set_from_file(f.getIconFileName());
                 
-            	    pixbuf = file.getIcon(92);
-            		bigpixbuf = file.getIcon(368);
-            
-            		 
-                     
-                    if (pixbuf == null) {
-                    	GLib.debug("PIXBUF is null? %s", file.name);
-            		    pixbuf = _this.missing_thumb_pixbuf;
-                    	bigpixbuf = _this.missing_thumb_pixbuf;
-            		}
-            
+            	  
             });
         }
 
