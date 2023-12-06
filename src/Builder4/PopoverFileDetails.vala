@@ -26,6 +26,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_build_module build_module;
     public Xcls_dbcellrenderer dbcellrenderer;
     public Xcls_dbmodel dbmodel;
+    public Xcls_dir_dropdown dir_dropdown;
     public Xcls_dir dir;
     public Xcls_dircellrenderer dircellrenderer;
     public Xcls_dirmodel dirmodel;
@@ -283,7 +284,7 @@ public class Xcls_PopoverFileDetails : Object
             var child_16 = new Xcls_Label24( _this );
             child_16.ref();
             this.el.attach (  child_16.el , 0,8,1,1 );
-            var child_17 = new Xcls_DropDown25( _this );
+            var child_17 = new Xcls_dir_dropdown( _this );
             child_17.ref();
             this.el.attach(  child_17.el, 0, 17, 1, 1 );
             var child_18 = new Xcls_dir( _this );
@@ -993,7 +994,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_DropDown25 : Object
+    public class Xcls_dir_dropdown : Object
     {
         public Gtk.DropDown el;
         private Xcls_PopoverFileDetails  _this;
@@ -1003,9 +1004,10 @@ public class Xcls_PopoverFileDetails : Object
         public int colspan;
 
         // ctor
-        public Xcls_DropDown25(Xcls_PopoverFileDetails _owner )
+        public Xcls_dir_dropdown(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.dir_dropdown = this;
             this.el = new Gtk.DropDown( null, null );
 
             // my vars (dec)
