@@ -21,9 +21,9 @@ public class Xcls_PopoverAddProp : Object
         // my vars (def)
     public bool modal;
     public JsRender.NodePropType ptype;
-    public JsRender.Node? node;
-    public Xcls_MainWindow mainwindow;
     public bool active;
+    public Xcls_MainWindow mainwindow;
+    public JsRender.Node? node;
 
     // ctor
     public Xcls_PopoverAddProp()
@@ -33,8 +33,8 @@ public class Xcls_PopoverAddProp : Object
 
         // my vars (dec)
         this.modal = true;
-        this.node = null;
         this.active = false;
+        this.node = null;
 
         // set gobject values
         this.el.width_request = 900;
