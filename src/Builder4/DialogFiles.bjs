@@ -435,7 +435,9 @@
                  "\titem.bind_property(\"name\",",
                  "                lbl, \"label\",",
                  "           GLib.BindingFlags.SYNC_CREATE);",
+                 "",
                  "\t",
+                 "",
                  "",
                  "}",
                  ""

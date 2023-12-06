@@ -1309,7 +1309,9 @@ public class DialogFiles : Object
             	item.bind_property("name",
                             lbl, "label",
                        GLib.BindingFlags.SYNC_CREATE);
+            
             	
+            
             
             });
         }
