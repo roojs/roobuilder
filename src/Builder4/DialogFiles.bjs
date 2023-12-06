@@ -763,7 +763,7 @@
     "\tvar project =  this.selectedProject;",
     "\tproject.loadFilesIntoStore(_this.gridmodel.el);",
     "\t",
-    "\t",
+    "\t/*",
     "\t",
     "\tif (_this.image_cache == null) {",
     "\t\t_this.image_cache = new Gee.HashMap<string,Gdk.Pixbuf>();",
@@ -846,6 +846,7 @@
     "",
     "        //this.filelayout.el.add_child(a.el);",
     "    }",
+    "    */",
     "}"
    ],
    "| void loadTreeView" : [

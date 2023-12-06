@@ -267,7 +267,7 @@ public class DialogFiles : Object
     	var project =  this.selectedProject;
     	project.loadFilesIntoStore(_this.gridmodel.el);
     	
-    	
+    	/*
     	
     	if (_this.image_cache == null) {
     		_this.image_cache = new Gee.HashMap<string,Gdk.Pixbuf>();
@@ -350,6 +350,7 @@ public class DialogFiles : Object
     
             //this.filelayout.el.add_child(a.el);
         }
+        */
     }
     public class Xcls_Box2 : Object
     {
