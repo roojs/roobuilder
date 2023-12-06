@@ -398,6 +398,12 @@
                     }
                    ],
                    "xtype" : "SortListModel"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "filter",
+                   "Gtk.CustomFilterFunc match_func" : "",
+                   "xtype" : "CustomFilter"
                   }
                  ],
                  "xtype" : "FilterListModel"
