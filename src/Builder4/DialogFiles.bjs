@@ -417,6 +417,11 @@
                 }
                ],
                "xtype" : "SingleSelection"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "factory",
+               "xtype" : "SignalListItemFactory"
               }
              ],
              "xtype" : "GridView"
