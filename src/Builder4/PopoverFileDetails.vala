@@ -59,7 +59,7 @@ public class Xcls_PopoverFileDetails : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.set_child (  child_0.el  );
-        var child_1 = new Xcls_HeaderBar34( _this );
+        var child_1 = new Xcls_HeaderBar35( _this );
         child_1.ref();
         this.el.titlebar = child_1.el;
     }
@@ -202,7 +202,7 @@ public class Xcls_PopoverFileDetails : Object
             var child_0 = new Xcls_grid( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
-            var child_1 = new Xcls_Box30( _this );
+            var child_1 = new Xcls_Box31( _this );
             child_1.ref();
             this.el.append (  child_1.el  );
         }
@@ -283,15 +283,18 @@ public class Xcls_PopoverFileDetails : Object
             var child_16 = new Xcls_Label24( _this );
             child_16.ref();
             this.el.attach (  child_16.el , 0,8,1,1 );
-            var child_17 = new Xcls_dir( _this );
+            var child_17 = new Xcls_DropDown25( _this );
             child_17.ref();
-            this.el.attach (  child_17.el , 1,8,1,1 );
-            var child_18 = new Xcls_Label28( _this );
+            this.el.attach(  child_17.el, 0, 17, 1, 1 );
+            var child_18 = new Xcls_dir( _this );
             child_18.ref();
-            this.el.attach (  child_18.el , 0,9,1,1 );
-            var child_19 = new Xcls_path( _this );
+            this.el.attach (  child_18.el , 1,8,1,1 );
+            var child_19 = new Xcls_Label29( _this );
             child_19.ref();
-            this.el.attach (  child_19.el , 1,9,1,1 );
+            this.el.attach (  child_19.el , 0,9,1,1 );
+            var child_20 = new Xcls_path( _this );
+            child_20.ref();
+            this.el.attach (  child_20.el , 1,9,1,1 );
         }
 
         // user defined functions
@@ -990,6 +993,30 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
+    public class Xcls_DropDown25 : Object
+    {
+        public Gtk.DropDown el;
+        private Xcls_PopoverFileDetails  _this;
+
+
+            // my vars (def)
+        public int colspan;
+
+        // ctor
+        public Xcls_DropDown25(Xcls_PopoverFileDetails _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.DropDown( null, null );
+
+            // my vars (dec)
+            this.colspan = 1;
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
     public class Xcls_dir : Object
     {
         public Gtk.ComboBox el;
@@ -1112,7 +1139,7 @@ public class Xcls_PopoverFileDetails : Object
     }
 
 
-    public class Xcls_Label28 : Object
+    public class Xcls_Label29 : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -1122,7 +1149,7 @@ public class Xcls_PopoverFileDetails : Object
         public int colspan;
 
         // ctor
-        public Xcls_Label28(Xcls_PopoverFileDetails _owner )
+        public Xcls_Label29(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Full path" );
@@ -1168,7 +1195,7 @@ public class Xcls_PopoverFileDetails : Object
     }
 
 
-    public class Xcls_Box30 : Object
+    public class Xcls_Box31 : Object
     {
         public Gtk.Box el;
         private Xcls_PopoverFileDetails  _this;
@@ -1177,7 +1204,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box30(Xcls_PopoverFileDetails _owner )
+        public Xcls_Box31(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1189,10 +1216,10 @@ public class Xcls_PopoverFileDetails : Object
             this.el.margin_start = 4;
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
-            var child_0 = new Xcls_Button31( _this );
+            var child_0 = new Xcls_Button32( _this );
             child_0.ref();
             this.el.append (  child_0.el  );
-            var child_1 = new Xcls_Label32( _this );
+            var child_1 = new Xcls_Label33( _this );
             child_1.ref();
             this.el.append(  child_1.el );
             var child_2 = new Xcls_save_btn( _this );
@@ -1202,7 +1229,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
     }
-    public class Xcls_Button31 : Object
+    public class Xcls_Button32 : Object
     {
         public Gtk.Button el;
         private Xcls_PopoverFileDetails  _this;
@@ -1212,7 +1239,7 @@ public class Xcls_PopoverFileDetails : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_Button31(Xcls_PopoverFileDetails _owner )
+        public Xcls_Button32(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1235,7 +1262,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label32 : Object
+    public class Xcls_Label33 : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -1244,7 +1271,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label32(Xcls_PopoverFileDetails _owner )
+        public Xcls_Label33(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "" );
@@ -1436,7 +1463,7 @@ public class Xcls_PopoverFileDetails : Object
 
 
 
-    public class Xcls_HeaderBar34 : Object
+    public class Xcls_HeaderBar35 : Object
     {
         public Gtk.HeaderBar el;
         private Xcls_PopoverFileDetails  _this;
@@ -1445,7 +1472,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HeaderBar34(Xcls_PopoverFileDetails _owner )
+        public Xcls_HeaderBar35(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.HeaderBar();
