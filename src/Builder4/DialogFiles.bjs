@@ -381,6 +381,12 @@
                      "GLib.Type item_type" : "typeof(JsRender.JsRender)",
                      "id" : "gridstore",
                      "xtype" : "ListStore"
+                    },
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "sorter",
+                     "GLib.CompareDataFunc sort_func" : "",
+                     "xtype" : "CustomSorter"
                     }
                    ],
                    "xtype" : "SortListModel"
