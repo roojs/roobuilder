@@ -37,7 +37,7 @@ namespace JsRender {
 		
 		public Node tree; // the tree of nodes.
 		
-		public GLib.List<JsRender> cn; // child files.. (used by project ... should move code here..)
+		//public GLib.List<JsRender> cn; // child files.. (used by project ... should move code here..)
 
 		public bool hasParent; 
 		
@@ -63,7 +63,7 @@ namespace JsRender {
 		public void aconstruct(Project.Project project, string path)
 		{
 		    
-			this.cn = new GLib.List<JsRender>();
+			//this.cn = new GLib.List<JsRender>();
 			this.path = path;
 			this.project = project;
 			this.hasParent = false;
@@ -300,7 +300,7 @@ namespace JsRender {
 		 
 		 
 
-		public abstract void loadItems() throws GLib.Error;
+
 		 
 		 
 		 
@@ -454,6 +454,7 @@ namespace JsRender {
 		public abstract void  findTransStrings(Node? node );
 		public abstract string toGlade();
 		public abstract string targetName();
+		public abstract void loadItems() throws GLib.Error;
 	} 
 
 }

@@ -17,11 +17,10 @@ public class DialogFiles : Object
     public Xcls_namecol namecol;
     public Xcls_iconsearch iconsearch;
     public Xcls_iconscroll iconscroll;
-    public Xcls_gridstore gridstore;
+    public Xcls_gridmodel gridmodel;
     public Xcls_file_container file_container;
-    public Xcls_fileview fileview;
-    public Xcls_filemodel filemodel;
-    public Xcls_filenamecol filenamecol;
+    public Xcls_treelistmodel treelistmodel;
+    public Xcls_name name;
 
         // my vars (def)
     public Xcls_MainWindow win;
@@ -53,7 +52,7 @@ public class DialogFiles : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.child = child_0.el;
-        var child_1 = new Xcls_HeaderBar41( _this );
+        var child_1 = new Xcls_HeaderBar42( _this );
         child_1.ref();
         this.el.titlebar = child_1.el;
     }
@@ -83,7 +82,7 @@ public class DialogFiles : Object
         //this.project_title_path.el.text = pr.firstPath();
         
         // file items contains a reference until we reload ...
-      	 this.loadIconView();
+    	this.selectedProject.loadFilesIntoStore(_this.gridmodel.el);
       	 
       	 
       	 GLib.Timeout.add(500, () => {
@@ -92,8 +91,8 @@ public class DialogFiles : Object
          });
         
         
-    
-    	this.loadTreeView();
+    	this.selectedProject.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);
+     
     	this.in_onprojectselected = false;	
     }
     public void selectProject (Project.Project project) {
@@ -168,187 +167,6 @@ public class DialogFiles : Object
          }
          m.set_sort_column_id(0, Gtk.SortType.ASCENDING);
          _this.is_loading = false;      
-    }
-    public void loadTreeView () {
-      var project =  this.selectedProject;
-      
-      this.filemodel.el.clear();
-        
-        // folders...
-        
-        if (!(project is Project.Gtk)) {
-            //print ("not gtk... skipping files");
-            this.file_container.el.hide();
-            return;
-        }
-        
-        
-        
-        var filter = _this.iconsearch.el.text.down();
-        
-        this.file_container.el.show();
-        var gpr = (Project.Gtk)project;
-         var def = gpr.compilegroups.get("_default_");
-         // not sure why the above is returng null!??
-         if (def == null) {
-     		def = new Project.GtkValaSettings("_default_"); 
-     		gpr.compilegroups.set("_default_", def);
-         }
-    	 var items  = def.sources;
-    		 
-    	 Gtk.TreeIter citer;  // folder iter
-    	  Gtk.TreeIter fxiter;  // file iter
-    	for(var i =0 ; i < items.size; i++) {
-    	    // print ("cheking folder %s\n", items.get(i));
-    	     var files = gpr.filesForOpen(items.get(i));
-    	     
-    	     
-    	     
-    	     
-    	     
-    	     if (files.size < 1) {
-    	        continue;
-    	     }
-    	     var nf = 0;
-    	     for(var j =0 ; j < files.size; j++) {
-    	    
-    	    	if (filter != "") {
-    	    		var ff = GLib.Path.get_basename(files.get(j)).down();
-    	    		var dp = ff.last_index_of(".");
-    		    	if (!ff.substring(0,dp  < 0 ? ff.length :dp ).contains(filter)) {
-    		    		continue;
-    				}
-    		    
-    		    }  
-    		    nf++;
-    	    }
-    	    if (nf < 1) {
-    	    	continue;
-        	} 
-    	     
-    		 this.filemodel.el.append(out citer,null);
-    		 this.filemodel.el.set(citer, 0, GLib.Path.get_basename(items.get(i)));
-    		 this.filemodel.el.set(citer, 1, null); // parent (empty as it's a folder)
-    		
-    		
-    	    // add the directory... items.get(i);
-    	    //var x = new Xcls_folderitem(this,items.get(i));
-    	    //this.fileitems.add(x);
-    	    //this.filelayout.el.add_child(x.el);
-    	    
-    	    
-    	    for(var j =0 ; j < files.size; j++) {
-    	    
-    	    	if (filter != "") {
-    	    		var ff = GLib.Path.get_basename(files.get(j)).down();
-    	    		var dp = ff.last_index_of(".");
-    		    	if (!ff.substring(0,dp  < 0 ? ff.length :dp ).contains(filter)) {
-    		    		continue;
-    				}
-    		    
-    		    }  
-    	    
-    		    this.filemodel.el.insert(out fxiter,citer, -1);
-    	     	this.filemodel.el.set(fxiter, 0,  GLib.Path.get_basename(files.get(j))); // filename
-    		 	this.filemodel.el.set(fxiter, 1, files.get(j)); // Folder?
-    	         
-    	        
-    	    }
-    	    
-    	    
-    	    //this.el.set_value(citer, 1,   items.get(i) );
-    	}
-        _this.fileview.el.expand_all();
-    }
-    public void loadIconView () {
-    	
-     
-    	this.selectedProject;.loadFilesIntoStore(_this.gridmodel.el);
-    	
-    	/*
-    	
-    	if (_this.image_cache == null) {
-    		_this.image_cache = new Gee.HashMap<string,Gdk.Pixbuf>();
-    	}
-    	
-    	 var project =  this.selectedProject;
-     
-     	 Gdk.Pixbuf pixbuf = null;
-      	 Gdk.Pixbuf bigpixbuf = null;
-    	 Gtk.TreeIter iter;
-         var m = this.iconmodel.el;
-         m.clear();
-     
-     
-     	var filter = _this.iconsearch.el.text.down();
-     	this.lastfilter = filter;
-     
-        var fiter = project.sortedFiles().list_iterator();
-        
-        
-          try {
-            if (_this.missing_thumb_pixbuf == null) {
-            
-            	var icon_theme = Gtk.IconTheme.get_for_display(this.el.get_display());
-            	 var icon = icon_theme.lookup_icon ("package-x-generic", null,  92,1, 
-    					 Gtk.TextDirection.NONE, 0);
-    		 	_this.missing_thumb_pixbuf = (new Gdk.Pixbuf.from_file (icon.file.get_path())).scale_simple(
-    		 		92, 92 	, Gdk.InterpType.NEAREST) ;
-                _this.missing_thumb_pixbuf.ref();
-            }
-    	        
-    
-    	    } catch (Error e) {
-    	        // noop?
-    	    }
-        
-    
-        
-        while (fiter.next()) {
-        
-            var file = fiter.get();
-            if (filter != "") {
-            	if (!file.name.down().contains(filter)) {
-            		continue;
-        		}
-            
-            }    
-        	
-        
-        
-            m.append(out iter);
-    
-            m.set(iter,   0,file ); // zero contains the file reference
-            m.set(iter,   1,file.nickType() + "\n" + file.nickName()); // marked up title?
-            m.set(iter,   2,file.nickType() ); // file type?
-            
-           
-     
-    	    
-    	    pixbuf = file.getIcon(92);
-    		bigpixbuf = file.getIcon(368);
-    
-    		 
-             
-            if (pixbuf == null) {
-            	GLib.debug("PIXBUF is null? %s", file.name);
-    		    pixbuf = _this.missing_thumb_pixbuf;
-            	bigpixbuf = _this.missing_thumb_pixbuf;
-    		}
-    		
-    		
-    		
-            m.set(iter,   3,pixbuf);
-            m.set(iter,   4,bigpixbuf);
-          
-            // this needs to add to the iconview?
-            
-            //var a = new Xcls_fileitem(this,fiter.get());
-            //this.fileitems.add(a);
-    
-            //this.filelayout.el.add_child(a.el);
-        }
-        */
     }
     public class Xcls_Box2 : Object
     {
@@ -1018,10 +836,10 @@ public class DialogFiles : Object
             this.el.changed.connect( ( ) => {
             	GLib.debug("Got '%s'", this.el.text);
             	
-            	if (this.el.text.down() != _this.lastfilter) {
-            		_this.loadIconView();
-            		_this.loadTreeView();
-            	}
+            	//if (this.el.text.down() != _this.lastfilter) {
+            	//	_this.loadIconView();
+            	//	_this.loadTreeView();
+            	//}
             });
         }
 
@@ -1157,7 +975,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_gridstore( _this );
+            var child_0 = new Xcls_gridmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
             var child_1 = new Xcls_StringSorter27( _this );
@@ -1167,7 +985,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_gridstore : Object
+    public class Xcls_gridmodel : Object
     {
         public GLib.ListStore el;
         private DialogFiles  _this;
@@ -1176,10 +994,10 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_gridstore(DialogFiles _owner )
+        public Xcls_gridmodel(DialogFiles _owner )
         {
             _this = _owner;
-            _this.gridstore = this;
+            _this.gridmodel = this;
             this.el = new GLib.ListStore( typeof(JsRender.JsRender) );
 
             // my vars (dec)
@@ -1316,14 +1134,14 @@ public class DialogFiles : Object
             	var img = (Gtk.Image) box.get_first_child();
             	var lbl = img.get_next_sibling();
             
-            	var item = (JsRender.JsRender) lr.get_item();
+            	var item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();
             
             	item.bind_property("name",
                             lbl, "label",
                        GLib.BindingFlags.SYNC_CREATE);
             
             	
-                img.set_from_file(f.getIconFileName());
+                img.set_from_file(item.getIconFileName());
                 
             	  
             });
@@ -1358,12 +1176,9 @@ public class DialogFiles : Object
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.visible = false;
-            var child_0 = new Xcls_fileview( _this );
+            var child_0 = new Xcls_ColumnView32( _this );
             child_0.ref();
-            this.el.set_child (  child_0.el  );
-            var child_1 = new Xcls_ColumnView36( _this );
-            child_1.ref();
-            this.el.child = child_1.el;
+            this.el.child = child_0.el;
 
             // init method
 
@@ -1372,197 +1187,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_fileview : Object
-    {
-        public Gtk.TreeView el;
-        private DialogFiles  _this;
-
-
-            // my vars (def)
-        public Gtk.CssProvider css;
-
-        // ctor
-        public Xcls_fileview(DialogFiles _owner )
-        {
-            _this = _owner;
-            _this.fileview = this;
-            this.el = new Gtk.TreeView();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.name = "popover-files-fileview";
-            this.el.activate_on_single_click = false;
-            this.el.hexpand = true;
-            this.el.vexpand = true;
-            this.el.enable_tree_lines = true;
-            this.el.headers_visible = true;
-            var child_0 = new Xcls_filemodel( _this );
-            child_0.ref();
-            this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn34( _this );
-            child_1.ref();
-            this.el.append_column (  child_1.el  );
-
-            // init method
-
-            this.css = new Gtk.CssProvider();
-            try {
-            	this.css.load_from_data("#popover-files-fileview { font-size: 12px;}".data);
-            } catch (Error e) {}
-            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-                    
-                    
-                    
-             
-                            
-            var selection = this.el.get_selection();
-            selection.set_mode( Gtk.SelectionMode.SINGLE);
-
-            //listeners
-            this.el.row_activated.connect( (path, col) => {
-            
-            	Gtk.TreeIter iter;
-               
-                        
-            	this.el.model.get_iter(out iter, path);
-                
-                GLib.Value gval;
-            
-                this.el.model.get_value(iter, 1 , out gval);
-               var fn = (string)gval;
-                if (fn.length < 1) {
-                	return;
-            	}
-                _this.win.windowstate.project = _this.selectedProject;
-                 _this.el.hide();
-                try {
-            		var f = JsRender.JsRender.factory("PlainFile", _this.selectedProject, fn);
-            		_this.win.windowstate.fileViewOpen(f, _this.new_window);
-            	} catch (JsRender.Error e) {}   
-                
-            });
-            this.el.cursor_changed.connect( () => {
-             /*
-                if (_this.is_loading) {
-                    return;
-                }
-                
-                Gtk.TreeIter iter;
-                Gtk.TreeModel mod;
-                        
-                var s = this.el.get_selection();
-                if (!s.get_selected(out mod, out iter)) {
-                    return;
-                }
-                
-                GLib.Value gval;
-            
-                mod.get_value(iter, 1 , out gval);
-                var project = (Project.Project)gval.get_object();
-                
-                _this.project_selected(project);
-                */
-            });
-        }
-
-        // user defined functions
-    }
-    public class Xcls_filemodel : Object
-    {
-        public Gtk.TreeStore el;
-        private DialogFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_filemodel(DialogFiles _owner )
-        {
-            _this = _owner;
-            _this.filemodel = this;
-            this.el = new Gtk.TreeStore.newv(  { typeof(string), typeof(string) }  );
-
-            // my vars (dec)
-
-            // set gobject values
-
-            // init method
-
-            {
-               this.el.set_sort_func(0, (mod,a,b) => {
-                   GLib.Value ga, gb;
-                   mod.get_value(a,0, out ga);
-                   mod.get_value(b,0, out gb);
-                    
-                    if ((string)ga == (string)gb) {
-                        return 0;
-                    }
-                    return (string)ga > (string)gb ? 1 : -1;
-               }); 
-             
-            
-            }
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_TreeViewColumn34 : Object
-    {
-        public Gtk.TreeViewColumn el;
-        private DialogFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_TreeViewColumn34(DialogFiles _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.TreeViewColumn();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.title = "File";
-            var child_0 = new Xcls_filenamecol( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
-
-            // init method
-
-            this.el.add_attribute(_this.filenamecol.el , "markup", 0  );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_filenamecol : Object
-    {
-        public Gtk.CellRendererText el;
-        private DialogFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_filenamecol(DialogFiles _owner )
-        {
-            _this = _owner;
-            _this.filenamecol = this;
-            this.el = new Gtk.CellRendererText();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-
-
-    public class Xcls_ColumnView36 : Object
+    public class Xcls_ColumnView32 : Object
     {
         public Gtk.ColumnView el;
         private DialogFiles  _this;
@@ -1571,7 +1196,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnView36(DialogFiles _owner )
+        public Xcls_ColumnView32(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ColumnView( null );
@@ -1579,14 +1204,17 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SingleSelection37( _this );
+            var child_0 = new Xcls_SingleSelection33( _this );
             child_0.ref();
             this.el.model = child_0.el;
+            var child_1 = new Xcls_name( _this );
+            child_1.ref();
+            this.el.append_column (  child_1.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_SingleSelection37 : Object
+    public class Xcls_SingleSelection33 : Object
     {
         public Gtk.SingleSelection el;
         private DialogFiles  _this;
@@ -1595,7 +1223,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection37(DialogFiles _owner )
+        public Xcls_SingleSelection33(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.SingleSelection( null );
@@ -1603,14 +1231,14 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_FilterListModel38( _this );
+            var child_0 = new Xcls_FilterListModel34( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_FilterListModel38 : Object
+    public class Xcls_FilterListModel34 : Object
     {
         public Gtk.FilterListModel el;
         private DialogFiles  _this;
@@ -1619,7 +1247,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_FilterListModel38(DialogFiles _owner )
+        public Xcls_FilterListModel34(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.FilterListModel( null, null );
@@ -1627,14 +1255,17 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SortListModel39( _this );
+            var child_0 = new Xcls_SortListModel35( _this );
             child_0.ref();
             this.el.model = child_0.el;
+            var child_1 = new Xcls_CustomFilter39( _this );
+            child_1.ref();
+            this.el.filter = child_1.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SortListModel39 : Object
+    public class Xcls_SortListModel35 : Object
     {
         public Gtk.SortListModel el;
         private DialogFiles  _this;
@@ -1643,7 +1274,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SortListModel39(DialogFiles _owner )
+        public Xcls_SortListModel35(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.SortListModel( null, null );
@@ -1651,14 +1282,17 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_TreeListModel40( _this );
+            var child_0 = new Xcls_treelistmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
+            var child_1 = new Xcls_StringSorter37( _this );
+            child_1.ref();
+            this.el.sorter = child_1.el;
         }
 
         // user defined functions
     }
-    public class Xcls_TreeListModel40 : Object
+    public class Xcls_treelistmodel : Object
     {
         public Gtk.TreeListModel el;
         private DialogFiles  _this;
@@ -1667,10 +1301,68 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeListModel40(DialogFiles _owner )
+        public Xcls_treelistmodel(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.TreeListModel( null, true, true,  );
+            _this.treelistmodel = this;
+            this.el = new Gtk.TreeListModel( 
+	new GLib.ListStore(
+		typeof(JsRender.JsRender) ), 
+		true,
+		true, 
+		(item) => {
+			return ((JsRender.JsRender)item).childfiles;
+	
+		} 
+)
+
+;
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_StringSorter37 : Object
+    {
+        public Gtk.StringSorter el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_StringSorter37(DialogFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.StringSorter( null );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_PropertyExpression38( _this );
+            child_0.ref();
+            this.el.expression = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_PropertyExpression38 : Object
+    {
+        public Gtk.PropertyExpression el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_PropertyExpression38(DialogFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
 
             // my vars (dec)
 
@@ -1682,12 +1374,150 @@ public class DialogFiles : Object
 
 
 
+    public class Xcls_CustomFilter39 : Object
+    {
+        public Gtk.CustomFilter el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_CustomFilter39(DialogFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.CustomFilter( (item) => { 
+	
+	var j =  ((JsRender.JsRender) item);
+	return j.xtype == "PlainFile" || j.xtype == "Dir";
+
+} );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+
+    public class Xcls_name : Object
+    {
+        public Gtk.ColumnViewColumn el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_name(DialogFiles _owner )
+        {
+            _this = _owner;
+            _this.name = this;
+            this.el = new Gtk.ColumnViewColumn( "Other Files", null );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.id = "name";
+            this.el.expand = true;
+            this.el.resizable = true;
+            var child_0 = new Xcls_SignalListItemFactory41( _this );
+            child_0.ref();
+            this.el.factory = child_0.el;
+
+            // init method
+
+            {
+            	// this.el.set_sorter(  new Gtk.StringSorter(
+            	// 	new Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, "name")
+             //	));
+            		
+            }
+        }
+
+        // user defined functions
+    }
+    public class Xcls_SignalListItemFactory41 : Object
+    {
+        public Gtk.SignalListItemFactory el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_SignalListItemFactory41(DialogFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.SignalListItemFactory();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.setup.connect( (listitem) => {
+            	
+            	var expand = new Gtk.TreeExpander();
+            	 
+            	expand.set_indent_for_depth(true);
+            	expand.set_indent_for_icon(true);
+            	 
+            	var lbl = new Gtk.Label("");
+            	lbl.use_markup = true;
+            	
+            	
+             	lbl.justify = Gtk.Justification.LEFT;
+             	lbl.xalign = 0;
+            
+             
+            	expand.set_child(lbl);
+            	((Gtk.ListItem)listitem).set_child(expand);
+            	((Gtk.ListItem)listitem).activatable = false;
+            });
+            this.el.bind.connect( (listitem) => {
+            	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+            	
+            	
+            	
+            	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+            	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+            	  
+             
+            	var lbl = (Gtk.Label) expand.child;
+            	
+            	 if (lbl.label != "") { // do not update
+            	 	return;
+             	}
+            	
+            
+            	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+            	var jr = (JsRender.JsRender) lr.get_item();
+            	//GLib.debug("change  %s to %s", lbl.label, np.name);
+            	lbl.label = jr.name; // for dir's we could hsow the sub path..
+            	lbl.tooltip_markup = jr.path;
+            	 
+                expand.set_hide_expander(  jr.childfiles.n_items < 1);
+             	expand.set_list_row(lr);
+             
+             	 
+             	// bind image...
+             	
+            });
+        }
+
+        // user defined functions
+    }
 
 
 
 
 
-    public class Xcls_HeaderBar41 : Object
+
+    public class Xcls_HeaderBar42 : Object
     {
         public Gtk.HeaderBar el;
         private DialogFiles  _this;
@@ -1696,7 +1526,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HeaderBar41(DialogFiles _owner )
+        public Xcls_HeaderBar42(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.HeaderBar();

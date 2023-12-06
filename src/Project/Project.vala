@@ -59,7 +59,7 @@ namespace Project {
 		
 		
 		public string path = "";
-		private Gee.ArrayList<JsRender> sub_paths;
+		private Gee.ArrayList<JsRender.JsRender> sub_paths;
 		
 		private Gee.HashMap<string,JsRender.JsRender> files ;
 		//tree : false,
@@ -78,7 +78,7 @@ namespace Project {
 			//this.json_project_data = new Json.Object();
 			
 			this.is_scanned = false;
-			this.sub_paths = new Gee.ArrayList<JsRender>();
+			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
 			this.files = new Gee.HashMap<string,JsRender.JsRender>();
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
@@ -120,7 +120,7 @@ namespace Project {
     		saveProjectList();
  
     	}
-    	
+    	 
     	
     	private static void saveProjectList()
     	{
@@ -742,7 +742,7 @@ namespace Project {
 		
 		public void createDir(string subdir)   // add a single dir, and trigger changed.
 		{
-			if (subdir.strip() == "" || this.sub_paths.contains(subdir)) {
+			if (subdir.strip() == "" || this.subpathsContains(subdir)) {
 				return;
 			}
 			var dir= File.new_for_path(this.path + "/" + subdir);
@@ -750,7 +750,7 @@ namespace Project {
 			if (!dir.query_exists()) {
 				dir.make_directory();
 			}
-			this.sub_paths.add(subdir);
+			this.sub_paths.add(new JsRender.Dir(this,this.path + "/" + subdir));
 			this.on_changed();  // not sure if it's needed - adding a dir doesnt really change much.
 		}
 		
@@ -766,6 +766,18 @@ namespace Project {
 			foreach(var f in this.sub_paths) {
 				ls.append(f);
 			}
+		}
+		
+		public bool subpathsContains(string subpath) 
+		{
+			foreach(var sp in this.sub_paths) {
+
+				if (sp.path == this.path + "/" + subpath) {
+					return true;
+				}
+			}
+			return false;
+			
 		}
 		
 		/*

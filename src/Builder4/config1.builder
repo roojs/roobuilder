@@ -156,7 +156,8 @@
             "../JsRender/NodeProp.vala",
             "../Project/GtkValaSettings.vala",
             "../Palete/CompileError.vala",
-            "../Builder4/DialogFiles.vala"
+            "../Builder4/DialogFiles.vala",
+            "../JsRender/Dir.vala"
         ],
         "packages" : []
     },

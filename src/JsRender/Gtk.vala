@@ -221,8 +221,6 @@ namespace JsRender {
 	        
 	    },
 	    */
-	    
-   
 	     
 	    public override void  findTransStrings(Node? node )
 		{

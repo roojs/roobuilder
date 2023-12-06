@@ -169,7 +169,8 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/NodeToGlade.vala \
 		JsRender/Node.vala \
-		JsRender/Roo.vala
+		JsRender/Roo.vala \
+		JsRender/Dir.vala 
 		
 #		JsRender/NodeToGtk.vala 
 # Palete/Flutter.vala 
