@@ -1283,6 +1283,12 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.setup.connect( (object) => {
+            
+            
+            });
         }
 
         // user defined functions

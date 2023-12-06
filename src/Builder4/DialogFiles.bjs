@@ -421,6 +421,15 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "factory",
+               "listeners" : {
+                "setup" : [
+                 "(object) => {",
+                 "",
+                 "",
+                 "}",
+                 ""
+                ]
+               },
                "xtype" : "SignalListItemFactory"
               }
              ],
