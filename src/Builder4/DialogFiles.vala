@@ -17,6 +17,7 @@ public class DialogFiles : Object
     public Xcls_namecol namecol;
     public Xcls_iconsearch iconsearch;
     public Xcls_iconscroll iconscroll;
+    public Xcls_gridstore gridstore;
     public Xcls_iconview iconview;
     public Xcls_iconmodel iconmodel;
     public Xcls_file_container file_container;
@@ -1149,14 +1150,14 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ListStore26( _this );
+            var child_0 = new Xcls_gridstore( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_ListStore26 : Object
+    public class Xcls_gridstore : Object
     {
         public GLib.ListStore el;
         private DialogFiles  _this;
@@ -1165,9 +1166,10 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListStore26(DialogFiles _owner )
+        public Xcls_gridstore(DialogFiles _owner )
         {
             _this = _owner;
+            _this.gridstore = this;
             this.el = new GLib.ListStore( typeof(JsRender.JsRender) );
 
             // my vars (dec)
