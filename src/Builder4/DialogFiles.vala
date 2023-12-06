@@ -264,6 +264,11 @@ public class DialogFiles : Object
     }
     public void loadIconView () {
     	
+    	var project =  this.selectedProject;
+    	project.loadFilesIntoStore(_this.gridmodel.el);
+    	
+    	
+    	
     	if (_this.image_cache == null) {
     		_this.image_cache = new Gee.HashMap<string,Gdk.Pixbuf>();
     	}
