@@ -385,8 +385,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "sorter",
-                     "GLib.CompareDataFunc sort_func" : "",
-                     "xtype" : "CustomSorter"
+                     "xtype" : "StringSorter"
                     }
                    ],
                    "xtype" : "SortListModel"
