@@ -362,6 +362,10 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "xtype" : "GridView"
+            },
+            {
+             "$ xns" : "Gtk",
              "* init" : [
               "{",
               " ",
