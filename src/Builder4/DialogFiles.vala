@@ -1303,7 +1303,9 @@ public class DialogFiles : Object
             	   
             	var img = (Gtk.Image) box.get_first_child();
             	var lbl = img.get_next_sibling();
-            	
+            
+            //	var f = (JsRender.JsRender) lr.get_item();
+            
             	
             	
             
