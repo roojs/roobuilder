@@ -26,9 +26,9 @@ public class DialogFiles : Object
     public Xcls_MainWindow win;
     public string lastfilter;
     public bool in_onprojectselected;
+    public Project.Project selectedProject;
     public bool is_loading;
     public bool new_window;
-    public Project.Project selectedProject;
     public Gdk.Pixbuf missing_thumb_pixbuf;
     public Gee.HashMap<string,Gdk.Pixbuf> image_cache;
     public bool is_loaded;
