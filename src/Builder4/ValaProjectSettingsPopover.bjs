@@ -367,7 +367,7 @@
                       "\tif (j.xtype == \"Dir\" || j.xtype == \"Gtk\") {",
                       "\t\treturn true;",
                       "\t}",
-                      "\treturn j.name.as_suffix(\".vala\") ||  j.name.as_suffix(\".c\");",
+                      "\treturn j.name.has_suffix(\".vala\") ||  j.name.has_suffix(\".c\");",
                       "",
                       "}"
                      ],
