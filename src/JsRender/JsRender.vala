@@ -19,7 +19,7 @@ namespace JsRender {
 		public string fullname;
 		public string path;  // is the full path to the file.
 		
-		public string relpath {
+		public owned string relpath {
 			get {
 				return this.path.substring(this.project.path.length);
 			} 
