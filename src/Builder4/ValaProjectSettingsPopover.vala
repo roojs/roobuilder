@@ -1787,7 +1787,13 @@ public class ValaProjectSettingsPopover : Object
             	var btn = new Gtk.CheckButton();
              
             	((Gtk.ListItem)listitem).set_child(btn);
-            
+            	
+            	btn.toggle.connect(() =>  {
+            	
+            		
+            		var jr = (JsRender.JsRender) lr.get_item();
+            		jr.compile_group_selected = btn.active;
+            	});
             });
             this.el.bind.connect( (listitem) => {
             	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());

@@ -699,7 +699,13 @@
                      "\tvar btn = new Gtk.CheckButton();",
                      " ",
                      "\t((Gtk.ListItem)listitem).set_child(btn);",
-                     "",
+                     "\t",
+                     "\tbtn.toggle.connect(() =>  {",
+                     "\t",
+                     "\t\t",
+                     "\t\tvar jr = (JsRender.JsRender) lr.get_item();",
+                     "\t\tjr.compile_group_selected = btn.active;",
+                     "\t});",
                      "}",
                      ""
                     ]
