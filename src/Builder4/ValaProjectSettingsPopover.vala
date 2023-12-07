@@ -1801,10 +1801,14 @@ public class ValaProjectSettingsPopover : Object
             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             	var jr = (JsRender.JsRender) lr.get_item();
             	//GLib.debug("change  %s to %s", lbl.label, np.name);
-            	btn.active = js.is_selected(_this.compilegroup);
-            	
             
-             
+            	
+            	if (js.xtype == "Dir") {
+            		btn.hide();
+            		return;
+            	}
+            	btn.active = js.complile_group_selected
+             	btn.show();
              	 
              	// bind image...
              	
