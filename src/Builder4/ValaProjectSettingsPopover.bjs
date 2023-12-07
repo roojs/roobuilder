@@ -482,7 +482,7 @@
                      "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
                      "",
                      "\t",
-                     "\tif (js.xtype == \"Dir\") {",
+                     "\tif (jr.xtype == \"Dir\") {",
                      "\t\tbtn.hide();",
                      "\t\treturn;",
                      "\t}",
