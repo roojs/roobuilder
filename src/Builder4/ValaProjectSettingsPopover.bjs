@@ -726,6 +726,8 @@
                  "\tvar fn =  (string) val;",
                  "",
                  "\tthis.cursor = fn;",
+                 "\t",
+                 "\t_this.project.compile_group_active = fn;",
                  "\tvar cg = _this.project.compilegroups.get(fn);",
                  "",
                  "\t_this.build_pack_target.el.set_text(cg.target_bin);",

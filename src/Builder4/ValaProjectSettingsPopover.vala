@@ -1587,6 +1587,8 @@ public class ValaProjectSettingsPopover : Object
             	var fn =  (string) val;
             
             	this.cursor = fn;
+            	
+            	_this.project.compile_group_active = fn;
             	var cg = _this.project.compilegroups.get(fn);
             
             	_this.build_pack_target.el.set_text(cg.target_bin);
