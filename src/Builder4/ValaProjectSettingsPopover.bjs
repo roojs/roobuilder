@@ -662,6 +662,13 @@
               },
               {
                "$ xns" : "Gtk",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "factory",
+                 "xtype" : "SignalListItemFactory"
+                }
+               ],
                "xtype" : "ColumnViewColumn"
               },
               {
