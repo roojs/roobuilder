@@ -424,6 +424,7 @@ namespace Project {
 			//var dirname = GLib.Environment.get_home_dir() + "/.Builder";
 			
 			var  s =  this.toJSON();
+			GLib.debug("Save Project %s\n%s", this.name, s);
 			try {
 				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
 				FileUtils.set_contents(this.path + "/.roobuilder.jcfg", s, s.length);  
