@@ -1811,7 +1811,7 @@ public class ValaProjectSettingsPopover : Object
              	btn.show();
              	jr.bind_property("compile_group_selected",
                                 lb, "active",
-                               GLib.BindingFlags.SYNC_CREATE); 
+                               GLib.BindingFlags.BIDIRECTIONAL); 
              	// bind image...
              	
             });

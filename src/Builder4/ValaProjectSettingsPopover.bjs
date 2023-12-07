@@ -687,7 +687,7 @@
                      " \tbtn.show();",
                      " \tjr.bind_property(\"compile_group_selected\",",
                      "                    lb, \"active\",",
-                     "                   GLib.BindingFlags.SYNC_CREATE); ",
+                     "                   GLib.BindingFlags.BIDIRECTIONAL); ",
                      " \t// bind image...",
                      " \t",
                      "}"
