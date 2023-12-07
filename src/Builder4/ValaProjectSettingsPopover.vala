@@ -1783,6 +1783,13 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.setup.connect( (listitem) => {
+            
+            	var btn = new Gtk.CheckButton();
+             
+            	((Gtk.ListItem)listitem).set_child(btn);
+            
+            });
+            this.el.bind.connect( (listitem) => {
             	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
             	
             	
@@ -1810,13 +1817,6 @@ public class ValaProjectSettingsPopover : Object
              	 
              	// bind image...
              	
-            });
-            this.el.bind.connect( (listitem) => {
-            
-            	var btn = new Gtk.CheckButton();
-             
-            	((Gtk.ListItem)listitem).set_child(btn);
-            
             });
         }
 

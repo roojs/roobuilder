@@ -666,16 +666,6 @@
                    "listeners" : {
                     "bind" : [
                      "(listitem) => {",
-                     "",
-                     "\tvar btn = new Gtk.CheckButton();",
-                     " ",
-                     "\t((Gtk.ListItem)listitem).set_child(btn);",
-                     "",
-                     "}",
-                     ""
-                    ],
-                    "setup" : [
-                     "(listitem) => {",
                      "\t //GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
                      "\t",
                      "\t",
@@ -703,6 +693,16 @@
                      " \t ",
                      " \t// bind image...",
                      " \t",
+                     "}"
+                    ],
+                    "setup" : [
+                     "",
+                     "(listitem) => {",
+                     "",
+                     "\tvar btn = new Gtk.CheckButton();",
+                     " ",
+                     "\t((Gtk.ListItem)listitem).set_child(btn);",
+                     "",
                      "}",
                      ""
                     ]
