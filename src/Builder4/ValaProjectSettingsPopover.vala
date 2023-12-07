@@ -1589,6 +1589,9 @@ public class ValaProjectSettingsPopover : Object
             	this.cursor = fn;
             	
             	_this.project.compile_group_active = fn;
+            	 this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);
+            	
+            	
             	var cg = _this.project.compilegroups.get(fn);
             
             	_this.build_pack_target.el.set_text(cg.target_bin);
