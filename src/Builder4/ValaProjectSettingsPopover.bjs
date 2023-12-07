@@ -656,6 +656,10 @@
                  ],
                  "string title" : "Other Files",
                  "xtype" : "ColumnViewColumn"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "xtype" : "ColumnViewColumn"
                 }
                ],
                "xtype" : "ColumnView"
