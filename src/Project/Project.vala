@@ -56,7 +56,7 @@ namespace Project {
 		public string id;
 		public string fn = ""; // just a md5...
 		public string name = "";
-		
+				
 		
 		public string path = "";
 		private Gee.ArrayList<JsRender.JsRender> sub_paths;
@@ -70,6 +70,8 @@ namespace Project {
 		public Palete.Palete palete;
 		 
 		bool is_scanned; 
+		
+		public string compile_group_active = ""; // set by project / used by files to work out ticks..
 	   
 		
 		protected Project (string path) {
