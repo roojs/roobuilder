@@ -728,7 +728,7 @@ namespace Project {
 					continue;
 				}
 				// c with a vala - skip
-				if (!Regex.match_simple("\\.c$", fn) && vala_files_contain(without_ext)) {
+				if (!Regex.match_simple("\\.c$", fn) && vala_files.contains(without_ext)) {
 					continue;
 				}
 				// Makefile (only allow am files at present.
