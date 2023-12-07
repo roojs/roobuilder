@@ -18,6 +18,14 @@ namespace JsRender {
 		public string name;   // is the JS name of the file.
 		public string fullname;
 		public string path;  // is the full path to the file.
+		
+		public string relpath {
+			get {
+				return this.path.substring(this.project.path.length);
+			} 
+			private set {}
+		}
+		
 		public string parent;  // JS parent.
 		public string region;  // RooJS - insert region.
         
@@ -446,13 +454,30 @@ namespace JsRender {
 		
 		public bool compile_group_selected {
 			get {
-			
-				return this.file.
+				var gproj = (Project.Gtk) this.project;
+				
+				if (!gproj.compilegroups.has_key(this.compile_group_active)) {
+					return false;
+				}
+				var cg = gproj.compilegroups.get(this.compile_group_active);
+				return cg.sources.contains(this.relpath);
+				
 			}
 			set {
+				
+				var gproj = (Project.Gtk) this.project;
+				
+				if (!gproj.compilegroups.has_key(this.compile_group_active)) {
+					return;
+				}
+				if (value == false) {
+					cg.sources.remove(this.relpath);
+					return;
+				}
+				cg.sources.add(this.relpath);
 			
 			}
-			
+		}
 		
 		
 		
