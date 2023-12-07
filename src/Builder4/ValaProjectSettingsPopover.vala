@@ -1336,7 +1336,7 @@ public class ValaProjectSettingsPopover : Object
             	//GLib.debug("change  %s to %s", lbl.label, np.name);
             
             	
-            	if (js.xtype == "Dir") {
+            	if (jr.xtype == "Dir") {
             		btn.hide();
             		return;
             	}
