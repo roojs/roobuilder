@@ -690,6 +690,11 @@ namespace Project {
 						subs.add(dir  + "/" + fn);
 						continue;
 					}
+					if (!Regex.match_simple("\\.(o|cache)$", fn)) { // object..
+						continue;
+					}
+					
+					
 					if (!Regex.match_simple("\\.vala$", fn)) {
 						vala_files.add(fn);
 						//print("no a bjs\n");
@@ -719,9 +724,28 @@ namespace Project {
 			foreach(var fn in other_files) {
 				var dpos = fn.last_index_of(".");
 				var without_ext = fn.substring(0, dpos);
-				if (bjs_files.contains(without_ext)) {  // will remove 
+				if (bjs_files.contains(without_ext)) {  // will remove vala and c.
 					continue;
 				}
+				// c with a vala - skip
+				if (!Regex.match_simple("\\.c$", fn) && vala_files_contain(without_ext)) {
+					continue;
+				}
+				// Makefile (only allow am files at present.
+				if (without_ext == "Makefile") {
+					if (!Regex.match_simple("\\.am$", fn)) {
+						continue;
+					}
+				}
+				if (without_ext == "configure") {
+					if (!Regex.match_simple("\\.ac$", fn)) {
+						continue;
+					}
+				}
+				
+				
+				
+				
 				
 				GLib.debug("Could have added %s/%s", dir, fn);
 			     var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
