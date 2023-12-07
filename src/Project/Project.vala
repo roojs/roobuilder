@@ -285,6 +285,7 @@ namespace Project {
 			
 			var obj = node.get_object ();
 			obj.foreach_member((sobj, key, val) => {
+				GLib.debug("read ProjectList %s: %s", key, val.get_string());
 				var p = Project.factory(key, val.get_string());
 				projects.add(p);
 			});
