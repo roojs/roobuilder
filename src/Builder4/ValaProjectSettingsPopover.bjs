@@ -667,6 +667,9 @@
                     "bind" : [
                      "(object) => {",
                      "",
+                     "\tvar btn = new Gtk.CheckButton();",
+                     " ",
+                     "\t((Gtk.ListItem)listitem).set_child(btn);",
                      "",
                      "}",
                      ""
