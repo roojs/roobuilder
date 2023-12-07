@@ -1780,6 +1780,16 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+
+            //listeners
+            this.el.setup.connect( (object) => {
+            
+            
+            });
+            this.el.bind.connect( (object) => {
+            
+            
+            });
         }
 
         // user defined functions
