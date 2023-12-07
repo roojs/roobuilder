@@ -442,6 +442,18 @@ namespace JsRender {
 			return ret;
 		}
 		
+		public string compile_group_active = "";
+		
+		public bool compile_group_selected {
+			get {
+			
+				return this.file.
+			}
+			set {
+			
+			}
+			
+		
 		
 		
 		public abstract void save();
