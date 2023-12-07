@@ -178,6 +178,7 @@ namespace Project {
 			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}
+			GLib.debug("Loaded all old Projects - saving");
 			Project.saveProjectList();
 
 		}
