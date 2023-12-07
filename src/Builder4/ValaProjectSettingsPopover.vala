@@ -1343,7 +1343,7 @@ public class ValaProjectSettingsPopover : Object
              
              	btn.show();
              	jr.bind_property("compile_group_selected",
-                                lb, "active",
+                                btn, "active",
                                GLib.BindingFlags.SYNC_CREATE); 
              	// bind image...
              	

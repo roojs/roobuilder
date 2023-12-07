@@ -489,7 +489,7 @@
                      " ",
                      " \tbtn.show();",
                      " \tjr.bind_property(\"compile_group_selected\",",
-                     "                    lb, \"active\",",
+                     "                    btn, \"active\",",
                      "                   GLib.BindingFlags.SYNC_CREATE); ",
                      " \t// bind image...",
                      " \t",
