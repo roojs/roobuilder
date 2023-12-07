@@ -102,8 +102,7 @@ public class ValaProjectSettingsPopover : Object
         this.targets_tree_store.load();
         this.files_tree_store.load();
     
-    
-    
+     
     
     //	Gtk.Allocation rect;
     	//btn.get_allocation(out rect);
