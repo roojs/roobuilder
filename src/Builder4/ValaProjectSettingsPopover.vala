@@ -1142,7 +1142,7 @@ public class ValaProjectSettingsPopover : Object
 	if (j.xtype == "Dir" || j.xtype == "Gtk") {
 		return true;
 	}
-	return j.name.has_suffix(".vala") ||  j.name.has_suffix(".c");
+	return j.path.has_suffix(".vala") ||  j.path.has_suffix(".c");
 
 } );
 
