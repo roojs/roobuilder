@@ -1316,8 +1316,7 @@ public class ValaProjectSettingsPopover : Object
             	((Gtk.ListItem)listitem).set_child(btn);
             	
             	btn.toggled.connect(() =>  {
-            	
-            		
+            	 
             		var jr = (JsRender.JsRender) ((Gtk.ListItem)listitem).get_item();
             		jr.compile_group_selected = btn.active;
             	});
