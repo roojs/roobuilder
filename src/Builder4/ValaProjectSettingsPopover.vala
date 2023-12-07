@@ -1599,8 +1599,7 @@ public class ValaProjectSettingsPopover : Object
             	_this.build_execute_args.el.set_text(cg.execute_args);
             
             	_this.set_vbox.cgroup = cg;
-            	_this.files_tree_store.update();
-            
+            	
                    // load the srouces
             
             
