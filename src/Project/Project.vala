@@ -666,7 +666,7 @@ namespace Project {
 			// this should be done async -- but since we are getting the proto up ...
 			var other_files = new Gee.ArrayList<string>();
 			var bjs_files = new Gee.ArrayList<string>();
-			
+			var vala_files = new Gee.ArrayList<string>();
 			var subs = new Gee.ArrayList<string>();
 			
 			
@@ -690,7 +690,11 @@ namespace Project {
 						subs.add(dir  + "/" + fn);
 						continue;
 					}
-					
+					if (!Regex.match_simple("\\.vala$", fn)) {
+						vala_files.add(fn);
+						//print("no a bjs\n");
+						continue;
+					}
 					if (!Regex.match_simple("\\.bjs$", fn)) {
 						other_files.add(fn);
 						//print("no a bjs\n");
@@ -715,7 +719,7 @@ namespace Project {
 			foreach(var fn in other_files) {
 				var dpos = fn.last_index_of(".");
 				var without_ext = fn.substring(0, dpos);
-				if (bjs_files.contains(without_ext)) {
+				if (bjs_files.contains(without_ext)) {  // will remove 
 					continue;
 				}
 				
