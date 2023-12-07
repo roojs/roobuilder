@@ -662,6 +662,10 @@
               },
               {
                "$ xns" : "Gtk",
+               "xtype" : "ColumnViewColumn"
+              },
+              {
+               "$ xns" : "Gtk",
                "* pack" : "set_child",
                "items" : [
                 {
