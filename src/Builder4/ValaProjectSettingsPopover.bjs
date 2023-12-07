@@ -503,7 +503,7 @@
                      " ",
                      "\t((Gtk.ListItem)listitem).set_child(btn);",
                      "\t",
-                     "\tbtn.toggle.connect(() =>  {",
+                     "\tbtn.toggled.connect(() =>  {",
                      "\t",
                      "\t\t",
                      "\t\tvar jr = (JsRender.JsRender) lr.get_item();",
