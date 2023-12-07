@@ -140,6 +140,8 @@ namespace Project {
 
  			var data = generator.to_data (null);
 			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+    		GLib.debug("Write new Project list %s", data);
+    		Posix.exit(0);
     		
     		try {
 				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
