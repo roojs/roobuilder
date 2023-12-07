@@ -1607,8 +1607,12 @@ public class ValaProjectSettingsPopover : Object
             _this = _owner;
             this.el = new Gtk.CustomFilter( (item) => { 
 	
+	// directories / Gtk or .vala or .c files.
 	var j =  ((JsRender.JsRender) item);
-	return j.xtype == "PlainFile" || j.xtype == "Dir";
+	if (j.xtype == "Dir" || j.xtype == "Gtk") {
+		return true;
+	}
+	return j.name.as_suffix(".vala") ||  j.name.as_suffix(".c") 
 
 } );
 

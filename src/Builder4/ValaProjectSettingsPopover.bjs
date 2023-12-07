@@ -559,8 +559,12 @@
                      "Gtk.CustomFilterFunc match_func" : [
                       "(item) => { ",
                       "\t",
+                      "\t// directories / Gtk or .vala or .c files.",
                       "\tvar j =  ((JsRender.JsRender) item);",
-                      "\treturn j.xtype == \"PlainFile\" || j.xtype == \"Dir\";",
+                      "\tif (j.xtype == \"Dir\" || j.xtype == \"Gtk\") {",
+                      "\t\treturn true;",
+                      "\t}",
+                      "\treturn j.name.as_suffix(\".vala\") ||  j.name.as_suffix(\".c\") ",
                       "",
                       "}"
                      ],
