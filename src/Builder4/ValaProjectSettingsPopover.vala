@@ -1807,9 +1807,11 @@ public class ValaProjectSettingsPopover : Object
             		btn.hide();
             		return;
             	}
-            	btn.active = js.complile_group_selected
+             
              	btn.show();
-             	 
+             	jr.bind_property("compile_group_selected",
+                                lb, "active",
+                               GLib.BindingFlags.SYNC_CREATE); 
              	// bind image...
              	
             });
