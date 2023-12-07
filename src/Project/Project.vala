@@ -116,10 +116,11 @@ namespace Project {
 		    	loadProjectList();
 		    	return;
 	    	}
+	    	convertOldProjects(); // this saves..
 	    	foreach(var p in projects) {
 	    		p.save();
     		}
-    		saveProjectList();
+    		 
  
     	}
     	 
