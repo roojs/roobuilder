@@ -506,7 +506,7 @@
                      "\tbtn.toggled.connect(() =>  {",
                      "\t",
                      "\t\t",
-                     "\t\tvar jr = (JsRender.JsRender) lr.get_item();",
+                     "\t\tvar jr = (JsRender.JsRender) ((Gtk.ListItem)listitem).get_item();",
                      "\t\tjr.compile_group_selected = btn.active;",
                      "\t});",
                      "}",
