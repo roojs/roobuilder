@@ -93,7 +93,7 @@ public class ValaProjectSettingsPopover : Object
         this.default_directory_tree_store.load();    
         this.default_packages_tree_store.load();            
         this.targets_tree_store.load();
-        this.files_tree_store.load();
+     
     
      
     
