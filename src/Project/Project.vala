@@ -377,12 +377,12 @@ namespace Project {
 				case "Gtk":
 					var ret =  new Gtk(path);
 					projects.add(ret);
-					saveProjectList();
+					
 					return ret;
 				case "Roo":
 					var ret = new Roo(path);
 					projects.add(ret);
-					saveProjectList();
+				 
 					return ret;
 				//case "Flutter":
 				//	return new Flutter(path);
