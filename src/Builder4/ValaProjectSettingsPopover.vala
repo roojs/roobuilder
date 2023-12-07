@@ -1782,11 +1782,36 @@ public class ValaProjectSettingsPopover : Object
             // set gobject values
 
             //listeners
-            this.el.setup.connect( (object) => {
+            this.el.setup.connect( (listitem) => {
+            	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+            	
+            	
+            	
+            	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+            	var expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();
+            	  
+             
+            	var lbl = (Gtk.Label) expand.child;
+            	
+            	 if (lbl.label != "") { // do not update
+            	 	return;
+             	}
+            	
             
-            
+            	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
+            	var jr = (JsRender.JsRender) lr.get_item();
+            	//GLib.debug("change  %s to %s", lbl.label, np.name);
+            	lbl.label = jr.name; // for dir's we could hsow the sub path..
+            	lbl.tooltip_markup = jr.path;
+            	 
+                expand.set_hide_expander(  jr.childfiles.n_items < 1);
+             	expand.set_list_row(lr);
+             
+             	 
+             	// bind image...
+             	
             });
-            this.el.bind.connect( (object) => {
+            this.el.bind.connect( (listitem) => {
             
             	var btn = new Gtk.CheckButton();
              
