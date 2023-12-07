@@ -470,6 +470,7 @@ namespace JsRender {
 				if (!gproj.compilegroups.has_key(this.compile_group_active)) {
 					return;
 				}
+				var cg = gproj.compilegroups.get(this.compile_group_active);
 				if (value == false) {
 					cg.sources.remove(this.relpath);
 					return;
