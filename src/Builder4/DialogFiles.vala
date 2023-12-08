@@ -920,23 +920,10 @@ public class DialogFiles : Object
             this.el.setup.connect( (item) => {
             	//var j = (JsRender.JsRender) item;
             	var gi = (Gtk.ListItem)item;
-            	var b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);
-            	var i = new Gtk.Image();
-            	i.pixel_size = 96;
-            	var t = new Gtk.Label("");
-            	b.append(i);
-            	b.append(t);
-            	
-            	gi.set_child(b);
-            	b.has_tooltip = true;
-            	b.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {
-            		var j = (JsRender.JsRender) gi.get_item();
-            		
-            		var ti = new Gtk.Image.from_file ( j.getIconFileName());
-            		ti.pixel_size = 368;
-            		tooltip.set_custom( ti );
-            		return true;
-            	});
+            	 
+            	var lbl = new Gtk.Label("");
+            	gi.set_child(lbl);
+            
             
             
             });
