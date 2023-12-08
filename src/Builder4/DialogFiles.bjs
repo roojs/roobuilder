@@ -495,7 +495,6 @@
              "id" : "treeview",
              "items" : [
               {
-               "$ Gtk.PropagationPhase propagation_phase" : "",
                "$ xns" : "Gtk",
                "xtype" : "GestureClick"
               },
