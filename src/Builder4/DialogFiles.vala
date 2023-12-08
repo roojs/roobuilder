@@ -565,7 +565,7 @@ public class DialogFiles : Object
             this.el.model = child_0.el;
             var child_1 = new Xcls_SignalListItemFactory20( _this );
             child_1.ref();
-            this.el.factory = child_1.el;
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_ColumnViewColumn21( _this );
             child_2.ref();
             this.el.append(  child_2.el );

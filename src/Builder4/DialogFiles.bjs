@@ -248,7 +248,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "* prop" : "factory",
              "listeners" : {
               "bind" : [
                "(listitem) => {",
