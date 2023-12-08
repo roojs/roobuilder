@@ -55,7 +55,9 @@ namespace Project {
 	
 		public string id;
 		public string fn = ""; // just a md5...
-		public string name = "";
+		public string name  { 
+			set; get; default = "";
+		}
 				
 		
 		public string path = "";
