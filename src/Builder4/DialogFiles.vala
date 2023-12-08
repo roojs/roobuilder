@@ -1258,6 +1258,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.propagation_phase = ;
         }
 
         // user defined functions
