@@ -836,7 +836,7 @@ public class DialogFiles : Object
         public Xcls_ListStore21(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new GLib.ListStore( typeof(JsRender.JsRender) );
+            this.el = new GLib.ListStore( typeof(Project.Project) );
 
             // my vars (dec)
 
