@@ -801,23 +801,13 @@ public class DialogFiles : Object
             //listeners
             this.el.selection_changed.connect( (position, n_items) => {
             
-            	    if (_this.is_loading) {
+                if (_this.is_loading) {
                     return;
                 }
                 
-                Gtk.TreeIter iter;
-                Gtk.TreeModel mod;
-                        
-                var s = this.el.get_selection();
-                if (!s.get_selected(out mod, out iter)) {
-                    return;
-                }
-                
-                GLib.Value gval;
-            
-                mod.get_value(iter, 1 , out gval);
-                var project = (Project.Project)gval.get_object();
-                
+            	 vas project  = (Project.Project) _this.projectmodel.el.get_item(position);
+             
+             
                 _this.onProjectSelected(project);
             });
         }
