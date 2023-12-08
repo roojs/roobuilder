@@ -499,7 +499,16 @@
                "listeners" : {
                 "pressed" : [
                  "(n_press, x, y) => {",
-                 "",
+                 "\tif (n_press == 2) {",
+                 "\t\tGLib.debug(\"double cliced\");",
+                 "\t} else {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\t",
+                 "\t",
+                 "\t",
+                 "\t",
+                 "\t",
                  "",
                  "}",
                  ""

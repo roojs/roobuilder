@@ -1261,7 +1261,16 @@ public class DialogFiles : Object
 
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
-            
+            	if (n_press == 2) {
+            		GLib.debug("double cliced");
+            	} else {
+            		return;
+            	}
+            	
+            	
+            	
+            	
+            	
             
             });
         }
