@@ -826,7 +826,7 @@ public class DialogFiles : Object
     }
     public class Xcls_ListStore21 : Object
     {
-        public Gtk.ListStore el;
+        public GLib.ListStore el;
         private DialogFiles  _this;
 
 
@@ -836,7 +836,7 @@ public class DialogFiles : Object
         public Xcls_ListStore21(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ListStore.newv(  );
+            this.el = new GLib.ListStore( null );
 
             // my vars (dec)
 

@@ -310,7 +310,7 @@
              "* prop" : "model",
              "items" : [
               {
-               "$ xns" : "Gtk",
+               "$ xns" : "GLib",
                "* prop" : "model",
                "xtype" : "ListStore"
               }
