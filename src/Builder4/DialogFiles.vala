@@ -1266,7 +1266,12 @@ public class DialogFiles : Object
             	} else {
             		return;
             	}
-            	
+            	var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
+            	GLib.debug("SELECTED = %s", tr.item.get_type().name());
+            	var f = (JsRender.JsRender) tr.item;
+            	GLib.debug("Click %s", f.name);
+            
+            
             	
             	
             	
