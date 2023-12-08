@@ -393,6 +393,7 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "id" : "iconsel",
                  "items" : [
                   {
                    "$ xns" : "Gtk",

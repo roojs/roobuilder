@@ -17,6 +17,7 @@ public class DialogFiles : Object
     public Xcls_projectmodel projectmodel;
     public Xcls_iconsearch iconsearch;
     public Xcls_iconscroll iconscroll;
+    public Xcls_iconsel iconsel;
     public Xcls_gridmodel gridmodel;
     public Xcls_file_container file_container;
     public Xcls_treeview treeview;
@@ -976,7 +977,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_GestureClick28( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-            var child_1 = new Xcls_SingleSelection29( _this );
+            var child_1 = new Xcls_iconsel( _this );
             child_1.ref();
             this.el.model = child_1.el;
             var child_2 = new Xcls_SignalListItemFactory34( _this );
@@ -1014,7 +1015,7 @@ public class DialogFiles : Object
         // user defined functions
     }
 
-    public class Xcls_SingleSelection29 : Object
+    public class Xcls_iconsel : Object
     {
         public Gtk.SingleSelection el;
         private DialogFiles  _this;
@@ -1023,9 +1024,10 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection29(DialogFiles _owner )
+        public Xcls_iconsel(DialogFiles _owner )
         {
             _this = _owner;
+            _this.iconsel = this;
             this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)
