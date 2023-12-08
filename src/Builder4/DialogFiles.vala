@@ -633,7 +633,7 @@ public class DialogFiles : Object
                     return;
                 }
                 
-            	 vas project  = (Project.Project) _this.projectmodel.el.get_item(position);
+            	 var project  = (Project.Project) _this.projectmodel.el.get_item(position);
              
              
                 _this.onProjectSelected(project);

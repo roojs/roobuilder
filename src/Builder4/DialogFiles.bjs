@@ -236,7 +236,7 @@
                "        return;",
                "    }",
                "    ",
-               "\t vas project  = (Project.Project) _this.projectmodel.el.get_item(position);",
+               "\t var project  = (Project.Project) _this.projectmodel.el.get_item(position);",
                " ",
                " ",
                "    _this.onProjectSelected(project);",
