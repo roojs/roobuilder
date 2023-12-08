@@ -322,7 +322,8 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "expression",
-                 "string this_type" : "typeof(Project.Project)",
+                 "GLib.Type this_type" : "typeof(Project.Project)",
+                 "string property_name" : "name",
                  "xtype" : "PropertyExpression"
                 }
                ],

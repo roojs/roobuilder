@@ -885,7 +885,7 @@ public class DialogFiles : Object
         public Xcls_PropertyExpression23(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.PropertyExpression( typeof(Project.Project), null, null );
+            this.el = new Gtk.PropertyExpression( typeof(Project.Project), null, "name" );
 
             // my vars (dec)
 
