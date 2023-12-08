@@ -266,7 +266,6 @@
                  "                lbl, \"label\",",
                  "           GLib.BindingFlags.SYNC_CREATE);",
                  "",
-                 "\t ",
                  "\t  ",
                  "}",
                  ""

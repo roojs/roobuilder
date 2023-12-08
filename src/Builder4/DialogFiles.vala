@@ -771,7 +771,6 @@ public class DialogFiles : Object
                             lbl, "label",
                        GLib.BindingFlags.SYNC_CREATE);
             
-            	 
             	  
             });
         }
