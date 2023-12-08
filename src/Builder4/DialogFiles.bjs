@@ -314,6 +314,11 @@
                "* prop" : "model",
                "GLib.Type item_type" : "typeof(Project.Project)",
                "xtype" : "ListStore"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "sorter",
+               "xtype" : "StringSorter"
               }
              ],
              "xtype" : "SortListModel"
