@@ -496,6 +496,10 @@
              "items" : [
               {
                "$ xns" : "Gtk",
+               "xtype" : "GestureClick"
+              },
+              {
+               "$ xns" : "Gtk",
                "* prop" : "model",
                "items" : [
                 {
