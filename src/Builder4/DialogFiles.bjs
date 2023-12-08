@@ -299,6 +299,122 @@
         },
         {
          "$ xns" : "Gtk",
+         "* prop" : "child",
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "items" : [
+                {
+                 "$ xns" : "GLib",
+                 "* prop" : "model",
+                 "GLib.Type item_type" : "typeof(JsRender.JsRender)",
+                 "id" : "gridmodel",
+                 "xtype" : "ListStore"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "sorter",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "expression",
+                   "GLib.Type this_type" : "typeof(JsRender.JsRender)",
+                   "string property_name" : "name",
+                   "xtype" : "PropertyExpression"
+                  }
+                 ],
+                 "xtype" : "StringSorter"
+                }
+               ],
+               "xtype" : "SortListModel"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "filter",
+               "Gtk.CustomFilterFunc match_func" : [
+                "(item) => { ",
+                "\t",
+                "\tvar j =  ((JsRender.JsRender) item);",
+                "\treturn j.xtype == \"Roo\" || j.xtype == \"Gtk\";",
+                "",
+                "}"
+               ],
+               "xtype" : "CustomFilter"
+              }
+             ],
+             "xtype" : "FilterListModel"
+            }
+           ],
+           "xtype" : "SingleSelection"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "factory",
+           "listeners" : {
+            "bind" : [
+             "(listitem) => {",
+             " ",
+             "\tvar box = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();",
+             "\t   ",
+             "\tvar img = (Gtk.Image) box.get_first_child();",
+             "\tvar lbl = img.get_next_sibling();",
+             "",
+             "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
+             "",
+             "\titem.bind_property(\"name\",",
+             "                lbl, \"label\",",
+             "           GLib.BindingFlags.SYNC_CREATE);",
+             "",
+             "\t",
+             "    img.set_from_file(item.getIconFileName());",
+             "    ",
+             "\t  ",
+             "}",
+             ""
+            ],
+            "setup" : [
+             "(item) => {",
+             "\t//var j = (JsRender.JsRender) item;",
+             "\tvar gi = (Gtk.ListItem)item;",
+             "\tvar b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);",
+             "\tvar i = new Gtk.Image();",
+             "\ti.pixel_size = 96;",
+             "\tvar t = new Gtk.Label(\"\");",
+             "\tb.append(i);",
+             "\tb.append(t);",
+             "\t",
+             "\tgi.set_child(b);",
+             "\tb.has_tooltip = true;",
+             "\tb.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {",
+             "\t\tvar j = (JsRender.JsRender) gi.get_item();",
+             "\t\t",
+             "\t\tvar ti = new Gtk.Image.from_file ( j.getIconFileName());",
+             "\t\tti.pixel_size = 368;",
+             "\t\ttooltip.set_custom( ti );",
+             "\t\treturn true;",
+             "\t});",
+             "",
+             "",
+             "}",
+             ""
+            ]
+           },
+           "xtype" : "SignalListItemFactory"
+          }
+         ],
+         "xtype" : "GridView"
+        },
+        {
+         "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
          "bool hexpand" : true,
          "bool vexpand" : true,
