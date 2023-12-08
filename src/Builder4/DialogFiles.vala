@@ -800,7 +800,7 @@ public class DialogFiles : Object
             //listeners
             this.el.selection_changed.connect( (position, n_items) => {
             
-            
+            	
             });
         }
 

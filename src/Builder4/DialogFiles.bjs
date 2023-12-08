@@ -337,7 +337,7 @@
             "selection_changed" : [
              "(position, n_items) => {",
              "",
-             "",
+             "\t",
              "}",
              ""
             ]
