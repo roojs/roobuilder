@@ -513,7 +513,7 @@
                  "\t}",
                  "\t",
                  "\t",
-                 "",
+                 " \t_this.win.windowstate.fileViewOpen(f, _this.new_window);",
                  "\t",
                  "\t",
                  "\t",

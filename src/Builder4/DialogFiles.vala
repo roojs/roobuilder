@@ -1276,7 +1276,7 @@ public class DialogFiles : Object
             	}
             	
             	
-            
+             	_this.win.windowstate.fileViewOpen(f, _this.new_window);
             	
             	
             	
