@@ -245,7 +245,7 @@ namespace Project {
 		public static void loadIntoStore(GLib.ListStore st)
 		{
 			st.remove_all();
-			for (var p in projects) {
+			foreach (var p in projects) {
 				st.append(p);
 			}
 		}
