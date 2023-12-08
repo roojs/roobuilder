@@ -845,7 +845,7 @@ public class DialogFiles : Object
             // init method
 
             {
-            
+            typeof(JsRender.JsRender)
             }
         }
 

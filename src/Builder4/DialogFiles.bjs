@@ -313,7 +313,7 @@
                "$ xns" : "GLib",
                "* init" : [
                 "{",
-                "",
+                "typeof(JsRender.JsRender)",
                 "}",
                 ""
                ],
