@@ -1271,7 +1271,11 @@ public class DialogFiles : Object
             	GLib.debug("SELECTED = %s", tr.item.get_type().name());
             	var f = (JsRender.JsRender) tr.item;
             	GLib.debug("Click %s", f.name);
-            
+            	if (f.xtype == "Dir") {
+            		return;
+            	}
+            	
+            	
             
             	
             	
