@@ -242,6 +242,11 @@ namespace Project {
 		}
 		
 		
+		public static void loadIntoStore(GLib.ListStore st)
+		{
+			st.remove_all
+		
+		
 		// ?? needed??
 /*		public static Project? getProjectByHash(string fn)
 		{
