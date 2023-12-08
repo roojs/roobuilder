@@ -284,6 +284,13 @@
             {
              "$ xns" : "Gtk",
              "bool expand" : true,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "factory",
+               "xtype" : "SignalListItemFactory"
+              }
+             ],
              "string title" : "Project",
              "xtype" : "ColumnViewColumn"
             }
