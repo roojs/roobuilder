@@ -322,7 +322,7 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "expression",
-                 "string this_type" : "typeof(JsRender.JsRender)",
+                 "string this_type" : "typeof(Project.Project)",
                  "xtype" : "PropertyExpression"
                 }
                ],
