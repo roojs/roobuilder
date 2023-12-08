@@ -318,6 +318,14 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "sorter",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "expression",
+                 "string this_type" : "typeof(JsRender.JsRender)",
+                 "xtype" : "PropertyExpression"
+                }
+               ],
                "xtype" : "StringSorter"
               }
              ],
