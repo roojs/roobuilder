@@ -841,6 +841,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.n_items = ?uint?;
 
             // init method
 

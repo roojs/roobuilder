@@ -318,6 +318,7 @@
                 ""
                ],
                "* prop" : "model",
+               "uint n_items" : "?uint?",
                "xtype" : "ListStore"
               }
              ],
