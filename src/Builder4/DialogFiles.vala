@@ -929,20 +929,15 @@ public class DialogFiles : Object
             });
             this.el.bind.connect( (listitem) => {
              
-            	var box = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();
+            	var lbl = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();
             	   
-            	var img = (Gtk.Image) box.get_first_child();
-            	var lbl = img.get_next_sibling();
-            
             	var item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();
             
             	item.bind_property("name",
                             lbl, "label",
                        GLib.BindingFlags.SYNC_CREATE);
             
-            	
-                img.set_from_file(item.getIconFileName());
-                
+            	 
             	  
             });
         }
