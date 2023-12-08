@@ -281,6 +281,12 @@
               ]
              },
              "xtype" : "SignalListItemFactory"
+            },
+            {
+             "$ xns" : "Gtk",
+             "bool expand" : true,
+             "string title" : "Project",
+             "xtype" : "ColumnViewColumn"
             }
            ],
            "xtype" : "ColumnView"

@@ -49,7 +49,7 @@ public class DialogFiles : Object
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
         this.el.child = child_0.el;
-        var child_1 = new Xcls_HeaderBar45( _this );
+        var child_1 = new Xcls_HeaderBar46( _this );
         child_1.ref();
         this.el.titlebar = child_1.el;
     }
@@ -499,7 +499,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_ScrolledWindow13( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box21( _this );
+            var child_1 = new Xcls_Box22( _this );
             child_1.ref();
             this.el.append(  child_1.el );
             var child_2 = new Xcls_file_container( _this );
@@ -566,6 +566,9 @@ public class DialogFiles : Object
             var child_1 = new Xcls_SignalListItemFactory20( _this );
             child_1.ref();
             this.el.factory = child_1.el;
+            var child_2 = new Xcls_ColumnViewColumn21( _this );
+            child_2.ref();
+            this.el.append(  child_2.el );
         }
 
         // user defined functions
@@ -754,38 +757,31 @@ public class DialogFiles : Object
         // user defined functions
     }
 
-
-
-    public class Xcls_Box21 : Object
+    public class Xcls_ColumnViewColumn21 : Object
     {
-        public Gtk.Box el;
+        public Gtk.ColumnViewColumn el;
         private DialogFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Box21(DialogFiles _owner )
+        public Xcls_ColumnViewColumn21(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+            this.el = new Gtk.ColumnViewColumn( "Project", null );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.width_request = 600;
-            this.el.hexpand = true;
-            this.el.vexpand = true;
-            var child_0 = new Xcls_Box22( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_iconscroll( _this );
-            child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.expand = true;
         }
 
         // user defined functions
     }
+
+
+
     public class Xcls_Box22 : Object
     {
         public Gtk.Box el;
@@ -796,6 +792,36 @@ public class DialogFiles : Object
 
         // ctor
         public Xcls_Box22(DialogFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.width_request = 600;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
+            var child_0 = new Xcls_Box23( _this );
+            child_0.ref();
+            this.el.append(  child_0.el );
+            var child_1 = new Xcls_iconscroll( _this );
+            child_1.ref();
+            this.el.append(  child_1.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Box23 : Object
+    {
+        public Gtk.Box el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box23(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -879,7 +905,7 @@ public class DialogFiles : Object
             this.el.has_frame = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_GridView25( _this );
+            var child_0 = new Xcls_GridView26( _this );
             child_0.ref();
             this.el.child = child_0.el;
 
@@ -890,7 +916,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_GridView25 : Object
+    public class Xcls_GridView26 : Object
     {
         public Gtk.GridView el;
         private DialogFiles  _this;
@@ -899,7 +925,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_GridView25(DialogFiles _owner )
+        public Xcls_GridView26(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.GridView( null, null );
@@ -907,17 +933,17 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SingleSelection26( _this );
+            var child_0 = new Xcls_SingleSelection27( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_SignalListItemFactory33( _this );
+            var child_1 = new Xcls_SignalListItemFactory34( _this );
             child_1.ref();
             this.el.factory = child_1.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SingleSelection26 : Object
+    public class Xcls_SingleSelection27 : Object
     {
         public Gtk.SingleSelection el;
         private DialogFiles  _this;
@@ -926,7 +952,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection26(DialogFiles _owner )
+        public Xcls_SingleSelection27(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.SingleSelection( null );
@@ -934,14 +960,14 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_FilterListModel27( _this );
+            var child_0 = new Xcls_FilterListModel28( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_FilterListModel27 : Object
+    public class Xcls_FilterListModel28 : Object
     {
         public Gtk.FilterListModel el;
         private DialogFiles  _this;
@@ -950,7 +976,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_FilterListModel27(DialogFiles _owner )
+        public Xcls_FilterListModel28(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.FilterListModel( null, null );
@@ -958,17 +984,17 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SortListModel28( _this );
+            var child_0 = new Xcls_SortListModel29( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_CustomFilter32( _this );
+            var child_1 = new Xcls_CustomFilter33( _this );
             child_1.ref();
             this.el.filter = child_1.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SortListModel28 : Object
+    public class Xcls_SortListModel29 : Object
     {
         public Gtk.SortListModel el;
         private DialogFiles  _this;
@@ -977,7 +1003,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SortListModel28(DialogFiles _owner )
+        public Xcls_SortListModel29(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.SortListModel( null, null );
@@ -988,7 +1014,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_gridmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_StringSorter30( _this );
+            var child_1 = new Xcls_StringSorter31( _this );
             child_1.ref();
             this.el.sorter = child_1.el;
         }
@@ -1018,7 +1044,7 @@ public class DialogFiles : Object
         // user defined functions
     }
 
-    public class Xcls_StringSorter30 : Object
+    public class Xcls_StringSorter31 : Object
     {
         public Gtk.StringSorter el;
         private DialogFiles  _this;
@@ -1027,7 +1053,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_StringSorter30(DialogFiles _owner )
+        public Xcls_StringSorter31(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.StringSorter( null );
@@ -1035,14 +1061,14 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_PropertyExpression31( _this );
+            var child_0 = new Xcls_PropertyExpression32( _this );
             child_0.ref();
             this.el.expression = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_PropertyExpression31 : Object
+    public class Xcls_PropertyExpression32 : Object
     {
         public Gtk.PropertyExpression el;
         private DialogFiles  _this;
@@ -1051,7 +1077,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_PropertyExpression31(DialogFiles _owner )
+        public Xcls_PropertyExpression32(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
@@ -1066,7 +1092,7 @@ public class DialogFiles : Object
 
 
 
-    public class Xcls_CustomFilter32 : Object
+    public class Xcls_CustomFilter33 : Object
     {
         public Gtk.CustomFilter el;
         private DialogFiles  _this;
@@ -1075,7 +1101,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CustomFilter32(DialogFiles _owner )
+        public Xcls_CustomFilter33(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.CustomFilter( (item) => { 
@@ -1095,7 +1121,7 @@ public class DialogFiles : Object
 
 
 
-    public class Xcls_SignalListItemFactory33 : Object
+    public class Xcls_SignalListItemFactory34 : Object
     {
         public Gtk.SignalListItemFactory el;
         private DialogFiles  _this;
@@ -1104,7 +1130,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory33(DialogFiles _owner )
+        public Xcls_SignalListItemFactory34(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1186,7 +1212,7 @@ public class DialogFiles : Object
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.visible = false;
-            var child_0 = new Xcls_ColumnView35( _this );
+            var child_0 = new Xcls_ColumnView36( _this );
             child_0.ref();
             this.el.child = child_0.el;
 
@@ -1197,7 +1223,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_ColumnView35 : Object
+    public class Xcls_ColumnView36 : Object
     {
         public Gtk.ColumnView el;
         private DialogFiles  _this;
@@ -1206,7 +1232,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnView35(DialogFiles _owner )
+        public Xcls_ColumnView36(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.ColumnView( null );
@@ -1214,7 +1240,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SingleSelection36( _this );
+            var child_0 = new Xcls_SingleSelection37( _this );
             child_0.ref();
             this.el.model = child_0.el;
             var child_1 = new Xcls_name( _this );
@@ -1224,7 +1250,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_SingleSelection36 : Object
+    public class Xcls_SingleSelection37 : Object
     {
         public Gtk.SingleSelection el;
         private DialogFiles  _this;
@@ -1233,7 +1259,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection36(DialogFiles _owner )
+        public Xcls_SingleSelection37(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.SingleSelection( null );
@@ -1241,14 +1267,14 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_FilterListModel37( _this );
+            var child_0 = new Xcls_FilterListModel38( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_FilterListModel37 : Object
+    public class Xcls_FilterListModel38 : Object
     {
         public Gtk.FilterListModel el;
         private DialogFiles  _this;
@@ -1257,7 +1283,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_FilterListModel37(DialogFiles _owner )
+        public Xcls_FilterListModel38(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.FilterListModel( null, null );
@@ -1265,17 +1291,17 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SortListModel38( _this );
+            var child_0 = new Xcls_SortListModel39( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_CustomFilter42( _this );
+            var child_1 = new Xcls_CustomFilter43( _this );
             child_1.ref();
             this.el.filter = child_1.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SortListModel38 : Object
+    public class Xcls_SortListModel39 : Object
     {
         public Gtk.SortListModel el;
         private DialogFiles  _this;
@@ -1284,7 +1310,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SortListModel38(DialogFiles _owner )
+        public Xcls_SortListModel39(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.SortListModel( null, null );
@@ -1295,7 +1321,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_treelistmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_StringSorter40( _this );
+            var child_1 = new Xcls_StringSorter41( _this );
             child_1.ref();
             this.el.sorter = child_1.el;
         }
@@ -1336,7 +1362,7 @@ public class DialogFiles : Object
         // user defined functions
     }
 
-    public class Xcls_StringSorter40 : Object
+    public class Xcls_StringSorter41 : Object
     {
         public Gtk.StringSorter el;
         private DialogFiles  _this;
@@ -1345,7 +1371,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_StringSorter40(DialogFiles _owner )
+        public Xcls_StringSorter41(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.StringSorter( null );
@@ -1353,14 +1379,14 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_PropertyExpression41( _this );
+            var child_0 = new Xcls_PropertyExpression42( _this );
             child_0.ref();
             this.el.expression = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_PropertyExpression41 : Object
+    public class Xcls_PropertyExpression42 : Object
     {
         public Gtk.PropertyExpression el;
         private DialogFiles  _this;
@@ -1369,7 +1395,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_PropertyExpression41(DialogFiles _owner )
+        public Xcls_PropertyExpression42(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.PropertyExpression( typeof(JsRender.JsRender), null, "name" );
@@ -1384,7 +1410,7 @@ public class DialogFiles : Object
 
 
 
-    public class Xcls_CustomFilter42 : Object
+    public class Xcls_CustomFilter43 : Object
     {
         public Gtk.CustomFilter el;
         private DialogFiles  _this;
@@ -1393,7 +1419,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CustomFilter42(DialogFiles _owner )
+        public Xcls_CustomFilter43(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.CustomFilter( (item) => { 
@@ -1434,7 +1460,7 @@ public class DialogFiles : Object
             this.el.id = "name";
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory44( _this );
+            var child_0 = new Xcls_SignalListItemFactory45( _this );
             child_0.ref();
             this.el.factory = child_0.el;
 
@@ -1450,7 +1476,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory44 : Object
+    public class Xcls_SignalListItemFactory45 : Object
     {
         public Gtk.SignalListItemFactory el;
         private DialogFiles  _this;
@@ -1459,7 +1485,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory44(DialogFiles _owner )
+        public Xcls_SignalListItemFactory45(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1527,7 +1553,7 @@ public class DialogFiles : Object
 
 
 
-    public class Xcls_HeaderBar45 : Object
+    public class Xcls_HeaderBar46 : Object
     {
         public Gtk.HeaderBar el;
         private DialogFiles  _this;
@@ -1536,7 +1562,7 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HeaderBar45(DialogFiles _owner )
+        public Xcls_HeaderBar46(DialogFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.HeaderBar();
