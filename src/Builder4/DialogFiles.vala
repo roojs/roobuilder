@@ -127,7 +127,7 @@ public class DialogFiles : Object
          Project.Project.loadAll();
          
          Project.Project.loadIntoStore(this.projectmodel.el);
-         _this.projectselection.el.selection = Gtk.INVALID_LIST_POSITION;
+         _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
          
          _this.is_loading = false;
     }
