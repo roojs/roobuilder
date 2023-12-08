@@ -742,7 +742,7 @@
     "\t",
     "    _this.projectselection.el.selected  =  pos;",
     "//        this.onProjectSelected(project);",
-    "  ",
+    "   ",
     "}",
     ""
    ],

@@ -101,7 +101,7 @@ public class DialogFiles : Object
     	
         _this.projectselection.el.selected  =  pos;
     //        this.onProjectSelected(project);
-      
+       
     }
     public void show (Project.Project? project, bool new_window) {
           
