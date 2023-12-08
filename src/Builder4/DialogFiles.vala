@@ -841,12 +841,6 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-
-            // init method
-
-            {
-            typeof(JsRender.JsRender)
-            }
         }
 
         // user defined functions

@@ -311,12 +311,6 @@
              "items" : [
               {
                "$ xns" : "GLib",
-               "* init" : [
-                "{",
-                "typeof(JsRender.JsRender)",
-                "}",
-                ""
-               ],
                "* prop" : "model",
                "GLib.Type item_type" : "typeof(JsRender.JsRender)",
                "xtype" : "ListStore"
