@@ -30,7 +30,6 @@ public class DialogFiles : Object
     public bool new_window;
     public Gdk.Pixbuf missing_thumb_pixbuf;
     public Gee.HashMap<string,Gdk.Pixbuf> image_cache;
-    public bool is_loaded;
 
     // ctor
     public DialogFiles()
@@ -42,7 +41,6 @@ public class DialogFiles : Object
         this.in_onprojectselected = false;
         this.is_loading = false;
         this.new_window = false;
-        this.is_loaded = false;
 
         // set gobject values
         this.el.title = "Select Project / File";
@@ -122,12 +120,9 @@ public class DialogFiles : Object
     public void load () {
          // clear list...
         
-         if (_this.is_loaded) {
-             return;
-         }
+          
          _this.is_loading = true;
-            
-         _this.is_loaded = true;
+             
          
          Project.Project.loadAll();
          
