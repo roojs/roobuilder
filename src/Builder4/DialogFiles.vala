@@ -836,12 +836,11 @@ public class DialogFiles : Object
         public Xcls_ListStore21(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new GLib.ListStore( null );
+            this.el = new GLib.ListStore( typeof(JsRender.JsRender) );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.n_items = ?uint?;
 
             // init method
 

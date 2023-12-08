@@ -318,7 +318,7 @@
                 ""
                ],
                "* prop" : "model",
-               "uint n_items" : "?uint?",
+               "GLib.Type item_type" : "typeof(JsRender.JsRender)",
                "xtype" : "ListStore"
               }
              ],
