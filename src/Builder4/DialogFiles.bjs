@@ -70,7 +70,7 @@
              "  ",
              "    pe.selected.connect((pr) => {",
              "     \t",
-             "\t     _this.is_loaded = false;",
+             "\t  ",
              "\t     _this.show(  pr, _this.new_window);",
              "",
              "    });",

@@ -257,7 +257,7 @@ public class DialogFiles : Object
               
                 pe.selected.connect((pr) => {
                  	
-            	     _this.is_loaded = false;
+            	  
             	     _this.show(  pr, _this.new_window);
             
                 });
