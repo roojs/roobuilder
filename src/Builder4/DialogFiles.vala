@@ -1021,7 +1021,7 @@ public class DialogFiles : Object
             	
             	
              	_this.win.windowstate.fileViewOpen(f, _this.new_window);
-            	_this.hide();
+            	_this.el.hide();
             	
             	
             	
@@ -1328,7 +1328,7 @@ public class DialogFiles : Object
             	
              	_this.win.windowstate.fileViewOpen(f, _this.new_window);
             	
-            	_this.file.
+            	_this.el.hide().
             	
             	
             
