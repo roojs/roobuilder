@@ -96,30 +96,12 @@ public class DialogFiles : Object
     }
     public void selectProject (Project.Project project) {
         
-        var sel = _this.view.el.get_selection();
-        
-        sel.unselect_all();
-        
-        var found = false;
-        _this.model.el.foreach((mod, path, iter) => {
-            GLib.Value val;
-        
-            mod.get_value(iter, 1, out val);
-            if ( ( (Project.Project)val.get_object()).fn != project.fn) {
-                print("SKIP %s != %s\n", ((Project.Project)val.get_object()).name , project.name);
-                return false;//continue
-            }
-            sel.select_iter(iter);
-    		this.selectedProject = project;
-            this.onProjectSelected(project);
-            found = true;
-            return true;
-            
-        
-        });
-         if (!found) {
-    	    print("tried to select %s, could not find it", project.name);
-        }
+    	uint pos;
+    	_this.projectmodel.el.find(project, out pos);
+    	
+        _this.projectselection.el.selected  =  pos;
+    //        this.onProjectSelected(project);
+      
     }
     public void show (Project.Project? project, bool new_window) {
           
