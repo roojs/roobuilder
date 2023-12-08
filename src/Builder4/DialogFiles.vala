@@ -1012,9 +1012,8 @@ public class DialogFiles : Object
             	} else {
             		return;
             	}
-            	var tr = (Gtk.ListItem)_this.iconsel.el.selected_item;
-            	GLib.debug("SELECTED = %s", tr.item.get_type().name());
-            	var f = (JsRender.JsRender) tr.item;
+            	var f = (JsRender.JsRender)_this.iconsel.el.selected_item;
+            	  
             	GLib.debug("Click %s", f.name);
             	if (f.xtype == "Dir") {
             		return;
