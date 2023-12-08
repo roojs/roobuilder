@@ -1007,7 +1007,25 @@ public class DialogFiles : Object
 
             //listeners
             this.el.pressed.connect( (n_press, x, y) => {
-            
+            	if (n_press == 2) {
+            		GLib.debug("double cliced");
+            	} else {
+            		return;
+            	}
+            	var tr = (Gtk.TreeListRow)_this.iconsel.el.selected_item;
+            	GLib.debug("SELECTED = %s", tr.item.get_type().name());
+            	var f = (JsRender.JsRender) tr.item;
+            	GLib.debug("Click %s", f.name);
+            	if (f.xtype == "Dir") {
+            		return;
+            	}
+            	
+            	
+             	_this.win.windowstate.fileViewOpen(f, _this.new_window);
+            	
+            	
+            	
+            	
             
             });
         }
