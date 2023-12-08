@@ -644,17 +644,18 @@ public class Editor : Object
                 return true;
             }
             
-            if (_this.file.xtype == "PlainFile") {
+            // bit presumptiona
+            if (_this.file.xtype == "PlainFile" && _this.file.project.xtype == "Gtk") {
             
                 // assume it's gtk...
                    this.check_running = true;
          
                  if (!BuilderApplication.valasource.checkPlainFileSpawn(
-        	   _this.file,
-        	    str
-        	 )) {
-                    this.check_running = false;
-                }
+        			   _this.file,
+        				str
+        			 )) {
+        				    this.check_running = false;
+        				}
         	
                 return true;
             
