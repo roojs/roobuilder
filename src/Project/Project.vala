@@ -298,10 +298,9 @@ namespace Project {
 			var obj = node.get_object ();
 			obj.foreach_member((sobj, key, val) => {
 				GLib.debug("read ProjectList %s: %s", key, val.get_string());
+				// facotry adds project!
 				var p = Project.factory(val.get_string(), key );
-				if (!projects.contains(p)) {
-					projects.add(p);
-				}
+				 
 			});
 			
 		
