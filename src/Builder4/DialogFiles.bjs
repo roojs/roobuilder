@@ -387,7 +387,7 @@
                    "\t} else {",
                    "\t\treturn;",
                    "\t}",
-                   "\tvar tr = (Gtk.TreeListRow)_this.iconsel.el.selected_item;",
+                   "\tvar tr = (Gtk.ListItem)_this.iconsel.el.selected_item;",
                    "\tGLib.debug(\"SELECTED = %s\", tr.item.get_type().name());",
                    "\tvar f = (JsRender.JsRender) tr.item;",
                    "\tGLib.debug(\"Click %s\", f.name);",
