@@ -12,6 +12,7 @@ public class DialogFiles : Object
         }
         return _DialogFiles;
     }
+    public Xcls_projectselection projectselection;
     public Xcls_projectmodel projectmodel;
     public Xcls_iconsearch iconsearch;
     public Xcls_iconscroll iconscroll;
@@ -595,7 +596,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SingleSelection15( _this );
+            var child_0 = new Xcls_projectselection( _this );
             child_0.ref();
             this.el.model = child_0.el;
             var child_1 = new Xcls_SignalListItemFactory20( _this );
@@ -605,7 +606,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_SingleSelection15 : Object
+    public class Xcls_projectselection : Object
     {
         public Gtk.SingleSelection el;
         private DialogFiles  _this;
@@ -614,9 +615,10 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection15(DialogFiles _owner )
+        public Xcls_projectselection(DialogFiles _owner )
         {
             _this = _owner;
+            _this.projectselection = this;
             this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)

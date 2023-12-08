@@ -198,6 +198,7 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "model",
+             "id" : "projectselection",
              "items" : [
               {
                "$ xns" : "Gtk",
