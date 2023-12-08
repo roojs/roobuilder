@@ -15,6 +15,7 @@ public class DialogFiles : Object
     public Xcls_view view;
     public Xcls_model model;
     public Xcls_namecol namecol;
+    public Xcls_projectmodel projectmodel;
     public Xcls_iconsearch iconsearch;
     public Xcls_iconscroll iconscroll;
     public Xcls_gridmodel gridmodel;
@@ -800,7 +801,24 @@ public class DialogFiles : Object
             //listeners
             this.el.selection_changed.connect( (position, n_items) => {
             
-            	
+            	    if (_this.is_loading) {
+                    return;
+                }
+                
+                Gtk.TreeIter iter;
+                Gtk.TreeModel mod;
+                        
+                var s = this.el.get_selection();
+                if (!s.get_selected(out mod, out iter)) {
+                    return;
+                }
+                
+                GLib.Value gval;
+            
+                mod.get_value(iter, 1 , out gval);
+                var project = (Project.Project)gval.get_object();
+                
+                _this.onProjectSelected(project);
             });
         }
 
@@ -823,7 +841,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ListStore21( _this );
+            var child_0 = new Xcls_projectmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
             var child_1 = new Xcls_StringSorter22( _this );
@@ -833,7 +851,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_ListStore21 : Object
+    public class Xcls_projectmodel : Object
     {
         public GLib.ListStore el;
         private DialogFiles  _this;
@@ -842,9 +860,10 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListStore21(DialogFiles _owner )
+        public Xcls_projectmodel(DialogFiles _owner )
         {
             _this = _owner;
+            _this.projectmodel = this;
             this.el = new GLib.ListStore( typeof(Project.Project) );
 
             // my vars (dec)
