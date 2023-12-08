@@ -15,13 +15,13 @@ namespace JsRender {
 		public Gee.ArrayList<string> doubleStringProps;
 		
 		public string id;
-		public string name;   // is the JS name of the file.
+		public string name { get; set; }   // is the JS name of the file.
 		public string fullname;
 		public string path;  // is the full path to the file.
 		
 		public  string relpath {
 			owned get { 
-				return this.path.substring(this.project.path.length);
+				return this.path == this.project.path ? "" : this.path.substring(this.project.path.length+1);
 			} 
 			private set {}
 		}
@@ -93,7 +93,7 @@ namespace JsRender {
 			var ar = this.path.split("/");
 			// name is in theory filename without .bjs (or .js eventually...)
 			try {
-				Regex regex = new Regex ("\\.(bjs|js)$");
+				Regex regex = new Regex ("\\.(bjs)$");
 
 				this.name = ar.length > 0 ? regex.replace(ar[ar.length-1],ar[ar.length-1].length, 0 , "") : "";
 			} catch (GLib.Error e) {

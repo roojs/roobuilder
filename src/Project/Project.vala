@@ -510,6 +510,8 @@ namespace Project {
 
 			this.loadJson(obj);
 			// used to load paths..
+			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
+			this.files = new Gee.HashMap<string,JsRender.JsRender>();
 			this.loadSubDirectories("", 0);
 			
 			 
@@ -678,9 +680,14 @@ namespace Project {
 			if (dp > 5) { // no more than 5 deep?
 				return;
 			}
+			if (subdir == "build") { // cmake!
+				return;
+			}
 			var dir = this.path + (subdir.length > 0 ? "/" : "") + subdir;
-			var jsDir = new JsRender.Dir(this, dir);
 			
+			
+			GLib.debug("Project %s Scan Dir: %s", this.name, dir);
+			var jsDir = new JsRender.Dir(this, dir);
 			this.sub_paths.add(jsDir); // might be ''...
 			
 			
@@ -711,13 +718,17 @@ namespace Project {
 						subs.add(dir  + "/" + fn);
 						continue;
 					}
-					if (!Regex.match_simple("\\.(o|cache)$", fn)) { // object..
+					if (Regex.match_simple("\\.(o|cache|gif|jpg|png|gif|out|stamp)$", fn)) { // object..
+						continue;
+					}
+					if (Regex.match_simple("^(config1.builder|a.out|)$", fn)) { // object..
 						continue;
 					}
 					
 					
-					if (!Regex.match_simple("\\.vala$", fn)) {
+					if (Regex.match_simple("\\.vala$", fn)) {
 						vala_files.add(fn);
+						other_files.add(fn);
 						//print("no a bjs\n");
 						continue;
 					}
@@ -749,7 +760,7 @@ namespace Project {
 					continue;
 				}
 				// c with a vala - skip
-				if (!Regex.match_simple("\\.c$", fn) && vala_files.contains(without_ext)) {
+				if (Regex.match_simple("\\.c$", fn) && vala_files.contains(without_ext + ".vala")) {
 					continue;
 				}
 				// Makefile (only allow am files at present.
@@ -770,12 +781,12 @@ namespace Project {
 				
 				GLib.debug("Could have added %s/%s", dir, fn);
 			     var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
-				this.files.set( dir + "/" + fn, el);
+				//this.files.set( dir + "/" + fn, el);
 				jsDir.childfiles.append(el);
 			}
 			
 			foreach (var sd in subs) {
-				 this.loadSubDirectories(sd, dp+1);
+				 this.loadSubDirectories(sd.substring(this.path.length+1), dp+1);
 			}
 			
 		
@@ -806,13 +817,18 @@ namespace Project {
 		// this store is used in the icon view ?? do we need to store and update it?
 		public void loadFilesIntoStore(GLib.ListStore ls) 
 		{
-			foreach(var f in this.files) {
+			ls.remove_all();
+			GLib.debug("Load files (into grid) %s", this.name);			
+			foreach(var f in this.files.values) {
+				GLib.debug("Add file %s", f.name);
 				ls.append(f);
 			}
 		}
 		public void loadDirsIntoStore(GLib.ListStore ls) 
 		{
+			ls.remove_all();
 			foreach(var f in this.sub_paths) {
+				GLib.debug("Add %s", f.name);
 				ls.append(f);
 			}
 		}

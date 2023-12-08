@@ -49,6 +49,7 @@
                "xtype" : "Image"
               },
               {
+               "$ Gtk.Align halign" : "Gtk.Align.START",
                "$ xns" : "Gtk",
                "string label" : "New Project",
                "xtype" : "Label"
@@ -176,6 +177,7 @@
        "bool hexpand" : true,
        "bool homogeneous" : false,
        "bool vexpand" : true,
+       "int position" : 200,
        "int spacing" : 0,
        "items" : [
         {
@@ -184,6 +186,7 @@
           "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
           " "
          ],
+         "* prop" : "start_child",
          "bool expand" : true,
          "bool has_frame" : true,
          "bool hexpand" : true,
@@ -202,6 +205,7 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
+               "id" : "projectsort",
                "items" : [
                 {
                  "$ xns" : "GLib",
@@ -229,14 +233,16 @@
               }
              ],
              "listeners" : {
-              "selection_changed" : [
+              "notify[\"selected\"]" : [
                "(position, n_items) => {",
                "",
                "    if (_this.is_loading) {",
                "        return;",
                "    }",
                "    ",
-               "\t var project  = (Project.Project) _this.projectmodel.el.get_item(position);",
+               "\t var project  = (Project.Project) _this.projectsort.el.get_item(this.el.selected);",
+               "\t ",
+               "\t GLib.debug(\"selection changed to %s\", project.name);",
                " ",
                " ",
                "    _this.onProjectSelected(project);",
@@ -276,6 +282,7 @@
                  "\tvar gi = (Gtk.ListItem)item;",
                  "\t ",
                  "\tvar lbl = new Gtk.Label(\"\");",
+                 "\tlbl.halign = Gtk.Align.START;",
                  "\tgi.set_child(lbl);",
                  "",
                  "",
@@ -298,74 +305,77 @@
         },
         {
          "$ xns" : "Gtk",
-         "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-         "bool hexpand" : true,
-         "bool vexpand" : true,
-         "int spacing" : 0,
-         "int width_request" : 600,
+         "* prop" : "end_child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int position" : 200,
          "items" : [
           {
            "$ xns" : "Gtk",
-           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-           "bool hexpand" : true,
-           "int spacing" : 0,
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* init" : [
-              " ",
-              "",
-              "this.css = new Gtk.CssProvider();",
-              "try {",
-              "\tthis.css.load_from_data(\"#popover-files-iconsearch { font:  10px monospace;}\".data);",
-              "} catch (Error e) {}",
-              "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
-              "        ",
-              "        ",
-              ""
-             ],
-             "Gtk.CssProvider css" : "",
-             "bool hexpand" : true,
-             "id" : "iconsearch",
-             "listeners" : {
-              "changed" : [
-               "( ) => {",
-               "\tGLib.debug(\"Got '%s'\", this.el.text);",
-               "\t",
-               "\t//if (this.el.text.down() != _this.lastfilter) {",
-               "\t//\t_this.loadIconView();",
-               "\t//\t_this.loadTreeView();",
-               "\t//}",
-               "}",
-               ""
-              ]
-             },
-             "string name" : "popover-files-iconsearch",
-             "string placeholder_text" : "type to filter results",
-             "xtype" : "SearchEntry"
-            }
-           ],
-           "xtype" : "Box"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* init" : [
-            "  this.el.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);",
-            "  "
-           ],
-           "bool has_frame" : true,
+           "* prop" : "end_child",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
            "bool hexpand" : true,
            "bool vexpand" : true,
-           "id" : "iconscroll",
+           "int spacing" : 0,
            "int width_request" : 600,
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* prop" : "child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "bool hexpand" : true,
+             "int spacing" : 0,
              "items" : [
               {
                "$ xns" : "Gtk",
-               "* prop" : "model",
+               "* init" : [
+                " ",
+                "/*",
+                "this.css = new Gtk.CssProvider();",
+                "try {",
+                "\tthis.css.load_from_data(\"#popover-files-iconsearch { font:  10px monospace;}\".data);",
+                "} catch (Error e) {}",
+                "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+                "        ",
+                "        ",
+                "*/"
+               ],
+               "Gtk.CssProvider css" : "",
+               "bool hexpand" : true,
+               "id" : "iconsearch",
+               "listeners" : {
+                "changed" : [
+                 "( ) => {",
+                 "\tGLib.debug(\"Got '%s'\", this.el.text);",
+                 "\t",
+                 "\t//if (this.el.text.down() != _this.lastfilter) {",
+                 "\t//\t_this.loadIconView();",
+                 "\t//\t_this.loadTreeView();",
+                 "\t//}",
+                 "}",
+                 ""
+                ]
+               },
+               "string name" : "popover-files-iconsearch",
+               "string placeholder_text" : "type to filter results",
+               "xtype" : "SearchEntry"
+              }
+             ],
+             "xtype" : "Box"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* init" : [
+              "  this.el.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);",
+              "  "
+             ],
+             "bool has_frame" : true,
+             "bool hexpand" : true,
+             "bool vexpand" : true,
+             "id" : "iconscroll",
+             "int width_request" : 600,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
                "items" : [
                 {
                  "$ xns" : "Gtk",
@@ -398,15 +408,157 @@
                     }
                    ],
                    "xtype" : "SortListModel"
+                  }
+                 ],
+                 "xtype" : "SingleSelection"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "factory",
+                 "listeners" : {
+                  "bind" : [
+                   "(listitem) => {",
+                   " ",
+                   "\tvar box = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();",
+                   "\t   ",
+                   "\tvar img = (Gtk.Image) box.get_first_child();",
+                   "\tvar lbl = (Gtk.Label)img.get_next_sibling();",
+                   "",
+                   "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
+                   "\tGLib.debug(\"set label name to %s\", item.name);",
+                   "\tlbl.label = item.name;",
+                   "",
+                   "/*",
+                   "\titem.bind_property(\"name\",",
+                   "                lbl, \"label\",",
+                   "           GLib.BindingFlags.SYNC_CREATE);",
+                   "",
+                   "\t*/",
+                   "    img.set_from_file(item.getIconFileName());",
+                   "    ",
+                   "\t  ",
+                   "}",
+                   ""
+                  ],
+                  "setup" : [
+                   "(item) => {",
+                   "\t//var j = (JsRender.JsRender) item;",
+                   "\tvar gi = (Gtk.ListItem)item;",
+                   "\tvar b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);",
+                   "\tvar i = new Gtk.Image();",
+                   "\ti.pixel_size = 96;",
+                   "\tvar t = new Gtk.Label(\"\");",
+                   "\tb.append(i);",
+                   "\tb.append(t);",
+                   "\t",
+                   "\tgi.set_child(b);",
+                   "\tb.has_tooltip = true;",
+                   "\tb.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {",
+                   "\t\tvar j = (JsRender.JsRender) gi.get_item();",
+                   "\t\t",
+                   "\t\tvar ti = new Gtk.Image.from_file ( j.getIconFileName());",
+                   "\t\tti.pixel_size = 368;",
+                   "\t\ttooltip.set_custom( ti );",
+                   "\t\treturn true;",
+                   "\t});",
+                   "",
+                   "",
+                   "}",
+                   ""
+                  ]
+                 },
+                 "xtype" : "SignalListItemFactory"
+                }
+               ],
+               "xtype" : "GridView"
+              }
+             ],
+             "xtype" : "ScrolledWindow"
+            }
+           ],
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+           "* prop" : "start_child",
+           "bool has_frame" : true,
+           "bool hexpand" : true,
+           "bool vexpand" : true,
+           "bool visible" : true,
+           "id" : "file_container",
+           "int width_request" : 200,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "id" : "treeview",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "model",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* init" : [
+                    "{",
+                    "\tthis.el.set_sorter(new Gtk.TreeListRowSorter(_this.treeview.el.sorter));",
+                    "}",
+                    ""
+                   ],
+                   "* prop" : "model",
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* ctor" : [
+                      "new Gtk.TreeListModel( ",
+                      "\tnew GLib.ListStore(",
+                      "\t\ttypeof(JsRender.JsRender) ), ",
+                      "\t\tfalse,",
+                      "\t\ttrue, ",
+                      "\t\t(item) => {",
+                      "\t\t\tGLib.debug(\"liststore got %s\", item.get_type().name());",
+                      "\t\t\treturn ((JsRender.JsRender)item).childfiles;",
+                      "\t",
+                      "\t\t} ",
+                      ")",
+                      "",
+                      ""
+                     ],
+                     "* prop" : "model",
+                     "id" : "treelistmodel",
+                     "xtype" : "TreeListModel"
+                    },
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "sorter",
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "expression",
+                       "GLib.Type this_type" : "typeof(JsRender.JsRender)",
+                       "string property_name" : "name",
+                       "xtype" : "PropertyExpression"
+                      }
+                     ],
+                     "xtype" : "StringSorter"
+                    }
+                   ],
+                   "xtype" : "SortListModel"
                   },
                   {
                    "$ xns" : "Gtk",
                    "* prop" : "filter",
                    "Gtk.CustomFilterFunc match_func" : [
                     "(item) => { ",
-                    "\t",
-                    "\tvar j =  ((JsRender.JsRender) item);",
-                    "\treturn j.xtype == \"Roo\" || j.xtype == \"Gtk\";",
+                    "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
+                    "\tGLib.debug(\"filter %s\", tr.get_type().name());",
+                    "\tvar j =  (JsRender.JsRender) tr;",
+                    "\treturn j.xtype == \"PlainFile\" || j.xtype == \"Dir\";",
                     "",
                     "}"
                    ],
@@ -420,238 +572,105 @@
               },
               {
                "$ xns" : "Gtk",
-               "* prop" : "factory",
-               "listeners" : {
-                "bind" : [
-                 "(listitem) => {",
-                 " ",
-                 "\tvar box = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();",
-                 "\t   ",
-                 "\tvar img = (Gtk.Image) box.get_first_child();",
-                 "\tvar lbl = img.get_next_sibling();",
-                 "",
-                 "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
-                 "",
-                 "\titem.bind_property(\"name\",",
-                 "                lbl, \"label\",",
-                 "           GLib.BindingFlags.SYNC_CREATE);",
-                 "",
-                 "\t",
-                 "    img.set_from_file(item.getIconFileName());",
-                 "    ",
-                 "\t  ",
-                 "}",
-                 ""
-                ],
-                "setup" : [
-                 "(item) => {",
-                 "\t//var j = (JsRender.JsRender) item;",
-                 "\tvar gi = (Gtk.ListItem)item;",
-                 "\tvar b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);",
-                 "\tvar i = new Gtk.Image();",
-                 "\ti.pixel_size = 96;",
-                 "\tvar t = new Gtk.Label(\"\");",
-                 "\tb.append(i);",
-                 "\tb.append(t);",
-                 "\t",
-                 "\tgi.set_child(b);",
-                 "\tb.has_tooltip = true;",
-                 "\tb.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {",
-                 "\t\tvar j = (JsRender.JsRender) gi.get_item();",
-                 "\t\t",
-                 "\t\tvar ti = new Gtk.Image.from_file ( j.getIconFileName());",
-                 "\t\tti.pixel_size = 368;",
-                 "\t\ttooltip.set_custom( ti );",
-                 "\t\treturn true;",
-                 "\t});",
-                 "",
-                 "",
-                 "}",
-                 ""
-                ]
-               },
-               "xtype" : "SignalListItemFactory"
+               "* init" : [
+                "{",
+                "\t// this.el.set_sorter(  new Gtk.StringSorter(",
+                "\t// \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"name\")",
+                " //\t));",
+                "\t\t",
+                "}",
+                ""
+               ],
+               "* pack" : "append_column",
+               "bool expand" : true,
+               "bool resizable" : true,
+               "id" : "name",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "factory",
+                 "listeners" : {
+                  "bind" : [
+                   "(listitem) => {",
+                   "\t //GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
+                   "\t",
+                   "\t",
+                   "\t",
+                   "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
+                   "\tvar expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();",
+                   "\t  ",
+                   " ",
+                   "\tvar lbl = (Gtk.Label) expand.child;",
+                   "\t",
+                   "\t if (lbl.label != \"\") { // do not update",
+                   "\t \treturn;",
+                   " \t}",
+                   "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
+                   "\tGLib.debug(\"LR = %s\", lr.get_type().name());",
+                   "",
+                   "\t",
+                   "\tvar jr =(JsRender.JsRender) lr.get_item();",
+                   "\tGLib.debug(\"JR = %s\", jr.get_type().name());\t\t",
+                   "\t",
+                   "\t if (jr == null) {",
+                   "\t\t GLib.debug(\"Problem getting item\"); ",
+                   "\t\t return;",
+                   "\t }",
+                   "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
+                   "\tlbl.label = jr.name; // for dir's we could hsow the sub path..",
+                   "\tlbl.tooltip_markup = jr.path;",
+                   "\t ",
+                   "    expand.set_hide_expander(  jr.xtype != \"Dir\" );",
+                   " \t expand.set_list_row(lr);",
+                   " ",
+                   " \t ",
+                   " \t// bind image...",
+                   " \t",
+                   "}",
+                   "",
+                   "",
+                   ""
+                  ],
+                  "setup" : [
+                   "(listitem) => {",
+                   "\t",
+                   "\tvar expand = new Gtk.TreeExpander();",
+                   "\t ",
+                   "\texpand.set_indent_for_depth(true);",
+                   "\texpand.set_indent_for_icon(true);",
+                   "\t ",
+                   "\tvar lbl = new Gtk.Label(\"\");",
+                   "\tlbl.use_markup = true;",
+                   "\t",
+                   "\t",
+                   " \tlbl.justify = Gtk.Justification.LEFT;",
+                   " \tlbl.xalign = 0;",
+                   "",
+                   " ",
+                   "\texpand.set_child(lbl);",
+                   "\t((Gtk.ListItem)listitem).set_child(expand);",
+                   "\t((Gtk.ListItem)listitem).activatable = false;",
+                   "}",
+                   ""
+                  ]
+                 },
+                 "xtype" : "SignalListItemFactory"
+                }
+               ],
+               "string title" : "General Files",
+               "xtype" : "ColumnViewColumn"
               }
              ],
-             "xtype" : "GridView"
+             "xtype" : "ColumnView"
             }
            ],
            "xtype" : "ScrolledWindow"
           }
          ],
-         "xtype" : "Box"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-         "bool has_frame" : true,
-         "bool hexpand" : true,
-         "bool vexpand" : true,
-         "bool visible" : false,
-         "id" : "file_container",
-         "int width_request" : 200,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "child",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "* prop" : "model",
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "* prop" : "model",
-               "items" : [
-                {
-                 "$ xns" : "Gtk",
-                 "* prop" : "model",
-                 "items" : [
-                  {
-                   "$ xns" : "Gtk",
-                   "* ctor" : [
-                    "new Gtk.TreeListModel( ",
-                    "\tnew GLib.ListStore(",
-                    "\t\ttypeof(JsRender.JsRender) ), ",
-                    "\t\ttrue,",
-                    "\t\ttrue, ",
-                    "\t\t(item) => {",
-                    "\t\t\treturn ((JsRender.JsRender)item).childfiles;",
-                    "\t",
-                    "\t\t} ",
-                    ")",
-                    "",
-                    ""
-                   ],
-                   "* prop" : "model",
-                   "id" : "treelistmodel",
-                   "xtype" : "TreeListModel"
-                  },
-                  {
-                   "$ xns" : "Gtk",
-                   "* prop" : "sorter",
-                   "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "* prop" : "expression",
-                     "GLib.Type this_type" : "typeof(JsRender.JsRender)",
-                     "string property_name" : "name",
-                     "xtype" : "PropertyExpression"
-                    }
-                   ],
-                   "xtype" : "StringSorter"
-                  }
-                 ],
-                 "xtype" : "SortListModel"
-                },
-                {
-                 "$ xns" : "Gtk",
-                 "* prop" : "filter",
-                 "Gtk.CustomFilterFunc match_func" : [
-                  "(item) => { ",
-                  "\t",
-                  "\tvar j =  ((JsRender.JsRender) item);",
-                  "\treturn j.xtype == \"PlainFile\" || j.xtype == \"Dir\";",
-                  "",
-                  "}"
-                 ],
-                 "xtype" : "CustomFilter"
-                }
-               ],
-               "xtype" : "FilterListModel"
-              }
-             ],
-             "xtype" : "SingleSelection"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* init" : [
-              "{",
-              "\t// this.el.set_sorter(  new Gtk.StringSorter(",
-              "\t// \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"name\")",
-              " //\t));",
-              "\t\t",
-              "}",
-              ""
-             ],
-             "* pack" : "append_column",
-             "bool expand" : true,
-             "bool resizable" : true,
-             "id" : "name",
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "* prop" : "factory",
-               "listeners" : {
-                "bind" : [
-                 "(listitem) => {",
-                 "\t //GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
-                 "\t",
-                 "\t",
-                 "\t",
-                 "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
-                 "\tvar expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();",
-                 "\t  ",
-                 " ",
-                 "\tvar lbl = (Gtk.Label) expand.child;",
-                 "\t",
-                 "\t if (lbl.label != \"\") { // do not update",
-                 "\t \treturn;",
-                 " \t}",
-                 "\t",
-                 "",
-                 "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
-                 "\tvar jr = (JsRender.JsRender) lr.get_item();",
-                 "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
-                 "\tlbl.label = jr.name; // for dir's we could hsow the sub path..",
-                 "\tlbl.tooltip_markup = jr.path;",
-                 "\t ",
-                 "    expand.set_hide_expander(  jr.childfiles.n_items < 1);",
-                 " \texpand.set_list_row(lr);",
-                 " ",
-                 " \t ",
-                 " \t// bind image...",
-                 " \t",
-                 "}",
-                 ""
-                ],
-                "setup" : [
-                 "(listitem) => {",
-                 "\t",
-                 "\tvar expand = new Gtk.TreeExpander();",
-                 "\t ",
-                 "\texpand.set_indent_for_depth(true);",
-                 "\texpand.set_indent_for_icon(true);",
-                 "\t ",
-                 "\tvar lbl = new Gtk.Label(\"\");",
-                 "\tlbl.use_markup = true;",
-                 "\t",
-                 "\t",
-                 " \tlbl.justify = Gtk.Justification.LEFT;",
-                 " \tlbl.xalign = 0;",
-                 "",
-                 " ",
-                 "\texpand.set_child(lbl);",
-                 "\t((Gtk.ListItem)listitem).set_child(expand);",
-                 "\t((Gtk.ListItem)listitem).activatable = false;",
-                 "}",
-                 ""
-                ]
-               },
-               "xtype" : "SignalListItemFactory"
-              }
-             ],
-             "string title" : "Other Files",
-             "xtype" : "ColumnViewColumn"
-            }
-           ],
-           "xtype" : "ColumnView"
-          }
-         ],
-         "xtype" : "ScrolledWindow"
+         "xtype" : "Paned"
         }
        ],
-       "xtype" : "Box"
+       "xtype" : "Paned"
       }
      ],
      "xtype" : "Box"
