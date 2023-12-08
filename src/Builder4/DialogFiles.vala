@@ -573,7 +573,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
-            var child_1 = new Xcls_GridView18( _this );
+            var child_1 = new Xcls_ColumnView18( _this );
             child_1.ref();
             this.el.child = child_1.el;
 
@@ -749,19 +749,19 @@ public class DialogFiles : Object
 
 
 
-    public class Xcls_GridView18 : Object
+    public class Xcls_ColumnView18 : Object
     {
-        public Gtk.GridView el;
+        public Gtk.ColumnView el;
         private DialogFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_GridView18(DialogFiles _owner )
+        public Xcls_ColumnView18(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.GridView( null, null );
+            this.el = new Gtk.ColumnView( null );
 
             // my vars (dec)
 

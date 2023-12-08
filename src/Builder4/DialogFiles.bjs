@@ -386,7 +386,7 @@
              "xtype" : "SignalListItemFactory"
             }
            ],
-           "xtype" : "GridView"
+           "xtype" : "ColumnView"
           }
          ],
          "xtype" : "ScrolledWindow"
