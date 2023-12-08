@@ -293,103 +293,103 @@
            },
            "string name" : "popover-files-view",
            "xtype" : "TreeView"
-          }
-         ],
-         "xtype" : "ScrolledWindow"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* prop" : "child",
-         "items" : [
+          },
           {
            "$ xns" : "Gtk",
-           "* prop" : "model",
+           "* prop" : "child",
            "items" : [
             {
              "$ xns" : "Gtk",
              "* prop" : "model",
              "items" : [
               {
-               "$ xns" : "GLib",
-               "* prop" : "model",
-               "GLib.Type item_type" : "typeof(Project.Project)",
-               "id" : "projectmodel",
-               "xtype" : "ListStore"
-              },
-              {
                "$ xns" : "Gtk",
-               "* prop" : "sorter",
+               "* prop" : "model",
                "items" : [
                 {
+                 "$ xns" : "GLib",
+                 "* prop" : "model",
+                 "GLib.Type item_type" : "typeof(Project.Project)",
+                 "id" : "projectmodel",
+                 "xtype" : "ListStore"
+                },
+                {
                  "$ xns" : "Gtk",
-                 "* prop" : "expression",
-                 "GLib.Type this_type" : "typeof(Project.Project)",
-                 "string property_name" : "name",
-                 "xtype" : "PropertyExpression"
+                 "* prop" : "sorter",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "expression",
+                   "GLib.Type this_type" : "typeof(Project.Project)",
+                   "string property_name" : "name",
+                   "xtype" : "PropertyExpression"
+                  }
+                 ],
+                 "xtype" : "StringSorter"
                 }
                ],
-               "xtype" : "StringSorter"
+               "xtype" : "SortListModel"
               }
              ],
-             "xtype" : "SortListModel"
+             "listeners" : {
+              "selection_changed" : [
+               "(position, n_items) => {",
+               "",
+               "    if (_this.is_loading) {",
+               "        return;",
+               "    }",
+               "    ",
+               "\t vas project  = (Project.Project) _this.projectmodel.el.get_item(position);",
+               " ",
+               " ",
+               "    _this.onProjectSelected(project);",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "SingleSelection"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "factory",
+             "listeners" : {
+              "bind" : [
+               "(listitem) => {",
+               " ",
+               "\tvar lbl = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();",
+               "\t   ",
+               "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
+               "",
+               "\titem.bind_property(\"name\",",
+               "                lbl, \"label\",",
+               "           GLib.BindingFlags.SYNC_CREATE);",
+               "",
+               "\t ",
+               "\t  ",
+               "}",
+               ""
+              ],
+              "setup" : [
+               "(item) => {",
+               "\t//var j = (JsRender.JsRender) item;",
+               "\tvar gi = (Gtk.ListItem)item;",
+               "\t ",
+               "\tvar lbl = new Gtk.Label(\"\");",
+               "\tgi.set_child(lbl);",
+               "",
+               "",
+               "",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "SignalListItemFactory"
             }
            ],
-           "listeners" : {
-            "selection_changed" : [
-             "(position, n_items) => {",
-             "",
-             "    if (_this.is_loading) {",
-             "        return;",
-             "    }",
-             "    ",
-             "\t vas project  = (Project.Project) _this.projectmodel.el.get_item(position);",
-             " ",
-             " ",
-             "    _this.onProjectSelected(project);",
-             "}",
-             ""
-            ]
-           },
-           "xtype" : "SingleSelection"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* prop" : "factory",
-           "listeners" : {
-            "bind" : [
-             "(listitem) => {",
-             " ",
-             "\tvar lbl = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();",
-             "\t   ",
-             "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
-             "",
-             "\titem.bind_property(\"name\",",
-             "                lbl, \"label\",",
-             "           GLib.BindingFlags.SYNC_CREATE);",
-             "",
-             "\t ",
-             "\t  ",
-             "}",
-             ""
-            ],
-            "setup" : [
-             "(item) => {",
-             "\t//var j = (JsRender.JsRender) item;",
-             "\tvar gi = (Gtk.ListItem)item;",
-             "\t ",
-             "\tvar lbl = new Gtk.Label(\"\");",
-             "\tgi.set_child(lbl);",
-             "",
-             "",
-             "",
-             "}",
-             ""
-            ]
-           },
-           "xtype" : "SignalListItemFactory"
+           "xtype" : "GridView"
           }
          ],
-         "xtype" : "GridView"
+         "xtype" : "ScrolledWindow"
         },
         {
          "$ xns" : "Gtk",

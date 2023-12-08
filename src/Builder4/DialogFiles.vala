@@ -537,15 +537,12 @@ public class DialogFiles : Object
             var child_0 = new Xcls_ScrolledWindow13( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_GridView18( _this );
+            var child_1 = new Xcls_Box25( _this );
             child_1.ref();
-            this.el.child = child_1.el;
-            var child_2 = new Xcls_Box25( _this );
+            this.el.append(  child_1.el );
+            var child_2 = new Xcls_file_container( _this );
             child_2.ref();
             this.el.append(  child_2.el );
-            var child_3 = new Xcls_file_container( _this );
-            child_3.ref();
-            this.el.append(  child_3.el );
         }
 
         // user defined functions
@@ -576,6 +573,9 @@ public class DialogFiles : Object
             var child_0 = new Xcls_view( _this );
             child_0.ref();
             this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_GridView18( _this );
+            child_1.ref();
+            this.el.child = child_1.el;
 
             // init method
 
@@ -746,7 +746,6 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-
 
 
 
@@ -959,6 +958,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
+
 
 
     public class Xcls_Box25 : Object
