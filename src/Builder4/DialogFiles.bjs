@@ -312,7 +312,7 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
-               "xtype" : "NoSelection"
+               "xtype" : "ListStore"
               }
              ],
              "xtype" : "SortListModel"

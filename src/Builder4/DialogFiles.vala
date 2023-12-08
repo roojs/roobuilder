@@ -817,26 +817,26 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_NoSelection21( _this );
+            var child_0 = new Xcls_ListStore21( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_NoSelection21 : Object
+    public class Xcls_ListStore21 : Object
     {
-        public Gtk.NoSelection el;
+        public Gtk.ListStore el;
         private DialogFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_NoSelection21(DialogFiles _owner )
+        public Xcls_ListStore21(DialogFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.NoSelection( null );
+            this.el = new Gtk.ListStore.newv(  );
 
             // my vars (dec)
 
