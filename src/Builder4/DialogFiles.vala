@@ -20,6 +20,7 @@ public class DialogFiles : Object
     public Xcls_gridmodel gridmodel;
     public Xcls_file_container file_container;
     public Xcls_treeview treeview;
+    public Xcls_treeselmodel treeselmodel;
     public Xcls_treelistmodel treelistmodel;
     public Xcls_name name;
 
@@ -1231,7 +1232,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_GestureClick36( _this );
             child_0.ref();
             this.el.add_controller(  child_0.el );
-            var child_1 = new Xcls_SingleSelection37( _this );
+            var child_1 = new Xcls_treeselmodel( _this );
             child_1.ref();
             this.el.model = child_1.el;
             var child_2 = new Xcls_name( _this );
@@ -1266,7 +1267,7 @@ public class DialogFiles : Object
             	} else {
             		return;
             	}
-            	var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
+            	var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
             	GLib.debug("SELECTED = %s", tr.item.get_type().name());
             	var f = (JsRender.JsRender) tr.item;
             	GLib.debug("Click %s", f.name);
@@ -1283,7 +1284,7 @@ public class DialogFiles : Object
         // user defined functions
     }
 
-    public class Xcls_SingleSelection37 : Object
+    public class Xcls_treeselmodel : Object
     {
         public Gtk.SingleSelection el;
         private DialogFiles  _this;
@@ -1292,9 +1293,10 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection37(DialogFiles _owner )
+        public Xcls_treeselmodel(DialogFiles _owner )
         {
             _this = _owner;
+            _this.treeselmodel = this;
             this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)
