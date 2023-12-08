@@ -841,6 +841,12 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions

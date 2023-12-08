@@ -311,6 +311,12 @@
              "items" : [
               {
                "$ xns" : "GLib",
+               "* init" : [
+                "{",
+                "",
+                "}",
+                ""
+               ],
                "* prop" : "model",
                "xtype" : "ListStore"
               }
