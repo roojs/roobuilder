@@ -858,21 +858,17 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.changed.connect( ()  => {
-                if (_this.selected_target == null) {
-                	return;
-                }
-                var name = this.el.text;
-                // name ischanging.. probably always..
-                if (_this.selected_target.name ! = name) {
-                	var old = _this.project.compilegroups.get(_this.targets_tree.cursor);
-                	_this.project.compilegroups.unset(_this.targets_tree.cursor);
-                	_this.project.compilegroups.set(name, old);
-                	_this.targets_tree.cursor = name;
+            	if (_this.selected_target == null) {
+            		return;
             	}
-                	
-                
-                
-                _this.selected_target.name = this.el.text;
+            	var name = this.el.text;
+            	// name ischanging.. probably always..
+            	if (_this.selected_target.name ! = name) {
+            		_this.project.compilegroups.unset(_this.selected_target.name);
+            		_this.project.compilegroups.set(name, _this.selected_target);
+            	}
+            
+            	_this.selected_target.name = this.el.text;
             });
         }
 
