@@ -263,6 +263,26 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "utf8 label" : "Build Name",
+             "xtype" : "Label"
+            },
+            {
+             "$ xns" : "Gtk",
+             "id" : "build_name",
+             "listeners" : {
+              "changed" : [
+               "()  => {",
+               "        if (_this.targets_tree.cursor.length < 1) {",
+               "        return;",
+               "    }",
+               "    _this.project.compilegroups.get(_this.targets_tree.cursor).target_bin = this.el.text;",
+               "}"
+              ]
+             },
+             "xtype" : "Entry"
+            },
+            {
+             "$ xns" : "Gtk",
              "utf8 label" : "target filename",
              "xtype" : "Label"
             },
