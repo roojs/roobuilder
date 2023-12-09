@@ -131,6 +131,29 @@
              "$ xns" : "Gtk",
              "* pack" : "append_column",
              "bool expand" : true,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "factory",
+               "listeners" : {
+                "bind" : [
+                 "(object) => {",
+                 "",
+                 "",
+                 "}",
+                 ""
+                ],
+                "setup" : [
+                 "(object) => {",
+                 "",
+                 "",
+                 "}",
+                 ""
+                ]
+               },
+               "xtype" : "SignalListItemFactory"
+              }
+             ],
              "string title" : "Vapi Package",
              "xtype" : "ColumnViewColumn"
             },
