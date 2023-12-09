@@ -85,6 +85,7 @@ public class DialogFiles : Object
         
         // file items contains a reference until we reload ...
     	this.selectedProject.loadFilesIntoStore(_this.gridmodel.el);
+    	this.iconscroll.el.vadjustment.value = 0;
       	 
       	 
       	 GLib.Timeout.add(500, () => {
@@ -94,7 +95,7 @@ public class DialogFiles : Object
         
         
     	this.selectedProject.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);
-     
+     	this.treescroll.el.vadjustment.value = 0;
     	this.in_onprojectselected = false;	
     }
     public void selectProject (Project.Project project) {

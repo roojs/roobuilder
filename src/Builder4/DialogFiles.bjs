@@ -793,6 +793,7 @@
     "    ",
     "    // file items contains a reference until we reload ...",
     "\tthis.selectedProject.loadFilesIntoStore(_this.gridmodel.el);",
+    "\tthis.iconscroll.el.vadjustment.value = 0;",
     "  \t ",
     "  \t ",
     "  \t GLib.Timeout.add(500, () => {",
@@ -802,7 +803,7 @@
     "    ",
     "    ",
     "\tthis.selectedProject.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);",
-    " ",
+    " \tthis.treescroll.el.vadjustment.value = 0;",
     "\tthis.in_onprojectselected = false;\t",
     "}",
     ""
