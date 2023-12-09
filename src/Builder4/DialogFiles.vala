@@ -12,6 +12,7 @@ public class DialogFiles : Object
         }
         return _DialogFiles;
     }
+    public Xcls_ScrolledWindow13 ScrolledWindow13;
     public Xcls_projectselection projectselection;
     public Xcls_projectsort projectsort;
     public Xcls_projectmodel projectmodel;
@@ -114,7 +115,7 @@ public class DialogFiles : Object
           
      	this.new_window = new_window;
      	this.load();
-       
+        
         if (project != null) {
     	
     		this.selectProject(project);
@@ -532,6 +533,7 @@ public class DialogFiles : Object
         public Xcls_ScrolledWindow13(DialogFiles _owner )
         {
             _this = _owner;
+            _this.ScrolledWindow13 = this;
             this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)

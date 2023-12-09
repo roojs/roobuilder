@@ -190,6 +190,7 @@
          "bool has_frame" : true,
          "bool hexpand" : true,
          "bool vexpand" : true,
+         "id" : "",
          "int width_request" : 150,
          "items" : [
           {
@@ -828,7 +829,7 @@
     "      ",
     " \tthis.new_window = new_window;",
     " \tthis.load();",
-    "   ",
+    "    ",
     "    if (project != null) {",
     "\t",
     "\t\tthis.selectProject(project);",
