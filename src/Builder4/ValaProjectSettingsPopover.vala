@@ -86,8 +86,8 @@ public class ValaProjectSettingsPopover : Object
     	    	project.compilegroups.get("_default_").compile_flags.data
         	);
     	   }
-        
-        this.default_packages_tree_store.load();            
+        project.loadVapiIntoStore(_this.vapimodel.el);
+             
         this.targets_tree_store.load();
      
     
