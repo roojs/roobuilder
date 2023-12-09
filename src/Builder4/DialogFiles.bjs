@@ -444,6 +444,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "filter",
+                     "bool ignore_case" : true,
                      "xtype" : "StringFilter"
                     }
                    ],

@@ -1210,6 +1210,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.ignore_case = true;
         }
 
         // user defined functions
