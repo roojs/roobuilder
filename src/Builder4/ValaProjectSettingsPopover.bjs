@@ -668,7 +668,8 @@
                 },
                 {
                  "$ xns" : "Gtk",
-                 "xtype" : "GestureSingle"
+                 "string title" : "Build Target",
+                 "xtype" : "ColumnViewColumn"
                 }
                ],
                "xtype" : "ColumnView"

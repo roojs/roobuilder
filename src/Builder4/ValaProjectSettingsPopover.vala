@@ -1656,9 +1656,9 @@ public class ValaProjectSettingsPopover : Object
             var child_0 = new Xcls_SingleSelection52( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_GestureSingle54( _this );
+            var child_1 = new Xcls_ColumnViewColumn54( _this );
             child_1.ref();
-            this.el.add_controller(  child_1.el );
+            this.el.append(  child_1.el );
         }
 
         // user defined functions
@@ -1711,19 +1711,19 @@ public class ValaProjectSettingsPopover : Object
     }
 
 
-    public class Xcls_GestureSingle54 : Object
+    public class Xcls_ColumnViewColumn54 : Object
     {
-        public Gtk.GestureSingle el;
+        public Gtk.ColumnViewColumn el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_GestureSingle54(ValaProjectSettingsPopover _owner )
+        public Xcls_ColumnViewColumn54(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.GestureSingle();
+            this.el = new Gtk.ColumnViewColumn( "Build Target", null );
 
             // my vars (dec)
 
