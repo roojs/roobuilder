@@ -28,6 +28,7 @@ public class ValaProjectSettingsPopover : Object
         // my vars (def)
     public Xcls_MainWindow window;
     public Gtk.PositionType position;
+    public Project.Gtk selected_target;
     public Project.Gtk project;
     public bool done;
     public uint border_width;

@@ -5,6 +5,7 @@
    "$ xns" : "Gtk",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
    "Project.Gtk project" : "null",
+   "Project.Gtk selected_target" : "",
    "Xcls_MainWindow window" : "null",
    "bool autohide" : false,
    "bool done" : false,
