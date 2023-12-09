@@ -625,6 +625,7 @@
                     "",
                     "}"
                    ],
+                   "id" : "treefilter",
                    "xtype" : "CustomFilter"
                   }
                  ],

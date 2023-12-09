@@ -24,6 +24,7 @@ public class DialogFiles : Object
     public Xcls_treeview treeview;
     public Xcls_treeselmodel treeselmodel;
     public Xcls_treelistmodel treelistmodel;
+    public Xcls_treefilter treefilter;
     public Xcls_name name;
 
         // my vars (def)
@@ -1393,7 +1394,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_SortListModel40( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_CustomFilter44( _this );
+            var child_1 = new Xcls_treefilter( _this );
             child_1.ref();
             this.el.filter = child_1.el;
         }
@@ -1516,7 +1517,7 @@ public class DialogFiles : Object
 
 
 
-    public class Xcls_CustomFilter44 : Object
+    public class Xcls_treefilter : Object
     {
         public Gtk.CustomFilter el;
         private DialogFiles  _this;
@@ -1525,9 +1526,10 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_CustomFilter44(DialogFiles _owner )
+        public Xcls_treefilter(DialogFiles _owner )
         {
             _this = _owner;
+            _this.treefilter = this;
             this.el = new Gtk.CustomFilter( (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
 	GLib.debug("filter %s", tr.get_type().name());
