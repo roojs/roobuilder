@@ -862,7 +862,7 @@ public class ValaProjectSettingsPopover : Object
                 	return;
                 }
                 var name = this.el.text;
-                
+                // name ischanging.. probably always..
                 if (_this.selected_target.name ! = name) {
                 	var old = _this.project.compilegroups.get(_this.targets_tree.cursor);
                 	_this.project.compilegroups.unset(_this.targets_tree.cursor);
