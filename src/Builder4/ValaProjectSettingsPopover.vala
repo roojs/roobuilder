@@ -1759,9 +1759,17 @@ public class ValaProjectSettingsPopover : Object
             
             
             });
-            this.el.bind.connect( (object) => {
+            this.el.bind.connect( (listitem) => {
+             
+            	var lbl = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();
+            	   
+            	var item = (Project.GtkValaSettings)  ((Gtk.ListItem)listitem).get_item();
             
+            	item.bind_property("name",
+                            lbl, "label",
+                       GLib.BindingFlags.SYNC_CREATE);
             
+            	  
             });
         }
 

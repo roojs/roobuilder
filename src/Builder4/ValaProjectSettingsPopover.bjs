@@ -675,9 +675,17 @@
                    "* prop" : "factory",
                    "listeners" : {
                     "bind" : [
-                     "(object) => {",
+                     "(listitem) => {",
+                     " ",
+                     "\tvar lbl = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();",
+                     "\t   ",
+                     "\tvar item = (Project.GtkValaSettings)  ((Gtk.ListItem)listitem).get_item();",
                      "",
+                     "\titem.bind_property(\"name\",",
+                     "                lbl, \"label\",",
+                     "           GLib.BindingFlags.SYNC_CREATE);",
                      "",
+                     "\t  ",
                      "}",
                      ""
                     ],
