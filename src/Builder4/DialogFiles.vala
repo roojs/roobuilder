@@ -924,6 +924,10 @@ public class DialogFiles : Object
             */
 
             //listeners
+            this.el.search_changed.connect( ( ) => {
+            
+            
+            });
             this.el.changed.connect( ( ) => {
             	GLib.debug("Got '%s'", this.el.text);
             	

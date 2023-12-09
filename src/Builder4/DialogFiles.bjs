@@ -352,6 +352,13 @@
                  "\t//}",
                  "}",
                  ""
+                ],
+                "search_changed" : [
+                 "( ) => {",
+                 "",
+                 "",
+                 "}",
+                 ""
                 ]
                },
                "string name" : "popover-files-iconsearch",
