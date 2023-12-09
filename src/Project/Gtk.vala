@@ -162,9 +162,16 @@ namespace Project
 				ls.append(new VapiSelection(this.packages, p));
 			}
 			
-			
-			
 		}
+		
+		public void loadTargetsIntoStore(GLib.ListStore ls) 
+		{
+			ls.remove_all();
+			foreach(var cg in this.compile_groups.values) {
+				ls.append(cg);
+			}
+		}
+		
 		public Gee.ArrayList<string> readArray(Json.Array ar) 
 		{
 			var ret = new Gee.ArrayList<string>();
