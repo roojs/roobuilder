@@ -925,7 +925,7 @@ public class ValaProjectSettingsPopover : Object
                  if (_this.selected_target == null) {
                 	return;
                 }
-                _selected_target.target_bin = this.el.text;
+                _this.selected_target.target_bin = this.el.text;
             });
         }
 

@@ -307,7 +307,7 @@
                "     if (_this.selected_target == null) {",
                "    \treturn;",
                "    }",
-               "    _selected_target.target_bin = this.el.text;",
+               "    _this.selected_target.target_bin = this.el.text;",
                "}"
               ]
              },
