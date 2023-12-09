@@ -66,6 +66,7 @@ namespace Project
 			this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
 			
 			 if (!obj.has_member("compilegroups") || obj.get_member("compilegroups").get_node_type () != Json.NodeType.ARRAY) {
+			 	// make _default_ ?
 			 	return;
 			 }
 			
