@@ -22,7 +22,7 @@ public class Project.VapiSelection : Object
 			}
 		}
 	}
-	Gee.ArrayList vapi_list;
+	Gee.ArrayList<string> vapi_list;
 	
 	public VapiSelection(Gee.ArrayList<string> vapi_list, string name)
 	{
