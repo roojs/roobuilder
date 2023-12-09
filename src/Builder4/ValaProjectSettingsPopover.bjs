@@ -125,7 +125,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "expression",
-                     "GLib.Type this_type" : "",
+                     "GLib.Type this_type" : "typeof(Project.VapiSelection)",
                      "string property_name" : "name",
                      "xtype" : "PropertyExpression"
                     }
