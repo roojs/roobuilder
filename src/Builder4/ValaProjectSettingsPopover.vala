@@ -972,7 +972,7 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.changed.connect( () => {
-                if (_this.selected_target = null) {
+                if (_this.selected_target == null) {
                     return;
                 }
                 _this.selected_target.execute_args = this.el.text;
