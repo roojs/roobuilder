@@ -1536,18 +1536,15 @@ public class ValaProjectSettingsPopover : Object
                     return;
                 }
                 var cg = new Project.GtkValaSettings("NEW GROUP");
-                   _this.selected_target = cg;  
-            	_this.project.compile_group_active = cg.name;
-            	 _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);
-            	
-            	
-             
-            	_this.build_pack_target.el.set_text(cg.target_bin);
-             
-            	_this.build_execute_args.el.set_text(cg.execute_args);
-            
-            	_this.set_vbox.cgroup = cg;
-            	
+                _this.project.compilegroups.set(cg.name, cg);
+                 _this.project.loadTargetsIntoStore(_this.target_model.el);
+                 for(var i =0;i < _this.target_model.el.n_items; i++) {
+                 	var ncg = (Project.GtkValaSettings) _this.target_model.el.get_item(i);
+                 	if (ncg.name == cg.name) {
+                 		_this.target_sel.el.selected = i;
+                 		break;
+             		}
+            	} 
             	
             	
             	 
