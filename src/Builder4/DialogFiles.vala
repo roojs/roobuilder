@@ -260,8 +260,7 @@ public class DialogFiles : Object
              
               
                 pe.selected.connect((pr) => {
-                 	
-            	  
+                 	 
             	     _this.show(  pr, _this.new_window);
             
                 });
