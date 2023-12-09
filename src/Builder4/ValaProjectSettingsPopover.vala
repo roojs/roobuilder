@@ -654,9 +654,17 @@ public class ValaProjectSettingsPopover : Object
             // set gobject values
 
             //listeners
-            this.el.setup.connect( (object) => {
+            this.el.setup.connect( (listitem) => {
             
-            
+            	var btn = new Gtk.CheckButton();
+             
+            	((Gtk.ListItem)listitem).set_child(btn);
+            	
+            	btn.toggled.connect(() =>  {
+            	 
+            		var jr = (Project.VapiSelection) ((Gtk.ListItem)listitem).get_item();
+            		jr.selected = btn.active;
+            	});
             });
             this.el.bind.connect( (listitem) => {
             	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());

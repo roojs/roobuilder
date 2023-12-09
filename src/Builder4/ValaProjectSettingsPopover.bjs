@@ -200,9 +200,18 @@
                    "}"
                   ],
                   "setup" : [
-                   "(object) => {",
                    "",
+                   "(listitem) => {",
                    "",
+                   "\tvar btn = new Gtk.CheckButton();",
+                   " ",
+                   "\t((Gtk.ListItem)listitem).set_child(btn);",
+                   "\t",
+                   "\tbtn.toggled.connect(() =>  {",
+                   "\t ",
+                   "\t\tvar jr = (Project.VapiSelection) ((Gtk.ListItem)listitem).get_item();",
+                   "\t\tjr.selected = btn.active;",
+                   "\t});",
                    "}",
                    ""
                   ]
