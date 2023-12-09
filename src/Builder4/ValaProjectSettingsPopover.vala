@@ -1538,6 +1538,7 @@ public class ValaProjectSettingsPopover : Object
                 var cg = new Project.GtkValaSettings("NEW GROUP");
                 _this.project.compilegroups.set(cg.name, cg);
                  _this.project.loadTargetsIntoStore(_this.target_model.el);
+                 //  select it.. ?? should load it??
                  for(var i =0;i < _this.target_model.el.n_items; i++) {
                  	var ncg = (Project.GtkValaSettings) _this.target_model.el.get_item(i);
                  	if (ncg.name == cg.name) {
