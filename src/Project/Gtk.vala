@@ -138,12 +138,18 @@ namespace Project
 		
 		public void loadVapiIntoStore(GLib.ListStore ls) 
 		{
+			ls.remove_all();
 			var def = _this.project.compilegroups.get("_default_");
     		var items  = def.packages;
     
 			 
 			var pal = (Palete.Gtk) this.palete;
-			var pkgs = pal.packages(this.);
+			var pkgs = pal.packages(this);
+			foreach (var p in pkgs) {
+				ls.append(new VapiSelection(def.packages, p));
+			}
+			
+			
 			
 		}
 		
