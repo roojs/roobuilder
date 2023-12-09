@@ -669,6 +669,29 @@
                 {
                  "$ xns" : "Gtk",
                  "bool expand" : true,
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "factory",
+                   "listeners" : {
+                    "bind" : [
+                     "(object) => {",
+                     "",
+                     "",
+                     "}",
+                     ""
+                    ],
+                    "setup" : [
+                     "(object) => {",
+                     "",
+                     "",
+                     "}",
+                     ""
+                    ]
+                   },
+                   "xtype" : "SignalListItemFactory"
+                  }
+                 ],
                  "string title" : "Build Target",
                  "xtype" : "ColumnViewColumn"
                 }
