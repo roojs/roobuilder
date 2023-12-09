@@ -426,7 +426,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "sorter",
-                     "id" : "",
+                     "id" : "iconsearch",
                      "items" : [
                       {
                        "$ xns" : "Gtk",
