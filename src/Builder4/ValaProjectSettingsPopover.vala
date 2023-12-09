@@ -79,13 +79,11 @@ public class ValaProjectSettingsPopover : Object
         //print("ValaProjectSettings show\n");
         
         this.project=  project;
-    	 if (!project.compilegroups.has_key("_default_")) {
-    	 	GLib.debug("cant get default?");
-     	} else {
-    	    this.compile_flags.el.buffer.set_text(
-    	    	project.compile_flags.data
-        	);
-    	   }
+    	 
+        this.compile_flags.el.buffer.set_text(
+        	project.compile_flags.data
+    	);
+    	   
         project.loadVapiIntoStore(_this.vapimodel.el);
              
         this.targets_tree_store.load();
