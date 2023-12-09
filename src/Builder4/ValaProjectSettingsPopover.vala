@@ -863,7 +863,7 @@ public class ValaProjectSettingsPopover : Object
             	}
             	var name = this.el.text;
             	// name ischanging.. probably always..
-            	if (_this.selected_target.name ! = name) {
+            	if (_this.selected_target.name != name) {
             		_this.project.compilegroups.unset(_this.selected_target.name);
             		_this.project.compilegroups.set(name, _this.selected_target);
             	}
