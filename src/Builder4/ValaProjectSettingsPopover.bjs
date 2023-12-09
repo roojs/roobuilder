@@ -660,7 +660,7 @@
                    "$ xns" : "GLib",
                    "* prop" : "model",
                    "GLib.Type item_type" : "typeof(Project.GtkValaSettings)",
-                   "id" : "",
+                   "id" : "build_targets",
                    "xtype" : "ListStore"
                   }
                  ],

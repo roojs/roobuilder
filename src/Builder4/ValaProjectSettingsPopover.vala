@@ -22,7 +22,7 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_build_execute_args build_execute_args;
     public Xcls_treelistmodel treelistmodel;
     public Xcls_name name;
-    public Xcls_ListStore53 ListStore53;
+    public Xcls_build_targets build_targets;
     public Xcls_targets_tree targets_tree;
     public Xcls_targets_tree_store targets_tree_store;
     public Xcls_targets_render targets_render;
@@ -1677,14 +1677,14 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ListStore53( _this );
+            var child_0 = new Xcls_build_targets( _this );
             child_0.ref();
             this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_ListStore53 : Object
+    public class Xcls_build_targets : Object
     {
         public GLib.ListStore el;
         private ValaProjectSettingsPopover  _this;
@@ -1693,10 +1693,10 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ListStore53(ValaProjectSettingsPopover _owner )
+        public Xcls_build_targets(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            _this.ListStore53 = this;
+            _this.build_targets = this;
             this.el = new GLib.ListStore( typeof(Project.GtkValaSettings) );
 
             // my vars (dec)
