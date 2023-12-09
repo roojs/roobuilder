@@ -1683,6 +1683,12 @@ public class ValaProjectSettingsPopover : Object
             var child_0 = new Xcls_target_model( _this );
             child_0.ref();
             this.el.model = child_0.el;
+
+            //listeners
+            this.el.selection_changed.connect( (position, n_items) => {
+            
+            
+            });
         }
 
         // user defined functions
@@ -1755,7 +1761,14 @@ public class ValaProjectSettingsPopover : Object
             // set gobject values
 
             //listeners
-            this.el.setup.connect( (object) => {
+            this.el.setup.connect( (item) => {
+            	//var j = (JsRender.JsRender) item;
+            	var gi = (Gtk.ListItem)item;
+            	 
+            	var lbl = new Gtk.Label("");
+            	lbl.halign = Gtk.Align.START;
+            	gi.set_child(lbl);
+            
             
             
             });

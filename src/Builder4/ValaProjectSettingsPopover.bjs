@@ -664,6 +664,15 @@
                    "xtype" : "ListStore"
                   }
                  ],
+                 "listeners" : {
+                  "selection_changed" : [
+                   "(position, n_items) => {",
+                   "",
+                   "",
+                   "}",
+                   ""
+                  ]
+                 },
                  "xtype" : "SingleSelection"
                 },
                 {
@@ -690,7 +699,14 @@
                      ""
                     ],
                     "setup" : [
-                     "(object) => {",
+                     "(item) => {",
+                     "\t//var j = (JsRender.JsRender) item;",
+                     "\tvar gi = (Gtk.ListItem)item;",
+                     "\t ",
+                     "\tvar lbl = new Gtk.Label(\"\");",
+                     "\tlbl.halign = Gtk.Align.START;",
+                     "\tgi.set_child(lbl);",
+                     "",
                      "",
                      "",
                      "}",
