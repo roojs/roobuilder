@@ -125,6 +125,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "expression",
+                     "GLib.Type this_type" : "",
                      "string property_name" : "name",
                      "xtype" : "PropertyExpression"
                     }

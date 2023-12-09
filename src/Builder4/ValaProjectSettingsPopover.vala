@@ -575,7 +575,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_PropertyExpression19(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.PropertyExpression( null, null, "name" );
+            this.el = new Gtk.PropertyExpression( , null, "name" );
 
             // my vars (dec)
 
