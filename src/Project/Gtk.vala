@@ -89,9 +89,7 @@ namespace Project
                     print("problem loading json file");
                     continue;
                 }
-				if (vs.name != "_default_") {
-					vs.parent = this.compilegroups.get("_default_");
-				}
+				 
 				this.compilegroups.set(vs.name,vs);
 			}
 						
