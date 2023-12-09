@@ -16,7 +16,7 @@ public class DialogFiles : Object
     public Xcls_projectselection projectselection;
     public Xcls_projectsort projectsort;
     public Xcls_projectmodel projectmodel;
-    public Xcls_iconsearch iconsearch;
+    public Xcls_searchbox searchbox;
     public Xcls_iconscroll iconscroll;
     public Xcls_iconsel iconsel;
     public Xcls_gridmodel gridmodel;
@@ -881,14 +881,14 @@ public class DialogFiles : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_iconsearch( _this );
+            var child_0 = new Xcls_searchbox( _this );
             child_0.ref();
             this.el.append(  child_0.el );
         }
 
         // user defined functions
     }
-    public class Xcls_iconsearch : Object
+    public class Xcls_searchbox : Object
     {
         public Gtk.SearchEntry el;
         private DialogFiles  _this;
@@ -898,10 +898,10 @@ public class DialogFiles : Object
         public Gtk.CssProvider css;
 
         // ctor
-        public Xcls_iconsearch(DialogFiles _owner )
+        public Xcls_searchbox(DialogFiles _owner )
         {
             _this = _owner;
-            _this.iconsearch = this;
+            _this.searchbox = this;
             this.el = new Gtk.SearchEntry();
 
             // my vars (dec)

@@ -340,7 +340,7 @@
                ],
                "Gtk.CssProvider css" : "",
                "bool hexpand" : true,
-               "id" : "iconsearch",
+               "id" : "searchbox",
                "listeners" : {
                 "search_changed" : [
                  "( ) => {",
