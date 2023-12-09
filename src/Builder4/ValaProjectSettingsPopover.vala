@@ -1580,35 +1580,18 @@ public class ValaProjectSettingsPopover : Object
             //listeners
             this.el.clicked.connect( ()  => {
                 / load the new values.
-            	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-            		_this.set_vbox.el.hide();	
+            	if (_this.target_sel.el.selected == Gtk.INVALID_LIST_POSITION) {
+            		GLib.debug("nothing selected");
             		return;
             	}
             	
-            	
-            	_this.set_vbox.el.show();
-            
+            	 
             	// add the directory..
-            	var cg = (Project.GtkValaSettings) _this.target_model.el.get_item(this.el.selected);
+            	var cg = (Project.GtkValaSettings) _this.target_model.el.get_item(_this.target_sel.el.selected);
             	/
-            	/
-            	Gtk.TreeModel mod;
-            	Gtk.TreeIter iter;
-            	if (!_this.targets_tree.el.get_selection().get_selected(out mod, out iter)) {
-            		GLib.debug("nothing selected\n");
-            		return;
-            	}
-            
-            
-            	// add the directory..
-            
-            
-            	GLib.Value val;
-            	mod.get_value(iter,0, out val);
-            	var fn =  (string) val;
-            
-            	GLib.debug("remove: %s\n", fn);
-            	if (!_this.project.compilegroups.unset(fn)) {
+            	 
+            	GLib.debug("remove: %s\n", cg.name);
+            	if (!_this.project.compilegroups.unset(cg.name)) {
             		GLib.debug("remove failed");
             	}
             	_this.targets_tree_store.load();
