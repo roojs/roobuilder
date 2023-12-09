@@ -69,7 +69,7 @@ namespace Project
 			this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
 			
 			if (obj.has_member("packages")) {
-				this.packages = this.readArray(el.get_array_member("packages"));
+				this.packages = this.readArray(obj.get_array_member("packages"));
 			}
 			if (obj.has_member("compiler_flags")) {
 				this.compile_flags = obj.get_string_member("compile_flags");
