@@ -304,10 +304,10 @@
              "listeners" : {
               "changed" : [
                "()  => {",
-               "        if (_this.targets_tree.cursor.length < 1) {",
-               "        return;",
+               "     if (_this.selected_target == null) {",
+               "    \treturn;",
                "    }",
-               "    _this.project.compilegroups.get(_this.targets_tree.cursor).target_bin = this.el.text;",
+               "    _selected_target.target_bin = this.el.text;",
                "}"
               ]
              },

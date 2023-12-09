@@ -922,10 +922,10 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.changed.connect( ()  => {
-                    if (_this.targets_tree.cursor.length < 1) {
-                    return;
+                 if (_this.selected_target == null) {
+                	return;
                 }
-                _this.project.compilegroups.get(_this.targets_tree.cursor).target_bin = this.el.text;
+                _selected_target.target_bin = this.el.text;
             });
         }
 
