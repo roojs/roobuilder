@@ -1683,7 +1683,8 @@ public class ValaProjectSettingsPopover : Object
             	// load the new values.
             	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
             		_this.set_vbox.el.hide();	
-            	{
+            		return;
+            	}
             	
             	
             	_this.set_vbox.el.show();
