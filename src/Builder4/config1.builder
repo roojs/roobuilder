@@ -157,7 +157,8 @@
             "../Project/GtkValaSettings.vala",
             "../Palete/CompileError.vala",
             "../Builder4/DialogFiles.vala",
-            "../JsRender/Dir.vala"
+            "../JsRender/Dir.vala",
+            "../Project/VapiSelection.vala"
         ],
         "packages" : []
     },
