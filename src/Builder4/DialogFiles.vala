@@ -927,7 +927,7 @@ public class DialogFiles : Object
             //listeners
             this.el.search_changed.connect( ( ) => {
             
-            	this.iconsearch.el.set_search(this.el.text);
+            	_this.iconsearch.el.set_search(this.el.text);
             });
         }
 

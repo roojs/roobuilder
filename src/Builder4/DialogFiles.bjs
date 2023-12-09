@@ -345,7 +345,7 @@
                 "search_changed" : [
                  "( ) => {",
                  "",
-                 "\tthis.iconsearch.el.set_search(this.el.text);",
+                 "\t_this.iconsearch.el.set_search(this.el.text);",
                  "}",
                  ""
                 ]
