@@ -615,8 +615,19 @@
                "listeners" : {
                 "clicked" : [
                  "()  => {",
-                 "    ",
-                 "\t//",
+                 "    / load the new values.",
+                 "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                 "\t\t_this.set_vbox.el.hide();\t",
+                 "\t\treturn;",
+                 "\t}",
+                 "\t",
+                 "\t",
+                 "\t_this.set_vbox.el.show();",
+                 "",
+                 "\t// add the directory..",
+                 "\tvar cg = (Project.GtkValaSettings) _this.target_model.el.get_item(this.el.selected);",
+                 "\t/",
+                 "\t/",
                  "\tGtk.TreeModel mod;",
                  "\tGtk.TreeIter iter;",
                  "\tif (!_this.targets_tree.el.get_selection().get_selected(out mod, out iter)) {",
@@ -663,6 +674,7 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "id" : "target_sel",
                  "items" : [
                   {
                    "$ xns" : "GLib",

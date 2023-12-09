@@ -22,6 +22,7 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_build_execute_args build_execute_args;
     public Xcls_treelistmodel treelistmodel;
     public Xcls_name name;
+    public Xcls_target_sel target_sel;
     public Xcls_target_model target_model;
     public Xcls_save_btn save_btn;
 
@@ -1578,8 +1579,19 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.clicked.connect( ()  => {
-                
-            	//
+                / load the new values.
+            	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+            		_this.set_vbox.el.hide();	
+            		return;
+            	}
+            	
+            	
+            	_this.set_vbox.el.show();
+            
+            	// add the directory..
+            	var cg = (Project.GtkValaSettings) _this.target_model.el.get_item(this.el.selected);
+            	/
+            	/
             	Gtk.TreeModel mod;
             	Gtk.TreeIter iter;
             	if (!_this.targets_tree.el.get_selection().get_selected(out mod, out iter)) {
@@ -1656,7 +1668,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_SingleSelection52( _this );
+            var child_0 = new Xcls_target_sel( _this );
             child_0.ref();
             this.el.model = child_0.el;
             var child_1 = new Xcls_ColumnViewColumn54( _this );
@@ -1666,7 +1678,7 @@ public class ValaProjectSettingsPopover : Object
 
         // user defined functions
     }
-    public class Xcls_SingleSelection52 : Object
+    public class Xcls_target_sel : Object
     {
         public Gtk.SingleSelection el;
         private ValaProjectSettingsPopover  _this;
@@ -1675,9 +1687,10 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SingleSelection52(ValaProjectSettingsPopover _owner )
+        public Xcls_target_sel(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
+            _this.target_sel = this;
             this.el = new Gtk.SingleSelection( null );
 
             // my vars (dec)
