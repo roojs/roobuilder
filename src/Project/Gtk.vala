@@ -135,6 +135,12 @@ namespace Project
 			}
 			return "";
 		}
+		
+		public void loadVapiIntoStore(GLib.ListStore ls) 
+		{
+			
+		}
+		
 		/*
 		public string relPath(string target)
 		{
