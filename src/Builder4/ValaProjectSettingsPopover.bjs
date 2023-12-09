@@ -628,7 +628,7 @@
                  "\tif (!_this.project.compilegroups.unset(cg.name)) {",
                  "\t\tGLib.debug(\"remove failed\");",
                  "\t}",
-                 " \t_this.project.loadTargetsIntoStore(this.target_model.el);",
+                 " \t_this.project.loadTargetsIntoStore(_this.target_model.el);",
                  "}"
                 ]
                },

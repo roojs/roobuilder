@@ -1592,7 +1592,7 @@ public class ValaProjectSettingsPopover : Object
             	if (!_this.project.compilegroups.unset(cg.name)) {
             		GLib.debug("remove failed");
             	}
-             	_this.project.loadTargetsIntoStore(this.target_model.el);
+             	_this.project.loadTargetsIntoStore(_this.target_model.el);
             });
         }
 
