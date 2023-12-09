@@ -412,6 +412,11 @@
                   {
                    "$ xns" : "Gtk",
                    "* prop" : "model",
+                   "xtype" : "FilterListModel"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
                    "items" : [
                     {
                      "$ xns" : "GLib",
