@@ -91,7 +91,7 @@ public class DialogFiles : Object
       	 
       	 GLib.Timeout.add(500, () => {
     
-    	     _this.iconsearch.el.grab_focus();
+    	     _this.searchbox.el.grab_focus();
     		 _this.iconscroll.el.vadjustment.value = 0;
       	  	  _this.treescroll.el.vadjustment.value = 0;
       	  	  _this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;

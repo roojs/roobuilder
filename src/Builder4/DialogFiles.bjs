@@ -799,7 +799,7 @@
     "  \t ",
     "  \t GLib.Timeout.add(500, () => {",
     "",
-    "\t     _this.iconsearch.el.grab_focus();",
+    "\t     _this.searchbox.el.grab_focus();",
     "\t\t _this.iconscroll.el.vadjustment.value = 0;",
     "  \t  \t  _this.treescroll.el.vadjustment.value = 0;",
     "  \t  \t  _this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;",
