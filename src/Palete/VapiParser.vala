@@ -642,7 +642,7 @@ namespace Palete {
 			
 			var dcg = this.project.compilegroups.get("_default_");
 			 			
-			var pkgs = this.fillDeps(dcg.packages);
+			var pkgs = this.fillDeps(this.project.packages);
 			
 	    	
 	    	for (var i = 0; i < pkgs.size; i++) {
