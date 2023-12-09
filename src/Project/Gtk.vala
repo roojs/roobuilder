@@ -67,6 +67,7 @@ namespace Project
 			
 			 if (!obj.has_member("compilegroups") || obj.get_member("compilegroups").get_node_type () != Json.NodeType.ARRAY) {
 			 	// make _default_ ?
+			 	this.compilegroups.set("_default_", new GtkValaSettings("_default_"));
 			 	return;
 			 }
 			
