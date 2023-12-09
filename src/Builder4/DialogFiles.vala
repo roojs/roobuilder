@@ -85,11 +85,16 @@ public class DialogFiles : Object
         
         // file items contains a reference until we reload ...
     	this.selectedProject.loadFilesIntoStore(_this.gridmodel.el);
-    	this.iconscroll.el.vadjustment.value = 0;
+    
       	 
       	 
       	 GLib.Timeout.add(500, () => {
+    
     	     _this.iconsearch.el.grab_focus();
+    		 _this.iconscroll.el.vadjustment.value = 0;
+      	  	  _this.treescroll.el.vadjustment.value = 0;
+      	  	  _this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
+      	  	  _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;		 
     	     return false;
          });
         
