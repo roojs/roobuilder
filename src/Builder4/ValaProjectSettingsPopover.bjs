@@ -175,6 +175,22 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "factory",
+                 "listeners" : {
+                  "bind" : [
+                   "(object) => {",
+                   "",
+                   "",
+                   "}",
+                   ""
+                  ],
+                  "setup" : [
+                   "(object) => {",
+                   "",
+                   "",
+                   "}",
+                   ""
+                  ]
+                 },
                  "xtype" : "SignalListItemFactory"
                 }
                ],
