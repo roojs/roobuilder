@@ -122,28 +122,21 @@ namespace Project
 		 */ 
 		public string firstBuildModule()
 		{
-			var iter = this.compilegroups.map_iterator();
-			while(iter.next()) {
-				 
-				 if (iter.get_value().name == "_default_") {
-					 continue;
-				 }
-				 
-				 return iter.get_value().name;
+			
+			foreach(var cg in this.compilegroups.values) {
+				return cg.name;
+				
 			}
 			return "";
+			 
 		}
 		public string firstBuildModuleWith(JsRender.JsRender file)
 		{
+			foreach(var cg in this.compilegroups.values) {
 			
-			var iter = this.compilegroups.map_iterator();
-			while(iter.next()) {
-				  
-				 if (iter.get_value().name == "_default_") {
-					 continue;
-				 }
-				 if (iter.get_value().has_file(file)) {
-				 	return iter.get_value().name;
+			 
+				 if (cg.has_file(file)) {
+				 	return cg.name;
 			 	 }
 				 
 				 
