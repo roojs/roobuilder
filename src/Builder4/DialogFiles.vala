@@ -115,6 +115,7 @@ public class DialogFiles : Object
           
      	this.new_window = new_window;
      	this.load();
+        this.projectscroll.el.vadjustment.value = 0; // scroll to top?
         
         if (project != null) {
     	

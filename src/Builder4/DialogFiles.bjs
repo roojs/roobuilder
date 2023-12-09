@@ -829,6 +829,7 @@
     "      ",
     " \tthis.new_window = new_window;",
     " \tthis.load();",
+    "    this.projectscroll.el.vadjustment.value = 0; // scroll to top?",
     "    ",
     "    if (project != null) {",
     "\t",
