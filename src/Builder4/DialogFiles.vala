@@ -1545,6 +1545,9 @@ public class DialogFiles : Object
 		}
 		for (var i =0 ; i < j.childfiles.n_items; i++) {
 			var f = (JsRender.JsRender) j.childfiles.get_item(i);
+			if (f.xtype != "PlainFile") {
+				continue;
+			}
 			if (f.name.down().contains(str)) {
 				return true;
 			}
