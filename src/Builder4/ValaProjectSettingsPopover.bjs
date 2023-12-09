@@ -283,26 +283,6 @@
             },
             {
              "$ xns" : "Gtk",
-             "utf8 label" : "compile flags",
-             "xtype" : "Label"
-            },
-            {
-             "$ xns" : "Gtk",
-             "id" : "build_compile_flags",
-             "listeners" : {
-              "changed" : [
-               "() => {",
-               "    if (_this.targets_tree.cursor.length < 1) {",
-               "        return;",
-               "    }",
-               "    _this.project.compilegroups.get(_this.targets_tree.cursor).compile_flags = this.el.text;",
-               "}"
-              ]
-             },
-             "xtype" : "Entry"
-            },
-            {
-             "$ xns" : "Gtk",
              "utf8 label" : "test argments - when run after a build",
              "xtype" : "Label"
             },
