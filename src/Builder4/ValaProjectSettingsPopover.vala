@@ -548,11 +548,12 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ColumnViewColumn18(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ColumnViewColumn( null, null );
+            this.el = new Gtk.ColumnViewColumn( "Vapi Package", null );
 
             // my vars (dec)
 
             // set gobject values
+            this.el.expand = true;
         }
 
         // user defined functions

@@ -130,6 +130,8 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "append_column",
+             "bool expand" : true,
+             "string title" : "Vapi Package",
              "xtype" : "ColumnViewColumn"
             },
             {
