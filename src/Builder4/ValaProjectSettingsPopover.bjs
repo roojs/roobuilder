@@ -126,7 +126,7 @@
               },
               {
                "$ xns" : "Gtk",
-               "* pack" : "append_column",
+               "* prop" : "append_column",
                "xtype" : "ColumnViewColumn"
               }
              ],
