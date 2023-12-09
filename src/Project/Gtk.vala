@@ -102,11 +102,20 @@ namespace Project
 		public override void saveJson(Json.Object obj)
 		{
 			var ar = new Json.Array();
-			var iter = this.compilegroups.map_iterator();
-			while(iter.next()) {
-				 ar.add_object_element(iter.get_value().toJson());
+			foreach(var cg in this.compilegroups.values) {
+				 ar.add_object_element(cg.toJson());
 			}
 			obj.set_array_member("compilegroups", ar);
+			
+			obj.set_string_member("compile_flags", this.compile_flags);
+			var par = new Json.Array();
+			foreach(var p in this.packages) {
+				par.add_string_element(p);
+			}
+			obj.set_array_member("packages", par);
+			
+			
+			
 		}
 		
 	 
