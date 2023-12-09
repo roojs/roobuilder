@@ -39,6 +39,8 @@ namespace Project
  	    public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache;
 		public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props;
 		
+	     public string compile_flags = ""; // generic to all.	
+		public Gee.ArrayList<string> packages; // list of packages?? some might be genericly named?	 
 		public Gtk(string path) {
 		  
 		  
@@ -54,6 +56,7 @@ namespace Project
 			this.xtype = "Gtk";
 	  		var gid = "project-gtk-%d".printf(gtk_id++);
 	  		this.id = gid;
+	  		this.packages = new Gee.ArrayList<string>();
 	  		 
 		
 		}
@@ -65,10 +68,16 @@ namespace Project
 			// 
 			this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
 			
+			if (obj.has_member("packages")) {
+				this.packages = this.readArray(el.get_array_member("packages"));
+			}
+			if (obj.has_member("compiler_flags")) {
+				this.compile_flags = obj.get_string_member("compile_flags");
+			}
+			
 			 if (!obj.has_member("compilegroups") || obj.get_member("compilegroups").get_node_type () != Json.NodeType.ARRAY) {
 			 	// make _default_ ?
-			 	this.compilegroups.set("_default_", new GtkValaSettings("_default_"));
-			 	return;
+			 	 return;
 			 }
 			
 			
@@ -85,9 +94,8 @@ namespace Project
 				}
 				this.compilegroups.set(vs.name,vs);
 			}
-			if (!this.compilegroups.has_key("_default")) {
-				this.compilegroups.set("_default_", new GtkValaSettings("_default_"));
-			}
+						
+			 
 			//GLib.debug("%s\n",this.configToString ());
 			
 		}
@@ -151,6 +159,14 @@ namespace Project
 			
 			
 			
+		}
+		public Gee.ArrayList<string> readArray(Json.Array ar) 
+		{
+			var ret = new Gee.ArrayList<string>();
+			for(var i =0; i< ar.get_length(); i++) {
+				ret.add(ar.get_string_element(i));
+			}
+			return ret;
 		}
 		
 		/*
