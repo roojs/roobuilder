@@ -1620,7 +1620,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_ColumnView51( _this );
             child_0.ref();
-            this.el.append(  child_0.el );
+            this.el.child = child_0.el;
 
             // init method
 
