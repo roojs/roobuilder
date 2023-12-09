@@ -655,6 +655,14 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "items" : [
+                  {
+                   "$ xns" : "GLib",
+                   "* prop" : "model",
+                   "uint n_items" : "?uint?",
+                   "xtype" : "ListStore"
+                  }
+                 ],
                  "xtype" : "SingleSelection"
                 }
                ],
