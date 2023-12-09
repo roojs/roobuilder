@@ -115,7 +115,7 @@
                    "$ xns" : "GLib",
                    "* prop" : "model",
                    "GLib.Type item_type" : "typeof(Project.VapiSelection)",
-                   "id" : "",
+                   "id" : "vapimodel",
                    "xtype" : "ListStore"
                   }
                  ],
