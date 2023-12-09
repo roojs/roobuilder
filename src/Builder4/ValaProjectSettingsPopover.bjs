@@ -701,7 +701,7 @@
                 },
                 {
                  "$ xns" : "Gtk",
-                 "* pack" : "append_child",
+                 "* pack" : "append_column",
                  "bool expand" : true,
                  "items" : [
                   {
