@@ -543,7 +543,6 @@ public class DialogFiles : Object
 
             // set gobject values
             this.el.width_request = 150;
-            this.el.vscrollbar_policy = ;
             this.el.has_frame = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
