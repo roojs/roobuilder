@@ -909,6 +909,7 @@ public class ValaProjectSettingsPopover : Object
                     return;
                 }
                 _this.project.compilegroups.get(_this.targets_tree.cursor).execute_args = this.el.text;
+                
             });
         }
 
