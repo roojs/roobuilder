@@ -196,6 +196,7 @@ BUIDERPALETE =  Palete/Gir.vala \
 BUIDERPROJECT = Project/Gtk.vala \
 		Project/Project.vala \
 		Project/Roo.vala \
+		Project/VapiSelection.vala \
 		Project/GtkValaSettings.vala
 
 
