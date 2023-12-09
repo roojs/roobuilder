@@ -345,7 +345,7 @@
                 "search_changed" : [
                  "( ) => {",
                  "",
-                 "\t_this.iconsearch.el.set_search(this.el.text);",
+                 "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
                  "}",
                  ""
                 ]
