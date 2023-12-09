@@ -1534,11 +1534,22 @@ public class ValaProjectSettingsPopover : Object
                    if (_this.project.compilegroups.has_key("NEW GROUP")) {
                     return;
                 }
-                  
-                   // add the directory..
-                   
-                   _this.project.compilegroups.set("NEW GROUP", new Project.GtkValaSettings("NEW GROUP"));
-                   _this.targets_tree_store.load();
+                var cg = new Project.GtkValaSettings("NEW GROUP");
+                   _this.selected_target = cg;  
+            	_this.project.compile_group_active = cg.name;
+            	 _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);
+            	
+            	
+             
+            	_this.build_pack_target.el.set_text(cg.target_bin);
+             
+            	_this.build_execute_args.el.set_text(cg.execute_args);
+            
+            	_this.set_vbox.cgroup = cg;
+            	
+            	
+            	
+            	 
             });
         }
 
