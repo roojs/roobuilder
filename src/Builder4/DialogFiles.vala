@@ -1212,6 +1212,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.match_mode = Gtk.StringFilterMatchMode.SUBSTRING;
             this.el.ignore_case = true;
         }
 

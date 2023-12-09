@@ -442,6 +442,7 @@
                      "xtype" : "SortListModel"
                     },
                     {
+                     "$ Gtk.StringFilterMatchMode match_mode" : "Gtk.StringFilterMatchMode.SUBSTRING",
                      "$ xns" : "Gtk",
                      "* prop" : "filter",
                      "bool ignore_case" : true,
