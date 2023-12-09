@@ -478,9 +478,6 @@ public class ValaProjectSettingsPopover : Object
             var child_0 = new Xcls_SortListModel16( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_ListStore17( _this );
-            child_1.ref();
-            this.el.model = child_1.el;
         }
 
         // user defined functions
@@ -502,11 +499,13 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
+            var child_0 = new Xcls_ListStore17( _this );
+            child_0.ref();
+            this.el.model = child_0.el;
         }
 
         // user defined functions
     }
-
     public class Xcls_ListStore17 : Object
     {
         public GLib.ListStore el;
@@ -528,6 +527,7 @@ public class ValaProjectSettingsPopover : Object
 
         // user defined functions
     }
+
 
 
 
