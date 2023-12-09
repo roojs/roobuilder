@@ -910,7 +910,7 @@ public class DialogFiles : Object
             this.el.name = "popover-files-iconsearch";
             this.el.hexpand = true;
             this.el.placeholder_text = "type to filter results";
-            this.el.search_delay = ?uint?;
+            this.el.search_delay = 1000;
 
             // init method
 

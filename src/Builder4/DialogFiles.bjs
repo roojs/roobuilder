@@ -352,7 +352,7 @@
                },
                "string name" : "popover-files-iconsearch",
                "string placeholder_text" : "type to filter results",
-               "uint search_delay" : "?uint?",
+               "uint search_delay" : 1000,
                "xtype" : "SearchEntry"
               }
              ],
