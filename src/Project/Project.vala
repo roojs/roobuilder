@@ -127,7 +127,7 @@ namespace Project {
     	}
     	 
     	
-    	private static void saveProjectList()
+    	public static void saveProjectList()
     	{
 			var f = new Json.Object();
 			foreach(var p in projects) {
