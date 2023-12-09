@@ -1701,7 +1701,7 @@ public class ValaProjectSettingsPopover : Object
             	_this.set_vbox.el.show();
             
             	// add the directory..
-            	var cg = (Project.GtkValaSettings) this.target_model.el.get_item(this.el.selected);
+            	var cg = (Project.GtkValaSettings) _this.target_model.el.get_item(this.el.selected);
             	 _this.selected_target = cg;  
             	_this.project.compile_group_active = cg.name;
             	 _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);
