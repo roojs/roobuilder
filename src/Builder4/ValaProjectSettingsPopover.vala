@@ -658,9 +658,26 @@ public class ValaProjectSettingsPopover : Object
             
             
             });
-            this.el.bind.connect( (object) => {
+            this.el.bind.connect( (listitem) => {
+            	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
+            	
+            	
+            	
+            	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
+            	var btn = (Gtk.CheckButton)  ((Gtk.ListItem)listitem).get_child();
+            	  
+             
+            	var vs = (Project.VapiSelection)((Gtk.ListItem)listitem).get_item();
             
+            	//GLib.debug("change  %s to %s", lbl.label, np.name);
             
+            	
+            	 
+             	vs.bind_property("selected",
+                                btn, "active",
+                               GLib.BindingFlags.SYNC_CREATE); 
+             	// bind image...
+             	
             });
         }
 

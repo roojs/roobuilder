@@ -177,11 +177,27 @@
                  "* prop" : "factory",
                  "listeners" : {
                   "bind" : [
-                   "(object) => {",
+                   "(listitem) => {",
+                   "\t //GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
+                   "\t",
+                   "\t",
+                   "\t",
+                   "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
+                   "\tvar btn = (Gtk.CheckButton)  ((Gtk.ListItem)listitem).get_child();",
+                   "\t  ",
+                   " ",
+                   "\tvar vs = (Project.VapiSelection)((Gtk.ListItem)listitem).get_item();",
                    "",
+                   "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
                    "",
-                   "}",
-                   ""
+                   "\t",
+                   "\t ",
+                   " \tvs.bind_property(\"selected\",",
+                   "                    btn, \"active\",",
+                   "                   GLib.BindingFlags.SYNC_CREATE); ",
+                   " \t// bind image...",
+                   " \t",
+                   "}"
                   ],
                   "setup" : [
                    "(object) => {",
