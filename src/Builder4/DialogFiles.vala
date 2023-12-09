@@ -929,7 +929,7 @@ public class DialogFiles : Object
             this.el.search_changed.connect( ( ) => {
             
             	_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);
-            	_this.searchfilter.el.set_search(this.el.text);
+            	_this.iconsearch.el.set_search(this.el.text);
             });
         }
 
