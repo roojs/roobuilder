@@ -145,7 +145,7 @@ public class DialogFiles : Object
          
          Project.Project.loadIntoStore(this.projectmodel.el);
          _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
-         
+         _this.projectscroll.el.vadjustment.value = 0;
          _this.is_loading = false;
     }
     public class Xcls_Box2 : Object
