@@ -6,8 +6,8 @@
 public class Project.VapiSelection : Object 
 {
 	Project project;
-	string name;
-	bool selected {
+	public string name;
+	public bool selected {
 		get {
 			return vapi_list.contains(this.name);
 		}
