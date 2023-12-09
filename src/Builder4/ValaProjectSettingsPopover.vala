@@ -861,7 +861,7 @@ public class ValaProjectSettingsPopover : Object
                     if (_this.targets_tree.cursor.length < 1) {
                     return;
                 }
-                _this.project.compilegroups.get(_this.targets_tree.cursor).target_bin = this.el.text;
+                _this.project.compilegroups.get(_this.targets_tree.cursor).name = this.el.text;
             });
         }
 
