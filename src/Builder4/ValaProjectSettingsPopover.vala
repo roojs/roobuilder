@@ -460,7 +460,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.model = child_0.el;
             var child_1 = new Xcls_ColumnViewColumn18( _this );
             child_1.ref();
-            this.el.append_column = child_1.el;
+            this.el.append_column (  child_1.el  );
         }
 
         // user defined functions
@@ -550,11 +550,12 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ColumnViewColumn18(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ColumnViewColumn( null, null );
+            this.el = new Gtk.ColumnViewColumn( "Vapi Package", null );
 
             // my vars (dec)
 
             // set gobject values
+            this.el.expand = true;
         }
 
         // user defined functions
