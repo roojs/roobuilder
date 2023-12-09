@@ -650,6 +650,10 @@
              "bool vexpand" : true,
              "items" : [
               {
+               "$ xns" : "Gtk",
+               "xtype" : "ColumnView"
+              },
+              {
                "# string cursor" : "",
                "$ xns" : "Gtk",
                "* pack" : "set_child",
