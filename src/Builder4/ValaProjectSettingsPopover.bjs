@@ -126,7 +126,8 @@
               },
               {
                "$ xns" : "Gtk",
-               "xtype" : "DragSource"
+               "* pack" : "append_column",
+               "xtype" : "ColumnViewColumn"
               }
              ],
              "xtype" : "ColumnView"
