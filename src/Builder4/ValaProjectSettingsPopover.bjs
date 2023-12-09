@@ -185,6 +185,7 @@
               },
               {
                "$ xns" : "Gtk",
+               "* pack" : "append_column",
                "items" : [
                 {
                  "$ xns" : "Gtk",
