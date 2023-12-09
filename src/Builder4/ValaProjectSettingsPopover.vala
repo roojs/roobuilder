@@ -86,7 +86,7 @@ public class ValaProjectSettingsPopover : Object
     	   
         project.loadVapiIntoStore(_this.vapimodel.el);
              
-        this.targets_tree_store.load();
+     
      	project.loadTargetsIntoStore(this.target_model.el);
     
      
