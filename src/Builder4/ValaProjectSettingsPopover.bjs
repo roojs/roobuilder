@@ -668,6 +668,7 @@
                 },
                 {
                  "$ xns" : "Gtk",
+                 "bool expand" : true,
                  "string title" : "Build Target",
                  "xtype" : "ColumnViewColumn"
                 }
