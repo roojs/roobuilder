@@ -155,7 +155,7 @@ namespace Project
 		{
 			ls.remove_all();
 			var def = this.compilegroups.get("_default_");
-    		var items  = def.packages;
+ 
     
 			 
 			var pal = (Palete.Gtk) this.palete;
