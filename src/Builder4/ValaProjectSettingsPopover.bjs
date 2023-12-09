@@ -273,12 +273,12 @@
              "listeners" : {
               "changed" : [
                "()  => {",
-               "    if (_this.targets_tree.cursor.length < 1) {",
-               "        return;",
+               "    if (_this.selected_target == null) {",
+               "    \treturn;",
                "    }",
                "    var name = this.el.text;",
                "    ",
-               "    if (_this.targets_tree.cursor ! = name) {",
+               "    if (_this.selected_target.name ! = name) {",
                "    \tvar old = _this.project.compilegroups.get(_this.targets_tree.cursor);",
                "    \t_this.project.compilegroups.unset(_this.targets_tree.cursor);",
                "    \t_this.project.compilegroups.set(name, old);",

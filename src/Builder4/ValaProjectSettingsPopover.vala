@@ -858,12 +858,12 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.changed.connect( ()  => {
-                if (_this.targets_tree.cursor.length < 1) {
-                    return;
+                if (_this.selected_target == null) {
+                	return;
                 }
                 var name = this.el.text;
                 
-                if (_this.targets_tree.cursor ! = name) {
+                if (_this.selected_target.name ! = name) {
                 	var old = _this.project.compilegroups.get(_this.targets_tree.cursor);
                 	_this.project.compilegroups.unset(_this.targets_tree.cursor);
                 	_this.project.compilegroups.set(name, old);
