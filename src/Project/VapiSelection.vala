@@ -13,11 +13,11 @@ public class Project.VapiSelection : Object
 		set {
 			if (value) {
 				if (!vapi_list.contains(this.name) {
-					vapi_list.add(this.name);
+					this.vapi_list.add(this.name);
 				}
 			} else {
 				if (vapi_list.contains(this.name) {
-					vapi_list.remove(this.name)
+					this.vapi_list.remove(this.name)
 				}
 			}
 		}
