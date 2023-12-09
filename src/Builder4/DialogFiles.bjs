@@ -448,6 +448,14 @@
                      "* prop" : "filter",
                      "bool ignore_case" : true,
                      "id" : "iconsearch",
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "expression",
+                       "string property_name" : "name",
+                       "xtype" : "PropertyExpression"
+                      }
+                     ],
                      "xtype" : "StringFilter"
                     }
                    ],
