@@ -21,6 +21,7 @@ public class Project.VapiSelection : Object
 				}
 			}
 		}
+	}
 	Gee.ArrayList vapi_list;
 	
 	public VapiSelection(Gee.ArrayList<string> vapi_list, name)
