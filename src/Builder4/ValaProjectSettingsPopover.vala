@@ -22,6 +22,7 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_build_execute_args build_execute_args;
     public Xcls_treelistmodel treelistmodel;
     public Xcls_name name;
+    public Xcls_ListStore53 ListStore53;
     public Xcls_targets_tree targets_tree;
     public Xcls_targets_tree_store targets_tree_store;
     public Xcls_targets_render targets_render;
@@ -1695,7 +1696,8 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ListStore53(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new GLib.ListStore( ?uint? );
+            _this.ListStore53 = this;
+            this.el = new GLib.ListStore( typeof(Project.GtkValaSettings) );
 
             // my vars (dec)
 

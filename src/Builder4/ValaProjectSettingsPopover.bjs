@@ -659,7 +659,8 @@
                   {
                    "$ xns" : "GLib",
                    "* prop" : "model",
-                   "GLib.Type item_type" : "?uint?",
+                   "GLib.Type item_type" : "typeof(Project.GtkValaSettings)",
+                   "id" : "",
                    "xtype" : "ListStore"
                   }
                  ],
