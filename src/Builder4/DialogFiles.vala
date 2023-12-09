@@ -1537,9 +1537,19 @@ public class DialogFiles : Object
 	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
 		return false;
 	}
-	
+	var str = _this.searchbox.el.text.down();	
 	if (j.xtype == "Dir") {
-		return true;
+	
+		if (str.length < 1) {
+			return true;
+		}
+		for (var i =0 ; i < j.childfiles.n_items; i++) {
+			var f = (JsRender.JsRender) j.childfiles.get_n_item(i);
+			if (f.name.down().contains(str)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	if (j.xtype != "PlainFile") {
 		return false;
