@@ -621,7 +621,9 @@
                     "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
                     "\tGLib.debug(\"filter %s\", tr.get_type().name());",
                     "\tvar j =  (JsRender.JsRender) tr;",
-                    "\tif (j.xtype == \"Dir\" && j.",
+                    "\tif (j.xtype == \"Dir\" && j.childfiles.n_items < 1) {",
+                    "\t\treturn false;",
+                    "\t}",
                     "\treturn j.xtype == \"PlainFile\" || j.xtype == \"Dir\";",
                     "",
                     "}"
