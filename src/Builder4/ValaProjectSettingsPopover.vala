@@ -1624,7 +1624,7 @@ public class ValaProjectSettingsPopover : Object
             	var cg = _this.project.compilegroups.get(fn);
             
             	_this.build_pack_target.el.set_text(cg.target_bin);
-            	_this.build_compile_flags.el.set_text(cg.compile_flags);
+             
             	_this.build_execute_args.el.set_text(cg.execute_args);
             
             	_this.set_vbox.cgroup = cg;
