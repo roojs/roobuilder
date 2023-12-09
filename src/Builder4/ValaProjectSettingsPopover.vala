@@ -83,7 +83,7 @@ public class ValaProjectSettingsPopover : Object
     	 	GLib.debug("cant get default?");
      	} else {
     	    this.compile_flags.el.buffer.set_text(
-    	    	project.compilegroups.get("_default_").compile_flags.data
+    	    	project.compile_flags.data
         	);
     	   }
         project.loadVapiIntoStore(_this.vapimodel.el);

@@ -884,7 +884,7 @@
     "\t \tGLib.debug(\"cant get default?\");",
     " \t} else {",
     "\t    this.compile_flags.el.buffer.set_text(",
-    "\t    \tproject.compilegroups.get(\"_default_\").compile_flags.data",
+    "\t    \tproject.compile_flags.data",
     "    \t);",
     "\t   }",
     "    project.loadVapiIntoStore(_this.vapimodel.el);",
