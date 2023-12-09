@@ -101,7 +101,7 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add",
+             "* prop" : "child",
              "xtype" : "ColumnView"
             },
             {

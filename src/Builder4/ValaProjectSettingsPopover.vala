@@ -426,7 +426,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.vexpand = true;
             var child_0 = new Xcls_ColumnView14( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.child = child_0.el;
             var child_1 = new Xcls_default_packages_tree( _this );
             child_1.ref();
             this.el.child = child_1.el;
