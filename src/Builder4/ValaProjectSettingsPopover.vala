@@ -518,7 +518,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ListStore17(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new GLib.ListStore( ?uint? );
+            this.el = new GLib.ListStore( typeof(Project.VapiSelection) );
 
             // my vars (dec)
 
