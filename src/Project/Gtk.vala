@@ -85,6 +85,9 @@ namespace Project
 				}
 				this.compilegroups.set(vs.name,vs);
 			}
+			if (!this.compilegroups.has_key("_default")) {
+				this.compilegroups.set("_default_", new GtkValaSettings("_default_"));
+			}
 			//GLib.debug("%s\n",this.configToString ());
 			
 		}
