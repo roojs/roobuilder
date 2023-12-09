@@ -665,6 +665,10 @@
                   }
                  ],
                  "xtype" : "SingleSelection"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "xtype" : "GestureSingle"
                 }
                ],
                "xtype" : "ColumnView"
