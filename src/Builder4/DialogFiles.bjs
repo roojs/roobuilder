@@ -783,7 +783,7 @@
     "\t",
     "\t",
     "\t",
-    "\t_this.iconsearch.el.text = \"\";",
+    "\t_this.searchbox.el.text = \"\";",
     "\t",
     "\t ",
     "\t",

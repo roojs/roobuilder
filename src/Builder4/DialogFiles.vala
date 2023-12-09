@@ -75,7 +75,7 @@ public class DialogFiles : Object
     	
     	
     	
-    	_this.iconsearch.el.text = "";
+    	_this.searchbox.el.text = "";
     	
     	 
     	
