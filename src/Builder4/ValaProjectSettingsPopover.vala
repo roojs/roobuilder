@@ -582,13 +582,28 @@ public class ValaProjectSettingsPopover : Object
             // set gobject values
 
             //listeners
-            this.el.setup.connect( (object) => {
+            this.el.setup.connect( (item) => {
+            	//var j = (JsRender.JsRender) item;
+            	var gi = (Gtk.ListItem)item;
+            	 
+            	var lbl = new Gtk.Label("");
+            	lbl.halign = Gtk.Align.START;
+            	gi.set_child(lbl);
+            
             
             
             });
-            this.el.bind.connect( (object) => {
+            this.el.bind.connect( (listitem) => {
+             
+            	var lbl = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();
+            	   
+            	var item = (Project.VapiSelection)  ((Gtk.ListItem)listitem).get_item();
             
+            	item.bind_property("name",
+                            lbl, "label",
+                       GLib.BindingFlags.SYNC_CREATE);
             
+            	  
             });
         }
 
