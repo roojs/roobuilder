@@ -517,7 +517,7 @@
            "bool hexpand" : true,
            "bool vexpand" : true,
            "bool visible" : true,
-           "id" : "file_container",
+           "id" : "treescroll",
            "int width_request" : 200,
            "items" : [
             {

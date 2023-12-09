@@ -20,7 +20,7 @@ public class DialogFiles : Object
     public Xcls_iconscroll iconscroll;
     public Xcls_iconsel iconsel;
     public Xcls_gridmodel gridmodel;
-    public Xcls_file_container file_container;
+    public Xcls_treescroll treescroll;
     public Xcls_treeview treeview;
     public Xcls_treeselmodel treeselmodel;
     public Xcls_treelistmodel treelistmodel;
@@ -819,7 +819,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_Box23( _this );
             child_0.ref();
             this.el.end_child = child_0.el;
-            var child_1 = new Xcls_file_container( _this );
+            var child_1 = new Xcls_treescroll( _this );
             child_1.ref();
             this.el.start_child = child_1.el;
         }
@@ -1234,7 +1234,7 @@ public class DialogFiles : Object
 
 
 
-    public class Xcls_file_container : Object
+    public class Xcls_treescroll : Object
     {
         public Gtk.ScrolledWindow el;
         private DialogFiles  _this;
@@ -1243,10 +1243,10 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_file_container(DialogFiles _owner )
+        public Xcls_treescroll(DialogFiles _owner )
         {
             _this = _owner;
-            _this.file_container = this;
+            _this.treescroll = this;
             this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
