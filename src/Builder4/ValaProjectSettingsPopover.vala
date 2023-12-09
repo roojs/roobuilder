@@ -430,7 +430,7 @@ public class ValaProjectSettingsPopover : Object
             this.el.child = child_0.el;
             var child_1 = new Xcls_ColumnViewColumn18( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append_column (  child_1.el  );
             var child_2 = new Xcls_default_packages_tree( _this );
             child_2.ref();
             this.el.child = child_2.el;
