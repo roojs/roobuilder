@@ -129,7 +129,7 @@
             },
             {
              "$ xns" : "Gtk",
-             "xtype" : "PadController"
+             "xtype" : "ColumnViewColumn"
             },
             {
              "$ xns" : "Gtk",

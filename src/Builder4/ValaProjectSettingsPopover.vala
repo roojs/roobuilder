@@ -428,9 +428,9 @@ public class ValaProjectSettingsPopover : Object
             var child_0 = new Xcls_ColumnView14( _this );
             child_0.ref();
             this.el.child = child_0.el;
-            var child_1 = new Xcls_PadController18( _this );
+            var child_1 = new Xcls_ColumnViewColumn18( _this );
             child_1.ref();
-            this.el.add_controller(  child_1.el );
+            this.el.append(  child_1.el );
             var child_2 = new Xcls_default_packages_tree( _this );
             child_2.ref();
             this.el.child = child_2.el;
@@ -536,19 +536,19 @@ public class ValaProjectSettingsPopover : Object
 
 
 
-    public class Xcls_PadController18 : Object
+    public class Xcls_ColumnViewColumn18 : Object
     {
-        public Gtk.PadController el;
+        public Gtk.ColumnViewColumn el;
         private ValaProjectSettingsPopover  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_PadController18(ValaProjectSettingsPopover _owner )
+        public Xcls_ColumnViewColumn18(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.PadController( null, null );
+            this.el = new Gtk.ColumnViewColumn( null, null );
 
             // my vars (dec)
 
