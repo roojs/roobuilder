@@ -1586,7 +1586,7 @@ public class ValaProjectSettingsPopover : Object
             	 
             	// add the directory..
             	var cg = (Project.GtkValaSettings) _this.target_model.el.get_item(_this.target_sel.el.selected);
-            	/
+            	 
             	 
             	GLib.debug("remove: %s\n", cg.name);
             	if (!_this.project.compilegroups.unset(cg.name)) {

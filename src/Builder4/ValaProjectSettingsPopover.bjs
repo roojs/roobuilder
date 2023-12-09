@@ -622,7 +622,7 @@
                  "\t ",
                  "\t// add the directory..",
                  "\tvar cg = (Project.GtkValaSettings) _this.target_model.el.get_item(_this.target_sel.el.selected);",
-                 "\t/",
+                 "\t ",
                  "\t ",
                  "\tGLib.debug(\"remove: %s\\n\", cg.name);",
                  "\tif (!_this.project.compilegroups.unset(cg.name)) {",
