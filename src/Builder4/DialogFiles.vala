@@ -12,7 +12,7 @@ public class DialogFiles : Object
         }
         return _DialogFiles;
     }
-    public Xcls_ScrolledWindow13 ScrolledWindow13;
+    public Xcls_projectscroll projectscroll;
     public Xcls_projectselection projectselection;
     public Xcls_projectsort projectsort;
     public Xcls_projectmodel projectmodel;
@@ -510,7 +510,7 @@ public class DialogFiles : Object
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.position = 200;
-            var child_0 = new Xcls_ScrolledWindow13( _this );
+            var child_0 = new Xcls_projectscroll( _this );
             child_0.ref();
             this.el.start_child = child_0.el;
             var child_1 = new Xcls_Paned22( _this );
@@ -520,7 +520,7 @@ public class DialogFiles : Object
 
         // user defined functions
     }
-    public class Xcls_ScrolledWindow13 : Object
+    public class Xcls_projectscroll : Object
     {
         public Gtk.ScrolledWindow el;
         private DialogFiles  _this;
@@ -530,10 +530,10 @@ public class DialogFiles : Object
         public bool expand;
 
         // ctor
-        public Xcls_ScrolledWindow13(DialogFiles _owner )
+        public Xcls_projectscroll(DialogFiles _owner )
         {
             _this = _owner;
-            _this.ScrolledWindow13 = this;
+            _this.projectscroll = this;
             this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)

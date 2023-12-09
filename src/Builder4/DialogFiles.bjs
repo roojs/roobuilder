@@ -190,7 +190,7 @@
          "bool has_frame" : true,
          "bool hexpand" : true,
          "bool vexpand" : true,
-         "id" : "",
+         "id" : "projectscroll",
          "int width_request" : 150,
          "items" : [
           {
