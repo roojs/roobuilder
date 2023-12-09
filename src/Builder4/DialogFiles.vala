@@ -1554,7 +1554,7 @@ public class DialogFiles : Object
 	if (j.xtype != "PlainFile") {
 		return false;
 	}
-	var str = _this.searchbox.el.text.down();
+
 	if (str.length < 1) {
 		return true;
 	}

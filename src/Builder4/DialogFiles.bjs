@@ -638,7 +638,7 @@
                     "\tif (j.xtype != \"PlainFile\") {",
                     "\t\treturn false;",
                     "\t}",
-                    "\tvar str = _this.searchbox.el.text.down();",
+                    "",
                     "\tif (str.length < 1) {",
                     "\t\treturn true;",
                     "\t}",
