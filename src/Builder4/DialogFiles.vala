@@ -103,7 +103,9 @@ public class DialogFiles : Object
     	for (var i =0; i < sm.n_items; i++) {
     		var p = (Project.Project) sm.get_item(i);
     		if (p.path == project.path) {
+    			GLib.debug("Select Project %s => %d", project.name, i);
     			sm.selected = i;
+    			break;
     		}
     	} 
     	
