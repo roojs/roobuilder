@@ -17,14 +17,14 @@ public class Project.VapiSelection : Object
 				}
 			} else {
 				if (vapi_list.contains(this.name)) {
-					this.vapi_list.remove(this.name)
+					this.vapi_list.remove(this.name);
 				}
 			}
 		}
 	}
 	Gee.ArrayList vapi_list;
 	
-	public VapiSelection(Gee.ArrayList<string> vapi_list, name)
+	public VapiSelection(Gee.ArrayList<string> vapi_list, string name)
 	{
 		this.vapi_list = vapi_list;
 		this.name = name;
