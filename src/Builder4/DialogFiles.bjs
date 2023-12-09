@@ -426,6 +426,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "sorter",
+                     "id" : "",
                      "items" : [
                       {
                        "$ xns" : "Gtk",

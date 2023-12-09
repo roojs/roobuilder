@@ -20,6 +20,7 @@ public class DialogFiles : Object
     public Xcls_iconscroll iconscroll;
     public Xcls_iconsel iconsel;
     public Xcls_gridmodel gridmodel;
+    public Xcls_StringSorter32 StringSorter32;
     public Xcls_treescroll treescroll;
     public Xcls_treeview treeview;
     public Xcls_treeselmodel treeselmodel;
@@ -1132,6 +1133,7 @@ public class DialogFiles : Object
         public Xcls_StringSorter32(DialogFiles _owner )
         {
             _this = _owner;
+            _this.StringSorter32 = this;
             this.el = new Gtk.StringSorter( null );
 
             // my vars (dec)
