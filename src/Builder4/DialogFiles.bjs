@@ -342,27 +342,17 @@
                "bool hexpand" : true,
                "id" : "iconsearch",
                "listeners" : {
-                "changed" : [
-                 "( ) => {",
-                 "\tGLib.debug(\"Got '%s'\", this.el.text);",
-                 "\t",
-                 "\t//if (this.el.text.down() != _this.lastfilter) {",
-                 "\t//\t_this.loadIconView();",
-                 "\t//\t_this.loadTreeView();",
-                 "\t//}",
-                 "}",
-                 ""
-                ],
                 "search_changed" : [
                  "( ) => {",
                  "",
-                 "",
+                 "\tthis.iconsearch.el.set_search(this.el.text);",
                  "}",
                  ""
                 ]
                },
                "string name" : "popover-files-iconsearch",
                "string placeholder_text" : "type to filter results",
+               "uint search_delay" : "?uint?",
                "xtype" : "SearchEntry"
               }
              ],

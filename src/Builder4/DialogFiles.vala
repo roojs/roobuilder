@@ -910,6 +910,7 @@ public class DialogFiles : Object
             this.el.name = "popover-files-iconsearch";
             this.el.hexpand = true;
             this.el.placeholder_text = "type to filter results";
+            this.el.search_delay = ?uint?;
 
             // init method
 
@@ -926,15 +927,7 @@ public class DialogFiles : Object
             //listeners
             this.el.search_changed.connect( ( ) => {
             
-            
-            });
-            this.el.changed.connect( ( ) => {
-            	GLib.debug("Got '%s'", this.el.text);
-            	
-            	//if (this.el.text.down() != _this.lastfilter) {
-            	//	_this.loadIconView();
-            	//	_this.loadTreeView();
-            	//}
+            	this.iconsearch.el.set_search(this.el.text);
             });
         }
 
