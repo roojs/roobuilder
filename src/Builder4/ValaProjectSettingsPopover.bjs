@@ -101,6 +101,10 @@
            "items" : [
             {
              "$ xns" : "Gtk",
+             "xtype" : "ColumnView"
+            },
+            {
+             "$ xns" : "Gtk",
              "* prop" : "child",
              "gboolean headers_visible" : true,
              "items" : [
