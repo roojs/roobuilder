@@ -20,7 +20,6 @@ public class DialogFiles : Object
     public Xcls_iconscroll iconscroll;
     public Xcls_iconsel iconsel;
     public Xcls_gridmodel gridmodel;
-    public Xcls_iconsearch iconsearch;
     public Xcls_treescroll treescroll;
     public Xcls_treeview treeview;
     public Xcls_treeselmodel treeselmodel;
@@ -1088,7 +1087,7 @@ public class DialogFiles : Object
             var child_0 = new Xcls_gridmodel( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_iconsearch( _this );
+            var child_1 = new Xcls_StringSorter32( _this );
             child_1.ref();
             this.el.sorter = child_1.el;
         }
@@ -1118,7 +1117,7 @@ public class DialogFiles : Object
         // user defined functions
     }
 
-    public class Xcls_iconsearch : Object
+    public class Xcls_StringSorter32 : Object
     {
         public Gtk.StringSorter el;
         private DialogFiles  _this;
@@ -1127,10 +1126,9 @@ public class DialogFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_iconsearch(DialogFiles _owner )
+        public Xcls_StringSorter32(DialogFiles _owner )
         {
             _this = _owner;
-            _this.iconsearch = this;
             this.el = new Gtk.StringSorter( null );
 
             // my vars (dec)
