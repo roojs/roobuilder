@@ -5,8 +5,8 @@ namespace Project
 		public string name;
 		public GtkValaSettings? parent;
 		
-		public string compile_flags = ""; // generic to all.
-		public Gee.ArrayList<string> packages; // list of packages?? some might be genericly named?
+
+
 		public Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
 		public string target_bin;
 
@@ -16,9 +16,9 @@ namespace Project
 		public GtkValaSettings(string name) 
 		{
 			this.name = name;
-			this.compile_flags = "";
+ 
 			this.target_bin = "";
-			this.packages = new Gee.ArrayList<string>();
+
 			this.sources = new Gee.ArrayList<string>();
 			this.execute_args = "";
 				
@@ -29,7 +29,7 @@ namespace Project
 
 			
 			this.name = el.get_string_member("name");
-			this.compile_flags = el.get_string_member("compile_flags");
+ 
 			if ( el.has_member("execute_args")) {
 				this.execute_args = el.get_string_member("execute_args");
 			} else {
@@ -38,7 +38,7 @@ namespace Project
 			this.target_bin = el.get_string_member("target_bin");
 			// sources and packages.
 			this.sources = this.readArray(el.get_array_member("sources"));
-			this.packages = this.readArray(el.get_array_member("packages"));
+			
 
 		}
 		
