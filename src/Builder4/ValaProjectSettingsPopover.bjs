@@ -163,6 +163,7 @@
                  "xtype" : "SignalListItemFactory"
                 }
                ],
+               "string title" : "use",
                "xtype" : "ColumnViewColumn"
               }
              ],

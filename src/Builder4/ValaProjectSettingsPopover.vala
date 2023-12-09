@@ -608,7 +608,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ColumnViewColumn20(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ColumnViewColumn( null, null );
+            this.el = new Gtk.ColumnViewColumn( "use", null );
 
             // my vars (dec)
 
