@@ -668,7 +668,27 @@
                   "selection_changed" : [
                    "(position, n_items) => {",
                    "",
+                   "\t ",
+                   "\t// load the new values.",
+                   "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                   "\t\t_this.set_vbox.el.hide();\t",
+                   "\t{",
+                   "\t ",
+                   "\t_this.set_vbox.el.show();",
                    "",
+                   "\t// add the directory..",
+                   "\tvar cg = (Project.GtkValaSettings) this.target_model.el.get_item(this.el.selected);",
+                   "\t  ",
+                   "\t_this.project.compile_group_active = cg.name;",
+                   "\t _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);",
+                   "\t",
+                   "\t",
+                   " ",
+                   "\t_this.build_pack_target.el.set_text(cg.target_bin);",
+                   " ",
+                   "\t_this.build_execute_args.el.set_text(cg.execute_args);",
+                   "",
+                   "\t_this.set_vbox.cgroup = cg;",
                    "}",
                    ""
                   ]
@@ -721,144 +741,6 @@
                 }
                ],
                "xtype" : "ColumnView"
-              },
-              {
-               "# string cursor" : "",
-               "$ xns" : "Gtk",
-               "* pack" : "set_child",
-               "bool vexpand" : true,
-               "id" : "targets_tree",
-               "items" : [
-                {
-                 "$ columns" : [
-                  "    typeof(string),  // 0 key type",
-                  "     typeof(string) // ??",
-                  "     "
-                 ],
-                 "$ n_columns" : 2,
-                 "$ xns" : "Gtk",
-                 "* pack" : "set_model",
-                 "id" : "targets_tree_store",
-                 "xtype" : "ListStore",
-                 "| void load" : [
-                  "() {",
-                  " ",
-                  "  this.el.clear();",
-                  "  ",
-                  "    ",
-                  "     var cg = _this.project.compilegroups;",
-                  "     ",
-                  "   _this.targets_tree.cursor = \"\";",
-                  "    Gtk.TreeIter citer;",
-                  "    var iter = cg.map_iterator();",
-                  "   while(iter.next()) {",
-                  "        var key = iter.get_key();",
-                  "        if (key == \"_default_\") {",
-                  "            continue;",
-                  "        }",
-                  "    ",
-                  "         this.el.append(out citer);   ",
-                  "         ",
-                  "        this.el.set_value(citer, 0,   key ); // title ",
-                  "        //this.el.set_value(citer, 1,   items.get(i) );",
-                  "    };",
-                  "    this.el.set_sort_column_id(0,Gtk.SortType.ASCENDING);",
-                  "    _this.set_vbox.el.hide();",
-                  "}",
-                  ""
-                 ]
-                },
-                {
-                 "$ xns" : "Gtk",
-                 "* init" : [
-                  " {",
-                  "     this.el.add_attribute(_this.targets_render.el , \"text\", 0 );",
-                  " }"
-                 ],
-                 "* pack" : "append_column",
-                 "gboolean resizable" : true,
-                 "items" : [
-                  {
-                   "$ xns" : "Gtk",
-                   "* pack" : "pack_start,false",
-                   "gboolean editable" : true,
-                   "id" : "targets_render",
-                   "listeners" : {
-                    "edited" : [
-                     "  (path, newtext) => {",
-                     "     ",
-                     "     Gtk.TreeIter  iter;",
-                     "        _this.targets_tree_store.el.get_iter(out iter, new Gtk.TreePath.from_string(path));",
-                     "       GLib.Value gval;",
-                     "        _this.targets_tree_store.el.get_value(iter,0, out gval);",
-                     "        var oldval = (string)gval;",
-                     "       if (oldval == newtext) {",
-                     "          return;",
-                     "        }",
-                     "         var cg = _this.project.compilegroups.get(oldval);",
-                     "        cg.name = newtext;",
-                     "        _this.project.compilegroups.unset(oldval);",
-                     "        _this.project.compilegroups.set(newtext, cg);",
-                     "       _this.targets_tree_store.load();",
-                     "  }"
-                    ]
-                   },
-                   "xtype" : "CellRendererText"
-                  }
-                 ],
-                 "utf8 title" : "name",
-                 "xtype" : "TreeViewColumn"
-                }
-               ],
-               "listeners" : {
-                "cursor_changed" : [
-                 " ( ) => {",
-                 "",
-                 "\tif (this.cursor != \"\") {",
-                 "\t\t// save the values..",
-                 "\t}",
-                 "",
-                 "\t// load the new values.",
-                 "",
-                 "",
-                 "\tGtk.TreeModel mod;",
-                 "\tGtk.TreeIter iter;",
-                 "\tif (!this.el.get_selection().get_selected(out mod, out iter)) {",
-                 "\t\tGLib.debug(\"nothing selected\\n\");",
-                 "\t\t// should disable the right hand side..",
-                 "\t\t_this.set_vbox.el.hide();",
-                 "\t\treturn;",
-                 "\t}",
-                 "\t_this.set_vbox.el.show();",
-                 "",
-                 "\t// add the directory..",
-                 "",
-                 "",
-                 "\tGLib.Value val;",
-                 "\tmod.get_value(iter,0, out val);",
-                 "\tvar fn =  (string) val;",
-                 "",
-                 "\tthis.cursor = fn;",
-                 "\t",
-                 "\t_this.project.compile_group_active = fn;",
-                 "\t _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);",
-                 "\t",
-                 "\t",
-                 "\tvar cg = _this.project.compilegroups.get(fn);",
-                 "",
-                 "\t_this.build_pack_target.el.set_text(cg.target_bin);",
-                 " ",
-                 "\t_this.build_execute_args.el.set_text(cg.execute_args);",
-                 "",
-                 "\t_this.set_vbox.cgroup = cg;",
-                 "\t",
-                 "       // load the srouces",
-                 "",
-                 "",
-                 "  }"
-                ]
-               },
-               "xtype" : "TreeView"
               }
              ],
              "xtype" : "ScrolledWindow"
