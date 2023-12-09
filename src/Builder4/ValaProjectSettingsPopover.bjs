@@ -117,6 +117,19 @@
                    "GLib.Type item_type" : "typeof(Project.VapiSelection)",
                    "id" : "vapimodel",
                    "xtype" : "ListStore"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "section_sorter",
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "expression",
+                     "string property_name" : "name",
+                     "xtype" : "PropertyExpression"
+                    }
+                   ],
+                   "xtype" : "StringSorter"
                   }
                  ],
                  "xtype" : "SortListModel"
