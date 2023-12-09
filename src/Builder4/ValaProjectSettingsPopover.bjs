@@ -280,7 +280,7 @@
                "    if (_this.targets_tree.cursor ! = name) {",
                "    \tvar old = _this.project.compilegroups.get(_this.targets_tree.cursor);",
                "    \t_this.project.compilegroups.unset(_this.targets_tree.cursor);",
-               "    \t_this.project.compilegroups.set(name,old);",
+               "    \t_this.project.compilegroups.set(name, old);",
                "    \t_this.targets_tree.cursor = name;",
                "\t}",
                "    \t",

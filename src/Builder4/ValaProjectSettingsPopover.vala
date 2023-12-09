@@ -864,7 +864,7 @@ public class ValaProjectSettingsPopover : Object
                 if (_this.targets_tree.cursor ! = name) {
                 	var old = _this.project.compilegroups.get(_this.targets_tree.cursor);
                 	_this.project.compilegroups.unset(_this.targets_tree.cursor);
-                	_this.project.compilegroups.set(name,old);
+                	_this.project.compilegroups.set(name, old);
                 	_this.targets_tree.cursor = name;
             	}
                 	
