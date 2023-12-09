@@ -344,23 +344,23 @@ namespace Palete {
 			context.add_external_package ("gobject-2.0");
 			// user defined ones..
 			
-	    	var dcg = pr.compilegroups.get("_default_");
-	    	for (var i = 0; i < dcg.packages.size; i++) {
+
+	    	for (var i = 0; i < pr.packages.size; i++) {
 	    		
-	    		var pkg = dcg.packages.get(i);
+	    		var pkg = pr.packages.get(i);
 	    		// do not add libvala versions except the one that matches the one we are compiled against..
 	    		if (Regex.match_simple("^libvala", pkg) && pkg != ("libvala-0." + ver.to_string())) {
-    	    		GLib.debug("Skip libvala Package: %s" , dcg.packages.get(i));
+    	    		GLib.debug("Skip libvala Package: %s" , pkg);
 	    			continue;
     			}
-    			GLib.debug("Add Package: %s" , dcg.packages.get(i));
-				valac += " --pkg " + dcg.packages.get(i);
-				if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
-					GLib.debug("Skip vapi '%s' - does not exist", dcg.packages.get(i));
+    			GLib.debug("Add Package: %s" ,pkg);
+				valac += " --pkg " + pr.packages.get(i);
+				if (!this.has_vapi(context.vapi_directories, pkg)) {
+					GLib.debug("Skip vapi '%s' - does not exist", pkg);
 					continue;
 				}
 				
-				context.add_external_package (dcg.packages.get(i));
+				context.add_external_package(pkg);
 			}
 	    	
 			 //Vala.Config.PACKAGE_SUFFIX.substring (1)
