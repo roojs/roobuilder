@@ -632,7 +632,7 @@
                     "\tif (str.length < 1) {",
                     "\t\treturn true;",
                     "\t}",
-                    "\tif j.name.down().contains(str)) {",
+                    "\tif (j.name.down().contains(str)) {",
                     "\t\treturn true;",
                     "\t}",
                     "\treturn false; ",

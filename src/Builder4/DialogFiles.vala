@@ -1548,7 +1548,7 @@ public class DialogFiles : Object
 	if (str.length < 1) {
 		return true;
 	}
-	if j.name.down().contains(str)) {
+	if (j.name.down().contains(str)) {
 		return true;
 	}
 	return false; 
