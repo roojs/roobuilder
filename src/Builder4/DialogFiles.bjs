@@ -180,6 +180,7 @@
        "int spacing" : 0,
        "items" : [
         {
+         "$ Gtk.PolicyType vscrollbar_policy" : "",
          "$ xns" : "Gtk",
          "* init" : [
           "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
