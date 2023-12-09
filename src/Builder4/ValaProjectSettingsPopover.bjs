@@ -129,6 +129,10 @@
             },
             {
              "$ xns" : "Gtk",
+             "xtype" : "PadController"
+            },
+            {
+             "$ xns" : "Gtk",
              "* prop" : "child",
              "gboolean headers_visible" : true,
              "items" : [
