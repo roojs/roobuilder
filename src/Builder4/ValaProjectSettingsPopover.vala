@@ -1577,7 +1577,7 @@ public class ValaProjectSettingsPopover : Object
 
             //listeners
             this.el.clicked.connect( ()  => {
-                / load the new values.
+                // load the new values.
             	if (_this.target_sel.el.selected == Gtk.INVALID_LIST_POSITION) {
             		GLib.debug("nothing selected");
             		return;
