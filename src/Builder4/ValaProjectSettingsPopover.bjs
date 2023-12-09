@@ -102,6 +102,13 @@
             {
              "$ xns" : "Gtk",
              "* prop" : "child",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "xtype" : "NoSelection"
+              }
+             ],
              "xtype" : "ColumnView"
             },
             {
