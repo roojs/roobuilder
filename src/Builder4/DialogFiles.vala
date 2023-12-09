@@ -99,11 +99,14 @@ public class DialogFiles : Object
     public void selectProject (Project.Project project) {
         
     	uint pos;
-    	_this.projectmodel.el.find(project, out pos);
+    	var sm = this.projectselection.el;
+    	for (var i =0; i < sm.n_items; i++) {
+    		var p = (Project.Project) sm.get_item(i);
+    		if (p.path == project.path) {
+    			sm.selected = i;
+    		}
+    	} 
     	
-        _this.projectselection.el.selected  =  pos;
-    //        this.onProjectSelected(project);
-       
     }
     public void show (Project.Project? project, bool new_window) {
           
