@@ -123,6 +123,10 @@
                 }
                ],
                "xtype" : "NoSelection"
+              },
+              {
+               "$ xns" : "Gtk",
+               "xtype" : "DragSource"
               }
              ],
              "xtype" : "ColumnView"
