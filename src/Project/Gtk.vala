@@ -167,7 +167,7 @@ namespace Project
 		public void loadTargetsIntoStore(GLib.ListStore ls) 
 		{
 			ls.remove_all();
-			foreach(var cg in this.compile_groups.values) {
+			foreach(var cg in this.compilegroups.values) {
 				ls.append(cg);
 			}
 		}
