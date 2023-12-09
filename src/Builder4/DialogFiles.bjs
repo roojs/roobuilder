@@ -346,6 +346,7 @@
                  "( ) => {",
                  "",
                  "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
+                 "\t_this.searchfilter.el.set_search(this.el.text);",
                  "}",
                  ""
                 ]
