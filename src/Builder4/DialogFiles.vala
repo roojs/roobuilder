@@ -1530,6 +1530,7 @@ public class DialogFiles : Object
 	var tr = ((Gtk.TreeListRow)item).get_item();
 	GLib.debug("filter %s", tr.get_type().name());
 	var j =  (JsRender.JsRender) tr;
+	if (j.xtype == "Dir" && j.
 	return j.xtype == "PlainFile" || j.xtype == "Dir";
 
 } );
