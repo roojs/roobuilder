@@ -153,6 +153,10 @@
                ],
                "string title" : "Vapi Package",
                "xtype" : "ColumnViewColumn"
+              },
+              {
+               "$ xns" : "Gtk",
+               "xtype" : "ColumnViewColumn"
               }
              ],
              "xtype" : "ColumnView"
