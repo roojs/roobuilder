@@ -513,6 +513,7 @@ public class ValaProjectSettingsPopover : Object
 
 
             // my vars (def)
+        public GLib.Type this_type;
 
         // ctor
         public Xcls_ListStore17(ValaProjectSettingsPopover _owner )
@@ -521,9 +522,9 @@ public class ValaProjectSettingsPopover : Object
             this.el = new GLib.ListStore( null );
 
             // my vars (dec)
+            this.this_type = ?uint?;
 
             // set gobject values
-            this.el.n_items = ?uint?;
         }
 
         // user defined functions

@@ -114,7 +114,7 @@
                   {
                    "$ xns" : "GLib",
                    "* prop" : "model",
-                   "uint n_items" : "?uint?",
+                   "GLib.Type this_type" : "?uint?",
                    "xtype" : "ListStore"
                   }
                  ],
