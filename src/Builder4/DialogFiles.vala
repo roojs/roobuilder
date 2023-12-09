@@ -1544,7 +1544,7 @@ public class DialogFiles : Object
 			return true;
 		}
 		for (var i =0 ; i < j.childfiles.n_items; i++) {
-			var f = (JsRender.JsRender) j.childfiles.get_n_item(i);
+			var f = (JsRender.JsRender) j.childfiles.get_item(i);
 			if (f.name.down().contains(str)) {
 				return true;
 			}

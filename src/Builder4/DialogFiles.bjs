@@ -628,7 +628,7 @@
                     "\t\t\treturn true;",
                     "\t\t}",
                     "\t\tfor (var i =0 ; i < j.childfiles.n_items; i++) {",
-                    "\t\t\tvar f = (JsRender.JsRender) j.childfiles.get_n_item(i);",
+                    "\t\t\tvar f = (JsRender.JsRender) j.childfiles.get_item(i);",
                     "\t\t\tif (f.name.down().contains(str)) {",
                     "\t\t\t\treturn true;",
                     "\t\t\t}",
