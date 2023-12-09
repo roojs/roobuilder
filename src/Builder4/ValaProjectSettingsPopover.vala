@@ -15,6 +15,7 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_label_global label_global;
     public Xcls_label_targets label_targets;
     public Xcls_compile_flags compile_flags;
+    public Xcls_ListStore17 ListStore17;
     public Xcls_default_packages_tree default_packages_tree;
     public Xcls_default_packages_tree_store default_packages_tree_store;
     public Xcls_packages_render packages_render;
@@ -518,6 +519,7 @@ public class ValaProjectSettingsPopover : Object
         public Xcls_ListStore17(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
+            _this.ListStore17 = this;
             this.el = new GLib.ListStore( typeof(Project.VapiSelection) );
 
             // my vars (dec)
