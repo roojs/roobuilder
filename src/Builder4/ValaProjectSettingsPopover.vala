@@ -872,7 +872,7 @@ public class ValaProjectSettingsPopover : Object
                 	
                 
                 
-                _this.project.compilegroups.get(_this.targets_tree.cursor).name = this.el.text;
+                _this.selected_target.name = this.el.text;
             });
         }
 
