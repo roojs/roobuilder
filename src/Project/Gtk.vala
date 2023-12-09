@@ -139,7 +139,7 @@ namespace Project
 		public void loadVapiIntoStore(GLib.ListStore ls) 
 		{
 			ls.remove_all();
-			var def = _this.project.compilegroups.get("_default_");
+			var def = this.compilegroups.get("_default_");
     		var items  = def.packages;
     
 			 
