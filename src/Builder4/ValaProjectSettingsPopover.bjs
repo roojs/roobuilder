@@ -854,7 +854,7 @@
     "    project.loadVapiIntoStore(_this.vapimodel.el);",
     "         ",
     "    this.targets_tree_store.load();",
-    " \tproject.loadTargetsIntoStore(this.target_model.el)",
+    " \tproject.loadTargetsIntoStore(this.target_model.el);",
     "",
     " ",
     "",
