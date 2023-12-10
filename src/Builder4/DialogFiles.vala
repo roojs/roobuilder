@@ -1748,11 +1748,11 @@ public class DialogFiles : Object
             	 	return;
              	}
             	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            	GLib.debug("LR = %s", lr.get_type().name());
+            	//GLib.debug("LR = %s", lr.get_type().name());
             
             	
             	var jr =(JsRender.JsRender) lr.get_item();
-            	GLib.debug("JR = %s", jr.get_type().name());		
+            	//GLib.debug("JR = %s", jr.get_type().name());		
             	
             	 if (jr == null) {
             		 GLib.debug("Problem getting item"); 
