@@ -53,8 +53,8 @@ namespace Project {
 		
 		public signal void on_changed (); 
 	
-		public string id;
-		public string fn = ""; // just a md5...
+		//public string id;
+		//public string fn = ""; // just a md5...
 		public string name  { 
 			set; get; default = "";
 		}
@@ -73,8 +73,7 @@ namespace Project {
 		 
 		bool is_scanned; 
 		
-		public string compile_group_active = ""; // set by project / used by files to work out ticks..
-	   
+		 
 		
 		protected Project (string path) {
 			
@@ -230,8 +229,8 @@ namespace Project {
 			var iter = all.list_iterator();
 			var ret = "ID\tName\tDirectory\n";
 			while (iter.next()) {
-				ret += "%s\t%s\t%s\n".printf(
-						iter.get().fn,
+				ret += "%s\t%s\n".printf(
+						 
 						iter.get().name,
 						iter.get().path
 						);
@@ -354,7 +353,7 @@ namespace Project {
 
 			//proj.json_project_data  = obj; // store the original object...
 			
-			proj.fn =  Path.get_basename(jsonfile).split(".")[0];
+			//proj.fn =  Path.get_basename(jsonfile).split(".")[0];
 
 			proj.loadJson(obj);
 			// might not exist?
@@ -367,7 +366,7 @@ namespace Project {
 			 
 			//proj.initDatabase();
 			
-			GLib.debug("Add Project %s", proj.id);
+			GLib.debug("Add Project %s", proj.name);
 			
 			projects.add(proj);
 			 
@@ -409,10 +408,7 @@ namespace Project {
 		
 		 public static void  remove(Project project)
 		{
-			// delete the file..
-			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
-				 
-			FileUtils.unlink(dirname + "/" + project.fn + ".json");
+			// FIXME - remove .roobuilder.jcfg ?
 			projects.remove(project);
 			
 
@@ -423,15 +419,7 @@ namespace Project {
 		{
 				// fixme..
 			
-			if (this.fn.length < 1) {
-				// make the filename..
-				//var t = new DateTime.now_local ();
-				//TimeVal tv;
-				//t.to_timeval(out tv);
-				//var str = "%l:%l".printf(tv.tv_sec,tv.tv_usec);
-				
-				this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, this.path, this.path.length);
-			}
+		 
 
 			
 
@@ -857,6 +845,25 @@ namespace Project {
 			}
 		
 		}
+		
+		public string[] pathsMatching(string name)
+		{
+			string[] ret = {};
+			 
+			foreach(var jdir in this.sub_paths) { 
+				
+
+				
+				if (Path.get_basename (jdir.path) == name) {
+					GLib.debug("pathsMatching %s\n", jdir.path);
+					ret += jdir.path;
+				}
+				
+			}
+			return ret;
+			
+		}
+		
 		/*
 		public void add(string path, string type)
 		{

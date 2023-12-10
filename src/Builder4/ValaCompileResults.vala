@@ -72,7 +72,7 @@ public class Xcls_ValaCompileResults : Object
     }
     public void addLine (string str) {
     	
-    	if (this.window.windowstate.project.fn != BuilderApplication.valasource.file.project.fn) {
+    	if (this.window.windowstate.project.path != BuilderApplication.valasource.file.project.path) {
     		// not our project.
     		return;
     	}

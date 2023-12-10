@@ -147,7 +147,7 @@ namespace Palete {
 			string[] args = {};
 			args += BuilderApplication._self;
 			args += "--project";
-			args += this.file.project.fn;
+			args += this.file.project.path;
 			args += "--target";
 			args += this.file.build_module;
 			args += "--add-file";
@@ -202,7 +202,7 @@ namespace Palete {
 			string[] args = {};
 			args += BuilderApplication._self;
 			args += "--project";
-			args += this.file.project.fn;
+			args += this.file.project.path;
 			args += "--target";
 			args += this.file.build_module;
 			 
@@ -248,7 +248,7 @@ namespace Palete {
 			string[] args = {};
 			args += BuilderApplication._self;
 			args += "--project";
-			args += this.file.project.fn;
+			args += this.file.project.path;
 			args += "--target";
 			if (this.file.build_module.length > 0 ) {
         		    args += this.file.build_module;
@@ -352,7 +352,7 @@ namespace Palete {
 			string[] args = {};
 			args += BuilderApplication._self;
 			args += "--project";
-			args +=  file.project.fn;
+			args +=  file.project.path;
 			args += "--target";
  
 			args += m;

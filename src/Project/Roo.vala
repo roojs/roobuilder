@@ -21,7 +21,7 @@ public class Project.Roo : Project {
   		this.palete = new Palete.Roo(this);
         this.xtype = "Roo";
         // various loader methods..
-        this.id = "project-roo-%d".printf(rid++);
+        //this.id = "project-roo-%d".printf(rid++);
 		this.initDatabase();
         
     }
@@ -65,7 +65,7 @@ public class Project.Roo : Project {
 	}
 	public override void saveJson(Json.Object obj)
 	{
-		obj.set_string_member("fn", this.fn);
+		//obj.set_string_member("fn", this.fn);
 
 		obj.set_string_member("runhtml", this.runhtml);
 		obj.set_string_member("rootURL", this.rootURL);

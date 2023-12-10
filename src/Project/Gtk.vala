@@ -22,7 +22,7 @@
 namespace Project 
 {
 	static int gtk_id = 1;
- 
+ 	
 
 	public class Gtk : Project
 	{
@@ -41,6 +41,9 @@ namespace Project
 		
 	     public string compile_flags = ""; // generic to all.	
 		public Gee.ArrayList<string> packages; // list of packages?? some might be genericly named?	 
+		
+		public GtkValaSettings? active_cg = null;
+		
 		public Gtk(string path) {
 		  
 		  
@@ -54,8 +57,8 @@ namespace Project
 	  		
 	  		this.gir_cache = new Gee.HashMap<string,Palete.Gir>();
 			this.xtype = "Gtk";
-	  		var gid = "project-gtk-%d".printf(gtk_id++);
-	  		this.id = gid;
+	  		//var gid = "project-gtk-%d".printf(gtk_id++);
+	  		//this.id = gid;
 	  		this.packages = new Gee.ArrayList<string>();
 	  		 
 		
@@ -498,20 +501,7 @@ namespace Project
 		
 		public string[] vapidirs()
 		{
-			string[] ret = {};
-			var sources = this.compilegroups.get("_default_").sources;
-			for(var i =0; i< sources.size; i++) {
-				
-				var path = this.path + (sources.get(i) == "" ? "" : "/") + sources.get(i);
-				
-				if (Path.get_basename (path) == "vapi") {
-					GLib.debug("Adding VAPIDIR: %s\n", path);
-					ret += path;
-				}
-				
-			}
-			return ret;
-			
+			return this.pathsMatching("vapi");
 		}
 		/*
 		public string[] sourcedirs()

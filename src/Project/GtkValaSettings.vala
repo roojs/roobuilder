@@ -2,7 +2,7 @@ namespace Project
 {
 // an object describing a build config (or generic ...)
 	public class GtkValaSettings : Object {
-		public string name;
+		public string name { get; set; }
  
 		
 

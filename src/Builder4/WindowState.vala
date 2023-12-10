@@ -397,7 +397,7 @@ public class WindowState : Object
 			var ep = this.roo_projectsettings_pop.project;
 			foreach(var ww in BuilderApplication.windows) {
 				if (ww.windowstate.file != null && 
-					ww.windowstate.project.fn == ep.fn && 
+					ww.windowstate.project.path == ep.path && 
 					ww.windowstate.file.xtype == "Roo") {
 					 
 				    ww.windowstate.window_rooview.view.renderJS(true);
@@ -865,9 +865,9 @@ public class WindowState : Object
  				
      			BuilderApplication.valasource.file == null ? "No file?" : (
      			
-	     			BuilderApplication.valasource.file.project == null  ? "No Project" : BuilderApplication.valasource.file.project.fn
+	     			BuilderApplication.valasource.file.project == null  ? "No Project" : BuilderApplication.valasource.file.project.path
      			),
-     			this.project != null ? this.project.fn : "No Project?"
+     			this.project != null ? this.project.path : "No Project?"
  			);
  				
  			
@@ -875,7 +875,7 @@ public class WindowState : Object
  			if (this.project != null && 
      			BuilderApplication.valasource.file != null &&   
      			BuilderApplication.valasource.file.project != null &&    			
- 			    this.project.fn != BuilderApplication.valasource.file.project.fn) {
+ 			    this.project.path != BuilderApplication.valasource.file.project.path) {
 				GLib.debug("skip update - not our project");
  				return;
 			}

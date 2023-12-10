@@ -65,7 +65,7 @@
    "| void addLine" : [
     "(string str) {",
     "\t",
-    "\tif (this.window.windowstate.project.fn != BuilderApplication.valasource.file.project.fn) {",
+    "\tif (this.window.windowstate.project.path != BuilderApplication.valasource.file.project.path) {",
     "\t\t// not our project.",
     "\t\treturn;",
     "\t}",

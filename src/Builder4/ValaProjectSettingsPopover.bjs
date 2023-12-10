@@ -255,7 +255,6 @@
          "gint position" : 300,
          "items" : [
           {
-           "# Project.GtkValaSettings cgroup" : "null",
            "$ xns" : "Gtk",
            "* pack" : "set_end_child",
            "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
@@ -264,85 +263,12 @@
            "items" : [
             {
              "$ xns" : "Gtk",
-             "utf8 label" : "Build Name",
-             "xtype" : "Label"
-            },
-            {
-             "$ xns" : "Gtk",
-             "id" : "build_name",
-             "listeners" : {
-              "changed" : [
-               "()  => {",
-               "\tif (_this.selected_target == null) {",
-               "\t\treturn;",
-               "\t}",
-               "\tvar name = this.el.text;",
-               "\t// name ischanging.. probably always..",
-               "\tif (_this.selected_target.name != name) {",
-               "\t\t_this.project.compilegroups.unset(_this.selected_target.name);",
-               "\t\t_this.project.compilegroups.set(name, _this.selected_target);",
-               "\t}",
-               "",
-               "\t_this.selected_target.name = this.el.text;",
-               "}"
-              ]
-             },
-             "xtype" : "Entry"
-            },
-            {
-             "$ xns" : "Gtk",
-             "utf8 label" : "target filename",
-             "xtype" : "Label"
-            },
-            {
-             "$ xns" : "Gtk",
-             "id" : "build_pack_target",
-             "listeners" : {
-              "changed" : [
-               "()  => {",
-               "     if (_this.selected_target == null) {",
-               "    \treturn;",
-               "    }",
-               "    _this.selected_target.target_bin = this.el.text;",
-               "}"
-              ]
-             },
-             "xtype" : "Entry"
-            },
-            {
-             "$ xns" : "Gtk",
-             "utf8 label" : "test argments - when run after a build",
-             "xtype" : "Label"
-            },
-            {
-             "$ xns" : "Gtk",
-             "id" : "build_execute_args",
-             "listeners" : {
-              "changed" : [
-               "() => {",
-               "    if (_this.selected_target == null) {",
-               "        return;",
-               "    }",
-               "    _this.selected_target.execute_args = this.el.text;",
-               "    ",
-               "}"
-              ]
-             },
-             "string placeholder_text" : "eg.  -f somefile -g ",
-             "xtype" : "Entry"
-            },
-            {
-             "$ xns" : "Gtk",
-             "utf8 label" : "Files to compile",
-             "xtype" : "Label"
-            },
-            {
-             "$ xns" : "Gtk",
              "bool vexpand" : true,
              "items" : [
               {
                "$ xns" : "Gtk",
                "* prop" : "child",
+               "id" : "treeview",
                "items" : [
                 {
                  "$ xns" : "Gtk",
@@ -354,6 +280,12 @@
                    "items" : [
                     {
                      "$ xns" : "Gtk",
+                     "* init" : [
+                      "{",
+                      "\tthis.el.set_sorter(new Gtk.TreeListRowSorter(_this.treeview.el.sorter));",
+                      "}",
+                      ""
+                     ],
                      "* prop" : "model",
                      "items" : [
                       {
@@ -362,7 +294,7 @@
                         "new Gtk.TreeListModel( ",
                         "\tnew GLib.ListStore(",
                         "\t\ttypeof(JsRender.JsRender) ), ",
-                        "\t\ttrue,",
+                        "\t\tfalse,",
                         "\t\ttrue, ",
                         "\t\t(item) => {",
                         "\t\t\treturn ((JsRender.JsRender)item).childfiles;",
@@ -375,20 +307,6 @@
                        "* prop" : "model",
                        "id" : "treelistmodel",
                        "xtype" : "TreeListModel"
-                      },
-                      {
-                       "$ xns" : "Gtk",
-                       "* prop" : "sorter",
-                       "items" : [
-                        {
-                         "$ xns" : "Gtk",
-                         "* prop" : "expression",
-                         "GLib.Type this_type" : "typeof(JsRender.JsRender)",
-                         "string property_name" : "name",
-                         "xtype" : "PropertyExpression"
-                        }
-                       ],
-                       "xtype" : "StringSorter"
                       }
                      ],
                      "xtype" : "SortListModel"
@@ -399,12 +317,27 @@
                      "Gtk.CustomFilterFunc match_func" : [
                       "(item) => { ",
                       "\t",
-                      "\t// directories / Gtk or .vala or .c files.",
-                      "\tvar j =  ((JsRender.JsRender) item);",
-                      "\tif (j.xtype == \"Dir\" || j.xtype == \"Gtk\") {",
+                      "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
+                      "\t//GLib.debug(\"filter %s\", tr.get_type().name());",
+                      "\tvar j =  (JsRender.JsRender) tr;",
+                      "\tif (j.xtype == \"Gtk\") {",
                       "\t\treturn true;",
                       "\t}",
-                      "\treturn j.path.has_suffix(\".vala\") ||  j.path.has_suffix(\".c\");",
+                      "\tif (j.xtype != \"Dir\") {",
+                      "\t\treturn j.path.has_suffix(\".vala\") ||  j.path.has_suffix(\".c\");",
+                      "\t}",
+                      "\t// dirs..",
+                      "\t ",
+                      "\tfor (var i =0 ; i < j.childfiles.n_items; i++) {",
+                      "\t\tvar f = (JsRender.JsRender) j.childfiles.get_item(i);",
+                      "\t\tif (f.xtype == \"Gtk\") {",
+                      "\t\t\treturn true;",
+                      "\t\t}",
+                      "\t\tif (f.path.has_suffix(\".vala\") ||  f.path.has_suffix(\".c\")) {",
+                      "\t\t\treturn true;",
+                      "\t\t}",
+                      "\t}",
+                      "\treturn false;",
                       "",
                       "}"
                      ],
@@ -420,9 +353,10 @@
                  "$ xns" : "Gtk",
                  "* init" : [
                   "{",
-                  "\t// this.el.set_sorter(  new Gtk.StringSorter(",
-                  "\t// \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"name\")",
-                  " //\t));",
+                  "\t this.el.set_sorter(  new Gtk.StringSorter(",
+                  "\t \tnew Gtk.PropertyExpression(typeof(JsRender.JsRender), null, \"name\")",
+                  " \t));",
+                  "\t\t;",
                   "\t\t",
                   "}",
                   ""
@@ -462,7 +396,9 @@
                      "    expand.set_hide_expander(  jr.childfiles.n_items < 1);",
                      " \texpand.set_list_row(lr);",
                      " ",
-                     " \t ",
+                     "   expand.set_hide_expander(  jr.xtype != \"Dir\" );",
+                     " \t expand.set_list_row(lr);",
+                     " ",
                      " \t// bind image...",
                      " \t",
                      "}",
@@ -543,7 +479,8 @@
                      "\t",
                      "\tbtn.toggled.connect(() =>  {",
                      "\t ",
-                     "\t\tvar jr = (JsRender.JsRender) ((Gtk.ListItem)listitem).get_item();",
+                     "\t\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
+                     "\t\tvar jr = (JsRender.JsRender) lr.get_item();",
                      "\t\tjr.compile_group_selected = btn.active;",
                      "\t});",
                      "}",
@@ -595,6 +532,7 @@
                  "     \tvar ncg = (Project.GtkValaSettings) _this.target_model.el.get_item(i);",
                  "     \tif (ncg.name == cg.name) {",
                  "     \t\t_this.target_sel.el.selected = i;",
+                 "     \t\t_this.target_sel.selectTarget(cg);",
                  "     \t\tbreak;",
                  " \t\t}",
                  "\t} ",
@@ -673,31 +611,57 @@
                    "\t ",
                    "\t// load the new values.",
                    "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
-                   "\t\t_this.set_vbox.el.hide();\t",
+                   "\t\tthis.selectTarget(null);",
                    "\t\treturn;",
                    "\t}",
+                   "\tthis.selectTarget(null);",
                    "\t",
-                   "\t",
-                   "\t_this.set_vbox.el.show();",
+                   " ",
                    "",
                    "\t// add the directory..",
                    "\tvar cg = (Project.GtkValaSettings) _this.target_model.el.get_item(this.el.selected);",
-                   "\t _this.selected_target = cg;  ",
-                   "\t_this.project.compile_group_active = cg.name;",
-                   "\t _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);",
                    "\t",
-                   "\t",
-                   " ",
-                   "\t_this.build_pack_target.el.set_text(cg.target_bin);",
-                   " ",
-                   "\t_this.build_execute_args.el.set_text(cg.execute_args);",
-                   "",
-                   "\t_this.set_vbox.cgroup = cg;",
+                   "\tthis.selectTarget(cg);",
+                   "   ",
                    "}",
                    ""
                   ]
                  },
-                 "xtype" : "SingleSelection"
+                 "xtype" : "SingleSelection",
+                 "| void selectTarget" : [
+                  "(Project.GtkValaSettings? cg) {",
+                  "// load the new values",
+                  "\t _this.selected_target = cg;  ",
+                  "\t _this.project.active_cg = cg;",
+                  "\t ",
+                  " ",
+                  "\tif (cg == null) {",
+                  "\t\t ",
+                  "\t\t_this.set_vbox.el.hide();\t",
+                  "\t\t_this.set_vboxb.el.hide();\t",
+                  "\t\treturn;",
+                  "\t}",
+                  "\t",
+                  "\t",
+                  "\t_this.set_vbox.el.show();",
+                  "\t_this.set_vboxb.el.show();",
+                  "\t// add the directory..",
+                  " ",
+                  "\t ",
+                  "\t GLib.debug(\"loading dirs into project list\");",
+                  "\t _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);",
+                  "\t ",
+                  "\t GLib.debug(\"Set name to %s\", cg.name);",
+                  "\t ",
+                  " \t_this.build_name.el.buffer.set_text(cg.name.data);",
+                  "\t_this.build_pack_target.el.buffer.set_text(   cg.target_bin.data);",
+                  " ",
+                  "\t_this.build_execute_args.el.buffer.set_text(  cg.execute_args.data );",
+                  "",
+                  " ",
+                  "}",
+                  ""
+                 ]
                 },
                 {
                  "$ xns" : "Gtk",
@@ -749,6 +713,84 @@
               }
              ],
              "xtype" : "ScrolledWindow"
+            },
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "id" : "set_vboxb",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "utf8 label" : "Build Name",
+               "xtype" : "Label"
+              },
+              {
+               "$ xns" : "Gtk",
+               "id" : "build_name",
+               "listeners" : {
+                "changed" : [
+                 "()  => {",
+                 "\tif (_this.selected_target == null) {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\tvar name = this.el.text;",
+                 "\t// name ischanging.. probably always..",
+                 "\tif (_this.selected_target.name != name) {",
+                 "\t\t_this.project.compilegroups.unset(_this.selected_target.name);",
+                 "\t\t_this.project.compilegroups.set(name, _this.selected_target);",
+                 "\t}",
+                 "",
+                 "\t_this.selected_target.name = this.el.buffer.text;",
+                 "}"
+                ]
+               },
+               "xtype" : "Entry"
+              },
+              {
+               "$ xns" : "Gtk",
+               "utf8 label" : "target filename",
+               "xtype" : "Label"
+              },
+              {
+               "$ xns" : "Gtk",
+               "id" : "build_pack_target",
+               "listeners" : {
+                "changed" : [
+                 "()  => {",
+                 "     if (_this.selected_target == null) {",
+                 "    \treturn;",
+                 "    }",
+                 "    _this.selected_target.target_bin = this.el.buffer.text;",
+                 "}"
+                ]
+               },
+               "xtype" : "Entry"
+              },
+              {
+               "$ xns" : "Gtk",
+               "utf8 label" : "test argments - when run after a build",
+               "xtype" : "Label"
+              },
+              {
+               "$ xns" : "Gtk",
+               "id" : "build_execute_args",
+               "listeners" : {
+                "changed" : [
+                 "() => {",
+                 "    if (_this.selected_target == null) {",
+                 "        return;",
+                 "    }",
+                 "    _this.selected_target.execute_args = this.el.buffer.text;",
+                 "    ",
+                 "}"
+                ]
+               },
+               "string placeholder_text" : "eg.  -f somefile -g ",
+               "xtype" : "Entry"
+              }
+             ],
+             "xtype" : "Box"
             }
            ],
            "xtype" : "Box"
@@ -862,15 +904,15 @@
     " ",
     " \tproject.loadTargetsIntoStore(this.target_model.el);",
     "",
-    " ",
-    "",
+    " \t_this.target_sel.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "\t_this.target_sel.selectTarget(null);",
     "//\tGtk.Allocation rect;",
     "\t//btn.get_allocation(out rect);",
     " //   this.el.set_pointing_to(rect);",
     "\tthis.el.set_transient_for(pwin);",
     "\t// window + header?",
     "\t// print(\"SHOWALL - POPIP\\n\");",
-    "\tthis.el.set_size_request(800,500);",
+    "\tthis.el.set_size_request(800,800);",
     "\tthis.el.show();",
     "\t//this.view.el.grab_focus();",
     "",

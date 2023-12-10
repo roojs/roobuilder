@@ -1297,7 +1297,7 @@ public class DialogFiles : Object
             	var lbl = (Gtk.Label)img.get_next_sibling();
             
             	var item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();
-            	GLib.debug("set label name to %s", item.name);
+            	//GLib.debug("set label name to %s", item.name);
             	lbl.label = item.name;
             
             /*
@@ -1533,7 +1533,7 @@ public class DialogFiles : Object
 		false,
 		true, 
 		(item) => {
-			GLib.debug("liststore got %s", item.get_type().name());
+			//GLib.debug("liststore got %s", item.get_type().name());
 			return ((JsRender.JsRender)item).childfiles;
 	
 		} 
@@ -1612,7 +1612,7 @@ public class DialogFiles : Object
             _this.treefilter = this;
             this.el = new Gtk.CustomFilter( (item) => { 
 	var tr = ((Gtk.TreeListRow)item).get_item();
-	GLib.debug("filter %s", tr.get_type().name());
+	//GLib.debug("filter %s", tr.get_type().name());
 	var j =  (JsRender.JsRender) tr;
 	if (j.xtype == "Dir" && j.childfiles.n_items < 1) {
 		return false;

@@ -449,33 +449,33 @@ namespace JsRender {
 			ret.append(this.tree);
 			return ret;
 		}
+		 
 		
-		public string compile_group_active = "";
-		
+		// used to handle list of files in project editor (really Gtk only)
 		public bool compile_group_selected {
 			get {
 				var gproj = (Project.Gtk) this.project;
 				
-				if (!gproj.compilegroups.has_key(this.compile_group_active)) {
+				if (gproj.active_cg == null) {
 					return false;
 				}
-				var cg = gproj.compilegroups.get(this.compile_group_active);
-				return cg.sources.contains(this.relpath);
+
+				return gproj.active_cg.sources.contains(this.relpath);
 				
 			}
 			set {
 				
 				var gproj = (Project.Gtk) this.project;
 				
-				if (!gproj.compilegroups.has_key(this.compile_group_active)) {
+				if (gproj.active_cg == null) {
 					return;
 				}
-				var cg = gproj.compilegroups.get(this.compile_group_active);
+				 
 				if (value == false) {
-					cg.sources.remove(this.relpath);
+					gproj.active_cg.sources.remove(this.relpath);
 					return;
 				}
-				cg.sources.add(this.relpath);
+				gproj.active_cg.sources.add(this.relpath);
 			
 			}
 		}
