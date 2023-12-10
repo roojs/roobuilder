@@ -2,13 +2,10 @@
     "name" : "roobuilder",
     "xtype" : "Gtk",
     "compilegroups" : [
-        {
-            "name" : "_default_",
-            "compile_flags" : "",
-            "execute_args" : "",
-            "target_bin" : "",
-            "sources" : [],
-            "packages" : [
+         
+    ],
+                "compile_flags" : "",
+     "packages" : [
                 "gtk4",
                 "gee-0.8",
                 "gio-2.0",
@@ -23,6 +20,4 @@
                 "libvala-0.56",
                 "libadwaita-1"
             ]
-        }
-    ]
 }
