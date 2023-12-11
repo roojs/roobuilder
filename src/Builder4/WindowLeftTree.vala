@@ -437,7 +437,7 @@ public class Xcls_WindowLeftTree : Object
         		    curr_y +=  alloc.height ;
         
         		    if (curr_y > y) {
-        		    //    return -1;
+        		        return null;
         	        }
         	        child = child.get_next_sibling(); 
             	}

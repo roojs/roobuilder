@@ -1258,7 +1258,7 @@
         "\t\t    curr_y +=  alloc.height ;",
         "",
         "\t\t    if (curr_y > y) {",
-        "\t\t    //    return -1;",
+        "\t\t        return null;",
         "\t        }",
         "\t        child = child.get_next_sibling(); ",
         "    \t}",
