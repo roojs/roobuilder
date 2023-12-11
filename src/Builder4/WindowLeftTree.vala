@@ -953,7 +953,7 @@ public class Xcls_WindowLeftTree : Object
                  foreach(var dp in drop_on_to) {
                  	str += dp;
              	}
-             	GLib.debug("droplist: %s", str.joinv(, ", "));
+             	GLib.debug("droplist: %s", str.joinv( ", "));
                  
                  
                 // if there are not items in the tree.. the we have to set isOver to true for anything..
