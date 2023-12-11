@@ -332,7 +332,7 @@ public class Xcls_WindowLeftTree : Object
             	Gtk.Allocation alloc = { 0, 0, 0, 0 };
             	var line_no = -1; 
             	var reading_header = true;
-            	var curr_y = 0;
+            	 
             	var header_height  = 0;
             	pos = "over";
             	
@@ -361,7 +361,7 @@ public class Xcls_WindowLeftTree : Object
         			child.get_allocation(out alloc);
         			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
         
-        		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
+        		    if (y >  alloc.y && y <=  alloc.height + alloc.y ) {
         		    	if (y > (header_height + alloc.y + (alloc.height * 0.8))) {
         		    		pos = "below";
         	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {
@@ -372,7 +372,7 @@ public class Xcls_WindowLeftTree : Object
         		    	GLib.debug("getRowAt return : %d, %s", line_no, pos);
         			    return line_no;
         		    }
-        		    curr_y = header_height + alloc.height + alloc.y;
+         
         
         		    if (curr_y > y) {
         		    //    return -1;
