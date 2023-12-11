@@ -359,7 +359,7 @@ public class Xcls_WindowLeftTree : Object
         		    line_no++;
         
         			child.get_allocation(out alloc);
-        			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
+            		GLib.debug("line = %d = got cell y=%d  w,h= %d,%d",  line_no,  alloc.y);
         
         		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
         		    	if (y > (header_height + alloc.y + (alloc.height * 0.8))) {
