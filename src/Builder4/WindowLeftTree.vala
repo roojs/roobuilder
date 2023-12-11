@@ -326,7 +326,9 @@ public class Xcls_WindowLeftTree : Object
             		 
             	}
             	*/
-         
+         		var voff =  _this.viewwin.el.vadjustment.value;
+         		
+         		GLib.debug("offset = %d", (int) voff);
             	
                 var  child = this.el.get_first_child(); 
             	Gtk.Allocation alloc = { 0, 0, 0, 0 };
