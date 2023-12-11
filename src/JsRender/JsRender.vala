@@ -484,7 +484,37 @@ namespace JsRender {
 			}
 		}
 		
-		
+		public bool compile_group_hidden {
+			get {
+				var gproj = (Project.Gtk) this.project;
+				
+				if (gproj.active_cg == null) {
+					return false;
+				}
+
+				return gproj.active_cg.hidden.contains(this.relpath);
+				
+			}
+			set {
+				
+				var gproj = (Project.Gtk) this.project;
+				
+				if (gproj.active_cg == null) {
+					return;
+				}
+				 
+				if (value == false) {
+					GLib.debug("REMOVE %s", this.relpath);
+					
+					gproj.active_cg.sources.remove(this.relpath);
+					return;
+				}
+				if (!gproj.active_cg.sources.contains(this.relpath)) { 
+					gproj.active_cg.sources.add(this.relpath);
+				}
+			
+			}
+		}
 		
 		public abstract void save();
 		public abstract void saveHTML(string html);
