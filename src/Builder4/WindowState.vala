@@ -360,7 +360,7 @@ public class WindowState : Object
 			}
 			//this.left_tree.model.updateSelected();
 			this.file.save();
-			if (this.file.xtype=="Gtk") {
+			if (this.file.project.xtype=="Gtk") {
 				BuilderApplication.valasource.checkFileSpawn(this.file);
 			}
 		});
@@ -515,6 +515,10 @@ public class WindowState : Object
 			} else {
 				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
+			if (this.file.project.xtype=="Gtk") {
+				BuilderApplication.valasource.checkFileSpawn(this.file);
+			}
+			
 			 // we do not need to call spawn... - as it's already called by the editor?
 			 
 		});
