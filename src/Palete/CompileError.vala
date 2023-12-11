@@ -79,7 +79,7 @@ namespace Palete {
 		
 		public static void jsonToListStore(Json.Object tree, GLib.ListStore ls)
 		{
-
+			ls.remove_all();
 	        tree.foreach_member((obj, file, node) => {
 		        var fe = new CompileError.new_file(file, tree.get_object_member(file));
         		ls.append(fe);
