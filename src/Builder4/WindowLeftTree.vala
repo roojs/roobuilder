@@ -431,10 +431,10 @@ public class Xcls_WindowLeftTree : Object
         			child.get_allocation(out alloc);
         			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
         
-        		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
+        		    if (y > curr_y && y <= header_height + alloc.height + curr_y ) {
         			    return (Gtk.Widget)child;
         		    }
-        		    curr_y = header_height + alloc.height + alloc.y;
+        		    curr_y = header_height + alloc.height ;
         
         		    if (curr_y > y) {
         		    //    return -1;
