@@ -349,7 +349,7 @@ public class Xcls_WindowLeftTree : Object
         				}
         				child = child.get_first_child(); 
         				header_height = alloc.y + alloc.height;
-        				curr_y = header_height; 
+        				 
         				reading_header = false;
         	        }
         		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
@@ -362,9 +362,9 @@ public class Xcls_WindowLeftTree : Object
         			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
         
         		    if (y >  alloc.y && y <=  alloc.height + alloc.y ) {
-        		    	if (y > (header_height + alloc.y + (alloc.height * 0.8))) {
+        		    	if (y > ( alloc.y + (alloc.height * 0.8))) {
         		    		pos = "below";
-        	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {
+        	    		} else if (y > ( alloc.y + (alloc.height * 0.2))) {
         	    			pos = "over";
             			} else {
             				pos = "above";
@@ -374,8 +374,8 @@ public class Xcls_WindowLeftTree : Object
         		    }
          
         
-        		    if (curr_y > y) {
-        		    //    return -1;
+        		    if (alloc.y > y) {
+        		        return -1;
         	        }
         	        child = child.get_next_sibling(); 
             	}
