@@ -328,10 +328,10 @@ public class Xcls_WindowLeftTree : Object
             	*/
             	GLib.debug("getRowAt y=%d", (int)in_y);
             	var voff = _this.viewwin.el.vadjustment.value;
-            	GLib.debug("Scroll offset %d - y now = %d",  (int)voff, (int)in_y - (int)voff);
+            	GLib.debug("Scroll offset %d - y now = %d",  (int)voff, (int)in_y + (int)voff);
             	
             	
-            	var y = in_y - voff;
+            	var y = in_y + voff;
             	
                 var  child = this.el.get_first_child(); 
             	Gtk.Allocation alloc = { 0, 0, 0, 0 };
