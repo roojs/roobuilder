@@ -351,7 +351,7 @@ public class Xcls_WindowLeftTree : Object
         					continue;
         				}
         				child = child.get_first_child(); 
-        				header_height = alloc.y + alloc.height;
+        				header_height =   alloc.height;
         				
         				reading_header = false;
         	        }
