@@ -531,6 +531,66 @@
                  ],
                  "string title" : "use",
                  "xtype" : "ColumnViewColumn"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* pack" : "append_column",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "factory",
+                   "listeners" : {
+                    "bind" : [
+                     "(listitem) => {",
+                     "\t //GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
+                     "\t",
+                     "\t",
+                     "\t",
+                     "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
+                     "\tvar btn = (Gtk.CheckButton)  ((Gtk.ListItem)listitem).get_child();",
+                     "\t  ",
+                     " ",
+                     "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
+                     "\tvar jr = (JsRender.JsRender) lr.get_item();",
+                     "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
+                     "",
+                     "\t",
+                     "\tif (jr.xtype == \"Dir\") {",
+                     "\t\tbtn.hide();",
+                     "\t\treturn;",
+                     "\t}",
+                     " ",
+                     " \tbtn.show();",
+                     " \tjr.bind_property(\"compile_group_selected\",",
+                     "                    btn, \"active\",",
+                     "                   GLib.BindingFlags.SYNC_CREATE); ",
+                     " \t// bind image...",
+                     " \t",
+                     "}"
+                    ],
+                    "setup" : [
+                     "",
+                     "(listitem) => {",
+                     "",
+                     "\tvar btn = new Gtk.CheckButton();",
+                     " ",
+                     "\t((Gtk.ListItem)listitem).set_child(btn);",
+                     "\t",
+                     "\tbtn.toggled.connect(() =>  {",
+                     "\t ",
+                     "\t\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
+                     "\t\tvar jr = (JsRender.JsRender) lr.get_item();",
+                     "\t\tjr.compile_group_selected = btn.active;",
+                     "\t});",
+                     "}",
+                     ""
+                    ]
+                   },
+                   "xtype" : "SignalListItemFactory"
+                  }
+                 ],
+                 "string title" : "hide",
+                 "xtype" : "ColumnViewColumn"
                 }
                ],
                "xtype" : "ColumnView"
