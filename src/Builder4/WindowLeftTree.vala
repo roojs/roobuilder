@@ -315,7 +315,7 @@ public class Xcls_WindowLeftTree : Object
                 return -1;
         
          }
-        public int getRowAt (double x,  double y, out string pos) {
+        public int getRowAt (double x,  double in_y, out string pos) {
         /*
             	
         from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
@@ -328,13 +328,14 @@ public class Xcls_WindowLeftTree : Object
             	*/
          		var voff =  _this.viewwin.el.vadjustment.value;
          		
+         		
          		GLib.debug("offset = %d  y = %d", (int) voff, (int) y);
-            	
+            	var y += voff;
                 var  child = this.el.get_first_child(); 
             	Gtk.Allocation alloc = { 0, 0, 0, 0 };
             	var line_no = -1; 
             	var reading_header = true;
-            	 
+            	var real_y = 0;
             	var header_height  = 0;
             	pos = "over";
             	
@@ -351,7 +352,7 @@ public class Xcls_WindowLeftTree : Object
         				}
         				child = child.get_first_child(); 
         				header_height = alloc.y + alloc.height;
-        				 
+        				
         				reading_header = false;
         	        }
         		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
@@ -379,9 +380,10 @@ public class Xcls_WindowLeftTree : Object
         		    }
          
         
-        		    if (alloc.y > y) {
+        		    if (real_y + alloc.height > y) {
         		        return -1;
         	        }
+        	        real_y += alloc.height;
         	        child = child.get_next_sibling(); 
             	}
                 return -1;
