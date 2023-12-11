@@ -1385,7 +1385,7 @@ public class ValaProjectSettingsPopover : Object
             	 
             		var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             		var jr = (JsRender.JsRender) lr.get_item();
-            		jr.compile_group_selected = btn.active;
+            		jr.compile_group_hidden = btn.active;
             	});
             });
             this.el.bind.connect( (listitem) => {

@@ -580,7 +580,7 @@
                      "\t ",
                      "\t\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
                      "\t\tvar jr = (JsRender.JsRender) lr.get_item();",
-                     "\t\tjr.compile_group_selected = btn.active;",
+                     "\t\tjr.compile_group_hidden = btn.active;",
                      "\t});",
                      "}",
                      ""
