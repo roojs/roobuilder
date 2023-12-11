@@ -1298,7 +1298,7 @@
         " }"
        ],
        "| int getRowAt" : [
-        "(double x,  double y, out string pos) {",
+        "(double x,  double in_y, out string pos) {",
         "/*",
         "    \t",
         "from    \thttps://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465",
@@ -1309,7 +1309,13 @@
         "    \t\t ",
         "    \t}",
         "    \t*/",
-        "    \tGLib.debug(\"getRowAt\");",
+        "    \tGLib.debug(\"getRowAt y=%d\", in_y);",
+        "    \tvar voff = _this.viewwin.el.vadjustment.value;",
+        "    \tGLib.debug(\"Scroll offset %d - y now = %d\", voff, in_y - voff):",
+        "    \t",
+        "    \t",
+        "    \tvar y = in_y - voff;",
+        "    \t",
         "        var  child = this.el.get_first_child(); ",
         "    \tGtk.Allocation alloc = { 0, 0, 0, 0 };",
         "    \tvar line_no = -1; ",
