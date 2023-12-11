@@ -306,19 +306,26 @@ namespace Palete {
 
 				for (var i = 0; i < cg.sources.size; i++) {
 					var path = pr.path + "/" + cg.sources.get(i);
+					GLib.debug("Try add source file %s", path);
+					// flip bjs to vala
+					if (path.has_suffix(".bjs")) {
+						path  = path.splice(path.length -4, path.length, ".vala");
+						GLib.debug("Change source file %s", path);
+					}
 							
 					if (!FileUtils.test(path, FileTest.EXISTS)) {
 						continue;
 					}       
 	                // skip thie original
 					if (path == this.original_filepath) {
+						GLib.debug("Add orig source file %s", path);
 						valac += " " + path;
 						continue;
 					}
 					if (FileUtils.test(path, FileTest.IS_DIR)) {
 						continue;
 					}
-					//print("Add source file %s\n", path);
+					GLib.debug("Add source file %s", path);
 					
 					valac += " " + path;
 					

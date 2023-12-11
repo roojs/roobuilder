@@ -113,15 +113,37 @@
                  "* prop" : "model",
                  "items" : [
                   {
-                   "$ xns" : "GLib",
+                   "$ xns" : "Gtk",
                    "* prop" : "model",
-                   "GLib.Type item_type" : "typeof(Project.VapiSelection)",
-                   "id" : "vapimodel",
-                   "xtype" : "ListStore"
+                   "items" : [
+                    {
+                     "$ xns" : "GLib",
+                     "* prop" : "model",
+                     "GLib.Type item_type" : "typeof(Project.VapiSelection)",
+                     "id" : "vapimodel",
+                     "xtype" : "ListStore"
+                    },
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "section_sorter",
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "expression",
+                       "GLib.Type this_type" : "typeof(Project.VapiSelection)",
+                       "string property_name" : "name",
+                       "xtype" : "PropertyExpression"
+                      }
+                     ],
+                     "xtype" : "StringSorter"
+                    }
+                   ],
+                   "xtype" : "SortListModel"
                   },
                   {
                    "$ xns" : "Gtk",
-                   "* prop" : "section_sorter",
+                   "* prop" : "filter",
+                   "id" : "vapi_filter",
                    "items" : [
                     {
                      "$ xns" : "Gtk",
@@ -131,10 +153,10 @@
                      "xtype" : "PropertyExpression"
                     }
                    ],
-                   "xtype" : "StringSorter"
+                   "xtype" : "StringFilter"
                   }
                  ],
-                 "xtype" : "SortListModel"
+                 "xtype" : "FilterListModel"
                 }
                ],
                "xtype" : "NoSelection"
@@ -243,6 +265,23 @@
             }
            ],
            "xtype" : "ScrolledWindow"
+          },
+          {
+           "$ xns" : "Gtk",
+           "id" : "vapi_search",
+           "listeners" : {
+            "search_changed" : [
+             "( ) => {",
+             "",
+             " _this.vapi_filter.el.set_search(this.el.get_text());",
+             " ",
+             "}",
+             ""
+            ]
+           },
+           "string placeholder_text" : "Search Libraries (Vapi)",
+           "uint search_delay" : 500,
+           "xtype" : "SearchEntry"
           }
          ],
          "xtype" : "Box"
