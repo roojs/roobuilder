@@ -1342,7 +1342,7 @@
         "\t\t    line_no++;",
         "",
         "\t\t\tchild.get_allocation(out alloc);",
-        "    \t\tGLib.debug(\"line = %d = got cell y=%d  w,h= %d,%d\",  line_no,  alloc.y);",
+        "    \t\tGLib.debug(\"line = %d = got cell y=%d\",  line_no,  alloc.y);",
         "",
         "\t\t    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {",
         "\t\t    \tif (y > (header_height + alloc.y + (alloc.height * 0.8))) {",
