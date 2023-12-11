@@ -1309,7 +1309,7 @@
         "    \t\t ",
         "    \t}",
         "    \t*/",
-        "    \tGLib.debug(\"getRowAt y=%d\", (intin_y);",
+        "    \tGLib.debug(\"getRowAt y=%d\", (int)in_y);",
         "    \tvar voff = _this.viewwin.el.vadjustment.value;",
         "    \tGLib.debug(\"Scroll offset %d - y now = %d\",  voff, (int)in_y - voff);",
         "    \t",
