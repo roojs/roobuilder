@@ -506,11 +506,11 @@ namespace JsRender {
 				if (value == false) {
 					GLib.debug("REMOVE %s", this.relpath);
 					
-					gproj.active_cg.sources.remove(this.relpath);
+					gproj.active_cg.hidden.remove(this.relpath);
 					return;
 				}
-				if (!gproj.active_cg.sources.contains(this.relpath)) { 
-					gproj.active_cg.sources.add(this.relpath);
+				if (!gproj.active_cg.hidden.contains(this.relpath)) { 
+					gproj.active_cg.hidden.add(this.relpath);
 				}
 			
 			}
