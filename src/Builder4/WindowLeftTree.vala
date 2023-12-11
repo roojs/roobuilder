@@ -938,7 +938,8 @@ public class Xcls_WindowLeftTree : Object
             	}
                 
             
-            	var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(this.lastDragNode.fqn());
+            	var drop_on_to = _this.main_window.windowstate.file.palete().getDropList(
+            				this.lastDragNode.fqn());
                    
                 // if there are not items in the tree.. the we have to set isOver to true for anything..
              
