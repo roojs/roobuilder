@@ -1312,7 +1312,7 @@
         " \t\tvar voff =  _this.viewwin.el.vadjustment.value;",
         " \t\t",
         " \t\t",
-        " \t\tGLib.debug(\"offset = %d  y = %d\", (int) voff, (int) y);",
+        " \t\tGLib.debug(\"offset = %d  y = %d\", (int) voff, (int) in_y);",
         "    \tvar y = in_y + voff;",
         "        var  child = this.el.get_first_child(); ",
         "    \tGtk.Allocation alloc = { 0, 0, 0, 0 };",
