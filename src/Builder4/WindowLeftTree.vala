@@ -388,7 +388,7 @@ public class Xcls_WindowLeftTree : Object
                 return -1;
         
          }
-        public Gtk.Widget? getWidgetAt (double x,  double y) {
+        public Gtk.Widget? getWidgetAt (double x,  double in_y) {
         /*
             	
         from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
@@ -399,6 +399,7 @@ public class Xcls_WindowLeftTree : Object
             		 
             	}
             	*/
+            	var y = in_y + _this.viewwin.el.vadjustment.value; 
                 var  child = this.el.get_first_child(); 
             	Gtk.Allocation alloc = { 0, 0, 0, 0 };
             	var line_no = -1; 
