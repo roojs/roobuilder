@@ -172,7 +172,12 @@ namespace Project
 		{
 			var ret = new Gee.ArrayList<string>();
 			for(var i =0; i< ar.get_length(); i++) {
-				ret.add(ar.get_string_element(i));
+				var add = ar.get_string_element(i);
+				if (ret.contains(add)) {
+					continue;
+				}
+			
+				ret.add(add));
 			}
 			return ret;
 		}
