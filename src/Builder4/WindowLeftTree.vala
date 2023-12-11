@@ -326,9 +326,9 @@ public class Xcls_WindowLeftTree : Object
             		 
             	}
             	*/
-            	GLib.debug("getRowAt y=%d", in_y);
+            	GLib.debug("getRowAt y=%d", (intin_y);
             	var voff = _this.viewwin.el.vadjustment.value;
-            	GLib.debug("Scroll offset %d - y now = %d", (int)voff, (int)in_y - voff);
+            	GLib.debug("Scroll offset %d - y now = %d",  voff, (int)in_y - voff);
             	
             	
             	var y = in_y - voff;
