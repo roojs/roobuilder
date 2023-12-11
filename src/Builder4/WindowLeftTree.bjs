@@ -1345,7 +1345,7 @@
         "",
         "\t\t\tchild.get_allocation(out alloc);",
         "\t\t\t//GLib.debug(\"got cell xy = %d,%d  w,h= %d,%d\", alloc.x, alloc.y, alloc.width, alloc.height);",
-        "\t\t\tGLib.debug(\"row %d y= %d\", line_no, (int) (header_height + alloc.y));",
+        "\t\t\tGLib.debug(\"row %d y= %d height=%d\", line_no, (int) (header_height + alloc.y), alloc.height);",
         "",
         "\t\t    if (y >  (header_height + alloc.y) && y <= (header_height +  alloc.height + alloc.y) ) {",
         "\t\t    \tif (y > ( header_height + alloc.y + (alloc.height * 0.8))) {",
