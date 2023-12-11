@@ -1311,7 +1311,7 @@
         "    \t*/",
         "    \tGLib.debug(\"getRowAt y=%d\", (int)in_y);",
         "    \tvar voff = _this.viewwin.el.vadjustment.value;",
-        "    \tGLib.debug(\"Scroll offset %d - y now = %d\",  (int)voff, (int)in_y - voff);",
+        "    \tGLib.debug(\"Scroll offset %d - y now = %d\",  (int)voff, (int)in_y - (int)voff);",
         "    \t",
         "    \t",
         "    \tvar y = in_y - voff;",
