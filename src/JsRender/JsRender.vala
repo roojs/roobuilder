@@ -76,7 +76,7 @@ namespace JsRender {
 			this.project = project;
 			this.hasParent = false;
 			this.parent = "";
-			this.tree = null;
+			this.tree = null;childfiles
 			this.title = "";
 			this.region = "";
 			this.permname = "";
@@ -459,6 +459,21 @@ namespace JsRender {
 				if (gproj.active_cg == null) {
 					return false;
 				}
+				if (this.xtype == "Dir") {
+					// show ticked if all ticked..
+					var ticked = true;
+					for(var i = 0; i < this.childfiles.n_items; i++ ) {
+						var f = (JsRender.JsRender) this.childfiles.get(i);
+						if (!f.compile_group_selected) {
+							ticked = false;
+							break;
+						}
+					}
+					return ticked;
+				
+				
+				}
+				
 
 				return gproj.active_cg.sources.contains(this.relpath);
 				
@@ -470,7 +485,18 @@ namespace JsRender {
 				if (gproj.active_cg == null) {
 					return;
 				}
+				
+				if (this.xtype == "Dir") {
+					for(var i = 0; i < this.childfiles.n_items; i++ ) {
+						var f = (JsRender.JsRender) this.childfiles.get(i);
+						f.compile_group_selected = value;
+					}
+					return;
 				 
+				}
+				
+				
+				
 				if (value == false) {
 					GLib.debug("REMOVE %s", this.relpath);
 					
