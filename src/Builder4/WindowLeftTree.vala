@@ -367,10 +367,10 @@ public class Xcls_WindowLeftTree : Object
         			
         				child.visible ? "VIS" : "hidden");
         
-        		    if (y >  (header_height + alloc.y) && y <= (header_height +  alloc.height + alloc.y) ) {
-        		    	if (y > ( header_height + alloc.y + (alloc.height * 0.8))) {
+        		    if (y >  (header_height + real_y) && y <= (header_height +  real_y + alloc.height) ) {
+        		    	if (y > ( header_height + real_y + (alloc.height * 0.8))) {
         		    		pos = "below";
-        	    		} else if (y > ( header_height + alloc.y + (alloc.height * 0.2))) {
+        	    		} else if (y > ( header_height + real_y + (alloc.height * 0.2))) {
         	    			pos = "over";
             			} else {
             				pos = "above";
