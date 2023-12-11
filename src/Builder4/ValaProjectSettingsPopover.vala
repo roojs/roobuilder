@@ -1402,13 +1402,13 @@ public class ValaProjectSettingsPopover : Object
             	//GLib.debug("change  %s to %s", lbl.label, np.name);
             
             	
-            	if (jr.xtype == "Dir") {
+            	if (jr.xtype != "Dir") {
             		btn.hide();
             		return;
             	}
              
              	btn.show();
-             	jr.bind_property("compile_group_selected",
+             	jr.bind_property("compile_group_hidden",
                                 btn, "active",
                                GLib.BindingFlags.SYNC_CREATE); 
              	// bind image...
