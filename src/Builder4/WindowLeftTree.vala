@@ -434,7 +434,7 @@ public class Xcls_WindowLeftTree : Object
         		    if (y > curr_y && y <= header_height + alloc.height + curr_y ) {
         			    return (Gtk.Widget)child;
         		    }
-        		    curr_y = header_height + alloc.height ;
+        		    curr_y +=  alloc.height ;
         
         		    if (curr_y > y) {
         		    //    return -1;

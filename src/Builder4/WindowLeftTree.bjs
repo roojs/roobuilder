@@ -1255,7 +1255,7 @@
         "\t\t    if (y > curr_y && y <= header_height + alloc.height + curr_y ) {",
         "\t\t\t    return (Gtk.Widget)child;",
         "\t\t    }",
-        "\t\t    curr_y = header_height + alloc.height ;",
+        "\t\t    curr_y +=  alloc.height ;",
         "",
         "\t\t    if (curr_y > y) {",
         "\t\t    //    return -1;",
