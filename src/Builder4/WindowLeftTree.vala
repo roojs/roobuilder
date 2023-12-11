@@ -329,7 +329,7 @@ public class Xcls_WindowLeftTree : Object
          		var voff =  _this.viewwin.el.vadjustment.value;
          		
          		
-         		GLib.debug("offset = %d  y = %d", (int) voff, (int) in_y);
+         		//GLib.debug("offset = %d  y = %d", (int) voff, (int) in_y);
             	var y = in_y + voff;
                 var  child = this.el.get_first_child(); 
             	Gtk.Allocation alloc = { 0, 0, 0, 0 };
@@ -363,9 +363,9 @@ public class Xcls_WindowLeftTree : Object
         
         			child.get_allocation(out alloc);
         			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
-        			GLib.debug("row %d y= %d %s", line_no, (int) (header_height + alloc.y),
+        			//GLib.debug("row %d y= %d %s", line_no, (int) (header_height + alloc.y),
         			
-        				child.visible ? "VIS" : "hidden");
+        			//	child.visible ? "VIS" : "hidden");
         
         		    if (y >  (header_height + real_y) && y <= (header_height +  real_y + alloc.height) ) {
         		    	if (y > ( header_height + real_y + (alloc.height * 0.8))) {
@@ -375,7 +375,7 @@ public class Xcls_WindowLeftTree : Object
             			} else {
             				pos = "above";
         				}
-        		    	GLib.debug("getRowAt return : %d, %s", line_no, pos);
+        		    	//GLib.debug("getRowAt return : %d, %s", line_no, pos);
         			    return line_no;
         		    }
          
