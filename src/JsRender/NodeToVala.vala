@@ -631,7 +631,7 @@ public class JsRender.NodeToVala : Object {
 			foreach(var param in default_ctor.paramset.params) {
 				 
 				var n = param.name;
-			    GLib.debug("building CTOR ARGS: %s, %s", n, param.name;.is_varargs ? "VARARGS": "");
+			    GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
 				if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;
 				}
