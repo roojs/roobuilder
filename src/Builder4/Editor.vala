@@ -27,17 +27,17 @@ public class Editor : Object
     public Xcls_multiline multiline;
 
         // my vars (def)
-    public Xcls_MainWindow window;
     public int pos_root_x;
+    public Xcls_MainWindow window;
     public bool dirty;
     public int pos_root_y;
     public bool pos;
     public GtkSource.SearchContext searchcontext;
     public int last_search_end;
-    public JsRender.Node node;
-    public JsRender.JsRender? file;
-    public JsRender.NodeProp? prop;
     public signal void save ();
+    public JsRender.JsRender? file;
+    public JsRender.Node node;
+    public JsRender.NodeProp? prop;
     public string activeEditor;
 
     // ctor
@@ -52,8 +52,8 @@ public class Editor : Object
         this.pos = false;
         this.searchcontext = null;
         this.last_search_end = 0;
-        this.node = null;
         this.file = null;
+        this.node = null;
         this.prop = null;
         this.activeEditor = "";
 
@@ -61,15 +61,15 @@ public class Editor : Object
         this.el.homogeneous = false;
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_0 = new Xcls_Box2( _this );
-        child_0.ref();
-        this.el.append (  child_0.el  );
-        var child_1 = new Xcls_RightEditor( _this );
+        var child_1 = new Xcls_Box2( _this );
         child_1.ref();
-        this.el.append (  child_1.el  );
-        var child_2 = new Xcls_Box11( _this );
+        this.el.append ( child_1.el  );
+        var child_2 = new Xcls_RightEditor( _this );
         child_2.ref();
-        this.el.append (  child_2.el  );
+        this.el.append ( child_2.el  );
+        var child_3 = new Xcls_Box11( _this );
+        child_3.ref();
+        this.el.append ( child_3.el  );
     }
 
     // user defined functions
@@ -175,6 +175,14 @@ public class Editor : Object
     	}
      
     }
+    public void reset () {
+    	 this.file = null;    
+         
+        this.node = null;
+        this.prop = null;
+    	this.searchcontext = null;
+      
+    }
     public int search (string in_txt) {
     
     	var s = new GtkSource.SearchSettings();
@@ -203,14 +211,6 @@ public class Editor : Object
      
        
     
-    }
-    public void reset () {
-    	 this.file = null;    
-         
-        this.node = null;
-        this.prop = null;
-    	this.searchcontext = null;
-      
     }
     public void scroll_to_line (int line) {
     
@@ -245,18 +245,18 @@ public class Editor : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            var child_0 = new Xcls_save_button( _this );
-            child_0.ref();
-            this.el.append (  child_0.el  );
-            var child_1 = new Xcls_Label4( _this );
+            var child_1 = new Xcls_save_button( _this );
             child_1.ref();
-            this.el.append (  child_1.el  );
-            var child_2 = new Xcls_Scale5( _this );
+            this.el.append ( child_1.el  );
+            var child_2 = new Xcls_Label4( _this );
             child_2.ref();
-            this.el.append (  child_2.el  );
-            var child_3 = new Xcls_close_btn( _this );
+            this.el.append ( child_2.el  );
+            var child_3 = new Xcls_Scale5( _this );
             child_3.ref();
-            this.el.append (  child_3.el  );
+            this.el.append ( child_3.el  );
+            var child_4 = new Xcls_close_btn( _this );
+            child_4.ref();
+            this.el.append ( child_4.el  );
         }
 
         // user defined functions
@@ -413,12 +413,12 @@ public class Editor : Object
 
             // set gobject values
             this.el.vexpand = true;
-            var child_0 = new Xcls_view( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
-            var child_1 = new Xcls_EventControllerKey10( _this );
+            var child_1 = new Xcls_view( _this );
             child_1.ref();
-            this.el.add_controller (  child_1.el  );
+            this.el.set_child ( child_1.el  );
+            var child_2 = new Xcls_EventControllerKey10( _this );
+            child_2.ref();
+            this.el.add_controller ( child_2.el  );
 
             // init method
 
@@ -455,9 +455,9 @@ public class Editor : Object
             this.el.show_line_numbers = true;
             this.el.tab_width = 4;
             this.el.highlight_current_line = true;
-            var child_0 = new Xcls_buffer( _this );
-            child_0.ref();
-            this.el.set_buffer (  child_0.el  );
+            var child_1 = new Xcls_buffer( _this );
+            child_1.ref();
+            this.el.set_buffer ( child_1.el  );
 
             // init method
 
@@ -909,21 +909,21 @@ public class Editor : Object
             // set gobject values
             this.el.homogeneous = false;
             this.el.vexpand = false;
-            var child_0 = new Xcls_search_entry( _this );
-            child_0.ref();
-            this.el.append (  child_0.el  );
-            var child_1 = new Xcls_Box14( _this );
+            var child_1 = new Xcls_search_entry( _this );
             child_1.ref();
-            this.el.append (  child_1.el  );
-            var child_2 = new Xcls_nextBtn( _this );
+            this.el.append ( child_1.el  );
+            var child_2 = new Xcls_Box14( _this );
             child_2.ref();
-            this.el.append (  child_2.el  );
-            var child_3 = new Xcls_backBtn( _this );
+            this.el.append ( child_2.el  );
+            var child_3 = new Xcls_nextBtn( _this );
             child_3.ref();
-            this.el.append (  child_3.el  );
-            var child_4 = new Xcls_MenuButton18( _this );
+            this.el.append ( child_3.el  );
+            var child_4 = new Xcls_backBtn( _this );
             child_4.ref();
-            this.el.append (  child_4.el  );
+            this.el.append ( child_4.el  );
+            var child_5 = new Xcls_MenuButton18( _this );
+            child_5.ref();
+            this.el.append ( child_5.el  );
         }
 
         // user defined functions
@@ -952,9 +952,9 @@ public class Editor : Object
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
             this.el.search_delay = 3;
-            var child_0 = new Xcls_EventControllerKey13( _this );
-            child_0.ref();
-            this.el.add_controller(  child_0.el );
+            var child_1 = new Xcls_EventControllerKey13( _this );
+            child_1.ref();
+            this.el.add_controller(  child_1.el );
 
             // init method
 
@@ -1074,9 +1074,9 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_search_results( _this );
-            child_0.ref();
-            this.el.append (  child_0.el  );
+            var child_1 = new Xcls_search_results( _this );
+            child_1.ref();
+            this.el.append ( child_1.el  );
         }
 
         // user defined functions
@@ -1235,9 +1235,9 @@ public class Editor : Object
             // set gobject values
             this.el.icon_name = "emblem-system";
             this.el.label = "Settings";
-            var child_0 = new Xcls_search_settings( _this );
-            child_0.ref();
-            this.el.popover = child_0.el;
+            var child_1 = new Xcls_search_settings( _this );
+            child_1.ref();
+            this.el.popover = child_1.el;
 
             // init method
 
@@ -1271,9 +1271,9 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box20( _this );
-            child_0.ref();
-            this.el.child = child_0.el;
+            var child_1 = new Xcls_Box20( _this );
+            child_1.ref();
+            this.el.child = child_1.el;
         }
 
         // user defined functions
@@ -1295,15 +1295,15 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_case_sensitive( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_regex( _this );
+            var child_1 = new Xcls_case_sensitive( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_multiline( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_regex( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_multiline( _this );
+            child_3.ref();
+            this.el.append( child_3.el );
         }
 
         // user defined functions
