@@ -960,7 +960,7 @@ public class JsRender.NodeToVala : Object {
 			
 			case "Gtk.Dialog":
 				if (propname == "buttons[]") {
-					var resp_id = i;
+					var resp_id = int.parse(childname.replace("child_", ""));
 					if (child.has("* response_id")) { 
 						resp_id = int.parse(child.get_prop("* response_id").val);
 					}
