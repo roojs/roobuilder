@@ -656,8 +656,9 @@ public class JsRender.NodeToVala : Object {
 				}
 				if (this.node.findProp(n)) {
 					// assume it's ok..
-					this.node.setLine(this.cur_line, "p", "* xtype");
-					this.addLine(this.ipad + this.propToString(n)) ; 
+
+					args += this.addPropSet(n) ; 
+					
 					 
 					continue;
 				}
