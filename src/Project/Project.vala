@@ -468,7 +468,9 @@ namespace Project {
 		
 		public   void   load()
 		{
-			 
+			if (this.is_scanned) {
+				return;
+			}
  
 
 			var pa = new Json.Parser();
@@ -504,7 +506,7 @@ namespace Project {
 			
 			 
 			this.initDatabase();
-
+			this.is_scanned = true; // loaded.. dont need to do it again..
 			 
 			
 		}
@@ -862,6 +864,19 @@ namespace Project {
 			}
 			return ret;
 			
+		}
+		public Gee.ArrayList<string> readArray(Json.Array ar) 
+		{
+			var ret = new Gee.ArrayList<string>();
+			for(var i =0; i< ar.get_length(); i++) {
+				var add = ar.get_string_element(i);
+				if (ret.contains(add)) {
+					continue;
+				}
+			
+				ret.add(add);
+			}
+			return ret;
 		}
 		
 		/*
