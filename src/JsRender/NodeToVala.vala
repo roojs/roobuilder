@@ -776,22 +776,29 @@ public class JsRender.NodeToVala : Object {
 		
 		var iter = this.node.readItems().list_iterator();
 		 
-		while (iter.next()) {
-			 
+		foreach(var child in this.node.readItems()) {
+			
+			
+			
 				
 			var child = iter.get();
 
 			if (child.xvala_id[0] == '*') {
 				continue; // skip generation of children?
 			}
-					
-			
+
+			// probably added in ctor..				
+			if (child.has("* prop") && this.shouldIgnoreWrapped(child.get_prop("* prop").val)) {
+				continue;
+			}
 			// create the element..
 			
 			// this is only needed if it does not have an ID???
 			var childname = this.addPropSet(child) ; 
 			
 			if (child.has("* prop")) {
+			if (this.shouldIgnoreWrapped(node.name)
+			
 				// fixme special packing!??!?!
 				if (child.get_prop("* prop").val.contains("[]")) {
 					// currently these 'child props
