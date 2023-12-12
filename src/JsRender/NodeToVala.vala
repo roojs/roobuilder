@@ -785,19 +785,11 @@ public class JsRender.NodeToVala : Object {
 				continue; // skip generation of children?
 			}
 					
-			var xargs = "";
-			if (child.has("* args")) {
-				
-				var ar = child.get_prop("* args").val.split(",");
-				for (var ari = 0 ; ari < ar.length; ari++ ) {
-					var arg = ar[ari].split(" ");
-					xargs += "," + arg[arg.length -1];
-				}
-			}
+			
 			// create the element..
 			
 			// this is only needed if it does not have an ID???
-			
+			var childname = this.addPropSet(child) ; 
 			
 			if (child.has("* prop")) {
 				// fixme special packing!??!?!
@@ -806,34 +798,19 @@ public class JsRender.NodeToVala : Object {
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
 					// columns[] ?
-					this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
-						"( _this " + xargs + ");" );
+					 
 					this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				
-			 
- 				this.addPropSet(child, i) ; 
-				
-				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
-				if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
-					this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
-				} else {
-					//this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
-				} 			
-				
+			  
 				
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
 				continue;
 			} 
-			this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
-					"( _this " + xargs + ");" );
+			 
 			
-			if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
-				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
-			} else {
-				//this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
-			}
+			 
 			
 			
 			this.packChild(child, i, cols, colpos);
@@ -853,16 +830,32 @@ public class JsRender.NodeToVala : Object {
 		}
 	}
 	
-	string addPropSet(Node child, int i) 
+	string addPropSet(Node child ) 
 	{
-			this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
-					"( _this " + xargs + ");" );
-			// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
-			if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
-				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
-			} 			
-				
-				
+	 
+		
+		var xargs = "";
+		if (child.has("* args")) {
+			
+			var ar = child.get_prop("* args").val.split(",");
+			for (var ari = 0 ; ari < ar.length; ari++ ) {
+				var arg = ar[ari].split(" ");
+				xargs += "," + arg[arg.length -1];
+			}
+		}
+		var childname = "child_" + "%d".printf(this.child_count++);	
+	 		
+		this.addLine(this.ipad + "var " + childname + " = new " + child.xvala_xcls + "( _this " + xargs + ");" );
+		
+		// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
+		if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
+			this.addLine(this.ipad + "child_" + "%d".printf(this.child_count) +".ref();"); // we need to reference increase unnamed children...
+		} 			
+	   
+		this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " = " + childname+  ";");
+
+		return childname	
+	}		
 			
 	
 
@@ -1185,5 +1178,3 @@ public class JsRender.NodeToVala : Object {
 	 
 	
 	
-
-
