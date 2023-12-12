@@ -799,7 +799,7 @@ public class JsRender.NodeToVala : Object {
 					// used for button[]  on Dialog?
 					// columns[] ?
 					 
-					this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+					this.packChild(child, childname, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
 				
