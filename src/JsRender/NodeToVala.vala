@@ -810,22 +810,18 @@ public class JsRender.NodeToVala : Object {
 			} 
 			 
 			
-			 
-			
-			
+			  
 			this.packChild(child, i, cols, colpos);
+			
 			if (child.has("colspan")) {
 				colpos += int.parse(child.get_prop("colspan").val);
 			} else {
 				colpos += 1;
 			}
 					  
-			if (child.xvala_id[0] != '+') {
-			 	continue; // skip generation of children?
-						
-			}
+			
 			// this.{id - without the '+'} = the element...
-			this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " =  child_" + "%d".printf(i) +  ";");
+			 
 				  
 		}
 	}
@@ -851,10 +847,13 @@ public class JsRender.NodeToVala : Object {
 		if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 			this.addLine(this.ipad + "child_" + "%d".printf(this.child_count) +".ref();"); // we need to reference increase unnamed children...
 		} 			
-	   
+	   if (child.xvala_id[0] != '+') {
+		 	return childname; // skip generation of children?
+					
+		}
 		this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " = " + childname+  ";");
 
-		return childname	
+		return childname;	
 	}		
 			
 	
