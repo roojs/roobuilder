@@ -463,82 +463,7 @@ public class JsRender.NodeToVala : Object {
 		}
 			 
 	}
-	/**
-	 Properties that are used by the CTOR - need defining first..
 	 
-	*/
-	
-	void addWrappedCtorProperties()
-	{
-		
-		if (this.node.has("* ctor")) {
-			return; // can't do manual ctors..
-		}
-		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
-		if (ncls != null && ncls.nodetype == "Struct") {
-			return; // structs no handled?
-		
-		}
-		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ".new");
-		
-		
-		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
-		if (cls == null) {
-			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
-			return;
-		}
-			// what are the properties of this class???
-		this.addLine();
-		this.addLine(this.ipad + "// set gobject values");
-		
-
-		var iter = cls.props.map_iterator();
-		while (iter.next()) {
-			var p = iter.get_key();
-			//print("Check Write %s\n", p);
-			if (!this.node.has(p)) {
-				continue;
-			}
-			if (this.shouldIgnoreWrapped(p)) {
-				continue;
-			}
-			
-			this.ignore(p);
-
-
-			var prop = this.node.get_prop(p);
-			var v = prop.val;
-			
-			// user defined properties.
-			if (prop.ptype == NodePropType.USER) {
-				continue;
-			}
-				
-
-			
-			var is_raw = prop.ptype == NodePropType.RAW;
-			
-			// what's the type.. - if it's a string.. then we quote it..
-			if (iter.get_value().type == "string" && !is_raw) {
-				 v = "\"" +  v.escape("") + "\"";
-			}
-			if (v == "TRUE" || v == "FALSE") {
-				v = v.down();
-			}
-			if (iter.get_value().type == "float" && v[v.length-1] != 'f') {
-				v += "f";
-			}
-			
-			prop.start_line = this.cur_line;
-			this.addLine("%sthis.el.%s = %s;".printf(ipad,p,v)); // // %s,  iter.get_value().type);
-			prop.end_line = this.cur_line;		
-			   // got a property..
-			   
-
-		}
-		
-	}
-	
 	/**
 	 * Initialize this.el to point to the wrapped element.
 	 * 
@@ -658,7 +583,7 @@ public class JsRender.NodeToVala : Object {
 				if (propnode != null) {
 					// assume it's ok..
 
-					args += this.addPropSet(n) ; 
+					args += this.addPropSet(propnode) ; 
 					
 					 
 					continue;
@@ -886,6 +811,8 @@ public class JsRender.NodeToVala : Object {
 					this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
+				this.addProp
+				
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
 				if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 					this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
