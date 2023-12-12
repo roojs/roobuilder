@@ -7,6 +7,13 @@ public class Project.VapiSelection : Object
 {
 	Project project;
 	public string name { get;  set; }
+	public string sortkey {
+		 owned get {
+		 	return (this.selected ? "A" : "Z" ) + "-"+ this.name;
+	 	}
+	 	set {}
+		
+	}
 	public bool selected {
 		get {
 			return vapi_list.contains(this.name);

@@ -1744,6 +1744,7 @@ public class DialogFiles : Object
 
             // set gobject values
             this.el.icon_name = "emblem-system";
+            this.el.margin_end = 4;
         }
 
         // user defined functions
@@ -1912,6 +1913,7 @@ public class DialogFiles : Object
 
             // set gobject values
             this.el.icon_name = "document-new";
+            this.el.margin_end = 4;
         }
 
         // user defined functions

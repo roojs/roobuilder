@@ -21,6 +21,13 @@
        "* prop" : "title_widget",
        "string label" : "Change Vala  Compile settings",
        "xtype" : "Label"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_end",
+       "string icon_name" : "",
+       "string label" : "Create / Recreate Build files (configure.ac / makefile.am etc)",
+       "xtype" : "Button"
       }
      ],
      "xtype" : "HeaderBar"
@@ -34,22 +41,8 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "Gtk.Align halign" : "Gtk.Align.END",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "int spacing" : 0,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "string icon_name" : "",
-         "string label" : "Create / Recreate Build files (configure.ac / makefile.am etc)",
-         "xtype" : "Button"
-        }
-       ],
-       "xtype" : "Box"
-      },
-      {
-       "$ xns" : "Gtk",
        "bool vexpand" : true,
+       "id" : "notebook",
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -125,13 +118,13 @@
                     },
                     {
                      "$ xns" : "Gtk",
-                     "* prop" : "section_sorter",
+                     "* prop" : "sorter",
                      "items" : [
                       {
                        "$ xns" : "Gtk",
                        "* prop" : "expression",
                        "GLib.Type this_type" : "typeof(Project.VapiSelection)",
-                       "string property_name" : "name",
+                       "string property_name" : "sortkey",
                        "xtype" : "PropertyExpression"
                       }
                      ],
@@ -149,7 +142,7 @@
                      "$ xns" : "Gtk",
                      "* prop" : "expression",
                      "GLib.Type this_type" : "typeof(Project.VapiSelection)",
-                     "string property_name" : "name",
+                     "string property_name" : "sortkey",
                      "xtype" : "PropertyExpression"
                     }
                    ],
@@ -951,6 +944,8 @@
     "\t// print(\"SHOWALL - POPIP\\n\");",
     "\tthis.el.set_size_request(800,800);",
     "\tthis.el.show();",
+    "\tthis.notebook.el.page = 0; // first page.",
+    "\t",
     "\t//this.view.el.grab_focus();",
     "",
     "}",
