@@ -149,6 +149,11 @@ public class DialogFiles : Object
          _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
          _this.projectscroll.el.vadjustment.value = 0;
          _this.is_loading = false;
+         
+         GLib.Timeout.add(500, () => {
+     		_this.projectscroll.el.vadjustment.value = 0;		 
+    	     return false;
+         });
     }
     public class Xcls_Box2 : Object
     {

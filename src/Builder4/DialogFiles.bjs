@@ -876,6 +876,11 @@
     "     _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
     "     _this.projectscroll.el.vadjustment.value = 0;",
     "     _this.is_loading = false;",
+    "     ",
+    "     GLib.Timeout.add(500, () => {",
+    " \t\t_this.projectscroll.el.vadjustment.value = 0;\t\t ",
+    "\t     return false;",
+    "     });",
     "}",
     ""
    ],

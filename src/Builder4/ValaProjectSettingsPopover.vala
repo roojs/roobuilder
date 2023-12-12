@@ -92,8 +92,13 @@ public class ValaProjectSettingsPopover : Object
     	);
     	   
         project.loadVapiIntoStore(_this.vapimodel.el);
-        this.vapi_scroll.el.vadjustment.value  = 0;
-     
+         GLib.Timeout.add(500, () => {
+     		 this.vapi_scroll.el.vadjustment.value  = 0;	 
+    	     return false;
+         });
+        
+       
+     	
      	project.loadTargetsIntoStore(this.target_model.el);
     	
      	_this.target_sel.el.selected = Gtk.INVALID_LIST_POSITION;
