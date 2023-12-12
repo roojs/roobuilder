@@ -775,9 +775,9 @@ public class JsRender.NodeToVala : Object {
 		var colpos = 0;
 		
 		var iter = this.node.readItems().list_iterator();
-		var i = -1;
+		 
 		while (iter.next()) {
-			i++;
+			 
 				
 			var child = iter.get();
 
@@ -805,13 +805,13 @@ public class JsRender.NodeToVala : Object {
 				
 			  
 				
-				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
+				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = " + childname + ".el;");
 				continue;
 			} 
 			 
 			
 			  
-			this.packChild(child, i, cols, colpos);
+			this.packChild(child, childname, cols, colpos);
 			
 			if (child.has("colspan")) {
 				colpos += int.parse(child.get_prop("colspan").val);
