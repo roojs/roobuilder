@@ -859,7 +859,7 @@ public class JsRender.NodeToVala : Object {
 	
 
 	
-	void packChild(Node child, int i, int cols, int colpos, string propname= "")
+	void packChild(Node child, string childname, int cols, int colpos, string propname= "")
 	{
 		
 		GLib.debug("packChild %s=>%s", this.node.fqn(), child.fqn());
@@ -907,7 +907,7 @@ public class JsRender.NodeToVala : Object {
 			case "Gtk.Layout":
 				var x = child.has("x") ?  child.get_prop("x").val  : "0";
 				var y = child.has("y") ?  child.get_prop("y").val  : "0";
-				this.addLine(this.ipad + "this.el.put(  child_%d.el, %s, %s );".printf(i,x,y) );
+				this.addLine(this.ipad + "this.el.put( %s.el, %s, %s );".printf(childname,x,y) );
 				return;
 				
 			case "Gtk.Grid":
@@ -915,46 +915,46 @@ public class JsRender.NodeToVala : Object {
 				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
 				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
 				var h = "1";
-				this.addLine(this.ipad + "this.el.attach(  child_%d.el, %s, %s, %s, %s );".printf(i,x,y, w, h) );
+				this.addLine(this.ipad + "this.el.attach( %s.el, %s, %s, %s, %s );".printf(childname ,x,y, w, h) );
 				return;
 
 			case "Gtk.Stack":
 				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
 				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
 				if (title.length > 0) {
-					this.addLine(this.ipad + "this.el.add_titled(  child_%d.el, \"%s\", \"%s\" );".printf(i,named,title));	
+					this.addLine(this.ipad + "this.el.add_titled( %s.el, \"%s\", \"%s\" );".printf(childname,named,title));	
 				} else {
-					this.addLine(this.ipad + "this.el.add_named(  child_%d.el, \"%s\" );".printf(i,named));
+					this.addLine(this.ipad + "this.el.add_named( %s.el, \"%s\" );".printf(childname,named));
 				}
 				return;
 				
 			case "Gtk.Notebook": // use label
 				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").val.escape() : "";
-				this.addLine(this.ipad + "this.el.append_page( child_%d.el, new Gtk.Label(\"%s\"));".printf(i, label));	
+				this.addLine(this.ipad + "this.el.append_page( %s.el, new Gtk.Label(\"%s\"));".printf(childname, label));	
 				return;
 				
 			 
 			case "Gtk.TreeView": // adding TreeViewColumns
-				this.addLine(this.ipad + "this.el.append_column(  child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.append_column( " + childname + ".el );");
 				return;
 			
 			case "Gtk.TreeViewColumn": //adding Renderers - I think these are all proprerties of the renderer used...
 				if (child.has("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"markup\", %s );".printf(i, child.get_prop("markup_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute( %s.el, \"markup\", %s );".printf(childname, child.get_prop("markup_column").val));
 				}
 				if (child.has("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"text\", %s );".printf(i, child.get_prop("text_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"text\", %s );".printf(childname, child.get_prop("text_column").val));
 				}
 				if (child.has("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"pixbuf\", %s );".printf(i, child.get_prop("pixbuf_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"pixbuf\", %s );".printf(childname, child.get_prop("pixbuf_column").val));
 				}
 				if (child.has("pixbuf_column") && int.parse(child.get_prop("active_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"active\", %s );".printf(i, child.get_prop("active_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"active\", %s );".printf(childname, child.get_prop("active_column").val));
 				}
 				if (child.has("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"background-rgba\", %s );".printf(i, child.get_prop("background_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"background-rgba\", %s );".printf(childname, child.get_prop("background_column").val));
 				}
-				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.add( " + childname + ".el );");
 				// any more!?
 				return;
 			
