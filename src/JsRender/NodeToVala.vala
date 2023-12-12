@@ -20,9 +20,7 @@
  * 
 */
 
-
-
-
+ 
 public class JsRender.NodeToVala : Object {
 
 	Node node;
