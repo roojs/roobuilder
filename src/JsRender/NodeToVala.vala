@@ -166,7 +166,7 @@ public class JsRender.NodeToVala : Object {
 	public string munge ( )
 	{
 		//return this.mungeToString(this.node);
-
+		this.child_count = 1;
 		this.ignore("pack");
 		this.ignore("init");
 		this.ignore("xns");
