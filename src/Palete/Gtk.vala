@@ -1016,6 +1016,8 @@ namespace Palete {
         	this.add_classes_from_method(cls, "append", ret);
         	this.add_classes_from_method(cls, "append_column", ret); // columnview column
         	this.add_classes_from_method(cls, "attach", ret); // grid column        	
+        	this.add_classes_from_method(cls, "pack_start", ret); // headerbar (also has pack end?)
+        	
         	  // add_controller 1st arge = ??
         	  // add_menomic_label ??? << no ???
         	  // add_shortcut? 

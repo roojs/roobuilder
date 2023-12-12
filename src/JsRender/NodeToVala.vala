@@ -582,7 +582,7 @@ public class JsRender.NodeToVala : Object {
 				var propnode = this.node.findProp(n);
 				if (propnode != null) {
 					// assume it's ok..
-					args += this.addPropSet(propnode) ; 
+					args += (this.addPropSet(propnode) + ".el") ; 
 					this.ignoreWrapped(n);
 					
 					continue;

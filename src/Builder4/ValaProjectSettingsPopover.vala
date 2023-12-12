@@ -34,9 +34,9 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_MainWindow window;
     public Gtk.PositionType position;
     public Project.GtkValaSettings? selected_target;
-    public uint border_width;
-    public bool done;
     public Project.Gtk project;
+    public bool done;
+    public uint border_width;
     public bool autohide;
 
     // ctor
@@ -49,9 +49,9 @@ public class ValaProjectSettingsPopover : Object
         this.window = null;
         this.position = Gtk.PositionType.RIGHT;
         this.selected_target = null;
-        this.border_width = 0;
-        this.done = false;
         this.project = null;
+        this.done = false;
+        this.border_width = 0;
         this.autohide = false;
 
         // set gobject values
@@ -182,7 +182,7 @@ public class ValaProjectSettingsPopover : Object
             var child_1 = new Xcls_Notebook7( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Box60( _this );
+            var child_2 = new Xcls_Box58( _this );
             child_2.ref();
             this.el.append(  child_2.el );
         }
@@ -875,7 +875,7 @@ public class ValaProjectSettingsPopover : Object
             var child_0 = new Xcls_set_vbox( _this );
             child_0.ref();
             this.el.set_end_child (  child_0.el  );
-            var child_1 = new Xcls_Box43( _this );
+            var child_1 = new Xcls_Box41( _this );
             child_1.ref();
             this.el.start_child = child_1.el;
         }
@@ -960,9 +960,6 @@ public class ValaProjectSettingsPopover : Object
             var child_2 = new Xcls_ColumnViewColumn39( _this );
             child_2.ref();
             this.el.append_column (  child_2.el  );
-            var child_3 = new Xcls_ColumnViewColumn41( _this );
-            child_3.ref();
-            this.el.append_column (  child_3.el  );
         }
 
         // user defined functions
@@ -1298,6 +1295,8 @@ public class ValaProjectSettingsPopover : Object
             		var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
             		var jr = (JsRender.JsRender) lr.get_item();
             		jr.compile_group_selected = btn.active;
+            		
+            		
             	});
             });
             this.el.bind.connect( (listitem) => {
@@ -1327,98 +1326,10 @@ public class ValaProjectSettingsPopover : Object
     }
 
 
-    public class Xcls_ColumnViewColumn41 : Object
-    {
-        public Gtk.ColumnViewColumn el;
-        private ValaProjectSettingsPopover  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ColumnViewColumn41(ValaProjectSettingsPopover _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ColumnViewColumn( "hide", null );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_SignalListItemFactory42( _this );
-            child_0.ref();
-            this.el.factory = child_0.el;
-        }
-
-        // user defined functions
-    }
-    public class Xcls_SignalListItemFactory42 : Object
-    {
-        public Gtk.SignalListItemFactory el;
-        private ValaProjectSettingsPopover  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_SignalListItemFactory42(ValaProjectSettingsPopover _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.SignalListItemFactory();
-
-            // my vars (dec)
-
-            // set gobject values
-
-            //listeners
-            this.el.setup.connect( (listitem) => {
-            
-            	var btn = new Gtk.CheckButton();
-             
-            	((Gtk.ListItem)listitem).set_child(btn);
-            	
-            	btn.toggled.connect(() =>  {
-            	 
-            		var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            		var jr = (JsRender.JsRender) lr.get_item();
-            		jr.compile_group_hidden = btn.active;
-            	});
-            });
-            this.el.bind.connect( (listitem) => {
-            	 //GLib.debug("listitme is is %s", ((Gtk.ListItem)listitem).get_type().name());
-            	
-            	
-            	
-            	//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();
-            	var btn = (Gtk.CheckButton)  ((Gtk.ListItem)listitem).get_child();
-            	  
-             
-            	var lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();
-            	var jr = (JsRender.JsRender) lr.get_item();
-            	//GLib.debug("change  %s to %s", lbl.label, np.name);
-            
-            	
-            	if (jr.xtype != "Dir") {
-            		btn.hide();
-            		return;
-            	}
-             
-             	btn.show();
-             	jr.bind_property("compile_group_hidden",
-                                btn, "active",
-                               GLib.BindingFlags.SYNC_CREATE); 
-             	// bind image...
-             	
-            });
-        }
-
-        // user defined functions
-    }
 
 
 
-
-
-    public class Xcls_Box43 : Object
+    public class Xcls_Box41 : Object
     {
         public Gtk.Box el;
         private ValaProjectSettingsPopover  _this;
@@ -1427,7 +1338,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box43(ValaProjectSettingsPopover _owner )
+        public Xcls_Box41(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1435,10 +1346,10 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box44( _this );
+            var child_0 = new Xcls_Box42( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_ScrolledWindow47( _this );
+            var child_1 = new Xcls_ScrolledWindow45( _this );
             child_1.ref();
             this.el.append(  child_1.el );
             var child_2 = new Xcls_set_vboxb( _this );
@@ -1448,7 +1359,7 @@ public class ValaProjectSettingsPopover : Object
 
         // user defined functions
     }
-    public class Xcls_Box44 : Object
+    public class Xcls_Box42 : Object
     {
         public Gtk.Box el;
         private ValaProjectSettingsPopover  _this;
@@ -1457,7 +1368,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box44(ValaProjectSettingsPopover _owner )
+        public Xcls_Box42(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1466,17 +1377,17 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_Button45( _this );
+            var child_0 = new Xcls_Button43( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button46( _this );
+            var child_1 = new Xcls_Button44( _this );
             child_1.ref();
             this.el.append(  child_1.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Button45 : Object
+    public class Xcls_Button43 : Object
     {
         public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
@@ -1485,7 +1396,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button45(ValaProjectSettingsPopover _owner )
+        public Xcls_Button43(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1502,7 +1413,7 @@ public class ValaProjectSettingsPopover : Object
                    if (_this.project.compilegroups.has_key("NEW GROUP")) {
                     return;
                 }
-                var cg = new Project.GtkValaSettings("NEW GROUP");
+                var cg = new Project.GtkValaSettings(_this.project, "NEW GROUP");
                 _this.project.compilegroups.set(cg.name, cg);
                  _this.project.loadTargetsIntoStore(_this.target_model.el);
                  //  select it.. ?? should load it??
@@ -1523,7 +1434,7 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_Button46 : Object
+    public class Xcls_Button44 : Object
     {
         public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
@@ -1532,7 +1443,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button46(ValaProjectSettingsPopover _owner )
+        public Xcls_Button44(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1568,7 +1479,7 @@ public class ValaProjectSettingsPopover : Object
     }
 
 
-    public class Xcls_ScrolledWindow47 : Object
+    public class Xcls_ScrolledWindow45 : Object
     {
         public Gtk.ScrolledWindow el;
         private ValaProjectSettingsPopover  _this;
@@ -1577,7 +1488,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow47(ValaProjectSettingsPopover _owner )
+        public Xcls_ScrolledWindow45(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.ScrolledWindow();
@@ -1586,7 +1497,7 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.vexpand = true;
-            var child_0 = new Xcls_ColumnView48( _this );
+            var child_0 = new Xcls_ColumnView46( _this );
             child_0.ref();
             this.el.child = child_0.el;
 
@@ -1600,7 +1511,7 @@ public class ValaProjectSettingsPopover : Object
 
         // user defined functions
     }
-    public class Xcls_ColumnView48 : Object
+    public class Xcls_ColumnView46 : Object
     {
         public Gtk.ColumnView el;
         private ValaProjectSettingsPopover  _this;
@@ -1609,7 +1520,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnView48(ValaProjectSettingsPopover _owner )
+        public Xcls_ColumnView46(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.ColumnView( null );
@@ -1620,7 +1531,7 @@ public class ValaProjectSettingsPopover : Object
             var child_0 = new Xcls_target_sel( _this );
             child_0.ref();
             this.el.model = child_0.el;
-            var child_1 = new Xcls_ColumnViewColumn51( _this );
+            var child_1 = new Xcls_ColumnViewColumn49( _this );
             child_1.ref();
             this.el.append_column (  child_1.el  );
         }
@@ -1676,7 +1587,7 @@ public class ValaProjectSettingsPopover : Object
         	 _this.selected_target = cg;  
         	 _this.project.active_cg = cg;
         	 
-         
+        
         	if (cg == null) {
         		 
         		_this.set_vbox.el.hide();	
@@ -1691,8 +1602,9 @@ public class ValaProjectSettingsPopover : Object
          
         	 
         	 GLib.debug("loading dirs into project list");
+        	 cg.loading_ui = true;
         	 _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);
-        	 
+        	 cg.loading_ui = false;
         	 GLib.debug("Set name to %s", cg.name);
         	 
          	_this.build_name.el.buffer.set_text(cg.name.data);
@@ -1727,7 +1639,7 @@ public class ValaProjectSettingsPopover : Object
     }
 
 
-    public class Xcls_ColumnViewColumn51 : Object
+    public class Xcls_ColumnViewColumn49 : Object
     {
         public Gtk.ColumnViewColumn el;
         private ValaProjectSettingsPopover  _this;
@@ -1736,7 +1648,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ColumnViewColumn51(ValaProjectSettingsPopover _owner )
+        public Xcls_ColumnViewColumn49(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.ColumnViewColumn( "Build Target", null );
@@ -1745,14 +1657,14 @@ public class ValaProjectSettingsPopover : Object
 
             // set gobject values
             this.el.expand = true;
-            var child_0 = new Xcls_SignalListItemFactory52( _this );
+            var child_0 = new Xcls_SignalListItemFactory50( _this );
             child_0.ref();
             this.el.factory = child_0.el;
         }
 
         // user defined functions
     }
-    public class Xcls_SignalListItemFactory52 : Object
+    public class Xcls_SignalListItemFactory50 : Object
     {
         public Gtk.SignalListItemFactory el;
         private ValaProjectSettingsPopover  _this;
@@ -1761,7 +1673,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_SignalListItemFactory52(ValaProjectSettingsPopover _owner )
+        public Xcls_SignalListItemFactory50(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.SignalListItemFactory();
@@ -1820,19 +1732,19 @@ public class ValaProjectSettingsPopover : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Label54( _this );
+            var child_0 = new Xcls_Label52( _this );
             child_0.ref();
             this.el.append(  child_0.el );
             var child_1 = new Xcls_build_name( _this );
             child_1.ref();
             this.el.append(  child_1.el );
-            var child_2 = new Xcls_Label56( _this );
+            var child_2 = new Xcls_Label54( _this );
             child_2.ref();
             this.el.append(  child_2.el );
             var child_3 = new Xcls_build_pack_target( _this );
             child_3.ref();
             this.el.append(  child_3.el );
-            var child_4 = new Xcls_Label58( _this );
+            var child_4 = new Xcls_Label56( _this );
             child_4.ref();
             this.el.append(  child_4.el );
             var child_5 = new Xcls_build_execute_args( _this );
@@ -1842,7 +1754,7 @@ public class ValaProjectSettingsPopover : Object
 
         // user defined functions
     }
-    public class Xcls_Label54 : Object
+    public class Xcls_Label52 : Object
     {
         public Gtk.Label el;
         private ValaProjectSettingsPopover  _this;
@@ -1851,7 +1763,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label54(ValaProjectSettingsPopover _owner )
+        public Xcls_Label52(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "Build Name" );
@@ -1902,7 +1814,7 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_Label56 : Object
+    public class Xcls_Label54 : Object
     {
         public Gtk.Label el;
         private ValaProjectSettingsPopover  _this;
@@ -1911,7 +1823,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label56(ValaProjectSettingsPopover _owner )
+        public Xcls_Label54(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "target filename" );
@@ -1955,7 +1867,7 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_Label58 : Object
+    public class Xcls_Label56 : Object
     {
         public Gtk.Label el;
         private ValaProjectSettingsPopover  _this;
@@ -1964,7 +1876,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label58(ValaProjectSettingsPopover _owner )
+        public Xcls_Label56(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "test argments - when run after a build" );
@@ -2014,7 +1926,7 @@ public class ValaProjectSettingsPopover : Object
 
 
 
-    public class Xcls_Box60 : Object
+    public class Xcls_Box58 : Object
     {
         public Gtk.Box el;
         private ValaProjectSettingsPopover  _this;
@@ -2023,7 +1935,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box60(ValaProjectSettingsPopover _owner )
+        public Xcls_Box58(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -2036,10 +1948,10 @@ public class ValaProjectSettingsPopover : Object
             this.el.hexpand = true;
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
-            var child_0 = new Xcls_Button61( _this );
+            var child_0 = new Xcls_Button59( _this );
             child_0.ref();
             this.el.append(  child_0.el );
-            var child_1 = new Xcls_Label62( _this );
+            var child_1 = new Xcls_Label60( _this );
             child_1.ref();
             this.el.append(  child_1.el );
             var child_2 = new Xcls_save_btn( _this );
@@ -2049,7 +1961,7 @@ public class ValaProjectSettingsPopover : Object
 
         // user defined functions
     }
-    public class Xcls_Button61 : Object
+    public class Xcls_Button59 : Object
     {
         public Gtk.Button el;
         private ValaProjectSettingsPopover  _this;
@@ -2058,7 +1970,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button61(ValaProjectSettingsPopover _owner )
+        public Xcls_Button59(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -2079,7 +1991,7 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_Label62 : Object
+    public class Xcls_Label60 : Object
     {
         public Gtk.Label el;
         private ValaProjectSettingsPopover  _this;
@@ -2088,7 +2000,7 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label62(ValaProjectSettingsPopover _owner )
+        public Xcls_Label60(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "" );

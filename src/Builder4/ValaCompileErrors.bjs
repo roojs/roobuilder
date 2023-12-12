@@ -303,8 +303,7 @@
     "   \t//if (expand != null) {",
     "    //\t_this.compile_tree.el.expand_row(   store.get_path(expand) , true);",
     "//\t}",
-    "   ",
-    "         ",
+    "    ",
     " //   this.hpane.el.set_position( 0);",
     "}",
     ""

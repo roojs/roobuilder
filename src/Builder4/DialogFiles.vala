@@ -1798,9 +1798,47 @@ public class DialogFiles : Object
 
             // set gobject values
             this.el.show_title_buttons = false;
+            var child_0 = new Xcls_Button51( _this );
+            child_0.ref();
+            this.el.pack_end (  child_0.el  );
         }
 
         // user defined functions
     }
+    public class Xcls_Button51 : Object
+    {
+        public Gtk.Button el;
+        private DialogFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button51(DialogFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Close / Cancel";
+
+            //listeners
+            this.el.clicked.connect( ( ) => {
+            	if (BuilderApplication.windows.size < 2 && 
+            		BuilderApplication.windows.get(0).windowstate.file == null
+            	) { 
+            		BuilderApplication.singleton(null).quit();
+            		return;
+            	}
+            	_this.el.hide();
+            
+            });
+        }
+
+        // user defined functions
+    }
+
 
 }

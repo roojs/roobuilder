@@ -291,8 +291,10 @@ public class Xcls_MainWindow : Object
          		
          		
         	 	var m = new Gtk.Button.with_label(
-        		 	w.windowstate.file.project.name + " : " + w.windowstate.file.getTitle()
+        		 	w.windowstate.file.project.name + " : " + w.windowstate.file.relpath
         	 	);
+        	 	m.halign = Gtk.Align.START;
+        	 	
         	 	
         	 	//w.windowstate.file.path);
         	 	m.clicked.connect(() => {

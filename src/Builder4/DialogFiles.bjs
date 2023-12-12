@@ -796,6 +796,29 @@
      "* prop" : "titlebar",
      "* title" : "Select Project / File",
      "bool show_title_buttons" : false,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_end",
+       "listeners" : {
+        "clicked" : [
+         "( ) => {",
+         "\tif (BuilderApplication.windows.size < 2 && ",
+         "\t\tBuilderApplication.windows.get(0).windowstate.file == null",
+         "\t) { ",
+         "\t\tBuilderApplication.singleton(null).quit();",
+         "\t\treturn;",
+         "\t}",
+         "\t_this.el.hide();",
+         "",
+         "}",
+         ""
+        ]
+       },
+       "string label" : "Close / Cancel",
+       "xtype" : "Button"
+      }
+     ],
      "xtype" : "HeaderBar"
     }
    ],
