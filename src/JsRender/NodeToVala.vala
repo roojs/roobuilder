@@ -812,10 +812,8 @@ public class JsRender.NodeToVala : Object {
 					continue;
 				}
 				
-				this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
-					"( _this " + xargs + ");" );
-			
- 				this.addPropSet(child) ; 
+			 
+ 				this.addPropSet(child, i) ; 
 				
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
 				if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
