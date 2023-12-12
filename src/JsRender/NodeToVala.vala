@@ -470,6 +470,18 @@ public class JsRender.NodeToVala : Object {
 	
 	void addWrappedCtorProperties()
 	{
+		
+		if (this.node.has("* ctor")) {
+			return; // can't do manual ctors..
+		}
+		var ncls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
+		if (ncls != null && ncls.nodetype == "Struct") {
+			return; // structs no handled?
+		
+		}
+		var default_ctor = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn() + ".new");
+		
+		
 		var cls = Palete.Gir.factoryFqn((Project.Gtk) this.file.project, this.node.fqn());
 		if (cls == null) {
 			GLib.debug("Skipping wrapped properties - could not find class  %s" , this.node.fqn());
@@ -616,52 +628,67 @@ public class JsRender.NodeToVala : Object {
 		
 		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
 			string[] args  = {};
-			var iter = default_ctor.paramset.params.list_iterator();
-			while (iter.next()) {
-				var n = iter.get().name;
-			    GLib.debug("building CTOR ARGS: %s, %s", n, iter.get().is_varargs ? "VARARGS": "");
+			foreach(var param in default_ctor.paramset.params) {
+				 
+				var n = param.name;
+			    GLib.debug("building CTOR ARGS: %s, %s", n, param.name;.is_varargs ? "VARARGS": "");
 				if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;
 				}
 				
-				if (!this.node.has(n)) {  // node does not have a value
+				if (this.node.has(n)) {  // node does not have a value
 					
-					 
-					if (iter.get().type.contains("int")) {
-						args += "0";
-						continue;
-					}
-					if (iter.get().type.contains("float")) {
-						args += "0f";
-						continue;
-					}
-					if (iter.get().type.contains("bool")) {
-						args += "true"; // always default to true?
-						continue;
-					}
-					// any other types???
+					this.ignoreWrapped(n);
+					this.ignore(n);
 					
-					args += "null";
+					var v = this.node.get(n);
+
+					if (iter.get().type == "string") {
+						v = "\"" +  v.escape("") + "\"";
+					}
+					if (v == "TRUE" || v == "FALSE") {
+						v = v.down();
+					}
+
+					
+					args += v;
 					continue;
 				}
-				this.ignoreWrapped(n);
-				this.ignore(n);
-				
-				var v = this.node.get(n);
-
-				if (iter.get().type == "string") {
-					v = "\"" +  v.escape("") + "\"";
+				if (this.node.findProp(n)) {
+					// assume it's ok..
+					this.node.setLine(this.cur_line, "p", "* xtype");
+					this.addLine(this.ipad + this.propToString(n)) ; 
+					 
+					continue;
 				}
-				if (v == "TRUE" || v == "FALSE") {
-					v = v.down();
+					
+					
+					
+					
+				 
+				if (param.type.contains("int")) {
+					args += "0";
+					continue;
 				}
-
+				if (param.type.contains("float")) {
+					args += "0f";
+					continue;
+				}
+				if (param.type.contains("bool")) {
+					args += "true"; // always default to true?
+					continue;
+				}
+				// any other types???
 				
-				args += v;
+				
+				
+				
+				args += "null";
+				 
+				
 
 			}
 			this.node.setLine(this.cur_line, "p", "* xtype");
-			
 			this.addLine(this.ipad + "this.el = new " + this.node.fqn() + "( "+ string.joinv(", ",args) + " );") ;
 			return;
 			
