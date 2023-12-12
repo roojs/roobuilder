@@ -773,7 +773,7 @@ public class JsRender.NodeToVala : Object {
 		var cols = this.node.has("* columns") ? int.max(1, int.parse(this.node.get_prop("* columns").val)) : 1;
 		var colpos = 0;
 		
-		var iter = this.node.readItems().list_iterator();
+ 
 		 
 		foreach(var child in this.node.readItems()) {
 			
