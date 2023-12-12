@@ -778,9 +778,7 @@ public class JsRender.NodeToVala : Object {
 		foreach(var child in this.node.readItems()) {
 			
 			
-			
-				
-			var child = iter.get();
+			 
 
 			if (child.xvala_id[0] == '*') {
 				continue; // skip generation of children?
