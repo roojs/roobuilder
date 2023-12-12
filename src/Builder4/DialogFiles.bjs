@@ -28,146 +28,6 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
        "bool hexpand" : true,
        "int spacing" : 0,
-       "items" : [
-        {
-         "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-         "$ xns" : "Gtk",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "items" : [
-            {
-             "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "$ xns" : "Gtk",
-             "* prop" : "child",
-             "items" : [
-              {
-               "$ Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
-               "$ xns" : "Gtk",
-               "int margin_end" : 4,
-               "string icon_name" : "folder-new",
-               "xtype" : "Image"
-              },
-              {
-               "$ Gtk.Align halign" : "Gtk.Align.START",
-               "$ xns" : "Gtk",
-               "string label" : "New Project",
-               "xtype" : "Label"
-              }
-             ],
-             "xtype" : "Box"
-            }
-           ],
-           "listeners" : {
-            "clicked" : [
-             "  ( ) => {",
-             "  ",
-             "    // create a new file in project..",
-             "    //Xcls_DialogNewComponent.singleton().show(",
-             "   var  pe =      EditProject.singleton();",
-             "   pe.el.application = _this.win.el.application;",
-             "    pe.el.set_transient_for( _this.el );",
-             " ",
-             "  ",
-             "    pe.selected.connect((pr) => {",
-             "     \t ",
-             "\t     _this.show(  pr, _this.new_window);",
-             "",
-             "    });",
-             "    ",
-             "      ",
-             "    pe.show();",
-             "   ",
-             "",
-             "}"
-            ]
-           },
-           "string label" : "New Project",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "listeners" : {
-            "clicked" : [
-             "  ( ) => {",
-             "  // should disable the button really.",
-             "   if (_this.selectedProject == null) {",
-             "\t   return;",
-             "   }",
-             "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject);",
-             " }"
-            ]
-           },
-           "string icon_name" : "emblem-system",
-           "string label" : "Project Properties",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "listeners" : {
-            "clicked" : [
-             "  ( ) => {",
-             "  /*",
-             "   var cd = DialogConfirm.singleton();",
-             "     cd.el.set_transient_for(_this.el);",
-             "    cd.el.set_modal(true);",
-             "",
-             "     var project =   _this.windowstate.left_projects.getSelectedProject();",
-             "    if (project == null) {",
-             "        print(\"SKIP - no project\\n\");",
-             "        return;",
-             "    }",
-             "    ",
-             "        ",
-             "     if (Gtk.ResponseType.YES != cd.show(\"Confirm\", ",
-             "        \"Are you sure you want to delete project %s\".printf(project.name))) {",
-             "        return;",
-             "    }",
-             "     ",
-             "",
-             "    // confirm?",
-             "    Project.Project.remove(project);",
-             "    _this.project = null;",
-             "    ",
-             "    _this.windowstate.left_projects.is_loaded =  false;",
-             "    _this.windowstate.left_projects.load();",
-             "    _this.windowstate.clutterfiles.clearFiles();",
-             "*/",
-             "",
-             "}"
-            ]
-           },
-           "string icon_name" : "user-trash",
-           "string label" : "Delete Project",
-           "xtype" : "Button"
-          },
-          {
-           "$ xns" : "Gtk",
-           "listeners" : {
-            "clicked" : [
-             " () => {",
-             "    // create a new file in project..",
-             "    print(\"add file selected\\n\");",
-             "    ",
-             "    if (_this.selectedProject == null) {",
-             "    \treturn;",
-             "    }",
-             "    try {",
-             "    \tvar f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, \"\");",
-             "     \t_this.win.windowstate.file_details.show( f, _this.el, _this.new_window );",
-             "     } catch (JsRender.Error e) {}",
-             "",
-             "}"
-            ]
-           },
-           "string icon_name" : "document-new",
-           "string label" : "New File",
-           "xtype" : "Button"
-          }
-         ],
-         "xtype" : "Box"
-        }
-       ],
        "xtype" : "Box"
       },
       {
@@ -816,6 +676,180 @@
         ]
        },
        "string label" : "Close / Cancel",
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "items" : [
+        {
+         "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "items" : [
+          {
+           "$ Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
+           "$ xns" : "Gtk",
+           "int margin_end" : 4,
+           "string icon_name" : "folder-new",
+           "xtype" : "Image"
+          },
+          {
+           "$ Gtk.Align halign" : "Gtk.Align.START",
+           "$ xns" : "Gtk",
+           "string label" : "New Project",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "  ",
+         "    // create a new file in project..",
+         "    //Xcls_DialogNewComponent.singleton().show(",
+         "   var  pe =      EditProject.singleton();",
+         "   pe.windowstate = _this.win.windowstate;",
+         "   ",
+         "   pe.el.application = _this.win.el.application;",
+         "    pe.el.set_transient_for( _this.el );",
+         " ",
+         "  ",
+         "    pe.selected.connect((pr) => {",
+         "     \t ",
+         "\t     _this.show(  pr, _this.new_window);",
+         "",
+         "    });",
+         "    ",
+         "      ",
+         "    pe.show();",
+         "   ",
+         "",
+         "}"
+        ]
+       },
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "emblem-system",
+           "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string label" : "Project Properties",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "  // should disable the button really.",
+         "   if (_this.selectedProject == null) {",
+         "\t   return;",
+         "   }",
+         "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject);",
+         " }"
+        ]
+       },
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "  /*",
+         "   var cd = DialogConfirm.singleton();",
+         "     cd.el.set_transient_for(_this.el);",
+         "    cd.el.set_modal(true);",
+         "",
+         "     var project =   _this.windowstate.left_projects.getSelectedProject();",
+         "    if (project == null) {",
+         "        print(\"SKIP - no project\\n\");",
+         "        return;",
+         "    }",
+         "    ",
+         "        ",
+         "     if (Gtk.ResponseType.YES != cd.show(\"Confirm\", ",
+         "        \"Are you sure you want to delete project %s\".printf(project.name))) {",
+         "        return;",
+         "    }",
+         "     ",
+         "",
+         "    // confirm?",
+         "    Project.Project.remove(project);",
+         "    _this.project = null;",
+         "    ",
+         "    _this.windowstate.left_projects.is_loaded =  false;",
+         "    _this.windowstate.left_projects.load();",
+         "    _this.windowstate.clutterfiles.clearFiles();",
+         "*/",
+         "",
+         "}"
+        ]
+       },
+       "string icon_name" : "user-trash",
+       "string label" : "Delete Project",
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "document-new",
+           "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string label" : "New File",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         " () => {",
+         "    // create a new file in project..",
+         "    print(\"add file selected\\n\");",
+         "    ",
+         "    if (_this.selectedProject == null) {",
+         "    \treturn;",
+         "    }",
+         "    try {",
+         "    \tvar f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, \"\");",
+         "     \t_this.win.windowstate.file_details.show( f, _this.el, _this.new_window );",
+         "     } catch (JsRender.Error e) {}",
+         "",
+         "}"
+        ]
+       },
        "xtype" : "Button"
       }
      ],

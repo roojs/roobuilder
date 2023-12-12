@@ -25,6 +25,7 @@ public class EditProject : Object
     public Xcls_ok_btn ok_btn;
 
         // my vars (def)
+    public WindowState? windowstate;
     public signal void canceled ();
     public signal void selected (Project.Project? proj);
 
@@ -35,6 +36,7 @@ public class EditProject : Object
         this.el = new Gtk.Window();
 
         // my vars (dec)
+        this.windowstate = null;
 
         // set gobject values
         this.el.title = "New Project";
@@ -42,12 +44,12 @@ public class EditProject : Object
         this.el.default_width = 600;
         this.el.deletable = true;
         this.el.modal = true;
-        var child_0 = new Xcls_HeaderBar2( _this );
-        child_0.ref();
-        this.el.titlebar = child_0.el;
-        var child_1 = new Xcls_Box3( _this );
+        var child_1 = new Xcls_HeaderBar2( _this );
         child_1.ref();
-        this.el.child = child_1.el;
+        this.el.titlebar = child_1.el;
+        var child_2 = new Xcls_Box3( _this );
+        child_2.ref();
+        this.el.child = child_2.el;
     }
 
     // user defined functions
@@ -77,7 +79,7 @@ public class EditProject : Object
          _this.name_entry.el.hide();     
          _this.ptype_lbl.el.hide();          
          _this.ptype_dd.el.hide();          
-           _this.ok_btn.el.hide();   
+          _this.ok_btn.el.hide();   
         
     }
     public class Xcls_HeaderBar2 : Object
@@ -127,12 +129,12 @@ public class EditProject : Object
             this.el.margin_start = 10;
             this.el.margin_bottom = 10;
             this.el.margin_top = 10;
-            var child_0 = new Xcls_Grid4( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box19( _this );
+            var child_1 = new Xcls_Grid4( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Box19( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -157,36 +159,36 @@ public class EditProject : Object
             this.el.column_spacing = 4;
             this.el.row_spacing = 4;
             this.el.margin_bottom = 20;
-            var child_0 = new Xcls_type_lbl( _this );
-            child_0.ref();
-            this.el.attach(  child_0.el, 0, 0, 1, 1 );
-            var child_1 = new Xcls_type_dd( _this );
+            var child_1 = new Xcls_type_lbl( _this );
             child_1.ref();
-            this.el.attach(  child_1.el, 1, 0, 1, 1 );
-            var child_2 = new Xcls_parent_lbl( _this );
+            this.el.attach( child_1.el, 0, 0, 1, 1 );
+            var child_2 = new Xcls_type_dd( _this );
             child_2.ref();
-            this.el.attach(  child_2.el, 0, 1, 1, 1 );
-            var child_3 = new Xcls_parent_dd( _this );
+            this.el.attach( child_2.el, 1, 0, 1, 1 );
+            var child_3 = new Xcls_parent_lbl( _this );
             child_3.ref();
-            this.el.attach(  child_3.el, 1, 1, 1, 1 );
-            var child_4 = new Xcls_folder_lbl( _this );
+            this.el.attach( child_3.el, 0, 1, 1, 1 );
+            var child_4 = new Xcls_parent_dd( _this );
             child_4.ref();
-            this.el.attach(  child_4.el, 0, 2, 1, 1 );
-            var child_5 = new Xcls_folder_dd( _this );
+            this.el.attach( child_4.el, 1, 1, 1, 1 );
+            var child_5 = new Xcls_folder_lbl( _this );
             child_5.ref();
-            this.el.attach(  child_5.el, 1, 2, 1, 1 );
-            var child_6 = new Xcls_name_lbl( _this );
+            this.el.attach( child_5.el, 0, 2, 1, 1 );
+            var child_6 = new Xcls_folder_dd( _this );
             child_6.ref();
-            this.el.attach(  child_6.el, 0, 3, 1, 1 );
-            var child_7 = new Xcls_name_entry( _this );
+            this.el.attach( child_6.el, 1, 2, 1, 1 );
+            var child_7 = new Xcls_name_lbl( _this );
             child_7.ref();
-            this.el.attach(  child_7.el, 1, 3, 1, 1 );
-            var child_8 = new Xcls_ptype_lbl( _this );
+            this.el.attach( child_7.el, 0, 3, 1, 1 );
+            var child_8 = new Xcls_name_entry( _this );
             child_8.ref();
-            this.el.attach(  child_8.el, 0, 4, 1, 1 );
-            var child_9 = new Xcls_ptype_dd( _this );
+            this.el.attach( child_8.el, 1, 3, 1, 1 );
+            var child_9 = new Xcls_ptype_lbl( _this );
             child_9.ref();
-            this.el.attach(  child_9.el, 1, 4, 1, 1 );
+            this.el.attach( child_9.el, 0, 4, 1, 1 );
+            var child_10 = new Xcls_ptype_dd( _this );
+            child_10.ref();
+            this.el.attach( child_10.el, 1, 4, 1, 1 );
         }
 
         // user defined functions
@@ -228,16 +230,15 @@ public class EditProject : Object
         {
             _this = _owner;
             _this.type_dd = this;
-            this.el = new Gtk.DropDown( null, null );
+            var child_1 = new Xcls_StringList7( _this );
+            child_1.ref();
+            this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
 
             // set gobject values
             this.el.hexpand = true;
             this.el.selected = Gtk.INVALID_LIST_POSITION;
-            var child_0 = new Xcls_StringList7( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
 
             // init method
 
@@ -310,7 +311,7 @@ public class EditProject : Object
         public Xcls_StringList7(EditProject _owner )
         {
             _this = _owner;
-            this.el = new Gtk.StringList( {  "New Folder", "Existing Folder", "Checkout from git" } );
+            this.el = new Gtk.StringList( {  "New Folder", "Existing Folder" /*,  "Checkout from git"  */ } );
 
             // my vars (dec)
 
@@ -359,15 +360,14 @@ public class EditProject : Object
         {
             _this = _owner;
             _this.parent_dd = this;
-            this.el = new Gtk.DropDown( null, null );
+            var child_1 = new Xcls_StringList10( _this );
+            child_1.ref();
+            this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_StringList10( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
 
             //listeners
             this.el.notify["selected"].connect( ( ) => {
@@ -528,15 +528,14 @@ public class EditProject : Object
         {
             _this = _owner;
             _this.folder_dd = this;
-            this.el = new Gtk.DropDown( null, null );
+            var child_1 = new Xcls_StringList13( _this );
+            child_1.ref();
+            this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_StringList13( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
         }
 
         // user defined functions
@@ -702,15 +701,14 @@ public class EditProject : Object
         {
             _this = _owner;
             _this.ptype_dd = this;
-            this.el = new Gtk.DropDown( null, null );
+            var child_1 = new Xcls_StringList18( _this );
+            child_1.ref();
+            this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_StringList18( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
 
             //listeners
             this.el.notify["selected"].connect( ( ) => {
@@ -743,7 +741,7 @@ public class EditProject : Object
         public Xcls_StringList18(EditProject _owner )
         {
             _this = _owner;
-            this.el = new Gtk.StringList( { "Roo", "Gtk", "WrappedGtk", "Flutter" } );
+            this.el = new Gtk.StringList( { "Roo", "Gtk" /*, "WrappedGtk", "Flutter" */ } );
 
             // my vars (dec)
 
@@ -774,15 +772,15 @@ public class EditProject : Object
             // set gobject values
             this.el.halign = Gtk.Align.FILL;
             this.el.hexpand = true;
-            var child_0 = new Xcls_Button20( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Label21( _this );
+            var child_1 = new Xcls_Button20( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_ok_btn( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Label21( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_ok_btn( _this );
+            child_3.ref();
+            this.el.append( child_3.el );
         }
 
         // user defined functions
@@ -877,7 +875,8 @@ public class EditProject : Object
                     return;
                 }
                var fn = _this.parent_dd.getValue();
-               
+               var is_existing = false;
+               var is_new_folder = false;
                switch (_this.type_dd.getValue()) {
             	   	case "Existing Folder":
             		   	if (_this.folder_dd.getValue().length < 1) {
@@ -885,6 +884,7 @@ public class EditProject : Object
             				return;
             			}
             			fn += "/" + _this.folder_dd.getValue();
+            			is_existing = true;
             			break;
             	   	
             	   	case "New Folder":
@@ -904,6 +904,7 @@ public class EditProject : Object
             			} catch (Error e) {
             				GLib.error("Failed to make directory %s", fn);
             			} 
+            			is_new_folder = true;
             			break;
             			
             	   	default:
@@ -922,9 +923,18 @@ public class EditProject : Object
                 GLib.debug("add %s\n" , fn);
                 try {
             		var project = Project.Project.factory(_this.ptype_dd.getValue(), fn);
+            		if (is_new_folder) {	
+            			project.initialize();
+            			
+            		}
+            		
             		project.save();
             		 Project.Project.saveProjectList();
-            		_this.selected(project);
+            		_this.selected(project); // this should trigger a load()
+            		if (is_new_folder || is_existing) {
+            	    	 _this.windowstate.projectPopoverShow(_this.el, project);
+                	 }
+            		
             		return;
             	} catch (Error e) {
             		GLib.debug("got error? %s" , e.message);

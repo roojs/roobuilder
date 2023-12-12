@@ -2,6 +2,7 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# WindowState? windowstate" : "null",
    "$ deletable" : true,
    "$ xns" : "Gtk",
    "@ void canceled" : "()",
@@ -56,7 +57,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{  \"New Folder\", \"Existing Folder\", \"Checkout from git\" }",
+           "strings" : "{  \"New Folder\", \"Existing Folder\" /*,  \"Checkout from git\"  */ }",
            "xtype" : "StringList"
           }
          ],
@@ -350,7 +351,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{ \"Roo\", \"Gtk\", \"WrappedGtk\", \"Flutter\" }",
+           "strings" : "{ \"Roo\", \"Gtk\" /*, \"WrappedGtk\", \"Flutter\" */ }",
            "xtype" : "StringList"
           }
          ],
@@ -429,7 +430,8 @@
            "        return;",
            "    }",
            "   var fn = _this.parent_dd.getValue();",
-           "   ",
+           "   var is_existing = false;",
+           "   var is_new_folder = false;",
            "   switch (_this.type_dd.getValue()) {",
            "\t   \tcase \"Existing Folder\":",
            "\t\t   \tif (_this.folder_dd.getValue().length < 1) {",
@@ -437,6 +439,7 @@
            "\t\t\t\treturn;",
            "\t\t\t}",
            "\t\t\tfn += \"/\" + _this.folder_dd.getValue();",
+           "\t\t\tis_existing = true;",
            "\t\t\tbreak;",
            "\t   \t",
            "\t   \tcase \"New Folder\":",
@@ -456,6 +459,7 @@
            "\t\t\t} catch (Error e) {",
            "\t\t\t\tGLib.error(\"Failed to make directory %s\", fn);",
            "\t\t\t} ",
+           "\t\t\tis_new_folder = true;",
            "\t\t\tbreak;",
            "\t\t\t",
            "\t   \tdefault:",
@@ -474,9 +478,18 @@
            "    GLib.debug(\"add %s\\n\" , fn);",
            "    try {",
            "\t\tvar project = Project.Project.factory(_this.ptype_dd.getValue(), fn);",
+           "\t\tif (is_new_folder) {\t",
+           "\t\t\tproject.initialize();",
+           "\t\t\t",
+           "\t\t}",
+           "\t\t",
            "\t\tproject.save();",
            "\t\t Project.Project.saveProjectList();",
-           "\t\t_this.selected(project);",
+           "\t\t_this.selected(project); // this should trigger a load()",
+           "\t\tif (is_new_folder || is_existing) {",
+           "\t    \t _this.windowstate.projectPopoverShow(_this.el, project);",
+           "    \t }",
+           "\t\t",
            "\t\treturn;",
            "\t} catch (Error e) {",
            "\t\tGLib.debug(\"got error? %s\" , e.message);",
@@ -510,7 +523,7 @@
     "     _this.name_entry.el.hide();     ",
     "     _this.ptype_lbl.el.hide();          ",
     "     _this.ptype_dd.el.hide();          ",
-    "       _this.ok_btn.el.hide();   ",
+    "      _this.ok_btn.el.hide();   ",
     "    ",
     "}"
    ],

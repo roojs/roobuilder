@@ -219,8 +219,6 @@
            "    // this.get('/LeftPanel.model').changed(  str , false);",
            "    return ;",
            "}",
-           "",
-           " ",
            ""
           ]
          },

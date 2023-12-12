@@ -540,6 +540,99 @@ namespace Project
 			
 		}	
 		*/
+		public override void initialize()
+		{
+			string[] dirs = {
+				"src",
+				"src/ui"
+				// ?? docs ?
+				//   
+			};
+			
+			
+			string[] vapis = {
+			  	"gtk4",
+				"gee-0.8",
+				"gio-2.0",
+				 
+				"glib-2.0",
+				"gobject-2.0",
+				 
+				// "json-glib-1.0",
+				 
+				"libadwaita-1",
+				//"libxml-2.0",
+				"posix"
+				 
+ 
+			};
+			for(var i = 0;  i < dirs.length; i++) {
+				this.makeProjectSubdir( dirs[i]);
+			}
+			for(var i = 0;  i < vapis.length; i++) {
+				this.packages.add(vapis[i]);
+			
+			}
+			// create/// some dummy files?
+			// application
+			
+			this.makeMain();
+		//	this.makeApplication();
+		//	this.makeWindow();
+			 
+			// rescan... not needed as it get's selected after initialization.
+			
+			
+			
+		}
+		void makeProjectSubdir(string name)
+		{
+			var dir = File.new_for_path(this.path + "/" + name);
+			try {
+				dir.make_directory();	
+			} catch (Error e) {
+				GLib.error("Failed to make directory %s", this.path + "/" + name);
+			} 
+		}
+		
+		void makeTemplatedFile(string name, string[] str, string replace) 
+		{
+			var o = "";
+			for(var i=0;i< str.length;i++) {
+				o += str[i].replace("%s", replace) + "\n";
+			}
+			var f = GLib.File.new_for_path(this.path + "/" + name);
+			var data_out = new GLib.DataOutputStream(
+                                          f.replace(null, false, GLib.FileCreateFlags.NONE, null)
+         	       );
+			data_out.put_string(o, null);
+			data_out.close(null);
+			
+		
+		} 
+		
+		void makeMain()
+		{
+			string[] str = {
+				"int main (string[] args) {",
+				"	var app = new  %sApplication(  args);",
+				"	Gtk.init ();",
+		 		"	GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR ); ",
+				"	app.activate.connect(() => {",
+				"		var w = new Xcls_MainWindow();",
+				"		w.ref();",
+				"	 	w.show();",
+				"	});",
+				"	var ret = app.run(args);",
+				"	return ret; ",
+				"}"
+			};
+			this.makeTemplatedFile("src/Main.vala", str, this.name); // fixme name needs to be code friendly!
+		}
+		
+		
+			
+		
  public override void   initDatabase()
     {
          // nOOP

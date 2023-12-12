@@ -77,6 +77,11 @@ public class Project.Roo : Project {
 		//obj.set_string_member("DBUSERNAME", this.DBUSERNAME);			
 		//obj.set_string_member("DBPASSWORD", this.DBPASSWORD);
 	}
+	
+	public override void initialize() {
+		// ?? what kind of files can we set up a project ?
+	}
+	
 
 }
  
