@@ -516,6 +516,8 @@
                      "\t\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
                      "\t\tvar jr = (JsRender.JsRender) lr.get_item();",
                      "\t\tjr.compile_group_selected = btn.active;",
+                     "\t\t",
+                     "\t\t",
                      "\t});",
                      "}",
                      ""
@@ -525,66 +527,6 @@
                   }
                  ],
                  "string title" : "use",
-                 "xtype" : "ColumnViewColumn"
-                },
-                {
-                 "$ xns" : "Gtk",
-                 "* pack" : "append_column",
-                 "items" : [
-                  {
-                   "$ xns" : "Gtk",
-                   "* prop" : "factory",
-                   "listeners" : {
-                    "bind" : [
-                     "(listitem) => {",
-                     "\t //GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
-                     "\t",
-                     "\t",
-                     "\t",
-                     "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
-                     "\tvar btn = (Gtk.CheckButton)  ((Gtk.ListItem)listitem).get_child();",
-                     "\t  ",
-                     " ",
-                     "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
-                     "\tvar jr = (JsRender.JsRender) lr.get_item();",
-                     "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
-                     "",
-                     "\t",
-                     "\tif (jr.xtype != \"Dir\") {",
-                     "\t\tbtn.hide();",
-                     "\t\treturn;",
-                     "\t}",
-                     " ",
-                     " \tbtn.show();",
-                     " \tjr.bind_property(\"compile_group_hidden\",",
-                     "                    btn, \"active\",",
-                     "                   GLib.BindingFlags.SYNC_CREATE); ",
-                     " \t// bind image...",
-                     " \t",
-                     "}"
-                    ],
-                    "setup" : [
-                     "",
-                     "(listitem) => {",
-                     "",
-                     "\tvar btn = new Gtk.CheckButton();",
-                     " ",
-                     "\t((Gtk.ListItem)listitem).set_child(btn);",
-                     "\t",
-                     "\tbtn.toggled.connect(() =>  {",
-                     "\t ",
-                     "\t\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
-                     "\t\tvar jr = (JsRender.JsRender) lr.get_item();",
-                     "\t\tjr.compile_group_hidden = btn.active;",
-                     "\t});",
-                     "}",
-                     ""
-                    ]
-                   },
-                   "xtype" : "SignalListItemFactory"
-                  }
-                 ],
-                 "string title" : "hide",
                  "xtype" : "ColumnViewColumn"
                 }
                ],
@@ -618,7 +560,7 @@
                  "       if (_this.project.compilegroups.has_key(\"NEW GROUP\")) {",
                  "        return;",
                  "    }",
-                 "    var cg = new Project.GtkValaSettings(\"NEW GROUP\");",
+                 "    var cg = new Project.GtkValaSettings(_this.project, \"NEW GROUP\");",
                  "    _this.project.compilegroups.set(cg.name, cg);",
                  "     _this.project.loadTargetsIntoStore(_this.target_model.el);",
                  "     //  select it.. ?? should load it??",
@@ -728,7 +670,7 @@
                   "\t _this.selected_target = cg;  ",
                   "\t _this.project.active_cg = cg;",
                   "\t ",
-                  " ",
+                  "",
                   "\tif (cg == null) {",
                   "\t\t ",
                   "\t\t_this.set_vbox.el.hide();\t",
@@ -743,8 +685,9 @@
                   " ",
                   "\t ",
                   "\t GLib.debug(\"loading dirs into project list\");",
+                  "\t cg.loading_ui = true;",
                   "\t _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);",
-                  "\t ",
+                  "\t cg.loading_ui = false;",
                   "\t GLib.debug(\"Set name to %s\", cg.name);",
                   "\t ",
                   " \t_this.build_name.el.buffer.set_text(cg.name.data);",

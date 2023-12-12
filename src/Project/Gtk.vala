@@ -41,8 +41,12 @@ namespace Project
 		
 	     public string compile_flags = ""; // generic to all.	
 		public Gee.ArrayList<string> packages; // list of packages?? some might be genericly named?	 
+		 
+		public Gee.ArrayList<string> hidden; // list of dirs to be hidden from display...
 		
 		public GtkValaSettings? active_cg = null;
+		
+		 
 		
 		public Gtk(string path) {
 		  
@@ -60,6 +64,7 @@ namespace Project
 	  		//var gid = "project-gtk-%d".printf(gtk_id++);
 	  		//this.id = gid;
 	  		this.packages = new Gee.ArrayList<string>();
+	  		this.hidden = new Gee.ArrayList<string>();
 	  		 
 		
 		}
@@ -83,11 +88,11 @@ namespace Project
 			 	 return;
 			 }
 			
-			
+			this.hidden = this.readArray(obj.get_array_member("hidden"));
 			var ar = obj.get_array_member("compilegroups");
 			for(var i= 0;i<ar.get_length();i++) {
 				var el = ar.get_object_element(i);
-				var vs = new GtkValaSettings.from_json(el);
+				var vs = new GtkValaSettings.from_json(this,el);
                 if (vs == null) {
                     print("problem loading json file");
                     continue;
@@ -114,7 +119,11 @@ namespace Project
 				par.add_string_element(p);
 			}
 			obj.set_array_member("packages", par);
-			
+			var hi = new Json.Array();
+			foreach(var p in this.hidden) {
+				hi.add_string_element(p);
+			}
+			obj.set_array_member("hidden", hi);
 			
 			
 		}

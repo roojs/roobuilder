@@ -61,15 +61,15 @@ public class Editor : Object
         this.el.homogeneous = false;
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_1 = new Xcls_Box2( _this );
+        var child_0 = new Xcls_Box2( _this );
+        child_0.ref();
+        this.el.append (  child_0.el  );
+        var child_1 = new Xcls_RightEditor( _this );
         child_1.ref();
-        this.el.append ( child_1.el  );
-        var child_2 = new Xcls_RightEditor( _this );
+        this.el.append (  child_1.el  );
+        var child_2 = new Xcls_Box11( _this );
         child_2.ref();
-        this.el.append ( child_2.el  );
-        var child_3 = new Xcls_Box11( _this );
-        child_3.ref();
-        this.el.append ( child_3.el  );
+        this.el.append (  child_2.el  );
     }
 
     // user defined functions
@@ -245,18 +245,18 @@ public class Editor : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            var child_1 = new Xcls_save_button( _this );
+            var child_0 = new Xcls_save_button( _this );
+            child_0.ref();
+            this.el.append (  child_0.el  );
+            var child_1 = new Xcls_Label4( _this );
             child_1.ref();
-            this.el.append ( child_1.el  );
-            var child_2 = new Xcls_Label4( _this );
+            this.el.append (  child_1.el  );
+            var child_2 = new Xcls_Scale5( _this );
             child_2.ref();
-            this.el.append ( child_2.el  );
-            var child_3 = new Xcls_Scale5( _this );
+            this.el.append (  child_2.el  );
+            var child_3 = new Xcls_close_btn( _this );
             child_3.ref();
-            this.el.append ( child_3.el  );
-            var child_4 = new Xcls_close_btn( _this );
-            child_4.ref();
-            this.el.append ( child_4.el  );
+            this.el.append (  child_3.el  );
         }
 
         // user defined functions
@@ -413,12 +413,12 @@ public class Editor : Object
 
             // set gobject values
             this.el.vexpand = true;
-            var child_1 = new Xcls_view( _this );
+            var child_0 = new Xcls_view( _this );
+            child_0.ref();
+            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_EventControllerKey10( _this );
             child_1.ref();
-            this.el.set_child ( child_1.el  );
-            var child_2 = new Xcls_EventControllerKey10( _this );
-            child_2.ref();
-            this.el.add_controller ( child_2.el  );
+            this.el.add_controller (  child_1.el  );
 
             // init method
 
@@ -455,9 +455,9 @@ public class Editor : Object
             this.el.show_line_numbers = true;
             this.el.tab_width = 4;
             this.el.highlight_current_line = true;
-            var child_1 = new Xcls_buffer( _this );
-            child_1.ref();
-            this.el.set_buffer ( child_1.el  );
+            var child_0 = new Xcls_buffer( _this );
+            child_0.ref();
+            this.el.set_buffer (  child_0.el  );
 
             // init method
 
@@ -592,6 +592,7 @@ public class Editor : Object
             this.check_running = false;
 
             // set gobject values
+            this.el.enable_undo = true;
 
             //listeners
             this.el.changed.connect( () => {
@@ -706,13 +707,13 @@ public class Editor : Object
             return true; // at present allow saving - even if it's invalid..
         }
         public bool highlightErrorsJson (string type, Json.Object obj) {
-              Gtk.TextIter start;
-             Gtk.TextIter end;     
-                this.el.get_bounds (out start, out end);
-                
-                this.el.remove_source_marks (start, end, type);
-                         
-             
+        	Gtk.TextIter start;
+        	Gtk.TextIter end;     
+        	this.el.get_bounds (out start, out end);
+        
+        	this.el.remove_source_marks (start, end, type);
+        		 
+        
              // we should highlight other types of errors..
             
             if (!obj.has_member(type)) {
@@ -909,21 +910,21 @@ public class Editor : Object
             // set gobject values
             this.el.homogeneous = false;
             this.el.vexpand = false;
-            var child_1 = new Xcls_search_entry( _this );
+            var child_0 = new Xcls_search_entry( _this );
+            child_0.ref();
+            this.el.append (  child_0.el  );
+            var child_1 = new Xcls_Box14( _this );
             child_1.ref();
-            this.el.append ( child_1.el  );
-            var child_2 = new Xcls_Box14( _this );
+            this.el.append (  child_1.el  );
+            var child_2 = new Xcls_nextBtn( _this );
             child_2.ref();
-            this.el.append ( child_2.el  );
-            var child_3 = new Xcls_nextBtn( _this );
+            this.el.append (  child_2.el  );
+            var child_3 = new Xcls_backBtn( _this );
             child_3.ref();
-            this.el.append ( child_3.el  );
-            var child_4 = new Xcls_backBtn( _this );
+            this.el.append (  child_3.el  );
+            var child_4 = new Xcls_MenuButton18( _this );
             child_4.ref();
-            this.el.append ( child_4.el  );
-            var child_5 = new Xcls_MenuButton18( _this );
-            child_5.ref();
-            this.el.append ( child_5.el  );
+            this.el.append (  child_4.el  );
         }
 
         // user defined functions
@@ -952,9 +953,9 @@ public class Editor : Object
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
             this.el.search_delay = 3;
-            var child_1 = new Xcls_EventControllerKey13( _this );
-            child_1.ref();
-            this.el.add_controller(  child_1.el );
+            var child_0 = new Xcls_EventControllerKey13( _this );
+            child_0.ref();
+            this.el.add_controller(  child_0.el );
 
             // init method
 
@@ -1074,9 +1075,9 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_1 = new Xcls_search_results( _this );
-            child_1.ref();
-            this.el.append ( child_1.el  );
+            var child_0 = new Xcls_search_results( _this );
+            child_0.ref();
+            this.el.append (  child_0.el  );
         }
 
         // user defined functions
@@ -1235,9 +1236,9 @@ public class Editor : Object
             // set gobject values
             this.el.icon_name = "emblem-system";
             this.el.label = "Settings";
-            var child_1 = new Xcls_search_settings( _this );
-            child_1.ref();
-            this.el.popover = child_1.el;
+            var child_0 = new Xcls_search_settings( _this );
+            child_0.ref();
+            this.el.popover = child_0.el;
 
             // init method
 
@@ -1271,9 +1272,9 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_1 = new Xcls_Box20( _this );
-            child_1.ref();
-            this.el.child = child_1.el;
+            var child_0 = new Xcls_Box20( _this );
+            child_0.ref();
+            this.el.child = child_0.el;
         }
 
         // user defined functions
@@ -1295,15 +1296,15 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_1 = new Xcls_case_sensitive( _this );
+            var child_0 = new Xcls_case_sensitive( _this );
+            child_0.ref();
+            this.el.append(  child_0.el );
+            var child_1 = new Xcls_regex( _this );
             child_1.ref();
-            this.el.append( child_1.el );
-            var child_2 = new Xcls_regex( _this );
+            this.el.append(  child_1.el );
+            var child_2 = new Xcls_multiline( _this );
             child_2.ref();
-            this.el.append( child_2.el );
-            var child_3 = new Xcls_multiline( _this );
-            child_3.ref();
-            this.el.append( child_3.el );
+            this.el.append(  child_2.el );
         }
 
         // user defined functions

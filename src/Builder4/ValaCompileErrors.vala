@@ -85,8 +85,7 @@ public class Xcls_ValaCompileErrors : Object
        	//if (expand != null) {
         //	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
     //	}
-       
-             
+        
      //   this.hpane.el.set_position( 0);
     }
     public class Xcls_compile_view : Object

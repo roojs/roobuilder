@@ -5,17 +5,19 @@ namespace Project
 		public string name { get; set; }
  
 		
-
+		Gtk project;
 
 		public Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
 		public string target_bin;
 
 		public string execute_args;
 		
+		public bool loading_ui = true;
 		
-		public GtkValaSettings(string name) 
+		public GtkValaSettings(Gtk project, string name) 
 		{
 			this.name = name;
+			this.project = project;
  
 			this.target_bin = "";
 
@@ -25,9 +27,9 @@ namespace Project
 		}
 		
 		
-		public GtkValaSettings.from_json(Json.Object el) {
+		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
 
-			
+			this.project = project;
 			this.name = el.get_string_member("name");
  
 			if ( el.has_member("execute_args")) {
@@ -37,26 +39,14 @@ namespace Project
 			}
 			this.target_bin = el.get_string_member("target_bin");
 			// sources and packages.
-			this.sources = this.readArray(el.get_array_member("sources"));
-			
+			this.sources = this.project.readArray(el.get_array_member("sources")) ;
+
 
 		}
 		
 		// why not array of strings?
 		
-		public Gee.ArrayList<string> readArray(Json.Array ar) 
-		{
-			var ret = new Gee.ArrayList<string>();
-			for(var i =0; i< ar.get_length(); i++) {
-				var add = ar.get_string_element(i);
-				if (ret.contains(add)) {
-					continue;
-				}
-			
-				ret.add(add);
-			}
-			return ret;
-		}
+		
 		
 		public Json.Object toJson()
 		{
@@ -65,6 +55,7 @@ namespace Project
 			ret.set_string_member("execute_args", this.execute_args);
 			ret.set_string_member("target_bin", this.target_bin);
 			ret.set_array_member("sources", this.writeArray(this.sources));
+			ret.set_array_member("hidden", this.writeArray(this.sources));
 
 			return ret;
 		}

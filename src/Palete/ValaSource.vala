@@ -197,6 +197,7 @@ namespace Palete {
 			}
  			
  			this.file = file;
+			var pr = (Project.Gtk)(file.project);
 			this.line_offset = 0;
 			  
 			string[] args = {};
@@ -204,8 +205,12 @@ namespace Palete {
 			args += "--project";
 			args += this.file.project.path;
 			args += "--target";
-			args += this.file.build_module;
-			 
+			if (this.file.build_module.length > 0 ) {
+    		    args += this.file.build_module;
+			} else {
+			    args += pr.firstBuildModule();
+			}
+			  
 			 
 			
 			

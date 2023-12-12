@@ -71,7 +71,7 @@ namespace Project {
 
 		public Palete.Palete palete;
 		 
-		bool is_scanned; 
+		bool is_scanned = false; 
 		
 		 
 		
@@ -471,7 +471,7 @@ namespace Project {
 			if (this.is_scanned) {
 				return;
 			}
- 
+ 			GLib.debug("load is_scanned = false");
 
 			var pa = new Json.Parser();
 			try { 
@@ -507,7 +507,7 @@ namespace Project {
 			 
 			this.initDatabase();
 			this.is_scanned = true; // loaded.. dont need to do it again..
-			 
+			 GLib.debug("load is_scanned = true");
 			
 		}
 		
@@ -808,9 +808,9 @@ namespace Project {
 		public void loadFilesIntoStore(GLib.ListStore ls) 
 		{
 			ls.remove_all();
-			GLib.debug("Load files (into grid) %s", this.name);			
+			//GLib.debug("Load files (into grid) %s", this.name);			
 			foreach(var f in this.files.values) {
-				GLib.debug("Add file %s", f.name);
+			//	GLib.debug("Add file %s", f.name);
 				ls.append(f);
 			}
 		}
@@ -818,7 +818,7 @@ namespace Project {
 		{
 			ls.remove_all();
 			foreach(var f in this.sub_paths) {
-				GLib.debug("Add %s", f.name);
+				//GLib.debug("Add %s", f.name);
 				ls.append(f);
 			}
 		}

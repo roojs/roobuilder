@@ -76,7 +76,7 @@ namespace JsRender {
 			this.project = project;
 			this.hasParent = false;
 			this.parent = "";
-			this.tree = null;childfiles
+			this.tree = null; 
 			this.title = "";
 			this.region = "";
 			this.permname = "";
@@ -463,7 +463,7 @@ namespace JsRender {
 					// show ticked if all ticked..
 					var ticked = true;
 					for(var i = 0; i < this.childfiles.n_items; i++ ) {
-						var f = (JsRender.JsRender) this.childfiles.get(i);
+						var f = (JsRender) this.childfiles.get_item(i);
 						if (!f.compile_group_selected) {
 							ticked = false;
 							break;
@@ -473,7 +473,10 @@ namespace JsRender {
 				
 				
 				}
-				
+				if (gproj.active_cg.sources == null) {
+					GLib.debug("compile_group_selected - sources is null? ");
+					return false;
+				}
 
 				return gproj.active_cg.sources.contains(this.relpath);
 				
@@ -485,11 +488,15 @@ namespace JsRender {
 				if (gproj.active_cg == null) {
 					return;
 				}
+				if (gproj.active_cg.loading_ui) {
+					return;
+				}
 				
 				if (this.xtype == "Dir") {
 					for(var i = 0; i < this.childfiles.n_items; i++ ) {
-						var f = (JsRender.JsRender) this.childfiles.get(i);
+						var f = (JsRender) this.childfiles.get_item(i);
 						f.compile_group_selected = value;
+ 
 					}
 					return;
 				 
@@ -504,6 +511,7 @@ namespace JsRender {
 					return;
 				}
 				if (!gproj.active_cg.sources.contains(this.relpath)) { 
+					GLib.debug("ADD %s", this.relpath);
 					gproj.active_cg.sources.add(this.relpath);
 				}
 			
@@ -514,11 +522,8 @@ namespace JsRender {
 			get {
 				var gproj = (Project.Gtk) this.project;
 				
-				if (gproj.active_cg == null) {
-					return false;
-				}
-
-				return gproj.active_cg.hidden.contains(this.relpath);
+				
+				return gproj.hidden.contains(this.relpath);
 				
 			}
 			set {
@@ -528,15 +533,24 @@ namespace JsRender {
 				if (gproj.active_cg == null) {
 					return;
 				}
-				 
+				if (gproj.active_cg.loading_ui) {
+					return;
+				} 
 				if (value == false) {
 					GLib.debug("REMOVE %s", this.relpath);
 					
-					gproj.active_cg.hidden.remove(this.relpath);
+					gproj.hidden.remove(this.relpath);
 					return;
 				}
-				if (!gproj.active_cg.hidden.contains(this.relpath)) { 
-					gproj.active_cg.hidden.add(this.relpath);
+				if (!gproj.hidden.contains(this.relpath)) { 
+					gproj.hidden.add(this.relpath);
+					// hiding a project will auto clear it.
+					for(var i = 0; i < this.childfiles.n_items; i++ ) {
+						var f = (JsRender) this.childfiles.get_item(i);
+						f.compile_group_selected = false;
+					}
+					return;
+					
 				}
 			
 			}

@@ -12,7 +12,7 @@ public class Project.Roo : Project {
 	public string html_gen = "";
 	public string DBTYPE = "";
 	public string DBNAME = "";
-	public string DBUSERNAME = "";
+	public string DBUSERNAME = "";  // should be stored in settings somehwere - not in roo file!
 	public string DBPASSWORD = "";	 
     public Roo(string path) {
 
@@ -55,12 +55,12 @@ public class Project.Roo : Project {
 		if (obj.has_member("DBNAME")) {
 				this.DBNAME  = obj.get_string_member("DBNAME"); 
 		}
-		if (obj.has_member("DBUSERNAME")) {
-				this.DBUSERNAME  = obj.get_string_member("DBUSERNAME"); 
-		}
-		if (obj.has_member("DBPASSWORD")) {
-				this.DBPASSWORD  = obj.get_string_member("DBPASSWORD"); 
-		}
+		//if (obj.has_member("DBUSERNAME")) {
+		//		this.DBUSERNAME  = obj.get_string_member("DBUSERNAME"); 
+		//}
+		//if (obj.has_member("DBPASSWORD")) {
+		//		this.DBPASSWORD  = obj.get_string_member("DBPASSWORD"); 
+		//}
 		
 	}
 	public override void saveJson(Json.Object obj)
@@ -74,8 +74,8 @@ public class Project.Roo : Project {
 		obj.set_string_member("html_gen", this.html_gen);
 		obj.set_string_member("DBTYPE", this.DBTYPE);
 		obj.set_string_member("DBNAME", this.DBNAME);
-		obj.set_string_member("DBUSERNAME", this.DBUSERNAME);			
-		obj.set_string_member("DBPASSWORD", this.DBPASSWORD);
+		//obj.set_string_member("DBUSERNAME", this.DBUSERNAME);			
+		//obj.set_string_member("DBPASSWORD", this.DBPASSWORD);
 	}
 
 }
