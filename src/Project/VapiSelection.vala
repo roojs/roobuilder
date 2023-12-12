@@ -22,11 +22,13 @@ public class Project.VapiSelection : Object
 			if (value) {
 				if (!vapi_list.contains(this.name)) {
 					this.vapi_list.add(this.name);
+					this.sortkey = "";
 					 
 				}
 			} else {
 				if (vapi_list.contains(this.name)) {
 					this.vapi_list.remove(this.name);
+					this.sortkey = "";
 					 
 				}
 			}
