@@ -582,10 +582,9 @@ public class JsRender.NodeToVala : Object {
 				var propnode = this.node.findProp(n);
 				if (propnode != null) {
 					// assume it's ok..
-
 					args += this.addPropSet(propnode) ; 
+					this.ignoreWrapped(n);
 					
-					 
 					continue;
 				}
 					
@@ -797,7 +796,7 @@ public class JsRender.NodeToVala : Object {
 			var childname = this.addPropSet(child) ; 
 			
 			if (child.has("* prop")) {
-			if (this.shouldIgnoreWrapped(node.name)
+			 
 			
 				// fixme special packing!??!?!
 				if (child.get_prop("* prop").val.contains("[]")) {
@@ -810,7 +809,7 @@ public class JsRender.NodeToVala : Object {
 					continue;
 				}
 				
-			  
+			  	this.ignoreWrapped(child.get_prop("* prop").val);
 				
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = " + childname + ".el;");
 				continue;
@@ -849,7 +848,7 @@ public class JsRender.NodeToVala : Object {
 		var childname = "child_" + "%d".printf(this.child_count++);	
 	 		
 		this.addLine(this.ipad + "var " + childname + " = new " + child.xvala_xcls + "( _this " + xargs + ");" );
-		
+		 
 		// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
 		if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 			this.addLine(this.ipad + childname +".ref();"); // we need to reference increase unnamed children...
