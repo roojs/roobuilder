@@ -880,7 +880,7 @@ public class JsRender.NodeToVala : Object {
 			}
 			
 			var pack = packing[0];
-			this.addLine(this.ipad + "this.el." + pack.strip() + " (  child_" + "%d".printf(i) + ".el " +
+			this.addLine(this.ipad + "this.el." + pack.strip() + " ( " + childname + ".el " +
 				   (packing.length > 1 ? 
 						(", " + string.joinv(",", packing).substring(pack.length+1))
 					:
@@ -894,7 +894,7 @@ public class JsRender.NodeToVala : Object {
 		}
 		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
-		    this.addLine(this.ipad + "this.el.add_controller(  child_%d.el );".printf(i) );
+		    this.addLine(this.ipad + "this.el.add_controller(  %s.el );".printf(childname) );
 		    return;
 		}
 		
