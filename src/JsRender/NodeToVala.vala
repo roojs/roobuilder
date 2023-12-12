@@ -964,12 +964,12 @@ public class JsRender.NodeToVala : Object {
 					if (child.has("* response_id")) { 
 						resp_id = int.parse(child.get_prop("* response_id").val);
 					}
-					this.addLine(this.ipad + "this.el.add_action_widget( child_%d.el, %d);".printf(i,resp_id) );
+					this.addLine(this.ipad + "this.el.add_action_widget( %s.el, %d);".printf(childname,resp_id) );
 					return;
 				}
 			
 			 	
-				this.addLine(this.ipad + "this.el.get_content_area().add( child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.get_content_area().add( " + childname + ".el );");
 				return;
 
 			case "Gtk.Paned":
@@ -977,7 +977,7 @@ public class JsRender.NodeToVala : Object {
 				switch(this.pane_number) {
 					case 1:
 					case 2:					
-						this.addLine(this.ipad + "this.el.pack%d( child_%d".printf(this.pane_number,i) + ".el );");
+						this.addLine(this.ipad + "this.el.pack%d( %s".printf(this.pane_number,childname) + ".el );");
 						return;
 					default:
 						// do nothing
