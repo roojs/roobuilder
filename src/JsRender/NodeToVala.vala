@@ -986,12 +986,12 @@ public class JsRender.NodeToVala : Object {
 				return;
 				
 			case "Gtk.Menu":
-				this.addLine(this.ipad + "this.el.append(  child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.append( "+ childname + ".el );");
 				return;
 			
 			default:
 			    // gtk4 uses append!!!! - gtk3 - uses add..
-				this.addLine(this.ipad + "this.el.append(  child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.append( "+ childname + ".el );");
 				return;
 		
 		
