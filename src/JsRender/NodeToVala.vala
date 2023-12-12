@@ -162,7 +162,7 @@ public class JsRender.NodeToVala : Object {
 		
 
 	}
-	
+	int child_count = 1; // used to number the children.
 	public string munge ( )
 	{
 		//return this.mungeToString(this.node);
