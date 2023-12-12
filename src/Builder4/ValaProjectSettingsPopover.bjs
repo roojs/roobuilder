@@ -90,8 +90,12 @@
           },
           {
            "$ xns" : "Gtk",
+           "Gtk.PolicyType hscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
+           "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
+           "bool has_frame" : true,
            "bool hexpand" : true,
            "bool vexpand" : true,
+           "id" : "vapi_scroll",
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -930,10 +934,10 @@
     "\t);",
     "\t   ",
     "    project.loadVapiIntoStore(_this.vapimodel.el);",
-    "         ",
+    "    this.vapi_scroll.el.vadjustment.value  = 0;",
     " ",
     " \tproject.loadTargetsIntoStore(this.target_model.el);",
-    "",
+    "\t",
     " \t_this.target_sel.el.selected = Gtk.INVALID_LIST_POSITION;",
     "\t_this.target_sel.selectTarget(null);",
     "//\tGtk.Allocation rect;",

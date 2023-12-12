@@ -16,6 +16,7 @@ public class ValaProjectSettingsPopover : Object
     public Xcls_label_global label_global;
     public Xcls_label_targets label_targets;
     public Xcls_compile_flags compile_flags;
+    public Xcls_vapi_scroll vapi_scroll;
     public Xcls_vapimodel vapimodel;
     public Xcls_vapi_filter vapi_filter;
     public Xcls_vapi_search vapi_search;
@@ -91,10 +92,10 @@ public class ValaProjectSettingsPopover : Object
     	);
     	   
         project.loadVapiIntoStore(_this.vapimodel.el);
-             
+        this.vapi_scroll.el.vadjustment.value  = 0;
      
      	project.loadTargetsIntoStore(this.target_model.el);
-    
+    	
      	_this.target_sel.el.selected = Gtk.INVALID_LIST_POSITION;
     	_this.target_sel.selectTarget(null);
     //	Gtk.Allocation rect;
@@ -319,7 +320,7 @@ public class ValaProjectSettingsPopover : Object
             var child_2 = new Xcls_compile_flags( _this );
             child_2.ref();
             this.el.append( child_2.el );
-            var child_3 = new Xcls_ScrolledWindow12( _this );
+            var child_3 = new Xcls_vapi_scroll( _this );
             child_3.ref();
             this.el.append( child_3.el );
             var child_4 = new Xcls_vapi_search( _this );
@@ -386,7 +387,7 @@ public class ValaProjectSettingsPopover : Object
         // user defined functions
     }
 
-    public class Xcls_ScrolledWindow12 : Object
+    public class Xcls_vapi_scroll : Object
     {
         public Gtk.ScrolledWindow el;
         private ValaProjectSettingsPopover  _this;
@@ -395,16 +396,20 @@ public class ValaProjectSettingsPopover : Object
             // my vars (def)
 
         // ctor
-        public Xcls_ScrolledWindow12(ValaProjectSettingsPopover _owner )
+        public Xcls_vapi_scroll(ValaProjectSettingsPopover _owner )
         {
             _this = _owner;
+            _this.vapi_scroll = this;
             this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
             // set gobject values
+            this.el.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+            this.el.has_frame = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
+            this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
             var child_1 = new Xcls_ColumnView13( _this );
             child_1.ref();
             this.el.child = child_1.el;
