@@ -225,11 +225,9 @@
                    "",
                    "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
                    "",
+                   "\tbtn.active = vs.selected; ",
                    "\t",
-                   "\t ",
-                   " \tvs.bind_property(\"selected\",",
-                   "                    btn, \"active\",",
-                   "                   GLib.BindingFlags.SYNC_CREATE); ",
+                   "\tvs.btn = btn;",
                    " \t// bind image...",
                    " \t",
                    "}"

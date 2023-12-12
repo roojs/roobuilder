@@ -7,8 +7,6 @@
             "execute_args" : "",
             "target_bin" : "/tmp/builder",
             "sources" : [
-                "src/Application.vala",
-                "src/Main.vala",
                 "src/Builder4/About.bjs",
                 "src/Builder4/DialogConfirm.bjs",
                 "src/Builder4/DialogFiles.bjs",
@@ -84,8 +82,6 @@
                 "src/Palete/ValaSourceCompiler.vala",
                 "src/Palete/ValaSource.vala",
                 "src/Palete/VapiParser.vala",
-                "src/Resources.vala",
-                "src/Spawn.vala",
                 "src/Palete/Javascript.vala",
                 "src/Builder4/WindowLeftTree.bjs",
                 "src/Builder4/PopoverAddProp.bjs",
@@ -151,11 +147,15 @@
                 "src/Project/Project.vala",
                 "src/Project/Gtk.vala",
                 "src/Project/Roo.vala",
-                "src/Project/VapiSelection.vala"
+                "src/Project/VapiSelection.vala",
+                "gitlive/roobuilder/src/Palete/Roo.vala.c",
+                "gitlive/roobuilder/src/Palete/RooDatabase.vala.c",
+                "gitlive/roobuilder/src/Palete/Palete.vala.c",
+                "gitlive/roobuilder/src/Palete/Gtk.vala.c",
+                "gitlive/roobuilder/src/Palete/CompletionProvider.vala.c",
+                "gitlive/roobuilder/src/Palete/CompileError.vala.c"
             ],
             "hidden" : [
-                "src/Application.vala",
-                "src/Main.vala",
                 "src/Builder4/About.bjs",
                 "src/Builder4/DialogConfirm.bjs",
                 "src/Builder4/DialogFiles.bjs",
@@ -231,8 +231,6 @@
                 "src/Palete/ValaSourceCompiler.vala",
                 "src/Palete/ValaSource.vala",
                 "src/Palete/VapiParser.vala",
-                "src/Resources.vala",
-                "src/Spawn.vala",
                 "src/Palete/Javascript.vala",
                 "src/Builder4/WindowLeftTree.bjs",
                 "src/Builder4/PopoverAddProp.bjs",
@@ -298,7 +296,13 @@
                 "src/Project/Project.vala",
                 "src/Project/Gtk.vala",
                 "src/Project/Roo.vala",
-                "src/Project/VapiSelection.vala"
+                "src/Project/VapiSelection.vala",
+                "gitlive/roobuilder/src/Palete/Roo.vala.c",
+                "gitlive/roobuilder/src/Palete/RooDatabase.vala.c",
+                "gitlive/roobuilder/src/Palete/Palete.vala.c",
+                "gitlive/roobuilder/src/Palete/Gtk.vala.c",
+                "gitlive/roobuilder/src/Palete/CompletionProvider.vala.c",
+                "gitlive/roobuilder/src/Palete/CompileError.vala.c"
             ]
         }
     ],

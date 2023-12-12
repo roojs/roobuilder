@@ -782,11 +782,9 @@ public class ValaProjectSettingsPopover : Object
             
             	//GLib.debug("change  %s to %s", lbl.label, np.name);
             
+            	btn.active = vs.selected; 
             	
-            	 
-             	vs.bind_property("selected",
-                                btn, "active",
-                               GLib.BindingFlags.SYNC_CREATE); 
+            	vs.btn = btn;
              	// bind image...
              	
             });

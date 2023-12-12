@@ -9,25 +9,35 @@ public class Project.VapiSelection : Object
 	public string name { get;  set; }
 	public string sortkey {
 		 owned get {
-		 	return (this.selected ? "A" : "Z" ) + "-"+ this.name;
+		 	return (this.vapi_list.contains(this.name)? "A" : "Z" ) + "-"+ this.name;
 	 	}
 	 	set {}
 		
 	}
 	public bool selected {
 		get {
-			return vapi_list.contains(this.name);
+			var res = this.vapi_list.contains(this.name);
+			GLib.debug("vapi %s = %s", this.name, res ? "X" : "");
+			return res;
 		}
 		set {
 			if (value) {
 				if (!vapi_list.contains(this.name)) {
+					GLib.debug("vapi set %s = X", this.name);
 					this.vapi_list.add(this.name);
 					this.sortkey = "";
+					if (this.btn != null) {
+						this.btn.active = true;
+					}
 					 
 				}
 			} else {
 				if (vapi_list.contains(this.name)) {
+					GLib.debug("vapi set %s = .", this.name);
 					this.vapi_list.remove(this.name);
+					if (this.btn != null) {
+						this.btn.active = false;
+					}
 					this.sortkey = "";
 					 
 				}
@@ -35,6 +45,7 @@ public class Project.VapiSelection : Object
 		}
 	}
 	Gee.ArrayList<string> vapi_list;
+	public global::Gtk.CheckButton? btn = null;
 	
 	public VapiSelection( Gee.ArrayList<string> vapi_list, string name)
 	{
