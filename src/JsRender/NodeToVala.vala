@@ -795,8 +795,6 @@ public class JsRender.NodeToVala : Object {
 				}
 			}
 			// create the element..
-			this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
-					"( _this " + xargs + ");" );
 			
 			// this is only needed if it does not have an ID???
 			
@@ -808,10 +806,16 @@ public class JsRender.NodeToVala : Object {
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
 					// columns[] ?
+					this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
+						"( _this " + xargs + ");" );
 					this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
 					continue;
 				}
-				this.addProp
+				
+				this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
+					"( _this " + xargs + ");" );
+			
+ 				this.addPropSet(child) ; 
 				
 				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
 				if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
@@ -824,6 +828,8 @@ public class JsRender.NodeToVala : Object {
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
 				continue;
 			} 
+			this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
+					"( _this " + xargs + ");" );
 			
 			if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
 				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
@@ -848,6 +854,18 @@ public class JsRender.NodeToVala : Object {
 				  
 		}
 	}
+	
+	string addPropSet(Node child, int i) 
+	{
+			this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
+					"( _this " + xargs + ");" );
+			// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
+			if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
+				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
+			} 			
+				
+				
+			
 	
 
 	
