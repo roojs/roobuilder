@@ -654,7 +654,8 @@ public class JsRender.NodeToVala : Object {
 					args += v;
 					continue;
 				}
-				if (this.node.findProp(n)) {
+				var propnode = this.node.findProp(n);
+				if (propnode != null) {
 					// assume it's ok..
 
 					args += this.addPropSet(n) ; 
