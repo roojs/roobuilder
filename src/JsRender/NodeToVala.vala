@@ -643,7 +643,7 @@ public class JsRender.NodeToVala : Object {
 					
 					var v = this.node.get(n);
 
-					if (iter.get().type == "string") {
+					if (param.type == "string") {
 						v = "\"" +  v.escape("") + "\"";
 					}
 					if (v == "TRUE" || v == "FALSE") {
