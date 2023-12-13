@@ -427,7 +427,6 @@
         }
        ],
        "n_columns" : 2,
-       "n_rows" : 8,
        "uint row_spacing" : 2,
        "xtype" : "Grid",
        "| void hideRow" : [
