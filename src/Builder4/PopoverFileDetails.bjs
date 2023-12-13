@@ -25,8 +25,7 @@
      "int margin_top" : 4,
      "items" : [
       {
-       "$ xns" : "Gtk",
-       "* columns" : [
+       "# void showAllRows" : [
         "() {",
         "\tfor (var i = 2; i < 10;i++) {",
         "\t\tvar el = _this.grid.el.get_child_at(0,i);",
@@ -36,6 +35,7 @@
         "    }",
         "}"
        ],
+       "$ xns" : "Gtk",
        "* init" : [
         "{",
         "",
