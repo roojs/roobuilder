@@ -25,16 +25,6 @@
      "int margin_top" : 4,
      "items" : [
       {
-       "# void showAllRows" : [
-        "() {",
-        "\tfor (var i = 2; i < 10;i++) {",
-        "\t\tvar el = _this.grid.el.get_child_at(0,i);",
-        "\t\tel.show();",
-        "\t\tel = _this.grid.el.get_child_at(1,i);",
-        "\t\tel.show();",
-        "    }",
-        "}"
-       ],
        "$ xns" : "Gtk",
        "* columns" : 2,
        "* pack" : "append",
@@ -437,6 +427,16 @@
         "\tel = _this.grid.el.get_child_at(1,row);",
         "\tel.hide();",
         "",
+        "}"
+       ],
+       "| void showAllRows" : [
+        "() {",
+        "\tfor (var i = 2; i < 10;i++) {",
+        "\t\tvar el = _this.grid.el.get_child_at(0,i);",
+        "\t\tel.show();",
+        "\t\tel = _this.grid.el.get_child_at(1,i);",
+        "\t\tel.show();",
+        "    }",
         "}"
        ]
       },

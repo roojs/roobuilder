@@ -215,7 +215,6 @@ public class Xcls_PopoverFileDetails : Object
 
 
             // my vars (def)
-        public void showAllRows;
 
         // ctor
         public Xcls_grid(Xcls_PopoverFileDetails _owner )
@@ -225,14 +224,6 @@ public class Xcls_PopoverFileDetails : Object
             this.el = new Gtk.Grid();
 
             // my vars (dec)
-            this.showAllRows = () {
-	for (var i = 2; i < 10;i++) {
-		var el = _this.grid.el.get_child_at(0,i);
-		el.show();
-		el = _this.grid.el.get_child_at(1,i);
-		el.show();
-    }
-};
 
             // set gobject values
             this.el.margin_end = 4;
@@ -303,6 +294,14 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
+        public void showAllRows () {
+        	for (var i = 2; i < 10;i++) {
+        		var el = _this.grid.el.get_child_at(0,i);
+        		el.show();
+        		el = _this.grid.el.get_child_at(1,i);
+        		el.show();
+            }
+        }
         public void hideRow (int row) 
         {
         	var el = _this.grid.el.get_child_at(0,row);
