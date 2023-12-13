@@ -357,6 +357,11 @@
           }
          ],
          "xtype" : "DropDown",
+         "| string getValue" : [
+          "() {",
+          "",
+          "}"
+         ],
          "| void setValue" : [
           "(string str) {",
           "\tvar m = _this.build_module_model.el;",

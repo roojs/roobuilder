@@ -915,6 +915,9 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
+        public string getValue () {
+        
+        }
         public void setValue (string str) {
         	var m = _this.build_module_model.el;
         	for(var i = 0; i < m.get_n_items(); i++) {
