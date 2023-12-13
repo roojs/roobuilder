@@ -456,6 +456,12 @@ public class Xcls_PopoverFileDetails : Object
 
             //listeners
             this.el.notify["selected"].connect( () => {
+            
+            	var is _bjs = this.getValue().has_prefix("bjs");    
+              
+                // directory is only available for non-bjs 
+                this.showhide(is_bjs);
+            
              });
             this.el.changed.connect( () => {
             	Gtk.TreeIter iter;

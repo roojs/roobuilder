@@ -205,6 +205,12 @@
           ],
           "notify[\"selected\"]" : [
            "() => {",
+           "",
+           "\tvar is _bjs = this.getValue().has_prefix(\"bjs\");    ",
+           "  ",
+           "    // directory is only available for non-bjs ",
+           "    this.showhide(is_bjs);",
+           "",
            " }"
           ]
          },
