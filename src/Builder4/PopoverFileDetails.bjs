@@ -146,7 +146,7 @@
          "xtype" : "DropDown",
          "| string getValue" : [
           "() {",
-          "",
+          "\t",
           "}"
          ],
          "| void setValue" : [

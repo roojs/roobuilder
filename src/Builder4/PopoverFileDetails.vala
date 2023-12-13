@@ -476,7 +476,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
         public string getValue () {
-        
+        	
         }
         public void showhide (bool is_bjs) {
         
