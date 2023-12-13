@@ -342,7 +342,11 @@
            "strings" : "{}",
            "xtype" : "StringList",
            "| void load" : [
-            "(Gee.ArrayList<compilegroups, string val);) {",
+            "( Gee.HashMap<string,GtkValaSettings> compilegroups) {",
+            "",
+            "\tfor(var k in compliegroups) {",
+            "\t\tthis.el.append(k);",
+            "\t}",
             "",
             "}"
            ]

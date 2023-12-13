@@ -948,7 +948,11 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
-        public void load (Gee.ArrayList<compilegroups, string val);) {
+        public void load ( Gee.HashMap<string,GtkValaSettings> compilegroups) {
+        
+        	for(var k in compliegroups) {
+        		this.el.append(k);
+        	}
         
         }
     }
