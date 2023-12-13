@@ -183,6 +183,19 @@ public class JsRender.NodeProp : Object {
 		}
  
 	} // changes to this trigger updates on the tree..
+	
+	public string sort_name {
+		owned get {
+			if (this.add_node == null) {
+				return this.name;
+			}
+			return this.name + " " + this.add_node.fqn();
+		}
+		set {}
+	
+	}
+	
+	
 	public Node? parent; // the parent node.
 
 	

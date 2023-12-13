@@ -539,7 +539,10 @@ public class Editor : Object
            //this.get('/Help').show();
          
           // this.get('/BottomPane').el.set_current_page(0);
+          	GLib.debug("load called - Reset undo buffer");
+          	
             var buf = (GtkSource.Buffer)this.el.get_buffer();
+            buf.begin_irreversible_action();
             buf.set_text(str, str.length);
             buf.end_irreversible_action();
             

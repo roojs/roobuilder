@@ -435,14 +435,18 @@ namespace Palete {
 		}
 		
 		
-		public JsRender.NodeProp toNodeProp( Palete pal)
+		public JsRender.NodeProp toNodeProp( Palete pal, string par_xtype)
 		{
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
 				// when we add properties, they are actually listeners attached to signals
 				// was a listener overrident?? why?
-				var r =new JsRender.NodeProp.listener(this.name,   this.sig);  
+				var r = new JsRender.NodeProp.listener(this.name,   this.sig);  
 				r.propertyof = this.propertyof;
+				if (this.name == "notify" && pal.name == "Gtk") {
+					this.nodePropAddNotify(r, par_xtype, pal);
+				}
+				
 				return r;
 			}
 			
@@ -560,12 +564,19 @@ namespace Palete {
 			
 			
 		}
-		/*
-		//public string fqtype() {
-		//	return Gir.fqtypeLookup(this.type, this.ns);
-			
-			/* return Gir.fqtypeLookup(this.type, this.ns); */
-		//}
+		public void  nodePropAddNotify(JsRender.NodeProp par, string par_xtype, Palete pal)
+		{
+			var els = pal.getPropertiesFor( par_xtype, JsRender.NodePropType.PROP);
+			foreach(var elname in els.keys) {
+				 var add = new JsRender.NodeProp.listener("notify[\"" + elname  +"\"]" ,  "() => {\n }");  
+				add.propertyof = par.propertyof;
+				par.childstore.append( add);
+			}
+		
+		}
+		
+		
+		 
 	}
 	    
 }

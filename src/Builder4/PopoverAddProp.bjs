@@ -18,11 +18,9 @@
     {
      "$ shadow_type" : "Gtk.ShadowType.IN",
      "$ xns" : "Gtk",
-     "* init" : [
-      "    this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-      " "
-     ],
      "* pack" : "set_child",
+     "Gtk.PolicyType hscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
+     "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
      "items" : [
       {
        "$ xns" : "Gtk",
@@ -113,7 +111,7 @@
            "$ xns" : "Gtk",
            "* init" : [
             "{",
-            "\tthis.el.set_sorter(new Gtk.TreeListRowSorter(_this.view.el.sorter));",
+            "\t//this.el.set_sorter(new Gtk.TreeListRowSorter(_this.view.el.sorter));",
             "}",
             ""
            ],
@@ -151,6 +149,27 @@
               "\t ",
               "}"
              ]
+            },
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "sorter",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "sorter",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "expression",
+                 "GLib.Type this_type" : "typeof(JsRender.NodeProp)",
+                 "string property_name" : "sort_name",
+                 "xtype" : "PropertyExpression"
+                }
+               ],
+               "xtype" : "StringSorter"
+              }
+             ],
+             "xtype" : "TreeListRowSorter"
             }
            ],
            "xtype" : "SortListModel",
@@ -247,7 +266,7 @@
              "\tlbl.use_markup = true;",
              "\t",
              "\t",
-             " \tlbl.justify = Gtk.Justification.LEFT;",
+             " \tlbl.halign = Gtk.Align.START;",
              " \tlbl.xalign = 0;",
              "",
              " ",
@@ -303,7 +322,8 @@
              "",
              "\t ",
              "\tvar label = new Gtk.Label(\"\");",
-             "\t ",
+             " \tlabel.halign = Gtk.Align.START;",
+             " \tlabel.xalign = 0;",
              "\t((Gtk.ListItem)listitem).set_child(label);",
              "\t((Gtk.ListItem)listitem).activatable = false;",
              "}",
@@ -355,7 +375,8 @@
              "",
              "\t ",
              "\tvar label = new Gtk.Label(\"\");",
-             "\t ",
+             "\tlabel.halign = Gtk.Align.START;",
+             " \tlabel.xalign = 0;",
              "\t((Gtk.ListItem)listitem).set_child(label);",
              "\t((Gtk.ListItem)listitem).activatable = false;",
              "}",
@@ -491,7 +512,7 @@
     "    while (miter.next()) {",
     "        var p = miter.get_value(); // nodeprop.",
     "          ",
-    "\t\tvar prop = p.toNodeProp(pal);",
+    "\t\tvar prop = p.toNodeProp(pal, xtype);",
     "\t\tif (prop == null) {",
     "\t\t\tcontinue;",
     "\t\t}",

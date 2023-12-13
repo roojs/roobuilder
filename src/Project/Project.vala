@@ -464,6 +464,33 @@ namespace Project {
 			  
 		}
 		
+		// used to check what type a project might be..
+		// for 'new'
+		public static string peekProjectType(string fn) 
+		{
+			var pa = new Json.Parser();
+			try { 
+				pa.load_from_file(fn);
+			} catch (GLib.Error e) {
+				GLib.debug("could not load json file %s", e.message);
+				return "";
+				
+			}
+			var node = pa.get_root();
+
+			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+				GLib.debug("SKIP %s/.roobuilder.jcfg  - invalid format?",fn);
+				return "";
+			}
+			
+			var obj = node.get_object ();
+
+			var xtype =  obj.get_string_member("xtype");
+			return xtype == null ? "" : xtype;
+		
+		}
+		
+		
 		// this will do a full scan - should only be done on viewing project..
 		// not initial load.. - may take time.
 		

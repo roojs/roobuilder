@@ -536,6 +536,24 @@ public class EditProject : Object
 
             // set gobject values
             this.el.hexpand = true;
+
+            //listeners
+            this.el.notify["selected"].connect( () => {
+            	var fn = this.getValue();
+            	if (fn == "") {
+            		return;
+            	}
+            	var p  = _this.parent_dd.getValue();
+            	if (!FileUtils.test(p  + "/" + fn + "/.roobuilder.jcfg"  , GLib.FileTest.EXISTS)) {
+            		return;
+            	}
+            	var ty = Project.Project.peekProjectType(p  + "/" + fn + "/.roobuilder.jcfg" );
+            	if (ty == "") {
+            		return;
+            	}
+            	_this.ptype_dd.setValue(ty);
+            	 
+             });
         }
 
         // user defined functions
@@ -548,7 +566,8 @@ public class EditProject : Object
         public void load () {
         	var p  = _this.parent_dd.getValue();
         	var f = File.new_for_path(p);
-        	var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
+        	var file_enum = f.enumerate_children(
+        		GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
         	var sl = (Gtk.StringList) this.el.model;	
         
         	 	while(sl.get_n_items() > 0)  {
@@ -558,7 +577,8 @@ public class EditProject : Object
         	FileInfo next_file; 
         	while ((next_file = file_enum.next_file(null)) != null) {
         		var fn = next_file.get_display_name();
-        
+        		
+        		
         		 
         		//print("trying"  + dir + "/" + fn +"\n");
         		
@@ -566,10 +586,17 @@ public class EditProject : Object
         			continue;
         		}
         		
-        		if (FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
-        			 strs +=  fn;
+        		
+        		
+        		
+        		if (!FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
         			continue;
         		}
+        		if (null != Project.Project.getProjectByPath(p  + "/" + fn)) {
+        			continue;
+        		}
+        	
+        		strs +=  fn;
         		
         		
         		 
@@ -727,6 +754,17 @@ public class EditProject : Object
         	return this.el.selected == Gtk.INVALID_LIST_POSITION ?
         			 "" : m.get_string(this.el.selected);
         	
+        }
+        public void setValue (string val) {
+        	var m = (Gtk.StringList) this.el.model;
+        	for(var i = 0; i < m.get_n_items();i++) {
+        		if (m.get_string(i) == val) {
+        			this.el.selected = i;
+        			break;
+        		}
+        	}
+        	this.el.selected = Gtk.INVALID_LIST_POSITION;
+        
         }
     }
     public class Xcls_StringList18 : Object
@@ -926,6 +964,8 @@ public class EditProject : Object
             		if (is_new_folder) {	
             			project.initialize();
             			
+            		} else {
+            			project.load();
             		}
             		
             		project.save();

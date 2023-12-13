@@ -153,7 +153,11 @@
                 "gitlive/roobuilder/src/Palete/Palete.vala.c",
                 "gitlive/roobuilder/src/Palete/Gtk.vala.c",
                 "gitlive/roobuilder/src/Palete/CompletionProvider.vala.c",
-                "gitlive/roobuilder/src/Palete/CompileError.vala.c"
+                "gitlive/roobuilder/src/Palete/CompileError.vala.c",
+                "src/Main.vala",
+                "src/Resources.vala",
+                "src/Spawn.vala",
+                "src/Application.vala"
             ],
             "hidden" : [
                 "src/Builder4/About.bjs",
@@ -302,7 +306,11 @@
                 "gitlive/roobuilder/src/Palete/Palete.vala.c",
                 "gitlive/roobuilder/src/Palete/Gtk.vala.c",
                 "gitlive/roobuilder/src/Palete/CompletionProvider.vala.c",
-                "gitlive/roobuilder/src/Palete/CompileError.vala.c"
+                "gitlive/roobuilder/src/Palete/CompileError.vala.c",
+                "src/Main.vala",
+                "src/Resources.vala",
+                "src/Spawn.vala",
+                "src/Application.vala"
             ]
         }
     ],

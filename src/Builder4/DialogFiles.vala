@@ -1533,12 +1533,20 @@ public class DialogFiles : Object
             //listeners
             this.el.clicked.connect( ( ) => {
             	if (BuilderApplication.windows.size < 2 && 
-            		BuilderApplication.windows.get(0).windowstate.file == null
+            		_this.win.windowstate.file == null
             	) { 
             		BuilderApplication.singleton(null).quit();
             		return;
             	}
+            
             	_this.el.hide();
+            	
+            	 if (_this.win.windowstate.file == null) {		 
+            		BuilderApplication.removeWindow(_this.win);
+            		 
+            		 
+            		
+            	}
             
             });
         }

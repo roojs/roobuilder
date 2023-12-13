@@ -479,7 +479,10 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			BuilderApplication.windows.remove(w);
 			BuilderApplication.updateWindows();
 			BuilderApplication.valasource.compiled.disconnect(w.windowstate.showCompileResult);
-			BuilderApplication.valasource.compile_output.disconnect(w.windowstate.compile_results.addLine);			
+			BuilderApplication.valasource.compile_output.disconnect(w.windowstate.compile_results.addLine);		
+			w.el.hide();
+			w.el.close();
+			w.el.destroy();
 			
 			
 		}

@@ -455,7 +455,7 @@ namespace Palete {
 	  		// liststore.columns - exists as a property but does not have a type (it's an array of typeofs()....
 			if (ar.has_key(propname) && ar.get(propname).type != "") { // must have  type (otherwise special)
 				//GLib.debug("Class %s has property %s from %s - adding normal property", cls, propname, ar.get(propname).asJSONString());
-				var add = ar.get(propname).toNodeProp(this); // our nodes dont have default values.
+				var add = ar.get(propname).toNodeProp(this, cname); // our nodes dont have default values.
 				add.val = val;
 				this.node_defaults.get(cname).set(propname, add);
 				return;
