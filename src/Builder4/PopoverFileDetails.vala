@@ -93,8 +93,8 @@ public class Xcls_PopoverFileDetails : Object
     	    _this.path.el.hide();
         }
         if (this.project.xtype == "Gtk") {
-        
-    	    this.build_module_model.load(this.project.compilegroups);
+        	var p = (Project.Gtk) this.project;
+    	    this.build_module_model.load(p.compilegroups);
     	    this.build_module.setValue(c.build_module);
         }
     	     
