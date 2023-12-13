@@ -518,6 +518,9 @@ public class Xcls_PopoverFileDetails : Object
            
             
         }
+        public void setValue () {
+        
+        }
     }
     public class Xcls_ftdbcellrenderer : Object
     {
