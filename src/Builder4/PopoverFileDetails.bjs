@@ -348,7 +348,7 @@
             "\t\tthis.el.remove(0);",
             "\t}",
             "\t",
-            "\tforeach(var k in compilegroups) {",
+            "\tforeach(var k in compilegroups.keys) {",
             "\t\tthis.el.append(k);",
             "\t}",
             "",
