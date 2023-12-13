@@ -342,7 +342,7 @@
            "strings" : "{}",
            "xtype" : "StringList",
            "| void load" : [
-            "(Gee.HashMap<string,GtkValaSettings> compilegroups) {",
+            "(Gee.HashMap<string,Project.GtkValaSettings> compilegroups) {",
             "",
             "\twhile (this.el.get_n_items() < 1) {",
             "\t\tthis.el.remove(0);",
