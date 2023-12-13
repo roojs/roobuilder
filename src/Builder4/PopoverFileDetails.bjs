@@ -235,6 +235,15 @@
         },
         {
          "$ justify" : "Gtk.Justification.RIGHT",
+         "$ xns" : "Gtk",
+         "id" : "filetypelbl",
+         "label" : "File type",
+         "x_options" : 4,
+         "xalign" : 0.90000000000000002,
+         "xtype" : "Label"
+        },
+        {
+         "$ justify" : "Gtk.Justification.RIGHT",
          "$ visible" : true,
          "$ xns" : "Gtk",
          "* pack" : "attach,0,2,1,1",
