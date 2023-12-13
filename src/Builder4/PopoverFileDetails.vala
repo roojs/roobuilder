@@ -31,7 +31,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_permname permname;
     public Xcls_modOrder_lbl modOrder_lbl;
     public Xcls_modOrder modOrder;
-    public Xcls_build_model_lbl build_model_lbl;
+    public Xcls_build_module_lbl build_module_lbl;
     public Xcls_build_module build_module;
     public Xcls_dbcellrenderer dbcellrenderer;
     public Xcls_dbmodel dbmodel;
@@ -292,18 +292,18 @@ public class Xcls_PopoverFileDetails : Object
             var child_16 = new Xcls_modOrder( _this );
             child_16.ref();
             this.el.attach ( child_16.el , 1,6,1,1 );
-            var child_17 = new Xcls_build_model_lbl( _this );
+            var child_17 = new Xcls_build_module_lbl( _this );
             child_17.ref();
             this.el.attach( child_17.el, 0, 8, 1, 1 );
             var child_18 = new Xcls_build_module( _this );
             child_18.ref();
-            this.el.attach ( child_18.el , 1,7,1,1 );
+            this.el.attach( child_18.el, 1, 8, 1, 1 );
             var child_19 = new Xcls_path_lbl( _this );
             child_19.ref();
-            this.el.attach ( child_19.el , 0,9,1,1 );
+            this.el.attach( child_19.el, 0, 9, 1, 1 );
             var child_20 = new Xcls_path( _this );
             child_20.ref();
-            this.el.attach ( child_20.el , 1,9,1,1 );
+            this.el.attach( child_20.el, 1, 9, 1, 1 );
         }
 
         // user defined functions
@@ -495,29 +495,56 @@ public class Xcls_PopoverFileDetails : Object
         public void showhide (bool is_bjs) {
         
         
-        	 
-        	_this.grid.showAllRows();
-        
+        	
+        	
+        	_this.title_lbl.el.hide();
+        	_this.title.el.hide();
+        	
+        	_this.region_lbl.el.hide();
+        	_this.region.el.hide();
+        	
+        	_this.parent_lbl.el.hide();
+        	_this.parent.el.hide();
+        	
+        	_this.permname_lbl.el.hide();
+        	_this.permname.el.hide();
+        	
+        	_this.modOrder_lbl.el.hide();
+        	_this.modOrder.el.hide();
+        	
+        	_this.build_module_lbl.el.hide();
+        	_this.build_module.el.hide();
+        	
+        	
+        	
         	switch(_this.project.xtype) {
         		case "Roo":
         			
-        			_this.grid.hideRow(7);
-        			_this.grid.hideRow(8);			
-        			// hide: vala: module
-        			// row 7
-        			// row 8 (directory)
+        			
+        			_this.title_lbl.el.show();
+        			_this.title.el.show();
+        			
+        			_this.region_lbl.el.show();
+        			_this.region.el.show();
+        			
+        			_this.parent_lbl.el.show();
+        			_this.parent.el.show();
+        			
+        			_this.permname_lbl.el.show();
+        			_this.permname.el.show();
+        			
+        			_this.modOrder_lbl.el.show();
+        			_this.modOrder.el.show();
+        			
+        		
+        		 
         			
         			break;
         		default: // vala..
-        			_this.grid.hideRow(2);
-        			_this.grid.hideRow(3);	
-        			_this.grid.hideRow(4);
-        			_this.grid.hideRow(5);	
-        			_this.grid.hideRow(6);	
-        		    // hide 2,3,4,5,6,
-        		    if (_this.file.name.length > 0) {
-        		    	_this.grid.hideRow(8); // directory - cant change it here..
-        	    	}
+        			_this.build_module_lbl.el.hide();
+        			_this.build_module.el.hide();
+        	
+        	 
         		    
         			break;
         	}
@@ -986,7 +1013,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_build_model_lbl : Object
+    public class Xcls_build_module_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -995,10 +1022,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_build_model_lbl(Xcls_PopoverFileDetails _owner )
+        public Xcls_build_module_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            _this.build_model_lbl = this;
+            _this.build_module_lbl = this;
             this.el = new Gtk.Label( "Module to build" );
 
             // my vars (dec)
