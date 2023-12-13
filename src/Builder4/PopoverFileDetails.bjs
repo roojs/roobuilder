@@ -183,7 +183,7 @@
           "\t",
           "\tswitch(_this.project.xtype) {",
           "\t\tcase \"Roo\":",
-          "\t\t\t",
+          "\t\t ",
           "\t\t\t",
           "\t\t\t_this.title_lbl.el.show();",
           "\t\t\t_this.title.el.show();",

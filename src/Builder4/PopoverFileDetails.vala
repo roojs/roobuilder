@@ -511,7 +511,7 @@ public class Xcls_PopoverFileDetails : Object
         	
         	switch(_this.project.xtype) {
         		case "Roo":
-        			
+        		 
         			
         			_this.title_lbl.el.show();
         			_this.title.el.show();
