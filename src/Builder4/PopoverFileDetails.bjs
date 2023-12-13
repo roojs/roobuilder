@@ -170,7 +170,7 @@
            ""
           ]
          },
-         "xtype" : "ComboBox",
+         "xtype" : "DropDown",
          "| void showhide" : [
           "(bool is_bjs) {",
           "",
