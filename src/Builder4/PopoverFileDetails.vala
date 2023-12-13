@@ -953,7 +953,7 @@ public class Xcls_PopoverFileDetails : Object
         		this.el.remove(0);
         	}
         	
-        	for(var k in compliegroups) {
+        	foreach(var k in compliegroups) {
         		this.el.append(k);
         	}
         

@@ -348,7 +348,7 @@
             "\t\tthis.el.remove(0);",
             "\t}",
             "\t",
-            "\tfor(var k in compliegroups) {",
+            "\tforeach(var k in compliegroups) {",
             "\t\tthis.el.append(k);",
             "\t}",
             "",
