@@ -154,7 +154,12 @@
            "* prop" : "model",
            "id" : "filetype_model",
            "strings" : "{}",
-           "xtype" : "StringList"
+           "xtype" : "StringList",
+           "| void load" : [
+            "() {",
+            "",
+            "}"
+           ]
           }
          ],
          "listeners" : {
