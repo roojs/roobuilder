@@ -505,32 +505,34 @@ public class Xcls_PopoverFileDetails : Object
         	_this.build_module_lbl.el.hide();
         	_this.build_module.el.hide();
         	
-        	
+        	var sel = this.getValue();
         	
         	switch(_this.project.xtype) {
         		case "Roo":
         		 
+        			if (sel == "bjs") {
+        				_this.title_lbl.el.show();
+        				_this.title.el.show();
+        				
+        				_this.region_lbl.el.show();
+        				_this.region.el.show();
+        				
+        				_this.parent_lbl.el.show();
+        				_this.parent.el.show();
+        				
+        				_this.permname_lbl.el.show();
+        				_this.permname.el.show();
+        				
+        				_this.modOrder_lbl.el.show();
+        				_this.modOrder.el.show();
         			
-        			_this.title_lbl.el.show();
-        			_this.title.el.show();
-        			
-        			_this.region_lbl.el.show();
-        			_this.region.el.show();
-        			
-        			_this.parent_lbl.el.show();
-        			_this.parent.el.show();
-        			
-        			_this.permname_lbl.el.show();
-        			_this.permname.el.show();
-        			
-        			_this.modOrder_lbl.el.show();
-        			_this.modOrder.el.show();
-        			
+        			}
         		
         		 
         			
         			break;
         		default: // vala..
+        		
         			_this.build_module_lbl.el.hide();
         			_this.build_module.el.hide();
         	
