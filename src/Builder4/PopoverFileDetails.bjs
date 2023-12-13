@@ -26,6 +26,12 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "* init" : [
+        "{",
+        "",
+        "}",
+        ""
+       ],
        "* pack" : "append",
        "bool hexpand" : true,
        "id" : "grid",

@@ -36,9 +36,9 @@ public class Xcls_PopoverFileDetails : Object
     public signal void success (Project.Project pr, JsRender.JsRender file);
     public JsRender.JsRender file;
     public Project.Project project;
-    public Xcls_MainWindow mainwindow;
-    public bool done;
     public uint border_width;
+    public bool done;
+    public Xcls_MainWindow mainwindow;
 
     // ctor
     public Xcls_PopoverFileDetails()
@@ -49,18 +49,18 @@ public class Xcls_PopoverFileDetails : Object
         // my vars (dec)
         this.new_window = true;
         this.file = null;
-        this.mainwindow = null;
-        this.done = false;
         this.border_width = 0;
+        this.done = false;
+        this.mainwindow = null;
 
         // set gobject values
         this.el.modal = true;
-        var child_0 = new Xcls_Box2( _this );
-        child_0.ref();
-        this.el.set_child (  child_0.el  );
-        var child_1 = new Xcls_HeaderBar33( _this );
+        var child_1 = new Xcls_Box2( _this );
         child_1.ref();
-        this.el.titlebar = child_1.el;
+        this.el.set_child ( child_1.el  );
+        var child_2 = new Xcls_HeaderBar33( _this );
+        child_2.ref();
+        this.el.titlebar = child_2.el;
     }
 
     // user defined functions
@@ -198,12 +198,12 @@ public class Xcls_PopoverFileDetails : Object
             this.el.hexpand = true;
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
-            var child_0 = new Xcls_grid( _this );
-            child_0.ref();
-            this.el.append (  child_0.el  );
-            var child_1 = new Xcls_Box29( _this );
+            var child_1 = new Xcls_grid( _this );
             child_1.ref();
-            this.el.append (  child_1.el  );
+            this.el.append ( child_1.el  );
+            var child_2 = new Xcls_Box29( _this );
+            child_2.ref();
+            this.el.append ( child_2.el  );
         }
 
         // user defined functions
@@ -231,66 +231,72 @@ public class Xcls_PopoverFileDetails : Object
             this.el.hexpand = true;
             this.el.column_spacing = 4;
             this.el.row_spacing = 2;
-            var child_0 = new Xcls_filetypelbl( _this );
-            child_0.ref();
-            this.el.attach (  child_0.el , 0,0,1,1 );
-            var child_1 = new Xcls_filetype( _this );
+            var child_1 = new Xcls_filetypelbl( _this );
             child_1.ref();
-            this.el.attach (  child_1.el , 1,0,1,1 );
-            var child_2 = new Xcls_Label8( _this );
+            this.el.attach ( child_1.el , 0,0,1,1 );
+            var child_2 = new Xcls_filetype( _this );
             child_2.ref();
-            this.el.attach (  child_2.el , 0,1,1,1 );
-            var child_3 = new Xcls_name( _this );
+            this.el.attach ( child_2.el , 1,0,1,1 );
+            var child_3 = new Xcls_Label8( _this );
             child_3.ref();
-            this.el.attach (  child_3.el , 1,1,1,1 );
-            var child_4 = new Xcls_Label10( _this );
+            this.el.attach ( child_3.el , 0,1,1,1 );
+            var child_4 = new Xcls_name( _this );
             child_4.ref();
-            this.el.attach (  child_4.el , 0,2,1,1 );
-            var child_5 = new Xcls_title( _this );
+            this.el.attach ( child_4.el , 1,1,1,1 );
+            var child_5 = new Xcls_Label10( _this );
             child_5.ref();
-            this.el.attach (  child_5.el , 1,2,1,1 );
-            var child_6 = new Xcls_Label12( _this );
+            this.el.attach ( child_5.el , 0,2,1,1 );
+            var child_6 = new Xcls_title( _this );
             child_6.ref();
-            this.el.attach (  child_6.el , 0,3,1,1 );
-            var child_7 = new Xcls_region( _this );
+            this.el.attach ( child_6.el , 1,2,1,1 );
+            var child_7 = new Xcls_Label12( _this );
             child_7.ref();
-            this.el.attach (  child_7.el , 1,3,1,1 );
-            var child_8 = new Xcls_Label14( _this );
+            this.el.attach ( child_7.el , 0,3,1,1 );
+            var child_8 = new Xcls_region( _this );
             child_8.ref();
-            this.el.attach (  child_8.el , 0,4,1,1 );
-            var child_9 = new Xcls_parent( _this );
+            this.el.attach ( child_8.el , 1,3,1,1 );
+            var child_9 = new Xcls_Label14( _this );
             child_9.ref();
-            this.el.attach (  child_9.el , 1,4,1,1 );
-            var child_10 = new Xcls_Label16( _this );
+            this.el.attach ( child_9.el , 0,4,1,1 );
+            var child_10 = new Xcls_parent( _this );
             child_10.ref();
-            this.el.attach (  child_10.el , 0,5,1,1 );
-            var child_11 = new Xcls_permname( _this );
+            this.el.attach ( child_10.el , 1,4,1,1 );
+            var child_11 = new Xcls_Label16( _this );
             child_11.ref();
-            this.el.attach (  child_11.el , 1,5,1,1 );
-            var child_12 = new Xcls_Label18( _this );
+            this.el.attach ( child_11.el , 0,5,1,1 );
+            var child_12 = new Xcls_permname( _this );
             child_12.ref();
-            this.el.attach (  child_12.el , 0,6,1,1 );
-            var child_13 = new Xcls_modOrder( _this );
+            this.el.attach ( child_12.el , 1,5,1,1 );
+            var child_13 = new Xcls_Label18( _this );
             child_13.ref();
-            this.el.attach (  child_13.el , 1,6,1,1 );
-            var child_14 = new Xcls_Label20( _this );
+            this.el.attach ( child_13.el , 0,6,1,1 );
+            var child_14 = new Xcls_modOrder( _this );
             child_14.ref();
-            this.el.attach (  child_14.el , 0,7,1,1 );
-            var child_15 = new Xcls_build_module( _this );
+            this.el.attach ( child_14.el , 1,6,1,1 );
+            var child_15 = new Xcls_Label20( _this );
             child_15.ref();
-            this.el.attach (  child_15.el , 1,7,1,1 );
-            var child_16 = new Xcls_Label24( _this );
+            this.el.attach ( child_15.el , 0,7,1,1 );
+            var child_16 = new Xcls_build_module( _this );
             child_16.ref();
-            this.el.attach (  child_16.el , 0,8,1,1 );
-            var child_17 = new Xcls_dir_dropdown( _this );
+            this.el.attach ( child_16.el , 1,7,1,1 );
+            var child_17 = new Xcls_Label24( _this );
             child_17.ref();
-            this.el.attach(  child_17.el, 0, 17, 1, 1 );
-            var child_18 = new Xcls_Label27( _this );
+            this.el.attach ( child_17.el , 0,8,1,1 );
+            var child_18 = new Xcls_dir_dropdown( _this );
             child_18.ref();
-            this.el.attach (  child_18.el , 0,9,1,1 );
-            var child_19 = new Xcls_path( _this );
+            this.el.attach( child_18.el, 0, 17, 1, 1 );
+            var child_19 = new Xcls_Label27( _this );
             child_19.ref();
-            this.el.attach (  child_19.el , 1,9,1,1 );
+            this.el.attach ( child_19.el , 0,9,1,1 );
+            var child_20 = new Xcls_path( _this );
+            child_20.ref();
+            this.el.attach ( child_20.el , 1,9,1,1 );
+
+            // init method
+
+            {
+            
+            }
         }
 
         // user defined functions
@@ -356,12 +362,12 @@ public class Xcls_PopoverFileDetails : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_ftdbcellrenderer( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
-            var child_1 = new Xcls_ftdbmodel( _this );
+            var child_1 = new Xcls_ftdbcellrenderer( _this );
             child_1.ref();
-            this.el.set_model (  child_1.el  );
+            this.el.pack_start ( child_1.el , true );
+            var child_2 = new Xcls_ftdbmodel( _this );
+            child_2.ref();
+            this.el.set_model ( child_2.el  );
 
             // init method
 
@@ -869,12 +875,12 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_dbcellrenderer( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
-            var child_1 = new Xcls_dbmodel( _this );
+            var child_1 = new Xcls_dbcellrenderer( _this );
             child_1.ref();
-            this.el.set_model (  child_1.el  );
+            this.el.pack_start ( child_1.el , true );
+            var child_2 = new Xcls_dbmodel( _this );
+            child_2.ref();
+            this.el.set_model ( child_2.el  );
 
             // init method
 
@@ -1003,15 +1009,14 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.dir_dropdown = this;
-            this.el = new Gtk.DropDown( null, null );
+            var child_1 = new Xcls_dir_model( _this );
+            child_1.ref();
+            this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
             this.colspan = 1;
 
             // set gobject values
-            var child_0 = new Xcls_dir_model( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
         }
 
         // user defined functions
@@ -1120,15 +1125,15 @@ public class Xcls_PopoverFileDetails : Object
             this.el.margin_start = 4;
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
-            var child_0 = new Xcls_Button30( _this );
-            child_0.ref();
-            this.el.append (  child_0.el  );
-            var child_1 = new Xcls_Label31( _this );
+            var child_1 = new Xcls_Button30( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_save_btn( _this );
+            this.el.append ( child_1.el  );
+            var child_2 = new Xcls_Label31( _this );
             child_2.ref();
-            this.el.append (  child_2.el  );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_save_btn( _this );
+            child_3.ref();
+            this.el.append ( child_3.el  );
         }
 
         // user defined functions
