@@ -114,8 +114,8 @@ public class Xcls_PopoverFileDetails : Object
         
         if (c.path.length > 0) {
     	    this.save_btn.el.set_label("Save");
+    		_this.filetype_lbl.el.hide();
     		_this.filetype.el.hide();
-    		_this.filetypelbl.el.hide();
     		_this.filetype.showhide(true); // as we only work on bjs files currently
         } else {
             this.save_btn.el.set_label("Create");
