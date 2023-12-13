@@ -926,6 +926,9 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
+        public void setValue () {
+        
+        }
     }
     public class Xcls_build_module_model : Object
     {

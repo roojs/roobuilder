@@ -356,7 +356,12 @@
            ]
           }
          ],
-         "xtype" : "DropDown"
+         "xtype" : "DropDown",
+         "| void setValue" : [
+          "() {",
+          "",
+          "}"
+         ]
         },
         {
          "$ justify" : "Gtk.Justification.RIGHT",
