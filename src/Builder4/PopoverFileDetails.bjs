@@ -338,8 +338,8 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "id" : "",
-           "strings" : "",
+           "id" : "build_module_model",
+           "strings" : "{}",
            "xtype" : "StringList"
           }
          ],

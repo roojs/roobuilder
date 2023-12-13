@@ -31,7 +31,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_modOrder modOrder;
     public Xcls_build_module_lbl build_module_lbl;
     public Xcls_build_module build_module;
-    public Xcls_StringList24 StringList24;
+    public Xcls_build_module_model build_module_model;
     public Xcls_path_lbl path_lbl;
     public Xcls_path path;
     public Xcls_save_btn save_btn;
@@ -916,7 +916,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.build_module = this;
-            var child_1 = new Xcls_StringList24( _this );
+            var child_1 = new Xcls_build_module_model( _this );
             child_1.ref();
             this.el = new Gtk.DropDown( child_1.el, null );
 
@@ -927,7 +927,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
     }
-    public class Xcls_StringList24 : Object
+    public class Xcls_build_module_model : Object
     {
         public Gtk.StringList el;
         private Xcls_PopoverFileDetails  _this;
@@ -936,11 +936,11 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_StringList24(Xcls_PopoverFileDetails _owner )
+        public Xcls_build_module_model(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            _this.StringList24 = this;
-            this.el = new Gtk.StringList(  );
+            _this.build_module_model = this;
+            this.el = new Gtk.StringList( {} );
 
             // my vars (dec)
 
