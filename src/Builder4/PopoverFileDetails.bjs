@@ -340,7 +340,12 @@
            "* prop" : "model",
            "id" : "build_module_model",
            "strings" : "{}",
-           "xtype" : "StringList"
+           "xtype" : "StringList",
+           "| void load" : [
+            "() {",
+            "",
+            "}"
+           ]
           }
          ],
          "xtype" : "DropDown"
