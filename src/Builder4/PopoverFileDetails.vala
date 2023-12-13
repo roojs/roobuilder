@@ -640,7 +640,7 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
-        public void load (string cur) {
+        public void load () {
             var el = this.el;
             
             el.remove_all();
@@ -650,38 +650,21 @@ public class Xcls_PopoverFileDetails : Object
          switch(_this.project.xtype) {
          	case "Roo":
          	 	el.append("js - Javascript File");
-         	 	el.append("css - Javascript File");
-        		if (cur == "js") {
-        			_this.filetype.el.set_active_iter(iter);
-        		}
+         	 	el.append("css - CSS File");
+         	 	el.append("php - Javascript File");
+         	 	
         		break;
         
         	case "Gtk":		
         			
-        		el.append(out iter);
-        		
-        		el.set_value(iter, 0, "vala");
-        		el.set_value(iter, 1, "Vala");
-        		if (cur == "vala") {
-        			_this.filetype.el.set_active_iter(iter);
-        		}
-        		break;
-        	default:
-        		break;
-        }
+         	 	el.append("vala - Vala File");
+         	 	el.append("css - CSS File");
+         	 	el.append("other - Other Type");
+        	}
         
-        
-            el.append(out iter);
-            
-            el.set_value(iter, 0, "css");
-            el.set_value(iter, 1, "CSS");
-        
-        	if (cur == "css") {
-        	    _this.filetype.el.set_active_iter(iter);
-            }
-                                             
-        }
-        
+        	
+        	
+        	
         }
     }
 
