@@ -2,6 +2,15 @@
  "build_module" : "builder",
  "items" : [
   {
+   "# JsRender.JsRender file" : "null",
+   "# Project.Project project" : "",
+   "# bool new_window" : true,
+   "$ xns" : "Gtk",
+   "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
+   "Xcls_MainWindow mainwindow" : "null",
+   "bool done" : false,
+   "bool modal" : true,
+   "id" : "PopoverFileDetails",
    "items" : [
     {
      "$ pack" : "add",
@@ -626,6 +635,8 @@
      "xtype" : "HeaderBar"
     }
    ],
+   "uint border_width" : 0,
+   "xtype" : "Window",
    "| void show" : [
     "(JsRender.JsRender c, Gtk.Window pwin, bool new_window) ",
     "{",
@@ -643,10 +654,12 @@
     "    _this.region.el.set_text(c.region);",
     "    _this.modOrder.el.set_text(c.modOrder);",
     "    _this.permname.el.set_text(c.permname);",
-    "    ",
+    "",
+    "\t_this.path_lbl.el.show();",
+    "    _this.path.el.show();",
     "    if (c.name == \"\") {",
-    "    ",
-    "    ",
+    "    \t_this.path_lbl.el.hide();",
+    "\t    _this.path.el.hide();",
     "    }",
     "     ",
     "    ",
@@ -712,6 +725,37 @@
     "    ",
     "    ",
     "}"
+   ],
+   "| void updateFileFromEntry" : [
+    "() {",
+    "",
+    "        _this.file.title = _this.title.el.get_text();",
+    "        _this.file.region = _this.region.el.get_text();            ",
+    "        _this.file.parent = _this.parent.el.get_text();                        ",
+    "        _this.file.permname = _this.permname.el.get_text();                                    ",
+    "        _this.file.modOrder = _this.modOrder.el.get_text();",
+    "        ",
+    "        if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {",
+    "            try {",
+    "            \t_this.file.renameTo(_this.name.el.get_text());",
+    "        \t} catch (JsRender.Error e) { } // do nothing?",
+    "        }",
+    "        // store the module...",
+    "        _this.file.build_module = \"\";        ",
+    "         Gtk.TreeIter iter; ",
+    "        if (_this.build_module.el.get_active_iter (out iter)) {",
+    "             Value vfname;",
+    "             this.dbmodel.el.get_value (iter, 0, out vfname);",
+    "             if (((string)vfname).length > 0) {",
+    "                 _this.file.build_module = (string)vfname;",
+    "             }",
+    "    ",
+    "        }",
+    "        ",
+    "        ",
+    "",
+    "                                                    ",
+    "}    "
    ]
   }
  ],
