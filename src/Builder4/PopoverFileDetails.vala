@@ -300,14 +300,6 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
-        public void showAllRows () {
-        	for (var i = 2; i < 10;i++) {
-        		var el = _this.grid.el.get_child_at(0,i);
-        		el.show();
-        		el = _this.grid.el.get_child_at(1,i);
-        		el.show();
-            }
-        }
         public void hideRow (int row) 
         {
         	var el = _this.grid.el.get_child_at(0,row);
