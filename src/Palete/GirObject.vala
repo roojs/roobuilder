@@ -191,7 +191,7 @@ namespace Palete {
 		public string fqn() {
 			// not sure if fqn really is correct here...
 			// 
-			return this.nodetype == "Class" || this.nodetype=="Interface"
+			return this.nodetype.down() == "class" || this.nodetype.down() =="interface"
 					? this.name : (this.ns + this.name);
 		}
 		
@@ -510,14 +510,14 @@ namespace Palete {
 				return;
 			}
 			GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
-			if (cls.nodetype == "Enum") {			
+			if (cls.nodetype.down() == "enum") {			
 				var add = new JsRender.NodeProp.raw(this.name, str, "");
 				par.childstore.append( add);
 				return ;
 			}
 			
 			 
-			if (cls.nodetype == "Class") {
+			if (cls.nodetype.down() == "class") {
 				var add = new JsRender.NodeProp.raw(this.name, str, "");
 				// no propertyof ?
 				
@@ -542,7 +542,7 @@ namespace Palete {
 				var subcls = pal.getClass(cname);
 				
 				GLib.debug("nodepropaddchildren: check class %s add %s type %s", str, cname, subcls == null ? "NO?" :subcls.nodetype );
-				if (subcls.nodetype != "Class") {
+				if (subcls.nodetype.down() != "class") {
 
 					continue;
 				}
