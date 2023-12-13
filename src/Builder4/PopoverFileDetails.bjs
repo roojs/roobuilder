@@ -282,9 +282,8 @@
         {
          "$ visible" : true,
          "$ xns" : "Gtk",
-         "* pack" : "attach,1,1,1,1",
          "bool hexpand" : true,
-         "id" : "name",
+         "id" : "",
          "xtype" : "Entry"
         },
         {
