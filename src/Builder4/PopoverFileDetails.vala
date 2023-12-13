@@ -31,6 +31,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_modOrder modOrder;
     public Xcls_build_module_lbl build_module_lbl;
     public Xcls_build_module build_module;
+    public Xcls_StringList24 StringList24;
     public Xcls_path_lbl path_lbl;
     public Xcls_path path;
     public Xcls_save_btn save_btn;
@@ -938,6 +939,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_StringList24(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.StringList24 = this;
             this.el = new Gtk.StringList(  );
 
             // my vars (dec)

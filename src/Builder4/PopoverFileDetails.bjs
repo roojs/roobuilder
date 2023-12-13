@@ -338,6 +338,7 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
+           "id" : "",
            "strings" : "",
            "xtype" : "StringList"
           }
