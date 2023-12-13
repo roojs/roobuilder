@@ -66,7 +66,7 @@
         {
          "$ justify" : "Gtk.Justification.RIGHT",
          "$ xns" : "Gtk",
-         "id" : "filetypelbl",
+         "id" : "filetype_lbl",
          "label" : "File type",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,

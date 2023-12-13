@@ -15,7 +15,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_grid grid;
     public Xcls_dir_dropdown dir_dropdown;
     public Xcls_dir_model dir_model;
-    public Xcls_filetypelbl filetypelbl;
+    public Xcls_filetype_lbl filetype_lbl;
     public Xcls_filetype_dropdown filetype_dropdown;
     public Xcls_ftdbcellrenderer ftdbcellrenderer;
     public Xcls_ftdbmodel ftdbmodel;
@@ -245,7 +245,7 @@ public class Xcls_PopoverFileDetails : Object
             var child_2 = new Xcls_dir_dropdown( _this );
             child_2.ref();
             this.el.attach( child_2.el, 1, 0, 1, 1 );
-            var child_3 = new Xcls_filetypelbl( _this );
+            var child_3 = new Xcls_filetype_lbl( _this );
             child_3.ref();
             this.el.attach( child_3.el, 0, 1, 1, 1 );
             var child_4 = new Xcls_filetype_dropdown( _this );
@@ -398,7 +398,7 @@ public class Xcls_PopoverFileDetails : Object
     }
 
 
-    public class Xcls_filetypelbl : Object
+    public class Xcls_filetype_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -407,10 +407,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_filetypelbl(Xcls_PopoverFileDetails _owner )
+        public Xcls_filetype_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            _this.filetypelbl = this;
+            _this.filetype_lbl = this;
             this.el = new Gtk.Label( "File type" );
 
             // my vars (dec)
