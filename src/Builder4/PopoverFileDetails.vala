@@ -100,20 +100,8 @@ public class Xcls_PopoverFileDetails : Object
     	     
          
         _this.file = c;
-        //console.log('show all');
-       //this.el.set_autohide(false);
-       	//Gtk.Allocation rect;
-    	//btn.get_allocation(out rect);
-        //this.el.set_pointing_to(rect);
        
-       
-        //this.el.set_position(Gtk.PositionType.TOP);
-    
-     //var win = this.mainwindow.el;
-       // var  w = win.get_width();
-      //  var h = win.get_height();
-    
-        this.el.set_size_request( 550, 100); // should expand height, but give  a min width.
+       // this.el.set_size_request( 550, 100); // should expand height, but give  a min width.
     
         this.el.set_transient_for(pwin);
         
