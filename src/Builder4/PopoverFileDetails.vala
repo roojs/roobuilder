@@ -119,9 +119,9 @@ public class Xcls_PopoverFileDetails : Object
     		_this.filetype.showhide(true); // as we only work on bjs files currently
         } else {
             this.save_btn.el.set_label("Create");
-            _this.ftdbmodel.loadData("bjs"); // fixme - need to determine type..
+            
     	    _this.filetype.el.show();
-    	    _this.filetypelbl.el.show();
+    	    _this.filetype_lbl.el.show();
         }
         
         
