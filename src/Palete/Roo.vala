@@ -308,10 +308,10 @@ namespace Palete {
 				}
 				
 				 
-				//if (!val.type.contains(".")) {
+				 //if (!val.type.contains(".")) {
 					outprops.set(k,val);
 					continue;
-				//}
+				 //}
 				
 				
 				 
