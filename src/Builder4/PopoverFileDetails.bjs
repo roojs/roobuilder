@@ -114,31 +114,13 @@
           }
          ],
          "listeners" : {
-          "changed" : [
-           "() => {",
-           "\tGtk.TreeIter iter;",
-           "\tbool is_bjs = true;",
-           "\tif (this.el.get_active_iter(out iter)) {",
-           "\t\tValue vfname;",
-           "\t\t_this.ftdbmodel.el.get_value (iter, 0, out vfname);",
-           "\t\t is_bjs = ((string)vfname) == \"bjs\";",
-           "\t}",
-           "    ",
-           "  ",
-           "    // directory is only available for non-bjs ",
-           "    this.showhide(is_bjs);",
-           "",
-           "",
-           "}",
-           ""
-          ],
           "notify[\"selected\"]" : [
            "() => {",
            "",
-           "\tvar is _bjs = this.getValue().has_prefix(\"bjs\");    ",
+           " ",
            "  ",
            "    // directory is only available for non-bjs ",
-           "    this.showhide(is_bjs);",
+           "    this.showhide( );",
            "",
            " }"
           ]
@@ -165,7 +147,7 @@
           "}"
          ],
          "| void showhide" : [
-          "(bool is_bjs) {",
+          "() => {",
           "",
           "",
           "\t",

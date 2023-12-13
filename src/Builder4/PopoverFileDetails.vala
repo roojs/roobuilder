@@ -451,27 +451,12 @@ public class Xcls_PopoverFileDetails : Object
             //listeners
             this.el.notify["selected"].connect( () => {
             
-            	var is _bjs = this.getValue().has_prefix("bjs");    
+             
               
                 // directory is only available for non-bjs 
-                this.showhide(is_bjs);
+                this.showhide( );
             
              });
-            this.el.changed.connect( () => {
-            	Gtk.TreeIter iter;
-            	bool is_bjs = true;
-            	if (this.el.get_active_iter(out iter)) {
-            		Value vfname;
-            		_this.ftdbmodel.el.get_value (iter, 0, out vfname);
-            		 is_bjs = ((string)vfname) == "bjs";
-            	}
-                
-              
-                // directory is only available for non-bjs 
-                this.showhide(is_bjs);
-            
-            
-            });
         }
 
         // user defined functions
@@ -482,7 +467,7 @@ public class Xcls_PopoverFileDetails : Object
         	
         	return _this.filetype_model.el.get_string(this.el.selected).split(" ")[0];
         }
-        public void showhide (bool is_bjs) {
+        public void showhide () => {
         
         
         	
