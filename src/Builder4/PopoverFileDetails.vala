@@ -293,19 +293,13 @@ public class Xcls_PopoverFileDetails : Object
             this.el.attach ( child_17.el , 0,8,1,1 );
             var child_18 = new Xcls_dir_dropdown( _this );
             child_18.ref();
-            this.el.attach( child_18.el, 0, 17, 1, 1 );
+            this.el.attach( child_18.el, 1, 8, 1, 1 );
             var child_19 = new Xcls_Label27( _this );
             child_19.ref();
             this.el.attach ( child_19.el , 0,9,1,1 );
             var child_20 = new Xcls_path( _this );
             child_20.ref();
             this.el.attach ( child_20.el , 1,9,1,1 );
-
-            // init method
-
-            {
-            
-            }
         }
 
         // user defined functions

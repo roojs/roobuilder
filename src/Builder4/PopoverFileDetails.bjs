@@ -36,12 +36,7 @@
         "}"
        ],
        "$ xns" : "Gtk",
-       "* init" : [
-        "{",
-        "",
-        "}",
-        ""
-       ],
+       "* columns" : 2,
        "* pack" : "append",
        "bool hexpand" : true,
        "id" : "grid",
