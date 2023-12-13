@@ -148,6 +148,12 @@
             "}",
             ""
            ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "strings" : "",
+           "xtype" : "StringList"
           }
          ],
          "listeners" : {
