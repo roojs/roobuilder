@@ -144,6 +144,11 @@
           ]
          },
          "xtype" : "DropDown",
+         "| string getValue" : [
+          "() {",
+          "",
+          "}"
+         ],
          "| void setValue" : [
           "(string cur) {",
           "\tvar el  = this.filetype_model.el;",

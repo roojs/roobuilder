@@ -475,14 +475,8 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
-        public void setValue (string cur) {
-        	var el  = this.filetype_model.el;
-        	for(var i= 0; i < el.get_n_items();i++)  {
-        		if (el.get_string(i).has_prefix(cur)) {
-        			this.el.selected = i;
-        			break;
-        		}
-        	}
+        public string getValue () {
+        
         }
         public void showhide (bool is_bjs) {
         
@@ -551,6 +545,15 @@ public class Xcls_PopoverFileDetails : Object
         	//}
            
             
+        }
+        public void setValue (string cur) {
+        	var el  = this.filetype_model.el;
+        	for(var i= 0; i < el.get_n_items();i++)  {
+        		if (el.get_string(i).has_prefix(cur)) {
+        			this.el.selected = i;
+        			break;
+        		}
+        	}
         }
     }
     public class Xcls_filetype_model : Object
