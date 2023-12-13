@@ -27,8 +27,11 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_region region;
     public Xcls_parent_lbl parent_lbl;
     public Xcls_parent parent;
+    public Xcls_permname_lbl permname_lbl;
     public Xcls_permname permname;
+    public Xcls_modOrder_lbl modOrder_lbl;
     public Xcls_modOrder modOrder;
+    public Xcls_build_model_lbl build_model_lbl;
     public Xcls_build_module build_module;
     public Xcls_dbcellrenderer dbcellrenderer;
     public Xcls_dbmodel dbmodel;
@@ -276,22 +279,22 @@ public class Xcls_PopoverFileDetails : Object
             this.el.attach( child_11.el, 0, 5, 1, 1 );
             var child_12 = new Xcls_parent( _this );
             child_12.ref();
-            this.el.attach ( child_12.el , 1,4,1,1 );
-            var child_13 = new Xcls_Label20( _this );
+            this.el.attach( child_12.el, 1, 5, 1, 1 );
+            var child_13 = new Xcls_permname_lbl( _this );
             child_13.ref();
-            this.el.attach ( child_13.el , 0,5,1,1 );
+            this.el.attach( child_13.el, 0, 6, 1, 1 );
             var child_14 = new Xcls_permname( _this );
             child_14.ref();
             this.el.attach ( child_14.el , 1,5,1,1 );
-            var child_15 = new Xcls_Label22( _this );
+            var child_15 = new Xcls_modOrder_lbl( _this );
             child_15.ref();
-            this.el.attach ( child_15.el , 0,6,1,1 );
+            this.el.attach( child_15.el, 0, 7, 1, 1 );
             var child_16 = new Xcls_modOrder( _this );
             child_16.ref();
             this.el.attach ( child_16.el , 1,6,1,1 );
-            var child_17 = new Xcls_Label24( _this );
+            var child_17 = new Xcls_build_model_lbl( _this );
             child_17.ref();
-            this.el.attach ( child_17.el , 0,7,1,1 );
+            this.el.attach( child_17.el, 0, 8, 1, 1 );
             var child_18 = new Xcls_build_module( _this );
             child_18.ref();
             this.el.attach ( child_18.el , 1,7,1,1 );
@@ -883,7 +886,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label20 : Object
+    public class Xcls_permname_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -892,9 +895,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label20(Xcls_PopoverFileDetails _owner )
+        public Xcls_permname_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.permname_lbl = this;
             this.el = new Gtk.Label( "Permission Name" );
 
             // my vars (dec)
@@ -932,7 +936,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label22 : Object
+    public class Xcls_modOrder_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -941,9 +945,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label22(Xcls_PopoverFileDetails _owner )
+        public Xcls_modOrder_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.modOrder_lbl = this;
             this.el = new Gtk.Label( "Order (for tabs)" );
 
             // my vars (dec)
@@ -981,7 +986,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label24 : Object
+    public class Xcls_build_model_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -990,9 +995,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label24(Xcls_PopoverFileDetails _owner )
+        public Xcls_build_model_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.build_model_lbl = this;
             this.el = new Gtk.Label( "Module to build" );
 
             // my vars (dec)
