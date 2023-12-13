@@ -24,13 +24,11 @@
     {
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
-     "* pack" : "append",
      "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "bool hexpand" : true,
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "append",
-       "bool always_show_image" : true,
        "id" : "save_button",
        "label" : "Save",
        "listeners" : {
@@ -41,7 +39,6 @@
          "  "
         ]
        },
-       "string icon_name" : "document-save",
        "xtype" : "Button"
       },
       {
@@ -83,9 +80,16 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "append",
-       "bool always_show_image" : true,
        "id" : "close_btn",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
+         "string icon_name" : "window-close",
+         "xtype" : "Image"
+        }
+       ],
        "listeners" : {
         "clicked" : [
          " () => { ",
@@ -103,11 +107,8 @@
     },
     {
      "$ xns" : "Gtk",
-     "* init" : [
-      "this.el.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-      ""
-     ],
-     "* pack" : "append",
+     "Gtk.PolicyType hscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
+     "Gtk.PolicyType vscrollbar_policy" : "Gtk.PolicyType.AUTOMATIC",
      "bool vexpand" : true,
      "id" : "RightEditor",
      "items" : [

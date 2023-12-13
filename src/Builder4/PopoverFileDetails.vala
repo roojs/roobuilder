@@ -66,6 +66,12 @@ public class Xcls_PopoverFileDetails : Object
         this.el.set_child ( child_1.el  );
         var child_2 = new Xcls_HeaderBar33( _this );
         this.el.titlebar = child_2.el;
+
+        //listeners
+        this.el.close_request.connect( ( ) => {
+        	_this.el.hide();
+        	return true;
+        });
     }
 
     // user defined functions
@@ -1344,7 +1350,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.show_title_buttons = false;
+            this.el.show_title_buttons = true;
         }
 
         // user defined functions

@@ -648,11 +648,20 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "titlebar",
-     "bool show_title_buttons" : false,
+     "bool show_title_buttons" : true,
      "title" : "Add / Edit File",
      "xtype" : "HeaderBar"
     }
    ],
+   "listeners" : {
+    "close_request" : [
+     "( ) => {",
+     "\t_this.el.hide();",
+     "\treturn true;",
+     "}",
+     ""
+    ]
+   },
    "uint border_width" : 0,
    "xtype" : "Window",
    "| void show" : [
