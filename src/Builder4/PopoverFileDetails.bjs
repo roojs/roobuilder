@@ -358,7 +358,7 @@
          ],
          "xtype" : "DropDown",
          "| string getValue" : [
-          "() {",
+          " ",
           "() {",
           "\tif (_this.el.selected < 0) {",
           "\t\treturn \"\";",
@@ -366,7 +366,7 @@
           "\t",
           "\treturn _this.build_module_model.el.get_string(this.el.selected);",
           "}",
-          "}"
+          " "
          ],
          "| void setValue" : [
           "(string str) {",
