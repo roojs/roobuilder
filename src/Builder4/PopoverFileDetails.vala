@@ -16,7 +16,7 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_dir_dropdown dir_dropdown;
     public Xcls_dir_model dir_model;
     public Xcls_filetype_lbl filetype_lbl;
-    public Xcls_filetype_dropdown filetype_dropdown;
+    public Xcls_filetype filetype;
     public Xcls_filetype_model filetype_model;
     public Xcls_name name;
     public Xcls_title_lbl title_lbl;
@@ -34,6 +34,8 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_build_module_model build_module_model;
     public Xcls_path_lbl path_lbl;
     public Xcls_path path;
+    public Xcls_gen_lbl gen_lbl;
+    public Xcls_gen gen;
     public Xcls_save_btn save_btn;
 
         // my vars (def)
@@ -61,16 +63,15 @@ public class Xcls_PopoverFileDetails : Object
         // set gobject values
         this.el.modal = true;
         var child_1 = new Xcls_Box2( _this );
-        child_1.ref();
         this.el.set_child ( child_1.el  );
-        var child_2 = new Xcls_HeaderBar31( _this );
-        child_2.ref();
+        var child_2 = new Xcls_HeaderBar33( _this );
         this.el.titlebar = child_2.el;
     }
 
     // user defined functions
     public void show (JsRender.JsRender c, Gtk.Window pwin, bool new_window) 
     {
+        
         this.project = c.project;
         this.done = false;
         this.new_window = new_window;
@@ -85,13 +86,18 @@ public class Xcls_PopoverFileDetails : Object
         _this.region.el.set_text(c.region);
         _this.modOrder.el.set_text(c.modOrder);
         _this.permname.el.set_text(c.permname);
-    
+        _this.gen.el.active = c.gen_extended;
+       
     	_this.path_lbl.el.show();
         _this.path.el.show();
         if (c.name == "") {
         	_this.path_lbl.el.hide();
     	    _this.path.el.hide();
-        }
+    	    this.filetype_model.load();
+    	    
+        }  
+        
+        
         if (this.project.xtype == "Gtk") {
         	var p = (Project.Gtk) this.project;
     	    this.build_module_model.load(p.compilegroups);
@@ -136,7 +142,7 @@ public class Xcls_PopoverFileDetails : Object
             _this.file.parent = _this.parent.el.get_text();                        
             _this.file.permname = _this.permname.el.get_text();                                    
             _this.file.modOrder = _this.modOrder.el.get_text();
-            
+            _this.file.gen_extended = _this.gen.el.active;
             var new_name =  _this.name.el.get_text();
             if (_this.file.name.length  > 0 && _this.file.name != new_name) {
                 try {
@@ -175,10 +181,8 @@ public class Xcls_PopoverFileDetails : Object
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
             var child_1 = new Xcls_grid( _this );
-            child_1.ref();
             this.el.append ( child_1.el  );
-            var child_2 = new Xcls_Box27( _this );
-            child_2.ref();
+            var child_2 = new Xcls_Box29( _this );
             this.el.append ( child_2.el  );
         }
 
@@ -208,65 +212,49 @@ public class Xcls_PopoverFileDetails : Object
             this.el.column_spacing = 4;
             this.el.row_spacing = 2;
             var child_1 = new Xcls_Label4( _this );
-            child_1.ref();
             this.el.attach( child_1.el, 0, 0, 1, 1 );
             var child_2 = new Xcls_dir_dropdown( _this );
-            child_2.ref();
             this.el.attach( child_2.el, 1, 0, 1, 1 );
             var child_3 = new Xcls_filetype_lbl( _this );
-            child_3.ref();
             this.el.attach( child_3.el, 0, 1, 1, 1 );
-            var child_4 = new Xcls_filetype_dropdown( _this );
-            child_4.ref();
+            var child_4 = new Xcls_filetype( _this );
             this.el.attach( child_4.el, 1, 1, 1, 1 );
             var child_5 = new Xcls_Label10( _this );
-            child_5.ref();
             this.el.attach( child_5.el, 0, 2, 1, 1 );
             var child_6 = new Xcls_name( _this );
-            child_6.ref();
             this.el.attach( child_6.el, 1, 2, 1, 1 );
             var child_7 = new Xcls_title_lbl( _this );
-            child_7.ref();
             this.el.attach( child_7.el, 0, 3, 1, 1 );
             var child_8 = new Xcls_title( _this );
-            child_8.ref();
             this.el.attach ( child_8.el , 1,2,1,1 );
             var child_9 = new Xcls_region_lbl( _this );
-            child_9.ref();
             this.el.attach( child_9.el, 0, 4, 1, 1 );
             var child_10 = new Xcls_region( _this );
-            child_10.ref();
             this.el.attach( child_10.el, 1, 4, 1, 1 );
             var child_11 = new Xcls_parent_lbl( _this );
-            child_11.ref();
             this.el.attach( child_11.el, 0, 5, 1, 1 );
             var child_12 = new Xcls_parent( _this );
-            child_12.ref();
             this.el.attach( child_12.el, 1, 5, 1, 1 );
             var child_13 = new Xcls_permname_lbl( _this );
-            child_13.ref();
             this.el.attach( child_13.el, 0, 6, 1, 1 );
             var child_14 = new Xcls_permname( _this );
-            child_14.ref();
             this.el.attach( child_14.el, 1, 6, 1, 1 );
             var child_15 = new Xcls_modOrder_lbl( _this );
-            child_15.ref();
             this.el.attach( child_15.el, 0, 7, 1, 1 );
             var child_16 = new Xcls_modOrder( _this );
-            child_16.ref();
             this.el.attach( child_16.el, 1, 7, 1, 1 );
             var child_17 = new Xcls_build_module_lbl( _this );
-            child_17.ref();
             this.el.attach( child_17.el, 0, 8, 1, 1 );
             var child_18 = new Xcls_build_module( _this );
-            child_18.ref();
             this.el.attach( child_18.el, 1, 8, 1, 1 );
             var child_19 = new Xcls_path_lbl( _this );
-            child_19.ref();
             this.el.attach( child_19.el, 0, 9, 1, 1 );
             var child_20 = new Xcls_path( _this );
-            child_20.ref();
             this.el.attach( child_20.el, 1, 9, 1, 1 );
+            var child_21 = new Xcls_gen_lbl( _this );
+            this.el.attach( child_21.el, 0, 10, 1, 1 );
+            var child_22 = new Xcls_gen( _this );
+            this.el.attach( child_22.el, 1, 10, 1, 1 );
         }
 
         // user defined functions
@@ -328,7 +316,6 @@ public class Xcls_PopoverFileDetails : Object
             _this = _owner;
             _this.dir_dropdown = this;
             var child_1 = new Xcls_dir_model( _this );
-            child_1.ref();
             this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
@@ -391,7 +378,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_filetype_dropdown : Object
+    public class Xcls_filetype : Object
     {
         public Gtk.DropDown el;
         private Xcls_PopoverFileDetails  _this;
@@ -400,12 +387,11 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_filetype_dropdown(Xcls_PopoverFileDetails _owner )
+        public Xcls_filetype(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            _this.filetype_dropdown = this;
+            _this.filetype = this;
             var child_1 = new Xcls_filetype_model( _this );
-            child_1.ref();
             this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
@@ -426,7 +412,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
         public string getValue () {
-        	if (this.el.selected < 0) {
+        	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
         		return "";
         	}
         	
@@ -454,6 +440,9 @@ public class Xcls_PopoverFileDetails : Object
         	
         	_this.build_module_lbl.el.hide();
         	_this.build_module.el.hide();
+        	
+        	_this.gen_lbl.el.hide();
+        	_this.gen.el.hide();
         	
         	var sel = this.getValue();
         	
@@ -483,10 +472,11 @@ public class Xcls_PopoverFileDetails : Object
         			break;
         		default: // vala..
         		
-        			_this.build_module_lbl.el.hide();
-        			_this.build_module.el.hide();
+        			_this.build_module_lbl.el.show();
+        			_this.build_module.el.show();
         	
-        	 
+        			 _this.gen_lbl.el.show();
+        			_this.gen.el.show();
         		    
         			break;
         	}
@@ -503,7 +493,7 @@ public class Xcls_PopoverFileDetails : Object
             
         }
         public void setValue (string cur) {
-        	var el  = this.filetype_model.el;
+        	var el  = _this.filetype_model.el;
         	for(var i= 0; i < el.get_n_items();i++)  {
         		if (el.get_string(i).has_prefix(cur)) {
         			this.el.selected = i;
@@ -555,6 +545,9 @@ public class Xcls_PopoverFileDetails : Object
          	 	el.append("vala - Vala File");
          	 	el.append("css - CSS File");
          	 	el.append("other - Other Type");
+         	 	break;
+         	 default : 
+         	 	break;
         	}
         
         	
@@ -906,7 +899,6 @@ public class Xcls_PopoverFileDetails : Object
             _this = _owner;
             _this.build_module = this;
             var child_1 = new Xcls_build_module_model( _this );
-            child_1.ref();
             this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
@@ -954,10 +946,11 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
-        public void load (Gee.HashMap<string,Project.GtkValaSettings> compilegroups) {
-        
-        	while (this.el.get_n_items() < 1) {
-        		this.el.remove(0);
+        public void load (Gee.HashMap<string,Project.GtkValaSettings> compilegroups)
+        {
+         var el = _this.build_module_model.el;
+         while (el.get_n_items() > 0) {
+            	el.remove(0);
         	}
         	
         	foreach(var k in compilegroups.keys) {
@@ -1024,8 +1017,67 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
+    public class Xcls_gen_lbl : Object
+    {
+        public Gtk.Label el;
+        private Xcls_PopoverFileDetails  _this;
 
-    public class Xcls_Box27 : Object
+
+            // my vars (def)
+        public int colspan;
+
+        // ctor
+        public Xcls_gen_lbl(Xcls_PopoverFileDetails _owner )
+        {
+            _this = _owner;
+            _this.gen_lbl = this;
+            this.el = new Gtk.Label( "Generate as Extended (experimental)" );
+
+            // my vars (dec)
+            this.colspan = 1;
+
+            // set gobject values
+            this.el.justify = Gtk.Justification.RIGHT;
+            this.el.xalign = 0.900000f;
+            this.el.visible = true;
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_gen : Object
+    {
+        public Gtk.CheckButton el;
+        private Xcls_PopoverFileDetails  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_gen(Xcls_PopoverFileDetails _owner )
+        {
+            _this = _owner;
+            _this.gen = this;
+            this.el = new Gtk.CheckButton();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Wrapped";
+
+            //listeners
+            this.el.toggled.connect( ( ) => {
+            	  
+            	this.el.label = this.el.active ? "Extended" : "Wrapped";
+            
+            });
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_Box29 : Object
     {
         public Gtk.Box el;
         private Xcls_PopoverFileDetails  _this;
@@ -1034,7 +1086,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box27(Xcls_PopoverFileDetails _owner )
+        public Xcls_Box29(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1046,39 +1098,33 @@ public class Xcls_PopoverFileDetails : Object
             this.el.margin_start = 4;
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
-            var child_1 = new Xcls_Button28( _this );
-            child_1.ref();
+            var child_1 = new Xcls_Button30( _this );
             this.el.append ( child_1.el  );
-            var child_2 = new Xcls_Label29( _this );
-            child_2.ref();
+            var child_2 = new Xcls_Label31( _this );
             this.el.append( child_2.el );
             var child_3 = new Xcls_save_btn( _this );
-            child_3.ref();
             this.el.append ( child_3.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Button28 : Object
+    public class Xcls_Button30 : Object
     {
         public Gtk.Button el;
         private Xcls_PopoverFileDetails  _this;
 
 
             // my vars (def)
-        public bool always_show_image;
 
         // ctor
-        public Xcls_Button28(Xcls_PopoverFileDetails _owner )
+        public Xcls_Button30(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
 
             // my vars (dec)
-            this.always_show_image = true;
 
             // set gobject values
-            this.el.icon_name = "window-close";
             this.el.label = "Cancel";
 
             //listeners
@@ -1092,7 +1138,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label29 : Object
+    public class Xcls_Label31 : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -1101,7 +1147,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label29(Xcls_PopoverFileDetails _owner )
+        public Xcls_Label31(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "" );
@@ -1192,9 +1238,9 @@ public class Xcls_PopoverFileDetails : Object
             	}
             	
             	// ---------------- NEW FILES...
-            	Gtk.TreeIter iter;
+            	var ftype = _this.filetype.getValue();
             
-            	if (!_this.filetype.el.get_active_iter(out iter)) {
+            	if (ftype == "") {
             		// should not happen...
             		// so we are jut going to return without 
             		Xcls_StandardErrorDialog.singleton().show(
@@ -1208,9 +1254,8 @@ public class Xcls_PopoverFileDetails : Object
             	
             	var fn = _this.name.el.get_text();
             	
-            	Value ftypename;
-            	_this.ftdbmodel.el.get_value (iter, 0, out ftypename);
-            	var ext = ((string)ftypename);
+            	 
+            	var ext = ftype;
             	//var dir = _this.project.path; 
             	 
             	 var dir = _this.dir_dropdown.getValue();
@@ -1222,7 +1267,7 @@ public class Xcls_PopoverFileDetails : Object
             	if (dir != "") {
             		targetfile += dir;
             	}
-            	targetfile += fn;
+            	targetfile += "/" + fn;
             	
             	// strip the file type off the end..
             	
@@ -1282,7 +1327,7 @@ public class Xcls_PopoverFileDetails : Object
 
 
 
-    public class Xcls_HeaderBar31 : Object
+    public class Xcls_HeaderBar33 : Object
     {
         public Gtk.HeaderBar el;
         private Xcls_PopoverFileDetails  _this;
@@ -1291,7 +1336,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HeaderBar31(Xcls_PopoverFileDetails _owner )
+        public Xcls_HeaderBar33(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.HeaderBar();
@@ -1299,6 +1344,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show_title_buttons = false;
         }
 
         // user defined functions

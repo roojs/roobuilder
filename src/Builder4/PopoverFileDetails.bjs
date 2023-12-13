@@ -75,7 +75,7 @@
         {
          "$ xns" : "Gtk",
          "bool hexpand" : true,
-         "id" : "filetype_dropdown",
+         "id" : "filetype",
          "items" : [
           {
            "$ xns" : "Gtk",
@@ -106,6 +106,9 @@
             " \t \tel.append(\"vala - Vala File\");",
             " \t \tel.append(\"css - CSS File\");",
             " \t \tel.append(\"other - Other Type\");",
+            " \t \tbreak;",
+            " \t default : ",
+            " \t \tbreak;",
             "\t}",
             "",
             "\t",
@@ -130,7 +133,7 @@
          "xtype" : "DropDown",
          "| string getValue" : [
           "() {",
-          "\tif (this.el.selected < 0) {",
+          "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
           "\t\treturn \"\";",
           "\t}",
           "\t",
@@ -139,7 +142,7 @@
          ],
          "| void setValue" : [
           "(string cur) {",
-          "\tvar el  = this.filetype_model.el;",
+          "\tvar el  = _this.filetype_model.el;",
           "\tfor(var i= 0; i < el.get_n_items();i++)  {",
           "\t\tif (el.get_string(i).has_prefix(cur)) {",
           "\t\t\tthis.el.selected = i;",
@@ -172,6 +175,9 @@
           "\t_this.build_module_lbl.el.hide();",
           "\t_this.build_module.el.hide();",
           "\t",
+          "\t_this.gen_lbl.el.hide();",
+          "\t_this.gen.el.hide();",
+          "\t",
           "\tvar sel = this.getValue();",
           "\t",
           "\tswitch(_this.project.xtype) {",
@@ -200,10 +206,11 @@
           "\t\t\tbreak;",
           "\t\tdefault: // vala..",
           "\t\t",
-          "\t\t\t_this.build_module_lbl.el.hide();",
-          "\t\t\t_this.build_module.el.hide();",
+          "\t\t\t_this.build_module_lbl.el.show();",
+          "\t\t\t_this.build_module.el.show();",
           "\t",
-          "\t ",
+          "\t\t\t _this.gen_lbl.el.show();",
+          "\t\t\t_this.gen.el.show();",
           "\t\t    ",
           "\t\t\tbreak;",
           "\t}",
@@ -342,10 +349,11 @@
            "strings" : "{}",
            "xtype" : "StringList",
            "| void load" : [
-            "(Gee.HashMap<string,Project.GtkValaSettings> compilegroups) {",
-            "",
-            "\twhile (this.el.get_n_items() < 1) {",
-            "\t\tthis.el.remove(0);",
+            "(Gee.HashMap<string,Project.GtkValaSettings> compilegroups)",
+            "{",
+            " var el = _this.build_module_model.el;",
+            " while (el.get_n_items() > 0) {",
+            "    \tel.remove(0);",
             "\t}",
             "\t",
             "\tforeach(var k in compilegroups.keys) {",
@@ -400,6 +408,33 @@
          "id" : "path",
          "int colspan" : 1,
          "xtype" : "Entry"
+        },
+        {
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "$ visible" : true,
+         "$ xns" : "Gtk",
+         "id" : "gen_lbl",
+         "int colspan" : 1,
+         "label" : "Generate as Extended (experimental)",
+         "x_options" : 4,
+         "xalign" : 0.90000000000000002,
+         "xtype" : "Label"
+        },
+        {
+         "$ xns" : "Gtk",
+         "id" : "gen",
+         "listeners" : {
+          "toggled" : [
+           "( ) => {",
+           "\t  ",
+           "\tthis.el.label = this.el.active ? \"Extended\" : \"Wrapped\";",
+           "",
+           "}",
+           ""
+          ]
+         },
+         "string label" : "Wrapped",
+         "xtype" : "CheckButton"
         }
        ],
        "uint row_spacing" : 2,
@@ -438,7 +473,6 @@
         {
          "$ xns" : "Gtk",
          "* pack" : "append",
-         "bool always_show_image" : true,
          "listeners" : {
           "clicked" : [
            "() => { ",
@@ -448,7 +482,6 @@
            "}"
           ]
          },
-         "string icon_name" : "window-close",
          "string label" : "Cancel",
          "xtype" : "Button"
         },
@@ -518,9 +551,9 @@
            "\t}",
            "\t",
            "\t// ---------------- NEW FILES...",
-           "\tGtk.TreeIter iter;",
+           "\tvar ftype = _this.filetype.getValue();",
            "",
-           "\tif (!_this.filetype.el.get_active_iter(out iter)) {",
+           "\tif (ftype == \"\") {",
            "\t\t// should not happen...",
            "\t\t// so we are jut going to return without ",
            "\t\tXcls_StandardErrorDialog.singleton().show(",
@@ -534,9 +567,8 @@
            "\t",
            "\tvar fn = _this.name.el.get_text();",
            "\t",
-           "\tValue ftypename;",
-           "\t_this.ftdbmodel.el.get_value (iter, 0, out ftypename);",
-           "\tvar ext = ((string)ftypename);",
+           "\t ",
+           "\tvar ext = ftype;",
            "\t//var dir = _this.project.path; ",
            "\t ",
            "\t var dir = _this.dir_dropdown.getValue();",
@@ -548,7 +580,7 @@
            "\tif (dir != \"\") {",
            "\t\ttargetfile += dir;",
            "\t}",
-           "\ttargetfile += fn;",
+           "\ttargetfile += \"/\" + fn;",
            "\t",
            "\t// strip the file type off the end..",
            "\t",
@@ -616,6 +648,7 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "titlebar",
+     "bool show_title_buttons" : false,
      "title" : "Add / Edit File",
      "xtype" : "HeaderBar"
     }
@@ -625,6 +658,7 @@
    "| void show" : [
     "(JsRender.JsRender c, Gtk.Window pwin, bool new_window) ",
     "{",
+    "    ",
     "    this.project = c.project;",
     "    this.done = false;",
     "    this.new_window = new_window;",
@@ -639,13 +673,18 @@
     "    _this.region.el.set_text(c.region);",
     "    _this.modOrder.el.set_text(c.modOrder);",
     "    _this.permname.el.set_text(c.permname);",
-    "",
+    "    _this.gen.el.active = c.gen_extended;",
+    "   ",
     "\t_this.path_lbl.el.show();",
     "    _this.path.el.show();",
     "    if (c.name == \"\") {",
     "    \t_this.path_lbl.el.hide();",
     "\t    _this.path.el.hide();",
-    "    }",
+    "\t    this.filetype_model.load();",
+    "\t    ",
+    "    }  ",
+    "    ",
+    "    ",
     "    if (this.project.xtype == \"Gtk\") {",
     "    \tvar p = (Project.Gtk) this.project;",
     "\t    this.build_module_model.load(p.compilegroups);",
@@ -692,7 +731,7 @@
     "        _this.file.parent = _this.parent.el.get_text();                        ",
     "        _this.file.permname = _this.permname.el.get_text();                                    ",
     "        _this.file.modOrder = _this.modOrder.el.get_text();",
-    "        ",
+    "        _this.file.gen_extended = _this.gen.el.active;",
     "        var new_name =  _this.name.el.get_text();",
     "        if (_this.file.name.length  > 0 && _this.file.name != new_name) {",
     "            try {",

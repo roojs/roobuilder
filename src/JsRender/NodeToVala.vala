@@ -848,14 +848,15 @@ public class JsRender.NodeToVala : Object {
 		this.addLine(this.ipad + "var " + childname + " = new " + child.xvala_xcls + "( _this " + xargs + ");" );
 		 
 		// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
-		if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
+		// remove '+' support as I cant remember what it does!!!
+		if (child.xvala_id.length < 1 ) {
 			this.addLine(this.ipad + childname +".ref();"); // we need to reference increase unnamed children...
 		} 			
-	   if (child.xvala_id[0] != '+') {
-		 	return childname; // skip generation of children?
+	    //if (child.xvala_id[0] == '+') {
+		// 	this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " = " + childname+  ";");
 					
-		}
-		this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " = " + childname+  ";");
+		//}
+		
 
 		return childname;	
 	}		

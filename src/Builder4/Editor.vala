@@ -62,13 +62,10 @@ public class Editor : Object
         this.el.hexpand = true;
         this.el.vexpand = true;
         var child_1 = new Xcls_Box2( _this );
-        child_1.ref();
         this.el.append ( child_1.el  );
         var child_2 = new Xcls_RightEditor( _this );
-        child_2.ref();
         this.el.append ( child_2.el  );
         var child_3 = new Xcls_Box11( _this );
-        child_3.ref();
         this.el.append ( child_3.el  );
     }
 
@@ -246,16 +243,12 @@ public class Editor : Object
             // set gobject values
             this.el.homogeneous = false;
             var child_1 = new Xcls_save_button( _this );
-            child_1.ref();
             this.el.append ( child_1.el  );
             var child_2 = new Xcls_Label4( _this );
-            child_2.ref();
             this.el.append ( child_2.el  );
             var child_3 = new Xcls_Scale5( _this );
-            child_3.ref();
             this.el.append ( child_3.el  );
             var child_4 = new Xcls_close_btn( _this );
-            child_4.ref();
             this.el.append ( child_4.el  );
         }
 
@@ -414,10 +407,8 @@ public class Editor : Object
             // set gobject values
             this.el.vexpand = true;
             var child_1 = new Xcls_view( _this );
-            child_1.ref();
             this.el.set_child ( child_1.el  );
             var child_2 = new Xcls_EventControllerKey10( _this );
-            child_2.ref();
             this.el.add_controller ( child_2.el  );
 
             // init method
@@ -456,7 +447,6 @@ public class Editor : Object
             this.el.tab_width = 4;
             this.el.highlight_current_line = true;
             var child_1 = new Xcls_buffer( _this );
-            child_1.ref();
             this.el.set_buffer ( child_1.el  );
 
             // init method
@@ -914,19 +904,14 @@ public class Editor : Object
             this.el.homogeneous = false;
             this.el.vexpand = false;
             var child_1 = new Xcls_search_entry( _this );
-            child_1.ref();
             this.el.append ( child_1.el  );
-            var child_2 = new Xcls_Box14( _this );
-            child_2.ref();
-            this.el.append ( child_2.el  );
+            var child_2 = new Xcls_search_results( _this );
+            this.el.append( child_2.el );
             var child_3 = new Xcls_nextBtn( _this );
-            child_3.ref();
             this.el.append ( child_3.el  );
             var child_4 = new Xcls_backBtn( _this );
-            child_4.ref();
             this.el.append ( child_4.el  );
-            var child_5 = new Xcls_MenuButton18( _this );
-            child_5.ref();
+            var child_5 = new Xcls_MenuButton17( _this );
             this.el.append ( child_5.el  );
         }
 
@@ -957,7 +942,6 @@ public class Editor : Object
             this.el.placeholder_text = "Press enter to search";
             this.el.search_delay = 3;
             var child_1 = new Xcls_EventControllerKey13( _this );
-            child_1.ref();
             this.el.add_controller(  child_1.el );
 
             // init method
@@ -1038,15 +1022,8 @@ public class Editor : Object
                 
               
              	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
-            		//var res =
-            		 _this.search(_this.search_entry.el.text);
-            		 _this.search_results.updateResults();
-            
-            		GLib.Timeout.add_seconds(2,() => {
-            			 _this.search_results.updateResults();
-            			 return false;
-            		 });
-            	 
+            		_this.forwardSearch(true);
+            		
             		
             	    return true;
             
@@ -1061,65 +1038,24 @@ public class Editor : Object
     }
 
 
-    public class Xcls_Box14 : Object
-    {
-        public Gtk.Box el;
-        private Editor  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Box14(Editor _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_1 = new Xcls_search_results( _this );
-            child_1.ref();
-            this.el.append ( child_1.el  );
-        }
-
-        // user defined functions
-    }
     public class Xcls_search_results : Object
     {
-        public Gtk.Button el;
+        public Gtk.Label el;
         private Editor  _this;
 
 
             // my vars (def)
-        public bool always_show_image;
 
         // ctor
         public Xcls_search_results(Editor _owner )
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.Label( "No Results" );
 
             // my vars (dec)
-            this.always_show_image = true;
 
             // set gobject values
-            this.el.visible = true;
-
-            //listeners
-            this.el.clicked.connect( () => {
-            /*
-                if (this.popup == null) {
-                    this.popup = new Xcls_ValaCompileErrors();
-                    this.popup.window = _this;
-                }
-               
-                
-                this.popup.show(this.notices, this.el);
-                */
-              
-            });
         }
 
         // user defined functions
@@ -1145,7 +1081,6 @@ public class Editor : Object
         	
         }
     }
-
 
     public class Xcls_nextBtn : Object
     {
@@ -1218,7 +1153,7 @@ public class Editor : Object
         // user defined functions
     }
 
-    public class Xcls_MenuButton18 : Object
+    public class Xcls_MenuButton17 : Object
     {
         public Gtk.MenuButton el;
         private Editor  _this;
@@ -1228,7 +1163,7 @@ public class Editor : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_MenuButton18(Editor _owner )
+        public Xcls_MenuButton17(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -1240,7 +1175,6 @@ public class Editor : Object
             this.el.icon_name = "emblem-system";
             this.el.label = "Settings";
             var child_1 = new Xcls_search_settings( _this );
-            child_1.ref();
             this.el.popover = child_1.el;
 
             // init method
@@ -1275,14 +1209,13 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            var child_1 = new Xcls_Box20( _this );
-            child_1.ref();
+            var child_1 = new Xcls_Box19( _this );
             this.el.child = child_1.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box20 : Object
+    public class Xcls_Box19 : Object
     {
         public Gtk.Box el;
         private Editor  _this;
@@ -1291,7 +1224,7 @@ public class Editor : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box20(Editor _owner )
+        public Xcls_Box19(Editor _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1300,13 +1233,10 @@ public class Editor : Object
 
             // set gobject values
             var child_1 = new Xcls_case_sensitive( _this );
-            child_1.ref();
             this.el.append( child_1.el );
             var child_2 = new Xcls_regex( _this );
-            child_2.ref();
             this.el.append( child_2.el );
             var child_3 = new Xcls_multiline( _this );
-            child_3.ref();
             this.el.append( child_3.el );
         }
 
