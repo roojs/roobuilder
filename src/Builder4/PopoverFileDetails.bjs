@@ -146,7 +146,11 @@
          "xtype" : "DropDown",
          "| string getValue" : [
           "() {",
+          "\tif (_this.el.selected < 0) {",
+          "\t\treturn \"\";",
+          "\t}",
           "\t",
+          "\treturn _this.filetype_model.el.get_string(this.el.selected).split(\" \")[0];",
           "}"
          ],
          "| void setValue" : [
