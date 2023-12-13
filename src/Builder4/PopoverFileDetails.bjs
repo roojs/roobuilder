@@ -388,7 +388,7 @@
            ]
           }
          ],
-         "xtype" : "ComboBox"
+         "xtype" : "DropDown"
         },
         {
          "$ justify" : "Gtk.Justification.RIGHT",

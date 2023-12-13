@@ -922,7 +922,7 @@ public class Xcls_PopoverFileDetails : Object
 
     public class Xcls_build_module : Object
     {
-        public Gtk.ComboBox el;
+        public Gtk.DropDown el;
         private Xcls_PopoverFileDetails  _this;
 
 
@@ -933,7 +933,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.build_module = this;
-            this.el = new Gtk.ComboBox();
+            this.el = new Gtk.DropDown( null, null );
 
             // my vars (dec)
 
