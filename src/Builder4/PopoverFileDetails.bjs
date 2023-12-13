@@ -637,7 +637,7 @@
     "    }",
     "    if (this.project.xtype == \"Gtk\") {",
     "    ",
-    "\t    this.build_module_model.load(p.compilegroups);",
+    "\t    this.build_module_model.load(this.project.compilegroups);",
     "\t    this.build_module.setValue(c.build_module);",
     "    }",
     "\t     ",
