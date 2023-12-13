@@ -60,7 +60,7 @@
            " ",
            "//\t_this.select(np);",
            "\t",
-           "\tif (_this.node.has_prop_key(prop)) {",
+           "\tif (!prop.name.contains(\"[]\") && _this.node.has_prop_key(prop)) {",
            "\t\tGLib.debug(\"node already has this key.\");",
            "\t\treturn; // cant add it twice? --  ",
            "\t}",
