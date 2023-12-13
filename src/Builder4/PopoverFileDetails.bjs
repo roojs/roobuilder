@@ -333,7 +333,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* init" : "this.el.add_attribute(_this.dbcellrenderer.el , \"markup\", 1 );",
          "id" : "build_module",
          "items" : [
           {
@@ -386,6 +385,12 @@
             "}",
             ""
            ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "strings" : "",
+           "xtype" : "StringList"
           }
          ],
          "xtype" : "DropDown"
