@@ -130,7 +130,7 @@
          "xtype" : "DropDown",
          "| string getValue" : [
           "() {",
-          "\tif (_this.el.selected < 0) {",
+          "\tif (this.el.selected < 0) {",
           "\t\treturn \"\";",
           "\t}",
           "\t",
@@ -360,7 +360,7 @@
          "| string getValue" : [
           " ",
           "() {",
-          "\tif (_this.el.selected < 0) {",
+          "\tif (this.el.selected < 0) {",
           "\t\treturn \"\";",
           "\t}",
           "\t",

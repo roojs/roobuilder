@@ -426,7 +426,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
         public string getValue () {
-        	if (_this.el.selected < 0) {
+        	if (this.el.selected < 0) {
         		return "";
         	}
         	
@@ -916,7 +916,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
         public string getValue () {
-        	if (_this.el.selected < 0) {
+        	if (this.el.selected < 0) {
         		return "";
         	}
         	
