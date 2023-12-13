@@ -426,7 +426,6 @@
          "xtype" : "Entry"
         }
        ],
-       "n_columns" : 2,
        "uint row_spacing" : 2,
        "xtype" : "Grid",
        "| void hideRow" : [
