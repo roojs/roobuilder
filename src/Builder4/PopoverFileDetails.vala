@@ -335,7 +335,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label4(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Directory" );
+            this.el = new Gtk.Label( "Create File in this Directory" );
 
             // my vars (dec)
 

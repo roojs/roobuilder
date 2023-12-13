@@ -38,7 +38,7 @@
          "$ justify" : "Gtk.Justification.RIGHT",
          "$ visible" : true,
          "$ xns" : "Gtk",
-         "label" : "Directory",
+         "label" : "Create File in this Directory",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
          "xtype" : "Label"
