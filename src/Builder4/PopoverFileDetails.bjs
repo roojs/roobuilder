@@ -76,7 +76,7 @@
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
          "bool hexpand" : true,
-         "id" : "filetype",
+         "id" : "filetype_dropdown",
          "items" : [
           {
            "$ xns" : "Gtk",
