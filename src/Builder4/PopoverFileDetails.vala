@@ -949,7 +949,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
         public void load (Gee.HashMap<string,GtkValaSettings> compilegroups) {
         
-        	while (this.el.get_n_items()< 1) {
+        	while (this.el.get_n_items() < 1) {
         		this.el.remove(0);
         	}
         	

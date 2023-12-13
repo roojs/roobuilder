@@ -344,7 +344,7 @@
            "| void load" : [
             "(Gee.HashMap<string,GtkValaSettings> compilegroups) {",
             "",
-            "\twhile (this.el.get_n_items()< 1) {",
+            "\twhile (this.el.get_n_items() < 1) {",
             "\t\tthis.el.remove(0);",
             "\t}",
             "\t",
