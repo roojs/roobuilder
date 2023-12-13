@@ -23,7 +23,9 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_name name;
     public Xcls_title_lbl title_lbl;
     public Xcls_title title;
+    public Xcls_region_lbl region_lbl;
     public Xcls_region region;
+    public Xcls_parent_lbl parent_lbl;
     public Xcls_parent parent;
     public Xcls_permname permname;
     public Xcls_modOrder modOrder;
@@ -263,15 +265,15 @@ public class Xcls_PopoverFileDetails : Object
             var child_8 = new Xcls_title( _this );
             child_8.ref();
             this.el.attach ( child_8.el , 1,2,1,1 );
-            var child_9 = new Xcls_Label16( _this );
+            var child_9 = new Xcls_region_lbl( _this );
             child_9.ref();
-            this.el.attach ( child_9.el , 0,3,1,1 );
+            this.el.attach( child_9.el, 0, 4, 1, 1 );
             var child_10 = new Xcls_region( _this );
             child_10.ref();
             this.el.attach ( child_10.el , 1,3,1,1 );
-            var child_11 = new Xcls_Label18( _this );
+            var child_11 = new Xcls_parent_lbl( _this );
             child_11.ref();
-            this.el.attach ( child_11.el , 0,4,1,1 );
+            this.el.attach( child_11.el, 0, 5, 1, 1 );
             var child_12 = new Xcls_parent( _this );
             child_12.ref();
             this.el.attach ( child_12.el , 1,4,1,1 );
@@ -779,7 +781,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label16 : Object
+    public class Xcls_region_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -788,9 +790,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label16(Xcls_PopoverFileDetails _owner )
+        public Xcls_region_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.region_lbl = this;
             this.el = new Gtk.Label( "Region" );
 
             // my vars (dec)
@@ -830,7 +833,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label18 : Object
+    public class Xcls_parent_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -839,9 +842,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label18(Xcls_PopoverFileDetails _owner )
+        public Xcls_parent_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.parent_lbl = this;
             this.el = new Gtk.Label( "Parent Name" );
 
             // my vars (dec)
