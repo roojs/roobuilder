@@ -165,25 +165,15 @@ public class Xcls_PopoverFileDetails : Object
             _this.file.permname = _this.permname.el.get_text();                                    
             _this.file.modOrder = _this.modOrder.el.get_text();
             
-    
             var new_name =  _this.name.el.get_text();
             if (_this.file.name.length  > 0 && _this.file.name != new_name) {
                 try {
                 	_this.file.renameTo( new_name ));
             	} catch (JsRender.Error e) { } // do nothing?
             }
-            */
-            // store the module...
-            _this.file.build_module = "";        
-             Gtk.TreeIter iter; 
-            if (_this.build_module.el.get_active_iter (out iter)) {
-                 Value vfname;
-                 this.dbmodel.el.get_value (iter, 0, out vfname);
-                 if (((string)vfname).length > 0) {
-                     _this.file.build_module = (string)vfname;
-                 }
-        
-            }
+            
+            _this.file.build_module = _this.build_module.getValue();
+            
             
             
     
