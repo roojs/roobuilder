@@ -44,6 +44,26 @@
          "xtype" : "Label"
         },
         {
+         "$ xns" : "Gtk",
+         "id" : "dir_dropdown",
+         "int colspan" : 1,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "id" : "dir_model",
+           "strings" : "{}",
+           "xtype" : "StringList"
+          }
+         ],
+         "xtype" : "DropDown",
+         "| string getValue" : [
+          "() {",
+          "\treturn _this.dir_model.el.get_string(this.el.selected);",
+          "}"
+         ]
+        },
+        {
          "$ justify" : "Gtk.Justification.RIGHT",
          "$ xns" : "Gtk",
          "id" : "filetypelbl",
