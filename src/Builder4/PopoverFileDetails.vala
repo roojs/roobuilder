@@ -31,8 +31,6 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_modOrder modOrder;
     public Xcls_build_module_lbl build_module_lbl;
     public Xcls_build_module build_module;
-    public Xcls_dbcellrenderer dbcellrenderer;
-    public Xcls_dbmodel dbmodel;
     public Xcls_path_lbl path_lbl;
     public Xcls_path path;
     public Xcls_save_btn save_btn;
@@ -64,7 +62,7 @@ public class Xcls_PopoverFileDetails : Object
         var child_1 = new Xcls_Box2( _this );
         child_1.ref();
         this.el.set_child ( child_1.el  );
-        var child_2 = new Xcls_HeaderBar33( _this );
+        var child_2 = new Xcls_HeaderBar31( _this );
         child_2.ref();
         this.el.titlebar = child_2.el;
     }
@@ -205,7 +203,7 @@ public class Xcls_PopoverFileDetails : Object
             var child_1 = new Xcls_grid( _this );
             child_1.ref();
             this.el.append ( child_1.el  );
-            var child_2 = new Xcls_Box29( _this );
+            var child_2 = new Xcls_Box27( _this );
             child_2.ref();
             this.el.append ( child_2.el  );
         }
@@ -933,104 +931,18 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.build_module = this;
-            var child_1 = new Xcls_StringList26( _this );
+            var child_1 = new Xcls_StringList24( _this );
             child_1.ref();
             this.el = new Gtk.DropDown( child_1.el, null );
 
             // my vars (dec)
 
             // set gobject values
-            var child_2 = new Xcls_dbcellrenderer( _this );
-            child_2.ref();
-            this.el.pack_start ( child_2.el , true );
-            var child_3 = new Xcls_dbmodel( _this );
-            child_3.ref();
-            this.el.set_model ( child_3.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_dbcellrenderer : Object
-    {
-        public Gtk.CellRendererText el;
-        private Xcls_PopoverFileDetails  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_dbcellrenderer(Xcls_PopoverFileDetails _owner )
-        {
-            _this = _owner;
-            _this.dbcellrenderer = this;
-            this.el = new Gtk.CellRendererText();
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_dbmodel : Object
-    {
-        public Gtk.ListStore el;
-        private Xcls_PopoverFileDetails  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_dbmodel(Xcls_PopoverFileDetails _owner )
-        {
-            _this = _owner;
-            _this.dbmodel = this;
-            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
-
-            // my vars (dec)
-
-            // set gobject values
-        }
-
-        // user defined functions
-        public void loadData (Gee.ArrayList<string> data, string cur) {
-            this.el.clear();                                    
-            Gtk.TreeIter iter;
-            var el = this.el;
-            
-           /// el.append(out iter);
-            
-             
-           // el.set_value(iter, 0, "");
-           // el.set_value(iter, 1, "aaa  - Just add Element - aaa");
-        
-            el.append(out iter);
-        
-            
-            el.set_value(iter, 0, "");
-            el.set_value(iter, 1, "-- select a module --");
-            _this.build_module.el.set_active_iter(iter);
-            
-            for (var i = 0; i < data.size;i++) {
-            
-        
-                el.append(out iter);
-                
-                el.set_value(iter, 0, data.get(i));
-                el.set_value(iter, 1, data.get(i));
-                
-                if (data.get(i) == cur) {
-                    _this.build_module.el.set_active_iter(iter);
-                }
-                
-            }
-             this.el.set_sort_column_id(0, Gtk.SortType.ASCENDING);          
-                                             
-        }
-    }
-
-    public class Xcls_StringList26 : Object
+    public class Xcls_StringList24 : Object
     {
         public Gtk.StringList el;
         private Xcls_PopoverFileDetails  _this;
@@ -1039,7 +951,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_StringList26(Xcls_PopoverFileDetails _owner )
+        public Xcls_StringList24(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.StringList(  );
@@ -1110,7 +1022,7 @@ public class Xcls_PopoverFileDetails : Object
     }
 
 
-    public class Xcls_Box29 : Object
+    public class Xcls_Box27 : Object
     {
         public Gtk.Box el;
         private Xcls_PopoverFileDetails  _this;
@@ -1119,7 +1031,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box29(Xcls_PopoverFileDetails _owner )
+        public Xcls_Box27(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1131,10 +1043,10 @@ public class Xcls_PopoverFileDetails : Object
             this.el.margin_start = 4;
             this.el.margin_bottom = 4;
             this.el.margin_top = 4;
-            var child_1 = new Xcls_Button30( _this );
+            var child_1 = new Xcls_Button28( _this );
             child_1.ref();
             this.el.append ( child_1.el  );
-            var child_2 = new Xcls_Label31( _this );
+            var child_2 = new Xcls_Label29( _this );
             child_2.ref();
             this.el.append( child_2.el );
             var child_3 = new Xcls_save_btn( _this );
@@ -1144,7 +1056,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
     }
-    public class Xcls_Button30 : Object
+    public class Xcls_Button28 : Object
     {
         public Gtk.Button el;
         private Xcls_PopoverFileDetails  _this;
@@ -1154,7 +1066,7 @@ public class Xcls_PopoverFileDetails : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_Button30(Xcls_PopoverFileDetails _owner )
+        public Xcls_Button28(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
@@ -1177,7 +1089,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label31 : Object
+    public class Xcls_Label29 : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -1186,7 +1098,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label31(Xcls_PopoverFileDetails _owner )
+        public Xcls_Label29(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Label( "" );
@@ -1367,7 +1279,7 @@ public class Xcls_PopoverFileDetails : Object
 
 
 
-    public class Xcls_HeaderBar33 : Object
+    public class Xcls_HeaderBar31 : Object
     {
         public Gtk.HeaderBar el;
         private Xcls_PopoverFileDetails  _this;
@@ -1376,7 +1288,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HeaderBar33(Xcls_PopoverFileDetails _owner )
+        public Xcls_HeaderBar31(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.HeaderBar();
