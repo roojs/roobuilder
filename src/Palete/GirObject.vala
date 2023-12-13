@@ -509,14 +509,14 @@ namespace Palete {
 				par.childstore.append( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
 				return;
 			}
-			
+			GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
 			if (cls.nodetype == "Enum") {			
 				var add = new JsRender.NodeProp.raw(this.name, str, "");
 				par.childstore.append( add);
 				return ;
 			}
 			
-				
+			 
 			if (cls.nodetype == "Class") {
 				var add = new JsRender.NodeProp.raw(this.name, str, "");
 				// no propertyof ?
@@ -537,10 +537,13 @@ namespace Palete {
 			GLib.debug("nodepropaddchildren: check class %s", str);			
 			
 			foreach (var cname in cls.implementations) {
-				GLib.debug("nodepropaddchildren: check class %s add %s", str, cname);
+
 				
 				var subcls = pal.getClass(cname);
+				
+				GLib.debug("nodepropaddchildren: check class %s add %s type %s", str, cname, subcls == null ? "NO?" :subcls.nodetype );
 				if (subcls.nodetype != "Class") {
+
 					continue;
 				}
 			 
