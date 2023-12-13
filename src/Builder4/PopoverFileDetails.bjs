@@ -74,7 +74,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
          "bool hexpand" : true,
          "id" : "filetype_dropdown",
          "items" : [
@@ -207,8 +206,14 @@
          },
          "xtype" : "DropDown",
          "| void setValue" : [
-          "() {",
-          "",
+          "(string cur) {",
+          "\tvar el  = this.filetype_model.el;",
+          "\tfor(var i= 0; i < el.get_n_items();i++)  {",
+          "\t\tif (el.get_string(i).has_prefix(cur)) {",
+          "\t\t\tthis.el.selected = i;",
+          "\t\t\tbreak;",
+          "\t\t}",
+          "\t}",
           "}"
          ],
          "| void showhide" : [

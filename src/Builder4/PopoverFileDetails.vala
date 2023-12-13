@@ -454,10 +454,6 @@ public class Xcls_PopoverFileDetails : Object
             child_3.ref();
             this.el.set_model ( child_3.el  );
 
-            // init method
-
-            this.el.add_attribute(_this.ftdbcellrenderer.el , "markup", 1 );
-
             //listeners
             this.el.changed.connect( () => {
             	Gtk.TreeIter iter;
@@ -477,6 +473,15 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
+        public void setValue (string cur) {
+        	var el  = this.filetype_model.el;
+        	for(var i= 0; i < el.get_n_items();i++)  {
+        		if (el.get_string(i).has_prefix(cur)) {
+        			this.el.selected = i;
+        			break;
+        		}
+        	}
+        }
         public void showhide (bool is_bjs) {
         
         
@@ -517,9 +522,6 @@ public class Xcls_PopoverFileDetails : Object
         	//}
            
             
-        }
-        public void setValue () {
-        
         }
     }
     public class Xcls_ftdbcellrenderer : Object
