@@ -694,7 +694,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label12(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Component Name (Filename without extension)" );
+            this.el = new Gtk.Label( "Component Name (File name without extension)" );
 
             // my vars (dec)
 
