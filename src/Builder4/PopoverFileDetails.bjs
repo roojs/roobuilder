@@ -55,7 +55,6 @@
         {
          "$ xns" : "Gtk",
          "* init" : "this.el.add_attribute(_this.ftdbcellrenderer.el , \"markup\", 1 );",
-         "* pack" : "attach,1,0,1,1",
          "bool hexpand" : true,
          "id" : "filetype",
          "items" : [
@@ -371,16 +370,6 @@
           }
          ],
          "xtype" : "ComboBox"
-        },
-        {
-         "$ justify" : "Gtk.Justification.RIGHT",
-         "$ visible" : true,
-         "$ xns" : "Gtk",
-         "* pack" : "attach,0,8,1,1",
-         "label" : "Directory",
-         "x_options" : 4,
-         "xalign" : 0.90000000000000002,
-         "xtype" : "Label"
         },
         {
          "$ xns" : "Gtk",
