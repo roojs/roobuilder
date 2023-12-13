@@ -582,13 +582,21 @@ public class JsRender.NodeToVala : Object {
 				var propnode = this.node.findProp(n);
 				if (propnode != null) {
 					// assume it's ok..
-					args += (this.addPropSet(propnode) + ".el") ; 
+					
+					var pname = this.addPropSet(propnode);
+					args += (pname + ".el") ;
+					if (!propnode.has("id")) {
+						this.addLine(this.ipad + pname +".ref();"); 
+					}
+					
+					
+					
 					this.ignoreWrapped(n);
 					
 					continue;
 				}
 					
-					
+					 
 					
 					
 				 
@@ -807,14 +815,16 @@ public class JsRender.NodeToVala : Object {
 					continue;
 				}
 				
+	
+				
 			  	this.ignoreWrapped(child.get_prop("* prop").val);
 				
 				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = " + childname + ".el;");
 				continue;
 			} 
-			 
-			
-			  
+			 if (!child.has("id")) {
+				this.addLine(this.ipad + childname +".ref();"); 
+			 } 
 			this.packChild(child, childname, cols, colpos);
 			
 			if (child.has("colspan")) {
@@ -849,9 +859,9 @@ public class JsRender.NodeToVala : Object {
 		 
 		// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
 		// remove '+' support as I cant remember what it does!!!
-		if (child.xvala_id.length < 1 ) {
-			this.addLine(this.ipad + childname +".ref();"); // we need to reference increase unnamed children...
-		} 			
+		//if (child.xvala_id.length < 1 ) {
+		//	this.addLine(this.ipad + childname +".ref();"); // we need to reference increase unnamed children...
+		//} 			
 	    //if (child.xvala_id[0] == '+') {
 		// 	this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " = " + childname+  ";");
 					

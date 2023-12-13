@@ -57,8 +57,7 @@
         "}",
         ""
        ],
-       "* pack" : "append",
-       "bool draw_value" : true,
+       "bool draw_value" : false,
        "bool has_origin" : true,
        "bool sensitive" : true,
        "int digits" : 0,
@@ -122,7 +121,7 @@
         "",
         "\tthis.css = new Gtk.CssProvider();",
         " ",
-        "\tthis.css.load_from_data(\"#editor-view { font:  10px monospace;}\".data);",
+        "\tthis.css.load_from_data(\"#editor-view { font:  12px monospace;}\".data);",
         "\t ",
         "\tthis.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
         "\t ",

@@ -424,19 +424,28 @@ namespace Palete {
 			}
 			
 // none of this works on vala-40 as the API is not publicly visible
- 
+ 			
 
- 
+ 			GLib.debug("calling emit");
 			context.codegen = new Vala.GDBusServerModule ();
 			 
 			
 			context.codegen.emit (context);
 			
+			if (BuilderApplication.opt_skip_linking) {
+				Vala.CodeContext.pop ();
+				this.outputResult();
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+ 				return;
+			}
 			
 			/* --- - only if we are actually doing a full build.- no added benifet for inline complier
 			on my laptop a 5s upto here.. then 40+s doing this.. - no additional warnings really (although if we are using 'C' code it maight be usefull
 			*/
+			
+			
 			if (this.filepath == "") { 
+				GLib.debug("calling ccompiler");
 				var ccompiler = new Vala.CCodeCompiler ();
 				var cc_command = Environment.get_variable ("CC");
 				

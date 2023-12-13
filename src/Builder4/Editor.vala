@@ -248,7 +248,7 @@ public class Editor : Object
             var child_2 = new Xcls_Label4( _this );
             this.el.append ( child_2.el  );
             var child_3 = new Xcls_Scale5( _this );
-            this.el.append ( child_3.el  );
+            this.el.append( child_3.el );
             var child_4 = new Xcls_close_btn( _this );
             this.el.append( child_4.el );
         }
@@ -326,7 +326,7 @@ public class Editor : Object
             // set gobject values
             this.el.width_request = 200;
             this.el.has_origin = true;
-            this.el.draw_value = true;
+            this.el.draw_value = false;
             this.el.digits = 0;
             this.el.sensitive = true;
 
@@ -473,7 +473,7 @@ public class Editor : Object
 
             this.css = new Gtk.CssProvider();
              
-            	this.css.load_from_data("#editor-view { font:  10px monospace;}".data);
+            	this.css.load_from_data("#editor-view { font:  12px monospace;}".data);
             	 
             	this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	 

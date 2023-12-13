@@ -146,6 +146,7 @@ namespace Palete {
 			
 			string[] args = {};
 			args += BuilderApplication._self;
+			args += "--skip-linking";
 			args += "--project";
 			args += this.file.project.path;
 			args += "--target";
@@ -202,6 +203,7 @@ namespace Palete {
 			  
 			string[] args = {};
 			args += BuilderApplication._self;
+			args += "--skip-linking";
 			args += "--project";
 			args += this.file.project.path;
 			args += "--target";
@@ -356,6 +358,7 @@ namespace Palete {
 			  
 			string[] args = {};
 			args += BuilderApplication._self;
+			args += "--skip-linking";
 			args += "--project";
 			args +=  file.project.path;
 			args += "--target";

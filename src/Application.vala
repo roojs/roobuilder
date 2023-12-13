@@ -62,6 +62,7 @@
 			
 			{ "project", 0, 0, OptionArg.STRING, ref opt_compile_project, "select a project", null },
 			{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
+			{ "skip-linking", 0, 0, OptionArg.NONE, ref opt_skip_linking, "Do not link the files and make a binary - used to do syntax checking", null },
 			{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
 			{ "output", 0, 0, OptionArg.STRING, ref opt_compile_output, "output binary file path", null },
@@ -87,7 +88,8 @@
         public static string opt_bjs_compile;
 
         public static string opt_bjs_compile_target;
-        public static string opt_test;        
+        public static string opt_test;  
+        public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
