@@ -165,11 +165,14 @@ public class Xcls_PopoverFileDetails : Object
             _this.file.permname = _this.permname.el.get_text();                                    
             _this.file.modOrder = _this.modOrder.el.get_text();
             
-            if (_this.file.name.length  > 0 && _this.file.name != _this.name.el.get_text()) {
+    
+            var new_name =  _this.name.el.get_text();
+            if (_this.file.name.length  > 0 && _this.file.name != new_name) {
                 try {
                 	_this.file.renameTo(_this.name.el.get_text());
             	} catch (JsRender.Error e) { } // do nothing?
             }
+            */
             // store the module...
             _this.file.build_module = "";        
              Gtk.TreeIter iter; 
