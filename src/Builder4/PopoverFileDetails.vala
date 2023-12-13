@@ -455,6 +455,8 @@ public class Xcls_PopoverFileDetails : Object
             this.el.set_model ( child_3.el  );
 
             //listeners
+            this.el.notify["selected"].connect( () => {
+             });
             this.el.changed.connect( () => {
             	Gtk.TreeIter iter;
             	bool is_bjs = true;
