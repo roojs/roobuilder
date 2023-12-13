@@ -169,7 +169,7 @@ public class Xcls_PopoverFileDetails : Object
             var new_name =  _this.name.el.get_text();
             if (_this.file.name.length  > 0 && _this.file.name != new_name) {
                 try {
-                	_this.file.renameTo(_this.name.el.get_text());
+                	_this.file.renameTo( new_name ));
             	} catch (JsRender.Error e) { } // do nothing?
             }
             */
