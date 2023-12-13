@@ -396,7 +396,6 @@
         {
          "$ visible" : true,
          "$ xns" : "Gtk",
-         "* pack" : "attach,1,6,1,1",
          "id" : "modOrder",
          "xtype" : "Entry"
         },
