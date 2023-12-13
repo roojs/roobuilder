@@ -640,7 +640,47 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
-        public void load () {
+        public void load (string cur) {
+            var el = this.el;
+            
+            el.remove_all();
+         	el.append("bjs - User Interface File");
+         
+            
+         switch(_this.project.xtype) {
+         	case "Roo":
+         	 	el.append("js - Javascript File");
+         	 	el.append("css - Javascript File");
+        		if (cur == "js") {
+        			_this.filetype.el.set_active_iter(iter);
+        		}
+        		break;
+        
+        	case "Gtk":		
+        			
+        		el.append(out iter);
+        		
+        		el.set_value(iter, 0, "vala");
+        		el.set_value(iter, 1, "Vala");
+        		if (cur == "vala") {
+        			_this.filetype.el.set_active_iter(iter);
+        		}
+        		break;
+        	default:
+        		break;
+        }
+        
+        
+            el.append(out iter);
+            
+            el.set_value(iter, 0, "css");
+            el.set_value(iter, 1, "CSS");
+        
+        	if (cur == "css") {
+        	    _this.filetype.el.set_active_iter(iter);
+            }
+                                             
+        }
         
         }
     }
