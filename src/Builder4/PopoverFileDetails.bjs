@@ -342,7 +342,7 @@
            "strings" : "{}",
            "xtype" : "StringList",
            "| void load" : [
-            "() {",
+            "(Gee.ArrayList<compilegroups, string val);) {",
             "",
             "}"
            ]

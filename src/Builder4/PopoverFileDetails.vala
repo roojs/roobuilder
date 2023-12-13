@@ -948,7 +948,7 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
-        public void load () {
+        public void load (Gee.ArrayList<compilegroups, string val);) {
         
         }
     }
