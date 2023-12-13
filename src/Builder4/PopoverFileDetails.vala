@@ -571,7 +571,9 @@ public class Xcls_PopoverFileDetails : Object
         public void load () {
             var el = this.el;
             
-            el.remove_all();
+            while (el.get_n_items() > 0) {
+            	el.remove(0);
+        	}
          	el.append("bjs - User Interface File");
          
             
