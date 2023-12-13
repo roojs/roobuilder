@@ -467,7 +467,7 @@ public class Xcls_PopoverFileDetails : Object
         	
         	return _this.filetype_model.el.get_string(this.el.selected).split(" ")[0];
         }
-        public void showhide () => {
+        public void showhide ()   {
         
         
         	
