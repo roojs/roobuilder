@@ -20,7 +20,8 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_ftdbcellrenderer ftdbcellrenderer;
     public Xcls_ftdbmodel ftdbmodel;
     public Xcls_filetype_model filetype_model;
-    public Xcls_Entry13 Entry13;
+    public Xcls_name name;
+    public Xcls_title_lbl title_lbl;
     public Xcls_title title;
     public Xcls_region region;
     public Xcls_parent parent;
@@ -253,12 +254,12 @@ public class Xcls_PopoverFileDetails : Object
             var child_5 = new Xcls_Label12( _this );
             child_5.ref();
             this.el.attach( child_5.el, 0, 2, 1, 1 );
-            var child_6 = new Xcls_Entry13( _this );
+            var child_6 = new Xcls_name( _this );
             child_6.ref();
             this.el.attach( child_6.el, 1, 2, 1, 1 );
-            var child_7 = new Xcls_Label14( _this );
+            var child_7 = new Xcls_title_lbl( _this );
             child_7.ref();
-            this.el.attach ( child_7.el , 0,2,1,1 );
+            this.el.attach( child_7.el, 0, 3, 1, 1 );
             var child_8 = new Xcls_title( _this );
             child_8.ref();
             this.el.attach ( child_8.el , 1,2,1,1 );
@@ -702,7 +703,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Entry13 : Object
+    public class Xcls_name : Object
     {
         public Gtk.Entry el;
         private Xcls_PopoverFileDetails  _this;
@@ -711,10 +712,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Entry13(Xcls_PopoverFileDetails _owner )
+        public Xcls_name(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            _this.Entry13 = this;
+            _this.name = this;
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -727,7 +728,7 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
     }
 
-    public class Xcls_Label14 : Object
+    public class Xcls_title_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -736,9 +737,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label14(Xcls_PopoverFileDetails _owner )
+        public Xcls_title_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.title_lbl = this;
             this.el = new Gtk.Label( "Title" );
 
             // my vars (dec)
