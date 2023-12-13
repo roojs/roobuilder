@@ -253,7 +253,7 @@ public class Xcls_PopoverFileDetails : Object
             this.el.attach( child_4.el, 1, 1, 1, 1 );
             var child_5 = new Xcls_Label12( _this );
             child_5.ref();
-            this.el.attach ( child_5.el , 0,1,1,1 );
+            this.el.attach( child_5.el, 0, 2, 1, 1 );
             var child_6 = new Xcls_name( _this );
             child_6.ref();
             this.el.attach ( child_6.el , 1,1,1,1 );
@@ -694,7 +694,7 @@ public class Xcls_PopoverFileDetails : Object
         public Xcls_Label12(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Label( "Component Name" );
+            this.el = new Gtk.Label( "Component Name (Filename without extension)" );
 
             // my vars (dec)
 
