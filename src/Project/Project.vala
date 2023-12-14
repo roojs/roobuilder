@@ -648,8 +648,9 @@ namespace Project {
 			};
 			return null;
 		}
-
-		// name should include extension.	 
+ 
+		// name should include extension.	
+		/*
 		public JsRender.JsRender? newFile (string xtype, string sub_dir, string name)
 		{
 			try {
@@ -669,6 +670,7 @@ namespace Project {
 				GLib.error("failed to create file %s", e.message);
 			}
 		}
+		*/
 	 
 		public JsRender.JsRender loadFileOnly (string path)
 		{
@@ -681,7 +683,7 @@ namespace Project {
 			
 		} 
 		
-		/*
+		/* 
 		public JsRender.JsRender create(string filename)
 		{
 			var ret = this.loadFileOnly(filename);
@@ -812,9 +814,17 @@ namespace Project {
 		
 			
 		 
-		public void addFile(JsRender.JsRender pfile) { // add a single file, and trigger changed.
+		public void addFile(JsRender.JsRender pfile)
+		{ // add a single file, and trigger changed.
 		
-			this.files.set(pfile.path, pfile); // duplicate check?	
+			if (this.files.xtyle == "Gtk" || 	this.files.xtyle == "Roo" ) {
+				this.files.set(pfile.path, pfile); // duplicate check?					
+			} else {
+				var sp = this.findDir(pfile.dir);
+				jsDir.childfiles.append(pfile);
+			}
+			
+
 			this.on_changed();
 		}
 		
@@ -874,6 +884,16 @@ namespace Project {
 				sl.append( sp.path == this.path ? "/" : sp.path.substring(this.path.length));
 			}
 		
+		}
+		
+		public JsRender.JsDir? findDir(string path) {
+			
+			foreach(var jdir in this.sub_paths) { 
+				if (path == jsdir.path) {
+					return jdir;
+				}
+			}
+			return null;
 		}
 		
 		public string[] pathsMatching(string name)

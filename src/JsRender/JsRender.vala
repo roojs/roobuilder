@@ -21,7 +21,21 @@ namespace JsRender {
 		
 		public  string relpath {
 			owned get { 
-				return this.path == this.project.path ? "" : this.path.substring(this.project.path.length+1);
+				return  this.path.substring(this.project.path.length+1);
+			} 
+			private set {}
+		}
+		public  string reldir {
+			owned get { 
+				return  this.project.path.length == this.dir ? "" : this. dir.substring(this.project.path.length.length+1);
+			} 
+			private set {}
+		}
+		
+		public  string  dir {
+			owned get { 
+				return GLib.Path.get_dirname(this.path);
+				 
 			} 
 			private set {}
 		}
