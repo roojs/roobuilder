@@ -109,7 +109,10 @@ public class Xcls_PopoverFileDetails : Object
         if (this.project.xtype == "Gtk") {
         	var p = (Project.Gtk) this.project;
     	    this.build_module_model.load(p.compilegroups);
-    	    this.build_module.setValue(c.build_module);
+    	    // it will select first if available...
+    	    if (c.build_module != "") {
+    		    this.build_module.setValue(c.build_module);
+    	    }
         }
     	     
          
