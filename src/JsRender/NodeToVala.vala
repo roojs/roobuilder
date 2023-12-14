@@ -258,7 +258,7 @@ public class JsRender.NodeToVala : Object {
 		
 		this.top.node.setNodeLine(this.cur_line, this.node);
 		
-		this.addLine(inpad + "public class " + this.xcls + " : Object");
+		this.addLine(this.inpad + "public class " + this.xcls + " : Object");
 		this.addLine(this.inpad + "{");
 		
 		 
