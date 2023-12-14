@@ -21,7 +21,7 @@
 
 namespace Project 
 {
-	static int gtk_id = 1;
+ 
  	
 
 	public class Gtk : Project
