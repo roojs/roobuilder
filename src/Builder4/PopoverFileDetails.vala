@@ -954,13 +954,19 @@ public class Xcls_PopoverFileDetails : Object
         }
 
         // user defined functions
-        public void load (Gee.HashMap<string,Project.GtkValaSettings> compilegroups)
+        public void load (Gee.HashMap<string,Project.GtkValaSettings>? compilegroups)
         {
-        	 var el = _this.build_module_model.el;
+        	
+        	_this.build_module.el.hide();
+        		_this.build_module_lbl.el.hide();
+        	var el = _this.build_module_model.el;
         	 while (el.get_n_items() > 0) {
         			el.remove(0);
         	}
         	
+        	if (compilegroups == null) {
+        		return;
+        	}
         	foreach(var k in compilegroups.keys) {
         		this.el.append(k);
         	}
@@ -969,8 +975,7 @@ public class Xcls_PopoverFileDetails : Object
         		_this.build_module.el.show();
         		_this.build_module_lbl.el.show();
         	} else {
-        		_this.build_module.el.hide();
-        		_this.build_module_lbl.el.hide();
+        		
         	}
         	
         }
