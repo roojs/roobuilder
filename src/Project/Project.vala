@@ -822,9 +822,11 @@ namespace Project {
 		
 			if (pfile.xtype == "Gtk" || pfile.xtype == "Roo" ) {
 				this.files.set(pfile.path, pfile); // duplicate check
-				if (pfile.xtype == "Gtk" ** pfile.build_module != "") {
-					if (this.compilegroups.has_key(pfile.build_module)) {
-						var cg = this.compilegroups.has_key(pfile.build_module);
+				
+				if (pfile.xtype == "Gtk" && pfile.build_module != "") {
+					var gthis = (Project.Gtk)this;
+					if (gthis.compilegroups.has_key(pfile.build_module)) {
+						var cg = gthis.compilegroups.has_key(pfile.build_module);
 						if (!cg.contains(pfile.relpath)) {
 							cg.add(pfile.replath);
 						}
