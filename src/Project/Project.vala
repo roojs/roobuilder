@@ -890,7 +890,7 @@ namespace Project {
 			
 			foreach(var jdir in this.sub_paths) { 
 				if (path == jdir.path) {
-					return jdir;
+					return (JsRender.Dir)jdir;
 				}
 			}
 			return null;
