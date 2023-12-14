@@ -826,7 +826,7 @@ namespace Project {
 				if (pfile.xtype == "Gtk" && pfile.build_module != "") {
 					var gthis = (Gtk)this;
 					if (gthis.compilegroups.has_key(pfile.build_module)) {
-						var cg = gthis.compilegroups.has_key(pfile.build_module);
+						var cg = gthis.compilegroups.get(pfile.build_module);
 						if (!cg.contains(pfile.relpath)) {
 							cg.add(pfile.replath);
 						}
