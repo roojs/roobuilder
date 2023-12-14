@@ -828,7 +828,7 @@ namespace Project {
 					if (gthis.compilegroups.has_key(pfile.build_module)) {
 						var cg = gthis.compilegroups.get(pfile.build_module);
 						if (!cg.sources.contains(pfile.relpath)) {
-							cg.sources.add(pfile.replath);
+							cg.sources.add(pfile.relpath);
 						}
 					}
 				}
