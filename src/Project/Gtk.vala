@@ -259,14 +259,15 @@ namespace Project
 			for(var i=0;i< str.length;i++) {
 				o += str[i].replace("%s", replace) + "\n";
 			}
+			this.writeFile(name, o);
+		}
+		void writeFile(string name, string o) 
+		{
 			var f = GLib.File.new_for_path(this.path + "/" + name);
-			var data_out = new GLib.DataOutputStream(
-                                          f.replace(null, false, GLib.FileCreateFlags.NONE, null)
-         	       );
+			var data_out = new GLib.DataOutputStream( f.replace(null, false, GLib.FileCreateFlags.NONE, null) );
 			data_out.put_string(o, null);
 			data_out.close(null);
 			
-		
 		} 
 		
 		void makeMain()
@@ -309,9 +310,11 @@ namespace Project
 			
 			this.makeTemplatedFile("src/Application.vala", str, this.name); // fixme name needs to be code friendly!
 		}
-		/*
+
 		
-{
+		void makeWindow()
+		{
+			this.writeFile("src/ui/Window.bjs", """{
  "build_module" : "",
  "items" : [
   {
@@ -335,14 +338,11 @@ namespace Project
    "xtype" : "Window"
   }
  ],
- "modOrder" : "",
  "name" : "test",
- "parent" : "",
+ "gen_extended" : false""");
+	}
+ 	
  
- "permname" : "",
- "title" : ""
-}
-*/
 			
 		
  public override void   initDatabase()
