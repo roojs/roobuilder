@@ -824,13 +824,10 @@ namespace Project {
 				this.files.set(pfile.path, pfile); // duplicate check
 				
 				if (pfile.xtype == "Gtk" && pfile.build_module != "") {
-					var gthis = (Gtk)this;
-					if (gthis.compilegroups.has_key(pfile.build_module)) {
-						var cg = gthis.compilegroups.get(pfile.build_module);
-						if (!cg.sources.contains(pfile.relpath)) {
-							cg.sources.add(pfile.relpath);
-						}
-					}
+				
+					var gfile = (JsRender.Gtk) pfile;
+					gfile.updateCompileGroup("", pfile.build_module);
+					 
 				}
 					
 				
