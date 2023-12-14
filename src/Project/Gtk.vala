@@ -309,7 +309,40 @@ namespace Project
 			
 			this.makeTemplatedFile("src/Application.vala", str, this.name); // fixme name needs to be code friendly!
 		}
+		/*
 		
+{
+ "build_module" : "",
+ "items" : [
+  {
+   "$ xns" : "Gtk",
+   "items" : [
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "child",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+     "int spacing" : 0,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "string label" : "Hello World",
+       "xtype" : "Label"
+      }
+     ],
+     "xtype" : "Box"
+    }
+   ],
+   "xtype" : "Window"
+  }
+ ],
+ "modOrder" : "",
+ "name" : "test",
+ "parent" : "",
+ 
+ "permname" : "",
+ "title" : ""
+}
+*/
 			
 		
  public override void   initDatabase()
