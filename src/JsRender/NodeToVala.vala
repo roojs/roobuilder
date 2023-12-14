@@ -173,6 +173,7 @@ public class JsRender.NodeToVala : Object {
 		this.ignore("xtype");
 		this.ignore("id");
 		
+		this.namespaceHeader();
 		this.globalVars();
 		this.classHeader();
 		this.addSingleton();
@@ -193,6 +194,7 @@ public class JsRender.NodeToVala : Object {
 		this.addEndCtor();
 		this.addUserMethods();
 		this.iterChildren();
+		this.namespaceFooter();
 		
 		return this.ret;
 		 
