@@ -17,6 +17,13 @@ namespace JsRender {
 	public  class Gtk : JsRender
 	{
 	   
+	   
+	   public Project.Gtk gproject { 
+		   	get {
+		   		return (Project.Gtk) this.project;
+	   		}
+	   		private set {}
+   		}
 
 	    public Gtk(Project.Project project, string path) {
 	    
@@ -197,6 +204,33 @@ namespace JsRender {
 	        
 	        
 	    }
+	    
+	    
+	    public void updateCompileGroup(string old_target, string new_target) 
+	    {
+	    	if (old_target == new_target) {
+	    		return;
+    		}
+    		if (old_target != "") {
+    			if (this.gproject.compilegroups.has_key(old_target)) {
+    				var cg = this.gproject.compilegroups.get(old_target);
+    				if (cg.sources.contains(this.relpath)) {
+    					cg.sources.remove(this.replath);
+					}
+				}
+			}
+	   	 if (new_target != "") {
+    			if (this.gproject.compilegroups.has_key(new_target)) {
+    				var cg = this.gproject.compilegroups.get(new_target);
+    				if (!cg.sources.contains(this.relpath)) {
+    					cg.sources.add(this.replath);
+					}
+				}
+			}
+	    
+	    
+	    }
+	    
 		/*
 	    valaCompileCmd : function()
 	    {
