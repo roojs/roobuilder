@@ -217,6 +217,7 @@ public class JsRender.NodeToVala : Object {
 		this.ret +=   str + "\n";
 	}
 	 
+	 
 	
 	public void globalVars()
 	{
