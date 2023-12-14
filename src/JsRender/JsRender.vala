@@ -345,16 +345,21 @@ namespace JsRender {
 			
 			//ret.set_string_member("id", this.id); // not relivant..
 			ret.set_string_member("name", this.name);
-			ret.set_string_member("parent", this.parent == null ? "" : this.parent);
-			ret.set_string_member("title", this.title == null ? "" : this.title);
-			//ret.set_string_member("path", this.path);
-			//ret.set_string_member("items", this.items);
-			ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
-			ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
+			
+			if (this.project.xtype == "Roo") {
+				ret.set_string_member("parent", this.parent == null ? "" : this.parent);
+				ret.set_string_member("title", this.title == null ? "" : this.title);
+				//ret.set_string_member("path", this.path);
+				//ret.set_string_member("items", this.items);
+				ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
+				ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
+			}
 			if (this.project.xtype == "Gtk") {
+				ret.set_string_member("ui", this.namespace );
 				ret.set_string_member("build_module", this.build_module  == null ? "" : this.build_module);
 			}
 			ret.set_boolean_member("gen_extended", this.gen_extended);
+			
 			if (this.transStrings.size > 0) {
 				var tr =  new Json.Object();
 				var iter = this.transStrings.map_iterator();
