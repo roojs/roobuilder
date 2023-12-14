@@ -817,7 +817,7 @@ namespace Project {
 		public void addFile(JsRender.JsRender pfile)
 		{ // add a single file, and trigger changed.
 		
-			if (this.files.xtyle == "Gtk" || 	this.files.xtyle == "Roo" ) {
+			if (this.files.xtype == "Gtk" || 	this.files.xtype == "Roo" ) {
 				this.files.set(pfile.path, pfile); // duplicate check?					
 			} else {
 				var sp = this.findDir(pfile.dir);
