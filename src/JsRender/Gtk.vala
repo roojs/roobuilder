@@ -215,7 +215,7 @@ namespace JsRender {
     			if (this.gproject.compilegroups.has_key(old_target)) {
     				var cg = this.gproject.compilegroups.get(old_target);
     				if (cg.sources.contains(this.relpath)) {
-    					cg.sources.remove(this.replath);
+    					cg.sources.remove(this.relpath);
 					}
 				}
 			}
@@ -223,7 +223,7 @@ namespace JsRender {
     			if (this.gproject.compilegroups.has_key(new_target)) {
     				var cg = this.gproject.compilegroups.get(new_target);
     				if (!cg.sources.contains(this.relpath)) {
-    					cg.sources.add(this.replath);
+    					cg.sources.add(this.relpath);
 					}
 				}
 			}
