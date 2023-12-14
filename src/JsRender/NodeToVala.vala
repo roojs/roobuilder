@@ -226,7 +226,14 @@ public class JsRender.NodeToVala : Object {
 		this.addLine("{");
 	
 	}
+	public void namespaceFooter()
+	{
+		if (this.file.file_namespace == "") {
+			return;
+		}
+		this.addLine("}");
 	
+	}
 	public void globalVars()
 	{
 		if (this.depth > 0) {
