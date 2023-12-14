@@ -812,13 +812,26 @@ namespace Project {
 		
 		}
 		
+		// calle dfrom new file dialog
+		// add files to dires 
+		// update 
 			
 		 
 		public void addFile(JsRender.JsRender pfile)
 		{ // add a single file, and trigger changed.
 		
 			if (pfile.xtype == "Gtk" || pfile.xtype == "Roo" ) {
-				this.files.set(pfile.path, pfile); // duplicate check?					
+				this.files.set(pfile.path, pfile); // duplicate check
+				if (pfile.xtype == "Gtk" ** pfile.build_module != "") {
+					if (this.compilegroups.has_key(pfile.build_module)) {
+						var cg = this.compilegroups.has_key(pfile.build_module);
+						if (!cg.contains(pfile.relpath)) {
+							cg.add(pfile.replath);
+						}
+					}
+				}
+					
+				
 			} else {
 				var sp = this.findDir(pfile.dir);
 				sp.childfiles.append(pfile);
