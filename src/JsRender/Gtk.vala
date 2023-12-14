@@ -114,7 +114,9 @@ namespace JsRender {
 			if (obj.has_member("build_module")) { // should check type really..
 				this.build_module = obj.get_string_member("build_module");
 			}
-			 
+		 	if (obj.has_member("gen_extended")) { // should check type really..
+				this.gen_extended = obj.get_boolean_member("gen_extended");
+			}
 			// load items[0] ??? into tree...
 			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
 			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
