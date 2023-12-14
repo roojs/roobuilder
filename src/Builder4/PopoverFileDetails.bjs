@@ -245,6 +245,7 @@
         {
          "$ justify" : "Gtk.Justification.RIGHT",
          "$ xns" : "Gtk",
+         "id" : "file_namespace_lbl",
          "label" : "Component Name (File name without extension)",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
