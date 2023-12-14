@@ -217,7 +217,15 @@ public class JsRender.NodeToVala : Object {
 		this.ret +=   str + "\n";
 	}
 	 
-	 
+	public void namespaceHeader()
+	{
+		if (this.file.project.file_namespace == "") {
+			return;
+		}
+		this.addLine(this.inpad + "namespace " + this.file.project.file_namespace);
+		this.addLine("{");
+	
+	}
 	
 	public void globalVars()
 	{
