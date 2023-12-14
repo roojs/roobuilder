@@ -347,7 +347,7 @@ namespace JsRender {
 			ret.set_string_member("name", this.name);
 			ret.set_string_member("parent", this.parent == null ? "" : this.parent);
 			ret.set_string_member("title", this.title == null ? "" : this.title);
-			ret.set_string_member("path", this.path);
+			//ret.set_string_member("path", this.path);
 			//ret.set_string_member("items", this.items);
 			ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
 			ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
