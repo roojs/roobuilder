@@ -956,15 +956,23 @@ public class Xcls_PopoverFileDetails : Object
         // user defined functions
         public void load (Gee.HashMap<string,Project.GtkValaSettings> compilegroups)
         {
-         var el = _this.build_module_model.el;
-         while (el.get_n_items() > 0) {
-            	el.remove(0);
+        	 var el = _this.build_module_model.el;
+        	 while (el.get_n_items() > 0) {
+        			el.remove(0);
         	}
         	
         	foreach(var k in compilegroups.keys) {
         		this.el.append(k);
         	}
-        
+        	if (compilegroups.keys.size > 0) {
+        		_this.build_module.el.selected = 0;
+        		_this.build_module.el.show();
+        		_this.build_module_lbl.el.show();
+        	} else {
+        		_this.build_module.el.hide();
+        		_this.build_module_lbl.el.hide();
+        	}
+        	
         }
     }
 
