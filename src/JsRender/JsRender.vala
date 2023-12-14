@@ -54,6 +54,7 @@ namespace JsRender {
 		public string xtype;
 		public uint64 webkit_page_id; // set by webkit view - used to extract extension/etc..
 		public bool gen_extended  = false; // nodetovala??
+		public string file_namespace = "";
 		    
 		public Project.Project project;
 		//Project : false, // link to container project!
