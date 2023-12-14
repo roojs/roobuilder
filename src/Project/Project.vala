@@ -886,7 +886,7 @@ namespace Project {
 		
 		}
 		
-		public JsRender.JsDir? findDir(string path) {
+		public JsRender.Dir? findDir(string path) {
 			
 			foreach(var jdir in this.sub_paths) { 
 				if (path == jsdir.path) {
