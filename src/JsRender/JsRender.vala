@@ -44,7 +44,7 @@ namespace JsRender {
 		public string region;  // RooJS - insert region.
         
 		public string title;  // a title.. ?? nickname.. ??? -
-		public string build_module; // module to build if we compile (or are running tests...)
+
 		
 
 		public string permname;
@@ -54,9 +54,13 @@ namespace JsRender {
 		public string xtype;
 		public uint64 webkit_page_id; // set by webkit view - used to extract extension/etc..
 		public bool gen_extended  = false; // nodetovala??
-		public string file_namespace = "";
-		    
+
 		public Project.Project project;
+
+		// GTK Specifc
+		public string file_namespace = "";
+		public string build_module; // module to build if we compile (or are running tests...)	    
+
 		//Project : false, // link to container project!
 		
 		public Node tree; // the tree of nodes.
