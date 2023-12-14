@@ -110,7 +110,8 @@ public class Xcls_PopoverFileDetails : Object
         	var p = (Project.Gtk) this.project;
     	    this.build_module_model.load(p.compilegroups);
     	    // it will select first if available...
-    	    if (c.build_module != "") {
+    	    // only for new files.
+    	    if (c.name != "") {
     		    this.build_module.setValue(c.build_module);
     	    }
         }
