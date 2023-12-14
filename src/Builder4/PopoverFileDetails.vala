@@ -480,9 +480,7 @@ public class Xcls_PopoverFileDetails : Object
         			break;
         		default: // vala..
         		
-        			_this.build_module_lbl.el.show();
-        			_this.build_module.el.show();
-        	
+        			 
         			 _this.gen_lbl.el.show();
         			_this.gen.el.show();
         		    
