@@ -219,10 +219,10 @@ public class JsRender.NodeToVala : Object {
 	 
 	public void namespaceHeader()
 	{
-		if (this.file.project.file_namespace == "") {
+		if (this.file.file_namespace == "") {
 			return;
 		}
-		this.addLine(this.inpad + "namespace " + this.file.project.file_namespace);
+		this.addLine(this.inpad + "namespace " + this.file.file_namespace);
 		this.addLine("{");
 	
 	}
