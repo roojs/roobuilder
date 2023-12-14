@@ -235,7 +235,7 @@ namespace Project
 			// application
 			
 			this.makeMain();
-		//	this.makeApplication();
+		 	this.makeApplication();
 		//	this.makeWindow();
 			 
 			// rescan... not needed as it get's selected after initialization.
