@@ -436,9 +436,6 @@ public class Editor : Object
             this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
             var child_1 = new Xcls_view( _this );
             this.el.set_child ( child_1.el  );
-            var child_2 = new Xcls_EventControllerKey11( _this );
-            child_2.ref();
-            this.el.add_controller ( child_2.el  );
         }
 
         // user defined functions
@@ -473,6 +470,9 @@ public class Editor : Object
             this.el.highlight_current_line = true;
             var child_1 = new Xcls_buffer( _this );
             this.el.set_buffer ( child_1.el  );
+            var child_2 = new Xcls_EventControllerKey11( _this );
+            child_2.ref();
+            this.el.add_controller ( child_2.el  );
 
             // init method
 
@@ -856,7 +856,6 @@ public class Editor : Object
         }
     }
 
-
     public class Xcls_EventControllerKey11 : Object
     {
         public Gtk.EventControllerKey el;
@@ -906,6 +905,7 @@ public class Editor : Object
 
         // user defined functions
     }
+
 
 
     public class Xcls_Box12 : Object
