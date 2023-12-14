@@ -115,7 +115,9 @@ namespace JsRender {
 			this.permname = this.jsonHasOrEmpty(obj, "permname");
 			this.title = this.jsonHasOrEmpty(obj, "title");
 			this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-
+			if (obj.has_member("gen_extended")) { // should check type really..
+				this.gen_extended = obj.get_boolean_member("gen_extended");
+			}
 			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
 			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
 
