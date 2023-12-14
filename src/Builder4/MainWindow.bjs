@@ -720,10 +720,9 @@
     ""
    ],
    "| void setTitle" : [
-    " (string str) {",
-    "    _this.el.set_title(this.title + \" - \" + str);",
-    "} ",
-    ""
+    " () {",
+    "    _this.el.set_title(_this.project.name + \" - \" + _this.file.relpath);",
+    "} "
    ],
    "| void show" : [
     "() {",

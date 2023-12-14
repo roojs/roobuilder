@@ -115,8 +115,8 @@ public class Xcls_MainWindow : Object
         	this.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);
         }
     }
-    public void setTitle (string str) {
-        _this.el.set_title(this.title + " - " + str);
+    public void setTitle () {
+        _this.el.set_title(_this.project.name + " - " + _this.file.relpath);
     }
     public void openNewWindow () {
      
