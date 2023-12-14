@@ -96,7 +96,8 @@ public class Xcls_PopoverFileDetails : Object
         _this.region.el.set_text(c.region);
         _this.modOrder.el.set_text(c.modOrder);
         _this.permname.el.set_text(c.permname);
-        _this.gen.el.active = c.gen_extended;
+       _this.file_namespace.el.set_text(c.file_namespace);
+       _this.gen.el.active = c.gen_extended;
        
     	_this.path_lbl.el.show();
         _this.path.el.show();
