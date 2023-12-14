@@ -700,7 +700,7 @@ public class WindowState : Object
 		   this.win.codeeditviewbox.el.hide();
 			//this.win.editpane.el.set_position(this.win.editpane.el.max_position);
 		}
-		this.win.setTitle(file.project.name + " : " + file.name);
+		this.win.setTitle();
 			 
 
 	}
