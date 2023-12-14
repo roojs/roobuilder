@@ -1218,15 +1218,8 @@ public class Xcls_PopoverFileDetails : Object
             
             	if (!isNew) {
             	  //  try {
-            	         _this.updateFileFromEntry();
-            	   //  } catch( JsRender.Error.RENAME_FILE_EXISTS er) {
-            	     //     Xcls_StandardErrorDialog.singleton().show(
-            	      //      _this.mainwindow.el,
-            	       //     "The name you used already exists "
-            	       // );
-            	      //  return;
-            	         
-            	     //}
+                     _this.updateFileFromEntry();
+            	    
             
             	      _this.done = true;
             	    _this.file.save();
