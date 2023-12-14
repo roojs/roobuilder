@@ -338,6 +338,7 @@ namespace Project
    "xtype" : "Window"
   }
  ],
+ "namespace" : "ui",
  "name" : "test",
  "gen_extended" : false""");
 	}
