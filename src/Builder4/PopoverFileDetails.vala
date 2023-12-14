@@ -462,8 +462,8 @@ public class Xcls_PopoverFileDetails : Object
         	
         	_this.gen_lbl.el.hide();
         	_this.gen.el.hide();
-        	_this.file_namespace_lbl.hide();
-         	_this.file_namespace.hide();
+        	_this.file_namespace_lbl.el..hide();
+         	_this.file_namespace.el..hide();
         	var sel = this.getValue();
         	
         	switch(_this.project.xtype) {
@@ -493,8 +493,8 @@ public class Xcls_PopoverFileDetails : Object
         		default: // vala..
         		
         			if (sel == "bjs") {
-        				_this.file_namespace_lbl.show();
-        			 	_this.file_namespace.show();
+        				_this.file_namespace_lbl.el..show();
+        			 	_this.file_namespace.el..show();
         		 	}
         			 
         			_this.gen_lbl.el.show();
