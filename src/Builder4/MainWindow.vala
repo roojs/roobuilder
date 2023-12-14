@@ -35,7 +35,6 @@ public class Xcls_MainWindow : Object
     public Xcls_statusbar_compile_spinner statusbar_compile_spinner;
 
         // my vars (def)
-    public string title;
     public WindowState windowstate;
     public Project.Project project;
 
@@ -46,10 +45,10 @@ public class Xcls_MainWindow : Object
         this.el = new Gtk.ApplicationWindow(BuilderApplication.singleton({}));
 
         // my vars (dec)
-        this.title = "Roo Application Builder";
         this.project = null;
 
         // set gobject values
+        this.el.title = "Roo Application Builder";
         this.el.default_height = 850;
         this.el.default_width = 1200;
         var child_1 = new Xcls_headerbar( _this );

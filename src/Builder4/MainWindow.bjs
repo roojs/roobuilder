@@ -4,7 +4,6 @@
   {
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "",
-   "# string title" : "\"Roo Application Builder\"",
    "$ type" : "Gtk.WindowType.TOPLEVEL",
    "$ xns" : "Gtk",
    "* ctor" : "new Gtk.ApplicationWindow(BuilderApplication.singleton({}))",
@@ -690,6 +689,7 @@
      "}"
     ]
    },
+   "string title" : "Roo Application Builder",
    "xtype" : "ApplicationWindow",
    "| void initChildren" : [
     " () {",
