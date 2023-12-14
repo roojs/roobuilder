@@ -511,8 +511,7 @@
         "key_released" : [
          "(keyval, keycode, state) => {",
          "",
-         " ",
-         "    ",
+         "  ",
          "    if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
          "        GLib.debug(\"SAVE: ctrl-S  pressed\");",
          "        _this.saveContents();",

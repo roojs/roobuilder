@@ -62,10 +62,12 @@ public class Editor : Object
         this.el.hexpand = true;
         this.el.vexpand = true;
         var child_1 = new Xcls_Box2( _this );
+        child_1.ref();
         this.el.append( child_1.el );
         var child_2 = new Xcls_RightEditor( _this );
         this.el.append( child_2.el );
         var child_3 = new Xcls_Box12( _this );
+        child_3.ref();
         this.el.append ( child_3.el  );
     }
 
@@ -246,8 +248,10 @@ public class Editor : Object
             var child_1 = new Xcls_save_button( _this );
             this.el.append( child_1.el );
             var child_2 = new Xcls_Label4( _this );
+            child_2.ref();
             this.el.append ( child_2.el  );
             var child_3 = new Xcls_Scale5( _this );
+            child_3.ref();
             this.el.append( child_3.el );
             var child_4 = new Xcls_close_btn( _this );
             this.el.append( child_4.el );
@@ -433,6 +437,7 @@ public class Editor : Object
             var child_1 = new Xcls_view( _this );
             this.el.set_child ( child_1.el  );
             var child_2 = new Xcls_EventControllerKey11( _this );
+            child_2.ref();
             this.el.add_controller ( child_2.el  );
         }
 
@@ -873,8 +878,7 @@ public class Editor : Object
             //listeners
             this.el.key_released.connect( (keyval, keycode, state) => {
             
-             
-                
+              
                 if (keyval == Gdk.Key.s && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
                     GLib.debug("SAVE: ctrl-S  pressed");
                     _this.saveContents();
@@ -932,6 +936,7 @@ public class Editor : Object
             var child_4 = new Xcls_backBtn( _this );
             this.el.append ( child_4.el  );
             var child_5 = new Xcls_MenuButton18( _this );
+            child_5.ref();
             this.el.append ( child_5.el  );
         }
 
@@ -962,6 +967,7 @@ public class Editor : Object
             this.el.placeholder_text = "Press enter to search";
             this.el.search_delay = 3;
             var child_1 = new Xcls_EventControllerKey14( _this );
+            child_1.ref();
             this.el.add_controller(  child_1.el );
 
             // init method
