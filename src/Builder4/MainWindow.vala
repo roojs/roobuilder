@@ -116,7 +116,16 @@ public class Xcls_MainWindow : Object
         }
     }
     public void setTitle () {
-        _this.el.set_title(_this.project.name + " - " + _this.file.relpath);
+        if (_this.windowstate.project == null || 
+    	    _this.windowstate.file == null
+        ) {
+        	this.el.set_title("Select File");
+        	return;
+    	}
+        _this.el.set_title(
+        	_this.windowstate.project.name + 
+        	" - " +
+    		_this.windowstate.file.relpath);
     }
     public void openNewWindow () {
      

@@ -721,7 +721,16 @@
    ],
    "| void setTitle" : [
     " () {",
-    "    _this.el.set_title(_this.project.name + \" - \" + _this.file.relpath);",
+    "    if (_this.windowstate.project == null || ",
+    "\t    _this.windowstate.file == null",
+    "    ) {",
+    "    \tthis.el.set_title(\"Select File\");",
+    "    \treturn;",
+    "\t}",
+    "    _this.el.set_title(",
+    "    \t_this.windowstate.project.name + ",
+    "    \t\" - \" +",
+    "\t\t_this.windowstate.file.relpath);",
     "} "
    ],
    "| void show" : [
