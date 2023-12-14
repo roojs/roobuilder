@@ -254,14 +254,7 @@
          "$ visible" : true,
          "$ xns" : "Gtk",
          "bool hexpand" : true,
-         "id" : "file_namespace_lbl",
-         "xtype" : "Entry"
-        },
-        {
-         "$ visible" : true,
-         "$ xns" : "Gtk",
-         "bool hexpand" : true,
-         "id" : "name",
+         "id" : "file_namespace",
          "xtype" : "Entry"
         },
         {
