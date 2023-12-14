@@ -200,7 +200,7 @@
           "\t\t\t\t_this.modOrder.el.show();",
           "\t\t\t",
           "\t\t\t}",
-          "\t\t",
+          "\t\t\t_this.build_module_model.load(null);",
           "\t\t ",
           "\t\t\t",
           "\t\t\tbreak;",

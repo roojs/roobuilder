@@ -474,7 +474,7 @@ public class Xcls_PopoverFileDetails : Object
         				_this.modOrder.el.show();
         			
         			}
-        		
+        			_this.build_module_model.load(null);
         		 
         			
         			break;
