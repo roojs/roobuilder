@@ -541,7 +541,7 @@
          "\t  ",
          "\t  \tvar old_target = _this.file.build_module;",
          "         _this.updateFileFromEntry();",
-         "\t    if (_this.project.type == \"Gtk\" && old_target != _this.file.build_module) {",
+         "\t    if (_this.project.xtype == \"Gtk\" && old_target != _this.file.build_module) {",
          "\t    \tvar gp = (JsRender.Gtk)_this.file;",
          "\t    \tgp.updateCompileGroup(old_target,  _this.file.build_module);",
          "    \t}",
