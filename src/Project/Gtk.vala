@@ -278,7 +278,7 @@ namespace Project
 				"	Gtk.init ();",
 		 		"	GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR ); ",
 				"	app.activate.connect(() => {",
-				"		var w = new Xcls_MainWindow();",
+				"		var w = new UI.Window();",
 				"		w.ref();",
 				"	 	w.show();",
 				"	});",
