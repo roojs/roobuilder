@@ -246,7 +246,7 @@
          "$ justify" : "Gtk.Justification.RIGHT",
          "$ xns" : "Gtk",
          "id" : "file_namespace_lbl",
-         "label" : "Component Name (File name without extension)",
+         "label" : "Vala Namespace",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
          "xtype" : "Label"

@@ -635,7 +635,7 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.file_namespace_lbl = this;
-            this.el = new Gtk.Label( "Component Name (File name without extension)" );
+            this.el = new Gtk.Label( "Vala Namespace" );
 
             // my vars (dec)
 
