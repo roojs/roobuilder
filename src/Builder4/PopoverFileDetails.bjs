@@ -239,7 +239,7 @@
          "$ visible" : true,
          "$ xns" : "Gtk",
          "bool hexpand" : true,
-         "id" : "file_namespace_lbl",
+         "id" : "name",
          "xtype" : "Entry"
         },
         {
@@ -249,6 +249,13 @@
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
          "xtype" : "Label"
+        },
+        {
+         "$ visible" : true,
+         "$ xns" : "Gtk",
+         "bool hexpand" : true,
+         "id" : "file_namespace_lbl",
+         "xtype" : "Entry"
         },
         {
          "$ visible" : true,
