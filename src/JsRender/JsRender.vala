@@ -355,7 +355,7 @@ namespace JsRender {
 				ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
 			}
 			if (this.project.xtype == "Gtk") {
-				ret.set_string_member("ui", this.namespace );
+				ret.set_string_member("namespace", this.file_namespace );
 				ret.set_string_member("build_module", this.build_module  == null ? "" : this.build_module);
 			}
 			ret.set_boolean_member("gen_extended", this.gen_extended);
