@@ -827,8 +827,8 @@ namespace Project {
 					var gthis = (Gtk)this;
 					if (gthis.compilegroups.has_key(pfile.build_module)) {
 						var cg = gthis.compilegroups.get(pfile.build_module);
-						if (!cg.contains(pfile.relpath)) {
-							cg.add(pfile.replath);
+						if (!cg.sources.contains(pfile.relpath)) {
+							cg.sources.add(pfile.replath);
 						}
 					}
 				}
