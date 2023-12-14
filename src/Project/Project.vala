@@ -821,7 +821,7 @@ namespace Project {
 				this.files.set(pfile.path, pfile); // duplicate check?					
 			} else {
 				var sp = this.findDir(pfile.dir);
-				jsDir.childfiles.append(pfile);
+				sp.childfiles.append(pfile);
 			}
 			
 
