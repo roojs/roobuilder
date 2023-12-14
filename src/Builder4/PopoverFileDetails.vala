@@ -462,12 +462,13 @@ public class Xcls_PopoverFileDetails : Object
         	
         	_this.gen_lbl.el.hide();
         	_this.gen.el.hide();
-        	
+        	_this.file_namespace_lbl.hide();
+         	_this.file_namespace.hide();
         	var sel = this.getValue();
         	
         	switch(_this.project.xtype) {
         		case "Roo":
-        		 
+        		 	
         			if (sel == "bjs") {
         				_this.title_lbl.el.show();
         				_this.title.el.show();
@@ -491,8 +492,12 @@ public class Xcls_PopoverFileDetails : Object
         			break;
         		default: // vala..
         		
+        			if (sel == "bjs") {
+        				_this.file_namespace_lbl.show();
+        			 	_this.file_namespace.show();
+        		 	}
         			 
-        			 _this.gen_lbl.el.show();
+        			_this.gen_lbl.el.show();
         			_this.gen.el.show();
         		    
         			break;
