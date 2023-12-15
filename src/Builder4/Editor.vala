@@ -1132,7 +1132,6 @@ public class Editor : Object
 
             // set gobject values
             this.el.icon_name = "go-down";
-            this.el.label = "Next";
             this.el.sensitive = false;
 
             //listeners

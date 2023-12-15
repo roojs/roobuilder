@@ -701,7 +701,6 @@
         ]
        },
        "string icon_name" : "go-down",
-       "string label" : "Next",
        "xtype" : "Button"
       },
       {
