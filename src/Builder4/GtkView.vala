@@ -1150,8 +1150,7 @@ public class Xcls_GtkView : Object
             //listeners
             this.el.key_pressed.connect( (keyval, keycode, state) => {
             
-            	 GLib.debug("Got search key press");
-                 if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
+            	if (keyval == Gdk.Key.g && (state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {
             	    GLib.debug("SAVE: ctrl-g  pressed");
             		_this.forwardSearch(true);
             	    return true;
@@ -1159,14 +1158,8 @@ public class Xcls_GtkView : Object
                 
               
              	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
-            		_this.search(_this.search_entry.el.text);
-            		 _this.search_results.updateResults();
-            
-            		GLib.Timeout.add_seconds(2,() => {
-            			 _this.search_results.updateResults();
-            			 return false;
-            		 });
-            	 
+            		_this.forwardSearch(true);
+            		
             		
             	    return true;
             
@@ -1174,7 +1167,6 @@ public class Xcls_GtkView : Object
                // print(event.key.keyval)
                
                 return false;
-            
             });
         }
 
