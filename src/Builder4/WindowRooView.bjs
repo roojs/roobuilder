@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# Gtk.Widget lastObj" : "null",
@@ -1215,6 +1216,15 @@
              "xtype" : "EventControllerKey"
             }
            ],
+           "listeners" : {
+            "search_changed" : [
+             "( ) => {",
+             "",
+             "",
+             "}",
+             ""
+            ]
+           },
            "string name" : "roo-search-entry",
            "string placeholder_text" : "Press enter to search",
            "xtype" : "SearchEntry",
@@ -1643,10 +1653,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "WindowRooView",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/WindowRooView.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

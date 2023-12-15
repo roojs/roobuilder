@@ -34,8 +34,8 @@ public class Xcls_WindowRooView : Object
         // my vars (def)
     public Gtk.Widget lastObj;
     public Xcls_MainWindow main_window;
-    public GtkSource.SearchContext searchcontext;
     public int last_search_end;
+    public GtkSource.SearchContext searchcontext;
     public JsRender.JsRender file;
 
     // ctor
@@ -52,9 +52,8 @@ public class Xcls_WindowRooView : Object
         // set gobject values
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_0 = new Xcls_notebook( _this );
-        child_0.ref();
-        this.el.append(  child_0.el );
+        var child_1 = new Xcls_notebook( _this );
+        this.el.append( child_1.el );
     }
 
     // user defined functions
@@ -295,16 +294,13 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.vexpand = true;
-            var child_0 = new Xcls_label_preview( _this );
-            child_0.ref();
-            var child_1 = new Xcls_label_code( _this );
-            child_1.ref();
-            var child_2 = new Xcls_paned( _this );
-            child_2.ref();
-            this.el.append_page (  child_2.el , _this.label_preview.el );
-            var child_3 = new Xcls_Box13( _this );
-            child_3.ref();
-            this.el.append_page (  child_3.el , _this.label_code.el );
+            var child_1 = new Xcls_label_preview( _this );
+            var child_2 = new Xcls_label_code( _this );
+            var child_3 = new Xcls_paned( _this );
+            this.el.append_page ( child_3.el , _this.label_preview.el );
+            var child_4 = new Xcls_Box13( _this );
+            child_4.ref();
+            this.el.append_page ( child_4.el , _this.label_code.el );
         }
 
         // user defined functions
@@ -374,12 +370,10 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.vexpand = true;
-            var child_0 = new Xcls_viewbox( _this );
-            child_0.ref();
-            this.el.set_start_child (  child_0.el  );
-            var child_1 = new Xcls_inspectorcontainer( _this );
-            child_1.ref();
-            this.el.set_end_child (  child_1.el  );
+            var child_1 = new Xcls_viewbox( _this );
+            this.el.set_start_child ( child_1.el  );
+            var child_2 = new Xcls_inspectorcontainer( _this );
+            this.el.set_end_child ( child_2.el  );
         }
 
         // user defined functions
@@ -404,12 +398,11 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             this.el.homogeneous = false;
             this.el.vexpand = true;
-            var child_0 = new Xcls_Box7( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_view( _this );
+            var child_1 = new Xcls_Box7( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_view( _this );
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -434,15 +427,14 @@ public class Xcls_WindowRooView : Object
             this.el.homogeneous = true;
             this.el.height_request = 20;
             this.el.vexpand = false;
-            var child_0 = new Xcls_Button8( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_AutoRedraw( _this );
+            var child_1 = new Xcls_Button8( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button10( _this );
-            child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_AutoRedraw( _this );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_Button10( _this );
+            child_3.ref();
+            this.el.append( child_3.el );
         }
 
         // user defined functions
@@ -949,12 +941,12 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.vexpand = true;
-            var child_0 = new Xcls_ScrolledWindow14( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box19( _this );
+            var child_1 = new Xcls_ScrolledWindow14( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Box19( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -977,9 +969,8 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.vexpand = true;
-            var child_0 = new Xcls_sourceview( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_sourceview( _this );
+            this.el.set_child ( child_1.el  );
         }
 
         // user defined functions
@@ -991,8 +982,8 @@ public class Xcls_WindowRooView : Object
 
 
             // my vars (def)
-        public bool loading;
         public int editable_start_pos;
+        public bool loading;
         public bool button_is_pressed;
         public string prop_selected;
         public bool key_is_pressed;
@@ -1007,8 +998,8 @@ public class Xcls_WindowRooView : Object
             this.el = new GtkSource.View();
 
             // my vars (dec)
-            this.loading = true;
             this.editable_start_pos = -1;
+            this.loading = true;
             this.button_is_pressed = false;
             this.prop_selected = "";
             this.key_is_pressed = false;
@@ -1019,15 +1010,14 @@ public class Xcls_WindowRooView : Object
             this.el.editable = false;
             this.el.show_line_marks = true;
             this.el.show_line_numbers = true;
-            var child_0 = new Xcls_buffer( _this );
-            child_0.ref();
-            this.el.set_buffer (  child_0.el  );
-            var child_1 = new Xcls_EventControllerKey17( _this );
-            child_1.ref();
-            this.el.add_controller (  child_1.el  );
-            var child_2 = new Xcls_GestureClick18( _this );
+            var child_1 = new Xcls_buffer( _this );
+            this.el.set_buffer ( child_1.el  );
+            var child_2 = new Xcls_EventControllerKey17( _this );
             child_2.ref();
-            this.el.add_controller(  child_2.el );
+            this.el.add_controller ( child_2.el  );
+            var child_3 = new Xcls_GestureClick18( _this );
+            child_3.ref();
+            this.el.add_controller(  child_3.el );
 
             // init method
 
@@ -1415,15 +1405,6 @@ public class Xcls_WindowRooView : Object
         
         
         }
-        public string toString () {
-           Gtk.TextIter s;
-            Gtk.TextIter e;
-            this.el.get_buffer().get_start_iter(out s);
-            this.el.get_buffer().get_end_iter(out e);
-            var ret = this.el.get_buffer().get_text(s,e,true);
-            //print("TO STRING? " + ret);
-            return ret;
-        }
         public void clearGreySelection () {
          // clear all the marks..
             var sbuf = (GtkSource.Buffer)this.el.buffer;
@@ -1435,6 +1416,15 @@ public class Xcls_WindowRooView : Object
             sbuf.remove_source_marks (start, end, "grey");
             
             
+        }
+        public string toString () {
+           Gtk.TextIter s;
+            Gtk.TextIter e;
+            this.el.get_buffer().get_start_iter(out s);
+            this.el.get_buffer().get_end_iter(out e);
+            var ret = this.el.get_buffer().get_text(s,e,true);
+            //print("TO STRING? " + ret);
+            return ret;
         }
     }
     public class Xcls_buffer : Object
@@ -1713,21 +1703,18 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             this.el.homogeneous = false;
             this.el.vexpand = false;
-            var child_0 = new Xcls_search_entry( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box22( _this );
-            child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_nextBtn( _this );
+            var child_1 = new Xcls_search_entry( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Box22( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
-            var child_3 = new Xcls_backBtn( _this );
-            child_3.ref();
-            this.el.append(  child_3.el );
-            var child_4 = new Xcls_MenuButton26( _this );
-            child_4.ref();
-            this.el.append(  child_4.el );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_nextBtn( _this );
+            this.el.append( child_3.el );
+            var child_4 = new Xcls_backBtn( _this );
+            this.el.append( child_4.el );
+            var child_5 = new Xcls_MenuButton26( _this );
+            child_5.ref();
+            this.el.append( child_5.el );
         }
 
         // user defined functions
@@ -1755,9 +1742,9 @@ public class Xcls_WindowRooView : Object
             this.el.name = "roo-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
-            var child_0 = new Xcls_EventControllerKey21( _this );
-            child_0.ref();
-            this.el.add_controller(  child_0.el );
+            var child_1 = new Xcls_EventControllerKey21( _this );
+            child_1.ref();
+            this.el.add_controller(  child_1.el );
 
             // init method
 
@@ -1767,6 +1754,12 @@ public class Xcls_WindowRooView : Object
             	} catch (Error e) {}
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+            //listeners
+            this.el.search_changed.connect( ( ) => {
+            
+            
+            });
         }
 
         // user defined functions
@@ -1866,9 +1859,8 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_search_results( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
+            var child_1 = new Xcls_search_results( _this );
+            this.el.append( child_1.el );
         }
 
         // user defined functions
@@ -2013,9 +2005,8 @@ public class Xcls_WindowRooView : Object
             // set gobject values
             this.el.icon_name = "emblem-system";
             this.el.label = "Settings";
-            var child_0 = new Xcls_search_settings( _this );
-            child_0.ref();
-            this.el.popover = child_0.el;
+            var child_1 = new Xcls_search_settings( _this );
+            this.el.popover = child_1.el;
         }
 
         // user defined functions
@@ -2038,9 +2029,8 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box28( _this );
-            child_0.ref();
-            this.el.child = child_0.el;
+            var child_1 = new Xcls_Box28( _this );
+            this.el.child = child_1.el;
         }
 
         // user defined functions
@@ -2062,15 +2052,12 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_case_sensitive( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_regex( _this );
-            child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_multiline( _this );
-            child_2.ref();
-            this.el.append(  child_2.el );
+            var child_1 = new Xcls_case_sensitive( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_regex( _this );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_multiline( _this );
+            this.el.append( child_3.el );
         }
 
         // user defined functions
