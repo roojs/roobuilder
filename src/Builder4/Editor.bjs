@@ -555,22 +555,9 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* init" : [
-        "",
-        "",
-        "this.css = new Gtk.CssProvider();",
-        "try {",
-        "\tthis.css.load_from_data(\"#editor-search-entry { font:  8px monospace;}\".data);",
-        "} catch (Error e) {}",
-        "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
-        "",
-        "",
-        ""
-       ],
        "Gtk.CssProvider css" : "",
        "bool hexpand" : true,
        "id" : "search_entry",
-       "int width_request" : 300,
        "items" : [
         {
          "$ xns" : "Gtk",

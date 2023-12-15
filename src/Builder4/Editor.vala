@@ -962,7 +962,6 @@ public class Editor : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.width_request = 300;
             this.el.name = "editor-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
@@ -970,14 +969,6 @@ public class Editor : Object
             var child_1 = new Xcls_EventControllerKey14( _this );
             child_1.ref();
             this.el.add_controller(  child_1.el );
-
-            // init method
-
-            this.css = new Gtk.CssProvider();
-            try {
-            	this.css.load_from_data("#editor-search-entry { font:  8px monospace;}".data);
-            } catch (Error e) {}
-            this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             //listeners
             this.el.search_changed.connect( ( ) => {
