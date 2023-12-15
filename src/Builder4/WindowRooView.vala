@@ -1758,7 +1758,13 @@ public class Xcls_WindowRooView : Object
             //listeners
             this.el.search_changed.connect( ( ) => {
             
+            _this.search(_this.search_entry.el.text);
+            	 _this.search_results.updateResults();
             
+            	GLib.Timeout.add_seconds(1,() => {
+            		 _this.search_results.updateResults();
+            		 return false;
+            	 });
             });
         }
 
@@ -1819,15 +1825,8 @@ public class Xcls_WindowRooView : Object
                 
               
              	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
-            		//var res =
-            		 _this.search(_this.search_entry.el.text);
-            		 _this.search_results.updateResults();
-            
-            		GLib.Timeout.add_seconds(2,() => {
-            			 _this.search_results.updateResults();
-            			 return false;
-            		 });
-            	 
+            		_this.forwardSearch(true);
+            		
             		
             	    return true;
             

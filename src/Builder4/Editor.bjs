@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# GtkSource.SearchContext searchcontext" : "null",
@@ -969,10 +970,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "Editor",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/Editor.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }
