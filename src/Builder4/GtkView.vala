@@ -1308,7 +1308,7 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.icon_name = "emblem-system";
-            this.el.label = "Settings";
+            this.el.always_show_arrow = true;
             var child_1 = new Xcls_search_settings( _this );
             this.el.popover = child_1.el;
         }
