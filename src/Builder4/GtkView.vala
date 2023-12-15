@@ -1241,7 +1241,6 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.icon_name = "go-down";
-            this.el.label = "Next";
             this.el.sensitive = false;
 
             //listeners
@@ -1276,7 +1275,6 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.icon_name = "go-up";
-            this.el.label = "Previous";
             this.el.sensitive = false;
 
             //listeners
