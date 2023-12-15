@@ -50,9 +50,8 @@ public class Xcls_GtkView : Object
         // set gobject values
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_0 = new Xcls_notebook( _this );
-        child_0.ref();
-        this.el.append(  child_0.el );
+        var child_1 = new Xcls_notebook( _this );
+        this.el.append( child_1.el );
 
         // init method
 
@@ -372,16 +371,14 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.overflow = Gtk.Overflow.VISIBLE;
-            var child_0 = new Xcls_label_preview( _this );
-            child_0.ref();
-            var child_1 = new Xcls_label_code( _this );
-            child_1.ref();
-            var child_2 = new Xcls_ScrolledWindow5( _this );
-            child_2.ref();
-            this.el.append_page (  child_2.el , _this.label_preview.el );
-            var child_3 = new Xcls_Box8( _this );
+            var child_1 = new Xcls_label_preview( _this );
+            var child_2 = new Xcls_label_code( _this );
+            var child_3 = new Xcls_ScrolledWindow5( _this );
             child_3.ref();
-            this.el.append_page (  child_3.el , _this.label_code.el );
+            this.el.append_page ( child_3.el , _this.label_preview.el );
+            var child_4 = new Xcls_Box8( _this );
+            child_4.ref();
+            this.el.append_page ( child_4.el , _this.label_code.el );
         }
 
         // user defined functions
@@ -449,9 +446,8 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_view_layout( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_view_layout( _this );
+            this.el.set_child ( child_1.el  );
         }
 
         // user defined functions
@@ -475,9 +471,8 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.name = "gtkview-view-layout";
-            var child_0 = new Xcls_container( _this );
-            child_0.ref();
-            this.el.put (  child_0.el , 10,10 );
+            var child_1 = new Xcls_container( _this );
+            this.el.put ( child_1.el , 10,10 );
         }
 
         // user defined functions
@@ -524,12 +519,12 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ScrolledWindow9( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box13( _this );
+            var child_1 = new Xcls_ScrolledWindow9( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Box13( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -552,9 +547,8 @@ public class Xcls_GtkView : Object
 
             // set gobject values
             this.el.vexpand = true;
-            var child_0 = new Xcls_sourceview( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_sourceview( _this );
+            this.el.set_child ( child_1.el  );
         }
 
         // user defined functions
@@ -589,12 +583,11 @@ public class Xcls_GtkView : Object
             this.el.editable = false;
             this.el.show_line_marks = true;
             this.el.show_line_numbers = true;
-            var child_0 = new Xcls_buffer( _this );
-            child_0.ref();
-            this.el.set_buffer (  child_0.el  );
-            var child_1 = new Xcls_EventControllerKey12( _this );
-            child_1.ref();
-            this.el.add_controller(  child_1.el );
+            var child_1 = new Xcls_buffer( _this );
+            this.el.set_buffer ( child_1.el  );
+            var child_2 = new Xcls_EventControllerKey12( _this );
+            child_2.ref();
+            this.el.add_controller(  child_2.el );
 
             // init method
 
@@ -1006,21 +999,17 @@ public class Xcls_GtkView : Object
             // set gobject values
             this.el.homogeneous = false;
             this.el.vexpand = false;
-            var child_0 = new Xcls_search_entry( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box16( _this );
-            child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_nextBtn( _this );
-            child_2.ref();
-            this.el.append(  child_2.el );
-            var child_3 = new Xcls_backBtn( _this );
-            child_3.ref();
-            this.el.append(  child_3.el );
-            var child_4 = new Xcls_MenuButton20( _this );
-            child_4.ref();
-            this.el.append(  child_4.el );
+            var child_1 = new Xcls_search_entry( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_search_results( _this );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_nextBtn( _this );
+            this.el.append( child_3.el );
+            var child_4 = new Xcls_backBtn( _this );
+            this.el.append( child_4.el );
+            var child_5 = new Xcls_MenuButton19( _this );
+            child_5.ref();
+            this.el.append( child_5.el );
         }
 
         // user defined functions
@@ -1049,9 +1038,9 @@ public class Xcls_GtkView : Object
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
             this.el.search_delay = 3;
-            var child_0 = new Xcls_EventControllerKey15( _this );
-            child_0.ref();
-            this.el.add_controller(  child_0.el );
+            var child_1 = new Xcls_EventControllerKey15( _this );
+            child_1.ref();
+            this.el.add_controller(  child_1.el );
 
             // init method
 
@@ -1193,33 +1182,9 @@ public class Xcls_GtkView : Object
     }
 
 
-    public class Xcls_Box16 : Object
-    {
-        public Gtk.Box el;
-        private Xcls_GtkView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Box16(Xcls_GtkView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_0 = new Xcls_search_results( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-        }
-
-        // user defined functions
-    }
     public class Xcls_search_results : Object
     {
-        public Gtk.Button el;
+        public Gtk.Label el;
         private Xcls_GtkView  _this;
 
 
@@ -1230,12 +1195,13 @@ public class Xcls_GtkView : Object
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.Label( "No Results" );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.visible = false;
+            this.el.margin_end = 4;
+            this.el.margin_start = 4;
         }
 
         // user defined functions
@@ -1261,7 +1227,6 @@ public class Xcls_GtkView : Object
         	
         }
     }
-
 
     public class Xcls_nextBtn : Object
     {
@@ -1333,7 +1298,7 @@ public class Xcls_GtkView : Object
         // user defined functions
     }
 
-    public class Xcls_MenuButton20 : Object
+    public class Xcls_MenuButton19 : Object
     {
         public Gtk.MenuButton el;
         private Xcls_GtkView  _this;
@@ -1343,7 +1308,7 @@ public class Xcls_GtkView : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_MenuButton20(Xcls_GtkView _owner )
+        public Xcls_MenuButton19(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -1354,9 +1319,8 @@ public class Xcls_GtkView : Object
             // set gobject values
             this.el.icon_name = "emblem-system";
             this.el.label = "Settings";
-            var child_0 = new Xcls_search_settings( _this );
-            child_0.ref();
-            this.el.popover = child_0.el;
+            var child_1 = new Xcls_search_settings( _this );
+            this.el.popover = child_1.el;
         }
 
         // user defined functions
@@ -1379,14 +1343,14 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box22( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_Box21( _this );
+            child_1.ref();
+            this.el.set_child ( child_1.el  );
         }
 
         // user defined functions
     }
-    public class Xcls_Box22 : Object
+    public class Xcls_Box21 : Object
     {
         public Gtk.Box el;
         private Xcls_GtkView  _this;
@@ -1395,7 +1359,7 @@ public class Xcls_GtkView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box22(Xcls_GtkView _owner )
+        public Xcls_Box21(Xcls_GtkView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -1403,15 +1367,12 @@ public class Xcls_GtkView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_case_sensitive( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_regex( _this );
-            child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_multiline( _this );
-            child_2.ref();
-            this.el.append(  child_2.el );
+            var child_1 = new Xcls_case_sensitive( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_regex( _this );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_multiline( _this );
+            this.el.append( child_3.el );
         }
 
         // user defined functions
