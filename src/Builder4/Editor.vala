@@ -1084,7 +1084,7 @@ public class Editor : Object
 
             // set gobject values
             this.el.margin_end = 4;
-            this.el.margin_start = 0;
+            this.el.margin_start = 4;
         }
 
         // user defined functions

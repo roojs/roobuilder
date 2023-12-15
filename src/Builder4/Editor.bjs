@@ -656,7 +656,7 @@
        "$ xns" : "Gtk",
        "id" : "search_results",
        "int margin_end" : 4,
-       "int margin_start" : 0,
+       "int margin_start" : 4,
        "string label" : "No Results",
        "xtype" : "Label",
        "| void updateResults" : [
