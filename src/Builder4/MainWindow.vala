@@ -257,8 +257,8 @@ public class Xcls_MainWindow : Object
         	 	if (ap != bp) {
         	 		return ap.collate(bp);
         	 	}
-        	 	var af = a.windowstate.file.getTitle();
-        	 	var bf = b.windowstate.file.getTitle();	 	
+        	 	var af =  a.windowstate.file == null ? "" : a.windowstate.file.getTitle();
+        	 	var bf = b.windowstate.file == null ? "" : b.windowstate.file.getTitle();	 	
         		return af.collate(bf);
         	 
         	 });

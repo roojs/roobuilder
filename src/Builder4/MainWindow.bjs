@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# Project.Project project" : "null",
@@ -162,8 +163,8 @@
           "\t \tif (ap != bp) {",
           "\t \t\treturn ap.collate(bp);",
           "\t \t}",
-          "\t \tvar af = a.windowstate.file.getTitle();",
-          "\t \tvar bf = b.windowstate.file.getTitle();\t \t",
+          "\t \tvar af =  a.windowstate.file == null ? \"\" : a.windowstate.file.getTitle();",
+          "\t \tvar bf = b.windowstate.file == null ? \"\" : b.windowstate.file.getTitle();\t \t",
           "\t\treturn af.collate(bf);",
           "\t ",
           "\t });",
@@ -744,10 +745,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "MainWindow",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/MainWindow.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }
