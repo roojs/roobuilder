@@ -14,10 +14,10 @@ namespace JsRender {
 		 */
 		public Gee.ArrayList<string> doubleStringProps;
 		
-		public string id;
+		public string id  = "";
 		public string name { get; set; }   // is the JS name of the file.
 		public string fullname;
-		public string path;  // is the full path to the file.
+		public string path = "";  // is the full path to the file.
 		
 		public  string relpath {
 			owned get { 
@@ -40,10 +40,10 @@ namespace JsRender {
 			private set {}
 		}
 		
-		public string parent;  // JS parent.
-		public string region;  // RooJS - insert region.
+		public string parent = "";  // JS parent.
+		public string region = "";  // RooJS - insert region.
         
-		public string title;  // a title.. ?? nickname.. ??? -
+		public string title = "";  // a title.. ?? nickname.. ??? -
 
 		
 
@@ -399,6 +399,9 @@ namespace JsRender {
 
 		public string getTitle ()
 		{
+		    if (this.title == null) { // not sure why this happens..
+		    	return "";
+	    	}
 		    if (this.title.length > 0) {
 		        return this.title;
 		    }
