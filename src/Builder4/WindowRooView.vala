@@ -1858,6 +1858,8 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.margin_end = 0;
+            this.el.margin_start = 4;
         }
 
         // user defined functions
