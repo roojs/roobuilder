@@ -567,7 +567,6 @@
         "",
         ""
        ],
-       "* pack" : "append",
        "Gtk.CssProvider css" : "",
        "bool hexpand" : true,
        "id" : "search_entry",
@@ -685,7 +684,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "append",
        "bool always_show_image" : true,
        "bool sensitive" : false,
        "id" : "nextBtn",
@@ -705,7 +703,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "append",
        "bool always_show_image" : true,
        "bool sensitive" : false,
        "id" : "backBtn",
@@ -720,7 +717,6 @@
         ]
        },
        "string icon_name" : "go-up",
-       "string label" : "Previous",
        "xtype" : "Button"
       },
       {
@@ -736,7 +732,6 @@
         "}",
         ""
        ],
-       "* pack" : "append",
        "bool always_show_image" : true,
        "items" : [
         {

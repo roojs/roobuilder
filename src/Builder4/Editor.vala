@@ -929,16 +929,16 @@ public class Editor : Object
             this.el.homogeneous = false;
             this.el.vexpand = false;
             var child_1 = new Xcls_search_entry( _this );
-            this.el.append ( child_1.el  );
+            this.el.append( child_1.el );
             var child_2 = new Xcls_search_results( _this );
             this.el.append( child_2.el );
             var child_3 = new Xcls_nextBtn( _this );
-            this.el.append ( child_3.el  );
+            this.el.append( child_3.el );
             var child_4 = new Xcls_backBtn( _this );
-            this.el.append ( child_4.el  );
+            this.el.append( child_4.el );
             var child_5 = new Xcls_MenuButton18( _this );
             child_5.ref();
-            this.el.append ( child_5.el  );
+            this.el.append( child_5.el );
         }
 
         // user defined functions
@@ -1167,7 +1167,6 @@ public class Editor : Object
 
             // set gobject values
             this.el.icon_name = "go-up";
-            this.el.label = "Previous";
             this.el.sensitive = false;
 
             //listeners
