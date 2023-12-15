@@ -1258,41 +1258,33 @@
            ]
           },
           {
-           "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "$ xns" : "Gtk",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "bool always_show_image" : true,
-             "bool visible" : false,
-             "id" : "search_results",
-             "xtype" : "Button",
-             "| void updateResults" : [
-              "() {",
-              "\tthis.el.visible = true;",
-              "\t",
-              "\tvar res = _this.searchcontext.get_occurrences_count();",
-              "\tif (res < 0) {",
-              "\t\t_this.search_results.el.label = \"??? Matches\";\t\t",
-              "\t\treturn;",
-              "\t}",
-              "",
-              "\t_this.nextBtn.el.sensitive = false;",
-              "\t_this.backBtn.el.sensitive = false;\t",
-              "",
-              "\tif (res > 0) {",
-              "\t\t_this.search_results.el.label = \"%d Matches\".printf(res);",
-              "\t\t_this.nextBtn.el.sensitive = true;",
-              "\t\t_this.backBtn.el.sensitive = true;",
-              "\t\treturn;",
-              "\t} ",
-              "\t_this.search_results.el.label = \"No Matches\";",
-              "\t",
-              "}"
-             ]
-            }
-           ],
-           "xtype" : "Box"
+           "id" : "search_results",
+           "string label" : "No Results",
+           "xtype" : "Label",
+           "| void updateResults" : [
+            "() {",
+            "\tthis.el.visible = true;",
+            "\t",
+            "\tvar res = _this.searchcontext.get_occurrences_count();",
+            "\tif (res < 0) {",
+            "\t\t_this.search_results.el.label = \"??? Matches\";\t\t",
+            "\t\treturn;",
+            "\t}",
+            "",
+            "\t_this.nextBtn.el.sensitive = false;",
+            "\t_this.backBtn.el.sensitive = false;\t",
+            "",
+            "\tif (res > 0) {",
+            "\t\t_this.search_results.el.label = \"%d Matches\".printf(res);",
+            "\t\t_this.nextBtn.el.sensitive = true;",
+            "\t\t_this.backBtn.el.sensitive = true;",
+            "\t\treturn;",
+            "\t} ",
+            "\t_this.search_results.el.label = \"No Matches\";",
+            "\t",
+            "}"
+           ]
           },
           {
            "$ xns" : "Gtk",

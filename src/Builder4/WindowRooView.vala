@@ -1705,14 +1705,13 @@ public class Xcls_WindowRooView : Object
             this.el.vexpand = false;
             var child_1 = new Xcls_search_entry( _this );
             this.el.append( child_1.el );
-            var child_2 = new Xcls_Box22( _this );
-            child_2.ref();
+            var child_2 = new Xcls_search_results( _this );
             this.el.append( child_2.el );
             var child_3 = new Xcls_nextBtn( _this );
             this.el.append( child_3.el );
             var child_4 = new Xcls_backBtn( _this );
             this.el.append( child_4.el );
-            var child_5 = new Xcls_MenuButton26( _this );
+            var child_5 = new Xcls_MenuButton25( _this );
             child_5.ref();
             this.el.append( child_5.el );
         }
@@ -1841,50 +1840,24 @@ public class Xcls_WindowRooView : Object
     }
 
 
-    public class Xcls_Box22 : Object
-    {
-        public Gtk.Box el;
-        private Xcls_WindowRooView  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Box22(Xcls_WindowRooView _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-            // my vars (dec)
-
-            // set gobject values
-            var child_1 = new Xcls_search_results( _this );
-            this.el.append( child_1.el );
-        }
-
-        // user defined functions
-    }
     public class Xcls_search_results : Object
     {
-        public Gtk.Button el;
+        public Gtk.Label el;
         private Xcls_WindowRooView  _this;
 
 
             // my vars (def)
-        public bool always_show_image;
 
         // ctor
         public Xcls_search_results(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             _this.search_results = this;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.Label( "No Results" );
 
             // my vars (dec)
-            this.always_show_image = true;
 
             // set gobject values
-            this.el.visible = false;
         }
 
         // user defined functions
@@ -1910,7 +1883,6 @@ public class Xcls_WindowRooView : Object
         	
         }
     }
-
 
     public class Xcls_nextBtn : Object
     {
@@ -1983,7 +1955,7 @@ public class Xcls_WindowRooView : Object
         // user defined functions
     }
 
-    public class Xcls_MenuButton26 : Object
+    public class Xcls_MenuButton25 : Object
     {
         public Gtk.MenuButton el;
         private Xcls_WindowRooView  _this;
@@ -1993,7 +1965,7 @@ public class Xcls_WindowRooView : Object
         public bool always_show_image;
 
         // ctor
-        public Xcls_MenuButton26(Xcls_WindowRooView _owner )
+        public Xcls_MenuButton25(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.MenuButton();
@@ -2028,13 +2000,13 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
-            var child_1 = new Xcls_Box28( _this );
+            var child_1 = new Xcls_Box27( _this );
             this.el.child = child_1.el;
         }
 
         // user defined functions
     }
-    public class Xcls_Box28 : Object
+    public class Xcls_Box27 : Object
     {
         public Gtk.Box el;
         private Xcls_WindowRooView  _this;
@@ -2043,7 +2015,7 @@ public class Xcls_WindowRooView : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box28(Xcls_WindowRooView _owner )
+        public Xcls_Box27(Xcls_WindowRooView _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
