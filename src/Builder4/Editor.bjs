@@ -721,6 +721,7 @@
       },
       {
        "$ xns" : "Gtk",
+       "bool always_show_arrow" : true,
        "bool always_show_image" : true,
        "items" : [
         {
@@ -772,7 +773,6 @@
         }
        ],
        "string icon_name" : "emblem-system",
-       "string label" : "Settings",
        "xtype" : "MenuButton"
       }
      ],
