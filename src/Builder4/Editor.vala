@@ -1203,17 +1203,6 @@ public class Editor : Object
             this.el.label = "Settings";
             var child_1 = new Xcls_search_settings( _this );
             this.el.popover = child_1.el;
-
-            // init method
-
-            {
-            	/*this.el.menu_model = new GLib.Menu();
-            	var mm = this.el.menu_model;
-            	mm.append_item( new GLib.MenuItem("Case Sensitive") );
-            	mm.append_item( new GLib.MenuItem("Regex") );
-            	mm.append_item( new GLib.MenuItem("Multi-line") );
-            	*/
-            }
         }
 
         // user defined functions
