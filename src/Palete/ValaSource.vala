@@ -261,11 +261,11 @@ namespace Palete {
 			args += this.file.project.path;
 			args += "--target";
 			if (this.file.build_module.length > 0 ) {
-        		this.target =  this.file.build_module;
+        		args +=  this.file.build_module;
 			} else {
-			    this.target += pr.firstBuildModule();
+			    args += pr.firstBuildModule();
 			}
-			args += this.target;
+
 			
 			//args += "--output"; -- set up by the module -- defaults to testrun
 			//args += "/tmp/testrun";
@@ -441,15 +441,14 @@ namespace Palete {
 			this.compiler = null;
 			
 	        
-	        var p = (Project.Gtk) this.file.project;
-	        compilegroups
-	        
-	        
+			 
 	        this.spinner(false);		
 			
 			
 			
-			var exe = "/tmp/testrun";
+			
+			
+			var exe = "";
 			var mod = "";
 			var pr = (Project.Gtk)(this.file.project);
  			
@@ -461,11 +460,14 @@ namespace Palete {
 			    mod =  pr.firstBuildModule();
 			}
 			if (mod.length < 1) {
+				GLib.debug("missing compilegroup module");
 				return;
 			}
 			var cg =  pr.compilegroups.get(mod);
 			if (cg.target_bin.length > 0) {
 				exe = cg.target_bin;
+			} else {
+				GLib.debug("missing compilegroup target file");
 			}
 			
 			
