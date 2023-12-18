@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# JsRender.JsRender file" : "",
@@ -483,18 +484,18 @@
        "$ xns" : "Gtk",
        "* init" : [
         "{",
-        "   ",
-        "/*",
+        " ",
         "  \tthis.css = new Gtk.CssProvider();",
         "\ttry {",
-        "\t\tthis.css.load_from_data(\"#leftprops-view { font-size: 10px;}\".data);",
+        "\t\tthis.css.load_from_data(\"#leftprops-view { font-size: 12px;}\".data);",
         "\t} catch (Error e) {}",
-        "\tthis.el.get_style_context().add_provider(",
+        "\t\tGtk.StyleContext.add_provider_for_display(",
+        "\t\tthis.el.get_display(),",
         "\t\tthis.css,",
         "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
         "\t);",
-        "  */  ",
-        "  ",
+        "\t\t",
+        "   ",
         "}",
         ""
        ],
@@ -1398,10 +1399,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "WindowLeftProps",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/WindowLeftProps.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

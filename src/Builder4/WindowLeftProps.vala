@@ -48,12 +48,11 @@ public class Xcls_LeftProps : Object
         this.el.homogeneous = false   ;
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_0 = new Xcls_Box2( _this );
-        child_0.ref();
-        this.el.append(  child_0.el );
-        var child_1 = new Xcls_EditProps( _this );
+        var child_1 = new Xcls_Box2( _this );
         child_1.ref();
-        this.el.append(  child_1.el );
+        this.el.append( child_1.el );
+        var child_2 = new Xcls_EditProps( _this );
+        this.el.append( child_2.el );
     }
 
     // user defined functions
@@ -281,18 +280,18 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_Label3( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button4( _this );
+            var child_1 = new Xcls_Label3( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button5( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Button4( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
-            var child_3 = new Xcls_Button6( _this );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_Button5( _this );
             child_3.ref();
-            this.el.append(  child_3.el );
+            this.el.append( child_3.el );
+            var child_4 = new Xcls_Button6( _this );
+            child_4.ref();
+            this.el.append( child_4.el );
         }
 
         // user defined functions
@@ -421,8 +420,7 @@ public class Xcls_LeftProps : Object
             this.el.icon_name = "list-add";
             this.el.hexpand = true;
             this.el.label = "Other";
-            var child_0 = new Xcls_AddPropertyPopup( _this );
-            child_0.ref();
+            var child_1 = new Xcls_AddPropertyPopup( _this );
 
             //listeners
             this.el.clicked.connect( ( ) => {
@@ -465,9 +463,8 @@ public class Xcls_LeftProps : Object
 
             // set gobject values
             this.el.autohide = true;
-            var child_0 = new Xcls_Box8( _this );
-            child_0.ref();
-            this.el.child = child_0.el;
+            var child_1 = new Xcls_Box8( _this );
+            this.el.child = child_1.el;
         }
 
         // user defined functions
@@ -489,57 +486,57 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button9( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button10( _this );
+            var child_1 = new Xcls_Button9( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button11( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Button10( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
-            var child_3 = new Xcls_Button12( _this );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_Button11( _this );
             child_3.ref();
-            this.el.append(  child_3.el );
-            var child_4 = new Xcls_Button13( _this );
+            this.el.append( child_3.el );
+            var child_4 = new Xcls_Button12( _this );
             child_4.ref();
-            this.el.append(  child_4.el );
-            var child_5 = new Xcls_Separator14( _this );
+            this.el.append( child_4.el );
+            var child_5 = new Xcls_Button13( _this );
             child_5.ref();
-            this.el.append(  child_5.el );
-            var child_6 = new Xcls_Button15( _this );
+            this.el.append( child_5.el );
+            var child_6 = new Xcls_Separator14( _this );
             child_6.ref();
-            this.el.append(  child_6.el );
-            var child_7 = new Xcls_Button16( _this );
+            this.el.append( child_6.el );
+            var child_7 = new Xcls_Button15( _this );
             child_7.ref();
-            this.el.append(  child_7.el );
-            var child_8 = new Xcls_Button17( _this );
+            this.el.append( child_7.el );
+            var child_8 = new Xcls_Button16( _this );
             child_8.ref();
-            this.el.append(  child_8.el );
-            var child_9 = new Xcls_Separator18( _this );
+            this.el.append( child_8.el );
+            var child_9 = new Xcls_Button17( _this );
             child_9.ref();
-            this.el.append(  child_9.el );
-            var child_10 = new Xcls_Button19( _this );
+            this.el.append( child_9.el );
+            var child_10 = new Xcls_Separator18( _this );
             child_10.ref();
-            this.el.append(  child_10.el );
-            var child_11 = new Xcls_Button20( _this );
+            this.el.append( child_10.el );
+            var child_11 = new Xcls_Button19( _this );
             child_11.ref();
-            this.el.append(  child_11.el );
-            var child_12 = new Xcls_Button21( _this );
+            this.el.append( child_11.el );
+            var child_12 = new Xcls_Button20( _this );
             child_12.ref();
-            this.el.append(  child_12.el );
-            var child_13 = new Xcls_Separator22( _this );
+            this.el.append( child_12.el );
+            var child_13 = new Xcls_Button21( _this );
             child_13.ref();
-            this.el.append(  child_13.el );
-            var child_14 = new Xcls_Button23( _this );
+            this.el.append( child_13.el );
+            var child_14 = new Xcls_Separator22( _this );
             child_14.ref();
-            this.el.append(  child_14.el );
-            var child_15 = new Xcls_Button24( _this );
+            this.el.append( child_14.el );
+            var child_15 = new Xcls_Button23( _this );
             child_15.ref();
-            this.el.append(  child_15.el );
-            var child_16 = new Xcls_Button25( _this );
+            this.el.append( child_15.el );
+            var child_16 = new Xcls_Button24( _this );
             child_16.ref();
-            this.el.append(  child_16.el );
+            this.el.append( child_16.el );
+            var child_17 = new Xcls_Button25( _this );
+            child_17.ref();
+            this.el.append( child_17.el );
         }
 
         // user defined functions
@@ -1173,9 +1170,8 @@ public class Xcls_LeftProps : Object
             // set gobject values
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_view( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_view( _this );
+            this.el.set_child ( child_1.el  );
 
             // init method
 
@@ -1202,7 +1198,8 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.view = this;
-            this.el = new Gtk.ColumnView( null );
+            var child_1 = new Xcls_selmodel( _this );
+            this.el = new Gtk.ColumnView( child_1.el );
 
             // my vars (dec)
             this.popover = null;
@@ -1213,41 +1210,34 @@ public class Xcls_LeftProps : Object
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.show_row_separators = true;
-            var child_0 = new Xcls_deletemenu( _this );
-            child_0.ref();
-            var child_1 = new Xcls_GestureClick31( _this );
-            child_1.ref();
-            this.el.add_controller(  child_1.el );
-            var child_2 = new Xcls_GestureClick32( _this );
-            child_2.ref();
-            this.el.add_controller(  child_2.el );
-            var child_3 = new Xcls_selmodel( _this );
+            var child_2 = new Xcls_deletemenu( _this );
+            var child_3 = new Xcls_GestureClick31( _this );
             child_3.ref();
-            this.el.model = child_3.el;
-            var child_4 = new Xcls_keycol( _this );
+            this.el.add_controller(  child_3.el );
+            var child_4 = new Xcls_GestureClick32( _this );
             child_4.ref();
-            this.el.append_column (  child_4.el  );
-            var child_5 = new Xcls_valcol( _this );
-            child_5.ref();
-            this.el.append_column (  child_5.el  );
-            var child_6 = new Xcls_ContextMenu( _this );
-            child_6.ref();
+            this.el.add_controller(  child_4.el );
+            var child_5 = new Xcls_keycol( _this );
+            this.el.append_column ( child_5.el  );
+            var child_6 = new Xcls_valcol( _this );
+            this.el.append_column ( child_6.el  );
+            var child_7 = new Xcls_ContextMenu( _this );
 
             // init method
 
             {
-               
-            /*
+             
               	this.css = new Gtk.CssProvider();
             	try {
-            		this.css.load_from_data("#leftprops-view { font-size: 10px;}".data);
+            		this.css.load_from_data("#leftprops-view { font-size: 12px;}".data);
             	} catch (Error e) {}
-            	this.el.get_style_context().add_provider(
+            		Gtk.StyleContext.add_provider_for_display(
+            		this.el.get_display(),
             		this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             	);
-              */  
-              
+            		
+               
             }
         }
 
@@ -1466,9 +1456,8 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box29( _this );
-            child_0.ref();
-            this.el.child = child_0.el;
+            var child_1 = new Xcls_Box29( _this );
+            this.el.child = child_1.el;
         }
 
         // user defined functions
@@ -1490,9 +1479,9 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button30( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
+            var child_1 = new Xcls_Button30( _this );
+            child_1.ref();
+            this.el.append( child_1.el );
         }
 
         // user defined functions
@@ -1660,15 +1649,13 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.selmodel = this;
-            this.el = new Gtk.SingleSelection( null );
+            var child_1 = new Xcls_model( _this );
+            this.el = new Gtk.SingleSelection( child_1.el );
 
             // my vars (dec)
 
             // set gobject values
             this.el.can_unselect = true;
-            var child_0 = new Xcls_model( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
         }
 
         // user defined functions
@@ -1726,7 +1713,9 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.keycol = this;
-            this.el = new Gtk.ColumnViewColumn( "Property", null );
+            var child_1 = new Xcls_SignalListItemFactory36( _this );
+            child_1.ref();
+            this.el = new Gtk.ColumnViewColumn( "Property", child_1.el );
 
             // my vars (dec)
 
@@ -1734,9 +1723,6 @@ public class Xcls_LeftProps : Object
             this.el.id = "keycol";
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory36( _this );
-            child_0.ref();
-            this.el.factory = child_0.el;
         }
 
         // user defined functions
@@ -1812,7 +1798,9 @@ public class Xcls_LeftProps : Object
         {
             _this = _owner;
             _this.valcol = this;
-            this.el = new Gtk.ColumnViewColumn( "Value", null );
+            var child_1 = new Xcls_SignalListItemFactory38( _this );
+            child_1.ref();
+            this.el = new Gtk.ColumnViewColumn( "Value", child_1.el );
 
             // my vars (dec)
 
@@ -1820,9 +1808,6 @@ public class Xcls_LeftProps : Object
             this.el.id = "valcol";
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory38( _this );
-            child_0.ref();
-            this.el.factory = child_0.el;
         }
 
         // user defined functions
@@ -2063,9 +2048,8 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box40( _this );
-            child_0.ref();
-            this.el.child = child_0.el;
+            var child_1 = new Xcls_Box40( _this );
+            this.el.child = child_1.el;
         }
 
         // user defined functions
@@ -2087,9 +2071,9 @@ public class Xcls_LeftProps : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button41( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
+            var child_1 = new Xcls_Button41( _this );
+            child_1.ref();
+            this.el.append( child_1.el );
         }
 
         // user defined functions
