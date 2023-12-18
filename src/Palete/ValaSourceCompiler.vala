@@ -419,9 +419,7 @@ namespace Palete {
 			
 			if (this.output == "") {
 				Vala.CodeContext.pop ();
-				if (this.filepath != "") {
-					GLib.FileUtils.unlink(this.filepath);
-				}
+			
 				this.outputResult();
 				return;
 			}
