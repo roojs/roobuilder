@@ -28,9 +28,9 @@ public class Xcls_PopoverFiles : Object
     public Xcls_MainWindow win;
     public string lastfilter;
     public bool in_onprojectselected;
-    public Project.Project selectedProject;
     public bool is_loading;
     public bool new_window;
+    public Project.Project selectedProject;
     public Gtk.PositionType position;
     public Gdk.Pixbuf missing_thumb_pixbuf;
     public Gee.HashMap<string,Gdk.Pixbuf> image_cache;
@@ -59,9 +59,9 @@ public class Xcls_PopoverFiles : Object
         this.el.height_request = 800;
         this.el.hexpand = false;
         this.el.modal = true;
-        var child_0 = new Xcls_Box2( _this );
-        child_0.ref();
-        this.el.set_child (  child_0.el  );
+        var child_1 = new Xcls_Box2( _this );
+        child_1.ref();
+        this.el.set_child ( child_1.el  );
 
         //listeners
         this.el.hide.connect( ( ) => {
@@ -411,12 +411,12 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_Box3( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box12( _this );
+            var child_1 = new Xcls_Box3( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Box12( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -439,9 +439,9 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_Box4( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
+            var child_1 = new Xcls_Box4( _this );
+            child_1.ref();
+            this.el.append( child_1.el );
         }
 
         // user defined functions
@@ -463,18 +463,18 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button5( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Button9( _this );
+            var child_1 = new Xcls_Button5( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_Button10( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Button9( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
-            var child_3 = new Xcls_Button11( _this );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_Button10( _this );
             child_3.ref();
-            this.el.append(  child_3.el );
+            this.el.append( child_3.el );
+            var child_4 = new Xcls_Button11( _this );
+            child_4.ref();
+            this.el.append( child_4.el );
         }
 
         // user defined functions
@@ -497,9 +497,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.label = "New Project";
-            var child_0 = new Xcls_Box6( _this );
-            child_0.ref();
-            this.el.child = child_0.el;
+            var child_1 = new Xcls_Box6( _this );
+            this.el.child = child_1.el;
 
             //listeners
             this.el.clicked.connect( ( ) => {
@@ -551,12 +550,12 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Image7( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Label8( _this );
+            var child_1 = new Xcls_Image7( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Label8( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -759,15 +758,14 @@ public class Xcls_PopoverFiles : Object
             this.el.homogeneous = false;
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_ScrolledWindow13( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_Box18( _this );
+            var child_1 = new Xcls_ScrolledWindow13( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
-            var child_2 = new Xcls_file_container( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Box18( _this );
             child_2.ref();
-            this.el.append(  child_2.el );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_file_container( _this );
+            this.el.append( child_3.el );
         }
 
         // user defined functions
@@ -795,9 +793,8 @@ public class Xcls_PopoverFiles : Object
             this.el.has_frame = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_view( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_view( _this );
+            this.el.set_child ( child_1.el  );
 
             // init method
 
@@ -830,12 +827,11 @@ public class Xcls_PopoverFiles : Object
             this.el.vexpand = true;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
-            var child_0 = new Xcls_model( _this );
-            child_0.ref();
-            this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn16( _this );
-            child_1.ref();
-            this.el.append_column (  child_1.el  );
+            var child_1 = new Xcls_model( _this );
+            this.el.set_model ( child_1.el  );
+            var child_2 = new Xcls_TreeViewColumn16( _this );
+            child_2.ref();
+            this.el.append_column ( child_2.el  );
 
             // init method
 
@@ -935,9 +931,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.title = "Projects";
-            var child_0 = new Xcls_namecol( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
+            var child_1 = new Xcls_namecol( _this );
+            this.el.pack_start ( child_1.el , true );
 
             // init method
 
@@ -992,12 +987,11 @@ public class Xcls_PopoverFiles : Object
             this.el.width_request = 600;
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_Box19( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_iconscroll( _this );
+            var child_1 = new Xcls_Box19( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_iconscroll( _this );
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -1020,9 +1014,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_iconsearch( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
+            var child_1 = new Xcls_iconsearch( _this );
+            this.el.append( child_1.el );
         }
 
         // user defined functions
@@ -1095,9 +1088,8 @@ public class Xcls_PopoverFiles : Object
             this.el.has_frame = true;
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_iconview( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_iconview( _this );
+            this.el.set_child ( child_1.el  );
 
             // init method
 
@@ -1130,9 +1122,8 @@ public class Xcls_PopoverFiles : Object
             this.el.pixbuf_column = 3;
             this.el.has_tooltip = true;
             this.el.item_width = 100;
-            var child_0 = new Xcls_iconmodel( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
+            var child_1 = new Xcls_iconmodel( _this );
+            this.el.model = child_1.el;
 
             // init method
 
@@ -1242,9 +1233,8 @@ public class Xcls_PopoverFiles : Object
             this.el.hexpand = true;
             this.el.vexpand = true;
             this.el.visible = false;
-            var child_0 = new Xcls_fileview( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_fileview( _this );
+            this.el.set_child ( child_1.el  );
 
             // init method
 
@@ -1278,12 +1268,11 @@ public class Xcls_PopoverFiles : Object
             this.el.vexpand = true;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
-            var child_0 = new Xcls_filemodel( _this );
-            child_0.ref();
-            this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn27( _this );
-            child_1.ref();
-            this.el.append_column (  child_1.el  );
+            var child_1 = new Xcls_filemodel( _this );
+            this.el.set_model ( child_1.el  );
+            var child_2 = new Xcls_TreeViewColumn27( _this );
+            child_2.ref();
+            this.el.append_column ( child_2.el  );
 
             // init method
 
@@ -1407,9 +1396,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.title = "File";
-            var child_0 = new Xcls_filenamecol( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
+            var child_1 = new Xcls_filenamecol( _this );
+            this.el.pack_start ( child_1.el , true );
 
             // init method
 

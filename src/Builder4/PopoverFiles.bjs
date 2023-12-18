@@ -1,5 +1,6 @@
 {
  "build_module" : "",
+ "gen_extended" : false,
  "items" : [
   {
    "# Gdk.Pixbuf missing_thumb_pixbuf" : "",
@@ -958,10 +959,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "PopoverFiles",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/PopoverFiles.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }
