@@ -251,6 +251,8 @@ namespace Palete {
  			
  			this.file = file;
 			this.line_offset = 0;
+			
+
 			  
 			string[] args = {};
 			args += BuilderApplication._self;
@@ -258,10 +260,12 @@ namespace Palete {
 			args += this.file.project.path;
 			args += "--target";
 			if (this.file.build_module.length > 0 ) {
-        		    args += this.file.build_module;
+        		this.target =  this.file.build_module;
 			} else {
-			    args += pr.firstBuildModule();
+			    this.target += pr.firstBuildModule();
 			}
+			args += this.target;
+			
 			//args += "--output"; -- set up by the module -- defaults to testrun
 			//args += "/tmp/testrun";
 			
