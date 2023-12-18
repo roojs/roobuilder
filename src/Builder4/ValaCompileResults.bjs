@@ -16,6 +16,7 @@
      "$ xns" : "Gtk",
      "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "bool hexpand" : true,
      "bool vexpand" : true,
      "gboolean homogeneous" : false,
      "id" : "compile_view",
