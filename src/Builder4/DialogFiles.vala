@@ -289,6 +289,7 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "project-list";
             var child_2 = new Xcls_ColumnViewColumn12( _this );
             child_2.ref();
             this.el.append_column ( child_2.el  );

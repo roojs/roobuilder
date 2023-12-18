@@ -176,6 +176,7 @@
              "xtype" : "ColumnViewColumn"
             }
            ],
+           "string name" : "project-list",
            "xtype" : "ColumnView"
           }
          ],
