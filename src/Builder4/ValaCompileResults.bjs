@@ -30,6 +30,7 @@
         ""
        ],
        "bool hexpand" : true,
+       "bool vexpand" : true,
        "items" : [
         {
          "$ xns" : "GtkSource",
