@@ -104,6 +104,7 @@ public class Xcls_ValaCompileResults : Object
 
             // set gobject values
             this.el.homogeneous = false;
+            this.el.vexpand = true;
             var child_1 = new Xcls_ScrolledWindow3( _this );
             child_1.ref();
             this.el.append( child_1.el );
