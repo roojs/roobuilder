@@ -391,7 +391,9 @@ namespace Palete {
 			return true;
 			 
 		}
-		 
+		
+		
+		// update the compiler results into the lists.
 		
 		public void spawnResult(int res, string output, string stderr)
 		{
