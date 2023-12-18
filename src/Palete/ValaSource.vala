@@ -257,6 +257,9 @@ namespace Palete {
 			  
 			string[] args = {};
 			args += BuilderApplication._self;
+			args += "--debug";
+			args += "all";
+			
 			args += "--project";
 			args += this.file.project.path;
 			args += "--target";
