@@ -130,7 +130,7 @@ public class Xcls_ValaCompileResults : Object
             // set gobject values
             this.el.hexpand = true;
             var child_1 = new Xcls_sourceview( _this );
-            this.el.set_child ( child_1.el  );
+            this.el.child = child_1.el;
 
             // init method
 

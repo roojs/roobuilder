@@ -47,7 +47,7 @@
           "}",
           ""
          ],
-         "* pack" : "set_child",
+         "* prop" : "child",
          "Gtk.CssProvider css" : "",
          "bool editable" : false,
          "bool show_line_numbers" : false,
