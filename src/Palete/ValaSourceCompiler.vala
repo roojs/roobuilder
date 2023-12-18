@@ -419,7 +419,6 @@ namespace Palete {
 			
 			if (this.output == "") {
 				Vala.CodeContext.pop ();
-			
 				this.outputResult();
 				return;
 			}
@@ -467,7 +466,9 @@ namespace Palete {
 			
 			
 			
-			
+			//if (this.filepath != "") {
+			//	GLib.FileUtils.unlink(this.filepath);
+			//}
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
  	
