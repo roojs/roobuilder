@@ -34,9 +34,8 @@ public class Xcls_ValaCompileResults : Object
         this.el.width_request = 600;
         this.el.height_request = 400;
         this.el.position = Gtk.PositionType.TOP;
-        var child_0 = new Xcls_compile_view( _this );
-        child_0.ref();
-        this.el.set_child (  child_0.el  );
+        var child_1 = new Xcls_compile_view( _this );
+        this.el.set_child ( child_1.el  );
     }
 
     // user defined functions
@@ -53,12 +52,12 @@ public class Xcls_ValaCompileResults : Object
         }
         this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
      
-    
+    	this.el.set_parent(win);
         Gtk.Allocation rect;
     	onbtn.get_allocation(out rect);
         this.el.set_pointing_to(rect);
     
-        this.el.show();
+        this.el.popup();
        // not sure why..
        
        if (reset) {
@@ -105,9 +104,9 @@ public class Xcls_ValaCompileResults : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            var child_0 = new Xcls_ScrolledWindow3( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
+            var child_1 = new Xcls_ScrolledWindow3( _this );
+            child_1.ref();
+            this.el.append( child_1.el );
         }
 
         // user defined functions
@@ -130,9 +129,8 @@ public class Xcls_ValaCompileResults : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_sourceview( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_sourceview( _this );
+            this.el.set_child ( child_1.el  );
 
             // init method
 

@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "$ xns" : "Gtk",
@@ -95,12 +96,12 @@
     "    }",
     "    this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));",
     " ",
-    "",
+    "\tthis.el.set_parent(win);",
     "    Gtk.Allocation rect;",
     "\tonbtn.get_allocation(out rect);",
     "    this.el.set_pointing_to(rect);",
     "",
-    "    this.el.show();",
+    "    this.el.popup();",
     "   // not sure why..",
     "   ",
     "   if (reset) {",
@@ -116,10 +117,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "ValaCompileResults",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/ValaCompileResults.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }
