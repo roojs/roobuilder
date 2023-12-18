@@ -165,6 +165,8 @@ public class Xcls_ValaCompileResults : Object
             this.el.name = "compile-results-view";
             this.el.editable = false;
             this.el.show_line_numbers = false;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
 
             // init method
 
