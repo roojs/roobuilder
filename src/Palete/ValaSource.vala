@@ -34,8 +34,7 @@ namespace Palete {
 		public JsRender.JsRender file;
   		public int line_offset = 0;
   		
-  		string target = "";
-		
+  		 
 		public Gee.ArrayList<Spawn> children;
  		public ValaSource(   ) 
  		{
@@ -440,6 +439,16 @@ namespace Palete {
 		public void runResult(int res, string output, string stderr)
 		{
 			this.compiler = null;
+			
+	        
+	        var p = (Project.Gtk) this.file.project;
+	        compilegroups
+	        
+	        
+	        this.spinner(false);		
+			
+			
+			
 			var exe = "/tmp/testrun";
 			var mod = "";
 			var pr = (Project.Gtk)(this.file.project);
