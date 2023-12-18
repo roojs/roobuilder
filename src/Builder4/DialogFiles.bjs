@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# Xcls_MainWindow win" : "",
@@ -277,6 +278,7 @@
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "model",
+                     "id" : "gridsort",
                      "items" : [
                       {
                        "$ xns" : "GLib",
@@ -452,32 +454,14 @@
                    "* init" : [
                     "{",
                     "\tthis.el.set_sorter(new Gtk.TreeListRowSorter(_this.treeview.el.sorter));",
+                    "\t ",
+                    "\t",
                     "}",
                     ""
                    ],
                    "* prop" : "model",
+                   "id" : "treelistsort",
                    "items" : [
-                    {
-                     "$ xns" : "Gtk",
-                     "* ctor" : [
-                      "new Gtk.TreeListModel( ",
-                      "\tnew GLib.ListStore(",
-                      "\t\ttypeof(JsRender.JsRender) ), ",
-                      "\t\tfalse,",
-                      "\t\ttrue, ",
-                      "\t\t(item) => {",
-                      "\t\t\t//GLib.debug(\"liststore got %s\", item.get_type().name());",
-                      "\t\t\treturn ((JsRender.JsRender)item).childfiles;",
-                      "\t",
-                      "\t\t} ",
-                      ")",
-                      "",
-                      ""
-                     ],
-                     "* prop" : "model",
-                     "id" : "treelistmodel",
-                     "xtype" : "TreeListModel"
-                    },
                     {
                      "$ xns" : "Gtk",
                      "* prop" : "sorter",
@@ -491,6 +475,31 @@
                       }
                      ],
                      "xtype" : "StringSorter"
+                    },
+                    {
+                     "$ xns" : "Gtk",
+                     "* ctor" : "this.updateModel(null)",
+                     "* prop" : "model",
+                     "id" : "treelistmodel",
+                     "xtype" : "TreeListModel",
+                     "| Gtk.TreeListModel updateModel" : [
+                      "(GLib.ListStore? m ) {",
+                      "",
+                      "\tthis.el =  new Gtk.TreeListModel( ",
+                      "\t\t\tm != null ? m : new GLib.ListStore( typeof(JsRender.JsRender) ), ",
+                      "\t\t\tfalse,",
+                      "\t\t\ttrue, ",
+                      "\t\t\t(item) => {",
+                      "\t\t\t\t//GLib.debug(\"liststore got %s\", item.get_type().name());",
+                      "\t\t\t\treturn ((JsRender.JsRender)item).childfiles;",
+                      "\t\t",
+                      "\t\t\t} ",
+                      "\t\t);",
+                      "\t_this.treelistsort.el.set_model(this.el);\t",
+                      "\treturn el;",
+                      "",
+                      "}"
+                     ]
                     }
                    ],
                    "xtype" : "SortListModel"
@@ -879,8 +888,10 @@
     "         ",
     "     ",
     "     Project.Project.loadAll();",
-    "     ",
-    "     Project.Project.loadIntoStore(this.projectmodel.el);",
+    "     var pm = Project.Project.loadIntoStore();",
+    "     this.projectsort.el.set_model(pm);",
+    " \t this.projectmodel.el = pm;",
+    " \t ",
     "     _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
     "     _this.projectscroll.el.vadjustment.value = 0;",
     "     _this.is_loading = false;",
@@ -903,23 +914,14 @@
     "\t",
     "\tthis.selectedProject = project;",
     "\tproject.load();",
-    "\t//this.clutterfiles.loadProject(proj);",
-    "\t",
-    "\t",
-    "\t",
-    "\t_this.searchbox.el.text = \"\";",
-    "\t",
     "\t ",
     "\t",
-    "    ",
-    "    ",
-    "    //this.project_title_name.el.text = pr.name;",
-    "    //this.project_title_path.el.text = pr.firstPath();",
-    "    ",
-    "    // file items contains a reference until we reload ...",
-    "\tthis.selectedProject.loadFilesIntoStore(_this.gridmodel.el);",
+    "\t_this.searchbox.el.text = \"\";",
+    "\t ",
+    "\tvar fm = _this.selectedProject.loadFilesIntoStore();",
+    "\t_this.gridsort.el.set_model(fm);",
+    "  \t _this.gridmodel.el = fm;",
     "",
-    "  \t ",
     "  \t ",
     "  \t GLib.Timeout.add(500, () => {",
     "",
@@ -931,8 +933,8 @@
     "\t     return false;",
     "     });",
     "    ",
-    "    ",
-    "\tthis.selectedProject.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);",
+    "    var ds = this.selectedProject.loadDirsIntoStore();",
+    "    _this.treelistmodel.updateModel(ds); ",
     " \tthis.treescroll.el.vadjustment.value = 0;",
     "\tthis.in_onprojectselected = false;\t",
     "}",
@@ -976,10 +978,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "DialogFiles",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogFiles.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

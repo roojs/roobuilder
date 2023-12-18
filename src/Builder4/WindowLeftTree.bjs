@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# Xcls_MainWindow main_window" : "null",
@@ -747,22 +748,25 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* ctor" : [
-            "new Gtk.TreeListModel(",
-            "    new GLib.ListStore(typeof(JsRender.Node)), //..... << that's our store..",
-            "    false, // passthru",
-            "    true, // autexpand",
-            "    (item) => {",
-            "    \treturn ((JsRender.Node)item).childstore;",
-            "    ",
-            "    }",
-            "    ",
-            "    ",
-            ")"
-           ],
+           "* ctor" : "this.updateModel(null)",
            "* prop" : "model",
            "id" : "model",
            "xtype" : "TreeListModel",
+           "| Gtk.TreeListModel updateModel" : [
+            "(GLib.ListStore? m) {",
+            "\tthis.el = new Gtk.TreeListModel(",
+            "\t\tm != null ? m : new GLib.ListStore(typeof(JsRender.Node)), //..... << that's our store..",
+            "\t\tfalse, // passthru",
+            "\t\ttrue, // autexpand",
+            "\t\t(item) => {",
+            "\t\t\treturn ((JsRender.Node)item).childstore;",
+            "\t\t",
+            "\t\t}",
+            "\t);",
+            "\t_this.selmodel.el.set_model(this.el);",
+            "\treturn this.el;",
+            "}"
+           ],
            "| void deleteSelected" : [
             "() {",
             "",
@@ -1526,10 +1530,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "WindowLeftTree",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/WindowLeftTree.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "$ xns" : "Gtk",
@@ -321,26 +322,36 @@
                       ""
                      ],
                      "* prop" : "model",
+                     "id" : "treelistsort",
                      "items" : [
                       {
                        "$ xns" : "Gtk",
                        "* ctor" : [
-                        "new Gtk.TreeListModel( ",
-                        "\tnew GLib.ListStore(",
-                        "\t\ttypeof(JsRender.JsRender) ), ",
-                        "\t\tfalse,",
-                        "\t\ttrue, ",
-                        "\t\t(item) => {",
-                        "\t\t\treturn ((JsRender.JsRender)item).childfiles;",
-                        "\t",
-                        "\t\t} ",
-                        ")",
+                        "this.updateModel(null)",
                         "",
                         ""
                        ],
                        "* prop" : "model",
                        "id" : "treelistmodel",
-                       "xtype" : "TreeListModel"
+                       "xtype" : "TreeListModel",
+                       "| Gtk.TreeListModel updateModel" : [
+                        "(GLib.ListStore? m ) {",
+                        "",
+                        "\tthis.el =  new Gtk.TreeListModel( ",
+                        "\t\t\tm != null ? m : new GLib.ListStore( typeof(JsRender.JsRender) ), ",
+                        "\t\t\tfalse,",
+                        "\t\t\ttrue, ",
+                        "\t\t\t(item) => {",
+                        "\t\t\t\t//GLib.debug(\"liststore got %s\", item.get_type().name());",
+                        "\t\t\t\treturn ((JsRender.JsRender)item).childfiles;",
+                        "\t\t",
+                        "\t\t\t} ",
+                        "\t\t);",
+                        "\t_this.treelistsort.el.set_model(this.el);\t",
+                        "\treturn el;",
+                        "",
+                        "}"
+                       ]
                       }
                      ],
                      "xtype" : "SortListModel"
@@ -681,7 +692,9 @@
                   "\t ",
                   "\t GLib.debug(\"loading dirs into project list\");",
                   "\t cg.loading_ui = true;",
-                  "\t _this.project.loadDirsIntoStore((GLib.ListStore)_this.treelistmodel.el.model);",
+                  "\t var dm = \t _this.project.loadDirsIntoStore();",
+                  "\t  _this.treelistmodel.updateModel(dm);",
+                  "\t  ",
                   "\t cg.loading_ui = false;",
                   "\t GLib.debug(\"Set name to %s\", cg.name);",
                   "\t ",
@@ -960,10 +973,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "ValaProjectSettingsPopover",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/ValaProjectSettingsPopover.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

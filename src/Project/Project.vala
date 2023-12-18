@@ -244,12 +244,13 @@ namespace Project {
 		}
 		
 		
-		public static void loadIntoStore(GLib.ListStore st)
+		public static GLib.ListStore loadIntoStore()
 		{
-			st.remove_all();
+			var st = new GLib.ListStore(typeof(Project));
 			foreach (var p in projects) {
 				st.append(p);
 			}
+			return st;
 		}
 			
 		
@@ -855,22 +856,24 @@ namespace Project {
 		}
 		
 		// this store is used in the icon view ?? do we need to store and update it?
-		public void loadFilesIntoStore(GLib.ListStore ls) 
+		public GLib.ListStore  loadFilesIntoStore() 
 		{
-			ls.remove_all();
+			var ls = new GLib.ListStore(typeof(JsRender.JsRender));
 			//GLib.debug("Load files (into grid) %s", this.name);			
 			foreach(var f in this.files.values) {
 			//	GLib.debug("Add file %s", f.name);
 				ls.append(f);
 			}
+			return ls;
 		}
-		public void loadDirsIntoStore(GLib.ListStore ls) 
+		public GLib.ListStore loadDirsIntoStore() 
 		{
-			ls.remove_all();
+			var ls = new GLib.ListStore(typeof(JsRender.JsRender));
 			foreach(var f in this.sub_paths) {
 				//GLib.debug("Add %s", f.name);
 				ls.append(f);
 			}
+			return ls;
 		}
 		
 		public bool subpathsContains(string subpath) 
