@@ -292,6 +292,23 @@ public class DialogFiles : Object
             var child_2 = new Xcls_ColumnViewColumn12( _this );
             child_2.ref();
             this.el.append_column ( child_2.el  );
+
+            // init method
+
+            {
+             
+              	this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#project-list { font-size: 12px;}".data);
+            	} catch (Error e) {}
+            		Gtk.StyleContext.add_provider_for_display(
+            		this.el.get_display(),
+            		this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            	);
+            		
+               
+            }
         }
 
         // user defined functions

@@ -56,6 +56,23 @@
          "items" : [
           {
            "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            " ",
+            "  \tthis.css = new Gtk.CssProvider();",
+            "\ttry {",
+            "\t\tthis.css.load_from_data(\"#project-list { font-size: 12px;}\".data);",
+            "\t} catch (Error e) {}",
+            "\t\tGtk.StyleContext.add_provider_for_display(",
+            "\t\tthis.el.get_display(),",
+            "\t\tthis.css,",
+            "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
+            "\t);",
+            "\t\t",
+            "   ",
+            "}",
+            ""
+           ],
            "* prop" : "child",
            "items" : [
             {
