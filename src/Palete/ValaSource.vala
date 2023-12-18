@@ -475,6 +475,9 @@ namespace Palete {
 				print("Missing output file: %s\n",exe);
 				return;
 			}
+			
+			
+			
 			string[] args = "/usr/bin/gnome-terminal -x /usr/bin/gdb -ex=r --args".split(" ");
 
 			
@@ -495,6 +498,7 @@ namespace Palete {
 		    
 		    
 		    try {
+		    
 		        var exec = new Spawn(GLib.Environment.get_home_dir() , args);
 		        exec.detach = true;
 				exec.run(); 
