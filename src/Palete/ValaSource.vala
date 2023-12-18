@@ -33,6 +33,8 @@ namespace Palete {
 		
 		public JsRender.JsRender file;
   		public int line_offset = 0;
+  		
+  		string target = "";
 		
 		public Gee.ArrayList<Spawn> children;
  		public ValaSource(   ) 
