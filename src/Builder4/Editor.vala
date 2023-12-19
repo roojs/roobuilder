@@ -502,7 +502,7 @@ public class Editor : Object
                 attrs.set_icon_name ( "process-stop");    
                 attrs.query_tooltip_text.connect(( mark) => {
                      GLib.debug("tooltip query? %s", mark.name);
-                    return "" + mark.name;
+                    return strdup( mark.name);
                 });
                 
                 this.el.set_mark_attributes ("ERR", attrs, 1);
