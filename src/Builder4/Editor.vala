@@ -536,7 +536,7 @@ public class Editor : Object
             		GLib.debug("tooltip query? %s", mark.name);
                     return strdup(mark.name);
                 });
-            dattrs.query_tooltip_markup.connect(( mark) => {
+            	dattrs.query_tooltip_markup.connect(( mark) => {
             		GLib.debug("tooltip query? %s", mark.name);
                     return strdup(mark.name);
                 });
