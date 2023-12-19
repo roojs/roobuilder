@@ -1351,6 +1351,10 @@ public class Xcls_MainWindow : Object
         public void setNotices (Json.Object nots, int qty) {
             if (qty < 1) {
             	this.el.hide();
+            	if (this.popup != null & this.popup.el.visible) {
+        			 this.popup.el.hide();
+        		}
+        	}
             	return;
         	}
             
@@ -1358,7 +1362,9 @@ public class Xcls_MainWindow : Object
             
             this.el.label = qty.to_string() + " Depricated";
             this.notices = nots;
-        
+        	if (this.popup != null & this.popup.el.visible) {
+        		 this.popup.show(this.notices, this.el);
+            }
         }
     }
 

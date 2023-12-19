@@ -598,6 +598,10 @@
             "(Json.Object nots, int qty) {",
             "    if (qty < 1) {",
             "    \tthis.el.hide();",
+            "    \tif (this.popup != null & this.popup.el.visible) {",
+            "\t\t\t this.popup.el.hide();",
+            "\t\t}",
+            "\t}",
             "    \treturn;",
             "\t}",
             "    ",
@@ -605,7 +609,9 @@
             "    ",
             "    this.el.label = qty.to_string() + \" Depricated\";",
             "    this.notices = nots;",
-            "",
+            "\tif (this.popup != null & this.popup.el.visible) {",
+            "\t\t this.popup.show(this.notices, this.el);",
+            "    }",
             "}",
             ""
            ]
