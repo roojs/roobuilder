@@ -523,7 +523,8 @@
             "    this.el.label = qty.to_string() + \" Errors\";",
             "    this.notices = nots;",
             "\tif (this.popup != null & this.popup.el.visible) {",
-            "\t\t",
+            "\t\t this.popup.show(this.notices, this.el);",
+            "\t }",
             "}",
             ""
            ]
