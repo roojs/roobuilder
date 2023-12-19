@@ -629,6 +629,7 @@ namespace Project {
 			};
 			return null;
 		}
+		// this get's a file using the full path ( replaces vala->bjs if they exist);
 		
 		public JsRender.JsRender? getByPath(string path)
 		{
