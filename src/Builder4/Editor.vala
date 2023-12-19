@@ -502,7 +502,7 @@ public class Editor : Object
                 attrs.set_icon_name ( "process-stop");    
                 attrs.query_tooltip_text.connect(( mark) => {
                      GLib.debug("tooltip query? %s", mark.name);
-                    return mark.name;
+                    return "" + mark.name;
                 });
                 
                 this.el.set_mark_attributes ("ERR", attrs, 1);
@@ -514,7 +514,7 @@ public class Editor : Object
                 wattrs.set_icon_name ( "process-stop");    
                 wattrs.query_tooltip_text.connect(( mark) => {
                      GLib.debug("tooltip query? %s", mark.name);
-                    return mark.name;
+                    return "" + mark.name;
                 });
                 
                 this.el.set_mark_attributes ("WARN", wattrs, 1);
@@ -528,7 +528,7 @@ public class Editor : Object
                 dattrs.set_icon_name ( "process-stop");    
                 dattrs.query_tooltip_text.connect(( mark) => {
             		GLib.debug("tooltip query? %s", mark.name);
-                    return mark.name;
+                    return "" + mark.name;
                 });
                 
                 this.el.set_mark_attributes ("DEPR", dattrs, 1);
