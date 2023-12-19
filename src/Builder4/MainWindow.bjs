@@ -560,6 +560,10 @@
             "    this.el.show();",
             "    this.el.label = qty.to_string() + \" Warnings\";",
             "    this.notices = nots;",
+            "    if (this.popup != null & this.popup.el.visible) {",
+            "\t\t this.popup.show(this.notices, this.el);",
+            "    }",
+            "    ",
             "",
             "}",
             ""
