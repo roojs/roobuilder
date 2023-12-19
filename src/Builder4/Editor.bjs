@@ -190,7 +190,7 @@
         "    */"
        ],
        "* pack" : "set_child",
-       "bool has_tooltip" : true,
+       "bool has_tooltip" : false,
        "bool insert_spaces_instead_of_tabs" : true,
        "boolean show_line_marks" : true,
        "boolean show_line_numbers" : true,

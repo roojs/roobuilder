@@ -466,7 +466,7 @@ public class Editor : Object
             this.el.show_line_marks = true;
             this.el.insert_spaces_instead_of_tabs = true;
             this.el.show_line_numbers = true;
-            this.el.has_tooltip = true;
+            this.el.has_tooltip = false;
             this.el.tab_width = 4;
             this.el.highlight_current_line = true;
             var child_1 = new Xcls_buffer( _this );
