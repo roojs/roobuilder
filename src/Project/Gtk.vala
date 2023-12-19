@@ -35,12 +35,12 @@ namespace Project
 		public bool gir_cache_loaded = false;
 		
 		// these are loaded / created by the palete.. but are project specific.
- 		public Gee.HashMap<string,Gee.ArrayList<string>>? dropList = null;
- 	    public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache;
-		public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props;
+ 		public Gee.HashMap<string,Gee.ArrayList<string>>? dropList = null;  
+ 	    public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache;   // what child can on on what node
+		public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props; // what child can go on what node (with properties included)
 		
 	     public string compile_flags = ""; // generic to all.	
-		public Gee.ArrayList<string> packages; // list of packages?? some might be genericly named?	 
+		public Gee.ArrayList<string> packages; // list of vapi's that are used by this project. 
 		 
 		public Gee.ArrayList<string> hidden; // list of dirs to be hidden from display...
 		
