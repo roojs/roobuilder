@@ -998,7 +998,7 @@ public class DialogFiles : Object
             
             	var item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();
             	//GLib.debug("set label name to %s", item.name);
-            	lbl.label = item.name;
+            	lbl.label = string.joinv("\n", item.name.split("."));
             
             /*
             	item.bind_property("name",

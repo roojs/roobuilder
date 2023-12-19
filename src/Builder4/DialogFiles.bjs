@@ -360,7 +360,7 @@
                    "",
                    "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
                    "\t//GLib.debug(\"set label name to %s\", item.name);",
-                   "\tlbl.label = item.name;",
+                   "\tlbl.label = string.joinv(\"\\n\", item.name.split(\".\"));",
                    "",
                    "/*",
                    "\titem.bind_property(\"name\",",
