@@ -88,7 +88,9 @@ public class Xcls_PopoverFileDetails : Object
         
         //if (!this.el) {
             //this.init();
-         //}
+         //} 
+         
+         
         _this.path.el.set_text(c.relpath);
         _this.name.el.set_text(c.name);
         _this.title.el.set_text(c.title);
@@ -101,10 +103,14 @@ public class Xcls_PopoverFileDetails : Object
        
     	_this.path_lbl.el.show();
         _this.path.el.show();
+        _this.dir_doprdown_lbl.el.hide();
+        _this.dir_doprdown.el.hide();
         if (c.name == "") {
         	_this.path_lbl.el.hide();
     	    _this.path.el.hide();
     	    this.filetype_model.load();
+            _this.dir_doprdown_lbl.el.show();
+    	    _this.dir_doprdown.el.show();
     	    
         }  
         
