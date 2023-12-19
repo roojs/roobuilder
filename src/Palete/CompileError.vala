@@ -89,7 +89,7 @@ namespace Palete {
 	        	 
 		        if (fe == null) {
 		        	GLib.debug("Warning Can not find file %s", file);
-		        	continue;
+		        	return;
 		        }
 		        var ce = new CompileError.new_file(fe, tree.get_object_member(file));
         		ls.append(ce);
