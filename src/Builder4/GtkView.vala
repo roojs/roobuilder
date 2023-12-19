@@ -917,9 +917,11 @@ public class Xcls_GtkView : Object
                         print("can not find node\n");
                         return;
                     }
+                    this.loading = true;
                     var ltree = _this.main_window.windowstate.left_tree;
                     ltree.model.selectNode(node);
-                     
+                    this.loading = false;
+                    
                     //print("got tree path %s\n", tp);
                     //if (tp != "") {
             	      // this.allow_node_scroll = false;        
