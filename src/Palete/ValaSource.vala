@@ -482,7 +482,7 @@ namespace Palete {
 			
 			
 			string[] args = "/usr/bin/gnome-terminal -- /usr/bin/gdb".split(" ");
-			args+= "-ex=\"set debuginfod enabled off\"";
+		//args+= "-ex=\"set debuginfod enabled off\"";
 			args+= "-ex=r";			
 
 			
