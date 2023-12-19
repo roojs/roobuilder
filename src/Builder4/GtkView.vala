@@ -899,6 +899,43 @@ public class Xcls_GtkView : Object
 
             //listeners
             this.el.notify["cursor_position"].connect( () => {
+            
+             	
+                    if (this.loading) {
+                        return;
+                    }
+                   
+                    GLib.debug("cursor changed : %d", this.el.cursor_position);
+                    Gtk.TextIter cpos;
+                    this.el.get_iter_at_offset(out cpos, this.el.cursor_position);
+                    
+                    var ln = cpos.get_line();
+             
+                    var node = _this.file.lineToNode(ln);
+             
+                    if (node == null) {
+                        print("can not find node\n");
+                        return;
+                    }
+                    var ltree = _this.main_window.windowstate.left_tree;
+                    ltree.model.selectNode(node);
+                     
+                    //print("got tree path %s\n", tp);
+                    //if (tp != "") {
+            	      // this.allow_node_scroll = false;        
+            	     //  print("changing cursor on tree..\n");
+                        //ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false);
+                        // scrolling is disabled... as node selection calls scroll 10ms after it changes.
+                        ///GLib.Timeout.add_full(GLib.Priority.DEFAULT,100 , () => {
+            	         //   this.allow_node_scroll = true;
+            	         //   return false;
+                      //  });
+                   // }
+                    
+                    // highlight the node..
+                    
+                });
+            
              });
         }
 
