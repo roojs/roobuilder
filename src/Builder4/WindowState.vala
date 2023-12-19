@@ -102,7 +102,7 @@ public class WindowState : Object
 
 	}
 
-
+ 
 	// left tree
 
 	public void leftTreeInit()

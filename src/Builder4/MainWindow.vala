@@ -1183,7 +1183,7 @@ public class Xcls_MainWindow : Object
     }
     public class Xcls_statusbar_compilestatus_label : Object
     {
-        public Gtk.Button el;
+        public Gtk.Label el;
         private Xcls_MainWindow  _this;
 
 
@@ -1194,12 +1194,13 @@ public class Xcls_MainWindow : Object
         {
             _this = _owner;
             _this.statusbar_compilestatus_label = this;
-            this.el = new Gtk.Button();
+            this.el = new Gtk.Label( "Compile Status:" );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.label = "Compile Status:";
+            this.el.margin_end = 4;
+            this.el.margin_start = 4;
         }
 
         // user defined functions

@@ -132,7 +132,7 @@
 			GLib.debug("SELF = %s", _self);
 			
 			Object(
-			       application_id: "org.roojs.app-builder",
+			       application_id: "org.roojs." + _self,
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();

@@ -278,6 +278,7 @@ public class DialogFiles : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_ColumnView6(DialogFiles _owner )
@@ -1057,6 +1058,7 @@ public class DialogFiles : Object
 
 
             // my vars (def)
+        public Gtk.CssProvider css;
 
         // ctor
         public Xcls_treeview(DialogFiles _owner )
@@ -1069,11 +1071,28 @@ public class DialogFiles : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.name = "file-list";
             var child_2 = new Xcls_GestureClick32( _this );
             child_2.ref();
             this.el.add_controller(  child_2.el );
             var child_3 = new Xcls_name( _this );
             this.el.append_column ( child_3.el  );
+
+            // init method
+
+            {
+             
+              	this.css = new Gtk.CssProvider();
+            	try {
+            		this.css.load_from_data("#file-list { font-size: 12px;}".data);
+            	} catch (Error e) {}
+            		Gtk.StyleContext.add_provider_for_display(
+            		this.el.get_display(),
+            		this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            	);
+            		 
+            }
         }
 
         // user defined functions

@@ -491,8 +491,10 @@
           {
            "$ xns" : "Gtk",
            "id" : "statusbar_compilestatus_label",
+           "int margin_end" : 4,
+           "int margin_start" : 4,
            "string label" : "Compile Status:",
-           "xtype" : "Button"
+           "xtype" : "Label"
           },
           {
            "# Json.Object notices" : "new Json.Object() ",
