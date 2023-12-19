@@ -115,7 +115,6 @@
       {
        "# Gtk.CssProvider css" : "null",
        "$ gboolean auto_indent" : true,
-       "$ show_line_numbers" : true,
        "$ xns" : "GtkSource",
        "* init" : [
         " ",
@@ -193,6 +192,7 @@
        "* pack" : "set_child",
        "bool has_tooltip" : true,
        "bool insert_spaces_instead_of_tabs" : true,
+       "boolean show_line_numbers" : true,
        "gboolean highlight_current_line" : true,
        "gboolean show_line_marks" : true,
        "id" : "view",
