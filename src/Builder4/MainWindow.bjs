@@ -565,7 +565,7 @@
             "    if (qty < 1 ) {",
             "    \tthis.el.hide();",
             "    \tif (this.popup != null & this.popup.el.visible) {",
-            "    \t\tthis.poup.el.hide();",
+            "    \t\tthis.popup.el.hide();",
             "\t\t}",
             "    \treturn;",
             "    }",
