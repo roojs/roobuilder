@@ -26,17 +26,18 @@ namespace Palete {
 			this.parent = parent;
 			this.line = line;
 			this.msg = msg;
-			this.project = parent.project;
+			this.file = parent.file;
+			 
 		
 		}
 		
 		
 
 
-		public CompileError.new_file(Project.Project project, string file, Json.Object jlines) 
+		public CompileError.new_file(JsRender.JsRender file, Json.Object jlines) 
 		{
 			this.file = file;
-			this.project = project;
+
 			this.title =  GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) 
 				+ " (" + jlines.get_size().to_string() + ")";
 			
