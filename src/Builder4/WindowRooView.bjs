@@ -1191,7 +1191,7 @@
                "\t}",
                "    ",
                "  ",
-               " \tif (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {",
+               " \tif (keyval == Gdk.Key.Return) {",
                "\t\t_this.forwardSearch(true);",
                "\t\t",
                "\t\t",

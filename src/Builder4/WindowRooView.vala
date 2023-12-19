@@ -1822,7 +1822,7 @@ public class Xcls_WindowRooView : Object
             	}
                 
               
-             	if (keyval == Gdk.Key.Return && _this.search_entry.el.text.length > 0) {
+             	if (keyval == Gdk.Key.Return) {
             		_this.forwardSearch(true);
             		
             		
