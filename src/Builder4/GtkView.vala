@@ -903,7 +903,7 @@ public class Xcls_GtkView : Object
             this.el.notify["cursor_position"].connect( () => {
             
              	
-                    if (this.loading) {
+                    if (_this.sourceview.loading) {
                         return;
                     }
                    
@@ -919,10 +919,10 @@ public class Xcls_GtkView : Object
                         print("can not find node\n");
                         return;
                     }
-                    this.loading = true;
+                    _this.sourceview..loading = true;
                     var ltree = _this.main_window.windowstate.left_tree;
                     ltree.model.selectNode(node);
-                    this.loading = false;
+                    _this.sourceview..loading = false;
                     
                     //print("got tree path %s\n", tp);
                     //if (tp != "") {
