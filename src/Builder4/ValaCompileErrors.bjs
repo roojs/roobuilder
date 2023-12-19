@@ -154,7 +154,7 @@
                " ",
                " \t// expand current file.",
                " \tif (_this.window.windowstate.file.path == np.file.path) {",
-               " \t\tlr.expaned = true;",
+               " \t\tlr.expanded = true;",
                "\t}",
                " \t ",
                " \t// bind image...",

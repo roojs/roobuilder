@@ -427,7 +427,7 @@ public class Xcls_ValaCompileErrors : Object
              
              	// expand current file.
              	if (_this.window.windowstate.file.path == np.file.path) {
-             		lr.expaned = true;
+             		lr.expanded = true;
             	}
              	 
              	// bind image...
