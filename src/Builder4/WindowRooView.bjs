@@ -1177,7 +1177,6 @@
            "Gtk.CssProvider css" : "",
            "bool hexpand" : true,
            "id" : "search_entry",
-           "int width_request" : 300,
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -1323,7 +1322,6 @@
             ]
            },
            "string icon_name" : "go-up",
-           "string label" : "Previous",
            "xtype" : "Button"
           },
           {
@@ -1386,7 +1384,6 @@
             }
            ],
            "string icon_name" : "emblem-system",
-           "string label" : "Settings",
            "xtype" : "MenuButton"
           }
          ],

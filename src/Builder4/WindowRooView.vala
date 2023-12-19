@@ -1737,7 +1737,6 @@ public class Xcls_WindowRooView : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.width_request = 300;
             this.el.name = "roo-search-entry";
             this.el.hexpand = true;
             this.el.placeholder_text = "Press enter to search";
@@ -1941,7 +1940,6 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.icon_name = "go-up";
-            this.el.label = "Previous";
             this.el.sensitive = false;
 
             //listeners
@@ -1976,7 +1974,6 @@ public class Xcls_WindowRooView : Object
 
             // set gobject values
             this.el.icon_name = "emblem-system";
-            this.el.label = "Settings";
             var child_1 = new Xcls_search_settings( _this );
             this.el.popover = child_1.el;
         }
