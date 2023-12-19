@@ -469,7 +469,7 @@ public class Xcls_ValaCompileErrors : Object
             	
             	// use selection?!
             	var tr = (Gtk.TreeListRow)_this.selmodel.el.selected_item;
-            	GLib.debug("SELECTED = %s", tr.item.get_type().name());
+            	//GLib.debug("SELECTED = %s", tr.item.get_type().name());
             	var ce = (Palete.CompileError) tr.item;
             
             	if (ce.line < 0) {
@@ -480,7 +480,7 @@ public class Xcls_ValaCompileErrors : Object
             	 
                 var fname  = ce.parent.file;
               	var line = ce.line;  
-                print("open %s @ %d\n", ce.parent.file, ce.line);
+                GLib.debug("open %s @ %d\n", ce.parent.file.path, ce.line);
                 
                 
                var  bjsf = "";
