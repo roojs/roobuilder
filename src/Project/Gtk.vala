@@ -46,6 +46,13 @@ namespace Project
 		
 		public GtkValaSettings? active_cg = null;
 		
+		
+		public Palete.Gtk gpalete {
+			get {
+				return (Palete.Gtk) this.palete;
+			}
+			set {}
+		}
 		 
 		
 		public Gtk(string path) {
@@ -126,6 +133,8 @@ namespace Project
 			obj.set_array_member("hidden", hi);
 			
 			this.gir_cache_loaded = false; // force reload of the cache if we change the packages.
+			this.palete.loaded = false;
+			
 		}
 		
 	 
