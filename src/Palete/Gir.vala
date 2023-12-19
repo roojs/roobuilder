@@ -141,15 +141,19 @@ namespace Palete {
 		 * 
 		 */
 
-		public static  Gee.HashMap<string,Gir> global_cache = null;
+	//	public static  Gee.HashMap<string,Gir> global_cache = null;
 		
 		public static Gir?  factory(Project.Project?  project, string ns) 
 		{
-			if (global_cache == null) {
-				global_cache = new Gee.HashMap<string,Gir>();
+			
+			if (project == null) {
+				return null;
+			}
+			if (project.gir_cache == null) {
+				project.gir_cache = new Gee.HashMap<string,Gir>();
 				 
 			}
-			var cache = global_cache;
+			var cache = project.gir_cache;
 			if (project != null && project is Project.Gtk) {
 				var gproj = ((Project.Gtk)project);
 				if (!gproj.gir_cache_loaded) {
