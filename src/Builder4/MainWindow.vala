@@ -1363,7 +1363,7 @@ public class Xcls_MainWindow : Object
             	if (this.popup != null & this.popup.el.visible) {
         			 this.popup.el.hide();
         		}
-        	}
+         
             	return;
         	}
             

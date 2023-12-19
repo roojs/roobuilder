@@ -610,7 +610,7 @@
             "    \tif (this.popup != null & this.popup.el.visible) {",
             "\t\t\t this.popup.el.hide();",
             "\t\t}",
-            "\t}",
+            " ",
             "    \treturn;",
             "\t}",
             "    ",
