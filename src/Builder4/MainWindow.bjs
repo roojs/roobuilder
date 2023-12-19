@@ -524,7 +524,7 @@
             "    this.notices = nots;",
             "\tif (this.popup != null & this.popup.el.visible) {",
             "\t\t this.popup.show(this.notices, this.el);",
-            "\t }",
+            "    }",
             "}",
             ""
            ]

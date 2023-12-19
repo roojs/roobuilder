@@ -1249,7 +1249,7 @@ public class Xcls_MainWindow : Object
             this.notices = nots;
         	if (this.popup != null & this.popup.el.visible) {
         		 this.popup.show(this.notices, this.el);
-        	 }
+            }
         }
     }
 
