@@ -59,10 +59,7 @@ namespace Palete {
 		    this.package_cache.add_all(
 			    this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
 		    );
-		    
-    	
-			
-		   
+		     
 		   
 		    
 		}
