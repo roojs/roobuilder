@@ -1244,6 +1244,15 @@ public class Xcls_MainWindow : Object
 
         // user defined functions
         public void setNotices (Json.Object nots, int qty) {
+            
+             if (qty < 1 ) {
+            	this.el.hide();
+            	if (this.popup != null & this.popup.el.visible) {
+            		this.popup.el.hide();
+        		}
+            	return;
+            }
+            
             this.el.show();
             this.el.label = qty.to_string() + " Errors";
             this.notices = nots;
