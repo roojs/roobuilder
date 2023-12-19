@@ -919,10 +919,10 @@ public class Xcls_GtkView : Object
                     print("can not find node\n");
                     return;
                 }
-                _this.sourceview..loading = true;
+                _this.sourceview.loading = true;
                 var ltree = _this.main_window.windowstate.left_tree;
                 ltree.model.selectNode(node);
-                _this.sourceview..loading = false;
+                _this.sourceview.loading = false;
                 
                 //print("got tree path %s\n", tp);
                 //if (tp != "") {
