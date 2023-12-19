@@ -490,9 +490,9 @@ public class Editor : Object
                  
                 
             	this.el.completion.unblock_interactive();
-            	this.el.completion.select_on_show			= true; // select
+            	this.el.completion.select_on_show = true; // select
             
-            	this.el.completion.remember_info_visibility		= true;
+            	this.el.completion.remember_info_visibility	 = true;
                 
               
                 var attrs = new GtkSource.MarkAttributes();
