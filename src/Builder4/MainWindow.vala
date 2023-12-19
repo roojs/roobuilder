@@ -1247,7 +1247,8 @@ public class Xcls_MainWindow : Object
             this.el.show();
             this.el.label = qty.to_string() + " Errors";
             this.notices = nots;
-        
+        	if (this.popup != null & this.popup.el.visible) {
+        		
         }
     }
 
