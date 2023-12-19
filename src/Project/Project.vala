@@ -63,7 +63,7 @@ namespace Project {
 		public string path = "";
 		private Gee.ArrayList<JsRender.JsRender> sub_paths;
 		
-		private Gee.HashMap<string,JsRender.JsRender> files ;
+		private Gee.HashMap<string,JsRender.JsRender> files ;  // contains full list of files.
 		//tree : false,
 		public  string xtype;
 		
