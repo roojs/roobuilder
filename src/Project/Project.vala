@@ -636,6 +636,7 @@ namespace Project {
 		
         	if (path.has_suffix(".vala")) {	
         		var nf = path.substring(0, path.length -5) + ".bjs";
+        		GLib.debug("looing for %s, trying %s", path, nf);
         		var ret = this.getByPath(nf);
         		if (ret != null) {
         			return ret;
