@@ -92,8 +92,8 @@ namespace Palete {
 	        		fe = project.getByPath(rfile);
 	        	}	
 	        
-		        var fe = new CompileError.new_file(fe, tree.get_object_member(file));
-        		ls.append(fe);
+		        var ce = new CompileError.new_file(fe, tree.get_object_member(file));
+        		ls.append(ce);
              
 		    
 		    });
