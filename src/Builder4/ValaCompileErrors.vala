@@ -426,7 +426,7 @@ public class Xcls_ValaCompileErrors : Object
             	expand.set_list_row(lr);
              
              	// expand current file.
-             	if (_this.window.windowstate.file.path == np.file) {
+             	if (_this.window.windowstate.file.path == np.file.path) {
              		lr.expaned = true;
             	}
              	 

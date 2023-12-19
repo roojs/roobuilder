@@ -153,7 +153,7 @@
                "\texpand.set_list_row(lr);",
                " ",
                " \t// expand current file.",
-               " \tif (_this.window.windowstate.file.path == np.file) {",
+               " \tif (_this.window.windowstate.file.path == np.file.path) {",
                " \t\tlr.expaned = true;",
                "\t}",
                " \t ",
