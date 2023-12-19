@@ -932,6 +932,10 @@ public class Xcls_GtkView : Object
             this.dirty = false;
 
             // set gobject values
+
+            //listeners
+            this.el.notify["cursor_position"].connect( () => {
+             });
         }
 
         // user defined functions

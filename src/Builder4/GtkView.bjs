@@ -211,6 +211,12 @@
              "bool dirty" : false,
              "id" : "buffer",
              "int error_line" : "-1",
+             "listeners" : {
+              "notify[\"cursor_position\"]" : [
+               "() => {",
+               " }"
+              ]
+             },
              "xtype" : "Buffer"
             },
             {
