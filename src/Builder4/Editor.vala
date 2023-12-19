@@ -506,7 +506,7 @@ public class Editor : Object
                 });
                 
                 this.el.set_mark_attributes ("ERR", attrs, 1);
-                
+                attrs.ref();
                  var wattrs = new GtkSource.MarkAttributes();
                 var  blue =   Gdk.RGBA();
                 blue.parse ( "#ABF4EB");
@@ -518,7 +518,7 @@ public class Editor : Object
                 });
                 
                 this.el.set_mark_attributes ("WARN", wattrs, 1);
-                
+                wattrs.ref();
              
                 
                  var dattrs = new GtkSource.MarkAttributes();
@@ -530,9 +530,9 @@ public class Editor : Object
             		GLib.debug("tooltip query? %s", mark.name);
                     return strdup(mark.name);
                 });
-                
+            
                 this.el.set_mark_attributes ("DEPR", dattrs, 1);
-                
+                dattrs.ref();    
               
                  this.el.get_space_drawer().set_matrix(null);
                  this.el.get_space_drawer().set_types_for_locations( 
