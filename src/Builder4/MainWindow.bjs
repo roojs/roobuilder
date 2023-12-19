@@ -1,6 +1,5 @@
 {
  "build_module" : "builder",
- "gen_extended" : false,
  "items" : [
   {
    "# Project.Project project" : "null",
@@ -522,7 +521,7 @@
             "    ",
             "     if (qty < 1 ) {",
             "    \tthis.el.hide();",
-            "    \tif (this.popup != null & this.popup.el.visible) {",
+            "    \tif (this.popup != null && this.popup.el.visible) {",
             "    \t\tthis.popup.el.hide();",
             "\t\t}",
             "    \treturn;",
@@ -564,7 +563,7 @@
             "    ",
             "    if (qty < 1 ) {",
             "    \tthis.el.hide();",
-            "    \tif (this.popup != null & this.popup.el.visible) {",
+            "    \tif (this.popup != null && this.popup.el.visible) {",
             "    \t\tthis.popup.el.hide();",
             "\t\t}",
             "    \treturn;",
@@ -607,7 +606,7 @@
             "(Json.Object nots, int qty) {",
             "    if (qty < 1) {",
             "    \tthis.el.hide();",
-            "    \tif (this.popup != null & this.popup.el.visible) {",
+            "    \tif (this.popup != null && this.popup.el.visible) {",
             "\t\t\t this.popup.el.hide();",
             "\t\t}",
             " ",
@@ -773,6 +772,10 @@
    ]
   }
  ],
+ "modOrder" : "",
  "name" : "MainWindow",
- "namespace" : ""
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/MainWindow.bjs",
+ "permname" : "",
+ "title" : ""
 }
