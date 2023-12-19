@@ -481,7 +481,9 @@ namespace Palete {
 			
 			
 			
-			string[] args = "/usr/bin/gnome-terminal -x /usr/bin/gdb -ex=r --args".split(" ");
+			string[] args = "/usr/bin/gnome-terminal -x /usr/bin/gdb  -ex=r --args".split(" ");
+			args += "-iex"; 
+			args += "set debuginfod enabled off";
 
 			
 			// runs gnome-terminal, with gdb .. running the application..
