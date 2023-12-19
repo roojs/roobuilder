@@ -85,13 +85,12 @@ namespace Palete {
 			ls.remove_all();
 	        tree.foreach_member((obj, file, node) => {
 	        
-	        	var  rfile = file;
 	        	var fe = project.getByPath(file);
-	        	if (fe == null && file.has_suffix(".vala")) {
-	        		rfile = file.substring(0, file.length -5) + ".bjs";
-	        		fe = project.getByPath(rfile);
-	        	}	
-	        
+	        	 
+		        if (fe == null) {
+		        	GLib.debug("Warning Can not find file %s", file);
+		        	continue;
+		        }
 		        var ce = new CompileError.new_file(fe, tree.get_object_member(file));
         		ls.append(ce);
              
