@@ -63,15 +63,15 @@ namespace Palete {
 		public string file_line { // sorting?
 			set {}
 			owned get { 
-				return this.parent == null ? this.file : 
- 					(this.parent.file + ":" + this.line.to_string("%09d")); 
+				return this.parent == null ? this.file.relpath : 
+ 					(this.file.relpath + ":" + this.line.to_string("%09d")); 
 			}
 		}
 		public string line_msg {
 			set {}
 			owned  get {
 				return this.parent == null ? 
-					 GLib.Markup.escape_text( this.file + "(" +  this.lines.n_items.to_string() + ")") : 			
+					 GLib.Markup.escape_text( this.file.relpath + "(" +  this.lines.n_items.to_string() + ")") : 			
 					 GLib.Markup.escape_text(this.line.to_string() + ": " + this.msg);
 		 	}
 	 	}
