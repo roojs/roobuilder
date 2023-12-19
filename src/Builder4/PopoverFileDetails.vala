@@ -103,14 +103,14 @@ public class Xcls_PopoverFileDetails : Object
        
     	_this.path_lbl.el.show();
         _this.path.el.show();
-        _this.dir_doprdown_lbl.el.hide();
-        _this.dir_doprdown.el.hide();
+        _this.dir_dropdown_lbl.el.hide();
+        _this.dir_dropdown.el.hide();
         if (c.name == "") {
         	_this.path_lbl.el.hide();
     	    _this.path.el.hide();
     	    this.filetype_model.load();
-            _this.dir_doprdown_lbl.el.show();
-    	    _this.dir_doprdown.el.show();
+            _this.dir_dropdown_lbl.el.show();
+    	    _this.dir_dropdown.el.show();
     	    
         }  
         
