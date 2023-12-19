@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# JsRender.JsRender file" : "null",
@@ -690,7 +691,7 @@
     "    //if (!this.el) {",
     "        //this.init();",
     "     //}",
-    "    _this.path.el.set_text(c.path);",
+    "    _this.path.el.set_text(c.relpath);",
     "    _this.name.el.set_text(c.name);",
     "    _this.title.el.set_text(c.title);",
     "    _this.parent.el.set_text(c.parent);    ",
@@ -778,10 +779,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "PopoverFileDetails",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/PopoverFileDetails.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

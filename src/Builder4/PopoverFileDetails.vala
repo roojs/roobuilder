@@ -89,7 +89,7 @@ public class Xcls_PopoverFileDetails : Object
         //if (!this.el) {
             //this.init();
          //}
-        _this.path.el.set_text(c.path);
+        _this.path.el.set_text(c.relpath);
         _this.name.el.set_text(c.name);
         _this.title.el.set_text(c.title);
         _this.parent.el.set_text(c.parent);    
