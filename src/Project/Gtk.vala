@@ -32,7 +32,7 @@ namespace Project
 		*/
 		public Gee.HashMap<string,Palete.Gir> gir_cache = null;
 		
-		public bool gir_cache_loaded = false;
+		public bool gir_cache_loaded = false;  /// set this to false to force a relaod of vapi's?
 		
 		// these are loaded / created by the palete.. but are project specific.
  		public Gee.HashMap<string,Gee.ArrayList<string>>? dropList = null;  
@@ -40,7 +40,7 @@ namespace Project
 		public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props; // what child can go on what node (with properties included)
 		
 	     public string compile_flags = ""; // generic to all.	
-		public Gee.ArrayList<string> packages; // list of vapi's that are used by this project. 
+		private Gee.ArrayList<string> packages; // list of vapi's that are used by this project. 
 		 
 		public Gee.ArrayList<string> hidden; // list of dirs to be hidden from display...
 		
