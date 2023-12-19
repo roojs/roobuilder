@@ -501,10 +501,10 @@ public class Editor : Object
                 attrs.set_background ( pink);
                 attrs.set_icon_name ( "process-stop");    
                 attrs.query_tooltip_text.connect(( mark) => {
-                    //print("tooltip query? %s\n", mark.name);
+                     GLib.debug("tooltip query? %s", mark.name);
                     return mark.name;
                 });
-                
+                vvv
                 this.el.set_mark_attributes ("ERR", attrs, 1);
                 
                  var wattrs = new GtkSource.MarkAttributes();
@@ -513,7 +513,7 @@ public class Editor : Object
                 wattrs.set_background ( blue);
                 wattrs.set_icon_name ( "process-stop");    
                 wattrs.query_tooltip_text.connect(( mark) => {
-                    //print("tooltip query? %s\n", mark.name);
+                     GLib.debug("tooltip query? %s", mark.name);
                     return mark.name;
                 });
                 
@@ -527,7 +527,7 @@ public class Editor : Object
                 dattrs.set_background ( purple);
                 dattrs.set_icon_name ( "process-stop");    
                 dattrs.query_tooltip_text.connect(( mark) => {
-                    //print("tooltip query? %s\n", mark.name);
+            		GLib.debug("tooltip query? %s", mark.name);
                     return mark.name;
                 });
                 
