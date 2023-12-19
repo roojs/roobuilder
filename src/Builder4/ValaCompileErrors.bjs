@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# Json.Object notices" : "",
@@ -231,6 +232,11 @@
              "    if (jsr != null) {",
              "        _this.window.windowstate.fileViewOpen(jsr, true, line);",
              "        ",
+             "        if (jsr.path == _this.window.file.path) {",
+             "        \t_this.el.hide();",
+             "    \t}",
+             "        ",
+             "        ",
              "        return;",
              "    ",
              "    }",
@@ -310,10 +316,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "ValaCompileErrors",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/ValaCompileErrors.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

@@ -37,9 +37,8 @@ public class Xcls_ValaCompileErrors : Object
         this.el.hexpand = false;
         this.el.autohide = true;
         this.el.position = Gtk.PositionType.TOP;
-        var child_0 = new Xcls_compile_view( _this );
-        child_0.ref();
-        this.el.set_child (  child_0.el  );
+        var child_1 = new Xcls_compile_view( _this );
+        this.el.set_child ( child_1.el  );
     }
 
     // user defined functions
@@ -108,12 +107,12 @@ public class Xcls_ValaCompileErrors : Object
             // set gobject values
             this.el.homogeneous = false;
             this.el.hexpand = false;
-            var child_0 = new Xcls_Box3( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
-            var child_1 = new Xcls_ScrolledWindow5( _this );
+            var child_1 = new Xcls_Box3( _this );
             child_1.ref();
-            this.el.append(  child_1.el );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_ScrolledWindow5( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -135,9 +134,9 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Button4( _this );
-            child_0.ref();
-            this.el.append(  child_0.el );
+            var child_1 = new Xcls_Button4( _this );
+            child_1.ref();
+            this.el.append( child_1.el );
         }
 
         // user defined functions
@@ -183,9 +182,9 @@ public class Xcls_ValaCompileErrors : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_ColumnView6( _this );
-            child_0.ref();
-            this.el.set_child (  child_0.el  );
+            var child_1 = new Xcls_ColumnView6( _this );
+            child_1.ref();
+            this.el.set_child ( child_1.el  );
 
             // init method
 
@@ -210,22 +209,20 @@ public class Xcls_ValaCompileErrors : Object
         public Xcls_ColumnView6(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ColumnView( null );
+            var child_1 = new Xcls_selmodel( _this );
+            this.el = new Gtk.ColumnView( child_1.el );
 
             // my vars (dec)
 
             // set gobject values
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_0 = new Xcls_selmodel( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
-            var child_1 = new Xcls_ColumnViewColumn10( _this );
-            child_1.ref();
-            this.el.append_column (  child_1.el  );
-            var child_2 = new Xcls_GestureClick12( _this );
+            var child_2 = new Xcls_ColumnViewColumn10( _this );
             child_2.ref();
-            this.el.add_controller(  child_2.el );
+            this.el.append_column ( child_2.el  );
+            var child_3 = new Xcls_GestureClick12( _this );
+            child_3.ref();
+            this.el.add_controller(  child_3.el );
         }
 
         // user defined functions
@@ -243,14 +240,12 @@ public class Xcls_ValaCompileErrors : Object
         {
             _this = _owner;
             _this.selmodel = this;
-            this.el = new Gtk.SingleSelection( null );
+            var child_1 = new Xcls_sortmodel( _this );
+            this.el = new Gtk.SingleSelection( child_1.el );
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_sortmodel( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
         }
 
         // user defined functions
@@ -278,14 +273,12 @@ public class Xcls_ValaCompileErrors : Object
         {
             _this = _owner;
             _this.sortmodel = this;
-            this.el = new Gtk.SortListModel( null, null );
+            var child_1 = new Xcls_model( _this );
+            this.el = new Gtk.SortListModel( child_1.el, null );
 
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_model( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
         }
 
         // user defined functions
@@ -350,16 +343,15 @@ public class Xcls_ValaCompileErrors : Object
         public Xcls_ColumnViewColumn10(Xcls_ValaCompileErrors _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ColumnViewColumn( "Compile Result", null );
+            var child_1 = new Xcls_SignalListItemFactory11( _this );
+            child_1.ref();
+            this.el = new Gtk.ColumnViewColumn( "Compile Result", child_1.el );
 
             // my vars (dec)
 
             // set gobject values
             this.el.expand = true;
             this.el.resizable = true;
-            var child_0 = new Xcls_SignalListItemFactory11( _this );
-            child_0.ref();
-            this.el.factory = child_0.el;
         }
 
         // user defined functions
@@ -499,6 +491,11 @@ public class Xcls_ValaCompileErrors : Object
                 var jsr = p.getByPath(bjsf);
                 if (jsr != null) {
                     _this.window.windowstate.fileViewOpen(jsr, true, line);
+                    
+                    if (jsr.path == _this.window.file.path) {
+                    	_this.el.hide();
+                	}
+                    
                     
                     return;
                 
