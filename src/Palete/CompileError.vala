@@ -38,8 +38,7 @@ namespace Palete {
 		{
 			this.file = file;
 
-			this.title =  GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) 
-				+ " (" + jlines.get_size().to_string() + ")";
+			this.title =  file.relpath + " (" + jlines.get_size().to_string() + ")";
 			
             this.lines = new GLib.ListStore(typeof(CompileError));
             
