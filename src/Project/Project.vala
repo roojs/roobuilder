@@ -72,7 +72,7 @@ namespace Project {
 		public Palete.Palete palete;
 		 
 		private bool is_scanned = false; 
-		public  Gee.HashMap<string,Gir> gir_cache = null; // used by Gir
+		public  Gee.HashMap<string,Palete.Gir> gir_cache = null; // used by Gir
 		 
 		
 		protected Project (string path) {
