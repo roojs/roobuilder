@@ -632,6 +632,13 @@ namespace Project {
 		
 		public JsRender.JsRender? getByPath(string path)
 		{
+		
+        	if (path.has_suffix(".vala")) {	
+        		var ret = file.substring(0, path.length -5) + ".bjs";
+        		
+			rfile = file.substring(0, file.length -5) + ".bjs";
+	        		fe = project.getByPath(rfile);
+			
 			foreach(var f in this.files.values) {
 				if (f.path == path) {
 					return f;
@@ -802,7 +809,7 @@ namespace Project {
 				
 				GLib.debug("Could have added %s/%s", dir, fn);
 			     var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
-				//this.files.set( dir + "/" + fn, el);
+				 this.files.set( dir + "/" + fn, el);
 				jsDir.childfiles.append(el);
 			}
 			
