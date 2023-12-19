@@ -10,12 +10,13 @@ namespace Palete {
 	public class  CompileError : Object
 	{
 		
-		public string file = "";
+		public JsRender.JsRender file = null;
 		public string title = "";
 		
 		public GLib.ListStore lines;
 
 		public CompileError? parent = null;
+ 
 		public string msg;
 		public  int line { get; set; default = -1; }
 
@@ -25,15 +26,17 @@ namespace Palete {
 			this.parent = parent;
 			this.line = line;
 			this.msg = msg;
+			this.project = parent.project;
 		
 		}
 		
 		
 
 
-		public CompileError.new_file(string file, Json.Object jlines) 
+		public CompileError.new_file(Project.Project project, string file, Json.Object jlines) 
 		{
 			this.file = file;
+			this.project = project;
 			this.title =  GLib.Path.get_basename(GLib.Path.get_dirname( file)) + "/" +  GLib.Path.get_basename( file) 
 				+ " (" + jlines.get_size().to_string() + ")";
 			
