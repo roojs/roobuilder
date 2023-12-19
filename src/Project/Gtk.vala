@@ -140,7 +140,7 @@ namespace Project
 			
 			this.gir_cache_loaded = false; // force reload of the cache if we change the packages.
 			this.gpalete.loaded = false;
-			
+			this.initChildCache();
 		}
 		
 	 
