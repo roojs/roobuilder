@@ -1294,6 +1294,9 @@ public class Xcls_MainWindow : Object
             
             if (qty < 1 ) {
             	this.el.hide();
+            	if (this.popup != null & this.popup.el.visible) {
+            		this.poup.el.hide();
+        		}
             	return;
             }
             this.el.show();
