@@ -1004,9 +1004,9 @@ public class DialogFiles : Object
             	if (ns.length < 2) {
             		lbl.label = item.name;
             	} else {
-            		lbl.label = (
-            			item.name.substring(0, item.name.length - ns[ns.length-1].length
-            		) + "."+  ns[ns.length-1];
+            		lbl.label =  
+            			item.name.substring(0, item.name.length - ns[ns.length-1].length)
+            		 	 + "."+  ns[ns.length-1];
             	}
             
             /*
