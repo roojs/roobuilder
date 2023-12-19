@@ -125,7 +125,7 @@ namespace Project
 			}
 			obj.set_array_member("hidden", hi);
 			
-			
+			this.gir_cache_loaded = false; // force reload of the cache if we change the packages.
 		}
 		
 	 
