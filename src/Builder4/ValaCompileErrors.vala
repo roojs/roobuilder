@@ -55,8 +55,8 @@ public class Xcls_ValaCompileErrors : Object
         Palete.CompileError.jsonToListStore(
         	this.window.windowstate.project,
         	tree, 
-        	(GLib.ListStore)_this.model.el.mode
-    	l);
+        	(GLib.ListStore)_this.model.el.model
+    	);
     
     
      
