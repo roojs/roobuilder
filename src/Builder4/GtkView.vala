@@ -938,7 +938,7 @@ public class Xcls_GtkView : Object
                     
                     // highlight the node..
                     
-                });
+              
             
              });
         }
