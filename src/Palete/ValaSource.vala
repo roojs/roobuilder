@@ -490,7 +490,7 @@ namespace Palete {
 			
 			args += exe;
 			if (cg.execute_args.length > 0) {
-   			 args+= --args
+   			 	args+= "--args";
 				var aa = cg.execute_args.split(" ");
 				for (var i =0; i < aa.length; i++) {
 					args += aa[i];
