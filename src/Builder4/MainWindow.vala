@@ -1279,7 +1279,7 @@ public class Xcls_MainWindow : Object
             this.el.show();
             this.el.label = qty.to_string() + " Errors";
             this.notices = nots;
-        	if (this.popup != null & this.popup.el.visible) {
+        	if (this.popup != null && this.popup.el.visible) {
         		 this.popup.show(this.notices, this.el);
             }
         }
@@ -1334,7 +1334,7 @@ public class Xcls_MainWindow : Object
             this.el.show();
             this.el.label = qty.to_string() + " Warnings";
             this.notices = nots;
-            if (this.popup != null & this.popup.el.visible) {
+            if (this.popup != null && this.popup.el.visible) {
         		 this.popup.show(this.notices, this.el);
             }
             
@@ -1394,7 +1394,7 @@ public class Xcls_MainWindow : Object
             
             this.el.label = qty.to_string() + " Depricated";
             this.notices = nots;
-        	if (this.popup != null & this.popup.el.visible) {
+        	if (this.popup != null && this.popup.el.visible) {
         		 this.popup.show(this.notices, this.el);
             }
         }
