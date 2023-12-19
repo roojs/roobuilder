@@ -634,11 +634,13 @@ namespace Project {
 		{
 		
         	if (path.has_suffix(".vala")) {	
-        		var ret = file.substring(0, path.length -5) + ".bjs";
-        		
-			rfile = file.substring(0, file.length -5) + ".bjs";
-	        		fe = project.getByPath(rfile);
-			
+        		var nf = file.substring(0, path.length -5) + ".bjs";
+        		var ret = this.getByPath(nf);
+        		if (ret != null) {
+        			return ret;
+    			}
+			}
+			// keys are not paths...
 			foreach(var f in this.files.values) {
 				if (f.path == path) {
 					return f;
