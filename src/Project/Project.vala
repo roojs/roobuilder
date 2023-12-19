@@ -873,6 +873,9 @@ namespace Project {
 			//GLib.debug("Load files (into grid) %s", this.name);			
 			foreach(var f in this.files.values) {
 			//	GLib.debug("Add file %s", f.name);
+				if (f.xtype == "PlainFile") {
+					continue;
+				}
 				ls.append(f);
 			}
 			return ls;
