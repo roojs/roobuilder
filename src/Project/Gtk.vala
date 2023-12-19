@@ -60,9 +60,7 @@ namespace Project
 		  
 	  		base(path);
 	  		
-	  		
-  			this.child_list_cache = new Gee.HashMap<string,Gee.ArrayList<string>>();
-			this.child_list_cache_props = new Gee.HashMap<string,Gee.ArrayList<string>>();
+	  		this.initChildCache();
 		   
 	  		this.palete = new Palete.Gtk(this);
 	  		
@@ -75,6 +73,14 @@ namespace Project
 	  		 
 		
 		}
+		
+		public  void initChildCache()
+		{
+			this.child_list_cache = new Gee.HashMap<string,Gee.ArrayList<string>>();
+			this.child_list_cache_props = new Gee.HashMap<string,Gee.ArrayList<string>>();
+	  		this.dropList = null;
+		}
+		
 		public Gee.HashMap<string,GtkValaSettings> compilegroups;
 		
 		public override void loadJson(Json.Object obj)  
