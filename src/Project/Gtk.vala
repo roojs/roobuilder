@@ -40,7 +40,7 @@ namespace Project
 		public Gee.HashMap<string,Gee.ArrayList<string>> child_list_cache_props; // what child can go on what node (with properties included)
 		
 	     public string compile_flags = ""; // generic to all.	
-		private Gee.ArrayList<string> packages; // list of vapi's that are used by this project. 
+		public Gee.ArrayList<string> packages; // list of vapi's that are used by this project. 
 		 
 		public Gee.ArrayList<string> hidden; // list of dirs to be hidden from display...
 		
