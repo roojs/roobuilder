@@ -504,7 +504,7 @@ public class Editor : Object
                      GLib.debug("tooltip query? %s", mark.name);
                     return mark.name;
                 });
-                vvv
+                
                 this.el.set_mark_attributes ("ERR", attrs, 1);
                 
                  var wattrs = new GtkSource.MarkAttributes();
