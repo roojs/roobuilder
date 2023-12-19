@@ -1433,6 +1433,7 @@ public class Xcls_MainWindow : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.margin_start = 4;
             this.el.tooltip_text = "Compiling";
         }
 

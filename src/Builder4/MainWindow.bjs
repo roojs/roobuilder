@@ -652,6 +652,7 @@
         {
          "$ xns" : "Gtk",
          "id" : "statusbar_compile_spinner",
+         "int margin_start" : 4,
          "string tooltip_text" : "Compiling",
          "xtype" : "Spinner",
          "| void start" : [
