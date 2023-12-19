@@ -245,7 +245,7 @@
              "    ",
              "    }",
              "    try {",
-             "\t\tvar pf = JsRender.JsRender.factory(\"PlainFile\", p, fname);",
+             "\t\tvar pf = JsRender.JsRender.factory(\"PlainFile\", p, fname.path);",
              "\t\t_this.window.windowstate.fileViewOpen(pf, true, line);",
              "    } catch (JsRender.Error e) {}",
              "    // try hiding the left nav..",
