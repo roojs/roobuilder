@@ -70,7 +70,7 @@ namespace Palete {
 		// c) build child list for all widgets (based on properties)
 		// d) handle oddities?
 		
-		bool loaded = false;
+		public bool loaded = false; // set to false to force a reload
 
 		public override void  load () 
 		{
