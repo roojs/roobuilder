@@ -492,7 +492,7 @@ public class Xcls_ValaCompileErrors : Object
                 if (jsr != null) {
                     _this.window.windowstate.fileViewOpen(jsr, true, line);
                     
-                    if (jsr.path == _this.window.file.path) {
+                    if (jsr.path == _this.window.windowstate.file.path) {
                     	_this.el.hide();
                 	}
                     
