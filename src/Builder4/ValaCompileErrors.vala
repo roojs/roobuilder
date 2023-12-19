@@ -488,7 +488,7 @@ public class Xcls_ValaCompileErrors : Object
                    var  regex = new Regex("\\.vala$");
                 
                  
-                    bjsf = regex.replace(fname,fname.length , 0 , ".bjs");
+                    bjsf = regex.replace(fname.path,fname.path.length , 0 , ".bjs");
                  } catch (GLib.RegexError e) {
                     return;
                 }   
