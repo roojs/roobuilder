@@ -2640,8 +2640,8 @@ VALA_EXTERN void dialog_files_show (DialogFiles* self,
 VALA_EXTERN void dialog_files_load (DialogFiles* self);
 VALA_EXTERN void project_project_loadAll (gboolean force);
 VALA_EXTERN GListStore* project_project_loadIntoStore (void);
-static gboolean __lambda149_ (DialogFiles* self);
-static gboolean ___lambda149__gsource_func (gpointer self);
+static gboolean __lambda148_ (DialogFiles* self);
+static gboolean ___lambda148__gsource_func (gpointer self);
 VALA_EXTERN GType dialog_files_xcls_box3_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogFilesXcls_Box3, g_object_unref)
 VALA_EXTERN DialogFilesXcls_Box3* dialog_files_xcls_box3_new (DialogFiles* _owner);
@@ -3108,9 +3108,9 @@ VALA_EXTERN GType edit_project_xcls_ptype_dd_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProjectXcls_ptype_dd, g_object_unref)
 VALA_EXTERN GType edit_project_xcls_ok_btn_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProjectXcls_ok_btn, g_object_unref)
-static void __lambda146_ (DialogFilesXcls_Button44* self,
+static void __lambda145_ (DialogFilesXcls_Button44* self,
                    ProjectProject* pr);
-static void ___lambda146__edit_project_selected (EditProject* _sender,
+static void ___lambda145__edit_project_selected (EditProject* _sender,
                                           ProjectProject* proj,
                                           gpointer self);
 VALA_EXTERN void edit_project_show (EditProject* self);
@@ -3139,11 +3139,11 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogFilesXcls_Box49, g_object_unref)
 VALA_EXTERN DialogFilesXcls_Box49* dialog_files_xcls_box49_new (DialogFiles* _owner);
 VALA_EXTERN DialogFilesXcls_Box49* dialog_files_xcls_box49_construct (GType object_type,
                                                           DialogFiles* _owner);
-static void __lambda150_ (DialogFilesXcls_Button48* self);
+static void __lambda149_ (DialogFilesXcls_Button48* self);
 VALA_EXTERN void window_state_projectPopoverShow (WindowState* self,
                                       GtkWindow* pwin,
                                       ProjectProject* pr);
-static void ___lambda150__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda149__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void dialog_files_xcls_button48_finalize (GObject * obj);
 static GType dialog_files_xcls_button48_get_type_once (void);
@@ -3163,8 +3163,8 @@ static void dialog_files_xcls_image50_finalize (GObject * obj);
 static GType dialog_files_xcls_image50_get_type_once (void);
 static void dialog_files_xcls_label51_finalize (GObject * obj);
 static GType dialog_files_xcls_label51_get_type_once (void);
-static void __lambda151_ (DialogFilesXcls_Button52* self);
-static void ___lambda151__gtk_button_clicked (GtkButton* _sender,
+static void __lambda150_ (DialogFilesXcls_Button52* self);
+static void ___lambda150__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void dialog_files_xcls_button52_finalize (GObject * obj);
 static GType dialog_files_xcls_button52_get_type_once (void);
@@ -3173,7 +3173,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogFilesXcls_Box54, g_object_unref)
 VALA_EXTERN DialogFilesXcls_Box54* dialog_files_xcls_box54_new (DialogFiles* _owner);
 VALA_EXTERN DialogFilesXcls_Box54* dialog_files_xcls_box54_construct (GType object_type,
                                                           DialogFiles* _owner);
-static void __lambda152_ (DialogFilesXcls_Button53* self);
+static void __lambda151_ (DialogFilesXcls_Button53* self);
 VALA_EXTERN GQuark js_render_error_quark (void);
 VALA_EXTERN JsRenderJsRender* js_render_js_render_factory (const gchar* xt,
                                                ProjectProject* project,
@@ -3183,7 +3183,7 @@ VALA_EXTERN void xcls_popoverfiledetails_show (Xcls_PopoverFileDetails* self,
                                    JsRenderJsRender* c,
                                    GtkWindow* pwin,
                                    gboolean new_window);
-static void ___lambda152__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda151__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void dialog_files_xcls_button53_finalize (GObject * obj);
 static GType dialog_files_xcls_button53_get_type_once (void);
@@ -3717,7 +3717,7 @@ dialog_files_show (DialogFiles* self,
 }
 
 static gboolean
-__lambda149_ (DialogFiles* self)
+__lambda148_ (DialogFiles* self)
 {
 	DialogFiles* _tmp0_;
 	DialogFilesXcls_projectscroll* _tmp1_;
@@ -3745,10 +3745,10 @@ __lambda149_ (DialogFiles* self)
 }
 
 static gboolean
-___lambda149__gsource_func (gpointer self)
+___lambda148__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda149_ ((DialogFiles*) self);
+	result = __lambda148_ ((DialogFiles*) self);
 #line 146 "DialogFiles.vala"
 	return result;
 #line 3755 "DialogFiles.vala.c"
@@ -3822,7 +3822,7 @@ dialog_files_load (DialogFiles* self)
 #line 144 "DialogFiles.vala"
 	_tmp14_->is_loading = FALSE;
 #line 146 "DialogFiles.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda149__gsource_func, g_object_ref (self), g_object_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda148__gsource_func, g_object_ref (self), g_object_unref);
 #line 130 "DialogFiles.vala"
 	_g_object_unref0 (pm);
 #line 3829 "DialogFiles.vala.c"
@@ -11236,7 +11236,7 @@ dialog_files_xcls_button44_get_instance_private (DialogFilesXcls_Button44* self)
 }
 
 static void
-__lambda146_ (DialogFilesXcls_Button44* self,
+__lambda145_ (DialogFilesXcls_Button44* self,
               ProjectProject* pr)
 {
 	DialogFiles* _tmp0_;
@@ -11251,12 +11251,12 @@ __lambda146_ (DialogFilesXcls_Button44* self,
 }
 
 static void
-___lambda146__edit_project_selected (EditProject* _sender,
+___lambda145__edit_project_selected (EditProject* _sender,
                                      ProjectProject* proj,
                                      gpointer self)
 {
 #line 1614 "DialogFiles.vala"
-	__lambda146_ ((DialogFilesXcls_Button44*) self, proj);
+	__lambda145_ ((DialogFilesXcls_Button44*) self, proj);
 #line 11261 "DialogFiles.vala.c"
 }
 
@@ -11317,7 +11317,7 @@ __lambda100_ (DialogFilesXcls_Button44* self)
 #line 1611 "DialogFiles.vala"
 	gtk_window_set_transient_for (_tmp11_, _tmp13_);
 #line 1614 "DialogFiles.vala"
-	g_signal_connect_object (pe, "selected", (GCallback) ___lambda146__edit_project_selected, self, 0);
+	g_signal_connect_object (pe, "selected", (GCallback) ___lambda145__edit_project_selected, self, 0);
 #line 1621 "DialogFiles.vala"
 	edit_project_show (pe);
 #line 1603 "DialogFiles.vala"
@@ -11825,7 +11825,7 @@ dialog_files_xcls_button48_get_instance_private (DialogFilesXcls_Button48* self)
 }
 
 static void
-__lambda150_ (DialogFilesXcls_Button48* self)
+__lambda149_ (DialogFilesXcls_Button48* self)
 {
 	DialogFiles* _tmp0_;
 	ProjectProject* _tmp1_;
@@ -11866,11 +11866,11 @@ __lambda150_ (DialogFilesXcls_Button48* self)
 }
 
 static void
-___lambda150__gtk_button_clicked (GtkButton* _sender,
+___lambda149__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1727 "DialogFiles.vala"
-	__lambda150_ ((DialogFilesXcls_Button48*) self);
+	__lambda149_ ((DialogFilesXcls_Button48*) self);
 #line 11875 "DialogFiles.vala.c"
 }
 
@@ -11918,7 +11918,7 @@ dialog_files_xcls_button48_construct (GType object_type,
 #line 1727 "DialogFiles.vala"
 	_tmp6_ = self->el;
 #line 1727 "DialogFiles.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda150__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda149__gtk_button_clicked, self, 0);
 #line 1715 "DialogFiles.vala"
 	_g_object_unref0 (child_1);
 #line 1715 "DialogFiles.vala"
@@ -12355,16 +12355,16 @@ dialog_files_xcls_button52_get_instance_private (DialogFilesXcls_Button52* self)
 }
 
 static void
-__lambda151_ (DialogFilesXcls_Button52* self)
+__lambda150_ (DialogFilesXcls_Button52* self)
 {
 }
 
 static void
-___lambda151__gtk_button_clicked (GtkButton* _sender,
+___lambda150__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1834 "DialogFiles.vala"
-	__lambda151_ ((DialogFilesXcls_Button52*) self);
+	__lambda150_ ((DialogFilesXcls_Button52*) self);
 #line 12369 "DialogFiles.vala.c"
 }
 
@@ -12405,7 +12405,7 @@ dialog_files_xcls_button52_construct (GType object_type,
 #line 1834 "DialogFiles.vala"
 	_tmp4_ = self->el;
 #line 1834 "DialogFiles.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda151__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda150__gtk_button_clicked, self, 0);
 #line 1822 "DialogFiles.vala"
 	return self;
 #line 12412 "DialogFiles.vala.c"
@@ -12485,7 +12485,7 @@ dialog_files_xcls_button53_get_instance_private (DialogFilesXcls_Button53* self)
 }
 
 static void
-__lambda152_ (DialogFilesXcls_Button53* self)
+__lambda151_ (DialogFilesXcls_Button53* self)
 {
 	DialogFiles* _tmp0_;
 	ProjectProject* _tmp1_;
@@ -12590,11 +12590,11 @@ __lambda152_ (DialogFilesXcls_Button53* self)
 }
 
 static void
-___lambda152__gtk_button_clicked (GtkButton* _sender,
+___lambda151__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1889 "DialogFiles.vala"
-	__lambda152_ ((DialogFilesXcls_Button53*) self);
+	__lambda151_ ((DialogFilesXcls_Button53*) self);
 #line 12599 "DialogFiles.vala.c"
 }
 
@@ -12642,7 +12642,7 @@ dialog_files_xcls_button53_construct (GType object_type,
 #line 1889 "DialogFiles.vala"
 	_tmp6_ = self->el;
 #line 1889 "DialogFiles.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda152__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda151__gtk_button_clicked, self, 0);
 #line 1877 "DialogFiles.vala"
 	_g_object_unref0 (child_1);
 #line 1877 "DialogFiles.vala"

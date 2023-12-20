@@ -993,8 +993,8 @@ VALA_EXTERN EditProjectXcls_ok_btn* edit_project_xcls_ok_btn_construct (GType ob
                                                             EditProject* _owner);
 static void edit_project_xcls_box19_finalize (GObject * obj);
 static GType edit_project_xcls_box19_get_type_once (void);
-static void __lambda145_ (EditProjectXcls_Button20* self);
-static void ___lambda145__gtk_button_clicked (GtkButton* _sender,
+static void __lambda144_ (EditProjectXcls_Button20* self);
+static void ___lambda144__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void edit_project_xcls_button20_finalize (GObject * obj);
 static GType edit_project_xcls_button20_get_type_once (void);
@@ -5621,7 +5621,7 @@ edit_project_xcls_button20_get_instance_private (EditProjectXcls_Button20* self)
 }
 
 static void
-__lambda145_ (EditProjectXcls_Button20* self)
+__lambda144_ (EditProjectXcls_Button20* self)
 {
 	EditProject* _tmp0_;
 	GtkWindow* _tmp1_;
@@ -5640,11 +5640,11 @@ __lambda145_ (EditProjectXcls_Button20* self)
 }
 
 static void
-___lambda145__gtk_button_clicked (GtkButton* _sender,
+___lambda144__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 848 "EditProject.vala"
-	__lambda145_ ((EditProjectXcls_Button20*) self);
+	__lambda144_ ((EditProjectXcls_Button20*) self);
 #line 5649 "EditProject.vala.c"
 }
 
@@ -5690,7 +5690,7 @@ edit_project_xcls_button20_construct (GType object_type,
 #line 848 "EditProject.vala"
 	_tmp5_ = self->el;
 #line 848 "EditProject.vala"
-	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda145__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda144__gtk_button_clicked, self, 0);
 #line 835 "EditProject.vala"
 	return self;
 #line 5697 "EditProject.vala.c"

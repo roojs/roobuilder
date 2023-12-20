@@ -203,16 +203,6 @@ typedef struct _ValaProjectSettingsPopoverXcls_set_vboxbClass ValaProjectSetting
 typedef struct _ValaProjectSettingsPopoverXcls_build_name ValaProjectSettingsPopoverXcls_build_name;
 typedef struct _ValaProjectSettingsPopoverXcls_build_nameClass ValaProjectSettingsPopoverXcls_build_nameClass;
 
-#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET (vala_project_settings_popover_xcls_build_pack_target_get_type ())
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET, ValaProjectSettingsPopoverXcls_build_pack_target))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET, ValaProjectSettingsPopoverXcls_build_pack_targetClass))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BUILD_PACK_TARGET(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BUILD_PACK_TARGET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET, ValaProjectSettingsPopoverXcls_build_pack_targetClass))
-
-typedef struct _ValaProjectSettingsPopoverXcls_build_pack_target ValaProjectSettingsPopoverXcls_build_pack_target;
-typedef struct _ValaProjectSettingsPopoverXcls_build_pack_targetClass ValaProjectSettingsPopoverXcls_build_pack_targetClass;
-
 #define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_EXECUTE_ARGS (vala_project_settings_popover_xcls_build_execute_args_get_type ())
 #define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_EXECUTE_ARGS(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_EXECUTE_ARGS, ValaProjectSettingsPopoverXcls_build_execute_args))
 #define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_EXECUTE_ARGS_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_EXECUTE_ARGS, ValaProjectSettingsPopoverXcls_build_execute_argsClass))
@@ -381,16 +371,16 @@ enum  {
 };
 static GParamSpec* vala_project_settings_popover_xcls_box5_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX5_NUM_PROPERTIES];
 
-#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX57 (vala_project_settings_popover_xcls_box57_get_type ())
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX57(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX57, ValaProjectSettingsPopoverXcls_Box57))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX57_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX57, ValaProjectSettingsPopoverXcls_Box57Class))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BOX57(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX57))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BOX57_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX57))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX57_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX57, ValaProjectSettingsPopoverXcls_Box57Class))
+#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX55 (vala_project_settings_popover_xcls_box55_get_type ())
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX55(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX55, ValaProjectSettingsPopoverXcls_Box55))
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX55_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX55, ValaProjectSettingsPopoverXcls_Box55Class))
+#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BOX55(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX55))
+#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BOX55_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX55))
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX55_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX55, ValaProjectSettingsPopoverXcls_Box55Class))
 
-typedef struct _ValaProjectSettingsPopoverXcls_Box57 ValaProjectSettingsPopoverXcls_Box57;
-typedef struct _ValaProjectSettingsPopoverXcls_Box57Class ValaProjectSettingsPopoverXcls_Box57Class;
-typedef struct _ValaProjectSettingsPopoverXcls_Box57Private ValaProjectSettingsPopoverXcls_Box57Private;
+typedef struct _ValaProjectSettingsPopoverXcls_Box55 ValaProjectSettingsPopoverXcls_Box55;
+typedef struct _ValaProjectSettingsPopoverXcls_Box55Class ValaProjectSettingsPopoverXcls_Box55Class;
+typedef struct _ValaProjectSettingsPopoverXcls_Box55Private ValaProjectSettingsPopoverXcls_Box55Private;
 enum  {
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_NOTEBOOK_0_PROPERTY,
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_NOTEBOOK_NUM_PROPERTIES
@@ -952,7 +942,6 @@ enum  {
 static GParamSpec* vala_project_settings_popover_xcls_target_sel_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_TARGET_SEL_NUM_PROPERTIES];
 typedef struct _ProjectGtkValaSettingsPrivate ProjectGtkValaSettingsPrivate;
 typedef struct _ValaProjectSettingsPopoverXcls_build_namePrivate ValaProjectSettingsPopoverXcls_build_namePrivate;
-typedef struct _ValaProjectSettingsPopoverXcls_build_pack_targetPrivate ValaProjectSettingsPopoverXcls_build_pack_targetPrivate;
 typedef struct _ValaProjectSettingsPopoverXcls_build_execute_argsPrivate ValaProjectSettingsPopoverXcls_build_execute_argsPrivate;
 enum  {
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_TARGET_MODEL_0_PROPERTY,
@@ -1007,17 +996,6 @@ typedef struct _ValaProjectSettingsPopoverXcls_Label51Private ValaProjectSetting
 typedef struct _ValaProjectSettingsPopoverXcls_Label53 ValaProjectSettingsPopoverXcls_Label53;
 typedef struct _ValaProjectSettingsPopoverXcls_Label53Class ValaProjectSettingsPopoverXcls_Label53Class;
 typedef struct _ValaProjectSettingsPopoverXcls_Label53Private ValaProjectSettingsPopoverXcls_Label53Private;
-
-#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL55 (vala_project_settings_popover_xcls_label55_get_type ())
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL55(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL55, ValaProjectSettingsPopoverXcls_Label55))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL55_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL55, ValaProjectSettingsPopoverXcls_Label55Class))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_LABEL55(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL55))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_LABEL55_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL55))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL55_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL55, ValaProjectSettingsPopoverXcls_Label55Class))
-
-typedef struct _ValaProjectSettingsPopoverXcls_Label55 ValaProjectSettingsPopoverXcls_Label55;
-typedef struct _ValaProjectSettingsPopoverXcls_Label55Class ValaProjectSettingsPopoverXcls_Label55Class;
-typedef struct _ValaProjectSettingsPopoverXcls_Label55Private ValaProjectSettingsPopoverXcls_Label55Private;
 enum  {
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL51_0_PROPERTY,
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL51_NUM_PROPERTIES
@@ -1034,58 +1012,48 @@ enum  {
 };
 static GParamSpec* vala_project_settings_popover_xcls_label53_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL53_NUM_PROPERTIES];
 enum  {
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET_0_PROPERTY,
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET_NUM_PROPERTIES
-};
-static GParamSpec* vala_project_settings_popover_xcls_build_pack_target_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET_NUM_PROPERTIES];
-enum  {
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL55_0_PROPERTY,
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL55_NUM_PROPERTIES
-};
-static GParamSpec* vala_project_settings_popover_xcls_label55_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL55_NUM_PROPERTIES];
-enum  {
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_EXECUTE_ARGS_0_PROPERTY,
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_EXECUTE_ARGS_NUM_PROPERTIES
 };
 static GParamSpec* vala_project_settings_popover_xcls_build_execute_args_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_EXECUTE_ARGS_NUM_PROPERTIES];
 enum  {
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX57_0_PROPERTY,
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX57_NUM_PROPERTIES
+	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX55_0_PROPERTY,
+	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX55_NUM_PROPERTIES
 };
-static GParamSpec* vala_project_settings_popover_xcls_box57_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX57_NUM_PROPERTIES];
+static GParamSpec* vala_project_settings_popover_xcls_box55_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_BOX55_NUM_PROPERTIES];
 
-#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON58 (vala_project_settings_popover_xcls_button58_get_type ())
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON58(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON58, ValaProjectSettingsPopoverXcls_Button58))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON58_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON58, ValaProjectSettingsPopoverXcls_Button58Class))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BUTTON58(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON58))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BUTTON58_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON58))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON58_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON58, ValaProjectSettingsPopoverXcls_Button58Class))
+#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON56 (vala_project_settings_popover_xcls_button56_get_type ())
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON56(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON56, ValaProjectSettingsPopoverXcls_Button56))
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON56_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON56, ValaProjectSettingsPopoverXcls_Button56Class))
+#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BUTTON56(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON56))
+#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BUTTON56_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON56))
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON56_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON56, ValaProjectSettingsPopoverXcls_Button56Class))
 
-typedef struct _ValaProjectSettingsPopoverXcls_Button58 ValaProjectSettingsPopoverXcls_Button58;
-typedef struct _ValaProjectSettingsPopoverXcls_Button58Class ValaProjectSettingsPopoverXcls_Button58Class;
-typedef struct _ValaProjectSettingsPopoverXcls_Button58Private ValaProjectSettingsPopoverXcls_Button58Private;
+typedef struct _ValaProjectSettingsPopoverXcls_Button56 ValaProjectSettingsPopoverXcls_Button56;
+typedef struct _ValaProjectSettingsPopoverXcls_Button56Class ValaProjectSettingsPopoverXcls_Button56Class;
+typedef struct _ValaProjectSettingsPopoverXcls_Button56Private ValaProjectSettingsPopoverXcls_Button56Private;
 
-#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL59 (vala_project_settings_popover_xcls_label59_get_type ())
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL59(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL59, ValaProjectSettingsPopoverXcls_Label59))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL59_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL59, ValaProjectSettingsPopoverXcls_Label59Class))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_LABEL59(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL59))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_LABEL59_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL59))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL59_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL59, ValaProjectSettingsPopoverXcls_Label59Class))
+#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL57 (vala_project_settings_popover_xcls_label57_get_type ())
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL57(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL57, ValaProjectSettingsPopoverXcls_Label57))
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL57_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL57, ValaProjectSettingsPopoverXcls_Label57Class))
+#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_LABEL57(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL57))
+#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_LABEL57_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL57))
+#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL57_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL57, ValaProjectSettingsPopoverXcls_Label57Class))
 
-typedef struct _ValaProjectSettingsPopoverXcls_Label59 ValaProjectSettingsPopoverXcls_Label59;
-typedef struct _ValaProjectSettingsPopoverXcls_Label59Class ValaProjectSettingsPopoverXcls_Label59Class;
-typedef struct _ValaProjectSettingsPopoverXcls_Label59Private ValaProjectSettingsPopoverXcls_Label59Private;
+typedef struct _ValaProjectSettingsPopoverXcls_Label57 ValaProjectSettingsPopoverXcls_Label57;
+typedef struct _ValaProjectSettingsPopoverXcls_Label57Class ValaProjectSettingsPopoverXcls_Label57Class;
+typedef struct _ValaProjectSettingsPopoverXcls_Label57Private ValaProjectSettingsPopoverXcls_Label57Private;
 typedef struct _ValaProjectSettingsPopoverXcls_save_btnPrivate ValaProjectSettingsPopoverXcls_save_btnPrivate;
 enum  {
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON58_0_PROPERTY,
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON58_NUM_PROPERTIES
+	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON56_0_PROPERTY,
+	VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON56_NUM_PROPERTIES
 };
-static GParamSpec* vala_project_settings_popover_xcls_button58_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON58_NUM_PROPERTIES];
+static GParamSpec* vala_project_settings_popover_xcls_button56_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUTTON56_NUM_PROPERTIES];
 enum  {
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL59_0_PROPERTY,
-	VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL59_NUM_PROPERTIES
+	VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL57_0_PROPERTY,
+	VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL57_NUM_PROPERTIES
 };
-static GParamSpec* vala_project_settings_popover_xcls_label59_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL59_NUM_PROPERTIES];
+static GParamSpec* vala_project_settings_popover_xcls_label57_properties[VALA_PROJECT_SETTINGS_POPOVER_XCLS_LABEL57_NUM_PROPERTIES];
 enum  {
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_SAVE_BTN_0_PROPERTY,
 	VALA_PROJECT_SETTINGS_POPOVER_XCLS_SAVE_BTN_NUM_PROPERTIES
@@ -1113,7 +1081,6 @@ struct _ValaProjectSettingsPopover {
 	ValaProjectSettingsPopoverXcls_target_model* target_model;
 	ValaProjectSettingsPopoverXcls_set_vboxb* set_vboxb;
 	ValaProjectSettingsPopoverXcls_build_name* build_name;
-	ValaProjectSettingsPopoverXcls_build_pack_target* build_pack_target;
 	ValaProjectSettingsPopoverXcls_build_execute_args* build_execute_args;
 	ValaProjectSettingsPopoverXcls_save_btn* save_btn;
 	Xcls_MainWindow* window;
@@ -1285,13 +1252,13 @@ struct _ValaProjectSettingsPopoverXcls_Box5Private {
 	ValaProjectSettingsPopover* _this;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Box57 {
+struct _ValaProjectSettingsPopoverXcls_Box55 {
 	GObject parent_instance;
-	ValaProjectSettingsPopoverXcls_Box57Private * priv;
+	ValaProjectSettingsPopoverXcls_Box55Private * priv;
 	GtkBox* el;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Box57Class {
+struct _ValaProjectSettingsPopoverXcls_Box55Class {
 	GObjectClass parent_class;
 };
 
@@ -1910,7 +1877,6 @@ struct _ProjectGtkValaSettings {
 	GObject parent_instance;
 	ProjectGtkValaSettingsPrivate * priv;
 	GeeArrayList* sources;
-	gchar* target_bin;
 	gchar* execute_args;
 	gboolean loading_ui;
 };
@@ -1926,16 +1892,6 @@ struct _ValaProjectSettingsPopoverXcls_build_name {
 };
 
 struct _ValaProjectSettingsPopoverXcls_build_nameClass {
-	GObjectClass parent_class;
-};
-
-struct _ValaProjectSettingsPopoverXcls_build_pack_target {
-	GObject parent_instance;
-	ValaProjectSettingsPopoverXcls_build_pack_targetPrivate * priv;
-	GtkEntry* el;
-};
-
-struct _ValaProjectSettingsPopoverXcls_build_pack_targetClass {
 	GObjectClass parent_class;
 };
 
@@ -1995,16 +1951,6 @@ struct _ValaProjectSettingsPopoverXcls_Label53Class {
 	GObjectClass parent_class;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Label55 {
-	GObject parent_instance;
-	ValaProjectSettingsPopoverXcls_Label55Private * priv;
-	GtkLabel* el;
-};
-
-struct _ValaProjectSettingsPopoverXcls_Label55Class {
-	GObjectClass parent_class;
-};
-
 struct _ValaProjectSettingsPopoverXcls_Label51Private {
 	ValaProjectSettingsPopover* _this;
 };
@@ -2017,39 +1963,31 @@ struct _ValaProjectSettingsPopoverXcls_Label53Private {
 	ValaProjectSettingsPopover* _this;
 };
 
-struct _ValaProjectSettingsPopoverXcls_build_pack_targetPrivate {
-	ValaProjectSettingsPopover* _this;
-};
-
-struct _ValaProjectSettingsPopoverXcls_Label55Private {
-	ValaProjectSettingsPopover* _this;
-};
-
 struct _ValaProjectSettingsPopoverXcls_build_execute_argsPrivate {
 	ValaProjectSettingsPopover* _this;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Box57Private {
+struct _ValaProjectSettingsPopoverXcls_Box55Private {
 	ValaProjectSettingsPopover* _this;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Button58 {
+struct _ValaProjectSettingsPopoverXcls_Button56 {
 	GObject parent_instance;
-	ValaProjectSettingsPopoverXcls_Button58Private * priv;
+	ValaProjectSettingsPopoverXcls_Button56Private * priv;
 	GtkButton* el;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Button58Class {
+struct _ValaProjectSettingsPopoverXcls_Button56Class {
 	GObjectClass parent_class;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Label59 {
+struct _ValaProjectSettingsPopoverXcls_Label57 {
 	GObject parent_instance;
-	ValaProjectSettingsPopoverXcls_Label59Private * priv;
+	ValaProjectSettingsPopoverXcls_Label57Private * priv;
 	GtkLabel* el;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Label59Class {
+struct _ValaProjectSettingsPopoverXcls_Label57Class {
 	GObjectClass parent_class;
 };
 
@@ -2063,11 +2001,11 @@ struct _ValaProjectSettingsPopoverXcls_save_btnClass {
 	GObjectClass parent_class;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Button58Private {
+struct _ValaProjectSettingsPopoverXcls_Button56Private {
 	ValaProjectSettingsPopover* _this;
 };
 
-struct _ValaProjectSettingsPopoverXcls_Label59Private {
+struct _ValaProjectSettingsPopoverXcls_Label57Private {
 	ValaProjectSettingsPopover* _this;
 };
 
@@ -2183,18 +2121,14 @@ static gint ValaProjectSettingsPopoverXcls_build_name_private_offset;
 static gpointer vala_project_settings_popover_xcls_build_name_parent_class = NULL;
 static gint ValaProjectSettingsPopoverXcls_Label53_private_offset;
 static gpointer vala_project_settings_popover_xcls_label53_parent_class = NULL;
-static gint ValaProjectSettingsPopoverXcls_build_pack_target_private_offset;
-static gpointer vala_project_settings_popover_xcls_build_pack_target_parent_class = NULL;
-static gint ValaProjectSettingsPopoverXcls_Label55_private_offset;
-static gpointer vala_project_settings_popover_xcls_label55_parent_class = NULL;
 static gint ValaProjectSettingsPopoverXcls_build_execute_args_private_offset;
 static gpointer vala_project_settings_popover_xcls_build_execute_args_parent_class = NULL;
-static gint ValaProjectSettingsPopoverXcls_Box57_private_offset;
-static gpointer vala_project_settings_popover_xcls_box57_parent_class = NULL;
-static gint ValaProjectSettingsPopoverXcls_Button58_private_offset;
-static gpointer vala_project_settings_popover_xcls_button58_parent_class = NULL;
-static gint ValaProjectSettingsPopoverXcls_Label59_private_offset;
-static gpointer vala_project_settings_popover_xcls_label59_parent_class = NULL;
+static gint ValaProjectSettingsPopoverXcls_Box55_private_offset;
+static gpointer vala_project_settings_popover_xcls_box55_parent_class = NULL;
+static gint ValaProjectSettingsPopoverXcls_Button56_private_offset;
+static gpointer vala_project_settings_popover_xcls_button56_parent_class = NULL;
+static gint ValaProjectSettingsPopoverXcls_Label57_private_offset;
+static gpointer vala_project_settings_popover_xcls_label57_parent_class = NULL;
 static gint ValaProjectSettingsPopoverXcls_save_btn_private_offset;
 static gpointer vala_project_settings_popover_xcls_save_btn_parent_class = NULL;
 
@@ -2234,8 +2168,6 @@ VALA_EXTERN GType vala_project_settings_popover_xcls_set_vboxb_get_type (void) G
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_set_vboxb, g_object_unref)
 VALA_EXTERN GType vala_project_settings_popover_xcls_build_name_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_build_name, g_object_unref)
-VALA_EXTERN GType vala_project_settings_popover_xcls_build_pack_target_get_type (void) G_GNUC_CONST ;
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_build_pack_target, g_object_unref)
 VALA_EXTERN GType vala_project_settings_popover_xcls_build_execute_args_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_build_execute_args, g_object_unref)
 VALA_EXTERN GType vala_project_settings_popover_xcls_save_btn_get_type (void) G_GNUC_CONST ;
@@ -2261,11 +2193,11 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Box5, g_object_unr
 VALA_EXTERN ValaProjectSettingsPopoverXcls_Box5* vala_project_settings_popover_xcls_box5_new (ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_Box5* vala_project_settings_popover_xcls_box5_construct (GType object_type,
                                                                                         ValaProjectSettingsPopover* _owner);
-static gboolean __lambda142_ (ValaProjectSettingsPopover* self);
-static gboolean ___lambda142__gtk_window_close_request (GtkWindow* _sender,
+static gboolean __lambda141_ (ValaProjectSettingsPopover* self);
+static gboolean ___lambda141__gtk_window_close_request (GtkWindow* _sender,
                                                  gpointer self);
-static void __lambda143_ (ValaProjectSettingsPopover* self);
-static void ___lambda143__gtk_widget_hide (GtkWidget* _sender,
+static void __lambda142_ (ValaProjectSettingsPopover* self);
+static void ___lambda142__gtk_widget_hide (GtkWidget* _sender,
                                     gpointer self);
 VALA_EXTERN void vala_project_settings_popover_show (ValaProjectSettingsPopover* self,
                                          GtkWindow* pwin,
@@ -2278,8 +2210,8 @@ VALA_EXTERN GType palete_gir_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteGir, g_object_unref)
 VALA_EXTERN void project_gtk_loadVapiIntoStore (ProjectGtk* self,
                                     GListStore* ls);
-static gboolean __lambda144_ (ValaProjectSettingsPopover* self);
-static gboolean ___lambda144__gsource_func (gpointer self);
+static gboolean __lambda143_ (ValaProjectSettingsPopover* self);
+static gboolean ___lambda143__gsource_func (gpointer self);
 VALA_EXTERN void project_gtk_loadTargetsIntoStore (ProjectGtk* self,
                                        GListStore* ls);
 VALA_EXTERN void vala_project_settings_popover_xcls_target_sel_selectTarget (ValaProjectSettingsPopoverXcls_target_sel* self,
@@ -2305,10 +2237,10 @@ static GType vala_project_settings_popover_xcls_button4_get_type_once (void);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_notebook* vala_project_settings_popover_xcls_notebook_new (ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_notebook* vala_project_settings_popover_xcls_notebook_construct (GType object_type,
                                                                                                 ValaProjectSettingsPopover* _owner);
-VALA_EXTERN GType vala_project_settings_popover_xcls_box57_get_type (void) G_GNUC_CONST ;
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Box57, g_object_unref)
-VALA_EXTERN ValaProjectSettingsPopoverXcls_Box57* vala_project_settings_popover_xcls_box57_new (ValaProjectSettingsPopover* _owner);
-VALA_EXTERN ValaProjectSettingsPopoverXcls_Box57* vala_project_settings_popover_xcls_box57_construct (GType object_type,
+VALA_EXTERN GType vala_project_settings_popover_xcls_box55_get_type (void) G_GNUC_CONST ;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Box55, g_object_unref)
+VALA_EXTERN ValaProjectSettingsPopoverXcls_Box55* vala_project_settings_popover_xcls_box55_new (ValaProjectSettingsPopover* _owner);
+VALA_EXTERN ValaProjectSettingsPopoverXcls_Box55* vala_project_settings_popover_xcls_box55_construct (GType object_type,
                                                                                           ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_box5_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_box5_get_type_once (void);
@@ -2642,8 +2574,8 @@ static void ___lambda132__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void vala_project_settings_popover_xcls_button42_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_button42_get_type_once (void);
-static void __lambda137_ (ValaProjectSettingsPopoverXcls_Button43* self);
-static void ___lambda137__gtk_button_clicked (GtkButton* _sender,
+static void __lambda136_ (ValaProjectSettingsPopoverXcls_Button43* self);
+static void ___lambda136__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void vala_project_settings_popover_xcls_button43_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_button43_get_type_once (void);
@@ -2686,14 +2618,14 @@ VALA_EXTERN ValaProjectSettingsPopoverXcls_SignalListItemFactory49* vala_project
                                                                                                                               ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_columnviewcolumn48_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_columnviewcolumn48_get_type_once (void);
-static void __lambda138_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
+static void __lambda137_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
                    GObject* item);
-static void ___lambda138__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda137__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda139_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
+static void __lambda138_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
                    GObject* listitem);
-static void ___lambda139__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda138__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void vala_project_settings_popover_xcls_signallistitemfactory49_finalize (GObject * obj);
@@ -2711,14 +2643,6 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Label53, g_object_
 VALA_EXTERN ValaProjectSettingsPopoverXcls_Label53* vala_project_settings_popover_xcls_label53_new (ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_Label53* vala_project_settings_popover_xcls_label53_construct (GType object_type,
                                                                                               ValaProjectSettingsPopover* _owner);
-VALA_EXTERN ValaProjectSettingsPopoverXcls_build_pack_target* vala_project_settings_popover_xcls_build_pack_target_new (ValaProjectSettingsPopover* _owner);
-VALA_EXTERN ValaProjectSettingsPopoverXcls_build_pack_target* vala_project_settings_popover_xcls_build_pack_target_construct (GType object_type,
-                                                                                                                  ValaProjectSettingsPopover* _owner);
-VALA_EXTERN GType vala_project_settings_popover_xcls_label55_get_type (void) G_GNUC_CONST ;
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Label55, g_object_unref)
-VALA_EXTERN ValaProjectSettingsPopoverXcls_Label55* vala_project_settings_popover_xcls_label55_new (ValaProjectSettingsPopover* _owner);
-VALA_EXTERN ValaProjectSettingsPopoverXcls_Label55* vala_project_settings_popover_xcls_label55_construct (GType object_type,
-                                                                                              ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_build_execute_args* vala_project_settings_popover_xcls_build_execute_args_new (ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_build_execute_args* vala_project_settings_popover_xcls_build_execute_args_construct (GType object_type,
                                                                                                                     ValaProjectSettingsPopover* _owner);
@@ -2735,42 +2659,35 @@ static void vala_project_settings_popover_xcls_build_name_finalize (GObject * ob
 static GType vala_project_settings_popover_xcls_build_name_get_type_once (void);
 static void vala_project_settings_popover_xcls_label53_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_label53_get_type_once (void);
-static void __lambda135_ (ValaProjectSettingsPopoverXcls_build_pack_target* self);
+static void __lambda135_ (ValaProjectSettingsPopoverXcls_build_execute_args* self);
 static void ___lambda135__gtk_editable_changed (GtkEditable* _sender,
-                                         gpointer self);
-static void vala_project_settings_popover_xcls_build_pack_target_finalize (GObject * obj);
-static GType vala_project_settings_popover_xcls_build_pack_target_get_type_once (void);
-static void vala_project_settings_popover_xcls_label55_finalize (GObject * obj);
-static GType vala_project_settings_popover_xcls_label55_get_type_once (void);
-static void __lambda136_ (ValaProjectSettingsPopoverXcls_build_execute_args* self);
-static void ___lambda136__gtk_editable_changed (GtkEditable* _sender,
                                          gpointer self);
 static void vala_project_settings_popover_xcls_build_execute_args_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_build_execute_args_get_type_once (void);
-VALA_EXTERN GType vala_project_settings_popover_xcls_button58_get_type (void) G_GNUC_CONST ;
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Button58, g_object_unref)
-VALA_EXTERN ValaProjectSettingsPopoverXcls_Button58* vala_project_settings_popover_xcls_button58_new (ValaProjectSettingsPopover* _owner);
-VALA_EXTERN ValaProjectSettingsPopoverXcls_Button58* vala_project_settings_popover_xcls_button58_construct (GType object_type,
+VALA_EXTERN GType vala_project_settings_popover_xcls_button56_get_type (void) G_GNUC_CONST ;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Button56, g_object_unref)
+VALA_EXTERN ValaProjectSettingsPopoverXcls_Button56* vala_project_settings_popover_xcls_button56_new (ValaProjectSettingsPopover* _owner);
+VALA_EXTERN ValaProjectSettingsPopoverXcls_Button56* vala_project_settings_popover_xcls_button56_construct (GType object_type,
                                                                                                 ValaProjectSettingsPopover* _owner);
-VALA_EXTERN GType vala_project_settings_popover_xcls_label59_get_type (void) G_GNUC_CONST ;
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Label59, g_object_unref)
-VALA_EXTERN ValaProjectSettingsPopoverXcls_Label59* vala_project_settings_popover_xcls_label59_new (ValaProjectSettingsPopover* _owner);
-VALA_EXTERN ValaProjectSettingsPopoverXcls_Label59* vala_project_settings_popover_xcls_label59_construct (GType object_type,
+VALA_EXTERN GType vala_project_settings_popover_xcls_label57_get_type (void) G_GNUC_CONST ;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Label57, g_object_unref)
+VALA_EXTERN ValaProjectSettingsPopoverXcls_Label57* vala_project_settings_popover_xcls_label57_new (ValaProjectSettingsPopover* _owner);
+VALA_EXTERN ValaProjectSettingsPopoverXcls_Label57* vala_project_settings_popover_xcls_label57_construct (GType object_type,
                                                                                               ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_save_btn* vala_project_settings_popover_xcls_save_btn_new (ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_save_btn* vala_project_settings_popover_xcls_save_btn_construct (GType object_type,
                                                                                                 ValaProjectSettingsPopover* _owner);
-static void vala_project_settings_popover_xcls_box57_finalize (GObject * obj);
-static GType vala_project_settings_popover_xcls_box57_get_type_once (void);
-static void __lambda141_ (ValaProjectSettingsPopoverXcls_Button58* self);
-static void ___lambda141__gtk_button_clicked (GtkButton* _sender,
-                                       gpointer self);
-static void vala_project_settings_popover_xcls_button58_finalize (GObject * obj);
-static GType vala_project_settings_popover_xcls_button58_get_type_once (void);
-static void vala_project_settings_popover_xcls_label59_finalize (GObject * obj);
-static GType vala_project_settings_popover_xcls_label59_get_type_once (void);
-static void __lambda140_ (ValaProjectSettingsPopoverXcls_save_btn* self);
+static void vala_project_settings_popover_xcls_box55_finalize (GObject * obj);
+static GType vala_project_settings_popover_xcls_box55_get_type_once (void);
+static void __lambda140_ (ValaProjectSettingsPopoverXcls_Button56* self);
 static void ___lambda140__gtk_button_clicked (GtkButton* _sender,
+                                       gpointer self);
+static void vala_project_settings_popover_xcls_button56_finalize (GObject * obj);
+static GType vala_project_settings_popover_xcls_button56_get_type_once (void);
+static void vala_project_settings_popover_xcls_label57_finalize (GObject * obj);
+static GType vala_project_settings_popover_xcls_label57_get_type_once (void);
+static void __lambda139_ (ValaProjectSettingsPopoverXcls_save_btn* self);
+static void ___lambda139__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void vala_project_settings_popover_xcls_save_btn_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_save_btn_get_type_once (void);
@@ -2796,7 +2713,7 @@ _g_object_ref0 (gpointer self)
 {
 #line 13 "ValaProjectSettingsPopover.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 2800 "ValaProjectSettingsPopover.vala.c"
+#line 2717 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopover*
@@ -2810,7 +2727,7 @@ vala_project_settings_popover_singleton (void)
 	_tmp0_ = _ValaProjectSettingsPopover;
 #line 10 "ValaProjectSettingsPopover.vala"
 	if (_tmp0_ == NULL) {
-#line 2814 "ValaProjectSettingsPopover.vala.c"
+#line 2731 "ValaProjectSettingsPopover.vala.c"
 		ValaProjectSettingsPopover* _tmp1_;
 #line 11 "ValaProjectSettingsPopover.vala"
 		_tmp1_ = vala_project_settings_popover_new ();
@@ -2818,7 +2735,7 @@ vala_project_settings_popover_singleton (void)
 		_g_object_unref0 (_ValaProjectSettingsPopover);
 #line 11 "ValaProjectSettingsPopover.vala"
 		_ValaProjectSettingsPopover = _tmp1_;
-#line 2822 "ValaProjectSettingsPopover.vala.c"
+#line 2739 "ValaProjectSettingsPopover.vala.c"
 	}
 #line 13 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _ValaProjectSettingsPopover;
@@ -2828,64 +2745,64 @@ vala_project_settings_popover_singleton (void)
 	result = _tmp3_;
 #line 13 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 2832 "ValaProjectSettingsPopover.vala.c"
+#line 2749 "ValaProjectSettingsPopover.vala.c"
 }
 
 static gboolean
-__lambda142_ (ValaProjectSettingsPopover* self)
+__lambda141_ (ValaProjectSettingsPopover* self)
 {
 	gboolean result;
-#line 70 "ValaProjectSettingsPopover.vala"
+#line 69 "ValaProjectSettingsPopover.vala"
 	if (!self->done) {
-#line 71 "ValaProjectSettingsPopover.vala"
+#line 70 "ValaProjectSettingsPopover.vala"
 		result = TRUE;
-#line 71 "ValaProjectSettingsPopover.vala"
+#line 70 "ValaProjectSettingsPopover.vala"
 		return result;
-#line 2845 "ValaProjectSettingsPopover.vala.c"
+#line 2762 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 73 "ValaProjectSettingsPopover.vala"
+#line 72 "ValaProjectSettingsPopover.vala"
 	result = FALSE;
-#line 73 "ValaProjectSettingsPopover.vala"
+#line 72 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 2851 "ValaProjectSettingsPopover.vala.c"
+#line 2768 "ValaProjectSettingsPopover.vala.c"
 }
 
 static gboolean
-___lambda142__gtk_window_close_request (GtkWindow* _sender,
+___lambda141__gtk_window_close_request (GtkWindow* _sender,
                                         gpointer self)
 {
 	gboolean result;
-	result = __lambda142_ ((ValaProjectSettingsPopover*) self);
-#line 69 "ValaProjectSettingsPopover.vala"
+	result = __lambda141_ ((ValaProjectSettingsPopover*) self);
+#line 68 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 2862 "ValaProjectSettingsPopover.vala.c"
+#line 2779 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda143_ (ValaProjectSettingsPopover* self)
+__lambda142_ (ValaProjectSettingsPopover* self)
 {
-#line 76 "ValaProjectSettingsPopover.vala"
+#line 75 "ValaProjectSettingsPopover.vala"
 	if (!self->done) {
-#line 2870 "ValaProjectSettingsPopover.vala.c"
+#line 2787 "ValaProjectSettingsPopover.vala.c"
 		ValaProjectSettingsPopover* _tmp0_;
 		GtkWindow* _tmp1_;
-#line 77 "ValaProjectSettingsPopover.vala"
+#line 76 "ValaProjectSettingsPopover.vala"
 		_tmp0_ = self->priv->_this;
-#line 77 "ValaProjectSettingsPopover.vala"
+#line 76 "ValaProjectSettingsPopover.vala"
 		_tmp1_ = _tmp0_->el;
-#line 77 "ValaProjectSettingsPopover.vala"
+#line 76 "ValaProjectSettingsPopover.vala"
 		gtk_widget_show ((GtkWidget*) _tmp1_);
-#line 2879 "ValaProjectSettingsPopover.vala.c"
+#line 2796 "ValaProjectSettingsPopover.vala.c"
 	}
 }
 
 static void
-___lambda143__gtk_widget_hide (GtkWidget* _sender,
+___lambda142__gtk_widget_hide (GtkWidget* _sender,
                                gpointer self)
 {
-#line 75 "ValaProjectSettingsPopover.vala"
-	__lambda143_ ((ValaProjectSettingsPopover*) self);
-#line 2889 "ValaProjectSettingsPopover.vala.c"
+#line 74 "ValaProjectSettingsPopover.vala"
+	__lambda142_ ((ValaProjectSettingsPopover*) self);
+#line 2806 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopover*
@@ -2907,95 +2824,95 @@ vala_project_settings_popover_construct (GType object_type)
 	GtkBox* _tmp10_;
 	GtkWindow* _tmp11_;
 	GtkWindow* _tmp12_;
-#line 46 "ValaProjectSettingsPopover.vala"
+#line 45 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopover*) g_object_new (object_type, NULL);
-#line 48 "ValaProjectSettingsPopover.vala"
+#line 47 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (self);
-#line 48 "ValaProjectSettingsPopover.vala"
+#line 47 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 48 "ValaProjectSettingsPopover.vala"
+#line 47 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 49 "ValaProjectSettingsPopover.vala"
+#line 48 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkWindow*) gtk_window_new ();
-#line 49 "ValaProjectSettingsPopover.vala"
+#line 48 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 49 "ValaProjectSettingsPopover.vala"
+#line 48 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 49 "ValaProjectSettingsPopover.vala"
+#line 48 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 52 "ValaProjectSettingsPopover.vala"
+#line 51 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->window);
-#line 52 "ValaProjectSettingsPopover.vala"
+#line 51 "ValaProjectSettingsPopover.vala"
 	self->window = NULL;
-#line 53 "ValaProjectSettingsPopover.vala"
+#line 52 "ValaProjectSettingsPopover.vala"
 	self->position = GTK_POS_RIGHT;
-#line 54 "ValaProjectSettingsPopover.vala"
+#line 53 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->selected_target);
-#line 54 "ValaProjectSettingsPopover.vala"
+#line 53 "ValaProjectSettingsPopover.vala"
 	self->selected_target = NULL;
-#line 55 "ValaProjectSettingsPopover.vala"
+#line 54 "ValaProjectSettingsPopover.vala"
 	self->border_width = (guint) 0;
-#line 56 "ValaProjectSettingsPopover.vala"
+#line 55 "ValaProjectSettingsPopover.vala"
 	self->done = FALSE;
-#line 57 "ValaProjectSettingsPopover.vala"
+#line 56 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->project);
-#line 57 "ValaProjectSettingsPopover.vala"
+#line 56 "ValaProjectSettingsPopover.vala"
 	self->project = NULL;
-#line 58 "ValaProjectSettingsPopover.vala"
+#line 57 "ValaProjectSettingsPopover.vala"
 	self->autohide = FALSE;
-#line 61 "ValaProjectSettingsPopover.vala"
+#line 60 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 61 "ValaProjectSettingsPopover.vala"
+#line 60 "ValaProjectSettingsPopover.vala"
 	gtk_window_set_modal (_tmp2_, TRUE);
-#line 62 "ValaProjectSettingsPopover.vala"
+#line 61 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 62 "ValaProjectSettingsPopover.vala"
+#line 61 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_headerbar2_new (_tmp3_);
-#line 62 "ValaProjectSettingsPopover.vala"
+#line 61 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 63 "ValaProjectSettingsPopover.vala"
+#line 62 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 63 "ValaProjectSettingsPopover.vala"
+#line 62 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = child_1->el;
-#line 63 "ValaProjectSettingsPopover.vala"
+#line 62 "ValaProjectSettingsPopover.vala"
 	gtk_window_set_titlebar (_tmp5_, (GtkWidget*) _tmp6_);
-#line 64 "ValaProjectSettingsPopover.vala"
+#line 63 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = self->priv->_this;
-#line 64 "ValaProjectSettingsPopover.vala"
+#line 63 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = vala_project_settings_popover_xcls_box5_new (_tmp7_);
-#line 64 "ValaProjectSettingsPopover.vala"
+#line 63 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp8_;
-#line 65 "ValaProjectSettingsPopover.vala"
+#line 64 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 66 "ValaProjectSettingsPopover.vala"
+#line 65 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->el;
-#line 66 "ValaProjectSettingsPopover.vala"
+#line 65 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = child_2->el;
-#line 66 "ValaProjectSettingsPopover.vala"
+#line 65 "ValaProjectSettingsPopover.vala"
 	gtk_window_set_child (_tmp9_, (GtkWidget*) _tmp10_);
-#line 69 "ValaProjectSettingsPopover.vala"
+#line 68 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = self->el;
-#line 69 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp11_, "close-request", (GCallback) ___lambda142__gtk_window_close_request, self, 0);
-#line 75 "ValaProjectSettingsPopover.vala"
+#line 68 "ValaProjectSettingsPopover.vala"
+	g_signal_connect_object (_tmp11_, "close-request", (GCallback) ___lambda141__gtk_window_close_request, self, 0);
+#line 74 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = self->el;
-#line 75 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp12_, "hide", (GCallback) ___lambda143__gtk_widget_hide, self, 0);
-#line 46 "ValaProjectSettingsPopover.vala"
+#line 74 "ValaProjectSettingsPopover.vala"
+	g_signal_connect_object ((GtkWidget*) _tmp12_, "hide", (GCallback) ___lambda142__gtk_widget_hide, self, 0);
+#line 45 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 46 "ValaProjectSettingsPopover.vala"
+#line 45 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 46 "ValaProjectSettingsPopover.vala"
+#line 45 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 2991 "ValaProjectSettingsPopover.vala.c"
+#line 2908 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopover*
 vala_project_settings_popover_new (void)
 {
-#line 46 "ValaProjectSettingsPopover.vala"
+#line 45 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_construct (TYPE_VALA_PROJECT_SETTINGS_POPOVER);
-#line 2999 "ValaProjectSettingsPopover.vala.c"
+#line 2916 "ValaProjectSettingsPopover.vala.c"
 }
 
 static guint8*
@@ -3030,48 +2947,48 @@ string_get_data (const gchar* self,
 	if (result_length1) {
 #line 1566 "glib-2.0.vapi"
 		*result_length1 = _tmp2__length1;
-#line 3034 "ValaProjectSettingsPopover.vala.c"
+#line 2951 "ValaProjectSettingsPopover.vala.c"
 	}
 #line 1566 "glib-2.0.vapi"
 	result = _tmp2_;
 #line 1566 "glib-2.0.vapi"
 	return result;
-#line 3040 "ValaProjectSettingsPopover.vala.c"
+#line 2957 "ValaProjectSettingsPopover.vala.c"
 }
 
 static gboolean
-__lambda144_ (ValaProjectSettingsPopover* self)
+__lambda143_ (ValaProjectSettingsPopover* self)
 {
 	ValaProjectSettingsPopoverXcls_vapi_scroll* _tmp0_;
 	GtkScrolledWindow* _tmp1_;
 	GtkAdjustment* _tmp2_;
 	GtkAdjustment* _tmp3_;
 	gboolean result;
-#line 96 "ValaProjectSettingsPopover.vala"
+#line 95 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->vapi_scroll;
-#line 96 "ValaProjectSettingsPopover.vala"
+#line 95 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _tmp0_->el;
-#line 96 "ValaProjectSettingsPopover.vala"
+#line 95 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = gtk_scrolled_window_get_vadjustment (_tmp1_);
-#line 96 "ValaProjectSettingsPopover.vala"
+#line 95 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _tmp2_;
-#line 96 "ValaProjectSettingsPopover.vala"
+#line 95 "ValaProjectSettingsPopover.vala"
 	gtk_adjustment_set_value (_tmp3_, (gdouble) 0);
-#line 97 "ValaProjectSettingsPopover.vala"
+#line 96 "ValaProjectSettingsPopover.vala"
 	result = FALSE;
-#line 97 "ValaProjectSettingsPopover.vala"
+#line 96 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 3065 "ValaProjectSettingsPopover.vala.c"
+#line 2982 "ValaProjectSettingsPopover.vala.c"
 }
 
 static gboolean
-___lambda144__gsource_func (gpointer self)
+___lambda143__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda144_ ((ValaProjectSettingsPopover*) self);
-#line 95 "ValaProjectSettingsPopover.vala"
+	result = __lambda143_ ((ValaProjectSettingsPopover*) self);
+#line 94 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 3075 "ValaProjectSettingsPopover.vala.c"
+#line 2992 "ValaProjectSettingsPopover.vala.c"
 }
 
 void
@@ -3105,92 +3022,92 @@ vala_project_settings_popover_show (ValaProjectSettingsPopover* self,
 	GtkWindow* _tmp21_;
 	ValaProjectSettingsPopoverXcls_notebook* _tmp22_;
 	GtkNotebook* _tmp23_;
-#line 88 "ValaProjectSettingsPopover.vala"
+#line 87 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (project);
-#line 88 "ValaProjectSettingsPopover.vala"
+#line 87 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->project);
-#line 88 "ValaProjectSettingsPopover.vala"
+#line 87 "ValaProjectSettingsPopover.vala"
 	self->project = _tmp0_;
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->compile_flags;
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _tmp1_->el;
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = gtk_entry_get_buffer (_tmp2_);
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_;
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = project->compile_flags;
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = string_get_data (_tmp5_, &_tmp7_);
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp6__length1 = _tmp7_;
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = _tmp6_;
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	_tmp8__length1 = _tmp6__length1;
-#line 90 "ValaProjectSettingsPopover.vala"
+#line 89 "ValaProjectSettingsPopover.vala"
 	gtk_entry_buffer_set_text (_tmp4_, (const char*) _tmp8_, (gint) _tmp8__length1);
-#line 94 "ValaProjectSettingsPopover.vala"
+#line 93 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->priv->_this;
-#line 94 "ValaProjectSettingsPopover.vala"
+#line 93 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = _tmp9_->vapimodel;
-#line 94 "ValaProjectSettingsPopover.vala"
+#line 93 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = _tmp10_->el;
-#line 94 "ValaProjectSettingsPopover.vala"
+#line 93 "ValaProjectSettingsPopover.vala"
 	project_gtk_loadVapiIntoStore (project, _tmp11_);
-#line 95 "ValaProjectSettingsPopover.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda144__gsource_func, g_object_ref (self), g_object_unref);
-#line 102 "ValaProjectSettingsPopover.vala"
+#line 94 "ValaProjectSettingsPopover.vala"
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda143__gsource_func, g_object_ref (self), g_object_unref);
+#line 101 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = self->target_model;
-#line 102 "ValaProjectSettingsPopover.vala"
+#line 101 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = _tmp12_->el;
-#line 102 "ValaProjectSettingsPopover.vala"
+#line 101 "ValaProjectSettingsPopover.vala"
 	project_gtk_loadTargetsIntoStore (project, _tmp13_);
-#line 104 "ValaProjectSettingsPopover.vala"
+#line 103 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = self->priv->_this;
-#line 104 "ValaProjectSettingsPopover.vala"
+#line 103 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = _tmp14_->target_sel;
-#line 104 "ValaProjectSettingsPopover.vala"
+#line 103 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = _tmp15_->el;
-#line 104 "ValaProjectSettingsPopover.vala"
+#line 103 "ValaProjectSettingsPopover.vala"
 	gtk_single_selection_set_selected (_tmp16_, GTK_INVALID_LIST_POSITION);
-#line 105 "ValaProjectSettingsPopover.vala"
+#line 104 "ValaProjectSettingsPopover.vala"
 	_tmp17_ = self->priv->_this;
-#line 105 "ValaProjectSettingsPopover.vala"
+#line 104 "ValaProjectSettingsPopover.vala"
 	_tmp18_ = _tmp17_->target_sel;
-#line 105 "ValaProjectSettingsPopover.vala"
+#line 104 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_target_sel_selectTarget (_tmp18_, NULL);
-#line 109 "ValaProjectSettingsPopover.vala"
+#line 108 "ValaProjectSettingsPopover.vala"
 	_tmp19_ = self->el;
-#line 109 "ValaProjectSettingsPopover.vala"
+#line 108 "ValaProjectSettingsPopover.vala"
 	gtk_window_set_transient_for (_tmp19_, pwin);
-#line 112 "ValaProjectSettingsPopover.vala"
+#line 111 "ValaProjectSettingsPopover.vala"
 	_tmp20_ = self->el;
-#line 112 "ValaProjectSettingsPopover.vala"
+#line 111 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_size_request ((GtkWidget*) _tmp20_, 800, 800);
-#line 113 "ValaProjectSettingsPopover.vala"
+#line 112 "ValaProjectSettingsPopover.vala"
 	_tmp21_ = self->el;
-#line 113 "ValaProjectSettingsPopover.vala"
+#line 112 "ValaProjectSettingsPopover.vala"
 	gtk_widget_show ((GtkWidget*) _tmp21_);
-#line 114 "ValaProjectSettingsPopover.vala"
+#line 113 "ValaProjectSettingsPopover.vala"
 	_tmp22_ = self->notebook;
-#line 114 "ValaProjectSettingsPopover.vala"
+#line 113 "ValaProjectSettingsPopover.vala"
 	_tmp23_ = _tmp22_->el;
-#line 114 "ValaProjectSettingsPopover.vala"
+#line 113 "ValaProjectSettingsPopover.vala"
 	g_object_set (_tmp23_, "page", 0, NULL);
-#line 3183 "ValaProjectSettingsPopover.vala.c"
+#line 3100 "ValaProjectSettingsPopover.vala.c"
 }
 
 void
 vala_project_settings_popover_save (ValaProjectSettingsPopover* self)
 {
 	ProjectGtk* _tmp0_;
-#line 120 "ValaProjectSettingsPopover.vala"
+#line 119 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->project;
-#line 120 "ValaProjectSettingsPopover.vala"
+#line 119 "ValaProjectSettingsPopover.vala"
 	project_project_save ((ProjectProject*) _tmp0_);
-#line 3194 "ValaProjectSettingsPopover.vala.c"
+#line 3111 "ValaProjectSettingsPopover.vala.c"
 }
 
 static inline gpointer
@@ -3216,100 +3133,100 @@ vala_project_settings_popover_xcls_headerbar2_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_Button4* _tmp7_;
 	GtkHeaderBar* _tmp8_;
 	GtkButton* _tmp9_;
-#line 131 "ValaProjectSettingsPopover.vala"
+#line 130 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_HeaderBar2*) g_object_new (object_type, NULL);
-#line 133 "ValaProjectSettingsPopover.vala"
+#line 132 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 133 "ValaProjectSettingsPopover.vala"
+#line 132 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 133 "ValaProjectSettingsPopover.vala"
+#line 132 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 134 "ValaProjectSettingsPopover.vala"
+#line 133 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkHeaderBar*) gtk_header_bar_new ();
-#line 134 "ValaProjectSettingsPopover.vala"
+#line 133 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 134 "ValaProjectSettingsPopover.vala"
+#line 133 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 134 "ValaProjectSettingsPopover.vala"
+#line 133 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 139 "ValaProjectSettingsPopover.vala"
+#line 138 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->priv->_this;
-#line 139 "ValaProjectSettingsPopover.vala"
+#line 138 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = vala_project_settings_popover_xcls_label3_new (_tmp2_);
-#line 139 "ValaProjectSettingsPopover.vala"
+#line 138 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp3_;
-#line 140 "ValaProjectSettingsPopover.vala"
+#line 139 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 140 "ValaProjectSettingsPopover.vala"
+#line 139 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 140 "ValaProjectSettingsPopover.vala"
+#line 139 "ValaProjectSettingsPopover.vala"
 	gtk_header_bar_set_title_widget (_tmp4_, (GtkWidget*) _tmp5_);
-#line 141 "ValaProjectSettingsPopover.vala"
+#line 140 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->priv->_this;
-#line 141 "ValaProjectSettingsPopover.vala"
+#line 140 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = vala_project_settings_popover_xcls_button4_new (_tmp6_);
-#line 141 "ValaProjectSettingsPopover.vala"
+#line 140 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp7_;
-#line 142 "ValaProjectSettingsPopover.vala"
+#line 141 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 143 "ValaProjectSettingsPopover.vala"
+#line 142 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 143 "ValaProjectSettingsPopover.vala"
+#line 142 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = child_2->el;
-#line 143 "ValaProjectSettingsPopover.vala"
+#line 142 "ValaProjectSettingsPopover.vala"
 	gtk_header_bar_pack_end (_tmp8_, (GtkWidget*) _tmp9_);
-#line 131 "ValaProjectSettingsPopover.vala"
+#line 130 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 131 "ValaProjectSettingsPopover.vala"
+#line 130 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 131 "ValaProjectSettingsPopover.vala"
+#line 130 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 3268 "ValaProjectSettingsPopover.vala.c"
+#line 3185 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_HeaderBar2*
 vala_project_settings_popover_xcls_headerbar2_new (ValaProjectSettingsPopover* _owner)
 {
-#line 131 "ValaProjectSettingsPopover.vala"
+#line 130 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_headerbar2_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_HEADERBAR2, _owner);
-#line 3276 "ValaProjectSettingsPopover.vala.c"
+#line 3193 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_headerbar2_class_init (ValaProjectSettingsPopoverXcls_HeaderBar2Class * klass,
                                                           gpointer klass_data)
 {
-#line 122 "ValaProjectSettingsPopover.vala"
+#line 121 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_headerbar2_parent_class = g_type_class_peek_parent (klass);
-#line 122 "ValaProjectSettingsPopover.vala"
+#line 121 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_HeaderBar2_private_offset);
-#line 122 "ValaProjectSettingsPopover.vala"
+#line 121 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_headerbar2_finalize;
-#line 3289 "ValaProjectSettingsPopover.vala.c"
+#line 3206 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_headerbar2_instance_init (ValaProjectSettingsPopoverXcls_HeaderBar2 * self,
                                                              gpointer klass)
 {
-#line 122 "ValaProjectSettingsPopover.vala"
+#line 121 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_headerbar2_get_instance_private (self);
-#line 3298 "ValaProjectSettingsPopover.vala.c"
+#line 3215 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_headerbar2_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_HeaderBar2 * self;
-#line 122 "ValaProjectSettingsPopover.vala"
+#line 121 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_HEADERBAR2, ValaProjectSettingsPopoverXcls_HeaderBar2);
-#line 124 "ValaProjectSettingsPopover.vala"
+#line 123 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 125 "ValaProjectSettingsPopover.vala"
+#line 124 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 122 "ValaProjectSettingsPopover.vala"
+#line 121 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_headerbar2_parent_class)->finalize (obj);
-#line 3313 "ValaProjectSettingsPopover.vala.c"
+#line 3230 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -3347,70 +3264,70 @@ vala_project_settings_popover_xcls_label3_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_Label3 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkLabel* _tmp1_;
-#line 157 "ValaProjectSettingsPopover.vala"
+#line 156 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Label3*) g_object_new (object_type, NULL);
-#line 159 "ValaProjectSettingsPopover.vala"
+#line 158 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 159 "ValaProjectSettingsPopover.vala"
+#line 158 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 159 "ValaProjectSettingsPopover.vala"
+#line 158 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 160 "ValaProjectSettingsPopover.vala"
+#line 159 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkLabel*) gtk_label_new ("Change Vala  Compile settings");
-#line 160 "ValaProjectSettingsPopover.vala"
+#line 159 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 160 "ValaProjectSettingsPopover.vala"
+#line 159 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 160 "ValaProjectSettingsPopover.vala"
+#line 159 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 157 "ValaProjectSettingsPopover.vala"
+#line 156 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 3369 "ValaProjectSettingsPopover.vala.c"
+#line 3286 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Label3*
 vala_project_settings_popover_xcls_label3_new (ValaProjectSettingsPopover* _owner)
 {
-#line 157 "ValaProjectSettingsPopover.vala"
+#line 156 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_label3_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL3, _owner);
-#line 3377 "ValaProjectSettingsPopover.vala.c"
+#line 3294 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label3_class_init (ValaProjectSettingsPopoverXcls_Label3Class * klass,
                                                       gpointer klass_data)
 {
-#line 148 "ValaProjectSettingsPopover.vala"
+#line 147 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_label3_parent_class = g_type_class_peek_parent (klass);
-#line 148 "ValaProjectSettingsPopover.vala"
+#line 147 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Label3_private_offset);
-#line 148 "ValaProjectSettingsPopover.vala"
+#line 147 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label3_finalize;
-#line 3390 "ValaProjectSettingsPopover.vala.c"
+#line 3307 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label3_instance_init (ValaProjectSettingsPopoverXcls_Label3 * self,
                                                          gpointer klass)
 {
-#line 148 "ValaProjectSettingsPopover.vala"
+#line 147 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_label3_get_instance_private (self);
-#line 3399 "ValaProjectSettingsPopover.vala.c"
+#line 3316 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label3_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Label3 * self;
-#line 148 "ValaProjectSettingsPopover.vala"
+#line 147 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL3, ValaProjectSettingsPopoverXcls_Label3);
-#line 150 "ValaProjectSettingsPopover.vala"
+#line 149 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 151 "ValaProjectSettingsPopover.vala"
+#line 150 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 148 "ValaProjectSettingsPopover.vala"
+#line 147 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label3_parent_class)->finalize (obj);
-#line 3414 "ValaProjectSettingsPopover.vala.c"
+#line 3331 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -3450,78 +3367,78 @@ vala_project_settings_popover_xcls_button4_construct (GType object_type,
 	GtkButton* _tmp1_;
 	GtkButton* _tmp2_;
 	GtkButton* _tmp3_;
-#line 179 "ValaProjectSettingsPopover.vala"
+#line 178 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Button4*) g_object_new (object_type, NULL);
-#line 181 "ValaProjectSettingsPopover.vala"
+#line 180 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 181 "ValaProjectSettingsPopover.vala"
+#line 180 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 181 "ValaProjectSettingsPopover.vala"
+#line 180 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 182 "ValaProjectSettingsPopover.vala"
+#line 181 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 182 "ValaProjectSettingsPopover.vala"
+#line 181 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 182 "ValaProjectSettingsPopover.vala"
+#line 181 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 182 "ValaProjectSettingsPopover.vala"
+#line 181 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 187 "ValaProjectSettingsPopover.vala"
+#line 186 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 187 "ValaProjectSettingsPopover.vala"
+#line 186 "ValaProjectSettingsPopover.vala"
 	gtk_button_set_icon_name (_tmp2_, "");
-#line 188 "ValaProjectSettingsPopover.vala"
+#line 187 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 188 "ValaProjectSettingsPopover.vala"
+#line 187 "ValaProjectSettingsPopover.vala"
 	gtk_button_set_label (_tmp3_, "Create / Recreate Build files (configure.ac / makefile.am etc)");
-#line 179 "ValaProjectSettingsPopover.vala"
+#line 178 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 3480 "ValaProjectSettingsPopover.vala.c"
+#line 3397 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Button4*
 vala_project_settings_popover_xcls_button4_new (ValaProjectSettingsPopover* _owner)
 {
-#line 179 "ValaProjectSettingsPopover.vala"
+#line 178 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_button4_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON4, _owner);
-#line 3488 "ValaProjectSettingsPopover.vala.c"
+#line 3405 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button4_class_init (ValaProjectSettingsPopoverXcls_Button4Class * klass,
                                                        gpointer klass_data)
 {
-#line 170 "ValaProjectSettingsPopover.vala"
+#line 169 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_button4_parent_class = g_type_class_peek_parent (klass);
-#line 170 "ValaProjectSettingsPopover.vala"
+#line 169 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Button4_private_offset);
-#line 170 "ValaProjectSettingsPopover.vala"
+#line 169 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_button4_finalize;
-#line 3501 "ValaProjectSettingsPopover.vala.c"
+#line 3418 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button4_instance_init (ValaProjectSettingsPopoverXcls_Button4 * self,
                                                           gpointer klass)
 {
-#line 170 "ValaProjectSettingsPopover.vala"
+#line 169 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_button4_get_instance_private (self);
-#line 3510 "ValaProjectSettingsPopover.vala.c"
+#line 3427 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button4_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Button4 * self;
-#line 170 "ValaProjectSettingsPopover.vala"
+#line 169 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON4, ValaProjectSettingsPopoverXcls_Button4);
-#line 172 "ValaProjectSettingsPopover.vala"
+#line 171 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 173 "ValaProjectSettingsPopover.vala"
+#line 172 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 170 "ValaProjectSettingsPopover.vala"
+#line 169 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_button4_parent_class)->finalize (obj);
-#line 3525 "ValaProjectSettingsPopover.vala.c"
+#line 3442 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -3566,113 +3483,113 @@ vala_project_settings_popover_xcls_box5_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_notebook* _tmp5_;
 	GtkBox* _tmp6_;
 	GtkNotebook* _tmp7_;
-	ValaProjectSettingsPopoverXcls_Box57* child_2 = NULL;
+	ValaProjectSettingsPopoverXcls_Box55* child_2 = NULL;
 	ValaProjectSettingsPopover* _tmp8_;
-	ValaProjectSettingsPopoverXcls_Box57* _tmp9_;
+	ValaProjectSettingsPopoverXcls_Box55* _tmp9_;
 	GtkBox* _tmp10_;
 	GtkBox* _tmp11_;
-#line 204 "ValaProjectSettingsPopover.vala"
+#line 203 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Box5*) g_object_new (object_type, NULL);
-#line 206 "ValaProjectSettingsPopover.vala"
+#line 205 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 206 "ValaProjectSettingsPopover.vala"
+#line 205 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 206 "ValaProjectSettingsPopover.vala"
+#line 205 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 207 "ValaProjectSettingsPopover.vala"
+#line 206 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 207 "ValaProjectSettingsPopover.vala"
+#line 206 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 207 "ValaProjectSettingsPopover.vala"
+#line 206 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 207 "ValaProjectSettingsPopover.vala"
+#line 206 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 212 "ValaProjectSettingsPopover.vala"
+#line 211 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 212 "ValaProjectSettingsPopover.vala"
+#line 211 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 213 "ValaProjectSettingsPopover.vala"
+#line 212 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 213 "ValaProjectSettingsPopover.vala"
+#line 212 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp3_, TRUE);
-#line 214 "ValaProjectSettingsPopover.vala"
+#line 213 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->priv->_this;
-#line 214 "ValaProjectSettingsPopover.vala"
+#line 213 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = vala_project_settings_popover_xcls_notebook_new (_tmp4_);
-#line 214 "ValaProjectSettingsPopover.vala"
+#line 213 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp5_;
-#line 215 "ValaProjectSettingsPopover.vala"
+#line 214 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 215 "ValaProjectSettingsPopover.vala"
+#line 214 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = child_1->el;
-#line 215 "ValaProjectSettingsPopover.vala"
+#line 214 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp6_, (GtkWidget*) _tmp7_);
-#line 216 "ValaProjectSettingsPopover.vala"
+#line 215 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->priv->_this;
-#line 216 "ValaProjectSettingsPopover.vala"
-	_tmp9_ = vala_project_settings_popover_xcls_box57_new (_tmp8_);
-#line 216 "ValaProjectSettingsPopover.vala"
+#line 215 "ValaProjectSettingsPopover.vala"
+	_tmp9_ = vala_project_settings_popover_xcls_box55_new (_tmp8_);
+#line 215 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp9_;
-#line 217 "ValaProjectSettingsPopover.vala"
+#line 216 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 218 "ValaProjectSettingsPopover.vala"
+#line 217 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = self->el;
-#line 218 "ValaProjectSettingsPopover.vala"
+#line 217 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = child_2->el;
-#line 218 "ValaProjectSettingsPopover.vala"
+#line 217 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp10_, (GtkWidget*) _tmp11_);
-#line 204 "ValaProjectSettingsPopover.vala"
+#line 203 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 204 "ValaProjectSettingsPopover.vala"
+#line 203 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 204 "ValaProjectSettingsPopover.vala"
+#line 203 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 3631 "ValaProjectSettingsPopover.vala.c"
+#line 3548 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Box5*
 vala_project_settings_popover_xcls_box5_new (ValaProjectSettingsPopover* _owner)
 {
-#line 204 "ValaProjectSettingsPopover.vala"
+#line 203 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_box5_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX5, _owner);
-#line 3639 "ValaProjectSettingsPopover.vala.c"
+#line 3556 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box5_class_init (ValaProjectSettingsPopoverXcls_Box5Class * klass,
                                                     gpointer klass_data)
 {
-#line 195 "ValaProjectSettingsPopover.vala"
+#line 194 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_box5_parent_class = g_type_class_peek_parent (klass);
-#line 195 "ValaProjectSettingsPopover.vala"
+#line 194 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Box5_private_offset);
-#line 195 "ValaProjectSettingsPopover.vala"
+#line 194 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_box5_finalize;
-#line 3652 "ValaProjectSettingsPopover.vala.c"
+#line 3569 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box5_instance_init (ValaProjectSettingsPopoverXcls_Box5 * self,
                                                        gpointer klass)
 {
-#line 195 "ValaProjectSettingsPopover.vala"
+#line 194 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_box5_get_instance_private (self);
-#line 3661 "ValaProjectSettingsPopover.vala.c"
+#line 3578 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box5_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Box5 * self;
-#line 195 "ValaProjectSettingsPopover.vala"
+#line 194 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX5, ValaProjectSettingsPopoverXcls_Box5);
-#line 197 "ValaProjectSettingsPopover.vala"
+#line 196 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 198 "ValaProjectSettingsPopover.vala"
+#line 197 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 195 "ValaProjectSettingsPopover.vala"
+#line 194 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_box5_parent_class)->finalize (obj);
-#line 3676 "ValaProjectSettingsPopover.vala.c"
+#line 3593 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -3735,142 +3652,142 @@ vala_project_settings_popover_xcls_notebook_construct (GType object_type,
 	ValaProjectSettingsPopover* _tmp20_;
 	ValaProjectSettingsPopoverXcls_label_targets* _tmp21_;
 	GtkLabel* _tmp22_;
-#line 232 "ValaProjectSettingsPopover.vala"
+#line 231 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_notebook*) g_object_new (object_type, NULL);
-#line 234 "ValaProjectSettingsPopover.vala"
+#line 233 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 234 "ValaProjectSettingsPopover.vala"
+#line 233 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 234 "ValaProjectSettingsPopover.vala"
+#line 233 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 235 "ValaProjectSettingsPopover.vala"
+#line 234 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 235 "ValaProjectSettingsPopover.vala"
+#line 234 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 235 "ValaProjectSettingsPopover.vala"
+#line 234 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->notebook);
-#line 235 "ValaProjectSettingsPopover.vala"
+#line 234 "ValaProjectSettingsPopover.vala"
 	_tmp1_->notebook = _tmp2_;
-#line 236 "ValaProjectSettingsPopover.vala"
+#line 235 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkNotebook*) gtk_notebook_new ();
-#line 236 "ValaProjectSettingsPopover.vala"
+#line 235 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 236 "ValaProjectSettingsPopover.vala"
+#line 235 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 236 "ValaProjectSettingsPopover.vala"
+#line 235 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 241 "ValaProjectSettingsPopover.vala"
+#line 240 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 241 "ValaProjectSettingsPopover.vala"
+#line 240 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp4_, TRUE);
-#line 242 "ValaProjectSettingsPopover.vala"
+#line 241 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->priv->_this;
-#line 242 "ValaProjectSettingsPopover.vala"
+#line 241 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = vala_project_settings_popover_xcls_label_global_new (_tmp5_);
-#line 242 "ValaProjectSettingsPopover.vala"
+#line 241 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp6_;
-#line 243 "ValaProjectSettingsPopover.vala"
+#line 242 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = self->priv->_this;
-#line 243 "ValaProjectSettingsPopover.vala"
+#line 242 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = vala_project_settings_popover_xcls_label_targets_new (_tmp7_);
-#line 243 "ValaProjectSettingsPopover.vala"
+#line 242 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp8_;
-#line 244 "ValaProjectSettingsPopover.vala"
+#line 243 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->priv->_this;
-#line 244 "ValaProjectSettingsPopover.vala"
+#line 243 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = vala_project_settings_popover_xcls_box9_new (_tmp9_);
-#line 244 "ValaProjectSettingsPopover.vala"
+#line 243 "ValaProjectSettingsPopover.vala"
 	child_3 = _tmp10_;
-#line 245 "ValaProjectSettingsPopover.vala"
+#line 244 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_3);
-#line 246 "ValaProjectSettingsPopover.vala"
+#line 245 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = self->el;
-#line 246 "ValaProjectSettingsPopover.vala"
+#line 245 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = child_3->el;
-#line 246 "ValaProjectSettingsPopover.vala"
+#line 245 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = self->priv->_this;
-#line 246 "ValaProjectSettingsPopover.vala"
+#line 245 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = _tmp13_->label_global;
-#line 246 "ValaProjectSettingsPopover.vala"
+#line 245 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = _tmp14_->el;
-#line 246 "ValaProjectSettingsPopover.vala"
+#line 245 "ValaProjectSettingsPopover.vala"
 	gtk_notebook_append_page (_tmp11_, (GtkWidget*) _tmp12_, (GtkWidget*) _tmp15_);
-#line 247 "ValaProjectSettingsPopover.vala"
+#line 246 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = self->priv->_this;
-#line 247 "ValaProjectSettingsPopover.vala"
+#line 246 "ValaProjectSettingsPopover.vala"
 	_tmp17_ = vala_project_settings_popover_xcls_paned27_new (_tmp16_);
-#line 247 "ValaProjectSettingsPopover.vala"
+#line 246 "ValaProjectSettingsPopover.vala"
 	child_4 = _tmp17_;
-#line 248 "ValaProjectSettingsPopover.vala"
+#line 247 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_4);
-#line 249 "ValaProjectSettingsPopover.vala"
+#line 248 "ValaProjectSettingsPopover.vala"
 	_tmp18_ = self->el;
-#line 249 "ValaProjectSettingsPopover.vala"
+#line 248 "ValaProjectSettingsPopover.vala"
 	_tmp19_ = child_4->el;
-#line 249 "ValaProjectSettingsPopover.vala"
+#line 248 "ValaProjectSettingsPopover.vala"
 	_tmp20_ = self->priv->_this;
-#line 249 "ValaProjectSettingsPopover.vala"
+#line 248 "ValaProjectSettingsPopover.vala"
 	_tmp21_ = _tmp20_->label_targets;
-#line 249 "ValaProjectSettingsPopover.vala"
+#line 248 "ValaProjectSettingsPopover.vala"
 	_tmp22_ = _tmp21_->el;
-#line 249 "ValaProjectSettingsPopover.vala"
+#line 248 "ValaProjectSettingsPopover.vala"
 	gtk_notebook_append_page (_tmp18_, (GtkWidget*) _tmp19_, (GtkWidget*) _tmp22_);
-#line 232 "ValaProjectSettingsPopover.vala"
+#line 231 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_4);
-#line 232 "ValaProjectSettingsPopover.vala"
+#line 231 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_3);
-#line 232 "ValaProjectSettingsPopover.vala"
+#line 231 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 232 "ValaProjectSettingsPopover.vala"
+#line 231 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 232 "ValaProjectSettingsPopover.vala"
+#line 231 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 3829 "ValaProjectSettingsPopover.vala.c"
+#line 3746 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_notebook*
 vala_project_settings_popover_xcls_notebook_new (ValaProjectSettingsPopover* _owner)
 {
-#line 232 "ValaProjectSettingsPopover.vala"
+#line 231 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_notebook_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_NOTEBOOK, _owner);
-#line 3837 "ValaProjectSettingsPopover.vala.c"
+#line 3754 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_notebook_class_init (ValaProjectSettingsPopoverXcls_notebookClass * klass,
                                                         gpointer klass_data)
 {
-#line 223 "ValaProjectSettingsPopover.vala"
+#line 222 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_notebook_parent_class = g_type_class_peek_parent (klass);
-#line 223 "ValaProjectSettingsPopover.vala"
+#line 222 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_notebook_private_offset);
-#line 223 "ValaProjectSettingsPopover.vala"
+#line 222 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_notebook_finalize;
-#line 3850 "ValaProjectSettingsPopover.vala.c"
+#line 3767 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_notebook_instance_init (ValaProjectSettingsPopoverXcls_notebook * self,
                                                            gpointer klass)
 {
-#line 223 "ValaProjectSettingsPopover.vala"
+#line 222 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_notebook_get_instance_private (self);
-#line 3859 "ValaProjectSettingsPopover.vala.c"
+#line 3776 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_notebook_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_notebook * self;
-#line 223 "ValaProjectSettingsPopover.vala"
+#line 222 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_NOTEBOOK, ValaProjectSettingsPopoverXcls_notebook);
-#line 225 "ValaProjectSettingsPopover.vala"
+#line 224 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 226 "ValaProjectSettingsPopover.vala"
+#line 225 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 223 "ValaProjectSettingsPopover.vala"
+#line 222 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_notebook_parent_class)->finalize (obj);
-#line 3874 "ValaProjectSettingsPopover.vala.c"
+#line 3791 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -3910,78 +3827,78 @@ vala_project_settings_popover_xcls_label_global_construct (GType object_type,
 	ValaProjectSettingsPopover* _tmp1_;
 	ValaProjectSettingsPopoverXcls_label_global* _tmp2_;
 	GtkLabel* _tmp3_;
-#line 263 "ValaProjectSettingsPopover.vala"
+#line 262 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_label_global*) g_object_new (object_type, NULL);
-#line 265 "ValaProjectSettingsPopover.vala"
+#line 264 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 265 "ValaProjectSettingsPopover.vala"
+#line 264 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 265 "ValaProjectSettingsPopover.vala"
+#line 264 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 266 "ValaProjectSettingsPopover.vala"
+#line 265 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 266 "ValaProjectSettingsPopover.vala"
+#line 265 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 266 "ValaProjectSettingsPopover.vala"
+#line 265 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->label_global);
-#line 266 "ValaProjectSettingsPopover.vala"
+#line 265 "ValaProjectSettingsPopover.vala"
 	_tmp1_->label_global = _tmp2_;
-#line 267 "ValaProjectSettingsPopover.vala"
+#line 266 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkLabel*) gtk_label_new ("Global");
-#line 267 "ValaProjectSettingsPopover.vala"
+#line 266 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 267 "ValaProjectSettingsPopover.vala"
+#line 266 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 267 "ValaProjectSettingsPopover.vala"
+#line 266 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 263 "ValaProjectSettingsPopover.vala"
+#line 262 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 3940 "ValaProjectSettingsPopover.vala.c"
+#line 3857 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_label_global*
 vala_project_settings_popover_xcls_label_global_new (ValaProjectSettingsPopover* _owner)
 {
-#line 263 "ValaProjectSettingsPopover.vala"
+#line 262 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_label_global_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL_GLOBAL, _owner);
-#line 3948 "ValaProjectSettingsPopover.vala.c"
+#line 3865 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label_global_class_init (ValaProjectSettingsPopoverXcls_label_globalClass * klass,
                                                             gpointer klass_data)
 {
-#line 254 "ValaProjectSettingsPopover.vala"
+#line 253 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_label_global_parent_class = g_type_class_peek_parent (klass);
-#line 254 "ValaProjectSettingsPopover.vala"
+#line 253 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_label_global_private_offset);
-#line 254 "ValaProjectSettingsPopover.vala"
+#line 253 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label_global_finalize;
-#line 3961 "ValaProjectSettingsPopover.vala.c"
+#line 3878 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label_global_instance_init (ValaProjectSettingsPopoverXcls_label_global * self,
                                                                gpointer klass)
 {
-#line 254 "ValaProjectSettingsPopover.vala"
+#line 253 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_label_global_get_instance_private (self);
-#line 3970 "ValaProjectSettingsPopover.vala.c"
+#line 3887 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label_global_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_label_global * self;
-#line 254 "ValaProjectSettingsPopover.vala"
+#line 253 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL_GLOBAL, ValaProjectSettingsPopoverXcls_label_global);
-#line 256 "ValaProjectSettingsPopover.vala"
+#line 255 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 257 "ValaProjectSettingsPopover.vala"
+#line 256 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 254 "ValaProjectSettingsPopover.vala"
+#line 253 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label_global_parent_class)->finalize (obj);
-#line 3985 "ValaProjectSettingsPopover.vala.c"
+#line 3902 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -4021,78 +3938,78 @@ vala_project_settings_popover_xcls_label_targets_construct (GType object_type,
 	ValaProjectSettingsPopover* _tmp1_;
 	ValaProjectSettingsPopoverXcls_label_targets* _tmp2_;
 	GtkLabel* _tmp3_;
-#line 286 "ValaProjectSettingsPopover.vala"
+#line 285 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_label_targets*) g_object_new (object_type, NULL);
-#line 288 "ValaProjectSettingsPopover.vala"
+#line 287 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 288 "ValaProjectSettingsPopover.vala"
+#line 287 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 288 "ValaProjectSettingsPopover.vala"
+#line 287 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 289 "ValaProjectSettingsPopover.vala"
+#line 288 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 289 "ValaProjectSettingsPopover.vala"
+#line 288 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 289 "ValaProjectSettingsPopover.vala"
+#line 288 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->label_targets);
-#line 289 "ValaProjectSettingsPopover.vala"
+#line 288 "ValaProjectSettingsPopover.vala"
 	_tmp1_->label_targets = _tmp2_;
-#line 290 "ValaProjectSettingsPopover.vala"
+#line 289 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkLabel*) gtk_label_new ("Targets");
-#line 290 "ValaProjectSettingsPopover.vala"
+#line 289 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 290 "ValaProjectSettingsPopover.vala"
+#line 289 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 290 "ValaProjectSettingsPopover.vala"
+#line 289 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 286 "ValaProjectSettingsPopover.vala"
+#line 285 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 4051 "ValaProjectSettingsPopover.vala.c"
+#line 3968 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_label_targets*
 vala_project_settings_popover_xcls_label_targets_new (ValaProjectSettingsPopover* _owner)
 {
-#line 286 "ValaProjectSettingsPopover.vala"
+#line 285 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_label_targets_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL_TARGETS, _owner);
-#line 4059 "ValaProjectSettingsPopover.vala.c"
+#line 3976 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label_targets_class_init (ValaProjectSettingsPopoverXcls_label_targetsClass * klass,
                                                              gpointer klass_data)
 {
-#line 277 "ValaProjectSettingsPopover.vala"
+#line 276 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_label_targets_parent_class = g_type_class_peek_parent (klass);
-#line 277 "ValaProjectSettingsPopover.vala"
+#line 276 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_label_targets_private_offset);
-#line 277 "ValaProjectSettingsPopover.vala"
+#line 276 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label_targets_finalize;
-#line 4072 "ValaProjectSettingsPopover.vala.c"
+#line 3989 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label_targets_instance_init (ValaProjectSettingsPopoverXcls_label_targets * self,
                                                                 gpointer klass)
 {
-#line 277 "ValaProjectSettingsPopover.vala"
+#line 276 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_label_targets_get_instance_private (self);
-#line 4081 "ValaProjectSettingsPopover.vala.c"
+#line 3998 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label_targets_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_label_targets * self;
-#line 277 "ValaProjectSettingsPopover.vala"
+#line 276 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL_TARGETS, ValaProjectSettingsPopoverXcls_label_targets);
-#line 279 "ValaProjectSettingsPopover.vala"
+#line 278 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 280 "ValaProjectSettingsPopover.vala"
+#line 279 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 277 "ValaProjectSettingsPopover.vala"
+#line 276 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label_targets_parent_class)->finalize (obj);
-#line 4096 "ValaProjectSettingsPopover.vala.c"
+#line 4013 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -4151,132 +4068,132 @@ vala_project_settings_popover_xcls_box9_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_vapi_search* _tmp16_;
 	GtkBox* _tmp17_;
 	GtkSearchEntry* _tmp18_;
-#line 309 "ValaProjectSettingsPopover.vala"
+#line 308 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Box9*) g_object_new (object_type, NULL);
-#line 311 "ValaProjectSettingsPopover.vala"
+#line 310 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 311 "ValaProjectSettingsPopover.vala"
+#line 310 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 311 "ValaProjectSettingsPopover.vala"
+#line 310 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 312 "ValaProjectSettingsPopover.vala"
+#line 311 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 312 "ValaProjectSettingsPopover.vala"
+#line 311 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 312 "ValaProjectSettingsPopover.vala"
+#line 311 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 312 "ValaProjectSettingsPopover.vala"
+#line 311 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 317 "ValaProjectSettingsPopover.vala"
+#line 316 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 317 "ValaProjectSettingsPopover.vala"
+#line 316 "ValaProjectSettingsPopover.vala"
 	gtk_box_set_homogeneous (_tmp2_, FALSE);
-#line 318 "ValaProjectSettingsPopover.vala"
+#line 317 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 318 "ValaProjectSettingsPopover.vala"
+#line 317 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_label10_new (_tmp3_);
-#line 318 "ValaProjectSettingsPopover.vala"
+#line 317 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 319 "ValaProjectSettingsPopover.vala"
+#line 318 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 320 "ValaProjectSettingsPopover.vala"
+#line 319 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 320 "ValaProjectSettingsPopover.vala"
+#line 319 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = child_1->el;
-#line 320 "ValaProjectSettingsPopover.vala"
+#line 319 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp5_, (GtkWidget*) _tmp6_);
-#line 321 "ValaProjectSettingsPopover.vala"
+#line 320 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = self->priv->_this;
-#line 321 "ValaProjectSettingsPopover.vala"
+#line 320 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = vala_project_settings_popover_xcls_compile_flags_new (_tmp7_);
-#line 321 "ValaProjectSettingsPopover.vala"
+#line 320 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp8_;
-#line 322 "ValaProjectSettingsPopover.vala"
+#line 321 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->el;
-#line 322 "ValaProjectSettingsPopover.vala"
+#line 321 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = child_2->el;
-#line 322 "ValaProjectSettingsPopover.vala"
+#line 321 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp9_, (GtkWidget*) _tmp10_);
-#line 323 "ValaProjectSettingsPopover.vala"
+#line 322 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = self->priv->_this;
-#line 323 "ValaProjectSettingsPopover.vala"
+#line 322 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = vala_project_settings_popover_xcls_vapi_scroll_new (_tmp11_);
-#line 323 "ValaProjectSettingsPopover.vala"
+#line 322 "ValaProjectSettingsPopover.vala"
 	child_3 = _tmp12_;
-#line 324 "ValaProjectSettingsPopover.vala"
+#line 323 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = self->el;
-#line 324 "ValaProjectSettingsPopover.vala"
+#line 323 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = child_3->el;
-#line 324 "ValaProjectSettingsPopover.vala"
+#line 323 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp13_, (GtkWidget*) _tmp14_);
-#line 325 "ValaProjectSettingsPopover.vala"
+#line 324 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = self->priv->_this;
-#line 325 "ValaProjectSettingsPopover.vala"
+#line 324 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = vala_project_settings_popover_xcls_vapi_search_new (_tmp15_);
-#line 325 "ValaProjectSettingsPopover.vala"
+#line 324 "ValaProjectSettingsPopover.vala"
 	child_4 = _tmp16_;
-#line 326 "ValaProjectSettingsPopover.vala"
+#line 325 "ValaProjectSettingsPopover.vala"
 	_tmp17_ = self->el;
-#line 326 "ValaProjectSettingsPopover.vala"
+#line 325 "ValaProjectSettingsPopover.vala"
 	_tmp18_ = child_4->el;
-#line 326 "ValaProjectSettingsPopover.vala"
+#line 325 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp17_, (GtkWidget*) _tmp18_);
-#line 309 "ValaProjectSettingsPopover.vala"
+#line 308 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_4);
-#line 309 "ValaProjectSettingsPopover.vala"
+#line 308 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_3);
-#line 309 "ValaProjectSettingsPopover.vala"
+#line 308 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 309 "ValaProjectSettingsPopover.vala"
+#line 308 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 309 "ValaProjectSettingsPopover.vala"
+#line 308 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 4235 "ValaProjectSettingsPopover.vala.c"
+#line 4152 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Box9*
 vala_project_settings_popover_xcls_box9_new (ValaProjectSettingsPopover* _owner)
 {
-#line 309 "ValaProjectSettingsPopover.vala"
+#line 308 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_box9_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX9, _owner);
-#line 4243 "ValaProjectSettingsPopover.vala.c"
+#line 4160 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box9_class_init (ValaProjectSettingsPopoverXcls_Box9Class * klass,
                                                     gpointer klass_data)
 {
-#line 300 "ValaProjectSettingsPopover.vala"
+#line 299 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_box9_parent_class = g_type_class_peek_parent (klass);
-#line 300 "ValaProjectSettingsPopover.vala"
+#line 299 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Box9_private_offset);
-#line 300 "ValaProjectSettingsPopover.vala"
+#line 299 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_box9_finalize;
-#line 4256 "ValaProjectSettingsPopover.vala.c"
+#line 4173 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box9_instance_init (ValaProjectSettingsPopoverXcls_Box9 * self,
                                                        gpointer klass)
 {
-#line 300 "ValaProjectSettingsPopover.vala"
+#line 299 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_box9_get_instance_private (self);
-#line 4265 "ValaProjectSettingsPopover.vala.c"
+#line 4182 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box9_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Box9 * self;
-#line 300 "ValaProjectSettingsPopover.vala"
+#line 299 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX9, ValaProjectSettingsPopoverXcls_Box9);
-#line 302 "ValaProjectSettingsPopover.vala"
+#line 301 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 303 "ValaProjectSettingsPopover.vala"
+#line 302 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 300 "ValaProjectSettingsPopover.vala"
+#line 299 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_box9_parent_class)->finalize (obj);
-#line 4280 "ValaProjectSettingsPopover.vala.c"
+#line 4197 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -4316,78 +4233,78 @@ vala_project_settings_popover_xcls_label10_construct (GType object_type,
 	GtkLabel* _tmp1_;
 	GtkLabel* _tmp2_;
 	GtkLabel* _tmp3_;
-#line 340 "ValaProjectSettingsPopover.vala"
+#line 339 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Label10*) g_object_new (object_type, NULL);
-#line 342 "ValaProjectSettingsPopover.vala"
+#line 341 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 342 "ValaProjectSettingsPopover.vala"
+#line 341 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 342 "ValaProjectSettingsPopover.vala"
+#line 341 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 343 "ValaProjectSettingsPopover.vala"
+#line 342 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkLabel*) gtk_label_new ("compile flags");
-#line 343 "ValaProjectSettingsPopover.vala"
+#line 342 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 343 "ValaProjectSettingsPopover.vala"
+#line 342 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 343 "ValaProjectSettingsPopover.vala"
+#line 342 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 348 "ValaProjectSettingsPopover.vala"
+#line 347 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 348 "ValaProjectSettingsPopover.vala"
+#line 347 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_halign ((GtkWidget*) _tmp2_, GTK_ALIGN_START);
-#line 349 "ValaProjectSettingsPopover.vala"
+#line 348 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 349 "ValaProjectSettingsPopover.vala"
+#line 348 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp3_, TRUE);
-#line 340 "ValaProjectSettingsPopover.vala"
+#line 339 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 4346 "ValaProjectSettingsPopover.vala.c"
+#line 4263 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Label10*
 vala_project_settings_popover_xcls_label10_new (ValaProjectSettingsPopover* _owner)
 {
-#line 340 "ValaProjectSettingsPopover.vala"
+#line 339 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_label10_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL10, _owner);
-#line 4354 "ValaProjectSettingsPopover.vala.c"
+#line 4271 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label10_class_init (ValaProjectSettingsPopoverXcls_Label10Class * klass,
                                                        gpointer klass_data)
 {
-#line 331 "ValaProjectSettingsPopover.vala"
+#line 330 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_label10_parent_class = g_type_class_peek_parent (klass);
-#line 331 "ValaProjectSettingsPopover.vala"
+#line 330 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Label10_private_offset);
-#line 331 "ValaProjectSettingsPopover.vala"
+#line 330 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label10_finalize;
-#line 4367 "ValaProjectSettingsPopover.vala.c"
+#line 4284 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label10_instance_init (ValaProjectSettingsPopoverXcls_Label10 * self,
                                                           gpointer klass)
 {
-#line 331 "ValaProjectSettingsPopover.vala"
+#line 330 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_label10_get_instance_private (self);
-#line 4376 "ValaProjectSettingsPopover.vala.c"
+#line 4293 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label10_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Label10 * self;
-#line 331 "ValaProjectSettingsPopover.vala"
+#line 330 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL10, ValaProjectSettingsPopoverXcls_Label10);
-#line 333 "ValaProjectSettingsPopover.vala"
+#line 332 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 334 "ValaProjectSettingsPopover.vala"
+#line 333 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 331 "ValaProjectSettingsPopover.vala"
+#line 330 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label10_parent_class)->finalize (obj);
-#line 4391 "ValaProjectSettingsPopover.vala.c"
+#line 4308 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -4431,42 +4348,42 @@ __lambda118_ (ValaProjectSettingsPopoverXcls_compile_flags* self)
 	gchar* _tmp7_;
 	ValaProjectSettingsPopover* _tmp8_;
 	ProjectGtk* _tmp9_;
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _tmp0_->project;
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = gtk_entry_get_buffer (_tmp2_);
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_;
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_entry_buffer_get_text (_tmp4_);
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _tmp5_;
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = g_strdup (_tmp6_);
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_g_free0 (_tmp1_->compile_flags);
-#line 378 "ValaProjectSettingsPopover.vala"
+#line 377 "ValaProjectSettingsPopover.vala"
 	_tmp1_->compile_flags = _tmp7_;
-#line 379 "ValaProjectSettingsPopover.vala"
+#line 378 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->priv->_this;
-#line 379 "ValaProjectSettingsPopover.vala"
+#line 378 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = _tmp8_->project;
-#line 379 "ValaProjectSettingsPopover.vala"
+#line 378 "ValaProjectSettingsPopover.vala"
 	project_project_save ((ProjectProject*) _tmp9_);
-#line 4461 "ValaProjectSettingsPopover.vala.c"
+#line 4378 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 ___lambda118__gtk_editable_changed (GtkEditable* _sender,
                                     gpointer self)
 {
-#line 376 "ValaProjectSettingsPopover.vala"
+#line 375 "ValaProjectSettingsPopover.vala"
 	__lambda118_ ((ValaProjectSettingsPopoverXcls_compile_flags*) self);
-#line 4470 "ValaProjectSettingsPopover.vala.c"
+#line 4387 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_compile_flags*
@@ -4480,86 +4397,86 @@ vala_project_settings_popover_xcls_compile_flags_construct (GType object_type,
 	GtkEntry* _tmp3_;
 	GtkEntry* _tmp4_;
 	GtkEntry* _tmp5_;
-#line 364 "ValaProjectSettingsPopover.vala"
+#line 363 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_compile_flags*) g_object_new (object_type, NULL);
-#line 366 "ValaProjectSettingsPopover.vala"
+#line 365 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 366 "ValaProjectSettingsPopover.vala"
+#line 365 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 366 "ValaProjectSettingsPopover.vala"
+#line 365 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 367 "ValaProjectSettingsPopover.vala"
+#line 366 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 367 "ValaProjectSettingsPopover.vala"
+#line 366 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 367 "ValaProjectSettingsPopover.vala"
+#line 366 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->compile_flags);
-#line 367 "ValaProjectSettingsPopover.vala"
+#line 366 "ValaProjectSettingsPopover.vala"
 	_tmp1_->compile_flags = _tmp2_;
-#line 368 "ValaProjectSettingsPopover.vala"
+#line 367 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkEntry*) gtk_entry_new ();
-#line 368 "ValaProjectSettingsPopover.vala"
+#line 367 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 368 "ValaProjectSettingsPopover.vala"
+#line 367 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 368 "ValaProjectSettingsPopover.vala"
+#line 367 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 373 "ValaProjectSettingsPopover.vala"
+#line 372 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 373 "ValaProjectSettingsPopover.vala"
+#line 372 "ValaProjectSettingsPopover.vala"
 	gtk_entry_set_placeholder_text (_tmp4_, "eg. -g --valasrc $BASEDIR ");
-#line 376 "ValaProjectSettingsPopover.vala"
+#line 375 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 376 "ValaProjectSettingsPopover.vala"
+#line 375 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object ((GtkEditable*) _tmp5_, "changed", (GCallback) ___lambda118__gtk_editable_changed, self, 0);
-#line 364 "ValaProjectSettingsPopover.vala"
+#line 363 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 4518 "ValaProjectSettingsPopover.vala.c"
+#line 4435 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_compile_flags*
 vala_project_settings_popover_xcls_compile_flags_new (ValaProjectSettingsPopover* _owner)
 {
-#line 364 "ValaProjectSettingsPopover.vala"
+#line 363 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_compile_flags_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COMPILE_FLAGS, _owner);
-#line 4526 "ValaProjectSettingsPopover.vala.c"
+#line 4443 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_compile_flags_class_init (ValaProjectSettingsPopoverXcls_compile_flagsClass * klass,
                                                              gpointer klass_data)
 {
-#line 355 "ValaProjectSettingsPopover.vala"
+#line 354 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_compile_flags_parent_class = g_type_class_peek_parent (klass);
-#line 355 "ValaProjectSettingsPopover.vala"
+#line 354 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_compile_flags_private_offset);
-#line 355 "ValaProjectSettingsPopover.vala"
+#line 354 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_compile_flags_finalize;
-#line 4539 "ValaProjectSettingsPopover.vala.c"
+#line 4456 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_compile_flags_instance_init (ValaProjectSettingsPopoverXcls_compile_flags * self,
                                                                 gpointer klass)
 {
-#line 355 "ValaProjectSettingsPopover.vala"
+#line 354 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_compile_flags_get_instance_private (self);
-#line 4548 "ValaProjectSettingsPopover.vala.c"
+#line 4465 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_compile_flags_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_compile_flags * self;
-#line 355 "ValaProjectSettingsPopover.vala"
+#line 354 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COMPILE_FLAGS, ValaProjectSettingsPopoverXcls_compile_flags);
-#line 357 "ValaProjectSettingsPopover.vala"
+#line 356 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 358 "ValaProjectSettingsPopover.vala"
+#line 357 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 355 "ValaProjectSettingsPopover.vala"
+#line 354 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_compile_flags_parent_class)->finalize (obj);
-#line 4563 "ValaProjectSettingsPopover.vala.c"
+#line 4480 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -4609,112 +4526,112 @@ vala_project_settings_popover_xcls_vapi_scroll_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_ColumnView13* _tmp10_;
 	GtkScrolledWindow* _tmp11_;
 	GtkColumnView* _tmp12_;
-#line 397 "ValaProjectSettingsPopover.vala"
+#line 396 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_vapi_scroll*) g_object_new (object_type, NULL);
-#line 399 "ValaProjectSettingsPopover.vala"
+#line 398 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 399 "ValaProjectSettingsPopover.vala"
+#line 398 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 399 "ValaProjectSettingsPopover.vala"
+#line 398 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 400 "ValaProjectSettingsPopover.vala"
+#line 399 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 400 "ValaProjectSettingsPopover.vala"
+#line 399 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 400 "ValaProjectSettingsPopover.vala"
+#line 399 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->vapi_scroll);
-#line 400 "ValaProjectSettingsPopover.vala"
+#line 399 "ValaProjectSettingsPopover.vala"
 	_tmp1_->vapi_scroll = _tmp2_;
-#line 401 "ValaProjectSettingsPopover.vala"
+#line 400 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkScrolledWindow*) gtk_scrolled_window_new ();
-#line 401 "ValaProjectSettingsPopover.vala"
+#line 400 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 401 "ValaProjectSettingsPopover.vala"
+#line 400 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 401 "ValaProjectSettingsPopover.vala"
+#line 400 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 406 "ValaProjectSettingsPopover.vala"
+#line 405 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 406 "ValaProjectSettingsPopover.vala"
+#line 405 "ValaProjectSettingsPopover.vala"
 	g_object_set (_tmp4_, "vscrollbar-policy", GTK_POLICY_AUTOMATIC, NULL);
-#line 407 "ValaProjectSettingsPopover.vala"
+#line 406 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 407 "ValaProjectSettingsPopover.vala"
+#line 406 "ValaProjectSettingsPopover.vala"
 	gtk_scrolled_window_set_has_frame (_tmp5_, TRUE);
-#line 408 "ValaProjectSettingsPopover.vala"
+#line 407 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 408 "ValaProjectSettingsPopover.vala"
+#line 407 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp6_, TRUE);
-#line 409 "ValaProjectSettingsPopover.vala"
+#line 408 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = self->el;
-#line 409 "ValaProjectSettingsPopover.vala"
+#line 408 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp7_, TRUE);
-#line 410 "ValaProjectSettingsPopover.vala"
+#line 409 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 410 "ValaProjectSettingsPopover.vala"
+#line 409 "ValaProjectSettingsPopover.vala"
 	g_object_set (_tmp8_, "hscrollbar-policy", GTK_POLICY_AUTOMATIC, NULL);
-#line 411 "ValaProjectSettingsPopover.vala"
+#line 410 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->priv->_this;
-#line 411 "ValaProjectSettingsPopover.vala"
+#line 410 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = vala_project_settings_popover_xcls_columnview13_new (_tmp9_);
-#line 411 "ValaProjectSettingsPopover.vala"
+#line 410 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp10_;
-#line 412 "ValaProjectSettingsPopover.vala"
+#line 411 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = self->el;
-#line 412 "ValaProjectSettingsPopover.vala"
+#line 411 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = child_1->el;
-#line 412 "ValaProjectSettingsPopover.vala"
+#line 411 "ValaProjectSettingsPopover.vala"
 	gtk_scrolled_window_set_child (_tmp11_, (GtkWidget*) _tmp12_);
-#line 397 "ValaProjectSettingsPopover.vala"
+#line 396 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 397 "ValaProjectSettingsPopover.vala"
+#line 396 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 4673 "ValaProjectSettingsPopover.vala.c"
+#line 4590 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_vapi_scroll*
 vala_project_settings_popover_xcls_vapi_scroll_new (ValaProjectSettingsPopover* _owner)
 {
-#line 397 "ValaProjectSettingsPopover.vala"
+#line 396 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_vapi_scroll_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_VAPI_SCROLL, _owner);
-#line 4681 "ValaProjectSettingsPopover.vala.c"
+#line 4598 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_scroll_class_init (ValaProjectSettingsPopoverXcls_vapi_scrollClass * klass,
                                                            gpointer klass_data)
 {
-#line 388 "ValaProjectSettingsPopover.vala"
+#line 387 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_vapi_scroll_parent_class = g_type_class_peek_parent (klass);
-#line 388 "ValaProjectSettingsPopover.vala"
+#line 387 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_vapi_scroll_private_offset);
-#line 388 "ValaProjectSettingsPopover.vala"
+#line 387 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_vapi_scroll_finalize;
-#line 4694 "ValaProjectSettingsPopover.vala.c"
+#line 4611 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_scroll_instance_init (ValaProjectSettingsPopoverXcls_vapi_scroll * self,
                                                               gpointer klass)
 {
-#line 388 "ValaProjectSettingsPopover.vala"
+#line 387 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_vapi_scroll_get_instance_private (self);
-#line 4703 "ValaProjectSettingsPopover.vala.c"
+#line 4620 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_scroll_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_vapi_scroll * self;
-#line 388 "ValaProjectSettingsPopover.vala"
+#line 387 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_VAPI_SCROLL, ValaProjectSettingsPopoverXcls_vapi_scroll);
-#line 390 "ValaProjectSettingsPopover.vala"
+#line 389 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 391 "ValaProjectSettingsPopover.vala"
+#line 390 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 388 "ValaProjectSettingsPopover.vala"
+#line 387 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_vapi_scroll_parent_class)->finalize (obj);
-#line 4718 "ValaProjectSettingsPopover.vala.c"
+#line 4635 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -4767,116 +4684,116 @@ vala_project_settings_popover_xcls_columnview13_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_ColumnViewColumn24* _tmp11_;
 	GtkColumnView* _tmp12_;
 	GtkColumnViewColumn* _tmp13_;
-#line 426 "ValaProjectSettingsPopover.vala"
+#line 425 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_ColumnView13*) g_object_new (object_type, NULL);
-#line 428 "ValaProjectSettingsPopover.vala"
+#line 427 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 428 "ValaProjectSettingsPopover.vala"
+#line 427 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 428 "ValaProjectSettingsPopover.vala"
+#line 427 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 429 "ValaProjectSettingsPopover.vala"
+#line 428 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 429 "ValaProjectSettingsPopover.vala"
+#line 428 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_noselection14_new (_tmp1_);
-#line 429 "ValaProjectSettingsPopover.vala"
+#line 428 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 430 "ValaProjectSettingsPopover.vala"
+#line 429 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 431 "ValaProjectSettingsPopover.vala"
+#line 430 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 431 "ValaProjectSettingsPopover.vala"
+#line 430 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 ((GtkSelectionModel*) _tmp3_);
-#line 431 "ValaProjectSettingsPopover.vala"
+#line 430 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = (GtkColumnView*) gtk_column_view_new (_tmp4_);
-#line 431 "ValaProjectSettingsPopover.vala"
+#line 430 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp5_);
-#line 431 "ValaProjectSettingsPopover.vala"
+#line 430 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 431 "ValaProjectSettingsPopover.vala"
+#line 430 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 436 "ValaProjectSettingsPopover.vala"
+#line 435 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->priv->_this;
-#line 436 "ValaProjectSettingsPopover.vala"
+#line 435 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = vala_project_settings_popover_xcls_columnviewcolumn22_new (_tmp6_);
-#line 436 "ValaProjectSettingsPopover.vala"
+#line 435 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp7_;
-#line 437 "ValaProjectSettingsPopover.vala"
+#line 436 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 438 "ValaProjectSettingsPopover.vala"
+#line 437 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 438 "ValaProjectSettingsPopover.vala"
+#line 437 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = child_2->el;
-#line 438 "ValaProjectSettingsPopover.vala"
+#line 437 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_append_column (_tmp8_, _tmp9_);
-#line 439 "ValaProjectSettingsPopover.vala"
+#line 438 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = self->priv->_this;
-#line 439 "ValaProjectSettingsPopover.vala"
+#line 438 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = vala_project_settings_popover_xcls_columnviewcolumn24_new (_tmp10_);
-#line 439 "ValaProjectSettingsPopover.vala"
+#line 438 "ValaProjectSettingsPopover.vala"
 	child_3 = _tmp11_;
-#line 440 "ValaProjectSettingsPopover.vala"
+#line 439 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_3);
-#line 441 "ValaProjectSettingsPopover.vala"
+#line 440 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = self->el;
-#line 441 "ValaProjectSettingsPopover.vala"
+#line 440 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = child_3->el;
-#line 441 "ValaProjectSettingsPopover.vala"
+#line 440 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_append_column (_tmp12_, _tmp13_);
-#line 426 "ValaProjectSettingsPopover.vala"
+#line 425 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_3);
-#line 426 "ValaProjectSettingsPopover.vala"
+#line 425 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 426 "ValaProjectSettingsPopover.vala"
+#line 425 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 426 "ValaProjectSettingsPopover.vala"
+#line 425 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 4835 "ValaProjectSettingsPopover.vala.c"
+#line 4752 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_ColumnView13*
 vala_project_settings_popover_xcls_columnview13_new (ValaProjectSettingsPopover* _owner)
 {
-#line 426 "ValaProjectSettingsPopover.vala"
+#line 425 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_columnview13_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEW13, _owner);
-#line 4843 "ValaProjectSettingsPopover.vala.c"
+#line 4760 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnview13_class_init (ValaProjectSettingsPopoverXcls_ColumnView13Class * klass,
                                                             gpointer klass_data)
 {
-#line 417 "ValaProjectSettingsPopover.vala"
+#line 416 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_columnview13_parent_class = g_type_class_peek_parent (klass);
-#line 417 "ValaProjectSettingsPopover.vala"
+#line 416 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_ColumnView13_private_offset);
-#line 417 "ValaProjectSettingsPopover.vala"
+#line 416 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_columnview13_finalize;
-#line 4856 "ValaProjectSettingsPopover.vala.c"
+#line 4773 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnview13_instance_init (ValaProjectSettingsPopoverXcls_ColumnView13 * self,
                                                                gpointer klass)
 {
-#line 417 "ValaProjectSettingsPopover.vala"
+#line 416 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_columnview13_get_instance_private (self);
-#line 4865 "ValaProjectSettingsPopover.vala.c"
+#line 4782 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnview13_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_ColumnView13 * self;
-#line 417 "ValaProjectSettingsPopover.vala"
+#line 416 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEW13, ValaProjectSettingsPopoverXcls_ColumnView13);
-#line 419 "ValaProjectSettingsPopover.vala"
+#line 418 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 420 "ValaProjectSettingsPopover.vala"
+#line 419 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 417 "ValaProjectSettingsPopover.vala"
+#line 416 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_columnview13_parent_class)->finalize (obj);
-#line 4880 "ValaProjectSettingsPopover.vala.c"
+#line 4797 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -4919,82 +4836,82 @@ vala_project_settings_popover_xcls_noselection14_construct (GType object_type,
 	GtkFilterListModel* _tmp3_;
 	GListModel* _tmp4_;
 	GtkNoSelection* _tmp5_;
-#line 455 "ValaProjectSettingsPopover.vala"
+#line 454 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_NoSelection14*) g_object_new (object_type, NULL);
-#line 457 "ValaProjectSettingsPopover.vala"
+#line 456 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 457 "ValaProjectSettingsPopover.vala"
+#line 456 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 457 "ValaProjectSettingsPopover.vala"
+#line 456 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 458 "ValaProjectSettingsPopover.vala"
+#line 457 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 458 "ValaProjectSettingsPopover.vala"
+#line 457 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_filterlistmodel15_new (_tmp1_);
-#line 458 "ValaProjectSettingsPopover.vala"
+#line 457 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 459 "ValaProjectSettingsPopover.vala"
+#line 458 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 460 "ValaProjectSettingsPopover.vala"
+#line 459 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 460 "ValaProjectSettingsPopover.vala"
+#line 459 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 ((GListModel*) _tmp3_);
-#line 460 "ValaProjectSettingsPopover.vala"
+#line 459 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_no_selection_new (_tmp4_);
-#line 460 "ValaProjectSettingsPopover.vala"
+#line 459 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 460 "ValaProjectSettingsPopover.vala"
+#line 459 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 455 "ValaProjectSettingsPopover.vala"
+#line 454 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 455 "ValaProjectSettingsPopover.vala"
+#line 454 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 4953 "ValaProjectSettingsPopover.vala.c"
+#line 4870 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_NoSelection14*
 vala_project_settings_popover_xcls_noselection14_new (ValaProjectSettingsPopover* _owner)
 {
-#line 455 "ValaProjectSettingsPopover.vala"
+#line 454 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_noselection14_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_NOSELECTION14, _owner);
-#line 4961 "ValaProjectSettingsPopover.vala.c"
+#line 4878 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_noselection14_class_init (ValaProjectSettingsPopoverXcls_NoSelection14Class * klass,
                                                              gpointer klass_data)
 {
-#line 446 "ValaProjectSettingsPopover.vala"
+#line 445 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_noselection14_parent_class = g_type_class_peek_parent (klass);
-#line 446 "ValaProjectSettingsPopover.vala"
+#line 445 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_NoSelection14_private_offset);
-#line 446 "ValaProjectSettingsPopover.vala"
+#line 445 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_noselection14_finalize;
-#line 4974 "ValaProjectSettingsPopover.vala.c"
+#line 4891 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_noselection14_instance_init (ValaProjectSettingsPopoverXcls_NoSelection14 * self,
                                                                 gpointer klass)
 {
-#line 446 "ValaProjectSettingsPopover.vala"
+#line 445 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_noselection14_get_instance_private (self);
-#line 4983 "ValaProjectSettingsPopover.vala.c"
+#line 4900 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_noselection14_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_NoSelection14 * self;
-#line 446 "ValaProjectSettingsPopover.vala"
+#line 445 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_NOSELECTION14, ValaProjectSettingsPopoverXcls_NoSelection14);
-#line 448 "ValaProjectSettingsPopover.vala"
+#line 447 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 449 "ValaProjectSettingsPopover.vala"
+#line 448 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 446 "ValaProjectSettingsPopover.vala"
+#line 445 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_noselection14_parent_class)->finalize (obj);
-#line 4998 "ValaProjectSettingsPopover.vala.c"
+#line 4915 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5042,94 +4959,94 @@ vala_project_settings_popover_xcls_filterlistmodel15_construct (GType object_typ
 	GtkStringFilter* _tmp7_;
 	GtkFilter* _tmp8_;
 	GtkFilterListModel* _tmp9_;
-#line 478 "ValaProjectSettingsPopover.vala"
+#line 477 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_FilterListModel15*) g_object_new (object_type, NULL);
-#line 480 "ValaProjectSettingsPopover.vala"
+#line 479 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 480 "ValaProjectSettingsPopover.vala"
+#line 479 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 480 "ValaProjectSettingsPopover.vala"
+#line 479 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 481 "ValaProjectSettingsPopover.vala"
+#line 480 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 481 "ValaProjectSettingsPopover.vala"
+#line 480 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_sortlistmodel16_new (_tmp1_);
-#line 481 "ValaProjectSettingsPopover.vala"
+#line 480 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 482 "ValaProjectSettingsPopover.vala"
+#line 481 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 483 "ValaProjectSettingsPopover.vala"
+#line 482 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 483 "ValaProjectSettingsPopover.vala"
+#line 482 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_vapi_filter_new (_tmp3_);
-#line 483 "ValaProjectSettingsPopover.vala"
+#line 482 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp4_;
-#line 484 "ValaProjectSettingsPopover.vala"
+#line 483 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 484 "ValaProjectSettingsPopover.vala"
+#line 483 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _g_object_ref0 ((GListModel*) _tmp5_);
-#line 484 "ValaProjectSettingsPopover.vala"
+#line 483 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = child_2->el;
-#line 484 "ValaProjectSettingsPopover.vala"
+#line 483 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = _g_object_ref0 ((GtkFilter*) _tmp7_);
-#line 484 "ValaProjectSettingsPopover.vala"
+#line 483 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = gtk_filter_list_model_new (_tmp6_, _tmp8_);
-#line 484 "ValaProjectSettingsPopover.vala"
+#line 483 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 484 "ValaProjectSettingsPopover.vala"
+#line 483 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp9_;
-#line 478 "ValaProjectSettingsPopover.vala"
+#line 477 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 478 "ValaProjectSettingsPopover.vala"
+#line 477 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 478 "ValaProjectSettingsPopover.vala"
+#line 477 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 5088 "ValaProjectSettingsPopover.vala.c"
+#line 5005 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_FilterListModel15*
 vala_project_settings_popover_xcls_filterlistmodel15_new (ValaProjectSettingsPopover* _owner)
 {
-#line 478 "ValaProjectSettingsPopover.vala"
+#line 477 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_filterlistmodel15_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_FILTERLISTMODEL15, _owner);
-#line 5096 "ValaProjectSettingsPopover.vala.c"
+#line 5013 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_filterlistmodel15_class_init (ValaProjectSettingsPopoverXcls_FilterListModel15Class * klass,
                                                                  gpointer klass_data)
 {
-#line 469 "ValaProjectSettingsPopover.vala"
+#line 468 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_filterlistmodel15_parent_class = g_type_class_peek_parent (klass);
-#line 469 "ValaProjectSettingsPopover.vala"
+#line 468 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_FilterListModel15_private_offset);
-#line 469 "ValaProjectSettingsPopover.vala"
+#line 468 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_filterlistmodel15_finalize;
-#line 5109 "ValaProjectSettingsPopover.vala.c"
+#line 5026 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_filterlistmodel15_instance_init (ValaProjectSettingsPopoverXcls_FilterListModel15 * self,
                                                                     gpointer klass)
 {
-#line 469 "ValaProjectSettingsPopover.vala"
+#line 468 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_filterlistmodel15_get_instance_private (self);
-#line 5118 "ValaProjectSettingsPopover.vala.c"
+#line 5035 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_filterlistmodel15_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_FilterListModel15 * self;
-#line 469 "ValaProjectSettingsPopover.vala"
+#line 468 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_FILTERLISTMODEL15, ValaProjectSettingsPopoverXcls_FilterListModel15);
-#line 471 "ValaProjectSettingsPopover.vala"
+#line 470 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 472 "ValaProjectSettingsPopover.vala"
+#line 471 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 469 "ValaProjectSettingsPopover.vala"
+#line 468 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_filterlistmodel15_parent_class)->finalize (obj);
-#line 5133 "ValaProjectSettingsPopover.vala.c"
+#line 5050 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5177,94 +5094,94 @@ vala_project_settings_popover_xcls_sortlistmodel16_construct (GType object_type,
 	GtkStringSorter* _tmp7_;
 	GtkSorter* _tmp8_;
 	GtkSortListModel* _tmp9_;
-#line 502 "ValaProjectSettingsPopover.vala"
+#line 501 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_SortListModel16*) g_object_new (object_type, NULL);
-#line 504 "ValaProjectSettingsPopover.vala"
+#line 503 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 504 "ValaProjectSettingsPopover.vala"
+#line 503 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 504 "ValaProjectSettingsPopover.vala"
+#line 503 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 505 "ValaProjectSettingsPopover.vala"
+#line 504 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 505 "ValaProjectSettingsPopover.vala"
+#line 504 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_vapimodel_new (_tmp1_);
-#line 505 "ValaProjectSettingsPopover.vala"
+#line 504 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 506 "ValaProjectSettingsPopover.vala"
+#line 505 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 506 "ValaProjectSettingsPopover.vala"
+#line 505 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_stringsorter18_new (_tmp3_);
-#line 506 "ValaProjectSettingsPopover.vala"
+#line 505 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp4_;
-#line 507 "ValaProjectSettingsPopover.vala"
+#line 506 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 508 "ValaProjectSettingsPopover.vala"
+#line 507 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 508 "ValaProjectSettingsPopover.vala"
+#line 507 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _g_object_ref0 ((GListModel*) _tmp5_);
-#line 508 "ValaProjectSettingsPopover.vala"
+#line 507 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = child_2->el;
-#line 508 "ValaProjectSettingsPopover.vala"
+#line 507 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = _g_object_ref0 ((GtkSorter*) _tmp7_);
-#line 508 "ValaProjectSettingsPopover.vala"
+#line 507 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = gtk_sort_list_model_new (_tmp6_, _tmp8_);
-#line 508 "ValaProjectSettingsPopover.vala"
+#line 507 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 508 "ValaProjectSettingsPopover.vala"
+#line 507 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp9_;
-#line 502 "ValaProjectSettingsPopover.vala"
+#line 501 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 502 "ValaProjectSettingsPopover.vala"
+#line 501 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 502 "ValaProjectSettingsPopover.vala"
+#line 501 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 5223 "ValaProjectSettingsPopover.vala.c"
+#line 5140 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SortListModel16*
 vala_project_settings_popover_xcls_sortlistmodel16_new (ValaProjectSettingsPopover* _owner)
 {
-#line 502 "ValaProjectSettingsPopover.vala"
+#line 501 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_sortlistmodel16_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SORTLISTMODEL16, _owner);
-#line 5231 "ValaProjectSettingsPopover.vala.c"
+#line 5148 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_sortlistmodel16_class_init (ValaProjectSettingsPopoverXcls_SortListModel16Class * klass,
                                                                gpointer klass_data)
 {
-#line 493 "ValaProjectSettingsPopover.vala"
+#line 492 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_sortlistmodel16_parent_class = g_type_class_peek_parent (klass);
-#line 493 "ValaProjectSettingsPopover.vala"
+#line 492 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_SortListModel16_private_offset);
-#line 493 "ValaProjectSettingsPopover.vala"
+#line 492 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_sortlistmodel16_finalize;
-#line 5244 "ValaProjectSettingsPopover.vala.c"
+#line 5161 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_sortlistmodel16_instance_init (ValaProjectSettingsPopoverXcls_SortListModel16 * self,
                                                                   gpointer klass)
 {
-#line 493 "ValaProjectSettingsPopover.vala"
+#line 492 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_sortlistmodel16_get_instance_private (self);
-#line 5253 "ValaProjectSettingsPopover.vala.c"
+#line 5170 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_sortlistmodel16_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_SortListModel16 * self;
-#line 493 "ValaProjectSettingsPopover.vala"
+#line 492 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SORTLISTMODEL16, ValaProjectSettingsPopoverXcls_SortListModel16);
-#line 495 "ValaProjectSettingsPopover.vala"
+#line 494 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 496 "ValaProjectSettingsPopover.vala"
+#line 495 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 493 "ValaProjectSettingsPopover.vala"
+#line 492 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_sortlistmodel16_parent_class)->finalize (obj);
-#line 5268 "ValaProjectSettingsPopover.vala.c"
+#line 5185 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5304,76 +5221,76 @@ vala_project_settings_popover_xcls_vapimodel_construct (GType object_type,
 	ValaProjectSettingsPopover* _tmp1_;
 	ValaProjectSettingsPopoverXcls_vapimodel* _tmp2_;
 	GListStore* _tmp3_;
-#line 526 "ValaProjectSettingsPopover.vala"
+#line 525 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_vapimodel*) g_object_new (object_type, NULL);
-#line 528 "ValaProjectSettingsPopover.vala"
+#line 527 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 528 "ValaProjectSettingsPopover.vala"
+#line 527 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 528 "ValaProjectSettingsPopover.vala"
+#line 527 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 529 "ValaProjectSettingsPopover.vala"
+#line 528 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 529 "ValaProjectSettingsPopover.vala"
+#line 528 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 529 "ValaProjectSettingsPopover.vala"
+#line 528 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->vapimodel);
-#line 529 "ValaProjectSettingsPopover.vala"
+#line 528 "ValaProjectSettingsPopover.vala"
 	_tmp1_->vapimodel = _tmp2_;
-#line 530 "ValaProjectSettingsPopover.vala"
+#line 529 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = g_list_store_new (PROJECT_TYPE_VAPI_SELECTION);
-#line 530 "ValaProjectSettingsPopover.vala"
+#line 529 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 530 "ValaProjectSettingsPopover.vala"
+#line 529 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 526 "ValaProjectSettingsPopover.vala"
+#line 525 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 5332 "ValaProjectSettingsPopover.vala.c"
+#line 5249 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_vapimodel*
 vala_project_settings_popover_xcls_vapimodel_new (ValaProjectSettingsPopover* _owner)
 {
-#line 526 "ValaProjectSettingsPopover.vala"
+#line 525 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_vapimodel_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_VAPIMODEL, _owner);
-#line 5340 "ValaProjectSettingsPopover.vala.c"
+#line 5257 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapimodel_class_init (ValaProjectSettingsPopoverXcls_vapimodelClass * klass,
                                                          gpointer klass_data)
 {
-#line 517 "ValaProjectSettingsPopover.vala"
+#line 516 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_vapimodel_parent_class = g_type_class_peek_parent (klass);
-#line 517 "ValaProjectSettingsPopover.vala"
+#line 516 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_vapimodel_private_offset);
-#line 517 "ValaProjectSettingsPopover.vala"
+#line 516 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_vapimodel_finalize;
-#line 5353 "ValaProjectSettingsPopover.vala.c"
+#line 5270 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapimodel_instance_init (ValaProjectSettingsPopoverXcls_vapimodel * self,
                                                             gpointer klass)
 {
-#line 517 "ValaProjectSettingsPopover.vala"
+#line 516 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_vapimodel_get_instance_private (self);
-#line 5362 "ValaProjectSettingsPopover.vala.c"
+#line 5279 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapimodel_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_vapimodel * self;
-#line 517 "ValaProjectSettingsPopover.vala"
+#line 516 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_VAPIMODEL, ValaProjectSettingsPopoverXcls_vapimodel);
-#line 519 "ValaProjectSettingsPopover.vala"
+#line 518 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 520 "ValaProjectSettingsPopover.vala"
+#line 519 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 517 "ValaProjectSettingsPopover.vala"
+#line 516 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_vapimodel_parent_class)->finalize (obj);
-#line 5377 "ValaProjectSettingsPopover.vala.c"
+#line 5294 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5407,9 +5324,9 @@ vala_project_settings_popover_xcls_stringsorter18_get_instance_private (ValaProj
 static gpointer
 _gtk_expression_ref0 (gpointer self)
 {
-#line 554 "ValaProjectSettingsPopover.vala"
+#line 553 "ValaProjectSettingsPopover.vala"
 	return self ? gtk_expression_ref (self) : NULL;
-#line 5413 "ValaProjectSettingsPopover.vala.c"
+#line 5330 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_StringSorter18*
@@ -5424,82 +5341,82 @@ vala_project_settings_popover_xcls_stringsorter18_construct (GType object_type,
 	GtkPropertyExpression* _tmp3_;
 	GtkExpression* _tmp4_;
 	GtkStringSorter* _tmp5_;
-#line 549 "ValaProjectSettingsPopover.vala"
+#line 548 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_StringSorter18*) g_object_new (object_type, NULL);
-#line 551 "ValaProjectSettingsPopover.vala"
+#line 550 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 551 "ValaProjectSettingsPopover.vala"
+#line 550 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 551 "ValaProjectSettingsPopover.vala"
+#line 550 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 552 "ValaProjectSettingsPopover.vala"
+#line 551 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 552 "ValaProjectSettingsPopover.vala"
+#line 551 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_propertyexpression19_new (_tmp1_);
-#line 552 "ValaProjectSettingsPopover.vala"
+#line 551 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 553 "ValaProjectSettingsPopover.vala"
+#line 552 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 554 "ValaProjectSettingsPopover.vala"
+#line 553 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 554 "ValaProjectSettingsPopover.vala"
+#line 553 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _gtk_expression_ref0 ((GtkExpression*) _tmp3_);
-#line 554 "ValaProjectSettingsPopover.vala"
+#line 553 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_string_sorter_new (_tmp4_);
-#line 554 "ValaProjectSettingsPopover.vala"
+#line 553 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 554 "ValaProjectSettingsPopover.vala"
+#line 553 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 549 "ValaProjectSettingsPopover.vala"
+#line 548 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 549 "ValaProjectSettingsPopover.vala"
+#line 548 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 5458 "ValaProjectSettingsPopover.vala.c"
+#line 5375 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_StringSorter18*
 vala_project_settings_popover_xcls_stringsorter18_new (ValaProjectSettingsPopover* _owner)
 {
-#line 549 "ValaProjectSettingsPopover.vala"
+#line 548 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_stringsorter18_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_STRINGSORTER18, _owner);
-#line 5466 "ValaProjectSettingsPopover.vala.c"
+#line 5383 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_stringsorter18_class_init (ValaProjectSettingsPopoverXcls_StringSorter18Class * klass,
                                                               gpointer klass_data)
 {
-#line 540 "ValaProjectSettingsPopover.vala"
+#line 539 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_stringsorter18_parent_class = g_type_class_peek_parent (klass);
-#line 540 "ValaProjectSettingsPopover.vala"
+#line 539 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_StringSorter18_private_offset);
-#line 540 "ValaProjectSettingsPopover.vala"
+#line 539 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_stringsorter18_finalize;
-#line 5479 "ValaProjectSettingsPopover.vala.c"
+#line 5396 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_stringsorter18_instance_init (ValaProjectSettingsPopoverXcls_StringSorter18 * self,
                                                                  gpointer klass)
 {
-#line 540 "ValaProjectSettingsPopover.vala"
+#line 539 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_stringsorter18_get_instance_private (self);
-#line 5488 "ValaProjectSettingsPopover.vala.c"
+#line 5405 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_stringsorter18_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_StringSorter18 * self;
-#line 540 "ValaProjectSettingsPopover.vala"
+#line 539 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_STRINGSORTER18, ValaProjectSettingsPopoverXcls_StringSorter18);
-#line 542 "ValaProjectSettingsPopover.vala"
+#line 541 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 543 "ValaProjectSettingsPopover.vala"
+#line 542 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 540 "ValaProjectSettingsPopover.vala"
+#line 539 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_stringsorter18_parent_class)->finalize (obj);
-#line 5503 "ValaProjectSettingsPopover.vala.c"
+#line 5420 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5537,68 +5454,68 @@ vala_project_settings_popover_xcls_propertyexpression19_construct (GType object_
 	ValaProjectSettingsPopoverXcls_PropertyExpression19 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkPropertyExpression* _tmp1_;
-#line 572 "ValaProjectSettingsPopover.vala"
+#line 571 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_PropertyExpression19*) g_object_new (object_type, NULL);
-#line 574 "ValaProjectSettingsPopover.vala"
+#line 573 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 574 "ValaProjectSettingsPopover.vala"
+#line 573 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 574 "ValaProjectSettingsPopover.vala"
+#line 573 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 575 "ValaProjectSettingsPopover.vala"
+#line 574 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkPropertyExpression*) gtk_property_expression_new (PROJECT_TYPE_VAPI_SELECTION, NULL, "sortkey");
-#line 575 "ValaProjectSettingsPopover.vala"
+#line 574 "ValaProjectSettingsPopover.vala"
 	_gtk_expression_unref0 (self->el);
-#line 575 "ValaProjectSettingsPopover.vala"
+#line 574 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 572 "ValaProjectSettingsPopover.vala"
+#line 571 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 5557 "ValaProjectSettingsPopover.vala.c"
+#line 5474 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_PropertyExpression19*
 vala_project_settings_popover_xcls_propertyexpression19_new (ValaProjectSettingsPopover* _owner)
 {
-#line 572 "ValaProjectSettingsPopover.vala"
+#line 571 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_propertyexpression19_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_PROPERTYEXPRESSION19, _owner);
-#line 5565 "ValaProjectSettingsPopover.vala.c"
+#line 5482 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_propertyexpression19_class_init (ValaProjectSettingsPopoverXcls_PropertyExpression19Class * klass,
                                                                     gpointer klass_data)
 {
-#line 563 "ValaProjectSettingsPopover.vala"
+#line 562 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_propertyexpression19_parent_class = g_type_class_peek_parent (klass);
-#line 563 "ValaProjectSettingsPopover.vala"
+#line 562 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_PropertyExpression19_private_offset);
-#line 563 "ValaProjectSettingsPopover.vala"
+#line 562 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_propertyexpression19_finalize;
-#line 5578 "ValaProjectSettingsPopover.vala.c"
+#line 5495 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_propertyexpression19_instance_init (ValaProjectSettingsPopoverXcls_PropertyExpression19 * self,
                                                                        gpointer klass)
 {
-#line 563 "ValaProjectSettingsPopover.vala"
+#line 562 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_propertyexpression19_get_instance_private (self);
-#line 5587 "ValaProjectSettingsPopover.vala.c"
+#line 5504 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_propertyexpression19_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_PropertyExpression19 * self;
-#line 563 "ValaProjectSettingsPopover.vala"
+#line 562 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_PROPERTYEXPRESSION19, ValaProjectSettingsPopoverXcls_PropertyExpression19);
-#line 565 "ValaProjectSettingsPopover.vala"
+#line 564 "ValaProjectSettingsPopover.vala"
 	_gtk_expression_unref0 (self->el);
-#line 566 "ValaProjectSettingsPopover.vala"
+#line 565 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 563 "ValaProjectSettingsPopover.vala"
+#line 562 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_propertyexpression19_parent_class)->finalize (obj);
-#line 5602 "ValaProjectSettingsPopover.vala.c"
+#line 5519 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5643,90 +5560,90 @@ vala_project_settings_popover_xcls_vapi_filter_construct (GType object_type,
 	GtkPropertyExpression* _tmp5_;
 	GtkExpression* _tmp6_;
 	GtkStringFilter* _tmp7_;
-#line 596 "ValaProjectSettingsPopover.vala"
+#line 595 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_vapi_filter*) g_object_new (object_type, NULL);
-#line 598 "ValaProjectSettingsPopover.vala"
+#line 597 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 598 "ValaProjectSettingsPopover.vala"
+#line 597 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 598 "ValaProjectSettingsPopover.vala"
+#line 597 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 599 "ValaProjectSettingsPopover.vala"
+#line 598 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 599 "ValaProjectSettingsPopover.vala"
+#line 598 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 599 "ValaProjectSettingsPopover.vala"
+#line 598 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->vapi_filter);
-#line 599 "ValaProjectSettingsPopover.vala"
+#line 598 "ValaProjectSettingsPopover.vala"
 	_tmp1_->vapi_filter = _tmp2_;
-#line 600 "ValaProjectSettingsPopover.vala"
+#line 599 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 600 "ValaProjectSettingsPopover.vala"
+#line 599 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_propertyexpression21_new (_tmp3_);
-#line 600 "ValaProjectSettingsPopover.vala"
+#line 599 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 601 "ValaProjectSettingsPopover.vala"
+#line 600 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 602 "ValaProjectSettingsPopover.vala"
+#line 601 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 602 "ValaProjectSettingsPopover.vala"
+#line 601 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _gtk_expression_ref0 ((GtkExpression*) _tmp5_);
-#line 602 "ValaProjectSettingsPopover.vala"
+#line 601 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = gtk_string_filter_new (_tmp6_);
-#line 602 "ValaProjectSettingsPopover.vala"
+#line 601 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 602 "ValaProjectSettingsPopover.vala"
+#line 601 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp7_;
-#line 596 "ValaProjectSettingsPopover.vala"
+#line 595 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 596 "ValaProjectSettingsPopover.vala"
+#line 595 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 5685 "ValaProjectSettingsPopover.vala.c"
+#line 5602 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_vapi_filter*
 vala_project_settings_popover_xcls_vapi_filter_new (ValaProjectSettingsPopover* _owner)
 {
-#line 596 "ValaProjectSettingsPopover.vala"
+#line 595 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_vapi_filter_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_VAPI_FILTER, _owner);
-#line 5693 "ValaProjectSettingsPopover.vala.c"
+#line 5610 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_filter_class_init (ValaProjectSettingsPopoverXcls_vapi_filterClass * klass,
                                                            gpointer klass_data)
 {
-#line 587 "ValaProjectSettingsPopover.vala"
+#line 586 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_vapi_filter_parent_class = g_type_class_peek_parent (klass);
-#line 587 "ValaProjectSettingsPopover.vala"
+#line 586 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_vapi_filter_private_offset);
-#line 587 "ValaProjectSettingsPopover.vala"
+#line 586 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_vapi_filter_finalize;
-#line 5706 "ValaProjectSettingsPopover.vala.c"
+#line 5623 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_filter_instance_init (ValaProjectSettingsPopoverXcls_vapi_filter * self,
                                                               gpointer klass)
 {
-#line 587 "ValaProjectSettingsPopover.vala"
+#line 586 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_vapi_filter_get_instance_private (self);
-#line 5715 "ValaProjectSettingsPopover.vala.c"
+#line 5632 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_filter_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_vapi_filter * self;
-#line 587 "ValaProjectSettingsPopover.vala"
+#line 586 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_VAPI_FILTER, ValaProjectSettingsPopoverXcls_vapi_filter);
-#line 589 "ValaProjectSettingsPopover.vala"
+#line 588 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 590 "ValaProjectSettingsPopover.vala"
+#line 589 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 587 "ValaProjectSettingsPopover.vala"
+#line 586 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_vapi_filter_parent_class)->finalize (obj);
-#line 5730 "ValaProjectSettingsPopover.vala.c"
+#line 5647 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5764,68 +5681,68 @@ vala_project_settings_popover_xcls_propertyexpression21_construct (GType object_
 	ValaProjectSettingsPopoverXcls_PropertyExpression21 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkPropertyExpression* _tmp1_;
-#line 620 "ValaProjectSettingsPopover.vala"
+#line 619 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_PropertyExpression21*) g_object_new (object_type, NULL);
-#line 622 "ValaProjectSettingsPopover.vala"
+#line 621 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 622 "ValaProjectSettingsPopover.vala"
+#line 621 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 622 "ValaProjectSettingsPopover.vala"
+#line 621 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 623 "ValaProjectSettingsPopover.vala"
+#line 622 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkPropertyExpression*) gtk_property_expression_new (PROJECT_TYPE_VAPI_SELECTION, NULL, "sortkey");
-#line 623 "ValaProjectSettingsPopover.vala"
+#line 622 "ValaProjectSettingsPopover.vala"
 	_gtk_expression_unref0 (self->el);
-#line 623 "ValaProjectSettingsPopover.vala"
+#line 622 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 620 "ValaProjectSettingsPopover.vala"
+#line 619 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 5784 "ValaProjectSettingsPopover.vala.c"
+#line 5701 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_PropertyExpression21*
 vala_project_settings_popover_xcls_propertyexpression21_new (ValaProjectSettingsPopover* _owner)
 {
-#line 620 "ValaProjectSettingsPopover.vala"
+#line 619 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_propertyexpression21_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_PROPERTYEXPRESSION21, _owner);
-#line 5792 "ValaProjectSettingsPopover.vala.c"
+#line 5709 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_propertyexpression21_class_init (ValaProjectSettingsPopoverXcls_PropertyExpression21Class * klass,
                                                                     gpointer klass_data)
 {
-#line 611 "ValaProjectSettingsPopover.vala"
+#line 610 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_propertyexpression21_parent_class = g_type_class_peek_parent (klass);
-#line 611 "ValaProjectSettingsPopover.vala"
+#line 610 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_PropertyExpression21_private_offset);
-#line 611 "ValaProjectSettingsPopover.vala"
+#line 610 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_propertyexpression21_finalize;
-#line 5805 "ValaProjectSettingsPopover.vala.c"
+#line 5722 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_propertyexpression21_instance_init (ValaProjectSettingsPopoverXcls_PropertyExpression21 * self,
                                                                        gpointer klass)
 {
-#line 611 "ValaProjectSettingsPopover.vala"
+#line 610 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_propertyexpression21_get_instance_private (self);
-#line 5814 "ValaProjectSettingsPopover.vala.c"
+#line 5731 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_propertyexpression21_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_PropertyExpression21 * self;
-#line 611 "ValaProjectSettingsPopover.vala"
+#line 610 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_PROPERTYEXPRESSION21, ValaProjectSettingsPopoverXcls_PropertyExpression21);
-#line 613 "ValaProjectSettingsPopover.vala"
+#line 612 "ValaProjectSettingsPopover.vala"
 	_gtk_expression_unref0 (self->el);
-#line 614 "ValaProjectSettingsPopover.vala"
+#line 613 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 611 "ValaProjectSettingsPopover.vala"
+#line 610 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_propertyexpression21_parent_class)->finalize (obj);
-#line 5829 "ValaProjectSettingsPopover.vala.c"
+#line 5746 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5869,86 +5786,86 @@ vala_project_settings_popover_xcls_columnviewcolumn22_construct (GType object_ty
 	GtkListItemFactory* _tmp4_;
 	GtkColumnViewColumn* _tmp5_;
 	GtkColumnViewColumn* _tmp6_;
-#line 645 "ValaProjectSettingsPopover.vala"
+#line 644 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_ColumnViewColumn22*) g_object_new (object_type, NULL);
-#line 647 "ValaProjectSettingsPopover.vala"
+#line 646 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 647 "ValaProjectSettingsPopover.vala"
+#line 646 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 647 "ValaProjectSettingsPopover.vala"
+#line 646 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 648 "ValaProjectSettingsPopover.vala"
+#line 647 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 648 "ValaProjectSettingsPopover.vala"
+#line 647 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_signallistitemfactory23_new (_tmp1_);
-#line 648 "ValaProjectSettingsPopover.vala"
+#line 647 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 649 "ValaProjectSettingsPopover.vala"
+#line 648 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 650 "ValaProjectSettingsPopover.vala"
+#line 649 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 650 "ValaProjectSettingsPopover.vala"
+#line 649 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 ((GtkListItemFactory*) _tmp3_);
-#line 650 "ValaProjectSettingsPopover.vala"
+#line 649 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_column_view_column_new ("Vapi Package", _tmp4_);
-#line 650 "ValaProjectSettingsPopover.vala"
+#line 649 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 650 "ValaProjectSettingsPopover.vala"
+#line 649 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 655 "ValaProjectSettingsPopover.vala"
+#line 654 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 655 "ValaProjectSettingsPopover.vala"
+#line 654 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_column_set_expand (_tmp6_, TRUE);
-#line 645 "ValaProjectSettingsPopover.vala"
+#line 644 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 645 "ValaProjectSettingsPopover.vala"
+#line 644 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 5907 "ValaProjectSettingsPopover.vala.c"
+#line 5824 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_ColumnViewColumn22*
 vala_project_settings_popover_xcls_columnviewcolumn22_new (ValaProjectSettingsPopover* _owner)
 {
-#line 645 "ValaProjectSettingsPopover.vala"
+#line 644 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_columnviewcolumn22_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEWCOLUMN22, _owner);
-#line 5915 "ValaProjectSettingsPopover.vala.c"
+#line 5832 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn22_class_init (ValaProjectSettingsPopoverXcls_ColumnViewColumn22Class * klass,
                                                                   gpointer klass_data)
 {
-#line 636 "ValaProjectSettingsPopover.vala"
+#line 635 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_columnviewcolumn22_parent_class = g_type_class_peek_parent (klass);
-#line 636 "ValaProjectSettingsPopover.vala"
+#line 635 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_ColumnViewColumn22_private_offset);
-#line 636 "ValaProjectSettingsPopover.vala"
+#line 635 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_columnviewcolumn22_finalize;
-#line 5928 "ValaProjectSettingsPopover.vala.c"
+#line 5845 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn22_instance_init (ValaProjectSettingsPopoverXcls_ColumnViewColumn22 * self,
                                                                      gpointer klass)
 {
-#line 636 "ValaProjectSettingsPopover.vala"
+#line 635 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_columnviewcolumn22_get_instance_private (self);
-#line 5937 "ValaProjectSettingsPopover.vala.c"
+#line 5854 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn22_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_ColumnViewColumn22 * self;
-#line 636 "ValaProjectSettingsPopover.vala"
+#line 635 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEWCOLUMN22, ValaProjectSettingsPopoverXcls_ColumnViewColumn22);
-#line 638 "ValaProjectSettingsPopover.vala"
+#line 637 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 639 "ValaProjectSettingsPopover.vala"
+#line 638 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 636 "ValaProjectSettingsPopover.vala"
+#line 635 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_columnviewcolumn22_parent_class)->finalize (obj);
-#line 5952 "ValaProjectSettingsPopover.vala.c"
+#line 5869 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -5987,25 +5904,25 @@ __lambda119_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
 	GtkListItem* _tmp0_;
 	GtkLabel* lbl = NULL;
 	GtkLabel* _tmp1_;
-#line 681 "ValaProjectSettingsPopover.vala"
+#line 680 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (item, gtk_list_item_get_type (), GtkListItem));
-#line 681 "ValaProjectSettingsPopover.vala"
+#line 680 "ValaProjectSettingsPopover.vala"
 	gi = _tmp0_;
-#line 683 "ValaProjectSettingsPopover.vala"
+#line 682 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkLabel*) gtk_label_new ("");
-#line 683 "ValaProjectSettingsPopover.vala"
+#line 682 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 683 "ValaProjectSettingsPopover.vala"
+#line 682 "ValaProjectSettingsPopover.vala"
 	lbl = _tmp1_;
-#line 684 "ValaProjectSettingsPopover.vala"
+#line 683 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_halign ((GtkWidget*) lbl, GTK_ALIGN_START);
-#line 685 "ValaProjectSettingsPopover.vala"
+#line 684 "ValaProjectSettingsPopover.vala"
 	gtk_list_item_set_child (gi, (GtkWidget*) lbl);
-#line 679 "ValaProjectSettingsPopover.vala"
+#line 678 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lbl);
-#line 679 "ValaProjectSettingsPopover.vala"
+#line 678 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (gi);
-#line 6009 "ValaProjectSettingsPopover.vala.c"
+#line 5926 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -6013,9 +5930,9 @@ ___lambda119__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sen
                                                   GObject* object,
                                                   gpointer self)
 {
-#line 679 "ValaProjectSettingsPopover.vala"
+#line 678 "ValaProjectSettingsPopover.vala"
 	__lambda119_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory23*) self, object);
-#line 6019 "ValaProjectSettingsPopover.vala.c"
+#line 5936 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -6028,25 +5945,25 @@ __lambda120_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
 	ProjectVapiSelection* item = NULL;
 	GObject* _tmp2_;
 	ProjectVapiSelection* _tmp3_;
-#line 692 "ValaProjectSettingsPopover.vala"
+#line 691 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = gtk_list_item_get_child (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 692 "ValaProjectSettingsPopover.vala"
+#line 691 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, gtk_box_get_type (), GtkBox));
-#line 692 "ValaProjectSettingsPopover.vala"
+#line 691 "ValaProjectSettingsPopover.vala"
 	lbl = _tmp1_;
-#line 694 "ValaProjectSettingsPopover.vala"
+#line 693 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = gtk_list_item_get_item (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 694 "ValaProjectSettingsPopover.vala"
+#line 693 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, PROJECT_TYPE_VAPI_SELECTION, ProjectVapiSelection));
-#line 694 "ValaProjectSettingsPopover.vala"
+#line 693 "ValaProjectSettingsPopover.vala"
 	item = _tmp3_;
-#line 696 "ValaProjectSettingsPopover.vala"
+#line 695 "ValaProjectSettingsPopover.vala"
 	g_object_bind_property_with_closures ((GObject*) item, "name", (GObject*) lbl, "label", G_BINDING_SYNC_CREATE, (GClosure*) ((NULL == NULL) ? NULL : g_cclosure_new ((GCallback) NULL, NULL, (GClosureNotify) NULL)), (GClosure*) ((NULL == NULL) ? NULL : g_cclosure_new ((GCallback) NULL, NULL, (GClosureNotify) NULL)));
-#line 690 "ValaProjectSettingsPopover.vala"
+#line 689 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (item);
-#line 690 "ValaProjectSettingsPopover.vala"
+#line 689 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lbl);
-#line 6050 "ValaProjectSettingsPopover.vala.c"
+#line 5967 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -6054,9 +5971,9 @@ ___lambda120__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _send
                                                  GObject* object,
                                                  gpointer self)
 {
-#line 690 "ValaProjectSettingsPopover.vala"
+#line 689 "ValaProjectSettingsPopover.vala"
 	__lambda120_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory23*) self, object);
-#line 6060 "ValaProjectSettingsPopover.vala.c"
+#line 5977 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory23*
@@ -6068,76 +5985,76 @@ vala_project_settings_popover_xcls_signallistitemfactory23_construct (GType obje
 	GtkSignalListItemFactory* _tmp1_;
 	GtkSignalListItemFactory* _tmp2_;
 	GtkSignalListItemFactory* _tmp3_;
-#line 669 "ValaProjectSettingsPopover.vala"
+#line 668 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_SignalListItemFactory23*) g_object_new (object_type, NULL);
-#line 671 "ValaProjectSettingsPopover.vala"
+#line 670 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 671 "ValaProjectSettingsPopover.vala"
+#line 670 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 671 "ValaProjectSettingsPopover.vala"
+#line 670 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 672 "ValaProjectSettingsPopover.vala"
+#line 671 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkSignalListItemFactory*) gtk_signal_list_item_factory_new ();
-#line 672 "ValaProjectSettingsPopover.vala"
+#line 671 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 672 "ValaProjectSettingsPopover.vala"
+#line 671 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 679 "ValaProjectSettingsPopover.vala"
+#line 678 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 679 "ValaProjectSettingsPopover.vala"
+#line 678 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda119__gtk_signal_list_item_factory_setup, self, 0);
-#line 690 "ValaProjectSettingsPopover.vala"
+#line 689 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 690 "ValaProjectSettingsPopover.vala"
+#line 689 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda120__gtk_signal_list_item_factory_bind, self, 0);
-#line 669 "ValaProjectSettingsPopover.vala"
+#line 668 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 6096 "ValaProjectSettingsPopover.vala.c"
+#line 6013 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory23*
 vala_project_settings_popover_xcls_signallistitemfactory23_new (ValaProjectSettingsPopover* _owner)
 {
-#line 669 "ValaProjectSettingsPopover.vala"
+#line 668 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_signallistitemfactory23_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY23, _owner);
-#line 6104 "ValaProjectSettingsPopover.vala.c"
+#line 6021 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory23_class_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory23Class * klass,
                                                                        gpointer klass_data)
 {
-#line 660 "ValaProjectSettingsPopover.vala"
+#line 659 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_signallistitemfactory23_parent_class = g_type_class_peek_parent (klass);
-#line 660 "ValaProjectSettingsPopover.vala"
+#line 659 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_SignalListItemFactory23_private_offset);
-#line 660 "ValaProjectSettingsPopover.vala"
+#line 659 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_signallistitemfactory23_finalize;
-#line 6117 "ValaProjectSettingsPopover.vala.c"
+#line 6034 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory23_instance_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory23 * self,
                                                                           gpointer klass)
 {
-#line 660 "ValaProjectSettingsPopover.vala"
+#line 659 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_signallistitemfactory23_get_instance_private (self);
-#line 6126 "ValaProjectSettingsPopover.vala.c"
+#line 6043 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory23_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_SignalListItemFactory23 * self;
-#line 660 "ValaProjectSettingsPopover.vala"
+#line 659 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY23, ValaProjectSettingsPopoverXcls_SignalListItemFactory23);
-#line 662 "ValaProjectSettingsPopover.vala"
+#line 661 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 663 "ValaProjectSettingsPopover.vala"
+#line 662 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 660 "ValaProjectSettingsPopover.vala"
+#line 659 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_signallistitemfactory23_parent_class)->finalize (obj);
-#line 6141 "ValaProjectSettingsPopover.vala.c"
+#line 6058 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -6180,82 +6097,82 @@ vala_project_settings_popover_xcls_columnviewcolumn24_construct (GType object_ty
 	GtkSignalListItemFactory* _tmp3_;
 	GtkListItemFactory* _tmp4_;
 	GtkColumnViewColumn* _tmp5_;
-#line 717 "ValaProjectSettingsPopover.vala"
+#line 716 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_ColumnViewColumn24*) g_object_new (object_type, NULL);
-#line 719 "ValaProjectSettingsPopover.vala"
+#line 718 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 719 "ValaProjectSettingsPopover.vala"
+#line 718 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 719 "ValaProjectSettingsPopover.vala"
+#line 718 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 720 "ValaProjectSettingsPopover.vala"
+#line 719 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 720 "ValaProjectSettingsPopover.vala"
+#line 719 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_signallistitemfactory25_new (_tmp1_);
-#line 720 "ValaProjectSettingsPopover.vala"
+#line 719 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 721 "ValaProjectSettingsPopover.vala"
+#line 720 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 722 "ValaProjectSettingsPopover.vala"
+#line 721 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 722 "ValaProjectSettingsPopover.vala"
+#line 721 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 ((GtkListItemFactory*) _tmp3_);
-#line 722 "ValaProjectSettingsPopover.vala"
+#line 721 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_column_view_column_new ("use", _tmp4_);
-#line 722 "ValaProjectSettingsPopover.vala"
+#line 721 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 722 "ValaProjectSettingsPopover.vala"
+#line 721 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 717 "ValaProjectSettingsPopover.vala"
+#line 716 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 717 "ValaProjectSettingsPopover.vala"
+#line 716 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 6214 "ValaProjectSettingsPopover.vala.c"
+#line 6131 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_ColumnViewColumn24*
 vala_project_settings_popover_xcls_columnviewcolumn24_new (ValaProjectSettingsPopover* _owner)
 {
-#line 717 "ValaProjectSettingsPopover.vala"
+#line 716 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_columnviewcolumn24_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEWCOLUMN24, _owner);
-#line 6222 "ValaProjectSettingsPopover.vala.c"
+#line 6139 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn24_class_init (ValaProjectSettingsPopoverXcls_ColumnViewColumn24Class * klass,
                                                                   gpointer klass_data)
 {
-#line 708 "ValaProjectSettingsPopover.vala"
+#line 707 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_columnviewcolumn24_parent_class = g_type_class_peek_parent (klass);
-#line 708 "ValaProjectSettingsPopover.vala"
+#line 707 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_ColumnViewColumn24_private_offset);
-#line 708 "ValaProjectSettingsPopover.vala"
+#line 707 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_columnviewcolumn24_finalize;
-#line 6235 "ValaProjectSettingsPopover.vala.c"
+#line 6152 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn24_instance_init (ValaProjectSettingsPopoverXcls_ColumnViewColumn24 * self,
                                                                      gpointer klass)
 {
-#line 708 "ValaProjectSettingsPopover.vala"
+#line 707 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_columnviewcolumn24_get_instance_private (self);
-#line 6244 "ValaProjectSettingsPopover.vala.c"
+#line 6161 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn24_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_ColumnViewColumn24 * self;
-#line 708 "ValaProjectSettingsPopover.vala"
+#line 707 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEWCOLUMN24, ValaProjectSettingsPopoverXcls_ColumnViewColumn24);
-#line 710 "ValaProjectSettingsPopover.vala"
+#line 709 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 711 "ValaProjectSettingsPopover.vala"
+#line 710 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 708 "ValaProjectSettingsPopover.vala"
+#line 707 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_columnviewcolumn24_parent_class)->finalize (obj);
-#line 6259 "ValaProjectSettingsPopover.vala.c"
+#line 6176 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -6289,11 +6206,11 @@ vala_project_settings_popover_xcls_signallistitemfactory25_get_instance_private 
 static Block8Data*
 block8_data_ref (Block8Data* _data8_)
 {
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	g_atomic_int_inc (&_data8_->_ref_count_);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	return _data8_;
-#line 6297 "ValaProjectSettingsPopover.vala.c"
+#line 6214 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -6301,21 +6218,21 @@ block8_data_unref (void * _userdata_)
 {
 	Block8Data* _data8_;
 	_data8_ = (Block8Data*) _userdata_;
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	if (g_atomic_int_dec_and_test (&_data8_->_ref_count_)) {
-#line 6307 "ValaProjectSettingsPopover.vala.c"
+#line 6224 "ValaProjectSettingsPopover.vala.c"
 		ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self;
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 		self = _data8_->self;
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (_data8_->btn);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (_data8_->listitem);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (self);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 		g_slice_free (Block8Data, _data8_);
-#line 6319 "ValaProjectSettingsPopover.vala.c"
+#line 6236 "ValaProjectSettingsPopover.vala.c"
 	}
 }
 
@@ -6328,32 +6245,32 @@ __lambda122_ (Block8Data* _data8_)
 	ProjectVapiSelection* _tmp1_;
 	gboolean _tmp2_;
 	gboolean _tmp3_;
-#line 756 "ValaProjectSettingsPopover.vala"
+#line 755 "ValaProjectSettingsPopover.vala"
 	self = _data8_->self;
-#line 758 "ValaProjectSettingsPopover.vala"
+#line 757 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = gtk_list_item_get_item (G_TYPE_CHECK_INSTANCE_CAST (_data8_->listitem, gtk_list_item_get_type (), GtkListItem));
-#line 758 "ValaProjectSettingsPopover.vala"
+#line 757 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, PROJECT_TYPE_VAPI_SELECTION, ProjectVapiSelection));
-#line 758 "ValaProjectSettingsPopover.vala"
+#line 757 "ValaProjectSettingsPopover.vala"
 	jr = _tmp1_;
-#line 759 "ValaProjectSettingsPopover.vala"
+#line 758 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = gtk_check_button_get_active (_data8_->btn);
-#line 759 "ValaProjectSettingsPopover.vala"
+#line 758 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _tmp2_;
-#line 759 "ValaProjectSettingsPopover.vala"
+#line 758 "ValaProjectSettingsPopover.vala"
 	project_vapi_selection_set_selected (jr, _tmp3_);
-#line 756 "ValaProjectSettingsPopover.vala"
+#line 755 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (jr);
-#line 6348 "ValaProjectSettingsPopover.vala.c"
+#line 6265 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 ___lambda122__gtk_check_button_toggled (GtkCheckButton* _sender,
                                         gpointer self)
 {
-#line 756 "ValaProjectSettingsPopover.vala"
+#line 755 "ValaProjectSettingsPopover.vala"
 	__lambda122_ (self);
-#line 6357 "ValaProjectSettingsPopover.vala.c"
+#line 6274 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -6363,33 +6280,33 @@ __lambda121_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
 	Block8Data* _data8_;
 	GObject* _tmp0_;
 	GtkCheckButton* _tmp1_;
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	_data8_ = g_slice_new0 (Block8Data);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	_data8_->_ref_count_ = 1;
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	_data8_->self = g_object_ref (self);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (listitem);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_data8_->listitem);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	_data8_->listitem = _tmp0_;
-#line 752 "ValaProjectSettingsPopover.vala"
+#line 751 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkCheckButton*) gtk_check_button_new ();
-#line 752 "ValaProjectSettingsPopover.vala"
+#line 751 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 752 "ValaProjectSettingsPopover.vala"
+#line 751 "ValaProjectSettingsPopover.vala"
 	_data8_->btn = _tmp1_;
-#line 754 "ValaProjectSettingsPopover.vala"
+#line 753 "ValaProjectSettingsPopover.vala"
 	gtk_list_item_set_child (G_TYPE_CHECK_INSTANCE_CAST (_data8_->listitem, gtk_list_item_get_type (), GtkListItem), (GtkWidget*) _data8_->btn);
-#line 756 "ValaProjectSettingsPopover.vala"
+#line 755 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_data (_data8_->btn, "toggled", (GCallback) ___lambda122__gtk_check_button_toggled, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	block8_data_unref (_data8_);
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	_data8_ = NULL;
-#line 6393 "ValaProjectSettingsPopover.vala.c"
+#line 6310 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -6397,9 +6314,9 @@ ___lambda121__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sen
                                                   GObject* object,
                                                   gpointer self)
 {
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	__lambda121_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory25*) self, object);
-#line 6403 "ValaProjectSettingsPopover.vala.c"
+#line 6320 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -6415,35 +6332,35 @@ __lambda123_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
 	gboolean _tmp4_;
 	gboolean _tmp5_;
 	GtkCheckButton* _tmp6_;
-#line 768 "ValaProjectSettingsPopover.vala"
+#line 767 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = gtk_list_item_get_child (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 768 "ValaProjectSettingsPopover.vala"
+#line 767 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, gtk_check_button_get_type (), GtkCheckButton));
-#line 768 "ValaProjectSettingsPopover.vala"
+#line 767 "ValaProjectSettingsPopover.vala"
 	btn = _tmp1_;
-#line 771 "ValaProjectSettingsPopover.vala"
+#line 770 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = gtk_list_item_get_item (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 771 "ValaProjectSettingsPopover.vala"
+#line 770 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, PROJECT_TYPE_VAPI_SELECTION, ProjectVapiSelection));
-#line 771 "ValaProjectSettingsPopover.vala"
+#line 770 "ValaProjectSettingsPopover.vala"
 	vs = _tmp3_;
-#line 775 "ValaProjectSettingsPopover.vala"
+#line 774 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = project_vapi_selection_get_selected (vs);
-#line 775 "ValaProjectSettingsPopover.vala"
+#line 774 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = _tmp4_;
-#line 775 "ValaProjectSettingsPopover.vala"
+#line 774 "ValaProjectSettingsPopover.vala"
 	gtk_check_button_set_active (btn, _tmp5_);
-#line 777 "ValaProjectSettingsPopover.vala"
+#line 776 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _g_object_ref0 (btn);
-#line 777 "ValaProjectSettingsPopover.vala"
+#line 776 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (vs->btn);
-#line 777 "ValaProjectSettingsPopover.vala"
+#line 776 "ValaProjectSettingsPopover.vala"
 	vs->btn = _tmp6_;
-#line 762 "ValaProjectSettingsPopover.vala"
+#line 761 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (vs);
-#line 762 "ValaProjectSettingsPopover.vala"
+#line 761 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (btn);
-#line 6447 "ValaProjectSettingsPopover.vala.c"
+#line 6364 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -6451,9 +6368,9 @@ ___lambda123__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _send
                                                  GObject* object,
                                                  gpointer self)
 {
-#line 762 "ValaProjectSettingsPopover.vala"
+#line 761 "ValaProjectSettingsPopover.vala"
 	__lambda123_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory25*) self, object);
-#line 6457 "ValaProjectSettingsPopover.vala.c"
+#line 6374 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory25*
@@ -6465,76 +6382,76 @@ vala_project_settings_popover_xcls_signallistitemfactory25_construct (GType obje
 	GtkSignalListItemFactory* _tmp1_;
 	GtkSignalListItemFactory* _tmp2_;
 	GtkSignalListItemFactory* _tmp3_;
-#line 740 "ValaProjectSettingsPopover.vala"
+#line 739 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_SignalListItemFactory25*) g_object_new (object_type, NULL);
-#line 742 "ValaProjectSettingsPopover.vala"
+#line 741 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 742 "ValaProjectSettingsPopover.vala"
+#line 741 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 742 "ValaProjectSettingsPopover.vala"
+#line 741 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 743 "ValaProjectSettingsPopover.vala"
+#line 742 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkSignalListItemFactory*) gtk_signal_list_item_factory_new ();
-#line 743 "ValaProjectSettingsPopover.vala"
+#line 742 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 743 "ValaProjectSettingsPopover.vala"
+#line 742 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 750 "ValaProjectSettingsPopover.vala"
+#line 749 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda121__gtk_signal_list_item_factory_setup, self, 0);
-#line 762 "ValaProjectSettingsPopover.vala"
+#line 761 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 762 "ValaProjectSettingsPopover.vala"
+#line 761 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda123__gtk_signal_list_item_factory_bind, self, 0);
-#line 740 "ValaProjectSettingsPopover.vala"
+#line 739 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 6493 "ValaProjectSettingsPopover.vala.c"
+#line 6410 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory25*
 vala_project_settings_popover_xcls_signallistitemfactory25_new (ValaProjectSettingsPopover* _owner)
 {
-#line 740 "ValaProjectSettingsPopover.vala"
+#line 739 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_signallistitemfactory25_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY25, _owner);
-#line 6501 "ValaProjectSettingsPopover.vala.c"
+#line 6418 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory25_class_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory25Class * klass,
                                                                        gpointer klass_data)
 {
-#line 731 "ValaProjectSettingsPopover.vala"
+#line 730 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_signallistitemfactory25_parent_class = g_type_class_peek_parent (klass);
-#line 731 "ValaProjectSettingsPopover.vala"
+#line 730 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_SignalListItemFactory25_private_offset);
-#line 731 "ValaProjectSettingsPopover.vala"
+#line 730 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_signallistitemfactory25_finalize;
-#line 6514 "ValaProjectSettingsPopover.vala.c"
+#line 6431 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory25_instance_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory25 * self,
                                                                           gpointer klass)
 {
-#line 731 "ValaProjectSettingsPopover.vala"
+#line 730 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_signallistitemfactory25_get_instance_private (self);
-#line 6523 "ValaProjectSettingsPopover.vala.c"
+#line 6440 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory25_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_SignalListItemFactory25 * self;
-#line 731 "ValaProjectSettingsPopover.vala"
+#line 730 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY25, ValaProjectSettingsPopoverXcls_SignalListItemFactory25);
-#line 733 "ValaProjectSettingsPopover.vala"
+#line 732 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 734 "ValaProjectSettingsPopover.vala"
+#line 733 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 731 "ValaProjectSettingsPopover.vala"
+#line 730 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_signallistitemfactory25_parent_class)->finalize (obj);
-#line 6538 "ValaProjectSettingsPopover.vala.c"
+#line 6455 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -6573,28 +6490,28 @@ __lambda124_ (ValaProjectSettingsPopoverXcls_vapi_search* self)
 	GtkStringFilter* _tmp2_;
 	GtkSearchEntry* _tmp3_;
 	const gchar* _tmp4_;
-#line 813 "ValaProjectSettingsPopover.vala"
+#line 812 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 813 "ValaProjectSettingsPopover.vala"
+#line 812 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _tmp0_->vapi_filter;
-#line 813 "ValaProjectSettingsPopover.vala"
+#line 812 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _tmp1_->el;
-#line 813 "ValaProjectSettingsPopover.vala"
+#line 812 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 813 "ValaProjectSettingsPopover.vala"
+#line 812 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = gtk_editable_get_text ((GtkEditable*) _tmp3_);
-#line 813 "ValaProjectSettingsPopover.vala"
+#line 812 "ValaProjectSettingsPopover.vala"
 	gtk_string_filter_set_search (_tmp2_, _tmp4_);
-#line 6589 "ValaProjectSettingsPopover.vala.c"
+#line 6506 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 ___lambda124__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
                                                gpointer self)
 {
-#line 811 "ValaProjectSettingsPopover.vala"
+#line 810 "ValaProjectSettingsPopover.vala"
 	__lambda124_ ((ValaProjectSettingsPopoverXcls_vapi_search*) self);
-#line 6598 "ValaProjectSettingsPopover.vala.c"
+#line 6515 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_vapi_search*
@@ -6609,90 +6526,90 @@ vala_project_settings_popover_xcls_vapi_search_construct (GType object_type,
 	GtkSearchEntry* _tmp4_;
 	GtkSearchEntry* _tmp5_;
 	GtkSearchEntry* _tmp6_;
-#line 798 "ValaProjectSettingsPopover.vala"
+#line 797 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_vapi_search*) g_object_new (object_type, NULL);
-#line 800 "ValaProjectSettingsPopover.vala"
+#line 799 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 800 "ValaProjectSettingsPopover.vala"
+#line 799 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 800 "ValaProjectSettingsPopover.vala"
+#line 799 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 801 "ValaProjectSettingsPopover.vala"
+#line 800 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 801 "ValaProjectSettingsPopover.vala"
+#line 800 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 801 "ValaProjectSettingsPopover.vala"
+#line 800 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->vapi_search);
-#line 801 "ValaProjectSettingsPopover.vala"
+#line 800 "ValaProjectSettingsPopover.vala"
 	_tmp1_->vapi_search = _tmp2_;
-#line 802 "ValaProjectSettingsPopover.vala"
+#line 801 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkSearchEntry*) gtk_search_entry_new ();
-#line 802 "ValaProjectSettingsPopover.vala"
+#line 801 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 802 "ValaProjectSettingsPopover.vala"
+#line 801 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 802 "ValaProjectSettingsPopover.vala"
+#line 801 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 807 "ValaProjectSettingsPopover.vala"
+#line 806 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 807 "ValaProjectSettingsPopover.vala"
+#line 806 "ValaProjectSettingsPopover.vala"
 	g_object_set (_tmp4_, "placeholder-text", "Search Libraries (Vapi)", NULL);
-#line 808 "ValaProjectSettingsPopover.vala"
+#line 807 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 808 "ValaProjectSettingsPopover.vala"
+#line 807 "ValaProjectSettingsPopover.vala"
 	gtk_search_entry_set_search_delay (_tmp5_, (guint) 500);
-#line 811 "ValaProjectSettingsPopover.vala"
+#line 810 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 811 "ValaProjectSettingsPopover.vala"
+#line 810 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp6_, "search-changed", (GCallback) ___lambda124__gtk_search_entry_search_changed, self, 0);
-#line 798 "ValaProjectSettingsPopover.vala"
+#line 797 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 6651 "ValaProjectSettingsPopover.vala.c"
+#line 6568 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_vapi_search*
 vala_project_settings_popover_xcls_vapi_search_new (ValaProjectSettingsPopover* _owner)
 {
-#line 798 "ValaProjectSettingsPopover.vala"
+#line 797 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_vapi_search_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_VAPI_SEARCH, _owner);
-#line 6659 "ValaProjectSettingsPopover.vala.c"
+#line 6576 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_search_class_init (ValaProjectSettingsPopoverXcls_vapi_searchClass * klass,
                                                            gpointer klass_data)
 {
-#line 789 "ValaProjectSettingsPopover.vala"
+#line 788 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_vapi_search_parent_class = g_type_class_peek_parent (klass);
-#line 789 "ValaProjectSettingsPopover.vala"
+#line 788 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_vapi_search_private_offset);
-#line 789 "ValaProjectSettingsPopover.vala"
+#line 788 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_vapi_search_finalize;
-#line 6672 "ValaProjectSettingsPopover.vala.c"
+#line 6589 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_search_instance_init (ValaProjectSettingsPopoverXcls_vapi_search * self,
                                                               gpointer klass)
 {
-#line 789 "ValaProjectSettingsPopover.vala"
+#line 788 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_vapi_search_get_instance_private (self);
-#line 6681 "ValaProjectSettingsPopover.vala.c"
+#line 6598 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_vapi_search_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_vapi_search * self;
-#line 789 "ValaProjectSettingsPopover.vala"
+#line 788 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_VAPI_SEARCH, ValaProjectSettingsPopoverXcls_vapi_search);
-#line 791 "ValaProjectSettingsPopover.vala"
+#line 790 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 792 "ValaProjectSettingsPopover.vala"
+#line 791 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 789 "ValaProjectSettingsPopover.vala"
+#line 788 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_vapi_search_parent_class)->finalize (obj);
-#line 6696 "ValaProjectSettingsPopover.vala.c"
+#line 6613 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -6742,106 +6659,106 @@ vala_project_settings_popover_xcls_paned27_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_Box40* _tmp9_;
 	GtkPaned* _tmp10_;
 	GtkBox* _tmp11_;
-#line 831 "ValaProjectSettingsPopover.vala"
+#line 830 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Paned27*) g_object_new (object_type, NULL);
-#line 833 "ValaProjectSettingsPopover.vala"
+#line 832 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 833 "ValaProjectSettingsPopover.vala"
+#line 832 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 833 "ValaProjectSettingsPopover.vala"
+#line 832 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 834 "ValaProjectSettingsPopover.vala"
+#line 833 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkPaned*) gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
-#line 834 "ValaProjectSettingsPopover.vala"
+#line 833 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 834 "ValaProjectSettingsPopover.vala"
+#line 833 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 834 "ValaProjectSettingsPopover.vala"
+#line 833 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 839 "ValaProjectSettingsPopover.vala"
+#line 838 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 839 "ValaProjectSettingsPopover.vala"
+#line 838 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 840 "ValaProjectSettingsPopover.vala"
+#line 839 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 840 "ValaProjectSettingsPopover.vala"
+#line 839 "ValaProjectSettingsPopover.vala"
 	gtk_paned_set_position (_tmp3_, 300);
-#line 841 "ValaProjectSettingsPopover.vala"
+#line 840 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->priv->_this;
-#line 841 "ValaProjectSettingsPopover.vala"
+#line 840 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = vala_project_settings_popover_xcls_set_vbox_new (_tmp4_);
-#line 841 "ValaProjectSettingsPopover.vala"
+#line 840 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp5_;
-#line 842 "ValaProjectSettingsPopover.vala"
+#line 841 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 842 "ValaProjectSettingsPopover.vala"
+#line 841 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = child_1->el;
-#line 842 "ValaProjectSettingsPopover.vala"
+#line 841 "ValaProjectSettingsPopover.vala"
 	gtk_paned_set_end_child (_tmp6_, (GtkWidget*) _tmp7_);
-#line 843 "ValaProjectSettingsPopover.vala"
+#line 842 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->priv->_this;
-#line 843 "ValaProjectSettingsPopover.vala"
+#line 842 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = vala_project_settings_popover_xcls_box40_new (_tmp8_);
-#line 843 "ValaProjectSettingsPopover.vala"
+#line 842 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp9_;
-#line 844 "ValaProjectSettingsPopover.vala"
+#line 843 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = self->el;
-#line 844 "ValaProjectSettingsPopover.vala"
+#line 843 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = child_2->el;
-#line 844 "ValaProjectSettingsPopover.vala"
+#line 843 "ValaProjectSettingsPopover.vala"
 	gtk_paned_set_start_child (_tmp10_, (GtkWidget*) _tmp11_);
-#line 831 "ValaProjectSettingsPopover.vala"
+#line 830 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 831 "ValaProjectSettingsPopover.vala"
+#line 830 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 831 "ValaProjectSettingsPopover.vala"
+#line 830 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 6800 "ValaProjectSettingsPopover.vala.c"
+#line 6717 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Paned27*
 vala_project_settings_popover_xcls_paned27_new (ValaProjectSettingsPopover* _owner)
 {
-#line 831 "ValaProjectSettingsPopover.vala"
+#line 830 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_paned27_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_PANED27, _owner);
-#line 6808 "ValaProjectSettingsPopover.vala.c"
+#line 6725 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_paned27_class_init (ValaProjectSettingsPopoverXcls_Paned27Class * klass,
                                                        gpointer klass_data)
 {
-#line 822 "ValaProjectSettingsPopover.vala"
+#line 821 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_paned27_parent_class = g_type_class_peek_parent (klass);
-#line 822 "ValaProjectSettingsPopover.vala"
+#line 821 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Paned27_private_offset);
-#line 822 "ValaProjectSettingsPopover.vala"
+#line 821 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_paned27_finalize;
-#line 6821 "ValaProjectSettingsPopover.vala.c"
+#line 6738 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_paned27_instance_init (ValaProjectSettingsPopoverXcls_Paned27 * self,
                                                           gpointer klass)
 {
-#line 822 "ValaProjectSettingsPopover.vala"
+#line 821 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_paned27_get_instance_private (self);
-#line 6830 "ValaProjectSettingsPopover.vala.c"
+#line 6747 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_paned27_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Paned27 * self;
-#line 822 "ValaProjectSettingsPopover.vala"
+#line 821 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_PANED27, ValaProjectSettingsPopoverXcls_Paned27);
-#line 824 "ValaProjectSettingsPopover.vala"
+#line 823 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 825 "ValaProjectSettingsPopover.vala"
+#line 824 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 822 "ValaProjectSettingsPopover.vala"
+#line 821 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_paned27_parent_class)->finalize (obj);
-#line 6845 "ValaProjectSettingsPopover.vala.c"
+#line 6762 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -6887,98 +6804,98 @@ vala_project_settings_popover_xcls_set_vbox_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_ScrolledWindow29* _tmp6_;
 	GtkBox* _tmp7_;
 	GtkScrolledWindow* _tmp8_;
-#line 858 "ValaProjectSettingsPopover.vala"
+#line 857 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_set_vbox*) g_object_new (object_type, NULL);
-#line 860 "ValaProjectSettingsPopover.vala"
+#line 859 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 860 "ValaProjectSettingsPopover.vala"
+#line 859 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 860 "ValaProjectSettingsPopover.vala"
+#line 859 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 861 "ValaProjectSettingsPopover.vala"
+#line 860 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 861 "ValaProjectSettingsPopover.vala"
+#line 860 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 861 "ValaProjectSettingsPopover.vala"
+#line 860 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->set_vbox);
-#line 861 "ValaProjectSettingsPopover.vala"
+#line 860 "ValaProjectSettingsPopover.vala"
 	_tmp1_->set_vbox = _tmp2_;
-#line 862 "ValaProjectSettingsPopover.vala"
+#line 861 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 862 "ValaProjectSettingsPopover.vala"
+#line 861 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 862 "ValaProjectSettingsPopover.vala"
+#line 861 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 862 "ValaProjectSettingsPopover.vala"
+#line 861 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 867 "ValaProjectSettingsPopover.vala"
+#line 866 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 867 "ValaProjectSettingsPopover.vala"
+#line 866 "ValaProjectSettingsPopover.vala"
 	gtk_box_set_homogeneous (_tmp4_, FALSE);
-#line 868 "ValaProjectSettingsPopover.vala"
+#line 867 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->priv->_this;
-#line 868 "ValaProjectSettingsPopover.vala"
+#line 867 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = vala_project_settings_popover_xcls_scrolledwindow29_new (_tmp5_);
-#line 868 "ValaProjectSettingsPopover.vala"
+#line 867 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp6_;
-#line 869 "ValaProjectSettingsPopover.vala"
+#line 868 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 870 "ValaProjectSettingsPopover.vala"
+#line 869 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = self->el;
-#line 870 "ValaProjectSettingsPopover.vala"
+#line 869 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = child_1->el;
-#line 870 "ValaProjectSettingsPopover.vala"
+#line 869 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp7_, (GtkWidget*) _tmp8_);
-#line 858 "ValaProjectSettingsPopover.vala"
+#line 857 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 858 "ValaProjectSettingsPopover.vala"
+#line 857 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 6937 "ValaProjectSettingsPopover.vala.c"
+#line 6854 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_set_vbox*
 vala_project_settings_popover_xcls_set_vbox_new (ValaProjectSettingsPopover* _owner)
 {
-#line 858 "ValaProjectSettingsPopover.vala"
+#line 857 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_set_vbox_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SET_VBOX, _owner);
-#line 6945 "ValaProjectSettingsPopover.vala.c"
+#line 6862 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_set_vbox_class_init (ValaProjectSettingsPopoverXcls_set_vboxClass * klass,
                                                         gpointer klass_data)
 {
-#line 849 "ValaProjectSettingsPopover.vala"
+#line 848 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_set_vbox_parent_class = g_type_class_peek_parent (klass);
-#line 849 "ValaProjectSettingsPopover.vala"
+#line 848 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_set_vbox_private_offset);
-#line 849 "ValaProjectSettingsPopover.vala"
+#line 848 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_set_vbox_finalize;
-#line 6958 "ValaProjectSettingsPopover.vala.c"
+#line 6875 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_set_vbox_instance_init (ValaProjectSettingsPopoverXcls_set_vbox * self,
                                                            gpointer klass)
 {
-#line 849 "ValaProjectSettingsPopover.vala"
+#line 848 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_set_vbox_get_instance_private (self);
-#line 6967 "ValaProjectSettingsPopover.vala.c"
+#line 6884 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_set_vbox_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_set_vbox * self;
-#line 849 "ValaProjectSettingsPopover.vala"
+#line 848 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SET_VBOX, ValaProjectSettingsPopoverXcls_set_vbox);
-#line 851 "ValaProjectSettingsPopover.vala"
+#line 850 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 852 "ValaProjectSettingsPopover.vala"
+#line 851 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 849 "ValaProjectSettingsPopover.vala"
+#line 848 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_set_vbox_parent_class)->finalize (obj);
-#line 6982 "ValaProjectSettingsPopover.vala.c"
+#line 6899 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -7022,88 +6939,88 @@ vala_project_settings_popover_xcls_scrolledwindow29_construct (GType object_type
 	ValaProjectSettingsPopoverXcls_treeview* _tmp4_;
 	GtkScrolledWindow* _tmp5_;
 	GtkColumnView* _tmp6_;
-#line 884 "ValaProjectSettingsPopover.vala"
+#line 883 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_ScrolledWindow29*) g_object_new (object_type, NULL);
-#line 886 "ValaProjectSettingsPopover.vala"
+#line 885 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 886 "ValaProjectSettingsPopover.vala"
+#line 885 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 886 "ValaProjectSettingsPopover.vala"
+#line 885 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 887 "ValaProjectSettingsPopover.vala"
+#line 886 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkScrolledWindow*) gtk_scrolled_window_new ();
-#line 887 "ValaProjectSettingsPopover.vala"
+#line 886 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 887 "ValaProjectSettingsPopover.vala"
+#line 886 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 887 "ValaProjectSettingsPopover.vala"
+#line 886 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 892 "ValaProjectSettingsPopover.vala"
+#line 891 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 892 "ValaProjectSettingsPopover.vala"
+#line 891 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 893 "ValaProjectSettingsPopover.vala"
+#line 892 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 893 "ValaProjectSettingsPopover.vala"
+#line 892 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_treeview_new (_tmp3_);
-#line 893 "ValaProjectSettingsPopover.vala"
+#line 892 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 894 "ValaProjectSettingsPopover.vala"
+#line 893 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 894 "ValaProjectSettingsPopover.vala"
+#line 893 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = child_1->el;
-#line 894 "ValaProjectSettingsPopover.vala"
+#line 893 "ValaProjectSettingsPopover.vala"
 	gtk_scrolled_window_set_child (_tmp5_, (GtkWidget*) _tmp6_);
-#line 884 "ValaProjectSettingsPopover.vala"
+#line 883 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 884 "ValaProjectSettingsPopover.vala"
+#line 883 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 7062 "ValaProjectSettingsPopover.vala.c"
+#line 6979 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_ScrolledWindow29*
 vala_project_settings_popover_xcls_scrolledwindow29_new (ValaProjectSettingsPopover* _owner)
 {
-#line 884 "ValaProjectSettingsPopover.vala"
+#line 883 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_scrolledwindow29_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SCROLLEDWINDOW29, _owner);
-#line 7070 "ValaProjectSettingsPopover.vala.c"
+#line 6987 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_scrolledwindow29_class_init (ValaProjectSettingsPopoverXcls_ScrolledWindow29Class * klass,
                                                                 gpointer klass_data)
 {
-#line 875 "ValaProjectSettingsPopover.vala"
+#line 874 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_scrolledwindow29_parent_class = g_type_class_peek_parent (klass);
-#line 875 "ValaProjectSettingsPopover.vala"
+#line 874 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_ScrolledWindow29_private_offset);
-#line 875 "ValaProjectSettingsPopover.vala"
+#line 874 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_scrolledwindow29_finalize;
-#line 7083 "ValaProjectSettingsPopover.vala.c"
+#line 7000 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_scrolledwindow29_instance_init (ValaProjectSettingsPopoverXcls_ScrolledWindow29 * self,
                                                                    gpointer klass)
 {
-#line 875 "ValaProjectSettingsPopover.vala"
+#line 874 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_scrolledwindow29_get_instance_private (self);
-#line 7092 "ValaProjectSettingsPopover.vala.c"
+#line 7009 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_scrolledwindow29_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_ScrolledWindow29 * self;
-#line 875 "ValaProjectSettingsPopover.vala"
+#line 874 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SCROLLEDWINDOW29, ValaProjectSettingsPopoverXcls_ScrolledWindow29);
-#line 877 "ValaProjectSettingsPopover.vala"
+#line 876 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 878 "ValaProjectSettingsPopover.vala"
+#line 877 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 875 "ValaProjectSettingsPopover.vala"
+#line 874 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_scrolledwindow29_parent_class)->finalize (obj);
-#line 7107 "ValaProjectSettingsPopover.vala.c"
+#line 7024 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -7158,122 +7075,122 @@ vala_project_settings_popover_xcls_treeview_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_ColumnViewColumn38* _tmp13_;
 	GtkColumnView* _tmp14_;
 	GtkColumnViewColumn* _tmp15_;
-#line 908 "ValaProjectSettingsPopover.vala"
+#line 907 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_treeview*) g_object_new (object_type, NULL);
-#line 910 "ValaProjectSettingsPopover.vala"
+#line 909 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 910 "ValaProjectSettingsPopover.vala"
+#line 909 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 910 "ValaProjectSettingsPopover.vala"
+#line 909 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 911 "ValaProjectSettingsPopover.vala"
+#line 910 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 911 "ValaProjectSettingsPopover.vala"
+#line 910 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 911 "ValaProjectSettingsPopover.vala"
+#line 910 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->treeview);
-#line 911 "ValaProjectSettingsPopover.vala"
+#line 910 "ValaProjectSettingsPopover.vala"
 	_tmp1_->treeview = _tmp2_;
-#line 912 "ValaProjectSettingsPopover.vala"
+#line 911 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 912 "ValaProjectSettingsPopover.vala"
+#line 911 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_singleselection31_new (_tmp3_);
-#line 912 "ValaProjectSettingsPopover.vala"
+#line 911 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 913 "ValaProjectSettingsPopover.vala"
+#line 912 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 914 "ValaProjectSettingsPopover.vala"
+#line 913 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 914 "ValaProjectSettingsPopover.vala"
+#line 913 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _g_object_ref0 ((GtkSelectionModel*) _tmp5_);
-#line 914 "ValaProjectSettingsPopover.vala"
+#line 913 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = (GtkColumnView*) gtk_column_view_new (_tmp6_);
-#line 914 "ValaProjectSettingsPopover.vala"
+#line 913 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp7_);
-#line 914 "ValaProjectSettingsPopover.vala"
+#line 913 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 914 "ValaProjectSettingsPopover.vala"
+#line 913 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp7_;
-#line 919 "ValaProjectSettingsPopover.vala"
+#line 918 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->priv->_this;
-#line 919 "ValaProjectSettingsPopover.vala"
+#line 918 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = vala_project_settings_popover_xcls_name_new (_tmp8_);
-#line 919 "ValaProjectSettingsPopover.vala"
+#line 918 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp9_;
-#line 920 "ValaProjectSettingsPopover.vala"
+#line 919 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = self->el;
-#line 920 "ValaProjectSettingsPopover.vala"
+#line 919 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = child_2->el;
-#line 920 "ValaProjectSettingsPopover.vala"
+#line 919 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_append_column (_tmp10_, _tmp11_);
-#line 921 "ValaProjectSettingsPopover.vala"
+#line 920 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = self->priv->_this;
-#line 921 "ValaProjectSettingsPopover.vala"
+#line 920 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = vala_project_settings_popover_xcls_columnviewcolumn38_new (_tmp12_);
-#line 921 "ValaProjectSettingsPopover.vala"
+#line 920 "ValaProjectSettingsPopover.vala"
 	child_3 = _tmp13_;
-#line 922 "ValaProjectSettingsPopover.vala"
+#line 921 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_3);
-#line 923 "ValaProjectSettingsPopover.vala"
+#line 922 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = self->el;
-#line 923 "ValaProjectSettingsPopover.vala"
+#line 922 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = child_3->el;
-#line 923 "ValaProjectSettingsPopover.vala"
+#line 922 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_append_column (_tmp14_, _tmp15_);
-#line 908 "ValaProjectSettingsPopover.vala"
+#line 907 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_3);
-#line 908 "ValaProjectSettingsPopover.vala"
+#line 907 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 908 "ValaProjectSettingsPopover.vala"
+#line 907 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 908 "ValaProjectSettingsPopover.vala"
+#line 907 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 7232 "ValaProjectSettingsPopover.vala.c"
+#line 7149 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_treeview*
 vala_project_settings_popover_xcls_treeview_new (ValaProjectSettingsPopover* _owner)
 {
-#line 908 "ValaProjectSettingsPopover.vala"
+#line 907 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_treeview_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TREEVIEW, _owner);
-#line 7240 "ValaProjectSettingsPopover.vala.c"
+#line 7157 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treeview_class_init (ValaProjectSettingsPopoverXcls_treeviewClass * klass,
                                                         gpointer klass_data)
 {
-#line 899 "ValaProjectSettingsPopover.vala"
+#line 898 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_treeview_parent_class = g_type_class_peek_parent (klass);
-#line 899 "ValaProjectSettingsPopover.vala"
+#line 898 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_treeview_private_offset);
-#line 899 "ValaProjectSettingsPopover.vala"
+#line 898 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_treeview_finalize;
-#line 7253 "ValaProjectSettingsPopover.vala.c"
+#line 7170 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treeview_instance_init (ValaProjectSettingsPopoverXcls_treeview * self,
                                                            gpointer klass)
 {
-#line 899 "ValaProjectSettingsPopover.vala"
+#line 898 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_treeview_get_instance_private (self);
-#line 7262 "ValaProjectSettingsPopover.vala.c"
+#line 7179 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treeview_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_treeview * self;
-#line 899 "ValaProjectSettingsPopover.vala"
+#line 898 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TREEVIEW, ValaProjectSettingsPopoverXcls_treeview);
-#line 901 "ValaProjectSettingsPopover.vala"
+#line 900 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 902 "ValaProjectSettingsPopover.vala"
+#line 901 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 899 "ValaProjectSettingsPopover.vala"
+#line 898 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_treeview_parent_class)->finalize (obj);
-#line 7277 "ValaProjectSettingsPopover.vala.c"
+#line 7194 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -7316,82 +7233,82 @@ vala_project_settings_popover_xcls_singleselection31_construct (GType object_typ
 	GtkFilterListModel* _tmp3_;
 	GListModel* _tmp4_;
 	GtkSingleSelection* _tmp5_;
-#line 937 "ValaProjectSettingsPopover.vala"
+#line 936 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_SingleSelection31*) g_object_new (object_type, NULL);
-#line 939 "ValaProjectSettingsPopover.vala"
+#line 938 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 939 "ValaProjectSettingsPopover.vala"
+#line 938 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 939 "ValaProjectSettingsPopover.vala"
+#line 938 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 940 "ValaProjectSettingsPopover.vala"
+#line 939 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 940 "ValaProjectSettingsPopover.vala"
+#line 939 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_filterlistmodel32_new (_tmp1_);
-#line 940 "ValaProjectSettingsPopover.vala"
+#line 939 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 941 "ValaProjectSettingsPopover.vala"
+#line 940 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 942 "ValaProjectSettingsPopover.vala"
+#line 941 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 942 "ValaProjectSettingsPopover.vala"
+#line 941 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 ((GListModel*) _tmp3_);
-#line 942 "ValaProjectSettingsPopover.vala"
+#line 941 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_single_selection_new (_tmp4_);
-#line 942 "ValaProjectSettingsPopover.vala"
+#line 941 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 942 "ValaProjectSettingsPopover.vala"
+#line 941 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 937 "ValaProjectSettingsPopover.vala"
+#line 936 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 937 "ValaProjectSettingsPopover.vala"
+#line 936 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 7350 "ValaProjectSettingsPopover.vala.c"
+#line 7267 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SingleSelection31*
 vala_project_settings_popover_xcls_singleselection31_new (ValaProjectSettingsPopover* _owner)
 {
-#line 937 "ValaProjectSettingsPopover.vala"
+#line 936 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_singleselection31_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SINGLESELECTION31, _owner);
-#line 7358 "ValaProjectSettingsPopover.vala.c"
+#line 7275 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_singleselection31_class_init (ValaProjectSettingsPopoverXcls_SingleSelection31Class * klass,
                                                                  gpointer klass_data)
 {
-#line 928 "ValaProjectSettingsPopover.vala"
+#line 927 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_singleselection31_parent_class = g_type_class_peek_parent (klass);
-#line 928 "ValaProjectSettingsPopover.vala"
+#line 927 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_SingleSelection31_private_offset);
-#line 928 "ValaProjectSettingsPopover.vala"
+#line 927 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_singleselection31_finalize;
-#line 7371 "ValaProjectSettingsPopover.vala.c"
+#line 7288 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_singleselection31_instance_init (ValaProjectSettingsPopoverXcls_SingleSelection31 * self,
                                                                     gpointer klass)
 {
-#line 928 "ValaProjectSettingsPopover.vala"
+#line 927 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_singleselection31_get_instance_private (self);
-#line 7380 "ValaProjectSettingsPopover.vala.c"
+#line 7297 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_singleselection31_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_SingleSelection31 * self;
-#line 928 "ValaProjectSettingsPopover.vala"
+#line 927 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SINGLESELECTION31, ValaProjectSettingsPopoverXcls_SingleSelection31);
-#line 930 "ValaProjectSettingsPopover.vala"
+#line 929 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 931 "ValaProjectSettingsPopover.vala"
+#line 930 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 928 "ValaProjectSettingsPopover.vala"
+#line 927 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_singleselection31_parent_class)->finalize (obj);
-#line 7395 "ValaProjectSettingsPopover.vala.c"
+#line 7312 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -7439,94 +7356,94 @@ vala_project_settings_popover_xcls_filterlistmodel32_construct (GType object_typ
 	GtkCustomFilter* _tmp7_;
 	GtkFilter* _tmp8_;
 	GtkFilterListModel* _tmp9_;
-#line 960 "ValaProjectSettingsPopover.vala"
+#line 959 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_FilterListModel32*) g_object_new (object_type, NULL);
-#line 962 "ValaProjectSettingsPopover.vala"
+#line 961 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 962 "ValaProjectSettingsPopover.vala"
+#line 961 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 962 "ValaProjectSettingsPopover.vala"
+#line 961 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 963 "ValaProjectSettingsPopover.vala"
+#line 962 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 963 "ValaProjectSettingsPopover.vala"
+#line 962 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_treelistsort_new (_tmp1_);
-#line 963 "ValaProjectSettingsPopover.vala"
+#line 962 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 964 "ValaProjectSettingsPopover.vala"
+#line 963 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 964 "ValaProjectSettingsPopover.vala"
+#line 963 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_customfilter35_new (_tmp3_);
-#line 964 "ValaProjectSettingsPopover.vala"
+#line 963 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp4_;
-#line 965 "ValaProjectSettingsPopover.vala"
+#line 964 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 966 "ValaProjectSettingsPopover.vala"
+#line 965 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 966 "ValaProjectSettingsPopover.vala"
+#line 965 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _g_object_ref0 ((GListModel*) _tmp5_);
-#line 966 "ValaProjectSettingsPopover.vala"
+#line 965 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = child_2->el;
-#line 966 "ValaProjectSettingsPopover.vala"
+#line 965 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = _g_object_ref0 ((GtkFilter*) _tmp7_);
-#line 966 "ValaProjectSettingsPopover.vala"
+#line 965 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = gtk_filter_list_model_new (_tmp6_, _tmp8_);
-#line 966 "ValaProjectSettingsPopover.vala"
+#line 965 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 966 "ValaProjectSettingsPopover.vala"
+#line 965 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp9_;
-#line 960 "ValaProjectSettingsPopover.vala"
+#line 959 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 960 "ValaProjectSettingsPopover.vala"
+#line 959 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 960 "ValaProjectSettingsPopover.vala"
+#line 959 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 7485 "ValaProjectSettingsPopover.vala.c"
+#line 7402 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_FilterListModel32*
 vala_project_settings_popover_xcls_filterlistmodel32_new (ValaProjectSettingsPopover* _owner)
 {
-#line 960 "ValaProjectSettingsPopover.vala"
+#line 959 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_filterlistmodel32_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_FILTERLISTMODEL32, _owner);
-#line 7493 "ValaProjectSettingsPopover.vala.c"
+#line 7410 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_filterlistmodel32_class_init (ValaProjectSettingsPopoverXcls_FilterListModel32Class * klass,
                                                                  gpointer klass_data)
 {
-#line 951 "ValaProjectSettingsPopover.vala"
+#line 950 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_filterlistmodel32_parent_class = g_type_class_peek_parent (klass);
-#line 951 "ValaProjectSettingsPopover.vala"
+#line 950 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_FilterListModel32_private_offset);
-#line 951 "ValaProjectSettingsPopover.vala"
+#line 950 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_filterlistmodel32_finalize;
-#line 7506 "ValaProjectSettingsPopover.vala.c"
+#line 7423 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_filterlistmodel32_instance_init (ValaProjectSettingsPopoverXcls_FilterListModel32 * self,
                                                                     gpointer klass)
 {
-#line 951 "ValaProjectSettingsPopover.vala"
+#line 950 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_filterlistmodel32_get_instance_private (self);
-#line 7515 "ValaProjectSettingsPopover.vala.c"
+#line 7432 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_filterlistmodel32_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_FilterListModel32 * self;
-#line 951 "ValaProjectSettingsPopover.vala"
+#line 950 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_FILTERLISTMODEL32, ValaProjectSettingsPopoverXcls_FilterListModel32);
-#line 953 "ValaProjectSettingsPopover.vala"
+#line 952 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 954 "ValaProjectSettingsPopover.vala"
+#line 953 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 951 "ValaProjectSettingsPopover.vala"
+#line 950 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_filterlistmodel32_parent_class)->finalize (obj);
-#line 7530 "ValaProjectSettingsPopover.vala.c"
+#line 7447 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -7571,39 +7488,39 @@ vala_project_settings_popover_xcls_treelistsort_construct (GType object_type,
 	GtkTreeListModel* _tmp5_;
 	GListModel* _tmp6_;
 	GtkSortListModel* _tmp7_;
-#line 984 "ValaProjectSettingsPopover.vala"
+#line 983 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_treelistsort*) g_object_new (object_type, NULL);
-#line 986 "ValaProjectSettingsPopover.vala"
+#line 985 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 986 "ValaProjectSettingsPopover.vala"
+#line 985 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 986 "ValaProjectSettingsPopover.vala"
+#line 985 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 987 "ValaProjectSettingsPopover.vala"
+#line 986 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 987 "ValaProjectSettingsPopover.vala"
+#line 986 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 987 "ValaProjectSettingsPopover.vala"
+#line 986 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->treelistsort);
-#line 987 "ValaProjectSettingsPopover.vala"
+#line 986 "ValaProjectSettingsPopover.vala"
 	_tmp1_->treelistsort = _tmp2_;
-#line 988 "ValaProjectSettingsPopover.vala"
+#line 987 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 988 "ValaProjectSettingsPopover.vala"
+#line 987 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_treelistmodel_new (_tmp3_);
-#line 988 "ValaProjectSettingsPopover.vala"
+#line 987 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 989 "ValaProjectSettingsPopover.vala"
+#line 988 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 989 "ValaProjectSettingsPopover.vala"
+#line 988 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _g_object_ref0 ((GListModel*) _tmp5_);
-#line 989 "ValaProjectSettingsPopover.vala"
+#line 988 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = gtk_sort_list_model_new (_tmp6_, NULL);
-#line 989 "ValaProjectSettingsPopover.vala"
+#line 988 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 989 "ValaProjectSettingsPopover.vala"
+#line 988 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp7_;
-#line 7607 "ValaProjectSettingsPopover.vala.c"
+#line 7524 "ValaProjectSettingsPopover.vala.c"
 	{
 		GtkSortListModel* _tmp8_;
 		ValaProjectSettingsPopover* _tmp9_;
@@ -7614,80 +7531,80 @@ vala_project_settings_popover_xcls_treelistsort_construct (GType object_type,
 		GtkSorter* _tmp14_;
 		GtkTreeListRowSorter* _tmp15_;
 		GtkTreeListRowSorter* _tmp16_;
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp8_ = self->el;
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp9_ = self->priv->_this;
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp10_ = _tmp9_->treeview;
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp11_ = _tmp10_->el;
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp12_ = gtk_column_view_get_sorter (_tmp11_);
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp13_ = _tmp12_;
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp14_ = _g_object_ref0 (_tmp13_);
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp15_ = gtk_tree_list_row_sorter_new (_tmp14_);
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_tmp16_ = _tmp15_;
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		gtk_sort_list_model_set_sorter (_tmp8_, (GtkSorter*) _tmp16_);
-#line 998 "ValaProjectSettingsPopover.vala"
+#line 997 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (_tmp16_);
-#line 7640 "ValaProjectSettingsPopover.vala.c"
+#line 7557 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 984 "ValaProjectSettingsPopover.vala"
+#line 983 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 984 "ValaProjectSettingsPopover.vala"
+#line 983 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 7646 "ValaProjectSettingsPopover.vala.c"
+#line 7563 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_treelistsort*
 vala_project_settings_popover_xcls_treelistsort_new (ValaProjectSettingsPopover* _owner)
 {
-#line 984 "ValaProjectSettingsPopover.vala"
+#line 983 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_treelistsort_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TREELISTSORT, _owner);
-#line 7654 "ValaProjectSettingsPopover.vala.c"
+#line 7571 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treelistsort_class_init (ValaProjectSettingsPopoverXcls_treelistsortClass * klass,
                                                             gpointer klass_data)
 {
-#line 975 "ValaProjectSettingsPopover.vala"
+#line 974 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_treelistsort_parent_class = g_type_class_peek_parent (klass);
-#line 975 "ValaProjectSettingsPopover.vala"
+#line 974 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_treelistsort_private_offset);
-#line 975 "ValaProjectSettingsPopover.vala"
+#line 974 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_treelistsort_finalize;
-#line 7667 "ValaProjectSettingsPopover.vala.c"
+#line 7584 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treelistsort_instance_init (ValaProjectSettingsPopoverXcls_treelistsort * self,
                                                                gpointer klass)
 {
-#line 975 "ValaProjectSettingsPopover.vala"
+#line 974 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_treelistsort_get_instance_private (self);
-#line 7676 "ValaProjectSettingsPopover.vala.c"
+#line 7593 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treelistsort_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_treelistsort * self;
-#line 975 "ValaProjectSettingsPopover.vala"
+#line 974 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TREELISTSORT, ValaProjectSettingsPopoverXcls_treelistsort);
-#line 977 "ValaProjectSettingsPopover.vala"
+#line 976 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 978 "ValaProjectSettingsPopover.vala"
+#line 977 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 975 "ValaProjectSettingsPopover.vala"
+#line 974 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_treelistsort_parent_class)->finalize (obj);
-#line 7691 "ValaProjectSettingsPopover.vala.c"
+#line 7608 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -7727,39 +7644,39 @@ vala_project_settings_popover_xcls_treelistmodel_construct (GType object_type,
 	ValaProjectSettingsPopover* _tmp1_;
 	ValaProjectSettingsPopoverXcls_treelistmodel* _tmp2_;
 	GtkTreeListModel* _tmp3_;
-#line 1013 "ValaProjectSettingsPopover.vala"
+#line 1012 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_treelistmodel*) g_object_new (object_type, NULL);
-#line 1015 "ValaProjectSettingsPopover.vala"
+#line 1014 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1015 "ValaProjectSettingsPopover.vala"
+#line 1014 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1015 "ValaProjectSettingsPopover.vala"
+#line 1014 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1016 "ValaProjectSettingsPopover.vala"
+#line 1015 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1016 "ValaProjectSettingsPopover.vala"
+#line 1015 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1016 "ValaProjectSettingsPopover.vala"
+#line 1015 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->treelistmodel);
-#line 1016 "ValaProjectSettingsPopover.vala"
+#line 1015 "ValaProjectSettingsPopover.vala"
 	_tmp1_->treelistmodel = _tmp2_;
-#line 1017 "ValaProjectSettingsPopover.vala"
+#line 1016 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = vala_project_settings_popover_xcls_treelistmodel_updateModel (self, NULL);
-#line 1017 "ValaProjectSettingsPopover.vala"
+#line 1016 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1017 "ValaProjectSettingsPopover.vala"
+#line 1016 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 1013 "ValaProjectSettingsPopover.vala"
+#line 1012 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 7755 "ValaProjectSettingsPopover.vala.c"
+#line 7672 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_treelistmodel*
 vala_project_settings_popover_xcls_treelistmodel_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1013 "ValaProjectSettingsPopover.vala"
+#line 1012 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_treelistmodel_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TREELISTMODEL, _owner);
-#line 7763 "ValaProjectSettingsPopover.vala.c"
+#line 7680 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GListModel*
@@ -7769,15 +7686,15 @@ __lambda125_ (ValaProjectSettingsPopoverXcls_treelistmodel* self,
 	GListStore* _tmp0_;
 	GListModel* _tmp1_;
 	GListModel* result;
-#line 1035 "ValaProjectSettingsPopover.vala"
+#line 1034 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = G_TYPE_CHECK_INSTANCE_CAST (item, JS_RENDER_TYPE_JS_RENDER, JsRenderJsRender)->childfiles;
-#line 1035 "ValaProjectSettingsPopover.vala"
+#line 1034 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 ((GListModel*) _tmp0_);
-#line 1035 "ValaProjectSettingsPopover.vala"
+#line 1034 "ValaProjectSettingsPopover.vala"
 	result = _tmp1_;
-#line 1035 "ValaProjectSettingsPopover.vala"
+#line 1034 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 7781 "ValaProjectSettingsPopover.vala.c"
+#line 7698 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GListModel*
@@ -7786,9 +7703,9 @@ ___lambda125__gtk_tree_list_model_create_model_func (GObject* item,
 {
 	GListModel* result;
 	result = __lambda125_ ((ValaProjectSettingsPopoverXcls_treelistmodel*) self, item);
-#line 1029 "ValaProjectSettingsPopover.vala"
+#line 1028 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 7792 "ValaProjectSettingsPopover.vala.c"
+#line 7709 "ValaProjectSettingsPopover.vala.c"
 }
 
 GtkTreeListModel*
@@ -7805,93 +7722,93 @@ vala_project_settings_popover_xcls_treelistmodel_updateModel (ValaProjectSetting
 	GtkTreeListModel* _tmp9_;
 	GtkTreeListModel* _tmp10_;
 	GtkTreeListModel* result;
-#line 1030 "ValaProjectSettingsPopover.vala"
+#line 1029 "ValaProjectSettingsPopover.vala"
 	if (m != NULL) {
-#line 7811 "ValaProjectSettingsPopover.vala.c"
+#line 7728 "ValaProjectSettingsPopover.vala.c"
 		GListStore* _tmp1_;
-#line 1030 "ValaProjectSettingsPopover.vala"
+#line 1029 "ValaProjectSettingsPopover.vala"
 		_tmp1_ = _g_object_ref0 (m);
-#line 1030 "ValaProjectSettingsPopover.vala"
+#line 1029 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (_tmp0_);
-#line 1030 "ValaProjectSettingsPopover.vala"
+#line 1029 "ValaProjectSettingsPopover.vala"
 		_tmp0_ = _tmp1_;
-#line 7819 "ValaProjectSettingsPopover.vala.c"
+#line 7736 "ValaProjectSettingsPopover.vala.c"
 	} else {
 		GListStore* _tmp2_;
-#line 1030 "ValaProjectSettingsPopover.vala"
+#line 1029 "ValaProjectSettingsPopover.vala"
 		_tmp2_ = g_list_store_new (JS_RENDER_TYPE_JS_RENDER);
-#line 1030 "ValaProjectSettingsPopover.vala"
+#line 1029 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (_tmp0_);
-#line 1030 "ValaProjectSettingsPopover.vala"
+#line 1029 "ValaProjectSettingsPopover.vala"
 		_tmp0_ = _tmp2_;
-#line 7828 "ValaProjectSettingsPopover.vala.c"
+#line 7745 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1029 "ValaProjectSettingsPopover.vala"
+#line 1028 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _g_object_ref0 ((GListModel*) _tmp0_);
-#line 1029 "ValaProjectSettingsPopover.vala"
+#line 1028 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = gtk_tree_list_model_new (_tmp3_, FALSE, TRUE, ___lambda125__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
-#line 1029 "ValaProjectSettingsPopover.vala"
+#line 1028 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1029 "ValaProjectSettingsPopover.vala"
+#line 1028 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp4_;
-#line 1039 "ValaProjectSettingsPopover.vala"
+#line 1038 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->priv->_this;
-#line 1039 "ValaProjectSettingsPopover.vala"
+#line 1038 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _tmp5_->treelistsort;
-#line 1039 "ValaProjectSettingsPopover.vala"
+#line 1038 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = _tmp6_->el;
-#line 1039 "ValaProjectSettingsPopover.vala"
+#line 1038 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 1039 "ValaProjectSettingsPopover.vala"
+#line 1038 "ValaProjectSettingsPopover.vala"
 	gtk_sort_list_model_set_model (_tmp7_, (GListModel*) _tmp8_);
-#line 1040 "ValaProjectSettingsPopover.vala"
+#line 1039 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->el;
-#line 1040 "ValaProjectSettingsPopover.vala"
+#line 1039 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = _g_object_ref0 (_tmp9_);
-#line 1040 "ValaProjectSettingsPopover.vala"
+#line 1039 "ValaProjectSettingsPopover.vala"
 	result = _tmp10_;
-#line 1040 "ValaProjectSettingsPopover.vala"
+#line 1039 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp0_);
-#line 1040 "ValaProjectSettingsPopover.vala"
+#line 1039 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 7858 "ValaProjectSettingsPopover.vala.c"
+#line 7775 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treelistmodel_class_init (ValaProjectSettingsPopoverXcls_treelistmodelClass * klass,
                                                              gpointer klass_data)
 {
-#line 1004 "ValaProjectSettingsPopover.vala"
+#line 1003 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_treelistmodel_parent_class = g_type_class_peek_parent (klass);
-#line 1004 "ValaProjectSettingsPopover.vala"
+#line 1003 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_treelistmodel_private_offset);
-#line 1004 "ValaProjectSettingsPopover.vala"
+#line 1003 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_treelistmodel_finalize;
-#line 7871 "ValaProjectSettingsPopover.vala.c"
+#line 7788 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treelistmodel_instance_init (ValaProjectSettingsPopoverXcls_treelistmodel * self,
                                                                 gpointer klass)
 {
-#line 1004 "ValaProjectSettingsPopover.vala"
+#line 1003 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_treelistmodel_get_instance_private (self);
-#line 7880 "ValaProjectSettingsPopover.vala.c"
+#line 7797 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_treelistmodel_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_treelistmodel * self;
-#line 1004 "ValaProjectSettingsPopover.vala"
+#line 1003 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TREELISTMODEL, ValaProjectSettingsPopoverXcls_treelistmodel);
-#line 1006 "ValaProjectSettingsPopover.vala"
+#line 1005 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1007 "ValaProjectSettingsPopover.vala"
+#line 1006 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1004 "ValaProjectSettingsPopover.vala"
+#line 1003 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_treelistmodel_parent_class)->finalize (obj);
-#line 7895 "ValaProjectSettingsPopover.vala.c"
+#line 7812 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -7936,84 +7853,84 @@ __lambda126_ (ValaProjectSettingsPopoverXcls_CustomFilter35* self,
 	JsRenderJsRender* _tmp5_;
 	const gchar* _tmp6_;
 	gboolean result;
-#line 1060 "ValaProjectSettingsPopover.vala"
+#line 1059 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = gtk_tree_list_row_get_item (G_TYPE_CHECK_INSTANCE_CAST (item, gtk_tree_list_row_get_type (), GtkTreeListRow));
-#line 1060 "ValaProjectSettingsPopover.vala"
+#line 1059 "ValaProjectSettingsPopover.vala"
 	tr = _tmp0_;
-#line 1062 "ValaProjectSettingsPopover.vala"
+#line 1061 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = tr;
-#line 1062 "ValaProjectSettingsPopover.vala"
+#line 1061 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp1_, JS_RENDER_TYPE_JS_RENDER, JsRenderJsRender));
-#line 1062 "ValaProjectSettingsPopover.vala"
+#line 1061 "ValaProjectSettingsPopover.vala"
 	j = _tmp2_;
-#line 1063 "ValaProjectSettingsPopover.vala"
+#line 1062 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = j;
-#line 1063 "ValaProjectSettingsPopover.vala"
+#line 1062 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_->xtype;
-#line 1063 "ValaProjectSettingsPopover.vala"
+#line 1062 "ValaProjectSettingsPopover.vala"
 	if (g_strcmp0 (_tmp4_, "Gtk") == 0) {
-#line 1064 "ValaProjectSettingsPopover.vala"
+#line 1063 "ValaProjectSettingsPopover.vala"
 		result = TRUE;
-#line 1064 "ValaProjectSettingsPopover.vala"
+#line 1063 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (j);
-#line 1064 "ValaProjectSettingsPopover.vala"
+#line 1063 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (tr);
-#line 1064 "ValaProjectSettingsPopover.vala"
+#line 1063 "ValaProjectSettingsPopover.vala"
 		return result;
-#line 7964 "ValaProjectSettingsPopover.vala.c"
+#line 7881 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1066 "ValaProjectSettingsPopover.vala"
+#line 1065 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = j;
-#line 1066 "ValaProjectSettingsPopover.vala"
+#line 1065 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _tmp5_->xtype;
-#line 1066 "ValaProjectSettingsPopover.vala"
+#line 1065 "ValaProjectSettingsPopover.vala"
 	if (g_strcmp0 (_tmp6_, "Dir") != 0) {
-#line 7972 "ValaProjectSettingsPopover.vala.c"
+#line 7889 "ValaProjectSettingsPopover.vala.c"
 		gboolean _tmp7_ = FALSE;
 		JsRenderJsRender* _tmp8_;
 		const gchar* _tmp9_;
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 		_tmp8_ = j;
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 		_tmp9_ = _tmp8_->path;
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 		if (g_str_has_suffix (_tmp9_, ".vala")) {
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 			_tmp7_ = TRUE;
-#line 7984 "ValaProjectSettingsPopover.vala.c"
+#line 7901 "ValaProjectSettingsPopover.vala.c"
 		} else {
 			JsRenderJsRender* _tmp10_;
 			const gchar* _tmp11_;
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 			_tmp10_ = j;
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 			_tmp11_ = _tmp10_->path;
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 			_tmp7_ = g_str_has_suffix (_tmp11_, ".c");
-#line 7994 "ValaProjectSettingsPopover.vala.c"
+#line 7911 "ValaProjectSettingsPopover.vala.c"
 		}
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 		result = _tmp7_;
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (j);
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (tr);
-#line 1067 "ValaProjectSettingsPopover.vala"
+#line 1066 "ValaProjectSettingsPopover.vala"
 		return result;
-#line 8004 "ValaProjectSettingsPopover.vala.c"
+#line 7921 "ValaProjectSettingsPopover.vala.c"
 	}
 	{
 		gint i = 0;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 		i = 0;
-#line 8010 "ValaProjectSettingsPopover.vala.c"
+#line 7927 "ValaProjectSettingsPopover.vala.c"
 		{
 			gboolean _tmp12_ = FALSE;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 			_tmp12_ = TRUE;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 			while (TRUE) {
-#line 8017 "ValaProjectSettingsPopover.vala.c"
+#line 7934 "ValaProjectSettingsPopover.vala.c"
 				JsRenderJsRender* _tmp14_;
 				GListStore* _tmp15_;
 				guint _tmp16_;
@@ -8027,107 +7944,107 @@ __lambda126_ (ValaProjectSettingsPopoverXcls_CustomFilter35* self,
 				gboolean _tmp23_ = FALSE;
 				JsRenderJsRender* _tmp24_;
 				const gchar* _tmp25_;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 				if (!_tmp12_) {
-#line 8033 "ValaProjectSettingsPopover.vala.c"
+#line 7950 "ValaProjectSettingsPopover.vala.c"
 					gint _tmp13_;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 					_tmp13_ = i;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 					i = _tmp13_ + 1;
-#line 8039 "ValaProjectSettingsPopover.vala.c"
+#line 7956 "ValaProjectSettingsPopover.vala.c"
 				}
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 				_tmp12_ = FALSE;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 				_tmp14_ = j;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 				_tmp15_ = _tmp14_->childfiles;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 				g_object_get (_tmp15_, "n-items", &_tmp16_, NULL);
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 				_tmp17_ = _tmp16_;
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 				if (!(((guint) i) < _tmp17_)) {
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 					break;
-#line 8055 "ValaProjectSettingsPopover.vala.c"
+#line 7972 "ValaProjectSettingsPopover.vala.c"
 				}
-#line 1072 "ValaProjectSettingsPopover.vala"
+#line 1071 "ValaProjectSettingsPopover.vala"
 				_tmp18_ = j;
-#line 1072 "ValaProjectSettingsPopover.vala"
+#line 1071 "ValaProjectSettingsPopover.vala"
 				_tmp19_ = _tmp18_->childfiles;
-#line 1072 "ValaProjectSettingsPopover.vala"
+#line 1071 "ValaProjectSettingsPopover.vala"
 				_tmp20_ = g_list_model_get_item ((GListModel*) _tmp19_, (guint) i);
-#line 1072 "ValaProjectSettingsPopover.vala"
+#line 1071 "ValaProjectSettingsPopover.vala"
 				f = G_TYPE_CHECK_INSTANCE_CAST (_tmp20_, JS_RENDER_TYPE_JS_RENDER, JsRenderJsRender);
-#line 1073 "ValaProjectSettingsPopover.vala"
+#line 1072 "ValaProjectSettingsPopover.vala"
 				_tmp21_ = f;
-#line 1073 "ValaProjectSettingsPopover.vala"
+#line 1072 "ValaProjectSettingsPopover.vala"
 				_tmp22_ = _tmp21_->xtype;
-#line 1073 "ValaProjectSettingsPopover.vala"
+#line 1072 "ValaProjectSettingsPopover.vala"
 				if (g_strcmp0 (_tmp22_, "Gtk") == 0) {
-#line 1074 "ValaProjectSettingsPopover.vala"
+#line 1073 "ValaProjectSettingsPopover.vala"
 					result = TRUE;
-#line 1074 "ValaProjectSettingsPopover.vala"
+#line 1073 "ValaProjectSettingsPopover.vala"
 					_g_object_unref0 (f);
-#line 1074 "ValaProjectSettingsPopover.vala"
+#line 1073 "ValaProjectSettingsPopover.vala"
 					_g_object_unref0 (j);
-#line 1074 "ValaProjectSettingsPopover.vala"
+#line 1073 "ValaProjectSettingsPopover.vala"
 					_g_object_unref0 (tr);
-#line 1074 "ValaProjectSettingsPopover.vala"
+#line 1073 "ValaProjectSettingsPopover.vala"
 					return result;
-#line 8081 "ValaProjectSettingsPopover.vala.c"
+#line 7998 "ValaProjectSettingsPopover.vala.c"
 				}
-#line 1076 "ValaProjectSettingsPopover.vala"
+#line 1075 "ValaProjectSettingsPopover.vala"
 				_tmp24_ = f;
-#line 1076 "ValaProjectSettingsPopover.vala"
+#line 1075 "ValaProjectSettingsPopover.vala"
 				_tmp25_ = _tmp24_->path;
-#line 1076 "ValaProjectSettingsPopover.vala"
+#line 1075 "ValaProjectSettingsPopover.vala"
 				if (g_str_has_suffix (_tmp25_, ".vala")) {
-#line 1076 "ValaProjectSettingsPopover.vala"
+#line 1075 "ValaProjectSettingsPopover.vala"
 					_tmp23_ = TRUE;
-#line 8091 "ValaProjectSettingsPopover.vala.c"
+#line 8008 "ValaProjectSettingsPopover.vala.c"
 				} else {
 					JsRenderJsRender* _tmp26_;
 					const gchar* _tmp27_;
-#line 1076 "ValaProjectSettingsPopover.vala"
+#line 1075 "ValaProjectSettingsPopover.vala"
 					_tmp26_ = f;
-#line 1076 "ValaProjectSettingsPopover.vala"
+#line 1075 "ValaProjectSettingsPopover.vala"
 					_tmp27_ = _tmp26_->path;
-#line 1076 "ValaProjectSettingsPopover.vala"
+#line 1075 "ValaProjectSettingsPopover.vala"
 					_tmp23_ = g_str_has_suffix (_tmp27_, ".c");
-#line 8101 "ValaProjectSettingsPopover.vala.c"
+#line 8018 "ValaProjectSettingsPopover.vala.c"
 				}
-#line 1076 "ValaProjectSettingsPopover.vala"
+#line 1075 "ValaProjectSettingsPopover.vala"
 				if (_tmp23_) {
-#line 1077 "ValaProjectSettingsPopover.vala"
+#line 1076 "ValaProjectSettingsPopover.vala"
 					result = TRUE;
-#line 1077 "ValaProjectSettingsPopover.vala"
+#line 1076 "ValaProjectSettingsPopover.vala"
 					_g_object_unref0 (f);
-#line 1077 "ValaProjectSettingsPopover.vala"
+#line 1076 "ValaProjectSettingsPopover.vala"
 					_g_object_unref0 (j);
-#line 1077 "ValaProjectSettingsPopover.vala"
+#line 1076 "ValaProjectSettingsPopover.vala"
 					_g_object_unref0 (tr);
-#line 1077 "ValaProjectSettingsPopover.vala"
+#line 1076 "ValaProjectSettingsPopover.vala"
 					return result;
-#line 8115 "ValaProjectSettingsPopover.vala.c"
+#line 8032 "ValaProjectSettingsPopover.vala.c"
 				}
-#line 1071 "ValaProjectSettingsPopover.vala"
+#line 1070 "ValaProjectSettingsPopover.vala"
 				_g_object_unref0 (f);
-#line 8119 "ValaProjectSettingsPopover.vala.c"
+#line 8036 "ValaProjectSettingsPopover.vala.c"
 			}
 		}
 	}
-#line 1080 "ValaProjectSettingsPopover.vala"
+#line 1079 "ValaProjectSettingsPopover.vala"
 	result = FALSE;
-#line 1080 "ValaProjectSettingsPopover.vala"
+#line 1079 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (j);
-#line 1080 "ValaProjectSettingsPopover.vala"
+#line 1079 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (tr);
-#line 1080 "ValaProjectSettingsPopover.vala"
+#line 1079 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 8131 "ValaProjectSettingsPopover.vala.c"
+#line 8048 "ValaProjectSettingsPopover.vala.c"
 }
 
 static gboolean
@@ -8136,9 +8053,9 @@ ___lambda126__gtk_custom_filter_func (GObject* item,
 {
 	gboolean result;
 	result = __lambda126_ ((ValaProjectSettingsPopoverXcls_CustomFilter35*) self, item);
-#line 1058 "ValaProjectSettingsPopover.vala"
+#line 1057 "ValaProjectSettingsPopover.vala"
 	return result;
-#line 8142 "ValaProjectSettingsPopover.vala.c"
+#line 8059 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_CustomFilter35*
@@ -8148,68 +8065,68 @@ vala_project_settings_popover_xcls_customfilter35_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_CustomFilter35 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkCustomFilter* _tmp1_;
-#line 1055 "ValaProjectSettingsPopover.vala"
+#line 1054 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_CustomFilter35*) g_object_new (object_type, NULL);
-#line 1057 "ValaProjectSettingsPopover.vala"
+#line 1056 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1057 "ValaProjectSettingsPopover.vala"
+#line 1056 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1057 "ValaProjectSettingsPopover.vala"
+#line 1056 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1058 "ValaProjectSettingsPopover.vala"
+#line 1057 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = gtk_custom_filter_new (___lambda126__gtk_custom_filter_func, g_object_ref (self), g_object_unref);
-#line 1058 "ValaProjectSettingsPopover.vala"
+#line 1057 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1058 "ValaProjectSettingsPopover.vala"
+#line 1057 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1055 "ValaProjectSettingsPopover.vala"
+#line 1054 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 8168 "ValaProjectSettingsPopover.vala.c"
+#line 8085 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_CustomFilter35*
 vala_project_settings_popover_xcls_customfilter35_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1055 "ValaProjectSettingsPopover.vala"
+#line 1054 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_customfilter35_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_CUSTOMFILTER35, _owner);
-#line 8176 "ValaProjectSettingsPopover.vala.c"
+#line 8093 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_customfilter35_class_init (ValaProjectSettingsPopoverXcls_CustomFilter35Class * klass,
                                                               gpointer klass_data)
 {
-#line 1046 "ValaProjectSettingsPopover.vala"
+#line 1045 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_customfilter35_parent_class = g_type_class_peek_parent (klass);
-#line 1046 "ValaProjectSettingsPopover.vala"
+#line 1045 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_CustomFilter35_private_offset);
-#line 1046 "ValaProjectSettingsPopover.vala"
+#line 1045 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_customfilter35_finalize;
-#line 8189 "ValaProjectSettingsPopover.vala.c"
+#line 8106 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_customfilter35_instance_init (ValaProjectSettingsPopoverXcls_CustomFilter35 * self,
                                                                  gpointer klass)
 {
-#line 1046 "ValaProjectSettingsPopover.vala"
+#line 1045 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_customfilter35_get_instance_private (self);
-#line 8198 "ValaProjectSettingsPopover.vala.c"
+#line 8115 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_customfilter35_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_CustomFilter35 * self;
-#line 1046 "ValaProjectSettingsPopover.vala"
+#line 1045 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_CUSTOMFILTER35, ValaProjectSettingsPopoverXcls_CustomFilter35);
-#line 1048 "ValaProjectSettingsPopover.vala"
+#line 1047 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1049 "ValaProjectSettingsPopover.vala"
+#line 1048 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1046 "ValaProjectSettingsPopover.vala"
+#line 1045 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_customfilter35_parent_class)->finalize (obj);
-#line 8213 "ValaProjectSettingsPopover.vala.c"
+#line 8130 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -8257,122 +8174,122 @@ vala_project_settings_popover_xcls_name_construct (GType object_type,
 	GtkColumnViewColumn* _tmp8_;
 	GtkColumnViewColumn* _tmp9_;
 	GtkColumnViewColumn* _tmp10_;
-#line 1103 "ValaProjectSettingsPopover.vala"
+#line 1102 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_name*) g_object_new (object_type, NULL);
-#line 1105 "ValaProjectSettingsPopover.vala"
+#line 1104 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1105 "ValaProjectSettingsPopover.vala"
+#line 1104 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1105 "ValaProjectSettingsPopover.vala"
+#line 1104 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1106 "ValaProjectSettingsPopover.vala"
+#line 1105 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1106 "ValaProjectSettingsPopover.vala"
+#line 1105 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1106 "ValaProjectSettingsPopover.vala"
+#line 1105 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->name);
-#line 1106 "ValaProjectSettingsPopover.vala"
+#line 1105 "ValaProjectSettingsPopover.vala"
 	_tmp1_->name = _tmp2_;
-#line 1107 "ValaProjectSettingsPopover.vala"
+#line 1106 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 1107 "ValaProjectSettingsPopover.vala"
+#line 1106 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_signallistitemfactory37_new (_tmp3_);
-#line 1107 "ValaProjectSettingsPopover.vala"
+#line 1106 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 1108 "ValaProjectSettingsPopover.vala"
+#line 1107 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 1109 "ValaProjectSettingsPopover.vala"
+#line 1108 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 1109 "ValaProjectSettingsPopover.vala"
+#line 1108 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _g_object_ref0 ((GtkListItemFactory*) _tmp5_);
-#line 1109 "ValaProjectSettingsPopover.vala"
+#line 1108 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = gtk_column_view_column_new ("Other Files", _tmp6_);
-#line 1109 "ValaProjectSettingsPopover.vala"
+#line 1108 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1109 "ValaProjectSettingsPopover.vala"
+#line 1108 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp7_;
-#line 1114 "ValaProjectSettingsPopover.vala"
+#line 1113 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 1114 "ValaProjectSettingsPopover.vala"
+#line 1113 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_column_set_id (_tmp8_, "name");
-#line 1115 "ValaProjectSettingsPopover.vala"
+#line 1114 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->el;
-#line 1115 "ValaProjectSettingsPopover.vala"
+#line 1114 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_column_set_expand (_tmp9_, TRUE);
-#line 1116 "ValaProjectSettingsPopover.vala"
+#line 1115 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = self->el;
-#line 1116 "ValaProjectSettingsPopover.vala"
+#line 1115 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_column_set_resizable (_tmp10_, TRUE);
-#line 8307 "ValaProjectSettingsPopover.vala.c"
+#line 8224 "ValaProjectSettingsPopover.vala.c"
 	{
 		GtkColumnViewColumn* _tmp11_;
 		GtkPropertyExpression* _tmp12_;
 		GtkStringSorter* _tmp13_;
 		GtkStringSorter* _tmp14_;
-#line 1121 "ValaProjectSettingsPopover.vala"
+#line 1120 "ValaProjectSettingsPopover.vala"
 		_tmp11_ = self->el;
-#line 1121 "ValaProjectSettingsPopover.vala"
+#line 1120 "ValaProjectSettingsPopover.vala"
 		_tmp12_ = (GtkPropertyExpression*) gtk_property_expression_new (JS_RENDER_TYPE_JS_RENDER, NULL, "name");
-#line 1121 "ValaProjectSettingsPopover.vala"
+#line 1120 "ValaProjectSettingsPopover.vala"
 		_tmp13_ = gtk_string_sorter_new ((GtkExpression*) _tmp12_);
-#line 1121 "ValaProjectSettingsPopover.vala"
+#line 1120 "ValaProjectSettingsPopover.vala"
 		_tmp14_ = _tmp13_;
-#line 1121 "ValaProjectSettingsPopover.vala"
+#line 1120 "ValaProjectSettingsPopover.vala"
 		gtk_column_view_column_set_sorter (_tmp11_, (GtkSorter*) _tmp14_);
-#line 1121 "ValaProjectSettingsPopover.vala"
+#line 1120 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (_tmp14_);
-#line 8325 "ValaProjectSettingsPopover.vala.c"
+#line 8242 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1103 "ValaProjectSettingsPopover.vala"
+#line 1102 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1103 "ValaProjectSettingsPopover.vala"
+#line 1102 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 8331 "ValaProjectSettingsPopover.vala.c"
+#line 8248 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_name*
 vala_project_settings_popover_xcls_name_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1103 "ValaProjectSettingsPopover.vala"
+#line 1102 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_name_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_NAME, _owner);
-#line 8339 "ValaProjectSettingsPopover.vala.c"
+#line 8256 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_name_class_init (ValaProjectSettingsPopoverXcls_nameClass * klass,
                                                     gpointer klass_data)
 {
-#line 1094 "ValaProjectSettingsPopover.vala"
+#line 1093 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_name_parent_class = g_type_class_peek_parent (klass);
-#line 1094 "ValaProjectSettingsPopover.vala"
+#line 1093 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_name_private_offset);
-#line 1094 "ValaProjectSettingsPopover.vala"
+#line 1093 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_name_finalize;
-#line 8352 "ValaProjectSettingsPopover.vala.c"
+#line 8269 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_name_instance_init (ValaProjectSettingsPopoverXcls_name * self,
                                                        gpointer klass)
 {
-#line 1094 "ValaProjectSettingsPopover.vala"
+#line 1093 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_name_get_instance_private (self);
-#line 8361 "ValaProjectSettingsPopover.vala.c"
+#line 8278 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_name_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_name * self;
-#line 1094 "ValaProjectSettingsPopover.vala"
+#line 1093 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_NAME, ValaProjectSettingsPopoverXcls_name);
-#line 1096 "ValaProjectSettingsPopover.vala"
+#line 1095 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1097 "ValaProjectSettingsPopover.vala"
+#line 1096 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1094 "ValaProjectSettingsPopover.vala"
+#line 1093 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_name_parent_class)->finalize (obj);
-#line 8376 "ValaProjectSettingsPopover.vala.c"
+#line 8293 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -8411,39 +8328,39 @@ __lambda127_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
 	GtkTreeExpander* _tmp0_;
 	GtkLabel* lbl = NULL;
 	GtkLabel* _tmp1_;
-#line 1152 "ValaProjectSettingsPopover.vala"
+#line 1151 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = (GtkTreeExpander*) gtk_tree_expander_new ();
-#line 1152 "ValaProjectSettingsPopover.vala"
+#line 1151 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp0_);
-#line 1152 "ValaProjectSettingsPopover.vala"
+#line 1151 "ValaProjectSettingsPopover.vala"
 	expand = _tmp0_;
-#line 1154 "ValaProjectSettingsPopover.vala"
+#line 1153 "ValaProjectSettingsPopover.vala"
 	gtk_tree_expander_set_indent_for_depth (expand, TRUE);
-#line 1155 "ValaProjectSettingsPopover.vala"
+#line 1154 "ValaProjectSettingsPopover.vala"
 	gtk_tree_expander_set_indent_for_icon (expand, TRUE);
-#line 1157 "ValaProjectSettingsPopover.vala"
+#line 1156 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkLabel*) gtk_label_new ("");
-#line 1157 "ValaProjectSettingsPopover.vala"
+#line 1156 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1157 "ValaProjectSettingsPopover.vala"
+#line 1156 "ValaProjectSettingsPopover.vala"
 	lbl = _tmp1_;
-#line 1158 "ValaProjectSettingsPopover.vala"
+#line 1157 "ValaProjectSettingsPopover.vala"
 	gtk_label_set_use_markup (lbl, TRUE);
-#line 1161 "ValaProjectSettingsPopover.vala"
+#line 1160 "ValaProjectSettingsPopover.vala"
 	gtk_label_set_justify (lbl, GTK_JUSTIFY_LEFT);
-#line 1162 "ValaProjectSettingsPopover.vala"
+#line 1161 "ValaProjectSettingsPopover.vala"
 	gtk_label_set_xalign (lbl, (gfloat) 0);
-#line 1165 "ValaProjectSettingsPopover.vala"
+#line 1164 "ValaProjectSettingsPopover.vala"
 	gtk_tree_expander_set_child (expand, (GtkWidget*) lbl);
-#line 1166 "ValaProjectSettingsPopover.vala"
+#line 1165 "ValaProjectSettingsPopover.vala"
 	gtk_list_item_set_child (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem), (GtkWidget*) expand);
-#line 1167 "ValaProjectSettingsPopover.vala"
+#line 1166 "ValaProjectSettingsPopover.vala"
 	gtk_list_item_set_activatable (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem), FALSE);
-#line 1150 "ValaProjectSettingsPopover.vala"
+#line 1149 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lbl);
-#line 1150 "ValaProjectSettingsPopover.vala"
+#line 1149 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (expand);
-#line 8447 "ValaProjectSettingsPopover.vala.c"
+#line 8364 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -8451,9 +8368,9 @@ ___lambda127__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sen
                                                   GObject* object,
                                                   gpointer self)
 {
-#line 1150 "ValaProjectSettingsPopover.vala"
+#line 1149 "ValaProjectSettingsPopover.vala"
 	__lambda127_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory37*) self, object);
-#line 8457 "ValaProjectSettingsPopover.vala.c"
+#line 8374 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -8496,109 +8413,109 @@ __lambda128_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
 	const gchar* _tmp29_;
 	GtkTreeExpander* _tmp30_;
 	GtkTreeListRow* _tmp31_;
-#line 1175 "ValaProjectSettingsPopover.vala"
+#line 1174 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = gtk_list_item_get_child (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 1175 "ValaProjectSettingsPopover.vala"
+#line 1174 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, gtk_tree_expander_get_type (), GtkTreeExpander));
-#line 1175 "ValaProjectSettingsPopover.vala"
+#line 1174 "ValaProjectSettingsPopover.vala"
 	expand = _tmp1_;
-#line 1178 "ValaProjectSettingsPopover.vala"
+#line 1177 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = expand;
-#line 1178 "ValaProjectSettingsPopover.vala"
+#line 1177 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = gtk_tree_expander_get_child (_tmp2_);
-#line 1178 "ValaProjectSettingsPopover.vala"
+#line 1177 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_;
-#line 1178 "ValaProjectSettingsPopover.vala"
+#line 1177 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp4_, gtk_label_get_type (), GtkLabel));
-#line 1178 "ValaProjectSettingsPopover.vala"
+#line 1177 "ValaProjectSettingsPopover.vala"
 	lbl = _tmp5_;
-#line 1180 "ValaProjectSettingsPopover.vala"
+#line 1179 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = lbl;
-#line 1180 "ValaProjectSettingsPopover.vala"
+#line 1179 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = gtk_label_get_label (_tmp6_);
-#line 1180 "ValaProjectSettingsPopover.vala"
+#line 1179 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = _tmp7_;
-#line 1180 "ValaProjectSettingsPopover.vala"
+#line 1179 "ValaProjectSettingsPopover.vala"
 	if (g_strcmp0 (_tmp8_, "") != 0) {
-#line 1181 "ValaProjectSettingsPopover.vala"
+#line 1180 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (lbl);
-#line 1181 "ValaProjectSettingsPopover.vala"
+#line 1180 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (expand);
-#line 1181 "ValaProjectSettingsPopover.vala"
+#line 1180 "ValaProjectSettingsPopover.vala"
 		return;
-#line 8530 "ValaProjectSettingsPopover.vala.c"
+#line 8447 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1185 "ValaProjectSettingsPopover.vala"
+#line 1184 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = gtk_list_item_get_item (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 1185 "ValaProjectSettingsPopover.vala"
+#line 1184 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp9_, gtk_tree_list_row_get_type (), GtkTreeListRow));
-#line 1185 "ValaProjectSettingsPopover.vala"
+#line 1184 "ValaProjectSettingsPopover.vala"
 	lr = _tmp10_;
-#line 1186 "ValaProjectSettingsPopover.vala"
+#line 1185 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = lr;
-#line 1186 "ValaProjectSettingsPopover.vala"
+#line 1185 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = gtk_tree_list_row_get_item (_tmp11_);
-#line 1186 "ValaProjectSettingsPopover.vala"
+#line 1185 "ValaProjectSettingsPopover.vala"
 	jr = G_TYPE_CHECK_INSTANCE_CAST (_tmp12_, JS_RENDER_TYPE_JS_RENDER, JsRenderJsRender);
-#line 1188 "ValaProjectSettingsPopover.vala"
+#line 1187 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = lbl;
-#line 1188 "ValaProjectSettingsPopover.vala"
+#line 1187 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = jr;
-#line 1188 "ValaProjectSettingsPopover.vala"
+#line 1187 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = js_render_js_render_get_name (_tmp14_);
-#line 1188 "ValaProjectSettingsPopover.vala"
+#line 1187 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = _tmp15_;
-#line 1188 "ValaProjectSettingsPopover.vala"
+#line 1187 "ValaProjectSettingsPopover.vala"
 	gtk_label_set_label (_tmp13_, _tmp16_);
-#line 1189 "ValaProjectSettingsPopover.vala"
+#line 1188 "ValaProjectSettingsPopover.vala"
 	_tmp17_ = lbl;
-#line 1189 "ValaProjectSettingsPopover.vala"
+#line 1188 "ValaProjectSettingsPopover.vala"
 	_tmp18_ = jr;
-#line 1189 "ValaProjectSettingsPopover.vala"
+#line 1188 "ValaProjectSettingsPopover.vala"
 	_tmp19_ = _tmp18_->path;
-#line 1189 "ValaProjectSettingsPopover.vala"
+#line 1188 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_tooltip_markup ((GtkWidget*) _tmp17_, _tmp19_);
-#line 1191 "ValaProjectSettingsPopover.vala"
+#line 1190 "ValaProjectSettingsPopover.vala"
 	_tmp20_ = expand;
-#line 1191 "ValaProjectSettingsPopover.vala"
+#line 1190 "ValaProjectSettingsPopover.vala"
 	_tmp21_ = jr;
-#line 1191 "ValaProjectSettingsPopover.vala"
+#line 1190 "ValaProjectSettingsPopover.vala"
 	_tmp22_ = _tmp21_->childfiles;
-#line 1191 "ValaProjectSettingsPopover.vala"
+#line 1190 "ValaProjectSettingsPopover.vala"
 	g_object_get (_tmp22_, "n-items", &_tmp23_, NULL);
-#line 1191 "ValaProjectSettingsPopover.vala"
+#line 1190 "ValaProjectSettingsPopover.vala"
 	_tmp24_ = _tmp23_;
-#line 1191 "ValaProjectSettingsPopover.vala"
+#line 1190 "ValaProjectSettingsPopover.vala"
 	gtk_tree_expander_set_hide_expander (_tmp20_, _tmp24_ < ((guint) 1));
-#line 1192 "ValaProjectSettingsPopover.vala"
+#line 1191 "ValaProjectSettingsPopover.vala"
 	_tmp25_ = expand;
-#line 1192 "ValaProjectSettingsPopover.vala"
+#line 1191 "ValaProjectSettingsPopover.vala"
 	_tmp26_ = lr;
-#line 1192 "ValaProjectSettingsPopover.vala"
+#line 1191 "ValaProjectSettingsPopover.vala"
 	gtk_tree_expander_set_list_row (_tmp25_, _tmp26_);
-#line 1194 "ValaProjectSettingsPopover.vala"
+#line 1193 "ValaProjectSettingsPopover.vala"
 	_tmp27_ = expand;
-#line 1194 "ValaProjectSettingsPopover.vala"
+#line 1193 "ValaProjectSettingsPopover.vala"
 	_tmp28_ = jr;
-#line 1194 "ValaProjectSettingsPopover.vala"
+#line 1193 "ValaProjectSettingsPopover.vala"
 	_tmp29_ = _tmp28_->xtype;
-#line 1194 "ValaProjectSettingsPopover.vala"
+#line 1193 "ValaProjectSettingsPopover.vala"
 	gtk_tree_expander_set_hide_expander (_tmp27_, g_strcmp0 (_tmp29_, "Dir") != 0);
-#line 1195 "ValaProjectSettingsPopover.vala"
+#line 1194 "ValaProjectSettingsPopover.vala"
 	_tmp30_ = expand;
-#line 1195 "ValaProjectSettingsPopover.vala"
+#line 1194 "ValaProjectSettingsPopover.vala"
 	_tmp31_ = lr;
-#line 1195 "ValaProjectSettingsPopover.vala"
+#line 1194 "ValaProjectSettingsPopover.vala"
 	gtk_tree_expander_set_list_row (_tmp30_, _tmp31_);
-#line 1169 "ValaProjectSettingsPopover.vala"
+#line 1168 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (jr);
-#line 1169 "ValaProjectSettingsPopover.vala"
+#line 1168 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lr);
-#line 1169 "ValaProjectSettingsPopover.vala"
+#line 1168 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lbl);
-#line 1169 "ValaProjectSettingsPopover.vala"
+#line 1168 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (expand);
-#line 8602 "ValaProjectSettingsPopover.vala.c"
+#line 8519 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -8606,9 +8523,9 @@ ___lambda128__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _send
                                                  GObject* object,
                                                  gpointer self)
 {
-#line 1169 "ValaProjectSettingsPopover.vala"
+#line 1168 "ValaProjectSettingsPopover.vala"
 	__lambda128_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory37*) self, object);
-#line 8612 "ValaProjectSettingsPopover.vala.c"
+#line 8529 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory37*
@@ -8620,76 +8537,76 @@ vala_project_settings_popover_xcls_signallistitemfactory37_construct (GType obje
 	GtkSignalListItemFactory* _tmp1_;
 	GtkSignalListItemFactory* _tmp2_;
 	GtkSignalListItemFactory* _tmp3_;
-#line 1140 "ValaProjectSettingsPopover.vala"
+#line 1139 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_SignalListItemFactory37*) g_object_new (object_type, NULL);
-#line 1142 "ValaProjectSettingsPopover.vala"
+#line 1141 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1142 "ValaProjectSettingsPopover.vala"
+#line 1141 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1142 "ValaProjectSettingsPopover.vala"
+#line 1141 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1143 "ValaProjectSettingsPopover.vala"
+#line 1142 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkSignalListItemFactory*) gtk_signal_list_item_factory_new ();
-#line 1143 "ValaProjectSettingsPopover.vala"
+#line 1142 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1143 "ValaProjectSettingsPopover.vala"
+#line 1142 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1150 "ValaProjectSettingsPopover.vala"
+#line 1149 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1150 "ValaProjectSettingsPopover.vala"
+#line 1149 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda127__gtk_signal_list_item_factory_setup, self, 0);
-#line 1169 "ValaProjectSettingsPopover.vala"
+#line 1168 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 1169 "ValaProjectSettingsPopover.vala"
+#line 1168 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda128__gtk_signal_list_item_factory_bind, self, 0);
-#line 1140 "ValaProjectSettingsPopover.vala"
+#line 1139 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 8648 "ValaProjectSettingsPopover.vala.c"
+#line 8565 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory37*
 vala_project_settings_popover_xcls_signallistitemfactory37_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1140 "ValaProjectSettingsPopover.vala"
+#line 1139 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_signallistitemfactory37_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY37, _owner);
-#line 8656 "ValaProjectSettingsPopover.vala.c"
+#line 8573 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory37_class_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory37Class * klass,
                                                                        gpointer klass_data)
 {
-#line 1131 "ValaProjectSettingsPopover.vala"
+#line 1130 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_signallistitemfactory37_parent_class = g_type_class_peek_parent (klass);
-#line 1131 "ValaProjectSettingsPopover.vala"
+#line 1130 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_SignalListItemFactory37_private_offset);
-#line 1131 "ValaProjectSettingsPopover.vala"
+#line 1130 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_signallistitemfactory37_finalize;
-#line 8669 "ValaProjectSettingsPopover.vala.c"
+#line 8586 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory37_instance_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory37 * self,
                                                                           gpointer klass)
 {
-#line 1131 "ValaProjectSettingsPopover.vala"
+#line 1130 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_signallistitemfactory37_get_instance_private (self);
-#line 8678 "ValaProjectSettingsPopover.vala.c"
+#line 8595 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory37_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_SignalListItemFactory37 * self;
-#line 1131 "ValaProjectSettingsPopover.vala"
+#line 1130 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY37, ValaProjectSettingsPopoverXcls_SignalListItemFactory37);
-#line 1133 "ValaProjectSettingsPopover.vala"
+#line 1132 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1134 "ValaProjectSettingsPopover.vala"
+#line 1133 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1131 "ValaProjectSettingsPopover.vala"
+#line 1130 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_signallistitemfactory37_parent_class)->finalize (obj);
-#line 8693 "ValaProjectSettingsPopover.vala.c"
+#line 8610 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -8732,82 +8649,82 @@ vala_project_settings_popover_xcls_columnviewcolumn38_construct (GType object_ty
 	GtkSignalListItemFactory* _tmp3_;
 	GtkListItemFactory* _tmp4_;
 	GtkColumnViewColumn* _tmp5_;
-#line 1215 "ValaProjectSettingsPopover.vala"
+#line 1214 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_ColumnViewColumn38*) g_object_new (object_type, NULL);
-#line 1217 "ValaProjectSettingsPopover.vala"
+#line 1216 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1217 "ValaProjectSettingsPopover.vala"
+#line 1216 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1217 "ValaProjectSettingsPopover.vala"
+#line 1216 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1218 "ValaProjectSettingsPopover.vala"
+#line 1217 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1218 "ValaProjectSettingsPopover.vala"
+#line 1217 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_signallistitemfactory39_new (_tmp1_);
-#line 1218 "ValaProjectSettingsPopover.vala"
+#line 1217 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 1219 "ValaProjectSettingsPopover.vala"
+#line 1218 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 1220 "ValaProjectSettingsPopover.vala"
+#line 1219 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 1220 "ValaProjectSettingsPopover.vala"
+#line 1219 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 ((GtkListItemFactory*) _tmp3_);
-#line 1220 "ValaProjectSettingsPopover.vala"
+#line 1219 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_column_view_column_new ("use", _tmp4_);
-#line 1220 "ValaProjectSettingsPopover.vala"
+#line 1219 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1220 "ValaProjectSettingsPopover.vala"
+#line 1219 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 1215 "ValaProjectSettingsPopover.vala"
+#line 1214 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1215 "ValaProjectSettingsPopover.vala"
+#line 1214 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 8766 "ValaProjectSettingsPopover.vala.c"
+#line 8683 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_ColumnViewColumn38*
 vala_project_settings_popover_xcls_columnviewcolumn38_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1215 "ValaProjectSettingsPopover.vala"
+#line 1214 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_columnviewcolumn38_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEWCOLUMN38, _owner);
-#line 8774 "ValaProjectSettingsPopover.vala.c"
+#line 8691 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn38_class_init (ValaProjectSettingsPopoverXcls_ColumnViewColumn38Class * klass,
                                                                   gpointer klass_data)
 {
-#line 1206 "ValaProjectSettingsPopover.vala"
+#line 1205 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_columnviewcolumn38_parent_class = g_type_class_peek_parent (klass);
-#line 1206 "ValaProjectSettingsPopover.vala"
+#line 1205 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_ColumnViewColumn38_private_offset);
-#line 1206 "ValaProjectSettingsPopover.vala"
+#line 1205 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_columnviewcolumn38_finalize;
-#line 8787 "ValaProjectSettingsPopover.vala.c"
+#line 8704 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn38_instance_init (ValaProjectSettingsPopoverXcls_ColumnViewColumn38 * self,
                                                                      gpointer klass)
 {
-#line 1206 "ValaProjectSettingsPopover.vala"
+#line 1205 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_columnviewcolumn38_get_instance_private (self);
-#line 8796 "ValaProjectSettingsPopover.vala.c"
+#line 8713 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn38_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_ColumnViewColumn38 * self;
-#line 1206 "ValaProjectSettingsPopover.vala"
+#line 1205 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEWCOLUMN38, ValaProjectSettingsPopoverXcls_ColumnViewColumn38);
-#line 1208 "ValaProjectSettingsPopover.vala"
+#line 1207 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1209 "ValaProjectSettingsPopover.vala"
+#line 1208 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1206 "ValaProjectSettingsPopover.vala"
+#line 1205 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_columnviewcolumn38_parent_class)->finalize (obj);
-#line 8811 "ValaProjectSettingsPopover.vala.c"
+#line 8728 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -8841,11 +8758,11 @@ vala_project_settings_popover_xcls_signallistitemfactory39_get_instance_private 
 static Block9Data*
 block9_data_ref (Block9Data* _data9_)
 {
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	g_atomic_int_inc (&_data9_->_ref_count_);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	return _data9_;
-#line 8849 "ValaProjectSettingsPopover.vala.c"
+#line 8766 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -8853,21 +8770,21 @@ block9_data_unref (void * _userdata_)
 {
 	Block9Data* _data9_;
 	_data9_ = (Block9Data*) _userdata_;
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	if (g_atomic_int_dec_and_test (&_data9_->_ref_count_)) {
-#line 8859 "ValaProjectSettingsPopover.vala.c"
+#line 8776 "ValaProjectSettingsPopover.vala.c"
 		ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self;
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 		self = _data9_->self;
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (_data9_->btn);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (_data9_->listitem);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 		_g_object_unref0 (self);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 		g_slice_free (Block9Data, _data9_);
-#line 8871 "ValaProjectSettingsPopover.vala.c"
+#line 8788 "ValaProjectSettingsPopover.vala.c"
 	}
 }
 
@@ -8882,38 +8799,38 @@ __lambda130_ (Block9Data* _data9_)
 	GObject* _tmp2_;
 	gboolean _tmp3_;
 	gboolean _tmp4_;
-#line 1254 "ValaProjectSettingsPopover.vala"
+#line 1253 "ValaProjectSettingsPopover.vala"
 	self = _data9_->self;
-#line 1256 "ValaProjectSettingsPopover.vala"
+#line 1255 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = gtk_list_item_get_item (G_TYPE_CHECK_INSTANCE_CAST (_data9_->listitem, gtk_list_item_get_type (), GtkListItem));
-#line 1256 "ValaProjectSettingsPopover.vala"
+#line 1255 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, gtk_tree_list_row_get_type (), GtkTreeListRow));
-#line 1256 "ValaProjectSettingsPopover.vala"
+#line 1255 "ValaProjectSettingsPopover.vala"
 	lr = _tmp1_;
-#line 1257 "ValaProjectSettingsPopover.vala"
+#line 1256 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = gtk_tree_list_row_get_item (lr);
-#line 1257 "ValaProjectSettingsPopover.vala"
+#line 1256 "ValaProjectSettingsPopover.vala"
 	jr = G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, JS_RENDER_TYPE_JS_RENDER, JsRenderJsRender);
-#line 1258 "ValaProjectSettingsPopover.vala"
+#line 1257 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = gtk_check_button_get_active (_data9_->btn);
-#line 1258 "ValaProjectSettingsPopover.vala"
+#line 1257 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_;
-#line 1258 "ValaProjectSettingsPopover.vala"
+#line 1257 "ValaProjectSettingsPopover.vala"
 	js_render_js_render_set_compile_group_selected (jr, _tmp4_);
-#line 1254 "ValaProjectSettingsPopover.vala"
+#line 1253 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (jr);
-#line 1254 "ValaProjectSettingsPopover.vala"
+#line 1253 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lr);
-#line 8908 "ValaProjectSettingsPopover.vala.c"
+#line 8825 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 ___lambda130__gtk_check_button_toggled (GtkCheckButton* _sender,
                                         gpointer self)
 {
-#line 1254 "ValaProjectSettingsPopover.vala"
+#line 1253 "ValaProjectSettingsPopover.vala"
 	__lambda130_ (self);
-#line 8917 "ValaProjectSettingsPopover.vala.c"
+#line 8834 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -8923,33 +8840,33 @@ __lambda129_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
 	Block9Data* _data9_;
 	GObject* _tmp0_;
 	GtkCheckButton* _tmp1_;
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	_data9_ = g_slice_new0 (Block9Data);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	_data9_->_ref_count_ = 1;
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	_data9_->self = g_object_ref (self);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (listitem);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_data9_->listitem);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	_data9_->listitem = _tmp0_;
-#line 1250 "ValaProjectSettingsPopover.vala"
+#line 1249 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkCheckButton*) gtk_check_button_new ();
-#line 1250 "ValaProjectSettingsPopover.vala"
+#line 1249 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1250 "ValaProjectSettingsPopover.vala"
+#line 1249 "ValaProjectSettingsPopover.vala"
 	_data9_->btn = _tmp1_;
-#line 1252 "ValaProjectSettingsPopover.vala"
+#line 1251 "ValaProjectSettingsPopover.vala"
 	gtk_list_item_set_child (G_TYPE_CHECK_INSTANCE_CAST (_data9_->listitem, gtk_list_item_get_type (), GtkListItem), (GtkWidget*) _data9_->btn);
-#line 1254 "ValaProjectSettingsPopover.vala"
+#line 1253 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_data (_data9_->btn, "toggled", (GCallback) ___lambda130__gtk_check_button_toggled, block9_data_ref (_data9_), (GClosureNotify) block9_data_unref, 0);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	block9_data_unref (_data9_);
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	_data9_ = NULL;
-#line 8953 "ValaProjectSettingsPopover.vala.c"
+#line 8870 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -8957,9 +8874,9 @@ ___lambda129__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sen
                                                   GObject* object,
                                                   gpointer self)
 {
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	__lambda129_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory39*) self, object);
-#line 8963 "ValaProjectSettingsPopover.vala.c"
+#line 8880 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -8974,31 +8891,31 @@ __lambda131_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
 	GtkTreeListRow* _tmp3_;
 	JsRenderJsRender* jr = NULL;
 	GObject* _tmp4_;
-#line 1269 "ValaProjectSettingsPopover.vala"
+#line 1268 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = gtk_list_item_get_child (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 1269 "ValaProjectSettingsPopover.vala"
+#line 1268 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, gtk_check_button_get_type (), GtkCheckButton));
-#line 1269 "ValaProjectSettingsPopover.vala"
+#line 1268 "ValaProjectSettingsPopover.vala"
 	btn = _tmp1_;
-#line 1272 "ValaProjectSettingsPopover.vala"
+#line 1271 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = gtk_list_item_get_item (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 1272 "ValaProjectSettingsPopover.vala"
+#line 1271 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, gtk_tree_list_row_get_type (), GtkTreeListRow));
-#line 1272 "ValaProjectSettingsPopover.vala"
+#line 1271 "ValaProjectSettingsPopover.vala"
 	lr = _tmp3_;
-#line 1273 "ValaProjectSettingsPopover.vala"
+#line 1272 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = gtk_tree_list_row_get_item (lr);
-#line 1273 "ValaProjectSettingsPopover.vala"
+#line 1272 "ValaProjectSettingsPopover.vala"
 	jr = G_TYPE_CHECK_INSTANCE_CAST (_tmp4_, JS_RENDER_TYPE_JS_RENDER, JsRenderJsRender);
-#line 1278 "ValaProjectSettingsPopover.vala"
+#line 1277 "ValaProjectSettingsPopover.vala"
 	g_object_bind_property_with_closures ((GObject*) jr, "compile_group_selected", (GObject*) btn, "active", G_BINDING_SYNC_CREATE, (GClosure*) ((NULL == NULL) ? NULL : g_cclosure_new ((GCallback) NULL, NULL, (GClosureNotify) NULL)), (GClosure*) ((NULL == NULL) ? NULL : g_cclosure_new ((GCallback) NULL, NULL, (GClosureNotify) NULL)));
-#line 1263 "ValaProjectSettingsPopover.vala"
+#line 1262 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (jr);
-#line 1263 "ValaProjectSettingsPopover.vala"
+#line 1262 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lr);
-#line 1263 "ValaProjectSettingsPopover.vala"
+#line 1262 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (btn);
-#line 9002 "ValaProjectSettingsPopover.vala.c"
+#line 8919 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -9006,9 +8923,9 @@ ___lambda131__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _send
                                                  GObject* object,
                                                  gpointer self)
 {
-#line 1263 "ValaProjectSettingsPopover.vala"
+#line 1262 "ValaProjectSettingsPopover.vala"
 	__lambda131_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory39*) self, object);
-#line 9012 "ValaProjectSettingsPopover.vala.c"
+#line 8929 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory39*
@@ -9020,76 +8937,76 @@ vala_project_settings_popover_xcls_signallistitemfactory39_construct (GType obje
 	GtkSignalListItemFactory* _tmp1_;
 	GtkSignalListItemFactory* _tmp2_;
 	GtkSignalListItemFactory* _tmp3_;
-#line 1238 "ValaProjectSettingsPopover.vala"
+#line 1237 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_SignalListItemFactory39*) g_object_new (object_type, NULL);
-#line 1240 "ValaProjectSettingsPopover.vala"
+#line 1239 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1240 "ValaProjectSettingsPopover.vala"
+#line 1239 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1240 "ValaProjectSettingsPopover.vala"
+#line 1239 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1241 "ValaProjectSettingsPopover.vala"
+#line 1240 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkSignalListItemFactory*) gtk_signal_list_item_factory_new ();
-#line 1241 "ValaProjectSettingsPopover.vala"
+#line 1240 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1241 "ValaProjectSettingsPopover.vala"
+#line 1240 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1248 "ValaProjectSettingsPopover.vala"
+#line 1247 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda129__gtk_signal_list_item_factory_setup, self, 0);
-#line 1263 "ValaProjectSettingsPopover.vala"
+#line 1262 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 1263 "ValaProjectSettingsPopover.vala"
+#line 1262 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda131__gtk_signal_list_item_factory_bind, self, 0);
-#line 1238 "ValaProjectSettingsPopover.vala"
+#line 1237 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 9048 "ValaProjectSettingsPopover.vala.c"
+#line 8965 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory39*
 vala_project_settings_popover_xcls_signallistitemfactory39_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1238 "ValaProjectSettingsPopover.vala"
+#line 1237 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_signallistitemfactory39_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY39, _owner);
-#line 9056 "ValaProjectSettingsPopover.vala.c"
+#line 8973 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory39_class_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory39Class * klass,
                                                                        gpointer klass_data)
 {
-#line 1229 "ValaProjectSettingsPopover.vala"
+#line 1228 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_signallistitemfactory39_parent_class = g_type_class_peek_parent (klass);
-#line 1229 "ValaProjectSettingsPopover.vala"
+#line 1228 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_SignalListItemFactory39_private_offset);
-#line 1229 "ValaProjectSettingsPopover.vala"
+#line 1228 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_signallistitemfactory39_finalize;
-#line 9069 "ValaProjectSettingsPopover.vala.c"
+#line 8986 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory39_instance_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory39 * self,
                                                                           gpointer klass)
 {
-#line 1229 "ValaProjectSettingsPopover.vala"
+#line 1228 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_signallistitemfactory39_get_instance_private (self);
-#line 9078 "ValaProjectSettingsPopover.vala.c"
+#line 8995 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory39_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_SignalListItemFactory39 * self;
-#line 1229 "ValaProjectSettingsPopover.vala"
+#line 1228 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY39, ValaProjectSettingsPopoverXcls_SignalListItemFactory39);
-#line 1231 "ValaProjectSettingsPopover.vala"
+#line 1230 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1232 "ValaProjectSettingsPopover.vala"
+#line 1231 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1229 "ValaProjectSettingsPopover.vala"
+#line 1228 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_signallistitemfactory39_parent_class)->finalize (obj);
-#line 9093 "ValaProjectSettingsPopover.vala.c"
+#line 9010 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -9142,116 +9059,116 @@ vala_project_settings_popover_xcls_box40_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_set_vboxb* _tmp11_;
 	GtkBox* _tmp12_;
 	GtkBox* _tmp13_;
-#line 1302 "ValaProjectSettingsPopover.vala"
+#line 1301 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Box40*) g_object_new (object_type, NULL);
-#line 1304 "ValaProjectSettingsPopover.vala"
+#line 1303 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1304 "ValaProjectSettingsPopover.vala"
+#line 1303 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1304 "ValaProjectSettingsPopover.vala"
+#line 1303 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1305 "ValaProjectSettingsPopover.vala"
+#line 1304 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 1305 "ValaProjectSettingsPopover.vala"
+#line 1304 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1305 "ValaProjectSettingsPopover.vala"
+#line 1304 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1305 "ValaProjectSettingsPopover.vala"
+#line 1304 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1310 "ValaProjectSettingsPopover.vala"
+#line 1309 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->priv->_this;
-#line 1310 "ValaProjectSettingsPopover.vala"
+#line 1309 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = vala_project_settings_popover_xcls_box41_new (_tmp2_);
-#line 1310 "ValaProjectSettingsPopover.vala"
+#line 1309 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp3_;
-#line 1311 "ValaProjectSettingsPopover.vala"
+#line 1310 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 1312 "ValaProjectSettingsPopover.vala"
+#line 1311 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 1312 "ValaProjectSettingsPopover.vala"
+#line 1311 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 1312 "ValaProjectSettingsPopover.vala"
+#line 1311 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp4_, (GtkWidget*) _tmp5_);
-#line 1313 "ValaProjectSettingsPopover.vala"
+#line 1312 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->priv->_this;
-#line 1313 "ValaProjectSettingsPopover.vala"
+#line 1312 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = vala_project_settings_popover_xcls_scrolledwindow44_new (_tmp6_);
-#line 1313 "ValaProjectSettingsPopover.vala"
+#line 1312 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp7_;
-#line 1314 "ValaProjectSettingsPopover.vala"
+#line 1313 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 1315 "ValaProjectSettingsPopover.vala"
+#line 1314 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 1315 "ValaProjectSettingsPopover.vala"
+#line 1314 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = child_2->el;
-#line 1315 "ValaProjectSettingsPopover.vala"
+#line 1314 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp8_, (GtkWidget*) _tmp9_);
-#line 1316 "ValaProjectSettingsPopover.vala"
+#line 1315 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = self->priv->_this;
-#line 1316 "ValaProjectSettingsPopover.vala"
+#line 1315 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = vala_project_settings_popover_xcls_set_vboxb_new (_tmp10_);
-#line 1316 "ValaProjectSettingsPopover.vala"
+#line 1315 "ValaProjectSettingsPopover.vala"
 	child_3 = _tmp11_;
-#line 1317 "ValaProjectSettingsPopover.vala"
+#line 1316 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = self->el;
-#line 1317 "ValaProjectSettingsPopover.vala"
+#line 1316 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = child_3->el;
-#line 1317 "ValaProjectSettingsPopover.vala"
+#line 1316 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp12_, (GtkWidget*) _tmp13_);
-#line 1302 "ValaProjectSettingsPopover.vala"
+#line 1301 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_3);
-#line 1302 "ValaProjectSettingsPopover.vala"
+#line 1301 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 1302 "ValaProjectSettingsPopover.vala"
+#line 1301 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1302 "ValaProjectSettingsPopover.vala"
+#line 1301 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 9210 "ValaProjectSettingsPopover.vala.c"
+#line 9127 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Box40*
 vala_project_settings_popover_xcls_box40_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1302 "ValaProjectSettingsPopover.vala"
+#line 1301 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_box40_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX40, _owner);
-#line 9218 "ValaProjectSettingsPopover.vala.c"
+#line 9135 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box40_class_init (ValaProjectSettingsPopoverXcls_Box40Class * klass,
                                                      gpointer klass_data)
 {
-#line 1293 "ValaProjectSettingsPopover.vala"
+#line 1292 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_box40_parent_class = g_type_class_peek_parent (klass);
-#line 1293 "ValaProjectSettingsPopover.vala"
+#line 1292 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Box40_private_offset);
-#line 1293 "ValaProjectSettingsPopover.vala"
+#line 1292 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_box40_finalize;
-#line 9231 "ValaProjectSettingsPopover.vala.c"
+#line 9148 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box40_instance_init (ValaProjectSettingsPopoverXcls_Box40 * self,
                                                         gpointer klass)
 {
-#line 1293 "ValaProjectSettingsPopover.vala"
+#line 1292 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_box40_get_instance_private (self);
-#line 9240 "ValaProjectSettingsPopover.vala.c"
+#line 9157 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box40_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Box40 * self;
-#line 1293 "ValaProjectSettingsPopover.vala"
+#line 1292 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX40, ValaProjectSettingsPopoverXcls_Box40);
-#line 1295 "ValaProjectSettingsPopover.vala"
+#line 1294 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1296 "ValaProjectSettingsPopover.vala"
+#line 1295 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1293 "ValaProjectSettingsPopover.vala"
+#line 1292 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_box40_parent_class)->finalize (obj);
-#line 9255 "ValaProjectSettingsPopover.vala.c"
+#line 9172 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -9300,106 +9217,106 @@ vala_project_settings_popover_xcls_box41_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_Button43* _tmp8_;
 	GtkBox* _tmp9_;
 	GtkButton* _tmp10_;
-#line 1331 "ValaProjectSettingsPopover.vala"
+#line 1330 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Box41*) g_object_new (object_type, NULL);
-#line 1333 "ValaProjectSettingsPopover.vala"
+#line 1332 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1333 "ValaProjectSettingsPopover.vala"
+#line 1332 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1333 "ValaProjectSettingsPopover.vala"
+#line 1332 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1334 "ValaProjectSettingsPopover.vala"
+#line 1333 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-#line 1334 "ValaProjectSettingsPopover.vala"
+#line 1333 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1334 "ValaProjectSettingsPopover.vala"
+#line 1333 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1334 "ValaProjectSettingsPopover.vala"
+#line 1333 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1339 "ValaProjectSettingsPopover.vala"
+#line 1338 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1339 "ValaProjectSettingsPopover.vala"
+#line 1338 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 1340 "ValaProjectSettingsPopover.vala"
+#line 1339 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 1340 "ValaProjectSettingsPopover.vala"
+#line 1339 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_button42_new (_tmp3_);
-#line 1340 "ValaProjectSettingsPopover.vala"
+#line 1339 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 1341 "ValaProjectSettingsPopover.vala"
+#line 1340 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 1342 "ValaProjectSettingsPopover.vala"
+#line 1341 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 1342 "ValaProjectSettingsPopover.vala"
+#line 1341 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = child_1->el;
-#line 1342 "ValaProjectSettingsPopover.vala"
+#line 1341 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp5_, (GtkWidget*) _tmp6_);
-#line 1343 "ValaProjectSettingsPopover.vala"
+#line 1342 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = self->priv->_this;
-#line 1343 "ValaProjectSettingsPopover.vala"
+#line 1342 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = vala_project_settings_popover_xcls_button43_new (_tmp7_);
-#line 1343 "ValaProjectSettingsPopover.vala"
+#line 1342 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp8_;
-#line 1344 "ValaProjectSettingsPopover.vala"
+#line 1343 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 1345 "ValaProjectSettingsPopover.vala"
+#line 1344 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->el;
-#line 1345 "ValaProjectSettingsPopover.vala"
+#line 1344 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = child_2->el;
-#line 1345 "ValaProjectSettingsPopover.vala"
+#line 1344 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp9_, (GtkWidget*) _tmp10_);
-#line 1331 "ValaProjectSettingsPopover.vala"
+#line 1330 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 1331 "ValaProjectSettingsPopover.vala"
+#line 1330 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1331 "ValaProjectSettingsPopover.vala"
+#line 1330 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 9358 "ValaProjectSettingsPopover.vala.c"
+#line 9275 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Box41*
 vala_project_settings_popover_xcls_box41_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1331 "ValaProjectSettingsPopover.vala"
+#line 1330 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_box41_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX41, _owner);
-#line 9366 "ValaProjectSettingsPopover.vala.c"
+#line 9283 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box41_class_init (ValaProjectSettingsPopoverXcls_Box41Class * klass,
                                                      gpointer klass_data)
 {
-#line 1322 "ValaProjectSettingsPopover.vala"
+#line 1321 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_box41_parent_class = g_type_class_peek_parent (klass);
-#line 1322 "ValaProjectSettingsPopover.vala"
+#line 1321 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Box41_private_offset);
-#line 1322 "ValaProjectSettingsPopover.vala"
+#line 1321 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_box41_finalize;
-#line 9379 "ValaProjectSettingsPopover.vala.c"
+#line 9296 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box41_instance_init (ValaProjectSettingsPopoverXcls_Box41 * self,
                                                         gpointer klass)
 {
-#line 1322 "ValaProjectSettingsPopover.vala"
+#line 1321 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_box41_get_instance_private (self);
-#line 9388 "ValaProjectSettingsPopover.vala.c"
+#line 9305 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_box41_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Box41 * self;
-#line 1322 "ValaProjectSettingsPopover.vala"
+#line 1321 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX41, ValaProjectSettingsPopoverXcls_Box41);
-#line 1324 "ValaProjectSettingsPopover.vala"
+#line 1323 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1325 "ValaProjectSettingsPopover.vala"
+#line 1324 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1322 "ValaProjectSettingsPopover.vala"
+#line 1321 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_box41_parent_class)->finalize (obj);
-#line 9403 "ValaProjectSettingsPopover.vala.c"
+#line 9320 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -9452,67 +9369,67 @@ __lambda132_ (ValaProjectSettingsPopoverXcls_Button42* self)
 	ValaProjectSettingsPopover* _tmp15_;
 	ValaProjectSettingsPopoverXcls_target_model* _tmp16_;
 	GListStore* _tmp17_;
-#line 1373 "ValaProjectSettingsPopover.vala"
+#line 1372 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 1373 "ValaProjectSettingsPopover.vala"
+#line 1372 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _tmp0_->project;
-#line 1373 "ValaProjectSettingsPopover.vala"
+#line 1372 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _tmp1_->compilegroups;
-#line 1373 "ValaProjectSettingsPopover.vala"
+#line 1372 "ValaProjectSettingsPopover.vala"
 	if (gee_abstract_map_has_key ((GeeAbstractMap*) _tmp2_, "NEW GROUP")) {
-#line 1374 "ValaProjectSettingsPopover.vala"
+#line 1373 "ValaProjectSettingsPopover.vala"
 		return;
-#line 9466 "ValaProjectSettingsPopover.vala.c"
+#line 9383 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1376 "ValaProjectSettingsPopover.vala"
+#line 1375 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 1376 "ValaProjectSettingsPopover.vala"
+#line 1375 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_->project;
-#line 1376 "ValaProjectSettingsPopover.vala"
+#line 1375 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = project_gtk_vala_settings_new (_tmp4_, "NEW GROUP");
-#line 1376 "ValaProjectSettingsPopover.vala"
+#line 1375 "ValaProjectSettingsPopover.vala"
 	cg = _tmp5_;
-#line 1377 "ValaProjectSettingsPopover.vala"
+#line 1376 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->priv->_this;
-#line 1377 "ValaProjectSettingsPopover.vala"
+#line 1376 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = _tmp6_->project;
-#line 1377 "ValaProjectSettingsPopover.vala"
+#line 1376 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = _tmp7_->compilegroups;
-#line 1377 "ValaProjectSettingsPopover.vala"
+#line 1376 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = cg;
-#line 1377 "ValaProjectSettingsPopover.vala"
+#line 1376 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = project_gtk_vala_settings_get_name (_tmp9_);
-#line 1377 "ValaProjectSettingsPopover.vala"
+#line 1376 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = _tmp10_;
-#line 1377 "ValaProjectSettingsPopover.vala"
+#line 1376 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = cg;
-#line 1377 "ValaProjectSettingsPopover.vala"
+#line 1376 "ValaProjectSettingsPopover.vala"
 	gee_abstract_map_set ((GeeAbstractMap*) _tmp8_, _tmp11_, _tmp12_);
-#line 1378 "ValaProjectSettingsPopover.vala"
+#line 1377 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = self->priv->_this;
-#line 1378 "ValaProjectSettingsPopover.vala"
+#line 1377 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = _tmp13_->project;
-#line 1378 "ValaProjectSettingsPopover.vala"
+#line 1377 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = self->priv->_this;
-#line 1378 "ValaProjectSettingsPopover.vala"
+#line 1377 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = _tmp15_->target_model;
-#line 1378 "ValaProjectSettingsPopover.vala"
+#line 1377 "ValaProjectSettingsPopover.vala"
 	_tmp17_ = _tmp16_->el;
-#line 1378 "ValaProjectSettingsPopover.vala"
+#line 1377 "ValaProjectSettingsPopover.vala"
 	project_gtk_loadTargetsIntoStore (_tmp14_, _tmp17_);
-#line 9504 "ValaProjectSettingsPopover.vala.c"
+#line 9421 "ValaProjectSettingsPopover.vala.c"
 	{
 		gint i = 0;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 		i = 0;
-#line 9509 "ValaProjectSettingsPopover.vala.c"
+#line 9426 "ValaProjectSettingsPopover.vala.c"
 		{
 			gboolean _tmp18_ = FALSE;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 			_tmp18_ = TRUE;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 			while (TRUE) {
-#line 9516 "ValaProjectSettingsPopover.vala.c"
+#line 9433 "ValaProjectSettingsPopover.vala.c"
 				ValaProjectSettingsPopover* _tmp20_;
 				ValaProjectSettingsPopoverXcls_target_model* _tmp21_;
 				GListStore* _tmp22_;
@@ -9529,105 +9446,105 @@ __lambda132_ (ValaProjectSettingsPopoverXcls_Button42* self)
 				ProjectGtkValaSettings* _tmp32_;
 				const gchar* _tmp33_;
 				const gchar* _tmp34_;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				if (!_tmp18_) {
-#line 9535 "ValaProjectSettingsPopover.vala.c"
+#line 9452 "ValaProjectSettingsPopover.vala.c"
 					gint _tmp19_;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 					_tmp19_ = i;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 					i = _tmp19_ + 1;
-#line 9541 "ValaProjectSettingsPopover.vala.c"
+#line 9458 "ValaProjectSettingsPopover.vala.c"
 				}
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				_tmp18_ = FALSE;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				_tmp20_ = self->priv->_this;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				_tmp21_ = _tmp20_->target_model;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				_tmp22_ = _tmp21_->el;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				g_object_get (_tmp22_, "n-items", &_tmp23_, NULL);
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				_tmp24_ = _tmp23_;
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				if (!(((guint) i) < _tmp24_)) {
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 					break;
-#line 9559 "ValaProjectSettingsPopover.vala.c"
+#line 9476 "ValaProjectSettingsPopover.vala.c"
 				}
-#line 1381 "ValaProjectSettingsPopover.vala"
+#line 1380 "ValaProjectSettingsPopover.vala"
 				_tmp25_ = self->priv->_this;
-#line 1381 "ValaProjectSettingsPopover.vala"
+#line 1380 "ValaProjectSettingsPopover.vala"
 				_tmp26_ = _tmp25_->target_model;
-#line 1381 "ValaProjectSettingsPopover.vala"
+#line 1380 "ValaProjectSettingsPopover.vala"
 				_tmp27_ = _tmp26_->el;
-#line 1381 "ValaProjectSettingsPopover.vala"
+#line 1380 "ValaProjectSettingsPopover.vala"
 				_tmp28_ = g_list_model_get_item ((GListModel*) _tmp27_, (guint) i);
-#line 1381 "ValaProjectSettingsPopover.vala"
+#line 1380 "ValaProjectSettingsPopover.vala"
 				ncg = G_TYPE_CHECK_INSTANCE_CAST (_tmp28_, PROJECT_TYPE_GTK_VALA_SETTINGS, ProjectGtkValaSettings);
-#line 1382 "ValaProjectSettingsPopover.vala"
+#line 1381 "ValaProjectSettingsPopover.vala"
 				_tmp29_ = ncg;
-#line 1382 "ValaProjectSettingsPopover.vala"
+#line 1381 "ValaProjectSettingsPopover.vala"
 				_tmp30_ = project_gtk_vala_settings_get_name (_tmp29_);
-#line 1382 "ValaProjectSettingsPopover.vala"
+#line 1381 "ValaProjectSettingsPopover.vala"
 				_tmp31_ = _tmp30_;
-#line 1382 "ValaProjectSettingsPopover.vala"
+#line 1381 "ValaProjectSettingsPopover.vala"
 				_tmp32_ = cg;
-#line 1382 "ValaProjectSettingsPopover.vala"
+#line 1381 "ValaProjectSettingsPopover.vala"
 				_tmp33_ = project_gtk_vala_settings_get_name (_tmp32_);
-#line 1382 "ValaProjectSettingsPopover.vala"
+#line 1381 "ValaProjectSettingsPopover.vala"
 				_tmp34_ = _tmp33_;
-#line 1382 "ValaProjectSettingsPopover.vala"
+#line 1381 "ValaProjectSettingsPopover.vala"
 				if (g_strcmp0 (_tmp31_, _tmp34_) == 0) {
-#line 9585 "ValaProjectSettingsPopover.vala.c"
+#line 9502 "ValaProjectSettingsPopover.vala.c"
 					ValaProjectSettingsPopover* _tmp35_;
 					ValaProjectSettingsPopoverXcls_target_sel* _tmp36_;
 					GtkSingleSelection* _tmp37_;
 					ValaProjectSettingsPopover* _tmp38_;
 					ValaProjectSettingsPopoverXcls_target_sel* _tmp39_;
 					ProjectGtkValaSettings* _tmp40_;
-#line 1383 "ValaProjectSettingsPopover.vala"
+#line 1382 "ValaProjectSettingsPopover.vala"
 					_tmp35_ = self->priv->_this;
-#line 1383 "ValaProjectSettingsPopover.vala"
+#line 1382 "ValaProjectSettingsPopover.vala"
 					_tmp36_ = _tmp35_->target_sel;
-#line 1383 "ValaProjectSettingsPopover.vala"
+#line 1382 "ValaProjectSettingsPopover.vala"
 					_tmp37_ = _tmp36_->el;
-#line 1383 "ValaProjectSettingsPopover.vala"
+#line 1382 "ValaProjectSettingsPopover.vala"
 					gtk_single_selection_set_selected (_tmp37_, (guint) i);
-#line 1384 "ValaProjectSettingsPopover.vala"
+#line 1383 "ValaProjectSettingsPopover.vala"
 					_tmp38_ = self->priv->_this;
-#line 1384 "ValaProjectSettingsPopover.vala"
+#line 1383 "ValaProjectSettingsPopover.vala"
 					_tmp39_ = _tmp38_->target_sel;
-#line 1384 "ValaProjectSettingsPopover.vala"
+#line 1383 "ValaProjectSettingsPopover.vala"
 					_tmp40_ = cg;
-#line 1384 "ValaProjectSettingsPopover.vala"
+#line 1383 "ValaProjectSettingsPopover.vala"
 					vala_project_settings_popover_xcls_target_sel_selectTarget (_tmp39_, _tmp40_);
-#line 1385 "ValaProjectSettingsPopover.vala"
+#line 1384 "ValaProjectSettingsPopover.vala"
 					_g_object_unref0 (ncg);
-#line 1385 "ValaProjectSettingsPopover.vala"
+#line 1384 "ValaProjectSettingsPopover.vala"
 					break;
-#line 9612 "ValaProjectSettingsPopover.vala.c"
+#line 9529 "ValaProjectSettingsPopover.vala.c"
 				}
-#line 1380 "ValaProjectSettingsPopover.vala"
+#line 1379 "ValaProjectSettingsPopover.vala"
 				_g_object_unref0 (ncg);
-#line 9616 "ValaProjectSettingsPopover.vala.c"
+#line 9533 "ValaProjectSettingsPopover.vala.c"
 			}
 		}
 	}
-#line 1371 "ValaProjectSettingsPopover.vala"
+#line 1370 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (cg);
-#line 9622 "ValaProjectSettingsPopover.vala.c"
+#line 9539 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 ___lambda132__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1371 "ValaProjectSettingsPopover.vala"
+#line 1370 "ValaProjectSettingsPopover.vala"
 	__lambda132_ ((ValaProjectSettingsPopoverXcls_Button42*) self);
-#line 9631 "ValaProjectSettingsPopover.vala.c"
+#line 9548 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Button42*
@@ -9640,82 +9557,82 @@ vala_project_settings_popover_xcls_button42_construct (GType object_type,
 	GtkButton* _tmp2_;
 	GtkButton* _tmp3_;
 	GtkButton* _tmp4_;
-#line 1359 "ValaProjectSettingsPopover.vala"
+#line 1358 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Button42*) g_object_new (object_type, NULL);
-#line 1361 "ValaProjectSettingsPopover.vala"
+#line 1360 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1361 "ValaProjectSettingsPopover.vala"
+#line 1360 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1361 "ValaProjectSettingsPopover.vala"
+#line 1360 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1362 "ValaProjectSettingsPopover.vala"
+#line 1361 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 1362 "ValaProjectSettingsPopover.vala"
+#line 1361 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1362 "ValaProjectSettingsPopover.vala"
+#line 1361 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1362 "ValaProjectSettingsPopover.vala"
+#line 1361 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1367 "ValaProjectSettingsPopover.vala"
+#line 1366 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1367 "ValaProjectSettingsPopover.vala"
+#line 1366 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 1368 "ValaProjectSettingsPopover.vala"
+#line 1367 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 1368 "ValaProjectSettingsPopover.vala"
+#line 1367 "ValaProjectSettingsPopover.vala"
 	gtk_button_set_label (_tmp3_, "Add Compile Target");
-#line 1371 "ValaProjectSettingsPopover.vala"
+#line 1370 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 1371 "ValaProjectSettingsPopover.vala"
+#line 1370 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda132__gtk_button_clicked, self, 0);
-#line 1359 "ValaProjectSettingsPopover.vala"
+#line 1358 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 9674 "ValaProjectSettingsPopover.vala.c"
+#line 9591 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Button42*
 vala_project_settings_popover_xcls_button42_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1359 "ValaProjectSettingsPopover.vala"
+#line 1358 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_button42_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON42, _owner);
-#line 9682 "ValaProjectSettingsPopover.vala.c"
+#line 9599 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button42_class_init (ValaProjectSettingsPopoverXcls_Button42Class * klass,
                                                         gpointer klass_data)
 {
-#line 1350 "ValaProjectSettingsPopover.vala"
+#line 1349 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_button42_parent_class = g_type_class_peek_parent (klass);
-#line 1350 "ValaProjectSettingsPopover.vala"
+#line 1349 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Button42_private_offset);
-#line 1350 "ValaProjectSettingsPopover.vala"
+#line 1349 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_button42_finalize;
-#line 9695 "ValaProjectSettingsPopover.vala.c"
+#line 9612 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button42_instance_init (ValaProjectSettingsPopoverXcls_Button42 * self,
                                                            gpointer klass)
 {
-#line 1350 "ValaProjectSettingsPopover.vala"
+#line 1349 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_button42_get_instance_private (self);
-#line 9704 "ValaProjectSettingsPopover.vala.c"
+#line 9621 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button42_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Button42 * self;
-#line 1350 "ValaProjectSettingsPopover.vala"
+#line 1349 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON42, ValaProjectSettingsPopoverXcls_Button42);
-#line 1352 "ValaProjectSettingsPopover.vala"
+#line 1351 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1353 "ValaProjectSettingsPopover.vala"
+#line 1352 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1350 "ValaProjectSettingsPopover.vala"
+#line 1349 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_button42_parent_class)->finalize (obj);
-#line 9719 "ValaProjectSettingsPopover.vala.c"
+#line 9636 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -9747,7 +9664,7 @@ vala_project_settings_popover_xcls_button43_get_instance_private (ValaProjectSet
 }
 
 static void
-__lambda137_ (ValaProjectSettingsPopoverXcls_Button43* self)
+__lambda136_ (ValaProjectSettingsPopoverXcls_Button43* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ValaProjectSettingsPopoverXcls_target_sel* _tmp1_;
@@ -9778,94 +9695,94 @@ __lambda137_ (ValaProjectSettingsPopoverXcls_Button43* self)
 	ValaProjectSettingsPopover* _tmp25_;
 	ValaProjectSettingsPopoverXcls_target_model* _tmp26_;
 	GListStore* _tmp27_;
-#line 1420 "ValaProjectSettingsPopover.vala"
+#line 1419 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 1420 "ValaProjectSettingsPopover.vala"
+#line 1419 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _tmp0_->target_sel;
-#line 1420 "ValaProjectSettingsPopover.vala"
+#line 1419 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _tmp1_->el;
-#line 1420 "ValaProjectSettingsPopover.vala"
+#line 1419 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = gtk_single_selection_get_selected (_tmp2_);
-#line 1420 "ValaProjectSettingsPopover.vala"
+#line 1419 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_;
-#line 1420 "ValaProjectSettingsPopover.vala"
+#line 1419 "ValaProjectSettingsPopover.vala"
 	if (_tmp4_ == GTK_INVALID_LIST_POSITION) {
+#line 1420 "ValaProjectSettingsPopover.vala"
+		g_debug ("ValaProjectSettingsPopover.vala:1420: nothing selected");
 #line 1421 "ValaProjectSettingsPopover.vala"
-		g_debug ("ValaProjectSettingsPopover.vala:1421: nothing selected");
-#line 1422 "ValaProjectSettingsPopover.vala"
 		return;
-#line 9798 "ValaProjectSettingsPopover.vala.c"
+#line 9715 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->priv->_this;
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _tmp5_->target_model;
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = _tmp6_->el;
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->priv->_this;
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = _tmp8_->target_sel;
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = _tmp9_->el;
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = gtk_single_selection_get_selected (_tmp10_);
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = _tmp11_;
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = g_list_model_get_item ((GListModel*) _tmp7_, _tmp12_);
-#line 1427 "ValaProjectSettingsPopover.vala"
+#line 1426 "ValaProjectSettingsPopover.vala"
 	cg = G_TYPE_CHECK_INSTANCE_CAST (_tmp13_, PROJECT_TYPE_GTK_VALA_SETTINGS, ProjectGtkValaSettings);
-#line 1430 "ValaProjectSettingsPopover.vala"
+#line 1429 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = cg;
-#line 1430 "ValaProjectSettingsPopover.vala"
+#line 1429 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = project_gtk_vala_settings_get_name (_tmp14_);
-#line 1430 "ValaProjectSettingsPopover.vala"
+#line 1429 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = _tmp15_;
+#line 1429 "ValaProjectSettingsPopover.vala"
+	g_debug ("ValaProjectSettingsPopover.vala:1429: remove: %s\n", _tmp16_);
 #line 1430 "ValaProjectSettingsPopover.vala"
-	g_debug ("ValaProjectSettingsPopover.vala:1430: remove: %s\n", _tmp16_);
-#line 1431 "ValaProjectSettingsPopover.vala"
 	_tmp17_ = self->priv->_this;
-#line 1431 "ValaProjectSettingsPopover.vala"
+#line 1430 "ValaProjectSettingsPopover.vala"
 	_tmp18_ = _tmp17_->project;
-#line 1431 "ValaProjectSettingsPopover.vala"
+#line 1430 "ValaProjectSettingsPopover.vala"
 	_tmp19_ = _tmp18_->compilegroups;
-#line 1431 "ValaProjectSettingsPopover.vala"
+#line 1430 "ValaProjectSettingsPopover.vala"
 	_tmp20_ = cg;
-#line 1431 "ValaProjectSettingsPopover.vala"
+#line 1430 "ValaProjectSettingsPopover.vala"
 	_tmp21_ = project_gtk_vala_settings_get_name (_tmp20_);
-#line 1431 "ValaProjectSettingsPopover.vala"
+#line 1430 "ValaProjectSettingsPopover.vala"
 	_tmp22_ = _tmp21_;
-#line 1431 "ValaProjectSettingsPopover.vala"
+#line 1430 "ValaProjectSettingsPopover.vala"
 	if (!gee_abstract_map_unset ((GeeAbstractMap*) _tmp19_, _tmp22_, NULL)) {
-#line 1432 "ValaProjectSettingsPopover.vala"
-		g_debug ("ValaProjectSettingsPopover.vala:1432: remove failed");
-#line 9844 "ValaProjectSettingsPopover.vala.c"
+#line 1431 "ValaProjectSettingsPopover.vala"
+		g_debug ("ValaProjectSettingsPopover.vala:1431: remove failed");
+#line 9761 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1434 "ValaProjectSettingsPopover.vala"
+#line 1433 "ValaProjectSettingsPopover.vala"
 	_tmp23_ = self->priv->_this;
-#line 1434 "ValaProjectSettingsPopover.vala"
+#line 1433 "ValaProjectSettingsPopover.vala"
 	_tmp24_ = _tmp23_->project;
-#line 1434 "ValaProjectSettingsPopover.vala"
+#line 1433 "ValaProjectSettingsPopover.vala"
 	_tmp25_ = self->priv->_this;
-#line 1434 "ValaProjectSettingsPopover.vala"
+#line 1433 "ValaProjectSettingsPopover.vala"
 	_tmp26_ = _tmp25_->target_model;
-#line 1434 "ValaProjectSettingsPopover.vala"
+#line 1433 "ValaProjectSettingsPopover.vala"
 	_tmp27_ = _tmp26_->el;
-#line 1434 "ValaProjectSettingsPopover.vala"
+#line 1433 "ValaProjectSettingsPopover.vala"
 	project_gtk_loadTargetsIntoStore (_tmp24_, _tmp27_);
-#line 1418 "ValaProjectSettingsPopover.vala"
+#line 1417 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (cg);
-#line 9860 "ValaProjectSettingsPopover.vala.c"
+#line 9777 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-___lambda137__gtk_button_clicked (GtkButton* _sender,
+___lambda136__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1418 "ValaProjectSettingsPopover.vala"
-	__lambda137_ ((ValaProjectSettingsPopoverXcls_Button43*) self);
-#line 9869 "ValaProjectSettingsPopover.vala.c"
+#line 1417 "ValaProjectSettingsPopover.vala"
+	__lambda136_ ((ValaProjectSettingsPopoverXcls_Button43*) self);
+#line 9786 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Button43*
@@ -9878,82 +9795,82 @@ vala_project_settings_popover_xcls_button43_construct (GType object_type,
 	GtkButton* _tmp2_;
 	GtkButton* _tmp3_;
 	GtkButton* _tmp4_;
-#line 1406 "ValaProjectSettingsPopover.vala"
+#line 1405 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Button43*) g_object_new (object_type, NULL);
-#line 1408 "ValaProjectSettingsPopover.vala"
+#line 1407 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1408 "ValaProjectSettingsPopover.vala"
+#line 1407 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1408 "ValaProjectSettingsPopover.vala"
+#line 1407 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1409 "ValaProjectSettingsPopover.vala"
+#line 1408 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 1409 "ValaProjectSettingsPopover.vala"
+#line 1408 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1409 "ValaProjectSettingsPopover.vala"
+#line 1408 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1409 "ValaProjectSettingsPopover.vala"
+#line 1408 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1414 "ValaProjectSettingsPopover.vala"
+#line 1413 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1414 "ValaProjectSettingsPopover.vala"
+#line 1413 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 1415 "ValaProjectSettingsPopover.vala"
+#line 1414 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 1415 "ValaProjectSettingsPopover.vala"
+#line 1414 "ValaProjectSettingsPopover.vala"
 	gtk_button_set_label (_tmp3_, "Remove Target");
-#line 1418 "ValaProjectSettingsPopover.vala"
+#line 1417 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 1418 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda137__gtk_button_clicked, self, 0);
-#line 1406 "ValaProjectSettingsPopover.vala"
+#line 1417 "ValaProjectSettingsPopover.vala"
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda136__gtk_button_clicked, self, 0);
+#line 1405 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 9912 "ValaProjectSettingsPopover.vala.c"
+#line 9829 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Button43*
 vala_project_settings_popover_xcls_button43_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1406 "ValaProjectSettingsPopover.vala"
+#line 1405 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_button43_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON43, _owner);
-#line 9920 "ValaProjectSettingsPopover.vala.c"
+#line 9837 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button43_class_init (ValaProjectSettingsPopoverXcls_Button43Class * klass,
                                                         gpointer klass_data)
 {
-#line 1397 "ValaProjectSettingsPopover.vala"
+#line 1396 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_button43_parent_class = g_type_class_peek_parent (klass);
-#line 1397 "ValaProjectSettingsPopover.vala"
+#line 1396 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Button43_private_offset);
-#line 1397 "ValaProjectSettingsPopover.vala"
+#line 1396 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_button43_finalize;
-#line 9933 "ValaProjectSettingsPopover.vala.c"
+#line 9850 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button43_instance_init (ValaProjectSettingsPopoverXcls_Button43 * self,
                                                            gpointer klass)
 {
-#line 1397 "ValaProjectSettingsPopover.vala"
+#line 1396 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_button43_get_instance_private (self);
-#line 9942 "ValaProjectSettingsPopover.vala.c"
+#line 9859 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_button43_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Button43 * self;
-#line 1397 "ValaProjectSettingsPopover.vala"
+#line 1396 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON43, ValaProjectSettingsPopoverXcls_Button43);
-#line 1399 "ValaProjectSettingsPopover.vala"
+#line 1398 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1400 "ValaProjectSettingsPopover.vala"
+#line 1399 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1397 "ValaProjectSettingsPopover.vala"
+#line 1396 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_button43_parent_class)->finalize (obj);
-#line 9957 "ValaProjectSettingsPopover.vala.c"
+#line 9874 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -9997,97 +9914,97 @@ vala_project_settings_popover_xcls_scrolledwindow44_construct (GType object_type
 	ValaProjectSettingsPopoverXcls_ColumnView45* _tmp4_;
 	GtkScrolledWindow* _tmp5_;
 	GtkColumnView* _tmp6_;
-#line 1451 "ValaProjectSettingsPopover.vala"
+#line 1450 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_ScrolledWindow44*) g_object_new (object_type, NULL);
-#line 1453 "ValaProjectSettingsPopover.vala"
+#line 1452 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1453 "ValaProjectSettingsPopover.vala"
+#line 1452 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1453 "ValaProjectSettingsPopover.vala"
+#line 1452 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1454 "ValaProjectSettingsPopover.vala"
+#line 1453 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkScrolledWindow*) gtk_scrolled_window_new ();
-#line 1454 "ValaProjectSettingsPopover.vala"
+#line 1453 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1454 "ValaProjectSettingsPopover.vala"
+#line 1453 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1454 "ValaProjectSettingsPopover.vala"
+#line 1453 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1459 "ValaProjectSettingsPopover.vala"
+#line 1458 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1459 "ValaProjectSettingsPopover.vala"
+#line 1458 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 1460 "ValaProjectSettingsPopover.vala"
+#line 1459 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 1460 "ValaProjectSettingsPopover.vala"
+#line 1459 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_columnview45_new (_tmp3_);
-#line 1460 "ValaProjectSettingsPopover.vala"
+#line 1459 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 1461 "ValaProjectSettingsPopover.vala"
+#line 1460 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 1461 "ValaProjectSettingsPopover.vala"
+#line 1460 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = child_1->el;
-#line 1461 "ValaProjectSettingsPopover.vala"
+#line 1460 "ValaProjectSettingsPopover.vala"
 	gtk_scrolled_window_set_child (_tmp5_, (GtkWidget*) _tmp6_);
-#line 10033 "ValaProjectSettingsPopover.vala.c"
+#line 9950 "ValaProjectSettingsPopover.vala.c"
 	{
 		GtkScrolledWindow* _tmp7_;
-#line 1466 "ValaProjectSettingsPopover.vala"
+#line 1465 "ValaProjectSettingsPopover.vala"
 		_tmp7_ = self->el;
-#line 1466 "ValaProjectSettingsPopover.vala"
+#line 1465 "ValaProjectSettingsPopover.vala"
 		gtk_scrolled_window_set_policy (_tmp7_, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-#line 10040 "ValaProjectSettingsPopover.vala.c"
+#line 9957 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1451 "ValaProjectSettingsPopover.vala"
+#line 1450 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1451 "ValaProjectSettingsPopover.vala"
+#line 1450 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 10046 "ValaProjectSettingsPopover.vala.c"
+#line 9963 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_ScrolledWindow44*
 vala_project_settings_popover_xcls_scrolledwindow44_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1451 "ValaProjectSettingsPopover.vala"
+#line 1450 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_scrolledwindow44_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SCROLLEDWINDOW44, _owner);
-#line 10054 "ValaProjectSettingsPopover.vala.c"
+#line 9971 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_scrolledwindow44_class_init (ValaProjectSettingsPopoverXcls_ScrolledWindow44Class * klass,
                                                                 gpointer klass_data)
 {
-#line 1442 "ValaProjectSettingsPopover.vala"
+#line 1441 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_scrolledwindow44_parent_class = g_type_class_peek_parent (klass);
-#line 1442 "ValaProjectSettingsPopover.vala"
+#line 1441 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_ScrolledWindow44_private_offset);
-#line 1442 "ValaProjectSettingsPopover.vala"
+#line 1441 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_scrolledwindow44_finalize;
-#line 10067 "ValaProjectSettingsPopover.vala.c"
+#line 9984 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_scrolledwindow44_instance_init (ValaProjectSettingsPopoverXcls_ScrolledWindow44 * self,
                                                                    gpointer klass)
 {
-#line 1442 "ValaProjectSettingsPopover.vala"
+#line 1441 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_scrolledwindow44_get_instance_private (self);
-#line 10076 "ValaProjectSettingsPopover.vala.c"
+#line 9993 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_scrolledwindow44_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_ScrolledWindow44 * self;
-#line 1442 "ValaProjectSettingsPopover.vala"
+#line 1441 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SCROLLEDWINDOW44, ValaProjectSettingsPopoverXcls_ScrolledWindow44);
-#line 1444 "ValaProjectSettingsPopover.vala"
+#line 1443 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1445 "ValaProjectSettingsPopover.vala"
+#line 1444 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1442 "ValaProjectSettingsPopover.vala"
+#line 1441 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_scrolledwindow44_parent_class)->finalize (obj);
-#line 10091 "ValaProjectSettingsPopover.vala.c"
+#line 10008 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -10135,98 +10052,98 @@ vala_project_settings_popover_xcls_columnview45_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_ColumnViewColumn48* _tmp7_;
 	GtkColumnView* _tmp8_;
 	GtkColumnViewColumn* _tmp9_;
-#line 1482 "ValaProjectSettingsPopover.vala"
+#line 1481 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_ColumnView45*) g_object_new (object_type, NULL);
-#line 1484 "ValaProjectSettingsPopover.vala"
+#line 1483 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1484 "ValaProjectSettingsPopover.vala"
+#line 1483 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1484 "ValaProjectSettingsPopover.vala"
+#line 1483 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1485 "ValaProjectSettingsPopover.vala"
+#line 1484 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1485 "ValaProjectSettingsPopover.vala"
+#line 1484 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_target_sel_new (_tmp1_);
-#line 1485 "ValaProjectSettingsPopover.vala"
+#line 1484 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 1486 "ValaProjectSettingsPopover.vala"
+#line 1485 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 1486 "ValaProjectSettingsPopover.vala"
+#line 1485 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 ((GtkSelectionModel*) _tmp3_);
-#line 1486 "ValaProjectSettingsPopover.vala"
+#line 1485 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = (GtkColumnView*) gtk_column_view_new (_tmp4_);
-#line 1486 "ValaProjectSettingsPopover.vala"
+#line 1485 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp5_);
-#line 1486 "ValaProjectSettingsPopover.vala"
+#line 1485 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1486 "ValaProjectSettingsPopover.vala"
+#line 1485 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 1491 "ValaProjectSettingsPopover.vala"
+#line 1490 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->priv->_this;
-#line 1491 "ValaProjectSettingsPopover.vala"
+#line 1490 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = vala_project_settings_popover_xcls_columnviewcolumn48_new (_tmp6_);
-#line 1491 "ValaProjectSettingsPopover.vala"
+#line 1490 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp7_;
-#line 1492 "ValaProjectSettingsPopover.vala"
+#line 1491 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 1493 "ValaProjectSettingsPopover.vala"
+#line 1492 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 1493 "ValaProjectSettingsPopover.vala"
+#line 1492 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = child_2->el;
-#line 1493 "ValaProjectSettingsPopover.vala"
+#line 1492 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_append_column (_tmp8_, _tmp9_);
-#line 1482 "ValaProjectSettingsPopover.vala"
+#line 1481 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 1482 "ValaProjectSettingsPopover.vala"
+#line 1481 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1482 "ValaProjectSettingsPopover.vala"
+#line 1481 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 10185 "ValaProjectSettingsPopover.vala.c"
+#line 10102 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_ColumnView45*
 vala_project_settings_popover_xcls_columnview45_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1482 "ValaProjectSettingsPopover.vala"
+#line 1481 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_columnview45_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEW45, _owner);
-#line 10193 "ValaProjectSettingsPopover.vala.c"
+#line 10110 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnview45_class_init (ValaProjectSettingsPopoverXcls_ColumnView45Class * klass,
                                                             gpointer klass_data)
 {
-#line 1473 "ValaProjectSettingsPopover.vala"
+#line 1472 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_columnview45_parent_class = g_type_class_peek_parent (klass);
-#line 1473 "ValaProjectSettingsPopover.vala"
+#line 1472 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_ColumnView45_private_offset);
-#line 1473 "ValaProjectSettingsPopover.vala"
+#line 1472 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_columnview45_finalize;
-#line 10206 "ValaProjectSettingsPopover.vala.c"
+#line 10123 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnview45_instance_init (ValaProjectSettingsPopoverXcls_ColumnView45 * self,
                                                                gpointer klass)
 {
-#line 1473 "ValaProjectSettingsPopover.vala"
+#line 1472 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_columnview45_get_instance_private (self);
-#line 10215 "ValaProjectSettingsPopover.vala.c"
+#line 10132 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnview45_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_ColumnView45 * self;
-#line 1473 "ValaProjectSettingsPopover.vala"
+#line 1472 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEW45, ValaProjectSettingsPopoverXcls_ColumnView45);
-#line 1475 "ValaProjectSettingsPopover.vala"
+#line 1474 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1476 "ValaProjectSettingsPopover.vala"
+#line 1475 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1473 "ValaProjectSettingsPopover.vala"
+#line 1472 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_columnview45_parent_class)->finalize (obj);
-#line 10230 "ValaProjectSettingsPopover.vala.c"
+#line 10147 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -10274,45 +10191,45 @@ __lambda133_ (ValaProjectSettingsPopoverXcls_target_sel* self,
 	guint _tmp8_;
 	GObject* _tmp9_;
 	ProjectGtkValaSettings* _tmp10_;
-#line 1523 "ValaProjectSettingsPopover.vala"
+#line 1522 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->el;
-#line 1523 "ValaProjectSettingsPopover.vala"
+#line 1522 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = gtk_single_selection_get_selected (_tmp0_);
-#line 1523 "ValaProjectSettingsPopover.vala"
+#line 1522 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _tmp1_;
-#line 1523 "ValaProjectSettingsPopover.vala"
+#line 1522 "ValaProjectSettingsPopover.vala"
 	if (_tmp2_ == GTK_INVALID_LIST_POSITION) {
-#line 1524 "ValaProjectSettingsPopover.vala"
+#line 1523 "ValaProjectSettingsPopover.vala"
 		vala_project_settings_popover_xcls_target_sel_selectTarget (self, NULL);
-#line 1525 "ValaProjectSettingsPopover.vala"
+#line 1524 "ValaProjectSettingsPopover.vala"
 		return;
-#line 10290 "ValaProjectSettingsPopover.vala.c"
+#line 10207 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1527 "ValaProjectSettingsPopover.vala"
+#line 1526 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_target_sel_selectTarget (self, NULL);
-#line 1532 "ValaProjectSettingsPopover.vala"
+#line 1531 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 1532 "ValaProjectSettingsPopover.vala"
+#line 1531 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_->target_model;
-#line 1532 "ValaProjectSettingsPopover.vala"
+#line 1531 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = _tmp4_->el;
-#line 1532 "ValaProjectSettingsPopover.vala"
+#line 1531 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 1532 "ValaProjectSettingsPopover.vala"
+#line 1531 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = gtk_single_selection_get_selected (_tmp6_);
-#line 1532 "ValaProjectSettingsPopover.vala"
+#line 1531 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = _tmp7_;
-#line 1532 "ValaProjectSettingsPopover.vala"
+#line 1531 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = g_list_model_get_item ((GListModel*) _tmp5_, _tmp8_);
-#line 1532 "ValaProjectSettingsPopover.vala"
+#line 1531 "ValaProjectSettingsPopover.vala"
 	cg = G_TYPE_CHECK_INSTANCE_CAST (_tmp9_, PROJECT_TYPE_GTK_VALA_SETTINGS, ProjectGtkValaSettings);
-#line 1534 "ValaProjectSettingsPopover.vala"
+#line 1533 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = cg;
-#line 1534 "ValaProjectSettingsPopover.vala"
+#line 1533 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_target_sel_selectTarget (self, _tmp10_);
-#line 1519 "ValaProjectSettingsPopover.vala"
+#line 1518 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (cg);
-#line 10316 "ValaProjectSettingsPopover.vala.c"
+#line 10233 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -10321,9 +10238,9 @@ ___lambda133__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
                                                      guint n_items,
                                                      gpointer self)
 {
-#line 1519 "ValaProjectSettingsPopover.vala"
+#line 1518 "ValaProjectSettingsPopover.vala"
 	__lambda133_ ((ValaProjectSettingsPopoverXcls_target_sel*) self, position, n_items);
-#line 10327 "ValaProjectSettingsPopover.vala.c"
+#line 10244 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_target_sel*
@@ -10341,55 +10258,55 @@ vala_project_settings_popover_xcls_target_sel_construct (GType object_type,
 	GListModel* _tmp6_;
 	GtkSingleSelection* _tmp7_;
 	GtkSingleSelection* _tmp8_;
-#line 1507 "ValaProjectSettingsPopover.vala"
+#line 1506 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_target_sel*) g_object_new (object_type, NULL);
-#line 1509 "ValaProjectSettingsPopover.vala"
+#line 1508 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1509 "ValaProjectSettingsPopover.vala"
+#line 1508 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1509 "ValaProjectSettingsPopover.vala"
+#line 1508 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1510 "ValaProjectSettingsPopover.vala"
+#line 1509 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1510 "ValaProjectSettingsPopover.vala"
+#line 1509 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1510 "ValaProjectSettingsPopover.vala"
+#line 1509 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->target_sel);
-#line 1510 "ValaProjectSettingsPopover.vala"
+#line 1509 "ValaProjectSettingsPopover.vala"
 	_tmp1_->target_sel = _tmp2_;
-#line 1511 "ValaProjectSettingsPopover.vala"
+#line 1510 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 1511 "ValaProjectSettingsPopover.vala"
+#line 1510 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = vala_project_settings_popover_xcls_target_model_new (_tmp3_);
-#line 1511 "ValaProjectSettingsPopover.vala"
+#line 1510 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp4_;
-#line 1512 "ValaProjectSettingsPopover.vala"
+#line 1511 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = child_1->el;
-#line 1512 "ValaProjectSettingsPopover.vala"
+#line 1511 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _g_object_ref0 ((GListModel*) _tmp5_);
-#line 1512 "ValaProjectSettingsPopover.vala"
+#line 1511 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = gtk_single_selection_new (_tmp6_);
-#line 1512 "ValaProjectSettingsPopover.vala"
+#line 1511 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1512 "ValaProjectSettingsPopover.vala"
+#line 1511 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp7_;
-#line 1519 "ValaProjectSettingsPopover.vala"
+#line 1518 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 1519 "ValaProjectSettingsPopover.vala"
+#line 1518 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object ((GtkSelectionModel*) _tmp8_, "selection-changed", (GCallback) ___lambda133__gtk_selection_model_selection_changed, self, 0);
-#line 1507 "ValaProjectSettingsPopover.vala"
+#line 1506 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1507 "ValaProjectSettingsPopover.vala"
+#line 1506 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 10385 "ValaProjectSettingsPopover.vala.c"
+#line 10302 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_target_sel*
 vala_project_settings_popover_xcls_target_sel_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1507 "ValaProjectSettingsPopover.vala"
+#line 1506 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_target_sel_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TARGET_SEL, _owner);
-#line 10393 "ValaProjectSettingsPopover.vala.c"
+#line 10310 "ValaProjectSettingsPopover.vala.c"
 }
 
 void
@@ -10431,7 +10348,7 @@ vala_project_settings_popover_xcls_target_sel_selectTarget (ValaProjectSettingsP
 	guint8* _tmp36_;
 	gint _tmp36__length1;
 	ValaProjectSettingsPopover* _tmp37_;
-	ValaProjectSettingsPopoverXcls_build_pack_target* _tmp38_;
+	ValaProjectSettingsPopoverXcls_build_execute_args* _tmp38_;
 	GtkEntry* _tmp39_;
 	GtkEntryBuffer* _tmp40_;
 	GtkEntryBuffer* _tmp41_;
@@ -10441,220 +10358,187 @@ vala_project_settings_popover_xcls_target_sel_selectTarget (ValaProjectSettingsP
 	gint _tmp44_ = 0;
 	guint8* _tmp45_;
 	gint _tmp45__length1;
-	ValaProjectSettingsPopover* _tmp46_;
-	ValaProjectSettingsPopoverXcls_build_execute_args* _tmp47_;
-	GtkEntry* _tmp48_;
-	GtkEntryBuffer* _tmp49_;
-	GtkEntryBuffer* _tmp50_;
-	const gchar* _tmp51_;
-	guint8* _tmp52_;
-	gint _tmp52__length1;
-	gint _tmp53_ = 0;
-	guint8* _tmp54_;
-	gint _tmp54__length1;
-#line 1542 "ValaProjectSettingsPopover.vala"
+#line 1541 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 1542 "ValaProjectSettingsPopover.vala"
+#line 1541 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 (cg);
-#line 1542 "ValaProjectSettingsPopover.vala"
+#line 1541 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp0_->selected_target);
-#line 1542 "ValaProjectSettingsPopover.vala"
+#line 1541 "ValaProjectSettingsPopover.vala"
 	_tmp0_->selected_target = _tmp1_;
-#line 1543 "ValaProjectSettingsPopover.vala"
+#line 1542 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->priv->_this;
-#line 1543 "ValaProjectSettingsPopover.vala"
+#line 1542 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _tmp2_->project;
-#line 1543 "ValaProjectSettingsPopover.vala"
+#line 1542 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 (cg);
-#line 1543 "ValaProjectSettingsPopover.vala"
+#line 1542 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp3_->active_cg);
-#line 1543 "ValaProjectSettingsPopover.vala"
+#line 1542 "ValaProjectSettingsPopover.vala"
 	_tmp3_->active_cg = _tmp4_;
-#line 1546 "ValaProjectSettingsPopover.vala"
+#line 1545 "ValaProjectSettingsPopover.vala"
 	if (cg == NULL) {
-#line 10476 "ValaProjectSettingsPopover.vala.c"
+#line 10382 "ValaProjectSettingsPopover.vala.c"
 		ValaProjectSettingsPopover* _tmp5_;
 		ValaProjectSettingsPopoverXcls_set_vbox* _tmp6_;
 		GtkBox* _tmp7_;
 		ValaProjectSettingsPopover* _tmp8_;
 		ValaProjectSettingsPopoverXcls_set_vboxb* _tmp9_;
 		GtkBox* _tmp10_;
-#line 1548 "ValaProjectSettingsPopover.vala"
+#line 1547 "ValaProjectSettingsPopover.vala"
 		_tmp5_ = self->priv->_this;
-#line 1548 "ValaProjectSettingsPopover.vala"
+#line 1547 "ValaProjectSettingsPopover.vala"
 		_tmp6_ = _tmp5_->set_vbox;
-#line 1548 "ValaProjectSettingsPopover.vala"
+#line 1547 "ValaProjectSettingsPopover.vala"
 		_tmp7_ = _tmp6_->el;
-#line 1548 "ValaProjectSettingsPopover.vala"
+#line 1547 "ValaProjectSettingsPopover.vala"
 		gtk_widget_hide ((GtkWidget*) _tmp7_);
-#line 1549 "ValaProjectSettingsPopover.vala"
+#line 1548 "ValaProjectSettingsPopover.vala"
 		_tmp8_ = self->priv->_this;
-#line 1549 "ValaProjectSettingsPopover.vala"
+#line 1548 "ValaProjectSettingsPopover.vala"
 		_tmp9_ = _tmp8_->set_vboxb;
-#line 1549 "ValaProjectSettingsPopover.vala"
+#line 1548 "ValaProjectSettingsPopover.vala"
 		_tmp10_ = _tmp9_->el;
-#line 1549 "ValaProjectSettingsPopover.vala"
+#line 1548 "ValaProjectSettingsPopover.vala"
 		gtk_widget_hide ((GtkWidget*) _tmp10_);
-#line 1550 "ValaProjectSettingsPopover.vala"
+#line 1549 "ValaProjectSettingsPopover.vala"
 		return;
-#line 10501 "ValaProjectSettingsPopover.vala.c"
+#line 10407 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1554 "ValaProjectSettingsPopover.vala"
+#line 1553 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = self->priv->_this;
-#line 1554 "ValaProjectSettingsPopover.vala"
+#line 1553 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = _tmp11_->set_vbox;
-#line 1554 "ValaProjectSettingsPopover.vala"
+#line 1553 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = _tmp12_->el;
-#line 1554 "ValaProjectSettingsPopover.vala"
+#line 1553 "ValaProjectSettingsPopover.vala"
 	gtk_widget_show ((GtkWidget*) _tmp13_);
-#line 1555 "ValaProjectSettingsPopover.vala"
+#line 1554 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = self->priv->_this;
-#line 1555 "ValaProjectSettingsPopover.vala"
+#line 1554 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = _tmp14_->set_vboxb;
-#line 1555 "ValaProjectSettingsPopover.vala"
+#line 1554 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = _tmp15_->el;
-#line 1555 "ValaProjectSettingsPopover.vala"
+#line 1554 "ValaProjectSettingsPopover.vala"
 	gtk_widget_show ((GtkWidget*) _tmp16_);
+#line 1558 "ValaProjectSettingsPopover.vala"
+	g_debug ("ValaProjectSettingsPopover.vala:1558: loading dirs into project list");
 #line 1559 "ValaProjectSettingsPopover.vala"
-	g_debug ("ValaProjectSettingsPopover.vala:1559: loading dirs into project list");
-#line 1560 "ValaProjectSettingsPopover.vala"
 	cg->loading_ui = TRUE;
-#line 1561 "ValaProjectSettingsPopover.vala"
+#line 1560 "ValaProjectSettingsPopover.vala"
 	_tmp17_ = self->priv->_this;
-#line 1561 "ValaProjectSettingsPopover.vala"
+#line 1560 "ValaProjectSettingsPopover.vala"
 	_tmp18_ = _tmp17_->project;
-#line 1561 "ValaProjectSettingsPopover.vala"
+#line 1560 "ValaProjectSettingsPopover.vala"
 	_tmp19_ = project_project_loadDirsIntoStore ((ProjectProject*) _tmp18_);
-#line 1561 "ValaProjectSettingsPopover.vala"
+#line 1560 "ValaProjectSettingsPopover.vala"
 	dm = _tmp19_;
-#line 1562 "ValaProjectSettingsPopover.vala"
+#line 1561 "ValaProjectSettingsPopover.vala"
 	_tmp20_ = self->priv->_this;
-#line 1562 "ValaProjectSettingsPopover.vala"
+#line 1561 "ValaProjectSettingsPopover.vala"
 	_tmp21_ = _tmp20_->treelistmodel;
-#line 1562 "ValaProjectSettingsPopover.vala"
+#line 1561 "ValaProjectSettingsPopover.vala"
 	_tmp22_ = dm;
-#line 1562 "ValaProjectSettingsPopover.vala"
+#line 1561 "ValaProjectSettingsPopover.vala"
 	_tmp23_ = vala_project_settings_popover_xcls_treelistmodel_updateModel (_tmp21_, _tmp22_);
-#line 1562 "ValaProjectSettingsPopover.vala"
+#line 1561 "ValaProjectSettingsPopover.vala"
 	_tmp24_ = _tmp23_;
-#line 1562 "ValaProjectSettingsPopover.vala"
+#line 1561 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp24_);
-#line 1564 "ValaProjectSettingsPopover.vala"
+#line 1563 "ValaProjectSettingsPopover.vala"
 	cg->loading_ui = FALSE;
-#line 1565 "ValaProjectSettingsPopover.vala"
+#line 1564 "ValaProjectSettingsPopover.vala"
 	_tmp25_ = project_gtk_vala_settings_get_name (cg);
-#line 1565 "ValaProjectSettingsPopover.vala"
+#line 1564 "ValaProjectSettingsPopover.vala"
 	_tmp26_ = _tmp25_;
-#line 1565 "ValaProjectSettingsPopover.vala"
-	g_debug ("ValaProjectSettingsPopover.vala:1565: Set name to %s", _tmp26_);
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1564 "ValaProjectSettingsPopover.vala"
+	g_debug ("ValaProjectSettingsPopover.vala:1564: Set name to %s", _tmp26_);
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp27_ = self->priv->_this;
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp28_ = _tmp27_->build_name;
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp29_ = _tmp28_->el;
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp30_ = gtk_entry_get_buffer (_tmp29_);
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp31_ = _tmp30_;
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp32_ = project_gtk_vala_settings_get_name (cg);
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp33_ = _tmp32_;
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp34_ = string_get_data (_tmp33_, &_tmp35_);
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp34__length1 = _tmp35_;
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp36_ = _tmp34_;
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	_tmp36__length1 = _tmp34__length1;
-#line 1567 "ValaProjectSettingsPopover.vala"
+#line 1566 "ValaProjectSettingsPopover.vala"
 	gtk_entry_buffer_set_text (_tmp31_, (const char*) _tmp36_, (gint) _tmp36__length1);
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
 	_tmp37_ = self->priv->_this;
-#line 1568 "ValaProjectSettingsPopover.vala"
-	_tmp38_ = _tmp37_->build_pack_target;
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
+	_tmp38_ = _tmp37_->build_execute_args;
+#line 1569 "ValaProjectSettingsPopover.vala"
 	_tmp39_ = _tmp38_->el;
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
 	_tmp40_ = gtk_entry_get_buffer (_tmp39_);
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
 	_tmp41_ = _tmp40_;
-#line 1568 "ValaProjectSettingsPopover.vala"
-	_tmp42_ = cg->target_bin;
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
+	_tmp42_ = cg->execute_args;
+#line 1569 "ValaProjectSettingsPopover.vala"
 	_tmp43_ = string_get_data (_tmp42_, &_tmp44_);
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
 	_tmp43__length1 = _tmp44_;
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
 	_tmp45_ = _tmp43_;
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
 	_tmp45__length1 = _tmp43__length1;
-#line 1568 "ValaProjectSettingsPopover.vala"
+#line 1569 "ValaProjectSettingsPopover.vala"
 	gtk_entry_buffer_set_text (_tmp41_, (const char*) _tmp45_, (gint) _tmp45__length1);
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp46_ = self->priv->_this;
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp47_ = _tmp46_->build_execute_args;
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp48_ = _tmp47_->el;
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp49_ = gtk_entry_get_buffer (_tmp48_);
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp50_ = _tmp49_;
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp51_ = cg->execute_args;
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp52_ = string_get_data (_tmp51_, &_tmp53_);
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp52__length1 = _tmp53_;
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp54_ = _tmp52_;
-#line 1570 "ValaProjectSettingsPopover.vala"
-	_tmp54__length1 = _tmp52__length1;
-#line 1570 "ValaProjectSettingsPopover.vala"
-	gtk_entry_buffer_set_text (_tmp50_, (const char*) _tmp54_, (gint) _tmp54__length1);
-#line 1540 "ValaProjectSettingsPopover.vala"
+#line 1539 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (dm);
-#line 10621 "ValaProjectSettingsPopover.vala.c"
+#line 10505 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_target_sel_class_init (ValaProjectSettingsPopoverXcls_target_selClass * klass,
                                                           gpointer klass_data)
 {
-#line 1498 "ValaProjectSettingsPopover.vala"
+#line 1497 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_target_sel_parent_class = g_type_class_peek_parent (klass);
-#line 1498 "ValaProjectSettingsPopover.vala"
+#line 1497 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_target_sel_private_offset);
-#line 1498 "ValaProjectSettingsPopover.vala"
+#line 1497 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_target_sel_finalize;
-#line 10634 "ValaProjectSettingsPopover.vala.c"
+#line 10518 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_target_sel_instance_init (ValaProjectSettingsPopoverXcls_target_sel * self,
                                                              gpointer klass)
 {
-#line 1498 "ValaProjectSettingsPopover.vala"
+#line 1497 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_target_sel_get_instance_private (self);
-#line 10643 "ValaProjectSettingsPopover.vala.c"
+#line 10527 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_target_sel_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_target_sel * self;
-#line 1498 "ValaProjectSettingsPopover.vala"
+#line 1497 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TARGET_SEL, ValaProjectSettingsPopoverXcls_target_sel);
-#line 1500 "ValaProjectSettingsPopover.vala"
+#line 1499 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1501 "ValaProjectSettingsPopover.vala"
+#line 1500 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1498 "ValaProjectSettingsPopover.vala"
+#line 1497 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_target_sel_parent_class)->finalize (obj);
-#line 10658 "ValaProjectSettingsPopover.vala.c"
+#line 10542 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -10694,76 +10578,76 @@ vala_project_settings_popover_xcls_target_model_construct (GType object_type,
 	ValaProjectSettingsPopover* _tmp1_;
 	ValaProjectSettingsPopoverXcls_target_model* _tmp2_;
 	GListStore* _tmp3_;
-#line 1584 "ValaProjectSettingsPopover.vala"
+#line 1583 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_target_model*) g_object_new (object_type, NULL);
-#line 1586 "ValaProjectSettingsPopover.vala"
+#line 1585 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1586 "ValaProjectSettingsPopover.vala"
+#line 1585 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1586 "ValaProjectSettingsPopover.vala"
+#line 1585 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1587 "ValaProjectSettingsPopover.vala"
+#line 1586 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1587 "ValaProjectSettingsPopover.vala"
+#line 1586 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1587 "ValaProjectSettingsPopover.vala"
+#line 1586 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->target_model);
-#line 1587 "ValaProjectSettingsPopover.vala"
+#line 1586 "ValaProjectSettingsPopover.vala"
 	_tmp1_->target_model = _tmp2_;
-#line 1588 "ValaProjectSettingsPopover.vala"
+#line 1587 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = g_list_store_new (PROJECT_TYPE_GTK_VALA_SETTINGS);
-#line 1588 "ValaProjectSettingsPopover.vala"
+#line 1587 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1588 "ValaProjectSettingsPopover.vala"
+#line 1587 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 1584 "ValaProjectSettingsPopover.vala"
+#line 1583 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 10722 "ValaProjectSettingsPopover.vala.c"
+#line 10606 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_target_model*
 vala_project_settings_popover_xcls_target_model_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1584 "ValaProjectSettingsPopover.vala"
+#line 1583 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_target_model_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TARGET_MODEL, _owner);
-#line 10730 "ValaProjectSettingsPopover.vala.c"
+#line 10614 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_target_model_class_init (ValaProjectSettingsPopoverXcls_target_modelClass * klass,
                                                             gpointer klass_data)
 {
-#line 1575 "ValaProjectSettingsPopover.vala"
+#line 1574 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_target_model_parent_class = g_type_class_peek_parent (klass);
-#line 1575 "ValaProjectSettingsPopover.vala"
+#line 1574 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_target_model_private_offset);
-#line 1575 "ValaProjectSettingsPopover.vala"
+#line 1574 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_target_model_finalize;
-#line 10743 "ValaProjectSettingsPopover.vala.c"
+#line 10627 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_target_model_instance_init (ValaProjectSettingsPopoverXcls_target_model * self,
                                                                gpointer klass)
 {
-#line 1575 "ValaProjectSettingsPopover.vala"
+#line 1574 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_target_model_get_instance_private (self);
-#line 10752 "ValaProjectSettingsPopover.vala.c"
+#line 10636 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_target_model_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_target_model * self;
-#line 1575 "ValaProjectSettingsPopover.vala"
+#line 1574 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_TARGET_MODEL, ValaProjectSettingsPopoverXcls_target_model);
-#line 1577 "ValaProjectSettingsPopover.vala"
+#line 1576 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1578 "ValaProjectSettingsPopover.vala"
+#line 1577 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1575 "ValaProjectSettingsPopover.vala"
+#line 1574 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_target_model_parent_class)->finalize (obj);
-#line 10767 "ValaProjectSettingsPopover.vala.c"
+#line 10651 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -10807,86 +10691,86 @@ vala_project_settings_popover_xcls_columnviewcolumn48_construct (GType object_ty
 	GtkListItemFactory* _tmp4_;
 	GtkColumnViewColumn* _tmp5_;
 	GtkColumnViewColumn* _tmp6_;
-#line 1608 "ValaProjectSettingsPopover.vala"
+#line 1607 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_ColumnViewColumn48*) g_object_new (object_type, NULL);
-#line 1610 "ValaProjectSettingsPopover.vala"
+#line 1609 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1610 "ValaProjectSettingsPopover.vala"
+#line 1609 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1610 "ValaProjectSettingsPopover.vala"
+#line 1609 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1611 "ValaProjectSettingsPopover.vala"
+#line 1610 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1611 "ValaProjectSettingsPopover.vala"
+#line 1610 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = vala_project_settings_popover_xcls_signallistitemfactory49_new (_tmp1_);
-#line 1611 "ValaProjectSettingsPopover.vala"
+#line 1610 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp2_;
-#line 1612 "ValaProjectSettingsPopover.vala"
+#line 1611 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 1613 "ValaProjectSettingsPopover.vala"
+#line 1612 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = child_1->el;
-#line 1613 "ValaProjectSettingsPopover.vala"
+#line 1612 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _g_object_ref0 ((GtkListItemFactory*) _tmp3_);
-#line 1613 "ValaProjectSettingsPopover.vala"
+#line 1612 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_column_view_column_new ("Build Target", _tmp4_);
-#line 1613 "ValaProjectSettingsPopover.vala"
+#line 1612 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1613 "ValaProjectSettingsPopover.vala"
+#line 1612 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp5_;
-#line 1618 "ValaProjectSettingsPopover.vala"
+#line 1617 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 1618 "ValaProjectSettingsPopover.vala"
+#line 1617 "ValaProjectSettingsPopover.vala"
 	gtk_column_view_column_set_expand (_tmp6_, TRUE);
-#line 1608 "ValaProjectSettingsPopover.vala"
+#line 1607 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1608 "ValaProjectSettingsPopover.vala"
+#line 1607 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 10845 "ValaProjectSettingsPopover.vala.c"
+#line 10729 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_ColumnViewColumn48*
 vala_project_settings_popover_xcls_columnviewcolumn48_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1608 "ValaProjectSettingsPopover.vala"
+#line 1607 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_columnviewcolumn48_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEWCOLUMN48, _owner);
-#line 10853 "ValaProjectSettingsPopover.vala.c"
+#line 10737 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn48_class_init (ValaProjectSettingsPopoverXcls_ColumnViewColumn48Class * klass,
                                                                   gpointer klass_data)
 {
-#line 1599 "ValaProjectSettingsPopover.vala"
+#line 1598 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_columnviewcolumn48_parent_class = g_type_class_peek_parent (klass);
-#line 1599 "ValaProjectSettingsPopover.vala"
+#line 1598 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_ColumnViewColumn48_private_offset);
-#line 1599 "ValaProjectSettingsPopover.vala"
+#line 1598 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_columnviewcolumn48_finalize;
-#line 10866 "ValaProjectSettingsPopover.vala.c"
+#line 10750 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn48_instance_init (ValaProjectSettingsPopoverXcls_ColumnViewColumn48 * self,
                                                                      gpointer klass)
 {
-#line 1599 "ValaProjectSettingsPopover.vala"
+#line 1598 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_columnviewcolumn48_get_instance_private (self);
-#line 10875 "ValaProjectSettingsPopover.vala.c"
+#line 10759 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_columnviewcolumn48_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_ColumnViewColumn48 * self;
-#line 1599 "ValaProjectSettingsPopover.vala"
+#line 1598 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_COLUMNVIEWCOLUMN48, ValaProjectSettingsPopoverXcls_ColumnViewColumn48);
-#line 1601 "ValaProjectSettingsPopover.vala"
+#line 1600 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1602 "ValaProjectSettingsPopover.vala"
+#line 1601 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1599 "ValaProjectSettingsPopover.vala"
+#line 1598 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_columnviewcolumn48_parent_class)->finalize (obj);
-#line 10890 "ValaProjectSettingsPopover.vala.c"
+#line 10774 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -10918,46 +10802,46 @@ vala_project_settings_popover_xcls_signallistitemfactory49_get_instance_private 
 }
 
 static void
-__lambda138_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
+__lambda137_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
               GObject* item)
 {
 	GtkListItem* gi = NULL;
 	GtkListItem* _tmp0_;
 	GtkLabel* lbl = NULL;
 	GtkLabel* _tmp1_;
-#line 1644 "ValaProjectSettingsPopover.vala"
+#line 1643 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (item, gtk_list_item_get_type (), GtkListItem));
-#line 1644 "ValaProjectSettingsPopover.vala"
+#line 1643 "ValaProjectSettingsPopover.vala"
 	gi = _tmp0_;
-#line 1646 "ValaProjectSettingsPopover.vala"
+#line 1645 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkLabel*) gtk_label_new ("");
-#line 1646 "ValaProjectSettingsPopover.vala"
+#line 1645 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1646 "ValaProjectSettingsPopover.vala"
+#line 1645 "ValaProjectSettingsPopover.vala"
 	lbl = _tmp1_;
-#line 1647 "ValaProjectSettingsPopover.vala"
+#line 1646 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_halign ((GtkWidget*) lbl, GTK_ALIGN_START);
-#line 1648 "ValaProjectSettingsPopover.vala"
+#line 1647 "ValaProjectSettingsPopover.vala"
 	gtk_list_item_set_child (gi, (GtkWidget*) lbl);
-#line 1642 "ValaProjectSettingsPopover.vala"
+#line 1641 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lbl);
-#line 1642 "ValaProjectSettingsPopover.vala"
+#line 1641 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (gi);
-#line 10947 "ValaProjectSettingsPopover.vala.c"
+#line 10831 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-___lambda138__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda137__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
-#line 1642 "ValaProjectSettingsPopover.vala"
-	__lambda138_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) self, object);
-#line 10957 "ValaProjectSettingsPopover.vala.c"
+#line 1641 "ValaProjectSettingsPopover.vala"
+	__lambda137_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) self, object);
+#line 10841 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda139_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
+__lambda138_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
               GObject* listitem)
 {
 	GtkBox* lbl = NULL;
@@ -10966,35 +10850,35 @@ __lambda139_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
 	ProjectGtkValaSettings* item = NULL;
 	GObject* _tmp2_;
 	ProjectGtkValaSettings* _tmp3_;
-#line 1655 "ValaProjectSettingsPopover.vala"
+#line 1654 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = gtk_list_item_get_child (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 1655 "ValaProjectSettingsPopover.vala"
+#line 1654 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, gtk_box_get_type (), GtkBox));
-#line 1655 "ValaProjectSettingsPopover.vala"
+#line 1654 "ValaProjectSettingsPopover.vala"
 	lbl = _tmp1_;
-#line 1657 "ValaProjectSettingsPopover.vala"
+#line 1656 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = gtk_list_item_get_item (G_TYPE_CHECK_INSTANCE_CAST (listitem, gtk_list_item_get_type (), GtkListItem));
-#line 1657 "ValaProjectSettingsPopover.vala"
+#line 1656 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, PROJECT_TYPE_GTK_VALA_SETTINGS, ProjectGtkValaSettings));
-#line 1657 "ValaProjectSettingsPopover.vala"
+#line 1656 "ValaProjectSettingsPopover.vala"
 	item = _tmp3_;
-#line 1659 "ValaProjectSettingsPopover.vala"
+#line 1658 "ValaProjectSettingsPopover.vala"
 	g_object_bind_property_with_closures ((GObject*) item, "name", (GObject*) lbl, "label", G_BINDING_SYNC_CREATE, (GClosure*) ((NULL == NULL) ? NULL : g_cclosure_new ((GCallback) NULL, NULL, (GClosureNotify) NULL)), (GClosure*) ((NULL == NULL) ? NULL : g_cclosure_new ((GCallback) NULL, NULL, (GClosureNotify) NULL)));
-#line 1653 "ValaProjectSettingsPopover.vala"
+#line 1652 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (item);
-#line 1653 "ValaProjectSettingsPopover.vala"
+#line 1652 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (lbl);
-#line 10988 "ValaProjectSettingsPopover.vala.c"
+#line 10872 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-___lambda139__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda138__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
-#line 1653 "ValaProjectSettingsPopover.vala"
-	__lambda139_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) self, object);
-#line 10998 "ValaProjectSettingsPopover.vala.c"
+#line 1652 "ValaProjectSettingsPopover.vala"
+	__lambda138_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) self, object);
+#line 10882 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory49*
@@ -11006,76 +10890,76 @@ vala_project_settings_popover_xcls_signallistitemfactory49_construct (GType obje
 	GtkSignalListItemFactory* _tmp1_;
 	GtkSignalListItemFactory* _tmp2_;
 	GtkSignalListItemFactory* _tmp3_;
-#line 1632 "ValaProjectSettingsPopover.vala"
+#line 1631 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) g_object_new (object_type, NULL);
-#line 1634 "ValaProjectSettingsPopover.vala"
+#line 1633 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1634 "ValaProjectSettingsPopover.vala"
+#line 1633 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1634 "ValaProjectSettingsPopover.vala"
+#line 1633 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1635 "ValaProjectSettingsPopover.vala"
+#line 1634 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkSignalListItemFactory*) gtk_signal_list_item_factory_new ();
-#line 1635 "ValaProjectSettingsPopover.vala"
+#line 1634 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1635 "ValaProjectSettingsPopover.vala"
+#line 1634 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1642 "ValaProjectSettingsPopover.vala"
+#line 1641 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1642 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda138__gtk_signal_list_item_factory_setup, self, 0);
-#line 1653 "ValaProjectSettingsPopover.vala"
+#line 1641 "ValaProjectSettingsPopover.vala"
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda137__gtk_signal_list_item_factory_setup, self, 0);
+#line 1652 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 1653 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda139__gtk_signal_list_item_factory_bind, self, 0);
-#line 1632 "ValaProjectSettingsPopover.vala"
+#line 1652 "ValaProjectSettingsPopover.vala"
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda138__gtk_signal_list_item_factory_bind, self, 0);
+#line 1631 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 11034 "ValaProjectSettingsPopover.vala.c"
+#line 10918 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_SignalListItemFactory49*
 vala_project_settings_popover_xcls_signallistitemfactory49_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1632 "ValaProjectSettingsPopover.vala"
+#line 1631 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_signallistitemfactory49_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY49, _owner);
-#line 11042 "ValaProjectSettingsPopover.vala.c"
+#line 10926 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory49_class_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory49Class * klass,
                                                                        gpointer klass_data)
 {
-#line 1623 "ValaProjectSettingsPopover.vala"
+#line 1622 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_signallistitemfactory49_parent_class = g_type_class_peek_parent (klass);
-#line 1623 "ValaProjectSettingsPopover.vala"
+#line 1622 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_SignalListItemFactory49_private_offset);
-#line 1623 "ValaProjectSettingsPopover.vala"
+#line 1622 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_signallistitemfactory49_finalize;
-#line 11055 "ValaProjectSettingsPopover.vala.c"
+#line 10939 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory49_instance_init (ValaProjectSettingsPopoverXcls_SignalListItemFactory49 * self,
                                                                           gpointer klass)
 {
-#line 1623 "ValaProjectSettingsPopover.vala"
+#line 1622 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_signallistitemfactory49_get_instance_private (self);
-#line 11064 "ValaProjectSettingsPopover.vala.c"
+#line 10948 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_signallistitemfactory49_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_SignalListItemFactory49 * self;
-#line 1623 "ValaProjectSettingsPopover.vala"
+#line 1622 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SIGNALLISTITEMFACTORY49, ValaProjectSettingsPopoverXcls_SignalListItemFactory49);
-#line 1625 "ValaProjectSettingsPopover.vala"
+#line 1624 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1626 "ValaProjectSettingsPopover.vala"
+#line 1625 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1623 "ValaProjectSettingsPopover.vala"
+#line 1622 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_signallistitemfactory49_parent_class)->finalize (obj);
-#line 11079 "ValaProjectSettingsPopover.vala.c"
+#line 10963 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -11130,183 +11014,143 @@ vala_project_settings_popover_xcls_set_vboxb_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_Label53* _tmp13_;
 	GtkBox* _tmp14_;
 	GtkLabel* _tmp15_;
-	ValaProjectSettingsPopoverXcls_build_pack_target* child_4 = NULL;
+	ValaProjectSettingsPopoverXcls_build_execute_args* child_4 = NULL;
 	ValaProjectSettingsPopover* _tmp16_;
-	ValaProjectSettingsPopoverXcls_build_pack_target* _tmp17_;
+	ValaProjectSettingsPopoverXcls_build_execute_args* _tmp17_;
 	GtkBox* _tmp18_;
 	GtkEntry* _tmp19_;
-	ValaProjectSettingsPopoverXcls_Label55* child_5 = NULL;
-	ValaProjectSettingsPopover* _tmp20_;
-	ValaProjectSettingsPopoverXcls_Label55* _tmp21_;
-	GtkBox* _tmp22_;
-	GtkLabel* _tmp23_;
-	ValaProjectSettingsPopoverXcls_build_execute_args* child_6 = NULL;
-	ValaProjectSettingsPopover* _tmp24_;
-	ValaProjectSettingsPopoverXcls_build_execute_args* _tmp25_;
-	GtkBox* _tmp26_;
-	GtkEntry* _tmp27_;
-#line 1682 "ValaProjectSettingsPopover.vala"
+#line 1681 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_set_vboxb*) g_object_new (object_type, NULL);
-#line 1684 "ValaProjectSettingsPopover.vala"
+#line 1683 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1684 "ValaProjectSettingsPopover.vala"
+#line 1683 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1684 "ValaProjectSettingsPopover.vala"
+#line 1683 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1685 "ValaProjectSettingsPopover.vala"
+#line 1684 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1685 "ValaProjectSettingsPopover.vala"
+#line 1684 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1685 "ValaProjectSettingsPopover.vala"
+#line 1684 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->set_vboxb);
-#line 1685 "ValaProjectSettingsPopover.vala"
+#line 1684 "ValaProjectSettingsPopover.vala"
 	_tmp1_->set_vboxb = _tmp2_;
-#line 1686 "ValaProjectSettingsPopover.vala"
+#line 1685 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 1686 "ValaProjectSettingsPopover.vala"
+#line 1685 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1686 "ValaProjectSettingsPopover.vala"
+#line 1685 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1686 "ValaProjectSettingsPopover.vala"
+#line 1685 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 1691 "ValaProjectSettingsPopover.vala"
+#line 1690 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->priv->_this;
-#line 1691 "ValaProjectSettingsPopover.vala"
+#line 1690 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = vala_project_settings_popover_xcls_label51_new (_tmp4_);
-#line 1691 "ValaProjectSettingsPopover.vala"
+#line 1690 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp5_;
-#line 1692 "ValaProjectSettingsPopover.vala"
+#line 1691 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 1693 "ValaProjectSettingsPopover.vala"
+#line 1692 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 1693 "ValaProjectSettingsPopover.vala"
+#line 1692 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = child_1->el;
-#line 1693 "ValaProjectSettingsPopover.vala"
+#line 1692 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp6_, (GtkWidget*) _tmp7_);
-#line 1694 "ValaProjectSettingsPopover.vala"
+#line 1693 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->priv->_this;
-#line 1694 "ValaProjectSettingsPopover.vala"
+#line 1693 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = vala_project_settings_popover_xcls_build_name_new (_tmp8_);
-#line 1694 "ValaProjectSettingsPopover.vala"
+#line 1693 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp9_;
-#line 1695 "ValaProjectSettingsPopover.vala"
+#line 1694 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = self->el;
-#line 1695 "ValaProjectSettingsPopover.vala"
+#line 1694 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = child_2->el;
-#line 1695 "ValaProjectSettingsPopover.vala"
+#line 1694 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp10_, (GtkWidget*) _tmp11_);
-#line 1696 "ValaProjectSettingsPopover.vala"
+#line 1695 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = self->priv->_this;
-#line 1696 "ValaProjectSettingsPopover.vala"
+#line 1695 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = vala_project_settings_popover_xcls_label53_new (_tmp12_);
-#line 1696 "ValaProjectSettingsPopover.vala"
+#line 1695 "ValaProjectSettingsPopover.vala"
 	child_3 = _tmp13_;
-#line 1697 "ValaProjectSettingsPopover.vala"
+#line 1696 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_3);
-#line 1698 "ValaProjectSettingsPopover.vala"
+#line 1697 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = self->el;
-#line 1698 "ValaProjectSettingsPopover.vala"
+#line 1697 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = child_3->el;
-#line 1698 "ValaProjectSettingsPopover.vala"
+#line 1697 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp14_, (GtkWidget*) _tmp15_);
-#line 1699 "ValaProjectSettingsPopover.vala"
+#line 1698 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = self->priv->_this;
-#line 1699 "ValaProjectSettingsPopover.vala"
-	_tmp17_ = vala_project_settings_popover_xcls_build_pack_target_new (_tmp16_);
-#line 1699 "ValaProjectSettingsPopover.vala"
+#line 1698 "ValaProjectSettingsPopover.vala"
+	_tmp17_ = vala_project_settings_popover_xcls_build_execute_args_new (_tmp16_);
+#line 1698 "ValaProjectSettingsPopover.vala"
 	child_4 = _tmp17_;
-#line 1700 "ValaProjectSettingsPopover.vala"
+#line 1699 "ValaProjectSettingsPopover.vala"
 	_tmp18_ = self->el;
-#line 1700 "ValaProjectSettingsPopover.vala"
+#line 1699 "ValaProjectSettingsPopover.vala"
 	_tmp19_ = child_4->el;
-#line 1700 "ValaProjectSettingsPopover.vala"
+#line 1699 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp18_, (GtkWidget*) _tmp19_);
-#line 1701 "ValaProjectSettingsPopover.vala"
-	_tmp20_ = self->priv->_this;
-#line 1701 "ValaProjectSettingsPopover.vala"
-	_tmp21_ = vala_project_settings_popover_xcls_label55_new (_tmp20_);
-#line 1701 "ValaProjectSettingsPopover.vala"
-	child_5 = _tmp21_;
-#line 1702 "ValaProjectSettingsPopover.vala"
-	g_object_ref ((GObject*) child_5);
-#line 1703 "ValaProjectSettingsPopover.vala"
-	_tmp22_ = self->el;
-#line 1703 "ValaProjectSettingsPopover.vala"
-	_tmp23_ = child_5->el;
-#line 1703 "ValaProjectSettingsPopover.vala"
-	gtk_box_append (_tmp22_, (GtkWidget*) _tmp23_);
-#line 1704 "ValaProjectSettingsPopover.vala"
-	_tmp24_ = self->priv->_this;
-#line 1704 "ValaProjectSettingsPopover.vala"
-	_tmp25_ = vala_project_settings_popover_xcls_build_execute_args_new (_tmp24_);
-#line 1704 "ValaProjectSettingsPopover.vala"
-	child_6 = _tmp25_;
-#line 1705 "ValaProjectSettingsPopover.vala"
-	_tmp26_ = self->el;
-#line 1705 "ValaProjectSettingsPopover.vala"
-	_tmp27_ = child_6->el;
-#line 1705 "ValaProjectSettingsPopover.vala"
-	gtk_box_append (_tmp26_, (GtkWidget*) _tmp27_);
-#line 1682 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (child_6);
-#line 1682 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (child_5);
-#line 1682 "ValaProjectSettingsPopover.vala"
+#line 1681 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_4);
-#line 1682 "ValaProjectSettingsPopover.vala"
+#line 1681 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_3);
-#line 1682 "ValaProjectSettingsPopover.vala"
+#line 1681 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 1682 "ValaProjectSettingsPopover.vala"
+#line 1681 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1682 "ValaProjectSettingsPopover.vala"
+#line 1681 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 11265 "ValaProjectSettingsPopover.vala.c"
+#line 11109 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_set_vboxb*
 vala_project_settings_popover_xcls_set_vboxb_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1682 "ValaProjectSettingsPopover.vala"
+#line 1681 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_set_vboxb_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SET_VBOXB, _owner);
-#line 11273 "ValaProjectSettingsPopover.vala.c"
+#line 11117 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_set_vboxb_class_init (ValaProjectSettingsPopoverXcls_set_vboxbClass * klass,
                                                          gpointer klass_data)
 {
-#line 1673 "ValaProjectSettingsPopover.vala"
+#line 1672 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_set_vboxb_parent_class = g_type_class_peek_parent (klass);
-#line 1673 "ValaProjectSettingsPopover.vala"
+#line 1672 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_set_vboxb_private_offset);
-#line 1673 "ValaProjectSettingsPopover.vala"
+#line 1672 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_set_vboxb_finalize;
-#line 11286 "ValaProjectSettingsPopover.vala.c"
+#line 11130 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_set_vboxb_instance_init (ValaProjectSettingsPopoverXcls_set_vboxb * self,
                                                             gpointer klass)
 {
-#line 1673 "ValaProjectSettingsPopover.vala"
+#line 1672 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_set_vboxb_get_instance_private (self);
-#line 11295 "ValaProjectSettingsPopover.vala.c"
+#line 11139 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_set_vboxb_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_set_vboxb * self;
-#line 1673 "ValaProjectSettingsPopover.vala"
+#line 1672 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SET_VBOXB, ValaProjectSettingsPopoverXcls_set_vboxb);
-#line 1675 "ValaProjectSettingsPopover.vala"
+#line 1674 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1676 "ValaProjectSettingsPopover.vala"
+#line 1675 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1673 "ValaProjectSettingsPopover.vala"
+#line 1672 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_set_vboxb_parent_class)->finalize (obj);
-#line 11310 "ValaProjectSettingsPopover.vala.c"
+#line 11154 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -11344,70 +11188,70 @@ vala_project_settings_popover_xcls_label51_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_Label51 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkLabel* _tmp1_;
-#line 1719 "ValaProjectSettingsPopover.vala"
+#line 1713 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Label51*) g_object_new (object_type, NULL);
-#line 1721 "ValaProjectSettingsPopover.vala"
+#line 1715 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1721 "ValaProjectSettingsPopover.vala"
+#line 1715 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1721 "ValaProjectSettingsPopover.vala"
+#line 1715 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1722 "ValaProjectSettingsPopover.vala"
-	_tmp1_ = (GtkLabel*) gtk_label_new ("Build Name");
-#line 1722 "ValaProjectSettingsPopover.vala"
+#line 1716 "ValaProjectSettingsPopover.vala"
+	_tmp1_ = (GtkLabel*) gtk_label_new ("Build Name (executable name)");
+#line 1716 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1722 "ValaProjectSettingsPopover.vala"
+#line 1716 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1722 "ValaProjectSettingsPopover.vala"
+#line 1716 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1719 "ValaProjectSettingsPopover.vala"
+#line 1713 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 11366 "ValaProjectSettingsPopover.vala.c"
+#line 11210 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Label51*
 vala_project_settings_popover_xcls_label51_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1719 "ValaProjectSettingsPopover.vala"
+#line 1713 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_label51_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL51, _owner);
-#line 11374 "ValaProjectSettingsPopover.vala.c"
+#line 11218 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label51_class_init (ValaProjectSettingsPopoverXcls_Label51Class * klass,
                                                        gpointer klass_data)
 {
-#line 1710 "ValaProjectSettingsPopover.vala"
+#line 1704 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_label51_parent_class = g_type_class_peek_parent (klass);
-#line 1710 "ValaProjectSettingsPopover.vala"
+#line 1704 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Label51_private_offset);
-#line 1710 "ValaProjectSettingsPopover.vala"
+#line 1704 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label51_finalize;
-#line 11387 "ValaProjectSettingsPopover.vala.c"
+#line 11231 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label51_instance_init (ValaProjectSettingsPopoverXcls_Label51 * self,
                                                           gpointer klass)
 {
-#line 1710 "ValaProjectSettingsPopover.vala"
+#line 1704 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_label51_get_instance_private (self);
-#line 11396 "ValaProjectSettingsPopover.vala.c"
+#line 11240 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label51_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Label51 * self;
-#line 1710 "ValaProjectSettingsPopover.vala"
+#line 1704 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL51, ValaProjectSettingsPopoverXcls_Label51);
-#line 1712 "ValaProjectSettingsPopover.vala"
+#line 1706 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1713 "ValaProjectSettingsPopover.vala"
+#line 1707 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1710 "ValaProjectSettingsPopover.vala"
+#line 1704 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label51_parent_class)->finalize (obj);
-#line 11411 "ValaProjectSettingsPopover.vala.c"
+#line 11255 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -11460,39 +11304,39 @@ __lambda134_ (ValaProjectSettingsPopoverXcls_build_name* self)
 	GtkEntryBuffer* _tmp28_;
 	const gchar* _tmp29_;
 	const gchar* _tmp30_;
-#line 1753 "ValaProjectSettingsPopover.vala"
+#line 1747 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 1753 "ValaProjectSettingsPopover.vala"
+#line 1747 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _tmp0_->selected_target;
-#line 1753 "ValaProjectSettingsPopover.vala"
+#line 1747 "ValaProjectSettingsPopover.vala"
 	if (_tmp1_ == NULL) {
-#line 1754 "ValaProjectSettingsPopover.vala"
+#line 1748 "ValaProjectSettingsPopover.vala"
 		return;
-#line 11472 "ValaProjectSettingsPopover.vala.c"
+#line 11316 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1756 "ValaProjectSettingsPopover.vala"
+#line 1750 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1756 "ValaProjectSettingsPopover.vala"
+#line 1750 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = gtk_editable_get_text ((GtkEditable*) _tmp2_);
-#line 1756 "ValaProjectSettingsPopover.vala"
+#line 1750 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_;
-#line 1756 "ValaProjectSettingsPopover.vala"
+#line 1750 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = g_strdup (_tmp4_);
-#line 1756 "ValaProjectSettingsPopover.vala"
+#line 1750 "ValaProjectSettingsPopover.vala"
 	name = _tmp5_;
-#line 1758 "ValaProjectSettingsPopover.vala"
+#line 1752 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->priv->_this;
-#line 1758 "ValaProjectSettingsPopover.vala"
+#line 1752 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = _tmp6_->selected_target;
-#line 1758 "ValaProjectSettingsPopover.vala"
+#line 1752 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = project_gtk_vala_settings_get_name (_tmp7_);
-#line 1758 "ValaProjectSettingsPopover.vala"
+#line 1752 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = _tmp8_;
-#line 1758 "ValaProjectSettingsPopover.vala"
+#line 1752 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = name;
-#line 1758 "ValaProjectSettingsPopover.vala"
+#line 1752 "ValaProjectSettingsPopover.vala"
 	if (g_strcmp0 (_tmp9_, _tmp10_) != 0) {
-#line 11496 "ValaProjectSettingsPopover.vala.c"
+#line 11340 "ValaProjectSettingsPopover.vala.c"
 		ValaProjectSettingsPopover* _tmp11_;
 		ProjectGtk* _tmp12_;
 		GeeHashMap* _tmp13_;
@@ -11506,66 +11350,66 @@ __lambda134_ (ValaProjectSettingsPopoverXcls_build_name* self)
 		const gchar* _tmp21_;
 		ValaProjectSettingsPopover* _tmp22_;
 		ProjectGtkValaSettings* _tmp23_;
-#line 1759 "ValaProjectSettingsPopover.vala"
+#line 1753 "ValaProjectSettingsPopover.vala"
 		_tmp11_ = self->priv->_this;
-#line 1759 "ValaProjectSettingsPopover.vala"
+#line 1753 "ValaProjectSettingsPopover.vala"
 		_tmp12_ = _tmp11_->project;
-#line 1759 "ValaProjectSettingsPopover.vala"
+#line 1753 "ValaProjectSettingsPopover.vala"
 		_tmp13_ = _tmp12_->compilegroups;
-#line 1759 "ValaProjectSettingsPopover.vala"
+#line 1753 "ValaProjectSettingsPopover.vala"
 		_tmp14_ = self->priv->_this;
-#line 1759 "ValaProjectSettingsPopover.vala"
+#line 1753 "ValaProjectSettingsPopover.vala"
 		_tmp15_ = _tmp14_->selected_target;
-#line 1759 "ValaProjectSettingsPopover.vala"
+#line 1753 "ValaProjectSettingsPopover.vala"
 		_tmp16_ = project_gtk_vala_settings_get_name (_tmp15_);
-#line 1759 "ValaProjectSettingsPopover.vala"
+#line 1753 "ValaProjectSettingsPopover.vala"
 		_tmp17_ = _tmp16_;
-#line 1759 "ValaProjectSettingsPopover.vala"
+#line 1753 "ValaProjectSettingsPopover.vala"
 		gee_abstract_map_unset ((GeeAbstractMap*) _tmp13_, _tmp17_, NULL);
-#line 1760 "ValaProjectSettingsPopover.vala"
+#line 1754 "ValaProjectSettingsPopover.vala"
 		_tmp18_ = self->priv->_this;
-#line 1760 "ValaProjectSettingsPopover.vala"
+#line 1754 "ValaProjectSettingsPopover.vala"
 		_tmp19_ = _tmp18_->project;
-#line 1760 "ValaProjectSettingsPopover.vala"
+#line 1754 "ValaProjectSettingsPopover.vala"
 		_tmp20_ = _tmp19_->compilegroups;
-#line 1760 "ValaProjectSettingsPopover.vala"
+#line 1754 "ValaProjectSettingsPopover.vala"
 		_tmp21_ = name;
-#line 1760 "ValaProjectSettingsPopover.vala"
+#line 1754 "ValaProjectSettingsPopover.vala"
 		_tmp22_ = self->priv->_this;
-#line 1760 "ValaProjectSettingsPopover.vala"
+#line 1754 "ValaProjectSettingsPopover.vala"
 		_tmp23_ = _tmp22_->selected_target;
-#line 1760 "ValaProjectSettingsPopover.vala"
+#line 1754 "ValaProjectSettingsPopover.vala"
 		gee_abstract_map_set ((GeeAbstractMap*) _tmp20_, _tmp21_, _tmp23_);
-#line 11540 "ValaProjectSettingsPopover.vala.c"
+#line 11384 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1763 "ValaProjectSettingsPopover.vala"
+#line 1757 "ValaProjectSettingsPopover.vala"
 	_tmp24_ = self->priv->_this;
-#line 1763 "ValaProjectSettingsPopover.vala"
+#line 1757 "ValaProjectSettingsPopover.vala"
 	_tmp25_ = _tmp24_->selected_target;
-#line 1763 "ValaProjectSettingsPopover.vala"
+#line 1757 "ValaProjectSettingsPopover.vala"
 	_tmp26_ = self->el;
-#line 1763 "ValaProjectSettingsPopover.vala"
+#line 1757 "ValaProjectSettingsPopover.vala"
 	_tmp27_ = gtk_entry_get_buffer (_tmp26_);
-#line 1763 "ValaProjectSettingsPopover.vala"
+#line 1757 "ValaProjectSettingsPopover.vala"
 	_tmp28_ = _tmp27_;
-#line 1763 "ValaProjectSettingsPopover.vala"
+#line 1757 "ValaProjectSettingsPopover.vala"
 	_tmp29_ = gtk_entry_buffer_get_text (_tmp28_);
-#line 1763 "ValaProjectSettingsPopover.vala"
+#line 1757 "ValaProjectSettingsPopover.vala"
 	_tmp30_ = _tmp29_;
-#line 1763 "ValaProjectSettingsPopover.vala"
+#line 1757 "ValaProjectSettingsPopover.vala"
 	project_gtk_vala_settings_set_name (_tmp25_, _tmp30_);
-#line 1752 "ValaProjectSettingsPopover.vala"
+#line 1746 "ValaProjectSettingsPopover.vala"
 	_g_free0 (name);
-#line 11560 "ValaProjectSettingsPopover.vala.c"
+#line 11404 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 ___lambda134__gtk_editable_changed (GtkEditable* _sender,
                                     gpointer self)
 {
-#line 1752 "ValaProjectSettingsPopover.vala"
+#line 1746 "ValaProjectSettingsPopover.vala"
 	__lambda134_ ((ValaProjectSettingsPopoverXcls_build_name*) self);
-#line 11569 "ValaProjectSettingsPopover.vala.c"
+#line 11413 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_build_name*
@@ -11578,82 +11422,82 @@ vala_project_settings_popover_xcls_build_name_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_build_name* _tmp2_;
 	GtkEntry* _tmp3_;
 	GtkEntry* _tmp4_;
-#line 1741 "ValaProjectSettingsPopover.vala"
+#line 1735 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_build_name*) g_object_new (object_type, NULL);
-#line 1743 "ValaProjectSettingsPopover.vala"
+#line 1737 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1743 "ValaProjectSettingsPopover.vala"
+#line 1737 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1743 "ValaProjectSettingsPopover.vala"
+#line 1737 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1744 "ValaProjectSettingsPopover.vala"
+#line 1738 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1744 "ValaProjectSettingsPopover.vala"
+#line 1738 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1744 "ValaProjectSettingsPopover.vala"
+#line 1738 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->build_name);
-#line 1744 "ValaProjectSettingsPopover.vala"
+#line 1738 "ValaProjectSettingsPopover.vala"
 	_tmp1_->build_name = _tmp2_;
-#line 1745 "ValaProjectSettingsPopover.vala"
+#line 1739 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkEntry*) gtk_entry_new ();
-#line 1745 "ValaProjectSettingsPopover.vala"
+#line 1739 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1745 "ValaProjectSettingsPopover.vala"
+#line 1739 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1745 "ValaProjectSettingsPopover.vala"
+#line 1739 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 1752 "ValaProjectSettingsPopover.vala"
+#line 1746 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 1752 "ValaProjectSettingsPopover.vala"
+#line 1746 "ValaProjectSettingsPopover.vala"
 	g_signal_connect_object ((GtkEditable*) _tmp4_, "changed", (GCallback) ___lambda134__gtk_editable_changed, self, 0);
-#line 1741 "ValaProjectSettingsPopover.vala"
+#line 1735 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 11612 "ValaProjectSettingsPopover.vala.c"
+#line 11456 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_build_name*
 vala_project_settings_popover_xcls_build_name_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1741 "ValaProjectSettingsPopover.vala"
+#line 1735 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_build_name_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_NAME, _owner);
-#line 11620 "ValaProjectSettingsPopover.vala.c"
+#line 11464 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_build_name_class_init (ValaProjectSettingsPopoverXcls_build_nameClass * klass,
                                                           gpointer klass_data)
 {
-#line 1732 "ValaProjectSettingsPopover.vala"
+#line 1726 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_build_name_parent_class = g_type_class_peek_parent (klass);
-#line 1732 "ValaProjectSettingsPopover.vala"
+#line 1726 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_build_name_private_offset);
-#line 1732 "ValaProjectSettingsPopover.vala"
+#line 1726 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_build_name_finalize;
-#line 11633 "ValaProjectSettingsPopover.vala.c"
+#line 11477 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_build_name_instance_init (ValaProjectSettingsPopoverXcls_build_name * self,
                                                              gpointer klass)
 {
-#line 1732 "ValaProjectSettingsPopover.vala"
+#line 1726 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_build_name_get_instance_private (self);
-#line 11642 "ValaProjectSettingsPopover.vala.c"
+#line 11486 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_build_name_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_build_name * self;
-#line 1732 "ValaProjectSettingsPopover.vala"
+#line 1726 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_NAME, ValaProjectSettingsPopoverXcls_build_name);
-#line 1734 "ValaProjectSettingsPopover.vala"
+#line 1728 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1735 "ValaProjectSettingsPopover.vala"
+#line 1729 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1732 "ValaProjectSettingsPopover.vala"
+#line 1726 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_build_name_parent_class)->finalize (obj);
-#line 11657 "ValaProjectSettingsPopover.vala.c"
+#line 11501 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -11691,70 +11535,70 @@ vala_project_settings_popover_xcls_label53_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_Label53 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkLabel* _tmp1_;
-#line 1779 "ValaProjectSettingsPopover.vala"
+#line 1773 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_Label53*) g_object_new (object_type, NULL);
-#line 1781 "ValaProjectSettingsPopover.vala"
+#line 1775 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1781 "ValaProjectSettingsPopover.vala"
+#line 1775 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1781 "ValaProjectSettingsPopover.vala"
+#line 1775 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1782 "ValaProjectSettingsPopover.vala"
-	_tmp1_ = (GtkLabel*) gtk_label_new ("target filename");
-#line 1782 "ValaProjectSettingsPopover.vala"
+#line 1776 "ValaProjectSettingsPopover.vala"
+	_tmp1_ = (GtkLabel*) gtk_label_new ("test argments - when run after a build");
+#line 1776 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1782 "ValaProjectSettingsPopover.vala"
+#line 1776 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1782 "ValaProjectSettingsPopover.vala"
+#line 1776 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1779 "ValaProjectSettingsPopover.vala"
+#line 1773 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 11713 "ValaProjectSettingsPopover.vala.c"
+#line 11557 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_Label53*
 vala_project_settings_popover_xcls_label53_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1779 "ValaProjectSettingsPopover.vala"
+#line 1773 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_label53_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL53, _owner);
-#line 11721 "ValaProjectSettingsPopover.vala.c"
+#line 11565 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label53_class_init (ValaProjectSettingsPopoverXcls_Label53Class * klass,
                                                        gpointer klass_data)
 {
-#line 1770 "ValaProjectSettingsPopover.vala"
+#line 1764 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_label53_parent_class = g_type_class_peek_parent (klass);
-#line 1770 "ValaProjectSettingsPopover.vala"
+#line 1764 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Label53_private_offset);
-#line 1770 "ValaProjectSettingsPopover.vala"
+#line 1764 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label53_finalize;
-#line 11734 "ValaProjectSettingsPopover.vala.c"
+#line 11578 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label53_instance_init (ValaProjectSettingsPopoverXcls_Label53 * self,
                                                           gpointer klass)
 {
-#line 1770 "ValaProjectSettingsPopover.vala"
+#line 1764 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_label53_get_instance_private (self);
-#line 11743 "ValaProjectSettingsPopover.vala.c"
+#line 11587 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_label53_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_Label53 * self;
-#line 1770 "ValaProjectSettingsPopover.vala"
+#line 1764 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL53, ValaProjectSettingsPopoverXcls_Label53);
-#line 1772 "ValaProjectSettingsPopover.vala"
+#line 1766 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1773 "ValaProjectSettingsPopover.vala"
+#line 1767 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1770 "ValaProjectSettingsPopover.vala"
+#line 1764 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label53_parent_class)->finalize (obj);
-#line 11758 "ValaProjectSettingsPopover.vala.c"
+#line 11602 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -11780,285 +11624,13 @@ vala_project_settings_popover_xcls_label53_get_type (void)
 }
 
 static inline gpointer
-vala_project_settings_popover_xcls_build_pack_target_get_instance_private (ValaProjectSettingsPopoverXcls_build_pack_target* self)
-{
-	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_build_pack_target_private_offset);
-}
-
-static void
-__lambda135_ (ValaProjectSettingsPopoverXcls_build_pack_target* self)
-{
-	ValaProjectSettingsPopover* _tmp0_;
-	ProjectGtkValaSettings* _tmp1_;
-	ValaProjectSettingsPopover* _tmp2_;
-	ProjectGtkValaSettings* _tmp3_;
-	GtkEntry* _tmp4_;
-	GtkEntryBuffer* _tmp5_;
-	GtkEntryBuffer* _tmp6_;
-	const gchar* _tmp7_;
-	const gchar* _tmp8_;
-	gchar* _tmp9_;
-#line 1813 "ValaProjectSettingsPopover.vala"
-	_tmp0_ = self->priv->_this;
-#line 1813 "ValaProjectSettingsPopover.vala"
-	_tmp1_ = _tmp0_->selected_target;
-#line 1813 "ValaProjectSettingsPopover.vala"
-	if (_tmp1_ == NULL) {
-#line 1814 "ValaProjectSettingsPopover.vala"
-		return;
-#line 11810 "ValaProjectSettingsPopover.vala.c"
-	}
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp2_ = self->priv->_this;
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp3_ = _tmp2_->selected_target;
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp4_ = self->el;
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp5_ = gtk_entry_get_buffer (_tmp4_);
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp6_ = _tmp5_;
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp7_ = gtk_entry_buffer_get_text (_tmp6_);
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp8_ = _tmp7_;
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp9_ = g_strdup (_tmp8_);
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_g_free0 (_tmp3_->target_bin);
-#line 1816 "ValaProjectSettingsPopover.vala"
-	_tmp3_->target_bin = _tmp9_;
-#line 11832 "ValaProjectSettingsPopover.vala.c"
-}
-
-static void
-___lambda135__gtk_editable_changed (GtkEditable* _sender,
-                                    gpointer self)
-{
-#line 1812 "ValaProjectSettingsPopover.vala"
-	__lambda135_ ((ValaProjectSettingsPopoverXcls_build_pack_target*) self);
-#line 11841 "ValaProjectSettingsPopover.vala.c"
-}
-
-ValaProjectSettingsPopoverXcls_build_pack_target*
-vala_project_settings_popover_xcls_build_pack_target_construct (GType object_type,
-                                                                ValaProjectSettingsPopover* _owner)
-{
-	ValaProjectSettingsPopoverXcls_build_pack_target * self = NULL;
-	ValaProjectSettingsPopover* _tmp0_;
-	ValaProjectSettingsPopover* _tmp1_;
-	ValaProjectSettingsPopoverXcls_build_pack_target* _tmp2_;
-	GtkEntry* _tmp3_;
-	GtkEntry* _tmp4_;
-#line 1801 "ValaProjectSettingsPopover.vala"
-	self = (ValaProjectSettingsPopoverXcls_build_pack_target*) g_object_new (object_type, NULL);
-#line 1803 "ValaProjectSettingsPopover.vala"
-	_tmp0_ = _g_object_ref0 (_owner);
-#line 1803 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->priv->_this);
-#line 1803 "ValaProjectSettingsPopover.vala"
-	self->priv->_this = _tmp0_;
-#line 1804 "ValaProjectSettingsPopover.vala"
-	_tmp1_ = self->priv->_this;
-#line 1804 "ValaProjectSettingsPopover.vala"
-	_tmp2_ = _g_object_ref0 (self);
-#line 1804 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (_tmp1_->build_pack_target);
-#line 1804 "ValaProjectSettingsPopover.vala"
-	_tmp1_->build_pack_target = _tmp2_;
-#line 1805 "ValaProjectSettingsPopover.vala"
-	_tmp3_ = (GtkEntry*) gtk_entry_new ();
-#line 1805 "ValaProjectSettingsPopover.vala"
-	g_object_ref_sink (_tmp3_);
-#line 1805 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->el);
-#line 1805 "ValaProjectSettingsPopover.vala"
-	self->el = _tmp3_;
-#line 1812 "ValaProjectSettingsPopover.vala"
-	_tmp4_ = self->el;
-#line 1812 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object ((GtkEditable*) _tmp4_, "changed", (GCallback) ___lambda135__gtk_editable_changed, self, 0);
-#line 1801 "ValaProjectSettingsPopover.vala"
-	return self;
-#line 11884 "ValaProjectSettingsPopover.vala.c"
-}
-
-ValaProjectSettingsPopoverXcls_build_pack_target*
-vala_project_settings_popover_xcls_build_pack_target_new (ValaProjectSettingsPopover* _owner)
-{
-#line 1801 "ValaProjectSettingsPopover.vala"
-	return vala_project_settings_popover_xcls_build_pack_target_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET, _owner);
-#line 11892 "ValaProjectSettingsPopover.vala.c"
-}
-
-static void
-vala_project_settings_popover_xcls_build_pack_target_class_init (ValaProjectSettingsPopoverXcls_build_pack_targetClass * klass,
-                                                                 gpointer klass_data)
-{
-#line 1792 "ValaProjectSettingsPopover.vala"
-	vala_project_settings_popover_xcls_build_pack_target_parent_class = g_type_class_peek_parent (klass);
-#line 1792 "ValaProjectSettingsPopover.vala"
-	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_build_pack_target_private_offset);
-#line 1792 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_build_pack_target_finalize;
-#line 11905 "ValaProjectSettingsPopover.vala.c"
-}
-
-static void
-vala_project_settings_popover_xcls_build_pack_target_instance_init (ValaProjectSettingsPopoverXcls_build_pack_target * self,
-                                                                    gpointer klass)
-{
-#line 1792 "ValaProjectSettingsPopover.vala"
-	self->priv = vala_project_settings_popover_xcls_build_pack_target_get_instance_private (self);
-#line 11914 "ValaProjectSettingsPopover.vala.c"
-}
-
-static void
-vala_project_settings_popover_xcls_build_pack_target_finalize (GObject * obj)
-{
-	ValaProjectSettingsPopoverXcls_build_pack_target * self;
-#line 1792 "ValaProjectSettingsPopover.vala"
-	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET, ValaProjectSettingsPopoverXcls_build_pack_target);
-#line 1794 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->el);
-#line 1795 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->priv->_this);
-#line 1792 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (vala_project_settings_popover_xcls_build_pack_target_parent_class)->finalize (obj);
-#line 11929 "ValaProjectSettingsPopover.vala.c"
-}
-
-static GType
-vala_project_settings_popover_xcls_build_pack_target_get_type_once (void)
-{
-	static const GTypeInfo g_define_type_info = { sizeof (ValaProjectSettingsPopoverXcls_build_pack_targetClass), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) vala_project_settings_popover_xcls_build_pack_target_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (ValaProjectSettingsPopoverXcls_build_pack_target), 0, (GInstanceInitFunc) vala_project_settings_popover_xcls_build_pack_target_instance_init, NULL };
-	GType vala_project_settings_popover_xcls_build_pack_target_type_id;
-	vala_project_settings_popover_xcls_build_pack_target_type_id = g_type_register_static (G_TYPE_OBJECT, "ValaProjectSettingsPopoverXcls_build_pack_target", &g_define_type_info, 0);
-	ValaProjectSettingsPopoverXcls_build_pack_target_private_offset = g_type_add_instance_private (vala_project_settings_popover_xcls_build_pack_target_type_id, sizeof (ValaProjectSettingsPopoverXcls_build_pack_targetPrivate));
-	return vala_project_settings_popover_xcls_build_pack_target_type_id;
-}
-
-GType
-vala_project_settings_popover_xcls_build_pack_target_get_type (void)
-{
-	static volatile gsize vala_project_settings_popover_xcls_build_pack_target_type_id__once = 0;
-	if (g_once_init_enter (&vala_project_settings_popover_xcls_build_pack_target_type_id__once)) {
-		GType vala_project_settings_popover_xcls_build_pack_target_type_id;
-		vala_project_settings_popover_xcls_build_pack_target_type_id = vala_project_settings_popover_xcls_build_pack_target_get_type_once ();
-		g_once_init_leave (&vala_project_settings_popover_xcls_build_pack_target_type_id__once, vala_project_settings_popover_xcls_build_pack_target_type_id);
-	}
-	return vala_project_settings_popover_xcls_build_pack_target_type_id__once;
-}
-
-static inline gpointer
-vala_project_settings_popover_xcls_label55_get_instance_private (ValaProjectSettingsPopoverXcls_Label55* self)
-{
-	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_Label55_private_offset);
-}
-
-ValaProjectSettingsPopoverXcls_Label55*
-vala_project_settings_popover_xcls_label55_construct (GType object_type,
-                                                      ValaProjectSettingsPopover* _owner)
-{
-	ValaProjectSettingsPopoverXcls_Label55 * self = NULL;
-	ValaProjectSettingsPopover* _tmp0_;
-	GtkLabel* _tmp1_;
-#line 1832 "ValaProjectSettingsPopover.vala"
-	self = (ValaProjectSettingsPopoverXcls_Label55*) g_object_new (object_type, NULL);
-#line 1834 "ValaProjectSettingsPopover.vala"
-	_tmp0_ = _g_object_ref0 (_owner);
-#line 1834 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->priv->_this);
-#line 1834 "ValaProjectSettingsPopover.vala"
-	self->priv->_this = _tmp0_;
-#line 1835 "ValaProjectSettingsPopover.vala"
-	_tmp1_ = (GtkLabel*) gtk_label_new ("test argments - when run after a build");
-#line 1835 "ValaProjectSettingsPopover.vala"
-	g_object_ref_sink (_tmp1_);
-#line 1835 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->el);
-#line 1835 "ValaProjectSettingsPopover.vala"
-	self->el = _tmp1_;
-#line 1832 "ValaProjectSettingsPopover.vala"
-	return self;
-#line 11985 "ValaProjectSettingsPopover.vala.c"
-}
-
-ValaProjectSettingsPopoverXcls_Label55*
-vala_project_settings_popover_xcls_label55_new (ValaProjectSettingsPopover* _owner)
-{
-#line 1832 "ValaProjectSettingsPopover.vala"
-	return vala_project_settings_popover_xcls_label55_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL55, _owner);
-#line 11993 "ValaProjectSettingsPopover.vala.c"
-}
-
-static void
-vala_project_settings_popover_xcls_label55_class_init (ValaProjectSettingsPopoverXcls_Label55Class * klass,
-                                                       gpointer klass_data)
-{
-#line 1823 "ValaProjectSettingsPopover.vala"
-	vala_project_settings_popover_xcls_label55_parent_class = g_type_class_peek_parent (klass);
-#line 1823 "ValaProjectSettingsPopover.vala"
-	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Label55_private_offset);
-#line 1823 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label55_finalize;
-#line 12006 "ValaProjectSettingsPopover.vala.c"
-}
-
-static void
-vala_project_settings_popover_xcls_label55_instance_init (ValaProjectSettingsPopoverXcls_Label55 * self,
-                                                          gpointer klass)
-{
-#line 1823 "ValaProjectSettingsPopover.vala"
-	self->priv = vala_project_settings_popover_xcls_label55_get_instance_private (self);
-#line 12015 "ValaProjectSettingsPopover.vala.c"
-}
-
-static void
-vala_project_settings_popover_xcls_label55_finalize (GObject * obj)
-{
-	ValaProjectSettingsPopoverXcls_Label55 * self;
-#line 1823 "ValaProjectSettingsPopover.vala"
-	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL55, ValaProjectSettingsPopoverXcls_Label55);
-#line 1825 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->el);
-#line 1826 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->priv->_this);
-#line 1823 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label55_parent_class)->finalize (obj);
-#line 12030 "ValaProjectSettingsPopover.vala.c"
-}
-
-static GType
-vala_project_settings_popover_xcls_label55_get_type_once (void)
-{
-	static const GTypeInfo g_define_type_info = { sizeof (ValaProjectSettingsPopoverXcls_Label55Class), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) vala_project_settings_popover_xcls_label55_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (ValaProjectSettingsPopoverXcls_Label55), 0, (GInstanceInitFunc) vala_project_settings_popover_xcls_label55_instance_init, NULL };
-	GType vala_project_settings_popover_xcls_label55_type_id;
-	vala_project_settings_popover_xcls_label55_type_id = g_type_register_static (G_TYPE_OBJECT, "ValaProjectSettingsPopoverXcls_Label55", &g_define_type_info, 0);
-	ValaProjectSettingsPopoverXcls_Label55_private_offset = g_type_add_instance_private (vala_project_settings_popover_xcls_label55_type_id, sizeof (ValaProjectSettingsPopoverXcls_Label55Private));
-	return vala_project_settings_popover_xcls_label55_type_id;
-}
-
-GType
-vala_project_settings_popover_xcls_label55_get_type (void)
-{
-	static volatile gsize vala_project_settings_popover_xcls_label55_type_id__once = 0;
-	if (g_once_init_enter (&vala_project_settings_popover_xcls_label55_type_id__once)) {
-		GType vala_project_settings_popover_xcls_label55_type_id;
-		vala_project_settings_popover_xcls_label55_type_id = vala_project_settings_popover_xcls_label55_get_type_once ();
-		g_once_init_leave (&vala_project_settings_popover_xcls_label55_type_id__once, vala_project_settings_popover_xcls_label55_type_id);
-	}
-	return vala_project_settings_popover_xcls_label55_type_id__once;
-}
-
-static inline gpointer
 vala_project_settings_popover_xcls_build_execute_args_get_instance_private (ValaProjectSettingsPopoverXcls_build_execute_args* self)
 {
 	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_build_execute_args_private_offset);
 }
 
 static void
-__lambda136_ (ValaProjectSettingsPopoverXcls_build_execute_args* self)
+__lambda135_ (ValaProjectSettingsPopoverXcls_build_execute_args* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ProjectGtkValaSettings* _tmp1_;
@@ -12070,46 +11642,46 @@ __lambda136_ (ValaProjectSettingsPopoverXcls_build_execute_args* self)
 	const gchar* _tmp7_;
 	const gchar* _tmp8_;
 	gchar* _tmp9_;
-#line 1867 "ValaProjectSettingsPopover.vala"
+#line 1808 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 1867 "ValaProjectSettingsPopover.vala"
+#line 1808 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _tmp0_->selected_target;
-#line 1867 "ValaProjectSettingsPopover.vala"
+#line 1808 "ValaProjectSettingsPopover.vala"
 	if (_tmp1_ == NULL) {
-#line 1868 "ValaProjectSettingsPopover.vala"
+#line 1809 "ValaProjectSettingsPopover.vala"
 		return;
-#line 12082 "ValaProjectSettingsPopover.vala.c"
+#line 11654 "ValaProjectSettingsPopover.vala.c"
 	}
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->priv->_this;
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _tmp2_->selected_target;
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = gtk_entry_get_buffer (_tmp4_);
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = _tmp5_;
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = gtk_entry_buffer_get_text (_tmp6_);
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = _tmp7_;
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = g_strdup (_tmp8_);
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_g_free0 (_tmp3_->execute_args);
-#line 1870 "ValaProjectSettingsPopover.vala"
+#line 1811 "ValaProjectSettingsPopover.vala"
 	_tmp3_->execute_args = _tmp9_;
-#line 12104 "ValaProjectSettingsPopover.vala.c"
+#line 11676 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-___lambda136__gtk_editable_changed (GtkEditable* _sender,
+___lambda135__gtk_editable_changed (GtkEditable* _sender,
                                     gpointer self)
 {
-#line 1866 "ValaProjectSettingsPopover.vala"
-	__lambda136_ ((ValaProjectSettingsPopoverXcls_build_execute_args*) self);
-#line 12113 "ValaProjectSettingsPopover.vala.c"
+#line 1807 "ValaProjectSettingsPopover.vala"
+	__lambda135_ ((ValaProjectSettingsPopoverXcls_build_execute_args*) self);
+#line 11685 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_build_execute_args*
@@ -12123,86 +11695,86 @@ vala_project_settings_popover_xcls_build_execute_args_construct (GType object_ty
 	GtkEntry* _tmp3_;
 	GtkEntry* _tmp4_;
 	GtkEntry* _tmp5_;
-#line 1854 "ValaProjectSettingsPopover.vala"
+#line 1795 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_build_execute_args*) g_object_new (object_type, NULL);
-#line 1856 "ValaProjectSettingsPopover.vala"
+#line 1797 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1856 "ValaProjectSettingsPopover.vala"
+#line 1797 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1856 "ValaProjectSettingsPopover.vala"
+#line 1797 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1857 "ValaProjectSettingsPopover.vala"
+#line 1798 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1857 "ValaProjectSettingsPopover.vala"
+#line 1798 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1857 "ValaProjectSettingsPopover.vala"
+#line 1798 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->build_execute_args);
-#line 1857 "ValaProjectSettingsPopover.vala"
+#line 1798 "ValaProjectSettingsPopover.vala"
 	_tmp1_->build_execute_args = _tmp2_;
-#line 1858 "ValaProjectSettingsPopover.vala"
+#line 1799 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkEntry*) gtk_entry_new ();
-#line 1858 "ValaProjectSettingsPopover.vala"
+#line 1799 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1858 "ValaProjectSettingsPopover.vala"
+#line 1799 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1858 "ValaProjectSettingsPopover.vala"
+#line 1799 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 1863 "ValaProjectSettingsPopover.vala"
+#line 1804 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 1863 "ValaProjectSettingsPopover.vala"
+#line 1804 "ValaProjectSettingsPopover.vala"
 	gtk_entry_set_placeholder_text (_tmp4_, "eg.  -f somefile -g ");
-#line 1866 "ValaProjectSettingsPopover.vala"
+#line 1807 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 1866 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object ((GtkEditable*) _tmp5_, "changed", (GCallback) ___lambda136__gtk_editable_changed, self, 0);
-#line 1854 "ValaProjectSettingsPopover.vala"
+#line 1807 "ValaProjectSettingsPopover.vala"
+	g_signal_connect_object ((GtkEditable*) _tmp5_, "changed", (GCallback) ___lambda135__gtk_editable_changed, self, 0);
+#line 1795 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 12161 "ValaProjectSettingsPopover.vala.c"
+#line 11733 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_build_execute_args*
 vala_project_settings_popover_xcls_build_execute_args_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1854 "ValaProjectSettingsPopover.vala"
+#line 1795 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_build_execute_args_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_EXECUTE_ARGS, _owner);
-#line 12169 "ValaProjectSettingsPopover.vala.c"
+#line 11741 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_build_execute_args_class_init (ValaProjectSettingsPopoverXcls_build_execute_argsClass * klass,
                                                                   gpointer klass_data)
 {
-#line 1845 "ValaProjectSettingsPopover.vala"
+#line 1786 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_build_execute_args_parent_class = g_type_class_peek_parent (klass);
-#line 1845 "ValaProjectSettingsPopover.vala"
+#line 1786 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_build_execute_args_private_offset);
-#line 1845 "ValaProjectSettingsPopover.vala"
+#line 1786 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_build_execute_args_finalize;
-#line 12182 "ValaProjectSettingsPopover.vala.c"
+#line 11754 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_build_execute_args_instance_init (ValaProjectSettingsPopoverXcls_build_execute_args * self,
                                                                      gpointer klass)
 {
-#line 1845 "ValaProjectSettingsPopover.vala"
+#line 1786 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_build_execute_args_get_instance_private (self);
-#line 12191 "ValaProjectSettingsPopover.vala.c"
+#line 11763 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_build_execute_args_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_build_execute_args * self;
-#line 1845 "ValaProjectSettingsPopover.vala"
+#line 1786 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_EXECUTE_ARGS, ValaProjectSettingsPopoverXcls_build_execute_args);
-#line 1847 "ValaProjectSettingsPopover.vala"
+#line 1788 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1848 "ValaProjectSettingsPopover.vala"
+#line 1789 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1845 "ValaProjectSettingsPopover.vala"
+#line 1786 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_build_execute_args_parent_class)->finalize (obj);
-#line 12206 "ValaProjectSettingsPopover.vala.c"
+#line 11778 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -12228,16 +11800,16 @@ vala_project_settings_popover_xcls_build_execute_args_get_type (void)
 }
 
 static inline gpointer
-vala_project_settings_popover_xcls_box57_get_instance_private (ValaProjectSettingsPopoverXcls_Box57* self)
+vala_project_settings_popover_xcls_box55_get_instance_private (ValaProjectSettingsPopoverXcls_Box55* self)
 {
-	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_Box57_private_offset);
+	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_Box55_private_offset);
 }
 
-ValaProjectSettingsPopoverXcls_Box57*
-vala_project_settings_popover_xcls_box57_construct (GType object_type,
+ValaProjectSettingsPopoverXcls_Box55*
+vala_project_settings_popover_xcls_box55_construct (GType object_type,
                                                     ValaProjectSettingsPopover* _owner)
 {
-	ValaProjectSettingsPopoverXcls_Box57 * self = NULL;
+	ValaProjectSettingsPopoverXcls_Box55 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkBox* _tmp1_;
 	GtkBox* _tmp2_;
@@ -12245,14 +11817,14 @@ vala_project_settings_popover_xcls_box57_construct (GType object_type,
 	GtkBox* _tmp4_;
 	GtkBox* _tmp5_;
 	GtkBox* _tmp6_;
-	ValaProjectSettingsPopoverXcls_Button58* child_1 = NULL;
+	ValaProjectSettingsPopoverXcls_Button56* child_1 = NULL;
 	ValaProjectSettingsPopover* _tmp7_;
-	ValaProjectSettingsPopoverXcls_Button58* _tmp8_;
+	ValaProjectSettingsPopoverXcls_Button56* _tmp8_;
 	GtkBox* _tmp9_;
 	GtkButton* _tmp10_;
-	ValaProjectSettingsPopoverXcls_Label59* child_2 = NULL;
+	ValaProjectSettingsPopoverXcls_Label57* child_2 = NULL;
 	ValaProjectSettingsPopover* _tmp11_;
-	ValaProjectSettingsPopoverXcls_Label59* _tmp12_;
+	ValaProjectSettingsPopoverXcls_Label57* _tmp12_;
 	GtkBox* _tmp13_;
 	GtkLabel* _tmp14_;
 	ValaProjectSettingsPopoverXcls_save_btn* child_3 = NULL;
@@ -12260,403 +11832,403 @@ vala_project_settings_popover_xcls_box57_construct (GType object_type,
 	ValaProjectSettingsPopoverXcls_save_btn* _tmp16_;
 	GtkBox* _tmp17_;
 	GtkButton* _tmp18_;
-#line 1891 "ValaProjectSettingsPopover.vala"
-	self = (ValaProjectSettingsPopoverXcls_Box57*) g_object_new (object_type, NULL);
-#line 1893 "ValaProjectSettingsPopover.vala"
+#line 1832 "ValaProjectSettingsPopover.vala"
+	self = (ValaProjectSettingsPopoverXcls_Box55*) g_object_new (object_type, NULL);
+#line 1834 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1893 "ValaProjectSettingsPopover.vala"
+#line 1834 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1893 "ValaProjectSettingsPopover.vala"
+#line 1834 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1894 "ValaProjectSettingsPopover.vala"
+#line 1835 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-#line 1894 "ValaProjectSettingsPopover.vala"
+#line 1835 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1894 "ValaProjectSettingsPopover.vala"
+#line 1835 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1894 "ValaProjectSettingsPopover.vala"
+#line 1835 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1899 "ValaProjectSettingsPopover.vala"
+#line 1840 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1899 "ValaProjectSettingsPopover.vala"
+#line 1840 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_margin_end ((GtkWidget*) _tmp2_, 4);
-#line 1900 "ValaProjectSettingsPopover.vala"
+#line 1841 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 1900 "ValaProjectSettingsPopover.vala"
+#line 1841 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_margin_start ((GtkWidget*) _tmp3_, 4);
-#line 1901 "ValaProjectSettingsPopover.vala"
+#line 1842 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 1901 "ValaProjectSettingsPopover.vala"
+#line 1842 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp4_, TRUE);
-#line 1902 "ValaProjectSettingsPopover.vala"
+#line 1843 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
-#line 1902 "ValaProjectSettingsPopover.vala"
+#line 1843 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_margin_bottom ((GtkWidget*) _tmp5_, 4);
-#line 1903 "ValaProjectSettingsPopover.vala"
+#line 1844 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
-#line 1903 "ValaProjectSettingsPopover.vala"
+#line 1844 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_margin_top ((GtkWidget*) _tmp6_, 4);
-#line 1904 "ValaProjectSettingsPopover.vala"
+#line 1845 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = self->priv->_this;
-#line 1904 "ValaProjectSettingsPopover.vala"
-	_tmp8_ = vala_project_settings_popover_xcls_button58_new (_tmp7_);
-#line 1904 "ValaProjectSettingsPopover.vala"
+#line 1845 "ValaProjectSettingsPopover.vala"
+	_tmp8_ = vala_project_settings_popover_xcls_button56_new (_tmp7_);
+#line 1845 "ValaProjectSettingsPopover.vala"
 	child_1 = _tmp8_;
-#line 1905 "ValaProjectSettingsPopover.vala"
+#line 1846 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_1);
-#line 1906 "ValaProjectSettingsPopover.vala"
+#line 1847 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->el;
-#line 1906 "ValaProjectSettingsPopover.vala"
+#line 1847 "ValaProjectSettingsPopover.vala"
 	_tmp10_ = child_1->el;
-#line 1906 "ValaProjectSettingsPopover.vala"
+#line 1847 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp9_, (GtkWidget*) _tmp10_);
-#line 1907 "ValaProjectSettingsPopover.vala"
+#line 1848 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = self->priv->_this;
-#line 1907 "ValaProjectSettingsPopover.vala"
-	_tmp12_ = vala_project_settings_popover_xcls_label59_new (_tmp11_);
-#line 1907 "ValaProjectSettingsPopover.vala"
+#line 1848 "ValaProjectSettingsPopover.vala"
+	_tmp12_ = vala_project_settings_popover_xcls_label57_new (_tmp11_);
+#line 1848 "ValaProjectSettingsPopover.vala"
 	child_2 = _tmp12_;
-#line 1908 "ValaProjectSettingsPopover.vala"
+#line 1849 "ValaProjectSettingsPopover.vala"
 	g_object_ref ((GObject*) child_2);
-#line 1909 "ValaProjectSettingsPopover.vala"
+#line 1850 "ValaProjectSettingsPopover.vala"
 	_tmp13_ = self->el;
-#line 1909 "ValaProjectSettingsPopover.vala"
+#line 1850 "ValaProjectSettingsPopover.vala"
 	_tmp14_ = child_2->el;
-#line 1909 "ValaProjectSettingsPopover.vala"
+#line 1850 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp13_, (GtkWidget*) _tmp14_);
-#line 1910 "ValaProjectSettingsPopover.vala"
+#line 1851 "ValaProjectSettingsPopover.vala"
 	_tmp15_ = self->priv->_this;
-#line 1910 "ValaProjectSettingsPopover.vala"
+#line 1851 "ValaProjectSettingsPopover.vala"
 	_tmp16_ = vala_project_settings_popover_xcls_save_btn_new (_tmp15_);
-#line 1910 "ValaProjectSettingsPopover.vala"
+#line 1851 "ValaProjectSettingsPopover.vala"
 	child_3 = _tmp16_;
-#line 1911 "ValaProjectSettingsPopover.vala"
+#line 1852 "ValaProjectSettingsPopover.vala"
 	_tmp17_ = self->el;
-#line 1911 "ValaProjectSettingsPopover.vala"
+#line 1852 "ValaProjectSettingsPopover.vala"
 	_tmp18_ = child_3->el;
-#line 1911 "ValaProjectSettingsPopover.vala"
+#line 1852 "ValaProjectSettingsPopover.vala"
 	gtk_box_append (_tmp17_, (GtkWidget*) _tmp18_);
-#line 1891 "ValaProjectSettingsPopover.vala"
+#line 1832 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_3);
-#line 1891 "ValaProjectSettingsPopover.vala"
+#line 1832 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
-#line 1891 "ValaProjectSettingsPopover.vala"
+#line 1832 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
-#line 1891 "ValaProjectSettingsPopover.vala"
+#line 1832 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 12348 "ValaProjectSettingsPopover.vala.c"
+#line 11920 "ValaProjectSettingsPopover.vala.c"
 }
 
-ValaProjectSettingsPopoverXcls_Box57*
-vala_project_settings_popover_xcls_box57_new (ValaProjectSettingsPopover* _owner)
+ValaProjectSettingsPopoverXcls_Box55*
+vala_project_settings_popover_xcls_box55_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1891 "ValaProjectSettingsPopover.vala"
-	return vala_project_settings_popover_xcls_box57_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX57, _owner);
-#line 12356 "ValaProjectSettingsPopover.vala.c"
+#line 1832 "ValaProjectSettingsPopover.vala"
+	return vala_project_settings_popover_xcls_box55_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX55, _owner);
+#line 11928 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_box57_class_init (ValaProjectSettingsPopoverXcls_Box57Class * klass,
+vala_project_settings_popover_xcls_box55_class_init (ValaProjectSettingsPopoverXcls_Box55Class * klass,
                                                      gpointer klass_data)
 {
-#line 1882 "ValaProjectSettingsPopover.vala"
-	vala_project_settings_popover_xcls_box57_parent_class = g_type_class_peek_parent (klass);
-#line 1882 "ValaProjectSettingsPopover.vala"
-	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Box57_private_offset);
-#line 1882 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_box57_finalize;
-#line 12369 "ValaProjectSettingsPopover.vala.c"
+#line 1823 "ValaProjectSettingsPopover.vala"
+	vala_project_settings_popover_xcls_box55_parent_class = g_type_class_peek_parent (klass);
+#line 1823 "ValaProjectSettingsPopover.vala"
+	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Box55_private_offset);
+#line 1823 "ValaProjectSettingsPopover.vala"
+	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_box55_finalize;
+#line 11941 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_box57_instance_init (ValaProjectSettingsPopoverXcls_Box57 * self,
+vala_project_settings_popover_xcls_box55_instance_init (ValaProjectSettingsPopoverXcls_Box55 * self,
                                                         gpointer klass)
 {
-#line 1882 "ValaProjectSettingsPopover.vala"
-	self->priv = vala_project_settings_popover_xcls_box57_get_instance_private (self);
-#line 12378 "ValaProjectSettingsPopover.vala.c"
+#line 1823 "ValaProjectSettingsPopover.vala"
+	self->priv = vala_project_settings_popover_xcls_box55_get_instance_private (self);
+#line 11950 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_box57_finalize (GObject * obj)
+vala_project_settings_popover_xcls_box55_finalize (GObject * obj)
 {
-	ValaProjectSettingsPopoverXcls_Box57 * self;
-#line 1882 "ValaProjectSettingsPopover.vala"
-	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX57, ValaProjectSettingsPopoverXcls_Box57);
-#line 1884 "ValaProjectSettingsPopover.vala"
+	ValaProjectSettingsPopoverXcls_Box55 * self;
+#line 1823 "ValaProjectSettingsPopover.vala"
+	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BOX55, ValaProjectSettingsPopoverXcls_Box55);
+#line 1825 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1885 "ValaProjectSettingsPopover.vala"
+#line 1826 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1882 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (vala_project_settings_popover_xcls_box57_parent_class)->finalize (obj);
-#line 12393 "ValaProjectSettingsPopover.vala.c"
+#line 1823 "ValaProjectSettingsPopover.vala"
+	G_OBJECT_CLASS (vala_project_settings_popover_xcls_box55_parent_class)->finalize (obj);
+#line 11965 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
-vala_project_settings_popover_xcls_box57_get_type_once (void)
+vala_project_settings_popover_xcls_box55_get_type_once (void)
 {
-	static const GTypeInfo g_define_type_info = { sizeof (ValaProjectSettingsPopoverXcls_Box57Class), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) vala_project_settings_popover_xcls_box57_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (ValaProjectSettingsPopoverXcls_Box57), 0, (GInstanceInitFunc) vala_project_settings_popover_xcls_box57_instance_init, NULL };
-	GType vala_project_settings_popover_xcls_box57_type_id;
-	vala_project_settings_popover_xcls_box57_type_id = g_type_register_static (G_TYPE_OBJECT, "ValaProjectSettingsPopoverXcls_Box57", &g_define_type_info, 0);
-	ValaProjectSettingsPopoverXcls_Box57_private_offset = g_type_add_instance_private (vala_project_settings_popover_xcls_box57_type_id, sizeof (ValaProjectSettingsPopoverXcls_Box57Private));
-	return vala_project_settings_popover_xcls_box57_type_id;
+	static const GTypeInfo g_define_type_info = { sizeof (ValaProjectSettingsPopoverXcls_Box55Class), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) vala_project_settings_popover_xcls_box55_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (ValaProjectSettingsPopoverXcls_Box55), 0, (GInstanceInitFunc) vala_project_settings_popover_xcls_box55_instance_init, NULL };
+	GType vala_project_settings_popover_xcls_box55_type_id;
+	vala_project_settings_popover_xcls_box55_type_id = g_type_register_static (G_TYPE_OBJECT, "ValaProjectSettingsPopoverXcls_Box55", &g_define_type_info, 0);
+	ValaProjectSettingsPopoverXcls_Box55_private_offset = g_type_add_instance_private (vala_project_settings_popover_xcls_box55_type_id, sizeof (ValaProjectSettingsPopoverXcls_Box55Private));
+	return vala_project_settings_popover_xcls_box55_type_id;
 }
 
 GType
-vala_project_settings_popover_xcls_box57_get_type (void)
+vala_project_settings_popover_xcls_box55_get_type (void)
 {
-	static volatile gsize vala_project_settings_popover_xcls_box57_type_id__once = 0;
-	if (g_once_init_enter (&vala_project_settings_popover_xcls_box57_type_id__once)) {
-		GType vala_project_settings_popover_xcls_box57_type_id;
-		vala_project_settings_popover_xcls_box57_type_id = vala_project_settings_popover_xcls_box57_get_type_once ();
-		g_once_init_leave (&vala_project_settings_popover_xcls_box57_type_id__once, vala_project_settings_popover_xcls_box57_type_id);
+	static volatile gsize vala_project_settings_popover_xcls_box55_type_id__once = 0;
+	if (g_once_init_enter (&vala_project_settings_popover_xcls_box55_type_id__once)) {
+		GType vala_project_settings_popover_xcls_box55_type_id;
+		vala_project_settings_popover_xcls_box55_type_id = vala_project_settings_popover_xcls_box55_get_type_once ();
+		g_once_init_leave (&vala_project_settings_popover_xcls_box55_type_id__once, vala_project_settings_popover_xcls_box55_type_id);
 	}
-	return vala_project_settings_popover_xcls_box57_type_id__once;
+	return vala_project_settings_popover_xcls_box55_type_id__once;
 }
 
 static inline gpointer
-vala_project_settings_popover_xcls_button58_get_instance_private (ValaProjectSettingsPopoverXcls_Button58* self)
+vala_project_settings_popover_xcls_button56_get_instance_private (ValaProjectSettingsPopoverXcls_Button56* self)
 {
-	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_Button58_private_offset);
+	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_Button56_private_offset);
 }
 
 static void
-__lambda141_ (ValaProjectSettingsPopoverXcls_Button58* self)
+__lambda140_ (ValaProjectSettingsPopoverXcls_Button56* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ValaProjectSettingsPopover* _tmp1_;
 	GtkWindow* _tmp2_;
-#line 1938 "ValaProjectSettingsPopover.vala"
+#line 1879 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 1938 "ValaProjectSettingsPopover.vala"
+#line 1879 "ValaProjectSettingsPopover.vala"
 	_tmp0_->done = TRUE;
-#line 1939 "ValaProjectSettingsPopover.vala"
+#line 1880 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1939 "ValaProjectSettingsPopover.vala"
+#line 1880 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _tmp1_->el;
-#line 1939 "ValaProjectSettingsPopover.vala"
+#line 1880 "ValaProjectSettingsPopover.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp2_);
-#line 12440 "ValaProjectSettingsPopover.vala.c"
+#line 12012 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-___lambda141__gtk_button_clicked (GtkButton* _sender,
+___lambda140__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1936 "ValaProjectSettingsPopover.vala"
-	__lambda141_ ((ValaProjectSettingsPopoverXcls_Button58*) self);
-#line 12449 "ValaProjectSettingsPopover.vala.c"
+#line 1877 "ValaProjectSettingsPopover.vala"
+	__lambda140_ ((ValaProjectSettingsPopoverXcls_Button56*) self);
+#line 12021 "ValaProjectSettingsPopover.vala.c"
 }
 
-ValaProjectSettingsPopoverXcls_Button58*
-vala_project_settings_popover_xcls_button58_construct (GType object_type,
+ValaProjectSettingsPopoverXcls_Button56*
+vala_project_settings_popover_xcls_button56_construct (GType object_type,
                                                        ValaProjectSettingsPopover* _owner)
 {
-	ValaProjectSettingsPopoverXcls_Button58 * self = NULL;
+	ValaProjectSettingsPopoverXcls_Button56 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkButton* _tmp1_;
 	GtkButton* _tmp2_;
 	GtkButton* _tmp3_;
-#line 1925 "ValaProjectSettingsPopover.vala"
-	self = (ValaProjectSettingsPopoverXcls_Button58*) g_object_new (object_type, NULL);
-#line 1927 "ValaProjectSettingsPopover.vala"
+#line 1866 "ValaProjectSettingsPopover.vala"
+	self = (ValaProjectSettingsPopoverXcls_Button56*) g_object_new (object_type, NULL);
+#line 1868 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1927 "ValaProjectSettingsPopover.vala"
+#line 1868 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1927 "ValaProjectSettingsPopover.vala"
+#line 1868 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1928 "ValaProjectSettingsPopover.vala"
+#line 1869 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 1928 "ValaProjectSettingsPopover.vala"
+#line 1869 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1928 "ValaProjectSettingsPopover.vala"
+#line 1869 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1928 "ValaProjectSettingsPopover.vala"
+#line 1869 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1933 "ValaProjectSettingsPopover.vala"
+#line 1874 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1933 "ValaProjectSettingsPopover.vala"
+#line 1874 "ValaProjectSettingsPopover.vala"
 	gtk_button_set_label (_tmp2_, "Cancel");
-#line 1936 "ValaProjectSettingsPopover.vala"
+#line 1877 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
-#line 1936 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda141__gtk_button_clicked, self, 0);
-#line 1925 "ValaProjectSettingsPopover.vala"
+#line 1877 "ValaProjectSettingsPopover.vala"
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda140__gtk_button_clicked, self, 0);
+#line 1866 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 12487 "ValaProjectSettingsPopover.vala.c"
+#line 12059 "ValaProjectSettingsPopover.vala.c"
 }
 
-ValaProjectSettingsPopoverXcls_Button58*
-vala_project_settings_popover_xcls_button58_new (ValaProjectSettingsPopover* _owner)
+ValaProjectSettingsPopoverXcls_Button56*
+vala_project_settings_popover_xcls_button56_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1925 "ValaProjectSettingsPopover.vala"
-	return vala_project_settings_popover_xcls_button58_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON58, _owner);
-#line 12495 "ValaProjectSettingsPopover.vala.c"
+#line 1866 "ValaProjectSettingsPopover.vala"
+	return vala_project_settings_popover_xcls_button56_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON56, _owner);
+#line 12067 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_button58_class_init (ValaProjectSettingsPopoverXcls_Button58Class * klass,
+vala_project_settings_popover_xcls_button56_class_init (ValaProjectSettingsPopoverXcls_Button56Class * klass,
                                                         gpointer klass_data)
 {
-#line 1916 "ValaProjectSettingsPopover.vala"
-	vala_project_settings_popover_xcls_button58_parent_class = g_type_class_peek_parent (klass);
-#line 1916 "ValaProjectSettingsPopover.vala"
-	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Button58_private_offset);
-#line 1916 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_button58_finalize;
-#line 12508 "ValaProjectSettingsPopover.vala.c"
+#line 1857 "ValaProjectSettingsPopover.vala"
+	vala_project_settings_popover_xcls_button56_parent_class = g_type_class_peek_parent (klass);
+#line 1857 "ValaProjectSettingsPopover.vala"
+	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Button56_private_offset);
+#line 1857 "ValaProjectSettingsPopover.vala"
+	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_button56_finalize;
+#line 12080 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_button58_instance_init (ValaProjectSettingsPopoverXcls_Button58 * self,
+vala_project_settings_popover_xcls_button56_instance_init (ValaProjectSettingsPopoverXcls_Button56 * self,
                                                            gpointer klass)
 {
-#line 1916 "ValaProjectSettingsPopover.vala"
-	self->priv = vala_project_settings_popover_xcls_button58_get_instance_private (self);
-#line 12517 "ValaProjectSettingsPopover.vala.c"
+#line 1857 "ValaProjectSettingsPopover.vala"
+	self->priv = vala_project_settings_popover_xcls_button56_get_instance_private (self);
+#line 12089 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_button58_finalize (GObject * obj)
+vala_project_settings_popover_xcls_button56_finalize (GObject * obj)
 {
-	ValaProjectSettingsPopoverXcls_Button58 * self;
-#line 1916 "ValaProjectSettingsPopover.vala"
-	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON58, ValaProjectSettingsPopoverXcls_Button58);
-#line 1918 "ValaProjectSettingsPopover.vala"
+	ValaProjectSettingsPopoverXcls_Button56 * self;
+#line 1857 "ValaProjectSettingsPopover.vala"
+	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUTTON56, ValaProjectSettingsPopoverXcls_Button56);
+#line 1859 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1919 "ValaProjectSettingsPopover.vala"
+#line 1860 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1916 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (vala_project_settings_popover_xcls_button58_parent_class)->finalize (obj);
-#line 12532 "ValaProjectSettingsPopover.vala.c"
+#line 1857 "ValaProjectSettingsPopover.vala"
+	G_OBJECT_CLASS (vala_project_settings_popover_xcls_button56_parent_class)->finalize (obj);
+#line 12104 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
-vala_project_settings_popover_xcls_button58_get_type_once (void)
+vala_project_settings_popover_xcls_button56_get_type_once (void)
 {
-	static const GTypeInfo g_define_type_info = { sizeof (ValaProjectSettingsPopoverXcls_Button58Class), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) vala_project_settings_popover_xcls_button58_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (ValaProjectSettingsPopoverXcls_Button58), 0, (GInstanceInitFunc) vala_project_settings_popover_xcls_button58_instance_init, NULL };
-	GType vala_project_settings_popover_xcls_button58_type_id;
-	vala_project_settings_popover_xcls_button58_type_id = g_type_register_static (G_TYPE_OBJECT, "ValaProjectSettingsPopoverXcls_Button58", &g_define_type_info, 0);
-	ValaProjectSettingsPopoverXcls_Button58_private_offset = g_type_add_instance_private (vala_project_settings_popover_xcls_button58_type_id, sizeof (ValaProjectSettingsPopoverXcls_Button58Private));
-	return vala_project_settings_popover_xcls_button58_type_id;
+	static const GTypeInfo g_define_type_info = { sizeof (ValaProjectSettingsPopoverXcls_Button56Class), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) vala_project_settings_popover_xcls_button56_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (ValaProjectSettingsPopoverXcls_Button56), 0, (GInstanceInitFunc) vala_project_settings_popover_xcls_button56_instance_init, NULL };
+	GType vala_project_settings_popover_xcls_button56_type_id;
+	vala_project_settings_popover_xcls_button56_type_id = g_type_register_static (G_TYPE_OBJECT, "ValaProjectSettingsPopoverXcls_Button56", &g_define_type_info, 0);
+	ValaProjectSettingsPopoverXcls_Button56_private_offset = g_type_add_instance_private (vala_project_settings_popover_xcls_button56_type_id, sizeof (ValaProjectSettingsPopoverXcls_Button56Private));
+	return vala_project_settings_popover_xcls_button56_type_id;
 }
 
 GType
-vala_project_settings_popover_xcls_button58_get_type (void)
+vala_project_settings_popover_xcls_button56_get_type (void)
 {
-	static volatile gsize vala_project_settings_popover_xcls_button58_type_id__once = 0;
-	if (g_once_init_enter (&vala_project_settings_popover_xcls_button58_type_id__once)) {
-		GType vala_project_settings_popover_xcls_button58_type_id;
-		vala_project_settings_popover_xcls_button58_type_id = vala_project_settings_popover_xcls_button58_get_type_once ();
-		g_once_init_leave (&vala_project_settings_popover_xcls_button58_type_id__once, vala_project_settings_popover_xcls_button58_type_id);
+	static volatile gsize vala_project_settings_popover_xcls_button56_type_id__once = 0;
+	if (g_once_init_enter (&vala_project_settings_popover_xcls_button56_type_id__once)) {
+		GType vala_project_settings_popover_xcls_button56_type_id;
+		vala_project_settings_popover_xcls_button56_type_id = vala_project_settings_popover_xcls_button56_get_type_once ();
+		g_once_init_leave (&vala_project_settings_popover_xcls_button56_type_id__once, vala_project_settings_popover_xcls_button56_type_id);
 	}
-	return vala_project_settings_popover_xcls_button58_type_id__once;
+	return vala_project_settings_popover_xcls_button56_type_id__once;
 }
 
 static inline gpointer
-vala_project_settings_popover_xcls_label59_get_instance_private (ValaProjectSettingsPopoverXcls_Label59* self)
+vala_project_settings_popover_xcls_label57_get_instance_private (ValaProjectSettingsPopoverXcls_Label57* self)
 {
-	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_Label59_private_offset);
+	return G_STRUCT_MEMBER_P (self, ValaProjectSettingsPopoverXcls_Label57_private_offset);
 }
 
-ValaProjectSettingsPopoverXcls_Label59*
-vala_project_settings_popover_xcls_label59_construct (GType object_type,
+ValaProjectSettingsPopoverXcls_Label57*
+vala_project_settings_popover_xcls_label57_construct (GType object_type,
                                                       ValaProjectSettingsPopover* _owner)
 {
-	ValaProjectSettingsPopoverXcls_Label59 * self = NULL;
+	ValaProjectSettingsPopoverXcls_Label57 * self = NULL;
 	ValaProjectSettingsPopover* _tmp0_;
 	GtkLabel* _tmp1_;
 	GtkLabel* _tmp2_;
-#line 1955 "ValaProjectSettingsPopover.vala"
-	self = (ValaProjectSettingsPopoverXcls_Label59*) g_object_new (object_type, NULL);
-#line 1957 "ValaProjectSettingsPopover.vala"
+#line 1896 "ValaProjectSettingsPopover.vala"
+	self = (ValaProjectSettingsPopoverXcls_Label57*) g_object_new (object_type, NULL);
+#line 1898 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1957 "ValaProjectSettingsPopover.vala"
+#line 1898 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1957 "ValaProjectSettingsPopover.vala"
+#line 1898 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1958 "ValaProjectSettingsPopover.vala"
+#line 1899 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = (GtkLabel*) gtk_label_new ("");
-#line 1958 "ValaProjectSettingsPopover.vala"
+#line 1899 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1958 "ValaProjectSettingsPopover.vala"
+#line 1899 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1958 "ValaProjectSettingsPopover.vala"
+#line 1899 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp1_;
-#line 1963 "ValaProjectSettingsPopover.vala"
+#line 1904 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
-#line 1963 "ValaProjectSettingsPopover.vala"
+#line 1904 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 1955 "ValaProjectSettingsPopover.vala"
+#line 1896 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 12593 "ValaProjectSettingsPopover.vala.c"
+#line 12165 "ValaProjectSettingsPopover.vala.c"
 }
 
-ValaProjectSettingsPopoverXcls_Label59*
-vala_project_settings_popover_xcls_label59_new (ValaProjectSettingsPopover* _owner)
+ValaProjectSettingsPopoverXcls_Label57*
+vala_project_settings_popover_xcls_label57_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1955 "ValaProjectSettingsPopover.vala"
-	return vala_project_settings_popover_xcls_label59_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL59, _owner);
-#line 12601 "ValaProjectSettingsPopover.vala.c"
+#line 1896 "ValaProjectSettingsPopover.vala"
+	return vala_project_settings_popover_xcls_label57_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL57, _owner);
+#line 12173 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_label59_class_init (ValaProjectSettingsPopoverXcls_Label59Class * klass,
+vala_project_settings_popover_xcls_label57_class_init (ValaProjectSettingsPopoverXcls_Label57Class * klass,
                                                        gpointer klass_data)
 {
-#line 1946 "ValaProjectSettingsPopover.vala"
-	vala_project_settings_popover_xcls_label59_parent_class = g_type_class_peek_parent (klass);
-#line 1946 "ValaProjectSettingsPopover.vala"
-	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Label59_private_offset);
-#line 1946 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label59_finalize;
-#line 12614 "ValaProjectSettingsPopover.vala.c"
+#line 1887 "ValaProjectSettingsPopover.vala"
+	vala_project_settings_popover_xcls_label57_parent_class = g_type_class_peek_parent (klass);
+#line 1887 "ValaProjectSettingsPopover.vala"
+	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_Label57_private_offset);
+#line 1887 "ValaProjectSettingsPopover.vala"
+	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_label57_finalize;
+#line 12186 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_label59_instance_init (ValaProjectSettingsPopoverXcls_Label59 * self,
+vala_project_settings_popover_xcls_label57_instance_init (ValaProjectSettingsPopoverXcls_Label57 * self,
                                                           gpointer klass)
 {
-#line 1946 "ValaProjectSettingsPopover.vala"
-	self->priv = vala_project_settings_popover_xcls_label59_get_instance_private (self);
-#line 12623 "ValaProjectSettingsPopover.vala.c"
+#line 1887 "ValaProjectSettingsPopover.vala"
+	self->priv = vala_project_settings_popover_xcls_label57_get_instance_private (self);
+#line 12195 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-vala_project_settings_popover_xcls_label59_finalize (GObject * obj)
+vala_project_settings_popover_xcls_label57_finalize (GObject * obj)
 {
-	ValaProjectSettingsPopoverXcls_Label59 * self;
-#line 1946 "ValaProjectSettingsPopover.vala"
-	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL59, ValaProjectSettingsPopoverXcls_Label59);
-#line 1948 "ValaProjectSettingsPopover.vala"
+	ValaProjectSettingsPopoverXcls_Label57 * self;
+#line 1887 "ValaProjectSettingsPopover.vala"
+	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_LABEL57, ValaProjectSettingsPopoverXcls_Label57);
+#line 1889 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1949 "ValaProjectSettingsPopover.vala"
+#line 1890 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1946 "ValaProjectSettingsPopover.vala"
-	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label59_parent_class)->finalize (obj);
-#line 12638 "ValaProjectSettingsPopover.vala.c"
+#line 1887 "ValaProjectSettingsPopover.vala"
+	G_OBJECT_CLASS (vala_project_settings_popover_xcls_label57_parent_class)->finalize (obj);
+#line 12210 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
-vala_project_settings_popover_xcls_label59_get_type_once (void)
+vala_project_settings_popover_xcls_label57_get_type_once (void)
 {
-	static const GTypeInfo g_define_type_info = { sizeof (ValaProjectSettingsPopoverXcls_Label59Class), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) vala_project_settings_popover_xcls_label59_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (ValaProjectSettingsPopoverXcls_Label59), 0, (GInstanceInitFunc) vala_project_settings_popover_xcls_label59_instance_init, NULL };
-	GType vala_project_settings_popover_xcls_label59_type_id;
-	vala_project_settings_popover_xcls_label59_type_id = g_type_register_static (G_TYPE_OBJECT, "ValaProjectSettingsPopoverXcls_Label59", &g_define_type_info, 0);
-	ValaProjectSettingsPopoverXcls_Label59_private_offset = g_type_add_instance_private (vala_project_settings_popover_xcls_label59_type_id, sizeof (ValaProjectSettingsPopoverXcls_Label59Private));
-	return vala_project_settings_popover_xcls_label59_type_id;
+	static const GTypeInfo g_define_type_info = { sizeof (ValaProjectSettingsPopoverXcls_Label57Class), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) vala_project_settings_popover_xcls_label57_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (ValaProjectSettingsPopoverXcls_Label57), 0, (GInstanceInitFunc) vala_project_settings_popover_xcls_label57_instance_init, NULL };
+	GType vala_project_settings_popover_xcls_label57_type_id;
+	vala_project_settings_popover_xcls_label57_type_id = g_type_register_static (G_TYPE_OBJECT, "ValaProjectSettingsPopoverXcls_Label57", &g_define_type_info, 0);
+	ValaProjectSettingsPopoverXcls_Label57_private_offset = g_type_add_instance_private (vala_project_settings_popover_xcls_label57_type_id, sizeof (ValaProjectSettingsPopoverXcls_Label57Private));
+	return vala_project_settings_popover_xcls_label57_type_id;
 }
 
 GType
-vala_project_settings_popover_xcls_label59_get_type (void)
+vala_project_settings_popover_xcls_label57_get_type (void)
 {
-	static volatile gsize vala_project_settings_popover_xcls_label59_type_id__once = 0;
-	if (g_once_init_enter (&vala_project_settings_popover_xcls_label59_type_id__once)) {
-		GType vala_project_settings_popover_xcls_label59_type_id;
-		vala_project_settings_popover_xcls_label59_type_id = vala_project_settings_popover_xcls_label59_get_type_once ();
-		g_once_init_leave (&vala_project_settings_popover_xcls_label59_type_id__once, vala_project_settings_popover_xcls_label59_type_id);
+	static volatile gsize vala_project_settings_popover_xcls_label57_type_id__once = 0;
+	if (g_once_init_enter (&vala_project_settings_popover_xcls_label57_type_id__once)) {
+		GType vala_project_settings_popover_xcls_label57_type_id;
+		vala_project_settings_popover_xcls_label57_type_id = vala_project_settings_popover_xcls_label57_get_type_once ();
+		g_once_init_leave (&vala_project_settings_popover_xcls_label57_type_id__once, vala_project_settings_popover_xcls_label57_type_id);
 	}
-	return vala_project_settings_popover_xcls_label59_type_id__once;
+	return vala_project_settings_popover_xcls_label57_type_id__once;
 }
 
 static inline gpointer
@@ -12666,39 +12238,39 @@ vala_project_settings_popover_xcls_save_btn_get_instance_private (ValaProjectSet
 }
 
 static void
-__lambda140_ (ValaProjectSettingsPopoverXcls_save_btn* self)
+__lambda139_ (ValaProjectSettingsPopoverXcls_save_btn* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ProjectGtk* _tmp1_;
 	ValaProjectSettingsPopover* _tmp2_;
 	ValaProjectSettingsPopover* _tmp3_;
 	GtkWindow* _tmp4_;
-#line 1994 "ValaProjectSettingsPopover.vala"
+#line 1935 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = self->priv->_this;
-#line 1994 "ValaProjectSettingsPopover.vala"
+#line 1935 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = _tmp0_->project;
-#line 1994 "ValaProjectSettingsPopover.vala"
+#line 1935 "ValaProjectSettingsPopover.vala"
 	project_project_save ((ProjectProject*) _tmp1_);
-#line 1997 "ValaProjectSettingsPopover.vala"
+#line 1938 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->priv->_this;
-#line 1997 "ValaProjectSettingsPopover.vala"
+#line 1938 "ValaProjectSettingsPopover.vala"
 	_tmp2_->done = TRUE;
-#line 1998 "ValaProjectSettingsPopover.vala"
+#line 1939 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->priv->_this;
-#line 1998 "ValaProjectSettingsPopover.vala"
+#line 1939 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = _tmp3_->el;
-#line 1998 "ValaProjectSettingsPopover.vala"
+#line 1939 "ValaProjectSettingsPopover.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp4_);
-#line 12693 "ValaProjectSettingsPopover.vala.c"
+#line 12265 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-___lambda140__gtk_button_clicked (GtkButton* _sender,
+___lambda139__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1991 "ValaProjectSettingsPopover.vala"
-	__lambda140_ ((ValaProjectSettingsPopoverXcls_save_btn*) self);
-#line 12702 "ValaProjectSettingsPopover.vala.c"
+#line 1932 "ValaProjectSettingsPopover.vala"
+	__lambda139_ ((ValaProjectSettingsPopoverXcls_save_btn*) self);
+#line 12274 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_save_btn*
@@ -12717,102 +12289,102 @@ vala_project_settings_popover_xcls_save_btn_construct (GType object_type,
 	gint _tmp7__length1;
 	GtkButton* _tmp8_;
 	GtkButton* _tmp9_;
-#line 1978 "ValaProjectSettingsPopover.vala"
+#line 1919 "ValaProjectSettingsPopover.vala"
 	self = (ValaProjectSettingsPopoverXcls_save_btn*) g_object_new (object_type, NULL);
-#line 1980 "ValaProjectSettingsPopover.vala"
+#line 1921 "ValaProjectSettingsPopover.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1980 "ValaProjectSettingsPopover.vala"
+#line 1921 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1980 "ValaProjectSettingsPopover.vala"
+#line 1921 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
-#line 1981 "ValaProjectSettingsPopover.vala"
+#line 1922 "ValaProjectSettingsPopover.vala"
 	_tmp1_ = self->priv->_this;
-#line 1981 "ValaProjectSettingsPopover.vala"
+#line 1922 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1981 "ValaProjectSettingsPopover.vala"
+#line 1922 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (_tmp1_->save_btn);
-#line 1981 "ValaProjectSettingsPopover.vala"
+#line 1922 "ValaProjectSettingsPopover.vala"
 	_tmp1_->save_btn = _tmp2_;
-#line 1982 "ValaProjectSettingsPopover.vala"
+#line 1923 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = (GtkButton*) gtk_button_new ();
-#line 1982 "ValaProjectSettingsPopover.vala"
+#line 1923 "ValaProjectSettingsPopover.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1982 "ValaProjectSettingsPopover.vala"
+#line 1923 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1982 "ValaProjectSettingsPopover.vala"
+#line 1923 "ValaProjectSettingsPopover.vala"
 	self->el = _tmp3_;
-#line 1987 "ValaProjectSettingsPopover.vala"
+#line 1928 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
-#line 1987 "ValaProjectSettingsPopover.vala"
+#line 1928 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = g_strdup ("suggested-action");
-#line 1987 "ValaProjectSettingsPopover.vala"
+#line 1928 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = g_new0 (gchar*, 1 + 1);
-#line 1987 "ValaProjectSettingsPopover.vala"
+#line 1928 "ValaProjectSettingsPopover.vala"
 	_tmp6_[0] = _tmp5_;
-#line 1987 "ValaProjectSettingsPopover.vala"
+#line 1928 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = _tmp6_;
-#line 1987 "ValaProjectSettingsPopover.vala"
+#line 1928 "ValaProjectSettingsPopover.vala"
 	_tmp7__length1 = 1;
-#line 1987 "ValaProjectSettingsPopover.vala"
+#line 1928 "ValaProjectSettingsPopover.vala"
 	gtk_widget_set_css_classes ((GtkWidget*) _tmp4_, _tmp7_);
-#line 1987 "ValaProjectSettingsPopover.vala"
+#line 1928 "ValaProjectSettingsPopover.vala"
 	_tmp7_ = (_vala_array_free (_tmp7_, _tmp7__length1, (GDestroyNotify) g_free), NULL);
-#line 1988 "ValaProjectSettingsPopover.vala"
+#line 1929 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
-#line 1988 "ValaProjectSettingsPopover.vala"
+#line 1929 "ValaProjectSettingsPopover.vala"
 	gtk_button_set_label (_tmp8_, "Save");
-#line 1991 "ValaProjectSettingsPopover.vala"
+#line 1932 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->el;
-#line 1991 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp9_, "clicked", (GCallback) ___lambda140__gtk_button_clicked, self, 0);
-#line 1978 "ValaProjectSettingsPopover.vala"
+#line 1932 "ValaProjectSettingsPopover.vala"
+	g_signal_connect_object (_tmp9_, "clicked", (GCallback) ___lambda139__gtk_button_clicked, self, 0);
+#line 1919 "ValaProjectSettingsPopover.vala"
 	return self;
-#line 12771 "ValaProjectSettingsPopover.vala.c"
+#line 12343 "ValaProjectSettingsPopover.vala.c"
 }
 
 ValaProjectSettingsPopoverXcls_save_btn*
 vala_project_settings_popover_xcls_save_btn_new (ValaProjectSettingsPopover* _owner)
 {
-#line 1978 "ValaProjectSettingsPopover.vala"
+#line 1919 "ValaProjectSettingsPopover.vala"
 	return vala_project_settings_popover_xcls_save_btn_construct (VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SAVE_BTN, _owner);
-#line 12779 "ValaProjectSettingsPopover.vala.c"
+#line 12351 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_save_btn_class_init (ValaProjectSettingsPopoverXcls_save_btnClass * klass,
                                                         gpointer klass_data)
 {
-#line 1969 "ValaProjectSettingsPopover.vala"
+#line 1910 "ValaProjectSettingsPopover.vala"
 	vala_project_settings_popover_xcls_save_btn_parent_class = g_type_class_peek_parent (klass);
-#line 1969 "ValaProjectSettingsPopover.vala"
+#line 1910 "ValaProjectSettingsPopover.vala"
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopoverXcls_save_btn_private_offset);
-#line 1969 "ValaProjectSettingsPopover.vala"
+#line 1910 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_xcls_save_btn_finalize;
-#line 12792 "ValaProjectSettingsPopover.vala.c"
+#line 12364 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_save_btn_instance_init (ValaProjectSettingsPopoverXcls_save_btn * self,
                                                            gpointer klass)
 {
-#line 1969 "ValaProjectSettingsPopover.vala"
+#line 1910 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_xcls_save_btn_get_instance_private (self);
-#line 12801 "ValaProjectSettingsPopover.vala.c"
+#line 12373 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
 vala_project_settings_popover_xcls_save_btn_finalize (GObject * obj)
 {
 	ValaProjectSettingsPopoverXcls_save_btn * self;
-#line 1969 "ValaProjectSettingsPopover.vala"
+#line 1910 "ValaProjectSettingsPopover.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_SAVE_BTN, ValaProjectSettingsPopoverXcls_save_btn);
-#line 1971 "ValaProjectSettingsPopover.vala"
+#line 1912 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
-#line 1972 "ValaProjectSettingsPopover.vala"
+#line 1913 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1969 "ValaProjectSettingsPopover.vala"
+#line 1910 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_xcls_save_btn_parent_class)->finalize (obj);
-#line 12816 "ValaProjectSettingsPopover.vala.c"
+#line 12388 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType
@@ -12847,7 +12419,7 @@ vala_project_settings_popover_class_init (ValaProjectSettingsPopoverClass * klas
 	g_type_class_adjust_private_offset (klass, &ValaProjectSettingsPopover_private_offset);
 #line 3 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (klass)->finalize = vala_project_settings_popover_finalize;
-#line 12851 "ValaProjectSettingsPopover.vala.c"
+#line 12423 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -12856,7 +12428,7 @@ vala_project_settings_popover_instance_init (ValaProjectSettingsPopover * self,
 {
 #line 3 "ValaProjectSettingsPopover.vala"
 	self->priv = vala_project_settings_popover_get_instance_private (self);
-#line 12860 "ValaProjectSettingsPopover.vala.c"
+#line 12432 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
@@ -12904,20 +12476,18 @@ vala_project_settings_popover_finalize (GObject * obj)
 #line 31 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->build_name);
 #line 32 "ValaProjectSettingsPopover.vala"
-	_g_object_unref0 (self->build_pack_target);
-#line 33 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->build_execute_args);
-#line 34 "ValaProjectSettingsPopover.vala"
+#line 33 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->save_btn);
-#line 37 "ValaProjectSettingsPopover.vala"
+#line 36 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->window);
-#line 39 "ValaProjectSettingsPopover.vala"
+#line 38 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->selected_target);
-#line 42 "ValaProjectSettingsPopover.vala"
+#line 41 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->project);
 #line 3 "ValaProjectSettingsPopover.vala"
 	G_OBJECT_CLASS (vala_project_settings_popover_parent_class)->finalize (obj);
-#line 12921 "ValaProjectSettingsPopover.vala.c"
+#line 12491 "ValaProjectSettingsPopover.vala.c"
 }
 
 static GType

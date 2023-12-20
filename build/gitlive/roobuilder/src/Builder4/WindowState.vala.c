@@ -1537,16 +1537,6 @@ typedef struct _ValaProjectSettingsPopoverXcls_set_vboxbClass ValaProjectSetting
 typedef struct _ValaProjectSettingsPopoverXcls_build_name ValaProjectSettingsPopoverXcls_build_name;
 typedef struct _ValaProjectSettingsPopoverXcls_build_nameClass ValaProjectSettingsPopoverXcls_build_nameClass;
 
-#define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET (vala_project_settings_popover_xcls_build_pack_target_get_type ())
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET, ValaProjectSettingsPopoverXcls_build_pack_target))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET, ValaProjectSettingsPopoverXcls_build_pack_targetClass))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BUILD_PACK_TARGET(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET))
-#define VALA_PROJECT_SETTINGS_POPOVER_IS_XCLS_BUILD_PACK_TARGET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET))
-#define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_PACK_TARGET_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_PACK_TARGET, ValaProjectSettingsPopoverXcls_build_pack_targetClass))
-
-typedef struct _ValaProjectSettingsPopoverXcls_build_pack_target ValaProjectSettingsPopoverXcls_build_pack_target;
-typedef struct _ValaProjectSettingsPopoverXcls_build_pack_targetClass ValaProjectSettingsPopoverXcls_build_pack_targetClass;
-
 #define VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_EXECUTE_ARGS (vala_project_settings_popover_xcls_build_execute_args_get_type ())
 #define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_EXECUTE_ARGS(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_EXECUTE_ARGS, ValaProjectSettingsPopoverXcls_build_execute_args))
 #define VALA_PROJECT_SETTINGS_POPOVER_XCLS_BUILD_EXECUTE_ARGS_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), VALA_PROJECT_SETTINGS_POPOVER_TYPE_XCLS_BUILD_EXECUTE_ARGS, ValaProjectSettingsPopoverXcls_build_execute_argsClass))
@@ -2522,7 +2512,6 @@ struct _ValaProjectSettingsPopover {
 	ValaProjectSettingsPopoverXcls_target_model* target_model;
 	ValaProjectSettingsPopoverXcls_set_vboxb* set_vboxb;
 	ValaProjectSettingsPopoverXcls_build_name* build_name;
-	ValaProjectSettingsPopoverXcls_build_pack_target* build_pack_target;
 	ValaProjectSettingsPopoverXcls_build_execute_args* build_execute_args;
 	ValaProjectSettingsPopoverXcls_save_btn* save_btn;
 	Xcls_MainWindow* window;
@@ -2677,6 +2666,7 @@ struct _PaleteValaSource {
 	JsRenderJsRender* file;
 	gint line_offset;
 	GeeArrayList* children;
+	gchar* tmpfile_path;
 };
 
 struct _PaleteValaSourceClass {
@@ -2864,13 +2854,13 @@ VALA_EXTERN GType xcls_windowlefttree_xcls_maincol_get_type (void) G_GNUC_CONST 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowLeftTreeXcls_maincol, g_object_unref)
 VALA_EXTERN GType xcls_windowlefttree_xcls_lefttreemenu_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowLeftTreeXcls_LeftTreeMenu, g_object_unref)
-static gboolean __lambda237_ (WindowState* self);
+static gboolean __lambda236_ (WindowState* self);
 VALA_EXTERN gboolean window_state_leftTreeBeforeChange (WindowState* self);
-static gboolean ___lambda237__xcls_windowlefttree_before_node_change (Xcls_WindowLeftTree* _sender,
+static gboolean ___lambda236__xcls_windowlefttree_before_node_change (Xcls_WindowLeftTree* _sender,
                                                                gpointer self);
 VALA_EXTERN GType js_render_node_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNode, g_object_unref)
-static void __lambda238_ (WindowState* self,
+static void __lambda237_ (WindowState* self,
                    JsRenderNode* sel);
 VALA_EXTERN GType xcls_windowrooview_xcls_notebook_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowRooViewXcls_notebook, g_object_unref)
@@ -2944,23 +2934,23 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_GtkViewXcls_multiline, g_object_unref)
 VALA_EXTERN void xcls_gtkview_xcls_sourceview_nodeSelected (Xcls_GtkViewXcls_sourceview* self,
                                                 JsRenderNode* sel,
                                                 gboolean scroll);
-static void ___lambda238__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
+static void ___lambda237__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
                                                       JsRenderNode* node,
                                                       gpointer self);
-static void __lambda239_ (WindowState* self,
+static void __lambda238_ (WindowState* self,
                    JsRenderNode* sel);
 VALA_EXTERN void window_state_leftTreeNodeSelected (WindowState* self,
                                         JsRenderNode* sel);
-static void ___lambda239__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
+static void ___lambda238__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
                                                       JsRenderNode* node,
                                                       gpointer self);
-static void __lambda240_ (WindowState* self);
+static void __lambda239_ (WindowState* self);
 VALA_EXTERN void js_render_js_render_save (JsRenderJsRender* self);
 VALA_EXTERN JsRenderJsRender* xcls_windowlefttree_getActiveFile (Xcls_WindowLeftTree* self);
 VALA_EXTERN void xcls_windowrooview_requestRedraw (Xcls_WindowRooView* self);
 VALA_EXTERN void xcls_gtkview_loadFile (Xcls_GtkView* self,
                             JsRenderJsRender* file);
-static void ___lambda240__xcls_windowlefttree_changed (Xcls_WindowLeftTree* _sender,
+static void ___lambda239__xcls_windowlefttree_changed (Xcls_WindowLeftTree* _sender,
                                                 gpointer self);
 VALA_EXTERN gboolean editor_saveContents (Editor* self);
 VALA_EXTERN void window_state_switchState (WindowState* self,
@@ -2992,7 +2982,7 @@ VALA_EXTERN Xcls_LeftProps* xcls_leftprops_new (void);
 VALA_EXTERN Xcls_LeftProps* xcls_leftprops_construct (GType object_type);
 VALA_EXTERN GType js_render_node_prop_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNodeProp, g_object_unref)
-static void __lambda241_ (WindowState* self,
+static void __lambda240_ (WindowState* self,
                    JsRenderJsRender* file,
                    JsRenderNode* node,
                    JsRenderNodeProp* prop);
@@ -3000,15 +2990,15 @@ VALA_EXTERN void editor_show (Editor* self,
                   JsRenderJsRender* file,
                   JsRenderNode* node,
                   JsRenderNodeProp* prop);
-static void ___lambda241__xcls_leftprops_show_editor (Xcls_LeftProps* _sender,
+static void ___lambda240__xcls_leftprops_show_editor (Xcls_LeftProps* _sender,
                                                JsRenderJsRender* file,
                                                JsRenderNode* node,
                                                JsRenderNodeProp* prop,
                                                gpointer self);
-static gboolean __lambda242_ (WindowState* self);
-static gboolean ___lambda242__xcls_leftprops_stop_editor (Xcls_LeftProps* _sender,
+static gboolean __lambda241_ (WindowState* self);
+static gboolean ___lambda241__xcls_leftprops_stop_editor (Xcls_LeftProps* _sender,
                                                    gpointer self);
-static void __lambda243_ (WindowState* self);
+static void __lambda242_ (WindowState* self);
 VALA_EXTERN GType palete_palete_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaletePalete, g_object_unref)
 VALA_EXTERN GType palete_gir_object_get_type (void) G_GNUC_CONST ;
@@ -3017,7 +3007,7 @@ VALA_EXTERN GType palete_gir_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteGir, g_object_unref)
 VALA_EXTERN gboolean palete_vala_source_checkFileSpawn (PaleteValaSource* self,
                                             JsRenderJsRender* file);
-static void ___lambda243__xcls_leftprops_changed (Xcls_LeftProps* _sender,
+static void ___lambda242__xcls_leftprops_changed (Xcls_LeftProps* _sender,
                                            gpointer self);
 VALA_EXTERN Xcls_RooProjectSettings* xcls_rooprojectsettings_new (void);
 VALA_EXTERN Xcls_RooProjectSettings* xcls_rooprojectsettings_construct (GType object_type);
@@ -3093,8 +3083,6 @@ VALA_EXTERN GType vala_project_settings_popover_xcls_set_vboxb_get_type (void) G
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_set_vboxb, g_object_unref)
 VALA_EXTERN GType vala_project_settings_popover_xcls_build_name_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_build_name, g_object_unref)
-VALA_EXTERN GType vala_project_settings_popover_xcls_build_pack_target_get_type (void) G_GNUC_CONST ;
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_build_pack_target, g_object_unref)
 VALA_EXTERN GType vala_project_settings_popover_xcls_build_execute_args_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_build_execute_args, g_object_unref)
 VALA_EXTERN GType vala_project_settings_popover_xcls_save_btn_get_type (void) G_GNUC_CONST ;
@@ -3103,13 +3091,13 @@ VALA_EXTERN GType project_gtk_vala_settings_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ProjectGtkValaSettings, g_object_unref)
 VALA_EXTERN GType project_gtk_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ProjectGtk, g_object_unref)
-static void __lambda244_ (WindowState* self,
+static void __lambda243_ (WindowState* self,
                    const gchar* btn);
 VALA_EXTERN void xcls_rooprojectsettings_save (Xcls_RooProjectSettings* self);
 VALA_EXTERN void project_project_save (ProjectProject* self);
 VALA_EXTERN void xcls_windowrooview_xcls_view_renderJS (Xcls_WindowRooViewXcls_view* self,
                                             gboolean force);
-static void ___lambda244__xcls_rooprojectsettings_button_pressed (Xcls_RooProjectSettings* _sender,
+static void ___lambda243__xcls_rooprojectsettings_button_pressed (Xcls_RooProjectSettings* _sender,
                                                            const gchar* btn,
                                                            gpointer self);
 VALA_EXTERN void window_state_projectPopoverShow (WindowState* self,
@@ -3176,8 +3164,8 @@ VALA_EXTERN GType editor_xcls_regex_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorXcls_regex, g_object_unref)
 VALA_EXTERN GType editor_xcls_multiline_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorXcls_multiline, g_object_unref)
-static void __lambda245_ (WindowState* self);
-static void ___lambda245__editor_save (Editor* _sender,
+static void __lambda244_ (WindowState* self);
+static void ___lambda244__editor_save (Editor* _sender,
                                 gpointer self);
 VALA_EXTERN void window_state_showPopoverFiles (WindowState* self,
                                     GtkWidget* btn,
@@ -3240,14 +3228,14 @@ VALA_EXTERN GType xcls_popoverfiledetails_xcls_gen_get_type (void) G_GNUC_CONST 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_PopoverFileDetailsXcls_gen, g_object_unref)
 VALA_EXTERN GType xcls_popoverfiledetails_xcls_save_btn_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_PopoverFileDetailsXcls_save_btn, g_object_unref)
-static void __lambda246_ (WindowState* self,
+static void __lambda245_ (WindowState* self,
                    ProjectProject* project,
                    JsRenderJsRender* file);
 VALA_EXTERN void window_state_fileViewOpen (WindowState* self,
                                 JsRenderJsRender* file,
                                 gboolean new_window,
                                 gint line);
-static void ___lambda246__xcls_popoverfiledetails_success (Xcls_PopoverFileDetails* _sender,
+static void ___lambda245__xcls_popoverfiledetails_success (Xcls_PopoverFileDetails* _sender,
                                                     ProjectProject* pr,
                                                     JsRenderJsRender* file,
                                                     gpointer self);
@@ -3354,7 +3342,7 @@ _g_object_ref0 (gpointer self)
 {
 #line 55 "WindowState.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 3358 "WindowState.vala.c"
+#line 3346 "WindowState.vala.c"
 }
 
 static void
@@ -3364,7 +3352,7 @@ _window_state_showCompileResult_palete_vala_source_compiled (PaleteValaSource* _
 {
 #line 88 "WindowState.vala"
 	window_state_showCompileResult ((WindowState*) self, res);
-#line 3368 "WindowState.vala.c"
+#line 3356 "WindowState.vala.c"
 }
 
 static void
@@ -3374,7 +3362,7 @@ _xcls_valacompileresults_addLine_palete_vala_source_compile_output (PaleteValaSo
 {
 #line 92 "WindowState.vala"
 	xcls_valacompileresults_addLine ((Xcls_ValaCompileResults*) self, str);
-#line 3378 "WindowState.vala.c"
+#line 3366 "WindowState.vala.c"
 }
 
 WindowState*
@@ -3529,7 +3517,7 @@ window_state_construct (GType object_type,
 	gtk_window_set_transient_for (_tmp26_, (GtkWindow*) _tmp28_);
 #line 53 "WindowState.vala"
 	return self;
-#line 3533 "WindowState.vala.c"
+#line 3521 "WindowState.vala.c"
 }
 
 WindowState*
@@ -3537,11 +3525,11 @@ window_state_new (Xcls_MainWindow* win)
 {
 #line 53 "WindowState.vala"
 	return window_state_construct (TYPE_WINDOW_STATE, win);
-#line 3541 "WindowState.vala.c"
+#line 3529 "WindowState.vala.c"
 }
 
 static gboolean
-__lambda237_ (WindowState* self)
+__lambda236_ (WindowState* self)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_view* _tmp1_;
@@ -3559,28 +3547,28 @@ __lambda237_ (WindowState* self)
 		result = TRUE;
 #line 126 "WindowState.vala"
 		return result;
-#line 3563 "WindowState.vala.c"
+#line 3551 "WindowState.vala.c"
 	}
 #line 128 "WindowState.vala"
 	result = window_state_leftTreeBeforeChange (self);
 #line 128 "WindowState.vala"
 	return result;
-#line 3569 "WindowState.vala.c"
+#line 3557 "WindowState.vala.c"
 }
 
 static gboolean
-___lambda237__xcls_windowlefttree_before_node_change (Xcls_WindowLeftTree* _sender,
+___lambda236__xcls_windowlefttree_before_node_change (Xcls_WindowLeftTree* _sender,
                                                       gpointer self)
 {
 	gboolean result;
-	result = __lambda237_ ((WindowState*) self);
+	result = __lambda236_ ((WindowState*) self);
 #line 123 "WindowState.vala"
 	return result;
-#line 3580 "WindowState.vala.c"
+#line 3568 "WindowState.vala.c"
 }
 
 static void
-__lambda238_ (WindowState* self,
+__lambda237_ (WindowState* self,
               JsRenderNode* sel)
 {
 	JsRenderJsRender* _tmp0_;
@@ -3591,7 +3579,7 @@ __lambda238_ (WindowState* self,
 	_tmp1_ = _tmp0_->xtype;
 #line 136 "WindowState.vala"
 	if (g_strcmp0 (_tmp1_, "Roo") == 0) {
-#line 3595 "WindowState.vala.c"
+#line 3583 "WindowState.vala.c"
 		Xcls_WindowRooView* _tmp2_;
 		Xcls_WindowRooViewXcls_sourceview* _tmp3_;
 #line 137 "WindowState.vala"
@@ -3600,7 +3588,7 @@ __lambda238_ (WindowState* self,
 		_tmp3_ = _tmp2_->sourceview;
 #line 137 "WindowState.vala"
 		xcls_windowrooview_xcls_sourceview_nodeSelected (_tmp3_, sel, TRUE);
-#line 3604 "WindowState.vala.c"
+#line 3592 "WindowState.vala.c"
 	} else {
 		Xcls_GtkView* _tmp4_;
 		Xcls_GtkViewXcls_sourceview* _tmp5_;
@@ -3610,8 +3598,27 @@ __lambda238_ (WindowState* self,
 		_tmp5_ = _tmp4_->sourceview;
 #line 139 "WindowState.vala"
 		xcls_gtkview_xcls_sourceview_nodeSelected (_tmp5_, sel, TRUE);
-#line 3614 "WindowState.vala.c"
+#line 3602 "WindowState.vala.c"
 	}
+}
+
+static void
+___lambda237__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
+                                                 JsRenderNode* node,
+                                                 gpointer self)
+{
+#line 132 "WindowState.vala"
+	__lambda237_ ((WindowState*) self, node);
+#line 3613 "WindowState.vala.c"
+}
+
+static void
+__lambda238_ (WindowState* self,
+              JsRenderNode* sel)
+{
+#line 144 "WindowState.vala"
+	window_state_leftTreeNodeSelected (self, sel);
+#line 3622 "WindowState.vala.c"
 }
 
 static void
@@ -3619,32 +3626,13 @@ ___lambda238__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
                                                  JsRenderNode* node,
                                                  gpointer self)
 {
-#line 132 "WindowState.vala"
-	__lambda238_ ((WindowState*) self, node);
-#line 3625 "WindowState.vala.c"
-}
-
-static void
-__lambda239_ (WindowState* self,
-              JsRenderNode* sel)
-{
-#line 144 "WindowState.vala"
-	window_state_leftTreeNodeSelected (self, sel);
-#line 3634 "WindowState.vala.c"
-}
-
-static void
-___lambda239__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
-                                                 JsRenderNode* node,
-                                                 gpointer self)
-{
 #line 143 "WindowState.vala"
-	__lambda239_ ((WindowState*) self, node);
-#line 3644 "WindowState.vala.c"
+	__lambda238_ ((WindowState*) self, node);
+#line 3632 "WindowState.vala.c"
 }
 
 static void
-__lambda240_ (WindowState* self)
+__lambda239_ (WindowState* self)
 {
 	JsRenderJsRender* _tmp0_;
 	Xcls_WindowLeftTree* _tmp1_;
@@ -3672,13 +3660,13 @@ __lambda240_ (WindowState* self)
 	_g_object_unref0 (_tmp3_);
 #line 150 "WindowState.vala"
 	if (_tmp5_) {
-#line 3676 "WindowState.vala.c"
+#line 3664 "WindowState.vala.c"
 		Xcls_WindowRooView* _tmp6_;
 #line 151 "WindowState.vala"
 		_tmp6_ = self->window_rooview;
 #line 151 "WindowState.vala"
 		xcls_windowrooview_requestRedraw (_tmp6_);
-#line 3682 "WindowState.vala.c"
+#line 3670 "WindowState.vala.c"
 	} else {
 		Xcls_GtkView* _tmp7_;
 		Xcls_WindowLeftTree* _tmp8_;
@@ -3696,17 +3684,17 @@ __lambda240_ (WindowState* self)
 		xcls_gtkview_loadFile (_tmp7_, _tmp10_);
 #line 153 "WindowState.vala"
 		_g_object_unref0 (_tmp10_);
-#line 3700 "WindowState.vala.c"
+#line 3688 "WindowState.vala.c"
 	}
 }
 
 static void
-___lambda240__xcls_windowlefttree_changed (Xcls_WindowLeftTree* _sender,
+___lambda239__xcls_windowlefttree_changed (Xcls_WindowLeftTree* _sender,
                                            gpointer self)
 {
 #line 147 "WindowState.vala"
-	__lambda240_ ((WindowState*) self);
-#line 3710 "WindowState.vala.c"
+	__lambda239_ ((WindowState*) self);
+#line 3698 "WindowState.vala.c"
 }
 
 void
@@ -3789,20 +3777,20 @@ window_state_leftTreeInit (WindowState* self)
 #line 123 "WindowState.vala"
 	_tmp18_ = self->left_tree;
 #line 123 "WindowState.vala"
-	g_signal_connect_object (_tmp18_, "before-node-change", (GCallback) ___lambda237__xcls_windowlefttree_before_node_change, self, 0);
+	g_signal_connect_object (_tmp18_, "before-node-change", (GCallback) ___lambda236__xcls_windowlefttree_before_node_change, self, 0);
 #line 132 "WindowState.vala"
 	_tmp19_ = self->left_tree;
 #line 132 "WindowState.vala"
-	g_signal_connect_object (_tmp19_, "node-selected", (GCallback) ___lambda238__xcls_windowlefttree_node_selected, self, 0);
+	g_signal_connect_object (_tmp19_, "node-selected", (GCallback) ___lambda237__xcls_windowlefttree_node_selected, self, 0);
 #line 143 "WindowState.vala"
 	_tmp20_ = self->left_tree;
 #line 143 "WindowState.vala"
-	g_signal_connect_object (_tmp20_, "node-selected", (GCallback) ___lambda239__xcls_windowlefttree_node_selected, self, 0);
+	g_signal_connect_object (_tmp20_, "node-selected", (GCallback) ___lambda238__xcls_windowlefttree_node_selected, self, 0);
 #line 147 "WindowState.vala"
 	_tmp21_ = self->left_tree;
 #line 147 "WindowState.vala"
-	g_signal_connect_object (_tmp21_, "changed", (GCallback) ___lambda240__xcls_windowlefttree_changed, self, 0);
-#line 3806 "WindowState.vala.c"
+	g_signal_connect_object (_tmp21_, "changed", (GCallback) ___lambda239__xcls_windowlefttree_changed, self, 0);
+#line 3794 "WindowState.vala.c"
 }
 
 gboolean
@@ -3811,7 +3799,7 @@ window_state_leftTreeBeforeChange (WindowState* self)
 	gboolean result;
 #line 166 "WindowState.vala"
 	if (self->state == WINDOW_STATE_STATE_CODE) {
-#line 3815 "WindowState.vala.c"
+#line 3803 "WindowState.vala.c"
 		Editor* _tmp0_;
 #line 167 "WindowState.vala"
 		_tmp0_ = self->code_editor_tab;
@@ -3819,13 +3807,13 @@ window_state_leftTreeBeforeChange (WindowState* self)
 		editor_saveContents (_tmp0_);
 #line 168 "WindowState.vala"
 		window_state_switchState (self, WINDOW_STATE_STATE_PREVIEW);
-#line 3823 "WindowState.vala.c"
+#line 3811 "WindowState.vala.c"
 	}
 #line 171 "WindowState.vala"
 	result = TRUE;
 #line 171 "WindowState.vala"
 	return result;
-#line 3829 "WindowState.vala.c"
+#line 3817 "WindowState.vala.c"
 }
 
 void
@@ -3889,11 +3877,11 @@ window_state_leftTreeNodeSelected (WindowState* self,
 	if (sel == NULL) {
 #line 190 "WindowState.vala"
 		_tmp0_ = "NULL";
-#line 3893 "WindowState.vala.c"
+#line 3881 "WindowState.vala.c"
 	} else {
 #line 190 "WindowState.vala"
 		_tmp0_ = "a value";
-#line 3897 "WindowState.vala.c"
+#line 3885 "WindowState.vala.c"
 	}
 #line 190 "WindowState.vala"
 	g_print ("node_selected called %s\n", _tmp0_);
@@ -3951,11 +3939,11 @@ window_state_leftTreeNodeSelected (WindowState* self,
 	if (_tmp20_ != NULL) {
 #line 200 "WindowState.vala"
 		_tmp15_ = sel != NULL;
-#line 3955 "WindowState.vala.c"
+#line 3943 "WindowState.vala.c"
 	} else {
 #line 200 "WindowState.vala"
 		_tmp15_ = FALSE;
-#line 3959 "WindowState.vala.c"
+#line 3947 "WindowState.vala.c"
 	}
 #line 200 "WindowState.vala"
 	if (_tmp15_) {
@@ -3965,11 +3953,11 @@ window_state_leftTreeNodeSelected (WindowState* self,
 		_g_object_unref0 (outerpane);
 #line 202 "WindowState.vala"
 		return;
-#line 3969 "WindowState.vala.c"
+#line 3957 "WindowState.vala.c"
 	}
 #line 205 "WindowState.vala"
 	if (sel == NULL) {
-#line 3973 "WindowState.vala.c"
+#line 3961 "WindowState.vala.c"
 		Xcls_MainWindow* _tmp21_;
 		Xcls_MainWindowXcls_editpane* _tmp22_;
 		GtkPaned* _tmp23_;
@@ -3991,7 +3979,7 @@ window_state_leftTreeNodeSelected (WindowState* self,
 		_tmp25_ = _tmp24_;
 #line 209 "WindowState.vala"
 		if (_tmp25_ != NULL) {
-#line 3995 "WindowState.vala.c"
+#line 3983 "WindowState.vala.c"
 			GtkPaned* _tmp26_;
 			GtkPaned* _tmp27_;
 			GtkPaned* _tmp28_;
@@ -4061,7 +4049,7 @@ window_state_leftTreeNodeSelected (WindowState* self,
 			_tmp44_ = _tmp43_->el;
 #line 216 "WindowState.vala"
 			gtk_box_append (_tmp42_, (GtkWidget*) _tmp44_);
-#line 4065 "WindowState.vala.c"
+#line 4053 "WindowState.vala.c"
 		}
 #line 221 "WindowState.vala"
 		_tmp45_ = outerpane;
@@ -4085,7 +4073,7 @@ window_state_leftTreeNodeSelected (WindowState* self,
 		_g_object_unref0 (outerpane);
 #line 227 "WindowState.vala"
 		return;
-#line 4089 "WindowState.vala.c"
+#line 4077 "WindowState.vala.c"
 	}
 #line 235 "WindowState.vala"
 	_tmp49_ = outerpane;
@@ -4143,11 +4131,11 @@ window_state_leftTreeNodeSelected (WindowState* self,
 	if (_tmp70_) {
 #line 247 "WindowState.vala"
 		_tmp66_ = "shown";
-#line 4147 "WindowState.vala.c"
+#line 4135 "WindowState.vala.c"
 	} else {
 #line 247 "WindowState.vala"
 		_tmp66_ = "hidden";
-#line 4151 "WindowState.vala.c"
+#line 4139 "WindowState.vala.c"
 	}
 #line 247 "WindowState.vala"
 	g_debug ("WindowState.vala:247: left props is %s", _tmp66_);
@@ -4181,7 +4169,7 @@ window_state_leftTreeNodeSelected (WindowState* self,
 	_g_object_unref0 (innerpane);
 #line 183 "WindowState.vala"
 	_g_object_unref0 (outerpane);
-#line 4185 "WindowState.vala.c"
+#line 4173 "WindowState.vala.c"
 }
 
 /**
@@ -4209,7 +4197,7 @@ pane.set_position(
 });
 */
 static void
-__lambda241_ (WindowState* self,
+__lambda240_ (WindowState* self,
               JsRenderJsRender* file,
               JsRenderNode* node,
               JsRenderNodeProp* prop)
@@ -4221,23 +4209,23 @@ __lambda241_ (WindowState* self,
 	_tmp0_ = self->code_editor_tab;
 #line 334 "WindowState.vala"
 	editor_show (_tmp0_, file, node, prop);
-#line 4225 "WindowState.vala.c"
+#line 4213 "WindowState.vala.c"
 }
 
 static void
-___lambda241__xcls_leftprops_show_editor (Xcls_LeftProps* _sender,
+___lambda240__xcls_leftprops_show_editor (Xcls_LeftProps* _sender,
                                           JsRenderJsRender* file,
                                           JsRenderNode* node,
                                           JsRenderNodeProp* prop,
                                           gpointer self)
 {
 #line 330 "WindowState.vala"
-	__lambda241_ ((WindowState*) self, file, node, prop);
-#line 4237 "WindowState.vala.c"
+	__lambda240_ ((WindowState*) self, file, node, prop);
+#line 4225 "WindowState.vala.c"
 }
 
 static gboolean
-__lambda242_ (WindowState* self)
+__lambda241_ (WindowState* self)
 {
 	gboolean ret = FALSE;
 	Editor* _tmp0_;
@@ -4252,7 +4240,7 @@ __lambda242_ (WindowState* self)
 		result = FALSE;
 #line 348 "WindowState.vala"
 		return result;
-#line 4256 "WindowState.vala.c"
+#line 4244 "WindowState.vala.c"
 	}
 #line 350 "WindowState.vala"
 	window_state_switchState (self, WINDOW_STATE_STATE_PREVIEW);
@@ -4260,22 +4248,22 @@ __lambda242_ (WindowState* self)
 	result = ret;
 #line 352 "WindowState.vala"
 	return result;
-#line 4264 "WindowState.vala.c"
+#line 4252 "WindowState.vala.c"
 }
 
 static gboolean
-___lambda242__xcls_leftprops_stop_editor (Xcls_LeftProps* _sender,
+___lambda241__xcls_leftprops_stop_editor (Xcls_LeftProps* _sender,
                                           gpointer self)
 {
 	gboolean result;
-	result = __lambda242_ ((WindowState*) self);
+	result = __lambda241_ ((WindowState*) self);
 #line 345 "WindowState.vala"
 	return result;
-#line 4275 "WindowState.vala.c"
+#line 4263 "WindowState.vala.c"
 }
 
 static void
-__lambda243_ (WindowState* self)
+__lambda242_ (WindowState* self)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	JsRenderJsRender* _tmp1_;
@@ -4300,13 +4288,13 @@ __lambda243_ (WindowState* self)
 	_g_object_unref0 (_tmp2_);
 #line 356 "WindowState.vala"
 	if (_tmp4_) {
-#line 4304 "WindowState.vala.c"
+#line 4292 "WindowState.vala.c"
 		Xcls_WindowRooView* _tmp5_;
 #line 357 "WindowState.vala"
 		_tmp5_ = self->window_rooview;
 #line 357 "WindowState.vala"
 		xcls_windowrooview_requestRedraw (_tmp5_);
-#line 4310 "WindowState.vala.c"
+#line 4298 "WindowState.vala.c"
 	} else {
 		Xcls_GtkView* _tmp6_;
 		Xcls_WindowLeftTree* _tmp7_;
@@ -4324,7 +4312,7 @@ __lambda243_ (WindowState* self)
 		xcls_gtkview_loadFile (_tmp6_, _tmp9_);
 #line 359 "WindowState.vala"
 		_g_object_unref0 (_tmp9_);
-#line 4328 "WindowState.vala.c"
+#line 4316 "WindowState.vala.c"
 	}
 #line 362 "WindowState.vala"
 	_tmp10_ = self->file;
@@ -4338,7 +4326,7 @@ __lambda243_ (WindowState* self)
 	_tmp13_ = _tmp12_->xtype;
 #line 363 "WindowState.vala"
 	if (g_strcmp0 (_tmp13_, "Gtk") == 0) {
-#line 4342 "WindowState.vala.c"
+#line 4330 "WindowState.vala.c"
 		PaleteValaSource* _tmp14_;
 		JsRenderJsRender* _tmp15_;
 #line 364 "WindowState.vala"
@@ -4347,17 +4335,17 @@ __lambda243_ (WindowState* self)
 		_tmp15_ = self->file;
 #line 364 "WindowState.vala"
 		palete_vala_source_checkFileSpawn (_tmp14_, _tmp15_);
-#line 4351 "WindowState.vala.c"
+#line 4339 "WindowState.vala.c"
 	}
 }
 
 static void
-___lambda243__xcls_leftprops_changed (Xcls_LeftProps* _sender,
+___lambda242__xcls_leftprops_changed (Xcls_LeftProps* _sender,
                                       gpointer self)
 {
 #line 355 "WindowState.vala"
-	__lambda243_ ((WindowState*) self);
-#line 4361 "WindowState.vala.c"
+	__lambda242_ ((WindowState*) self);
+#line 4349 "WindowState.vala.c"
 }
 
 void
@@ -4419,20 +4407,20 @@ window_state_propsListInit (WindowState* self)
 #line 330 "WindowState.vala"
 	_tmp12_ = self->left_props;
 #line 330 "WindowState.vala"
-	g_signal_connect_object (_tmp12_, "show-editor", (GCallback) ___lambda241__xcls_leftprops_show_editor, self, 0);
+	g_signal_connect_object (_tmp12_, "show-editor", (GCallback) ___lambda240__xcls_leftprops_show_editor, self, 0);
 #line 345 "WindowState.vala"
 	_tmp13_ = self->left_props;
 #line 345 "WindowState.vala"
-	g_signal_connect_object (_tmp13_, "stop-editor", (GCallback) ___lambda242__xcls_leftprops_stop_editor, self, 0);
+	g_signal_connect_object (_tmp13_, "stop-editor", (GCallback) ___lambda241__xcls_leftprops_stop_editor, self, 0);
 #line 355 "WindowState.vala"
 	_tmp14_ = self->left_props;
 #line 355 "WindowState.vala"
-	g_signal_connect_object (_tmp14_, "changed", (GCallback) ___lambda243__xcls_leftprops_changed, self, 0);
-#line 4432 "WindowState.vala.c"
+	g_signal_connect_object (_tmp14_, "changed", (GCallback) ___lambda242__xcls_leftprops_changed, self, 0);
+#line 4420 "WindowState.vala.c"
 }
 
 static void
-__lambda244_ (WindowState* self,
+__lambda243_ (WindowState* self,
               const gchar* btn)
 {
 	gboolean _tmp0_ = FALSE;
@@ -4444,15 +4432,15 @@ __lambda244_ (WindowState* self,
 	if (g_strcmp0 (btn, "save") == 0) {
 #line 390 "WindowState.vala"
 		_tmp0_ = TRUE;
-#line 4448 "WindowState.vala.c"
+#line 4436 "WindowState.vala.c"
 	} else {
 #line 390 "WindowState.vala"
 		_tmp0_ = g_strcmp0 (btn, "apply") == 0;
-#line 4452 "WindowState.vala.c"
+#line 4440 "WindowState.vala.c"
 	}
 #line 390 "WindowState.vala"
 	if (_tmp0_) {
-#line 4456 "WindowState.vala.c"
+#line 4444 "WindowState.vala.c"
 		Xcls_RooProjectSettings* _tmp1_;
 		Xcls_RooProjectSettings* _tmp2_;
 		ProjectRoo* _tmp3_;
@@ -4466,7 +4454,7 @@ __lambda244_ (WindowState* self,
 		_tmp3_ = _tmp2_->project;
 #line 392 "WindowState.vala"
 		project_project_save ((ProjectProject*) _tmp3_);
-#line 4470 "WindowState.vala.c"
+#line 4458 "WindowState.vala.c"
 	}
 #line 397 "WindowState.vala"
 	_tmp4_ = self->roo_projectsettings_pop;
@@ -4476,7 +4464,7 @@ __lambda244_ (WindowState* self,
 	_tmp6_ = _g_object_ref0 (_tmp5_);
 #line 397 "WindowState.vala"
 	ep = _tmp6_;
-#line 4480 "WindowState.vala.c"
+#line 4468 "WindowState.vala.c"
 	{
 		GeeArrayList* _ww_list = NULL;
 		GeeArrayList* _tmp7_;
@@ -4501,7 +4489,7 @@ __lambda244_ (WindowState* self,
 		_ww_index = -1;
 #line 398 "WindowState.vala"
 		while (TRUE) {
-#line 4505 "WindowState.vala.c"
+#line 4493 "WindowState.vala.c"
 			gint _tmp11_;
 			gint _tmp12_;
 			Xcls_MainWindow* ww = NULL;
@@ -4522,7 +4510,7 @@ __lambda244_ (WindowState* self,
 			if (!(_tmp11_ < _tmp12_)) {
 #line 398 "WindowState.vala"
 				break;
-#line 4526 "WindowState.vala.c"
+#line 4514 "WindowState.vala.c"
 			}
 #line 398 "WindowState.vala"
 			_tmp13_ = _ww_list;
@@ -4538,7 +4526,7 @@ __lambda244_ (WindowState* self,
 			_tmp19_ = _tmp18_->file;
 #line 399 "WindowState.vala"
 			if (_tmp19_ != NULL) {
-#line 4542 "WindowState.vala.c"
+#line 4530 "WindowState.vala.c"
 				Xcls_MainWindow* _tmp20_;
 				WindowState* _tmp21_;
 				ProjectProject* _tmp22_;
@@ -4559,15 +4547,15 @@ __lambda244_ (WindowState* self,
 				_tmp25_ = ((ProjectProject*) _tmp24_)->path;
 #line 400 "WindowState.vala"
 				_tmp16_ = g_strcmp0 (_tmp23_, _tmp25_) == 0;
-#line 4563 "WindowState.vala.c"
+#line 4551 "WindowState.vala.c"
 			} else {
 #line 399 "WindowState.vala"
 				_tmp16_ = FALSE;
-#line 4567 "WindowState.vala.c"
+#line 4555 "WindowState.vala.c"
 			}
 #line 399 "WindowState.vala"
 			if (_tmp16_) {
-#line 4571 "WindowState.vala.c"
+#line 4559 "WindowState.vala.c"
 				Xcls_MainWindow* _tmp26_;
 				WindowState* _tmp27_;
 				JsRenderJsRender* _tmp28_;
@@ -4582,15 +4570,15 @@ __lambda244_ (WindowState* self,
 				_tmp29_ = _tmp28_->xtype;
 #line 401 "WindowState.vala"
 				_tmp15_ = g_strcmp0 (_tmp29_, "Roo") == 0;
-#line 4586 "WindowState.vala.c"
+#line 4574 "WindowState.vala.c"
 			} else {
 #line 399 "WindowState.vala"
 				_tmp15_ = FALSE;
-#line 4590 "WindowState.vala.c"
+#line 4578 "WindowState.vala.c"
 			}
 #line 399 "WindowState.vala"
 			if (_tmp15_) {
-#line 4594 "WindowState.vala.c"
+#line 4582 "WindowState.vala.c"
 				Xcls_MainWindow* _tmp30_;
 				WindowState* _tmp31_;
 				Xcls_WindowRooView* _tmp32_;
@@ -4605,16 +4593,16 @@ __lambda244_ (WindowState* self,
 				_tmp33_ = _tmp32_->view;
 #line 403 "WindowState.vala"
 				xcls_windowrooview_xcls_view_renderJS (_tmp33_, TRUE);
-#line 4609 "WindowState.vala.c"
+#line 4597 "WindowState.vala.c"
 			}
 #line 398 "WindowState.vala"
 			_g_object_unref0 (ww);
-#line 4613 "WindowState.vala.c"
+#line 4601 "WindowState.vala.c"
 		}
 	}
 #line 410 "WindowState.vala"
 	if (g_strcmp0 (btn, "save") == 0) {
-#line 4618 "WindowState.vala.c"
+#line 4606 "WindowState.vala.c"
 		Xcls_RooProjectSettings* _tmp34_;
 		GtkWindow* _tmp35_;
 #line 411 "WindowState.vala"
@@ -4623,21 +4611,21 @@ __lambda244_ (WindowState* self,
 		_tmp35_ = _tmp34_->el;
 #line 411 "WindowState.vala"
 		gtk_widget_hide ((GtkWidget*) _tmp35_);
-#line 4627 "WindowState.vala.c"
+#line 4615 "WindowState.vala.c"
 	}
 #line 389 "WindowState.vala"
 	_g_object_unref0 (ep);
-#line 4631 "WindowState.vala.c"
+#line 4619 "WindowState.vala.c"
 }
 
 static void
-___lambda244__xcls_rooprojectsettings_button_pressed (Xcls_RooProjectSettings* _sender,
+___lambda243__xcls_rooprojectsettings_button_pressed (Xcls_RooProjectSettings* _sender,
                                                       const gchar* btn,
                                                       gpointer self)
 {
 #line 389 "WindowState.vala"
-	__lambda244_ ((WindowState*) self, btn);
-#line 4641 "WindowState.vala.c"
+	__lambda243_ ((WindowState*) self, btn);
+#line 4629 "WindowState.vala.c"
 }
 
 void
@@ -4714,8 +4702,8 @@ window_state_projectEditInit (WindowState* self)
 #line 389 "WindowState.vala"
 	_tmp17_ = self->roo_projectsettings_pop;
 #line 389 "WindowState.vala"
-	g_signal_connect_object (_tmp17_, "button-pressed", (GCallback) ___lambda244__xcls_rooprojectsettings_button_pressed, self, 0);
-#line 4719 "WindowState.vala.c"
+	g_signal_connect_object (_tmp17_, "button-pressed", (GCallback) ___lambda243__xcls_rooprojectsettings_button_pressed, self, 0);
+#line 4707 "WindowState.vala.c"
 }
 
 void
@@ -4728,13 +4716,13 @@ window_state_projectPopoverShow (WindowState* self,
 	ValaProjectSettingsPopover* _tmp4_;
 #line 421 "WindowState.vala"
 	if (pr == NULL) {
-#line 4732 "WindowState.vala.c"
+#line 4720 "WindowState.vala.c"
 		ProjectProject* _tmp0_;
 #line 422 "WindowState.vala"
 		_tmp0_ = self->project;
 #line 422 "WindowState.vala"
 		pr = _tmp0_;
-#line 4738 "WindowState.vala.c"
+#line 4726 "WindowState.vala.c"
 	}
 #line 426 "WindowState.vala"
 	_tmp1_ = pr->xtype;
@@ -4742,13 +4730,13 @@ window_state_projectPopoverShow (WindowState* self,
 	if (g_strcmp0 (_tmp1_, "") == 0) {
 #line 427 "WindowState.vala"
 		return;
-#line 4746 "WindowState.vala.c"
+#line 4734 "WindowState.vala.c"
 	}
 #line 429 "WindowState.vala"
 	_tmp2_ = pr->xtype;
 #line 429 "WindowState.vala"
 	if (g_strcmp0 (_tmp2_, "Roo") == 0) {
-#line 4752 "WindowState.vala.c"
+#line 4740 "WindowState.vala.c"
 		Xcls_RooProjectSettings* _tmp3_;
 #line 430 "WindowState.vala"
 		_tmp3_ = self->roo_projectsettings_pop;
@@ -4756,13 +4744,13 @@ window_state_projectPopoverShow (WindowState* self,
 		xcls_rooprojectsettings_show (_tmp3_, pwin, G_TYPE_CHECK_INSTANCE_CAST (pr, PROJECT_TYPE_ROO, ProjectRoo));
 #line 431 "WindowState.vala"
 		return;
-#line 4760 "WindowState.vala.c"
+#line 4748 "WindowState.vala.c"
 	}
 #line 436 "WindowState.vala"
 	_tmp4_ = self->vala_projectsettings_pop;
 #line 436 "WindowState.vala"
 	vala_project_settings_popover_show (_tmp4_, pwin, G_TYPE_CHECK_INSTANCE_CAST (pr, PROJECT_TYPE_GTK, ProjectGtk));
-#line 4766 "WindowState.vala.c"
+#line 4754 "WindowState.vala.c"
 }
 
 void
@@ -4793,7 +4781,7 @@ window_state_objectAddInit (WindowState* self)
 	_tmp4_ = self->rightpalete;
 #line 447 "WindowState.vala"
 	g_object_ref ((GObject*) _tmp4_);
-#line 4797 "WindowState.vala.c"
+#line 4785 "WindowState.vala.c"
 }
 
 void
@@ -4824,7 +4812,7 @@ window_state_propsAddInit (WindowState* self)
 	_tmp4_ = self->add_props;
 #line 463 "WindowState.vala"
 	g_object_ref ((GObject*) _tmp4_);
-#line 4828 "WindowState.vala.c"
+#line 4816 "WindowState.vala.c"
 }
 
 void
@@ -4848,7 +4836,7 @@ window_state_listenerHide (WindowState* self)
 }
 
 static void
-__lambda245_ (WindowState* self)
+__lambda244_ (WindowState* self)
 {
 	JsRenderJsRender* _tmp0_;
 	Xcls_WindowLeftTree* _tmp1_;
@@ -4877,13 +4865,13 @@ __lambda245_ (WindowState* self)
 	_g_object_unref0 (_tmp3_);
 #line 513 "WindowState.vala"
 	if (_tmp5_) {
-#line 4881 "WindowState.vala.c"
+#line 4869 "WindowState.vala.c"
 		Xcls_WindowRooView* _tmp6_;
 #line 514 "WindowState.vala"
 		_tmp6_ = self->window_rooview;
 #line 514 "WindowState.vala"
 		xcls_windowrooview_requestRedraw (_tmp6_);
-#line 4887 "WindowState.vala.c"
+#line 4875 "WindowState.vala.c"
 	} else {
 		Xcls_GtkView* _tmp7_;
 		Xcls_WindowLeftTree* _tmp8_;
@@ -4901,7 +4889,7 @@ __lambda245_ (WindowState* self)
 		xcls_gtkview_loadFile (_tmp7_, _tmp10_);
 #line 516 "WindowState.vala"
 		_g_object_unref0 (_tmp10_);
-#line 4905 "WindowState.vala.c"
+#line 4893 "WindowState.vala.c"
 	}
 #line 518 "WindowState.vala"
 	_tmp11_ = self->file;
@@ -4911,7 +4899,7 @@ __lambda245_ (WindowState* self)
 	_tmp13_ = _tmp12_->xtype;
 #line 518 "WindowState.vala"
 	if (g_strcmp0 (_tmp13_, "Gtk") == 0) {
-#line 4915 "WindowState.vala.c"
+#line 4903 "WindowState.vala.c"
 		PaleteValaSource* _tmp14_;
 		JsRenderJsRender* _tmp15_;
 #line 519 "WindowState.vala"
@@ -4920,17 +4908,17 @@ __lambda245_ (WindowState* self)
 		_tmp15_ = self->file;
 #line 519 "WindowState.vala"
 		palete_vala_source_checkFileSpawn (_tmp14_, _tmp15_);
-#line 4924 "WindowState.vala.c"
+#line 4912 "WindowState.vala.c"
 	}
 }
 
 static void
-___lambda245__editor_save (Editor* _sender,
+___lambda244__editor_save (Editor* _sender,
                            gpointer self)
 {
 #line 510 "WindowState.vala"
-	__lambda245_ ((WindowState*) self);
-#line 4934 "WindowState.vala.c"
+	__lambda244_ ((WindowState*) self);
+#line 4922 "WindowState.vala.c"
 }
 
 void
@@ -4988,8 +4976,8 @@ window_state_codeEditInit (WindowState* self)
 #line 510 "WindowState.vala"
 	_tmp12_ = self->code_editor_tab;
 #line 510 "WindowState.vala"
-	g_signal_connect_object (_tmp12_, "save", (GCallback) ___lambda245__editor_save, self, 0);
-#line 4993 "WindowState.vala.c"
+	g_signal_connect_object (_tmp12_, "save", (GCallback) ___lambda244__editor_save, self, 0);
+#line 4981 "WindowState.vala.c"
 }
 
 void
@@ -5003,11 +4991,11 @@ window_state_showPopoverFiles (WindowState* self,
 	_tmp0_ = self->popover_files;
 #line 572 "WindowState.vala"
 	dialog_files_show (_tmp0_, project, new_window);
-#line 5007 "WindowState.vala.c"
+#line 4995 "WindowState.vala.c"
 }
 
 static void
-__lambda246_ (WindowState* self,
+__lambda245_ (WindowState* self,
               ProjectProject* project,
               JsRenderJsRender* file)
 {
@@ -5024,18 +5012,18 @@ __lambda246_ (WindowState* self,
 	_tmp2_ = self->file_details;
 #line 589 "WindowState.vala"
 	window_state_fileViewOpen (self, file, _tmp2_->new_window, -1);
-#line 5028 "WindowState.vala.c"
+#line 5016 "WindowState.vala.c"
 }
 
 static void
-___lambda246__xcls_popoverfiledetails_success (Xcls_PopoverFileDetails* _sender,
+___lambda245__xcls_popoverfiledetails_success (Xcls_PopoverFileDetails* _sender,
                                                ProjectProject* pr,
                                                JsRenderJsRender* file,
                                                gpointer self)
 {
 #line 586 "WindowState.vala"
-	__lambda246_ ((WindowState*) self, pr, file);
-#line 5039 "WindowState.vala.c"
+	__lambda245_ ((WindowState*) self, pr, file);
+#line 5027 "WindowState.vala.c"
 }
 
 void
@@ -5085,8 +5073,8 @@ window_state_fileDetailsInit (WindowState* self)
 #line 586 "WindowState.vala"
 	_tmp10_ = self->file_details;
 #line 586 "WindowState.vala"
-	g_signal_connect_object (_tmp10_, "success", (GCallback) ___lambda246__xcls_popoverfiledetails_success, self, 0);
-#line 5090 "WindowState.vala.c"
+	g_signal_connect_object (_tmp10_, "success", (GCallback) ___lambda245__xcls_popoverfiledetails_success, self, 0);
+#line 5078 "WindowState.vala.c"
 }
 
 void
@@ -5099,7 +5087,7 @@ window_state_gotoLine (WindowState* self,
 	if (line < 0) {
 #line 601 "WindowState.vala"
 		return;
-#line 5103 "WindowState.vala.c"
+#line 5091 "WindowState.vala.c"
 	}
 #line 603 "WindowState.vala"
 	_tmp0_ = self->file;
@@ -5107,7 +5095,7 @@ window_state_gotoLine (WindowState* self,
 	_tmp1_ = _tmp0_->xtype;
 #line 603 "WindowState.vala"
 	if (g_strcmp0 (_tmp1_, "PlainFile") == 0) {
-#line 5111 "WindowState.vala.c"
+#line 5099 "WindowState.vala.c"
 		Editor* _tmp2_;
 #line 604 "WindowState.vala"
 		window_state_switchState (self, WINDOW_STATE_STATE_CODEONLY);
@@ -5115,7 +5103,7 @@ window_state_gotoLine (WindowState* self,
 		_tmp2_ = self->code_editor_tab;
 #line 606 "WindowState.vala"
 		editor_scroll_to_line (_tmp2_, line);
-#line 5119 "WindowState.vala.c"
+#line 5107 "WindowState.vala.c"
 	} else {
 		gboolean _tmp3_ = FALSE;
 		JsRenderJsRender* _tmp4_;
@@ -5133,28 +5121,28 @@ window_state_gotoLine (WindowState* self,
 		if (g_strcmp0 (_tmp6_, "Gtk") == 0) {
 #line 612 "WindowState.vala"
 			_tmp3_ = line > -1;
-#line 5137 "WindowState.vala.c"
+#line 5125 "WindowState.vala.c"
 		} else {
 #line 612 "WindowState.vala"
 			_tmp3_ = FALSE;
-#line 5141 "WindowState.vala.c"
+#line 5129 "WindowState.vala.c"
 		}
 #line 612 "WindowState.vala"
 		if (_tmp3_) {
-#line 5145 "WindowState.vala.c"
+#line 5133 "WindowState.vala.c"
 			Xcls_GtkView* _tmp7_;
 #line 614 "WindowState.vala"
 			_tmp7_ = self->window_gladeview;
 #line 614 "WindowState.vala"
 			xcls_gtkview_scroll_to_line (_tmp7_, line);
-#line 5151 "WindowState.vala.c"
+#line 5139 "WindowState.vala.c"
 		} else {
 			Xcls_WindowRooView* _tmp8_;
 #line 616 "WindowState.vala"
 			_tmp8_ = self->window_rooview;
 #line 616 "WindowState.vala"
 			xcls_windowrooview_scroll_to_line (_tmp8_, line);
-#line 5158 "WindowState.vala.c"
+#line 5146 "WindowState.vala.c"
 		}
 	}
 }
@@ -5197,7 +5185,7 @@ window_state_fileViewOpen (WindowState* self,
 	_tmp1_ = existing;
 #line 627 "WindowState.vala"
 	if (_tmp1_ != NULL) {
-#line 5201 "WindowState.vala.c"
+#line 5189 "WindowState.vala.c"
 		Xcls_MainWindow* _tmp2_;
 		GtkApplicationWindow* _tmp3_;
 		Xcls_MainWindow* _tmp4_;
@@ -5218,11 +5206,11 @@ window_state_fileViewOpen (WindowState* self,
 		_g_object_unref0 (existing);
 #line 630 "WindowState.vala"
 		return;
-#line 5222 "WindowState.vala.c"
+#line 5210 "WindowState.vala.c"
 	}
 #line 633 "WindowState.vala"
 	if (new_window) {
-#line 5226 "WindowState.vala.c"
+#line 5214 "WindowState.vala.c"
 		DialogFiles* _tmp6_;
 		GtkWindow* _tmp7_;
 #line 635 "WindowState.vala"
@@ -5237,7 +5225,7 @@ window_state_fileViewOpen (WindowState* self,
 		_g_object_unref0 (existing);
 #line 637 "WindowState.vala"
 		return;
-#line 5241 "WindowState.vala.c"
+#line 5229 "WindowState.vala.c"
 	}
 #line 641 "WindowState.vala"
 	_tmp8_ = self->win;
@@ -5269,7 +5257,7 @@ window_state_fileViewOpen (WindowState* self,
 	_tmp14_ = file->xtype;
 #line 646 "WindowState.vala"
 	if (g_strcmp0 (_tmp14_, "PlainFile") == 0) {
-#line 5273 "WindowState.vala.c"
+#line 5261 "WindowState.vala.c"
 		Xcls_MainWindow* _tmp15_;
 		Xcls_MainWindowXcls_codeeditviewbox* _tmp16_;
 		GtkBox* _tmp17_;
@@ -5284,13 +5272,13 @@ window_state_fileViewOpen (WindowState* self,
 		gtk_widget_show ((GtkWidget*) _tmp17_);
 #line 648 "WindowState.vala"
 		window_state_switchState (self, WINDOW_STATE_STATE_CODEONLY);
-#line 5288 "WindowState.vala.c"
+#line 5276 "WindowState.vala.c"
 		{
 #line 650 "WindowState.vala"
 			js_render_js_render_loadItems (file, &_inner_error0_);
 #line 650 "WindowState.vala"
 			if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 5294 "WindowState.vala.c"
+#line 5282 "WindowState.vala.c"
 				goto __catch0_g_error;
 			}
 		}
@@ -5299,7 +5287,7 @@ window_state_fileViewOpen (WindowState* self,
 		{
 #line 649 "WindowState.vala"
 			g_clear_error (&_inner_error0_);
-#line 5303 "WindowState.vala.c"
+#line 5291 "WindowState.vala.c"
 		}
 		__finally0:
 #line 649 "WindowState.vala"
@@ -5312,13 +5300,13 @@ window_state_fileViewOpen (WindowState* self,
 			g_clear_error (&_inner_error0_);
 #line 649 "WindowState.vala"
 			return;
-#line 5316 "WindowState.vala.c"
+#line 5304 "WindowState.vala.c"
 		}
 #line 652 "WindowState.vala"
 		_tmp18_ = self->code_editor_tab;
 #line 652 "WindowState.vala"
 		editor_show (_tmp18_, file, NULL, NULL);
-#line 5322 "WindowState.vala.c"
+#line 5310 "WindowState.vala.c"
 	} else {
 		Xcls_WindowLeftTree* _tmp19_;
 		Xcls_WindowLeftTreeXcls_model* _tmp20_;
@@ -5330,7 +5318,7 @@ window_state_fileViewOpen (WindowState* self,
 		_tmp20_ = _tmp19_->model;
 #line 658 "WindowState.vala"
 		xcls_windowlefttree_xcls_model_loadFile (_tmp20_, file);
-#line 5334 "WindowState.vala.c"
+#line 5322 "WindowState.vala.c"
 	}
 #line 662 "WindowState.vala"
 	window_state_gotoLine (self, line);
@@ -5350,14 +5338,14 @@ window_state_fileViewOpen (WindowState* self,
 	_tmp26_ = _tmp25_->xtype;
 #line 667 "WindowState.vala"
 	if (g_strcmp0 (_tmp26_, "Roo") == 0) {
-#line 5354 "WindowState.vala.c"
+#line 5342 "WindowState.vala.c"
 		GtkBox* _tmp32_;
 		Xcls_WindowRooView* _tmp33_;
 		GtkBox* _tmp34_;
 		const gchar* _tmp35_;
 #line 669 "WindowState.vala"
 		while (TRUE) {
-#line 5361 "WindowState.vala.c"
+#line 5349 "WindowState.vala.c"
 			GtkBox* _tmp27_;
 			GtkWidget* _tmp28_;
 			GtkBox* _tmp29_;
@@ -5371,7 +5359,7 @@ window_state_fileViewOpen (WindowState* self,
 			if (!(_tmp28_ != NULL)) {
 #line 669 "WindowState.vala"
 				break;
-#line 5375 "WindowState.vala.c"
+#line 5363 "WindowState.vala.c"
 			}
 #line 670 "WindowState.vala"
 			_tmp29_ = ctr;
@@ -5381,7 +5369,7 @@ window_state_fileViewOpen (WindowState* self,
 			_tmp31_ = gtk_widget_get_last_child ((GtkWidget*) _tmp30_);
 #line 670 "WindowState.vala"
 			gtk_box_remove (_tmp29_, _tmp31_);
-#line 5385 "WindowState.vala.c"
+#line 5373 "WindowState.vala.c"
 		}
 #line 673 "WindowState.vala"
 		_tmp32_ = ctr;
@@ -5395,7 +5383,7 @@ window_state_fileViewOpen (WindowState* self,
 		_tmp35_ = file->xtype;
 #line 675 "WindowState.vala"
 		if (g_strcmp0 (_tmp35_, "PlainFile") != 0) {
-#line 5399 "WindowState.vala.c"
+#line 5387 "WindowState.vala.c"
 			Xcls_WindowRooView* _tmp36_;
 			Xcls_WindowRooView* _tmp37_;
 			GtkBox* _tmp38_;
@@ -5409,7 +5397,7 @@ window_state_fileViewOpen (WindowState* self,
 			_tmp38_ = _tmp37_->el;
 #line 678 "WindowState.vala"
 			gtk_widget_show ((GtkWidget*) _tmp38_);
-#line 5413 "WindowState.vala.c"
+#line 5401 "WindowState.vala.c"
 		}
 	} else {
 		GtkBox* _tmp44_;
@@ -5418,7 +5406,7 @@ window_state_fileViewOpen (WindowState* self,
 		const gchar* _tmp47_;
 #line 684 "WindowState.vala"
 		while (TRUE) {
-#line 5422 "WindowState.vala.c"
+#line 5410 "WindowState.vala.c"
 			GtkBox* _tmp39_;
 			GtkWidget* _tmp40_;
 			GtkBox* _tmp41_;
@@ -5432,7 +5420,7 @@ window_state_fileViewOpen (WindowState* self,
 			if (!(_tmp40_ != NULL)) {
 #line 684 "WindowState.vala"
 				break;
-#line 5436 "WindowState.vala.c"
+#line 5424 "WindowState.vala.c"
 			}
 #line 685 "WindowState.vala"
 			_tmp41_ = ctr;
@@ -5442,7 +5430,7 @@ window_state_fileViewOpen (WindowState* self,
 			_tmp43_ = gtk_widget_get_last_child ((GtkWidget*) _tmp42_);
 #line 685 "WindowState.vala"
 			gtk_box_remove (_tmp41_, _tmp43_);
-#line 5446 "WindowState.vala.c"
+#line 5434 "WindowState.vala.c"
 		}
 #line 688 "WindowState.vala"
 		_tmp44_ = ctr;
@@ -5456,7 +5444,7 @@ window_state_fileViewOpen (WindowState* self,
 		_tmp47_ = file->xtype;
 #line 690 "WindowState.vala"
 		if (g_strcmp0 (_tmp47_, "PlainFile") != 0) {
-#line 5460 "WindowState.vala.c"
+#line 5448 "WindowState.vala.c"
 			Xcls_GtkView* _tmp48_;
 			Xcls_GtkView* _tmp49_;
 			GtkBox* _tmp50_;
@@ -5470,7 +5458,7 @@ window_state_fileViewOpen (WindowState* self,
 			_tmp50_ = _tmp49_->el;
 #line 693 "WindowState.vala"
 			gtk_widget_show ((GtkWidget*) _tmp50_);
-#line 5474 "WindowState.vala.c"
+#line 5462 "WindowState.vala.c"
 		}
 	}
 #line 697 "WindowState.vala"
@@ -5489,7 +5477,7 @@ window_state_fileViewOpen (WindowState* self,
 	_tmp55_ = file->xtype;
 #line 698 "WindowState.vala"
 	if (g_strcmp0 (_tmp55_, "PlainFile") != 0) {
-#line 5493 "WindowState.vala.c"
+#line 5481 "WindowState.vala.c"
 		Xcls_MainWindow* _tmp56_;
 		Xcls_MainWindowXcls_codeeditviewbox* _tmp57_;
 		GtkBox* _tmp58_;
@@ -5501,7 +5489,7 @@ window_state_fileViewOpen (WindowState* self,
 		_tmp58_ = _tmp57_->el;
 #line 700 "WindowState.vala"
 		gtk_widget_hide ((GtkWidget*) _tmp58_);
-#line 5505 "WindowState.vala.c"
+#line 5493 "WindowState.vala.c"
 	}
 #line 703 "WindowState.vala"
 	_tmp59_ = self->win;
@@ -5511,7 +5499,7 @@ window_state_fileViewOpen (WindowState* self,
 	_g_object_unref0 (ctr);
 #line 623 "WindowState.vala"
 	_g_object_unref0 (existing);
-#line 5515 "WindowState.vala.c"
+#line 5503 "WindowState.vala.c"
 }
 
 void
@@ -5578,7 +5566,7 @@ window_state_webkitViewInit (WindowState* self)
 	_tmp14_ = _tmp13_->el;
 #line 727 "WindowState.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp14_);
-#line 5582 "WindowState.vala.c"
+#line 5570 "WindowState.vala.c"
 }
 
 void
@@ -5609,7 +5597,7 @@ window_state_gtkViewInit (WindowState* self)
 	_g_object_unref0 (_tmp2_->main_window);
 #line 740 "WindowState.vala"
 	_tmp2_->main_window = _tmp4_;
-#line 5613 "WindowState.vala.c"
+#line 5601 "WindowState.vala.c"
 }
 
 void
@@ -5645,7 +5633,7 @@ window_state_showProps (WindowState* self,
 		_g_object_unref0 (ae);
 #line 751 "WindowState.vala"
 		return;
-#line 5649 "WindowState.vala.c"
+#line 5637 "WindowState.vala.c"
 	}
 #line 753 "WindowState.vala"
 	_tmp3_ = self->rightpalete;
@@ -5677,7 +5665,7 @@ window_state_showProps (WindowState* self,
 	xcls_popoveraddprop_show (_tmp8_, _tmp11_, sig_or_listen, _tmp12_, btn);
 #line 747 "WindowState.vala"
 	_g_object_unref0 (ae);
-#line 5681 "WindowState.vala.c"
+#line 5669 "WindowState.vala.c"
 }
 
 void
@@ -5707,7 +5695,7 @@ window_state_showAddObject (WindowState* self,
 	gtk_popover_set_position (_tmp2_, GTK_POS_RIGHT);
 #line 778 "WindowState.vala"
 	if (on_node == NULL) {
-#line 5711 "WindowState.vala.c"
+#line 5699 "WindowState.vala.c"
 		gchar* _tmp4_;
 #line 778 "WindowState.vala"
 		_tmp4_ = g_strdup ("*top");
@@ -5715,7 +5703,7 @@ window_state_showAddObject (WindowState* self,
 		_g_free0 (_tmp3_);
 #line 778 "WindowState.vala"
 		_tmp3_ = _tmp4_;
-#line 5719 "WindowState.vala.c"
+#line 5707 "WindowState.vala.c"
 	} else {
 		gchar* _tmp5_;
 #line 778 "WindowState.vala"
@@ -5724,7 +5712,7 @@ window_state_showAddObject (WindowState* self,
 		_g_free0 (_tmp3_);
 #line 778 "WindowState.vala"
 		_tmp3_ = _tmp5_;
-#line 5728 "WindowState.vala.c"
+#line 5716 "WindowState.vala.c"
 	}
 #line 776 "WindowState.vala"
 	_tmp6_ = self->rightpalete;
@@ -5746,7 +5734,7 @@ window_state_showAddObject (WindowState* self,
 	_g_object_unref0 (_tmp9_);
 #line 766 "WindowState.vala"
 	_g_free0 (_tmp3_);
-#line 5750 "WindowState.vala.c"
+#line 5738 "WindowState.vala.c"
 }
 
 void
@@ -5757,13 +5745,13 @@ window_state_switchState (WindowState* self,
 	if (new_state == self->state) {
 #line 791 "WindowState.vala"
 		return;
-#line 5761 "WindowState.vala.c"
+#line 5749 "WindowState.vala.c"
 	}
 #line 796 "WindowState.vala"
 	switch (self->state) {
 #line 796 "WindowState.vala"
 		case WINDOW_STATE_STATE_PREVIEW:
-#line 5767 "WindowState.vala.c"
+#line 5755 "WindowState.vala.c"
 		{
 			Editor* _tmp0_;
 			Xcls_WindowLeftTree* _tmp1_;
@@ -5786,7 +5774,7 @@ window_state_switchState (WindowState* self,
 			_g_object_unref0 (_tmp3_);
 #line 806 "WindowState.vala"
 			if (_tmp4_) {
-#line 5790 "WindowState.vala.c"
+#line 5778 "WindowState.vala.c"
 				Xcls_WindowLeftTree* _tmp5_;
 				JsRenderJsRender* _tmp6_;
 				JsRenderJsRender* _tmp7_;
@@ -5806,25 +5794,25 @@ window_state_switchState (WindowState* self,
 				_g_object_unref0 (_tmp7_);
 #line 807 "WindowState.vala"
 				if (_tmp9_) {
-#line 5810 "WindowState.vala.c"
+#line 5798 "WindowState.vala.c"
 					Xcls_WindowRooView* _tmp10_;
 #line 808 "WindowState.vala"
 					_tmp10_ = self->window_rooview;
 #line 808 "WindowState.vala"
 					xcls_windowrooview_createThumb (_tmp10_);
-#line 5816 "WindowState.vala.c"
+#line 5804 "WindowState.vala.c"
 				} else {
 					Xcls_GtkView* _tmp11_;
 #line 810 "WindowState.vala"
 					_tmp11_ = self->window_gladeview;
 #line 810 "WindowState.vala"
 					xcls_gtkview_createThumb (_tmp11_);
-#line 5823 "WindowState.vala.c"
+#line 5811 "WindowState.vala.c"
 				}
 			}
 #line 815 "WindowState.vala"
 			break;
-#line 5828 "WindowState.vala.c"
+#line 5816 "WindowState.vala.c"
 		}
 #line 796 "WindowState.vala"
 		case WINDOW_STATE_STATE_CODEONLY:
@@ -5832,16 +5820,16 @@ window_state_switchState (WindowState* self,
 		case WINDOW_STATE_STATE_CODE:
 #line 796 "WindowState.vala"
 		case WINDOW_STATE_STATE_NONE:
-#line 5836 "WindowState.vala.c"
+#line 5824 "WindowState.vala.c"
 		{
 #line 820 "WindowState.vala"
 			break;
-#line 5840 "WindowState.vala.c"
+#line 5828 "WindowState.vala.c"
 		}
 		default:
 #line 796 "WindowState.vala"
 		break;
-#line 5845 "WindowState.vala.c"
+#line 5833 "WindowState.vala.c"
 	}
 #line 824 "WindowState.vala"
 	self->state = new_state;
@@ -5849,7 +5837,7 @@ window_state_switchState (WindowState* self,
 	switch (self->state) {
 #line 827 "WindowState.vala"
 		case WINDOW_STATE_STATE_PREVIEW:
-#line 5853 "WindowState.vala.c"
+#line 5841 "WindowState.vala.c"
 		{
 			Xcls_MainWindow* _tmp12_;
 			Xcls_MainWindowXcls_leftpane* _tmp13_;
@@ -5897,11 +5885,11 @@ window_state_switchState (WindowState* self,
 			gtk_widget_hide ((GtkWidget*) _tmp23_);
 #line 834 "WindowState.vala"
 			break;
-#line 5901 "WindowState.vala.c"
+#line 5889 "WindowState.vala.c"
 		}
 #line 827 "WindowState.vala"
 		case WINDOW_STATE_STATE_CODE:
-#line 5905 "WindowState.vala.c"
+#line 5893 "WindowState.vala.c"
 		{
 			Xcls_MainWindow* _tmp24_;
 			Xcls_MainWindowXcls_leftpane* _tmp25_;
@@ -5957,11 +5945,11 @@ window_state_switchState (WindowState* self,
 			gtk_widget_show ((GtkWidget*) _tmp37_);
 #line 842 "WindowState.vala"
 			break;
-#line 5961 "WindowState.vala.c"
+#line 5949 "WindowState.vala.c"
 		}
 #line 827 "WindowState.vala"
 		case WINDOW_STATE_STATE_CODEONLY:
-#line 5965 "WindowState.vala.c"
+#line 5953 "WindowState.vala.c"
 		{
 			Xcls_MainWindow* _tmp38_;
 			Xcls_MainWindowXcls_leftpane* _tmp39_;
@@ -6006,20 +5994,20 @@ window_state_switchState (WindowState* self,
 			gtk_widget_show ((GtkWidget*) _tmp48_);
 #line 849 "WindowState.vala"
 			break;
-#line 6010 "WindowState.vala.c"
+#line 5998 "WindowState.vala.c"
 		}
 #line 827 "WindowState.vala"
 		case WINDOW_STATE_STATE_NONE:
-#line 6014 "WindowState.vala.c"
+#line 6002 "WindowState.vala.c"
 		{
 #line 852 "WindowState.vala"
 			break;
-#line 6018 "WindowState.vala.c"
+#line 6006 "WindowState.vala.c"
 		}
 		default:
 #line 827 "WindowState.vala"
 		break;
-#line 6023 "WindowState.vala.c"
+#line 6011 "WindowState.vala.c"
 	}
 }
 
@@ -6028,7 +6016,7 @@ _json_object_ref0 (gpointer self)
 {
 #line 956 "WindowState.vala"
 	return self ? json_object_ref (self) : NULL;
-#line 6032 "WindowState.vala.c"
+#line 6020 "WindowState.vala.c"
 }
 
 static void
@@ -6036,7 +6024,7 @@ _vala_JsonNode_free (JsonNode* self)
 {
 #line 863 "WindowState.vala"
 	g_boxed_free (json_node_get_type (), self);
-#line 6040 "WindowState.vala.c"
+#line 6028 "WindowState.vala.c"
 }
 
 void
@@ -6087,7 +6075,7 @@ window_state_showCompileResult (WindowState* self,
 	if (_tmp2_ == NULL) {
 #line 870 "WindowState.vala"
 		_tmp0_ = "No file?";
-#line 6091 "WindowState.vala.c"
+#line 6079 "WindowState.vala.c"
 	} else {
 		const gchar* _tmp3_ = NULL;
 		PaleteValaSource* _tmp4_;
@@ -6103,7 +6091,7 @@ window_state_showCompileResult (WindowState* self,
 		if (_tmp6_ == NULL) {
 #line 872 "WindowState.vala"
 			_tmp3_ = "No Project";
-#line 6107 "WindowState.vala.c"
+#line 6095 "WindowState.vala.c"
 		} else {
 			PaleteValaSource* _tmp7_;
 			JsRenderJsRender* _tmp8_;
@@ -6119,17 +6107,17 @@ window_state_showCompileResult (WindowState* self,
 			_tmp10_ = _tmp9_->path;
 #line 872 "WindowState.vala"
 			_tmp3_ = _tmp10_;
-#line 6123 "WindowState.vala.c"
+#line 6111 "WindowState.vala.c"
 		}
 #line 870 "WindowState.vala"
 		_tmp0_ = _tmp3_;
-#line 6127 "WindowState.vala.c"
+#line 6115 "WindowState.vala.c"
 	}
 #line 874 "WindowState.vala"
 	_tmp12_ = self->project;
 #line 874 "WindowState.vala"
 	if (_tmp12_ != NULL) {
-#line 6133 "WindowState.vala.c"
+#line 6121 "WindowState.vala.c"
 		ProjectProject* _tmp13_;
 		const gchar* _tmp14_;
 #line 874 "WindowState.vala"
@@ -6138,11 +6126,11 @@ window_state_showCompileResult (WindowState* self,
 		_tmp14_ = _tmp13_->path;
 #line 874 "WindowState.vala"
 		_tmp11_ = _tmp14_;
-#line 6142 "WindowState.vala.c"
+#line 6130 "WindowState.vala.c"
 	} else {
 #line 874 "WindowState.vala"
 		_tmp11_ = "No Project?";
-#line 6146 "WindowState.vala.c"
+#line 6134 "WindowState.vala.c"
 	}
 #line 868 "WindowState.vala"
 	g_debug ("WindowState.vala:868: vala compiled Built Project: %s    Window Projec" \
@@ -6151,7 +6139,7 @@ window_state_showCompileResult (WindowState* self,
 	_tmp18_ = self->project;
 #line 879 "WindowState.vala"
 	if (_tmp18_ != NULL) {
-#line 6154 "WindowState.vala.c"
+#line 6142 "WindowState.vala.c"
 		PaleteValaSource* _tmp19_;
 		JsRenderJsRender* _tmp20_;
 #line 880 "WindowState.vala"
@@ -6160,15 +6148,15 @@ window_state_showCompileResult (WindowState* self,
 		_tmp20_ = _tmp19_->file;
 #line 880 "WindowState.vala"
 		_tmp17_ = _tmp20_ != NULL;
-#line 6163 "WindowState.vala.c"
+#line 6151 "WindowState.vala.c"
 	} else {
 #line 879 "WindowState.vala"
 		_tmp17_ = FALSE;
-#line 6167 "WindowState.vala.c"
+#line 6155 "WindowState.vala.c"
 	}
 #line 879 "WindowState.vala"
 	if (_tmp17_) {
-#line 6171 "WindowState.vala.c"
+#line 6159 "WindowState.vala.c"
 		PaleteValaSource* _tmp21_;
 		JsRenderJsRender* _tmp22_;
 		ProjectProject* _tmp23_;
@@ -6180,15 +6168,15 @@ window_state_showCompileResult (WindowState* self,
 		_tmp23_ = _tmp22_->project;
 #line 881 "WindowState.vala"
 		_tmp16_ = _tmp23_ != NULL;
-#line 6183 "WindowState.vala.c"
+#line 6171 "WindowState.vala.c"
 	} else {
 #line 879 "WindowState.vala"
 		_tmp16_ = FALSE;
-#line 6187 "WindowState.vala.c"
+#line 6175 "WindowState.vala.c"
 	}
 #line 879 "WindowState.vala"
 	if (_tmp16_) {
-#line 6191 "WindowState.vala.c"
+#line 6179 "WindowState.vala.c"
 		ProjectProject* _tmp24_;
 		const gchar* _tmp25_;
 		PaleteValaSource* _tmp26_;
@@ -6209,11 +6197,11 @@ window_state_showCompileResult (WindowState* self,
 		_tmp29_ = _tmp28_->path;
 #line 882 "WindowState.vala"
 		_tmp15_ = g_strcmp0 (_tmp25_, _tmp29_) != 0;
-#line 6212 "WindowState.vala.c"
+#line 6200 "WindowState.vala.c"
 	} else {
 #line 879 "WindowState.vala"
 		_tmp15_ = FALSE;
-#line 6216 "WindowState.vala.c"
+#line 6204 "WindowState.vala.c"
 	}
 #line 879 "WindowState.vala"
 	if (_tmp15_) {
@@ -6221,7 +6209,7 @@ window_state_showCompileResult (WindowState* self,
 		g_debug ("WindowState.vala:883: skip update - not our project");
 #line 884 "WindowState.vala"
 		return;
-#line 6224 "WindowState.vala.c"
+#line 6212 "WindowState.vala.c"
 	}
 #line 887 "WindowState.vala"
 	_tmp30_ = json_generator_new ();
@@ -6267,7 +6255,7 @@ window_state_showCompileResult (WindowState* self,
 	has_errors = FALSE;
 #line 898 "WindowState.vala"
 	if (json_object_has_member (obj, "ERR-TOTAL")) {
-#line 6270 "WindowState.vala.c"
+#line 6258 "WindowState.vala.c"
 		Xcls_MainWindow* _tmp42_;
 		Xcls_MainWindowXcls_statusbar_errors* _tmp43_;
 		JsonObject* _tmp44_;
@@ -6275,7 +6263,7 @@ window_state_showCompileResult (WindowState* self,
 		if (json_object_get_int_member (obj, "ERR-TOTAL") > ((gint64) 0)) {
 #line 900 "WindowState.vala"
 			has_errors = TRUE;
-#line 6278 "WindowState.vala.c"
+#line 6266 "WindowState.vala.c"
 		}
 #line 902 "WindowState.vala"
 		_tmp42_ = self->win;
@@ -6285,7 +6273,7 @@ window_state_showCompileResult (WindowState* self,
 		_tmp44_ = json_object_get_object_member (obj, "ERR");
 #line 902 "WindowState.vala"
 		xcls_mainwindow_xcls_statusbar_errors_setNotices (_tmp43_, _tmp44_, (gint) json_object_get_int_member (obj, "ERR-TOTAL"));
-#line 6288 "WindowState.vala.c"
+#line 6276 "WindowState.vala.c"
 	} else {
 		Xcls_MainWindow* _tmp45_;
 		Xcls_MainWindowXcls_statusbar_errors* _tmp46_;
@@ -6303,11 +6291,11 @@ window_state_showCompileResult (WindowState* self,
 		xcls_mainwindow_xcls_statusbar_errors_setNotices (_tmp46_, _tmp48_, 0);
 #line 904 "WindowState.vala"
 		_json_object_unref0 (_tmp48_);
-#line 6306 "WindowState.vala.c"
+#line 6294 "WindowState.vala.c"
 	}
 #line 907 "WindowState.vala"
 	if (json_object_has_member (obj, "WARN-TOTAL")) {
-#line 6310 "WindowState.vala.c"
+#line 6298 "WindowState.vala.c"
 		Xcls_MainWindow* _tmp49_;
 		Xcls_MainWindowXcls_statusbar_warnings* _tmp50_;
 		JsonObject* _tmp51_;
@@ -6319,7 +6307,7 @@ window_state_showCompileResult (WindowState* self,
 		_tmp51_ = json_object_get_object_member (obj, "WARN");
 #line 909 "WindowState.vala"
 		xcls_mainwindow_xcls_statusbar_warnings_setNotices (_tmp50_, _tmp51_, (gint) json_object_get_int_member (obj, "WARN-TOTAL"));
-#line 6322 "WindowState.vala.c"
+#line 6310 "WindowState.vala.c"
 	} else {
 		Xcls_MainWindow* _tmp52_;
 		Xcls_MainWindowXcls_statusbar_warnings* _tmp53_;
@@ -6337,11 +6325,11 @@ window_state_showCompileResult (WindowState* self,
 		xcls_mainwindow_xcls_statusbar_warnings_setNotices (_tmp53_, _tmp55_, 0);
 #line 911 "WindowState.vala"
 		_json_object_unref0 (_tmp55_);
-#line 6340 "WindowState.vala.c"
+#line 6328 "WindowState.vala.c"
 	}
 #line 914 "WindowState.vala"
 	if (json_object_has_member (obj, "DEPR-TOTAL")) {
-#line 6344 "WindowState.vala.c"
+#line 6332 "WindowState.vala.c"
 		Xcls_MainWindow* _tmp56_;
 		Xcls_MainWindowXcls_statusbar_depricated* _tmp57_;
 		JsonObject* _tmp58_;
@@ -6353,7 +6341,7 @@ window_state_showCompileResult (WindowState* self,
 		_tmp58_ = json_object_get_object_member (obj, "DEPR");
 #line 916 "WindowState.vala"
 		xcls_mainwindow_xcls_statusbar_depricated_setNotices (_tmp57_, _tmp58_, (gint) json_object_get_int_member (obj, "DEPR-TOTAL"));
-#line 6356 "WindowState.vala.c"
+#line 6344 "WindowState.vala.c"
 	} else {
 		Xcls_MainWindow* _tmp59_;
 		Xcls_MainWindowXcls_statusbar_depricated* _tmp60_;
@@ -6371,11 +6359,11 @@ window_state_showCompileResult (WindowState* self,
 		xcls_mainwindow_xcls_statusbar_depricated_setNotices (_tmp60_, _tmp62_, 0);
 #line 919 "WindowState.vala"
 		_json_object_unref0 (_tmp62_);
-#line 6374 "WindowState.vala.c"
+#line 6362 "WindowState.vala.c"
 	}
 #line 922 "WindowState.vala"
 	if (self->state == WINDOW_STATE_STATE_CODEONLY) {
-#line 6378 "WindowState.vala.c"
+#line 6366 "WindowState.vala.c"
 		EditorXcls_buffer* _tmp63_;
 		EditorXcls_buffer* _tmp64_;
 		EditorXcls_buffer* _tmp65_;
@@ -6391,7 +6379,7 @@ window_state_showCompileResult (WindowState* self,
 		_tmp65_ = buf;
 #line 925 "WindowState.vala"
 		editor_xcls_buffer_highlightErrorsJson (_tmp65_, "DEPR", obj);
-#line 6394 "WindowState.vala.c"
+#line 6382 "WindowState.vala.c"
 	}
 #line 928 "WindowState.vala"
 	_tmp66_ = self->win;
@@ -6411,7 +6399,7 @@ window_state_showCompileResult (WindowState* self,
 	gtk_widget_hide ((GtkWidget*) _tmp71_);
 #line 930 "WindowState.vala"
 	if (!has_errors) {
-#line 6414 "WindowState.vala.c"
+#line 6402 "WindowState.vala.c"
 		Xcls_MainWindow* _tmp72_;
 		Xcls_MainWindowXcls_statusbar_compilestatus_label* _tmp73_;
 		GtkLabel* _tmp74_;
@@ -6434,7 +6422,7 @@ window_state_showCompileResult (WindowState* self,
 		_tmp77_ = _tmp76_->el;
 #line 932 "WindowState.vala"
 		gtk_widget_show ((GtkWidget*) _tmp77_);
-#line 6437 "WindowState.vala.c"
+#line 6425 "WindowState.vala.c"
 	}
 #line 934 "WindowState.vala"
 	_tmp78_ = self->file;
@@ -6442,7 +6430,7 @@ window_state_showCompileResult (WindowState* self,
 	_tmp79_ = _tmp78_->xtype;
 #line 934 "WindowState.vala"
 	if (g_strcmp0 (_tmp79_, "Gtk") == 0) {
-#line 6445 "WindowState.vala.c"
+#line 6433 "WindowState.vala.c"
 		Xcls_GtkViewXcls_sourceview* gbuf = NULL;
 		Xcls_GtkView* _tmp80_;
 		Xcls_GtkViewXcls_sourceview* _tmp81_;
@@ -6472,7 +6460,7 @@ window_state_showCompileResult (WindowState* self,
 		xcls_gtkview_xcls_sourceview_highlightErrorsJson (_tmp85_, "DEPR", obj);
 #line 941 "WindowState.vala"
 		if (!has_errors) {
-#line 6475 "WindowState.vala.c"
+#line 6463 "WindowState.vala.c"
 			Xcls_MainWindow* _tmp86_;
 			Xcls_MainWindowXcls_statusbar_run* _tmp87_;
 			GtkButton* _tmp88_;
@@ -6484,11 +6472,11 @@ window_state_showCompileResult (WindowState* self,
 			_tmp88_ = _tmp87_->el;
 #line 942 "WindowState.vala"
 			gtk_widget_show ((GtkWidget*) _tmp88_);
-#line 6487 "WindowState.vala.c"
+#line 6475 "WindowState.vala.c"
 		}
 #line 934 "WindowState.vala"
 		_g_object_unref0 (gbuf);
-#line 6491 "WindowState.vala.c"
+#line 6479 "WindowState.vala.c"
 	}
 #line 947 "WindowState.vala"
 	_tmp89_ = self->file;
@@ -6496,7 +6484,7 @@ window_state_showCompileResult (WindowState* self,
 	_tmp90_ = _tmp89_->xtype;
 #line 947 "WindowState.vala"
 	if (g_strcmp0 (_tmp90_, "Roo") == 0) {
-#line 6499 "WindowState.vala.c"
+#line 6487 "WindowState.vala.c"
 		Xcls_WindowRooViewXcls_sourceview* gbuf = NULL;
 		Xcls_WindowRooView* _tmp91_;
 		Xcls_WindowRooViewXcls_sourceview* _tmp92_;
@@ -6526,7 +6514,7 @@ window_state_showCompileResult (WindowState* self,
 		xcls_windowrooview_xcls_sourceview_highlightErrorsJson (_tmp96_, "DEPR", obj);
 #line 947 "WindowState.vala"
 		_g_object_unref0 (gbuf);
-#line 6529 "WindowState.vala.c"
+#line 6517 "WindowState.vala.c"
 	}
 #line 956 "WindowState.vala"
 	_tmp97_ = _json_object_ref0 (obj);
@@ -6540,7 +6528,7 @@ window_state_showCompileResult (WindowState* self,
 	__vala_JsonNode_free0 (n);
 #line 863 "WindowState.vala"
 	_g_object_unref0 (generator);
-#line 6543 "WindowState.vala.c"
+#line 6531 "WindowState.vala.c"
 }
 
 static void
@@ -6553,7 +6541,7 @@ window_state_class_init (WindowStateClass * klass,
 	g_type_class_adjust_private_offset (klass, &WindowState_private_offset);
 #line 8 "WindowState.vala"
 	G_OBJECT_CLASS (klass)->finalize = window_state_finalize;
-#line 6556 "WindowState.vala.c"
+#line 6544 "WindowState.vala.c"
 }
 
 static void
@@ -6574,7 +6562,7 @@ window_state_instance_init (WindowState * self,
 	self->priv->tree_width = 300;
 #line 181 "WindowState.vala"
 	self->priv->props_width = 300;
-#line 6577 "WindowState.vala.c"
+#line 6565 "WindowState.vala.c"
 }
 
 static void
@@ -6619,7 +6607,7 @@ window_state_finalize (GObject * obj)
 	_json_object_unref0 (self->last_compile_result);
 #line 8 "WindowState.vala"
 	G_OBJECT_CLASS (window_state_parent_class)->finalize (obj);
-#line 6622 "WindowState.vala.c"
+#line 6610 "WindowState.vala.c"
 }
 
 /**

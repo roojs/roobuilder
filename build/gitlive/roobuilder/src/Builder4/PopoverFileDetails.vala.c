@@ -1585,8 +1585,8 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_PopoverFileDetailsXcls_HeaderBar29, g_object
 VALA_EXTERN Xcls_PopoverFileDetailsXcls_HeaderBar29* xcls_popoverfiledetails_xcls_headerbar29_new (Xcls_PopoverFileDetails* _owner);
 VALA_EXTERN Xcls_PopoverFileDetailsXcls_HeaderBar29* xcls_popoverfiledetails_xcls_headerbar29_construct (GType object_type,
                                                                                              Xcls_PopoverFileDetails* _owner);
-static gboolean __lambda157_ (Xcls_PopoverFileDetails* self);
-static gboolean ___lambda157__gtk_window_close_request (GtkWindow* _sender,
+static gboolean __lambda156_ (Xcls_PopoverFileDetails* self);
+static gboolean ___lambda156__gtk_window_close_request (GtkWindow* _sender,
                                                  gpointer self);
 VALA_EXTERN void xcls_popoverfiledetails_show (Xcls_PopoverFileDetails* self,
                                    JsRenderJsRender* c,
@@ -1719,8 +1719,8 @@ static GType xcls_popoverfiledetails_xcls_filetype_lbl_get_type_once (void);
 VALA_EXTERN Xcls_PopoverFileDetailsXcls_filetype_model* xcls_popoverfiledetails_xcls_filetype_model_new (Xcls_PopoverFileDetails* _owner);
 VALA_EXTERN Xcls_PopoverFileDetailsXcls_filetype_model* xcls_popoverfiledetails_xcls_filetype_model_construct (GType object_type,
                                                                                                    Xcls_PopoverFileDetails* _owner);
-static void __lambda153_ (Xcls_PopoverFileDetailsXcls_filetype* self);
-static void ___lambda153__g_object_notify (GObject* _sender,
+static void __lambda152_ (Xcls_PopoverFileDetailsXcls_filetype* self);
+static void ___lambda152__g_object_notify (GObject* _sender,
                                     GParamSpec* pspec,
                                     gpointer self);
 VALA_EXTERN gchar* xcls_popoverfiledetails_xcls_filetype_getValue (Xcls_PopoverFileDetailsXcls_filetype* self);
@@ -1769,8 +1769,8 @@ static void xcls_popoverfiledetails_xcls_path_finalize (GObject * obj);
 static GType xcls_popoverfiledetails_xcls_path_get_type_once (void);
 static void xcls_popoverfiledetails_xcls_gen_lbl_finalize (GObject * obj);
 static GType xcls_popoverfiledetails_xcls_gen_lbl_get_type_once (void);
-static void __lambda154_ (Xcls_PopoverFileDetailsXcls_gen* self);
-static void ___lambda154__gtk_check_button_toggled (GtkCheckButton* _sender,
+static void __lambda153_ (Xcls_PopoverFileDetailsXcls_gen* self);
+static void ___lambda153__gtk_check_button_toggled (GtkCheckButton* _sender,
                                              gpointer self);
 static void xcls_popoverfiledetails_xcls_gen_finalize (GObject * obj);
 static GType xcls_popoverfiledetails_xcls_gen_get_type_once (void);
@@ -1784,12 +1784,12 @@ VALA_EXTERN Xcls_PopoverFileDetailsXcls_save_btn* xcls_popoverfiledetails_xcls_s
                                                                                        Xcls_PopoverFileDetails* _owner);
 static void xcls_popoverfiledetails_xcls_headerbar29_finalize (GObject * obj);
 static GType xcls_popoverfiledetails_xcls_headerbar29_get_type_once (void);
-static void __lambda156_ (Xcls_PopoverFileDetailsXcls_Button30* self);
-static void ___lambda156__gtk_button_clicked (GtkButton* _sender,
+static void __lambda155_ (Xcls_PopoverFileDetailsXcls_Button30* self);
+static void ___lambda155__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_popoverfiledetails_xcls_button30_finalize (GObject * obj);
 static GType xcls_popoverfiledetails_xcls_button30_get_type_once (void);
-static void __lambda155_ (Xcls_PopoverFileDetailsXcls_save_btn* self);
+static void __lambda154_ (Xcls_PopoverFileDetailsXcls_save_btn* self);
 VALA_EXTERN GType xcls_standarderrordialog_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_StandardErrorDialog, g_object_unref)
 VALA_EXTERN Xcls_StandardErrorDialog* xcls_standarderrordialog_singleton (void);
@@ -1852,7 +1852,7 @@ VALA_EXTERN JsRenderJsRender* js_render_js_render_factory (const gchar* xt,
                                                GError** error);
 VALA_EXTERN void project_project_addFile (ProjectProject* self,
                               JsRenderJsRender* pfile);
-static void ___lambda155__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda154__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_popoverfiledetails_xcls_save_btn_finalize (GObject * obj);
 static GType xcls_popoverfiledetails_xcls_save_btn_get_type_once (void);
@@ -1915,7 +1915,7 @@ xcls_popoverfiledetails_singleton (void)
 }
 
 static gboolean
-__lambda157_ (Xcls_PopoverFileDetails* self)
+__lambda156_ (Xcls_PopoverFileDetails* self)
 {
 	Xcls_PopoverFileDetails* _tmp0_;
 	GtkWindow* _tmp1_;
@@ -1934,11 +1934,11 @@ __lambda157_ (Xcls_PopoverFileDetails* self)
 }
 
 static gboolean
-___lambda157__gtk_window_close_request (GtkWindow* _sender,
+___lambda156__gtk_window_close_request (GtkWindow* _sender,
                                         gpointer self)
 {
 	gboolean result;
-	result = __lambda157_ ((Xcls_PopoverFileDetails*) self);
+	result = __lambda156_ ((Xcls_PopoverFileDetails*) self);
 #line 74 "PopoverFileDetails.vala"
 	return result;
 #line 1945 "PopoverFileDetails.vala.c"
@@ -2030,7 +2030,7 @@ xcls_popoverfiledetails_construct (GType object_type)
 #line 74 "PopoverFileDetails.vala"
 	_tmp12_ = self->el;
 #line 74 "PopoverFileDetails.vala"
-	g_signal_connect_object (_tmp12_, "close-request", (GCallback) ___lambda157__gtk_window_close_request, self, 0);
+	g_signal_connect_object (_tmp12_, "close-request", (GCallback) ___lambda156__gtk_window_close_request, self, 0);
 #line 52 "PopoverFileDetails.vala"
 	_g_object_unref0 (child_2);
 #line 52 "PopoverFileDetails.vala"
@@ -4201,7 +4201,7 @@ xcls_popoverfiledetails_xcls_filetype_get_instance_private (Xcls_PopoverFileDeta
 }
 
 static void
-__lambda153_ (Xcls_PopoverFileDetailsXcls_filetype* self)
+__lambda152_ (Xcls_PopoverFileDetailsXcls_filetype* self)
 {
 #line 428 "PopoverFileDetails.vala"
 	xcls_popoverfiledetails_xcls_filetype_showhide (self);
@@ -4209,12 +4209,12 @@ __lambda153_ (Xcls_PopoverFileDetailsXcls_filetype* self)
 }
 
 static void
-___lambda153__g_object_notify (GObject* _sender,
+___lambda152__g_object_notify (GObject* _sender,
                                GParamSpec* pspec,
                                gpointer self)
 {
 #line 423 "PopoverFileDetails.vala"
-	__lambda153_ ((Xcls_PopoverFileDetailsXcls_filetype*) self);
+	__lambda152_ ((Xcls_PopoverFileDetailsXcls_filetype*) self);
 #line 4219 "PopoverFileDetails.vala.c"
 }
 
@@ -4275,7 +4275,7 @@ xcls_popoverfiledetails_xcls_filetype_construct (GType object_type,
 #line 423 "PopoverFileDetails.vala"
 	_tmp9_ = self->el;
 #line 423 "PopoverFileDetails.vala"
-	g_signal_connect_object ((GObject*) _tmp9_, "notify::selected", (GCallback) ___lambda153__g_object_notify, self, 0);
+	g_signal_connect_object ((GObject*) _tmp9_, "notify::selected", (GCallback) ___lambda152__g_object_notify, self, 0);
 #line 410 "PopoverFileDetails.vala"
 	_g_object_unref0 (child_1);
 #line 410 "PopoverFileDetails.vala"
@@ -7654,7 +7654,7 @@ xcls_popoverfiledetails_xcls_gen_get_instance_private (Xcls_PopoverFileDetailsXc
 }
 
 static void
-__lambda154_ (Xcls_PopoverFileDetailsXcls_gen* self)
+__lambda153_ (Xcls_PopoverFileDetailsXcls_gen* self)
 {
 	const gchar* _tmp0_ = NULL;
 	GtkCheckButton* _tmp1_;
@@ -7685,11 +7685,11 @@ __lambda154_ (Xcls_PopoverFileDetailsXcls_gen* self)
 }
 
 static void
-___lambda154__gtk_check_button_toggled (GtkCheckButton* _sender,
+___lambda153__gtk_check_button_toggled (GtkCheckButton* _sender,
                                         gpointer self)
 {
 #line 1100 "PopoverFileDetails.vala"
-	__lambda154_ ((Xcls_PopoverFileDetailsXcls_gen*) self);
+	__lambda153_ ((Xcls_PopoverFileDetailsXcls_gen*) self);
 #line 7694 "PopoverFileDetails.vala.c"
 }
 
@@ -7735,7 +7735,7 @@ xcls_popoverfiledetails_xcls_gen_construct (GType object_type,
 #line 1100 "PopoverFileDetails.vala"
 	_tmp5_ = self->el;
 #line 1100 "PopoverFileDetails.vala"
-	g_signal_connect_object (_tmp5_, "toggled", (GCallback) ___lambda154__gtk_check_button_toggled, self, 0);
+	g_signal_connect_object (_tmp5_, "toggled", (GCallback) ___lambda153__gtk_check_button_toggled, self, 0);
 #line 1088 "PopoverFileDetails.vala"
 	return self;
 #line 7742 "PopoverFileDetails.vala.c"
@@ -7961,7 +7961,7 @@ xcls_popoverfiledetails_xcls_button30_get_instance_private (Xcls_PopoverFileDeta
 }
 
 static void
-__lambda156_ (Xcls_PopoverFileDetailsXcls_Button30* self)
+__lambda155_ (Xcls_PopoverFileDetailsXcls_Button30* self)
 {
 	Xcls_PopoverFileDetails* _tmp0_;
 	Xcls_PopoverFileDetails* _tmp1_;
@@ -7980,11 +7980,11 @@ __lambda156_ (Xcls_PopoverFileDetailsXcls_Button30* self)
 }
 
 static void
-___lambda156__gtk_button_clicked (GtkButton* _sender,
+___lambda155__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1159 "PopoverFileDetails.vala"
-	__lambda156_ ((Xcls_PopoverFileDetailsXcls_Button30*) self);
+	__lambda155_ ((Xcls_PopoverFileDetailsXcls_Button30*) self);
 #line 7989 "PopoverFileDetails.vala.c"
 }
 
@@ -8020,7 +8020,7 @@ xcls_popoverfiledetails_xcls_button30_construct (GType object_type,
 #line 1159 "PopoverFileDetails.vala"
 	_tmp3_ = self->el;
 #line 1159 "PopoverFileDetails.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda156__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda155__gtk_button_clicked, self, 0);
 #line 1148 "PopoverFileDetails.vala"
 	return self;
 #line 8027 "PopoverFileDetails.vala.c"
@@ -8100,7 +8100,7 @@ xcls_popoverfiledetails_xcls_save_btn_get_instance_private (Xcls_PopoverFileDeta
 }
 
 static void
-__lambda155_ (Xcls_PopoverFileDetailsXcls_save_btn* self)
+__lambda154_ (Xcls_PopoverFileDetailsXcls_save_btn* self)
 {
 	Xcls_PopoverFileDetails* _tmp0_;
 	Xcls_PopoverFileDetailsXcls_name* _tmp1_;
@@ -8890,11 +8890,11 @@ __lambda155_ (Xcls_PopoverFileDetailsXcls_save_btn* self)
 }
 
 static void
-___lambda155__gtk_button_clicked (GtkButton* _sender,
+___lambda154__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1194 "PopoverFileDetails.vala"
-	__lambda155_ ((Xcls_PopoverFileDetailsXcls_save_btn*) self);
+	__lambda154_ ((Xcls_PopoverFileDetailsXcls_save_btn*) self);
 #line 8899 "PopoverFileDetails.vala.c"
 }
 
@@ -8973,7 +8973,7 @@ xcls_popoverfiledetails_xcls_save_btn_construct (GType object_type,
 #line 1194 "PopoverFileDetails.vala"
 	_tmp11_ = self->el;
 #line 1194 "PopoverFileDetails.vala"
-	g_signal_connect_object (_tmp11_, "clicked", (GCallback) ___lambda155__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp11_, "clicked", (GCallback) ___lambda154__gtk_button_clicked, self, 0);
 #line 1178 "PopoverFileDetails.vala"
 	return self;
 #line 8980 "PopoverFileDetails.vala.c"

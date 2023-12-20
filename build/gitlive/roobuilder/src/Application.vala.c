@@ -720,11 +720,11 @@ static void builder_application_compileBjs (BuilderApplication* self,
 static void builder_application_compileVala (BuilderApplication* self);
 VALA_EXTERN BuilderApplication* builder_application_singleton (gchar** args,
                                                    gint args_length1);
-static void ___lambda258_ (BuilderApplication* self,
+static void ___lambda257_ (BuilderApplication* self,
                     const gchar* dom,
                     GLogLevelFlags lvl,
                     const gchar* msg);
-static void ____lambda258__glog_func (const gchar* log_domain,
+static void ____lambda257__glog_func (const gchar* log_domain,
                                GLogLevelFlags log_levels,
                                const gchar* message,
                                gpointer self);
@@ -759,10 +759,10 @@ static void block21_data_unref (void * _userdata_);
 VALA_EXTERN GType resources_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Resources, g_object_unref)
 VALA_EXTERN Resources* resources_singleton (void);
-static void __lambda259_ (Block21Data* _data21_,
+static void __lambda258_ (Block21Data* _data21_,
                    guint p,
                    guint t);
-static void ___lambda259__resources_update_progress (Resources* _sender,
+static void ___lambda258__resources_update_progress (Resources* _sender,
                                               guint cur_pos,
                                               guint total,
                                               gpointer self);
@@ -1730,7 +1730,7 @@ builder_application_configDirectory (void)
 }
 
 static void
-___lambda258_ (BuilderApplication* self,
+___lambda257_ (BuilderApplication* self,
                const gchar* dom,
                GLogLevelFlags lvl,
                const gchar* msg)
@@ -1757,13 +1757,13 @@ ___lambda258_ (BuilderApplication* self,
 }
 
 static void
-____lambda258__glog_func (const gchar* log_domain,
+____lambda257__glog_func (const gchar* log_domain,
                           GLogLevelFlags log_levels,
                           const gchar* message,
                           gpointer self)
 {
 #line 218 "Application.vala"
-	___lambda258_ ((BuilderApplication*) self, log_domain, log_levels, message);
+	___lambda257_ ((BuilderApplication*) self, log_domain, log_levels, message);
 #line 1765 "Application.vala.c"
 }
 
@@ -1787,7 +1787,7 @@ builder_application_initDebug (BuilderApplication* self)
 #line 217 "Application.vala"
 	if (_tmp0_) {
 #line 218 "Application.vala"
-		g_log_set_handler (NULL, (G_LOG_LEVEL_DEBUG | G_LOG_LEVEL_WARNING) | G_LOG_LEVEL_CRITICAL, ____lambda258__glog_func, self);
+		g_log_set_handler (NULL, (G_LOG_LEVEL_DEBUG | G_LOG_LEVEL_WARNING) | G_LOG_LEVEL_CRITICAL, ____lambda257__glog_func, self);
 #line 1789 "Application.vala.c"
 	}
 }
@@ -2797,7 +2797,7 @@ block21_data_unref (void * _userdata_)
 }
 
 static void
-__lambda259_ (Block21Data* _data21_,
+__lambda258_ (Block21Data* _data21_,
               guint p,
               guint t)
 {
@@ -2815,13 +2815,13 @@ __lambda259_ (Block21Data* _data21_,
 }
 
 static void
-___lambda259__resources_update_progress (Resources* _sender,
+___lambda258__resources_update_progress (Resources* _sender,
                                          guint cur_pos,
                                          guint total,
                                          gpointer self)
 {
 #line 418 "Application.vala"
-	__lambda259_ (self, cur_pos, total);
+	__lambda258_ (self, cur_pos, total);
 #line 2819 "Application.vala.c"
 }
 
@@ -2859,7 +2859,7 @@ builder_application_pullResources (BuilderApplication* self)
 #line 418 "Application.vala"
 	_tmp2_ = _tmp1_;
 #line 418 "Application.vala"
-	g_signal_connect_data (_tmp2_, "update-progress", (GCallback) ___lambda259__resources_update_progress, block21_data_ref (_data21_), (GClosureNotify) block21_data_unref, 0);
+	g_signal_connect_data (_tmp2_, "update-progress", (GCallback) ___lambda258__resources_update_progress, block21_data_ref (_data21_), (GClosureNotify) block21_data_unref, 0);
 #line 418 "Application.vala"
 	_g_object_unref0 (_tmp2_);
 #line 424 "Application.vala"

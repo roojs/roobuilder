@@ -250,11 +250,11 @@ static void block13_data_unref (void * _userdata_);
 VALA_EXTERN gchar* builder_application_configDirectory (void);
 static JsonNode* _vala_JsonNode_copy (JsonNode* self);
 static void _vala_JsonNode_free (JsonNode* self);
-static void __lambda263_ (Block13Data* _data13_,
+static void __lambda262_ (Block13Data* _data13_,
                    JsonObject* o,
                    const gchar* key,
                    JsonNode* value);
-static void ___lambda263__json_object_foreach (JsonObject* object,
+static void ___lambda262__json_object_foreach (JsonObject* object,
                                         const gchar* member_name,
                                         JsonNode* member_node,
                                         gpointer self);
@@ -728,7 +728,7 @@ _json_object_ref0 (gpointer self)
 }
 
 static void
-__lambda263_ (Block13Data* _data13_,
+__lambda262_ (Block13Data* _data13_,
               JsonObject* o,
               const gchar* key,
               JsonNode* value)
@@ -756,13 +756,13 @@ __lambda263_ (Block13Data* _data13_,
 }
 
 static void
-___lambda263__json_object_foreach (JsonObject* object,
+___lambda262__json_object_foreach (JsonObject* object,
                                    const gchar* member_name,
                                    JsonNode* member_node,
                                    gpointer self)
 {
 #line 128 "Gir.vala"
-	__lambda263_ (self, object, member_name, member_node);
+	__lambda262_ (self, object, member_name, member_node);
 #line 767 "Gir.vala.c"
 }
 
@@ -931,7 +931,7 @@ palete_gir_loadOverrides (gboolean force)
 #line 128 "Gir.vala"
 	_tmp17_ = _data13_->obj;
 #line 128 "Gir.vala"
-	json_object_foreach_member (_tmp17_, ___lambda263__json_object_foreach, _data13_);
+	json_object_foreach_member (_tmp17_, ___lambda262__json_object_foreach, _data13_);
 #line 134 "Gir.vala"
 	palete_gir_overrides_loaded = TRUE;
 #line 102 "Gir.vala"

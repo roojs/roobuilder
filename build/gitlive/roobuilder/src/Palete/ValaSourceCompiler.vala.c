@@ -404,7 +404,6 @@ struct _ProjectGtkValaSettings {
 	GObject parent_instance;
 	ProjectGtkValaSettingsPrivate * priv;
 	GeeArrayList* sources;
-	gchar* target_bin;
 	gchar* execute_args;
 	gboolean loading_ui;
 };
@@ -489,6 +488,7 @@ static void _vala_array_add45 (gchar** * array,
                         gchar* value);
 VALA_EXTERN void project_project_makeProjectSubdir (ProjectProject* self,
                                         const gchar* name);
+VALA_EXTERN const gchar* project_gtk_vala_settings_get_name (ProjectGtkValaSettings* self);
 VALA_EXTERN gboolean palete_vala_source_compiler_has_vapi (PaleteValaSourceCompiler* self,
                                                gchar** dirs,
                                                gint dirs_length1,
@@ -2158,10 +2158,9 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 		GeeHashMap* _tmp86_;
 		const gchar* _tmp87_;
 		gpointer _tmp88_;
-		gboolean _tmp89_ = FALSE;
-		const gchar* _tmp90_;
+		const gchar* _tmp89_;
+		gint _tmp90_;
 		gint _tmp91_;
-		gint _tmp92_;
 #line 302 "ValaSourceCompiler.vala"
 		_tmp85_ = pr;
 #line 302 "ValaSourceCompiler.vala"
@@ -2173,64 +2172,58 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 #line 302 "ValaSourceCompiler.vala"
 		cg = (ProjectGtkValaSettings*) _tmp88_;
 #line 303 "ValaSourceCompiler.vala"
-		_tmp90_ = self->output;
+		_tmp89_ = self->output;
 #line 303 "ValaSourceCompiler.vala"
-		_tmp91_ = strlen (_tmp90_);
+		_tmp90_ = strlen (_tmp89_);
 #line 303 "ValaSourceCompiler.vala"
-		_tmp92_ = _tmp91_;
+		_tmp91_ = _tmp90_;
 #line 303 "ValaSourceCompiler.vala"
-		if (_tmp92_ < 1) {
-#line 2184 "ValaSourceCompiler.vala.c"
-			ProjectGtkValaSettings* _tmp93_;
-			const gchar* _tmp94_;
-			gint _tmp95_;
-			gint _tmp96_;
-#line 303 "ValaSourceCompiler.vala"
-			_tmp93_ = cg;
-#line 303 "ValaSourceCompiler.vala"
-			_tmp94_ = _tmp93_->target_bin;
-#line 303 "ValaSourceCompiler.vala"
-			_tmp95_ = strlen (_tmp94_);
-#line 303 "ValaSourceCompiler.vala"
-			_tmp96_ = _tmp95_;
-#line 303 "ValaSourceCompiler.vala"
-			_tmp89_ = _tmp96_ > 0;
-#line 2199 "ValaSourceCompiler.vala.c"
-		} else {
-#line 303 "ValaSourceCompiler.vala"
-			_tmp89_ = FALSE;
-#line 2203 "ValaSourceCompiler.vala.c"
-		}
-#line 303 "ValaSourceCompiler.vala"
-		if (_tmp89_) {
-#line 2207 "ValaSourceCompiler.vala.c"
-			ProjectGtkValaSettings* _tmp97_;
+		if (_tmp91_ < 1) {
+#line 2183 "ValaSourceCompiler.vala.c"
+			ProjectGtk* _tmp92_;
+			const gchar* _tmp93_;
+			gchar* _tmp94_;
+			gchar* _tmp95_;
+			ProjectGtkValaSettings* _tmp96_;
+			const gchar* _tmp97_;
 			const gchar* _tmp98_;
 			gchar* _tmp99_;
 #line 304 "ValaSourceCompiler.vala"
-			_tmp97_ = cg;
+			_tmp92_ = pr;
 #line 304 "ValaSourceCompiler.vala"
-			_tmp98_ = _tmp97_->target_bin;
+			_tmp93_ = ((ProjectProject*) _tmp92_)->path;
 #line 304 "ValaSourceCompiler.vala"
-			_tmp99_ = g_strdup (_tmp98_);
+			_tmp94_ = g_strconcat (_tmp93_, "/build/", NULL);
+#line 304 "ValaSourceCompiler.vala"
+			_tmp95_ = _tmp94_;
+#line 304 "ValaSourceCompiler.vala"
+			_tmp96_ = cg;
+#line 304 "ValaSourceCompiler.vala"
+			_tmp97_ = project_gtk_vala_settings_get_name (_tmp96_);
+#line 304 "ValaSourceCompiler.vala"
+			_tmp98_ = _tmp97_;
+#line 304 "ValaSourceCompiler.vala"
+			_tmp99_ = g_strconcat (_tmp95_, _tmp98_, NULL);
 #line 304 "ValaSourceCompiler.vala"
 			_g_free0 (self->output);
 #line 304 "ValaSourceCompiler.vala"
 			self->output = _tmp99_;
-#line 2221 "ValaSourceCompiler.vala.c"
+#line 304 "ValaSourceCompiler.vala"
+			_g_free0 (_tmp95_);
+#line 2214 "ValaSourceCompiler.vala.c"
 		}
 		{
 			gint i = 0;
 #line 308 "ValaSourceCompiler.vala"
 			i = 0;
-#line 2227 "ValaSourceCompiler.vala.c"
+#line 2220 "ValaSourceCompiler.vala.c"
 			{
 				gboolean _tmp100_ = FALSE;
 #line 308 "ValaSourceCompiler.vala"
 				_tmp100_ = TRUE;
 #line 308 "ValaSourceCompiler.vala"
 				while (TRUE) {
-#line 2234 "ValaSourceCompiler.vala.c"
+#line 2227 "ValaSourceCompiler.vala.c"
 					ProjectGtkValaSettings* _tmp102_;
 					GeeArrayList* _tmp103_;
 					gint _tmp104_;
@@ -2269,13 +2262,13 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					ValaSourceFile* _tmp152_;
 #line 308 "ValaSourceCompiler.vala"
 					if (!_tmp100_) {
-#line 2273 "ValaSourceCompiler.vala.c"
+#line 2266 "ValaSourceCompiler.vala.c"
 						gint _tmp101_;
 #line 308 "ValaSourceCompiler.vala"
 						_tmp101_ = i;
 #line 308 "ValaSourceCompiler.vala"
 						i = _tmp101_ + 1;
-#line 2279 "ValaSourceCompiler.vala.c"
+#line 2272 "ValaSourceCompiler.vala.c"
 					}
 #line 308 "ValaSourceCompiler.vala"
 					_tmp100_ = FALSE;
@@ -2291,7 +2284,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					if (!(i < _tmp105_)) {
 #line 308 "ValaSourceCompiler.vala"
 						break;
-#line 2295 "ValaSourceCompiler.vala.c"
+#line 2288 "ValaSourceCompiler.vala.c"
 					}
 #line 309 "ValaSourceCompiler.vala"
 					_tmp106_ = pr;
@@ -2327,7 +2320,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					_tmp117_ = path;
 #line 312 "ValaSourceCompiler.vala"
 					if (g_str_has_suffix (_tmp117_, ".bjs")) {
-#line 2331 "ValaSourceCompiler.vala.c"
+#line 2324 "ValaSourceCompiler.vala.c"
 						const gchar* _tmp118_;
 						const gchar* _tmp119_;
 						gint _tmp120_;
@@ -2361,7 +2354,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 						_tmp126_ = path;
 #line 314 "ValaSourceCompiler.vala"
 						g_debug ("ValaSourceCompiler.vala:314: Change source file %s", _tmp126_);
-#line 2365 "ValaSourceCompiler.vala.c"
+#line 2358 "ValaSourceCompiler.vala.c"
 					}
 #line 317 "ValaSourceCompiler.vala"
 					_tmp127_ = path;
@@ -2371,7 +2364,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 						_g_free0 (path);
 #line 318 "ValaSourceCompiler.vala"
 						continue;
-#line 2375 "ValaSourceCompiler.vala.c"
+#line 2368 "ValaSourceCompiler.vala.c"
 					}
 #line 321 "ValaSourceCompiler.vala"
 					_tmp128_ = path;
@@ -2379,7 +2372,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					_tmp129_ = self->original_filepath;
 #line 321 "ValaSourceCompiler.vala"
 					if (g_strcmp0 (_tmp128_, _tmp129_) == 0) {
-#line 2383 "ValaSourceCompiler.vala.c"
+#line 2376 "ValaSourceCompiler.vala.c"
 						const gchar* _tmp130_;
 						const gchar* _tmp131_;
 						const gchar* _tmp132_;
@@ -2410,7 +2403,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 						_g_free0 (path);
 #line 324 "ValaSourceCompiler.vala"
 						continue;
-#line 2414 "ValaSourceCompiler.vala.c"
+#line 2407 "ValaSourceCompiler.vala.c"
 					}
 #line 326 "ValaSourceCompiler.vala"
 					_tmp136_ = path;
@@ -2420,7 +2413,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 						_g_free0 (path);
 #line 327 "ValaSourceCompiler.vala"
 						continue;
-#line 2424 "ValaSourceCompiler.vala.c"
+#line 2417 "ValaSourceCompiler.vala.c"
 					}
 #line 329 "ValaSourceCompiler.vala"
 					_tmp137_ = path;
@@ -2446,7 +2439,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					_tmp143_ = path;
 #line 333 "ValaSourceCompiler.vala"
 					if (g_regex_match_simple ("\\.c$", _tmp143_, 0, 0)) {
-#line 2450 "ValaSourceCompiler.vala.c"
+#line 2443 "ValaSourceCompiler.vala.c"
 						ValaCodeContext* _tmp144_;
 						const gchar* _tmp145_;
 #line 334 "ValaSourceCompiler.vala"
@@ -2459,7 +2452,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 						_g_free0 (path);
 #line 335 "ValaSourceCompiler.vala"
 						continue;
-#line 2463 "ValaSourceCompiler.vala.c"
+#line 2456 "ValaSourceCompiler.vala.c"
 					}
 #line 339 "ValaSourceCompiler.vala"
 					_tmp146_ = self->priv->context;
@@ -2485,13 +2478,13 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					_vala_source_file_unref0 (xsf);
 #line 308 "ValaSourceCompiler.vala"
 					_g_free0 (path);
-#line 2489 "ValaSourceCompiler.vala.c"
+#line 2482 "ValaSourceCompiler.vala.c"
 				}
 			}
 		}
 #line 301 "ValaSourceCompiler.vala"
 		_g_object_unref0 (cg);
-#line 2495 "ValaSourceCompiler.vala.c"
+#line 2488 "ValaSourceCompiler.vala.c"
 	}
 #line 352 "ValaSourceCompiler.vala"
 	_tmp153_ = self->priv->context;
@@ -2501,19 +2494,19 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 	_tmp154_ = self->priv->context;
 #line 353 "ValaSourceCompiler.vala"
 	vala_code_context_add_external_package (_tmp154_, "gobject-2.0");
-#line 2505 "ValaSourceCompiler.vala.c"
+#line 2498 "ValaSourceCompiler.vala.c"
 	{
 		gint i = 0;
 #line 357 "ValaSourceCompiler.vala"
 		i = 0;
-#line 2510 "ValaSourceCompiler.vala.c"
+#line 2503 "ValaSourceCompiler.vala.c"
 		{
 			gboolean _tmp155_ = FALSE;
 #line 357 "ValaSourceCompiler.vala"
 			_tmp155_ = TRUE;
 #line 357 "ValaSourceCompiler.vala"
 			while (TRUE) {
-#line 2517 "ValaSourceCompiler.vala.c"
+#line 2510 "ValaSourceCompiler.vala.c"
 				ProjectGtk* _tmp157_;
 				GeeArrayList* _tmp158_;
 				gint _tmp159_;
@@ -2544,13 +2537,13 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 				const gchar* _tmp188_;
 #line 357 "ValaSourceCompiler.vala"
 				if (!_tmp155_) {
-#line 2548 "ValaSourceCompiler.vala.c"
+#line 2541 "ValaSourceCompiler.vala.c"
 					gint _tmp156_;
 #line 357 "ValaSourceCompiler.vala"
 					_tmp156_ = i;
 #line 357 "ValaSourceCompiler.vala"
 					i = _tmp156_ + 1;
-#line 2554 "ValaSourceCompiler.vala.c"
+#line 2547 "ValaSourceCompiler.vala.c"
 				}
 #line 357 "ValaSourceCompiler.vala"
 				_tmp155_ = FALSE;
@@ -2566,7 +2559,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 				if (!(i < _tmp160_)) {
 #line 357 "ValaSourceCompiler.vala"
 					break;
-#line 2570 "ValaSourceCompiler.vala.c"
+#line 2563 "ValaSourceCompiler.vala.c"
 				}
 #line 359 "ValaSourceCompiler.vala"
 				_tmp161_ = pr;
@@ -2580,7 +2573,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 				_tmp165_ = pkg;
 #line 361 "ValaSourceCompiler.vala"
 				if (g_regex_match_simple ("^libvala", _tmp165_, 0, 0)) {
-#line 2584 "ValaSourceCompiler.vala.c"
+#line 2577 "ValaSourceCompiler.vala.c"
 					const gchar* _tmp166_;
 					gchar* _tmp167_;
 					gchar* _tmp168_;
@@ -2602,15 +2595,15 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					_g_free0 (_tmp170_);
 #line 361 "ValaSourceCompiler.vala"
 					_g_free0 (_tmp168_);
-#line 2606 "ValaSourceCompiler.vala.c"
+#line 2599 "ValaSourceCompiler.vala.c"
 				} else {
 #line 361 "ValaSourceCompiler.vala"
 					_tmp164_ = FALSE;
-#line 2610 "ValaSourceCompiler.vala.c"
+#line 2603 "ValaSourceCompiler.vala.c"
 				}
 #line 361 "ValaSourceCompiler.vala"
 				if (_tmp164_) {
-#line 2614 "ValaSourceCompiler.vala.c"
+#line 2607 "ValaSourceCompiler.vala.c"
 					const gchar* _tmp171_;
 #line 362 "ValaSourceCompiler.vala"
 					_tmp171_ = pkg;
@@ -2620,7 +2613,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					_g_free0 (pkg);
 #line 363 "ValaSourceCompiler.vala"
 					continue;
-#line 2624 "ValaSourceCompiler.vala.c"
+#line 2617 "ValaSourceCompiler.vala.c"
 				}
 #line 365 "ValaSourceCompiler.vala"
 				_tmp172_ = pkg;
@@ -2664,7 +2657,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 				_tmp185_ = pkg;
 #line 367 "ValaSourceCompiler.vala"
 				if (!palete_vala_source_compiler_has_vapi (self, _tmp184_, (gint) _tmp184__length1, _tmp185_)) {
-#line 2668 "ValaSourceCompiler.vala.c"
+#line 2661 "ValaSourceCompiler.vala.c"
 					const gchar* _tmp186_;
 #line 368 "ValaSourceCompiler.vala"
 					_tmp186_ = pkg;
@@ -2674,7 +2667,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 					_g_free0 (pkg);
 #line 369 "ValaSourceCompiler.vala"
 					continue;
-#line 2678 "ValaSourceCompiler.vala.c"
+#line 2671 "ValaSourceCompiler.vala.c"
 				}
 #line 372 "ValaSourceCompiler.vala"
 				_tmp187_ = self->priv->context;
@@ -2684,7 +2677,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 				vala_code_context_add_external_package (_tmp187_, _tmp188_);
 #line 357 "ValaSourceCompiler.vala"
 				_g_free0 (pkg);
-#line 2688 "ValaSourceCompiler.vala.c"
+#line 2681 "ValaSourceCompiler.vala.c"
 			}
 		}
 	}
@@ -2694,14 +2687,14 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 	if (g_strcmp0 (_tmp190_, "") == 0) {
 #line 379 "ValaSourceCompiler.vala"
 		_tmp189_ = "/tmp/testrun";
-#line 2698 "ValaSourceCompiler.vala.c"
+#line 2691 "ValaSourceCompiler.vala.c"
 	} else {
 		const gchar* _tmp191_;
 #line 379 "ValaSourceCompiler.vala"
 		_tmp191_ = self->output;
 #line 379 "ValaSourceCompiler.vala"
 		_tmp189_ = _tmp191_;
-#line 2705 "ValaSourceCompiler.vala.c"
+#line 2698 "ValaSourceCompiler.vala.c"
 	}
 #line 379 "ValaSourceCompiler.vala"
 	_tmp192_ = self->priv->context;
@@ -2761,7 +2754,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 	_tmp209_ = _tmp208_;
 #line 395 "ValaSourceCompiler.vala"
 	if (vala_report_get_errors (_tmp209_) > 0) {
-#line 2765 "ValaSourceCompiler.vala.c"
+#line 2758 "ValaSourceCompiler.vala.c"
 		PaleteValaSourceReport* _tmp210_;
 		JsonObject* _tmp211_;
 		PaleteValaSourceReport* _tmp212_;
@@ -2796,7 +2789,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 		_g_free0 (valac);
 #line 403 "ValaSourceCompiler.vala"
 		return;
-#line 2800 "ValaSourceCompiler.vala.c"
+#line 2793 "ValaSourceCompiler.vala.c"
 	}
 #line 409 "ValaSourceCompiler.vala"
 	_tmp214_ = self->priv->context;
@@ -2810,7 +2803,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 	_tmp217_ = _tmp216_;
 #line 410 "ValaSourceCompiler.vala"
 	if (vala_report_get_errors (_tmp217_) > 0) {
-#line 2814 "ValaSourceCompiler.vala.c"
+#line 2807 "ValaSourceCompiler.vala.c"
 		PaleteValaSourceReport* _tmp218_;
 		JsonObject* _tmp219_;
 		PaleteValaSourceReport* _tmp220_;
@@ -2845,7 +2838,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 		_g_free0 (valac);
 #line 418 "ValaSourceCompiler.vala"
 		return;
-#line 2849 "ValaSourceCompiler.vala.c"
+#line 2842 "ValaSourceCompiler.vala.c"
 	}
 #line 421 "ValaSourceCompiler.vala"
 	_tmp222_ = self->output;
@@ -2867,7 +2860,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 		_g_free0 (valac);
 #line 424 "ValaSourceCompiler.vala"
 		return;
-#line 2871 "ValaSourceCompiler.vala.c"
+#line 2864 "ValaSourceCompiler.vala.c"
 	}
 #line 430 "ValaSourceCompiler.vala"
 	g_debug ("ValaSourceCompiler.vala:430: calling emit");
@@ -2913,13 +2906,13 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 		_g_free0 (valac);
 #line 441 "ValaSourceCompiler.vala"
 		return;
-#line 2917 "ValaSourceCompiler.vala.c"
+#line 2910 "ValaSourceCompiler.vala.c"
 	}
 #line 449 "ValaSourceCompiler.vala"
 	_tmp230_ = self->filepath;
 #line 449 "ValaSourceCompiler.vala"
 	if (g_strcmp0 (_tmp230_, "") == 0) {
-#line 2923 "ValaSourceCompiler.vala.c"
+#line 2916 "ValaSourceCompiler.vala.c"
 		ValaCCodeCompiler* ccompiler = NULL;
 		ValaCCodeCompiler* _tmp231_;
 		gchar* cc_command = NULL;
@@ -2992,7 +2985,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 		_g_free0 (cc_command);
 #line 449 "ValaSourceCompiler.vala"
 		_vala_ccode_compiler_unref0 (ccompiler);
-#line 2996 "ValaSourceCompiler.vala.c"
+#line 2989 "ValaSourceCompiler.vala.c"
 	}
 #line 474 "ValaSourceCompiler.vala"
 	vala_code_context_pop ();
@@ -3000,7 +2993,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 	palete_vala_source_compiler_outputResult (self);
 #line 478 "ValaSourceCompiler.vala"
 	exit (EXIT_SUCCESS);
-#line 3004 "ValaSourceCompiler.vala.c"
+#line 2997 "ValaSourceCompiler.vala.c"
 }
 
 gboolean
@@ -3014,14 +3007,14 @@ palete_vala_source_compiler_has_vapi (PaleteValaSourceCompiler* self,
 		gint i = 0;
 #line 483 "ValaSourceCompiler.vala"
 		i = 0;
-#line 3018 "ValaSourceCompiler.vala.c"
+#line 3011 "ValaSourceCompiler.vala.c"
 		{
 			gboolean _tmp0_ = FALSE;
 #line 483 "ValaSourceCompiler.vala"
 			_tmp0_ = TRUE;
 #line 483 "ValaSourceCompiler.vala"
 			while (TRUE) {
-#line 3025 "ValaSourceCompiler.vala.c"
+#line 3018 "ValaSourceCompiler.vala.c"
 				const gchar* _tmp2_;
 				gchar* _tmp3_;
 				gchar* _tmp4_;
@@ -3039,13 +3032,13 @@ palete_vala_source_compiler_has_vapi (PaleteValaSourceCompiler* self,
 				gboolean _tmp16_;
 #line 483 "ValaSourceCompiler.vala"
 				if (!_tmp0_) {
-#line 3043 "ValaSourceCompiler.vala.c"
+#line 3036 "ValaSourceCompiler.vala.c"
 					gint _tmp1_;
 #line 483 "ValaSourceCompiler.vala"
 					_tmp1_ = i;
 #line 483 "ValaSourceCompiler.vala"
 					i = _tmp1_ + 1;
-#line 3049 "ValaSourceCompiler.vala.c"
+#line 3042 "ValaSourceCompiler.vala.c"
 				}
 #line 483 "ValaSourceCompiler.vala"
 				_tmp0_ = FALSE;
@@ -3053,7 +3046,7 @@ palete_vala_source_compiler_has_vapi (PaleteValaSourceCompiler* self,
 				if (!(i < dirs_length1)) {
 #line 483 "ValaSourceCompiler.vala"
 					break;
-#line 3057 "ValaSourceCompiler.vala.c"
+#line 3050 "ValaSourceCompiler.vala.c"
 				}
 #line 484 "ValaSourceCompiler.vala"
 				_tmp2_ = dirs[i];
@@ -3103,13 +3096,13 @@ palete_vala_source_compiler_has_vapi (PaleteValaSourceCompiler* self,
 				if (_tmp16_) {
 #line 486 "ValaSourceCompiler.vala"
 					continue;
-#line 3107 "ValaSourceCompiler.vala.c"
+#line 3100 "ValaSourceCompiler.vala.c"
 				}
 #line 488 "ValaSourceCompiler.vala"
 				result = TRUE;
 #line 488 "ValaSourceCompiler.vala"
 				return result;
-#line 3113 "ValaSourceCompiler.vala.c"
+#line 3106 "ValaSourceCompiler.vala.c"
 			}
 		}
 	}
@@ -3117,7 +3110,7 @@ palete_vala_source_compiler_has_vapi (PaleteValaSourceCompiler* self,
 	result = FALSE;
 #line 490 "ValaSourceCompiler.vala"
 	return result;
-#line 3121 "ValaSourceCompiler.vala.c"
+#line 3114 "ValaSourceCompiler.vala.c"
 }
 
 void
@@ -3165,7 +3158,7 @@ palete_vala_source_compiler_outputResult (PaleteValaSourceCompiler* self)
 	_g_free0 (_tmp5_);
 #line 509 "ValaSourceCompiler.vala"
 	exit (EXIT_SUCCESS);
-#line 3169 "ValaSourceCompiler.vala.c"
+#line 3162 "ValaSourceCompiler.vala.c"
 }
 
 static void
@@ -3178,7 +3171,7 @@ palete_vala_source_compiler_class_init (PaleteValaSourceCompilerClass * klass,
 	g_type_class_adjust_private_offset (klass, &PaleteValaSourceCompiler_private_offset);
 #line 125 "ValaSourceCompiler.vala"
 	G_OBJECT_CLASS (klass)->finalize = palete_vala_source_compiler_finalize;
-#line 3182 "ValaSourceCompiler.vala.c"
+#line 3175 "ValaSourceCompiler.vala.c"
 }
 
 static void
@@ -3189,7 +3182,7 @@ palete_vala_source_compiler_instance_init (PaleteValaSourceCompiler * self,
 	self->priv = palete_vala_source_compiler_get_instance_private (self);
 #line 197 "ValaSourceCompiler.vala"
 	self->line_offset = 0;
-#line 3193 "ValaSourceCompiler.vala.c"
+#line 3186 "ValaSourceCompiler.vala.c"
 }
 
 static void
@@ -3214,7 +3207,7 @@ palete_vala_source_compiler_finalize (GObject * obj)
 	_g_free0 (self->output);
 #line 125 "ValaSourceCompiler.vala"
 	G_OBJECT_CLASS (palete_vala_source_compiler_parent_class)->finalize (obj);
-#line 3218 "ValaSourceCompiler.vala.c"
+#line 3211 "ValaSourceCompiler.vala.c"
 }
 
 static GType

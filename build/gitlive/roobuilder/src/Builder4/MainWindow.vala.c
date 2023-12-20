@@ -1756,21 +1756,21 @@ VALA_EXTERN Xcls_MainWindowXcls_headerbar* xcls_mainwindow_xcls_headerbar_constr
 VALA_EXTERN Xcls_MainWindowXcls_vbox* xcls_mainwindow_xcls_vbox_new (Xcls_MainWindow* _owner);
 VALA_EXTERN Xcls_MainWindowXcls_vbox* xcls_mainwindow_xcls_vbox_construct (GType object_type,
                                                                Xcls_MainWindow* _owner);
-static gboolean __lambda255_ (Xcls_MainWindow* self);
-static gboolean ___lambda255__gtk_window_close_request (GtkWindow* _sender,
+static gboolean __lambda254_ (Xcls_MainWindow* self);
+static gboolean ___lambda254__gtk_window_close_request (GtkWindow* _sender,
                                                  gpointer self);
-static void __lambda256_ (Xcls_MainWindow* self);
+static void __lambda255_ (Xcls_MainWindow* self);
 VALA_EXTERN GType xcls_valacompileerrors_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_ValaCompileErrors, g_object_unref)
 VALA_EXTERN GType resources_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Resources, g_object_unref)
 VALA_EXTERN Resources* resources_singleton (void);
 VALA_EXTERN void resources_checkResources (Resources* self);
-static void ___lambda256__gtk_widget_show (GtkWidget* _sender,
+static void ___lambda255__gtk_widget_show (GtkWidget* _sender,
                                     gpointer self);
-static void __lambda257_ (Xcls_MainWindow* self);
+static void __lambda256_ (Xcls_MainWindow* self);
 VALA_EXTERN void builder_application_removeWindow (Xcls_MainWindow* w);
-static void ___lambda257__gtk_widget_hide (GtkWidget* _sender,
+static void ___lambda256__gtk_widget_hide (GtkWidget* _sender,
                                     gpointer self);
 VALA_EXTERN void xcls_mainwindow_initChildren (Xcls_MainWindow* self);
 VALA_EXTERN WindowState* window_state_new (Xcls_MainWindow* win);
@@ -1838,9 +1838,9 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_MainWindowXcls_Box10, g_object_unref)
 VALA_EXTERN Xcls_MainWindowXcls_Box10* xcls_mainwindow_xcls_box10_new (Xcls_MainWindow* _owner);
 VALA_EXTERN Xcls_MainWindowXcls_Box10* xcls_mainwindow_xcls_box10_construct (GType object_type,
                                                                  Xcls_MainWindow* _owner);
-static void __lambda247_ (Xcls_MainWindowXcls_windowbtn* self);
+static void __lambda246_ (Xcls_MainWindowXcls_windowbtn* self);
 VALA_EXTERN void xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self);
-static void ___lambda247__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda246__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static gint __lambda98_ (Xcls_MainWindowXcls_windowbtn* self,
                   Xcls_MainWindow* a,
@@ -1905,8 +1905,8 @@ static void xcls_mainwindow_xcls_image11_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_image11_get_type_once (void);
 static void xcls_mainwindow_xcls_label12_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_label12_get_type_once (void);
-static void __lambda248_ (Xcls_MainWindowXcls_open_projects_btn* self);
-static void ___lambda248__gtk_button_clicked (GtkButton* _sender,
+static void __lambda247_ (Xcls_MainWindowXcls_open_projects_btn* self);
+static void ___lambda247__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_open_projects_btn_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_open_projects_btn_get_type_once (void);
@@ -1928,9 +1928,9 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_MainWindowXcls_Box20, g_object_unref)
 VALA_EXTERN Xcls_MainWindowXcls_Box20* xcls_mainwindow_xcls_box20_new (Xcls_MainWindow* _owner);
 VALA_EXTERN Xcls_MainWindowXcls_Box20* xcls_mainwindow_xcls_box20_construct (GType object_type,
                                                                  Xcls_MainWindow* _owner);
-static gboolean __lambda217_ (Xcls_MainWindowXcls_mainpane* self);
+static gboolean __lambda216_ (Xcls_MainWindowXcls_mainpane* self);
 VALA_EXTERN void xcls_windowlefttree_onresize (Xcls_WindowLeftTree* self);
-static gboolean ___lambda217__gtk_paned_accept_position (GtkPaned* _sender,
+static gboolean ___lambda216__gtk_paned_accept_position (GtkPaned* _sender,
                                                   gpointer self);
 static void xcls_mainwindow_xcls_mainpane_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_mainpane_get_type_once (void);
@@ -2004,20 +2004,20 @@ VALA_EXTERN Xcls_MainWindowXcls_statusbar_compile_spinner* xcls_mainwindow_xcls_
                                                                                                          Xcls_MainWindow* _owner);
 static void xcls_mainwindow_xcls_box23_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_box23_get_type_once (void);
-static void __lambda249_ (Xcls_MainWindowXcls_Button24* self);
+static void __lambda248_ (Xcls_MainWindowXcls_Button24* self);
 VALA_EXTERN void window_state_projectPopoverShow (WindowState* self,
                                       GtkWindow* pwin,
                                       ProjectProject* pr);
-static void ___lambda249__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda248__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_button24_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button24_get_type_once (void);
-static void __lambda250_ (Xcls_MainWindowXcls_Button25* self);
+static void __lambda249_ (Xcls_MainWindowXcls_Button25* self);
 VALA_EXTERN void xcls_popoverfiledetails_show (Xcls_PopoverFileDetails* self,
                                    JsRenderJsRender* c,
                                    GtkWindow* pwin,
                                    gboolean new_window);
-static void ___lambda250__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda249__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_button25_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button25_get_type_once (void);
@@ -2045,26 +2045,26 @@ VALA_EXTERN Xcls_MainWindowXcls_Button30* xcls_mainwindow_xcls_button30_construc
                                                                        Xcls_MainWindow* _owner);
 static void xcls_mainwindow_xcls_box28_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_box28_get_type_once (void);
-static void __lambda251_ (Xcls_MainWindowXcls_Button29* self);
+static void __lambda250_ (Xcls_MainWindowXcls_Button29* self);
 VALA_EXTERN void resources_fetchStart (Resources* self);
-static void ___lambda251__gtk_button_activate (GtkButton* _sender,
+static void ___lambda250__gtk_button_activate (GtkButton* _sender,
                                         gpointer self);
 static void xcls_mainwindow_xcls_button29_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button29_get_type_once (void);
-static void __lambda253_ (Xcls_MainWindowXcls_Button30* self);
+static void __lambda252_ (Xcls_MainWindowXcls_Button30* self);
 VALA_EXTERN GType about_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (About, g_object_unref)
 VALA_EXTERN About* about_singleton (void);
-static void ___lambda253__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda252__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_button30_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button30_get_type_once (void);
 static void xcls_mainwindow_xcls_label31_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_label31_get_type_once (void);
-static void ___lambda254_ (Xcls_MainWindowXcls_statusbar* self,
+static void ___lambda253_ (Xcls_MainWindowXcls_statusbar* self,
                     guint pos,
                     guint total);
-static void ____lambda254__resources_update_progress (Resources* _sender,
+static void ____lambda253__resources_update_progress (Resources* _sender,
                                                guint cur_pos,
                                                guint total,
                                                gpointer self);
@@ -2089,7 +2089,7 @@ static void xcls_mainwindow_xcls_box33_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_box33_get_type_once (void);
 static void xcls_mainwindow_xcls_statusbar_compilestatus_label_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_compilestatus_label_get_type_once (void);
-static void __lambda158_ (Xcls_MainWindowXcls_statusbar_errors* self);
+static void __lambda157_ (Xcls_MainWindowXcls_statusbar_errors* self);
 VALA_EXTERN Xcls_ValaCompileErrors* xcls_valacompileerrors_new (void);
 VALA_EXTERN Xcls_ValaCompileErrors* xcls_valacompileerrors_construct (GType object_type);
 VALA_EXTERN GType xcls_valacompileerrors_xcls_compile_view_get_type (void) G_GNUC_CONST ;
@@ -2103,30 +2103,30 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_ValaCompileErrorsXcls_model, g_object_unref)
 VALA_EXTERN void xcls_valacompileerrors_show (Xcls_ValaCompileErrors* self,
                                   JsonObject* tree,
                                   GtkWidget* onbtn);
-static void ___lambda158__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda157__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 VALA_EXTERN void xcls_mainwindow_xcls_statusbar_errors_setNotices (Xcls_MainWindowXcls_statusbar_errors* self,
                                                        JsonObject* nots,
                                                        gint qty);
 static void xcls_mainwindow_xcls_statusbar_errors_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_errors_get_type_once (void);
-static void __lambda159_ (Xcls_MainWindowXcls_statusbar_warnings* self);
-static void ___lambda159__gtk_button_clicked (GtkButton* _sender,
+static void __lambda158_ (Xcls_MainWindowXcls_statusbar_warnings* self);
+static void ___lambda158__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 VALA_EXTERN void xcls_mainwindow_xcls_statusbar_warnings_setNotices (Xcls_MainWindowXcls_statusbar_warnings* self,
                                                          JsonObject* nots,
                                                          gint qty);
 static void xcls_mainwindow_xcls_statusbar_warnings_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_warnings_get_type_once (void);
-static void __lambda160_ (Xcls_MainWindowXcls_statusbar_depricated* self);
-static void ___lambda160__gtk_button_clicked (GtkButton* _sender,
+static void __lambda159_ (Xcls_MainWindowXcls_statusbar_depricated* self);
+static void ___lambda159__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 VALA_EXTERN void xcls_mainwindow_xcls_statusbar_depricated_setNotices (Xcls_MainWindowXcls_statusbar_depricated* self,
                                                            JsonObject* nots,
                                                            gint qty);
 static void xcls_mainwindow_xcls_statusbar_depricated_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_depricated_get_type_once (void);
-static void __lambda161_ (Xcls_MainWindowXcls_statusbar_run* self);
+static void __lambda160_ (Xcls_MainWindowXcls_statusbar_run* self);
 VALA_EXTERN GType palete_vala_source_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteValaSource, g_object_unref)
 VALA_EXTERN void palete_vala_source_spawnExecute (PaleteValaSource* self,
@@ -2134,7 +2134,7 @@ VALA_EXTERN void palete_vala_source_spawnExecute (PaleteValaSource* self,
 VALA_EXTERN void xcls_valacompileresults_show (Xcls_ValaCompileResults* self,
                                    GtkWidget* onbtn,
                                    gboolean reset);
-static void ___lambda161__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda160__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_statusbar_run_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_run_get_type_once (void);
@@ -2200,29 +2200,29 @@ xcls_mainwindow_singleton (void)
 }
 
 static gboolean
-__lambda255_ (Xcls_MainWindow* self)
+__lambda254_ (Xcls_MainWindow* self)
 {
 	gboolean result;
-#line 68 "MainWindow.vala"
+#line 66 "MainWindow.vala"
 	result = FALSE;
-#line 68 "MainWindow.vala"
+#line 66 "MainWindow.vala"
 	return result;
 #line 2211 "MainWindow.vala.c"
 }
 
 static gboolean
-___lambda255__gtk_window_close_request (GtkWindow* _sender,
+___lambda254__gtk_window_close_request (GtkWindow* _sender,
                                         gpointer self)
 {
 	gboolean result;
-	result = __lambda255_ ((Xcls_MainWindow*) self);
-#line 66 "MainWindow.vala"
+	result = __lambda254_ ((Xcls_MainWindow*) self);
+#line 64 "MainWindow.vala"
 	return result;
 #line 2222 "MainWindow.vala.c"
 }
 
 static void
-__lambda256_ (Xcls_MainWindow* self)
+__lambda255_ (Xcls_MainWindow* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_statusbar* _tmp1_;
@@ -2241,68 +2241,68 @@ __lambda256_ (Xcls_MainWindow* self)
 	GtkSpinner* _tmp14_;
 	Resources* _tmp15_;
 	Resources* _tmp16_;
-#line 74 "MainWindow.vala"
+#line 72 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 74 "MainWindow.vala"
+#line 72 "MainWindow.vala"
 	_tmp1_ = _tmp0_->statusbar;
-#line 74 "MainWindow.vala"
+#line 72 "MainWindow.vala"
 	_tmp2_ = _tmp1_->el;
-#line 74 "MainWindow.vala"
+#line 72 "MainWindow.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp2_);
-#line 75 "MainWindow.vala"
+#line 73 "MainWindow.vala"
 	_tmp3_ = self->priv->_this;
-#line 75 "MainWindow.vala"
+#line 73 "MainWindow.vala"
 	_tmp4_ = _tmp3_->statusbar_errors;
-#line 75 "MainWindow.vala"
+#line 73 "MainWindow.vala"
 	_tmp5_ = _tmp4_->el;
-#line 75 "MainWindow.vala"
+#line 73 "MainWindow.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp5_);
-#line 76 "MainWindow.vala"
+#line 74 "MainWindow.vala"
 	_tmp6_ = self->priv->_this;
-#line 76 "MainWindow.vala"
+#line 74 "MainWindow.vala"
 	_tmp7_ = _tmp6_->statusbar_warnings;
-#line 76 "MainWindow.vala"
+#line 74 "MainWindow.vala"
 	_tmp8_ = _tmp7_->el;
-#line 76 "MainWindow.vala"
+#line 74 "MainWindow.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp8_);
-#line 77 "MainWindow.vala"
+#line 75 "MainWindow.vala"
 	_tmp9_ = self->priv->_this;
-#line 77 "MainWindow.vala"
+#line 75 "MainWindow.vala"
 	_tmp10_ = _tmp9_->statusbar_depricated;
-#line 77 "MainWindow.vala"
+#line 75 "MainWindow.vala"
 	_tmp11_ = _tmp10_->el;
-#line 77 "MainWindow.vala"
+#line 75 "MainWindow.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp11_);
-#line 78 "MainWindow.vala"
+#line 76 "MainWindow.vala"
 	_tmp12_ = self->priv->_this;
-#line 78 "MainWindow.vala"
+#line 76 "MainWindow.vala"
 	_tmp13_ = _tmp12_->statusbar_compile_spinner;
-#line 78 "MainWindow.vala"
+#line 76 "MainWindow.vala"
 	_tmp14_ = _tmp13_->el;
-#line 78 "MainWindow.vala"
+#line 76 "MainWindow.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp14_);
-#line 80 "MainWindow.vala"
+#line 78 "MainWindow.vala"
 	_tmp15_ = resources_singleton ();
-#line 80 "MainWindow.vala"
+#line 78 "MainWindow.vala"
 	_tmp16_ = _tmp15_;
-#line 80 "MainWindow.vala"
+#line 78 "MainWindow.vala"
 	resources_checkResources (_tmp16_);
-#line 80 "MainWindow.vala"
+#line 78 "MainWindow.vala"
 	_g_object_unref0 (_tmp16_);
 #line 2293 "MainWindow.vala.c"
 }
 
 static void
-___lambda256__gtk_widget_show (GtkWidget* _sender,
+___lambda255__gtk_widget_show (GtkWidget* _sender,
                                gpointer self)
 {
-#line 70 "MainWindow.vala"
-	__lambda256_ ((Xcls_MainWindow*) self);
+#line 68 "MainWindow.vala"
+	__lambda255_ ((Xcls_MainWindow*) self);
 #line 2302 "MainWindow.vala.c"
 }
 
 static void
-__lambda257_ (Xcls_MainWindow* self)
+__lambda256_ (Xcls_MainWindow* self)
 {
 	Resources* _tmp0_;
 	Resources* _tmp1_;
@@ -2311,49 +2311,49 @@ __lambda257_ (Xcls_MainWindow* self)
 	GeeArrayList* _tmp4_;
 	gint _tmp5_;
 	gint _tmp6_;
-#line 88 "MainWindow.vala"
+#line 86 "MainWindow.vala"
 	_tmp0_ = resources_singleton ();
-#line 88 "MainWindow.vala"
+#line 86 "MainWindow.vala"
 	_tmp1_ = _tmp0_;
-#line 88 "MainWindow.vala"
+#line 86 "MainWindow.vala"
 	_tmp2_ = self->priv->_this;
-#line 88 "MainWindow.vala"
+#line 86 "MainWindow.vala"
 	_tmp3_ = _tmp2_->statusbar;
-#line 88 "MainWindow.vala"
+#line 86 "MainWindow.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp1_, _tmp3_->handler_id);
-#line 88 "MainWindow.vala"
+#line 86 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_);
-#line 90 "MainWindow.vala"
+#line 88 "MainWindow.vala"
 	builder_application_removeWindow (self);
-#line 92 "MainWindow.vala"
+#line 90 "MainWindow.vala"
 	_tmp4_ = builder_application_windows;
-#line 92 "MainWindow.vala"
+#line 90 "MainWindow.vala"
 	_tmp5_ = gee_abstract_collection_get_size ((GeeAbstractCollection*) _tmp4_);
-#line 92 "MainWindow.vala"
+#line 90 "MainWindow.vala"
 	_tmp6_ = _tmp5_;
-#line 92 "MainWindow.vala"
+#line 90 "MainWindow.vala"
 	if (_tmp6_ < 1) {
 #line 2337 "MainWindow.vala.c"
 		BuilderApplication* _tmp7_;
 		BuilderApplication* _tmp8_;
-#line 94 "MainWindow.vala"
+#line 92 "MainWindow.vala"
 		_tmp7_ = builder_application_singleton (NULL, (gint) 0);
-#line 94 "MainWindow.vala"
+#line 92 "MainWindow.vala"
 		_tmp8_ = _tmp7_;
-#line 94 "MainWindow.vala"
+#line 92 "MainWindow.vala"
 		g_application_quit ((GApplication*) _tmp8_);
-#line 94 "MainWindow.vala"
+#line 92 "MainWindow.vala"
 		_g_object_unref0 (_tmp8_);
 #line 2348 "MainWindow.vala.c"
 	}
 }
 
 static void
-___lambda257__gtk_widget_hide (GtkWidget* _sender,
+___lambda256__gtk_widget_hide (GtkWidget* _sender,
                                gpointer self)
 {
-#line 85 "MainWindow.vala"
-	__lambda257_ ((Xcls_MainWindow*) self);
+#line 83 "MainWindow.vala"
+	__lambda256_ ((Xcls_MainWindow*) self);
 #line 2358 "MainWindow.vala.c"
 }
 
@@ -2371,12 +2371,12 @@ xcls_mainwindow_construct (GType object_type)
 	GtkApplicationWindow* _tmp6_;
 	GtkApplicationWindow* _tmp7_;
 	GtkApplicationWindow* _tmp8_;
-	Xcls_MainWindowXcls_headerbar* child_0 = NULL;
+	Xcls_MainWindowXcls_headerbar* child_1 = NULL;
 	Xcls_MainWindow* _tmp9_;
 	Xcls_MainWindowXcls_headerbar* _tmp10_;
 	GtkApplicationWindow* _tmp11_;
 	GtkHeaderBar* _tmp12_;
-	Xcls_MainWindowXcls_vbox* child_1 = NULL;
+	Xcls_MainWindowXcls_vbox* child_2 = NULL;
 	Xcls_MainWindow* _tmp13_;
 	Xcls_MainWindowXcls_vbox* _tmp14_;
 	GtkApplicationWindow* _tmp15_;
@@ -2436,52 +2436,48 @@ xcls_mainwindow_construct (GType object_type)
 #line 54 "MainWindow.vala"
 	_tmp10_ = xcls_mainwindow_xcls_headerbar_new (_tmp9_);
 #line 54 "MainWindow.vala"
-	child_0 = _tmp10_;
+	child_1 = _tmp10_;
 #line 55 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 56 "MainWindow.vala"
 	_tmp11_ = self->el;
-#line 56 "MainWindow.vala"
-	_tmp12_ = child_0->el;
-#line 56 "MainWindow.vala"
+#line 55 "MainWindow.vala"
+	_tmp12_ = child_1->el;
+#line 55 "MainWindow.vala"
 	gtk_window_set_titlebar ((GtkWindow*) _tmp11_, (GtkWidget*) _tmp12_);
-#line 57 "MainWindow.vala"
+#line 56 "MainWindow.vala"
 	_tmp13_ = self->priv->_this;
-#line 57 "MainWindow.vala"
+#line 56 "MainWindow.vala"
 	_tmp14_ = xcls_mainwindow_xcls_vbox_new (_tmp13_);
+#line 56 "MainWindow.vala"
+	child_2 = _tmp14_;
 #line 57 "MainWindow.vala"
-	child_1 = _tmp14_;
-#line 58 "MainWindow.vala"
-	g_object_ref ((GObject*) child_1);
-#line 59 "MainWindow.vala"
 	_tmp15_ = self->el;
-#line 59 "MainWindow.vala"
-	_tmp16_ = child_1->el;
-#line 59 "MainWindow.vala"
+#line 57 "MainWindow.vala"
+	_tmp16_ = child_2->el;
+#line 57 "MainWindow.vala"
 	gtk_window_set_child ((GtkWindow*) _tmp15_, (GtkWidget*) _tmp16_);
-#line 63 "MainWindow.vala"
+#line 61 "MainWindow.vala"
 	_tmp17_ = self->el;
-#line 63 "MainWindow.vala"
+#line 61 "MainWindow.vala"
 	gtk_window_set_icon_name ((GtkWindow*) _tmp17_, "roobuilder");
-#line 66 "MainWindow.vala"
+#line 64 "MainWindow.vala"
 	_tmp18_ = self->el;
-#line 66 "MainWindow.vala"
-	g_signal_connect_object ((GtkWindow*) _tmp18_, "close-request", (GCallback) ___lambda255__gtk_window_close_request, self, 0);
-#line 70 "MainWindow.vala"
+#line 64 "MainWindow.vala"
+	g_signal_connect_object ((GtkWindow*) _tmp18_, "close-request", (GCallback) ___lambda254__gtk_window_close_request, self, 0);
+#line 68 "MainWindow.vala"
 	_tmp19_ = self->el;
-#line 70 "MainWindow.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp19_, "show", (GCallback) ___lambda256__gtk_widget_show, self, 0);
-#line 85 "MainWindow.vala"
+#line 68 "MainWindow.vala"
+	g_signal_connect_object ((GtkWidget*) _tmp19_, "show", (GCallback) ___lambda255__gtk_widget_show, self, 0);
+#line 83 "MainWindow.vala"
 	_tmp20_ = self->el;
-#line 85 "MainWindow.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp20_, "hide", (GCallback) ___lambda257__gtk_widget_hide, self, 0);
+#line 83 "MainWindow.vala"
+	g_signal_connect_object ((GtkWidget*) _tmp20_, "hide", (GCallback) ___lambda256__gtk_widget_hide, self, 0);
+#line 42 "MainWindow.vala"
+	_g_object_unref0 (child_2);
 #line 42 "MainWindow.vala"
 	_g_object_unref0 (child_1);
 #line 42 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 42 "MainWindow.vala"
 	return self;
-#line 2485 "MainWindow.vala.c"
+#line 2481 "MainWindow.vala.c"
 }
 
 Xcls_MainWindow*
@@ -2489,20 +2485,20 @@ xcls_mainwindow_new (void)
 {
 #line 42 "MainWindow.vala"
 	return xcls_mainwindow_construct (TYPE_XCLS_MAINWINDOW);
-#line 2493 "MainWindow.vala.c"
+#line 2489 "MainWindow.vala.c"
 }
 
 void
 xcls_mainwindow_initChildren (Xcls_MainWindow* self)
 {
 	WindowState* _tmp0_;
-#line 102 "MainWindow.vala"
+#line 100 "MainWindow.vala"
 	_tmp0_ = window_state_new (self);
-#line 102 "MainWindow.vala"
+#line 100 "MainWindow.vala"
 	_g_object_unref0 (self->windowstate);
-#line 102 "MainWindow.vala"
+#line 100 "MainWindow.vala"
 	self->windowstate = _tmp0_;
-#line 2506 "MainWindow.vala.c"
+#line 2502 "MainWindow.vala.c"
 }
 
 void
@@ -2511,29 +2507,29 @@ xcls_mainwindow_show (Xcls_MainWindow* self)
 	GtkApplicationWindow* _tmp0_;
 	WindowState* _tmp1_;
 	JsRenderJsRender* _tmp2_;
-#line 114 "MainWindow.vala"
+#line 112 "MainWindow.vala"
 	_tmp0_ = self->el;
-#line 114 "MainWindow.vala"
+#line 112 "MainWindow.vala"
 	gtk_widget_show ((GtkWidget*) _tmp0_);
-#line 115 "MainWindow.vala"
+#line 113 "MainWindow.vala"
 	_tmp1_ = self->windowstate;
-#line 115 "MainWindow.vala"
+#line 113 "MainWindow.vala"
 	_tmp2_ = _tmp1_->file;
-#line 115 "MainWindow.vala"
+#line 113 "MainWindow.vala"
 	if (_tmp2_ == NULL) {
-#line 2525 "MainWindow.vala.c"
+#line 2521 "MainWindow.vala.c"
 		WindowState* _tmp3_;
 		Xcls_MainWindowXcls_open_projects_btn* _tmp4_;
 		GtkButton* _tmp5_;
-#line 116 "MainWindow.vala"
+#line 114 "MainWindow.vala"
 		_tmp3_ = self->windowstate;
-#line 116 "MainWindow.vala"
+#line 114 "MainWindow.vala"
 		_tmp4_ = self->open_projects_btn;
-#line 116 "MainWindow.vala"
+#line 114 "MainWindow.vala"
 		_tmp5_ = _tmp4_->el;
-#line 116 "MainWindow.vala"
+#line 114 "MainWindow.vala"
 		window_state_showPopoverFiles (_tmp3_, (GtkWidget*) _tmp5_, NULL, FALSE);
-#line 2537 "MainWindow.vala.c"
+#line 2533 "MainWindow.vala.c"
 	}
 }
 
@@ -2561,86 +2557,86 @@ xcls_mainwindow_setTitle (Xcls_MainWindow* self)
 	gchar* _tmp22_;
 	gchar* _tmp23_;
 	gchar* _tmp24_;
-#line 120 "MainWindow.vala"
+#line 118 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 120 "MainWindow.vala"
+#line 118 "MainWindow.vala"
 	_tmp2_ = _tmp1_->windowstate;
-#line 120 "MainWindow.vala"
+#line 118 "MainWindow.vala"
 	_tmp3_ = _tmp2_->project;
-#line 120 "MainWindow.vala"
+#line 118 "MainWindow.vala"
 	if (_tmp3_ == NULL) {
-#line 120 "MainWindow.vala"
+#line 118 "MainWindow.vala"
 		_tmp0_ = TRUE;
-#line 2575 "MainWindow.vala.c"
+#line 2571 "MainWindow.vala.c"
 	} else {
 		Xcls_MainWindow* _tmp4_;
 		WindowState* _tmp5_;
 		JsRenderJsRender* _tmp6_;
-#line 121 "MainWindow.vala"
+#line 119 "MainWindow.vala"
 		_tmp4_ = self->priv->_this;
-#line 121 "MainWindow.vala"
+#line 119 "MainWindow.vala"
 		_tmp5_ = _tmp4_->windowstate;
-#line 121 "MainWindow.vala"
+#line 119 "MainWindow.vala"
 		_tmp6_ = _tmp5_->file;
-#line 121 "MainWindow.vala"
+#line 119 "MainWindow.vala"
 		_tmp0_ = _tmp6_ == NULL;
-#line 2588 "MainWindow.vala.c"
+#line 2584 "MainWindow.vala.c"
 	}
-#line 120 "MainWindow.vala"
+#line 118 "MainWindow.vala"
 	if (_tmp0_) {
-#line 2592 "MainWindow.vala.c"
+#line 2588 "MainWindow.vala.c"
 		GtkApplicationWindow* _tmp7_;
-#line 123 "MainWindow.vala"
+#line 121 "MainWindow.vala"
 		_tmp7_ = self->el;
-#line 123 "MainWindow.vala"
+#line 121 "MainWindow.vala"
 		gtk_window_set_title ((GtkWindow*) _tmp7_, "Select File");
-#line 124 "MainWindow.vala"
+#line 122 "MainWindow.vala"
 		return;
-#line 2600 "MainWindow.vala.c"
+#line 2596 "MainWindow.vala.c"
 	}
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp8_ = self->priv->_this;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp9_ = _tmp8_->el;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp10_ = self->priv->_this;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp11_ = _tmp10_->windowstate;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp12_ = _tmp11_->project;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp13_ = project_project_get_name (_tmp12_);
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp14_ = _tmp13_;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp15_ = g_strconcat (_tmp14_, " - ", NULL);
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp16_ = _tmp15_;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp17_ = self->priv->_this;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp18_ = _tmp17_->windowstate;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp19_ = _tmp18_->file;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp20_ = js_render_js_render_get_relpath (_tmp19_);
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp21_ = _tmp20_;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp22_ = _tmp21_;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp23_ = g_strconcat (_tmp16_, _tmp22_, NULL);
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_tmp24_ = _tmp23_;
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	gtk_window_set_title ((GtkWindow*) _tmp9_, _tmp24_);
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_g_free0 (_tmp24_);
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_g_free0 (_tmp22_);
-#line 126 "MainWindow.vala"
+#line 124 "MainWindow.vala"
 	_g_free0 (_tmp16_);
-#line 2644 "MainWindow.vala.c"
+#line 2640 "MainWindow.vala.c"
 }
 
 void
@@ -2654,35 +2650,35 @@ xcls_mainwindow_openNewWindow (Xcls_MainWindow* self)
 	GtkButton* _tmp4_;
 	Xcls_MainWindow* _tmp5_;
 	ProjectProject* _tmp6_;
-#line 133 "MainWindow.vala"
-	_tmp0_ = xcls_mainwindow_new ();
-#line 133 "MainWindow.vala"
-	w = _tmp0_;
-#line 134 "MainWindow.vala"
-	g_object_ref ((GObject*) w);
-#line 135 "MainWindow.vala"
-	builder_application_addWindow (w);
-#line 136 "MainWindow.vala"
-	_tmp1_ = w->el;
-#line 136 "MainWindow.vala"
-	gtk_widget_show ((GtkWidget*) _tmp1_);
-#line 137 "MainWindow.vala"
-	xcls_mainwindow_initChildren (w);
-#line 138 "MainWindow.vala"
-	_tmp2_ = w->windowstate;
-#line 138 "MainWindow.vala"
-	_tmp3_ = w->open_projects_btn;
-#line 138 "MainWindow.vala"
-	_tmp4_ = _tmp3_->el;
-#line 138 "MainWindow.vala"
-	_tmp5_ = self->priv->_this;
-#line 138 "MainWindow.vala"
-	_tmp6_ = _tmp5_->project;
-#line 138 "MainWindow.vala"
-	window_state_showPopoverFiles (_tmp2_, (GtkWidget*) _tmp4_, _tmp6_, FALSE);
 #line 131 "MainWindow.vala"
+	_tmp0_ = xcls_mainwindow_new ();
+#line 131 "MainWindow.vala"
+	w = _tmp0_;
+#line 132 "MainWindow.vala"
+	g_object_ref ((GObject*) w);
+#line 133 "MainWindow.vala"
+	builder_application_addWindow (w);
+#line 134 "MainWindow.vala"
+	_tmp1_ = w->el;
+#line 134 "MainWindow.vala"
+	gtk_widget_show ((GtkWidget*) _tmp1_);
+#line 135 "MainWindow.vala"
+	xcls_mainwindow_initChildren (w);
+#line 136 "MainWindow.vala"
+	_tmp2_ = w->windowstate;
+#line 136 "MainWindow.vala"
+	_tmp3_ = w->open_projects_btn;
+#line 136 "MainWindow.vala"
+	_tmp4_ = _tmp3_->el;
+#line 136 "MainWindow.vala"
+	_tmp5_ = self->priv->_this;
+#line 136 "MainWindow.vala"
+	_tmp6_ = _tmp5_->project;
+#line 136 "MainWindow.vala"
+	window_state_showPopoverFiles (_tmp2_, (GtkWidget*) _tmp4_, _tmp6_, FALSE);
+#line 129 "MainWindow.vala"
 	_g_object_unref0 (w);
-#line 2686 "MainWindow.vala.c"
+#line 2682 "MainWindow.vala.c"
 }
 
 static inline gpointer
@@ -2701,109 +2697,109 @@ xcls_mainwindow_xcls_headerbar_construct (GType object_type,
 	Xcls_MainWindowXcls_headerbar* _tmp2_;
 	GtkHeaderBar* _tmp3_;
 	gchar* _tmp4_;
-	Xcls_MainWindowXcls_Box3* child_0 = NULL;
+	Xcls_MainWindowXcls_Box3* child_1 = NULL;
 	Xcls_MainWindow* _tmp5_;
 	Xcls_MainWindowXcls_Box3* _tmp6_;
 	GtkHeaderBar* _tmp7_;
 	GtkBox* _tmp8_;
-#line 152 "MainWindow.vala"
+#line 150 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_headerbar*) g_object_new (object_type, NULL);
-#line 154 "MainWindow.vala"
+#line 152 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 154 "MainWindow.vala"
+#line 152 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 154 "MainWindow.vala"
+#line 152 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 155 "MainWindow.vala"
+#line 153 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 155 "MainWindow.vala"
+#line 153 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 155 "MainWindow.vala"
+#line 153 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->headerbar);
-#line 155 "MainWindow.vala"
+#line 153 "MainWindow.vala"
 	_tmp1_->headerbar = _tmp2_;
-#line 156 "MainWindow.vala"
+#line 154 "MainWindow.vala"
 	_tmp3_ = (GtkHeaderBar*) gtk_header_bar_new ();
-#line 156 "MainWindow.vala"
+#line 154 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 156 "MainWindow.vala"
+#line 154 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 156 "MainWindow.vala"
+#line 154 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 159 "MainWindow.vala"
+#line 157 "MainWindow.vala"
 	self->show_close_button = TRUE;
-#line 160 "MainWindow.vala"
+#line 158 "MainWindow.vala"
 	_tmp4_ = g_strdup ("Application Builder");
-#line 160 "MainWindow.vala"
+#line 158 "MainWindow.vala"
 	_g_free0 (self->title);
-#line 160 "MainWindow.vala"
+#line 158 "MainWindow.vala"
 	self->title = _tmp4_;
-#line 163 "MainWindow.vala"
+#line 161 "MainWindow.vala"
 	_tmp5_ = self->priv->_this;
-#line 163 "MainWindow.vala"
+#line 161 "MainWindow.vala"
 	_tmp6_ = xcls_mainwindow_xcls_box3_new (_tmp5_);
+#line 161 "MainWindow.vala"
+	child_1 = _tmp6_;
+#line 162 "MainWindow.vala"
+	g_object_ref ((GObject*) child_1);
 #line 163 "MainWindow.vala"
-	child_0 = _tmp6_;
-#line 164 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 165 "MainWindow.vala"
 	_tmp7_ = self->el;
-#line 165 "MainWindow.vala"
-	_tmp8_ = child_0->el;
-#line 165 "MainWindow.vala"
+#line 163 "MainWindow.vala"
+	_tmp8_ = child_1->el;
+#line 163 "MainWindow.vala"
 	gtk_header_bar_pack_start (_tmp7_, (GtkWidget*) _tmp8_);
-#line 152 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 152 "MainWindow.vala"
+#line 150 "MainWindow.vala"
+	_g_object_unref0 (child_1);
+#line 150 "MainWindow.vala"
 	return self;
-#line 2760 "MainWindow.vala.c"
+#line 2756 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_headerbar*
 xcls_mainwindow_xcls_headerbar_new (Xcls_MainWindow* _owner)
 {
-#line 152 "MainWindow.vala"
+#line 150 "MainWindow.vala"
 	return xcls_mainwindow_xcls_headerbar_construct (XCLS_MAINWINDOW_TYPE_XCLS_HEADERBAR, _owner);
-#line 2768 "MainWindow.vala.c"
+#line 2764 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_headerbar_class_init (Xcls_MainWindowXcls_headerbarClass * klass,
                                            gpointer klass_data)
 {
-#line 141 "MainWindow.vala"
+#line 139 "MainWindow.vala"
 	xcls_mainwindow_xcls_headerbar_parent_class = g_type_class_peek_parent (klass);
-#line 141 "MainWindow.vala"
+#line 139 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_headerbar_private_offset);
-#line 141 "MainWindow.vala"
+#line 139 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_headerbar_finalize;
-#line 2781 "MainWindow.vala.c"
+#line 2777 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_headerbar_instance_init (Xcls_MainWindowXcls_headerbar * self,
                                               gpointer klass)
 {
-#line 141 "MainWindow.vala"
+#line 139 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_headerbar_get_instance_private (self);
-#line 2790 "MainWindow.vala.c"
+#line 2786 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_headerbar_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_headerbar * self;
-#line 141 "MainWindow.vala"
+#line 139 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_HEADERBAR, Xcls_MainWindowXcls_headerbar);
-#line 143 "MainWindow.vala"
-	_g_object_unref0 (self->el);
-#line 144 "MainWindow.vala"
-	_g_object_unref0 (self->priv->_this);
-#line 149 "MainWindow.vala"
-	_g_free0 (self->title);
 #line 141 "MainWindow.vala"
+	_g_object_unref0 (self->el);
+#line 142 "MainWindow.vala"
+	_g_object_unref0 (self->priv->_this);
+#line 147 "MainWindow.vala"
+	_g_free0 (self->title);
+#line 139 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_headerbar_parent_class)->finalize (obj);
-#line 2807 "MainWindow.vala.c"
+#line 2803 "MainWindow.vala.c"
 }
 
 static GType
@@ -2841,112 +2837,108 @@ xcls_mainwindow_xcls_box3_construct (GType object_type,
 	Xcls_MainWindowXcls_Box3 * self = NULL;
 	Xcls_MainWindow* _tmp0_;
 	GtkBox* _tmp1_;
-	Xcls_MainWindowXcls_windowbtn* child_0 = NULL;
+	Xcls_MainWindowXcls_windowbtn* child_1 = NULL;
 	Xcls_MainWindow* _tmp2_;
 	Xcls_MainWindowXcls_windowbtn* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkButton* _tmp5_;
-	Xcls_MainWindowXcls_open_projects_btn* child_1 = NULL;
+	Xcls_MainWindowXcls_open_projects_btn* child_2 = NULL;
 	Xcls_MainWindow* _tmp6_;
 	Xcls_MainWindowXcls_open_projects_btn* _tmp7_;
 	GtkBox* _tmp8_;
 	GtkButton* _tmp9_;
-#line 179 "MainWindow.vala"
+#line 177 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Box3*) g_object_new (object_type, NULL);
-#line 181 "MainWindow.vala"
+#line 179 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 181 "MainWindow.vala"
+#line 179 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 181 "MainWindow.vala"
+#line 179 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 182 "MainWindow.vala"
+#line 180 "MainWindow.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-#line 182 "MainWindow.vala"
+#line 180 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 182 "MainWindow.vala"
+#line 180 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 182 "MainWindow.vala"
+#line 180 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 187 "MainWindow.vala"
+#line 185 "MainWindow.vala"
 	_tmp2_ = self->priv->_this;
-#line 187 "MainWindow.vala"
+#line 185 "MainWindow.vala"
 	_tmp3_ = xcls_mainwindow_xcls_windowbtn_new (_tmp2_);
-#line 187 "MainWindow.vala"
-	child_0 = _tmp3_;
-#line 188 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 189 "MainWindow.vala"
+#line 185 "MainWindow.vala"
+	child_1 = _tmp3_;
+#line 186 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 189 "MainWindow.vala"
-	_tmp5_ = child_0->el;
-#line 189 "MainWindow.vala"
+#line 186 "MainWindow.vala"
+	_tmp5_ = child_1->el;
+#line 186 "MainWindow.vala"
 	gtk_box_append (_tmp4_, (GtkWidget*) _tmp5_);
-#line 190 "MainWindow.vala"
+#line 187 "MainWindow.vala"
 	_tmp6_ = self->priv->_this;
-#line 190 "MainWindow.vala"
+#line 187 "MainWindow.vala"
 	_tmp7_ = xcls_mainwindow_xcls_open_projects_btn_new (_tmp6_);
-#line 190 "MainWindow.vala"
-	child_1 = _tmp7_;
-#line 191 "MainWindow.vala"
-	g_object_ref ((GObject*) child_1);
-#line 192 "MainWindow.vala"
+#line 187 "MainWindow.vala"
+	child_2 = _tmp7_;
+#line 188 "MainWindow.vala"
 	_tmp8_ = self->el;
-#line 192 "MainWindow.vala"
-	_tmp9_ = child_1->el;
-#line 192 "MainWindow.vala"
+#line 188 "MainWindow.vala"
+	_tmp9_ = child_2->el;
+#line 188 "MainWindow.vala"
 	gtk_box_append (_tmp8_, (GtkWidget*) _tmp9_);
-#line 179 "MainWindow.vala"
+#line 177 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 177 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 179 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 179 "MainWindow.vala"
+#line 177 "MainWindow.vala"
 	return self;
-#line 2905 "MainWindow.vala.c"
+#line 2897 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Box3*
 xcls_mainwindow_xcls_box3_new (Xcls_MainWindow* _owner)
 {
-#line 179 "MainWindow.vala"
+#line 177 "MainWindow.vala"
 	return xcls_mainwindow_xcls_box3_construct (XCLS_MAINWINDOW_TYPE_XCLS_BOX3, _owner);
-#line 2913 "MainWindow.vala.c"
+#line 2905 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box3_class_init (Xcls_MainWindowXcls_Box3Class * klass,
                                       gpointer klass_data)
 {
-#line 170 "MainWindow.vala"
+#line 168 "MainWindow.vala"
 	xcls_mainwindow_xcls_box3_parent_class = g_type_class_peek_parent (klass);
-#line 170 "MainWindow.vala"
+#line 168 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Box3_private_offset);
-#line 170 "MainWindow.vala"
+#line 168 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_box3_finalize;
-#line 2926 "MainWindow.vala.c"
+#line 2918 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box3_instance_init (Xcls_MainWindowXcls_Box3 * self,
                                          gpointer klass)
 {
-#line 170 "MainWindow.vala"
+#line 168 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_box3_get_instance_private (self);
-#line 2935 "MainWindow.vala.c"
+#line 2927 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box3_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Box3 * self;
-#line 170 "MainWindow.vala"
+#line 168 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BOX3, Xcls_MainWindowXcls_Box3);
-#line 172 "MainWindow.vala"
-	_g_object_unref0 (self->el);
-#line 173 "MainWindow.vala"
-	_g_object_unref0 (self->priv->_this);
 #line 170 "MainWindow.vala"
+	_g_object_unref0 (self->el);
+#line 171 "MainWindow.vala"
+	_g_object_unref0 (self->priv->_this);
+#line 168 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_box3_parent_class)->finalize (obj);
-#line 2950 "MainWindow.vala.c"
+#line 2942 "MainWindow.vala.c"
 }
 
 static GType
@@ -2978,7 +2970,7 @@ xcls_mainwindow_xcls_windowbtn_get_instance_private (Xcls_MainWindowXcls_windowb
 }
 
 static void
-__lambda247_ (Xcls_MainWindowXcls_windowbtn* self)
+__lambda246_ (Xcls_MainWindowXcls_windowbtn* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_windowspopup* _tmp1_;
@@ -2990,44 +2982,44 @@ __lambda247_ (Xcls_MainWindowXcls_windowbtn* self)
 	Xcls_MainWindow* _tmp7_;
 	Xcls_MainWindowXcls_windowspopup* _tmp8_;
 	GtkPopover* _tmp9_;
-#line 232 "MainWindow.vala"
+#line 226 "MainWindow.vala"
 	xcls_mainwindow_xcls_windowbtn_updateMenu (self);
-#line 234 "MainWindow.vala"
+#line 228 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 234 "MainWindow.vala"
+#line 228 "MainWindow.vala"
 	_tmp1_ = _tmp0_->windowspopup;
-#line 234 "MainWindow.vala"
+#line 228 "MainWindow.vala"
 	_tmp2_ = _tmp1_->el;
-#line 234 "MainWindow.vala"
+#line 228 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 234 "MainWindow.vala"
+#line 228 "MainWindow.vala"
 	gtk_widget_set_parent ((GtkWidget*) _tmp2_, (GtkWidget*) _tmp3_);
-#line 236 "MainWindow.vala"
+#line 230 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 236 "MainWindow.vala"
+#line 230 "MainWindow.vala"
 	_tmp5_ = _tmp4_->windowspopup;
-#line 236 "MainWindow.vala"
+#line 230 "MainWindow.vala"
 	_tmp6_ = _tmp5_->el;
-#line 236 "MainWindow.vala"
+#line 230 "MainWindow.vala"
 	gtk_popover_set_position (_tmp6_, GTK_POS_BOTTOM);
-#line 237 "MainWindow.vala"
+#line 231 "MainWindow.vala"
 	_tmp7_ = self->priv->_this;
-#line 237 "MainWindow.vala"
+#line 231 "MainWindow.vala"
 	_tmp8_ = _tmp7_->windowspopup;
-#line 237 "MainWindow.vala"
+#line 231 "MainWindow.vala"
 	_tmp9_ = _tmp8_->el;
-#line 237 "MainWindow.vala"
+#line 231 "MainWindow.vala"
 	gtk_popover_popup (_tmp9_);
-#line 3022 "MainWindow.vala.c"
+#line 3014 "MainWindow.vala.c"
 }
 
 static void
-___lambda247__gtk_button_clicked (GtkButton* _sender,
+___lambda246__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 231 "MainWindow.vala"
-	__lambda247_ ((Xcls_MainWindowXcls_windowbtn*) self);
-#line 3031 "MainWindow.vala.c"
+#line 225 "MainWindow.vala"
+	__lambda246_ ((Xcls_MainWindowXcls_windowbtn*) self);
+#line 3023 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_windowbtn*
@@ -3041,99 +3033,95 @@ xcls_mainwindow_xcls_windowbtn_construct (GType object_type,
 	GtkButton* _tmp3_;
 	GtkButton* _tmp4_;
 	GtkButton* _tmp5_;
-	Xcls_MainWindowXcls_windowspopup* child_0 = NULL;
+	Xcls_MainWindowXcls_windowspopup* child_1 = NULL;
 	Xcls_MainWindow* _tmp6_;
 	Xcls_MainWindowXcls_windowspopup* _tmp7_;
-	Xcls_MainWindowXcls_Box10* child_1 = NULL;
+	Xcls_MainWindowXcls_Box10* child_2 = NULL;
 	Xcls_MainWindow* _tmp8_;
 	Xcls_MainWindowXcls_Box10* _tmp9_;
 	GtkButton* _tmp10_;
 	GtkBox* _tmp11_;
 	GtkButton* _tmp13_;
-#line 207 "MainWindow.vala"
+#line 203 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_windowbtn*) g_object_new (object_type, NULL);
-#line 209 "MainWindow.vala"
+#line 205 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 209 "MainWindow.vala"
+#line 205 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 209 "MainWindow.vala"
+#line 205 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 210 "MainWindow.vala"
+#line 206 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 210 "MainWindow.vala"
+#line 206 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 210 "MainWindow.vala"
+#line 206 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->windowbtn);
-#line 210 "MainWindow.vala"
+#line 206 "MainWindow.vala"
 	_tmp1_->windowbtn = _tmp2_;
-#line 211 "MainWindow.vala"
+#line 207 "MainWindow.vala"
 	_tmp3_ = (GtkButton*) gtk_button_new ();
-#line 211 "MainWindow.vala"
+#line 207 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 211 "MainWindow.vala"
+#line 207 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 211 "MainWindow.vala"
+#line 207 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 216 "MainWindow.vala"
+#line 212 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 216 "MainWindow.vala"
+#line 212 "MainWindow.vala"
 	gtk_widget_set_margin_end ((GtkWidget*) _tmp4_, 4);
-#line 217 "MainWindow.vala"
+#line 213 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 217 "MainWindow.vala"
+#line 213 "MainWindow.vala"
 	gtk_widget_set_halign ((GtkWidget*) _tmp5_, GTK_ALIGN_START);
-#line 218 "MainWindow.vala"
+#line 214 "MainWindow.vala"
 	_tmp6_ = self->priv->_this;
-#line 218 "MainWindow.vala"
+#line 214 "MainWindow.vala"
 	_tmp7_ = xcls_mainwindow_xcls_windowspopup_new (_tmp6_);
-#line 218 "MainWindow.vala"
-	child_0 = _tmp7_;
-#line 219 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 220 "MainWindow.vala"
+#line 214 "MainWindow.vala"
+	child_1 = _tmp7_;
+#line 215 "MainWindow.vala"
 	_tmp8_ = self->priv->_this;
-#line 220 "MainWindow.vala"
+#line 215 "MainWindow.vala"
 	_tmp9_ = xcls_mainwindow_xcls_box10_new (_tmp8_);
-#line 220 "MainWindow.vala"
-	child_1 = _tmp9_;
-#line 221 "MainWindow.vala"
-	g_object_ref ((GObject*) child_1);
-#line 222 "MainWindow.vala"
+#line 215 "MainWindow.vala"
+	child_2 = _tmp9_;
+#line 216 "MainWindow.vala"
 	_tmp10_ = self->el;
-#line 222 "MainWindow.vala"
-	_tmp11_ = child_1->el;
-#line 222 "MainWindow.vala"
+#line 216 "MainWindow.vala"
+	_tmp11_ = child_2->el;
+#line 216 "MainWindow.vala"
 	gtk_button_set_child (_tmp10_, (GtkWidget*) _tmp11_);
-#line 3108 "MainWindow.vala.c"
+#line 3096 "MainWindow.vala.c"
 	{
 		GeeArrayList* _tmp12_;
-#line 227 "MainWindow.vala"
+#line 221 "MainWindow.vala"
 		_tmp12_ = gee_array_list_new (gtk_button_get_type (), (GBoxedCopyFunc) g_object_ref, (GDestroyNotify) g_object_unref, NULL, NULL, NULL);
-#line 227 "MainWindow.vala"
+#line 221 "MainWindow.vala"
 		_g_object_unref0 (self->mitems);
-#line 227 "MainWindow.vala"
+#line 221 "MainWindow.vala"
 		self->mitems = _tmp12_;
-#line 3117 "MainWindow.vala.c"
+#line 3105 "MainWindow.vala.c"
 	}
-#line 231 "MainWindow.vala"
+#line 225 "MainWindow.vala"
 	_tmp13_ = self->el;
-#line 231 "MainWindow.vala"
-	g_signal_connect_object (_tmp13_, "clicked", (GCallback) ___lambda247__gtk_button_clicked, self, 0);
-#line 207 "MainWindow.vala"
+#line 225 "MainWindow.vala"
+	g_signal_connect_object (_tmp13_, "clicked", (GCallback) ___lambda246__gtk_button_clicked, self, 0);
+#line 203 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 203 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 207 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 207 "MainWindow.vala"
+#line 203 "MainWindow.vala"
 	return self;
-#line 3129 "MainWindow.vala.c"
+#line 3117 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_windowbtn*
 xcls_mainwindow_xcls_windowbtn_new (Xcls_MainWindow* _owner)
 {
-#line 207 "MainWindow.vala"
+#line 203 "MainWindow.vala"
 	return xcls_mainwindow_xcls_windowbtn_construct (XCLS_MAINWINDOW_TYPE_XCLS_WINDOWBTN, _owner);
-#line 3137 "MainWindow.vala.c"
+#line 3125 "MainWindow.vala.c"
 }
 
 static gint
@@ -3174,203 +3162,203 @@ __lambda98_ (Xcls_MainWindowXcls_windowbtn* self,
 	const gchar* _tmp41_;
 	const gchar* _tmp42_;
 	gint result;
-#line 250 "MainWindow.vala"
+#line 244 "MainWindow.vala"
 	_tmp3_ = a->windowstate;
-#line 250 "MainWindow.vala"
+#line 244 "MainWindow.vala"
 	if (_tmp3_ == NULL) {
-#line 250 "MainWindow.vala"
+#line 244 "MainWindow.vala"
 		_tmp2_ = TRUE;
-#line 3184 "MainWindow.vala.c"
+#line 3172 "MainWindow.vala.c"
 	} else {
 		WindowState* _tmp4_;
 		JsRenderJsRender* _tmp5_;
-#line 251 "MainWindow.vala"
+#line 245 "MainWindow.vala"
 		_tmp4_ = a->windowstate;
-#line 251 "MainWindow.vala"
+#line 245 "MainWindow.vala"
 		_tmp5_ = _tmp4_->file;
-#line 251 "MainWindow.vala"
+#line 245 "MainWindow.vala"
 		_tmp2_ = _tmp5_ == NULL;
-#line 3194 "MainWindow.vala.c"
+#line 3182 "MainWindow.vala.c"
 	}
-#line 250 "MainWindow.vala"
+#line 244 "MainWindow.vala"
 	if (_tmp2_) {
-#line 250 "MainWindow.vala"
+#line 244 "MainWindow.vala"
 		_tmp1_ = TRUE;
-#line 3200 "MainWindow.vala.c"
+#line 3188 "MainWindow.vala.c"
 	} else {
 		WindowState* _tmp6_;
-#line 252 "MainWindow.vala"
+#line 246 "MainWindow.vala"
 		_tmp6_ = b->windowstate;
-#line 252 "MainWindow.vala"
+#line 246 "MainWindow.vala"
 		_tmp1_ = _tmp6_ == NULL;
-#line 3207 "MainWindow.vala.c"
+#line 3195 "MainWindow.vala.c"
 	}
-#line 250 "MainWindow.vala"
+#line 244 "MainWindow.vala"
 	if (_tmp1_) {
-#line 250 "MainWindow.vala"
+#line 244 "MainWindow.vala"
 		_tmp0_ = TRUE;
-#line 3213 "MainWindow.vala.c"
+#line 3201 "MainWindow.vala.c"
 	} else {
 		WindowState* _tmp7_;
 		JsRenderJsRender* _tmp8_;
-#line 253 "MainWindow.vala"
+#line 247 "MainWindow.vala"
 		_tmp7_ = b->windowstate;
-#line 253 "MainWindow.vala"
+#line 247 "MainWindow.vala"
 		_tmp8_ = _tmp7_->file;
-#line 253 "MainWindow.vala"
+#line 247 "MainWindow.vala"
 		_tmp0_ = _tmp8_ == NULL;
-#line 3223 "MainWindow.vala.c"
+#line 3211 "MainWindow.vala.c"
 	}
-#line 250 "MainWindow.vala"
+#line 244 "MainWindow.vala"
 	if (_tmp0_) {
-#line 255 "MainWindow.vala"
+#line 249 "MainWindow.vala"
 		result = 0;
-#line 255 "MainWindow.vala"
+#line 249 "MainWindow.vala"
 		return result;
-#line 3231 "MainWindow.vala.c"
+#line 3219 "MainWindow.vala.c"
 	}
-#line 258 "MainWindow.vala"
+#line 252 "MainWindow.vala"
 	_tmp9_ = a->windowstate;
-#line 258 "MainWindow.vala"
+#line 252 "MainWindow.vala"
 	_tmp10_ = _tmp9_->file;
-#line 258 "MainWindow.vala"
+#line 252 "MainWindow.vala"
 	_tmp11_ = _tmp10_->project;
-#line 258 "MainWindow.vala"
+#line 252 "MainWindow.vala"
 	_tmp12_ = project_project_get_name (_tmp11_);
-#line 258 "MainWindow.vala"
+#line 252 "MainWindow.vala"
 	_tmp13_ = _tmp12_;
-#line 258 "MainWindow.vala"
+#line 252 "MainWindow.vala"
 	_tmp14_ = g_strdup (_tmp13_);
-#line 258 "MainWindow.vala"
+#line 252 "MainWindow.vala"
 	ap = _tmp14_;
-#line 259 "MainWindow.vala"
+#line 253 "MainWindow.vala"
 	_tmp15_ = b->windowstate;
-#line 259 "MainWindow.vala"
+#line 253 "MainWindow.vala"
 	_tmp16_ = _tmp15_->file;
-#line 259 "MainWindow.vala"
+#line 253 "MainWindow.vala"
 	_tmp17_ = _tmp16_->project;
-#line 259 "MainWindow.vala"
+#line 253 "MainWindow.vala"
 	_tmp18_ = project_project_get_name (_tmp17_);
-#line 259 "MainWindow.vala"
+#line 253 "MainWindow.vala"
 	_tmp19_ = _tmp18_;
-#line 259 "MainWindow.vala"
+#line 253 "MainWindow.vala"
 	_tmp20_ = g_strdup (_tmp19_);
-#line 259 "MainWindow.vala"
+#line 253 "MainWindow.vala"
 	bp = _tmp20_;
-#line 263 "MainWindow.vala"
+#line 257 "MainWindow.vala"
 	_tmp21_ = ap;
-#line 263 "MainWindow.vala"
+#line 257 "MainWindow.vala"
 	_tmp22_ = bp;
-#line 263 "MainWindow.vala"
+#line 257 "MainWindow.vala"
 	if (g_strcmp0 (_tmp21_, _tmp22_) != 0) {
-#line 3267 "MainWindow.vala.c"
+#line 3255 "MainWindow.vala.c"
 		const gchar* _tmp23_;
 		const gchar* _tmp24_;
-#line 264 "MainWindow.vala"
+#line 258 "MainWindow.vala"
 		_tmp23_ = ap;
-#line 264 "MainWindow.vala"
+#line 258 "MainWindow.vala"
 		_tmp24_ = bp;
-#line 264 "MainWindow.vala"
+#line 258 "MainWindow.vala"
 		result = g_utf8_collate (_tmp23_, _tmp24_);
-#line 264 "MainWindow.vala"
+#line 258 "MainWindow.vala"
 		_g_free0 (bp);
-#line 264 "MainWindow.vala"
+#line 258 "MainWindow.vala"
 		_g_free0 (ap);
-#line 264 "MainWindow.vala"
+#line 258 "MainWindow.vala"
 		return result;
-#line 3282 "MainWindow.vala.c"
+#line 3270 "MainWindow.vala.c"
 	}
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 	_tmp26_ = a->windowstate;
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 	_tmp27_ = _tmp26_->file;
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 	if (_tmp27_ == NULL) {
-#line 3290 "MainWindow.vala.c"
+#line 3278 "MainWindow.vala.c"
 		gchar* _tmp28_;
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 		_tmp28_ = g_strdup ("");
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 		_g_free0 (_tmp25_);
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 		_tmp25_ = _tmp28_;
-#line 3298 "MainWindow.vala.c"
+#line 3286 "MainWindow.vala.c"
 	} else {
 		WindowState* _tmp29_;
 		JsRenderJsRender* _tmp30_;
 		gchar* _tmp31_;
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 		_tmp29_ = a->windowstate;
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 		_tmp30_ = _tmp29_->file;
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 		_tmp31_ = js_render_js_render_getTitle (_tmp30_);
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 		_g_free0 (_tmp25_);
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 		_tmp25_ = _tmp31_;
-#line 3313 "MainWindow.vala.c"
+#line 3301 "MainWindow.vala.c"
 	}
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 	_tmp32_ = g_strdup (_tmp25_);
-#line 266 "MainWindow.vala"
+#line 260 "MainWindow.vala"
 	af = _tmp32_;
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 	_tmp34_ = b->windowstate;
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 	_tmp35_ = _tmp34_->file;
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 	if (_tmp35_ == NULL) {
-#line 3325 "MainWindow.vala.c"
+#line 3313 "MainWindow.vala.c"
 		gchar* _tmp36_;
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 		_tmp36_ = g_strdup ("");
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 		_g_free0 (_tmp33_);
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 		_tmp33_ = _tmp36_;
-#line 3333 "MainWindow.vala.c"
+#line 3321 "MainWindow.vala.c"
 	} else {
 		WindowState* _tmp37_;
 		JsRenderJsRender* _tmp38_;
 		gchar* _tmp39_;
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 		_tmp37_ = b->windowstate;
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 		_tmp38_ = _tmp37_->file;
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 		_tmp39_ = js_render_js_render_getTitle (_tmp38_);
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 		_g_free0 (_tmp33_);
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 		_tmp33_ = _tmp39_;
-#line 3348 "MainWindow.vala.c"
+#line 3336 "MainWindow.vala.c"
 	}
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 	_tmp40_ = g_strdup (_tmp33_);
-#line 267 "MainWindow.vala"
+#line 261 "MainWindow.vala"
 	bf = _tmp40_;
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	_tmp41_ = af;
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	_tmp42_ = bf;
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	result = g_utf8_collate (_tmp41_, _tmp42_);
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	_g_free0 (bf);
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	_g_free0 (_tmp33_);
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	_g_free0 (af);
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	_g_free0 (_tmp25_);
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	_g_free0 (bp);
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	_g_free0 (ap);
-#line 268 "MainWindow.vala"
+#line 262 "MainWindow.vala"
 	return result;
-#line 3374 "MainWindow.vala.c"
+#line 3362 "MainWindow.vala.c"
 }
 
 static gint
@@ -3380,19 +3368,19 @@ ___lambda98__gcompare_data_func (gconstpointer a,
 {
 	gint result;
 	result = __lambda98_ ((Xcls_MainWindowXcls_windowbtn*) self, (Xcls_MainWindow*) a, (Xcls_MainWindow*) b);
-#line 249 "MainWindow.vala"
+#line 243 "MainWindow.vala"
 	return result;
-#line 3386 "MainWindow.vala.c"
+#line 3374 "MainWindow.vala.c"
 }
 
 static Block7Data*
 block7_data_ref (Block7Data* _data7_)
 {
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 	g_atomic_int_inc (&_data7_->_ref_count_);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 	return _data7_;
-#line 3396 "MainWindow.vala.c"
+#line 3384 "MainWindow.vala.c"
 }
 
 static void
@@ -3400,17 +3388,17 @@ block7_data_unref (void * _userdata_)
 {
 	Block7Data* _data7_;
 	_data7_ = (Block7Data*) _userdata_;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 	if (g_atomic_int_dec_and_test (&_data7_->_ref_count_)) {
-#line 3406 "MainWindow.vala.c"
+#line 3394 "MainWindow.vala.c"
 		Xcls_MainWindowXcls_windowbtn* self;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		self = _data7_->self;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		_g_object_unref0 (self);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		g_slice_free (Block7Data, _data7_);
-#line 3414 "MainWindow.vala.c"
+#line 3402 "MainWindow.vala.c"
 	}
 }
 
@@ -3425,38 +3413,38 @@ ____lambda99_ (Block7Data* _data7_)
 	gpointer _tmp4_;
 	Xcls_MainWindow* _tmp5_;
 	GtkApplicationWindow* _tmp6_;
-#line 308 "MainWindow.vala"
+#line 302 "MainWindow.vala"
 	self = _data7_->self;
-#line 309 "MainWindow.vala"
+#line 303 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 309 "MainWindow.vala"
+#line 303 "MainWindow.vala"
 	_tmp1_ = _tmp0_->windowspopup;
-#line 309 "MainWindow.vala"
+#line 303 "MainWindow.vala"
 	_tmp2_ = _tmp1_->el;
-#line 309 "MainWindow.vala"
+#line 303 "MainWindow.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp2_);
-#line 310 "MainWindow.vala"
+#line 304 "MainWindow.vala"
 	_tmp3_ = builder_application_windows;
-#line 310 "MainWindow.vala"
+#line 304 "MainWindow.vala"
 	_tmp4_ = gee_abstract_list_get ((GeeAbstractList*) _tmp3_, _data7_->wid);
-#line 310 "MainWindow.vala"
+#line 304 "MainWindow.vala"
 	_tmp5_ = (Xcls_MainWindow*) _tmp4_;
-#line 310 "MainWindow.vala"
+#line 304 "MainWindow.vala"
 	_tmp6_ = _tmp5_->el;
-#line 310 "MainWindow.vala"
+#line 304 "MainWindow.vala"
 	gtk_window_present ((GtkWindow*) _tmp6_);
-#line 310 "MainWindow.vala"
+#line 304 "MainWindow.vala"
 	_g_object_unref0 (_tmp5_);
-#line 3451 "MainWindow.vala.c"
+#line 3439 "MainWindow.vala.c"
 }
 
 static void
 _____lambda99__gtk_button_clicked (GtkButton* _sender,
                                    gpointer self)
 {
-#line 308 "MainWindow.vala"
+#line 302 "MainWindow.vala"
 	____lambda99_ (self);
-#line 3460 "MainWindow.vala.c"
+#line 3448 "MainWindow.vala.c"
 }
 
 void
@@ -3474,23 +3462,23 @@ xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self)
 		gint _tmp2_;
 		gint _tmp3_;
 		gint _m_index = 0;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 		_tmp0_ = self->mitems;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 		_m_list = _tmp0_;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 		_tmp1_ = _m_list;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 		_tmp2_ = gee_abstract_collection_get_size ((GeeAbstractCollection*) _tmp1_);
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 		_tmp3_ = _tmp2_;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 		_m_size = _tmp3_;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 		_m_index = -1;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 		while (TRUE) {
-#line 3494 "MainWindow.vala.c"
+#line 3482 "MainWindow.vala.c"
 			gint _tmp4_;
 			gint _tmp5_;
 			GtkWidget* m = NULL;
@@ -3500,52 +3488,52 @@ xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self)
 			Xcls_MainWindowXcls_popover_menu* _tmp9_;
 			GtkBox* _tmp10_;
 			GtkWidget* _tmp11_;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 			_m_index = _m_index + 1;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 			_tmp4_ = _m_index;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 			_tmp5_ = _m_size;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 			if (!(_tmp4_ < _tmp5_)) {
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 				break;
-#line 3514 "MainWindow.vala.c"
+#line 3502 "MainWindow.vala.c"
 			}
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 			_tmp6_ = _m_list;
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 			_tmp7_ = gee_abstract_list_get ((GeeAbstractList*) _tmp6_, _m_index);
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 			m = (GtkWidget*) _tmp7_;
-#line 245 "MainWindow.vala"
+#line 239 "MainWindow.vala"
 			_tmp8_ = self->priv->_this;
-#line 245 "MainWindow.vala"
+#line 239 "MainWindow.vala"
 			_tmp9_ = _tmp8_->popover_menu;
-#line 245 "MainWindow.vala"
+#line 239 "MainWindow.vala"
 			_tmp10_ = _tmp9_->el;
-#line 245 "MainWindow.vala"
+#line 239 "MainWindow.vala"
 			_tmp11_ = m;
-#line 245 "MainWindow.vala"
+#line 239 "MainWindow.vala"
 			gtk_box_remove (_tmp10_, _tmp11_);
-#line 244 "MainWindow.vala"
+#line 238 "MainWindow.vala"
 			_g_object_unref0 (m);
-#line 3534 "MainWindow.vala.c"
+#line 3522 "MainWindow.vala.c"
 		}
 	}
-#line 247 "MainWindow.vala"
+#line 241 "MainWindow.vala"
 	_tmp12_ = self->mitems;
-#line 247 "MainWindow.vala"
+#line 241 "MainWindow.vala"
 	gee_abstract_collection_clear ((GeeAbstractCollection*) _tmp12_);
-#line 249 "MainWindow.vala"
+#line 243 "MainWindow.vala"
 	_tmp13_ = builder_application_windows;
-#line 249 "MainWindow.vala"
+#line 243 "MainWindow.vala"
 	gee_list_sort ((GeeList*) _tmp13_, ___lambda98__gcompare_data_func, g_object_ref (self), g_object_unref);
-#line 272 "MainWindow.vala"
+#line 266 "MainWindow.vala"
 	_tmp14_ = g_strdup ("");
-#line 272 "MainWindow.vala"
+#line 266 "MainWindow.vala"
 	p = _tmp14_;
-#line 3549 "MainWindow.vala.c"
+#line 3537 "MainWindow.vala.c"
 	{
 		GeeArrayList* _w_list = NULL;
 		GeeArrayList* _tmp15_;
@@ -3554,23 +3542,23 @@ xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self)
 		gint _tmp17_;
 		gint _tmp18_;
 		gint _w_index = 0;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		_tmp15_ = builder_application_windows;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		_w_list = _tmp15_;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		_tmp16_ = _w_list;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		_tmp17_ = gee_abstract_collection_get_size ((GeeAbstractCollection*) _tmp16_);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		_tmp18_ = _tmp17_;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		_w_size = _tmp18_;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		_w_index = -1;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 		while (TRUE) {
-#line 3574 "MainWindow.vala.c"
+#line 3562 "MainWindow.vala.c"
 			Block7Data* _data7_;
 			gint _tmp19_;
 			gint _tmp20_;
@@ -3638,168 +3626,168 @@ xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self)
 			GtkButton* _tmp97_;
 			GeeArrayList* _tmp98_;
 			GtkButton* _tmp99_;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_data7_ = g_slice_new0 (Block7Data);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_data7_->_ref_count_ = 1;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_data7_->self = g_object_ref (self);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_w_index = _w_index + 1;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_tmp19_ = _w_index;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_tmp20_ = _w_size;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			if (!(_tmp19_ < _tmp20_)) {
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 				block7_data_unref (_data7_);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 				_data7_ = NULL;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 				break;
-#line 3662 "MainWindow.vala.c"
+#line 3650 "MainWindow.vala.c"
 			}
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_tmp21_ = _w_list;
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_tmp22_ = gee_abstract_list_get ((GeeAbstractList*) _tmp21_, _w_index);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			w = (Xcls_MainWindow*) _tmp22_;
-#line 274 "MainWindow.vala"
+#line 268 "MainWindow.vala"
 			_tmp23_ = builder_application_windows;
-#line 274 "MainWindow.vala"
+#line 268 "MainWindow.vala"
 			_tmp24_ = w;
-#line 274 "MainWindow.vala"
+#line 268 "MainWindow.vala"
 			_data7_->wid = gee_abstract_list_index_of ((GeeAbstractList*) _tmp23_, _tmp24_);
-#line 276 "MainWindow.vala"
+#line 270 "MainWindow.vala"
 			_tmp28_ = w;
-#line 276 "MainWindow.vala"
+#line 270 "MainWindow.vala"
 			_tmp29_ = _tmp28_->windowstate;
-#line 276 "MainWindow.vala"
+#line 270 "MainWindow.vala"
 			if (_tmp29_ == NULL) {
-#line 276 "MainWindow.vala"
+#line 270 "MainWindow.vala"
 				_tmp27_ = TRUE;
-#line 3684 "MainWindow.vala.c"
+#line 3672 "MainWindow.vala.c"
 			} else {
 				Xcls_MainWindow* _tmp30_;
 				WindowState* _tmp31_;
 				JsRenderJsRender* _tmp32_;
-#line 277 "MainWindow.vala"
+#line 271 "MainWindow.vala"
 				_tmp30_ = w;
-#line 277 "MainWindow.vala"
+#line 271 "MainWindow.vala"
 				_tmp31_ = _tmp30_->windowstate;
-#line 277 "MainWindow.vala"
+#line 271 "MainWindow.vala"
 				_tmp32_ = _tmp31_->file;
-#line 277 "MainWindow.vala"
+#line 271 "MainWindow.vala"
 				_tmp27_ = _tmp32_ == NULL;
-#line 3697 "MainWindow.vala.c"
+#line 3685 "MainWindow.vala.c"
 			}
-#line 276 "MainWindow.vala"
+#line 270 "MainWindow.vala"
 			if (_tmp27_) {
-#line 276 "MainWindow.vala"
+#line 270 "MainWindow.vala"
 				_tmp26_ = TRUE;
-#line 3703 "MainWindow.vala.c"
+#line 3691 "MainWindow.vala.c"
 			} else {
 				Xcls_MainWindow* _tmp33_;
 				WindowState* _tmp34_;
-#line 278 "MainWindow.vala"
+#line 272 "MainWindow.vala"
 				_tmp33_ = self->priv->_this;
-#line 278 "MainWindow.vala"
+#line 272 "MainWindow.vala"
 				_tmp34_ = _tmp33_->windowstate;
-#line 278 "MainWindow.vala"
+#line 272 "MainWindow.vala"
 				_tmp26_ = _tmp34_ == NULL;
-#line 3713 "MainWindow.vala.c"
+#line 3701 "MainWindow.vala.c"
 			}
-#line 276 "MainWindow.vala"
+#line 270 "MainWindow.vala"
 			if (_tmp26_) {
-#line 276 "MainWindow.vala"
+#line 270 "MainWindow.vala"
 				_tmp25_ = TRUE;
-#line 3719 "MainWindow.vala.c"
+#line 3707 "MainWindow.vala.c"
 			} else {
 				Xcls_MainWindow* _tmp35_;
 				WindowState* _tmp36_;
 				JsRenderJsRender* _tmp37_;
-#line 279 "MainWindow.vala"
+#line 273 "MainWindow.vala"
 				_tmp35_ = self->priv->_this;
-#line 279 "MainWindow.vala"
+#line 273 "MainWindow.vala"
 				_tmp36_ = _tmp35_->windowstate;
-#line 279 "MainWindow.vala"
+#line 273 "MainWindow.vala"
 				_tmp37_ = _tmp36_->file;
-#line 279 "MainWindow.vala"
+#line 273 "MainWindow.vala"
 				_tmp25_ = _tmp37_ == NULL;
+#line 3720 "MainWindow.vala.c"
+			}
+#line 270 "MainWindow.vala"
+			if (_tmp25_) {
+#line 275 "MainWindow.vala"
+				_g_object_unref0 (w);
+#line 275 "MainWindow.vala"
+				block7_data_unref (_data7_);
+#line 275 "MainWindow.vala"
+				_data7_ = NULL;
+#line 275 "MainWindow.vala"
+				continue;
 #line 3732 "MainWindow.vala.c"
 			}
-#line 276 "MainWindow.vala"
-			if (_tmp25_) {
-#line 281 "MainWindow.vala"
-				_g_object_unref0 (w);
-#line 281 "MainWindow.vala"
-				block7_data_unref (_data7_);
-#line 281 "MainWindow.vala"
-				_data7_ = NULL;
-#line 281 "MainWindow.vala"
-				continue;
-#line 3744 "MainWindow.vala.c"
-			}
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			_tmp38_ = w;
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			_tmp39_ = _tmp38_->windowstate;
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			_tmp40_ = _tmp39_->file;
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			_tmp41_ = _tmp40_->path;
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			_tmp42_ = self->priv->_this;
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			_tmp43_ = _tmp42_->windowstate;
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			_tmp44_ = _tmp43_->file;
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			_tmp45_ = _tmp44_->path;
-#line 284 "MainWindow.vala"
+#line 278 "MainWindow.vala"
 			if (g_strcmp0 (_tmp41_, _tmp45_) == 0) {
-#line 285 "MainWindow.vala"
+#line 279 "MainWindow.vala"
 				_g_object_unref0 (w);
-#line 285 "MainWindow.vala"
+#line 279 "MainWindow.vala"
 				block7_data_unref (_data7_);
-#line 285 "MainWindow.vala"
+#line 279 "MainWindow.vala"
 				_data7_ = NULL;
-#line 285 "MainWindow.vala"
+#line 279 "MainWindow.vala"
 				continue;
-#line 3772 "MainWindow.vala.c"
+#line 3760 "MainWindow.vala.c"
 			}
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			_tmp47_ = w;
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			_tmp48_ = _tmp47_->windowstate;
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			_tmp49_ = _tmp48_->file;
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			_tmp50_ = _tmp49_->project;
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			_tmp51_ = project_project_get_name (_tmp50_);
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			_tmp52_ = _tmp51_;
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			_tmp53_ = p;
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			if (g_strcmp0 (_tmp52_, _tmp53_) != 0) {
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 				_tmp46_ = TRUE;
-#line 3792 "MainWindow.vala.c"
+#line 3780 "MainWindow.vala.c"
 			} else {
 				const gchar* _tmp54_;
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 				_tmp54_ = p;
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 				_tmp46_ = g_strcmp0 (_tmp54_, "") != 0;
-#line 3799 "MainWindow.vala.c"
+#line 3787 "MainWindow.vala.c"
 			}
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 			if (_tmp46_) {
-#line 3803 "MainWindow.vala.c"
+#line 3791 "MainWindow.vala.c"
 				GtkSeparator* ms = NULL;
 				GtkSeparator* _tmp55_;
 				Xcls_MainWindow* _tmp56_;
@@ -3809,187 +3797,187 @@ xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self)
 				GtkSeparator* _tmp60_;
 				GeeArrayList* _tmp61_;
 				GtkSeparator* _tmp62_;
-#line 288 "MainWindow.vala"
+#line 282 "MainWindow.vala"
 				_tmp55_ = (GtkSeparator*) gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-#line 288 "MainWindow.vala"
+#line 282 "MainWindow.vala"
 				g_object_ref_sink (_tmp55_);
-#line 288 "MainWindow.vala"
+#line 282 "MainWindow.vala"
 				ms = _tmp55_;
-#line 289 "MainWindow.vala"
+#line 283 "MainWindow.vala"
 				_tmp56_ = self->priv->_this;
-#line 289 "MainWindow.vala"
+#line 283 "MainWindow.vala"
 				_tmp57_ = _tmp56_->popover_menu;
-#line 289 "MainWindow.vala"
+#line 283 "MainWindow.vala"
 				_tmp58_ = _tmp57_->el;
-#line 289 "MainWindow.vala"
+#line 283 "MainWindow.vala"
 				_tmp59_ = ms;
-#line 289 "MainWindow.vala"
+#line 283 "MainWindow.vala"
 				gtk_box_append (_tmp58_, (GtkWidget*) _tmp59_);
-#line 290 "MainWindow.vala"
+#line 284 "MainWindow.vala"
 				_tmp60_ = ms;
-#line 290 "MainWindow.vala"
+#line 284 "MainWindow.vala"
 				gtk_widget_show ((GtkWidget*) _tmp60_);
-#line 291 "MainWindow.vala"
+#line 285 "MainWindow.vala"
 				_tmp61_ = self->mitems;
-#line 291 "MainWindow.vala"
+#line 285 "MainWindow.vala"
 				_tmp62_ = ms;
-#line 291 "MainWindow.vala"
+#line 285 "MainWindow.vala"
 				gee_abstract_collection_add ((GeeAbstractCollection*) _tmp61_, (GtkWidget*) _tmp62_);
-#line 287 "MainWindow.vala"
+#line 281 "MainWindow.vala"
 				_g_object_unref0 (ms);
-#line 3841 "MainWindow.vala.c"
+#line 3829 "MainWindow.vala.c"
 			}
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			_tmp63_ = w;
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			_tmp64_ = _tmp63_->windowstate;
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			_tmp65_ = _tmp64_->file;
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			_tmp66_ = _tmp65_->project;
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			_tmp67_ = project_project_get_name (_tmp66_);
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			_tmp68_ = _tmp67_;
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			_tmp69_ = g_strdup (_tmp68_);
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			_g_free0 (p);
-#line 294 "MainWindow.vala"
+#line 288 "MainWindow.vala"
 			p = _tmp69_;
-#line 297 "MainWindow.vala"
+#line 291 "MainWindow.vala"
 			_tmp70_ = w;
-#line 297 "MainWindow.vala"
+#line 291 "MainWindow.vala"
 			_tmp71_ = _tmp70_->windowstate;
-#line 297 "MainWindow.vala"
+#line 291 "MainWindow.vala"
 			_tmp72_ = _tmp71_->file;
-#line 297 "MainWindow.vala"
+#line 291 "MainWindow.vala"
 			_tmp73_ = _tmp72_->path;
-#line 297 "MainWindow.vala"
-			g_debug ("MainWindow.vala:297: add menuitem %s", _tmp73_);
-#line 301 "MainWindow.vala"
+#line 291 "MainWindow.vala"
+			g_debug ("MainWindow.vala:291: add menuitem %s", _tmp73_);
+#line 295 "MainWindow.vala"
 			_tmp74_ = w;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp75_ = _tmp74_->windowstate;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp76_ = _tmp75_->file;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp77_ = _tmp76_->project;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp78_ = project_project_get_name (_tmp77_);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp79_ = _tmp78_;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp80_ = g_strconcat (_tmp79_, " : ", NULL);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp81_ = _tmp80_;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp82_ = w;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp83_ = _tmp82_->windowstate;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp84_ = _tmp83_->file;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp85_ = js_render_js_render_get_relpath (_tmp84_);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp86_ = _tmp85_;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp87_ = _tmp86_;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp88_ = g_strconcat (_tmp81_, _tmp87_, NULL);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp89_ = _tmp88_;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp90_ = (GtkButton*) gtk_button_new_with_label (_tmp89_);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			g_object_ref_sink (_tmp90_);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_tmp91_ = _tmp90_;
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_g_free0 (_tmp89_);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_g_free0 (_tmp87_);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			_g_free0 (_tmp81_);
-#line 301 "MainWindow.vala"
+#line 295 "MainWindow.vala"
 			m = _tmp91_;
-#line 304 "MainWindow.vala"
+#line 298 "MainWindow.vala"
 			_tmp92_ = m;
-#line 304 "MainWindow.vala"
+#line 298 "MainWindow.vala"
 			gtk_widget_set_halign ((GtkWidget*) _tmp92_, GTK_ALIGN_START);
-#line 308 "MainWindow.vala"
+#line 302 "MainWindow.vala"
 			_tmp93_ = m;
-#line 308 "MainWindow.vala"
+#line 302 "MainWindow.vala"
 			g_signal_connect_data (_tmp93_, "clicked", (GCallback) _____lambda99__gtk_button_clicked, block7_data_ref (_data7_), (GClosureNotify) block7_data_unref, 0);
-#line 312 "MainWindow.vala"
+#line 306 "MainWindow.vala"
 			_tmp94_ = self->priv->_this;
-#line 312 "MainWindow.vala"
+#line 306 "MainWindow.vala"
 			_tmp95_ = _tmp94_->popover_menu;
-#line 312 "MainWindow.vala"
+#line 306 "MainWindow.vala"
 			_tmp96_ = _tmp95_->el;
-#line 312 "MainWindow.vala"
+#line 306 "MainWindow.vala"
 			_tmp97_ = m;
-#line 312 "MainWindow.vala"
+#line 306 "MainWindow.vala"
 			gtk_box_append (_tmp96_, (GtkWidget*) _tmp97_);
-#line 314 "MainWindow.vala"
+#line 308 "MainWindow.vala"
 			_tmp98_ = self->mitems;
-#line 314 "MainWindow.vala"
+#line 308 "MainWindow.vala"
 			_tmp99_ = m;
-#line 314 "MainWindow.vala"
+#line 308 "MainWindow.vala"
 			gee_abstract_collection_add ((GeeAbstractCollection*) _tmp98_, (GtkWidget*) _tmp99_);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_g_object_unref0 (m);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_g_object_unref0 (w);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			block7_data_unref (_data7_);
-#line 273 "MainWindow.vala"
+#line 267 "MainWindow.vala"
 			_data7_ = NULL;
-#line 3949 "MainWindow.vala.c"
+#line 3937 "MainWindow.vala.c"
 		}
 	}
-#line 243 "MainWindow.vala"
+#line 237 "MainWindow.vala"
 	_g_free0 (p);
-#line 3954 "MainWindow.vala.c"
+#line 3942 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_windowbtn_class_init (Xcls_MainWindowXcls_windowbtnClass * klass,
                                            gpointer klass_data)
 {
-#line 197 "MainWindow.vala"
+#line 193 "MainWindow.vala"
 	xcls_mainwindow_xcls_windowbtn_parent_class = g_type_class_peek_parent (klass);
-#line 197 "MainWindow.vala"
+#line 193 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_windowbtn_private_offset);
-#line 197 "MainWindow.vala"
+#line 193 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_windowbtn_finalize;
-#line 3967 "MainWindow.vala.c"
+#line 3955 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_windowbtn_instance_init (Xcls_MainWindowXcls_windowbtn * self,
                                               gpointer klass)
 {
-#line 197 "MainWindow.vala"
+#line 193 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_windowbtn_get_instance_private (self);
-#line 3976 "MainWindow.vala.c"
+#line 3964 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_windowbtn_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_windowbtn * self;
-#line 197 "MainWindow.vala"
+#line 193 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_WINDOWBTN, Xcls_MainWindowXcls_windowbtn);
-#line 199 "MainWindow.vala"
+#line 195 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 200 "MainWindow.vala"
+#line 196 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 204 "MainWindow.vala"
+#line 200 "MainWindow.vala"
 	_g_object_unref0 (self->mitems);
-#line 197 "MainWindow.vala"
+#line 193 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_windowbtn_parent_class)->finalize (obj);
-#line 3993 "MainWindow.vala.c"
+#line 3981 "MainWindow.vala.c"
 }
 
 static GType
@@ -4029,99 +4017,97 @@ xcls_mainwindow_xcls_windowspopup_construct (GType object_type,
 	Xcls_MainWindow* _tmp1_;
 	Xcls_MainWindowXcls_windowspopup* _tmp2_;
 	GtkPopover* _tmp3_;
-	Xcls_MainWindowXcls_popover_menu* child_0 = NULL;
+	Xcls_MainWindowXcls_popover_menu* child_1 = NULL;
 	Xcls_MainWindow* _tmp4_;
 	Xcls_MainWindowXcls_popover_menu* _tmp5_;
 	GtkPopover* _tmp6_;
 	GtkBox* _tmp7_;
-#line 327 "MainWindow.vala"
+#line 321 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_windowspopup*) g_object_new (object_type, NULL);
-#line 329 "MainWindow.vala"
+#line 323 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 329 "MainWindow.vala"
+#line 323 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 329 "MainWindow.vala"
+#line 323 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 330 "MainWindow.vala"
+#line 324 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 330 "MainWindow.vala"
+#line 324 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 330 "MainWindow.vala"
+#line 324 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->windowspopup);
-#line 330 "MainWindow.vala"
+#line 324 "MainWindow.vala"
 	_tmp1_->windowspopup = _tmp2_;
-#line 331 "MainWindow.vala"
+#line 325 "MainWindow.vala"
 	_tmp3_ = (GtkPopover*) gtk_popover_new ();
-#line 331 "MainWindow.vala"
+#line 325 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 331 "MainWindow.vala"
+#line 325 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 331 "MainWindow.vala"
+#line 325 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 336 "MainWindow.vala"
+#line 330 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 336 "MainWindow.vala"
+#line 330 "MainWindow.vala"
 	_tmp5_ = xcls_mainwindow_xcls_popover_menu_new (_tmp4_);
-#line 336 "MainWindow.vala"
-	child_0 = _tmp5_;
-#line 337 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 338 "MainWindow.vala"
+#line 330 "MainWindow.vala"
+	child_1 = _tmp5_;
+#line 331 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 338 "MainWindow.vala"
-	_tmp7_ = child_0->el;
-#line 338 "MainWindow.vala"
+#line 331 "MainWindow.vala"
+	_tmp7_ = child_1->el;
+#line 331 "MainWindow.vala"
 	gtk_popover_set_child (_tmp6_, (GtkWidget*) _tmp7_);
-#line 327 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 327 "MainWindow.vala"
+#line 321 "MainWindow.vala"
+	_g_object_unref0 (child_1);
+#line 321 "MainWindow.vala"
 	return self;
-#line 4080 "MainWindow.vala.c"
+#line 4066 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_windowspopup*
 xcls_mainwindow_xcls_windowspopup_new (Xcls_MainWindow* _owner)
 {
-#line 327 "MainWindow.vala"
+#line 321 "MainWindow.vala"
 	return xcls_mainwindow_xcls_windowspopup_construct (XCLS_MAINWINDOW_TYPE_XCLS_WINDOWSPOPUP, _owner);
-#line 4088 "MainWindow.vala.c"
+#line 4074 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_windowspopup_class_init (Xcls_MainWindowXcls_windowspopupClass * klass,
                                               gpointer klass_data)
 {
-#line 318 "MainWindow.vala"
+#line 312 "MainWindow.vala"
 	xcls_mainwindow_xcls_windowspopup_parent_class = g_type_class_peek_parent (klass);
-#line 318 "MainWindow.vala"
+#line 312 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_windowspopup_private_offset);
-#line 318 "MainWindow.vala"
+#line 312 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_windowspopup_finalize;
-#line 4101 "MainWindow.vala.c"
+#line 4087 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_windowspopup_instance_init (Xcls_MainWindowXcls_windowspopup * self,
                                                  gpointer klass)
 {
-#line 318 "MainWindow.vala"
+#line 312 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_windowspopup_get_instance_private (self);
-#line 4110 "MainWindow.vala.c"
+#line 4096 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_windowspopup_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_windowspopup * self;
-#line 318 "MainWindow.vala"
+#line 312 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_WINDOWSPOPUP, Xcls_MainWindowXcls_windowspopup);
-#line 320 "MainWindow.vala"
+#line 314 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 321 "MainWindow.vala"
+#line 315 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 318 "MainWindow.vala"
+#line 312 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_windowspopup_parent_class)->finalize (obj);
-#line 4125 "MainWindow.vala.c"
+#line 4111 "MainWindow.vala.c"
 }
 
 static GType
@@ -4161,120 +4147,120 @@ xcls_mainwindow_xcls_popover_menu_construct (GType object_type,
 	Xcls_MainWindow* _tmp1_;
 	Xcls_MainWindowXcls_popover_menu* _tmp2_;
 	GtkBox* _tmp3_;
-	Xcls_MainWindowXcls_Button7* child_0 = NULL;
+	Xcls_MainWindowXcls_Button7* child_1 = NULL;
 	Xcls_MainWindow* _tmp4_;
 	Xcls_MainWindowXcls_Button7* _tmp5_;
 	GtkBox* _tmp6_;
 	GtkButton* _tmp7_;
-	Xcls_MainWindowXcls_Separator9* child_1 = NULL;
+	Xcls_MainWindowXcls_Separator9* child_2 = NULL;
 	Xcls_MainWindow* _tmp8_;
 	Xcls_MainWindowXcls_Separator9* _tmp9_;
 	GtkBox* _tmp10_;
 	GtkSeparator* _tmp11_;
-#line 352 "MainWindow.vala"
+#line 345 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_popover_menu*) g_object_new (object_type, NULL);
-#line 354 "MainWindow.vala"
+#line 347 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 354 "MainWindow.vala"
+#line 347 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 354 "MainWindow.vala"
+#line 347 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 355 "MainWindow.vala"
+#line 348 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 355 "MainWindow.vala"
+#line 348 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 355 "MainWindow.vala"
+#line 348 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->popover_menu);
-#line 355 "MainWindow.vala"
+#line 348 "MainWindow.vala"
 	_tmp1_->popover_menu = _tmp2_;
-#line 356 "MainWindow.vala"
+#line 349 "MainWindow.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 356 "MainWindow.vala"
+#line 349 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 356 "MainWindow.vala"
+#line 349 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 356 "MainWindow.vala"
+#line 349 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 361 "MainWindow.vala"
+#line 354 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 361 "MainWindow.vala"
+#line 354 "MainWindow.vala"
 	_tmp5_ = xcls_mainwindow_xcls_button7_new (_tmp4_);
-#line 361 "MainWindow.vala"
-	child_0 = _tmp5_;
-#line 362 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 363 "MainWindow.vala"
-	_tmp6_ = self->el;
-#line 363 "MainWindow.vala"
-	_tmp7_ = child_0->el;
-#line 363 "MainWindow.vala"
-	gtk_box_append (_tmp6_, (GtkWidget*) _tmp7_);
-#line 364 "MainWindow.vala"
-	_tmp8_ = self->priv->_this;
-#line 364 "MainWindow.vala"
-	_tmp9_ = xcls_mainwindow_xcls_separator9_new (_tmp8_);
-#line 364 "MainWindow.vala"
-	child_1 = _tmp9_;
-#line 365 "MainWindow.vala"
+#line 354 "MainWindow.vala"
+	child_1 = _tmp5_;
+#line 355 "MainWindow.vala"
 	g_object_ref ((GObject*) child_1);
-#line 366 "MainWindow.vala"
+#line 356 "MainWindow.vala"
+	_tmp6_ = self->el;
+#line 356 "MainWindow.vala"
+	_tmp7_ = child_1->el;
+#line 356 "MainWindow.vala"
+	gtk_box_append (_tmp6_, (GtkWidget*) _tmp7_);
+#line 357 "MainWindow.vala"
+	_tmp8_ = self->priv->_this;
+#line 357 "MainWindow.vala"
+	_tmp9_ = xcls_mainwindow_xcls_separator9_new (_tmp8_);
+#line 357 "MainWindow.vala"
+	child_2 = _tmp9_;
+#line 358 "MainWindow.vala"
+	g_object_ref ((GObject*) child_2);
+#line 359 "MainWindow.vala"
 	_tmp10_ = self->el;
-#line 366 "MainWindow.vala"
-	_tmp11_ = child_1->el;
-#line 366 "MainWindow.vala"
+#line 359 "MainWindow.vala"
+	_tmp11_ = child_2->el;
+#line 359 "MainWindow.vala"
 	gtk_box_append (_tmp10_, (GtkWidget*) _tmp11_);
-#line 352 "MainWindow.vala"
+#line 345 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 345 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 352 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 352 "MainWindow.vala"
+#line 345 "MainWindow.vala"
 	return self;
-#line 4233 "MainWindow.vala.c"
+#line 4219 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_popover_menu*
 xcls_mainwindow_xcls_popover_menu_new (Xcls_MainWindow* _owner)
 {
-#line 352 "MainWindow.vala"
+#line 345 "MainWindow.vala"
 	return xcls_mainwindow_xcls_popover_menu_construct (XCLS_MAINWINDOW_TYPE_XCLS_POPOVER_MENU, _owner);
-#line 4241 "MainWindow.vala.c"
+#line 4227 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_popover_menu_class_init (Xcls_MainWindowXcls_popover_menuClass * klass,
                                               gpointer klass_data)
 {
-#line 343 "MainWindow.vala"
+#line 336 "MainWindow.vala"
 	xcls_mainwindow_xcls_popover_menu_parent_class = g_type_class_peek_parent (klass);
-#line 343 "MainWindow.vala"
+#line 336 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_popover_menu_private_offset);
-#line 343 "MainWindow.vala"
+#line 336 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_popover_menu_finalize;
-#line 4254 "MainWindow.vala.c"
+#line 4240 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_popover_menu_instance_init (Xcls_MainWindowXcls_popover_menu * self,
                                                  gpointer klass)
 {
-#line 343 "MainWindow.vala"
+#line 336 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_popover_menu_get_instance_private (self);
-#line 4263 "MainWindow.vala.c"
+#line 4249 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_popover_menu_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_popover_menu * self;
-#line 343 "MainWindow.vala"
+#line 336 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_POPOVER_MENU, Xcls_MainWindowXcls_popover_menu);
-#line 345 "MainWindow.vala"
+#line 338 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 346 "MainWindow.vala"
+#line 339 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 343 "MainWindow.vala"
+#line 336 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_popover_menu_parent_class)->finalize (obj);
-#line 4278 "MainWindow.vala.c"
+#line 4264 "MainWindow.vala.c"
 }
 
 static GType
@@ -4318,40 +4304,40 @@ __lambda17_ (Xcls_MainWindowXcls_Button7* self)
 	GtkButton* _tmp7_;
 	Xcls_MainWindow* _tmp8_;
 	ProjectProject* _tmp9_;
-#line 395 "MainWindow.vala"
+#line 388 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 395 "MainWindow.vala"
+#line 388 "MainWindow.vala"
 	_tmp1_ = _tmp0_->windowspopup;
-#line 395 "MainWindow.vala"
+#line 388 "MainWindow.vala"
 	_tmp2_ = _tmp1_->el;
-#line 395 "MainWindow.vala"
+#line 388 "MainWindow.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp2_);
-#line 396 "MainWindow.vala"
+#line 389 "MainWindow.vala"
 	_tmp3_ = self->priv->_this;
-#line 396 "MainWindow.vala"
+#line 389 "MainWindow.vala"
 	_tmp4_ = _tmp3_->windowstate;
-#line 396 "MainWindow.vala"
+#line 389 "MainWindow.vala"
 	_tmp5_ = self->priv->_this;
-#line 396 "MainWindow.vala"
+#line 389 "MainWindow.vala"
 	_tmp6_ = _tmp5_->windowbtn;
-#line 396 "MainWindow.vala"
+#line 389 "MainWindow.vala"
 	_tmp7_ = _tmp6_->el;
-#line 396 "MainWindow.vala"
+#line 389 "MainWindow.vala"
 	_tmp8_ = self->priv->_this;
-#line 396 "MainWindow.vala"
+#line 389 "MainWindow.vala"
 	_tmp9_ = _tmp8_->project;
-#line 396 "MainWindow.vala"
+#line 389 "MainWindow.vala"
 	window_state_showPopoverFiles (_tmp4_, (GtkWidget*) _tmp7_, _tmp9_, TRUE);
-#line 4346 "MainWindow.vala.c"
+#line 4332 "MainWindow.vala.c"
 }
 
 static void
 ___lambda17__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
-#line 394 "MainWindow.vala"
+#line 387 "MainWindow.vala"
 	__lambda17_ ((Xcls_MainWindowXcls_Button7*) self);
-#line 4355 "MainWindow.vala.c"
+#line 4341 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button7*
@@ -4362,103 +4348,103 @@ xcls_mainwindow_xcls_button7_construct (GType object_type,
 	Xcls_MainWindow* _tmp0_;
 	GtkButton* _tmp1_;
 	GtkButton* _tmp2_;
-	Xcls_MainWindowXcls_ShortcutController8* child_0 = NULL;
+	Xcls_MainWindowXcls_ShortcutController8* child_1 = NULL;
 	Xcls_MainWindow* _tmp3_;
 	Xcls_MainWindowXcls_ShortcutController8* _tmp4_;
 	GtkButton* _tmp5_;
 	GtkShortcutController* _tmp6_;
 	GtkEventController* _tmp7_;
 	GtkButton* _tmp8_;
-#line 380 "MainWindow.vala"
+#line 373 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Button7*) g_object_new (object_type, NULL);
-#line 382 "MainWindow.vala"
+#line 375 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 382 "MainWindow.vala"
+#line 375 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 382 "MainWindow.vala"
+#line 375 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 383 "MainWindow.vala"
+#line 376 "MainWindow.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 383 "MainWindow.vala"
+#line 376 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 383 "MainWindow.vala"
+#line 376 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 383 "MainWindow.vala"
+#line 376 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 388 "MainWindow.vala"
+#line 381 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 388 "MainWindow.vala"
+#line 381 "MainWindow.vala"
 	gtk_button_set_label (_tmp2_, "New Window");
-#line 389 "MainWindow.vala"
+#line 382 "MainWindow.vala"
 	_tmp3_ = self->priv->_this;
-#line 389 "MainWindow.vala"
+#line 382 "MainWindow.vala"
 	_tmp4_ = xcls_mainwindow_xcls_shortcutcontroller8_new (_tmp3_);
-#line 389 "MainWindow.vala"
-	child_0 = _tmp4_;
-#line 390 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 391 "MainWindow.vala"
+#line 382 "MainWindow.vala"
+	child_1 = _tmp4_;
+#line 383 "MainWindow.vala"
+	g_object_ref ((GObject*) child_1);
+#line 384 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 391 "MainWindow.vala"
-	_tmp6_ = child_0->el;
-#line 391 "MainWindow.vala"
+#line 384 "MainWindow.vala"
+	_tmp6_ = child_1->el;
+#line 384 "MainWindow.vala"
 	_tmp7_ = _g_object_ref0 ((GtkEventController*) _tmp6_);
-#line 391 "MainWindow.vala"
+#line 384 "MainWindow.vala"
 	gtk_widget_add_controller ((GtkWidget*) _tmp5_, _tmp7_);
-#line 394 "MainWindow.vala"
+#line 387 "MainWindow.vala"
 	_tmp8_ = self->el;
-#line 394 "MainWindow.vala"
+#line 387 "MainWindow.vala"
 	g_signal_connect_object (_tmp8_, "clicked", (GCallback) ___lambda17__gtk_button_clicked, self, 0);
-#line 380 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 380 "MainWindow.vala"
+#line 373 "MainWindow.vala"
+	_g_object_unref0 (child_1);
+#line 373 "MainWindow.vala"
 	return self;
-#line 4417 "MainWindow.vala.c"
+#line 4403 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button7*
 xcls_mainwindow_xcls_button7_new (Xcls_MainWindow* _owner)
 {
-#line 380 "MainWindow.vala"
+#line 373 "MainWindow.vala"
 	return xcls_mainwindow_xcls_button7_construct (XCLS_MAINWINDOW_TYPE_XCLS_BUTTON7, _owner);
-#line 4425 "MainWindow.vala.c"
+#line 4411 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button7_class_init (Xcls_MainWindowXcls_Button7Class * klass,
                                          gpointer klass_data)
 {
-#line 371 "MainWindow.vala"
+#line 364 "MainWindow.vala"
 	xcls_mainwindow_xcls_button7_parent_class = g_type_class_peek_parent (klass);
-#line 371 "MainWindow.vala"
+#line 364 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Button7_private_offset);
-#line 371 "MainWindow.vala"
+#line 364 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_button7_finalize;
-#line 4438 "MainWindow.vala.c"
+#line 4424 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button7_instance_init (Xcls_MainWindowXcls_Button7 * self,
                                             gpointer klass)
 {
-#line 371 "MainWindow.vala"
+#line 364 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_button7_get_instance_private (self);
-#line 4447 "MainWindow.vala.c"
+#line 4433 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button7_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Button7 * self;
-#line 371 "MainWindow.vala"
+#line 364 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BUTTON7, Xcls_MainWindowXcls_Button7);
-#line 373 "MainWindow.vala"
+#line 366 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 374 "MainWindow.vala"
+#line 367 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 371 "MainWindow.vala"
+#line 364 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_button7_parent_class)->finalize (obj);
-#line 4462 "MainWindow.vala.c"
+#line 4448 "MainWindow.vala.c"
 }
 
 static GType
@@ -4497,90 +4483,90 @@ xcls_mainwindow_xcls_shortcutcontroller8_construct (GType object_type,
 	Xcls_MainWindow* _tmp0_;
 	GtkShortcutController* _tmp1_;
 	GtkShortcutController* _tmp2_;
-#line 411 "MainWindow.vala"
+#line 404 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_ShortcutController8*) g_object_new (object_type, NULL);
-#line 413 "MainWindow.vala"
+#line 406 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 413 "MainWindow.vala"
+#line 406 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 413 "MainWindow.vala"
+#line 406 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 414 "MainWindow.vala"
+#line 407 "MainWindow.vala"
 	_tmp1_ = (GtkShortcutController*) gtk_shortcut_controller_new ();
-#line 414 "MainWindow.vala"
+#line 407 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 414 "MainWindow.vala"
+#line 407 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 419 "MainWindow.vala"
+#line 412 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 419 "MainWindow.vala"
+#line 412 "MainWindow.vala"
 	gtk_shortcut_controller_set_scope (_tmp2_, GTK_SHORTCUT_SCOPE_GLOBAL);
-#line 4519 "MainWindow.vala.c"
+#line 4505 "MainWindow.vala.c"
 	{
 		GtkShortcutController* _tmp3_;
 		GtkKeyvalTrigger* _tmp4_;
 		GtkSignalAction* _tmp5_;
 		GtkShortcut* _tmp6_;
-#line 424 "MainWindow.vala"
+#line 417 "MainWindow.vala"
 		_tmp3_ = self->el;
-#line 424 "MainWindow.vala"
+#line 417 "MainWindow.vala"
 		_tmp4_ = (GtkKeyvalTrigger*) gtk_keyval_trigger_new (GDK_KEY_N, GDK_CONTROL_MASK);
-#line 424 "MainWindow.vala"
+#line 417 "MainWindow.vala"
 		_tmp5_ = (GtkSignalAction*) gtk_signal_action_new ("clicked");
-#line 424 "MainWindow.vala"
+#line 417 "MainWindow.vala"
 		_tmp6_ = gtk_shortcut_new ((GtkShortcutTrigger*) _tmp4_, (GtkShortcutAction*) _tmp5_);
-#line 424 "MainWindow.vala"
+#line 417 "MainWindow.vala"
 		gtk_shortcut_controller_add_shortcut (_tmp3_, _tmp6_);
-#line 4535 "MainWindow.vala.c"
+#line 4521 "MainWindow.vala.c"
 	}
-#line 411 "MainWindow.vala"
+#line 404 "MainWindow.vala"
 	return self;
-#line 4539 "MainWindow.vala.c"
+#line 4525 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_ShortcutController8*
 xcls_mainwindow_xcls_shortcutcontroller8_new (Xcls_MainWindow* _owner)
 {
-#line 411 "MainWindow.vala"
+#line 404 "MainWindow.vala"
 	return xcls_mainwindow_xcls_shortcutcontroller8_construct (XCLS_MAINWINDOW_TYPE_XCLS_SHORTCUTCONTROLLER8, _owner);
-#line 4547 "MainWindow.vala.c"
+#line 4533 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_shortcutcontroller8_class_init (Xcls_MainWindowXcls_ShortcutController8Class * klass,
                                                      gpointer klass_data)
 {
-#line 402 "MainWindow.vala"
+#line 395 "MainWindow.vala"
 	xcls_mainwindow_xcls_shortcutcontroller8_parent_class = g_type_class_peek_parent (klass);
-#line 402 "MainWindow.vala"
+#line 395 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_ShortcutController8_private_offset);
-#line 402 "MainWindow.vala"
+#line 395 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_shortcutcontroller8_finalize;
-#line 4560 "MainWindow.vala.c"
+#line 4546 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_shortcutcontroller8_instance_init (Xcls_MainWindowXcls_ShortcutController8 * self,
                                                         gpointer klass)
 {
-#line 402 "MainWindow.vala"
+#line 395 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_shortcutcontroller8_get_instance_private (self);
-#line 4569 "MainWindow.vala.c"
+#line 4555 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_shortcutcontroller8_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_ShortcutController8 * self;
-#line 402 "MainWindow.vala"
+#line 395 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_SHORTCUTCONTROLLER8, Xcls_MainWindowXcls_ShortcutController8);
-#line 404 "MainWindow.vala"
+#line 397 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 405 "MainWindow.vala"
+#line 398 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 402 "MainWindow.vala"
+#line 395 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_shortcutcontroller8_parent_class)->finalize (obj);
-#line 4584 "MainWindow.vala.c"
+#line 4570 "MainWindow.vala.c"
 }
 
 static GType
@@ -4618,70 +4604,70 @@ xcls_mainwindow_xcls_separator9_construct (GType object_type,
 	Xcls_MainWindowXcls_Separator9 * self = NULL;
 	Xcls_MainWindow* _tmp0_;
 	GtkSeparator* _tmp1_;
-#line 446 "MainWindow.vala"
+#line 439 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Separator9*) g_object_new (object_type, NULL);
-#line 448 "MainWindow.vala"
+#line 441 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 448 "MainWindow.vala"
+#line 441 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 448 "MainWindow.vala"
+#line 441 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 449 "MainWindow.vala"
+#line 442 "MainWindow.vala"
 	_tmp1_ = (GtkSeparator*) gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-#line 449 "MainWindow.vala"
+#line 442 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 449 "MainWindow.vala"
+#line 442 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 449 "MainWindow.vala"
+#line 442 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 446 "MainWindow.vala"
+#line 439 "MainWindow.vala"
 	return self;
-#line 4640 "MainWindow.vala.c"
+#line 4626 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Separator9*
 xcls_mainwindow_xcls_separator9_new (Xcls_MainWindow* _owner)
 {
-#line 446 "MainWindow.vala"
+#line 439 "MainWindow.vala"
 	return xcls_mainwindow_xcls_separator9_construct (XCLS_MAINWINDOW_TYPE_XCLS_SEPARATOR9, _owner);
-#line 4648 "MainWindow.vala.c"
+#line 4634 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_separator9_class_init (Xcls_MainWindowXcls_Separator9Class * klass,
                                             gpointer klass_data)
 {
-#line 437 "MainWindow.vala"
+#line 430 "MainWindow.vala"
 	xcls_mainwindow_xcls_separator9_parent_class = g_type_class_peek_parent (klass);
-#line 437 "MainWindow.vala"
+#line 430 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Separator9_private_offset);
-#line 437 "MainWindow.vala"
+#line 430 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_separator9_finalize;
-#line 4661 "MainWindow.vala.c"
+#line 4647 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_separator9_instance_init (Xcls_MainWindowXcls_Separator9 * self,
                                                gpointer klass)
 {
-#line 437 "MainWindow.vala"
+#line 430 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_separator9_get_instance_private (self);
-#line 4670 "MainWindow.vala.c"
+#line 4656 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_separator9_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Separator9 * self;
-#line 437 "MainWindow.vala"
+#line 430 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_SEPARATOR9, Xcls_MainWindowXcls_Separator9);
-#line 439 "MainWindow.vala"
+#line 432 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 440 "MainWindow.vala"
+#line 433 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 437 "MainWindow.vala"
+#line 430 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_separator9_parent_class)->finalize (obj);
-#line 4685 "MainWindow.vala.c"
+#line 4671 "MainWindow.vala.c"
 }
 
 static GType
@@ -4719,112 +4705,112 @@ xcls_mainwindow_xcls_box10_construct (GType object_type,
 	Xcls_MainWindowXcls_Box10 * self = NULL;
 	Xcls_MainWindow* _tmp0_;
 	GtkBox* _tmp1_;
-	Xcls_MainWindowXcls_Image11* child_0 = NULL;
+	Xcls_MainWindowXcls_Image11* child_1 = NULL;
 	Xcls_MainWindow* _tmp2_;
 	Xcls_MainWindowXcls_Image11* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkImage* _tmp5_;
-	Xcls_MainWindowXcls_Label12* child_1 = NULL;
+	Xcls_MainWindowXcls_Label12* child_2 = NULL;
 	Xcls_MainWindow* _tmp6_;
 	Xcls_MainWindowXcls_Label12* _tmp7_;
 	GtkBox* _tmp8_;
 	GtkLabel* _tmp9_;
-#line 470 "MainWindow.vala"
+#line 463 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Box10*) g_object_new (object_type, NULL);
-#line 472 "MainWindow.vala"
+#line 465 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 472 "MainWindow.vala"
+#line 465 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 472 "MainWindow.vala"
+#line 465 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 473 "MainWindow.vala"
+#line 466 "MainWindow.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-#line 473 "MainWindow.vala"
+#line 466 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 473 "MainWindow.vala"
+#line 466 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 473 "MainWindow.vala"
+#line 466 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 478 "MainWindow.vala"
+#line 471 "MainWindow.vala"
 	_tmp2_ = self->priv->_this;
-#line 478 "MainWindow.vala"
+#line 471 "MainWindow.vala"
 	_tmp3_ = xcls_mainwindow_xcls_image11_new (_tmp2_);
-#line 478 "MainWindow.vala"
-	child_0 = _tmp3_;
-#line 479 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 480 "MainWindow.vala"
-	_tmp4_ = self->el;
-#line 480 "MainWindow.vala"
-	_tmp5_ = child_0->el;
-#line 480 "MainWindow.vala"
-	gtk_box_append (_tmp4_, (GtkWidget*) _tmp5_);
-#line 481 "MainWindow.vala"
-	_tmp6_ = self->priv->_this;
-#line 481 "MainWindow.vala"
-	_tmp7_ = xcls_mainwindow_xcls_label12_new (_tmp6_);
-#line 481 "MainWindow.vala"
-	child_1 = _tmp7_;
-#line 482 "MainWindow.vala"
+#line 471 "MainWindow.vala"
+	child_1 = _tmp3_;
+#line 472 "MainWindow.vala"
 	g_object_ref ((GObject*) child_1);
-#line 483 "MainWindow.vala"
+#line 473 "MainWindow.vala"
+	_tmp4_ = self->el;
+#line 473 "MainWindow.vala"
+	_tmp5_ = child_1->el;
+#line 473 "MainWindow.vala"
+	gtk_box_append (_tmp4_, (GtkWidget*) _tmp5_);
+#line 474 "MainWindow.vala"
+	_tmp6_ = self->priv->_this;
+#line 474 "MainWindow.vala"
+	_tmp7_ = xcls_mainwindow_xcls_label12_new (_tmp6_);
+#line 474 "MainWindow.vala"
+	child_2 = _tmp7_;
+#line 475 "MainWindow.vala"
+	g_object_ref ((GObject*) child_2);
+#line 476 "MainWindow.vala"
 	_tmp8_ = self->el;
-#line 483 "MainWindow.vala"
-	_tmp9_ = child_1->el;
-#line 483 "MainWindow.vala"
+#line 476 "MainWindow.vala"
+	_tmp9_ = child_2->el;
+#line 476 "MainWindow.vala"
 	gtk_box_append (_tmp8_, (GtkWidget*) _tmp9_);
-#line 470 "MainWindow.vala"
+#line 463 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 463 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 470 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 470 "MainWindow.vala"
+#line 463 "MainWindow.vala"
 	return self;
-#line 4783 "MainWindow.vala.c"
+#line 4769 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Box10*
 xcls_mainwindow_xcls_box10_new (Xcls_MainWindow* _owner)
 {
-#line 470 "MainWindow.vala"
+#line 463 "MainWindow.vala"
 	return xcls_mainwindow_xcls_box10_construct (XCLS_MAINWINDOW_TYPE_XCLS_BOX10, _owner);
-#line 4791 "MainWindow.vala.c"
+#line 4777 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box10_class_init (Xcls_MainWindowXcls_Box10Class * klass,
                                        gpointer klass_data)
 {
-#line 461 "MainWindow.vala"
+#line 454 "MainWindow.vala"
 	xcls_mainwindow_xcls_box10_parent_class = g_type_class_peek_parent (klass);
-#line 461 "MainWindow.vala"
+#line 454 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Box10_private_offset);
-#line 461 "MainWindow.vala"
+#line 454 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_box10_finalize;
-#line 4804 "MainWindow.vala.c"
+#line 4790 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box10_instance_init (Xcls_MainWindowXcls_Box10 * self,
                                           gpointer klass)
 {
-#line 461 "MainWindow.vala"
+#line 454 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_box10_get_instance_private (self);
-#line 4813 "MainWindow.vala.c"
+#line 4799 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box10_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Box10 * self;
-#line 461 "MainWindow.vala"
+#line 454 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BOX10, Xcls_MainWindowXcls_Box10);
-#line 463 "MainWindow.vala"
+#line 456 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 464 "MainWindow.vala"
+#line 457 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 461 "MainWindow.vala"
+#line 454 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_box10_parent_class)->finalize (obj);
-#line 4828 "MainWindow.vala.c"
+#line 4814 "MainWindow.vala.c"
 }
 
 static GType
@@ -4864,78 +4850,78 @@ xcls_mainwindow_xcls_image11_construct (GType object_type,
 	GtkImage* _tmp1_;
 	GtkImage* _tmp2_;
 	GtkImage* _tmp3_;
-#line 497 "MainWindow.vala"
+#line 490 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Image11*) g_object_new (object_type, NULL);
-#line 499 "MainWindow.vala"
+#line 492 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 499 "MainWindow.vala"
+#line 492 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 499 "MainWindow.vala"
+#line 492 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 500 "MainWindow.vala"
+#line 493 "MainWindow.vala"
 	_tmp1_ = (GtkImage*) gtk_image_new ();
-#line 500 "MainWindow.vala"
+#line 493 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 500 "MainWindow.vala"
+#line 493 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 500 "MainWindow.vala"
+#line 493 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 505 "MainWindow.vala"
+#line 498 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 505 "MainWindow.vala"
+#line 498 "MainWindow.vala"
 	g_object_set (_tmp2_, "icon-name", "window-new", NULL);
-#line 506 "MainWindow.vala"
+#line 499 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 506 "MainWindow.vala"
+#line 499 "MainWindow.vala"
 	gtk_widget_set_margin_start ((GtkWidget*) _tmp3_, 4);
-#line 497 "MainWindow.vala"
+#line 490 "MainWindow.vala"
 	return self;
-#line 4894 "MainWindow.vala.c"
+#line 4880 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Image11*
 xcls_mainwindow_xcls_image11_new (Xcls_MainWindow* _owner)
 {
-#line 497 "MainWindow.vala"
+#line 490 "MainWindow.vala"
 	return xcls_mainwindow_xcls_image11_construct (XCLS_MAINWINDOW_TYPE_XCLS_IMAGE11, _owner);
-#line 4902 "MainWindow.vala.c"
+#line 4888 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_image11_class_init (Xcls_MainWindowXcls_Image11Class * klass,
                                          gpointer klass_data)
 {
-#line 488 "MainWindow.vala"
+#line 481 "MainWindow.vala"
 	xcls_mainwindow_xcls_image11_parent_class = g_type_class_peek_parent (klass);
-#line 488 "MainWindow.vala"
+#line 481 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Image11_private_offset);
-#line 488 "MainWindow.vala"
+#line 481 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_image11_finalize;
-#line 4915 "MainWindow.vala.c"
+#line 4901 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_image11_instance_init (Xcls_MainWindowXcls_Image11 * self,
                                             gpointer klass)
 {
-#line 488 "MainWindow.vala"
+#line 481 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_image11_get_instance_private (self);
-#line 4924 "MainWindow.vala.c"
+#line 4910 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_image11_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Image11 * self;
-#line 488 "MainWindow.vala"
+#line 481 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_IMAGE11, Xcls_MainWindowXcls_Image11);
-#line 490 "MainWindow.vala"
+#line 483 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 491 "MainWindow.vala"
+#line 484 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 488 "MainWindow.vala"
+#line 481 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_image11_parent_class)->finalize (obj);
-#line 4939 "MainWindow.vala.c"
+#line 4925 "MainWindow.vala.c"
 }
 
 static GType
@@ -4973,70 +4959,70 @@ xcls_mainwindow_xcls_label12_construct (GType object_type,
 	Xcls_MainWindowXcls_Label12 * self = NULL;
 	Xcls_MainWindow* _tmp0_;
 	GtkLabel* _tmp1_;
-#line 521 "MainWindow.vala"
+#line 514 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Label12*) g_object_new (object_type, NULL);
-#line 523 "MainWindow.vala"
+#line 516 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 523 "MainWindow.vala"
+#line 516 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 523 "MainWindow.vala"
+#line 516 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 524 "MainWindow.vala"
+#line 517 "MainWindow.vala"
 	_tmp1_ = (GtkLabel*) gtk_label_new ("Windows (Add/List)");
-#line 524 "MainWindow.vala"
+#line 517 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 524 "MainWindow.vala"
+#line 517 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 524 "MainWindow.vala"
+#line 517 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 521 "MainWindow.vala"
+#line 514 "MainWindow.vala"
 	return self;
-#line 4995 "MainWindow.vala.c"
+#line 4981 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Label12*
 xcls_mainwindow_xcls_label12_new (Xcls_MainWindow* _owner)
 {
-#line 521 "MainWindow.vala"
+#line 514 "MainWindow.vala"
 	return xcls_mainwindow_xcls_label12_construct (XCLS_MAINWINDOW_TYPE_XCLS_LABEL12, _owner);
-#line 5003 "MainWindow.vala.c"
+#line 4989 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_label12_class_init (Xcls_MainWindowXcls_Label12Class * klass,
                                          gpointer klass_data)
 {
-#line 512 "MainWindow.vala"
+#line 505 "MainWindow.vala"
 	xcls_mainwindow_xcls_label12_parent_class = g_type_class_peek_parent (klass);
-#line 512 "MainWindow.vala"
+#line 505 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Label12_private_offset);
-#line 512 "MainWindow.vala"
+#line 505 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_label12_finalize;
-#line 5016 "MainWindow.vala.c"
+#line 5002 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_label12_instance_init (Xcls_MainWindowXcls_Label12 * self,
                                             gpointer klass)
 {
-#line 512 "MainWindow.vala"
+#line 505 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_label12_get_instance_private (self);
-#line 5025 "MainWindow.vala.c"
+#line 5011 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_label12_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Label12 * self;
-#line 512 "MainWindow.vala"
+#line 505 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_LABEL12, Xcls_MainWindowXcls_Label12);
-#line 514 "MainWindow.vala"
+#line 507 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 515 "MainWindow.vala"
+#line 508 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 512 "MainWindow.vala"
+#line 505 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_label12_parent_class)->finalize (obj);
-#line 5040 "MainWindow.vala.c"
+#line 5026 "MainWindow.vala.c"
 }
 
 static GType
@@ -5068,35 +5054,35 @@ xcls_mainwindow_xcls_open_projects_btn_get_instance_private (Xcls_MainWindowXcls
 }
 
 static void
-__lambda248_ (Xcls_MainWindowXcls_open_projects_btn* self)
+__lambda247_ (Xcls_MainWindowXcls_open_projects_btn* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	WindowState* _tmp1_;
 	GtkButton* _tmp2_;
 	Xcls_MainWindow* _tmp3_;
 	ProjectProject* _tmp4_;
-#line 561 "MainWindow.vala"
+#line 554 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 561 "MainWindow.vala"
+#line 554 "MainWindow.vala"
 	_tmp1_ = _tmp0_->windowstate;
-#line 561 "MainWindow.vala"
+#line 554 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 561 "MainWindow.vala"
+#line 554 "MainWindow.vala"
 	_tmp3_ = self->priv->_this;
-#line 561 "MainWindow.vala"
+#line 554 "MainWindow.vala"
 	_tmp4_ = _tmp3_->project;
-#line 561 "MainWindow.vala"
+#line 554 "MainWindow.vala"
 	window_state_showPopoverFiles (_tmp1_, (GtkWidget*) _tmp2_, _tmp4_, FALSE);
-#line 5091 "MainWindow.vala.c"
+#line 5077 "MainWindow.vala.c"
 }
 
 static void
-___lambda248__gtk_button_clicked (GtkButton* _sender,
+___lambda247__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 560 "MainWindow.vala"
-	__lambda248_ ((Xcls_MainWindowXcls_open_projects_btn*) self);
-#line 5100 "MainWindow.vala.c"
+#line 553 "MainWindow.vala"
+	__lambda247_ ((Xcls_MainWindowXcls_open_projects_btn*) self);
+#line 5086 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_open_projects_btn*
@@ -5111,92 +5097,92 @@ xcls_mainwindow_xcls_open_projects_btn_construct (GType object_type,
 	GtkButton* _tmp4_;
 	GtkButton* _tmp5_;
 	GtkButton* _tmp6_;
-#line 546 "MainWindow.vala"
+#line 539 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_open_projects_btn*) g_object_new (object_type, NULL);
-#line 548 "MainWindow.vala"
+#line 541 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 548 "MainWindow.vala"
+#line 541 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 548 "MainWindow.vala"
+#line 541 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 549 "MainWindow.vala"
+#line 542 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 549 "MainWindow.vala"
+#line 542 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 549 "MainWindow.vala"
+#line 542 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->open_projects_btn);
-#line 549 "MainWindow.vala"
+#line 542 "MainWindow.vala"
 	_tmp1_->open_projects_btn = _tmp2_;
-#line 550 "MainWindow.vala"
+#line 543 "MainWindow.vala"
 	_tmp3_ = (GtkButton*) gtk_button_new ();
-#line 550 "MainWindow.vala"
+#line 543 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 550 "MainWindow.vala"
+#line 543 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 550 "MainWindow.vala"
+#line 543 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 553 "MainWindow.vala"
-	self->always_show_image = TRUE;
-#line 556 "MainWindow.vala"
-	_tmp4_ = self->el;
-#line 556 "MainWindow.vala"
-	gtk_button_set_icon_name (_tmp4_, "system-file-manager");
-#line 557 "MainWindow.vala"
-	_tmp5_ = self->el;
-#line 557 "MainWindow.vala"
-	gtk_button_set_label (_tmp5_, "Files / Projects");
-#line 560 "MainWindow.vala"
-	_tmp6_ = self->el;
-#line 560 "MainWindow.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda248__gtk_button_clicked, self, 0);
 #line 546 "MainWindow.vala"
+	self->always_show_image = TRUE;
+#line 549 "MainWindow.vala"
+	_tmp4_ = self->el;
+#line 549 "MainWindow.vala"
+	gtk_button_set_icon_name (_tmp4_, "system-file-manager");
+#line 550 "MainWindow.vala"
+	_tmp5_ = self->el;
+#line 550 "MainWindow.vala"
+	gtk_button_set_label (_tmp5_, "Files / Projects");
+#line 553 "MainWindow.vala"
+	_tmp6_ = self->el;
+#line 553 "MainWindow.vala"
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda247__gtk_button_clicked, self, 0);
+#line 539 "MainWindow.vala"
 	return self;
-#line 5155 "MainWindow.vala.c"
+#line 5141 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_open_projects_btn*
 xcls_mainwindow_xcls_open_projects_btn_new (Xcls_MainWindow* _owner)
 {
-#line 546 "MainWindow.vala"
+#line 539 "MainWindow.vala"
 	return xcls_mainwindow_xcls_open_projects_btn_construct (XCLS_MAINWINDOW_TYPE_XCLS_OPEN_PROJECTS_BTN, _owner);
-#line 5163 "MainWindow.vala.c"
+#line 5149 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_open_projects_btn_class_init (Xcls_MainWindowXcls_open_projects_btnClass * klass,
                                                    gpointer klass_data)
 {
-#line 536 "MainWindow.vala"
+#line 529 "MainWindow.vala"
 	xcls_mainwindow_xcls_open_projects_btn_parent_class = g_type_class_peek_parent (klass);
-#line 536 "MainWindow.vala"
+#line 529 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_open_projects_btn_private_offset);
-#line 536 "MainWindow.vala"
+#line 529 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_open_projects_btn_finalize;
-#line 5176 "MainWindow.vala.c"
+#line 5162 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_open_projects_btn_instance_init (Xcls_MainWindowXcls_open_projects_btn * self,
                                                       gpointer klass)
 {
-#line 536 "MainWindow.vala"
+#line 529 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_open_projects_btn_get_instance_private (self);
-#line 5185 "MainWindow.vala.c"
+#line 5171 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_open_projects_btn_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_open_projects_btn * self;
-#line 536 "MainWindow.vala"
+#line 529 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_OPEN_PROJECTS_BTN, Xcls_MainWindowXcls_open_projects_btn);
-#line 538 "MainWindow.vala"
+#line 531 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 539 "MainWindow.vala"
+#line 532 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 536 "MainWindow.vala"
+#line 529 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_open_projects_btn_parent_class)->finalize (obj);
-#line 5200 "MainWindow.vala.c"
+#line 5186 "MainWindow.vala.c"
 }
 
 static GType
@@ -5238,128 +5224,126 @@ xcls_mainwindow_xcls_vbox_construct (GType object_type,
 	GtkBox* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkBox* _tmp5_;
-	Xcls_MainWindowXcls_mainpane* child_0 = NULL;
+	Xcls_MainWindowXcls_mainpane* child_1 = NULL;
 	Xcls_MainWindow* _tmp6_;
 	Xcls_MainWindowXcls_mainpane* _tmp7_;
 	GtkBox* _tmp8_;
 	GtkPaned* _tmp9_;
-	Xcls_MainWindowXcls_Box23* child_1 = NULL;
+	Xcls_MainWindowXcls_Box23* child_2 = NULL;
 	Xcls_MainWindow* _tmp10_;
 	Xcls_MainWindowXcls_Box23* _tmp11_;
 	GtkBox* _tmp12_;
 	GtkBox* _tmp13_;
-#line 579 "MainWindow.vala"
+#line 572 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_vbox*) g_object_new (object_type, NULL);
-#line 581 "MainWindow.vala"
+#line 574 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 581 "MainWindow.vala"
+#line 574 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 581 "MainWindow.vala"
+#line 574 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 582 "MainWindow.vala"
+#line 575 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 582 "MainWindow.vala"
+#line 575 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 582 "MainWindow.vala"
+#line 575 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->vbox);
-#line 582 "MainWindow.vala"
+#line 575 "MainWindow.vala"
 	_tmp1_->vbox = _tmp2_;
-#line 583 "MainWindow.vala"
+#line 576 "MainWindow.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 583 "MainWindow.vala"
+#line 576 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 583 "MainWindow.vala"
+#line 576 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 583 "MainWindow.vala"
+#line 576 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 588 "MainWindow.vala"
+#line 581 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 588 "MainWindow.vala"
+#line 581 "MainWindow.vala"
 	gtk_box_set_homogeneous (_tmp4_, FALSE);
-#line 589 "MainWindow.vala"
+#line 582 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 589 "MainWindow.vala"
+#line 582 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp5_, TRUE);
-#line 590 "MainWindow.vala"
+#line 583 "MainWindow.vala"
 	_tmp6_ = self->priv->_this;
-#line 590 "MainWindow.vala"
+#line 583 "MainWindow.vala"
 	_tmp7_ = xcls_mainwindow_xcls_mainpane_new (_tmp6_);
-#line 590 "MainWindow.vala"
-	child_0 = _tmp7_;
-#line 591 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 592 "MainWindow.vala"
+#line 583 "MainWindow.vala"
+	child_1 = _tmp7_;
+#line 584 "MainWindow.vala"
 	_tmp8_ = self->el;
-#line 592 "MainWindow.vala"
-	_tmp9_ = child_0->el;
-#line 592 "MainWindow.vala"
+#line 584 "MainWindow.vala"
+	_tmp9_ = child_1->el;
+#line 584 "MainWindow.vala"
 	gtk_box_append (_tmp8_, (GtkWidget*) _tmp9_);
-#line 593 "MainWindow.vala"
+#line 585 "MainWindow.vala"
 	_tmp10_ = self->priv->_this;
-#line 593 "MainWindow.vala"
+#line 585 "MainWindow.vala"
 	_tmp11_ = xcls_mainwindow_xcls_box23_new (_tmp10_);
-#line 593 "MainWindow.vala"
-	child_1 = _tmp11_;
-#line 594 "MainWindow.vala"
-	g_object_ref ((GObject*) child_1);
-#line 595 "MainWindow.vala"
+#line 585 "MainWindow.vala"
+	child_2 = _tmp11_;
+#line 586 "MainWindow.vala"
+	g_object_ref ((GObject*) child_2);
+#line 587 "MainWindow.vala"
 	_tmp12_ = self->el;
-#line 595 "MainWindow.vala"
-	_tmp13_ = child_1->el;
-#line 595 "MainWindow.vala"
+#line 587 "MainWindow.vala"
+	_tmp13_ = child_2->el;
+#line 587 "MainWindow.vala"
 	gtk_box_append (_tmp12_, (GtkWidget*) _tmp13_);
-#line 579 "MainWindow.vala"
+#line 572 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 572 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 579 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 579 "MainWindow.vala"
+#line 572 "MainWindow.vala"
 	return self;
-#line 5318 "MainWindow.vala.c"
+#line 5302 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_vbox*
 xcls_mainwindow_xcls_vbox_new (Xcls_MainWindow* _owner)
 {
-#line 579 "MainWindow.vala"
+#line 572 "MainWindow.vala"
 	return xcls_mainwindow_xcls_vbox_construct (XCLS_MAINWINDOW_TYPE_XCLS_VBOX, _owner);
-#line 5326 "MainWindow.vala.c"
+#line 5310 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_vbox_class_init (Xcls_MainWindowXcls_vboxClass * klass,
                                       gpointer klass_data)
 {
-#line 570 "MainWindow.vala"
+#line 563 "MainWindow.vala"
 	xcls_mainwindow_xcls_vbox_parent_class = g_type_class_peek_parent (klass);
-#line 570 "MainWindow.vala"
+#line 563 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_vbox_private_offset);
-#line 570 "MainWindow.vala"
+#line 563 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_vbox_finalize;
-#line 5339 "MainWindow.vala.c"
+#line 5323 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_vbox_instance_init (Xcls_MainWindowXcls_vbox * self,
                                          gpointer klass)
 {
-#line 570 "MainWindow.vala"
+#line 563 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_vbox_get_instance_private (self);
-#line 5348 "MainWindow.vala.c"
+#line 5332 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_vbox_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_vbox * self;
-#line 570 "MainWindow.vala"
+#line 563 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_VBOX, Xcls_MainWindowXcls_vbox);
-#line 572 "MainWindow.vala"
+#line 565 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 573 "MainWindow.vala"
+#line 566 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 570 "MainWindow.vala"
+#line 563 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_vbox_parent_class)->finalize (obj);
-#line 5363 "MainWindow.vala.c"
+#line 5347 "MainWindow.vala.c"
 }
 
 static GType
@@ -5391,36 +5375,36 @@ xcls_mainwindow_xcls_mainpane_get_instance_private (Xcls_MainWindowXcls_mainpane
 }
 
 static gboolean
-__lambda217_ (Xcls_MainWindowXcls_mainpane* self)
+__lambda216_ (Xcls_MainWindowXcls_mainpane* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	WindowState* _tmp1_;
 	Xcls_WindowLeftTree* _tmp2_;
 	gboolean result;
-#line 632 "MainWindow.vala"
+#line 622 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 632 "MainWindow.vala"
+#line 622 "MainWindow.vala"
 	_tmp1_ = _tmp0_->windowstate;
-#line 632 "MainWindow.vala"
+#line 622 "MainWindow.vala"
 	_tmp2_ = _tmp1_->left_tree;
-#line 632 "MainWindow.vala"
+#line 622 "MainWindow.vala"
 	xcls_windowlefttree_onresize (_tmp2_);
-#line 633 "MainWindow.vala"
+#line 623 "MainWindow.vala"
 	result = TRUE;
-#line 633 "MainWindow.vala"
+#line 623 "MainWindow.vala"
 	return result;
-#line 5413 "MainWindow.vala.c"
+#line 5397 "MainWindow.vala.c"
 }
 
 static gboolean
-___lambda217__gtk_paned_accept_position (GtkPaned* _sender,
+___lambda216__gtk_paned_accept_position (GtkPaned* _sender,
                                          gpointer self)
 {
 	gboolean result;
-	result = __lambda217_ ((Xcls_MainWindowXcls_mainpane*) self);
-#line 631 "MainWindow.vala"
+	result = __lambda216_ ((Xcls_MainWindowXcls_mainpane*) self);
+#line 621 "MainWindow.vala"
 	return result;
-#line 5424 "MainWindow.vala.c"
+#line 5408 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_mainpane*
@@ -5435,139 +5419,135 @@ xcls_mainwindow_xcls_mainpane_construct (GType object_type,
 	GtkPaned* _tmp4_;
 	GtkPaned* _tmp5_;
 	GtkPaned* _tmp6_;
-	Xcls_MainWindowXcls_leftpane* child_0 = NULL;
+	Xcls_MainWindowXcls_leftpane* child_1 = NULL;
 	Xcls_MainWindow* _tmp7_;
 	Xcls_MainWindowXcls_leftpane* _tmp8_;
 	GtkPaned* _tmp9_;
 	GtkBox* _tmp10_;
-	Xcls_MainWindowXcls_Box20* child_1 = NULL;
+	Xcls_MainWindowXcls_Box20* child_2 = NULL;
 	Xcls_MainWindow* _tmp11_;
 	Xcls_MainWindowXcls_Box20* _tmp12_;
 	GtkPaned* _tmp13_;
 	GtkBox* _tmp14_;
 	GtkPaned* _tmp15_;
-#line 610 "MainWindow.vala"
+#line 602 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_mainpane*) g_object_new (object_type, NULL);
-#line 612 "MainWindow.vala"
+#line 604 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 612 "MainWindow.vala"
+#line 604 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 612 "MainWindow.vala"
+#line 604 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 613 "MainWindow.vala"
+#line 605 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 613 "MainWindow.vala"
+#line 605 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 613 "MainWindow.vala"
+#line 605 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->mainpane);
-#line 613 "MainWindow.vala"
+#line 605 "MainWindow.vala"
 	_tmp1_->mainpane = _tmp2_;
-#line 614 "MainWindow.vala"
+#line 606 "MainWindow.vala"
 	_tmp3_ = (GtkPaned*) gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
-#line 614 "MainWindow.vala"
+#line 606 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 614 "MainWindow.vala"
+#line 606 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 614 "MainWindow.vala"
+#line 606 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 617 "MainWindow.vala"
+#line 609 "MainWindow.vala"
 	self->lastWidth = 0;
-#line 620 "MainWindow.vala"
+#line 612 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 620 "MainWindow.vala"
+#line 612 "MainWindow.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp4_, TRUE);
-#line 621 "MainWindow.vala"
+#line 613 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 621 "MainWindow.vala"
+#line 613 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp5_, TRUE);
-#line 622 "MainWindow.vala"
+#line 614 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 622 "MainWindow.vala"
+#line 614 "MainWindow.vala"
 	gtk_paned_set_position (_tmp6_, 400);
-#line 623 "MainWindow.vala"
+#line 615 "MainWindow.vala"
 	_tmp7_ = self->priv->_this;
-#line 623 "MainWindow.vala"
+#line 615 "MainWindow.vala"
 	_tmp8_ = xcls_mainwindow_xcls_leftpane_new (_tmp7_);
-#line 623 "MainWindow.vala"
-	child_0 = _tmp8_;
-#line 624 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 625 "MainWindow.vala"
+#line 615 "MainWindow.vala"
+	child_1 = _tmp8_;
+#line 616 "MainWindow.vala"
 	_tmp9_ = self->el;
-#line 625 "MainWindow.vala"
-	_tmp10_ = child_0->el;
-#line 625 "MainWindow.vala"
+#line 616 "MainWindow.vala"
+	_tmp10_ = child_1->el;
+#line 616 "MainWindow.vala"
 	gtk_paned_set_start_child (_tmp9_, (GtkWidget*) _tmp10_);
-#line 626 "MainWindow.vala"
+#line 617 "MainWindow.vala"
 	_tmp11_ = self->priv->_this;
-#line 626 "MainWindow.vala"
+#line 617 "MainWindow.vala"
 	_tmp12_ = xcls_mainwindow_xcls_box20_new (_tmp11_);
-#line 626 "MainWindow.vala"
-	child_1 = _tmp12_;
-#line 627 "MainWindow.vala"
-	g_object_ref ((GObject*) child_1);
-#line 628 "MainWindow.vala"
+#line 617 "MainWindow.vala"
+	child_2 = _tmp12_;
+#line 618 "MainWindow.vala"
 	_tmp13_ = self->el;
-#line 628 "MainWindow.vala"
-	_tmp14_ = child_1->el;
-#line 628 "MainWindow.vala"
+#line 618 "MainWindow.vala"
+	_tmp14_ = child_2->el;
+#line 618 "MainWindow.vala"
 	gtk_paned_set_end_child (_tmp13_, (GtkWidget*) _tmp14_);
-#line 631 "MainWindow.vala"
+#line 621 "MainWindow.vala"
 	_tmp15_ = self->el;
-#line 631 "MainWindow.vala"
-	g_signal_connect_object (_tmp15_, "accept-position", (GCallback) ___lambda217__gtk_paned_accept_position, self, 0);
-#line 610 "MainWindow.vala"
+#line 621 "MainWindow.vala"
+	g_signal_connect_object (_tmp15_, "accept-position", (GCallback) ___lambda216__gtk_paned_accept_position, self, 0);
+#line 602 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 602 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 610 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 610 "MainWindow.vala"
+#line 602 "MainWindow.vala"
 	return self;
-#line 5526 "MainWindow.vala.c"
+#line 5506 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_mainpane*
 xcls_mainwindow_xcls_mainpane_new (Xcls_MainWindow* _owner)
 {
-#line 610 "MainWindow.vala"
+#line 602 "MainWindow.vala"
 	return xcls_mainwindow_xcls_mainpane_construct (XCLS_MAINWINDOW_TYPE_XCLS_MAINPANE, _owner);
-#line 5534 "MainWindow.vala.c"
+#line 5514 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_mainpane_class_init (Xcls_MainWindowXcls_mainpaneClass * klass,
                                           gpointer klass_data)
 {
-#line 600 "MainWindow.vala"
+#line 592 "MainWindow.vala"
 	xcls_mainwindow_xcls_mainpane_parent_class = g_type_class_peek_parent (klass);
-#line 600 "MainWindow.vala"
+#line 592 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_mainpane_private_offset);
-#line 600 "MainWindow.vala"
+#line 592 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_mainpane_finalize;
-#line 5547 "MainWindow.vala.c"
+#line 5527 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_mainpane_instance_init (Xcls_MainWindowXcls_mainpane * self,
                                              gpointer klass)
 {
-#line 600 "MainWindow.vala"
+#line 592 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_mainpane_get_instance_private (self);
-#line 5556 "MainWindow.vala.c"
+#line 5536 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_mainpane_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_mainpane * self;
-#line 600 "MainWindow.vala"
+#line 592 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_MAINPANE, Xcls_MainWindowXcls_mainpane);
-#line 602 "MainWindow.vala"
+#line 594 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 603 "MainWindow.vala"
+#line 595 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 600 "MainWindow.vala"
+#line 592 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_mainpane_parent_class)->finalize (obj);
-#line 5571 "MainWindow.vala.c"
+#line 5551 "MainWindow.vala.c"
 }
 
 static GType
@@ -5609,107 +5589,105 @@ xcls_mainwindow_xcls_leftpane_construct (GType object_type,
 	GtkBox* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkBox* _tmp5_;
-	Xcls_MainWindowXcls_editpane* child_0 = NULL;
+	Xcls_MainWindowXcls_editpane* child_1 = NULL;
 	Xcls_MainWindow* _tmp6_;
 	Xcls_MainWindowXcls_editpane* _tmp7_;
 	GtkBox* _tmp8_;
 	GtkPaned* _tmp9_;
-#line 648 "MainWindow.vala"
+#line 638 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_leftpane*) g_object_new (object_type, NULL);
-#line 650 "MainWindow.vala"
+#line 640 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 650 "MainWindow.vala"
+#line 640 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 650 "MainWindow.vala"
+#line 640 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 651 "MainWindow.vala"
+#line 641 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 651 "MainWindow.vala"
+#line 641 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 651 "MainWindow.vala"
+#line 641 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->leftpane);
-#line 651 "MainWindow.vala"
+#line 641 "MainWindow.vala"
 	_tmp1_->leftpane = _tmp2_;
-#line 652 "MainWindow.vala"
+#line 642 "MainWindow.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-#line 652 "MainWindow.vala"
+#line 642 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 652 "MainWindow.vala"
+#line 642 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 652 "MainWindow.vala"
+#line 642 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 657 "MainWindow.vala"
+#line 647 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 657 "MainWindow.vala"
+#line 647 "MainWindow.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp4_, TRUE);
-#line 658 "MainWindow.vala"
+#line 648 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 658 "MainWindow.vala"
+#line 648 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp5_, TRUE);
-#line 659 "MainWindow.vala"
+#line 649 "MainWindow.vala"
 	_tmp6_ = self->priv->_this;
-#line 659 "MainWindow.vala"
+#line 649 "MainWindow.vala"
 	_tmp7_ = xcls_mainwindow_xcls_editpane_new (_tmp6_);
-#line 659 "MainWindow.vala"
-	child_0 = _tmp7_;
-#line 660 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 661 "MainWindow.vala"
+#line 649 "MainWindow.vala"
+	child_1 = _tmp7_;
+#line 650 "MainWindow.vala"
 	_tmp8_ = self->el;
-#line 661 "MainWindow.vala"
-	_tmp9_ = child_0->el;
-#line 661 "MainWindow.vala"
+#line 650 "MainWindow.vala"
+	_tmp9_ = child_1->el;
+#line 650 "MainWindow.vala"
 	gtk_box_append (_tmp8_, (GtkWidget*) _tmp9_);
-#line 648 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 648 "MainWindow.vala"
+#line 638 "MainWindow.vala"
+	_g_object_unref0 (child_1);
+#line 638 "MainWindow.vala"
 	return self;
-#line 5668 "MainWindow.vala.c"
+#line 5646 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_leftpane*
 xcls_mainwindow_xcls_leftpane_new (Xcls_MainWindow* _owner)
 {
-#line 648 "MainWindow.vala"
+#line 638 "MainWindow.vala"
 	return xcls_mainwindow_xcls_leftpane_construct (XCLS_MAINWINDOW_TYPE_XCLS_LEFTPANE, _owner);
-#line 5676 "MainWindow.vala.c"
+#line 5654 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_leftpane_class_init (Xcls_MainWindowXcls_leftpaneClass * klass,
                                           gpointer klass_data)
 {
-#line 639 "MainWindow.vala"
+#line 629 "MainWindow.vala"
 	xcls_mainwindow_xcls_leftpane_parent_class = g_type_class_peek_parent (klass);
-#line 639 "MainWindow.vala"
+#line 629 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_leftpane_private_offset);
-#line 639 "MainWindow.vala"
+#line 629 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_leftpane_finalize;
-#line 5689 "MainWindow.vala.c"
+#line 5667 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_leftpane_instance_init (Xcls_MainWindowXcls_leftpane * self,
                                              gpointer klass)
 {
-#line 639 "MainWindow.vala"
+#line 629 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_leftpane_get_instance_private (self);
-#line 5698 "MainWindow.vala.c"
+#line 5676 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_leftpane_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_leftpane * self;
-#line 639 "MainWindow.vala"
+#line 629 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_LEFTPANE, Xcls_MainWindowXcls_leftpane);
-#line 641 "MainWindow.vala"
+#line 631 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 642 "MainWindow.vala"
+#line 632 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 639 "MainWindow.vala"
+#line 629 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_leftpane_parent_class)->finalize (obj);
-#line 5713 "MainWindow.vala.c"
+#line 5691 "MainWindow.vala.c"
 }
 
 static GType
@@ -5747,19 +5725,19 @@ __lambda60_ (Xcls_MainWindowXcls_editpane* self)
 	WindowState* _tmp1_;
 	Xcls_WindowLeftTree* _tmp2_;
 	gboolean result;
-#line 693 "MainWindow.vala"
+#line 680 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 693 "MainWindow.vala"
+#line 680 "MainWindow.vala"
 	_tmp1_ = _tmp0_->windowstate;
-#line 693 "MainWindow.vala"
+#line 680 "MainWindow.vala"
 	_tmp2_ = _tmp1_->left_tree;
-#line 693 "MainWindow.vala"
+#line 680 "MainWindow.vala"
 	xcls_windowlefttree_onresize (_tmp2_);
-#line 694 "MainWindow.vala"
+#line 681 "MainWindow.vala"
 	result = TRUE;
-#line 694 "MainWindow.vala"
+#line 681 "MainWindow.vala"
 	return result;
-#line 5763 "MainWindow.vala.c"
+#line 5741 "MainWindow.vala.c"
 }
 
 static gboolean
@@ -5768,9 +5746,9 @@ ___lambda60__gtk_paned_accept_position (GtkPaned* _sender,
 {
 	gboolean result;
 	result = __lambda60_ ((Xcls_MainWindowXcls_editpane*) self);
-#line 692 "MainWindow.vala"
+#line 679 "MainWindow.vala"
 	return result;
-#line 5774 "MainWindow.vala.c"
+#line 5752 "MainWindow.vala.c"
 }
 
 static gboolean
@@ -5778,13 +5756,13 @@ __lambda61_ (Xcls_MainWindowXcls_editpane* self,
              GtkScrollType scroll)
 {
 	gboolean result;
-#line 697 "MainWindow.vala"
-	g_debug ("MainWindow.vala:697: Move handle");
-#line 698 "MainWindow.vala"
+#line 684 "MainWindow.vala"
+	g_debug ("MainWindow.vala:684: Move handle");
+#line 685 "MainWindow.vala"
 	result = TRUE;
-#line 698 "MainWindow.vala"
+#line 685 "MainWindow.vala"
 	return result;
-#line 5788 "MainWindow.vala.c"
+#line 5766 "MainWindow.vala.c"
 }
 
 static gboolean
@@ -5794,9 +5772,9 @@ ___lambda61__gtk_paned_move_handle (GtkPaned* _sender,
 {
 	gboolean result;
 	result = __lambda61_ ((Xcls_MainWindowXcls_editpane*) self, scroll_type);
-#line 696 "MainWindow.vala"
+#line 683 "MainWindow.vala"
 	return result;
-#line 5800 "MainWindow.vala.c"
+#line 5778 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_editpane*
@@ -5808,130 +5786,126 @@ xcls_mainwindow_xcls_editpane_construct (GType object_type,
 	Xcls_MainWindow* _tmp1_;
 	Xcls_MainWindowXcls_editpane* _tmp2_;
 	GtkPaned* _tmp3_;
-	Xcls_MainWindowXcls_tree* child_0 = NULL;
+	Xcls_MainWindowXcls_tree* child_1 = NULL;
 	Xcls_MainWindow* _tmp4_;
 	Xcls_MainWindowXcls_tree* _tmp5_;
 	GtkPaned* _tmp6_;
 	GtkBox* _tmp7_;
-	Xcls_MainWindowXcls_props* child_1 = NULL;
+	Xcls_MainWindowXcls_props* child_2 = NULL;
 	Xcls_MainWindow* _tmp8_;
 	Xcls_MainWindowXcls_props* _tmp9_;
 	GtkPaned* _tmp10_;
 	GtkBox* _tmp11_;
 	GtkPaned* _tmp12_;
 	GtkPaned* _tmp13_;
-#line 675 "MainWindow.vala"
+#line 664 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_editpane*) g_object_new (object_type, NULL);
-#line 677 "MainWindow.vala"
+#line 666 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 677 "MainWindow.vala"
+#line 666 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 677 "MainWindow.vala"
+#line 666 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 678 "MainWindow.vala"
+#line 667 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 678 "MainWindow.vala"
+#line 667 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 678 "MainWindow.vala"
+#line 667 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->editpane);
-#line 678 "MainWindow.vala"
+#line 667 "MainWindow.vala"
 	_tmp1_->editpane = _tmp2_;
-#line 679 "MainWindow.vala"
+#line 668 "MainWindow.vala"
 	_tmp3_ = (GtkPaned*) gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
-#line 679 "MainWindow.vala"
+#line 668 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 679 "MainWindow.vala"
+#line 668 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 679 "MainWindow.vala"
+#line 668 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 684 "MainWindow.vala"
+#line 673 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 684 "MainWindow.vala"
+#line 673 "MainWindow.vala"
 	_tmp5_ = xcls_mainwindow_xcls_tree_new (_tmp4_);
-#line 684 "MainWindow.vala"
-	child_0 = _tmp5_;
-#line 685 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 686 "MainWindow.vala"
+#line 673 "MainWindow.vala"
+	child_1 = _tmp5_;
+#line 674 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 686 "MainWindow.vala"
-	_tmp7_ = child_0->el;
-#line 686 "MainWindow.vala"
+#line 674 "MainWindow.vala"
+	_tmp7_ = child_1->el;
+#line 674 "MainWindow.vala"
 	gtk_paned_set_start_child (_tmp6_, (GtkWidget*) _tmp7_);
-#line 687 "MainWindow.vala"
+#line 675 "MainWindow.vala"
 	_tmp8_ = self->priv->_this;
-#line 687 "MainWindow.vala"
+#line 675 "MainWindow.vala"
 	_tmp9_ = xcls_mainwindow_xcls_props_new (_tmp8_);
-#line 687 "MainWindow.vala"
-	child_1 = _tmp9_;
-#line 688 "MainWindow.vala"
-	g_object_ref ((GObject*) child_1);
-#line 689 "MainWindow.vala"
+#line 675 "MainWindow.vala"
+	child_2 = _tmp9_;
+#line 676 "MainWindow.vala"
 	_tmp10_ = self->el;
-#line 689 "MainWindow.vala"
-	_tmp11_ = child_1->el;
-#line 689 "MainWindow.vala"
+#line 676 "MainWindow.vala"
+	_tmp11_ = child_2->el;
+#line 676 "MainWindow.vala"
 	gtk_paned_set_end_child (_tmp10_, (GtkWidget*) _tmp11_);
-#line 692 "MainWindow.vala"
+#line 679 "MainWindow.vala"
 	_tmp12_ = self->el;
-#line 692 "MainWindow.vala"
+#line 679 "MainWindow.vala"
 	g_signal_connect_object (_tmp12_, "accept-position", (GCallback) ___lambda60__gtk_paned_accept_position, self, 0);
-#line 696 "MainWindow.vala"
+#line 683 "MainWindow.vala"
 	_tmp13_ = self->el;
-#line 696 "MainWindow.vala"
+#line 683 "MainWindow.vala"
 	g_signal_connect_object (_tmp13_, "move-handle", (GCallback) ___lambda61__gtk_paned_move_handle, self, 0);
-#line 675 "MainWindow.vala"
+#line 664 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 664 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 675 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 675 "MainWindow.vala"
+#line 664 "MainWindow.vala"
 	return self;
-#line 5890 "MainWindow.vala.c"
+#line 5864 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_editpane*
 xcls_mainwindow_xcls_editpane_new (Xcls_MainWindow* _owner)
 {
-#line 675 "MainWindow.vala"
+#line 664 "MainWindow.vala"
 	return xcls_mainwindow_xcls_editpane_construct (XCLS_MAINWINDOW_TYPE_XCLS_EDITPANE, _owner);
-#line 5898 "MainWindow.vala.c"
+#line 5872 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_editpane_class_init (Xcls_MainWindowXcls_editpaneClass * klass,
                                           gpointer klass_data)
 {
-#line 666 "MainWindow.vala"
+#line 655 "MainWindow.vala"
 	xcls_mainwindow_xcls_editpane_parent_class = g_type_class_peek_parent (klass);
-#line 666 "MainWindow.vala"
+#line 655 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_editpane_private_offset);
-#line 666 "MainWindow.vala"
+#line 655 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_editpane_finalize;
-#line 5911 "MainWindow.vala.c"
+#line 5885 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_editpane_instance_init (Xcls_MainWindowXcls_editpane * self,
                                              gpointer klass)
 {
-#line 666 "MainWindow.vala"
+#line 655 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_editpane_get_instance_private (self);
-#line 5920 "MainWindow.vala.c"
+#line 5894 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_editpane_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_editpane * self;
-#line 666 "MainWindow.vala"
+#line 655 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_EDITPANE, Xcls_MainWindowXcls_editpane);
-#line 668 "MainWindow.vala"
+#line 657 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 669 "MainWindow.vala"
+#line 658 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 666 "MainWindow.vala"
+#line 655 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_editpane_parent_class)->finalize (obj);
-#line 5935 "MainWindow.vala.c"
+#line 5909 "MainWindow.vala.c"
 }
 
 static GType
@@ -5973,86 +5947,86 @@ xcls_mainwindow_xcls_tree_construct (GType object_type,
 	GtkBox* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkBox* _tmp5_;
-#line 713 "MainWindow.vala"
+#line 700 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_tree*) g_object_new (object_type, NULL);
-#line 715 "MainWindow.vala"
+#line 702 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 715 "MainWindow.vala"
+#line 702 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 715 "MainWindow.vala"
+#line 702 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 716 "MainWindow.vala"
+#line 703 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 716 "MainWindow.vala"
+#line 703 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 716 "MainWindow.vala"
+#line 703 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->tree);
-#line 716 "MainWindow.vala"
+#line 703 "MainWindow.vala"
 	_tmp1_->tree = _tmp2_;
-#line 717 "MainWindow.vala"
+#line 704 "MainWindow.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 717 "MainWindow.vala"
+#line 704 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 717 "MainWindow.vala"
+#line 704 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 717 "MainWindow.vala"
+#line 704 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 722 "MainWindow.vala"
+#line 709 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 722 "MainWindow.vala"
+#line 709 "MainWindow.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp4_, TRUE);
-#line 723 "MainWindow.vala"
+#line 710 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 723 "MainWindow.vala"
+#line 710 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp5_, TRUE);
-#line 713 "MainWindow.vala"
+#line 700 "MainWindow.vala"
 	return self;
-#line 6011 "MainWindow.vala.c"
+#line 5985 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_tree*
 xcls_mainwindow_xcls_tree_new (Xcls_MainWindow* _owner)
 {
-#line 713 "MainWindow.vala"
+#line 700 "MainWindow.vala"
 	return xcls_mainwindow_xcls_tree_construct (XCLS_MAINWINDOW_TYPE_XCLS_TREE, _owner);
-#line 6019 "MainWindow.vala.c"
+#line 5993 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_tree_class_init (Xcls_MainWindowXcls_treeClass * klass,
                                       gpointer klass_data)
 {
-#line 704 "MainWindow.vala"
+#line 691 "MainWindow.vala"
 	xcls_mainwindow_xcls_tree_parent_class = g_type_class_peek_parent (klass);
-#line 704 "MainWindow.vala"
+#line 691 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_tree_private_offset);
-#line 704 "MainWindow.vala"
+#line 691 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_tree_finalize;
-#line 6032 "MainWindow.vala.c"
+#line 6006 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_tree_instance_init (Xcls_MainWindowXcls_tree * self,
                                          gpointer klass)
 {
-#line 704 "MainWindow.vala"
+#line 691 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_tree_get_instance_private (self);
-#line 6041 "MainWindow.vala.c"
+#line 6015 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_tree_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_tree * self;
-#line 704 "MainWindow.vala"
+#line 691 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_TREE, Xcls_MainWindowXcls_tree);
-#line 706 "MainWindow.vala"
+#line 693 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 707 "MainWindow.vala"
+#line 694 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 704 "MainWindow.vala"
+#line 691 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_tree_parent_class)->finalize (obj);
-#line 6056 "MainWindow.vala.c"
+#line 6030 "MainWindow.vala.c"
 }
 
 static GType
@@ -6094,86 +6068,86 @@ xcls_mainwindow_xcls_props_construct (GType object_type,
 	GtkBox* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkBox* _tmp5_;
-#line 738 "MainWindow.vala"
+#line 725 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_props*) g_object_new (object_type, NULL);
-#line 740 "MainWindow.vala"
+#line 727 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 740 "MainWindow.vala"
+#line 727 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 740 "MainWindow.vala"
+#line 727 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 741 "MainWindow.vala"
+#line 728 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 741 "MainWindow.vala"
+#line 728 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 741 "MainWindow.vala"
+#line 728 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->props);
-#line 741 "MainWindow.vala"
+#line 728 "MainWindow.vala"
 	_tmp1_->props = _tmp2_;
-#line 742 "MainWindow.vala"
+#line 729 "MainWindow.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 742 "MainWindow.vala"
+#line 729 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 742 "MainWindow.vala"
+#line 729 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 742 "MainWindow.vala"
+#line 729 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 747 "MainWindow.vala"
+#line 734 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 747 "MainWindow.vala"
+#line 734 "MainWindow.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp4_, TRUE);
-#line 748 "MainWindow.vala"
+#line 735 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 748 "MainWindow.vala"
+#line 735 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp5_, TRUE);
-#line 738 "MainWindow.vala"
+#line 725 "MainWindow.vala"
 	return self;
-#line 6132 "MainWindow.vala.c"
+#line 6106 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_props*
 xcls_mainwindow_xcls_props_new (Xcls_MainWindow* _owner)
 {
-#line 738 "MainWindow.vala"
+#line 725 "MainWindow.vala"
 	return xcls_mainwindow_xcls_props_construct (XCLS_MAINWINDOW_TYPE_XCLS_PROPS, _owner);
-#line 6140 "MainWindow.vala.c"
+#line 6114 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_props_class_init (Xcls_MainWindowXcls_propsClass * klass,
                                        gpointer klass_data)
 {
-#line 729 "MainWindow.vala"
+#line 716 "MainWindow.vala"
 	xcls_mainwindow_xcls_props_parent_class = g_type_class_peek_parent (klass);
-#line 729 "MainWindow.vala"
+#line 716 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_props_private_offset);
-#line 729 "MainWindow.vala"
+#line 716 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_props_finalize;
-#line 6153 "MainWindow.vala.c"
+#line 6127 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_props_instance_init (Xcls_MainWindowXcls_props * self,
                                           gpointer klass)
 {
-#line 729 "MainWindow.vala"
+#line 716 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_props_get_instance_private (self);
-#line 6162 "MainWindow.vala.c"
+#line 6136 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_props_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_props * self;
-#line 729 "MainWindow.vala"
+#line 716 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_PROPS, Xcls_MainWindowXcls_props);
-#line 731 "MainWindow.vala"
+#line 718 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 732 "MainWindow.vala"
+#line 719 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 729 "MainWindow.vala"
+#line 716 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_props_parent_class)->finalize (obj);
-#line 6177 "MainWindow.vala.c"
+#line 6151 "MainWindow.vala.c"
 }
 
 static GType
@@ -6213,120 +6187,116 @@ xcls_mainwindow_xcls_box20_construct (GType object_type,
 	GtkBox* _tmp1_;
 	GtkBox* _tmp2_;
 	GtkBox* _tmp3_;
-	Xcls_MainWindowXcls_rooviewbox* child_0 = NULL;
+	Xcls_MainWindowXcls_rooviewbox* child_1 = NULL;
 	Xcls_MainWindow* _tmp4_;
 	Xcls_MainWindowXcls_rooviewbox* _tmp5_;
 	GtkBox* _tmp6_;
 	GtkBox* _tmp7_;
-	Xcls_MainWindowXcls_codeeditviewbox* child_1 = NULL;
+	Xcls_MainWindowXcls_codeeditviewbox* child_2 = NULL;
 	Xcls_MainWindow* _tmp8_;
 	Xcls_MainWindowXcls_codeeditviewbox* _tmp9_;
 	GtkBox* _tmp10_;
 	GtkBox* _tmp11_;
-#line 765 "MainWindow.vala"
+#line 752 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Box20*) g_object_new (object_type, NULL);
-#line 767 "MainWindow.vala"
+#line 754 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 767 "MainWindow.vala"
+#line 754 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 767 "MainWindow.vala"
+#line 754 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 768 "MainWindow.vala"
+#line 755 "MainWindow.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 768 "MainWindow.vala"
+#line 755 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 768 "MainWindow.vala"
+#line 755 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 768 "MainWindow.vala"
+#line 755 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 773 "MainWindow.vala"
+#line 760 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 773 "MainWindow.vala"
+#line 760 "MainWindow.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 774 "MainWindow.vala"
+#line 761 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 774 "MainWindow.vala"
+#line 761 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp3_, TRUE);
-#line 775 "MainWindow.vala"
+#line 762 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 775 "MainWindow.vala"
+#line 762 "MainWindow.vala"
 	_tmp5_ = xcls_mainwindow_xcls_rooviewbox_new (_tmp4_);
-#line 775 "MainWindow.vala"
-	child_0 = _tmp5_;
-#line 776 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 777 "MainWindow.vala"
+#line 762 "MainWindow.vala"
+	child_1 = _tmp5_;
+#line 763 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 777 "MainWindow.vala"
-	_tmp7_ = child_0->el;
-#line 777 "MainWindow.vala"
+#line 763 "MainWindow.vala"
+	_tmp7_ = child_1->el;
+#line 763 "MainWindow.vala"
 	gtk_box_append (_tmp6_, (GtkWidget*) _tmp7_);
-#line 778 "MainWindow.vala"
+#line 764 "MainWindow.vala"
 	_tmp8_ = self->priv->_this;
-#line 778 "MainWindow.vala"
+#line 764 "MainWindow.vala"
 	_tmp9_ = xcls_mainwindow_xcls_codeeditviewbox_new (_tmp8_);
-#line 778 "MainWindow.vala"
-	child_1 = _tmp9_;
-#line 779 "MainWindow.vala"
-	g_object_ref ((GObject*) child_1);
-#line 780 "MainWindow.vala"
+#line 764 "MainWindow.vala"
+	child_2 = _tmp9_;
+#line 765 "MainWindow.vala"
 	_tmp10_ = self->el;
-#line 780 "MainWindow.vala"
-	_tmp11_ = child_1->el;
-#line 780 "MainWindow.vala"
+#line 765 "MainWindow.vala"
+	_tmp11_ = child_2->el;
+#line 765 "MainWindow.vala"
 	gtk_box_append (_tmp10_, (GtkWidget*) _tmp11_);
-#line 765 "MainWindow.vala"
+#line 752 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 752 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 765 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 765 "MainWindow.vala"
+#line 752 "MainWindow.vala"
 	return self;
-#line 6285 "MainWindow.vala.c"
+#line 6255 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Box20*
 xcls_mainwindow_xcls_box20_new (Xcls_MainWindow* _owner)
 {
-#line 765 "MainWindow.vala"
+#line 752 "MainWindow.vala"
 	return xcls_mainwindow_xcls_box20_construct (XCLS_MAINWINDOW_TYPE_XCLS_BOX20, _owner);
-#line 6293 "MainWindow.vala.c"
+#line 6263 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box20_class_init (Xcls_MainWindowXcls_Box20Class * klass,
                                        gpointer klass_data)
 {
-#line 756 "MainWindow.vala"
+#line 743 "MainWindow.vala"
 	xcls_mainwindow_xcls_box20_parent_class = g_type_class_peek_parent (klass);
-#line 756 "MainWindow.vala"
+#line 743 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Box20_private_offset);
-#line 756 "MainWindow.vala"
+#line 743 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_box20_finalize;
-#line 6306 "MainWindow.vala.c"
+#line 6276 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box20_instance_init (Xcls_MainWindowXcls_Box20 * self,
                                           gpointer klass)
 {
-#line 756 "MainWindow.vala"
+#line 743 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_box20_get_instance_private (self);
-#line 6315 "MainWindow.vala.c"
+#line 6285 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box20_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Box20 * self;
-#line 756 "MainWindow.vala"
+#line 743 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BOX20, Xcls_MainWindowXcls_Box20);
-#line 758 "MainWindow.vala"
+#line 745 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 759 "MainWindow.vala"
+#line 746 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 756 "MainWindow.vala"
+#line 743 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_box20_parent_class)->finalize (obj);
-#line 6330 "MainWindow.vala.c"
+#line 6300 "MainWindow.vala.c"
 }
 
 static GType
@@ -6368,86 +6338,86 @@ xcls_mainwindow_xcls_rooviewbox_construct (GType object_type,
 	GtkBox* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkBox* _tmp5_;
-#line 794 "MainWindow.vala"
+#line 779 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_rooviewbox*) g_object_new (object_type, NULL);
-#line 796 "MainWindow.vala"
+#line 781 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 796 "MainWindow.vala"
+#line 781 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 796 "MainWindow.vala"
+#line 781 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 797 "MainWindow.vala"
+#line 782 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 797 "MainWindow.vala"
+#line 782 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 797 "MainWindow.vala"
+#line 782 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->rooviewbox);
-#line 797 "MainWindow.vala"
+#line 782 "MainWindow.vala"
 	_tmp1_->rooviewbox = _tmp2_;
-#line 798 "MainWindow.vala"
+#line 783 "MainWindow.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 798 "MainWindow.vala"
+#line 783 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 798 "MainWindow.vala"
+#line 783 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 798 "MainWindow.vala"
+#line 783 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 803 "MainWindow.vala"
+#line 788 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 803 "MainWindow.vala"
+#line 788 "MainWindow.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp4_, TRUE);
-#line 804 "MainWindow.vala"
+#line 789 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 804 "MainWindow.vala"
+#line 789 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp5_, TRUE);
-#line 794 "MainWindow.vala"
+#line 779 "MainWindow.vala"
 	return self;
-#line 6406 "MainWindow.vala.c"
+#line 6376 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_rooviewbox*
 xcls_mainwindow_xcls_rooviewbox_new (Xcls_MainWindow* _owner)
 {
-#line 794 "MainWindow.vala"
+#line 779 "MainWindow.vala"
 	return xcls_mainwindow_xcls_rooviewbox_construct (XCLS_MAINWINDOW_TYPE_XCLS_ROOVIEWBOX, _owner);
-#line 6414 "MainWindow.vala.c"
+#line 6384 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_rooviewbox_class_init (Xcls_MainWindowXcls_rooviewboxClass * klass,
                                             gpointer klass_data)
 {
-#line 785 "MainWindow.vala"
+#line 770 "MainWindow.vala"
 	xcls_mainwindow_xcls_rooviewbox_parent_class = g_type_class_peek_parent (klass);
-#line 785 "MainWindow.vala"
+#line 770 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_rooviewbox_private_offset);
-#line 785 "MainWindow.vala"
+#line 770 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_rooviewbox_finalize;
-#line 6427 "MainWindow.vala.c"
+#line 6397 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_rooviewbox_instance_init (Xcls_MainWindowXcls_rooviewbox * self,
                                                gpointer klass)
 {
-#line 785 "MainWindow.vala"
+#line 770 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_rooviewbox_get_instance_private (self);
-#line 6436 "MainWindow.vala.c"
+#line 6406 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_rooviewbox_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_rooviewbox * self;
-#line 785 "MainWindow.vala"
+#line 770 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_ROOVIEWBOX, Xcls_MainWindowXcls_rooviewbox);
-#line 787 "MainWindow.vala"
+#line 772 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 788 "MainWindow.vala"
+#line 773 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 785 "MainWindow.vala"
+#line 770 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_rooviewbox_parent_class)->finalize (obj);
-#line 6451 "MainWindow.vala.c"
+#line 6421 "MainWindow.vala.c"
 }
 
 static GType
@@ -6489,86 +6459,86 @@ xcls_mainwindow_xcls_codeeditviewbox_construct (GType object_type,
 	GtkBox* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkBox* _tmp5_;
-#line 819 "MainWindow.vala"
+#line 804 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_codeeditviewbox*) g_object_new (object_type, NULL);
-#line 821 "MainWindow.vala"
+#line 806 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 821 "MainWindow.vala"
+#line 806 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 821 "MainWindow.vala"
+#line 806 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 822 "MainWindow.vala"
+#line 807 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 822 "MainWindow.vala"
+#line 807 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 822 "MainWindow.vala"
+#line 807 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->codeeditviewbox);
-#line 822 "MainWindow.vala"
+#line 807 "MainWindow.vala"
 	_tmp1_->codeeditviewbox = _tmp2_;
-#line 823 "MainWindow.vala"
+#line 808 "MainWindow.vala"
 	_tmp3_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 823 "MainWindow.vala"
+#line 808 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 823 "MainWindow.vala"
+#line 808 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 823 "MainWindow.vala"
+#line 808 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 828 "MainWindow.vala"
+#line 813 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 828 "MainWindow.vala"
+#line 813 "MainWindow.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp4_, TRUE);
-#line 829 "MainWindow.vala"
+#line 814 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 829 "MainWindow.vala"
+#line 814 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp5_, TRUE);
-#line 819 "MainWindow.vala"
+#line 804 "MainWindow.vala"
 	return self;
-#line 6527 "MainWindow.vala.c"
+#line 6497 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_codeeditviewbox*
 xcls_mainwindow_xcls_codeeditviewbox_new (Xcls_MainWindow* _owner)
 {
-#line 819 "MainWindow.vala"
+#line 804 "MainWindow.vala"
 	return xcls_mainwindow_xcls_codeeditviewbox_construct (XCLS_MAINWINDOW_TYPE_XCLS_CODEEDITVIEWBOX, _owner);
-#line 6535 "MainWindow.vala.c"
+#line 6505 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_codeeditviewbox_class_init (Xcls_MainWindowXcls_codeeditviewboxClass * klass,
                                                  gpointer klass_data)
 {
-#line 810 "MainWindow.vala"
+#line 795 "MainWindow.vala"
 	xcls_mainwindow_xcls_codeeditviewbox_parent_class = g_type_class_peek_parent (klass);
-#line 810 "MainWindow.vala"
+#line 795 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_codeeditviewbox_private_offset);
-#line 810 "MainWindow.vala"
+#line 795 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_codeeditviewbox_finalize;
-#line 6548 "MainWindow.vala.c"
+#line 6518 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_codeeditviewbox_instance_init (Xcls_MainWindowXcls_codeeditviewbox * self,
                                                     gpointer klass)
 {
-#line 810 "MainWindow.vala"
+#line 795 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_codeeditviewbox_get_instance_private (self);
-#line 6557 "MainWindow.vala.c"
+#line 6527 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_codeeditviewbox_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_codeeditviewbox * self;
-#line 810 "MainWindow.vala"
+#line 795 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_CODEEDITVIEWBOX, Xcls_MainWindowXcls_codeeditviewbox);
-#line 812 "MainWindow.vala"
+#line 797 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 813 "MainWindow.vala"
+#line 798 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 810 "MainWindow.vala"
+#line 795 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_codeeditviewbox_parent_class)->finalize (obj);
-#line 6572 "MainWindow.vala.c"
+#line 6542 "MainWindow.vala.c"
 }
 
 static GType
@@ -6608,225 +6578,221 @@ xcls_mainwindow_xcls_box23_construct (GType object_type,
 	GtkBox* _tmp1_;
 	GtkBox* _tmp2_;
 	GtkBox* _tmp3_;
-	Xcls_MainWindowXcls_Button24* child_0 = NULL;
+	Xcls_MainWindowXcls_Button24* child_1 = NULL;
 	Xcls_MainWindow* _tmp4_;
 	Xcls_MainWindowXcls_Button24* _tmp5_;
 	GtkBox* _tmp6_;
 	GtkButton* _tmp7_;
-	Xcls_MainWindowXcls_Button25* child_1 = NULL;
+	Xcls_MainWindowXcls_Button25* child_2 = NULL;
 	Xcls_MainWindow* _tmp8_;
 	Xcls_MainWindowXcls_Button25* _tmp9_;
 	GtkBox* _tmp10_;
 	GtkButton* _tmp11_;
-	Xcls_MainWindowXcls_MenuButton26* child_2 = NULL;
+	Xcls_MainWindowXcls_MenuButton26* child_3 = NULL;
 	Xcls_MainWindow* _tmp12_;
 	Xcls_MainWindowXcls_MenuButton26* _tmp13_;
 	GtkBox* _tmp14_;
 	GtkMenuButton* _tmp15_;
-	Xcls_MainWindowXcls_Label31* child_3 = NULL;
+	Xcls_MainWindowXcls_Label31* child_4 = NULL;
 	Xcls_MainWindow* _tmp16_;
 	Xcls_MainWindowXcls_Label31* _tmp17_;
 	GtkBox* _tmp18_;
 	GtkLabel* _tmp19_;
-	Xcls_MainWindowXcls_statusbar* child_4 = NULL;
+	Xcls_MainWindowXcls_statusbar* child_5 = NULL;
 	Xcls_MainWindow* _tmp20_;
 	Xcls_MainWindowXcls_statusbar* _tmp21_;
 	GtkBox* _tmp22_;
 	GtkProgressBar* _tmp23_;
-	Xcls_MainWindowXcls_Box33* child_5 = NULL;
+	Xcls_MainWindowXcls_Box33* child_6 = NULL;
 	Xcls_MainWindow* _tmp24_;
 	Xcls_MainWindowXcls_Box33* _tmp25_;
 	GtkBox* _tmp26_;
 	GtkBox* _tmp27_;
-	Xcls_MainWindowXcls_statusbar_compile_spinner* child_6 = NULL;
+	Xcls_MainWindowXcls_statusbar_compile_spinner* child_7 = NULL;
 	Xcls_MainWindow* _tmp28_;
 	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp29_;
 	GtkBox* _tmp30_;
 	GtkSpinner* _tmp31_;
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Box23*) g_object_new (object_type, NULL);
-#line 848 "MainWindow.vala"
+#line 833 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 848 "MainWindow.vala"
+#line 833 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 848 "MainWindow.vala"
+#line 833 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 849 "MainWindow.vala"
+#line 834 "MainWindow.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-#line 849 "MainWindow.vala"
+#line 834 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 849 "MainWindow.vala"
+#line 834 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 849 "MainWindow.vala"
+#line 834 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 854 "MainWindow.vala"
+#line 839 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 854 "MainWindow.vala"
+#line 839 "MainWindow.vala"
 	gtk_box_set_homogeneous (_tmp2_, FALSE);
-#line 855 "MainWindow.vala"
+#line 840 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 855 "MainWindow.vala"
+#line 840 "MainWindow.vala"
 	gtk_widget_set_vexpand ((GtkWidget*) _tmp3_, FALSE);
-#line 856 "MainWindow.vala"
+#line 841 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 856 "MainWindow.vala"
+#line 841 "MainWindow.vala"
 	_tmp5_ = xcls_mainwindow_xcls_button24_new (_tmp4_);
-#line 856 "MainWindow.vala"
-	child_0 = _tmp5_;
-#line 857 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 858 "MainWindow.vala"
-	_tmp6_ = self->el;
-#line 858 "MainWindow.vala"
-	_tmp7_ = child_0->el;
-#line 858 "MainWindow.vala"
-	gtk_box_append (_tmp6_, (GtkWidget*) _tmp7_);
-#line 859 "MainWindow.vala"
-	_tmp8_ = self->priv->_this;
-#line 859 "MainWindow.vala"
-	_tmp9_ = xcls_mainwindow_xcls_button25_new (_tmp8_);
-#line 859 "MainWindow.vala"
-	child_1 = _tmp9_;
-#line 860 "MainWindow.vala"
+#line 841 "MainWindow.vala"
+	child_1 = _tmp5_;
+#line 842 "MainWindow.vala"
 	g_object_ref ((GObject*) child_1);
-#line 861 "MainWindow.vala"
-	_tmp10_ = self->el;
-#line 861 "MainWindow.vala"
-	_tmp11_ = child_1->el;
-#line 861 "MainWindow.vala"
-	gtk_box_append (_tmp10_, (GtkWidget*) _tmp11_);
-#line 862 "MainWindow.vala"
-	_tmp12_ = self->priv->_this;
-#line 862 "MainWindow.vala"
-	_tmp13_ = xcls_mainwindow_xcls_menubutton26_new (_tmp12_);
-#line 862 "MainWindow.vala"
-	child_2 = _tmp13_;
-#line 863 "MainWindow.vala"
+#line 843 "MainWindow.vala"
+	_tmp6_ = self->el;
+#line 843 "MainWindow.vala"
+	_tmp7_ = child_1->el;
+#line 843 "MainWindow.vala"
+	gtk_box_append (_tmp6_, (GtkWidget*) _tmp7_);
+#line 844 "MainWindow.vala"
+	_tmp8_ = self->priv->_this;
+#line 844 "MainWindow.vala"
+	_tmp9_ = xcls_mainwindow_xcls_button25_new (_tmp8_);
+#line 844 "MainWindow.vala"
+	child_2 = _tmp9_;
+#line 845 "MainWindow.vala"
 	g_object_ref ((GObject*) child_2);
-#line 864 "MainWindow.vala"
-	_tmp14_ = self->el;
-#line 864 "MainWindow.vala"
-	_tmp15_ = child_2->el;
-#line 864 "MainWindow.vala"
-	gtk_box_append (_tmp14_, (GtkWidget*) _tmp15_);
-#line 865 "MainWindow.vala"
-	_tmp16_ = self->priv->_this;
-#line 865 "MainWindow.vala"
-	_tmp17_ = xcls_mainwindow_xcls_label31_new (_tmp16_);
-#line 865 "MainWindow.vala"
-	child_3 = _tmp17_;
-#line 866 "MainWindow.vala"
+#line 846 "MainWindow.vala"
+	_tmp10_ = self->el;
+#line 846 "MainWindow.vala"
+	_tmp11_ = child_2->el;
+#line 846 "MainWindow.vala"
+	gtk_box_append (_tmp10_, (GtkWidget*) _tmp11_);
+#line 847 "MainWindow.vala"
+	_tmp12_ = self->priv->_this;
+#line 847 "MainWindow.vala"
+	_tmp13_ = xcls_mainwindow_xcls_menubutton26_new (_tmp12_);
+#line 847 "MainWindow.vala"
+	child_3 = _tmp13_;
+#line 848 "MainWindow.vala"
 	g_object_ref ((GObject*) child_3);
-#line 867 "MainWindow.vala"
-	_tmp18_ = self->el;
-#line 867 "MainWindow.vala"
-	_tmp19_ = child_3->el;
-#line 867 "MainWindow.vala"
-	gtk_box_append (_tmp18_, (GtkWidget*) _tmp19_);
-#line 868 "MainWindow.vala"
-	_tmp20_ = self->priv->_this;
-#line 868 "MainWindow.vala"
-	_tmp21_ = xcls_mainwindow_xcls_statusbar_new (_tmp20_);
-#line 868 "MainWindow.vala"
-	child_4 = _tmp21_;
-#line 869 "MainWindow.vala"
+#line 849 "MainWindow.vala"
+	_tmp14_ = self->el;
+#line 849 "MainWindow.vala"
+	_tmp15_ = child_3->el;
+#line 849 "MainWindow.vala"
+	gtk_box_append (_tmp14_, (GtkWidget*) _tmp15_);
+#line 850 "MainWindow.vala"
+	_tmp16_ = self->priv->_this;
+#line 850 "MainWindow.vala"
+	_tmp17_ = xcls_mainwindow_xcls_label31_new (_tmp16_);
+#line 850 "MainWindow.vala"
+	child_4 = _tmp17_;
+#line 851 "MainWindow.vala"
 	g_object_ref ((GObject*) child_4);
-#line 870 "MainWindow.vala"
+#line 852 "MainWindow.vala"
+	_tmp18_ = self->el;
+#line 852 "MainWindow.vala"
+	_tmp19_ = child_4->el;
+#line 852 "MainWindow.vala"
+	gtk_box_append (_tmp18_, (GtkWidget*) _tmp19_);
+#line 853 "MainWindow.vala"
+	_tmp20_ = self->priv->_this;
+#line 853 "MainWindow.vala"
+	_tmp21_ = xcls_mainwindow_xcls_statusbar_new (_tmp20_);
+#line 853 "MainWindow.vala"
+	child_5 = _tmp21_;
+#line 854 "MainWindow.vala"
 	_tmp22_ = self->el;
-#line 870 "MainWindow.vala"
-	_tmp23_ = child_4->el;
-#line 870 "MainWindow.vala"
+#line 854 "MainWindow.vala"
+	_tmp23_ = child_5->el;
+#line 854 "MainWindow.vala"
 	gtk_box_append (_tmp22_, (GtkWidget*) _tmp23_);
-#line 871 "MainWindow.vala"
+#line 855 "MainWindow.vala"
 	_tmp24_ = self->priv->_this;
-#line 871 "MainWindow.vala"
+#line 855 "MainWindow.vala"
 	_tmp25_ = xcls_mainwindow_xcls_box33_new (_tmp24_);
-#line 871 "MainWindow.vala"
-	child_5 = _tmp25_;
-#line 872 "MainWindow.vala"
-	g_object_ref ((GObject*) child_5);
-#line 873 "MainWindow.vala"
-	_tmp26_ = self->el;
-#line 873 "MainWindow.vala"
-	_tmp27_ = child_5->el;
-#line 873 "MainWindow.vala"
-	gtk_box_append (_tmp26_, (GtkWidget*) _tmp27_);
-#line 874 "MainWindow.vala"
-	_tmp28_ = self->priv->_this;
-#line 874 "MainWindow.vala"
-	_tmp29_ = xcls_mainwindow_xcls_statusbar_compile_spinner_new (_tmp28_);
-#line 874 "MainWindow.vala"
-	child_6 = _tmp29_;
-#line 875 "MainWindow.vala"
+#line 855 "MainWindow.vala"
+	child_6 = _tmp25_;
+#line 856 "MainWindow.vala"
 	g_object_ref ((GObject*) child_6);
-#line 876 "MainWindow.vala"
+#line 857 "MainWindow.vala"
+	_tmp26_ = self->el;
+#line 857 "MainWindow.vala"
+	_tmp27_ = child_6->el;
+#line 857 "MainWindow.vala"
+	gtk_box_append (_tmp26_, (GtkWidget*) _tmp27_);
+#line 858 "MainWindow.vala"
+	_tmp28_ = self->priv->_this;
+#line 858 "MainWindow.vala"
+	_tmp29_ = xcls_mainwindow_xcls_statusbar_compile_spinner_new (_tmp28_);
+#line 858 "MainWindow.vala"
+	child_7 = _tmp29_;
+#line 859 "MainWindow.vala"
 	_tmp30_ = self->el;
-#line 876 "MainWindow.vala"
-	_tmp31_ = child_6->el;
-#line 876 "MainWindow.vala"
+#line 859 "MainWindow.vala"
+	_tmp31_ = child_7->el;
+#line 859 "MainWindow.vala"
 	gtk_box_append (_tmp30_, (GtkWidget*) _tmp31_);
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
+	_g_object_unref0 (child_7);
+#line 831 "MainWindow.vala"
 	_g_object_unref0 (child_6);
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
 	_g_object_unref0 (child_5);
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
 	_g_object_unref0 (child_4);
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
 	_g_object_unref0 (child_3);
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
 	_g_object_unref0 (child_2);
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 846 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
 	return self;
-#line 6785 "MainWindow.vala.c"
+#line 6751 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Box23*
 xcls_mainwindow_xcls_box23_new (Xcls_MainWindow* _owner)
 {
-#line 846 "MainWindow.vala"
+#line 831 "MainWindow.vala"
 	return xcls_mainwindow_xcls_box23_construct (XCLS_MAINWINDOW_TYPE_XCLS_BOX23, _owner);
-#line 6793 "MainWindow.vala.c"
+#line 6759 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box23_class_init (Xcls_MainWindowXcls_Box23Class * klass,
                                        gpointer klass_data)
 {
-#line 837 "MainWindow.vala"
+#line 822 "MainWindow.vala"
 	xcls_mainwindow_xcls_box23_parent_class = g_type_class_peek_parent (klass);
-#line 837 "MainWindow.vala"
+#line 822 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Box23_private_offset);
-#line 837 "MainWindow.vala"
+#line 822 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_box23_finalize;
-#line 6806 "MainWindow.vala.c"
+#line 6772 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box23_instance_init (Xcls_MainWindowXcls_Box23 * self,
                                           gpointer klass)
 {
-#line 837 "MainWindow.vala"
+#line 822 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_box23_get_instance_private (self);
-#line 6815 "MainWindow.vala.c"
+#line 6781 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box23_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Box23 * self;
-#line 837 "MainWindow.vala"
+#line 822 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BOX23, Xcls_MainWindowXcls_Box23);
-#line 839 "MainWindow.vala"
+#line 824 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 840 "MainWindow.vala"
+#line 825 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 837 "MainWindow.vala"
+#line 822 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_box23_parent_class)->finalize (obj);
-#line 6830 "MainWindow.vala.c"
+#line 6796 "MainWindow.vala.c"
 }
 
 static GType
@@ -6858,32 +6824,32 @@ xcls_mainwindow_xcls_button24_get_instance_private (Xcls_MainWindowXcls_Button24
 }
 
 static void
-__lambda249_ (Xcls_MainWindowXcls_Button24* self)
+__lambda248_ (Xcls_MainWindowXcls_Button24* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	WindowState* _tmp1_;
 	Xcls_MainWindow* _tmp2_;
 	GtkApplicationWindow* _tmp3_;
-#line 907 "MainWindow.vala"
+#line 890 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 907 "MainWindow.vala"
+#line 890 "MainWindow.vala"
 	_tmp1_ = _tmp0_->windowstate;
-#line 907 "MainWindow.vala"
+#line 890 "MainWindow.vala"
 	_tmp2_ = self->priv->_this;
-#line 907 "MainWindow.vala"
+#line 890 "MainWindow.vala"
 	_tmp3_ = _tmp2_->el;
-#line 907 "MainWindow.vala"
+#line 890 "MainWindow.vala"
 	window_state_projectPopoverShow (_tmp1_, (GtkWindow*) _tmp3_, NULL);
-#line 6878 "MainWindow.vala.c"
+#line 6844 "MainWindow.vala.c"
 }
 
 static void
-___lambda249__gtk_button_clicked (GtkButton* _sender,
+___lambda248__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 905 "MainWindow.vala"
-	__lambda249_ ((Xcls_MainWindowXcls_Button24*) self);
-#line 6887 "MainWindow.vala.c"
+#line 888 "MainWindow.vala"
+	__lambda248_ ((Xcls_MainWindowXcls_Button24*) self);
+#line 6853 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button24*
@@ -6897,88 +6863,88 @@ xcls_mainwindow_xcls_button24_construct (GType object_type,
 	GtkButton* _tmp3_;
 	GtkButton* _tmp4_;
 	GtkButton* _tmp5_;
-#line 891 "MainWindow.vala"
+#line 874 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Button24*) g_object_new (object_type, NULL);
-#line 893 "MainWindow.vala"
+#line 876 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 893 "MainWindow.vala"
+#line 876 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 893 "MainWindow.vala"
+#line 876 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 894 "MainWindow.vala"
+#line 877 "MainWindow.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 894 "MainWindow.vala"
+#line 877 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 894 "MainWindow.vala"
+#line 877 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 894 "MainWindow.vala"
+#line 877 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 897 "MainWindow.vala"
+#line 880 "MainWindow.vala"
 	self->always_show_image = TRUE;
-#line 900 "MainWindow.vala"
+#line 883 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 900 "MainWindow.vala"
+#line 883 "MainWindow.vala"
 	gtk_button_set_icon_name (_tmp2_, "emblem-system");
-#line 901 "MainWindow.vala"
+#line 884 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 901 "MainWindow.vala"
+#line 884 "MainWindow.vala"
 	gtk_widget_set_tooltip_text ((GtkWidget*) _tmp3_, "Project Details");
-#line 902 "MainWindow.vala"
+#line 885 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 902 "MainWindow.vala"
+#line 885 "MainWindow.vala"
 	gtk_button_set_label (_tmp4_, "Edit Project Settings");
-#line 905 "MainWindow.vala"
+#line 888 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 905 "MainWindow.vala"
-	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda249__gtk_button_clicked, self, 0);
-#line 891 "MainWindow.vala"
+#line 888 "MainWindow.vala"
+	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda248__gtk_button_clicked, self, 0);
+#line 874 "MainWindow.vala"
 	return self;
-#line 6937 "MainWindow.vala.c"
+#line 6903 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button24*
 xcls_mainwindow_xcls_button24_new (Xcls_MainWindow* _owner)
 {
-#line 891 "MainWindow.vala"
+#line 874 "MainWindow.vala"
 	return xcls_mainwindow_xcls_button24_construct (XCLS_MAINWINDOW_TYPE_XCLS_BUTTON24, _owner);
-#line 6945 "MainWindow.vala.c"
+#line 6911 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button24_class_init (Xcls_MainWindowXcls_Button24Class * klass,
                                           gpointer klass_data)
 {
-#line 881 "MainWindow.vala"
+#line 864 "MainWindow.vala"
 	xcls_mainwindow_xcls_button24_parent_class = g_type_class_peek_parent (klass);
-#line 881 "MainWindow.vala"
+#line 864 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Button24_private_offset);
-#line 881 "MainWindow.vala"
+#line 864 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_button24_finalize;
-#line 6958 "MainWindow.vala.c"
+#line 6924 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button24_instance_init (Xcls_MainWindowXcls_Button24 * self,
                                              gpointer klass)
 {
-#line 881 "MainWindow.vala"
+#line 864 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_button24_get_instance_private (self);
-#line 6967 "MainWindow.vala.c"
+#line 6933 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button24_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Button24 * self;
-#line 881 "MainWindow.vala"
+#line 864 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BUTTON24, Xcls_MainWindowXcls_Button24);
-#line 883 "MainWindow.vala"
+#line 866 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 884 "MainWindow.vala"
+#line 867 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 881 "MainWindow.vala"
+#line 864 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_button24_parent_class)->finalize (obj);
-#line 6982 "MainWindow.vala.c"
+#line 6948 "MainWindow.vala.c"
 }
 
 static GType
@@ -7010,7 +6976,7 @@ xcls_mainwindow_xcls_button25_get_instance_private (Xcls_MainWindowXcls_Button25
 }
 
 static void
-__lambda250_ (Xcls_MainWindowXcls_Button25* self)
+__lambda249_ (Xcls_MainWindowXcls_Button25* self)
 {
 	gboolean _tmp0_ = FALSE;
 	Xcls_MainWindow* _tmp1_;
@@ -7023,65 +6989,65 @@ __lambda250_ (Xcls_MainWindowXcls_Button25* self)
 	JsRenderJsRender* _tmp11_;
 	Xcls_MainWindow* _tmp12_;
 	GtkApplicationWindow* _tmp13_;
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 	_tmp2_ = _tmp1_->project;
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 	if (_tmp2_ == NULL) {
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 		_tmp0_ = TRUE;
-#line 7035 "MainWindow.vala.c"
+#line 7001 "MainWindow.vala.c"
 	} else {
 		Xcls_MainWindow* _tmp3_;
 		WindowState* _tmp4_;
 		JsRenderJsRender* _tmp5_;
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 		_tmp3_ = self->priv->_this;
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 		_tmp4_ = _tmp3_->windowstate;
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 		_tmp5_ = _tmp4_->file;
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 		_tmp0_ = _tmp5_ == NULL;
-#line 7048 "MainWindow.vala.c"
+#line 7014 "MainWindow.vala.c"
 	}
-#line 943 "MainWindow.vala"
+#line 926 "MainWindow.vala"
 	if (_tmp0_) {
-#line 944 "MainWindow.vala"
+#line 927 "MainWindow.vala"
 		return;
-#line 7054 "MainWindow.vala.c"
+#line 7020 "MainWindow.vala.c"
 	}
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	_tmp6_ = self->priv->_this;
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	_tmp7_ = _tmp6_->windowstate;
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	_tmp8_ = _tmp7_->file_details;
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	_tmp9_ = self->priv->_this;
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	_tmp10_ = _tmp9_->windowstate;
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	_tmp11_ = _tmp10_->file;
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	_tmp12_ = self->priv->_this;
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	_tmp13_ = _tmp12_->el;
-#line 946 "MainWindow.vala"
+#line 929 "MainWindow.vala"
 	xcls_popoverfiledetails_show (_tmp8_, _tmp11_, (GtkWindow*) _tmp13_, FALSE);
-#line 950 "MainWindow.vala"
+#line 933 "MainWindow.vala"
 	return;
-#line 7076 "MainWindow.vala.c"
+#line 7042 "MainWindow.vala.c"
 }
 
 static void
-___lambda250__gtk_button_clicked (GtkButton* _sender,
+___lambda249__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 940 "MainWindow.vala"
-	__lambda250_ ((Xcls_MainWindowXcls_Button25*) self);
-#line 7085 "MainWindow.vala.c"
+#line 923 "MainWindow.vala"
+	__lambda249_ ((Xcls_MainWindowXcls_Button25*) self);
+#line 7051 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button25*
@@ -7095,88 +7061,88 @@ xcls_mainwindow_xcls_button25_construct (GType object_type,
 	GtkButton* _tmp3_;
 	GtkButton* _tmp4_;
 	GtkButton* _tmp5_;
-#line 926 "MainWindow.vala"
+#line 909 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Button25*) g_object_new (object_type, NULL);
-#line 928 "MainWindow.vala"
+#line 911 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 928 "MainWindow.vala"
+#line 911 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 928 "MainWindow.vala"
+#line 911 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 929 "MainWindow.vala"
+#line 912 "MainWindow.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 929 "MainWindow.vala"
+#line 912 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 929 "MainWindow.vala"
+#line 912 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 929 "MainWindow.vala"
+#line 912 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 932 "MainWindow.vala"
+#line 915 "MainWindow.vala"
 	self->always_show_image = TRUE;
-#line 935 "MainWindow.vala"
+#line 918 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 935 "MainWindow.vala"
+#line 918 "MainWindow.vala"
 	gtk_button_set_icon_name (_tmp2_, "document-properties");
-#line 936 "MainWindow.vala"
+#line 919 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 936 "MainWindow.vala"
+#line 919 "MainWindow.vala"
 	gtk_widget_set_tooltip_text ((GtkWidget*) _tmp3_, "File Details");
-#line 937 "MainWindow.vala"
+#line 920 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 937 "MainWindow.vala"
+#line 920 "MainWindow.vala"
 	gtk_button_set_label (_tmp4_, "Edit File Properties");
-#line 940 "MainWindow.vala"
+#line 923 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 940 "MainWindow.vala"
-	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda250__gtk_button_clicked, self, 0);
-#line 926 "MainWindow.vala"
+#line 923 "MainWindow.vala"
+	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda249__gtk_button_clicked, self, 0);
+#line 909 "MainWindow.vala"
 	return self;
-#line 7135 "MainWindow.vala.c"
+#line 7101 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button25*
 xcls_mainwindow_xcls_button25_new (Xcls_MainWindow* _owner)
 {
-#line 926 "MainWindow.vala"
+#line 909 "MainWindow.vala"
 	return xcls_mainwindow_xcls_button25_construct (XCLS_MAINWINDOW_TYPE_XCLS_BUTTON25, _owner);
-#line 7143 "MainWindow.vala.c"
+#line 7109 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button25_class_init (Xcls_MainWindowXcls_Button25Class * klass,
                                           gpointer klass_data)
 {
-#line 916 "MainWindow.vala"
+#line 899 "MainWindow.vala"
 	xcls_mainwindow_xcls_button25_parent_class = g_type_class_peek_parent (klass);
-#line 916 "MainWindow.vala"
+#line 899 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Button25_private_offset);
-#line 916 "MainWindow.vala"
+#line 899 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_button25_finalize;
-#line 7156 "MainWindow.vala.c"
+#line 7122 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button25_instance_init (Xcls_MainWindowXcls_Button25 * self,
                                              gpointer klass)
 {
-#line 916 "MainWindow.vala"
+#line 899 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_button25_get_instance_private (self);
-#line 7165 "MainWindow.vala.c"
+#line 7131 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button25_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Button25 * self;
-#line 916 "MainWindow.vala"
+#line 899 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BUTTON25, Xcls_MainWindowXcls_Button25);
-#line 918 "MainWindow.vala"
+#line 901 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 919 "MainWindow.vala"
+#line 902 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 916 "MainWindow.vala"
+#line 899 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_button25_parent_class)->finalize (obj);
-#line 7180 "MainWindow.vala.c"
+#line 7146 "MainWindow.vala.c"
 }
 
 static GType
@@ -7216,101 +7182,99 @@ xcls_mainwindow_xcls_menubutton26_construct (GType object_type,
 	GtkMenuButton* _tmp1_;
 	GtkMenuButton* _tmp2_;
 	GtkMenuButton* _tmp3_;
-	Xcls_MainWindowXcls_topbarmenu* child_0 = NULL;
+	Xcls_MainWindowXcls_topbarmenu* child_1 = NULL;
 	Xcls_MainWindow* _tmp4_;
 	Xcls_MainWindowXcls_topbarmenu* _tmp5_;
 	GtkMenuButton* _tmp6_;
 	GtkPopoverMenu* _tmp7_;
-#line 969 "MainWindow.vala"
+#line 952 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_MenuButton26*) g_object_new (object_type, NULL);
-#line 971 "MainWindow.vala"
+#line 954 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 971 "MainWindow.vala"
+#line 954 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 971 "MainWindow.vala"
+#line 954 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 972 "MainWindow.vala"
+#line 955 "MainWindow.vala"
 	_tmp1_ = (GtkMenuButton*) gtk_menu_button_new ();
-#line 972 "MainWindow.vala"
+#line 955 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 972 "MainWindow.vala"
+#line 955 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 972 "MainWindow.vala"
+#line 955 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 975 "MainWindow.vala"
+#line 958 "MainWindow.vala"
 	self->always_show_image = TRUE;
-#line 978 "MainWindow.vala"
+#line 961 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 978 "MainWindow.vala"
+#line 961 "MainWindow.vala"
 	gtk_menu_button_set_icon_name (_tmp2_, "dialog-information");
-#line 979 "MainWindow.vala"
+#line 962 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 979 "MainWindow.vala"
+#line 962 "MainWindow.vala"
 	gtk_menu_button_set_label (_tmp3_, "About");
-#line 980 "MainWindow.vala"
+#line 963 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 980 "MainWindow.vala"
+#line 963 "MainWindow.vala"
 	_tmp5_ = xcls_mainwindow_xcls_topbarmenu_new (_tmp4_);
-#line 980 "MainWindow.vala"
-	child_0 = _tmp5_;
-#line 981 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 982 "MainWindow.vala"
+#line 963 "MainWindow.vala"
+	child_1 = _tmp5_;
+#line 964 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 982 "MainWindow.vala"
-	_tmp7_ = child_0->el;
-#line 982 "MainWindow.vala"
+#line 964 "MainWindow.vala"
+	_tmp7_ = child_1->el;
+#line 964 "MainWindow.vala"
 	gtk_menu_button_set_popover (_tmp6_, (GtkPopover*) _tmp7_);
-#line 969 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 969 "MainWindow.vala"
+#line 952 "MainWindow.vala"
+	_g_object_unref0 (child_1);
+#line 952 "MainWindow.vala"
 	return self;
-#line 7269 "MainWindow.vala.c"
+#line 7233 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_MenuButton26*
 xcls_mainwindow_xcls_menubutton26_new (Xcls_MainWindow* _owner)
 {
-#line 969 "MainWindow.vala"
+#line 952 "MainWindow.vala"
 	return xcls_mainwindow_xcls_menubutton26_construct (XCLS_MAINWINDOW_TYPE_XCLS_MENUBUTTON26, _owner);
-#line 7277 "MainWindow.vala.c"
+#line 7241 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_menubutton26_class_init (Xcls_MainWindowXcls_MenuButton26Class * klass,
                                               gpointer klass_data)
 {
-#line 959 "MainWindow.vala"
+#line 942 "MainWindow.vala"
 	xcls_mainwindow_xcls_menubutton26_parent_class = g_type_class_peek_parent (klass);
-#line 959 "MainWindow.vala"
+#line 942 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_MenuButton26_private_offset);
-#line 959 "MainWindow.vala"
+#line 942 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_menubutton26_finalize;
-#line 7290 "MainWindow.vala.c"
+#line 7254 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_menubutton26_instance_init (Xcls_MainWindowXcls_MenuButton26 * self,
                                                  gpointer klass)
 {
-#line 959 "MainWindow.vala"
+#line 942 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_menubutton26_get_instance_private (self);
-#line 7299 "MainWindow.vala.c"
+#line 7263 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_menubutton26_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_MenuButton26 * self;
-#line 959 "MainWindow.vala"
+#line 942 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_MENUBUTTON26, Xcls_MainWindowXcls_MenuButton26);
-#line 961 "MainWindow.vala"
+#line 944 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 962 "MainWindow.vala"
+#line 945 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 959 "MainWindow.vala"
+#line 942 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_menubutton26_parent_class)->finalize (obj);
-#line 7314 "MainWindow.vala.c"
+#line 7278 "MainWindow.vala.c"
 }
 
 static GType
@@ -7350,102 +7314,102 @@ xcls_mainwindow_xcls_topbarmenu_construct (GType object_type,
 	Xcls_MainWindow* _tmp1_;
 	Xcls_MainWindowXcls_topbarmenu* _tmp2_;
 	GtkPopoverMenu* _tmp3_;
-	Xcls_MainWindowXcls_Box28* child_0 = NULL;
+	Xcls_MainWindowXcls_Box28* child_1 = NULL;
 	Xcls_MainWindow* _tmp4_;
 	Xcls_MainWindowXcls_Box28* _tmp5_;
 	GtkPopoverMenu* _tmp6_;
 	GtkBox* _tmp7_;
-#line 996 "MainWindow.vala"
+#line 978 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_topbarmenu*) g_object_new (object_type, NULL);
-#line 998 "MainWindow.vala"
+#line 980 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 998 "MainWindow.vala"
+#line 980 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 998 "MainWindow.vala"
+#line 980 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 999 "MainWindow.vala"
+#line 981 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 999 "MainWindow.vala"
+#line 981 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 999 "MainWindow.vala"
+#line 981 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->topbarmenu);
-#line 999 "MainWindow.vala"
+#line 981 "MainWindow.vala"
 	_tmp1_->topbarmenu = _tmp2_;
-#line 1000 "MainWindow.vala"
+#line 982 "MainWindow.vala"
 	_tmp3_ = (GtkPopoverMenu*) gtk_popover_menu_new_from_model (NULL);
-#line 1000 "MainWindow.vala"
+#line 982 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1000 "MainWindow.vala"
+#line 982 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1000 "MainWindow.vala"
+#line 982 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 1005 "MainWindow.vala"
+#line 987 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 1005 "MainWindow.vala"
+#line 987 "MainWindow.vala"
 	_tmp5_ = xcls_mainwindow_xcls_box28_new (_tmp4_);
-#line 1005 "MainWindow.vala"
-	child_0 = _tmp5_;
-#line 1006 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 1007 "MainWindow.vala"
+#line 987 "MainWindow.vala"
+	child_1 = _tmp5_;
+#line 988 "MainWindow.vala"
+	g_object_ref ((GObject*) child_1);
+#line 989 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 1007 "MainWindow.vala"
-	_tmp7_ = child_0->el;
-#line 1007 "MainWindow.vala"
+#line 989 "MainWindow.vala"
+	_tmp7_ = child_1->el;
+#line 989 "MainWindow.vala"
 	gtk_popover_set_child ((GtkPopover*) _tmp6_, (GtkWidget*) _tmp7_);
-#line 7397 "MainWindow.vala.c"
+#line 7361 "MainWindow.vala.c"
 	{
 	}
-#line 996 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 996 "MainWindow.vala"
+#line 978 "MainWindow.vala"
+	_g_object_unref0 (child_1);
+#line 978 "MainWindow.vala"
 	return self;
-#line 7404 "MainWindow.vala.c"
+#line 7368 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_topbarmenu*
 xcls_mainwindow_xcls_topbarmenu_new (Xcls_MainWindow* _owner)
 {
-#line 996 "MainWindow.vala"
+#line 978 "MainWindow.vala"
 	return xcls_mainwindow_xcls_topbarmenu_construct (XCLS_MAINWINDOW_TYPE_XCLS_TOPBARMENU, _owner);
-#line 7412 "MainWindow.vala.c"
+#line 7376 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_topbarmenu_class_init (Xcls_MainWindowXcls_topbarmenuClass * klass,
                                             gpointer klass_data)
 {
-#line 987 "MainWindow.vala"
+#line 969 "MainWindow.vala"
 	xcls_mainwindow_xcls_topbarmenu_parent_class = g_type_class_peek_parent (klass);
-#line 987 "MainWindow.vala"
+#line 969 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_topbarmenu_private_offset);
-#line 987 "MainWindow.vala"
+#line 969 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_topbarmenu_finalize;
-#line 7425 "MainWindow.vala.c"
+#line 7389 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_topbarmenu_instance_init (Xcls_MainWindowXcls_topbarmenu * self,
                                                gpointer klass)
 {
-#line 987 "MainWindow.vala"
+#line 969 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_topbarmenu_get_instance_private (self);
-#line 7434 "MainWindow.vala.c"
+#line 7398 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_topbarmenu_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_topbarmenu * self;
-#line 987 "MainWindow.vala"
+#line 969 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_TOPBARMENU, Xcls_MainWindowXcls_topbarmenu);
-#line 989 "MainWindow.vala"
+#line 971 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 990 "MainWindow.vala"
+#line 972 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 987 "MainWindow.vala"
+#line 969 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_topbarmenu_parent_class)->finalize (obj);
-#line 7449 "MainWindow.vala.c"
+#line 7413 "MainWindow.vala.c"
 }
 
 static GType
@@ -7483,112 +7447,112 @@ xcls_mainwindow_xcls_box28_construct (GType object_type,
 	Xcls_MainWindowXcls_Box28 * self = NULL;
 	Xcls_MainWindow* _tmp0_;
 	GtkBox* _tmp1_;
-	Xcls_MainWindowXcls_Button29* child_0 = NULL;
+	Xcls_MainWindowXcls_Button29* child_1 = NULL;
 	Xcls_MainWindow* _tmp2_;
 	Xcls_MainWindowXcls_Button29* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkButton* _tmp5_;
-	Xcls_MainWindowXcls_Button30* child_1 = NULL;
+	Xcls_MainWindowXcls_Button30* child_2 = NULL;
 	Xcls_MainWindow* _tmp6_;
 	Xcls_MainWindowXcls_Button30* _tmp7_;
 	GtkBox* _tmp8_;
 	GtkButton* _tmp9_;
-#line 1027 "MainWindow.vala"
+#line 1009 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Box28*) g_object_new (object_type, NULL);
-#line 1029 "MainWindow.vala"
+#line 1011 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1029 "MainWindow.vala"
+#line 1011 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1029 "MainWindow.vala"
+#line 1011 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1030 "MainWindow.vala"
+#line 1012 "MainWindow.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-#line 1030 "MainWindow.vala"
+#line 1012 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1030 "MainWindow.vala"
+#line 1012 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1030 "MainWindow.vala"
+#line 1012 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 1035 "MainWindow.vala"
+#line 1017 "MainWindow.vala"
 	_tmp2_ = self->priv->_this;
-#line 1035 "MainWindow.vala"
+#line 1017 "MainWindow.vala"
 	_tmp3_ = xcls_mainwindow_xcls_button29_new (_tmp2_);
-#line 1035 "MainWindow.vala"
-	child_0 = _tmp3_;
-#line 1036 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 1037 "MainWindow.vala"
-	_tmp4_ = self->el;
-#line 1037 "MainWindow.vala"
-	_tmp5_ = child_0->el;
-#line 1037 "MainWindow.vala"
-	gtk_box_append (_tmp4_, (GtkWidget*) _tmp5_);
-#line 1038 "MainWindow.vala"
-	_tmp6_ = self->priv->_this;
-#line 1038 "MainWindow.vala"
-	_tmp7_ = xcls_mainwindow_xcls_button30_new (_tmp6_);
-#line 1038 "MainWindow.vala"
-	child_1 = _tmp7_;
-#line 1039 "MainWindow.vala"
+#line 1017 "MainWindow.vala"
+	child_1 = _tmp3_;
+#line 1018 "MainWindow.vala"
 	g_object_ref ((GObject*) child_1);
-#line 1040 "MainWindow.vala"
+#line 1019 "MainWindow.vala"
+	_tmp4_ = self->el;
+#line 1019 "MainWindow.vala"
+	_tmp5_ = child_1->el;
+#line 1019 "MainWindow.vala"
+	gtk_box_append (_tmp4_, (GtkWidget*) _tmp5_);
+#line 1020 "MainWindow.vala"
+	_tmp6_ = self->priv->_this;
+#line 1020 "MainWindow.vala"
+	_tmp7_ = xcls_mainwindow_xcls_button30_new (_tmp6_);
+#line 1020 "MainWindow.vala"
+	child_2 = _tmp7_;
+#line 1021 "MainWindow.vala"
+	g_object_ref ((GObject*) child_2);
+#line 1022 "MainWindow.vala"
 	_tmp8_ = self->el;
-#line 1040 "MainWindow.vala"
-	_tmp9_ = child_1->el;
-#line 1040 "MainWindow.vala"
+#line 1022 "MainWindow.vala"
+	_tmp9_ = child_2->el;
+#line 1022 "MainWindow.vala"
 	gtk_box_append (_tmp8_, (GtkWidget*) _tmp9_);
-#line 1027 "MainWindow.vala"
+#line 1009 "MainWindow.vala"
+	_g_object_unref0 (child_2);
+#line 1009 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 1027 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 1027 "MainWindow.vala"
+#line 1009 "MainWindow.vala"
 	return self;
-#line 7547 "MainWindow.vala.c"
+#line 7511 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Box28*
 xcls_mainwindow_xcls_box28_new (Xcls_MainWindow* _owner)
 {
-#line 1027 "MainWindow.vala"
+#line 1009 "MainWindow.vala"
 	return xcls_mainwindow_xcls_box28_construct (XCLS_MAINWINDOW_TYPE_XCLS_BOX28, _owner);
-#line 7555 "MainWindow.vala.c"
+#line 7519 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box28_class_init (Xcls_MainWindowXcls_Box28Class * klass,
                                        gpointer klass_data)
 {
-#line 1018 "MainWindow.vala"
+#line 1000 "MainWindow.vala"
 	xcls_mainwindow_xcls_box28_parent_class = g_type_class_peek_parent (klass);
-#line 1018 "MainWindow.vala"
+#line 1000 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Box28_private_offset);
-#line 1018 "MainWindow.vala"
+#line 1000 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_box28_finalize;
-#line 7568 "MainWindow.vala.c"
+#line 7532 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box28_instance_init (Xcls_MainWindowXcls_Box28 * self,
                                           gpointer klass)
 {
-#line 1018 "MainWindow.vala"
+#line 1000 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_box28_get_instance_private (self);
-#line 7577 "MainWindow.vala.c"
+#line 7541 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box28_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Box28 * self;
-#line 1018 "MainWindow.vala"
+#line 1000 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BOX28, Xcls_MainWindowXcls_Box28);
-#line 1020 "MainWindow.vala"
+#line 1002 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1021 "MainWindow.vala"
+#line 1003 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1018 "MainWindow.vala"
+#line 1000 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_box28_parent_class)->finalize (obj);
-#line 7592 "MainWindow.vala.c"
+#line 7556 "MainWindow.vala.c"
 }
 
 static GType
@@ -7620,28 +7584,28 @@ xcls_mainwindow_xcls_button29_get_instance_private (Xcls_MainWindowXcls_Button29
 }
 
 static void
-__lambda251_ (Xcls_MainWindowXcls_Button29* self)
+__lambda250_ (Xcls_MainWindowXcls_Button29* self)
 {
 	Resources* _tmp0_;
 	Resources* _tmp1_;
-#line 1066 "MainWindow.vala"
+#line 1048 "MainWindow.vala"
 	_tmp0_ = resources_singleton ();
-#line 1066 "MainWindow.vala"
+#line 1048 "MainWindow.vala"
 	_tmp1_ = _tmp0_;
-#line 1066 "MainWindow.vala"
+#line 1048 "MainWindow.vala"
 	resources_fetchStart (_tmp1_);
-#line 1066 "MainWindow.vala"
+#line 1048 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_);
-#line 7636 "MainWindow.vala.c"
+#line 7600 "MainWindow.vala.c"
 }
 
 static void
-___lambda251__gtk_button_activate (GtkButton* _sender,
+___lambda250__gtk_button_activate (GtkButton* _sender,
                                    gpointer self)
 {
-#line 1065 "MainWindow.vala"
-	__lambda251_ ((Xcls_MainWindowXcls_Button29*) self);
-#line 7645 "MainWindow.vala.c"
+#line 1047 "MainWindow.vala"
+	__lambda250_ ((Xcls_MainWindowXcls_Button29*) self);
+#line 7609 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button29*
@@ -7653,78 +7617,78 @@ xcls_mainwindow_xcls_button29_construct (GType object_type,
 	GtkButton* _tmp1_;
 	GtkButton* _tmp2_;
 	GtkButton* _tmp3_;
-#line 1054 "MainWindow.vala"
+#line 1036 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Button29*) g_object_new (object_type, NULL);
-#line 1056 "MainWindow.vala"
+#line 1038 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1056 "MainWindow.vala"
+#line 1038 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1056 "MainWindow.vala"
+#line 1038 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1057 "MainWindow.vala"
+#line 1039 "MainWindow.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 1057 "MainWindow.vala"
+#line 1039 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1057 "MainWindow.vala"
+#line 1039 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1057 "MainWindow.vala"
+#line 1039 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 1062 "MainWindow.vala"
+#line 1044 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 1062 "MainWindow.vala"
+#line 1044 "MainWindow.vala"
 	gtk_button_set_label (_tmp2_, "Download updated Resources");
-#line 1065 "MainWindow.vala"
+#line 1047 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 1065 "MainWindow.vala"
-	g_signal_connect_object (_tmp3_, "activate", (GCallback) ___lambda251__gtk_button_activate, self, 0);
-#line 1054 "MainWindow.vala"
+#line 1047 "MainWindow.vala"
+	g_signal_connect_object (_tmp3_, "activate", (GCallback) ___lambda250__gtk_button_activate, self, 0);
+#line 1036 "MainWindow.vala"
 	return self;
-#line 7683 "MainWindow.vala.c"
+#line 7647 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button29*
 xcls_mainwindow_xcls_button29_new (Xcls_MainWindow* _owner)
 {
-#line 1054 "MainWindow.vala"
+#line 1036 "MainWindow.vala"
 	return xcls_mainwindow_xcls_button29_construct (XCLS_MAINWINDOW_TYPE_XCLS_BUTTON29, _owner);
-#line 7691 "MainWindow.vala.c"
+#line 7655 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button29_class_init (Xcls_MainWindowXcls_Button29Class * klass,
                                           gpointer klass_data)
 {
-#line 1045 "MainWindow.vala"
+#line 1027 "MainWindow.vala"
 	xcls_mainwindow_xcls_button29_parent_class = g_type_class_peek_parent (klass);
-#line 1045 "MainWindow.vala"
+#line 1027 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Button29_private_offset);
-#line 1045 "MainWindow.vala"
+#line 1027 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_button29_finalize;
-#line 7704 "MainWindow.vala.c"
+#line 7668 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button29_instance_init (Xcls_MainWindowXcls_Button29 * self,
                                              gpointer klass)
 {
-#line 1045 "MainWindow.vala"
+#line 1027 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_button29_get_instance_private (self);
-#line 7713 "MainWindow.vala.c"
+#line 7677 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button29_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Button29 * self;
-#line 1045 "MainWindow.vala"
+#line 1027 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BUTTON29, Xcls_MainWindowXcls_Button29);
-#line 1047 "MainWindow.vala"
+#line 1029 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1048 "MainWindow.vala"
+#line 1030 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1045 "MainWindow.vala"
+#line 1027 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_button29_parent_class)->finalize (obj);
-#line 7728 "MainWindow.vala.c"
+#line 7692 "MainWindow.vala.c"
 }
 
 static GType
@@ -7756,31 +7720,31 @@ xcls_mainwindow_xcls_button30_get_instance_private (Xcls_MainWindowXcls_Button30
 }
 
 static void
-__lambda253_ (Xcls_MainWindowXcls_Button30* self)
+__lambda252_ (Xcls_MainWindowXcls_Button30* self)
 {
 	About* _tmp0_;
 	About* _tmp1_;
 	GtkAboutDialog* _tmp2_;
-#line 1094 "MainWindow.vala"
+#line 1076 "MainWindow.vala"
 	_tmp0_ = about_singleton ();
-#line 1094 "MainWindow.vala"
+#line 1076 "MainWindow.vala"
 	_tmp1_ = _tmp0_;
-#line 1094 "MainWindow.vala"
+#line 1076 "MainWindow.vala"
 	_tmp2_ = _tmp1_->el;
-#line 1094 "MainWindow.vala"
+#line 1076 "MainWindow.vala"
 	gtk_widget_show ((GtkWidget*) _tmp2_);
-#line 1094 "MainWindow.vala"
+#line 1076 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_);
-#line 7775 "MainWindow.vala.c"
+#line 7739 "MainWindow.vala.c"
 }
 
 static void
-___lambda253__gtk_button_clicked (GtkButton* _sender,
+___lambda252__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1093 "MainWindow.vala"
-	__lambda253_ ((Xcls_MainWindowXcls_Button30*) self);
-#line 7784 "MainWindow.vala.c"
+#line 1075 "MainWindow.vala"
+	__lambda252_ ((Xcls_MainWindowXcls_Button30*) self);
+#line 7748 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button30*
@@ -7792,78 +7756,78 @@ xcls_mainwindow_xcls_button30_construct (GType object_type,
 	GtkButton* _tmp1_;
 	GtkButton* _tmp2_;
 	GtkButton* _tmp3_;
-#line 1082 "MainWindow.vala"
+#line 1064 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Button30*) g_object_new (object_type, NULL);
-#line 1084 "MainWindow.vala"
+#line 1066 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1084 "MainWindow.vala"
+#line 1066 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1084 "MainWindow.vala"
+#line 1066 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1085 "MainWindow.vala"
+#line 1067 "MainWindow.vala"
 	_tmp1_ = (GtkButton*) gtk_button_new ();
-#line 1085 "MainWindow.vala"
+#line 1067 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1085 "MainWindow.vala"
+#line 1067 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1085 "MainWindow.vala"
+#line 1067 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 1090 "MainWindow.vala"
+#line 1072 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 1090 "MainWindow.vala"
+#line 1072 "MainWindow.vala"
 	gtk_button_set_label (_tmp2_, "About the Builder");
-#line 1093 "MainWindow.vala"
+#line 1075 "MainWindow.vala"
 	_tmp3_ = self->el;
-#line 1093 "MainWindow.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda253__gtk_button_clicked, self, 0);
-#line 1082 "MainWindow.vala"
+#line 1075 "MainWindow.vala"
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda252__gtk_button_clicked, self, 0);
+#line 1064 "MainWindow.vala"
 	return self;
-#line 7822 "MainWindow.vala.c"
+#line 7786 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Button30*
 xcls_mainwindow_xcls_button30_new (Xcls_MainWindow* _owner)
 {
-#line 1082 "MainWindow.vala"
+#line 1064 "MainWindow.vala"
 	return xcls_mainwindow_xcls_button30_construct (XCLS_MAINWINDOW_TYPE_XCLS_BUTTON30, _owner);
-#line 7830 "MainWindow.vala.c"
+#line 7794 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button30_class_init (Xcls_MainWindowXcls_Button30Class * klass,
                                           gpointer klass_data)
 {
-#line 1073 "MainWindow.vala"
+#line 1055 "MainWindow.vala"
 	xcls_mainwindow_xcls_button30_parent_class = g_type_class_peek_parent (klass);
-#line 1073 "MainWindow.vala"
+#line 1055 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Button30_private_offset);
-#line 1073 "MainWindow.vala"
+#line 1055 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_button30_finalize;
-#line 7843 "MainWindow.vala.c"
+#line 7807 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button30_instance_init (Xcls_MainWindowXcls_Button30 * self,
                                              gpointer klass)
 {
-#line 1073 "MainWindow.vala"
+#line 1055 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_button30_get_instance_private (self);
-#line 7852 "MainWindow.vala.c"
+#line 7816 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_button30_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Button30 * self;
-#line 1073 "MainWindow.vala"
+#line 1055 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BUTTON30, Xcls_MainWindowXcls_Button30);
-#line 1075 "MainWindow.vala"
+#line 1057 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1076 "MainWindow.vala"
+#line 1058 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1073 "MainWindow.vala"
+#line 1055 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_button30_parent_class)->finalize (obj);
-#line 7867 "MainWindow.vala.c"
+#line 7831 "MainWindow.vala.c"
 }
 
 static GType
@@ -7902,74 +7866,74 @@ xcls_mainwindow_xcls_label31_construct (GType object_type,
 	Xcls_MainWindow* _tmp0_;
 	GtkLabel* _tmp1_;
 	GtkLabel* _tmp2_;
-#line 1113 "MainWindow.vala"
+#line 1095 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Label31*) g_object_new (object_type, NULL);
-#line 1115 "MainWindow.vala"
+#line 1097 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1115 "MainWindow.vala"
+#line 1097 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1115 "MainWindow.vala"
+#line 1097 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1116 "MainWindow.vala"
+#line 1098 "MainWindow.vala"
 	_tmp1_ = (GtkLabel*) gtk_label_new ("   ");
-#line 1116 "MainWindow.vala"
+#line 1098 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1116 "MainWindow.vala"
+#line 1098 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1116 "MainWindow.vala"
+#line 1098 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 1121 "MainWindow.vala"
+#line 1103 "MainWindow.vala"
 	_tmp2_ = self->el;
-#line 1121 "MainWindow.vala"
+#line 1103 "MainWindow.vala"
 	gtk_widget_set_hexpand ((GtkWidget*) _tmp2_, TRUE);
-#line 1113 "MainWindow.vala"
+#line 1095 "MainWindow.vala"
 	return self;
-#line 7928 "MainWindow.vala.c"
+#line 7892 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Label31*
 xcls_mainwindow_xcls_label31_new (Xcls_MainWindow* _owner)
 {
-#line 1113 "MainWindow.vala"
+#line 1095 "MainWindow.vala"
 	return xcls_mainwindow_xcls_label31_construct (XCLS_MAINWINDOW_TYPE_XCLS_LABEL31, _owner);
-#line 7936 "MainWindow.vala.c"
+#line 7900 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_label31_class_init (Xcls_MainWindowXcls_Label31Class * klass,
                                          gpointer klass_data)
 {
-#line 1104 "MainWindow.vala"
+#line 1086 "MainWindow.vala"
 	xcls_mainwindow_xcls_label31_parent_class = g_type_class_peek_parent (klass);
-#line 1104 "MainWindow.vala"
+#line 1086 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Label31_private_offset);
-#line 1104 "MainWindow.vala"
+#line 1086 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_label31_finalize;
-#line 7949 "MainWindow.vala.c"
+#line 7913 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_label31_instance_init (Xcls_MainWindowXcls_Label31 * self,
                                             gpointer klass)
 {
-#line 1104 "MainWindow.vala"
+#line 1086 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_label31_get_instance_private (self);
-#line 7958 "MainWindow.vala.c"
+#line 7922 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_label31_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Label31 * self;
-#line 1104 "MainWindow.vala"
+#line 1086 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_LABEL31, Xcls_MainWindowXcls_Label31);
-#line 1106 "MainWindow.vala"
+#line 1088 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1107 "MainWindow.vala"
+#line 1089 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1104 "MainWindow.vala"
+#line 1086 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_label31_parent_class)->finalize (obj);
-#line 7973 "MainWindow.vala.c"
+#line 7937 "MainWindow.vala.c"
 }
 
 static GType
@@ -8001,7 +7965,7 @@ xcls_mainwindow_xcls_statusbar_get_instance_private (Xcls_MainWindowXcls_statusb
 }
 
 static void
-___lambda254_ (Xcls_MainWindowXcls_statusbar* self,
+___lambda253_ (Xcls_MainWindowXcls_statusbar* self,
                guint pos,
                guint total)
 {
@@ -8017,79 +7981,79 @@ ___lambda254_ (Xcls_MainWindowXcls_statusbar* self,
 	gchar* _tmp13_;
 	gchar* _tmp14_;
 	gchar* _tmp15_;
-#line 1153 "MainWindow.vala"
+#line 1135 "MainWindow.vala"
 	if (pos < ((guint) 1)) {
-#line 8023 "MainWindow.vala.c"
+#line 7987 "MainWindow.vala.c"
 		GtkProgressBar* _tmp0_;
 		Xcls_MainWindow* _tmp1_;
 		Xcls_MainWindowXcls_mainpane* _tmp2_;
 		GtkPaned* _tmp3_;
-#line 1154 "MainWindow.vala"
+#line 1136 "MainWindow.vala"
 		_tmp0_ = self->el;
-#line 1154 "MainWindow.vala"
+#line 1136 "MainWindow.vala"
 		gtk_widget_hide ((GtkWidget*) _tmp0_);
-#line 1155 "MainWindow.vala"
+#line 1137 "MainWindow.vala"
 		_tmp1_ = self->priv->_this;
-#line 1155 "MainWindow.vala"
+#line 1137 "MainWindow.vala"
 		_tmp2_ = _tmp1_->mainpane;
-#line 1155 "MainWindow.vala"
+#line 1137 "MainWindow.vala"
 		_tmp3_ = _tmp2_->el;
-#line 1155 "MainWindow.vala"
+#line 1137 "MainWindow.vala"
 		gtk_widget_set_sensitive ((GtkWidget*) _tmp3_, TRUE);
-#line 1157 "MainWindow.vala"
+#line 1139 "MainWindow.vala"
 		return;
-#line 8042 "MainWindow.vala.c"
+#line 8006 "MainWindow.vala.c"
 	}
-#line 1159 "MainWindow.vala"
+#line 1141 "MainWindow.vala"
 	_tmp4_ = self->priv->_this;
-#line 1159 "MainWindow.vala"
+#line 1141 "MainWindow.vala"
 	_tmp5_ = _tmp4_->mainpane;
-#line 1159 "MainWindow.vala"
+#line 1141 "MainWindow.vala"
 	_tmp6_ = _tmp5_->el;
-#line 1159 "MainWindow.vala"
+#line 1141 "MainWindow.vala"
 	gtk_widget_set_sensitive ((GtkWidget*) _tmp6_, FALSE);
-#line 1160 "MainWindow.vala"
+#line 1142 "MainWindow.vala"
 	_tmp7_ = self->el;
-#line 1160 "MainWindow.vala"
+#line 1142 "MainWindow.vala"
 	gtk_widget_show ((GtkWidget*) _tmp7_);
-#line 1161 "MainWindow.vala"
+#line 1143 "MainWindow.vala"
 	_tmp8_ = self->el;
-#line 1161 "MainWindow.vala"
+#line 1143 "MainWindow.vala"
 	gtk_progress_bar_set_fraction (_tmp8_, (gdouble) ((1.0f * pos) / (1.0f * total)));
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_tmp9_ = self->el;
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_tmp10_ = g_strdup_printf ("%u", pos);
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_tmp11_ = _tmp10_;
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_tmp12_ = g_strdup_printf ("%u", total);
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_tmp13_ = _tmp12_;
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_tmp14_ = g_strdup_printf ("Fetching Resource : %s/%s", _tmp11_, _tmp13_);
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_tmp15_ = _tmp14_;
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	gtk_progress_bar_set_text (_tmp9_, _tmp15_);
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_g_free0 (_tmp15_);
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_g_free0 (_tmp13_);
-#line 1162 "MainWindow.vala"
+#line 1144 "MainWindow.vala"
 	_g_free0 (_tmp11_);
-#line 8082 "MainWindow.vala.c"
+#line 8046 "MainWindow.vala.c"
 }
 
 static void
-____lambda254__resources_update_progress (Resources* _sender,
+____lambda253__resources_update_progress (Resources* _sender,
                                           guint cur_pos,
                                           guint total,
                                           gpointer self)
 {
-#line 1152 "MainWindow.vala"
-	___lambda254_ ((Xcls_MainWindowXcls_statusbar*) self, cur_pos, total);
-#line 8093 "MainWindow.vala.c"
+#line 1134 "MainWindow.vala"
+	___lambda253_ ((Xcls_MainWindowXcls_statusbar*) self, cur_pos, total);
+#line 8057 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar*
@@ -8102,101 +8066,101 @@ xcls_mainwindow_xcls_statusbar_construct (GType object_type,
 	Xcls_MainWindowXcls_statusbar* _tmp2_;
 	GtkProgressBar* _tmp3_;
 	GtkProgressBar* _tmp4_;
-#line 1137 "MainWindow.vala"
+#line 1119 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_statusbar*) g_object_new (object_type, NULL);
-#line 1139 "MainWindow.vala"
+#line 1121 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1139 "MainWindow.vala"
+#line 1121 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1139 "MainWindow.vala"
+#line 1121 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1140 "MainWindow.vala"
+#line 1122 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 1140 "MainWindow.vala"
+#line 1122 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1140 "MainWindow.vala"
+#line 1122 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->statusbar);
-#line 1140 "MainWindow.vala"
+#line 1122 "MainWindow.vala"
 	_tmp1_->statusbar = _tmp2_;
-#line 1141 "MainWindow.vala"
+#line 1123 "MainWindow.vala"
 	_tmp3_ = (GtkProgressBar*) gtk_progress_bar_new ();
-#line 1141 "MainWindow.vala"
+#line 1123 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1141 "MainWindow.vala"
+#line 1123 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1141 "MainWindow.vala"
+#line 1123 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 1144 "MainWindow.vala"
+#line 1126 "MainWindow.vala"
 	self->handler_id = (gulong) -1;
-#line 1147 "MainWindow.vala"
+#line 1129 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 1147 "MainWindow.vala"
+#line 1129 "MainWindow.vala"
 	gtk_progress_bar_set_show_text (_tmp4_, TRUE);
-#line 8136 "MainWindow.vala.c"
+#line 8100 "MainWindow.vala.c"
 	{
 		Resources* _tmp5_;
 		Resources* _tmp6_;
 		gulong _tmp7_;
-#line 1152 "MainWindow.vala"
+#line 1134 "MainWindow.vala"
 		_tmp5_ = resources_singleton ();
-#line 1152 "MainWindow.vala"
+#line 1134 "MainWindow.vala"
 		_tmp6_ = _tmp5_;
-#line 1152 "MainWindow.vala"
-		_tmp7_ = g_signal_connect_object (_tmp6_, "update-progress", (GCallback) ____lambda254__resources_update_progress, self, 0);
-#line 1152 "MainWindow.vala"
+#line 1134 "MainWindow.vala"
+		_tmp7_ = g_signal_connect_object (_tmp6_, "update-progress", (GCallback) ____lambda253__resources_update_progress, self, 0);
+#line 1134 "MainWindow.vala"
 		self->handler_id = _tmp7_;
-#line 1152 "MainWindow.vala"
+#line 1134 "MainWindow.vala"
 		_g_object_unref0 (_tmp6_);
-#line 8151 "MainWindow.vala.c"
+#line 8115 "MainWindow.vala.c"
 	}
-#line 1137 "MainWindow.vala"
+#line 1119 "MainWindow.vala"
 	return self;
-#line 8155 "MainWindow.vala.c"
+#line 8119 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar*
 xcls_mainwindow_xcls_statusbar_new (Xcls_MainWindow* _owner)
 {
-#line 1137 "MainWindow.vala"
+#line 1119 "MainWindow.vala"
 	return xcls_mainwindow_xcls_statusbar_construct (XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR, _owner);
-#line 8163 "MainWindow.vala.c"
+#line 8127 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_class_init (Xcls_MainWindowXcls_statusbarClass * klass,
                                            gpointer klass_data)
 {
-#line 1127 "MainWindow.vala"
+#line 1109 "MainWindow.vala"
 	xcls_mainwindow_xcls_statusbar_parent_class = g_type_class_peek_parent (klass);
-#line 1127 "MainWindow.vala"
+#line 1109 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_statusbar_private_offset);
-#line 1127 "MainWindow.vala"
+#line 1109 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_statusbar_finalize;
-#line 8176 "MainWindow.vala.c"
+#line 8140 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_instance_init (Xcls_MainWindowXcls_statusbar * self,
                                               gpointer klass)
 {
-#line 1127 "MainWindow.vala"
+#line 1109 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_statusbar_get_instance_private (self);
-#line 8185 "MainWindow.vala.c"
+#line 8149 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_statusbar * self;
-#line 1127 "MainWindow.vala"
+#line 1109 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR, Xcls_MainWindowXcls_statusbar);
-#line 1129 "MainWindow.vala"
+#line 1111 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1130 "MainWindow.vala"
+#line 1112 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1127 "MainWindow.vala"
+#line 1109 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_statusbar_parent_class)->finalize (obj);
-#line 8200 "MainWindow.vala.c"
+#line 8164 "MainWindow.vala.c"
 }
 
 static GType
@@ -8234,175 +8198,165 @@ xcls_mainwindow_xcls_box33_construct (GType object_type,
 	Xcls_MainWindowXcls_Box33 * self = NULL;
 	Xcls_MainWindow* _tmp0_;
 	GtkBox* _tmp1_;
-	Xcls_MainWindowXcls_statusbar_compilestatus_label* child_0 = NULL;
+	Xcls_MainWindowXcls_statusbar_compilestatus_label* child_1 = NULL;
 	Xcls_MainWindow* _tmp2_;
 	Xcls_MainWindowXcls_statusbar_compilestatus_label* _tmp3_;
 	GtkBox* _tmp4_;
 	GtkLabel* _tmp5_;
-	Xcls_MainWindowXcls_statusbar_errors* child_1 = NULL;
+	Xcls_MainWindowXcls_statusbar_errors* child_2 = NULL;
 	Xcls_MainWindow* _tmp6_;
 	Xcls_MainWindowXcls_statusbar_errors* _tmp7_;
 	GtkBox* _tmp8_;
 	GtkButton* _tmp9_;
-	Xcls_MainWindowXcls_statusbar_warnings* child_2 = NULL;
+	Xcls_MainWindowXcls_statusbar_warnings* child_3 = NULL;
 	Xcls_MainWindow* _tmp10_;
 	Xcls_MainWindowXcls_statusbar_warnings* _tmp11_;
 	GtkBox* _tmp12_;
 	GtkButton* _tmp13_;
-	Xcls_MainWindowXcls_statusbar_depricated* child_3 = NULL;
+	Xcls_MainWindowXcls_statusbar_depricated* child_4 = NULL;
 	Xcls_MainWindow* _tmp14_;
 	Xcls_MainWindowXcls_statusbar_depricated* _tmp15_;
 	GtkBox* _tmp16_;
 	GtkButton* _tmp17_;
-	Xcls_MainWindowXcls_statusbar_run* child_4 = NULL;
+	Xcls_MainWindowXcls_statusbar_run* child_5 = NULL;
 	Xcls_MainWindow* _tmp18_;
 	Xcls_MainWindowXcls_statusbar_run* _tmp19_;
 	GtkBox* _tmp20_;
 	GtkButton* _tmp21_;
-#line 1180 "MainWindow.vala"
+#line 1162 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_Box33*) g_object_new (object_type, NULL);
-#line 1182 "MainWindow.vala"
+#line 1164 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1182 "MainWindow.vala"
+#line 1164 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1182 "MainWindow.vala"
+#line 1164 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1183 "MainWindow.vala"
+#line 1165 "MainWindow.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-#line 1183 "MainWindow.vala"
+#line 1165 "MainWindow.vala"
 	g_object_ref_sink (_tmp1_);
-#line 1183 "MainWindow.vala"
+#line 1165 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1183 "MainWindow.vala"
+#line 1165 "MainWindow.vala"
 	self->el = _tmp1_;
-#line 1188 "MainWindow.vala"
+#line 1170 "MainWindow.vala"
 	_tmp2_ = self->priv->_this;
-#line 1188 "MainWindow.vala"
+#line 1170 "MainWindow.vala"
 	_tmp3_ = xcls_mainwindow_xcls_statusbar_compilestatus_label_new (_tmp2_);
-#line 1188 "MainWindow.vala"
-	child_0 = _tmp3_;
-#line 1189 "MainWindow.vala"
-	g_object_ref ((GObject*) child_0);
-#line 1190 "MainWindow.vala"
+#line 1170 "MainWindow.vala"
+	child_1 = _tmp3_;
+#line 1171 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 1190 "MainWindow.vala"
-	_tmp5_ = child_0->el;
-#line 1190 "MainWindow.vala"
+#line 1171 "MainWindow.vala"
+	_tmp5_ = child_1->el;
+#line 1171 "MainWindow.vala"
 	gtk_box_append (_tmp4_, (GtkWidget*) _tmp5_);
-#line 1191 "MainWindow.vala"
+#line 1172 "MainWindow.vala"
 	_tmp6_ = self->priv->_this;
-#line 1191 "MainWindow.vala"
+#line 1172 "MainWindow.vala"
 	_tmp7_ = xcls_mainwindow_xcls_statusbar_errors_new (_tmp6_);
-#line 1191 "MainWindow.vala"
-	child_1 = _tmp7_;
-#line 1192 "MainWindow.vala"
-	g_object_ref ((GObject*) child_1);
-#line 1193 "MainWindow.vala"
+#line 1172 "MainWindow.vala"
+	child_2 = _tmp7_;
+#line 1173 "MainWindow.vala"
 	_tmp8_ = self->el;
-#line 1193 "MainWindow.vala"
-	_tmp9_ = child_1->el;
-#line 1193 "MainWindow.vala"
+#line 1173 "MainWindow.vala"
+	_tmp9_ = child_2->el;
+#line 1173 "MainWindow.vala"
 	gtk_box_append (_tmp8_, (GtkWidget*) _tmp9_);
-#line 1194 "MainWindow.vala"
+#line 1174 "MainWindow.vala"
 	_tmp10_ = self->priv->_this;
-#line 1194 "MainWindow.vala"
+#line 1174 "MainWindow.vala"
 	_tmp11_ = xcls_mainwindow_xcls_statusbar_warnings_new (_tmp10_);
-#line 1194 "MainWindow.vala"
-	child_2 = _tmp11_;
-#line 1195 "MainWindow.vala"
-	g_object_ref ((GObject*) child_2);
-#line 1196 "MainWindow.vala"
+#line 1174 "MainWindow.vala"
+	child_3 = _tmp11_;
+#line 1175 "MainWindow.vala"
 	_tmp12_ = self->el;
-#line 1196 "MainWindow.vala"
-	_tmp13_ = child_2->el;
-#line 1196 "MainWindow.vala"
+#line 1175 "MainWindow.vala"
+	_tmp13_ = child_3->el;
+#line 1175 "MainWindow.vala"
 	gtk_box_append (_tmp12_, (GtkWidget*) _tmp13_);
-#line 1197 "MainWindow.vala"
+#line 1176 "MainWindow.vala"
 	_tmp14_ = self->priv->_this;
-#line 1197 "MainWindow.vala"
+#line 1176 "MainWindow.vala"
 	_tmp15_ = xcls_mainwindow_xcls_statusbar_depricated_new (_tmp14_);
-#line 1197 "MainWindow.vala"
-	child_3 = _tmp15_;
-#line 1198 "MainWindow.vala"
-	g_object_ref ((GObject*) child_3);
-#line 1199 "MainWindow.vala"
+#line 1176 "MainWindow.vala"
+	child_4 = _tmp15_;
+#line 1177 "MainWindow.vala"
 	_tmp16_ = self->el;
-#line 1199 "MainWindow.vala"
-	_tmp17_ = child_3->el;
-#line 1199 "MainWindow.vala"
+#line 1177 "MainWindow.vala"
+	_tmp17_ = child_4->el;
+#line 1177 "MainWindow.vala"
 	gtk_box_append (_tmp16_, (GtkWidget*) _tmp17_);
-#line 1200 "MainWindow.vala"
+#line 1178 "MainWindow.vala"
 	_tmp18_ = self->priv->_this;
-#line 1200 "MainWindow.vala"
+#line 1178 "MainWindow.vala"
 	_tmp19_ = xcls_mainwindow_xcls_statusbar_run_new (_tmp18_);
-#line 1200 "MainWindow.vala"
-	child_4 = _tmp19_;
-#line 1201 "MainWindow.vala"
-	g_object_ref ((GObject*) child_4);
-#line 1202 "MainWindow.vala"
+#line 1178 "MainWindow.vala"
+	child_5 = _tmp19_;
+#line 1179 "MainWindow.vala"
 	_tmp20_ = self->el;
-#line 1202 "MainWindow.vala"
-	_tmp21_ = child_4->el;
-#line 1202 "MainWindow.vala"
+#line 1179 "MainWindow.vala"
+	_tmp21_ = child_5->el;
+#line 1179 "MainWindow.vala"
 	gtk_box_append (_tmp20_, (GtkWidget*) _tmp21_);
-#line 1180 "MainWindow.vala"
+#line 1162 "MainWindow.vala"
+	_g_object_unref0 (child_5);
+#line 1162 "MainWindow.vala"
 	_g_object_unref0 (child_4);
-#line 1180 "MainWindow.vala"
+#line 1162 "MainWindow.vala"
 	_g_object_unref0 (child_3);
-#line 1180 "MainWindow.vala"
+#line 1162 "MainWindow.vala"
 	_g_object_unref0 (child_2);
-#line 1180 "MainWindow.vala"
+#line 1162 "MainWindow.vala"
 	_g_object_unref0 (child_1);
-#line 1180 "MainWindow.vala"
-	_g_object_unref0 (child_0);
-#line 1180 "MainWindow.vala"
+#line 1162 "MainWindow.vala"
 	return self;
-#line 8361 "MainWindow.vala.c"
+#line 8315 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_Box33*
 xcls_mainwindow_xcls_box33_new (Xcls_MainWindow* _owner)
 {
-#line 1180 "MainWindow.vala"
+#line 1162 "MainWindow.vala"
 	return xcls_mainwindow_xcls_box33_construct (XCLS_MAINWINDOW_TYPE_XCLS_BOX33, _owner);
-#line 8369 "MainWindow.vala.c"
+#line 8323 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box33_class_init (Xcls_MainWindowXcls_Box33Class * klass,
                                        gpointer klass_data)
 {
-#line 1171 "MainWindow.vala"
+#line 1153 "MainWindow.vala"
 	xcls_mainwindow_xcls_box33_parent_class = g_type_class_peek_parent (klass);
-#line 1171 "MainWindow.vala"
+#line 1153 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_Box33_private_offset);
-#line 1171 "MainWindow.vala"
+#line 1153 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_box33_finalize;
-#line 8382 "MainWindow.vala.c"
+#line 8336 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box33_instance_init (Xcls_MainWindowXcls_Box33 * self,
                                           gpointer klass)
 {
-#line 1171 "MainWindow.vala"
+#line 1153 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_box33_get_instance_private (self);
-#line 8391 "MainWindow.vala.c"
+#line 8345 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_box33_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_Box33 * self;
-#line 1171 "MainWindow.vala"
+#line 1153 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_BOX33, Xcls_MainWindowXcls_Box33);
-#line 1173 "MainWindow.vala"
+#line 1155 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1174 "MainWindow.vala"
+#line 1156 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1171 "MainWindow.vala"
+#line 1153 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_box33_parent_class)->finalize (obj);
-#line 8406 "MainWindow.vala.c"
+#line 8360 "MainWindow.vala.c"
 }
 
 static GType
@@ -8444,86 +8398,86 @@ xcls_mainwindow_xcls_statusbar_compilestatus_label_construct (GType object_type,
 	GtkLabel* _tmp3_;
 	GtkLabel* _tmp4_;
 	GtkLabel* _tmp5_;
-#line 1216 "MainWindow.vala"
+#line 1193 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_statusbar_compilestatus_label*) g_object_new (object_type, NULL);
-#line 1218 "MainWindow.vala"
+#line 1195 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1218 "MainWindow.vala"
+#line 1195 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1218 "MainWindow.vala"
+#line 1195 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1219 "MainWindow.vala"
+#line 1196 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 1219 "MainWindow.vala"
+#line 1196 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1219 "MainWindow.vala"
+#line 1196 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->statusbar_compilestatus_label);
-#line 1219 "MainWindow.vala"
+#line 1196 "MainWindow.vala"
 	_tmp1_->statusbar_compilestatus_label = _tmp2_;
-#line 1220 "MainWindow.vala"
+#line 1197 "MainWindow.vala"
 	_tmp3_ = (GtkLabel*) gtk_label_new ("Compile Status:");
-#line 1220 "MainWindow.vala"
+#line 1197 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1220 "MainWindow.vala"
+#line 1197 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1220 "MainWindow.vala"
+#line 1197 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 1225 "MainWindow.vala"
+#line 1202 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 1225 "MainWindow.vala"
+#line 1202 "MainWindow.vala"
 	gtk_widget_set_margin_end ((GtkWidget*) _tmp4_, 4);
-#line 1226 "MainWindow.vala"
+#line 1203 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 1226 "MainWindow.vala"
+#line 1203 "MainWindow.vala"
 	gtk_widget_set_margin_start ((GtkWidget*) _tmp5_, 4);
-#line 1216 "MainWindow.vala"
+#line 1193 "MainWindow.vala"
 	return self;
-#line 8482 "MainWindow.vala.c"
+#line 8436 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_compilestatus_label*
 xcls_mainwindow_xcls_statusbar_compilestatus_label_new (Xcls_MainWindow* _owner)
 {
-#line 1216 "MainWindow.vala"
+#line 1193 "MainWindow.vala"
 	return xcls_mainwindow_xcls_statusbar_compilestatus_label_construct (XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_COMPILESTATUS_LABEL, _owner);
-#line 8490 "MainWindow.vala.c"
+#line 8444 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_compilestatus_label_class_init (Xcls_MainWindowXcls_statusbar_compilestatus_labelClass * klass,
                                                                gpointer klass_data)
 {
-#line 1207 "MainWindow.vala"
+#line 1184 "MainWindow.vala"
 	xcls_mainwindow_xcls_statusbar_compilestatus_label_parent_class = g_type_class_peek_parent (klass);
-#line 1207 "MainWindow.vala"
+#line 1184 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_statusbar_compilestatus_label_private_offset);
-#line 1207 "MainWindow.vala"
+#line 1184 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_statusbar_compilestatus_label_finalize;
-#line 8503 "MainWindow.vala.c"
+#line 8457 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_compilestatus_label_instance_init (Xcls_MainWindowXcls_statusbar_compilestatus_label * self,
                                                                   gpointer klass)
 {
-#line 1207 "MainWindow.vala"
+#line 1184 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_statusbar_compilestatus_label_get_instance_private (self);
-#line 8512 "MainWindow.vala.c"
+#line 8466 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_compilestatus_label_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_statusbar_compilestatus_label * self;
-#line 1207 "MainWindow.vala"
+#line 1184 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_COMPILESTATUS_LABEL, Xcls_MainWindowXcls_statusbar_compilestatus_label);
-#line 1209 "MainWindow.vala"
+#line 1186 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1210 "MainWindow.vala"
+#line 1187 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1207 "MainWindow.vala"
+#line 1184 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_statusbar_compilestatus_label_parent_class)->finalize (obj);
-#line 8527 "MainWindow.vala.c"
+#line 8481 "MainWindow.vala.c"
 }
 
 static GType
@@ -8555,59 +8509,80 @@ xcls_mainwindow_xcls_statusbar_errors_get_instance_private (Xcls_MainWindowXcls_
 }
 
 static void
-__lambda158_ (Xcls_MainWindowXcls_statusbar_errors* self)
+__lambda157_ (Xcls_MainWindowXcls_statusbar_errors* self)
 {
-	Xcls_ValaCompileErrors* _tmp0_;
+	Xcls_MainWindow* _tmp0_;
+	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp1_;
+	GtkSpinner* _tmp2_;
+	gboolean _tmp3_;
+	gboolean _tmp4_;
 	Xcls_ValaCompileErrors* _tmp5_;
-	JsonObject* _tmp6_;
-	GtkButton* _tmp7_;
-#line 1258 "MainWindow.vala"
-	_tmp0_ = self->popup;
-#line 1258 "MainWindow.vala"
-	if (_tmp0_ == NULL) {
-#line 8569 "MainWindow.vala.c"
-		Xcls_ValaCompileErrors* _tmp1_;
-		Xcls_ValaCompileErrors* _tmp2_;
-		Xcls_MainWindow* _tmp3_;
-		Xcls_MainWindow* _tmp4_;
-#line 1259 "MainWindow.vala"
-		_tmp1_ = xcls_valacompileerrors_new ();
-#line 1259 "MainWindow.vala"
-		_g_object_unref0 (self->popup);
-#line 1259 "MainWindow.vala"
-		self->popup = _tmp1_;
-#line 1260 "MainWindow.vala"
-		_tmp2_ = self->popup;
-#line 1260 "MainWindow.vala"
-		_tmp3_ = self->priv->_this;
-#line 1260 "MainWindow.vala"
-		_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 1260 "MainWindow.vala"
-		_g_object_unref0 (_tmp2_->window);
-#line 1260 "MainWindow.vala"
-		_tmp2_->window = _tmp4_;
-#line 8590 "MainWindow.vala.c"
+	Xcls_ValaCompileErrors* _tmp10_;
+	JsonObject* _tmp11_;
+	GtkButton* _tmp12_;
+#line 1236 "MainWindow.vala"
+	_tmp0_ = self->priv->_this;
+#line 1236 "MainWindow.vala"
+	_tmp1_ = _tmp0_->statusbar_compile_spinner;
+#line 1236 "MainWindow.vala"
+	_tmp2_ = _tmp1_->el;
+#line 1236 "MainWindow.vala"
+	_tmp3_ = gtk_spinner_get_spinning (_tmp2_);
+#line 1236 "MainWindow.vala"
+	_tmp4_ = _tmp3_;
+#line 1236 "MainWindow.vala"
+	if (_tmp4_) {
+#line 1237 "MainWindow.vala"
+		return;
+#line 8538 "MainWindow.vala.c"
 	}
-#line 1263 "MainWindow.vala"
+#line 1240 "MainWindow.vala"
 	_tmp5_ = self->popup;
-#line 1263 "MainWindow.vala"
-	_tmp6_ = self->notices;
-#line 1263 "MainWindow.vala"
-	_tmp7_ = self->el;
-#line 1263 "MainWindow.vala"
-	xcls_valacompileerrors_show (_tmp5_, _tmp6_, (GtkWidget*) _tmp7_);
-#line 1264 "MainWindow.vala"
+#line 1240 "MainWindow.vala"
+	if (_tmp5_ == NULL) {
+#line 8544 "MainWindow.vala.c"
+		Xcls_ValaCompileErrors* _tmp6_;
+		Xcls_ValaCompileErrors* _tmp7_;
+		Xcls_MainWindow* _tmp8_;
+		Xcls_MainWindow* _tmp9_;
+#line 1241 "MainWindow.vala"
+		_tmp6_ = xcls_valacompileerrors_new ();
+#line 1241 "MainWindow.vala"
+		_g_object_unref0 (self->popup);
+#line 1241 "MainWindow.vala"
+		self->popup = _tmp6_;
+#line 1242 "MainWindow.vala"
+		_tmp7_ = self->popup;
+#line 1242 "MainWindow.vala"
+		_tmp8_ = self->priv->_this;
+#line 1242 "MainWindow.vala"
+		_tmp9_ = _g_object_ref0 (_tmp8_);
+#line 1242 "MainWindow.vala"
+		_g_object_unref0 (_tmp7_->window);
+#line 1242 "MainWindow.vala"
+		_tmp7_->window = _tmp9_;
+#line 8565 "MainWindow.vala.c"
+	}
+#line 1245 "MainWindow.vala"
+	_tmp10_ = self->popup;
+#line 1245 "MainWindow.vala"
+	_tmp11_ = self->notices;
+#line 1245 "MainWindow.vala"
+	_tmp12_ = self->el;
+#line 1245 "MainWindow.vala"
+	xcls_valacompileerrors_show (_tmp10_, _tmp11_, (GtkWidget*) _tmp12_);
+#line 1246 "MainWindow.vala"
 	return;
-#line 8602 "MainWindow.vala.c"
+#line 8577 "MainWindow.vala.c"
 }
 
 static void
-___lambda158__gtk_button_clicked (GtkButton* _sender,
+___lambda157__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1257 "MainWindow.vala"
-	__lambda158_ ((Xcls_MainWindowXcls_statusbar_errors*) self);
-#line 8611 "MainWindow.vala.c"
+#line 1234 "MainWindow.vala"
+	__lambda157_ ((Xcls_MainWindowXcls_statusbar_errors*) self);
+#line 8586 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_errors*
@@ -8623,67 +8598,67 @@ xcls_mainwindow_xcls_statusbar_errors_construct (GType object_type,
 	GtkButton* _tmp5_;
 	GtkButton* _tmp6_;
 	GtkButton* _tmp7_;
-#line 1243 "MainWindow.vala"
+#line 1220 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_statusbar_errors*) g_object_new (object_type, NULL);
-#line 1245 "MainWindow.vala"
+#line 1222 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1245 "MainWindow.vala"
+#line 1222 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1245 "MainWindow.vala"
+#line 1222 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1246 "MainWindow.vala"
+#line 1223 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 1246 "MainWindow.vala"
+#line 1223 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1246 "MainWindow.vala"
+#line 1223 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->statusbar_errors);
-#line 1246 "MainWindow.vala"
+#line 1223 "MainWindow.vala"
 	_tmp1_->statusbar_errors = _tmp2_;
-#line 1247 "MainWindow.vala"
+#line 1224 "MainWindow.vala"
 	_tmp3_ = (GtkButton*) gtk_button_new ();
-#line 1247 "MainWindow.vala"
+#line 1224 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1247 "MainWindow.vala"
+#line 1224 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1247 "MainWindow.vala"
+#line 1224 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 1250 "MainWindow.vala"
+#line 1227 "MainWindow.vala"
 	_tmp4_ = json_object_new ();
-#line 1250 "MainWindow.vala"
+#line 1227 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1250 "MainWindow.vala"
+#line 1227 "MainWindow.vala"
 	self->notices = _tmp4_;
-#line 1253 "MainWindow.vala"
+#line 1230 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 1253 "MainWindow.vala"
+#line 1230 "MainWindow.vala"
 	gtk_button_set_icon_name (_tmp5_, "dialog-error");
-#line 1254 "MainWindow.vala"
+#line 1231 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 1254 "MainWindow.vala"
+#line 1231 "MainWindow.vala"
 	gtk_button_set_label (_tmp6_, "0 Errors");
-#line 1257 "MainWindow.vala"
+#line 1234 "MainWindow.vala"
 	_tmp7_ = self->el;
-#line 1257 "MainWindow.vala"
-	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda158__gtk_button_clicked, self, 0);
-#line 1243 "MainWindow.vala"
+#line 1234 "MainWindow.vala"
+	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda157__gtk_button_clicked, self, 0);
+#line 1220 "MainWindow.vala"
 	return self;
-#line 8671 "MainWindow.vala.c"
+#line 8646 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_errors*
 xcls_mainwindow_xcls_statusbar_errors_new (Xcls_MainWindow* _owner)
 {
-#line 1243 "MainWindow.vala"
+#line 1220 "MainWindow.vala"
 	return xcls_mainwindow_xcls_statusbar_errors_construct (XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_ERRORS, _owner);
-#line 8679 "MainWindow.vala.c"
+#line 8654 "MainWindow.vala.c"
 }
 
 static gpointer
 _json_object_ref0 (gpointer self)
 {
-#line 1281 "MainWindow.vala"
+#line 1263 "MainWindow.vala"
 	return self ? json_object_ref (self) : NULL;
-#line 8687 "MainWindow.vala.c"
+#line 8662 "MainWindow.vala.c"
 }
 
 void
@@ -8700,124 +8675,124 @@ xcls_mainwindow_xcls_statusbar_errors_setNotices (Xcls_MainWindowXcls_statusbar_
 	JsonObject* _tmp15_;
 	gboolean _tmp16_ = FALSE;
 	Xcls_ValaCompileErrors* _tmp17_;
-#line 1271 "MainWindow.vala"
+#line 1253 "MainWindow.vala"
 	if (qty < 1) {
-#line 8706 "MainWindow.vala.c"
+#line 8681 "MainWindow.vala.c"
 		GtkButton* _tmp0_;
 		gboolean _tmp1_ = FALSE;
 		Xcls_ValaCompileErrors* _tmp2_;
-#line 1272 "MainWindow.vala"
+#line 1254 "MainWindow.vala"
 		_tmp0_ = self->el;
-#line 1272 "MainWindow.vala"
+#line 1254 "MainWindow.vala"
 		gtk_widget_hide ((GtkWidget*) _tmp0_);
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 		_tmp2_ = self->popup;
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 		if (_tmp2_ != NULL) {
-#line 8718 "MainWindow.vala.c"
+#line 8693 "MainWindow.vala.c"
 			Xcls_ValaCompileErrors* _tmp3_;
 			GtkPopover* _tmp4_;
 			gboolean _tmp5_;
 			gboolean _tmp6_;
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 			_tmp3_ = self->popup;
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 			_tmp4_ = _tmp3_->el;
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 			_tmp5_ = gtk_widget_get_visible ((GtkWidget*) _tmp4_);
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 			_tmp6_ = _tmp5_;
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 			_tmp1_ = _tmp6_;
-#line 8733 "MainWindow.vala.c"
+#line 8708 "MainWindow.vala.c"
 		} else {
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 			_tmp1_ = FALSE;
-#line 8737 "MainWindow.vala.c"
+#line 8712 "MainWindow.vala.c"
 		}
-#line 1273 "MainWindow.vala"
+#line 1255 "MainWindow.vala"
 		if (_tmp1_) {
-#line 8741 "MainWindow.vala.c"
+#line 8716 "MainWindow.vala.c"
 			Xcls_ValaCompileErrors* _tmp7_;
 			GtkPopover* _tmp8_;
-#line 1274 "MainWindow.vala"
+#line 1256 "MainWindow.vala"
 			_tmp7_ = self->popup;
-#line 1274 "MainWindow.vala"
+#line 1256 "MainWindow.vala"
 			_tmp8_ = _tmp7_->el;
-#line 1274 "MainWindow.vala"
+#line 1256 "MainWindow.vala"
 			gtk_widget_hide ((GtkWidget*) _tmp8_);
-#line 8750 "MainWindow.vala.c"
+#line 8725 "MainWindow.vala.c"
 		}
-#line 1276 "MainWindow.vala"
+#line 1258 "MainWindow.vala"
 		return;
-#line 8754 "MainWindow.vala.c"
+#line 8729 "MainWindow.vala.c"
 	}
-#line 1279 "MainWindow.vala"
+#line 1261 "MainWindow.vala"
 	_tmp9_ = self->el;
-#line 1279 "MainWindow.vala"
+#line 1261 "MainWindow.vala"
 	gtk_widget_show ((GtkWidget*) _tmp9_);
-#line 1280 "MainWindow.vala"
+#line 1262 "MainWindow.vala"
 	_tmp10_ = self->el;
-#line 1280 "MainWindow.vala"
+#line 1262 "MainWindow.vala"
 	_tmp11_ = g_strdup_printf ("%i", qty);
-#line 1280 "MainWindow.vala"
+#line 1262 "MainWindow.vala"
 	_tmp12_ = _tmp11_;
-#line 1280 "MainWindow.vala"
+#line 1262 "MainWindow.vala"
 	_tmp13_ = g_strconcat (_tmp12_, " Errors", NULL);
-#line 1280 "MainWindow.vala"
+#line 1262 "MainWindow.vala"
 	_tmp14_ = _tmp13_;
-#line 1280 "MainWindow.vala"
+#line 1262 "MainWindow.vala"
 	gtk_button_set_label (_tmp10_, _tmp14_);
-#line 1280 "MainWindow.vala"
+#line 1262 "MainWindow.vala"
 	_g_free0 (_tmp14_);
-#line 1280 "MainWindow.vala"
+#line 1262 "MainWindow.vala"
 	_g_free0 (_tmp12_);
-#line 1281 "MainWindow.vala"
+#line 1263 "MainWindow.vala"
 	_tmp15_ = _json_object_ref0 (nots);
-#line 1281 "MainWindow.vala"
+#line 1263 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1281 "MainWindow.vala"
+#line 1263 "MainWindow.vala"
 	self->notices = _tmp15_;
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 	_tmp17_ = self->popup;
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 	if (_tmp17_ != NULL) {
-#line 8786 "MainWindow.vala.c"
+#line 8761 "MainWindow.vala.c"
 		Xcls_ValaCompileErrors* _tmp18_;
 		GtkPopover* _tmp19_;
 		gboolean _tmp20_;
 		gboolean _tmp21_;
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 		_tmp18_ = self->popup;
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 		_tmp19_ = _tmp18_->el;
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 		_tmp20_ = gtk_widget_get_visible ((GtkWidget*) _tmp19_);
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 		_tmp21_ = _tmp20_;
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 		_tmp16_ = _tmp21_;
-#line 8801 "MainWindow.vala.c"
+#line 8776 "MainWindow.vala.c"
 	} else {
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 		_tmp16_ = FALSE;
-#line 8805 "MainWindow.vala.c"
+#line 8780 "MainWindow.vala.c"
 	}
-#line 1282 "MainWindow.vala"
+#line 1264 "MainWindow.vala"
 	if (_tmp16_) {
-#line 8809 "MainWindow.vala.c"
+#line 8784 "MainWindow.vala.c"
 		Xcls_ValaCompileErrors* _tmp22_;
 		JsonObject* _tmp23_;
 		GtkButton* _tmp24_;
-#line 1283 "MainWindow.vala"
+#line 1265 "MainWindow.vala"
 		_tmp22_ = self->popup;
-#line 1283 "MainWindow.vala"
+#line 1265 "MainWindow.vala"
 		_tmp23_ = self->notices;
-#line 1283 "MainWindow.vala"
+#line 1265 "MainWindow.vala"
 		_tmp24_ = self->el;
-#line 1283 "MainWindow.vala"
+#line 1265 "MainWindow.vala"
 		xcls_valacompileerrors_show (_tmp22_, _tmp23_, (GtkWidget*) _tmp24_);
-#line 8821 "MainWindow.vala.c"
+#line 8796 "MainWindow.vala.c"
 	}
 }
 
@@ -8825,41 +8800,41 @@ static void
 xcls_mainwindow_xcls_statusbar_errors_class_init (Xcls_MainWindowXcls_statusbar_errorsClass * klass,
                                                   gpointer klass_data)
 {
-#line 1232 "MainWindow.vala"
+#line 1209 "MainWindow.vala"
 	xcls_mainwindow_xcls_statusbar_errors_parent_class = g_type_class_peek_parent (klass);
-#line 1232 "MainWindow.vala"
+#line 1209 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_statusbar_errors_private_offset);
-#line 1232 "MainWindow.vala"
+#line 1209 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_statusbar_errors_finalize;
-#line 8835 "MainWindow.vala.c"
+#line 8810 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_errors_instance_init (Xcls_MainWindowXcls_statusbar_errors * self,
                                                      gpointer klass)
 {
-#line 1232 "MainWindow.vala"
+#line 1209 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_statusbar_errors_get_instance_private (self);
-#line 8844 "MainWindow.vala.c"
+#line 8819 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_errors_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_statusbar_errors * self;
-#line 1232 "MainWindow.vala"
+#line 1209 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_ERRORS, Xcls_MainWindowXcls_statusbar_errors);
-#line 1234 "MainWindow.vala"
+#line 1211 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1235 "MainWindow.vala"
+#line 1212 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1239 "MainWindow.vala"
+#line 1216 "MainWindow.vala"
 	_g_object_unref0 (self->popup);
-#line 1240 "MainWindow.vala"
+#line 1217 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1232 "MainWindow.vala"
+#line 1209 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_statusbar_errors_parent_class)->finalize (obj);
-#line 8863 "MainWindow.vala.c"
+#line 8838 "MainWindow.vala.c"
 }
 
 static GType
@@ -8891,59 +8866,80 @@ xcls_mainwindow_xcls_statusbar_warnings_get_instance_private (Xcls_MainWindowXcl
 }
 
 static void
-__lambda159_ (Xcls_MainWindowXcls_statusbar_warnings* self)
+__lambda158_ (Xcls_MainWindowXcls_statusbar_warnings* self)
 {
-	Xcls_ValaCompileErrors* _tmp0_;
+	Xcls_MainWindow* _tmp0_;
+	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp1_;
+	GtkSpinner* _tmp2_;
+	gboolean _tmp3_;
+	gboolean _tmp4_;
 	Xcls_ValaCompileErrors* _tmp5_;
-	JsonObject* _tmp6_;
-	GtkButton* _tmp7_;
-#line 1314 "MainWindow.vala"
-	_tmp0_ = self->popup;
-#line 1314 "MainWindow.vala"
-	if (_tmp0_ == NULL) {
-#line 8905 "MainWindow.vala.c"
-		Xcls_ValaCompileErrors* _tmp1_;
-		Xcls_ValaCompileErrors* _tmp2_;
-		Xcls_MainWindow* _tmp3_;
-		Xcls_MainWindow* _tmp4_;
-#line 1315 "MainWindow.vala"
-		_tmp1_ = xcls_valacompileerrors_new ();
-#line 1315 "MainWindow.vala"
-		_g_object_unref0 (self->popup);
-#line 1315 "MainWindow.vala"
-		self->popup = _tmp1_;
-#line 1316 "MainWindow.vala"
-		_tmp2_ = self->popup;
-#line 1316 "MainWindow.vala"
-		_tmp3_ = self->priv->_this;
-#line 1316 "MainWindow.vala"
-		_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 1316 "MainWindow.vala"
-		_g_object_unref0 (_tmp2_->window);
-#line 1316 "MainWindow.vala"
-		_tmp2_->window = _tmp4_;
-#line 8926 "MainWindow.vala.c"
+	Xcls_ValaCompileErrors* _tmp10_;
+	JsonObject* _tmp11_;
+	GtkButton* _tmp12_;
+#line 1296 "MainWindow.vala"
+	_tmp0_ = self->priv->_this;
+#line 1296 "MainWindow.vala"
+	_tmp1_ = _tmp0_->statusbar_compile_spinner;
+#line 1296 "MainWindow.vala"
+	_tmp2_ = _tmp1_->el;
+#line 1296 "MainWindow.vala"
+	_tmp3_ = gtk_spinner_get_spinning (_tmp2_);
+#line 1296 "MainWindow.vala"
+	_tmp4_ = _tmp3_;
+#line 1296 "MainWindow.vala"
+	if (_tmp4_) {
+#line 1297 "MainWindow.vala"
+		return;
+#line 8895 "MainWindow.vala.c"
 	}
-#line 1319 "MainWindow.vala"
+#line 1299 "MainWindow.vala"
 	_tmp5_ = self->popup;
-#line 1319 "MainWindow.vala"
-	_tmp6_ = self->notices;
-#line 1319 "MainWindow.vala"
-	_tmp7_ = self->el;
-#line 1319 "MainWindow.vala"
-	xcls_valacompileerrors_show (_tmp5_, _tmp6_, (GtkWidget*) _tmp7_);
-#line 1320 "MainWindow.vala"
+#line 1299 "MainWindow.vala"
+	if (_tmp5_ == NULL) {
+#line 8901 "MainWindow.vala.c"
+		Xcls_ValaCompileErrors* _tmp6_;
+		Xcls_ValaCompileErrors* _tmp7_;
+		Xcls_MainWindow* _tmp8_;
+		Xcls_MainWindow* _tmp9_;
+#line 1300 "MainWindow.vala"
+		_tmp6_ = xcls_valacompileerrors_new ();
+#line 1300 "MainWindow.vala"
+		_g_object_unref0 (self->popup);
+#line 1300 "MainWindow.vala"
+		self->popup = _tmp6_;
+#line 1301 "MainWindow.vala"
+		_tmp7_ = self->popup;
+#line 1301 "MainWindow.vala"
+		_tmp8_ = self->priv->_this;
+#line 1301 "MainWindow.vala"
+		_tmp9_ = _g_object_ref0 (_tmp8_);
+#line 1301 "MainWindow.vala"
+		_g_object_unref0 (_tmp7_->window);
+#line 1301 "MainWindow.vala"
+		_tmp7_->window = _tmp9_;
+#line 8922 "MainWindow.vala.c"
+	}
+#line 1304 "MainWindow.vala"
+	_tmp10_ = self->popup;
+#line 1304 "MainWindow.vala"
+	_tmp11_ = self->notices;
+#line 1304 "MainWindow.vala"
+	_tmp12_ = self->el;
+#line 1304 "MainWindow.vala"
+	xcls_valacompileerrors_show (_tmp10_, _tmp11_, (GtkWidget*) _tmp12_);
+#line 1305 "MainWindow.vala"
 	return;
-#line 8938 "MainWindow.vala.c"
+#line 8934 "MainWindow.vala.c"
 }
 
 static void
-___lambda159__gtk_button_clicked (GtkButton* _sender,
+___lambda158__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1313 "MainWindow.vala"
-	__lambda159_ ((Xcls_MainWindowXcls_statusbar_warnings*) self);
-#line 8947 "MainWindow.vala.c"
+#line 1295 "MainWindow.vala"
+	__lambda158_ ((Xcls_MainWindowXcls_statusbar_warnings*) self);
+#line 8943 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_warnings*
@@ -8959,59 +8955,59 @@ xcls_mainwindow_xcls_statusbar_warnings_construct (GType object_type,
 	GtkButton* _tmp5_;
 	GtkButton* _tmp6_;
 	GtkButton* _tmp7_;
-#line 1299 "MainWindow.vala"
+#line 1281 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_statusbar_warnings*) g_object_new (object_type, NULL);
-#line 1301 "MainWindow.vala"
+#line 1283 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1301 "MainWindow.vala"
+#line 1283 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1301 "MainWindow.vala"
+#line 1283 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1302 "MainWindow.vala"
+#line 1284 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 1302 "MainWindow.vala"
+#line 1284 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1302 "MainWindow.vala"
+#line 1284 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->statusbar_warnings);
-#line 1302 "MainWindow.vala"
+#line 1284 "MainWindow.vala"
 	_tmp1_->statusbar_warnings = _tmp2_;
-#line 1303 "MainWindow.vala"
+#line 1285 "MainWindow.vala"
 	_tmp3_ = (GtkButton*) gtk_button_new ();
-#line 1303 "MainWindow.vala"
+#line 1285 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1303 "MainWindow.vala"
+#line 1285 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1303 "MainWindow.vala"
+#line 1285 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 1306 "MainWindow.vala"
+#line 1288 "MainWindow.vala"
 	_tmp4_ = json_object_new ();
-#line 1306 "MainWindow.vala"
+#line 1288 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1306 "MainWindow.vala"
+#line 1288 "MainWindow.vala"
 	self->notices = _tmp4_;
-#line 1309 "MainWindow.vala"
+#line 1291 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 1309 "MainWindow.vala"
+#line 1291 "MainWindow.vala"
 	gtk_button_set_icon_name (_tmp5_, "dialog-warning");
-#line 1310 "MainWindow.vala"
+#line 1292 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 1310 "MainWindow.vala"
+#line 1292 "MainWindow.vala"
 	gtk_button_set_label (_tmp6_, "0 Warnings");
-#line 1313 "MainWindow.vala"
+#line 1295 "MainWindow.vala"
 	_tmp7_ = self->el;
-#line 1313 "MainWindow.vala"
-	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda159__gtk_button_clicked, self, 0);
-#line 1299 "MainWindow.vala"
+#line 1295 "MainWindow.vala"
+	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda158__gtk_button_clicked, self, 0);
+#line 1281 "MainWindow.vala"
 	return self;
-#line 9007 "MainWindow.vala.c"
+#line 9003 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_warnings*
 xcls_mainwindow_xcls_statusbar_warnings_new (Xcls_MainWindow* _owner)
 {
-#line 1299 "MainWindow.vala"
+#line 1281 "MainWindow.vala"
 	return xcls_mainwindow_xcls_statusbar_warnings_construct (XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_WARNINGS, _owner);
-#line 9015 "MainWindow.vala.c"
+#line 9011 "MainWindow.vala.c"
 }
 
 void
@@ -9028,124 +9024,124 @@ xcls_mainwindow_xcls_statusbar_warnings_setNotices (Xcls_MainWindowXcls_statusba
 	JsonObject* _tmp15_;
 	gboolean _tmp16_ = FALSE;
 	Xcls_ValaCompileErrors* _tmp17_;
-#line 1327 "MainWindow.vala"
+#line 1312 "MainWindow.vala"
 	if (qty < 1) {
-#line 9034 "MainWindow.vala.c"
+#line 9030 "MainWindow.vala.c"
 		GtkButton* _tmp0_;
 		gboolean _tmp1_ = FALSE;
 		Xcls_ValaCompileErrors* _tmp2_;
-#line 1328 "MainWindow.vala"
+#line 1313 "MainWindow.vala"
 		_tmp0_ = self->el;
-#line 1328 "MainWindow.vala"
+#line 1313 "MainWindow.vala"
 		gtk_widget_hide ((GtkWidget*) _tmp0_);
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 		_tmp2_ = self->popup;
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 		if (_tmp2_ != NULL) {
-#line 9046 "MainWindow.vala.c"
+#line 9042 "MainWindow.vala.c"
 			Xcls_ValaCompileErrors* _tmp3_;
 			GtkPopover* _tmp4_;
 			gboolean _tmp5_;
 			gboolean _tmp6_;
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 			_tmp3_ = self->popup;
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 			_tmp4_ = _tmp3_->el;
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 			_tmp5_ = gtk_widget_get_visible ((GtkWidget*) _tmp4_);
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 			_tmp6_ = _tmp5_;
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 			_tmp1_ = _tmp6_;
-#line 9061 "MainWindow.vala.c"
+#line 9057 "MainWindow.vala.c"
 		} else {
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 			_tmp1_ = FALSE;
-#line 9065 "MainWindow.vala.c"
+#line 9061 "MainWindow.vala.c"
 		}
-#line 1329 "MainWindow.vala"
+#line 1314 "MainWindow.vala"
 		if (_tmp1_) {
-#line 9069 "MainWindow.vala.c"
+#line 9065 "MainWindow.vala.c"
 			Xcls_ValaCompileErrors* _tmp7_;
 			GtkPopover* _tmp8_;
-#line 1330 "MainWindow.vala"
+#line 1315 "MainWindow.vala"
 			_tmp7_ = self->popup;
-#line 1330 "MainWindow.vala"
+#line 1315 "MainWindow.vala"
 			_tmp8_ = _tmp7_->el;
-#line 1330 "MainWindow.vala"
+#line 1315 "MainWindow.vala"
 			gtk_widget_hide ((GtkWidget*) _tmp8_);
-#line 9078 "MainWindow.vala.c"
+#line 9074 "MainWindow.vala.c"
 		}
-#line 1332 "MainWindow.vala"
+#line 1317 "MainWindow.vala"
 		return;
-#line 9082 "MainWindow.vala.c"
+#line 9078 "MainWindow.vala.c"
 	}
-#line 1334 "MainWindow.vala"
+#line 1319 "MainWindow.vala"
 	_tmp9_ = self->el;
-#line 1334 "MainWindow.vala"
+#line 1319 "MainWindow.vala"
 	gtk_widget_show ((GtkWidget*) _tmp9_);
-#line 1335 "MainWindow.vala"
+#line 1320 "MainWindow.vala"
 	_tmp10_ = self->el;
-#line 1335 "MainWindow.vala"
+#line 1320 "MainWindow.vala"
 	_tmp11_ = g_strdup_printf ("%i", qty);
-#line 1335 "MainWindow.vala"
+#line 1320 "MainWindow.vala"
 	_tmp12_ = _tmp11_;
-#line 1335 "MainWindow.vala"
+#line 1320 "MainWindow.vala"
 	_tmp13_ = g_strconcat (_tmp12_, " Warnings", NULL);
-#line 1335 "MainWindow.vala"
+#line 1320 "MainWindow.vala"
 	_tmp14_ = _tmp13_;
-#line 1335 "MainWindow.vala"
+#line 1320 "MainWindow.vala"
 	gtk_button_set_label (_tmp10_, _tmp14_);
-#line 1335 "MainWindow.vala"
+#line 1320 "MainWindow.vala"
 	_g_free0 (_tmp14_);
-#line 1335 "MainWindow.vala"
+#line 1320 "MainWindow.vala"
 	_g_free0 (_tmp12_);
-#line 1336 "MainWindow.vala"
+#line 1321 "MainWindow.vala"
 	_tmp15_ = _json_object_ref0 (nots);
-#line 1336 "MainWindow.vala"
+#line 1321 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1336 "MainWindow.vala"
+#line 1321 "MainWindow.vala"
 	self->notices = _tmp15_;
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 	_tmp17_ = self->popup;
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 	if (_tmp17_ != NULL) {
-#line 9114 "MainWindow.vala.c"
+#line 9110 "MainWindow.vala.c"
 		Xcls_ValaCompileErrors* _tmp18_;
 		GtkPopover* _tmp19_;
 		gboolean _tmp20_;
 		gboolean _tmp21_;
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 		_tmp18_ = self->popup;
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 		_tmp19_ = _tmp18_->el;
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 		_tmp20_ = gtk_widget_get_visible ((GtkWidget*) _tmp19_);
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 		_tmp21_ = _tmp20_;
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 		_tmp16_ = _tmp21_;
-#line 9129 "MainWindow.vala.c"
+#line 9125 "MainWindow.vala.c"
 	} else {
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 		_tmp16_ = FALSE;
-#line 9133 "MainWindow.vala.c"
+#line 9129 "MainWindow.vala.c"
 	}
-#line 1337 "MainWindow.vala"
+#line 1322 "MainWindow.vala"
 	if (_tmp16_) {
-#line 9137 "MainWindow.vala.c"
+#line 9133 "MainWindow.vala.c"
 		Xcls_ValaCompileErrors* _tmp22_;
 		JsonObject* _tmp23_;
 		GtkButton* _tmp24_;
-#line 1338 "MainWindow.vala"
+#line 1323 "MainWindow.vala"
 		_tmp22_ = self->popup;
-#line 1338 "MainWindow.vala"
+#line 1323 "MainWindow.vala"
 		_tmp23_ = self->notices;
-#line 1338 "MainWindow.vala"
+#line 1323 "MainWindow.vala"
 		_tmp24_ = self->el;
-#line 1338 "MainWindow.vala"
+#line 1323 "MainWindow.vala"
 		xcls_valacompileerrors_show (_tmp22_, _tmp23_, (GtkWidget*) _tmp24_);
-#line 9149 "MainWindow.vala.c"
+#line 9145 "MainWindow.vala.c"
 	}
 }
 
@@ -9153,41 +9149,41 @@ static void
 xcls_mainwindow_xcls_statusbar_warnings_class_init (Xcls_MainWindowXcls_statusbar_warningsClass * klass,
                                                     gpointer klass_data)
 {
-#line 1288 "MainWindow.vala"
+#line 1270 "MainWindow.vala"
 	xcls_mainwindow_xcls_statusbar_warnings_parent_class = g_type_class_peek_parent (klass);
-#line 1288 "MainWindow.vala"
+#line 1270 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_statusbar_warnings_private_offset);
-#line 1288 "MainWindow.vala"
+#line 1270 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_statusbar_warnings_finalize;
-#line 9163 "MainWindow.vala.c"
+#line 9159 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_warnings_instance_init (Xcls_MainWindowXcls_statusbar_warnings * self,
                                                        gpointer klass)
 {
-#line 1288 "MainWindow.vala"
+#line 1270 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_statusbar_warnings_get_instance_private (self);
-#line 9172 "MainWindow.vala.c"
+#line 9168 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_warnings_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_statusbar_warnings * self;
-#line 1288 "MainWindow.vala"
+#line 1270 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_WARNINGS, Xcls_MainWindowXcls_statusbar_warnings);
-#line 1290 "MainWindow.vala"
+#line 1272 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1291 "MainWindow.vala"
+#line 1273 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1295 "MainWindow.vala"
+#line 1277 "MainWindow.vala"
 	_g_object_unref0 (self->popup);
-#line 1296 "MainWindow.vala"
+#line 1278 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1288 "MainWindow.vala"
+#line 1270 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_statusbar_warnings_parent_class)->finalize (obj);
-#line 9191 "MainWindow.vala.c"
+#line 9187 "MainWindow.vala.c"
 }
 
 static GType
@@ -9219,59 +9215,80 @@ xcls_mainwindow_xcls_statusbar_depricated_get_instance_private (Xcls_MainWindowX
 }
 
 static void
-__lambda160_ (Xcls_MainWindowXcls_statusbar_depricated* self)
+__lambda159_ (Xcls_MainWindowXcls_statusbar_depricated* self)
 {
-	Xcls_ValaCompileErrors* _tmp0_;
+	Xcls_MainWindow* _tmp0_;
+	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp1_;
+	GtkSpinner* _tmp2_;
+	gboolean _tmp3_;
+	gboolean _tmp4_;
 	Xcls_ValaCompileErrors* _tmp5_;
-	JsonObject* _tmp6_;
-	GtkButton* _tmp7_;
-#line 1371 "MainWindow.vala"
-	_tmp0_ = self->popup;
-#line 1371 "MainWindow.vala"
-	if (_tmp0_ == NULL) {
-#line 9233 "MainWindow.vala.c"
-		Xcls_ValaCompileErrors* _tmp1_;
-		Xcls_ValaCompileErrors* _tmp2_;
-		Xcls_MainWindow* _tmp3_;
-		Xcls_MainWindow* _tmp4_;
-#line 1372 "MainWindow.vala"
-		_tmp1_ = xcls_valacompileerrors_new ();
-#line 1372 "MainWindow.vala"
-		_g_object_unref0 (self->popup);
-#line 1372 "MainWindow.vala"
-		self->popup = _tmp1_;
-#line 1373 "MainWindow.vala"
-		_tmp2_ = self->popup;
-#line 1373 "MainWindow.vala"
-		_tmp3_ = self->priv->_this;
-#line 1373 "MainWindow.vala"
-		_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 1373 "MainWindow.vala"
-		_g_object_unref0 (_tmp2_->window);
-#line 1373 "MainWindow.vala"
-		_tmp2_->window = _tmp4_;
-#line 9254 "MainWindow.vala.c"
+	Xcls_ValaCompileErrors* _tmp10_;
+	JsonObject* _tmp11_;
+	GtkButton* _tmp12_;
+#line 1356 "MainWindow.vala"
+	_tmp0_ = self->priv->_this;
+#line 1356 "MainWindow.vala"
+	_tmp1_ = _tmp0_->statusbar_compile_spinner;
+#line 1356 "MainWindow.vala"
+	_tmp2_ = _tmp1_->el;
+#line 1356 "MainWindow.vala"
+	_tmp3_ = gtk_spinner_get_spinning (_tmp2_);
+#line 1356 "MainWindow.vala"
+	_tmp4_ = _tmp3_;
+#line 1356 "MainWindow.vala"
+	if (_tmp4_) {
+#line 1357 "MainWindow.vala"
+		return;
+#line 9244 "MainWindow.vala.c"
 	}
-#line 1377 "MainWindow.vala"
+#line 1359 "MainWindow.vala"
 	_tmp5_ = self->popup;
-#line 1377 "MainWindow.vala"
-	_tmp6_ = self->notices;
-#line 1377 "MainWindow.vala"
-	_tmp7_ = self->el;
-#line 1377 "MainWindow.vala"
-	xcls_valacompileerrors_show (_tmp5_, _tmp6_, (GtkWidget*) _tmp7_);
-#line 1378 "MainWindow.vala"
+#line 1359 "MainWindow.vala"
+	if (_tmp5_ == NULL) {
+#line 9250 "MainWindow.vala.c"
+		Xcls_ValaCompileErrors* _tmp6_;
+		Xcls_ValaCompileErrors* _tmp7_;
+		Xcls_MainWindow* _tmp8_;
+		Xcls_MainWindow* _tmp9_;
+#line 1360 "MainWindow.vala"
+		_tmp6_ = xcls_valacompileerrors_new ();
+#line 1360 "MainWindow.vala"
+		_g_object_unref0 (self->popup);
+#line 1360 "MainWindow.vala"
+		self->popup = _tmp6_;
+#line 1361 "MainWindow.vala"
+		_tmp7_ = self->popup;
+#line 1361 "MainWindow.vala"
+		_tmp8_ = self->priv->_this;
+#line 1361 "MainWindow.vala"
+		_tmp9_ = _g_object_ref0 (_tmp8_);
+#line 1361 "MainWindow.vala"
+		_g_object_unref0 (_tmp7_->window);
+#line 1361 "MainWindow.vala"
+		_tmp7_->window = _tmp9_;
+#line 9271 "MainWindow.vala.c"
+	}
+#line 1365 "MainWindow.vala"
+	_tmp10_ = self->popup;
+#line 1365 "MainWindow.vala"
+	_tmp11_ = self->notices;
+#line 1365 "MainWindow.vala"
+	_tmp12_ = self->el;
+#line 1365 "MainWindow.vala"
+	xcls_valacompileerrors_show (_tmp10_, _tmp11_, (GtkWidget*) _tmp12_);
+#line 1366 "MainWindow.vala"
 	return;
-#line 9266 "MainWindow.vala.c"
+#line 9283 "MainWindow.vala.c"
 }
 
 static void
-___lambda160__gtk_button_clicked (GtkButton* _sender,
+___lambda159__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1370 "MainWindow.vala"
-	__lambda160_ ((Xcls_MainWindowXcls_statusbar_depricated*) self);
-#line 9275 "MainWindow.vala.c"
+#line 1355 "MainWindow.vala"
+	__lambda159_ ((Xcls_MainWindowXcls_statusbar_depricated*) self);
+#line 9292 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_depricated*
@@ -9287,59 +9304,59 @@ xcls_mainwindow_xcls_statusbar_depricated_construct (GType object_type,
 	GtkButton* _tmp5_;
 	GtkButton* _tmp6_;
 	GtkButton* _tmp7_;
-#line 1356 "MainWindow.vala"
+#line 1341 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_statusbar_depricated*) g_object_new (object_type, NULL);
-#line 1358 "MainWindow.vala"
+#line 1343 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1358 "MainWindow.vala"
+#line 1343 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1358 "MainWindow.vala"
+#line 1343 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1359 "MainWindow.vala"
+#line 1344 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 1359 "MainWindow.vala"
+#line 1344 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1359 "MainWindow.vala"
+#line 1344 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->statusbar_depricated);
-#line 1359 "MainWindow.vala"
+#line 1344 "MainWindow.vala"
 	_tmp1_->statusbar_depricated = _tmp2_;
-#line 1360 "MainWindow.vala"
+#line 1345 "MainWindow.vala"
 	_tmp3_ = (GtkButton*) gtk_button_new ();
-#line 1360 "MainWindow.vala"
+#line 1345 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1360 "MainWindow.vala"
+#line 1345 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1360 "MainWindow.vala"
+#line 1345 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 1363 "MainWindow.vala"
+#line 1348 "MainWindow.vala"
 	_tmp4_ = json_object_new ();
-#line 1363 "MainWindow.vala"
+#line 1348 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1363 "MainWindow.vala"
+#line 1348 "MainWindow.vala"
 	self->notices = _tmp4_;
-#line 1366 "MainWindow.vala"
+#line 1351 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 1366 "MainWindow.vala"
+#line 1351 "MainWindow.vala"
 	gtk_button_set_icon_name (_tmp5_, "dialog-information");
-#line 1367 "MainWindow.vala"
+#line 1352 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 1367 "MainWindow.vala"
+#line 1352 "MainWindow.vala"
 	gtk_button_set_label (_tmp6_, "0 Depricated");
-#line 1370 "MainWindow.vala"
+#line 1355 "MainWindow.vala"
 	_tmp7_ = self->el;
-#line 1370 "MainWindow.vala"
-	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda160__gtk_button_clicked, self, 0);
-#line 1356 "MainWindow.vala"
+#line 1355 "MainWindow.vala"
+	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda159__gtk_button_clicked, self, 0);
+#line 1341 "MainWindow.vala"
 	return self;
-#line 9335 "MainWindow.vala.c"
+#line 9352 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_depricated*
 xcls_mainwindow_xcls_statusbar_depricated_new (Xcls_MainWindow* _owner)
 {
-#line 1356 "MainWindow.vala"
+#line 1341 "MainWindow.vala"
 	return xcls_mainwindow_xcls_statusbar_depricated_construct (XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_DEPRICATED, _owner);
-#line 9343 "MainWindow.vala.c"
+#line 9360 "MainWindow.vala.c"
 }
 
 void
@@ -9356,124 +9373,124 @@ xcls_mainwindow_xcls_statusbar_depricated_setNotices (Xcls_MainWindowXcls_status
 	JsonObject* _tmp15_;
 	gboolean _tmp16_ = FALSE;
 	Xcls_ValaCompileErrors* _tmp17_;
-#line 1384 "MainWindow.vala"
+#line 1372 "MainWindow.vala"
 	if (qty < 1) {
-#line 9362 "MainWindow.vala.c"
+#line 9379 "MainWindow.vala.c"
 		GtkButton* _tmp0_;
 		gboolean _tmp1_ = FALSE;
 		Xcls_ValaCompileErrors* _tmp2_;
-#line 1385 "MainWindow.vala"
+#line 1373 "MainWindow.vala"
 		_tmp0_ = self->el;
-#line 1385 "MainWindow.vala"
+#line 1373 "MainWindow.vala"
 		gtk_widget_hide ((GtkWidget*) _tmp0_);
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 		_tmp2_ = self->popup;
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 		if (_tmp2_ != NULL) {
-#line 9374 "MainWindow.vala.c"
+#line 9391 "MainWindow.vala.c"
 			Xcls_ValaCompileErrors* _tmp3_;
 			GtkPopover* _tmp4_;
 			gboolean _tmp5_;
 			gboolean _tmp6_;
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 			_tmp3_ = self->popup;
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 			_tmp4_ = _tmp3_->el;
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 			_tmp5_ = gtk_widget_get_visible ((GtkWidget*) _tmp4_);
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 			_tmp6_ = _tmp5_;
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 			_tmp1_ = _tmp6_;
-#line 9389 "MainWindow.vala.c"
+#line 9406 "MainWindow.vala.c"
 		} else {
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 			_tmp1_ = FALSE;
-#line 9393 "MainWindow.vala.c"
+#line 9410 "MainWindow.vala.c"
 		}
-#line 1386 "MainWindow.vala"
+#line 1374 "MainWindow.vala"
 		if (_tmp1_) {
-#line 9397 "MainWindow.vala.c"
+#line 9414 "MainWindow.vala.c"
 			Xcls_ValaCompileErrors* _tmp7_;
 			GtkPopover* _tmp8_;
-#line 1387 "MainWindow.vala"
+#line 1375 "MainWindow.vala"
 			_tmp7_ = self->popup;
-#line 1387 "MainWindow.vala"
+#line 1375 "MainWindow.vala"
 			_tmp8_ = _tmp7_->el;
-#line 1387 "MainWindow.vala"
+#line 1375 "MainWindow.vala"
 			gtk_widget_hide ((GtkWidget*) _tmp8_);
-#line 9406 "MainWindow.vala.c"
+#line 9423 "MainWindow.vala.c"
 		}
-#line 1390 "MainWindow.vala"
+#line 1378 "MainWindow.vala"
 		return;
-#line 9410 "MainWindow.vala.c"
+#line 9427 "MainWindow.vala.c"
 	}
-#line 1393 "MainWindow.vala"
+#line 1381 "MainWindow.vala"
 	_tmp9_ = self->el;
-#line 1393 "MainWindow.vala"
+#line 1381 "MainWindow.vala"
 	gtk_widget_show ((GtkWidget*) _tmp9_);
-#line 1395 "MainWindow.vala"
+#line 1383 "MainWindow.vala"
 	_tmp10_ = self->el;
-#line 1395 "MainWindow.vala"
+#line 1383 "MainWindow.vala"
 	_tmp11_ = g_strdup_printf ("%i", qty);
-#line 1395 "MainWindow.vala"
+#line 1383 "MainWindow.vala"
 	_tmp12_ = _tmp11_;
-#line 1395 "MainWindow.vala"
+#line 1383 "MainWindow.vala"
 	_tmp13_ = g_strconcat (_tmp12_, " Depricated", NULL);
-#line 1395 "MainWindow.vala"
+#line 1383 "MainWindow.vala"
 	_tmp14_ = _tmp13_;
-#line 1395 "MainWindow.vala"
+#line 1383 "MainWindow.vala"
 	gtk_button_set_label (_tmp10_, _tmp14_);
-#line 1395 "MainWindow.vala"
+#line 1383 "MainWindow.vala"
 	_g_free0 (_tmp14_);
-#line 1395 "MainWindow.vala"
+#line 1383 "MainWindow.vala"
 	_g_free0 (_tmp12_);
-#line 1396 "MainWindow.vala"
+#line 1384 "MainWindow.vala"
 	_tmp15_ = _json_object_ref0 (nots);
-#line 1396 "MainWindow.vala"
+#line 1384 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1396 "MainWindow.vala"
+#line 1384 "MainWindow.vala"
 	self->notices = _tmp15_;
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 	_tmp17_ = self->popup;
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 	if (_tmp17_ != NULL) {
-#line 9442 "MainWindow.vala.c"
+#line 9459 "MainWindow.vala.c"
 		Xcls_ValaCompileErrors* _tmp18_;
 		GtkPopover* _tmp19_;
 		gboolean _tmp20_;
 		gboolean _tmp21_;
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 		_tmp18_ = self->popup;
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 		_tmp19_ = _tmp18_->el;
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 		_tmp20_ = gtk_widget_get_visible ((GtkWidget*) _tmp19_);
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 		_tmp21_ = _tmp20_;
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 		_tmp16_ = _tmp21_;
-#line 9457 "MainWindow.vala.c"
+#line 9474 "MainWindow.vala.c"
 	} else {
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 		_tmp16_ = FALSE;
-#line 9461 "MainWindow.vala.c"
+#line 9478 "MainWindow.vala.c"
 	}
-#line 1397 "MainWindow.vala"
+#line 1385 "MainWindow.vala"
 	if (_tmp16_) {
-#line 9465 "MainWindow.vala.c"
+#line 9482 "MainWindow.vala.c"
 		Xcls_ValaCompileErrors* _tmp22_;
 		JsonObject* _tmp23_;
 		GtkButton* _tmp24_;
-#line 1398 "MainWindow.vala"
+#line 1386 "MainWindow.vala"
 		_tmp22_ = self->popup;
-#line 1398 "MainWindow.vala"
+#line 1386 "MainWindow.vala"
 		_tmp23_ = self->notices;
-#line 1398 "MainWindow.vala"
+#line 1386 "MainWindow.vala"
 		_tmp24_ = self->el;
-#line 1398 "MainWindow.vala"
+#line 1386 "MainWindow.vala"
 		xcls_valacompileerrors_show (_tmp22_, _tmp23_, (GtkWidget*) _tmp24_);
-#line 9477 "MainWindow.vala.c"
+#line 9494 "MainWindow.vala.c"
 	}
 }
 
@@ -9481,41 +9498,41 @@ static void
 xcls_mainwindow_xcls_statusbar_depricated_class_init (Xcls_MainWindowXcls_statusbar_depricatedClass * klass,
                                                       gpointer klass_data)
 {
-#line 1345 "MainWindow.vala"
+#line 1330 "MainWindow.vala"
 	xcls_mainwindow_xcls_statusbar_depricated_parent_class = g_type_class_peek_parent (klass);
-#line 1345 "MainWindow.vala"
+#line 1330 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_statusbar_depricated_private_offset);
-#line 1345 "MainWindow.vala"
+#line 1330 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_statusbar_depricated_finalize;
-#line 9491 "MainWindow.vala.c"
+#line 9508 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_depricated_instance_init (Xcls_MainWindowXcls_statusbar_depricated * self,
                                                          gpointer klass)
 {
-#line 1345 "MainWindow.vala"
+#line 1330 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_statusbar_depricated_get_instance_private (self);
-#line 9500 "MainWindow.vala.c"
+#line 9517 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_depricated_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_statusbar_depricated * self;
-#line 1345 "MainWindow.vala"
+#line 1330 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_DEPRICATED, Xcls_MainWindowXcls_statusbar_depricated);
-#line 1347 "MainWindow.vala"
+#line 1332 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1348 "MainWindow.vala"
+#line 1333 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1352 "MainWindow.vala"
+#line 1337 "MainWindow.vala"
 	_g_object_unref0 (self->popup);
-#line 1353 "MainWindow.vala"
+#line 1338 "MainWindow.vala"
 	_json_object_unref0 (self->notices);
-#line 1345 "MainWindow.vala"
+#line 1330 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_statusbar_depricated_parent_class)->finalize (obj);
-#line 9519 "MainWindow.vala.c"
+#line 9536 "MainWindow.vala.c"
 }
 
 static GType
@@ -9547,61 +9564,82 @@ xcls_mainwindow_xcls_statusbar_run_get_instance_private (Xcls_MainWindowXcls_sta
 }
 
 static void
-__lambda161_ (Xcls_MainWindowXcls_statusbar_run* self)
+__lambda160_ (Xcls_MainWindowXcls_statusbar_run* self)
 {
 	Xcls_MainWindow* _tmp0_;
-	WindowState* _tmp1_;
-	JsRenderJsRender* _tmp2_;
-	PaleteValaSource* _tmp3_;
-	Xcls_MainWindow* _tmp4_;
-	WindowState* _tmp5_;
-	JsRenderJsRender* _tmp6_;
-	Xcls_MainWindow* _tmp7_;
-	WindowState* _tmp8_;
-	Xcls_ValaCompileResults* _tmp9_;
-	GtkButton* _tmp10_;
-#line 1427 "MainWindow.vala"
+	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp1_;
+	GtkSpinner* _tmp2_;
+	gboolean _tmp3_;
+	gboolean _tmp4_;
+	Xcls_MainWindow* _tmp5_;
+	WindowState* _tmp6_;
+	JsRenderJsRender* _tmp7_;
+	PaleteValaSource* _tmp8_;
+	Xcls_MainWindow* _tmp9_;
+	WindowState* _tmp10_;
+	JsRenderJsRender* _tmp11_;
+	Xcls_MainWindow* _tmp12_;
+	WindowState* _tmp13_;
+	Xcls_ValaCompileResults* _tmp14_;
+	GtkButton* _tmp15_;
+#line 1415 "MainWindow.vala"
 	_tmp0_ = self->priv->_this;
-#line 1427 "MainWindow.vala"
-	_tmp1_ = _tmp0_->windowstate;
-#line 1427 "MainWindow.vala"
-	_tmp2_ = _tmp1_->file;
-#line 1427 "MainWindow.vala"
-	if (_tmp2_ == NULL) {
-#line 1428 "MainWindow.vala"
+#line 1415 "MainWindow.vala"
+	_tmp1_ = _tmp0_->statusbar_compile_spinner;
+#line 1415 "MainWindow.vala"
+	_tmp2_ = _tmp1_->el;
+#line 1415 "MainWindow.vala"
+	_tmp3_ = gtk_spinner_get_spinning (_tmp2_);
+#line 1415 "MainWindow.vala"
+	_tmp4_ = _tmp3_;
+#line 1415 "MainWindow.vala"
+	if (_tmp4_) {
+#line 1416 "MainWindow.vala"
 		return;
-#line 9574 "MainWindow.vala.c"
+#line 9600 "MainWindow.vala.c"
 	}
-#line 1430 "MainWindow.vala"
-	_tmp3_ = builder_application_valasource;
-#line 1430 "MainWindow.vala"
-	_tmp4_ = self->priv->_this;
-#line 1430 "MainWindow.vala"
-	_tmp5_ = _tmp4_->windowstate;
-#line 1430 "MainWindow.vala"
-	_tmp6_ = _tmp5_->file;
-#line 1430 "MainWindow.vala"
-	palete_vala_source_spawnExecute (_tmp3_, _tmp6_);
-#line 1432 "MainWindow.vala"
-	_tmp7_ = self->priv->_this;
-#line 1432 "MainWindow.vala"
-	_tmp8_ = _tmp7_->windowstate;
-#line 1432 "MainWindow.vala"
-	_tmp9_ = _tmp8_->compile_results;
-#line 1432 "MainWindow.vala"
-	_tmp10_ = self->el;
-#line 1432 "MainWindow.vala"
-	xcls_valacompileresults_show (_tmp9_, (GtkWidget*) _tmp10_, TRUE);
-#line 9596 "MainWindow.vala.c"
+#line 1418 "MainWindow.vala"
+	_tmp5_ = self->priv->_this;
+#line 1418 "MainWindow.vala"
+	_tmp6_ = _tmp5_->windowstate;
+#line 1418 "MainWindow.vala"
+	_tmp7_ = _tmp6_->file;
+#line 1418 "MainWindow.vala"
+	if (_tmp7_ == NULL) {
+#line 1419 "MainWindow.vala"
+		return;
+#line 9612 "MainWindow.vala.c"
+	}
+#line 1421 "MainWindow.vala"
+	_tmp8_ = builder_application_valasource;
+#line 1421 "MainWindow.vala"
+	_tmp9_ = self->priv->_this;
+#line 1421 "MainWindow.vala"
+	_tmp10_ = _tmp9_->windowstate;
+#line 1421 "MainWindow.vala"
+	_tmp11_ = _tmp10_->file;
+#line 1421 "MainWindow.vala"
+	palete_vala_source_spawnExecute (_tmp8_, _tmp11_);
+#line 1423 "MainWindow.vala"
+	_tmp12_ = self->priv->_this;
+#line 1423 "MainWindow.vala"
+	_tmp13_ = _tmp12_->windowstate;
+#line 1423 "MainWindow.vala"
+	_tmp14_ = _tmp13_->compile_results;
+#line 1423 "MainWindow.vala"
+	_tmp15_ = self->el;
+#line 1423 "MainWindow.vala"
+	xcls_valacompileresults_show (_tmp14_, (GtkWidget*) _tmp15_, TRUE);
+#line 9634 "MainWindow.vala.c"
 }
 
 static void
-___lambda161__gtk_button_clicked (GtkButton* _sender,
+___lambda160__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
-#line 1426 "MainWindow.vala"
-	__lambda161_ ((Xcls_MainWindowXcls_statusbar_run*) self);
-#line 9605 "MainWindow.vala.c"
+#line 1414 "MainWindow.vala"
+	__lambda160_ ((Xcls_MainWindowXcls_statusbar_run*) self);
+#line 9643 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_run*
@@ -9616,92 +9654,92 @@ xcls_mainwindow_xcls_statusbar_run_construct (GType object_type,
 	GtkButton* _tmp4_;
 	GtkButton* _tmp5_;
 	GtkButton* _tmp6_;
-#line 1413 "MainWindow.vala"
+#line 1401 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_statusbar_run*) g_object_new (object_type, NULL);
-#line 1415 "MainWindow.vala"
+#line 1403 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1415 "MainWindow.vala"
+#line 1403 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1415 "MainWindow.vala"
+#line 1403 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1416 "MainWindow.vala"
+#line 1404 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 1416 "MainWindow.vala"
+#line 1404 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1416 "MainWindow.vala"
+#line 1404 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->statusbar_run);
-#line 1416 "MainWindow.vala"
+#line 1404 "MainWindow.vala"
 	_tmp1_->statusbar_run = _tmp2_;
-#line 1417 "MainWindow.vala"
+#line 1405 "MainWindow.vala"
 	_tmp3_ = (GtkButton*) gtk_button_new ();
-#line 1417 "MainWindow.vala"
+#line 1405 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1417 "MainWindow.vala"
+#line 1405 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1417 "MainWindow.vala"
+#line 1405 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 1422 "MainWindow.vala"
+#line 1410 "MainWindow.vala"
 	_tmp4_ = self->el;
-#line 1422 "MainWindow.vala"
+#line 1410 "MainWindow.vala"
 	gtk_button_set_icon_name (_tmp4_, "media-playback-start");
-#line 1423 "MainWindow.vala"
+#line 1411 "MainWindow.vala"
 	_tmp5_ = self->el;
-#line 1423 "MainWindow.vala"
+#line 1411 "MainWindow.vala"
 	gtk_button_set_label (_tmp5_, "Run");
-#line 1426 "MainWindow.vala"
+#line 1414 "MainWindow.vala"
 	_tmp6_ = self->el;
-#line 1426 "MainWindow.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda161__gtk_button_clicked, self, 0);
-#line 1413 "MainWindow.vala"
+#line 1414 "MainWindow.vala"
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda160__gtk_button_clicked, self, 0);
+#line 1401 "MainWindow.vala"
 	return self;
-#line 9658 "MainWindow.vala.c"
+#line 9696 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_run*
 xcls_mainwindow_xcls_statusbar_run_new (Xcls_MainWindow* _owner)
 {
-#line 1413 "MainWindow.vala"
+#line 1401 "MainWindow.vala"
 	return xcls_mainwindow_xcls_statusbar_run_construct (XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_RUN, _owner);
-#line 9666 "MainWindow.vala.c"
+#line 9704 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_run_class_init (Xcls_MainWindowXcls_statusbar_runClass * klass,
                                                gpointer klass_data)
 {
-#line 1403 "MainWindow.vala"
+#line 1391 "MainWindow.vala"
 	xcls_mainwindow_xcls_statusbar_run_parent_class = g_type_class_peek_parent (klass);
-#line 1403 "MainWindow.vala"
+#line 1391 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_statusbar_run_private_offset);
-#line 1403 "MainWindow.vala"
+#line 1391 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_statusbar_run_finalize;
-#line 9679 "MainWindow.vala.c"
+#line 9717 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_run_instance_init (Xcls_MainWindowXcls_statusbar_run * self,
                                                   gpointer klass)
 {
-#line 1403 "MainWindow.vala"
+#line 1391 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_statusbar_run_get_instance_private (self);
-#line 9688 "MainWindow.vala.c"
+#line 9726 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_run_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_statusbar_run * self;
-#line 1403 "MainWindow.vala"
+#line 1391 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_RUN, Xcls_MainWindowXcls_statusbar_run);
-#line 1405 "MainWindow.vala"
+#line 1393 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1406 "MainWindow.vala"
+#line 1394 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1410 "MainWindow.vala"
+#line 1398 "MainWindow.vala"
 	_g_object_unref0 (self->popup);
-#line 1403 "MainWindow.vala"
+#line 1391 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_statusbar_run_parent_class)->finalize (obj);
-#line 9705 "MainWindow.vala.c"
+#line 9743 "MainWindow.vala.c"
 }
 
 static GType
@@ -9744,53 +9782,53 @@ xcls_mainwindow_xcls_statusbar_compile_spinner_construct (GType object_type,
 	GtkSpinner* _tmp4_;
 	GtkSpinner* _tmp5_;
 	GtkSpinner* _tmp6_;
-#line 1450 "MainWindow.vala"
+#line 1441 "MainWindow.vala"
 	self = (Xcls_MainWindowXcls_statusbar_compile_spinner*) g_object_new (object_type, NULL);
-#line 1452 "MainWindow.vala"
+#line 1443 "MainWindow.vala"
 	_tmp0_ = _g_object_ref0 (_owner);
-#line 1452 "MainWindow.vala"
+#line 1443 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1452 "MainWindow.vala"
+#line 1443 "MainWindow.vala"
 	self->priv->_this = _tmp0_;
-#line 1453 "MainWindow.vala"
+#line 1444 "MainWindow.vala"
 	_tmp1_ = self->priv->_this;
-#line 1453 "MainWindow.vala"
+#line 1444 "MainWindow.vala"
 	_tmp2_ = _g_object_ref0 (self);
-#line 1453 "MainWindow.vala"
+#line 1444 "MainWindow.vala"
 	_g_object_unref0 (_tmp1_->statusbar_compile_spinner);
-#line 1453 "MainWindow.vala"
+#line 1444 "MainWindow.vala"
 	_tmp1_->statusbar_compile_spinner = _tmp2_;
-#line 1454 "MainWindow.vala"
+#line 1445 "MainWindow.vala"
 	_tmp3_ = (GtkSpinner*) gtk_spinner_new ();
-#line 1454 "MainWindow.vala"
+#line 1445 "MainWindow.vala"
 	g_object_ref_sink (_tmp3_);
-#line 1454 "MainWindow.vala"
+#line 1445 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1454 "MainWindow.vala"
+#line 1445 "MainWindow.vala"
 	self->el = _tmp3_;
-#line 1459 "MainWindow.vala"
-	_tmp4_ = self->el;
-#line 1459 "MainWindow.vala"
-	gtk_widget_set_margin_end ((GtkWidget*) _tmp4_, 4);
-#line 1460 "MainWindow.vala"
-	_tmp5_ = self->el;
-#line 1460 "MainWindow.vala"
-	gtk_widget_set_margin_start ((GtkWidget*) _tmp5_, 4);
-#line 1461 "MainWindow.vala"
-	_tmp6_ = self->el;
-#line 1461 "MainWindow.vala"
-	gtk_widget_set_tooltip_text ((GtkWidget*) _tmp6_, "Compiling");
 #line 1450 "MainWindow.vala"
+	_tmp4_ = self->el;
+#line 1450 "MainWindow.vala"
+	gtk_widget_set_margin_end ((GtkWidget*) _tmp4_, 4);
+#line 1451 "MainWindow.vala"
+	_tmp5_ = self->el;
+#line 1451 "MainWindow.vala"
+	gtk_widget_set_margin_start ((GtkWidget*) _tmp5_, 4);
+#line 1452 "MainWindow.vala"
+	_tmp6_ = self->el;
+#line 1452 "MainWindow.vala"
+	gtk_widget_set_tooltip_text ((GtkWidget*) _tmp6_, "Compiling");
+#line 1441 "MainWindow.vala"
 	return self;
-#line 9786 "MainWindow.vala.c"
+#line 9824 "MainWindow.vala.c"
 }
 
 Xcls_MainWindowXcls_statusbar_compile_spinner*
 xcls_mainwindow_xcls_statusbar_compile_spinner_new (Xcls_MainWindow* _owner)
 {
-#line 1450 "MainWindow.vala"
+#line 1441 "MainWindow.vala"
 	return xcls_mainwindow_xcls_statusbar_compile_spinner_construct (XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_COMPILE_SPINNER, _owner);
-#line 9794 "MainWindow.vala.c"
+#line 9832 "MainWindow.vala.c"
 }
 
 void
@@ -9798,15 +9836,59 @@ xcls_mainwindow_xcls_statusbar_compile_spinner_start (Xcls_MainWindowXcls_status
 {
 	GtkSpinner* _tmp0_;
 	GtkSpinner* _tmp1_;
-#line 1466 "MainWindow.vala"
+	Xcls_MainWindow* _tmp2_;
+	Xcls_MainWindowXcls_statusbar_errors* _tmp3_;
+	GtkButton* _tmp4_;
+	Xcls_MainWindow* _tmp5_;
+	Xcls_MainWindowXcls_statusbar_warnings* _tmp6_;
+	GtkButton* _tmp7_;
+	Xcls_MainWindow* _tmp8_;
+	Xcls_MainWindowXcls_statusbar_depricated* _tmp9_;
+	GtkButton* _tmp10_;
+	Xcls_MainWindow* _tmp11_;
+	Xcls_MainWindowXcls_statusbar_run* _tmp12_;
+	GtkButton* _tmp13_;
+#line 1457 "MainWindow.vala"
 	_tmp0_ = self->el;
-#line 1466 "MainWindow.vala"
+#line 1457 "MainWindow.vala"
 	gtk_widget_show ((GtkWidget*) _tmp0_);
-#line 1467 "MainWindow.vala"
+#line 1458 "MainWindow.vala"
 	_tmp1_ = self->el;
-#line 1467 "MainWindow.vala"
+#line 1458 "MainWindow.vala"
 	gtk_spinner_start (_tmp1_);
-#line 9810 "MainWindow.vala.c"
+#line 1460 "MainWindow.vala"
+	_tmp2_ = self->priv->_this;
+#line 1460 "MainWindow.vala"
+	_tmp3_ = _tmp2_->statusbar_errors;
+#line 1460 "MainWindow.vala"
+	_tmp4_ = _tmp3_->el;
+#line 1460 "MainWindow.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp4_, FALSE);
+#line 1461 "MainWindow.vala"
+	_tmp5_ = self->priv->_this;
+#line 1461 "MainWindow.vala"
+	_tmp6_ = _tmp5_->statusbar_warnings;
+#line 1461 "MainWindow.vala"
+	_tmp7_ = _tmp6_->el;
+#line 1461 "MainWindow.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp7_, FALSE);
+#line 1462 "MainWindow.vala"
+	_tmp8_ = self->priv->_this;
+#line 1462 "MainWindow.vala"
+	_tmp9_ = _tmp8_->statusbar_depricated;
+#line 1462 "MainWindow.vala"
+	_tmp10_ = _tmp9_->el;
+#line 1462 "MainWindow.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp10_, FALSE);
+#line 1463 "MainWindow.vala"
+	_tmp11_ = self->priv->_this;
+#line 1463 "MainWindow.vala"
+	_tmp12_ = _tmp11_->statusbar_run;
+#line 1463 "MainWindow.vala"
+	_tmp13_ = _tmp12_->el;
+#line 1463 "MainWindow.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp13_, FALSE);
+#line 9892 "MainWindow.vala.c"
 }
 
 void
@@ -9814,52 +9896,96 @@ xcls_mainwindow_xcls_statusbar_compile_spinner_stop (Xcls_MainWindowXcls_statusb
 {
 	GtkSpinner* _tmp0_;
 	GtkSpinner* _tmp1_;
-#line 1470 "MainWindow.vala"
+	Xcls_MainWindow* _tmp2_;
+	Xcls_MainWindowXcls_statusbar_errors* _tmp3_;
+	GtkButton* _tmp4_;
+	Xcls_MainWindow* _tmp5_;
+	Xcls_MainWindowXcls_statusbar_warnings* _tmp6_;
+	GtkButton* _tmp7_;
+	Xcls_MainWindow* _tmp8_;
+	Xcls_MainWindowXcls_statusbar_depricated* _tmp9_;
+	GtkButton* _tmp10_;
+	Xcls_MainWindow* _tmp11_;
+	Xcls_MainWindowXcls_statusbar_run* _tmp12_;
+	GtkButton* _tmp13_;
+#line 1467 "MainWindow.vala"
 	_tmp0_ = self->el;
-#line 1470 "MainWindow.vala"
+#line 1467 "MainWindow.vala"
 	gtk_spinner_stop (_tmp0_);
-#line 1471 "MainWindow.vala"
+#line 1468 "MainWindow.vala"
 	_tmp1_ = self->el;
-#line 1471 "MainWindow.vala"
+#line 1468 "MainWindow.vala"
 	gtk_widget_hide ((GtkWidget*) _tmp1_);
-#line 9826 "MainWindow.vala.c"
+#line 1469 "MainWindow.vala"
+	_tmp2_ = self->priv->_this;
+#line 1469 "MainWindow.vala"
+	_tmp3_ = _tmp2_->statusbar_errors;
+#line 1469 "MainWindow.vala"
+	_tmp4_ = _tmp3_->el;
+#line 1469 "MainWindow.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp4_, TRUE);
+#line 1470 "MainWindow.vala"
+	_tmp5_ = self->priv->_this;
+#line 1470 "MainWindow.vala"
+	_tmp6_ = _tmp5_->statusbar_warnings;
+#line 1470 "MainWindow.vala"
+	_tmp7_ = _tmp6_->el;
+#line 1470 "MainWindow.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp7_, TRUE);
+#line 1471 "MainWindow.vala"
+	_tmp8_ = self->priv->_this;
+#line 1471 "MainWindow.vala"
+	_tmp9_ = _tmp8_->statusbar_depricated;
+#line 1471 "MainWindow.vala"
+	_tmp10_ = _tmp9_->el;
+#line 1471 "MainWindow.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp10_, TRUE);
+#line 1472 "MainWindow.vala"
+	_tmp11_ = self->priv->_this;
+#line 1472 "MainWindow.vala"
+	_tmp12_ = _tmp11_->statusbar_run;
+#line 1472 "MainWindow.vala"
+	_tmp13_ = _tmp12_->el;
+#line 1472 "MainWindow.vala"
+	gtk_widget_set_sensitive ((GtkWidget*) _tmp13_, TRUE);
+#line 9952 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_compile_spinner_class_init (Xcls_MainWindowXcls_statusbar_compile_spinnerClass * klass,
                                                            gpointer klass_data)
 {
-#line 1441 "MainWindow.vala"
+#line 1432 "MainWindow.vala"
 	xcls_mainwindow_xcls_statusbar_compile_spinner_parent_class = g_type_class_peek_parent (klass);
-#line 1441 "MainWindow.vala"
+#line 1432 "MainWindow.vala"
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindowXcls_statusbar_compile_spinner_private_offset);
-#line 1441 "MainWindow.vala"
+#line 1432 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_xcls_statusbar_compile_spinner_finalize;
-#line 9839 "MainWindow.vala.c"
+#line 9965 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_compile_spinner_instance_init (Xcls_MainWindowXcls_statusbar_compile_spinner * self,
                                                               gpointer klass)
 {
-#line 1441 "MainWindow.vala"
+#line 1432 "MainWindow.vala"
 	self->priv = xcls_mainwindow_xcls_statusbar_compile_spinner_get_instance_private (self);
-#line 9848 "MainWindow.vala.c"
+#line 9974 "MainWindow.vala.c"
 }
 
 static void
 xcls_mainwindow_xcls_statusbar_compile_spinner_finalize (GObject * obj)
 {
 	Xcls_MainWindowXcls_statusbar_compile_spinner * self;
-#line 1441 "MainWindow.vala"
+#line 1432 "MainWindow.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, XCLS_MAINWINDOW_TYPE_XCLS_STATUSBAR_COMPILE_SPINNER, Xcls_MainWindowXcls_statusbar_compile_spinner);
-#line 1443 "MainWindow.vala"
+#line 1434 "MainWindow.vala"
 	_g_object_unref0 (self->el);
-#line 1444 "MainWindow.vala"
+#line 1435 "MainWindow.vala"
 	_g_object_unref0 (self->priv->_this);
-#line 1441 "MainWindow.vala"
+#line 1432 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_xcls_statusbar_compile_spinner_parent_class)->finalize (obj);
-#line 9863 "MainWindow.vala.c"
+#line 9989 "MainWindow.vala.c"
 }
 
 static GType
@@ -9894,7 +10020,7 @@ xcls_mainwindow_class_init (Xcls_MainWindowClass * klass,
 	g_type_class_adjust_private_offset (klass, &Xcls_MainWindow_private_offset);
 #line 3 "MainWindow.vala"
 	G_OBJECT_CLASS (klass)->finalize = xcls_mainwindow_finalize;
-#line 9898 "MainWindow.vala.c"
+#line 10024 "MainWindow.vala.c"
 }
 
 static void
@@ -9903,7 +10029,7 @@ xcls_mainwindow_instance_init (Xcls_MainWindow * self,
 {
 #line 3 "MainWindow.vala"
 	self->priv = xcls_mainwindow_get_instance_private (self);
-#line 9907 "MainWindow.vala.c"
+#line 10033 "MainWindow.vala.c"
 }
 
 static void
@@ -9964,7 +10090,7 @@ xcls_mainwindow_finalize (GObject * obj)
 	_g_object_unref0 (self->project);
 #line 3 "MainWindow.vala"
 	G_OBJECT_CLASS (xcls_mainwindow_parent_class)->finalize (obj);
-#line 9968 "MainWindow.vala.c"
+#line 10094 "MainWindow.vala.c"
 }
 
 static GType

@@ -288,7 +288,6 @@ struct _ProjectGtkValaSettings {
 	GObject parent_instance;
 	ProjectGtkValaSettingsPrivate * priv;
 	GeeArrayList* sources;
-	gchar* target_bin;
 	gchar* execute_args;
 	gboolean loading_ui;
 };
@@ -491,7 +490,7 @@ _g_object_ref0 (gpointer self)
 {
 #line 96 "JsRender.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 495 "JsRender.vala.c"
+#line 494 "JsRender.vala.c"
 }
 
 void
@@ -616,7 +615,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 	ar_length1 = _vala_array_length (_tmp13_);
 #line 113 "JsRender.vala"
 	_ar_size_ = ar_length1;
-#line 620 "JsRender.vala.c"
+#line 619 "JsRender.vala.c"
 	{
 		GRegex* regex = NULL;
 		GRegex* _tmp15_;
@@ -629,7 +628,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 		regex = _tmp15_;
 #line 116 "JsRender.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 633 "JsRender.vala.c"
+#line 632 "JsRender.vala.c"
 			goto __catch0_g_error;
 		}
 #line 118 "JsRender.vala"
@@ -638,7 +637,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 		_tmp17__length1 = ar_length1;
 #line 118 "JsRender.vala"
 		if (_tmp17__length1 > 0) {
-#line 642 "JsRender.vala.c"
+#line 641 "JsRender.vala.c"
 			GRegex* _tmp18_;
 			gchar** _tmp19_;
 			gint _tmp19__length1;
@@ -691,7 +690,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 				_g_free0 (_tmp16_);
 #line 118 "JsRender.vala"
 				_g_regex_unref0 (regex);
-#line 695 "JsRender.vala.c"
+#line 694 "JsRender.vala.c"
 				goto __catch0_g_error;
 			}
 		} else {
@@ -702,7 +701,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 			_g_free0 (_tmp16_);
 #line 118 "JsRender.vala"
 			_tmp16_ = _tmp28_;
-#line 706 "JsRender.vala.c"
+#line 705 "JsRender.vala.c"
 		}
 #line 118 "JsRender.vala"
 		js_render_js_render_set_name (self, _tmp16_);
@@ -710,7 +709,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 		_g_free0 (_tmp16_);
 #line 115 "JsRender.vala"
 		_g_regex_unref0 (regex);
-#line 714 "JsRender.vala.c"
+#line 713 "JsRender.vala.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
@@ -719,7 +718,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 		g_clear_error (&_inner_error0_);
 #line 120 "JsRender.vala"
 		js_render_js_render_set_name (self, "???");
-#line 723 "JsRender.vala.c"
+#line 722 "JsRender.vala.c"
 	}
 	__finally0:
 #line 115 "JsRender.vala"
@@ -732,7 +731,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 		g_clear_error (&_inner_error0_);
 #line 115 "JsRender.vala"
 		return;
-#line 736 "JsRender.vala.c"
+#line 735 "JsRender.vala.c"
 	}
 #line 122 "JsRender.vala"
 	_tmp30_ = self->parent;
@@ -742,7 +741,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 	_tmp32_ = _tmp31_;
 #line 122 "JsRender.vala"
 	if (_tmp32_ > 0) {
-#line 746 "JsRender.vala.c"
+#line 745 "JsRender.vala.c"
 		const gchar* _tmp33_;
 		gchar* _tmp34_;
 #line 122 "JsRender.vala"
@@ -753,7 +752,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 		_g_free0 (_tmp29_);
 #line 122 "JsRender.vala"
 		_tmp29_ = _tmp34_;
-#line 757 "JsRender.vala.c"
+#line 756 "JsRender.vala.c"
 	} else {
 		gchar* _tmp35_;
 #line 122 "JsRender.vala"
@@ -762,7 +761,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 		_g_free0 (_tmp29_);
 #line 122 "JsRender.vala"
 		_tmp29_ = _tmp35_;
-#line 766 "JsRender.vala.c"
+#line 765 "JsRender.vala.c"
 	}
 #line 122 "JsRender.vala"
 	_tmp36_ = self->priv->_name;
@@ -788,7 +787,7 @@ js_render_js_render_aconstruct (JsRenderJsRender* self,
 	_g_free0 (_tmp29_);
 #line 91 "JsRender.vala"
 	ar = (_vala_array_free (ar, ar_length1, (GDestroyNotify) g_free), NULL);
-#line 792 "JsRender.vala.c"
+#line 791 "JsRender.vala.c"
 }
 
 void
@@ -818,7 +817,7 @@ js_render_js_render_renameTo (JsRenderJsRender* self,
 	if (g_strcmp0 (_tmp0_, "PlainFile") == 0) {
 #line 132 "JsRender.vala"
 		return;
-#line 822 "JsRender.vala.c"
+#line 821 "JsRender.vala.c"
 	}
 #line 134 "JsRender.vala"
 	_tmp1_ = self->path;
@@ -850,7 +849,7 @@ js_render_js_render_renameTo (JsRenderJsRender* self,
 	_tmp10_ = bjs;
 #line 135 "JsRender.vala"
 	if (g_file_test (_tmp10_, G_FILE_TEST_EXISTS)) {
-#line 854 "JsRender.vala.c"
+#line 853 "JsRender.vala.c"
 		GError* _tmp11_;
 #line 136 "JsRender.vala"
 		_tmp11_ = g_error_new (JS_RENDER_ERROR, JS_RENDER_ERROR_RENAME_FILE_EXISTS, "File exists %s\n", name);
@@ -864,7 +863,7 @@ js_render_js_render_renameTo (JsRenderJsRender* self,
 			_g_free0 (bjs);
 #line 136 "JsRender.vala"
 			return;
-#line 868 "JsRender.vala.c"
+#line 867 "JsRender.vala.c"
 		} else {
 #line 136 "JsRender.vala"
 			_g_free0 (bjs);
@@ -874,7 +873,7 @@ js_render_js_render_renameTo (JsRenderJsRender* self,
 			g_clear_error (&_inner_error0_);
 #line 136 "JsRender.vala"
 			return;
-#line 878 "JsRender.vala.c"
+#line 877 "JsRender.vala.c"
 		}
 	}
 #line 138 "JsRender.vala"
@@ -895,7 +894,7 @@ js_render_js_render_renameTo (JsRenderJsRender* self,
 	self->path = _tmp14_;
 #line 129 "JsRender.vala"
 	_g_free0 (bjs);
-#line 899 "JsRender.vala.c"
+#line 898 "JsRender.vala.c"
 }
 
 JsRenderJsRender*
@@ -912,7 +911,7 @@ js_render_js_render_factory (const gchar* xt,
 	static GQuark _tmp1_label1 = 0;
 #line 154 "JsRender.vala"
 	static GQuark _tmp1_label2 = 0;
-#line 916 "JsRender.vala.c"
+#line 915 "JsRender.vala.c"
 	GError* _tmp6_;
 	GError* _inner_error0_ = NULL;
 	JsRenderJsRender* result;
@@ -924,7 +923,7 @@ js_render_js_render_factory (const gchar* xt,
 	if (_tmp2_ == ((0 != _tmp1_label0) ? _tmp1_label0 : (_tmp1_label0 = g_quark_from_static_string ("Gtk")))) {
 #line 154 "JsRender.vala"
 		switch (0) {
-#line 928 "JsRender.vala.c"
+#line 927 "JsRender.vala.c"
 			default:
 			{
 				JsRenderGtk* _tmp3_;
@@ -934,13 +933,13 @@ js_render_js_render_factory (const gchar* xt,
 				result = (JsRenderJsRender*) _tmp3_;
 #line 156 "JsRender.vala"
 				return result;
-#line 938 "JsRender.vala.c"
+#line 937 "JsRender.vala.c"
 			}
 		}
 	} else if (_tmp2_ == ((0 != _tmp1_label1) ? _tmp1_label1 : (_tmp1_label1 = g_quark_from_static_string ("Roo")))) {
 #line 154 "JsRender.vala"
 		switch (0) {
-#line 944 "JsRender.vala.c"
+#line 943 "JsRender.vala.c"
 			default:
 			{
 				JsRenderRoo* _tmp4_;
@@ -950,13 +949,13 @@ js_render_js_render_factory (const gchar* xt,
 				result = (JsRenderJsRender*) _tmp4_;
 #line 159 "JsRender.vala"
 				return result;
-#line 954 "JsRender.vala.c"
+#line 953 "JsRender.vala.c"
 			}
 		}
 	} else if (_tmp2_ == ((0 != _tmp1_label2) ? _tmp1_label2 : (_tmp1_label2 = g_quark_from_static_string ("PlainFile")))) {
 #line 154 "JsRender.vala"
 		switch (0) {
-#line 960 "JsRender.vala.c"
+#line 959 "JsRender.vala.c"
 			default:
 			{
 				JsRenderPlainFile* _tmp5_;
@@ -966,7 +965,7 @@ js_render_js_render_factory (const gchar* xt,
 				result = (JsRenderJsRender*) _tmp5_;
 #line 163 "JsRender.vala"
 				return result;
-#line 970 "JsRender.vala.c"
+#line 969 "JsRender.vala.c"
 			}
 		}
 	}
@@ -980,7 +979,7 @@ js_render_js_render_factory (const gchar* xt,
 		g_propagate_error (error, _inner_error0_);
 #line 165 "JsRender.vala"
 		return NULL;
-#line 984 "JsRender.vala.c"
+#line 983 "JsRender.vala.c"
 	} else {
 #line 165 "JsRender.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error0_->message, g_quark_to_string (_inner_error0_->domain), _inner_error0_->code);
@@ -988,7 +987,7 @@ js_render_js_render_factory (const gchar* xt,
 		g_clear_error (&_inner_error0_);
 #line 165 "JsRender.vala"
 		return NULL;
-#line 992 "JsRender.vala.c"
+#line 991 "JsRender.vala.c"
 	}
 }
 
@@ -1004,13 +1003,13 @@ _vala_array_add12 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 176 "JsRender.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1008 "JsRender.vala.c"
+#line 1007 "JsRender.vala.c"
 	}
 #line 176 "JsRender.vala"
 	(*array)[(*length)++] = value;
 #line 176 "JsRender.vala"
 	(*array)[*length] = NULL;
-#line 1014 "JsRender.vala.c"
+#line 1013 "JsRender.vala.c"
 }
 
 static gchar*
@@ -1024,48 +1023,48 @@ _vala_g_strjoinv (const gchar* separator,
 	if (separator == NULL) {
 #line 1209 "glib-2.0.vapi"
 		separator = "";
-#line 1028 "JsRender.vala.c"
+#line 1027 "JsRender.vala.c"
 	}
 #line 1211 "glib-2.0.vapi"
 	if (str_array != NULL) {
-#line 1032 "JsRender.vala.c"
+#line 1031 "JsRender.vala.c"
 		gboolean _tmp1_ = FALSE;
 #line 1211 "glib-2.0.vapi"
 		if (str_array_length1 > 0) {
 #line 1211 "glib-2.0.vapi"
 			_tmp1_ = TRUE;
-#line 1038 "JsRender.vala.c"
+#line 1037 "JsRender.vala.c"
 		} else {
 			gboolean _tmp2_ = FALSE;
 #line 1211 "glib-2.0.vapi"
 			if (str_array_length1 == -1) {
-#line 1043 "JsRender.vala.c"
+#line 1042 "JsRender.vala.c"
 				const gchar* _tmp3_;
 #line 1211 "glib-2.0.vapi"
 				_tmp3_ = str_array[0];
 #line 1211 "glib-2.0.vapi"
 				_tmp2_ = _tmp3_ != NULL;
-#line 1049 "JsRender.vala.c"
+#line 1048 "JsRender.vala.c"
 			} else {
 #line 1211 "glib-2.0.vapi"
 				_tmp2_ = FALSE;
-#line 1053 "JsRender.vala.c"
+#line 1052 "JsRender.vala.c"
 			}
 #line 1211 "glib-2.0.vapi"
 			_tmp1_ = _tmp2_;
-#line 1057 "JsRender.vala.c"
+#line 1056 "JsRender.vala.c"
 		}
 #line 1211 "glib-2.0.vapi"
 		_tmp0_ = _tmp1_;
-#line 1061 "JsRender.vala.c"
+#line 1060 "JsRender.vala.c"
 	} else {
 #line 1211 "glib-2.0.vapi"
 		_tmp0_ = FALSE;
-#line 1065 "JsRender.vala.c"
+#line 1064 "JsRender.vala.c"
 	}
 #line 1211 "glib-2.0.vapi"
 	if (_tmp0_) {
-#line 1069 "JsRender.vala.c"
+#line 1068 "JsRender.vala.c"
 		gint i = 0;
 		gsize len = 0UL;
 		gint _tmp16_;
@@ -1080,7 +1079,7 @@ _vala_g_strjoinv (const gchar* separator,
 		const gchar* _tmp33_;
 #line 1213 "glib-2.0.vapi"
 		len = (gsize) 1;
-#line 1084 "JsRender.vala.c"
+#line 1083 "JsRender.vala.c"
 		{
 			gboolean _tmp4_ = FALSE;
 #line 1214 "glib-2.0.vapi"
@@ -1089,20 +1088,20 @@ _vala_g_strjoinv (const gchar* separator,
 			_tmp4_ = TRUE;
 #line 1214 "glib-2.0.vapi"
 			while (TRUE) {
-#line 1093 "JsRender.vala.c"
+#line 1092 "JsRender.vala.c"
 				gboolean _tmp6_ = FALSE;
 				gboolean _tmp7_ = FALSE;
 				gint _tmp10_ = 0;
 				const gchar* _tmp11_;
 #line 1214 "glib-2.0.vapi"
 				if (!_tmp4_) {
-#line 1100 "JsRender.vala.c"
+#line 1099 "JsRender.vala.c"
 					gint _tmp5_;
 #line 1214 "glib-2.0.vapi"
 					_tmp5_ = i;
 #line 1214 "glib-2.0.vapi"
 					i = _tmp5_ + 1;
-#line 1106 "JsRender.vala.c"
+#line 1105 "JsRender.vala.c"
 				}
 #line 1214 "glib-2.0.vapi"
 				_tmp4_ = FALSE;
@@ -1110,48 +1109,48 @@ _vala_g_strjoinv (const gchar* separator,
 				if (str_array_length1 != -1) {
 #line 1214 "glib-2.0.vapi"
 					_tmp7_ = i < str_array_length1;
-#line 1114 "JsRender.vala.c"
+#line 1113 "JsRender.vala.c"
 				} else {
 #line 1214 "glib-2.0.vapi"
 					_tmp7_ = FALSE;
-#line 1118 "JsRender.vala.c"
+#line 1117 "JsRender.vala.c"
 				}
 #line 1214 "glib-2.0.vapi"
 				if (_tmp7_) {
 #line 1214 "glib-2.0.vapi"
 					_tmp6_ = TRUE;
-#line 1124 "JsRender.vala.c"
+#line 1123 "JsRender.vala.c"
 				} else {
 					gboolean _tmp8_ = FALSE;
 #line 1214 "glib-2.0.vapi"
 					if (str_array_length1 == -1) {
-#line 1129 "JsRender.vala.c"
+#line 1128 "JsRender.vala.c"
 						const gchar* _tmp9_;
 #line 1214 "glib-2.0.vapi"
 						_tmp9_ = str_array[i];
 #line 1214 "glib-2.0.vapi"
 						_tmp8_ = _tmp9_ != NULL;
-#line 1135 "JsRender.vala.c"
+#line 1134 "JsRender.vala.c"
 					} else {
 #line 1214 "glib-2.0.vapi"
 						_tmp8_ = FALSE;
-#line 1139 "JsRender.vala.c"
+#line 1138 "JsRender.vala.c"
 					}
 #line 1214 "glib-2.0.vapi"
 					_tmp6_ = _tmp8_;
-#line 1143 "JsRender.vala.c"
+#line 1142 "JsRender.vala.c"
 				}
 #line 1214 "glib-2.0.vapi"
 				if (!_tmp6_) {
 #line 1214 "glib-2.0.vapi"
 					break;
-#line 1149 "JsRender.vala.c"
+#line 1148 "JsRender.vala.c"
 				}
 #line 1215 "glib-2.0.vapi"
 				_tmp11_ = str_array[i];
 #line 1215 "glib-2.0.vapi"
 				if (_tmp11_ != NULL) {
-#line 1155 "JsRender.vala.c"
+#line 1154 "JsRender.vala.c"
 					const gchar* _tmp12_;
 					gint _tmp13_;
 					gint _tmp14_;
@@ -1163,20 +1162,20 @@ _vala_g_strjoinv (const gchar* separator,
 					_tmp14_ = _tmp13_;
 #line 1215 "glib-2.0.vapi"
 					_tmp10_ = _tmp14_;
-#line 1167 "JsRender.vala.c"
+#line 1166 "JsRender.vala.c"
 				} else {
 #line 1215 "glib-2.0.vapi"
 					_tmp10_ = 0;
-#line 1171 "JsRender.vala.c"
+#line 1170 "JsRender.vala.c"
 				}
 #line 1215 "glib-2.0.vapi"
 				len += (gsize) _tmp10_;
-#line 1175 "JsRender.vala.c"
+#line 1174 "JsRender.vala.c"
 			}
 		}
 #line 1217 "glib-2.0.vapi"
 		if (i == 0) {
-#line 1180 "JsRender.vala.c"
+#line 1179 "JsRender.vala.c"
 			gchar* _tmp15_;
 #line 1218 "glib-2.0.vapi"
 			_tmp15_ = g_strdup ("");
@@ -1184,7 +1183,7 @@ _vala_g_strjoinv (const gchar* separator,
 			result = _tmp15_;
 #line 1218 "glib-2.0.vapi"
 			return result;
-#line 1188 "JsRender.vala.c"
+#line 1187 "JsRender.vala.c"
 		}
 #line 1220 "glib-2.0.vapi"
 		str_array_length1 = i;
@@ -1202,17 +1201,17 @@ _vala_g_strjoinv (const gchar* separator,
 		_tmp20_ = str_array[0];
 #line 1224 "glib-2.0.vapi"
 		if (_tmp20_ != NULL) {
-#line 1206 "JsRender.vala.c"
+#line 1205 "JsRender.vala.c"
 			const gchar* _tmp21_;
 #line 1224 "glib-2.0.vapi"
 			_tmp21_ = str_array[0];
 #line 1224 "glib-2.0.vapi"
 			_tmp19_ = (const gchar*) _tmp21_;
-#line 1212 "JsRender.vala.c"
+#line 1211 "JsRender.vala.c"
 		} else {
 #line 1224 "glib-2.0.vapi"
 			_tmp19_ = "";
-#line 1216 "JsRender.vala.c"
+#line 1215 "JsRender.vala.c"
 		}
 #line 1224 "glib-2.0.vapi"
 		_tmp22_ = res;
@@ -1220,7 +1219,7 @@ _vala_g_strjoinv (const gchar* separator,
 		_tmp23_ = g_stpcpy ((void*) _tmp22_, _tmp19_);
 #line 1224 "glib-2.0.vapi"
 		ptr = _tmp23_;
-#line 1224 "JsRender.vala.c"
+#line 1223 "JsRender.vala.c"
 		{
 			gboolean _tmp24_ = FALSE;
 #line 1225 "glib-2.0.vapi"
@@ -1229,7 +1228,7 @@ _vala_g_strjoinv (const gchar* separator,
 			_tmp24_ = TRUE;
 #line 1225 "glib-2.0.vapi"
 			while (TRUE) {
-#line 1233 "JsRender.vala.c"
+#line 1232 "JsRender.vala.c"
 				void* _tmp26_;
 				void* _tmp27_;
 				const gchar* _tmp28_ = NULL;
@@ -1238,13 +1237,13 @@ _vala_g_strjoinv (const gchar* separator,
 				void* _tmp32_;
 #line 1225 "glib-2.0.vapi"
 				if (!_tmp24_) {
-#line 1242 "JsRender.vala.c"
+#line 1241 "JsRender.vala.c"
 					gint _tmp25_;
 #line 1225 "glib-2.0.vapi"
 					_tmp25_ = i;
 #line 1225 "glib-2.0.vapi"
 					i = _tmp25_ + 1;
-#line 1248 "JsRender.vala.c"
+#line 1247 "JsRender.vala.c"
 				}
 #line 1225 "glib-2.0.vapi"
 				_tmp24_ = FALSE;
@@ -1252,7 +1251,7 @@ _vala_g_strjoinv (const gchar* separator,
 				if (!(i < str_array_length1)) {
 #line 1225 "glib-2.0.vapi"
 					break;
-#line 1256 "JsRender.vala.c"
+#line 1255 "JsRender.vala.c"
 				}
 #line 1226 "glib-2.0.vapi"
 				_tmp26_ = ptr;
@@ -1264,17 +1263,17 @@ _vala_g_strjoinv (const gchar* separator,
 				_tmp29_ = str_array[i];
 #line 1227 "glib-2.0.vapi"
 				if (_tmp29_ != NULL) {
-#line 1268 "JsRender.vala.c"
+#line 1267 "JsRender.vala.c"
 					const gchar* _tmp30_;
 #line 1227 "glib-2.0.vapi"
 					_tmp30_ = str_array[i];
 #line 1227 "glib-2.0.vapi"
 					_tmp28_ = (const gchar*) _tmp30_;
-#line 1274 "JsRender.vala.c"
+#line 1273 "JsRender.vala.c"
 				} else {
 #line 1227 "glib-2.0.vapi"
 					_tmp28_ = "";
-#line 1278 "JsRender.vala.c"
+#line 1277 "JsRender.vala.c"
 				}
 #line 1227 "glib-2.0.vapi"
 				_tmp31_ = ptr;
@@ -1282,7 +1281,7 @@ _vala_g_strjoinv (const gchar* separator,
 				_tmp32_ = g_stpcpy (_tmp31_, _tmp28_);
 #line 1227 "glib-2.0.vapi"
 				ptr = _tmp32_;
-#line 1286 "JsRender.vala.c"
+#line 1285 "JsRender.vala.c"
 			}
 		}
 #line 1230 "glib-2.0.vapi"
@@ -1293,7 +1292,7 @@ _vala_g_strjoinv (const gchar* separator,
 		result = (gchar*) _tmp33_;
 #line 1230 "glib-2.0.vapi"
 		return result;
-#line 1297 "JsRender.vala.c"
+#line 1296 "JsRender.vala.c"
 	} else {
 		gchar* _tmp34_;
 #line 1232 "glib-2.0.vapi"
@@ -1302,7 +1301,7 @@ _vala_g_strjoinv (const gchar* separator,
 		result = _tmp34_;
 #line 1232 "glib-2.0.vapi"
 		return result;
-#line 1306 "JsRender.vala.c"
+#line 1305 "JsRender.vala.c"
 	}
 }
 
@@ -1341,19 +1340,19 @@ js_render_js_render_nickType (JsRenderJsRender* self)
 	ret_length1 = 0;
 #line 174 "JsRender.vala"
 	_ret_size_ = ret_length1;
-#line 1345 "JsRender.vala.c"
+#line 1344 "JsRender.vala.c"
 	{
 		gint i = 0;
 #line 175 "JsRender.vala"
 		i = 0;
-#line 1350 "JsRender.vala.c"
+#line 1349 "JsRender.vala.c"
 		{
 			gboolean _tmp4_ = FALSE;
 #line 175 "JsRender.vala"
 			_tmp4_ = TRUE;
 #line 175 "JsRender.vala"
 			while (TRUE) {
-#line 1357 "JsRender.vala.c"
+#line 1356 "JsRender.vala.c"
 				gchar** _tmp6_;
 				gint _tmp6__length1;
 				gchar** _tmp7_;
@@ -1362,13 +1361,13 @@ js_render_js_render_nickType (JsRenderJsRender* self)
 				gchar* _tmp9_;
 #line 175 "JsRender.vala"
 				if (!_tmp4_) {
-#line 1366 "JsRender.vala.c"
+#line 1365 "JsRender.vala.c"
 					gint _tmp5_;
 #line 175 "JsRender.vala"
 					_tmp5_ = i;
 #line 175 "JsRender.vala"
 					i = _tmp5_ + 1;
-#line 1372 "JsRender.vala.c"
+#line 1371 "JsRender.vala.c"
 				}
 #line 175 "JsRender.vala"
 				_tmp4_ = FALSE;
@@ -1380,7 +1379,7 @@ js_render_js_render_nickType (JsRenderJsRender* self)
 				if (!(i < (_tmp6__length1 - 1))) {
 #line 175 "JsRender.vala"
 					break;
-#line 1384 "JsRender.vala.c"
+#line 1383 "JsRender.vala.c"
 				}
 #line 176 "JsRender.vala"
 				_tmp7_ = ar;
@@ -1392,7 +1391,7 @@ js_render_js_render_nickType (JsRenderJsRender* self)
 				_tmp9_ = g_strdup (_tmp8_);
 #line 176 "JsRender.vala"
 				_vala_array_add12 (&ret, &ret_length1, &_ret_size_, _tmp9_);
-#line 1396 "JsRender.vala.c"
+#line 1395 "JsRender.vala.c"
 			}
 		}
 	}
@@ -1410,7 +1409,7 @@ js_render_js_render_nickType (JsRenderJsRender* self)
 	ar = (_vala_array_free (ar, ar_length1, (GDestroyNotify) g_free), NULL);
 #line 178 "JsRender.vala"
 	return result;
-#line 1414 "JsRender.vala.c"
+#line 1413 "JsRender.vala.c"
 }
 
 gchar*
@@ -1445,7 +1444,7 @@ js_render_js_render_nickName (JsRenderJsRender* self)
 	ar = (_vala_array_free (ar, ar_length1, (GDestroyNotify) g_free), NULL);
 #line 184 "JsRender.vala"
 	return result;
-#line 1449 "JsRender.vala.c"
+#line 1448 "JsRender.vala.c"
 }
 
 static gchar
@@ -1460,7 +1459,7 @@ string_get (const gchar* self,
 	result = _tmp0_;
 #line 1241 "glib-2.0.vapi"
 	return result;
-#line 1464 "JsRender.vala.c"
+#line 1463 "JsRender.vala.c"
 }
 
 gchar*
@@ -1482,19 +1481,19 @@ js_render_js_render_nickNameSplit (JsRenderJsRender* self)
 	ret = _tmp1_;
 #line 192 "JsRender.vala"
 	len = 0;
-#line 1486 "JsRender.vala.c"
+#line 1485 "JsRender.vala.c"
 	{
 		gint i = 0;
 #line 193 "JsRender.vala"
 		i = 0;
-#line 1491 "JsRender.vala.c"
+#line 1490 "JsRender.vala.c"
 		{
 			gboolean _tmp2_ = FALSE;
 #line 193 "JsRender.vala"
 			_tmp2_ = TRUE;
 #line 193 "JsRender.vala"
 			while (TRUE) {
-#line 1498 "JsRender.vala.c"
+#line 1497 "JsRender.vala.c"
 				const gchar* _tmp4_;
 				gint _tmp5_;
 				gint _tmp6_;
@@ -1508,13 +1507,13 @@ js_render_js_render_nickNameSplit (JsRenderJsRender* self)
 				gint _tmp17_;
 #line 193 "JsRender.vala"
 				if (!_tmp2_) {
-#line 1512 "JsRender.vala.c"
+#line 1511 "JsRender.vala.c"
 					gint _tmp3_;
 #line 193 "JsRender.vala"
 					_tmp3_ = i;
 #line 193 "JsRender.vala"
 					i = _tmp3_ + 1;
-#line 1518 "JsRender.vala.c"
+#line 1517 "JsRender.vala.c"
 				}
 #line 193 "JsRender.vala"
 				_tmp2_ = FALSE;
@@ -1528,35 +1527,35 @@ js_render_js_render_nickNameSplit (JsRenderJsRender* self)
 				if (!(i < _tmp6_)) {
 #line 193 "JsRender.vala"
 					break;
-#line 1532 "JsRender.vala.c"
+#line 1531 "JsRender.vala.c"
 				}
 #line 194 "JsRender.vala"
 				if (i != 0) {
-#line 1536 "JsRender.vala.c"
+#line 1535 "JsRender.vala.c"
 					const gchar* _tmp9_;
 #line 194 "JsRender.vala"
 					_tmp9_ = n;
 #line 194 "JsRender.vala"
 					_tmp8_ = g_ascii_isupper (string_get (_tmp9_, (glong) i));
-#line 1542 "JsRender.vala.c"
+#line 1541 "JsRender.vala.c"
 				} else {
 #line 194 "JsRender.vala"
 					_tmp8_ = FALSE;
-#line 1546 "JsRender.vala.c"
+#line 1545 "JsRender.vala.c"
 				}
 #line 194 "JsRender.vala"
 				if (_tmp8_) {
 #line 194 "JsRender.vala"
 					_tmp7_ = len > 10;
-#line 1552 "JsRender.vala.c"
+#line 1551 "JsRender.vala.c"
 				} else {
 #line 194 "JsRender.vala"
 					_tmp7_ = FALSE;
-#line 1556 "JsRender.vala.c"
+#line 1555 "JsRender.vala.c"
 				}
 #line 194 "JsRender.vala"
 				if (_tmp7_) {
-#line 1560 "JsRender.vala.c"
+#line 1559 "JsRender.vala.c"
 					const gchar* _tmp10_;
 					gchar* _tmp11_;
 #line 195 "JsRender.vala"
@@ -1569,7 +1568,7 @@ js_render_js_render_nickNameSplit (JsRenderJsRender* self)
 					ret = _tmp11_;
 #line 196 "JsRender.vala"
 					len = 0;
-#line 1573 "JsRender.vala.c"
+#line 1572 "JsRender.vala.c"
 				}
 #line 198 "JsRender.vala"
 				_tmp12_ = ret;
@@ -1591,7 +1590,7 @@ js_render_js_render_nickNameSplit (JsRenderJsRender* self)
 				_tmp17_ = len;
 #line 199 "JsRender.vala"
 				len = _tmp17_ + 1;
-#line 1595 "JsRender.vala.c"
+#line 1594 "JsRender.vala.c"
 			}
 		}
 	}
@@ -1601,7 +1600,7 @@ js_render_js_render_nickNameSplit (JsRenderJsRender* self)
 	_g_free0 (n);
 #line 204 "JsRender.vala"
 	return result;
-#line 1605 "JsRender.vala.c"
+#line 1604 "JsRender.vala.c"
 }
 
 GdkPixbuf*
@@ -1621,7 +1620,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 	_tmp1_ = fname;
 #line 214 "JsRender.vala"
 	if (!g_file_test (_tmp1_, G_FILE_TEST_EXISTS)) {
-#line 1625 "JsRender.vala.c"
+#line 1624 "JsRender.vala.c"
 		const gchar* _tmp2_;
 		const gchar* _tmp3_;
 #line 215 "JsRender.vala"
@@ -1636,13 +1635,13 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 		_g_free0 (fname);
 #line 216 "JsRender.vala"
 		return result;
-#line 1640 "JsRender.vala.c"
+#line 1639 "JsRender.vala.c"
 	}
 #line 219 "JsRender.vala"
 	switch (size) {
 #line 219 "JsRender.vala"
 		case 0:
-#line 1646 "JsRender.vala.c"
+#line 1645 "JsRender.vala.c"
 		{
 			GdkPixbuf* _tmp4_;
 			GdkPixbuf* _tmp9_;
@@ -1651,7 +1650,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 			_tmp4_ = self->priv->screenshot;
 #line 221 "JsRender.vala"
 			if (_tmp4_ == NULL) {
-#line 1655 "JsRender.vala.c"
+#line 1654 "JsRender.vala.c"
 				{
 					GdkPixbuf* _tmp5_ = NULL;
 					const gchar* _tmp6_;
@@ -1665,7 +1664,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 					_tmp5_ = _tmp7_;
 #line 223 "JsRender.vala"
 					if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1669 "JsRender.vala.c"
+#line 1668 "JsRender.vala.c"
 						goto __catch0_g_error;
 					}
 #line 223 "JsRender.vala"
@@ -1678,14 +1677,14 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 					self->priv->screenshot = _tmp8_;
 #line 222 "JsRender.vala"
 					_g_object_unref0 (_tmp5_);
-#line 1682 "JsRender.vala.c"
+#line 1681 "JsRender.vala.c"
 				}
 				goto __finally0;
 				__catch0_g_error:
 				{
 #line 222 "JsRender.vala"
 					g_clear_error (&_inner_error0_);
-#line 1689 "JsRender.vala.c"
+#line 1688 "JsRender.vala.c"
 				}
 				__finally0:
 #line 222 "JsRender.vala"
@@ -1698,7 +1697,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 					g_clear_error (&_inner_error0_);
 #line 222 "JsRender.vala"
 					return NULL;
-#line 1702 "JsRender.vala.c"
+#line 1701 "JsRender.vala.c"
 				}
 			}
 #line 226 "JsRender.vala"
@@ -1711,11 +1710,11 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 			_g_free0 (fname);
 #line 226 "JsRender.vala"
 			return result;
-#line 1715 "JsRender.vala.c"
+#line 1714 "JsRender.vala.c"
 		}
 #line 219 "JsRender.vala"
 		case 92:
-#line 1719 "JsRender.vala.c"
+#line 1718 "JsRender.vala.c"
 		{
 			GdkPixbuf* _tmp11_;
 			GdkPixbuf* _tmp15_;
@@ -1732,7 +1731,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 			_tmp11_ = self->priv->screenshot;
 #line 230 "JsRender.vala"
 			if (_tmp11_ == NULL) {
-#line 1736 "JsRender.vala.c"
+#line 1735 "JsRender.vala.c"
 				GdkPixbuf* _tmp12_;
 				GdkPixbuf* _tmp13_;
 				GdkPixbuf* _tmp14_;
@@ -1752,7 +1751,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 					_g_free0 (fname);
 #line 233 "JsRender.vala"
 					return result;
-#line 1756 "JsRender.vala.c"
+#line 1755 "JsRender.vala.c"
 				}
 			}
 #line 237 "JsRender.vala"
@@ -1785,11 +1784,11 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 			_g_free0 (fname);
 #line 239 "JsRender.vala"
 			return result;
-#line 1789 "JsRender.vala.c"
+#line 1788 "JsRender.vala.c"
 		}
 #line 219 "JsRender.vala"
 		case 368:
-#line 1793 "JsRender.vala.c"
+#line 1792 "JsRender.vala.c"
 		{
 			GdkPixbuf* _tmp25_;
 			GdkPixbuf* _tmp29_;
@@ -1806,7 +1805,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 			_tmp25_ = self->priv->screenshot;
 #line 242 "JsRender.vala"
 			if (_tmp25_ == NULL) {
-#line 1810 "JsRender.vala.c"
+#line 1809 "JsRender.vala.c"
 				GdkPixbuf* _tmp26_;
 				GdkPixbuf* _tmp27_;
 				GdkPixbuf* _tmp28_;
@@ -1826,7 +1825,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 					_g_free0 (fname);
 #line 245 "JsRender.vala"
 					return result;
-#line 1830 "JsRender.vala.c"
+#line 1829 "JsRender.vala.c"
 				}
 			}
 #line 249 "JsRender.vala"
@@ -1859,12 +1858,12 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 			_g_free0 (fname);
 #line 251 "JsRender.vala"
 			return result;
-#line 1863 "JsRender.vala.c"
+#line 1862 "JsRender.vala.c"
 		}
 		default:
 #line 219 "JsRender.vala"
 		break;
-#line 1868 "JsRender.vala.c"
+#line 1867 "JsRender.vala.c"
 	}
 #line 253 "JsRender.vala"
 	result = NULL;
@@ -1872,7 +1871,7 @@ js_render_js_render_getIcon (JsRenderJsRender* self,
 	_g_free0 (fname);
 #line 253 "JsRender.vala"
 	return result;
-#line 1876 "JsRender.vala.c"
+#line 1875 "JsRender.vala.c"
 }
 
 void
@@ -1892,7 +1891,7 @@ js_render_js_render_writeIcon (JsRenderJsRender* self,
 	_g_object_unref0 (self->priv->screenshot);
 #line 260 "JsRender.vala"
 	self->priv->screenshot = NULL;
-#line 1896 "JsRender.vala.c"
+#line 1895 "JsRender.vala.c"
 	{
 		gchar* _tmp0_;
 		gchar* _tmp1_;
@@ -1907,7 +1906,7 @@ js_render_js_render_writeIcon (JsRenderJsRender* self,
 		_g_free0 (_tmp1_);
 #line 262 "JsRender.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1911 "JsRender.vala.c"
+#line 1910 "JsRender.vala.c"
 			goto __catch0_g_error;
 		}
 #line 263 "JsRender.vala"
@@ -1916,14 +1915,14 @@ js_render_js_render_writeIcon (JsRenderJsRender* self,
 		_g_object_unref0 (self->priv->screenshot);
 #line 263 "JsRender.vala"
 		self->priv->screenshot = _tmp2_;
-#line 1920 "JsRender.vala.c"
+#line 1919 "JsRender.vala.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
 	{
 #line 261 "JsRender.vala"
 		g_clear_error (&_inner_error0_);
-#line 1927 "JsRender.vala.c"
+#line 1926 "JsRender.vala.c"
 	}
 	__finally0:
 #line 261 "JsRender.vala"
@@ -1934,7 +1933,7 @@ js_render_js_render_writeIcon (JsRenderJsRender* self,
 		g_clear_error (&_inner_error0_);
 #line 261 "JsRender.vala"
 		return;
-#line 1938 "JsRender.vala.c"
+#line 1937 "JsRender.vala.c"
 	}
 }
 
@@ -1970,14 +1969,14 @@ js_render_js_render_getIconFileName (JsRenderJsRender* self)
 	_tmp3_ = g_strconcat (_tmp2_, "/.Builder/icons", NULL);
 #line 279 "JsRender.vala"
 	dir = _tmp3_;
-#line 1974 "JsRender.vala.c"
+#line 1973 "JsRender.vala.c"
 	{
 		const gchar* _tmp4_;
 #line 281 "JsRender.vala"
 		_tmp4_ = dir;
 #line 281 "JsRender.vala"
 		if (!g_file_test (_tmp4_, G_FILE_TEST_IS_DIR)) {
-#line 1981 "JsRender.vala.c"
+#line 1980 "JsRender.vala.c"
 			const gchar* _tmp5_;
 			GFile* _tmp6_;
 			GFile* _tmp7_;
@@ -1993,7 +1992,7 @@ js_render_js_render_getIconFileName (JsRenderJsRender* self)
 			_g_object_unref0 (_tmp7_);
 #line 282 "JsRender.vala"
 			if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1997 "JsRender.vala.c"
+#line 1996 "JsRender.vala.c"
 				goto __catch0_g_error;
 			}
 		}
@@ -2003,7 +2002,7 @@ js_render_js_render_getIconFileName (JsRenderJsRender* self)
 	{
 #line 280 "JsRender.vala"
 		g_clear_error (&_inner_error0_);
-#line 2007 "JsRender.vala.c"
+#line 2006 "JsRender.vala.c"
 	}
 	__finally0:
 #line 280 "JsRender.vala"
@@ -2018,7 +2017,7 @@ js_render_js_render_getIconFileName (JsRenderJsRender* self)
 		g_clear_error (&_inner_error0_);
 #line 280 "JsRender.vala"
 		return NULL;
-#line 2022 "JsRender.vala.c"
+#line 2021 "JsRender.vala.c"
 	}
 #line 287 "JsRender.vala"
 	_tmp8_ = dir;
@@ -2050,7 +2049,7 @@ js_render_js_render_getIconFileName (JsRenderJsRender* self)
 	_g_free0 (m5);
 #line 290 "JsRender.vala"
 	return result;
-#line 2054 "JsRender.vala.c"
+#line 2053 "JsRender.vala.c"
 }
 
 static void
@@ -2058,7 +2057,7 @@ _vala_JsonNode_free (JsonNode* self)
 {
 #line 306 "JsRender.vala"
 	g_boxed_free (json_node_get_type (), self);
-#line 2062 "JsRender.vala.c"
+#line 2061 "JsRender.vala.c"
 }
 
 gchar*
@@ -2082,7 +2081,7 @@ js_render_js_render_toJsonString (JsRenderJsRender* self)
 	_tmp0_ = self->xtype;
 #line 296 "JsRender.vala"
 	if (g_strcmp0 (_tmp0_, "PlainFile") == 0) {
-#line 2086 "JsRender.vala.c"
+#line 2085 "JsRender.vala.c"
 		gchar* _tmp1_;
 #line 297 "JsRender.vala"
 		_tmp1_ = g_strdup ("");
@@ -2090,7 +2089,7 @@ js_render_js_render_toJsonString (JsRenderJsRender* self)
 		result = _tmp1_;
 #line 297 "JsRender.vala"
 		return result;
-#line 2094 "JsRender.vala.c"
+#line 2093 "JsRender.vala.c"
 	}
 #line 299 "JsRender.vala"
 	_tmp2_ = json_node_new (JSON_NODE_OBJECT);
@@ -2132,7 +2131,7 @@ js_render_js_render_toJsonString (JsRenderJsRender* self)
 	__vala_JsonNode_free0 (node);
 #line 306 "JsRender.vala"
 	return result;
-#line 2136 "JsRender.vala.c"
+#line 2135 "JsRender.vala.c"
 }
 
 void
@@ -2145,7 +2144,7 @@ js_render_js_render_saveBJS (JsRenderJsRender* self)
 	if (!self->loaded) {
 #line 312 "JsRender.vala"
 		return;
-#line 2149 "JsRender.vala.c"
+#line 2148 "JsRender.vala.c"
 	}
 #line 314 "JsRender.vala"
 	_tmp0_ = self->xtype;
@@ -2153,13 +2152,13 @@ js_render_js_render_saveBJS (JsRenderJsRender* self)
 	if (g_strcmp0 (_tmp0_, "PlainFile") == 0) {
 #line 315 "JsRender.vala"
 		return;
-#line 2157 "JsRender.vala.c"
+#line 2156 "JsRender.vala.c"
 	}
 #line 320 "JsRender.vala"
 	_tmp1_ = self->path;
 #line 320 "JsRender.vala"
 	g_debug ("JsRender.vala:320: WRITE :%s\n ", _tmp1_);
-#line 2163 "JsRender.vala.c"
+#line 2162 "JsRender.vala.c"
 	{
 		const gchar* _tmp2_;
 		gchar* _tmp3_;
@@ -2176,7 +2175,7 @@ js_render_js_render_saveBJS (JsRenderJsRender* self)
 		_g_free0 (_tmp4_);
 #line 322 "JsRender.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 2180 "JsRender.vala.c"
+#line 2179 "JsRender.vala.c"
 			goto __catch0_g_error;
 		}
 	}
@@ -2187,7 +2186,7 @@ js_render_js_render_saveBJS (JsRenderJsRender* self)
 		g_clear_error (&_inner_error0_);
 #line 325 "JsRender.vala"
 		g_print ("Save failed");
-#line 2191 "JsRender.vala.c"
+#line 2190 "JsRender.vala.c"
 	}
 	__finally0:
 #line 321 "JsRender.vala"
@@ -2198,7 +2197,7 @@ js_render_js_render_saveBJS (JsRenderJsRender* self)
 		g_clear_error (&_inner_error0_);
 #line 321 "JsRender.vala"
 		return;
-#line 2202 "JsRender.vala.c"
+#line 2201 "JsRender.vala.c"
 	}
 }
 
@@ -2212,17 +2211,17 @@ js_render_js_render_jsonHasOrEmpty (JsRenderJsRender* self,
 	gchar* result;
 #line 337 "JsRender.vala"
 	if (json_object_has_member (obj, key)) {
-#line 2216 "JsRender.vala.c"
+#line 2215 "JsRender.vala.c"
 		const gchar* _tmp1_;
 #line 338 "JsRender.vala"
 		_tmp1_ = json_object_get_string_member (obj, key);
 #line 338 "JsRender.vala"
 		_tmp0_ = _tmp1_;
-#line 2222 "JsRender.vala.c"
+#line 2221 "JsRender.vala.c"
 	} else {
 #line 338 "JsRender.vala"
 		_tmp0_ = "";
-#line 2226 "JsRender.vala.c"
+#line 2225 "JsRender.vala.c"
 	}
 #line 337 "JsRender.vala"
 	_tmp2_ = g_strdup (_tmp0_);
@@ -2230,7 +2229,7 @@ js_render_js_render_jsonHasOrEmpty (JsRenderJsRender* self,
 	result = _tmp2_;
 #line 337 "JsRender.vala"
 	return result;
-#line 2234 "JsRender.vala.c"
+#line 2233 "JsRender.vala.c"
 }
 
 static gpointer
@@ -2238,7 +2237,7 @@ _json_object_ref0 (gpointer self)
 {
 #line 374 "JsRender.vala"
 	return self ? json_object_ref (self) : NULL;
-#line 2242 "JsRender.vala.c"
+#line 2241 "JsRender.vala.c"
 }
 
 static gpointer
@@ -2246,7 +2245,7 @@ _json_array_ref0 (gpointer self)
 {
 #line 393 "JsRender.vala"
 	return self ? json_array_ref (self) : NULL;
-#line 2250 "JsRender.vala.c"
+#line 2249 "JsRender.vala.c"
 }
 
 JsonObject*
@@ -2287,7 +2286,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		result = ret;
 #line 348 "JsRender.vala"
 		return result;
-#line 2291 "JsRender.vala.c"
+#line 2290 "JsRender.vala.c"
 	}
 #line 352 "JsRender.vala"
 	_tmp2_ = ret;
@@ -2301,7 +2300,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 	_tmp5_ = _tmp4_->xtype;
 #line 354 "JsRender.vala"
 	if (g_strcmp0 (_tmp5_, "Roo") == 0) {
-#line 2305 "JsRender.vala.c"
+#line 2304 "JsRender.vala.c"
 		const gchar* _tmp6_ = NULL;
 		const gchar* _tmp7_;
 		JsonObject* _tmp9_;
@@ -2320,14 +2319,14 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		if (_tmp7_ == NULL) {
 #line 355 "JsRender.vala"
 			_tmp6_ = "";
-#line 2324 "JsRender.vala.c"
+#line 2323 "JsRender.vala.c"
 		} else {
 			const gchar* _tmp8_;
 #line 355 "JsRender.vala"
 			_tmp8_ = self->parent;
 #line 355 "JsRender.vala"
 			_tmp6_ = _tmp8_;
-#line 2331 "JsRender.vala.c"
+#line 2330 "JsRender.vala.c"
 		}
 #line 355 "JsRender.vala"
 		_tmp9_ = ret;
@@ -2339,14 +2338,14 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		if (_tmp11_ == NULL) {
 #line 356 "JsRender.vala"
 			_tmp10_ = "";
-#line 2343 "JsRender.vala.c"
+#line 2342 "JsRender.vala.c"
 		} else {
 			const gchar* _tmp12_;
 #line 356 "JsRender.vala"
 			_tmp12_ = self->title;
 #line 356 "JsRender.vala"
 			_tmp10_ = _tmp12_;
-#line 2350 "JsRender.vala.c"
+#line 2349 "JsRender.vala.c"
 		}
 #line 356 "JsRender.vala"
 		_tmp13_ = ret;
@@ -2358,14 +2357,14 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		if (_tmp15_ == NULL) {
 #line 359 "JsRender.vala"
 			_tmp14_ = "";
-#line 2362 "JsRender.vala.c"
+#line 2361 "JsRender.vala.c"
 		} else {
 			const gchar* _tmp16_;
 #line 359 "JsRender.vala"
 			_tmp16_ = self->permname;
 #line 359 "JsRender.vala"
 			_tmp14_ = _tmp16_;
-#line 2369 "JsRender.vala.c"
+#line 2368 "JsRender.vala.c"
 		}
 #line 359 "JsRender.vala"
 		_tmp17_ = ret;
@@ -2377,20 +2376,20 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		if (_tmp19_ == NULL) {
 #line 360 "JsRender.vala"
 			_tmp18_ = "";
-#line 2381 "JsRender.vala.c"
+#line 2380 "JsRender.vala.c"
 		} else {
 			const gchar* _tmp20_;
 #line 360 "JsRender.vala"
 			_tmp20_ = self->modOrder;
 #line 360 "JsRender.vala"
 			_tmp18_ = _tmp20_;
-#line 2388 "JsRender.vala.c"
+#line 2387 "JsRender.vala.c"
 		}
 #line 360 "JsRender.vala"
 		_tmp21_ = ret;
 #line 360 "JsRender.vala"
 		json_object_set_string_member (_tmp21_, "modOrder", _tmp18_);
-#line 2394 "JsRender.vala.c"
+#line 2393 "JsRender.vala.c"
 	}
 #line 362 "JsRender.vala"
 	_tmp22_ = self->project;
@@ -2398,7 +2397,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 	_tmp23_ = _tmp22_->xtype;
 #line 362 "JsRender.vala"
 	if (g_strcmp0 (_tmp23_, "Gtk") == 0) {
-#line 2402 "JsRender.vala.c"
+#line 2401 "JsRender.vala.c"
 		JsonObject* _tmp24_;
 		const gchar* _tmp25_;
 		JsonObject* _tmp26_;
@@ -2415,7 +2414,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		_tmp27_ = self->build_module;
 #line 364 "JsRender.vala"
 		json_object_set_string_member (_tmp26_, "build_module", _tmp27_);
-#line 2419 "JsRender.vala.c"
+#line 2418 "JsRender.vala.c"
 	}
 #line 366 "JsRender.vala"
 	_tmp28_ = ret;
@@ -2429,7 +2428,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 	_tmp31_ = _tmp30_;
 #line 368 "JsRender.vala"
 	if (_tmp31_ > 0) {
-#line 2433 "JsRender.vala.c"
+#line 2432 "JsRender.vala.c"
 		JsonObject* tr = NULL;
 		JsonObject* _tmp32_;
 		GeeMapIterator* iter = NULL;
@@ -2450,7 +2449,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		iter = _tmp34_;
 #line 371 "JsRender.vala"
 		while (TRUE) {
-#line 2454 "JsRender.vala.c"
+#line 2453 "JsRender.vala.c"
 			GeeMapIterator* _tmp35_;
 			JsonObject* _tmp36_;
 			GeeMapIterator* _tmp37_;
@@ -2465,7 +2464,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 			if (!gee_map_iterator_next (_tmp35_)) {
 #line 371 "JsRender.vala"
 				break;
-#line 2469 "JsRender.vala.c"
+#line 2468 "JsRender.vala.c"
 			}
 #line 372 "JsRender.vala"
 			_tmp36_ = tr;
@@ -2487,7 +2486,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 			_g_free0 (_tmp42_);
 #line 372 "JsRender.vala"
 			_g_free0 (_tmp39_);
-#line 2491 "JsRender.vala.c"
+#line 2490 "JsRender.vala.c"
 		}
 #line 374 "JsRender.vala"
 		_tmp43_ = ret;
@@ -2501,7 +2500,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		_g_object_unref0 (iter);
 #line 368 "JsRender.vala"
 		_json_object_unref0 (tr);
-#line 2505 "JsRender.vala.c"
+#line 2504 "JsRender.vala.c"
 	}
 #line 379 "JsRender.vala"
 	_tmp46_ = self->namedStrings;
@@ -2511,7 +2510,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 	_tmp48_ = _tmp47_;
 #line 379 "JsRender.vala"
 	if (_tmp48_ > 0) {
-#line 2515 "JsRender.vala.c"
+#line 2514 "JsRender.vala.c"
 		JsonObject* tr = NULL;
 		JsonObject* _tmp49_;
 		GeeMapIterator* iter = NULL;
@@ -2532,7 +2531,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		iter = _tmp51_;
 #line 382 "JsRender.vala"
 		while (TRUE) {
-#line 2536 "JsRender.vala.c"
+#line 2535 "JsRender.vala.c"
 			GeeMapIterator* _tmp52_;
 			JsonObject* _tmp53_;
 			GeeMapIterator* _tmp54_;
@@ -2547,7 +2546,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 			if (!gee_map_iterator_next (_tmp52_)) {
 #line 382 "JsRender.vala"
 				break;
-#line 2551 "JsRender.vala.c"
+#line 2550 "JsRender.vala.c"
 			}
 #line 383 "JsRender.vala"
 			_tmp53_ = tr;
@@ -2569,7 +2568,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 			_g_free0 (_tmp59_);
 #line 383 "JsRender.vala"
 			_g_free0 (_tmp56_);
-#line 2573 "JsRender.vala.c"
+#line 2572 "JsRender.vala.c"
 		}
 #line 385 "JsRender.vala"
 		_tmp60_ = ret;
@@ -2583,7 +2582,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		_g_object_unref0 (iter);
 #line 379 "JsRender.vala"
 		_json_object_unref0 (tr);
-#line 2587 "JsRender.vala.c"
+#line 2586 "JsRender.vala.c"
 	}
 #line 388 "JsRender.vala"
 	_tmp63_ = json_array_new ();
@@ -2593,7 +2592,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 	_tmp64_ = self->tree;
 #line 390 "JsRender.vala"
 	if (_tmp64_ != NULL) {
-#line 2597 "JsRender.vala.c"
+#line 2596 "JsRender.vala.c"
 		JsonArray* _tmp65_;
 		JsRenderNode* _tmp66_;
 		JsonObject* _tmp67_;
@@ -2605,7 +2604,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 		_tmp67_ = js_render_node_toJsonObject (_tmp66_);
 #line 391 "JsRender.vala"
 		json_array_add_object_element (_tmp65_, _tmp67_);
-#line 2609 "JsRender.vala.c"
+#line 2608 "JsRender.vala.c"
 	}
 #line 393 "JsRender.vala"
 	_tmp68_ = ret;
@@ -2621,7 +2620,7 @@ js_render_js_render_toJsonObject (JsRenderJsRender* self)
 	_json_array_unref0 (ar);
 #line 395 "JsRender.vala"
 	return result;
-#line 2625 "JsRender.vala.c"
+#line 2624 "JsRender.vala.c"
 }
 
 gchar*
@@ -2648,7 +2647,7 @@ js_render_js_render_getTitle (JsRenderJsRender* self)
 	_tmp0_ = self->title;
 #line 402 "JsRender.vala"
 	if (_tmp0_ == NULL) {
-#line 2652 "JsRender.vala.c"
+#line 2651 "JsRender.vala.c"
 		gchar* _tmp1_;
 #line 403 "JsRender.vala"
 		_tmp1_ = g_strdup ("");
@@ -2656,7 +2655,7 @@ js_render_js_render_getTitle (JsRenderJsRender* self)
 		result = _tmp1_;
 #line 403 "JsRender.vala"
 		return result;
-#line 2660 "JsRender.vala.c"
+#line 2659 "JsRender.vala.c"
 	}
 #line 405 "JsRender.vala"
 	_tmp2_ = self->title;
@@ -2666,7 +2665,7 @@ js_render_js_render_getTitle (JsRenderJsRender* self)
 	_tmp4_ = _tmp3_;
 #line 405 "JsRender.vala"
 	if (_tmp4_ > 0) {
-#line 2670 "JsRender.vala.c"
+#line 2669 "JsRender.vala.c"
 		const gchar* _tmp5_;
 		gchar* _tmp6_;
 #line 406 "JsRender.vala"
@@ -2677,7 +2676,7 @@ js_render_js_render_getTitle (JsRenderJsRender* self)
 		result = _tmp6_;
 #line 406 "JsRender.vala"
 		return result;
-#line 2681 "JsRender.vala.c"
+#line 2680 "JsRender.vala.c"
 	}
 #line 408 "JsRender.vala"
 	_tmp7_ = self->path;
@@ -2707,7 +2706,7 @@ js_render_js_render_getTitle (JsRenderJsRender* self)
 	a = (_vala_array_free (a, a_length1, (GDestroyNotify) g_free), NULL);
 #line 409 "JsRender.vala"
 	return result;
-#line 2711 "JsRender.vala.c"
+#line 2710 "JsRender.vala.c"
 }
 
 gchar*
@@ -2727,7 +2726,7 @@ js_render_js_render_getTitleTip (JsRenderJsRender* self)
 	_tmp2_ = _tmp1_;
 #line 413 "JsRender.vala"
 	if (_tmp2_ > 0) {
-#line 2731 "JsRender.vala.c"
+#line 2730 "JsRender.vala.c"
 		const gchar* _tmp3_;
 		gchar* _tmp4_;
 		gchar* _tmp5_;
@@ -2760,7 +2759,7 @@ js_render_js_render_getTitleTip (JsRenderJsRender* self)
 		result = _tmp10_;
 #line 414 "JsRender.vala"
 		return result;
-#line 2764 "JsRender.vala.c"
+#line 2763 "JsRender.vala.c"
 	}
 #line 416 "JsRender.vala"
 	_tmp11_ = self->path;
@@ -2770,7 +2769,7 @@ js_render_js_render_getTitleTip (JsRenderJsRender* self)
 	result = _tmp12_;
 #line 416 "JsRender.vala"
 	return result;
-#line 2774 "JsRender.vala.c"
+#line 2773 "JsRender.vala.c"
 }
 
 PaletePalete*
@@ -2790,7 +2789,7 @@ js_render_js_render_palete (JsRenderJsRender* self)
 	result = _tmp2_;
 #line 432 "JsRender.vala"
 	return result;
-#line 2794 "JsRender.vala.c"
+#line 2793 "JsRender.vala.c"
 }
 
 gchar*
@@ -2808,7 +2807,7 @@ js_render_js_render_guessName (JsRenderJsRender* self,
 	gchar* result;
 #line 439 "JsRender.vala"
 	if (!js_render_node_hasXnsType (ar)) {
-#line 2812 "JsRender.vala.c"
+#line 2811 "JsRender.vala.c"
 		gchar* _tmp0_;
 #line 440 "JsRender.vala"
 		_tmp0_ = g_strdup ("");
@@ -2816,7 +2815,7 @@ js_render_js_render_guessName (JsRenderJsRender* self,
 		result = _tmp0_;
 #line 440 "JsRender.vala"
 		return result;
-#line 2820 "JsRender.vala.c"
+#line 2819 "JsRender.vala.c"
 	}
 #line 443 "JsRender.vala"
 	_tmp1_ = js_render_node_get (ar, "xns");
@@ -2844,7 +2843,7 @@ js_render_js_render_guessName (JsRenderJsRender* self,
 	result = _tmp8_;
 #line 443 "JsRender.vala"
 	return result;
-#line 2848 "JsRender.vala.c"
+#line 2847 "JsRender.vala.c"
 }
 
 /**
@@ -2884,7 +2883,7 @@ js_render_js_render_writeFile (JsRenderJsRender* self,
 		_g_object_unref0 (f);
 #line 456 "JsRender.vala"
 		return;
-#line 2888 "JsRender.vala.c"
+#line 2887 "JsRender.vala.c"
 	}
 #line 455 "JsRender.vala"
 	_tmp4_ = g_data_output_stream_new ((GOutputStream*) _tmp1_);
@@ -2906,7 +2905,7 @@ js_render_js_render_writeFile (JsRenderJsRender* self,
 		_g_object_unref0 (f);
 #line 458 "JsRender.vala"
 		return;
-#line 2910 "JsRender.vala.c"
+#line 2909 "JsRender.vala.c"
 	}
 #line 459 "JsRender.vala"
 	_tmp6_ = data_out;
@@ -2924,7 +2923,7 @@ js_render_js_render_writeFile (JsRenderJsRender* self,
 		_g_object_unref0 (f);
 #line 459 "JsRender.vala"
 		return;
-#line 2928 "JsRender.vala.c"
+#line 2927 "JsRender.vala.c"
 	}
 #line 450 "JsRender.vala"
 	_g_object_unref0 (data_out);
@@ -2932,7 +2931,7 @@ js_render_js_render_writeFile (JsRenderJsRender* self,
 	_g_object_unref0 (_tmp1_);
 #line 450 "JsRender.vala"
 	_g_object_unref0 (f);
-#line 2936 "JsRender.vala.c"
+#line 2935 "JsRender.vala.c"
 }
 
 JsRenderNode*
@@ -2951,7 +2950,7 @@ js_render_js_render_lineToNode (JsRenderJsRender* self,
 		result = NULL;
 #line 467 "JsRender.vala"
 		return result;
-#line 2955 "JsRender.vala.c"
+#line 2954 "JsRender.vala.c"
 	}
 #line 469 "JsRender.vala"
 	_tmp1_ = self->tree;
@@ -2961,7 +2960,7 @@ js_render_js_render_lineToNode (JsRenderJsRender* self,
 	result = _tmp2_;
 #line 469 "JsRender.vala"
 	return result;
-#line 2965 "JsRender.vala.c"
+#line 2964 "JsRender.vala.c"
 }
 
 GListStore*
@@ -2983,7 +2982,7 @@ js_render_js_render_toListStore (JsRenderJsRender* self)
 	result = ret;
 #line 478 "JsRender.vala"
 	return result;
-#line 2987 "JsRender.vala.c"
+#line 2986 "JsRender.vala.c"
 }
 
 static void
@@ -2993,7 +2992,7 @@ js_render_js_render_real_save (JsRenderJsRender* self)
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_save'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 587 "JsRender.vala"
 	return;
-#line 2997 "JsRender.vala.c"
+#line 2996 "JsRender.vala.c"
 }
 
 void
@@ -3006,7 +3005,7 @@ js_render_js_render_save (JsRenderJsRender* self)
 	if (_klass_->save) {
 #line 587 "JsRender.vala"
 		_klass_->save (self);
-#line 3010 "JsRender.vala.c"
+#line 3009 "JsRender.vala.c"
 	}
 }
 
@@ -3018,7 +3017,7 @@ js_render_js_render_real_saveHTML (JsRenderJsRender* self,
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_saveHTML'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 588 "JsRender.vala"
 	return;
-#line 3022 "JsRender.vala.c"
+#line 3021 "JsRender.vala.c"
 }
 
 void
@@ -3032,7 +3031,7 @@ js_render_js_render_saveHTML (JsRenderJsRender* self,
 	if (_klass_->saveHTML) {
 #line 588 "JsRender.vala"
 		_klass_->saveHTML (self, html);
-#line 3036 "JsRender.vala.c"
+#line 3035 "JsRender.vala.c"
 	}
 }
 
@@ -3043,7 +3042,7 @@ js_render_js_render_real_toSource (JsRenderJsRender* self)
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_toSource'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 589 "JsRender.vala"
 	return NULL;
-#line 3047 "JsRender.vala.c"
+#line 3046 "JsRender.vala.c"
 }
 
 gchar*
@@ -3056,11 +3055,11 @@ js_render_js_render_toSource (JsRenderJsRender* self)
 	if (_klass_->toSource) {
 #line 589 "JsRender.vala"
 		return _klass_->toSource (self);
-#line 3060 "JsRender.vala.c"
+#line 3059 "JsRender.vala.c"
 	}
 #line 589 "JsRender.vala"
 	return NULL;
-#line 3064 "JsRender.vala.c"
+#line 3063 "JsRender.vala.c"
 }
 
 static gchar*
@@ -3070,7 +3069,7 @@ js_render_js_render_real_toSourceCode (JsRenderJsRender* self)
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_toSourceCode'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 590 "JsRender.vala"
 	return NULL;
-#line 3074 "JsRender.vala.c"
+#line 3073 "JsRender.vala.c"
 }
 
 gchar*
@@ -3083,11 +3082,11 @@ js_render_js_render_toSourceCode (JsRenderJsRender* self)
 	if (_klass_->toSourceCode) {
 #line 590 "JsRender.vala"
 		return _klass_->toSourceCode (self);
-#line 3087 "JsRender.vala.c"
+#line 3086 "JsRender.vala.c"
 	}
 #line 590 "JsRender.vala"
 	return NULL;
-#line 3091 "JsRender.vala.c"
+#line 3090 "JsRender.vala.c"
 }
 
 static void
@@ -3098,7 +3097,7 @@ js_render_js_render_real_setSource (JsRenderJsRender* self,
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_setSource'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 591 "JsRender.vala"
 	return;
-#line 3102 "JsRender.vala.c"
+#line 3101 "JsRender.vala.c"
 }
 
 void
@@ -3112,7 +3111,7 @@ js_render_js_render_setSource (JsRenderJsRender* self,
 	if (_klass_->setSource) {
 #line 591 "JsRender.vala"
 		_klass_->setSource (self, str);
-#line 3116 "JsRender.vala.c"
+#line 3115 "JsRender.vala.c"
 	}
 }
 
@@ -3123,7 +3122,7 @@ js_render_js_render_real_toSourcePreview (JsRenderJsRender* self)
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_toSourcePreview'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 592 "JsRender.vala"
 	return NULL;
-#line 3127 "JsRender.vala.c"
+#line 3126 "JsRender.vala.c"
 }
 
 gchar*
@@ -3136,11 +3135,11 @@ js_render_js_render_toSourcePreview (JsRenderJsRender* self)
 	if (_klass_->toSourcePreview) {
 #line 592 "JsRender.vala"
 		return _klass_->toSourcePreview (self);
-#line 3140 "JsRender.vala.c"
+#line 3139 "JsRender.vala.c"
 	}
 #line 592 "JsRender.vala"
 	return NULL;
-#line 3144 "JsRender.vala.c"
+#line 3143 "JsRender.vala.c"
 }
 
 static void
@@ -3150,7 +3149,7 @@ js_render_js_render_real_removeFiles (JsRenderJsRender* self)
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_removeFiles'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 593 "JsRender.vala"
 	return;
-#line 3154 "JsRender.vala.c"
+#line 3153 "JsRender.vala.c"
 }
 
 void
@@ -3163,7 +3162,7 @@ js_render_js_render_removeFiles (JsRenderJsRender* self)
 	if (_klass_->removeFiles) {
 #line 593 "JsRender.vala"
 		_klass_->removeFiles (self);
-#line 3167 "JsRender.vala.c"
+#line 3166 "JsRender.vala.c"
 	}
 }
 
@@ -3175,7 +3174,7 @@ js_render_js_render_real_findTransStrings (JsRenderJsRender* self,
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_findTransStrings'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 594 "JsRender.vala"
 	return;
-#line 3179 "JsRender.vala.c"
+#line 3178 "JsRender.vala.c"
 }
 
 void
@@ -3189,7 +3188,7 @@ js_render_js_render_findTransStrings (JsRenderJsRender* self,
 	if (_klass_->findTransStrings) {
 #line 594 "JsRender.vala"
 		_klass_->findTransStrings (self, node);
-#line 3193 "JsRender.vala.c"
+#line 3192 "JsRender.vala.c"
 	}
 }
 
@@ -3200,7 +3199,7 @@ js_render_js_render_real_toGlade (JsRenderJsRender* self)
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_toGlade'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 595 "JsRender.vala"
 	return NULL;
-#line 3204 "JsRender.vala.c"
+#line 3203 "JsRender.vala.c"
 }
 
 gchar*
@@ -3213,11 +3212,11 @@ js_render_js_render_toGlade (JsRenderJsRender* self)
 	if (_klass_->toGlade) {
 #line 595 "JsRender.vala"
 		return _klass_->toGlade (self);
-#line 3217 "JsRender.vala.c"
+#line 3216 "JsRender.vala.c"
 	}
 #line 595 "JsRender.vala"
 	return NULL;
-#line 3221 "JsRender.vala.c"
+#line 3220 "JsRender.vala.c"
 }
 
 static gchar*
@@ -3227,7 +3226,7 @@ js_render_js_render_real_targetName (JsRenderJsRender* self)
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_targetName'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 596 "JsRender.vala"
 	return NULL;
-#line 3231 "JsRender.vala.c"
+#line 3230 "JsRender.vala.c"
 }
 
 gchar*
@@ -3240,11 +3239,11 @@ js_render_js_render_targetName (JsRenderJsRender* self)
 	if (_klass_->targetName) {
 #line 596 "JsRender.vala"
 		return _klass_->targetName (self);
-#line 3244 "JsRender.vala.c"
+#line 3243 "JsRender.vala.c"
 	}
 #line 596 "JsRender.vala"
 	return NULL;
-#line 3248 "JsRender.vala.c"
+#line 3247 "JsRender.vala.c"
 }
 
 static void
@@ -3255,7 +3254,7 @@ js_render_js_render_real_loadItems (JsRenderJsRender* self,
 	g_critical ("Type `%s' does not implement abstract method `js_render_js_render_loadItems'", g_type_name (G_TYPE_FROM_INSTANCE (self)));
 #line 597 "JsRender.vala"
 	return;
-#line 3259 "JsRender.vala.c"
+#line 3258 "JsRender.vala.c"
 }
 
 void
@@ -3269,7 +3268,7 @@ js_render_js_render_loadItems (JsRenderJsRender* self,
 	if (_klass_->loadItems) {
 #line 597 "JsRender.vala"
 		_klass_->loadItems (self, error);
-#line 3273 "JsRender.vala.c"
+#line 3272 "JsRender.vala.c"
 	}
 }
 
@@ -3281,7 +3280,7 @@ js_render_js_render_construct (GType object_type)
 	self = (JsRenderJsRender*) g_object_new (object_type, NULL);
 #line 11 "JsRender.vala"
 	return self;
-#line 3285 "JsRender.vala.c"
+#line 3284 "JsRender.vala.c"
 }
 
 const gchar*
@@ -3295,7 +3294,7 @@ js_render_js_render_get_name (JsRenderJsRender* self)
 	result = _tmp0_;
 #line 18 "JsRender.vala"
 	return result;
-#line 3299 "JsRender.vala.c"
+#line 3298 "JsRender.vala.c"
 }
 
 void
@@ -3307,7 +3306,7 @@ js_render_js_render_set_name (JsRenderJsRender* self,
 	old_value = js_render_js_render_get_name (self);
 #line 18 "JsRender.vala"
 	if (g_strcmp0 (value, old_value) != 0) {
-#line 3311 "JsRender.vala.c"
+#line 3310 "JsRender.vala.c"
 		gchar* _tmp0_;
 #line 18 "JsRender.vala"
 		_tmp0_ = g_strdup (value);
@@ -3317,7 +3316,7 @@ js_render_js_render_set_name (JsRenderJsRender* self,
 		self->priv->_name = _tmp0_;
 #line 18 "JsRender.vala"
 		g_object_notify_by_pspec ((GObject *) self, js_render_js_render_properties[JS_RENDER_JS_RENDER_NAME_PROPERTY]);
-#line 3321 "JsRender.vala.c"
+#line 3320 "JsRender.vala.c"
 	}
 }
 
@@ -3341,7 +3340,7 @@ string_strnlen (gchar* str,
 		result = maxlen;
 #line 1457 "glib-2.0.vapi"
 		return result;
-#line 3345 "JsRender.vala.c"
+#line 3344 "JsRender.vala.c"
 	} else {
 		gchar* _tmp2_;
 #line 1459 "glib-2.0.vapi"
@@ -3350,7 +3349,7 @@ string_strnlen (gchar* str,
 		result = (glong) (_tmp2_ - str);
 #line 1459 "glib-2.0.vapi"
 		return result;
-#line 3354 "JsRender.vala.c"
+#line 3353 "JsRender.vala.c"
 	}
 }
 
@@ -3367,17 +3366,17 @@ string_substring (const gchar* self,
 	if (offset >= ((glong) 0)) {
 #line 1468 "glib-2.0.vapi"
 		_tmp0_ = len >= ((glong) 0);
-#line 3371 "JsRender.vala.c"
+#line 3370 "JsRender.vala.c"
 	} else {
 #line 1468 "glib-2.0.vapi"
 		_tmp0_ = FALSE;
-#line 3375 "JsRender.vala.c"
+#line 3374 "JsRender.vala.c"
 	}
 #line 1468 "glib-2.0.vapi"
 	if (_tmp0_) {
 #line 1470 "glib-2.0.vapi"
 		string_length = string_strnlen ((gchar*) self, offset + len);
-#line 3381 "JsRender.vala.c"
+#line 3380 "JsRender.vala.c"
 	} else {
 		gint _tmp1_;
 		gint _tmp2_;
@@ -3387,7 +3386,7 @@ string_substring (const gchar* self,
 		_tmp2_ = _tmp1_;
 #line 1472 "glib-2.0.vapi"
 		string_length = (glong) _tmp2_;
-#line 3391 "JsRender.vala.c"
+#line 3390 "JsRender.vala.c"
 	}
 #line 1475 "glib-2.0.vapi"
 	if (offset < ((glong) 0)) {
@@ -3395,17 +3394,17 @@ string_substring (const gchar* self,
 		offset = string_length + offset;
 #line 1477 "glib-2.0.vapi"
 		g_return_val_if_fail (offset >= ((glong) 0), NULL);
-#line 3399 "JsRender.vala.c"
+#line 3398 "JsRender.vala.c"
 	} else {
 #line 1479 "glib-2.0.vapi"
 		g_return_val_if_fail (offset <= string_length, NULL);
-#line 3403 "JsRender.vala.c"
+#line 3402 "JsRender.vala.c"
 	}
 #line 1481 "glib-2.0.vapi"
 	if (len < ((glong) 0)) {
 #line 1482 "glib-2.0.vapi"
 		len = string_length - offset;
-#line 3409 "JsRender.vala.c"
+#line 3408 "JsRender.vala.c"
 	}
 #line 1484 "glib-2.0.vapi"
 	g_return_val_if_fail ((offset + len) <= string_length, NULL);
@@ -3415,7 +3414,7 @@ string_substring (const gchar* self,
 	result = _tmp3_;
 #line 1485 "glib-2.0.vapi"
 	return result;
-#line 3419 "JsRender.vala.c"
+#line 3418 "JsRender.vala.c"
 }
 
 gchar*
@@ -3444,7 +3443,7 @@ js_render_js_render_get_relpath (JsRenderJsRender* self)
 	result = _tmp5_;
 #line 24 "JsRender.vala"
 	return result;
-#line 3448 "JsRender.vala.c"
+#line 3447 "JsRender.vala.c"
 }
 
 static void
@@ -3453,7 +3452,7 @@ js_render_js_render_set_relpath (JsRenderJsRender* self,
 {
 #line 26 "JsRender.vala"
 	g_object_notify_by_pspec ((GObject *) self, js_render_js_render_properties[JS_RENDER_JS_RENDER_RELPATH_PROPERTY]);
-#line 3457 "JsRender.vala.c"
+#line 3456 "JsRender.vala.c"
 }
 
 gchar*
@@ -3483,7 +3482,7 @@ js_render_js_render_get_reldir (JsRenderJsRender* self)
 	_g_free0 (_tmp5_);
 #line 30 "JsRender.vala"
 	if (_tmp6_) {
-#line 3487 "JsRender.vala.c"
+#line 3486 "JsRender.vala.c"
 		gchar* _tmp7_;
 #line 30 "JsRender.vala"
 		_tmp7_ = g_strdup ("");
@@ -3491,7 +3490,7 @@ js_render_js_render_get_reldir (JsRenderJsRender* self)
 		_g_free0 (_tmp0_);
 #line 30 "JsRender.vala"
 		_tmp0_ = _tmp7_;
-#line 3495 "JsRender.vala.c"
+#line 3494 "JsRender.vala.c"
 	} else {
 		gchar* _tmp8_;
 		gchar* _tmp9_;
@@ -3523,13 +3522,13 @@ js_render_js_render_get_reldir (JsRenderJsRender* self)
 		_tmp0_ = _tmp15_;
 #line 30 "JsRender.vala"
 		_g_free0 (_tmp10_);
-#line 3527 "JsRender.vala.c"
+#line 3526 "JsRender.vala.c"
 	}
 #line 30 "JsRender.vala"
 	result = _tmp0_;
 #line 30 "JsRender.vala"
 	return result;
-#line 3533 "JsRender.vala.c"
+#line 3532 "JsRender.vala.c"
 }
 
 static void
@@ -3538,7 +3537,7 @@ js_render_js_render_set_reldir (JsRenderJsRender* self,
 {
 #line 32 "JsRender.vala"
 	g_object_notify_by_pspec ((GObject *) self, js_render_js_render_properties[JS_RENDER_JS_RENDER_RELDIR_PROPERTY]);
-#line 3542 "JsRender.vala.c"
+#line 3541 "JsRender.vala.c"
 }
 
 gchar*
@@ -3555,7 +3554,7 @@ js_render_js_render_get_dir (JsRenderJsRender* self)
 	result = _tmp1_;
 #line 37 "JsRender.vala"
 	return result;
-#line 3559 "JsRender.vala.c"
+#line 3558 "JsRender.vala.c"
 }
 
 static void
@@ -3564,7 +3563,7 @@ js_render_js_render_set_dir (JsRenderJsRender* self,
 {
 #line 40 "JsRender.vala"
 	g_object_notify_by_pspec ((GObject *) self, js_render_js_render_properties[JS_RENDER_JS_RENDER_DIR_PROPERTY]);
-#line 3568 "JsRender.vala.c"
+#line 3567 "JsRender.vala.c"
 }
 
 gboolean
@@ -3605,29 +3604,29 @@ js_render_js_render_get_compile_group_selected (JsRenderJsRender* self)
 		_g_object_unref0 (gproj);
 #line 488 "JsRender.vala"
 		return result;
-#line 3609 "JsRender.vala.c"
+#line 3608 "JsRender.vala.c"
 	}
 #line 490 "JsRender.vala"
 	_tmp4_ = self->xtype;
 #line 490 "JsRender.vala"
 	if (g_strcmp0 (_tmp4_, "Dir") == 0) {
-#line 3615 "JsRender.vala.c"
+#line 3614 "JsRender.vala.c"
 		gboolean ticked = FALSE;
 #line 492 "JsRender.vala"
 		ticked = TRUE;
-#line 3619 "JsRender.vala.c"
+#line 3618 "JsRender.vala.c"
 		{
 			gint i = 0;
 #line 493 "JsRender.vala"
 			i = 0;
-#line 3624 "JsRender.vala.c"
+#line 3623 "JsRender.vala.c"
 			{
 				gboolean _tmp5_ = FALSE;
 #line 493 "JsRender.vala"
 				_tmp5_ = TRUE;
 #line 493 "JsRender.vala"
 				while (TRUE) {
-#line 3631 "JsRender.vala.c"
+#line 3630 "JsRender.vala.c"
 					GListStore* _tmp7_;
 					guint _tmp8_;
 					guint _tmp9_;
@@ -3639,13 +3638,13 @@ js_render_js_render_get_compile_group_selected (JsRenderJsRender* self)
 					gboolean _tmp14_;
 #line 493 "JsRender.vala"
 					if (!_tmp5_) {
-#line 3643 "JsRender.vala.c"
+#line 3642 "JsRender.vala.c"
 						gint _tmp6_;
 #line 493 "JsRender.vala"
 						_tmp6_ = i;
 #line 493 "JsRender.vala"
 						i = _tmp6_ + 1;
-#line 3649 "JsRender.vala.c"
+#line 3648 "JsRender.vala.c"
 					}
 #line 493 "JsRender.vala"
 					_tmp5_ = FALSE;
@@ -3659,7 +3658,7 @@ js_render_js_render_get_compile_group_selected (JsRenderJsRender* self)
 					if (!(((guint) i) < _tmp9_)) {
 #line 493 "JsRender.vala"
 						break;
-#line 3663 "JsRender.vala.c"
+#line 3662 "JsRender.vala.c"
 					}
 #line 494 "JsRender.vala"
 					_tmp10_ = self->childfiles;
@@ -3681,11 +3680,11 @@ js_render_js_render_get_compile_group_selected (JsRenderJsRender* self)
 						_g_object_unref0 (f);
 #line 497 "JsRender.vala"
 						break;
-#line 3685 "JsRender.vala.c"
+#line 3684 "JsRender.vala.c"
 					}
 #line 493 "JsRender.vala"
 					_g_object_unref0 (f);
-#line 3689 "JsRender.vala.c"
+#line 3688 "JsRender.vala.c"
 				}
 			}
 		}
@@ -3695,7 +3694,7 @@ js_render_js_render_get_compile_group_selected (JsRenderJsRender* self)
 		_g_object_unref0 (gproj);
 #line 500 "JsRender.vala"
 		return result;
-#line 3699 "JsRender.vala.c"
+#line 3698 "JsRender.vala.c"
 	}
 #line 504 "JsRender.vala"
 	_tmp15_ = gproj;
@@ -3713,7 +3712,7 @@ js_render_js_render_get_compile_group_selected (JsRenderJsRender* self)
 		_g_object_unref0 (gproj);
 #line 506 "JsRender.vala"
 		return result;
-#line 3717 "JsRender.vala.c"
+#line 3716 "JsRender.vala.c"
 	}
 #line 509 "JsRender.vala"
 	_tmp18_ = gproj;
@@ -3737,7 +3736,7 @@ js_render_js_render_get_compile_group_selected (JsRenderJsRender* self)
 	_g_object_unref0 (gproj);
 #line 509 "JsRender.vala"
 	return result;
-#line 3741 "JsRender.vala.c"
+#line 3740 "JsRender.vala.c"
 }
 
 void
@@ -3775,7 +3774,7 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 		_g_object_unref0 (gproj);
 #line 517 "JsRender.vala"
 		return;
-#line 3779 "JsRender.vala.c"
+#line 3778 "JsRender.vala.c"
 	}
 #line 519 "JsRender.vala"
 	_tmp4_ = gproj;
@@ -3787,25 +3786,25 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 		_g_object_unref0 (gproj);
 #line 520 "JsRender.vala"
 		return;
-#line 3791 "JsRender.vala.c"
+#line 3790 "JsRender.vala.c"
 	}
 #line 523 "JsRender.vala"
 	_tmp6_ = self->xtype;
 #line 523 "JsRender.vala"
 	if (g_strcmp0 (_tmp6_, "Dir") == 0) {
-#line 3797 "JsRender.vala.c"
+#line 3796 "JsRender.vala.c"
 		{
 			gint i = 0;
 #line 524 "JsRender.vala"
 			i = 0;
-#line 3802 "JsRender.vala.c"
+#line 3801 "JsRender.vala.c"
 			{
 				gboolean _tmp7_ = FALSE;
 #line 524 "JsRender.vala"
 				_tmp7_ = TRUE;
 #line 524 "JsRender.vala"
 				while (TRUE) {
-#line 3809 "JsRender.vala.c"
+#line 3808 "JsRender.vala.c"
 					GListStore* _tmp9_;
 					guint _tmp10_;
 					guint _tmp11_;
@@ -3815,13 +3814,13 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 					JsRenderJsRender* _tmp14_;
 #line 524 "JsRender.vala"
 					if (!_tmp7_) {
-#line 3819 "JsRender.vala.c"
+#line 3818 "JsRender.vala.c"
 						gint _tmp8_;
 #line 524 "JsRender.vala"
 						_tmp8_ = i;
 #line 524 "JsRender.vala"
 						i = _tmp8_ + 1;
-#line 3825 "JsRender.vala.c"
+#line 3824 "JsRender.vala.c"
 					}
 #line 524 "JsRender.vala"
 					_tmp7_ = FALSE;
@@ -3835,7 +3834,7 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 					if (!(((guint) i) < _tmp11_)) {
 #line 524 "JsRender.vala"
 						break;
-#line 3839 "JsRender.vala.c"
+#line 3838 "JsRender.vala.c"
 					}
 #line 525 "JsRender.vala"
 					_tmp12_ = self->childfiles;
@@ -3849,7 +3848,7 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 					js_render_js_render_set_compile_group_selected (_tmp14_, value);
 #line 524 "JsRender.vala"
 					_g_object_unref0 (f);
-#line 3853 "JsRender.vala.c"
+#line 3852 "JsRender.vala.c"
 				}
 			}
 		}
@@ -3857,11 +3856,11 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 		_g_object_unref0 (gproj);
 #line 529 "JsRender.vala"
 		return;
-#line 3861 "JsRender.vala.c"
+#line 3860 "JsRender.vala.c"
 	}
 #line 535 "JsRender.vala"
 	if (value == FALSE) {
-#line 3865 "JsRender.vala.c"
+#line 3864 "JsRender.vala.c"
 		gchar* _tmp15_;
 		gchar* _tmp16_;
 		gchar* _tmp17_;
@@ -3901,7 +3900,7 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 		_g_object_unref0 (gproj);
 #line 539 "JsRender.vala"
 		return;
-#line 3905 "JsRender.vala.c"
+#line 3904 "JsRender.vala.c"
 	}
 #line 541 "JsRender.vala"
 	_tmp24_ = gproj;
@@ -3921,7 +3920,7 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 	_g_free0 (_tmp29_);
 #line 541 "JsRender.vala"
 	if (_tmp30_) {
-#line 3925 "JsRender.vala.c"
+#line 3924 "JsRender.vala.c"
 		gchar* _tmp31_;
 		gchar* _tmp32_;
 		gchar* _tmp33_;
@@ -3957,13 +3956,13 @@ js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
 		gee_abstract_collection_add ((GeeAbstractCollection*) _tmp36_, _tmp39_);
 #line 543 "JsRender.vala"
 		_g_free0 (_tmp39_);
-#line 3961 "JsRender.vala.c"
+#line 3960 "JsRender.vala.c"
 	}
 #line 512 "JsRender.vala"
 	_g_object_unref0 (gproj);
 #line 512 "JsRender.vala"
 	g_object_notify_by_pspec ((GObject *) self, js_render_js_render_properties[JS_RENDER_JS_RENDER_COMPILE_GROUP_SELECTED_PROPERTY]);
-#line 3967 "JsRender.vala.c"
+#line 3966 "JsRender.vala.c"
 }
 
 gboolean
@@ -4002,7 +4001,7 @@ js_render_js_render_get_compile_group_hidden (JsRenderJsRender* self)
 	_g_object_unref0 (gproj);
 #line 554 "JsRender.vala"
 	return result;
-#line 4006 "JsRender.vala.c"
+#line 4005 "JsRender.vala.c"
 }
 
 void
@@ -4038,7 +4037,7 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 		_g_object_unref0 (gproj);
 #line 562 "JsRender.vala"
 		return;
-#line 4042 "JsRender.vala.c"
+#line 4041 "JsRender.vala.c"
 	}
 #line 564 "JsRender.vala"
 	_tmp4_ = gproj;
@@ -4050,11 +4049,11 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 		_g_object_unref0 (gproj);
 #line 565 "JsRender.vala"
 		return;
-#line 4054 "JsRender.vala.c"
+#line 4053 "JsRender.vala.c"
 	}
 #line 567 "JsRender.vala"
 	if (value == FALSE) {
-#line 4058 "JsRender.vala.c"
+#line 4057 "JsRender.vala.c"
 		gchar* _tmp6_;
 		gchar* _tmp7_;
 		gchar* _tmp8_;
@@ -4091,7 +4090,7 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 		_g_object_unref0 (gproj);
 #line 571 "JsRender.vala"
 		return;
-#line 4095 "JsRender.vala.c"
+#line 4094 "JsRender.vala.c"
 	}
 #line 573 "JsRender.vala"
 	_tmp14_ = gproj;
@@ -4109,7 +4108,7 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 	_g_free0 (_tmp18_);
 #line 573 "JsRender.vala"
 	if (_tmp19_) {
-#line 4113 "JsRender.vala.c"
+#line 4112 "JsRender.vala.c"
 		ProjectGtk* _tmp20_;
 		GeeArrayList* _tmp21_;
 		gchar* _tmp22_;
@@ -4129,19 +4128,19 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 		gee_abstract_collection_add ((GeeAbstractCollection*) _tmp21_, _tmp24_);
 #line 574 "JsRender.vala"
 		_g_free0 (_tmp24_);
-#line 4133 "JsRender.vala.c"
+#line 4132 "JsRender.vala.c"
 		{
 			gint i = 0;
 #line 576 "JsRender.vala"
 			i = 0;
-#line 4138 "JsRender.vala.c"
+#line 4137 "JsRender.vala.c"
 			{
 				gboolean _tmp25_ = FALSE;
 #line 576 "JsRender.vala"
 				_tmp25_ = TRUE;
 #line 576 "JsRender.vala"
 				while (TRUE) {
-#line 4145 "JsRender.vala.c"
+#line 4144 "JsRender.vala.c"
 					GListStore* _tmp27_;
 					guint _tmp28_;
 					guint _tmp29_;
@@ -4151,13 +4150,13 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 					JsRenderJsRender* _tmp32_;
 #line 576 "JsRender.vala"
 					if (!_tmp25_) {
-#line 4155 "JsRender.vala.c"
+#line 4154 "JsRender.vala.c"
 						gint _tmp26_;
 #line 576 "JsRender.vala"
 						_tmp26_ = i;
 #line 576 "JsRender.vala"
 						i = _tmp26_ + 1;
-#line 4161 "JsRender.vala.c"
+#line 4160 "JsRender.vala.c"
 					}
 #line 576 "JsRender.vala"
 					_tmp25_ = FALSE;
@@ -4171,7 +4170,7 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 					if (!(((guint) i) < _tmp29_)) {
 #line 576 "JsRender.vala"
 						break;
-#line 4175 "JsRender.vala.c"
+#line 4174 "JsRender.vala.c"
 					}
 #line 577 "JsRender.vala"
 					_tmp30_ = self->childfiles;
@@ -4185,7 +4184,7 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 					js_render_js_render_set_compile_group_selected (_tmp32_, FALSE);
 #line 576 "JsRender.vala"
 					_g_object_unref0 (f);
-#line 4189 "JsRender.vala.c"
+#line 4188 "JsRender.vala.c"
 				}
 			}
 		}
@@ -4193,13 +4192,13 @@ js_render_js_render_set_compile_group_hidden (JsRenderJsRender* self,
 		_g_object_unref0 (gproj);
 #line 580 "JsRender.vala"
 		return;
-#line 4197 "JsRender.vala.c"
+#line 4196 "JsRender.vala.c"
 	}
 #line 557 "JsRender.vala"
 	_g_object_unref0 (gproj);
 #line 557 "JsRender.vala"
 	g_object_notify_by_pspec ((GObject *) self, js_render_js_render_properties[JS_RENDER_JS_RENDER_COMPILE_GROUP_HIDDEN_PROPERTY]);
-#line 4203 "JsRender.vala.c"
+#line 4202 "JsRender.vala.c"
 }
 
 static void
@@ -4224,19 +4223,19 @@ g_cclosure_user_marshal_VOID__OBJECT_STRING (GClosure * closure,
 		data1 = closure->data;
 #line 11 "JsRender.vala"
 		data2 = param_values->data[0].v_pointer;
-#line 4228 "JsRender.vala.c"
+#line 4227 "JsRender.vala.c"
 	} else {
 #line 11 "JsRender.vala"
 		data1 = param_values->data[0].v_pointer;
 #line 11 "JsRender.vala"
 		data2 = closure->data;
-#line 4234 "JsRender.vala.c"
+#line 4233 "JsRender.vala.c"
 	}
 #line 11 "JsRender.vala"
 	callback = (GMarshalFunc_VOID__OBJECT_STRING) (marshal_data ? marshal_data : cc->callback);
 #line 11 "JsRender.vala"
 	callback (data1, g_value_get_object (param_values + 1), g_value_get_string (param_values + 2), data2);
-#line 4240 "JsRender.vala.c"
+#line 4239 "JsRender.vala.c"
 }
 
 static void
@@ -4261,19 +4260,19 @@ g_cclosure_user_marshal_VOID__STRING_STRING_INT_STRING (GClosure * closure,
 		data1 = closure->data;
 #line 11 "JsRender.vala"
 		data2 = param_values->data[0].v_pointer;
-#line 4265 "JsRender.vala.c"
+#line 4264 "JsRender.vala.c"
 	} else {
 #line 11 "JsRender.vala"
 		data1 = param_values->data[0].v_pointer;
 #line 11 "JsRender.vala"
 		data2 = closure->data;
-#line 4271 "JsRender.vala.c"
+#line 4270 "JsRender.vala.c"
 	}
 #line 11 "JsRender.vala"
 	callback = (GMarshalFunc_VOID__STRING_STRING_INT_STRING) (marshal_data ? marshal_data : cc->callback);
 #line 11 "JsRender.vala"
 	callback (data1, g_value_get_string (param_values + 1), g_value_get_string (param_values + 2), g_value_get_int (param_values + 3), g_value_get_string (param_values + 4), data2);
-#line 4277 "JsRender.vala.c"
+#line 4276 "JsRender.vala.c"
 }
 
 static void
@@ -4328,7 +4327,7 @@ js_render_js_render_class_init (JsRenderJsRenderClass * klass,
 	js_render_js_render_signals[JS_RENDER_JS_RENDER_CHANGED_SIGNAL] = g_signal_new ("changed", JS_RENDER_TYPE_JS_RENDER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__OBJECT_STRING, G_TYPE_NONE, 2, JS_RENDER_TYPE_NODE, G_TYPE_STRING);
 #line 11 "JsRender.vala"
 	js_render_js_render_signals[JS_RENDER_JS_RENDER_COMPILE_NOTICE_SIGNAL] = g_signal_new ("compile-notice", JS_RENDER_TYPE_JS_RENDER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__STRING_STRING_INT_STRING, G_TYPE_NONE, 4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING);
-#line 4332 "JsRender.vala.c"
+#line 4331 "JsRender.vala.c"
 }
 
 static void
@@ -4375,7 +4374,7 @@ js_render_js_render_instance_init (JsRenderJsRender * self,
 	self->priv->screenshot92 = NULL;
 #line 210 "JsRender.vala"
 	self->priv->screenshot368 = NULL;
-#line 4379 "JsRender.vala.c"
+#line 4378 "JsRender.vala.c"
 }
 
 static void
@@ -4432,7 +4431,7 @@ js_render_js_render_finalize (GObject * obj)
 	_g_object_unref0 (self->priv->screenshot368);
 #line 11 "JsRender.vala"
 	G_OBJECT_CLASS (js_render_js_render_parent_class)->finalize (obj);
-#line 4436 "JsRender.vala.c"
+#line 4435 "JsRender.vala.c"
 }
 
 static GType
@@ -4503,13 +4502,13 @@ _vala_js_render_js_render_get_property (GObject * object,
 		g_value_set_boolean (value, js_render_js_render_get_compile_group_hidden (self));
 #line 11 "JsRender.vala"
 		break;
-#line 4507 "JsRender.vala.c"
+#line 4506 "JsRender.vala.c"
 		default:
 #line 11 "JsRender.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 #line 11 "JsRender.vala"
 		break;
-#line 4513 "JsRender.vala.c"
+#line 4512 "JsRender.vala.c"
 	}
 }
 
@@ -4559,13 +4558,13 @@ _vala_js_render_js_render_set_property (GObject * object,
 		js_render_js_render_set_compile_group_hidden (self, g_value_get_boolean (value));
 #line 11 "JsRender.vala"
 		break;
-#line 4563 "JsRender.vala.c"
+#line 4562 "JsRender.vala.c"
 		default:
 #line 11 "JsRender.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 #line 11 "JsRender.vala"
 		break;
-#line 4569 "JsRender.vala.c"
+#line 4568 "JsRender.vala.c"
 	}
 }
 
