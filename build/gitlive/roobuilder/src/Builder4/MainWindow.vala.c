@@ -1756,21 +1756,21 @@ VALA_EXTERN Xcls_MainWindowXcls_headerbar* xcls_mainwindow_xcls_headerbar_constr
 VALA_EXTERN Xcls_MainWindowXcls_vbox* xcls_mainwindow_xcls_vbox_new (Xcls_MainWindow* _owner);
 VALA_EXTERN Xcls_MainWindowXcls_vbox* xcls_mainwindow_xcls_vbox_construct (GType object_type,
                                                                Xcls_MainWindow* _owner);
-static gboolean __lambda250_ (Xcls_MainWindow* self);
-static gboolean ___lambda250__gtk_window_close_request (GtkWindow* _sender,
+static gboolean __lambda252_ (Xcls_MainWindow* self);
+static gboolean ___lambda252__gtk_window_close_request (GtkWindow* _sender,
                                                  gpointer self);
-static void __lambda251_ (Xcls_MainWindow* self);
+static void __lambda253_ (Xcls_MainWindow* self);
 VALA_EXTERN GType xcls_valacompileerrors_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_ValaCompileErrors, g_object_unref)
 VALA_EXTERN GType resources_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Resources, g_object_unref)
 VALA_EXTERN Resources* resources_singleton (void);
 VALA_EXTERN void resources_checkResources (Resources* self);
-static void ___lambda251__gtk_widget_show (GtkWidget* _sender,
+static void ___lambda253__gtk_widget_show (GtkWidget* _sender,
                                     gpointer self);
-static void __lambda252_ (Xcls_MainWindow* self);
+static void __lambda254_ (Xcls_MainWindow* self);
 VALA_EXTERN void builder_application_removeWindow (Xcls_MainWindow* w);
-static void ___lambda252__gtk_widget_hide (GtkWidget* _sender,
+static void ___lambda254__gtk_widget_hide (GtkWidget* _sender,
                                     gpointer self);
 VALA_EXTERN void xcls_mainwindow_initChildren (Xcls_MainWindow* self);
 VALA_EXTERN WindowState* window_state_new (Xcls_MainWindow* win);
@@ -1838,23 +1838,23 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_MainWindowXcls_Box10, g_object_unref)
 VALA_EXTERN Xcls_MainWindowXcls_Box10* xcls_mainwindow_xcls_box10_new (Xcls_MainWindow* _owner);
 VALA_EXTERN Xcls_MainWindowXcls_Box10* xcls_mainwindow_xcls_box10_construct (GType object_type,
                                                                  Xcls_MainWindow* _owner);
-static void __lambda242_ (Xcls_MainWindowXcls_windowbtn* self);
+static void __lambda245_ (Xcls_MainWindowXcls_windowbtn* self);
 VALA_EXTERN void xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self);
-static void ___lambda242__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda245__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
-static gint __lambda149_ (Xcls_MainWindowXcls_windowbtn* self,
+static gint __lambda175_ (Xcls_MainWindowXcls_windowbtn* self,
                    Xcls_MainWindow* a,
                    Xcls_MainWindow* b);
 VALA_EXTERN GType js_render_node_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNode, g_object_unref)
 VALA_EXTERN gchar* js_render_js_render_getTitle (JsRenderJsRender* self);
-static gint ___lambda149__gcompare_data_func (gconstpointer a,
+static gint ___lambda175__gcompare_data_func (gconstpointer a,
                                        gconstpointer b,
                                        gpointer self);
 static Block7Data* block7_data_ref (Block7Data* _data7_);
 static void block7_data_unref (void * _userdata_);
-static void ____lambda150_ (Block7Data* _data7_);
-static void _____lambda150__gtk_button_clicked (GtkButton* _sender,
+static void ____lambda176_ (Block7Data* _data7_);
+static void _____lambda176__gtk_button_clicked (GtkButton* _sender,
                                          gpointer self);
 static void xcls_mainwindow_xcls_windowbtn_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_windowbtn_get_type_once (void);
@@ -1880,9 +1880,9 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_MainWindowXcls_ShortcutController8, g_object
 VALA_EXTERN Xcls_MainWindowXcls_ShortcutController8* xcls_mainwindow_xcls_shortcutcontroller8_new (Xcls_MainWindow* _owner);
 VALA_EXTERN Xcls_MainWindowXcls_ShortcutController8* xcls_mainwindow_xcls_shortcutcontroller8_construct (GType object_type,
                                                                                              Xcls_MainWindow* _owner);
-static void __lambda18_ (Xcls_MainWindowXcls_Button7* self);
-static void ___lambda18__gtk_button_clicked (GtkButton* _sender,
-                                      gpointer self);
+static void __lambda4_ (Xcls_MainWindowXcls_Button7* self);
+static void ___lambda4__gtk_button_clicked (GtkButton* _sender,
+                                     gpointer self);
 static void xcls_mainwindow_xcls_button7_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button7_get_type_once (void);
 static void xcls_mainwindow_xcls_shortcutcontroller8_finalize (GObject * obj);
@@ -1905,8 +1905,8 @@ static void xcls_mainwindow_xcls_image11_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_image11_get_type_once (void);
 static void xcls_mainwindow_xcls_label12_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_label12_get_type_once (void);
-static void __lambda243_ (Xcls_MainWindowXcls_open_projects_btn* self);
-static void ___lambda243__gtk_button_clicked (GtkButton* _sender,
+static void __lambda246_ (Xcls_MainWindowXcls_open_projects_btn* self);
+static void ___lambda246__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_open_projects_btn_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_open_projects_btn_get_type_once (void);
@@ -1928,9 +1928,9 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_MainWindowXcls_Box20, g_object_unref)
 VALA_EXTERN Xcls_MainWindowXcls_Box20* xcls_mainwindow_xcls_box20_new (Xcls_MainWindow* _owner);
 VALA_EXTERN Xcls_MainWindowXcls_Box20* xcls_mainwindow_xcls_box20_construct (GType object_type,
                                                                  Xcls_MainWindow* _owner);
-static gboolean __lambda79_ (Xcls_MainWindowXcls_mainpane* self);
+static gboolean __lambda92_ (Xcls_MainWindowXcls_mainpane* self);
 VALA_EXTERN void xcls_windowlefttree_onresize (Xcls_WindowLeftTree* self);
-static gboolean ___lambda79__gtk_paned_accept_position (GtkPaned* _sender,
+static gboolean ___lambda92__gtk_paned_accept_position (GtkPaned* _sender,
                                                  gpointer self);
 static void xcls_mainwindow_xcls_mainpane_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_mainpane_get_type_once (void);
@@ -1945,12 +1945,12 @@ VALA_EXTERN Xcls_MainWindowXcls_tree* xcls_mainwindow_xcls_tree_construct (GType
 VALA_EXTERN Xcls_MainWindowXcls_props* xcls_mainwindow_xcls_props_new (Xcls_MainWindow* _owner);
 VALA_EXTERN Xcls_MainWindowXcls_props* xcls_mainwindow_xcls_props_construct (GType object_type,
                                                                  Xcls_MainWindow* _owner);
-static gboolean __lambda77_ (Xcls_MainWindowXcls_editpane* self);
-static gboolean ___lambda77__gtk_paned_accept_position (GtkPaned* _sender,
+static gboolean __lambda90_ (Xcls_MainWindowXcls_editpane* self);
+static gboolean ___lambda90__gtk_paned_accept_position (GtkPaned* _sender,
                                                  gpointer self);
-static gboolean __lambda78_ (Xcls_MainWindowXcls_editpane* self,
+static gboolean __lambda91_ (Xcls_MainWindowXcls_editpane* self,
                       GtkScrollType scroll);
-static gboolean ___lambda78__gtk_paned_move_handle (GtkPaned* _sender,
+static gboolean ___lambda91__gtk_paned_move_handle (GtkPaned* _sender,
                                              GtkScrollType scroll_type,
                                              gpointer self);
 static void xcls_mainwindow_xcls_editpane_finalize (GObject * obj);
@@ -2004,20 +2004,20 @@ VALA_EXTERN Xcls_MainWindowXcls_statusbar_compile_spinner* xcls_mainwindow_xcls_
                                                                                                          Xcls_MainWindow* _owner);
 static void xcls_mainwindow_xcls_box23_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_box23_get_type_once (void);
-static void __lambda244_ (Xcls_MainWindowXcls_Button24* self);
+static void __lambda247_ (Xcls_MainWindowXcls_Button24* self);
 VALA_EXTERN void window_state_projectPopoverShow (WindowState* self,
                                       GtkWindow* pwin,
                                       ProjectProject* pr);
-static void ___lambda244__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda247__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_button24_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button24_get_type_once (void);
-static void __lambda245_ (Xcls_MainWindowXcls_Button25* self);
+static void __lambda248_ (Xcls_MainWindowXcls_Button25* self);
 VALA_EXTERN void xcls_popoverfiledetails_show (Xcls_PopoverFileDetails* self,
                                    JsRenderJsRender* c,
                                    GtkWindow* pwin,
                                    gboolean new_window);
-static void ___lambda245__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda248__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_button25_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button25_get_type_once (void);
@@ -2045,26 +2045,26 @@ VALA_EXTERN Xcls_MainWindowXcls_Button30* xcls_mainwindow_xcls_button30_construc
                                                                        Xcls_MainWindow* _owner);
 static void xcls_mainwindow_xcls_box28_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_box28_get_type_once (void);
-static void __lambda246_ (Xcls_MainWindowXcls_Button29* self);
+static void __lambda249_ (Xcls_MainWindowXcls_Button29* self);
 VALA_EXTERN void resources_fetchStart (Resources* self);
-static void ___lambda246__gtk_button_activate (GtkButton* _sender,
+static void ___lambda249__gtk_button_activate (GtkButton* _sender,
                                         gpointer self);
 static void xcls_mainwindow_xcls_button29_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button29_get_type_once (void);
-static void __lambda248_ (Xcls_MainWindowXcls_Button30* self);
+static void __lambda250_ (Xcls_MainWindowXcls_Button30* self);
 VALA_EXTERN GType about_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (About, g_object_unref)
 VALA_EXTERN About* about_singleton (void);
-static void ___lambda248__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda250__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_mainwindow_xcls_button30_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_button30_get_type_once (void);
 static void xcls_mainwindow_xcls_label31_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_label31_get_type_once (void);
-static void ___lambda249_ (Xcls_MainWindowXcls_statusbar* self,
+static void ___lambda251_ (Xcls_MainWindowXcls_statusbar* self,
                     guint pos,
                     guint total);
-static void ____lambda249__resources_update_progress (Resources* _sender,
+static void ____lambda251__resources_update_progress (Resources* _sender,
                                                guint cur_pos,
                                                guint total,
                                                gpointer self);
@@ -2089,7 +2089,7 @@ static void xcls_mainwindow_xcls_box33_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_box33_get_type_once (void);
 static void xcls_mainwindow_xcls_statusbar_compilestatus_label_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_compilestatus_label_get_type_once (void);
-static void __lambda210_ (Xcls_MainWindowXcls_statusbar_errors* self);
+static void __lambda233_ (Xcls_MainWindowXcls_statusbar_errors* self);
 VALA_EXTERN Xcls_ValaCompileErrors* xcls_valacompileerrors_new (void);
 VALA_EXTERN Xcls_ValaCompileErrors* xcls_valacompileerrors_construct (GType object_type);
 VALA_EXTERN GType xcls_valacompileerrors_xcls_compile_view_get_type (void) G_GNUC_CONST ;
@@ -2103,30 +2103,30 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_ValaCompileErrorsXcls_model, g_object_unref)
 VALA_EXTERN void xcls_valacompileerrors_show (Xcls_ValaCompileErrors* self,
                                   JsonObject* tree,
                                   GtkWidget* onbtn);
-static void ___lambda210__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda233__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 VALA_EXTERN void xcls_mainwindow_xcls_statusbar_errors_setNotices (Xcls_MainWindowXcls_statusbar_errors* self,
                                                        JsonObject* nots,
                                                        gint qty);
 static void xcls_mainwindow_xcls_statusbar_errors_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_errors_get_type_once (void);
-static void __lambda211_ (Xcls_MainWindowXcls_statusbar_warnings* self);
-static void ___lambda211__gtk_button_clicked (GtkButton* _sender,
-                                       gpointer self);
+static void __lambda27_ (Xcls_MainWindowXcls_statusbar_warnings* self);
+static void ___lambda27__gtk_button_clicked (GtkButton* _sender,
+                                      gpointer self);
 VALA_EXTERN void xcls_mainwindow_xcls_statusbar_warnings_setNotices (Xcls_MainWindowXcls_statusbar_warnings* self,
                                                          JsonObject* nots,
                                                          gint qty);
 static void xcls_mainwindow_xcls_statusbar_warnings_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_warnings_get_type_once (void);
-static void __lambda212_ (Xcls_MainWindowXcls_statusbar_depricated* self);
-static void ___lambda212__gtk_button_clicked (GtkButton* _sender,
-                                       gpointer self);
+static void __lambda28_ (Xcls_MainWindowXcls_statusbar_depricated* self);
+static void ___lambda28__gtk_button_clicked (GtkButton* _sender,
+                                      gpointer self);
 VALA_EXTERN void xcls_mainwindow_xcls_statusbar_depricated_setNotices (Xcls_MainWindowXcls_statusbar_depricated* self,
                                                            JsonObject* nots,
                                                            gint qty);
 static void xcls_mainwindow_xcls_statusbar_depricated_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_depricated_get_type_once (void);
-static void __lambda213_ (Xcls_MainWindowXcls_statusbar_run* self);
+static void __lambda30_ (Xcls_MainWindowXcls_statusbar_run* self);
 VALA_EXTERN GType palete_vala_source_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteValaSource, g_object_unref)
 VALA_EXTERN void palete_vala_source_spawnExecute (PaleteValaSource* self,
@@ -2134,8 +2134,8 @@ VALA_EXTERN void palete_vala_source_spawnExecute (PaleteValaSource* self,
 VALA_EXTERN void xcls_valacompileresults_show (Xcls_ValaCompileResults* self,
                                    GtkWidget* onbtn,
                                    gboolean reset);
-static void ___lambda213__gtk_button_clicked (GtkButton* _sender,
-                                       gpointer self);
+static void ___lambda30__gtk_button_clicked (GtkButton* _sender,
+                                      gpointer self);
 static void xcls_mainwindow_xcls_statusbar_run_finalize (GObject * obj);
 static GType xcls_mainwindow_xcls_statusbar_run_get_type_once (void);
 VALA_EXTERN void xcls_mainwindow_xcls_statusbar_compile_spinner_start (Xcls_MainWindowXcls_statusbar_compile_spinner* self);
@@ -2200,7 +2200,7 @@ xcls_mainwindow_singleton (void)
 }
 
 static gboolean
-__lambda250_ (Xcls_MainWindow* self)
+__lambda252_ (Xcls_MainWindow* self)
 {
 	gboolean result;
 #line 66 "MainWindow.vala"
@@ -2211,18 +2211,18 @@ __lambda250_ (Xcls_MainWindow* self)
 }
 
 static gboolean
-___lambda250__gtk_window_close_request (GtkWindow* _sender,
+___lambda252__gtk_window_close_request (GtkWindow* _sender,
                                         gpointer self)
 {
 	gboolean result;
-	result = __lambda250_ ((Xcls_MainWindow*) self);
+	result = __lambda252_ ((Xcls_MainWindow*) self);
 #line 64 "MainWindow.vala"
 	return result;
 #line 2222 "MainWindow.vala.c"
 }
 
 static void
-__lambda251_ (Xcls_MainWindow* self)
+__lambda253_ (Xcls_MainWindow* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_statusbar* _tmp1_;
@@ -2293,16 +2293,16 @@ __lambda251_ (Xcls_MainWindow* self)
 }
 
 static void
-___lambda251__gtk_widget_show (GtkWidget* _sender,
+___lambda253__gtk_widget_show (GtkWidget* _sender,
                                gpointer self)
 {
 #line 68 "MainWindow.vala"
-	__lambda251_ ((Xcls_MainWindow*) self);
+	__lambda253_ ((Xcls_MainWindow*) self);
 #line 2302 "MainWindow.vala.c"
 }
 
 static void
-__lambda252_ (Xcls_MainWindow* self)
+__lambda254_ (Xcls_MainWindow* self)
 {
 	Resources* _tmp0_;
 	Resources* _tmp1_;
@@ -2349,11 +2349,11 @@ __lambda252_ (Xcls_MainWindow* self)
 }
 
 static void
-___lambda252__gtk_widget_hide (GtkWidget* _sender,
+___lambda254__gtk_widget_hide (GtkWidget* _sender,
                                gpointer self)
 {
 #line 83 "MainWindow.vala"
-	__lambda252_ ((Xcls_MainWindow*) self);
+	__lambda254_ ((Xcls_MainWindow*) self);
 #line 2358 "MainWindow.vala.c"
 }
 
@@ -2462,15 +2462,15 @@ xcls_mainwindow_construct (GType object_type)
 #line 64 "MainWindow.vala"
 	_tmp18_ = self->el;
 #line 64 "MainWindow.vala"
-	g_signal_connect_object ((GtkWindow*) _tmp18_, "close-request", (GCallback) ___lambda250__gtk_window_close_request, self, 0);
+	g_signal_connect_object ((GtkWindow*) _tmp18_, "close-request", (GCallback) ___lambda252__gtk_window_close_request, self, 0);
 #line 68 "MainWindow.vala"
 	_tmp19_ = self->el;
 #line 68 "MainWindow.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp19_, "show", (GCallback) ___lambda251__gtk_widget_show, self, 0);
+	g_signal_connect_object ((GtkWidget*) _tmp19_, "show", (GCallback) ___lambda253__gtk_widget_show, self, 0);
 #line 83 "MainWindow.vala"
 	_tmp20_ = self->el;
 #line 83 "MainWindow.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp20_, "hide", (GCallback) ___lambda252__gtk_widget_hide, self, 0);
+	g_signal_connect_object ((GtkWidget*) _tmp20_, "hide", (GCallback) ___lambda254__gtk_widget_hide, self, 0);
 #line 42 "MainWindow.vala"
 	_g_object_unref0 (child_2);
 #line 42 "MainWindow.vala"
@@ -2970,7 +2970,7 @@ xcls_mainwindow_xcls_windowbtn_get_instance_private (Xcls_MainWindowXcls_windowb
 }
 
 static void
-__lambda242_ (Xcls_MainWindowXcls_windowbtn* self)
+__lambda245_ (Xcls_MainWindowXcls_windowbtn* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_windowspopup* _tmp1_;
@@ -3014,11 +3014,11 @@ __lambda242_ (Xcls_MainWindowXcls_windowbtn* self)
 }
 
 static void
-___lambda242__gtk_button_clicked (GtkButton* _sender,
+___lambda245__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 225 "MainWindow.vala"
-	__lambda242_ ((Xcls_MainWindowXcls_windowbtn*) self);
+	__lambda245_ ((Xcls_MainWindowXcls_windowbtn*) self);
 #line 3023 "MainWindow.vala.c"
 }
 
@@ -3106,7 +3106,7 @@ xcls_mainwindow_xcls_windowbtn_construct (GType object_type,
 #line 225 "MainWindow.vala"
 	_tmp13_ = self->el;
 #line 225 "MainWindow.vala"
-	g_signal_connect_object (_tmp13_, "clicked", (GCallback) ___lambda242__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp13_, "clicked", (GCallback) ___lambda245__gtk_button_clicked, self, 0);
 #line 203 "MainWindow.vala"
 	_g_object_unref0 (child_2);
 #line 203 "MainWindow.vala"
@@ -3125,7 +3125,7 @@ xcls_mainwindow_xcls_windowbtn_new (Xcls_MainWindow* _owner)
 }
 
 static gint
-__lambda149_ (Xcls_MainWindowXcls_windowbtn* self,
+__lambda175_ (Xcls_MainWindowXcls_windowbtn* self,
               Xcls_MainWindow* a,
               Xcls_MainWindow* b)
 {
@@ -3362,12 +3362,12 @@ __lambda149_ (Xcls_MainWindowXcls_windowbtn* self,
 }
 
 static gint
-___lambda149__gcompare_data_func (gconstpointer a,
+___lambda175__gcompare_data_func (gconstpointer a,
                                   gconstpointer b,
                                   gpointer self)
 {
 	gint result;
-	result = __lambda149_ ((Xcls_MainWindowXcls_windowbtn*) self, (Xcls_MainWindow*) a, (Xcls_MainWindow*) b);
+	result = __lambda175_ ((Xcls_MainWindowXcls_windowbtn*) self, (Xcls_MainWindow*) a, (Xcls_MainWindow*) b);
 #line 243 "MainWindow.vala"
 	return result;
 #line 3374 "MainWindow.vala.c"
@@ -3403,7 +3403,7 @@ block7_data_unref (void * _userdata_)
 }
 
 static void
-____lambda150_ (Block7Data* _data7_)
+____lambda176_ (Block7Data* _data7_)
 {
 	Xcls_MainWindowXcls_windowbtn* self;
 	Xcls_MainWindow* _tmp0_;
@@ -3439,11 +3439,11 @@ ____lambda150_ (Block7Data* _data7_)
 }
 
 static void
-_____lambda150__gtk_button_clicked (GtkButton* _sender,
+_____lambda176__gtk_button_clicked (GtkButton* _sender,
                                     gpointer self)
 {
 #line 302 "MainWindow.vala"
-	____lambda150_ (self);
+	____lambda176_ (self);
 #line 3448 "MainWindow.vala.c"
 }
 
@@ -3528,7 +3528,7 @@ xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self)
 #line 243 "MainWindow.vala"
 	_tmp13_ = builder_application_windows;
 #line 243 "MainWindow.vala"
-	gee_list_sort ((GeeList*) _tmp13_, ___lambda149__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp13_, ___lambda175__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 266 "MainWindow.vala"
 	_tmp14_ = g_strdup ("");
 #line 266 "MainWindow.vala"
@@ -3908,7 +3908,7 @@ xcls_mainwindow_xcls_windowbtn_updateMenu (Xcls_MainWindowXcls_windowbtn* self)
 #line 302 "MainWindow.vala"
 			_tmp93_ = m;
 #line 302 "MainWindow.vala"
-			g_signal_connect_data (_tmp93_, "clicked", (GCallback) _____lambda150__gtk_button_clicked, block7_data_ref (_data7_), (GClosureNotify) block7_data_unref, 0);
+			g_signal_connect_data (_tmp93_, "clicked", (GCallback) _____lambda176__gtk_button_clicked, block7_data_ref (_data7_), (GClosureNotify) block7_data_unref, 0);
 #line 306 "MainWindow.vala"
 			_tmp94_ = self->priv->_this;
 #line 306 "MainWindow.vala"
@@ -4292,7 +4292,7 @@ xcls_mainwindow_xcls_button7_get_instance_private (Xcls_MainWindowXcls_Button7* 
 }
 
 static void
-__lambda18_ (Xcls_MainWindowXcls_Button7* self)
+__lambda4_ (Xcls_MainWindowXcls_Button7* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_windowspopup* _tmp1_;
@@ -4332,11 +4332,11 @@ __lambda18_ (Xcls_MainWindowXcls_Button7* self)
 }
 
 static void
-___lambda18__gtk_button_clicked (GtkButton* _sender,
-                                 gpointer self)
+___lambda4__gtk_button_clicked (GtkButton* _sender,
+                                gpointer self)
 {
 #line 387 "MainWindow.vala"
-	__lambda18_ ((Xcls_MainWindowXcls_Button7*) self);
+	__lambda4_ ((Xcls_MainWindowXcls_Button7*) self);
 #line 4341 "MainWindow.vala.c"
 }
 
@@ -4394,7 +4394,7 @@ xcls_mainwindow_xcls_button7_construct (GType object_type,
 #line 387 "MainWindow.vala"
 	_tmp8_ = self->el;
 #line 387 "MainWindow.vala"
-	g_signal_connect_object (_tmp8_, "clicked", (GCallback) ___lambda18__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp8_, "clicked", (GCallback) ___lambda4__gtk_button_clicked, self, 0);
 #line 373 "MainWindow.vala"
 	_g_object_unref0 (child_1);
 #line 373 "MainWindow.vala"
@@ -5054,7 +5054,7 @@ xcls_mainwindow_xcls_open_projects_btn_get_instance_private (Xcls_MainWindowXcls
 }
 
 static void
-__lambda243_ (Xcls_MainWindowXcls_open_projects_btn* self)
+__lambda246_ (Xcls_MainWindowXcls_open_projects_btn* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	WindowState* _tmp1_;
@@ -5077,11 +5077,11 @@ __lambda243_ (Xcls_MainWindowXcls_open_projects_btn* self)
 }
 
 static void
-___lambda243__gtk_button_clicked (GtkButton* _sender,
+___lambda246__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 553 "MainWindow.vala"
-	__lambda243_ ((Xcls_MainWindowXcls_open_projects_btn*) self);
+	__lambda246_ ((Xcls_MainWindowXcls_open_projects_btn*) self);
 #line 5086 "MainWindow.vala.c"
 }
 
@@ -5134,7 +5134,7 @@ xcls_mainwindow_xcls_open_projects_btn_construct (GType object_type,
 #line 553 "MainWindow.vala"
 	_tmp6_ = self->el;
 #line 553 "MainWindow.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda243__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda246__gtk_button_clicked, self, 0);
 #line 539 "MainWindow.vala"
 	return self;
 #line 5141 "MainWindow.vala.c"
@@ -5375,7 +5375,7 @@ xcls_mainwindow_xcls_mainpane_get_instance_private (Xcls_MainWindowXcls_mainpane
 }
 
 static gboolean
-__lambda79_ (Xcls_MainWindowXcls_mainpane* self)
+__lambda92_ (Xcls_MainWindowXcls_mainpane* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	WindowState* _tmp1_;
@@ -5397,11 +5397,11 @@ __lambda79_ (Xcls_MainWindowXcls_mainpane* self)
 }
 
 static gboolean
-___lambda79__gtk_paned_accept_position (GtkPaned* _sender,
+___lambda92__gtk_paned_accept_position (GtkPaned* _sender,
                                         gpointer self)
 {
 	gboolean result;
-	result = __lambda79_ ((Xcls_MainWindowXcls_mainpane*) self);
+	result = __lambda92_ ((Xcls_MainWindowXcls_mainpane*) self);
 #line 621 "MainWindow.vala"
 	return result;
 #line 5408 "MainWindow.vala.c"
@@ -5495,7 +5495,7 @@ xcls_mainwindow_xcls_mainpane_construct (GType object_type,
 #line 621 "MainWindow.vala"
 	_tmp15_ = self->el;
 #line 621 "MainWindow.vala"
-	g_signal_connect_object (_tmp15_, "accept-position", (GCallback) ___lambda79__gtk_paned_accept_position, self, 0);
+	g_signal_connect_object (_tmp15_, "accept-position", (GCallback) ___lambda92__gtk_paned_accept_position, self, 0);
 #line 602 "MainWindow.vala"
 	_g_object_unref0 (child_2);
 #line 602 "MainWindow.vala"
@@ -5719,7 +5719,7 @@ xcls_mainwindow_xcls_editpane_get_instance_private (Xcls_MainWindowXcls_editpane
 }
 
 static gboolean
-__lambda77_ (Xcls_MainWindowXcls_editpane* self)
+__lambda90_ (Xcls_MainWindowXcls_editpane* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	WindowState* _tmp1_;
@@ -5741,18 +5741,18 @@ __lambda77_ (Xcls_MainWindowXcls_editpane* self)
 }
 
 static gboolean
-___lambda77__gtk_paned_accept_position (GtkPaned* _sender,
+___lambda90__gtk_paned_accept_position (GtkPaned* _sender,
                                         gpointer self)
 {
 	gboolean result;
-	result = __lambda77_ ((Xcls_MainWindowXcls_editpane*) self);
+	result = __lambda90_ ((Xcls_MainWindowXcls_editpane*) self);
 #line 679 "MainWindow.vala"
 	return result;
 #line 5752 "MainWindow.vala.c"
 }
 
 static gboolean
-__lambda78_ (Xcls_MainWindowXcls_editpane* self,
+__lambda91_ (Xcls_MainWindowXcls_editpane* self,
              GtkScrollType scroll)
 {
 	gboolean result;
@@ -5766,12 +5766,12 @@ __lambda78_ (Xcls_MainWindowXcls_editpane* self,
 }
 
 static gboolean
-___lambda78__gtk_paned_move_handle (GtkPaned* _sender,
+___lambda91__gtk_paned_move_handle (GtkPaned* _sender,
                                     GtkScrollType scroll_type,
                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda78_ ((Xcls_MainWindowXcls_editpane*) self, scroll_type);
+	result = __lambda91_ ((Xcls_MainWindowXcls_editpane*) self, scroll_type);
 #line 683 "MainWindow.vala"
 	return result;
 #line 5778 "MainWindow.vala.c"
@@ -5849,11 +5849,11 @@ xcls_mainwindow_xcls_editpane_construct (GType object_type,
 #line 679 "MainWindow.vala"
 	_tmp12_ = self->el;
 #line 679 "MainWindow.vala"
-	g_signal_connect_object (_tmp12_, "accept-position", (GCallback) ___lambda77__gtk_paned_accept_position, self, 0);
+	g_signal_connect_object (_tmp12_, "accept-position", (GCallback) ___lambda90__gtk_paned_accept_position, self, 0);
 #line 683 "MainWindow.vala"
 	_tmp13_ = self->el;
 #line 683 "MainWindow.vala"
-	g_signal_connect_object (_tmp13_, "move-handle", (GCallback) ___lambda78__gtk_paned_move_handle, self, 0);
+	g_signal_connect_object (_tmp13_, "move-handle", (GCallback) ___lambda91__gtk_paned_move_handle, self, 0);
 #line 664 "MainWindow.vala"
 	_g_object_unref0 (child_2);
 #line 664 "MainWindow.vala"
@@ -6824,7 +6824,7 @@ xcls_mainwindow_xcls_button24_get_instance_private (Xcls_MainWindowXcls_Button24
 }
 
 static void
-__lambda244_ (Xcls_MainWindowXcls_Button24* self)
+__lambda247_ (Xcls_MainWindowXcls_Button24* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	WindowState* _tmp1_;
@@ -6844,11 +6844,11 @@ __lambda244_ (Xcls_MainWindowXcls_Button24* self)
 }
 
 static void
-___lambda244__gtk_button_clicked (GtkButton* _sender,
+___lambda247__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 888 "MainWindow.vala"
-	__lambda244_ ((Xcls_MainWindowXcls_Button24*) self);
+	__lambda247_ ((Xcls_MainWindowXcls_Button24*) self);
 #line 6853 "MainWindow.vala.c"
 }
 
@@ -6896,7 +6896,7 @@ xcls_mainwindow_xcls_button24_construct (GType object_type,
 #line 888 "MainWindow.vala"
 	_tmp5_ = self->el;
 #line 888 "MainWindow.vala"
-	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda244__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda247__gtk_button_clicked, self, 0);
 #line 874 "MainWindow.vala"
 	return self;
 #line 6903 "MainWindow.vala.c"
@@ -6976,7 +6976,7 @@ xcls_mainwindow_xcls_button25_get_instance_private (Xcls_MainWindowXcls_Button25
 }
 
 static void
-__lambda245_ (Xcls_MainWindowXcls_Button25* self)
+__lambda248_ (Xcls_MainWindowXcls_Button25* self)
 {
 	gboolean _tmp0_ = FALSE;
 	Xcls_MainWindow* _tmp1_;
@@ -7042,11 +7042,11 @@ __lambda245_ (Xcls_MainWindowXcls_Button25* self)
 }
 
 static void
-___lambda245__gtk_button_clicked (GtkButton* _sender,
+___lambda248__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 923 "MainWindow.vala"
-	__lambda245_ ((Xcls_MainWindowXcls_Button25*) self);
+	__lambda248_ ((Xcls_MainWindowXcls_Button25*) self);
 #line 7051 "MainWindow.vala.c"
 }
 
@@ -7094,7 +7094,7 @@ xcls_mainwindow_xcls_button25_construct (GType object_type,
 #line 923 "MainWindow.vala"
 	_tmp5_ = self->el;
 #line 923 "MainWindow.vala"
-	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda245__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda248__gtk_button_clicked, self, 0);
 #line 909 "MainWindow.vala"
 	return self;
 #line 7101 "MainWindow.vala.c"
@@ -7584,7 +7584,7 @@ xcls_mainwindow_xcls_button29_get_instance_private (Xcls_MainWindowXcls_Button29
 }
 
 static void
-__lambda246_ (Xcls_MainWindowXcls_Button29* self)
+__lambda249_ (Xcls_MainWindowXcls_Button29* self)
 {
 	Resources* _tmp0_;
 	Resources* _tmp1_;
@@ -7600,11 +7600,11 @@ __lambda246_ (Xcls_MainWindowXcls_Button29* self)
 }
 
 static void
-___lambda246__gtk_button_activate (GtkButton* _sender,
+___lambda249__gtk_button_activate (GtkButton* _sender,
                                    gpointer self)
 {
 #line 1047 "MainWindow.vala"
-	__lambda246_ ((Xcls_MainWindowXcls_Button29*) self);
+	__lambda249_ ((Xcls_MainWindowXcls_Button29*) self);
 #line 7609 "MainWindow.vala.c"
 }
 
@@ -7640,7 +7640,7 @@ xcls_mainwindow_xcls_button29_construct (GType object_type,
 #line 1047 "MainWindow.vala"
 	_tmp3_ = self->el;
 #line 1047 "MainWindow.vala"
-	g_signal_connect_object (_tmp3_, "activate", (GCallback) ___lambda246__gtk_button_activate, self, 0);
+	g_signal_connect_object (_tmp3_, "activate", (GCallback) ___lambda249__gtk_button_activate, self, 0);
 #line 1036 "MainWindow.vala"
 	return self;
 #line 7647 "MainWindow.vala.c"
@@ -7720,7 +7720,7 @@ xcls_mainwindow_xcls_button30_get_instance_private (Xcls_MainWindowXcls_Button30
 }
 
 static void
-__lambda248_ (Xcls_MainWindowXcls_Button30* self)
+__lambda250_ (Xcls_MainWindowXcls_Button30* self)
 {
 	About* _tmp0_;
 	About* _tmp1_;
@@ -7739,11 +7739,11 @@ __lambda248_ (Xcls_MainWindowXcls_Button30* self)
 }
 
 static void
-___lambda248__gtk_button_clicked (GtkButton* _sender,
+___lambda250__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1075 "MainWindow.vala"
-	__lambda248_ ((Xcls_MainWindowXcls_Button30*) self);
+	__lambda250_ ((Xcls_MainWindowXcls_Button30*) self);
 #line 7748 "MainWindow.vala.c"
 }
 
@@ -7779,7 +7779,7 @@ xcls_mainwindow_xcls_button30_construct (GType object_type,
 #line 1075 "MainWindow.vala"
 	_tmp3_ = self->el;
 #line 1075 "MainWindow.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda248__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda250__gtk_button_clicked, self, 0);
 #line 1064 "MainWindow.vala"
 	return self;
 #line 7786 "MainWindow.vala.c"
@@ -7965,7 +7965,7 @@ xcls_mainwindow_xcls_statusbar_get_instance_private (Xcls_MainWindowXcls_statusb
 }
 
 static void
-___lambda249_ (Xcls_MainWindowXcls_statusbar* self,
+___lambda251_ (Xcls_MainWindowXcls_statusbar* self,
                guint pos,
                guint total)
 {
@@ -8046,13 +8046,13 @@ ___lambda249_ (Xcls_MainWindowXcls_statusbar* self,
 }
 
 static void
-____lambda249__resources_update_progress (Resources* _sender,
+____lambda251__resources_update_progress (Resources* _sender,
                                           guint cur_pos,
                                           guint total,
                                           gpointer self)
 {
 #line 1134 "MainWindow.vala"
-	___lambda249_ ((Xcls_MainWindowXcls_statusbar*) self, cur_pos, total);
+	___lambda251_ ((Xcls_MainWindowXcls_statusbar*) self, cur_pos, total);
 #line 8057 "MainWindow.vala.c"
 }
 
@@ -8106,7 +8106,7 @@ xcls_mainwindow_xcls_statusbar_construct (GType object_type,
 #line 1134 "MainWindow.vala"
 		_tmp6_ = _tmp5_;
 #line 1134 "MainWindow.vala"
-		_tmp7_ = g_signal_connect_object (_tmp6_, "update-progress", (GCallback) ____lambda249__resources_update_progress, self, 0);
+		_tmp7_ = g_signal_connect_object (_tmp6_, "update-progress", (GCallback) ____lambda251__resources_update_progress, self, 0);
 #line 1134 "MainWindow.vala"
 		self->handler_id = _tmp7_;
 #line 1134 "MainWindow.vala"
@@ -8509,7 +8509,7 @@ xcls_mainwindow_xcls_statusbar_errors_get_instance_private (Xcls_MainWindowXcls_
 }
 
 static void
-__lambda210_ (Xcls_MainWindowXcls_statusbar_errors* self)
+__lambda233_ (Xcls_MainWindowXcls_statusbar_errors* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp1_;
@@ -8577,11 +8577,11 @@ __lambda210_ (Xcls_MainWindowXcls_statusbar_errors* self)
 }
 
 static void
-___lambda210__gtk_button_clicked (GtkButton* _sender,
+___lambda233__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1234 "MainWindow.vala"
-	__lambda210_ ((Xcls_MainWindowXcls_statusbar_errors*) self);
+	__lambda233_ ((Xcls_MainWindowXcls_statusbar_errors*) self);
 #line 8586 "MainWindow.vala.c"
 }
 
@@ -8639,7 +8639,7 @@ xcls_mainwindow_xcls_statusbar_errors_construct (GType object_type,
 #line 1234 "MainWindow.vala"
 	_tmp7_ = self->el;
 #line 1234 "MainWindow.vala"
-	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda210__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda233__gtk_button_clicked, self, 0);
 #line 1220 "MainWindow.vala"
 	return self;
 #line 8646 "MainWindow.vala.c"
@@ -8866,7 +8866,7 @@ xcls_mainwindow_xcls_statusbar_warnings_get_instance_private (Xcls_MainWindowXcl
 }
 
 static void
-__lambda211_ (Xcls_MainWindowXcls_statusbar_warnings* self)
+__lambda27_ (Xcls_MainWindowXcls_statusbar_warnings* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp1_;
@@ -8934,11 +8934,11 @@ __lambda211_ (Xcls_MainWindowXcls_statusbar_warnings* self)
 }
 
 static void
-___lambda211__gtk_button_clicked (GtkButton* _sender,
-                                  gpointer self)
+___lambda27__gtk_button_clicked (GtkButton* _sender,
+                                 gpointer self)
 {
 #line 1295 "MainWindow.vala"
-	__lambda211_ ((Xcls_MainWindowXcls_statusbar_warnings*) self);
+	__lambda27_ ((Xcls_MainWindowXcls_statusbar_warnings*) self);
 #line 8943 "MainWindow.vala.c"
 }
 
@@ -8996,7 +8996,7 @@ xcls_mainwindow_xcls_statusbar_warnings_construct (GType object_type,
 #line 1295 "MainWindow.vala"
 	_tmp7_ = self->el;
 #line 1295 "MainWindow.vala"
-	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda211__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda27__gtk_button_clicked, self, 0);
 #line 1281 "MainWindow.vala"
 	return self;
 #line 9003 "MainWindow.vala.c"
@@ -9215,7 +9215,7 @@ xcls_mainwindow_xcls_statusbar_depricated_get_instance_private (Xcls_MainWindowX
 }
 
 static void
-__lambda212_ (Xcls_MainWindowXcls_statusbar_depricated* self)
+__lambda28_ (Xcls_MainWindowXcls_statusbar_depricated* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp1_;
@@ -9283,11 +9283,11 @@ __lambda212_ (Xcls_MainWindowXcls_statusbar_depricated* self)
 }
 
 static void
-___lambda212__gtk_button_clicked (GtkButton* _sender,
-                                  gpointer self)
+___lambda28__gtk_button_clicked (GtkButton* _sender,
+                                 gpointer self)
 {
 #line 1355 "MainWindow.vala"
-	__lambda212_ ((Xcls_MainWindowXcls_statusbar_depricated*) self);
+	__lambda28_ ((Xcls_MainWindowXcls_statusbar_depricated*) self);
 #line 9292 "MainWindow.vala.c"
 }
 
@@ -9345,7 +9345,7 @@ xcls_mainwindow_xcls_statusbar_depricated_construct (GType object_type,
 #line 1355 "MainWindow.vala"
 	_tmp7_ = self->el;
 #line 1355 "MainWindow.vala"
-	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda212__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda28__gtk_button_clicked, self, 0);
 #line 1341 "MainWindow.vala"
 	return self;
 #line 9352 "MainWindow.vala.c"
@@ -9564,7 +9564,7 @@ xcls_mainwindow_xcls_statusbar_run_get_instance_private (Xcls_MainWindowXcls_sta
 }
 
 static void
-__lambda213_ (Xcls_MainWindowXcls_statusbar_run* self)
+__lambda30_ (Xcls_MainWindowXcls_statusbar_run* self)
 {
 	Xcls_MainWindow* _tmp0_;
 	Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp1_;
@@ -9634,11 +9634,11 @@ __lambda213_ (Xcls_MainWindowXcls_statusbar_run* self)
 }
 
 static void
-___lambda213__gtk_button_clicked (GtkButton* _sender,
-                                  gpointer self)
+___lambda30__gtk_button_clicked (GtkButton* _sender,
+                                 gpointer self)
 {
 #line 1414 "MainWindow.vala"
-	__lambda213_ ((Xcls_MainWindowXcls_statusbar_run*) self);
+	__lambda30_ ((Xcls_MainWindowXcls_statusbar_run*) self);
 #line 9643 "MainWindow.vala.c"
 }
 
@@ -9689,7 +9689,7 @@ xcls_mainwindow_xcls_statusbar_run_construct (GType object_type,
 #line 1414 "MainWindow.vala"
 	_tmp6_ = self->el;
 #line 1414 "MainWindow.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda213__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda30__gtk_button_clicked, self, 0);
 #line 1401 "MainWindow.vala"
 	return self;
 #line 9696 "MainWindow.vala.c"

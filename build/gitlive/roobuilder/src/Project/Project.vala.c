@@ -269,30 +269,30 @@ VALA_EXTERN ProjectProject* project_project_getProjectByName (const gchar* name)
 VALA_EXTERN const gchar* project_project_get_name (ProjectProject* self);
 VALA_EXTERN ProjectProject* project_project_getProjectByPath (const gchar* path);
 VALA_EXTERN gchar* project_project_listAllToString (void);
-static gint __lambda255_ (ProjectProject* fa,
+static gint __lambda237_ (ProjectProject* fa,
                    ProjectProject* fb);
-static gint ___lambda255__gcompare_data_func (gconstpointer a,
+static gint ___lambda237__gcompare_data_func (gconstpointer a,
                                        gconstpointer b,
                                        gpointer self);
 VALA_EXTERN GListStore* project_project_loadIntoStore (void);
 static JsonNode* _vala_JsonNode_copy (JsonNode* self);
-static void __lambda197_ (JsonObject* sobj,
+static void __lambda222_ (JsonObject* sobj,
                    const gchar* key,
                    JsonNode* val);
 VALA_EXTERN ProjectProject* project_project_factory (const gchar* xtype,
                                          const gchar* path,
                                          GError** error);
-static void ___lambda197__json_object_foreach (JsonObject* object,
+static void ___lambda222__json_object_foreach (JsonObject* object,
                                         const gchar* member_name,
                                         JsonNode* member_node,
                                         gpointer self);
 static Block19Data* block19_data_ref (Block19Data* _data19_);
 static void block19_data_unref (void * _userdata_);
-static void __lambda198_ (Block19Data* _data19_,
+static void __lambda223_ (Block19Data* _data19_,
                    JsonObject* sobj,
                    const gchar* key,
                    JsonNode* val);
-static void ___lambda198__json_object_foreach (JsonObject* object,
+static void ___lambda223__json_object_foreach (JsonObject* object,
                                         const gchar* member_name,
                                         JsonNode* member_node,
                                         gpointer self);
@@ -318,11 +318,11 @@ static void project_project_real_loadJson (ProjectProject* self,
 static void project_project_real_saveJson (ProjectProject* self,
                                     JsonObject* obj);
 VALA_EXTERN GeeArrayList* project_project_sortedFiles (ProjectProject* self);
-static gint __lambda256_ (ProjectProject* self,
+static gint __lambda238_ (ProjectProject* self,
                    JsRenderJsRender* fa,
                    JsRenderJsRender* fb);
 VALA_EXTERN const gchar* js_render_js_render_get_name (JsRenderJsRender* self);
-static gint ___lambda256__gcompare_data_func (gconstpointer a,
+static gint ___lambda238__gcompare_data_func (gconstpointer a,
                                        gconstpointer b,
                                        gpointer self);
 VALA_EXTERN gchar* project_project_listAllFilesToString (ProjectProject* self);
@@ -1205,7 +1205,7 @@ project_project_getProjectByPath (const gchar* path)
 }
 
 static gint
-__lambda255_ (ProjectProject* fa,
+__lambda237_ (ProjectProject* fa,
               ProjectProject* fb)
 {
 	const gchar* _tmp0_;
@@ -1223,12 +1223,12 @@ __lambda255_ (ProjectProject* fa,
 }
 
 static gint
-___lambda255__gcompare_data_func (gconstpointer a,
+___lambda237__gcompare_data_func (gconstpointer a,
                                   gconstpointer b,
                                   gpointer self)
 {
 	gint result;
-	result = __lambda255_ ((ProjectProject*) a, (ProjectProject*) b);
+	result = __lambda237_ ((ProjectProject*) a, (ProjectProject*) b);
 #line 225 "Project.vala"
 	return result;
 #line 1235 "Project.vala.c"
@@ -1256,7 +1256,7 @@ project_project_listAllToString (void)
 #line 225 "Project.vala"
 	_tmp2_ = all;
 #line 225 "Project.vala"
-	gee_list_sort ((GeeList*) _tmp2_, ___lambda255__gcompare_data_func, NULL, NULL);
+	gee_list_sort ((GeeList*) _tmp2_, ___lambda237__gcompare_data_func, NULL, NULL);
 #line 230 "Project.vala"
 	_tmp3_ = all;
 #line 230 "Project.vala"
@@ -1442,7 +1442,7 @@ _json_object_ref0 (gpointer self)
 }
 
 static void
-__lambda197_ (JsonObject* sobj,
+__lambda222_ (JsonObject* sobj,
               const gchar* key,
               JsonNode* val)
 {
@@ -1477,13 +1477,13 @@ __lambda197_ (JsonObject* sobj,
 }
 
 static void
-___lambda197__json_object_foreach (JsonObject* object,
+___lambda222__json_object_foreach (JsonObject* object,
                                    const gchar* member_name,
                                    JsonNode* member_node,
                                    gpointer self)
 {
 #line 300 "Project.vala"
-	__lambda197_ (object, member_name, member_node);
+	__lambda222_ (object, member_name, member_node);
 #line 1488 "Project.vala.c"
 }
 
@@ -1625,7 +1625,7 @@ project_project_loadProjectList (void)
 #line 299 "Project.vala"
 	obj = _tmp16_;
 #line 300 "Project.vala"
-	json_object_foreach_member (obj, ___lambda197__json_object_foreach, NULL);
+	json_object_foreach_member (obj, ___lambda222__json_object_foreach, NULL);
 #line 279 "Project.vala"
 	_json_object_unref0 (obj);
 #line 279 "Project.vala"
@@ -1663,7 +1663,7 @@ block19_data_unref (void * _userdata_)
 }
 
 static void
-__lambda198_ (Block19Data* _data19_,
+__lambda223_ (Block19Data* _data19_,
               JsonObject* sobj,
               const gchar* key,
               JsonNode* val)
@@ -1683,13 +1683,13 @@ __lambda198_ (Block19Data* _data19_,
 }
 
 static void
-___lambda198__json_object_foreach (JsonObject* object,
+___lambda223__json_object_foreach (JsonObject* object,
                                    const gchar* member_name,
                                    JsonNode* member_node,
                                    gpointer self)
 {
 #line 337 "Project.vala"
-	__lambda198_ (self, object, member_name, member_node);
+	__lambda223_ (self, object, member_name, member_node);
 #line 1694 "Project.vala.c"
 }
 
@@ -1880,7 +1880,7 @@ project_project_factoryFromFileOld (const gchar* jsonfile)
 #line 337 "Project.vala"
 	_tmp23_ = paths;
 #line 337 "Project.vala"
-	json_object_foreach_member (_tmp23_, ___lambda198__json_object_foreach, _data19_);
+	json_object_foreach_member (_tmp23_, ___lambda223__json_object_foreach, _data19_);
 #line 344 "Project.vala"
 	_tmp25_ = _data19_->fpath;
 #line 344 "Project.vala"
@@ -2798,7 +2798,7 @@ project_project_saveJson (ProjectProject* self,
 }
 
 static gint
-__lambda256_ (ProjectProject* self,
+__lambda238_ (ProjectProject* self,
               JsRenderJsRender* fa,
               JsRenderJsRender* fb)
 {
@@ -2823,12 +2823,12 @@ __lambda256_ (ProjectProject* self,
 }
 
 static gint
-___lambda256__gcompare_data_func (gconstpointer a,
+___lambda238__gcompare_data_func (gconstpointer a,
                                   gconstpointer b,
                                   gpointer self)
 {
 	gint result;
-	result = __lambda256_ ((ProjectProject*) self, (JsRenderJsRender*) a, (JsRenderJsRender*) b);
+	result = __lambda238_ ((ProjectProject*) self, (JsRenderJsRender*) a, (JsRenderJsRender*) b);
 #line 591 "Project.vala"
 	return result;
 #line 2835 "Project.vala.c"
@@ -2887,7 +2887,7 @@ project_project_sortedFiles (ProjectProject* self)
 #line 591 "Project.vala"
 	_tmp8_ = files;
 #line 591 "Project.vala"
-	gee_list_sort ((GeeList*) _tmp8_, ___lambda256__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp8_, ___lambda238__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 595 "Project.vala"
 	result = files;
 #line 595 "Project.vala"
