@@ -259,7 +259,7 @@ namespace Project
 			var cg =  new GtkValaSettings(this, this.name);
 			this.compilegroups.set(this.name, cg);
 			cg.sources.add("src/Main.vala");
-			cg.sources.add("src/Application.vala");
+			cg.sources.add("src/%sApplication.vala".printf(this.name));
 			cg.sources.add("src/ui/ui.Window.bjs");
 			// rescan... not needed as it get's selected after initialization.
 			
@@ -323,7 +323,7 @@ namespace Project
 			};
 				
 			
-			this.makeTemplatedFile("src/Application.vala", str, this.name); // fixme name needs to be code friendly!
+			this.makeTemplatedFile("src/%sApplication.vala".printf(this.name), str, this.name); // fixme name needs to be code friendly!
 		}
 
 		
