@@ -2052,7 +2052,7 @@ static void xcls_leftprops_xcls_box2_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_box2_get_type_once (void);
 static void xcls_leftprops_xcls_label3_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_label3_get_type_once (void);
-static void __lambda56_ (Xcls_LeftPropsXcls_Button4* self);
+static void __lambda76_ (Xcls_LeftPropsXcls_Button4* self);
 VALA_EXTERN GType xcls_mainwindow_xcls_headerbar_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_MainWindowXcls_headerbar, g_object_unref)
 VALA_EXTERN GType xcls_mainwindow_xcls_windowbtn_get_type (void) G_GNUC_CONST ;
@@ -2102,20 +2102,20 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (ProjectProject, g_object_unref)
 VALA_EXTERN void window_state_showProps (WindowState* self,
                              GtkWidget* btn,
                              JsRenderNodePropType sig_or_listen);
-static void ___lambda56__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda76__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button4_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button4_get_type_once (void);
-static void __lambda66_ (Xcls_LeftPropsXcls_Button5* self);
-static void ___lambda66__gtk_button_clicked (GtkButton* _sender,
+static void __lambda86_ (Xcls_LeftPropsXcls_Button5* self);
+static void ___lambda86__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button5_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button5_get_type_once (void);
 VALA_EXTERN Xcls_LeftPropsXcls_AddPropertyPopup* xcls_leftprops_xcls_addpropertypopup_new (Xcls_LeftProps* _owner);
 VALA_EXTERN Xcls_LeftPropsXcls_AddPropertyPopup* xcls_leftprops_xcls_addpropertypopup_construct (GType object_type,
                                                                                      Xcls_LeftProps* _owner);
-static void __lambda67_ (Xcls_LeftPropsXcls_Button6* self);
-static void ___lambda67__gtk_button_clicked (GtkButton* _sender,
+static void __lambda87_ (Xcls_LeftPropsXcls_Button6* self);
+static void ___lambda87__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button6_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button6_get_type_once (void);
@@ -2213,7 +2213,7 @@ VALA_EXTERN Xcls_LeftPropsXcls_Button25* xcls_leftprops_xcls_button25_construct 
                                                                      Xcls_LeftProps* _owner);
 static void xcls_leftprops_xcls_box8_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_box8_get_type_once (void);
-static void __lambda21_ (Xcls_LeftPropsXcls_Button9* self);
+static void __lambda41_ (Xcls_LeftPropsXcls_Button9* self);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_prop (const gchar* name,
                                                 const gchar* rtype,
                                                 const gchar* val);
@@ -2227,38 +2227,38 @@ VALA_EXTERN void js_render_node_add_prop (JsRenderNode* self,
                               JsRenderNodeProp* prop);
 VALA_EXTERN void xcls_leftprops_xcls_view_editProp (Xcls_LeftPropsXcls_view* self,
                                         JsRenderNodeProp* prop);
-static void ___lambda21__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda41__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button9_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button9_get_type_once (void);
-static void __lambda43_ (Xcls_LeftPropsXcls_Button10* self);
+static void __lambda63_ (Xcls_LeftPropsXcls_Button10* self);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_special (const gchar* name,
                                                    const gchar* val);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_special (GType object_type,
                                                          const gchar* name,
                                                          const gchar* val);
-static void ___lambda43__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda63__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button10_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button10_get_type_once (void);
-static void __lambda44_ (Xcls_LeftPropsXcls_Button11* self);
-static void ___lambda44__gtk_button_clicked (GtkButton* _sender,
+static void __lambda64_ (Xcls_LeftPropsXcls_Button11* self);
+static void ___lambda64__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button11_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button11_get_type_once (void);
-static void __lambda45_ (Xcls_LeftPropsXcls_Button12* self);
-static void ___lambda45__gtk_button_clicked (GtkButton* _sender,
+static void __lambda65_ (Xcls_LeftPropsXcls_Button12* self);
+static void ___lambda65__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button12_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button12_get_type_once (void);
-static void __lambda46_ (Xcls_LeftPropsXcls_Button13* self);
-static void ___lambda46__gtk_button_clicked (GtkButton* _sender,
+static void __lambda66_ (Xcls_LeftPropsXcls_Button13* self);
+static void ___lambda66__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button13_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button13_get_type_once (void);
 static void xcls_leftprops_xcls_separator14_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_separator14_get_type_once (void);
-static void __lambda47_ (Xcls_LeftPropsXcls_Button15* self,
+static void __lambda67_ (Xcls_LeftPropsXcls_Button15* self,
                   GtkButton* _self_);
 VALA_EXTERN void xcls_popoverproperty_show (Xcls_PopoverProperty* self,
                                 GtkWidget* btn,
@@ -2266,33 +2266,33 @@ VALA_EXTERN void xcls_popoverproperty_show (Xcls_PopoverProperty* self,
                                 JsRenderNodeProp* prop,
                                 gint y,
                                 gboolean is_new);
-static void ___lambda47__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda67__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button15_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button15_get_type_once (void);
-static void __lambda48_ (Xcls_LeftPropsXcls_Button16* self);
-static void ___lambda48__gtk_button_clicked (GtkButton* _sender,
+static void __lambda68_ (Xcls_LeftPropsXcls_Button16* self);
+static void ___lambda68__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button16_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button16_get_type_once (void);
-static void __lambda49_ (Xcls_LeftPropsXcls_Button17* self);
-static void ___lambda49__gtk_button_clicked (GtkButton* _sender,
+static void __lambda69_ (Xcls_LeftPropsXcls_Button17* self);
+static void ___lambda69__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button17_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button17_get_type_once (void);
 static void xcls_leftprops_xcls_separator18_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_separator18_get_type_once (void);
-static void __lambda50_ (Xcls_LeftPropsXcls_Button19* self);
+static void __lambda70_ (Xcls_LeftPropsXcls_Button19* self);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_jsmethod (const gchar* name,
                                                     const gchar* val);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_jsmethod (GType object_type,
                                                           const gchar* name,
                                                           const gchar* val);
-static void ___lambda50__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda70__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button19_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button19_get_type_once (void);
-static void __lambda51_ (Xcls_LeftPropsXcls_Button20* self);
+static void __lambda71_ (Xcls_LeftPropsXcls_Button20* self);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_valamethod (const gchar* name,
                                                       const gchar* rtype,
                                                       const gchar* val);
@@ -2300,11 +2300,11 @@ VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_valamethod (GType ob
                                                             const gchar* name,
                                                             const gchar* rtype,
                                                             const gchar* val);
-static void ___lambda51__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda71__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button20_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button20_get_type_once (void);
-static void __lambda52_ (Xcls_LeftPropsXcls_Button21* self);
+static void __lambda72_ (Xcls_LeftPropsXcls_Button21* self);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_sig (const gchar* name,
                                                const gchar* rtype,
                                                const gchar* val);
@@ -2312,24 +2312,24 @@ VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_sig (GType object_ty
                                                      const gchar* name,
                                                      const gchar* rtype,
                                                      const gchar* val);
-static void ___lambda52__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda72__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button21_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button21_get_type_once (void);
 static void xcls_leftprops_xcls_separator22_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_separator22_get_type_once (void);
-static void __lambda53_ (Xcls_LeftPropsXcls_Button23* self);
-static void ___lambda53__gtk_button_clicked (GtkButton* _sender,
+static void __lambda73_ (Xcls_LeftPropsXcls_Button23* self);
+static void ___lambda73__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button23_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button23_get_type_once (void);
-static void __lambda54_ (Xcls_LeftPropsXcls_Button24* self);
-static void ___lambda54__gtk_button_clicked (GtkButton* _sender,
+static void __lambda74_ (Xcls_LeftPropsXcls_Button24* self);
+static void ___lambda74__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button24_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button24_get_type_once (void);
-static void __lambda55_ (Xcls_LeftPropsXcls_Button25* self);
-static void ___lambda55__gtk_button_clicked (GtkButton* _sender,
+static void __lambda75_ (Xcls_LeftPropsXcls_Button25* self);
+static void ___lambda75__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button25_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button25_get_type_once (void);
@@ -2392,31 +2392,31 @@ VALA_EXTERN Xcls_LeftPropsXcls_Button30* xcls_leftprops_xcls_button30_construct 
                                                                      Xcls_LeftProps* _owner);
 static void xcls_leftprops_xcls_box29_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_box29_get_type_once (void);
-static void __lambda30_ (Xcls_LeftPropsXcls_Button30* self);
+static void __lambda50_ (Xcls_LeftPropsXcls_Button30* self);
 VALA_EXTERN void js_render_node_remove_prop (JsRenderNode* self,
                                  JsRenderNodeProp* prop);
-static void ___lambda30__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda50__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_leftprops_xcls_button30_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button30_get_type_once (void);
-static void __lambda31_ (Xcls_LeftPropsXcls_GestureClick31* self,
+static void __lambda51_ (Xcls_LeftPropsXcls_GestureClick31* self,
                   gint n_press,
                   gdouble in_x,
                   gdouble in_y);
 VALA_EXTERN JsRenderNodeProp* xcls_leftprops_xcls_selmodel_getPropAt (Xcls_LeftPropsXcls_selmodel* self,
                                                           guint row);
-static void ___lambda31__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+static void ___lambda51__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                              gint n_press,
                                              gdouble x,
                                              gdouble y,
                                              gpointer self);
 static void xcls_leftprops_xcls_gestureclick31_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_gestureclick31_get_type_once (void);
-static void __lambda32_ (Xcls_LeftPropsXcls_GestureClick32* self,
+static void __lambda52_ (Xcls_LeftPropsXcls_GestureClick32* self,
                   gint n_press,
                   gdouble in_x,
                   gdouble in_y);
-static void ___lambda32__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+static void ___lambda52__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                              gint n_press,
                                              gdouble x,
                                              gdouble y,
@@ -2437,14 +2437,14 @@ VALA_EXTERN Xcls_LeftPropsXcls_SignalListItemFactory36* xcls_leftprops_xcls_sign
                                                                                                    Xcls_LeftProps* _owner);
 static void xcls_leftprops_xcls_keycol_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_keycol_get_type_once (void);
-static void __lambda33_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
+static void __lambda53_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
                   GObject* listitem);
-static void ___lambda33__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda53__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
-static void __lambda34_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
+static void __lambda54_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
                   GObject* listitem);
-static void ___lambda34__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda54__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                      GObject* object,
                                                      gpointer self);
 static void xcls_leftprops_xcls_signallistitemfactory36_finalize (GObject * obj);
@@ -2456,36 +2456,36 @@ VALA_EXTERN Xcls_LeftPropsXcls_SignalListItemFactory38* xcls_leftprops_xcls_sign
                                                                                                    Xcls_LeftProps* _owner);
 static void xcls_leftprops_xcls_valcol_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_valcol_get_type_once (void);
-static void __lambda35_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
+static void __lambda55_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
                   GObject* listitem);
 static Block10Data* block10_data_ref (Block10Data* _data10_);
 static void block10_data_unref (void * _userdata_);
-static void __lambda36_ (Block10Data* _data10_);
-static void ___lambda36__gtk_event_controller_focus_enter (GtkEventControllerFocus* _sender,
+static void __lambda56_ (Block10Data* _data10_);
+static void ___lambda56__gtk_event_controller_focus_enter (GtkEventControllerFocus* _sender,
                                                     gpointer self);
-static void __lambda37_ (Block10Data* _data10_);
-static void ___lambda37__gtk_button_clicked (GtkButton* _sender,
+static void __lambda57_ (Block10Data* _data10_);
+static void ___lambda57__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
-static void __lambda38_ (Block10Data* _data10_);
+static void __lambda58_ (Block10Data* _data10_);
 VALA_EXTERN void js_render_node_prop_set_val (JsRenderNodeProp* self,
                                   const gchar* value);
-static void ___lambda38__gtk_editable_changed (GtkEditable* _sender,
+static void ___lambda58__gtk_editable_changed (GtkEditable* _sender,
                                         gpointer self);
-static void __lambda39_ (Block10Data* _data10_);
+static void __lambda59_ (Block10Data* _data10_);
 VALA_EXTERN const gchar* js_render_node_prop_get_val (JsRenderNodeProp* self);
-static void ___lambda39__g_object_notify (GObject* _sender,
+static void ___lambda59__g_object_notify (GObject* _sender,
                                    GParamSpec* pspec,
                                    gpointer self);
-static void __lambda40_ (Block10Data* _data10_);
-static void ___lambda40__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+static void __lambda60_ (Block10Data* _data10_);
+static void ___lambda60__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                              gint n_press,
                                              gdouble x,
                                              gdouble y,
                                              gpointer self);
-static void ___lambda35__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda55__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
-static void __lambda41_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
+static void __lambda61_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
                   GObject* listitem);
 VALA_EXTERN GType palete_palete_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaletePalete, g_object_unref)
@@ -2501,7 +2501,7 @@ VALA_EXTERN gboolean palete_palete_typeOptions (PaletePalete* self,
                                     gint* opts_length1);
 VALA_EXTERN gchar* js_render_node_fqn (JsRenderNode* self);
 VALA_EXTERN const gchar* js_render_node_prop_get_rtype (JsRenderNodeProp* self);
-static void ___lambda41__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda61__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                      GObject* object,
                                                      gpointer self);
 static void xcls_leftprops_xcls_signallistitemfactory38_finalize (GObject * obj);
@@ -2520,8 +2520,8 @@ VALA_EXTERN Xcls_LeftPropsXcls_Button41* xcls_leftprops_xcls_button41_construct 
                                                                      Xcls_LeftProps* _owner);
 static void xcls_leftprops_xcls_box40_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_box40_get_type_once (void);
-static void __lambda42_ (Xcls_LeftPropsXcls_Button41* self);
-static void ___lambda42__gtk_button_activate (GtkButton* _sender,
+static void __lambda62_ (Xcls_LeftPropsXcls_Button41* self);
+static void ___lambda62__gtk_button_activate (GtkButton* _sender,
                                        gpointer self);
 static void xcls_leftprops_xcls_button41_finalize (GObject * obj);
 static GType xcls_leftprops_xcls_button41_get_type_once (void);
@@ -3953,7 +3953,7 @@ xcls_leftprops_xcls_button4_get_instance_private (Xcls_LeftPropsXcls_Button4* se
 }
 
 static void
-__lambda56_ (Xcls_LeftPropsXcls_Button4* self)
+__lambda76_ (Xcls_LeftPropsXcls_Button4* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_MainWindow* _tmp1_;
@@ -3979,11 +3979,11 @@ __lambda56_ (Xcls_LeftPropsXcls_Button4* self)
 }
 
 static void
-___lambda56__gtk_button_clicked (GtkButton* _sender,
+___lambda76__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 348 "WindowLeftProps.vala"
-	__lambda56_ ((Xcls_LeftPropsXcls_Button4*) self);
+	__lambda76_ ((Xcls_LeftPropsXcls_Button4*) self);
 #line 3988 "WindowLeftProps.vala.c"
 }
 
@@ -4036,7 +4036,7 @@ xcls_leftprops_xcls_button4_construct (GType object_type,
 #line 348 "WindowLeftProps.vala"
 	_tmp6_ = self->el;
 #line 348 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda56__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda76__gtk_button_clicked, self, 0);
 #line 333 "WindowLeftProps.vala"
 	return self;
 #line 4043 "WindowLeftProps.vala.c"
@@ -4116,7 +4116,7 @@ xcls_leftprops_xcls_button5_get_instance_private (Xcls_LeftPropsXcls_Button5* se
 }
 
 static void
-__lambda66_ (Xcls_LeftPropsXcls_Button5* self)
+__lambda86_ (Xcls_LeftPropsXcls_Button5* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_MainWindow* _tmp1_;
@@ -4142,11 +4142,11 @@ __lambda66_ (Xcls_LeftPropsXcls_Button5* self)
 }
 
 static void
-___lambda66__gtk_button_clicked (GtkButton* _sender,
+___lambda86__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 386 "WindowLeftProps.vala"
-	__lambda66_ ((Xcls_LeftPropsXcls_Button5*) self);
+	__lambda86_ ((Xcls_LeftPropsXcls_Button5*) self);
 #line 4151 "WindowLeftProps.vala.c"
 }
 
@@ -4199,7 +4199,7 @@ xcls_leftprops_xcls_button5_construct (GType object_type,
 #line 386 "WindowLeftProps.vala"
 	_tmp6_ = self->el;
 #line 386 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda66__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda86__gtk_button_clicked, self, 0);
 #line 371 "WindowLeftProps.vala"
 	return self;
 #line 4206 "WindowLeftProps.vala.c"
@@ -4279,7 +4279,7 @@ xcls_leftprops_xcls_button6_get_instance_private (Xcls_LeftPropsXcls_Button6* se
 }
 
 static void
-__lambda67_ (Xcls_LeftPropsXcls_Button6* self)
+__lambda87_ (Xcls_LeftPropsXcls_Button6* self)
 {
 	Xcls_LeftPropsXcls_AddPropertyPopup* p = NULL;
 	Xcls_LeftProps* _tmp0_;
@@ -4333,11 +4333,11 @@ __lambda67_ (Xcls_LeftPropsXcls_Button6* self)
 }
 
 static void
-___lambda67__gtk_button_clicked (GtkButton* _sender,
+___lambda87__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 426 "WindowLeftProps.vala"
-	__lambda67_ ((Xcls_LeftPropsXcls_Button6*) self);
+	__lambda87_ ((Xcls_LeftPropsXcls_Button6*) self);
 #line 4342 "WindowLeftProps.vala.c"
 }
 
@@ -4394,7 +4394,7 @@ xcls_leftprops_xcls_button6_construct (GType object_type,
 #line 426 "WindowLeftProps.vala"
 	_tmp7_ = self->el;
 #line 426 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda67__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp7_, "clicked", (GCallback) ___lambda87__gtk_button_clicked, self, 0);
 #line 411 "WindowLeftProps.vala"
 	_g_object_unref0 (child_1);
 #line 411 "WindowLeftProps.vala"
@@ -5069,7 +5069,7 @@ xcls_leftprops_xcls_button9_get_instance_private (Xcls_LeftPropsXcls_Button9* se
 }
 
 static void
-__lambda21_ (Xcls_LeftPropsXcls_Button9* self)
+__lambda41_ (Xcls_LeftPropsXcls_Button9* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -5133,11 +5133,11 @@ __lambda21_ (Xcls_LeftPropsXcls_Button9* self)
 }
 
 static void
-___lambda21__gtk_button_clicked (GtkButton* _sender,
+___lambda41__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 565 "WindowLeftProps.vala"
-	__lambda21_ ((Xcls_LeftPropsXcls_Button9*) self);
+	__lambda41_ ((Xcls_LeftPropsXcls_Button9*) self);
 #line 5142 "WindowLeftProps.vala.c"
 }
 
@@ -5178,7 +5178,7 @@ xcls_leftprops_xcls_button9_construct (GType object_type,
 #line 565 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 565 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda21__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda41__gtk_button_clicked, self, 0);
 #line 553 "WindowLeftProps.vala"
 	return self;
 #line 5185 "WindowLeftProps.vala.c"
@@ -5258,7 +5258,7 @@ xcls_leftprops_xcls_button10_get_instance_private (Xcls_LeftPropsXcls_Button10* 
 }
 
 static void
-__lambda43_ (Xcls_LeftPropsXcls_Button10* self)
+__lambda63_ (Xcls_LeftPropsXcls_Button10* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -5322,11 +5322,11 @@ __lambda43_ (Xcls_LeftPropsXcls_Button10* self)
 }
 
 static void
-___lambda43__gtk_button_clicked (GtkButton* _sender,
+___lambda63__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 605 "WindowLeftProps.vala"
-	__lambda43_ ((Xcls_LeftPropsXcls_Button10*) self);
+	__lambda63_ ((Xcls_LeftPropsXcls_Button10*) self);
 #line 5331 "WindowLeftProps.vala.c"
 }
 
@@ -5368,7 +5368,7 @@ xcls_leftprops_xcls_button10_construct (GType object_type,
 #line 605 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 605 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda43__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda63__gtk_button_clicked, self, 0);
 #line 593 "WindowLeftProps.vala"
 	return self;
 #line 5374 "WindowLeftProps.vala.c"
@@ -5448,7 +5448,7 @@ xcls_leftprops_xcls_button11_get_instance_private (Xcls_LeftPropsXcls_Button11* 
 }
 
 static void
-__lambda44_ (Xcls_LeftPropsXcls_Button11* self)
+__lambda64_ (Xcls_LeftPropsXcls_Button11* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -5512,11 +5512,11 @@ __lambda44_ (Xcls_LeftPropsXcls_Button11* self)
 }
 
 static void
-___lambda44__gtk_button_clicked (GtkButton* _sender,
+___lambda64__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 647 "WindowLeftProps.vala"
-	__lambda44_ ((Xcls_LeftPropsXcls_Button11*) self);
+	__lambda64_ ((Xcls_LeftPropsXcls_Button11*) self);
 #line 5520 "WindowLeftProps.vala.c"
 }
 
@@ -5557,7 +5557,7 @@ xcls_leftprops_xcls_button11_construct (GType object_type,
 #line 647 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 647 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda44__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda64__gtk_button_clicked, self, 0);
 #line 635 "WindowLeftProps.vala"
 	return self;
 #line 5563 "WindowLeftProps.vala.c"
@@ -5637,7 +5637,7 @@ xcls_leftprops_xcls_button12_get_instance_private (Xcls_LeftPropsXcls_Button12* 
 }
 
 static void
-__lambda45_ (Xcls_LeftPropsXcls_Button12* self)
+__lambda65_ (Xcls_LeftPropsXcls_Button12* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -5701,11 +5701,11 @@ __lambda45_ (Xcls_LeftPropsXcls_Button12* self)
 }
 
 static void
-___lambda45__gtk_button_clicked (GtkButton* _sender,
+___lambda65__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 687 "WindowLeftProps.vala"
-	__lambda45_ ((Xcls_LeftPropsXcls_Button12*) self);
+	__lambda65_ ((Xcls_LeftPropsXcls_Button12*) self);
 #line 5709 "WindowLeftProps.vala.c"
 }
 
@@ -5746,7 +5746,7 @@ xcls_leftprops_xcls_button12_construct (GType object_type,
 #line 687 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 687 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda45__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda65__gtk_button_clicked, self, 0);
 #line 675 "WindowLeftProps.vala"
 	return self;
 #line 5752 "WindowLeftProps.vala.c"
@@ -5826,7 +5826,7 @@ xcls_leftprops_xcls_button13_get_instance_private (Xcls_LeftPropsXcls_Button13* 
 }
 
 static void
-__lambda46_ (Xcls_LeftPropsXcls_Button13* self)
+__lambda66_ (Xcls_LeftPropsXcls_Button13* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -5890,11 +5890,11 @@ __lambda46_ (Xcls_LeftPropsXcls_Button13* self)
 }
 
 static void
-___lambda46__gtk_button_clicked (GtkButton* _sender,
+___lambda66__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 726 "WindowLeftProps.vala"
-	__lambda46_ ((Xcls_LeftPropsXcls_Button13*) self);
+	__lambda66_ ((Xcls_LeftPropsXcls_Button13*) self);
 #line 5898 "WindowLeftProps.vala.c"
 }
 
@@ -5937,7 +5937,7 @@ xcls_leftprops_xcls_button13_construct (GType object_type,
 #line 726 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 726 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda46__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda66__gtk_button_clicked, self, 0);
 #line 714 "WindowLeftProps.vala"
 	return self;
 #line 5941 "WindowLeftProps.vala.c"
@@ -6118,7 +6118,7 @@ xcls_leftprops_xcls_button15_get_instance_private (Xcls_LeftPropsXcls_Button15* 
 }
 
 static void
-__lambda47_ (Xcls_LeftPropsXcls_Button15* self,
+__lambda67_ (Xcls_LeftPropsXcls_Button15* self,
              GtkButton* _self_)
 {
 	Xcls_LeftProps* _tmp0_;
@@ -6170,11 +6170,11 @@ __lambda47_ (Xcls_LeftPropsXcls_Button15* self,
 }
 
 static void
-___lambda47__gtk_button_clicked (GtkButton* _sender,
+___lambda67__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 788 "WindowLeftProps.vala"
-	__lambda47_ ((Xcls_LeftPropsXcls_Button15*) self, _sender);
+	__lambda67_ ((Xcls_LeftPropsXcls_Button15*) self, _sender);
 #line 6176 "WindowLeftProps.vala.c"
 }
 
@@ -6215,7 +6215,7 @@ xcls_leftprops_xcls_button15_construct (GType object_type,
 #line 788 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 788 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda47__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda67__gtk_button_clicked, self, 0);
 #line 776 "WindowLeftProps.vala"
 	return self;
 #line 6219 "WindowLeftProps.vala.c"
@@ -6295,7 +6295,7 @@ xcls_leftprops_xcls_button16_get_instance_private (Xcls_LeftPropsXcls_Button16* 
 }
 
 static void
-__lambda48_ (Xcls_LeftPropsXcls_Button16* self)
+__lambda68_ (Xcls_LeftPropsXcls_Button16* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -6346,11 +6346,11 @@ __lambda48_ (Xcls_LeftPropsXcls_Button16* self)
 }
 
 static void
-___lambda48__gtk_button_clicked (GtkButton* _sender,
+___lambda68__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 825 "WindowLeftProps.vala"
-	__lambda48_ ((Xcls_LeftPropsXcls_Button16*) self);
+	__lambda68_ ((Xcls_LeftPropsXcls_Button16*) self);
 #line 6352 "WindowLeftProps.vala.c"
 }
 
@@ -6391,7 +6391,7 @@ xcls_leftprops_xcls_button16_construct (GType object_type,
 #line 825 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 825 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda48__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda68__gtk_button_clicked, self, 0);
 #line 813 "WindowLeftProps.vala"
 	return self;
 #line 6395 "WindowLeftProps.vala.c"
@@ -6471,7 +6471,7 @@ xcls_leftprops_xcls_button17_get_instance_private (Xcls_LeftPropsXcls_Button17* 
 }
 
 static void
-__lambda49_ (Xcls_LeftPropsXcls_Button17* self)
+__lambda69_ (Xcls_LeftPropsXcls_Button17* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -6522,11 +6522,11 @@ __lambda49_ (Xcls_LeftPropsXcls_Button17* self)
 }
 
 static void
-___lambda49__gtk_button_clicked (GtkButton* _sender,
+___lambda69__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 863 "WindowLeftProps.vala"
-	__lambda49_ ((Xcls_LeftPropsXcls_Button17*) self);
+	__lambda69_ ((Xcls_LeftPropsXcls_Button17*) self);
 #line 6528 "WindowLeftProps.vala.c"
 }
 
@@ -6567,7 +6567,7 @@ xcls_leftprops_xcls_button17_construct (GType object_type,
 #line 863 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 863 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda49__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda69__gtk_button_clicked, self, 0);
 #line 851 "WindowLeftProps.vala"
 	return self;
 #line 6571 "WindowLeftProps.vala.c"
@@ -6748,7 +6748,7 @@ xcls_leftprops_xcls_button19_get_instance_private (Xcls_LeftPropsXcls_Button19* 
 }
 
 static void
-__lambda50_ (Xcls_LeftPropsXcls_Button19* self)
+__lambda70_ (Xcls_LeftPropsXcls_Button19* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -6799,11 +6799,11 @@ __lambda50_ (Xcls_LeftPropsXcls_Button19* self)
 }
 
 static void
-___lambda50__gtk_button_clicked (GtkButton* _sender,
+___lambda70__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 923 "WindowLeftProps.vala"
-	__lambda50_ ((Xcls_LeftPropsXcls_Button19*) self);
+	__lambda70_ ((Xcls_LeftPropsXcls_Button19*) self);
 #line 6805 "WindowLeftProps.vala.c"
 }
 
@@ -6844,7 +6844,7 @@ xcls_leftprops_xcls_button19_construct (GType object_type,
 #line 923 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 923 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda50__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda70__gtk_button_clicked, self, 0);
 #line 911 "WindowLeftProps.vala"
 	return self;
 #line 6848 "WindowLeftProps.vala.c"
@@ -6924,7 +6924,7 @@ xcls_leftprops_xcls_button20_get_instance_private (Xcls_LeftPropsXcls_Button20* 
 }
 
 static void
-__lambda51_ (Xcls_LeftPropsXcls_Button20* self)
+__lambda71_ (Xcls_LeftPropsXcls_Button20* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -6975,11 +6975,11 @@ __lambda51_ (Xcls_LeftPropsXcls_Button20* self)
 }
 
 static void
-___lambda51__gtk_button_clicked (GtkButton* _sender,
+___lambda71__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 961 "WindowLeftProps.vala"
-	__lambda51_ ((Xcls_LeftPropsXcls_Button20*) self);
+	__lambda71_ ((Xcls_LeftPropsXcls_Button20*) self);
 #line 6981 "WindowLeftProps.vala.c"
 }
 
@@ -7020,7 +7020,7 @@ xcls_leftprops_xcls_button20_construct (GType object_type,
 #line 961 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 961 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda51__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda71__gtk_button_clicked, self, 0);
 #line 949 "WindowLeftProps.vala"
 	return self;
 #line 7024 "WindowLeftProps.vala.c"
@@ -7100,7 +7100,7 @@ xcls_leftprops_xcls_button21_get_instance_private (Xcls_LeftPropsXcls_Button21* 
 }
 
 static void
-__lambda52_ (Xcls_LeftPropsXcls_Button21* self)
+__lambda72_ (Xcls_LeftPropsXcls_Button21* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -7151,11 +7151,11 @@ __lambda52_ (Xcls_LeftPropsXcls_Button21* self)
 }
 
 static void
-___lambda52__gtk_button_clicked (GtkButton* _sender,
+___lambda72__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 997 "WindowLeftProps.vala"
-	__lambda52_ ((Xcls_LeftPropsXcls_Button21*) self);
+	__lambda72_ ((Xcls_LeftPropsXcls_Button21*) self);
 #line 7157 "WindowLeftProps.vala.c"
 }
 
@@ -7196,7 +7196,7 @@ xcls_leftprops_xcls_button21_construct (GType object_type,
 #line 997 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 997 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda52__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda72__gtk_button_clicked, self, 0);
 #line 985 "WindowLeftProps.vala"
 	return self;
 #line 7200 "WindowLeftProps.vala.c"
@@ -7377,7 +7377,7 @@ xcls_leftprops_xcls_button23_get_instance_private (Xcls_LeftPropsXcls_Button23* 
 }
 
 static void
-__lambda53_ (Xcls_LeftPropsXcls_Button23* self)
+__lambda73_ (Xcls_LeftPropsXcls_Button23* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -7428,11 +7428,11 @@ __lambda53_ (Xcls_LeftPropsXcls_Button23* self)
 }
 
 static void
-___lambda53__gtk_button_clicked (GtkButton* _sender,
+___lambda73__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 1055 "WindowLeftProps.vala"
-	__lambda53_ ((Xcls_LeftPropsXcls_Button23*) self);
+	__lambda73_ ((Xcls_LeftPropsXcls_Button23*) self);
 #line 7434 "WindowLeftProps.vala.c"
 }
 
@@ -7473,7 +7473,7 @@ xcls_leftprops_xcls_button23_construct (GType object_type,
 #line 1055 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 1055 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda53__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda73__gtk_button_clicked, self, 0);
 #line 1043 "WindowLeftProps.vala"
 	return self;
 #line 7477 "WindowLeftProps.vala.c"
@@ -7553,7 +7553,7 @@ xcls_leftprops_xcls_button24_get_instance_private (Xcls_LeftPropsXcls_Button24* 
 }
 
 static void
-__lambda54_ (Xcls_LeftPropsXcls_Button24* self)
+__lambda74_ (Xcls_LeftPropsXcls_Button24* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -7604,11 +7604,11 @@ __lambda54_ (Xcls_LeftPropsXcls_Button24* self)
 }
 
 static void
-___lambda54__gtk_button_clicked (GtkButton* _sender,
+___lambda74__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 1093 "WindowLeftProps.vala"
-	__lambda54_ ((Xcls_LeftPropsXcls_Button24*) self);
+	__lambda74_ ((Xcls_LeftPropsXcls_Button24*) self);
 #line 7610 "WindowLeftProps.vala.c"
 }
 
@@ -7649,7 +7649,7 @@ xcls_leftprops_xcls_button24_construct (GType object_type,
 #line 1093 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 1093 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda54__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda74__gtk_button_clicked, self, 0);
 #line 1081 "WindowLeftProps.vala"
 	return self;
 #line 7653 "WindowLeftProps.vala.c"
@@ -7729,7 +7729,7 @@ xcls_leftprops_xcls_button25_get_instance_private (Xcls_LeftPropsXcls_Button25* 
 }
 
 static void
-__lambda55_ (Xcls_LeftPropsXcls_Button25* self)
+__lambda75_ (Xcls_LeftPropsXcls_Button25* self)
 {
 	Xcls_LeftProps* _tmp0_;
 	Xcls_LeftPropsXcls_AddPropertyPopup* _tmp1_;
@@ -7780,11 +7780,11 @@ __lambda55_ (Xcls_LeftPropsXcls_Button25* self)
 }
 
 static void
-___lambda55__gtk_button_clicked (GtkButton* _sender,
+___lambda75__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 1131 "WindowLeftProps.vala"
-	__lambda55_ ((Xcls_LeftPropsXcls_Button25*) self);
+	__lambda75_ ((Xcls_LeftPropsXcls_Button25*) self);
 #line 7786 "WindowLeftProps.vala.c"
 }
 
@@ -7825,7 +7825,7 @@ xcls_leftprops_xcls_button25_construct (GType object_type,
 #line 1131 "WindowLeftProps.vala"
 	_tmp4_ = self->el;
 #line 1131 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda55__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda75__gtk_button_clicked, self, 0);
 #line 1119 "WindowLeftProps.vala"
 	return self;
 #line 7829 "WindowLeftProps.vala.c"
@@ -9661,7 +9661,7 @@ xcls_leftprops_xcls_button30_get_instance_private (Xcls_LeftPropsXcls_Button30* 
 }
 
 static void
-__lambda30_ (Xcls_LeftPropsXcls_Button30* self)
+__lambda50_ (Xcls_LeftPropsXcls_Button30* self)
 {
 	JsRenderNodeProp* n = NULL;
 	Xcls_LeftProps* _tmp0_;
@@ -9709,11 +9709,11 @@ __lambda30_ (Xcls_LeftPropsXcls_Button30* self)
 }
 
 static void
-___lambda30__gtk_button_clicked (GtkButton* _sender,
+___lambda50__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 1509 "WindowLeftProps.vala"
-	__lambda30_ ((Xcls_LeftPropsXcls_Button30*) self);
+	__lambda50_ ((Xcls_LeftPropsXcls_Button30*) self);
 #line 9715 "WindowLeftProps.vala.c"
 }
 
@@ -9749,7 +9749,7 @@ xcls_leftprops_xcls_button30_construct (GType object_type,
 #line 1509 "WindowLeftProps.vala"
 	_tmp3_ = self->el;
 #line 1509 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda30__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda50__gtk_button_clicked, self, 0);
 #line 1498 "WindowLeftProps.vala"
 	return self;
 #line 9753 "WindowLeftProps.vala.c"
@@ -9829,7 +9829,7 @@ xcls_leftprops_xcls_gestureclick31_get_instance_private (Xcls_LeftPropsXcls_Gest
 }
 
 static void
-__lambda31_ (Xcls_LeftPropsXcls_GestureClick31* self,
+__lambda51_ (Xcls_LeftPropsXcls_GestureClick31* self,
              gint n_press,
              gdouble in_x,
              gdouble in_y)
@@ -9962,14 +9962,14 @@ __lambda31_ (Xcls_LeftPropsXcls_GestureClick31* self,
 }
 
 static void
-___lambda31__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+___lambda51__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                         gint n_press,
                                         gdouble x,
                                         gdouble y,
                                         gpointer self)
 {
 #line 1543 "WindowLeftProps.vala"
-	__lambda31_ ((Xcls_LeftPropsXcls_GestureClick31*) self, n_press, x, y);
+	__lambda51_ ((Xcls_LeftPropsXcls_GestureClick31*) self, n_press, x, y);
 #line 9971 "WindowLeftProps.vala.c"
 }
 
@@ -9998,7 +9998,7 @@ xcls_leftprops_xcls_gestureclick31_construct (GType object_type,
 #line 1543 "WindowLeftProps.vala"
 	_tmp2_ = self->el;
 #line 1543 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp2_, "pressed", (GCallback) ___lambda31__gtk_gesture_click_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "pressed", (GCallback) ___lambda51__gtk_gesture_click_pressed, self, 0);
 #line 1533 "WindowLeftProps.vala"
 	return self;
 #line 10002 "WindowLeftProps.vala.c"
@@ -10078,7 +10078,7 @@ xcls_leftprops_xcls_gestureclick32_get_instance_private (Xcls_LeftPropsXcls_Gest
 }
 
 static void
-__lambda32_ (Xcls_LeftPropsXcls_GestureClick32* self,
+__lambda52_ (Xcls_LeftPropsXcls_GestureClick32* self,
              gint n_press,
              gdouble in_x,
              gdouble in_y)
@@ -10227,14 +10227,14 @@ __lambda32_ (Xcls_LeftPropsXcls_GestureClick32* self,
 }
 
 static void
-___lambda32__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+___lambda52__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                         gint n_press,
                                         gdouble x,
                                         gdouble y,
                                         gpointer self)
 {
 #line 1601 "WindowLeftProps.vala"
-	__lambda32_ ((Xcls_LeftPropsXcls_GestureClick32*) self, n_press, x, y);
+	__lambda52_ ((Xcls_LeftPropsXcls_GestureClick32*) self, n_press, x, y);
 #line 10236 "WindowLeftProps.vala.c"
 }
 
@@ -10268,7 +10268,7 @@ xcls_leftprops_xcls_gestureclick32_construct (GType object_type,
 #line 1601 "WindowLeftProps.vala"
 	_tmp3_ = self->el;
 #line 1601 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp3_, "pressed", (GCallback) ___lambda32__gtk_gesture_click_pressed, self, 0);
+	g_signal_connect_object (_tmp3_, "pressed", (GCallback) ___lambda52__gtk_gesture_click_pressed, self, 0);
 #line 1590 "WindowLeftProps.vala"
 	return self;
 #line 10272 "WindowLeftProps.vala.c"
@@ -10826,7 +10826,7 @@ xcls_leftprops_xcls_signallistitemfactory36_get_instance_private (Xcls_LeftProps
 }
 
 static void
-__lambda33_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
+__lambda53_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
              GObject* listitem)
 {
 	GtkLabel* lbl = NULL;
@@ -10855,17 +10855,17 @@ __lambda33_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
 }
 
 static void
-___lambda33__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda53__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 1749 "WindowLeftProps.vala"
-	__lambda33_ ((Xcls_LeftPropsXcls_SignalListItemFactory36*) self, object);
+	__lambda53_ ((Xcls_LeftPropsXcls_SignalListItemFactory36*) self, object);
 #line 10862 "WindowLeftProps.vala.c"
 }
 
 static void
-__lambda34_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
+__lambda54_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
              GObject* listitem)
 {
 	GtkLabel* lb = NULL;
@@ -10898,12 +10898,12 @@ __lambda34_ (Xcls_LeftPropsXcls_SignalListItemFactory36* self,
 }
 
 static void
-___lambda34__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda54__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                 GObject* object,
                                                 gpointer self)
 {
 #line 1767 "WindowLeftProps.vala"
-	__lambda34_ ((Xcls_LeftPropsXcls_SignalListItemFactory36*) self, object);
+	__lambda54_ ((Xcls_LeftPropsXcls_SignalListItemFactory36*) self, object);
 #line 10905 "WindowLeftProps.vala.c"
 }
 
@@ -10933,11 +10933,11 @@ xcls_leftprops_xcls_signallistitemfactory36_construct (GType object_type,
 #line 1749 "WindowLeftProps.vala"
 	_tmp2_ = self->el;
 #line 1749 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda33__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda53__gtk_signal_list_item_factory_setup, self, 0);
 #line 1767 "WindowLeftProps.vala"
 	_tmp3_ = self->el;
 #line 1767 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda34__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda54__gtk_signal_list_item_factory_bind, self, 0);
 #line 1739 "WindowLeftProps.vala"
 	return self;
 #line 10941 "WindowLeftProps.vala.c"
@@ -11195,7 +11195,7 @@ block10_data_unref (void * _userdata_)
 }
 
 static void
-__lambda36_ (Block10Data* _data10_)
+__lambda56_ (Block10Data* _data10_)
 {
 	Xcls_LeftPropsXcls_SignalListItemFactory38* self;
 	Xcls_LeftProps* _tmp0_;
@@ -11229,16 +11229,16 @@ __lambda36_ (Block10Data* _data10_)
 }
 
 static void
-___lambda36__gtk_event_controller_focus_enter (GtkEventControllerFocus* _sender,
+___lambda56__gtk_event_controller_focus_enter (GtkEventControllerFocus* _sender,
                                                gpointer self)
 {
 #line 1854 "WindowLeftProps.vala"
-	__lambda36_ (self);
+	__lambda56_ (self);
 #line 11235 "WindowLeftProps.vala.c"
 }
 
 static void
-__lambda37_ (Block10Data* _data10_)
+__lambda57_ (Block10Data* _data10_)
 {
 	Xcls_LeftPropsXcls_SignalListItemFactory38* self;
 	JsRenderNodeProp* prop = NULL;
@@ -11272,16 +11272,16 @@ __lambda37_ (Block10Data* _data10_)
 }
 
 static void
-___lambda37__gtk_button_clicked (GtkButton* _sender,
+___lambda57__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 1864 "WindowLeftProps.vala"
-	__lambda37_ (self);
+	__lambda57_ (self);
 #line 11278 "WindowLeftProps.vala.c"
 }
 
 static void
-__lambda38_ (Block10Data* _data10_)
+__lambda58_ (Block10Data* _data10_)
 {
 	Xcls_LeftPropsXcls_SignalListItemFactory38* self;
 	gboolean _tmp0_ = FALSE;
@@ -11337,16 +11337,16 @@ __lambda38_ (Block10Data* _data10_)
 }
 
 static void
-___lambda38__gtk_editable_changed (GtkEditable* _sender,
+___lambda58__gtk_editable_changed (GtkEditable* _sender,
                                    gpointer self)
 {
 #line 1871 "WindowLeftProps.vala"
-	__lambda38_ (self);
+	__lambda58_ (self);
 #line 11343 "WindowLeftProps.vala.c"
 }
 
 static void
-__lambda39_ (Block10Data* _data10_)
+__lambda59_ (Block10Data* _data10_)
 {
 	Xcls_LeftPropsXcls_SignalListItemFactory38* self;
 	gboolean _tmp0_ = FALSE;
@@ -11433,17 +11433,17 @@ __lambda39_ (Block10Data* _data10_)
 }
 
 static void
-___lambda39__g_object_notify (GObject* _sender,
+___lambda59__g_object_notify (GObject* _sender,
                               GParamSpec* pspec,
                               gpointer self)
 {
 #line 1890 "WindowLeftProps.vala"
-	__lambda39_ (self);
+	__lambda59_ (self);
 #line 11440 "WindowLeftProps.vala.c"
 }
 
 static void
-__lambda40_ (Block10Data* _data10_)
+__lambda60_ (Block10Data* _data10_)
 {
 	Xcls_LeftPropsXcls_SignalListItemFactory38* self;
 	JsRenderNodeProp* prop = NULL;
@@ -11483,19 +11483,19 @@ __lambda40_ (Block10Data* _data10_)
 }
 
 static void
-___lambda40__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+___lambda60__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                         gint n_press,
                                         gdouble x,
                                         gdouble y,
                                         gpointer self)
 {
 #line 1910 "WindowLeftProps.vala"
-	__lambda40_ (self);
+	__lambda60_ (self);
 #line 11492 "WindowLeftProps.vala.c"
 }
 
 static void
-__lambda35_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
+__lambda55_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
              GObject* listitem)
 {
 	Block10Data* _data10_;
@@ -11593,7 +11593,7 @@ __lambda35_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
 #line 1853 "WindowLeftProps.vala"
 	ef = _tmp9_;
 #line 1854 "WindowLeftProps.vala"
-	g_signal_connect_data (ef, "enter", (GCallback) ___lambda36__gtk_event_controller_focus_enter, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
+	g_signal_connect_data (ef, "enter", (GCallback) ___lambda56__gtk_event_controller_focus_enter, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 #line 1859 "WindowLeftProps.vala"
 	_tmp10_ = _g_object_ref0 ((GtkEventController*) ef);
 #line 1859 "WindowLeftProps.vala"
@@ -11605,11 +11605,11 @@ __lambda35_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
 #line 1863 "WindowLeftProps.vala"
 	tb = _tmp12_;
 #line 1864 "WindowLeftProps.vala"
-	g_signal_connect_data ((GtkButton*) tb, "clicked", (GCallback) ___lambda37__gtk_button_clicked, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
+	g_signal_connect_data ((GtkButton*) tb, "clicked", (GCallback) ___lambda57__gtk_button_clicked, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 #line 1871 "WindowLeftProps.vala"
-	g_signal_connect_data ((GtkEditable*) _data10_->elbl, "changed", (GCallback) ___lambda38__gtk_editable_changed, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
+	g_signal_connect_data ((GtkEditable*) _data10_->elbl, "changed", (GCallback) ___lambda58__gtk_editable_changed, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 #line 1890 "WindowLeftProps.vala"
-	g_signal_connect_data ((GObject*) _data10_->cb, "notify::selected", (GCallback) ___lambda39__g_object_notify, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
+	g_signal_connect_data ((GObject*) _data10_->cb, "notify::selected", (GCallback) ___lambda59__g_object_notify, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 #line 1908 "WindowLeftProps.vala"
 	_tmp13_ = (GtkGestureClick*) gtk_gesture_click_new ();
 #line 1908 "WindowLeftProps.vala"
@@ -11619,7 +11619,7 @@ __lambda35_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
 #line 1909 "WindowLeftProps.vala"
 	gtk_widget_add_controller ((GtkWidget*) lbl, _tmp14_);
 #line 1910 "WindowLeftProps.vala"
-	g_signal_connect_data (gc, "pressed", (GCallback) ___lambda40__gtk_gesture_click_pressed, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
+	g_signal_connect_data (gc, "pressed", (GCallback) ___lambda60__gtk_gesture_click_pressed, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 #line 1836 "WindowLeftProps.vala"
 	_g_object_unref0 (gc);
 #line 1836 "WindowLeftProps.vala"
@@ -11638,12 +11638,12 @@ __lambda35_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
 }
 
 static void
-___lambda35__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda55__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 1836 "WindowLeftProps.vala"
-	__lambda35_ ((Xcls_LeftPropsXcls_SignalListItemFactory38*) self, object);
+	__lambda55_ ((Xcls_LeftPropsXcls_SignalListItemFactory38*) self, object);
 #line 11645 "WindowLeftProps.vala.c"
 }
 
@@ -11683,7 +11683,7 @@ string_index_of (const gchar* self,
 }
 
 static void
-__lambda41_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
+__lambda61_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
              GObject* listitem)
 {
 	GtkBox* bx = NULL;
@@ -12238,12 +12238,12 @@ __lambda41_ (Xcls_LeftPropsXcls_SignalListItemFactory38* self,
 }
 
 static void
-___lambda41__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda61__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                 GObject* object,
                                                 gpointer self)
 {
 #line 1919 "WindowLeftProps.vala"
-	__lambda41_ ((Xcls_LeftPropsXcls_SignalListItemFactory38*) self, object);
+	__lambda61_ ((Xcls_LeftPropsXcls_SignalListItemFactory38*) self, object);
 #line 12245 "WindowLeftProps.vala.c"
 }
 
@@ -12275,11 +12275,11 @@ xcls_leftprops_xcls_signallistitemfactory38_construct (GType object_type,
 #line 1836 "WindowLeftProps.vala"
 	_tmp2_ = self->el;
 #line 1836 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda35__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda55__gtk_signal_list_item_factory_setup, self, 0);
 #line 1919 "WindowLeftProps.vala"
 	_tmp3_ = self->el;
 #line 1919 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda41__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda61__gtk_signal_list_item_factory_bind, self, 0);
 #line 1825 "WindowLeftProps.vala"
 	return self;
 #line 12283 "WindowLeftProps.vala.c"
@@ -12611,7 +12611,7 @@ xcls_leftprops_xcls_button41_get_instance_private (Xcls_LeftPropsXcls_Button41* 
 }
 
 static void
-__lambda42_ (Xcls_LeftPropsXcls_Button41* self)
+__lambda62_ (Xcls_LeftPropsXcls_Button41* self)
 {
 	Xcls_LeftProps* _tmp0_;
 #line 2102 "WindowLeftProps.vala"
@@ -12622,11 +12622,11 @@ __lambda42_ (Xcls_LeftPropsXcls_Button41* self)
 }
 
 static void
-___lambda42__gtk_button_activate (GtkButton* _sender,
+___lambda62__gtk_button_activate (GtkButton* _sender,
                                   gpointer self)
 {
 #line 2101 "WindowLeftProps.vala"
-	__lambda42_ ((Xcls_LeftPropsXcls_Button41*) self);
+	__lambda62_ ((Xcls_LeftPropsXcls_Button41*) self);
 #line 12628 "WindowLeftProps.vala.c"
 }
 
@@ -12662,7 +12662,7 @@ xcls_leftprops_xcls_button41_construct (GType object_type,
 #line 2101 "WindowLeftProps.vala"
 	_tmp3_ = self->el;
 #line 2101 "WindowLeftProps.vala"
-	g_signal_connect_object (_tmp3_, "activate", (GCallback) ___lambda42__gtk_button_activate, self, 0);
+	g_signal_connect_object (_tmp3_, "activate", (GCallback) ___lambda62__gtk_button_activate, self, 0);
 #line 2090 "WindowLeftProps.vala"
 	return self;
 #line 12666 "WindowLeftProps.vala.c"

@@ -133,7 +133,7 @@ VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_from_json (const gchar* ke
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_from_json (GType object_type,
                                                            const gchar* key,
                                                            const gchar* inval);
-static void _vala_array_add52 (gchar** * array,
+static void _vala_array_add13 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -834,7 +834,7 @@ string_strip (const gchar* self)
 }
 
 static void
-_vala_array_add52 (gchar** * array,
+_vala_array_add13 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -973,7 +973,7 @@ js_render_node_prop_construct_from_json (GType object_type,
 #line 245 "NodeProp.vala"
 					_tmp15_ = g_strdup (_tmp14_);
 #line 245 "NodeProp.vala"
-					_vala_array_add52 (&kk, &kk_length1, &_kk_size_, _tmp15_);
+					_vala_array_add13 (&kk, &kk_length1, &_kk_size_, _tmp15_);
 #line 978 "NodeProp.vala.c"
 				}
 			}

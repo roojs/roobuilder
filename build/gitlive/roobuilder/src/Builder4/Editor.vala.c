@@ -1476,8 +1476,8 @@ VALA_EXTERN void editor_scroll_to_line (Editor* self,
                             gint line);
 static Block2Data* block2_data_ref (Block2Data* _data2_);
 static void block2_data_unref (void * _userdata_);
-static gboolean __lambda129_ (Block2Data* _data2_);
-static gboolean ___lambda129__gsource_func (gpointer self);
+static gboolean __lambda160_ (Block2Data* _data2_);
+static gboolean ___lambda160__gsource_func (gpointer self);
 VALA_EXTERN EditorXcls_save_button* editor_xcls_save_button_new (Editor* _owner);
 VALA_EXTERN EditorXcls_save_button* editor_xcls_save_button_construct (GType object_type,
                                                            Editor* _owner);
@@ -1496,17 +1496,17 @@ VALA_EXTERN EditorXcls_close_btn* editor_xcls_close_btn_construct (GType object_
                                                        Editor* _owner);
 static void editor_xcls_box2_finalize (GObject * obj);
 static GType editor_xcls_box2_get_type_once (void);
-static void __lambda78_ (EditorXcls_save_button* self);
-static void ___lambda78__gtk_button_clicked (GtkButton* _sender,
+static void __lambda26_ (EditorXcls_save_button* self);
+static void ___lambda26__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void editor_xcls_save_button_finalize (GObject * obj);
 static GType editor_xcls_save_button_get_type_once (void);
 static void editor_xcls_label4_finalize (GObject * obj);
 static GType editor_xcls_label4_get_type_once (void);
-static gboolean __lambda224_ (EditorXcls_Scale5* self,
+static gboolean __lambda159_ (EditorXcls_Scale5* self,
                        GtkScrollType st,
                        gdouble val);
-static gboolean ___lambda224__gtk_range_change_value (GtkRange* _sender,
+static gboolean ___lambda159__gtk_range_change_value (GtkRange* _sender,
                                                GtkScrollType scroll,
                                                gdouble new_value,
                                                gpointer self);
@@ -1517,7 +1517,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorXcls_Image7, g_object_unref)
 VALA_EXTERN EditorXcls_Image7* editor_xcls_image7_new (Editor* _owner);
 VALA_EXTERN EditorXcls_Image7* editor_xcls_image7_construct (GType object_type,
                                                  Editor* _owner);
-static void __lambda222_ (EditorXcls_close_btn* self);
+static void __lambda145_ (EditorXcls_close_btn* self);
 VALA_EXTERN GType xcls_mainwindow_xcls_headerbar_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_MainWindowXcls_headerbar, g_object_unref)
 VALA_EXTERN GType xcls_mainwindow_xcls_windowbtn_get_type (void) G_GNUC_CONST ;
@@ -1565,7 +1565,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (WindowState, g_object_unref)
 VALA_EXTERN GType window_state_state_get_type (void) G_GNUC_CONST ;
 VALA_EXTERN void window_state_switchState (WindowState* self,
                                WindowStateState new_state);
-static void ___lambda222__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda145__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void editor_xcls_close_btn_finalize (GObject * obj);
 static GType editor_xcls_close_btn_get_type_once (void);
@@ -1589,43 +1589,43 @@ VALA_EXTERN PaleteCompletionProvider* palete_completion_provider_construct (GTyp
                                                                 Editor* editor);
 VALA_EXTERN GType palete_completion_provider_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteCompletionProvider, g_object_unref)
-static gchar* __lambda137_ (EditorXcls_view* self,
+static gchar* __lambda153_ (EditorXcls_view* self,
                      GtkSourceMark* mark);
-static gchar* ___lambda137__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+static gchar* ___lambda153__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                                     GtkSourceMark* mark,
                                                                     gpointer self);
-static gchar* __lambda138_ (EditorXcls_view* self,
+static gchar* __lambda154_ (EditorXcls_view* self,
                      GtkSourceMark* mark);
-static gchar* ___lambda138__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
+static gchar* ___lambda154__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
                                                                       GtkSourceMark* mark,
                                                                       gpointer self);
-static gchar* __lambda139_ (EditorXcls_view* self,
+static gchar* __lambda155_ (EditorXcls_view* self,
                      GtkSourceMark* mark);
-static gchar* ___lambda139__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+static gchar* ___lambda155__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                                     GtkSourceMark* mark,
                                                                     gpointer self);
-static gchar* __lambda140_ (EditorXcls_view* self,
+static gchar* __lambda156_ (EditorXcls_view* self,
                      GtkSourceMark* mark);
-static gchar* ___lambda140__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
+static gchar* ___lambda156__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
                                                                       GtkSourceMark* mark,
                                                                       gpointer self);
-static gchar* __lambda141_ (EditorXcls_view* self,
+static gchar* __lambda157_ (EditorXcls_view* self,
                      GtkSourceMark* mark);
-static gchar* ___lambda141__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+static gchar* ___lambda157__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                                     GtkSourceMark* mark,
                                                                     gpointer self);
-static gchar* __lambda142_ (EditorXcls_view* self,
+static gchar* __lambda158_ (EditorXcls_view* self,
                      GtkSourceMark* mark);
-static gchar* ___lambda142__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
+static gchar* ___lambda158__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
                                                                       GtkSourceMark* mark,
                                                                       gpointer self);
 static void editor_xcls_view_finalize (GObject * obj);
 static GType editor_xcls_view_get_type_once (void);
-static void __lambda79_ (EditorXcls_buffer* self);
-static void ___lambda79__gtk_text_buffer_changed (GtkTextBuffer* _sender,
+static void __lambda27_ (EditorXcls_buffer* self);
+static void ___lambda27__gtk_text_buffer_changed (GtkTextBuffer* _sender,
                                            gpointer self);
-static gboolean ___lambda80_ (EditorXcls_buffer* self);
-static gboolean ____lambda80__gsource_func (gpointer self);
+static gboolean ___lambda28_ (EditorXcls_buffer* self);
+static gboolean ____lambda28__gsource_func (gpointer self);
 VALA_EXTERN GType palete_palete_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaletePalete, g_object_unref)
 VALA_EXTERN GType palete_gir_object_get_type (void) G_GNUC_CONST ;
@@ -1679,21 +1679,21 @@ VALA_EXTERN GType xcls_popoverfiledetails_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_PopoverFileDetails, g_object_unref)
 VALA_EXTERN GType xcls_valacompileresults_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_ValaCompileResults, g_object_unref)
-static void __lambda103_ (Block3Data* _data3_,
-                   JsonObject* obj,
-                   const gchar* line,
-                   JsonNode* node);
-static void ___lambda103__json_object_foreach (JsonObject* object,
-                                        const gchar* member_name,
-                                        JsonNode* member_node,
-                                        gpointer self);
+static void __lambda31_ (Block3Data* _data3_,
+                  JsonObject* obj,
+                  const gchar* line,
+                  JsonNode* node);
+static void ___lambda31__json_object_foreach (JsonObject* object,
+                                       const gchar* member_name,
+                                       JsonNode* member_node,
+                                       gpointer self);
 static void editor_xcls_buffer_finalize (GObject * obj);
 static GType editor_xcls_buffer_get_type_once (void);
-static void __lambda130_ (EditorXcls_EventControllerKey11* self,
+static void __lambda146_ (EditorXcls_EventControllerKey11* self,
                    guint keyval,
                    guint keycode,
                    GdkModifierType state);
-static void ___lambda130__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
+static void ___lambda146__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
                                                           guint keyval,
                                                           guint keycode,
                                                           GdkModifierType state,
@@ -1724,21 +1724,21 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorXcls_EventControllerKey14, g_object_unref)
 VALA_EXTERN EditorXcls_EventControllerKey14* editor_xcls_eventcontrollerkey14_new (Editor* _owner);
 VALA_EXTERN EditorXcls_EventControllerKey14* editor_xcls_eventcontrollerkey14_construct (GType object_type,
                                                                              Editor* _owner);
-static void __lambda132_ (EditorXcls_search_entry* self);
+static void __lambda148_ (EditorXcls_search_entry* self);
 VALA_EXTERN void editor_xcls_search_results_updateResults (EditorXcls_search_results* self);
-static gboolean __lambda135_ (EditorXcls_search_entry* self);
-static gboolean ___lambda135__gsource_func (gpointer self);
-static void ___lambda132__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+static gboolean __lambda151_ (EditorXcls_search_entry* self);
+static gboolean ___lambda151__gsource_func (gpointer self);
+static void ___lambda148__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
                                                     gpointer self);
 VALA_EXTERN void editor_xcls_search_entry_forwardSearch (EditorXcls_search_entry* self,
                                              gboolean change_focus);
 static void editor_xcls_search_entry_finalize (GObject * obj);
 static GType editor_xcls_search_entry_get_type_once (void);
-static gboolean __lambda131_ (EditorXcls_EventControllerKey14* self,
+static gboolean __lambda147_ (EditorXcls_EventControllerKey14* self,
                        guint keyval,
                        guint keycode,
                        GdkModifierType state);
-static gboolean ___lambda131__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+static gboolean ___lambda147__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                              guint keyval,
                                                              guint keycode,
                                                              GdkModifierType state,
@@ -1747,15 +1747,15 @@ static void editor_xcls_eventcontrollerkey14_finalize (GObject * obj);
 static GType editor_xcls_eventcontrollerkey14_get_type_once (void);
 static void editor_xcls_search_results_finalize (GObject * obj);
 static GType editor_xcls_search_results_get_type_once (void);
-static void __lambda133_ (EditorXcls_nextBtn* self,
+static void __lambda149_ (EditorXcls_nextBtn* self,
                    GtkButton* event);
-static void ___lambda133__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda149__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void editor_xcls_nextbtn_finalize (GObject * obj);
 static GType editor_xcls_nextbtn_get_type_once (void);
-static void __lambda134_ (EditorXcls_backBtn* self,
+static void __lambda150_ (EditorXcls_backBtn* self,
                    GtkButton* event);
-static void ___lambda134__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda150__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void editor_xcls_backbtn_finalize (GObject * obj);
 static GType editor_xcls_backbtn_get_type_once (void);
@@ -2706,7 +2706,7 @@ block2_data_unref (void * _userdata_)
 }
 
 static gboolean
-__lambda129_ (Block2Data* _data2_)
+__lambda160_ (Block2Data* _data2_)
 {
 	Editor* self;
 	GtkTextBuffer* buf = NULL;
@@ -2762,10 +2762,10 @@ __lambda129_ (Block2Data* _data2_)
 }
 
 static gboolean
-___lambda129__gsource_func (gpointer self)
+___lambda160__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda129_ (self);
+	result = __lambda160_ (self);
 #line 216 "Editor.vala"
 	return result;
 #line 2772 "Editor.vala.c"
@@ -2785,7 +2785,7 @@ editor_scroll_to_line (Editor* self,
 #line 214 "Editor.vala"
 	_data2_->line = line;
 #line 216 "Editor.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda129__gsource_func, block2_data_ref (_data2_), block2_data_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda160__gsource_func, block2_data_ref (_data2_), block2_data_unref);
 #line 214 "Editor.vala"
 	block2_data_unref (_data2_);
 #line 214 "Editor.vala"
@@ -2991,7 +2991,7 @@ editor_xcls_save_button_get_instance_private (EditorXcls_save_button* self)
 }
 
 static void
-__lambda78_ (EditorXcls_save_button* self)
+__lambda26_ (EditorXcls_save_button* self)
 {
 	Editor* _tmp0_;
 #line 284 "Editor.vala"
@@ -3002,11 +3002,11 @@ __lambda78_ (EditorXcls_save_button* self)
 }
 
 static void
-___lambda78__gtk_button_clicked (GtkButton* _sender,
+___lambda26__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 283 "Editor.vala"
-	__lambda78_ ((EditorXcls_save_button*) self);
+	__lambda26_ ((EditorXcls_save_button*) self);
 #line 3011 "Editor.vala.c"
 }
 
@@ -3052,7 +3052,7 @@ editor_xcls_save_button_construct (GType object_type,
 #line 283 "Editor.vala"
 	_tmp5_ = self->el;
 #line 283 "Editor.vala"
-	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda78__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda26__gtk_button_clicked, self, 0);
 #line 271 "Editor.vala"
 	return self;
 #line 3059 "Editor.vala.c"
@@ -3279,7 +3279,7 @@ string_get_data (const gchar* self,
 }
 
 static gboolean
-__lambda224_ (EditorXcls_Scale5* self,
+__lambda159_ (EditorXcls_Scale5* self,
               GtkScrollType st,
               gdouble val)
 {
@@ -3324,13 +3324,13 @@ __lambda224_ (EditorXcls_Scale5* self,
 }
 
 static gboolean
-___lambda224__gtk_range_change_value (GtkRange* _sender,
+___lambda159__gtk_range_change_value (GtkRange* _sender,
                                       GtkScrollType scroll,
                                       gdouble new_value,
                                       gpointer self)
 {
 	gboolean result;
-	result = __lambda224_ ((EditorXcls_Scale5*) self, scroll, new_value);
+	result = __lambda159_ ((EditorXcls_Scale5*) self, scroll, new_value);
 #line 345 "Editor.vala"
 	return result;
 #line 3337 "Editor.vala.c"
@@ -3402,7 +3402,7 @@ editor_xcls_scale5_construct (GType object_type,
 #line 345 "Editor.vala"
 	_tmp9_ = self->el;
 #line 345 "Editor.vala"
-	g_signal_connect_object ((GtkRange*) _tmp9_, "change-value", (GCallback) ___lambda224__gtk_range_change_value, self, 0);
+	g_signal_connect_object ((GtkRange*) _tmp9_, "change-value", (GCallback) ___lambda159__gtk_range_change_value, self, 0);
 #line 323 "Editor.vala"
 	return self;
 #line 3409 "Editor.vala.c"
@@ -3482,7 +3482,7 @@ editor_xcls_close_btn_get_instance_private (EditorXcls_close_btn* self)
 }
 
 static void
-__lambda222_ (EditorXcls_close_btn* self)
+__lambda145_ (EditorXcls_close_btn* self)
 {
 	Editor* _tmp0_;
 	Editor* _tmp1_;
@@ -3504,11 +3504,11 @@ __lambda222_ (EditorXcls_close_btn* self)
 }
 
 static void
-___lambda222__gtk_button_clicked (GtkButton* _sender,
+___lambda145__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 382 "Editor.vala"
-	__lambda222_ ((EditorXcls_close_btn*) self);
+	__lambda145_ ((EditorXcls_close_btn*) self);
 #line 3513 "Editor.vala.c"
 }
 
@@ -3571,7 +3571,7 @@ editor_xcls_close_btn_construct (GType object_type,
 #line 382 "Editor.vala"
 	_tmp9_ = self->el;
 #line 382 "Editor.vala"
-	g_signal_connect_object (_tmp9_, "clicked", (GCallback) ___lambda222__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp9_, "clicked", (GCallback) ___lambda145__gtk_button_clicked, self, 0);
 #line 368 "Editor.vala"
 	_g_object_unref0 (child_1);
 #line 368 "Editor.vala"
@@ -3909,7 +3909,7 @@ editor_xcls_view_get_instance_private (EditorXcls_view* self)
 }
 
 static gchar*
-__lambda137_ (EditorXcls_view* self,
+__lambda153_ (EditorXcls_view* self,
               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -3938,19 +3938,19 @@ __lambda137_ (EditorXcls_view* self,
 }
 
 static gchar*
-___lambda137__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+___lambda153__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                              GtkSourceMark* mark,
                                                              gpointer self)
 {
 	gchar* result;
-	result = __lambda137_ ((EditorXcls_view*) self, mark);
+	result = __lambda153_ ((EditorXcls_view*) self, mark);
 #line 503 "Editor.vala"
 	return result;
 #line 3950 "Editor.vala.c"
 }
 
 static gchar*
-__lambda138_ (EditorXcls_view* self,
+__lambda154_ (EditorXcls_view* self,
               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -3979,19 +3979,19 @@ __lambda138_ (EditorXcls_view* self,
 }
 
 static gchar*
-___lambda138__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
+___lambda154__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
                                                                GtkSourceMark* mark,
                                                                gpointer self)
 {
 	gchar* result;
-	result = __lambda138_ ((EditorXcls_view*) self, mark);
+	result = __lambda154_ ((EditorXcls_view*) self, mark);
 #line 507 "Editor.vala"
 	return result;
 #line 3991 "Editor.vala.c"
 }
 
 static gchar*
-__lambda139_ (EditorXcls_view* self,
+__lambda155_ (EditorXcls_view* self,
               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -4020,19 +4020,19 @@ __lambda139_ (EditorXcls_view* self,
 }
 
 static gchar*
-___lambda139__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+___lambda155__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                              GtkSourceMark* mark,
                                                              gpointer self)
 {
 	gchar* result;
-	result = __lambda139_ ((EditorXcls_view*) self, mark);
+	result = __lambda155_ ((EditorXcls_view*) self, mark);
 #line 518 "Editor.vala"
 	return result;
 #line 4032 "Editor.vala.c"
 }
 
 static gchar*
-__lambda140_ (EditorXcls_view* self,
+__lambda156_ (EditorXcls_view* self,
               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -4061,19 +4061,19 @@ __lambda140_ (EditorXcls_view* self,
 }
 
 static gchar*
-___lambda140__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
+___lambda156__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
                                                                GtkSourceMark* mark,
                                                                gpointer self)
 {
 	gchar* result;
-	result = __lambda140_ ((EditorXcls_view*) self, mark);
+	result = __lambda156_ ((EditorXcls_view*) self, mark);
 #line 522 "Editor.vala"
 	return result;
 #line 4073 "Editor.vala.c"
 }
 
 static gchar*
-__lambda141_ (EditorXcls_view* self,
+__lambda157_ (EditorXcls_view* self,
               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -4102,19 +4102,19 @@ __lambda141_ (EditorXcls_view* self,
 }
 
 static gchar*
-___lambda141__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+___lambda157__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                              GtkSourceMark* mark,
                                                              gpointer self)
 {
 	gchar* result;
-	result = __lambda141_ ((EditorXcls_view*) self, mark);
+	result = __lambda157_ ((EditorXcls_view*) self, mark);
 #line 535 "Editor.vala"
 	return result;
 #line 4114 "Editor.vala.c"
 }
 
 static gchar*
-__lambda142_ (EditorXcls_view* self,
+__lambda158_ (EditorXcls_view* self,
               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -4143,12 +4143,12 @@ __lambda142_ (EditorXcls_view* self,
 }
 
 static gchar*
-___lambda142__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
+___lambda158__gtk_source_mark_attributes_query_tooltip_markup (GtkSourceMarkAttributes* _sender,
                                                                GtkSourceMark* mark,
                                                                gpointer self)
 {
 	gchar* result;
-	result = __lambda142_ ((EditorXcls_view*) self, mark);
+	result = __lambda158_ ((EditorXcls_view*) self, mark);
 #line 539 "Editor.vala"
 	return result;
 #line 4155 "Editor.vala.c"
@@ -4402,9 +4402,9 @@ editor_xcls_view_construct (GType object_type,
 #line 502 "Editor.vala"
 	gtk_source_mark_attributes_set_icon_name (attrs, "process-stop");
 #line 503 "Editor.vala"
-	g_signal_connect_object (attrs, "query-tooltip-text", (GCallback) ___lambda137__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+	g_signal_connect_object (attrs, "query-tooltip-text", (GCallback) ___lambda153__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 507 "Editor.vala"
-	g_signal_connect_object (attrs, "query-tooltip-markup", (GCallback) ___lambda138__gtk_source_mark_attributes_query_tooltip_markup, self, 0);
+	g_signal_connect_object (attrs, "query-tooltip-markup", (GCallback) ___lambda154__gtk_source_mark_attributes_query_tooltip_markup, self, 0);
 #line 511 "Editor.vala"
 	_tmp47_ = self->el;
 #line 511 "Editor.vala"
@@ -4426,9 +4426,9 @@ editor_xcls_view_construct (GType object_type,
 #line 517 "Editor.vala"
 	gtk_source_mark_attributes_set_icon_name (wattrs, "process-stop");
 #line 518 "Editor.vala"
-	g_signal_connect_object (wattrs, "query-tooltip-text", (GCallback) ___lambda139__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+	g_signal_connect_object (wattrs, "query-tooltip-text", (GCallback) ___lambda155__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 522 "Editor.vala"
-	g_signal_connect_object (wattrs, "query-tooltip-markup", (GCallback) ___lambda140__gtk_source_mark_attributes_query_tooltip_markup, self, 0);
+	g_signal_connect_object (wattrs, "query-tooltip-markup", (GCallback) ___lambda156__gtk_source_mark_attributes_query_tooltip_markup, self, 0);
 #line 526 "Editor.vala"
 	_tmp50_ = self->el;
 #line 526 "Editor.vala"
@@ -4450,9 +4450,9 @@ editor_xcls_view_construct (GType object_type,
 #line 534 "Editor.vala"
 	gtk_source_mark_attributes_set_icon_name (dattrs, "process-stop");
 #line 535 "Editor.vala"
-	g_signal_connect_object (dattrs, "query-tooltip-text", (GCallback) ___lambda141__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+	g_signal_connect_object (dattrs, "query-tooltip-text", (GCallback) ___lambda157__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 539 "Editor.vala"
-	g_signal_connect_object (dattrs, "query-tooltip-markup", (GCallback) ___lambda142__gtk_source_mark_attributes_query_tooltip_markup, self, 0);
+	g_signal_connect_object (dattrs, "query-tooltip-markup", (GCallback) ___lambda158__gtk_source_mark_attributes_query_tooltip_markup, self, 0);
 #line 543 "Editor.vala"
 	_tmp53_ = self->el;
 #line 543 "Editor.vala"
@@ -4814,7 +4814,7 @@ editor_xcls_buffer_get_instance_private (EditorXcls_buffer* self)
 }
 
 static void
-__lambda79_ (EditorXcls_buffer* self)
+__lambda27_ (EditorXcls_buffer* self)
 {
 	Editor* _tmp0_;
 	EditorXcls_save_button* _tmp1_;
@@ -4842,11 +4842,11 @@ __lambda79_ (EditorXcls_buffer* self)
 }
 
 static void
-___lambda79__gtk_text_buffer_changed (GtkTextBuffer* _sender,
+___lambda27__gtk_text_buffer_changed (GtkTextBuffer* _sender,
                                       gpointer self)
 {
 #line 626 "Editor.vala"
-	__lambda79_ ((EditorXcls_buffer*) self);
+	__lambda27_ ((EditorXcls_buffer*) self);
 #line 4851 "Editor.vala.c"
 }
 
@@ -4896,7 +4896,7 @@ editor_xcls_buffer_construct (GType object_type,
 #line 626 "Editor.vala"
 	_tmp5_ = self->el;
 #line 626 "Editor.vala"
-	g_signal_connect_object ((GtkTextBuffer*) _tmp5_, "changed", (GCallback) ___lambda79__gtk_text_buffer_changed, self, 0);
+	g_signal_connect_object ((GtkTextBuffer*) _tmp5_, "changed", (GCallback) ___lambda27__gtk_text_buffer_changed, self, 0);
 #line 611 "Editor.vala"
 	return self;
 #line 4903 "Editor.vala.c"
@@ -4911,7 +4911,7 @@ editor_xcls_buffer_new (Editor* _owner)
 }
 
 static gboolean
-___lambda80_ (EditorXcls_buffer* self)
+___lambda28_ (EditorXcls_buffer* self)
 {
 	gboolean result;
 #line 652 "Editor.vala"
@@ -4926,10 +4926,10 @@ ___lambda80_ (EditorXcls_buffer* self)
 }
 
 static gboolean
-____lambda80__gsource_func (gpointer self)
+____lambda28__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = ___lambda80_ ((EditorXcls_buffer*) self);
+	result = ___lambda28_ ((EditorXcls_buffer*) self);
 #line 651 "Editor.vala"
 	return result;
 #line 4936 "Editor.vala.c"
@@ -4986,7 +4986,7 @@ editor_xcls_buffer_checkSyntax (EditorXcls_buffer* self)
 #line 650 "Editor.vala"
 		g_print ("Adding queued Check ");
 #line 651 "Editor.vala"
-		g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ____lambda80__gsource_func, g_object_ref (self), g_object_unref);
+		g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ____lambda28__gsource_func, g_object_ref (self), g_object_unref);
 #line 659 "Editor.vala"
 		result = TRUE;
 #line 659 "Editor.vala"
@@ -5280,10 +5280,10 @@ _json_array_ref0 (gpointer self)
 }
 
 static void
-__lambda103_ (Block3Data* _data3_,
-              JsonObject* obj,
-              const gchar* line,
-              JsonNode* node)
+__lambda31_ (Block3Data* _data3_,
+             JsonObject* obj,
+             const gchar* line,
+             JsonNode* node)
 {
 	EditorXcls_buffer* self;
 	GtkTextIter iter = {0};
@@ -5440,13 +5440,13 @@ __lambda103_ (Block3Data* _data3_,
 }
 
 static void
-___lambda103__json_object_foreach (JsonObject* object,
-                                   const gchar* member_name,
-                                   JsonNode* member_node,
-                                   gpointer self)
+___lambda31__json_object_foreach (JsonObject* object,
+                                  const gchar* member_name,
+                                  JsonNode* member_node,
+                                  gpointer self)
 {
 #line 804 "Editor.vala"
-	__lambda103_ (self, object, member_name, member_node);
+	__lambda31_ (self, object, member_name, member_node);
 #line 5451 "Editor.vala.c"
 }
 
@@ -5797,7 +5797,7 @@ editor_xcls_buffer_highlightErrorsJson (EditorXcls_buffer* self,
 #line 804 "Editor.vala"
 	_tmp45_ = _data3_->lines;
 #line 804 "Editor.vala"
-	json_object_foreach_member (_tmp45_, ___lambda103__json_object_foreach, _data3_);
+	json_object_foreach_member (_tmp45_, ___lambda31__json_object_foreach, _data3_);
 #line 827 "Editor.vala"
 	result = FALSE;
 #line 827 "Editor.vala"
@@ -6022,7 +6022,7 @@ editor_xcls_eventcontrollerkey11_get_instance_private (EditorXcls_EventControlle
 }
 
 static void
-__lambda130_ (EditorXcls_EventControllerKey11* self,
+__lambda146_ (EditorXcls_EventControllerKey11* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -6114,14 +6114,14 @@ __lambda130_ (EditorXcls_EventControllerKey11* self,
 }
 
 static void
-___lambda130__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
+___lambda146__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
                                                      guint keyval,
                                                      guint keycode,
                                                      GdkModifierType state,
                                                      gpointer self)
 {
 #line 888 "Editor.vala"
-	__lambda130_ ((EditorXcls_EventControllerKey11*) self, keyval, keycode, state);
+	__lambda146_ ((EditorXcls_EventControllerKey11*) self, keyval, keycode, state);
 #line 6126 "Editor.vala.c"
 }
 
@@ -6150,7 +6150,7 @@ editor_xcls_eventcontrollerkey11_construct (GType object_type,
 #line 888 "Editor.vala"
 	_tmp2_ = self->el;
 #line 888 "Editor.vala"
-	g_signal_connect_object (_tmp2_, "key-released", (GCallback) ___lambda130__gtk_event_controller_key_key_released, self, 0);
+	g_signal_connect_object (_tmp2_, "key-released", (GCallback) ___lambda146__gtk_event_controller_key_key_released, self, 0);
 #line 878 "Editor.vala"
 	return self;
 #line 6157 "Editor.vala.c"
@@ -6438,7 +6438,7 @@ editor_xcls_search_entry_get_instance_private (EditorXcls_search_entry* self)
 }
 
 static gboolean
-__lambda135_ (EditorXcls_search_entry* self)
+__lambda151_ (EditorXcls_search_entry* self)
 {
 	Editor* _tmp0_;
 	EditorXcls_search_results* _tmp1_;
@@ -6457,17 +6457,17 @@ __lambda135_ (EditorXcls_search_entry* self)
 }
 
 static gboolean
-___lambda135__gsource_func (gpointer self)
+___lambda151__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda135_ ((EditorXcls_search_entry*) self);
+	result = __lambda151_ ((EditorXcls_search_entry*) self);
 #line 988 "Editor.vala"
 	return result;
 #line 6467 "Editor.vala.c"
 }
 
 static void
-__lambda132_ (EditorXcls_search_entry* self)
+__lambda148_ (EditorXcls_search_entry* self)
 {
 	Editor* _tmp0_;
 	Editor* _tmp1_;
@@ -6498,16 +6498,16 @@ __lambda132_ (EditorXcls_search_entry* self)
 #line 986 "Editor.vala"
 	editor_xcls_search_results_updateResults (_tmp7_);
 #line 988 "Editor.vala"
-	g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ___lambda135__gsource_func, g_object_ref (self), g_object_unref);
+	g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ___lambda151__gsource_func, g_object_ref (self), g_object_unref);
 #line 6503 "Editor.vala.c"
 }
 
 static void
-___lambda132__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+___lambda148__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
                                                gpointer self)
 {
 #line 983 "Editor.vala"
-	__lambda132_ ((EditorXcls_search_entry*) self);
+	__lambda148_ ((EditorXcls_search_entry*) self);
 #line 6512 "Editor.vala.c"
 }
 
@@ -6590,7 +6590,7 @@ editor_xcls_search_entry_construct (GType object_type,
 #line 983 "Editor.vala"
 	_tmp13_ = self->el;
 #line 983 "Editor.vala"
-	g_signal_connect_object (_tmp13_, "search-changed", (GCallback) ___lambda132__gtk_search_entry_search_changed, self, 0);
+	g_signal_connect_object (_tmp13_, "search-changed", (GCallback) ___lambda148__gtk_search_entry_search_changed, self, 0);
 #line 965 "Editor.vala"
 	_g_object_unref0 (child_1);
 #line 965 "Editor.vala"
@@ -6686,7 +6686,7 @@ editor_xcls_eventcontrollerkey14_get_instance_private (EditorXcls_EventControlle
 }
 
 static gboolean
-__lambda131_ (EditorXcls_EventControllerKey14* self,
+__lambda147_ (EditorXcls_EventControllerKey14* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -6774,14 +6774,14 @@ __lambda131_ (EditorXcls_EventControllerKey14* self,
 }
 
 static gboolean
-___lambda131__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+___lambda147__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                     guint keyval,
                                                     guint keycode,
                                                     GdkModifierType state,
                                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda131_ ((EditorXcls_EventControllerKey14*) self, keyval, keycode, state);
+	result = __lambda147_ ((EditorXcls_EventControllerKey14*) self, keyval, keycode, state);
 #line 1042 "Editor.vala"
 	return result;
 #line 6788 "Editor.vala.c"
@@ -6812,7 +6812,7 @@ editor_xcls_eventcontrollerkey14_construct (GType object_type,
 #line 1042 "Editor.vala"
 	_tmp2_ = self->el;
 #line 1042 "Editor.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda131__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda147__gtk_event_controller_key_key_pressed, self, 0);
 #line 1032 "Editor.vala"
 	return self;
 #line 6819 "Editor.vala.c"
@@ -7132,7 +7132,7 @@ editor_xcls_nextbtn_get_instance_private (EditorXcls_nextBtn* self)
 }
 
 static void
-__lambda133_ (EditorXcls_nextBtn* self,
+__lambda149_ (EditorXcls_nextBtn* self,
               GtkButton* event)
 {
 	Editor* _tmp0_;
@@ -7144,11 +7144,11 @@ __lambda133_ (EditorXcls_nextBtn* self,
 }
 
 static void
-___lambda133__gtk_button_clicked (GtkButton* _sender,
+___lambda149__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1138 "Editor.vala"
-	__lambda133_ ((EditorXcls_nextBtn*) self, _sender);
+	__lambda149_ ((EditorXcls_nextBtn*) self, _sender);
 #line 7153 "Editor.vala.c"
 }
 
@@ -7201,7 +7201,7 @@ editor_xcls_nextbtn_construct (GType object_type,
 #line 1138 "Editor.vala"
 	_tmp6_ = self->el;
 #line 1138 "Editor.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda133__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda149__gtk_button_clicked, self, 0);
 #line 1124 "Editor.vala"
 	return self;
 #line 7208 "Editor.vala.c"
@@ -7281,7 +7281,7 @@ editor_xcls_backbtn_get_instance_private (EditorXcls_backBtn* self)
 }
 
 static void
-__lambda134_ (EditorXcls_backBtn* self,
+__lambda150_ (EditorXcls_backBtn* self,
               GtkButton* event)
 {
 	Editor* _tmp0_;
@@ -7293,11 +7293,11 @@ __lambda134_ (EditorXcls_backBtn* self,
 }
 
 static void
-___lambda134__gtk_button_clicked (GtkButton* _sender,
+___lambda150__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1173 "Editor.vala"
-	__lambda134_ ((EditorXcls_backBtn*) self, _sender);
+	__lambda150_ ((EditorXcls_backBtn*) self, _sender);
 #line 7302 "Editor.vala.c"
 }
 
@@ -7350,7 +7350,7 @@ editor_xcls_backbtn_construct (GType object_type,
 #line 1173 "Editor.vala"
 	_tmp6_ = self->el;
 #line 1173 "Editor.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda134__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda150__gtk_button_clicked, self, 0);
 #line 1159 "Editor.vala"
 	return self;
 #line 7357 "Editor.vala.c"

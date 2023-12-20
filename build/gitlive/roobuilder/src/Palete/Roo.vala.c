@@ -311,14 +311,14 @@ static Block18Data* block18_data_ref (Block18Data* _data18_);
 static void block18_data_unref (void * _userdata_);
 VALA_EXTERN gchar* builder_application_configDirectory (void);
 static JsonNode* _vala_JsonNode_copy (JsonNode* self);
-static void __lambda93_ (Block18Data* _data18_,
-                  JsonObject* o,
-                  const gchar* key,
-                  JsonNode* value);
-static void ___lambda93__json_object_foreach (JsonObject* object,
-                                       const gchar* member_name,
-                                       JsonNode* member_node,
-                                       gpointer self);
+static void __lambda170_ (Block18Data* _data18_,
+                   JsonObject* o,
+                   const gchar* key,
+                   JsonNode* value);
+static void ___lambda170__json_object_foreach (JsonObject* object,
+                                        const gchar* member_name,
+                                        JsonNode* member_node,
+                                        gpointer self);
 static void _vala_JsonNode_free (JsonNode* self);
 VALA_EXTERN gchar* palete_roo_doc (PaleteRoo* self,
                        const gchar* what);
@@ -344,7 +344,7 @@ static gboolean palete_roo_real_typeOptions (PaletePalete* base,
                                       const gchar* type,
                                       gchar*** opts,
                                       gint* opts_length1);
-static void _vala_array_add82 (gchar** * array,
+static void _vala_array_add43 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -806,10 +806,10 @@ __vala_JsonNode_copy0 (gpointer self)
 }
 
 static void
-__lambda93_ (Block18Data* _data18_,
-             JsonObject* o,
-             const gchar* key,
-             JsonNode* value)
+__lambda170_ (Block18Data* _data18_,
+              JsonObject* o,
+              const gchar* key,
+              JsonNode* value)
 {
 	PaleteRoo* self;
 	PaleteGirObject* cls = NULL;
@@ -1240,13 +1240,13 @@ __lambda93_ (Block18Data* _data18_,
 }
 
 static void
-___lambda93__json_object_foreach (JsonObject* object,
-                                  const gchar* member_name,
-                                  JsonNode* member_node,
-                                  gpointer self)
+___lambda170__json_object_foreach (JsonObject* object,
+                                   const gchar* member_name,
+                                   JsonNode* member_node,
+                                   gpointer self)
 {
 #line 104 "Roo.vala"
-	__lambda93_ (self, object, member_name, member_node);
+	__lambda170_ (self, object, member_name, member_node);
 #line 1251 "Roo.vala.c"
 }
 
@@ -1458,7 +1458,7 @@ palete_roo_real_load (PaletePalete* base)
 #line 104 "Roo.vala"
 	_tmp24_ = clist;
 #line 104 "Roo.vala"
-	json_object_foreach_member (_tmp24_, ___lambda93__json_object_foreach, _data18_);
+	json_object_foreach_member (_tmp24_, ___lambda170__json_object_foreach, _data18_);
 #line 1463 "Roo.vala.c"
 	{
 		GeeIterator* _cls_it = NULL;
@@ -2517,7 +2517,7 @@ palete_roo_getInheritsFor (PaleteRoo* self,
 }
 
 static void
-_vala_array_add82 (gchar** * array,
+_vala_array_add43 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -2823,7 +2823,7 @@ palete_roo_real_typeOptions (PaletePalete* base,
 #line 369 "Roo.vala"
 				_tmp27_ = gee_abstract_list_get ((GeeAbstractList*) _tmp26_, i);
 #line 369 "Roo.vala"
-				_vala_array_add82 (&ret, &ret_length1, &_ret_size_, (gchar*) _tmp27_);
+				_vala_array_add43 (&ret, &ret_length1, &_ret_size_, (gchar*) _tmp27_);
 #line 2828 "Roo.vala.c"
 			}
 		}

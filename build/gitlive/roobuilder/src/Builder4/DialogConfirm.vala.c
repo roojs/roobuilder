@@ -58,10 +58,10 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogConfirm, g_object_unref)
 VALA_EXTERN DialogConfirm* dialog_confirm_singleton (void);
 VALA_EXTERN DialogConfirm* dialog_confirm_new (void);
 VALA_EXTERN DialogConfirm* dialog_confirm_construct (GType object_type);
-static gboolean __lambda268_ (DialogConfirm* self,
-                       GtkWindow* event);
-static gboolean ___lambda268__gtk_window_close_request (GtkWindow* _sender,
-                                                 gpointer self);
+static gboolean __lambda4_ (DialogConfirm* self,
+                     GtkWindow* event);
+static gboolean ___lambda4__gtk_window_close_request (GtkWindow* _sender,
+                                               gpointer self);
 VALA_EXTERN void dialog_confirm_showIt (DialogConfirm* self,
                             const gchar* title,
                             const gchar* msg);
@@ -115,8 +115,8 @@ dialog_confirm_singleton (void)
 }
 
 static gboolean
-__lambda268_ (DialogConfirm* self,
-              GtkWindow* event)
+__lambda4_ (DialogConfirm* self,
+            GtkWindow* event)
 {
 	GtkMessageDialog* _tmp0_;
 	GtkMessageDialog* _tmp1_;
@@ -137,11 +137,11 @@ __lambda268_ (DialogConfirm* self,
 }
 
 static gboolean
-___lambda268__gtk_window_close_request (GtkWindow* _sender,
-                                        gpointer self)
+___lambda4__gtk_window_close_request (GtkWindow* _sender,
+                                      gpointer self)
 {
 	gboolean result;
-	result = __lambda268_ ((DialogConfirm*) self, _sender);
+	result = __lambda4_ ((DialogConfirm*) self, _sender);
 #line 33 "DialogConfirm.vala"
 	return result;
 #line 148 "DialogConfirm.vala.c"
@@ -193,7 +193,7 @@ dialog_confirm_construct (GType object_type)
 #line 33 "DialogConfirm.vala"
 	_tmp6_ = self->el;
 #line 33 "DialogConfirm.vala"
-	g_signal_connect_object ((GtkWindow*) _tmp6_, "close-request", (GCallback) ___lambda268__gtk_window_close_request, self, 0);
+	g_signal_connect_object ((GtkWindow*) _tmp6_, "close-request", (GCallback) ___lambda4__gtk_window_close_request, self, 0);
 #line 19 "DialogConfirm.vala"
 	return self;
 #line 200 "DialogConfirm.vala.c"

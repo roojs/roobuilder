@@ -1616,8 +1616,8 @@ VALA_EXTERN void xcls_gtkview_scroll_to_line (Xcls_GtkView* self,
                                   gint line);
 static Block5Data* block5_data_ref (Block5Data* _data5_);
 static void block5_data_unref (void * _userdata_);
-static gboolean __lambda116_ (Block5Data* _data5_);
-static gboolean ___lambda116__gsource_func (gpointer self);
+static gboolean __lambda123_ (Block5Data* _data5_);
+static gboolean ___lambda123__gsource_func (gpointer self);
 VALA_EXTERN Xcls_GtkViewXcls_label_preview* xcls_gtkview_xcls_label_preview_new (Xcls_GtkView* _owner);
 VALA_EXTERN Xcls_GtkViewXcls_label_preview* xcls_gtkview_xcls_label_preview_construct (GType object_type,
                                                                            Xcls_GtkView* _owner);
@@ -1677,19 +1677,19 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_GtkViewXcls_EventControllerKey12, g_object_u
 VALA_EXTERN Xcls_GtkViewXcls_EventControllerKey12* xcls_gtkview_xcls_eventcontrollerkey12_new (Xcls_GtkView* _owner);
 VALA_EXTERN Xcls_GtkViewXcls_EventControllerKey12* xcls_gtkview_xcls_eventcontrollerkey12_construct (GType object_type,
                                                                                          Xcls_GtkView* _owner);
-static gchar* ___lambda112_ (Xcls_GtkViewXcls_sourceview* self,
+static gchar* ___lambda119_ (Xcls_GtkViewXcls_sourceview* self,
                       GtkSourceMark* mark);
-static gchar* ____lambda112__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+static gchar* ____lambda119__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                                      GtkSourceMark* mark,
                                                                      gpointer self);
-static gchar* ___lambda113_ (Xcls_GtkViewXcls_sourceview* self,
+static gchar* ___lambda120_ (Xcls_GtkViewXcls_sourceview* self,
                       GtkSourceMark* mark);
-static gchar* ____lambda113__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+static gchar* ____lambda120__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                                      GtkSourceMark* mark,
                                                                      gpointer self);
-static gchar* ___lambda114_ (Xcls_GtkViewXcls_sourceview* self,
+static gchar* ___lambda121_ (Xcls_GtkViewXcls_sourceview* self,
                       GtkSourceMark* mark);
-static gchar* ____lambda114__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+static gchar* ____lambda121__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                                      GtkSourceMark* mark,
                                                                      gpointer self);
 VALA_EXTERN void xcls_gtkview_xcls_sourceview_highlightErrorsJson (Xcls_GtkViewXcls_sourceview* self,
@@ -1697,28 +1697,28 @@ VALA_EXTERN void xcls_gtkview_xcls_sourceview_highlightErrorsJson (Xcls_GtkViewX
                                                        JsonObject* obj);
 static Block6Data* block6_data_ref (Block6Data* _data6_);
 static void block6_data_unref (void * _userdata_);
-static void __lambda115_ (Block6Data* _data6_,
+static void __lambda122_ (Block6Data* _data6_,
                    JsonObject* obj,
                    const gchar* line,
                    JsonNode* node);
-static void ___lambda115__json_object_foreach (JsonObject* object,
+static void ___lambda122__json_object_foreach (JsonObject* object,
                                         const gchar* member_name,
                                         JsonNode* member_node,
                                         gpointer self);
 VALA_EXTERN gchar* xcls_gtkview_xcls_sourceview_toString (Xcls_GtkViewXcls_sourceview* self);
 static void xcls_gtkview_xcls_sourceview_finalize (GObject * obj);
 static GType xcls_gtkview_xcls_sourceview_get_type_once (void);
-static void __lambda105_ (Xcls_GtkViewXcls_buffer* self);
-static void ___lambda105__g_object_notify (GObject* _sender,
-                                    GParamSpec* pspec,
-                                    gpointer self);
+static void __lambda33_ (Xcls_GtkViewXcls_buffer* self);
+static void ___lambda33__g_object_notify (GObject* _sender,
+                                   GParamSpec* pspec,
+                                   gpointer self);
 static void xcls_gtkview_xcls_buffer_finalize (GObject * obj);
 static GType xcls_gtkview_xcls_buffer_get_type_once (void);
-static gboolean __lambda106_ (Xcls_GtkViewXcls_EventControllerKey12* self,
+static gboolean __lambda113_ (Xcls_GtkViewXcls_EventControllerKey12* self,
                        guint keyval,
                        guint keycode,
                        GdkModifierType state);
-static gboolean ___lambda106__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+static gboolean ___lambda113__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                              guint keyval,
                                                              guint keycode,
                                                              GdkModifierType state,
@@ -1749,21 +1749,21 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_GtkViewXcls_EventControllerKey15, g_object_u
 VALA_EXTERN Xcls_GtkViewXcls_EventControllerKey15* xcls_gtkview_xcls_eventcontrollerkey15_new (Xcls_GtkView* _owner);
 VALA_EXTERN Xcls_GtkViewXcls_EventControllerKey15* xcls_gtkview_xcls_eventcontrollerkey15_construct (GType object_type,
                                                                                          Xcls_GtkView* _owner);
-static void __lambda108_ (Xcls_GtkViewXcls_search_entry* self);
+static void __lambda115_ (Xcls_GtkViewXcls_search_entry* self);
 VALA_EXTERN void xcls_gtkview_xcls_search_results_updateResults (Xcls_GtkViewXcls_search_results* self);
-static gboolean __lambda111_ (Xcls_GtkViewXcls_search_entry* self);
-static gboolean ___lambda111__gsource_func (gpointer self);
-static void ___lambda108__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+static gboolean __lambda118_ (Xcls_GtkViewXcls_search_entry* self);
+static gboolean ___lambda118__gsource_func (gpointer self);
+static void ___lambda115__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
                                                     gpointer self);
 VALA_EXTERN void xcls_gtkview_xcls_search_entry_forwardSearch (Xcls_GtkViewXcls_search_entry* self,
                                                    gboolean change_focus);
 static void xcls_gtkview_xcls_search_entry_finalize (GObject * obj);
 static GType xcls_gtkview_xcls_search_entry_get_type_once (void);
-static gboolean __lambda107_ (Xcls_GtkViewXcls_EventControllerKey15* self,
+static gboolean __lambda114_ (Xcls_GtkViewXcls_EventControllerKey15* self,
                        guint keyval,
                        guint keycode,
                        GdkModifierType state);
-static gboolean ___lambda107__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+static gboolean ___lambda114__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                              guint keyval,
                                                              guint keycode,
                                                              GdkModifierType state,
@@ -1772,13 +1772,13 @@ static void xcls_gtkview_xcls_eventcontrollerkey15_finalize (GObject * obj);
 static GType xcls_gtkview_xcls_eventcontrollerkey15_get_type_once (void);
 static void xcls_gtkview_xcls_search_results_finalize (GObject * obj);
 static GType xcls_gtkview_xcls_search_results_get_type_once (void);
-static void __lambda109_ (Xcls_GtkViewXcls_nextBtn* self);
-static void ___lambda109__gtk_button_clicked (GtkButton* _sender,
+static void __lambda116_ (Xcls_GtkViewXcls_nextBtn* self);
+static void ___lambda116__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_gtkview_xcls_nextbtn_finalize (GObject * obj);
 static GType xcls_gtkview_xcls_nextbtn_get_type_once (void);
-static void __lambda110_ (Xcls_GtkViewXcls_backBtn* self);
-static void ___lambda110__gtk_button_clicked (GtkButton* _sender,
+static void __lambda117_ (Xcls_GtkViewXcls_backBtn* self);
+static void ___lambda117__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_gtkview_xcls_backbtn_finalize (GObject * obj);
 static GType xcls_gtkview_xcls_backbtn_get_type_once (void);
@@ -3016,7 +3016,7 @@ block5_data_unref (void * _userdata_)
 }
 
 static gboolean
-__lambda116_ (Block5Data* _data5_)
+__lambda123_ (Block5Data* _data5_)
 {
 	Xcls_GtkView* self;
 	Xcls_GtkViewXcls_notebook* _tmp0_;
@@ -3080,10 +3080,10 @@ __lambda116_ (Block5Data* _data5_)
 }
 
 static gboolean
-___lambda116__gsource_func (gpointer self)
+___lambda123__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda116_ (self);
+	result = __lambda123_ (self);
 #line 337 "GtkView.vala"
 	return result;
 #line 3090 "GtkView.vala.c"
@@ -3103,7 +3103,7 @@ xcls_gtkview_scroll_to_line (Xcls_GtkView* self,
 #line 334 "GtkView.vala"
 	_data5_->line = line;
 #line 337 "GtkView.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 100, ___lambda116__gsource_func, block5_data_ref (_data5_), block5_data_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 100, ___lambda123__gsource_func, block5_data_ref (_data5_), block5_data_unref);
 #line 334 "GtkView.vala"
 	block5_data_unref (_data5_);
 #line 334 "GtkView.vala"
@@ -4172,7 +4172,7 @@ xcls_gtkview_xcls_sourceview_get_instance_private (Xcls_GtkViewXcls_sourceview* 
 }
 
 static gchar*
-___lambda112_ (Xcls_GtkViewXcls_sourceview* self,
+___lambda119_ (Xcls_GtkViewXcls_sourceview* self,
                GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -4193,19 +4193,19 @@ ___lambda112_ (Xcls_GtkViewXcls_sourceview* self,
 }
 
 static gchar*
-____lambda112__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+____lambda119__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                               GtkSourceMark* mark,
                                                               gpointer self)
 {
 	gchar* result;
-	result = ___lambda112_ ((Xcls_GtkViewXcls_sourceview*) self, mark);
+	result = ___lambda119_ ((Xcls_GtkViewXcls_sourceview*) self, mark);
 #line 616 "GtkView.vala"
 	return result;
 #line 4205 "GtkView.vala.c"
 }
 
 static gchar*
-___lambda113_ (Xcls_GtkViewXcls_sourceview* self,
+___lambda120_ (Xcls_GtkViewXcls_sourceview* self,
                GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -4226,19 +4226,19 @@ ___lambda113_ (Xcls_GtkViewXcls_sourceview* self,
 }
 
 static gchar*
-____lambda113__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+____lambda120__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                               GtkSourceMark* mark,
                                                               gpointer self)
 {
 	gchar* result;
-	result = ___lambda113_ ((Xcls_GtkViewXcls_sourceview*) self, mark);
+	result = ___lambda120_ ((Xcls_GtkViewXcls_sourceview*) self, mark);
 #line 628 "GtkView.vala"
 	return result;
 #line 4238 "GtkView.vala.c"
 }
 
 static gchar*
-___lambda114_ (Xcls_GtkViewXcls_sourceview* self,
+___lambda121_ (Xcls_GtkViewXcls_sourceview* self,
                GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
@@ -4259,12 +4259,12 @@ ___lambda114_ (Xcls_GtkViewXcls_sourceview* self,
 }
 
 static gchar*
-____lambda114__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+____lambda121__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
                                                               GtkSourceMark* mark,
                                                               gpointer self)
 {
 	gchar* result;
-	result = ___lambda114_ ((Xcls_GtkViewXcls_sourceview*) self, mark);
+	result = ___lambda121_ ((Xcls_GtkViewXcls_sourceview*) self, mark);
 #line 642 "GtkView.vala"
 	return result;
 #line 4271 "GtkView.vala.c"
@@ -4487,7 +4487,7 @@ xcls_gtkview_xcls_sourceview_construct (GType object_type,
 #line 615 "GtkView.vala"
 		gtk_source_mark_attributes_set_icon_name (attrs, "process-stop");
 #line 616 "GtkView.vala"
-		g_signal_connect_object (attrs, "query-tooltip-text", (GCallback) ____lambda112__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+		g_signal_connect_object (attrs, "query-tooltip-text", (GCallback) ____lambda119__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 621 "GtkView.vala"
 		_tmp31_ = self->el;
 #line 621 "GtkView.vala"
@@ -4507,7 +4507,7 @@ xcls_gtkview_xcls_sourceview_construct (GType object_type,
 #line 627 "GtkView.vala"
 		gtk_source_mark_attributes_set_icon_name (wattrs, "process-stop");
 #line 628 "GtkView.vala"
-		g_signal_connect_object (wattrs, "query-tooltip-text", (GCallback) ____lambda113__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+		g_signal_connect_object (wattrs, "query-tooltip-text", (GCallback) ____lambda120__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 633 "GtkView.vala"
 		_tmp34_ = self->el;
 #line 633 "GtkView.vala"
@@ -4527,7 +4527,7 @@ xcls_gtkview_xcls_sourceview_construct (GType object_type,
 #line 641 "GtkView.vala"
 		gtk_source_mark_attributes_set_icon_name (dattrs, "process-stop");
 #line 642 "GtkView.vala"
-		g_signal_connect_object (dattrs, "query-tooltip-text", (GCallback) ____lambda114__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+		g_signal_connect_object (dattrs, "query-tooltip-text", (GCallback) ____lambda121__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 647 "GtkView.vala"
 		_tmp37_ = self->el;
 #line 647 "GtkView.vala"
@@ -5245,7 +5245,7 @@ _json_array_ref0 (gpointer self)
 }
 
 static void
-__lambda115_ (Block6Data* _data6_,
+__lambda122_ (Block6Data* _data6_,
               JsonObject* obj,
               const gchar* line,
               JsonNode* node)
@@ -5419,13 +5419,13 @@ __lambda115_ (Block6Data* _data6_,
 }
 
 static void
-___lambda115__json_object_foreach (JsonObject* object,
+___lambda122__json_object_foreach (JsonObject* object,
                                    const gchar* member_name,
                                    JsonNode* member_node,
                                    gpointer self)
 {
 #line 840 "GtkView.vala"
-	__lambda115_ (self, object, member_name, member_node);
+	__lambda122_ (self, object, member_name, member_node);
 #line 5430 "GtkView.vala.c"
 }
 
@@ -5726,7 +5726,7 @@ xcls_gtkview_xcls_sourceview_highlightErrorsJson (Xcls_GtkViewXcls_sourceview* s
 #line 840 "GtkView.vala"
 	_tmp37_ = _data6_->lines;
 #line 840 "GtkView.vala"
-	json_object_foreach_member (_tmp37_, ___lambda115__json_object_foreach, _data6_);
+	json_object_foreach_member (_tmp37_, ___lambda122__json_object_foreach, _data6_);
 #line 863 "GtkView.vala"
 	_json_object_unref0 (err);
 #line 863 "GtkView.vala"
@@ -5865,7 +5865,7 @@ xcls_gtkview_xcls_buffer_get_instance_private (Xcls_GtkViewXcls_buffer* self)
 }
 
 static void
-__lambda105_ (Xcls_GtkViewXcls_buffer* self)
+__lambda33_ (Xcls_GtkViewXcls_buffer* self)
 {
 	Xcls_GtkView* _tmp0_;
 	Xcls_GtkViewXcls_sourceview* _tmp1_;
@@ -5989,12 +5989,12 @@ __lambda105_ (Xcls_GtkViewXcls_buffer* self)
 }
 
 static void
-___lambda105__g_object_notify (GObject* _sender,
-                               GParamSpec* pspec,
-                               gpointer self)
+___lambda33__g_object_notify (GObject* _sender,
+                              GParamSpec* pspec,
+                              gpointer self)
 {
 #line 903 "GtkView.vala"
-	__lambda105_ ((Xcls_GtkViewXcls_buffer*) self);
+	__lambda33_ ((Xcls_GtkViewXcls_buffer*) self);
 #line 5999 "GtkView.vala.c"
 }
 
@@ -6037,7 +6037,7 @@ xcls_gtkview_xcls_buffer_construct (GType object_type,
 #line 903 "GtkView.vala"
 	_tmp4_ = self->el;
 #line 903 "GtkView.vala"
-	g_signal_connect_object ((GObject*) _tmp4_, "notify::cursor_position", (GCallback) ___lambda105__g_object_notify, self, 0);
+	g_signal_connect_object ((GObject*) _tmp4_, "notify::cursor_position", (GCallback) ___lambda33__g_object_notify, self, 0);
 #line 890 "GtkView.vala"
 	return self;
 #line 6044 "GtkView.vala.c"
@@ -6117,7 +6117,7 @@ xcls_gtkview_xcls_eventcontrollerkey12_get_instance_private (Xcls_GtkViewXcls_Ev
 }
 
 static gboolean
-__lambda106_ (Xcls_GtkViewXcls_EventControllerKey12* self,
+__lambda113_ (Xcls_GtkViewXcls_EventControllerKey12* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -6191,14 +6191,14 @@ __lambda106_ (Xcls_GtkViewXcls_EventControllerKey12* self,
 }
 
 static gboolean
-___lambda106__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+___lambda113__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                     guint keyval,
                                                     guint keycode,
                                                     GdkModifierType state,
                                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda106_ ((Xcls_GtkViewXcls_EventControllerKey12*) self, keyval, keycode, state);
+	result = __lambda113_ ((Xcls_GtkViewXcls_EventControllerKey12*) self, keyval, keycode, state);
 #line 968 "GtkView.vala"
 	return result;
 #line 6205 "GtkView.vala.c"
@@ -6229,7 +6229,7 @@ xcls_gtkview_xcls_eventcontrollerkey12_construct (GType object_type,
 #line 968 "GtkView.vala"
 	_tmp2_ = self->el;
 #line 968 "GtkView.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda106__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda113__gtk_event_controller_key_key_pressed, self, 0);
 #line 958 "GtkView.vala"
 	return self;
 #line 6236 "GtkView.vala.c"
@@ -6517,7 +6517,7 @@ xcls_gtkview_xcls_search_entry_get_instance_private (Xcls_GtkViewXcls_search_ent
 }
 
 static gboolean
-__lambda111_ (Xcls_GtkViewXcls_search_entry* self)
+__lambda118_ (Xcls_GtkViewXcls_search_entry* self)
 {
 	Xcls_GtkView* _tmp0_;
 	Xcls_GtkViewXcls_search_results* _tmp1_;
@@ -6536,17 +6536,17 @@ __lambda111_ (Xcls_GtkViewXcls_search_entry* self)
 }
 
 static gboolean
-___lambda111__gsource_func (gpointer self)
+___lambda118__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda111_ ((Xcls_GtkViewXcls_search_entry*) self);
+	result = __lambda118_ ((Xcls_GtkViewXcls_search_entry*) self);
 #line 1068 "GtkView.vala"
 	return result;
 #line 6546 "GtkView.vala.c"
 }
 
 static void
-__lambda108_ (Xcls_GtkViewXcls_search_entry* self)
+__lambda115_ (Xcls_GtkViewXcls_search_entry* self)
 {
 	Xcls_GtkView* _tmp0_;
 	Xcls_GtkView* _tmp1_;
@@ -6577,16 +6577,16 @@ __lambda108_ (Xcls_GtkViewXcls_search_entry* self)
 #line 1066 "GtkView.vala"
 	xcls_gtkview_xcls_search_results_updateResults (_tmp7_);
 #line 1068 "GtkView.vala"
-	g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ___lambda111__gsource_func, g_object_ref (self), g_object_unref);
+	g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ___lambda118__gsource_func, g_object_ref (self), g_object_unref);
 #line 6582 "GtkView.vala.c"
 }
 
 static void
-___lambda108__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+___lambda115__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
                                                gpointer self)
 {
 #line 1063 "GtkView.vala"
-	__lambda108_ ((Xcls_GtkViewXcls_search_entry*) self);
+	__lambda115_ ((Xcls_GtkViewXcls_search_entry*) self);
 #line 6591 "GtkView.vala.c"
 }
 
@@ -6730,7 +6730,7 @@ xcls_gtkview_xcls_search_entry_construct (GType object_type,
 #line 1063 "GtkView.vala"
 	_tmp21_ = self->el;
 #line 1063 "GtkView.vala"
-	g_signal_connect_object (_tmp21_, "search-changed", (GCallback) ___lambda108__gtk_search_entry_search_changed, self, 0);
+	g_signal_connect_object (_tmp21_, "search-changed", (GCallback) ___lambda115__gtk_search_entry_search_changed, self, 0);
 #line 1036 "GtkView.vala"
 	_g_object_unref0 (child_1);
 #line 1036 "GtkView.vala"
@@ -6826,7 +6826,7 @@ xcls_gtkview_xcls_eventcontrollerkey15_get_instance_private (Xcls_GtkViewXcls_Ev
 }
 
 static gboolean
-__lambda107_ (Xcls_GtkViewXcls_EventControllerKey15* self,
+__lambda114_ (Xcls_GtkViewXcls_EventControllerKey15* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -6914,14 +6914,14 @@ __lambda107_ (Xcls_GtkViewXcls_EventControllerKey15* self,
 }
 
 static gboolean
-___lambda107__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+___lambda114__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                     guint keyval,
                                                     guint keycode,
                                                     GdkModifierType state,
                                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda107_ ((Xcls_GtkViewXcls_EventControllerKey15*) self, keyval, keycode, state);
+	result = __lambda114_ ((Xcls_GtkViewXcls_EventControllerKey15*) self, keyval, keycode, state);
 #line 1125 "GtkView.vala"
 	return result;
 #line 6928 "GtkView.vala.c"
@@ -6952,7 +6952,7 @@ xcls_gtkview_xcls_eventcontrollerkey15_construct (GType object_type,
 #line 1125 "GtkView.vala"
 	_tmp2_ = self->el;
 #line 1125 "GtkView.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda107__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda114__gtk_event_controller_key_key_pressed, self, 0);
 #line 1115 "GtkView.vala"
 	return self;
 #line 6959 "GtkView.vala.c"
@@ -7272,7 +7272,7 @@ xcls_gtkview_xcls_nextbtn_get_instance_private (Xcls_GtkViewXcls_nextBtn* self)
 }
 
 static void
-__lambda109_ (Xcls_GtkViewXcls_nextBtn* self)
+__lambda116_ (Xcls_GtkViewXcls_nextBtn* self)
 {
 	Xcls_GtkView* _tmp0_;
 #line 1222 "GtkView.vala"
@@ -7283,11 +7283,11 @@ __lambda109_ (Xcls_GtkViewXcls_nextBtn* self)
 }
 
 static void
-___lambda109__gtk_button_clicked (GtkButton* _sender,
+___lambda116__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1221 "GtkView.vala"
-	__lambda109_ ((Xcls_GtkViewXcls_nextBtn*) self);
+	__lambda116_ ((Xcls_GtkViewXcls_nextBtn*) self);
 #line 7292 "GtkView.vala.c"
 }
 
@@ -7340,7 +7340,7 @@ xcls_gtkview_xcls_nextbtn_construct (GType object_type,
 #line 1221 "GtkView.vala"
 	_tmp6_ = self->el;
 #line 1221 "GtkView.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda109__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda116__gtk_button_clicked, self, 0);
 #line 1207 "GtkView.vala"
 	return self;
 #line 7347 "GtkView.vala.c"
@@ -7420,7 +7420,7 @@ xcls_gtkview_xcls_backbtn_get_instance_private (Xcls_GtkViewXcls_backBtn* self)
 }
 
 static void
-__lambda110_ (Xcls_GtkViewXcls_backBtn* self)
+__lambda117_ (Xcls_GtkViewXcls_backBtn* self)
 {
 	Xcls_GtkView* _tmp0_;
 #line 1257 "GtkView.vala"
@@ -7431,11 +7431,11 @@ __lambda110_ (Xcls_GtkViewXcls_backBtn* self)
 }
 
 static void
-___lambda110__gtk_button_clicked (GtkButton* _sender,
+___lambda117__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1255 "GtkView.vala"
-	__lambda110_ ((Xcls_GtkViewXcls_backBtn*) self);
+	__lambda117_ ((Xcls_GtkViewXcls_backBtn*) self);
 #line 7440 "GtkView.vala.c"
 }
 
@@ -7488,7 +7488,7 @@ xcls_gtkview_xcls_backbtn_construct (GType object_type,
 #line 1255 "GtkView.vala"
 	_tmp6_ = self->el;
 #line 1255 "GtkView.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda110__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda117__gtk_button_clicked, self, 0);
 #line 1241 "GtkView.vala"
 	return self;
 #line 7495 "GtkView.vala.c"

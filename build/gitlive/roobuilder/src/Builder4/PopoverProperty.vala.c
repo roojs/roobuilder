@@ -1294,12 +1294,12 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_PopoverPropertyXcls_Box2, g_object_unref)
 VALA_EXTERN Xcls_PopoverPropertyXcls_Box2* xcls_popoverproperty_xcls_box2_new (Xcls_PopoverProperty* _owner);
 VALA_EXTERN Xcls_PopoverPropertyXcls_Box2* xcls_popoverproperty_xcls_box2_construct (GType object_type,
                                                                          Xcls_PopoverProperty* _owner);
-static void __lambda28_ (Xcls_PopoverProperty* self);
+static void __lambda48_ (Xcls_PopoverProperty* self);
 VALA_EXTERN void xcls_popoverproperty_updateProp (Xcls_PopoverProperty* self);
-static void ___lambda28__gtk_popover_closed (GtkPopover* _sender,
+static void ___lambda48__gtk_popover_closed (GtkPopover* _sender,
                                       gpointer self);
-static void __lambda29_ (Xcls_PopoverProperty* self);
-static void ___lambda29__gtk_widget_hide (GtkWidget* _sender,
+static void __lambda49_ (Xcls_PopoverProperty* self);
+static void ___lambda49__gtk_widget_hide (GtkWidget* _sender,
                                    gpointer self);
 VALA_EXTERN void js_render_node_prop_set_name (JsRenderNodeProp* self,
                                    const gchar* value);
@@ -1438,15 +1438,15 @@ VALA_EXTERN Xcls_PopoverPropertyXcls_SignalListItemFactory9* xcls_popoverpropert
                                                                                                              Xcls_PopoverProperty* _owner);
 static void xcls_popoverproperty_xcls_columnviewcolumn8_finalize (GObject * obj);
 static GType xcls_popoverproperty_xcls_columnviewcolumn8_get_type_once (void);
-static void __lambda22_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
+static void __lambda42_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
                   GObject* listitem);
-static void ___lambda22__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda42__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
-static void __lambda23_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
+static void __lambda43_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
                   GObject* listitem);
 VALA_EXTERN gchar* js_render_node_prop_type_to_name (JsRenderNodePropType self);
-static void ___lambda23__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda43__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                      GObject* object,
                                                      gpointer self);
 static void xcls_popoverproperty_xcls_signallistitemfactory9_finalize (GObject * obj);
@@ -1469,16 +1469,16 @@ VALA_EXTERN Xcls_PopoverPropertyXcls_EventControllerKey15* xcls_popoverproperty_
                                                                                                          Xcls_PopoverProperty* _owner);
 static void xcls_popoverproperty_xcls_kname_finalize (GObject * obj);
 static GType xcls_popoverproperty_xcls_kname_get_type_once (void);
-static void __lambda24_ (Xcls_PopoverPropertyXcls_EventControllerFocus14* self);
-static void ___lambda24__gtk_event_controller_focus_leave (GtkEventControllerFocus* _sender,
+static void __lambda44_ (Xcls_PopoverPropertyXcls_EventControllerFocus14* self);
+static void ___lambda44__gtk_event_controller_focus_leave (GtkEventControllerFocus* _sender,
                                                     gpointer self);
 static void xcls_popoverproperty_xcls_eventcontrollerfocus14_finalize (GObject * obj);
 static GType xcls_popoverproperty_xcls_eventcontrollerfocus14_get_type_once (void);
-static void __lambda25_ (Xcls_PopoverPropertyXcls_EventControllerKey15* self,
+static void __lambda45_ (Xcls_PopoverPropertyXcls_EventControllerKey15* self,
                   guint keyval,
                   guint keycode,
                   GdkModifierType state);
-static void ___lambda25__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
+static void ___lambda45__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
                                                          guint keyval,
                                                          guint keycode,
                                                          GdkModifierType state,
@@ -1499,12 +1499,12 @@ VALA_EXTERN Xcls_PopoverPropertyXcls_Button19* xcls_popoverproperty_xcls_button1
                                                                                  Xcls_PopoverProperty* _owner);
 static void xcls_popoverproperty_xcls_buttonbar_finalize (GObject * obj);
 static GType xcls_popoverproperty_xcls_buttonbar_get_type_once (void);
-static void __lambda26_ (Xcls_PopoverPropertyXcls_Button18* self);
-static void ___lambda26__gtk_button_clicked (GtkButton* _sender,
+static void __lambda46_ (Xcls_PopoverPropertyXcls_Button18* self);
+static void ___lambda46__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_popoverproperty_xcls_button18_finalize (GObject * obj);
 static GType xcls_popoverproperty_xcls_button18_get_type_once (void);
-static void __lambda27_ (Xcls_PopoverPropertyXcls_Button19* self);
+static void __lambda47_ (Xcls_PopoverPropertyXcls_Button19* self);
 VALA_EXTERN const gchar* js_render_node_prop_get_val (JsRenderNodeProp* self);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new (const gchar* name,
                                            JsRenderNodePropType ptype,
@@ -1610,7 +1610,7 @@ VALA_EXTERN GType xcls_leftprops_xcls_contextmenu_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_LeftPropsXcls_ContextMenu, g_object_unref)
 VALA_EXTERN void xcls_leftprops_xcls_view_editProp (Xcls_LeftPropsXcls_view* self,
                                         JsRenderNodeProp* prop);
-static void ___lambda27__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda47__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_popoverproperty_xcls_button19_finalize (GObject * obj);
 static GType xcls_popoverproperty_xcls_button19_get_type_once (void);
@@ -1685,7 +1685,7 @@ string_strip (const gchar* self)
 }
 
 static void
-__lambda28_ (Xcls_PopoverProperty* self)
+__lambda48_ (Xcls_PopoverProperty* self)
 {
 	Xcls_PopoverProperty* _tmp0_;
 	Xcls_PopoverProperty* _tmp1_;
@@ -1748,16 +1748,16 @@ __lambda28_ (Xcls_PopoverProperty* self)
 }
 
 static void
-___lambda28__gtk_popover_closed (GtkPopover* _sender,
+___lambda48__gtk_popover_closed (GtkPopover* _sender,
                                  gpointer self)
 {
 #line 54 "PopoverProperty.vala"
-	__lambda28_ ((Xcls_PopoverProperty*) self);
+	__lambda48_ ((Xcls_PopoverProperty*) self);
 #line 1757 "PopoverProperty.vala.c"
 }
 
 static void
-__lambda29_ (Xcls_PopoverProperty* self)
+__lambda49_ (Xcls_PopoverProperty* self)
 {
 	gboolean _tmp0_ = FALSE;
 	Xcls_PopoverProperty* _tmp1_;
@@ -1815,11 +1815,11 @@ __lambda29_ (Xcls_PopoverProperty* self)
 }
 
 static void
-___lambda29__gtk_widget_hide (GtkWidget* _sender,
+___lambda49__gtk_widget_hide (GtkWidget* _sender,
                               gpointer self)
 {
 #line 80 "PopoverProperty.vala"
-	__lambda29_ ((Xcls_PopoverProperty*) self);
+	__lambda49_ ((Xcls_PopoverProperty*) self);
 #line 1824 "PopoverProperty.vala.c"
 }
 
@@ -1887,11 +1887,11 @@ xcls_popoverproperty_construct (GType object_type)
 #line 54 "PopoverProperty.vala"
 	_tmp8_ = self->el;
 #line 54 "PopoverProperty.vala"
-	g_signal_connect_object (_tmp8_, "closed", (GCallback) ___lambda28__gtk_popover_closed, self, 0);
+	g_signal_connect_object (_tmp8_, "closed", (GCallback) ___lambda48__gtk_popover_closed, self, 0);
 #line 80 "PopoverProperty.vala"
 	_tmp9_ = self->el;
 #line 80 "PopoverProperty.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp9_, "hide", (GCallback) ___lambda29__gtk_widget_hide, self, 0);
+	g_signal_connect_object ((GtkWidget*) _tmp9_, "hide", (GCallback) ___lambda49__gtk_widget_hide, self, 0);
 #line 36 "PopoverProperty.vala"
 	_g_object_unref0 (child_0);
 #line 36 "PopoverProperty.vala"
@@ -3590,7 +3590,7 @@ xcls_popoverproperty_xcls_signallistitemfactory9_get_instance_private (Xcls_Popo
 }
 
 static void
-__lambda22_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
+__lambda42_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
              GObject* listitem)
 {
 	GtkLabel* label = NULL;
@@ -3613,17 +3613,17 @@ __lambda22_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
 }
 
 static void
-___lambda22__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda42__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 432 "PopoverProperty.vala"
-	__lambda22_ ((Xcls_PopoverPropertyXcls_SignalListItemFactory9*) self, object);
+	__lambda42_ ((Xcls_PopoverPropertyXcls_SignalListItemFactory9*) self, object);
 #line 3623 "PopoverProperty.vala.c"
 }
 
 static void
-__lambda23_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
+__lambda43_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
              GObject* listitem)
 {
 	GtkLabel* lbl = NULL;
@@ -3668,12 +3668,12 @@ __lambda23_ (Xcls_PopoverPropertyXcls_SignalListItemFactory9* self,
 }
 
 static void
-___lambda23__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda43__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                 GObject* object,
                                                 gpointer self)
 {
 #line 442 "PopoverProperty.vala"
-	__lambda23_ ((Xcls_PopoverPropertyXcls_SignalListItemFactory9*) self, object);
+	__lambda43_ ((Xcls_PopoverPropertyXcls_SignalListItemFactory9*) self, object);
 #line 3678 "PopoverProperty.vala.c"
 }
 
@@ -3703,11 +3703,11 @@ xcls_popoverproperty_xcls_signallistitemfactory9_construct (GType object_type,
 #line 432 "PopoverProperty.vala"
 	_tmp2_ = self->el;
 #line 432 "PopoverProperty.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda22__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda42__gtk_signal_list_item_factory_setup, self, 0);
 #line 442 "PopoverProperty.vala"
 	_tmp3_ = self->el;
 #line 442 "PopoverProperty.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda23__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda43__gtk_signal_list_item_factory_bind, self, 0);
 #line 422 "PopoverProperty.vala"
 	return self;
 #line 3714 "PopoverProperty.vala.c"
@@ -4314,7 +4314,7 @@ xcls_popoverproperty_xcls_eventcontrollerfocus14_get_instance_private (Xcls_Popo
 }
 
 static void
-__lambda24_ (Xcls_PopoverPropertyXcls_EventControllerFocus14* self)
+__lambda44_ (Xcls_PopoverPropertyXcls_EventControllerFocus14* self)
 {
 	Xcls_PopoverProperty* _tmp0_;
 	Xcls_PopoverPropertyXcls_error* _tmp1_;
@@ -4370,11 +4370,11 @@ __lambda24_ (Xcls_PopoverPropertyXcls_EventControllerFocus14* self)
 }
 
 static void
-___lambda24__gtk_event_controller_focus_leave (GtkEventControllerFocus* _sender,
+___lambda44__gtk_event_controller_focus_leave (GtkEventControllerFocus* _sender,
                                                gpointer self)
 {
 #line 584 "PopoverProperty.vala"
-	__lambda24_ ((Xcls_PopoverPropertyXcls_EventControllerFocus14*) self);
+	__lambda44_ ((Xcls_PopoverPropertyXcls_EventControllerFocus14*) self);
 #line 4379 "PopoverProperty.vala.c"
 }
 
@@ -4403,7 +4403,7 @@ xcls_popoverproperty_xcls_eventcontrollerfocus14_construct (GType object_type,
 #line 584 "PopoverProperty.vala"
 	_tmp2_ = self->el;
 #line 584 "PopoverProperty.vala"
-	g_signal_connect_object (_tmp2_, "leave", (GCallback) ___lambda24__gtk_event_controller_focus_leave, self, 0);
+	g_signal_connect_object (_tmp2_, "leave", (GCallback) ___lambda44__gtk_event_controller_focus_leave, self, 0);
 #line 574 "PopoverProperty.vala"
 	return self;
 #line 4410 "PopoverProperty.vala.c"
@@ -4483,7 +4483,7 @@ xcls_popoverproperty_xcls_eventcontrollerkey15_get_instance_private (Xcls_Popove
 }
 
 static void
-__lambda25_ (Xcls_PopoverPropertyXcls_EventControllerKey15* self,
+__lambda45_ (Xcls_PopoverPropertyXcls_EventControllerKey15* self,
              guint keyval,
              guint keycode,
              GdkModifierType state)
@@ -4542,14 +4542,14 @@ __lambda25_ (Xcls_PopoverPropertyXcls_EventControllerKey15* self,
 }
 
 static void
-___lambda25__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
+___lambda45__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
                                                     guint keyval,
                                                     guint keycode,
                                                     GdkModifierType state,
                                                     gpointer self)
 {
 #line 617 "PopoverProperty.vala"
-	__lambda25_ ((Xcls_PopoverPropertyXcls_EventControllerKey15*) self, keyval, keycode, state);
+	__lambda45_ ((Xcls_PopoverPropertyXcls_EventControllerKey15*) self, keyval, keycode, state);
 #line 4554 "PopoverProperty.vala.c"
 }
 
@@ -4578,7 +4578,7 @@ xcls_popoverproperty_xcls_eventcontrollerkey15_construct (GType object_type,
 #line 617 "PopoverProperty.vala"
 	_tmp2_ = self->el;
 #line 617 "PopoverProperty.vala"
-	g_signal_connect_object (_tmp2_, "key-released", (GCallback) ___lambda25__gtk_event_controller_key_key_released, self, 0);
+	g_signal_connect_object (_tmp2_, "key-released", (GCallback) ___lambda45__gtk_event_controller_key_key_released, self, 0);
 #line 607 "PopoverProperty.vala"
 	return self;
 #line 4585 "PopoverProperty.vala.c"
@@ -4996,7 +4996,7 @@ xcls_popoverproperty_xcls_button18_get_instance_private (Xcls_PopoverPropertyXcl
 }
 
 static void
-__lambda26_ (Xcls_PopoverPropertyXcls_Button18* self)
+__lambda46_ (Xcls_PopoverPropertyXcls_Button18* self)
 {
 	Xcls_PopoverProperty* _tmp0_;
 	Xcls_PopoverProperty* _tmp1_;
@@ -5033,11 +5033,11 @@ __lambda26_ (Xcls_PopoverPropertyXcls_Button18* self)
 }
 
 static void
-___lambda26__gtk_button_clicked (GtkButton* _sender,
+___lambda46__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 722 "PopoverProperty.vala"
-	__lambda26_ ((Xcls_PopoverPropertyXcls_Button18*) self);
+	__lambda46_ ((Xcls_PopoverPropertyXcls_Button18*) self);
 #line 5042 "PopoverProperty.vala.c"
 }
 
@@ -5080,7 +5080,7 @@ xcls_popoverproperty_xcls_button18_construct (GType object_type,
 #line 722 "PopoverProperty.vala"
 	_tmp4_ = self->el;
 #line 722 "PopoverProperty.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda26__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda46__gtk_button_clicked, self, 0);
 #line 709 "PopoverProperty.vala"
 	return self;
 #line 5087 "PopoverProperty.vala.c"
@@ -5160,7 +5160,7 @@ xcls_popoverproperty_xcls_button19_get_instance_private (Xcls_PopoverPropertyXcl
 }
 
 static void
-__lambda27_ (Xcls_PopoverPropertyXcls_Button19* self)
+__lambda47_ (Xcls_PopoverPropertyXcls_Button19* self)
 {
 	Xcls_PopoverProperty* _tmp0_;
 	Xcls_PopoverPropertyXcls_kname* _tmp1_;
@@ -5369,11 +5369,11 @@ __lambda27_ (Xcls_PopoverPropertyXcls_Button19* self)
 }
 
 static void
-___lambda27__gtk_button_clicked (GtkButton* _sender,
+___lambda47__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 757 "PopoverProperty.vala"
-	__lambda27_ ((Xcls_PopoverPropertyXcls_Button19*) self);
+	__lambda47_ ((Xcls_PopoverPropertyXcls_Button19*) self);
 #line 5378 "PopoverProperty.vala.c"
 }
 
@@ -5416,7 +5416,7 @@ xcls_popoverproperty_xcls_button19_construct (GType object_type,
 #line 757 "PopoverProperty.vala"
 	_tmp4_ = self->el;
 #line 757 "PopoverProperty.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda27__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda47__gtk_button_clicked, self, 0);
 #line 744 "PopoverProperty.vala"
 	return self;
 #line 5423 "PopoverProperty.vala.c"

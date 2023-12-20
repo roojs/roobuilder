@@ -478,11 +478,11 @@ VALA_EXTERN void palete_vala_source_compiler_dumpCode (PaleteValaSourceCompiler*
                                            const gchar* str);
 VALA_EXTERN gchar** project_gtk_vapidirs (ProjectGtk* self,
                               gint* result_length1);
-static void _vala_array_add83 (gchar** * array,
+static void _vala_array_add44 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add84 (gchar** * array,
+static void _vala_array_add45 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -1532,7 +1532,7 @@ palete_vala_source_compiler_dumpCode (PaleteValaSourceCompiler* self,
 }
 
 static void
-_vala_array_add83 (gchar** * array,
+_vala_array_add44 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -1553,7 +1553,7 @@ _vala_array_add83 (gchar** * array,
 }
 
 static void
-_vala_array_add84 (gchar** * array,
+_vala_array_add45 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -1859,7 +1859,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 #line 248 "ValaSourceCompiler.vala"
 	_tmp11_ = g_path_get_dirname (_tmp10_);
 #line 248 "ValaSourceCompiler.vala"
-	_vala_array_add83 (&vapidirs, &vapidirs_length1, &_vapidirs_size_, _tmp11_);
+	_vala_array_add44 (&vapidirs, &vapidirs_length1, &_vapidirs_size_, _tmp11_);
 #line 248 "ValaSourceCompiler.vala"
 	_g_free0 (_tmp10_);
 #line 249 "ValaSourceCompiler.vala"
@@ -1871,7 +1871,7 @@ palete_vala_source_compiler_compile (PaleteValaSourceCompiler* self)
 #line 249 "ValaSourceCompiler.vala"
 	_tmp15_ = g_path_get_dirname (_tmp14_);
 #line 249 "ValaSourceCompiler.vala"
-	_vala_array_add84 (&vapidirs, &vapidirs_length1, &_vapidirs_size_, _tmp15_);
+	_vala_array_add45 (&vapidirs, &vapidirs_length1, &_vapidirs_size_, _tmp15_);
 #line 249 "ValaSourceCompiler.vala"
 	_g_free0 (_tmp14_);
 #line 1878 "ValaSourceCompiler.vala.c"

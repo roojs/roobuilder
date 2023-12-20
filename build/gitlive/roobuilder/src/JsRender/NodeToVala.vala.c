@@ -398,7 +398,7 @@ VALA_EXTERN JsRenderNodeProp* js_render_node_get_prop (JsRenderNode* self,
                                            const gchar* key);
 static void js_render_node_to_vala_ignoreWrapped (JsRenderNodeToVala* self,
                                            const gchar* i);
-static void _vala_array_add75 (gchar** * array,
+static void _vala_array_add36 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -406,23 +406,23 @@ VALA_EXTERN JsRenderNode* js_render_node_findProp (JsRenderNode* self,
                                        const gchar* n);
 static gchar* js_render_node_to_vala_addPropSet (JsRenderNodeToVala* self,
                                           JsRenderNode* child);
-static void _vala_array_add76 (gchar** * array,
+static void _vala_array_add37 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add77 (gchar** * array,
+static void _vala_array_add38 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add78 (gchar** * array,
+static void _vala_array_add39 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add79 (gchar** * array,
+static void _vala_array_add40 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add80 (gchar** * array,
+static void _vala_array_add41 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -3188,7 +3188,7 @@ js_render_node_to_vala_addUnderThis (JsRenderNodeToVala* self)
  * 
  */
 static void
-_vala_array_add75 (gchar** * array,
+_vala_array_add36 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -3209,7 +3209,7 @@ _vala_array_add75 (gchar** * array,
 }
 
 static void
-_vala_array_add76 (gchar** * array,
+_vala_array_add37 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -3245,7 +3245,7 @@ string_contains (const gchar* self,
 }
 
 static void
-_vala_array_add77 (gchar** * array,
+_vala_array_add38 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -3266,7 +3266,7 @@ _vala_array_add77 (gchar** * array,
 }
 
 static void
-_vala_array_add78 (gchar** * array,
+_vala_array_add39 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -3287,7 +3287,7 @@ _vala_array_add78 (gchar** * array,
 }
 
 static void
-_vala_array_add79 (gchar** * array,
+_vala_array_add40 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -3308,7 +3308,7 @@ _vala_array_add79 (gchar** * array,
 }
 
 static void
-_vala_array_add80 (gchar** * array,
+_vala_array_add41 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -4444,7 +4444,7 @@ js_render_node_to_vala_addWrappedCtor (JsRenderNodeToVala* self)
 #line 597 "NodeToVala.vala"
 					_tmp145_ = g_strdup (_tmp144_);
 #line 597 "NodeToVala.vala"
-					_vala_array_add75 (&args, &args_length1, &_args_size_, _tmp145_);
+					_vala_array_add36 (&args, &args_length1, &_args_size_, _tmp145_);
 #line 598 "NodeToVala.vala"
 					_g_free0 (v);
 #line 598 "NodeToVala.vala"
@@ -4486,7 +4486,7 @@ js_render_node_to_vala_addWrappedCtor (JsRenderNodeToVala* self)
 #line 605 "NodeToVala.vala"
 					_tmp153_ = g_strconcat (_tmp152_, ".el", NULL);
 #line 605 "NodeToVala.vala"
-					_vala_array_add76 (&args, &args_length1, &_args_size_, _tmp153_);
+					_vala_array_add37 (&args, &args_length1, &_args_size_, _tmp153_);
 #line 606 "NodeToVala.vala"
 					_tmp154_ = propnode;
 #line 606 "NodeToVala.vala"
@@ -4545,7 +4545,7 @@ js_render_node_to_vala_addWrappedCtor (JsRenderNodeToVala* self)
 #line 622 "NodeToVala.vala"
 					_tmp164_ = g_strdup ("0");
 #line 622 "NodeToVala.vala"
-					_vala_array_add77 (&args, &args_length1, &_args_size_, _tmp164_);
+					_vala_array_add38 (&args, &args_length1, &_args_size_, _tmp164_);
 #line 623 "NodeToVala.vala"
 					_g_object_unref0 (propnode);
 #line 623 "NodeToVala.vala"
@@ -4567,7 +4567,7 @@ js_render_node_to_vala_addWrappedCtor (JsRenderNodeToVala* self)
 #line 626 "NodeToVala.vala"
 					_tmp167_ = g_strdup ("0f");
 #line 626 "NodeToVala.vala"
-					_vala_array_add78 (&args, &args_length1, &_args_size_, _tmp167_);
+					_vala_array_add39 (&args, &args_length1, &_args_size_, _tmp167_);
 #line 627 "NodeToVala.vala"
 					_g_object_unref0 (propnode);
 #line 627 "NodeToVala.vala"
@@ -4589,7 +4589,7 @@ js_render_node_to_vala_addWrappedCtor (JsRenderNodeToVala* self)
 #line 630 "NodeToVala.vala"
 					_tmp170_ = g_strdup ("true");
 #line 630 "NodeToVala.vala"
-					_vala_array_add79 (&args, &args_length1, &_args_size_, _tmp170_);
+					_vala_array_add40 (&args, &args_length1, &_args_size_, _tmp170_);
 #line 631 "NodeToVala.vala"
 					_g_object_unref0 (propnode);
 #line 631 "NodeToVala.vala"
@@ -4603,7 +4603,7 @@ js_render_node_to_vala_addWrappedCtor (JsRenderNodeToVala* self)
 #line 638 "NodeToVala.vala"
 				_tmp171_ = g_strdup ("null");
 #line 638 "NodeToVala.vala"
-				_vala_array_add80 (&args, &args_length1, &_args_size_, _tmp171_);
+				_vala_array_add41 (&args, &args_length1, &_args_size_, _tmp171_);
 #line 574 "NodeToVala.vala"
 				_g_object_unref0 (propnode);
 #line 574 "NodeToVala.vala"

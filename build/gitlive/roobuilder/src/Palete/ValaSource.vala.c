@@ -4340,7 +4340,7 @@ palete_vala_source_runResult (PaleteValaSource* self,
 #line 4341 "ValaSource.vala.c"
 	}
 #line 499 "ValaSource.vala"
-	_tmp37_ = _tmp36_ = g_strsplit ("/usr/bin/gnome-terminal -- /usr/bin/gdb -x ", " ", 0);
+	_tmp37_ = _tmp36_ = g_strsplit ("/usr/bin/gnome-terminal -- /usr/bin/gdb -x", " ", 0);
 #line 499 "ValaSource.vala"
 	args = _tmp37_;
 #line 499 "ValaSource.vala"

@@ -261,7 +261,7 @@ VALA_EXTERN gboolean resources_files_has_target (Resources* self,
                                      const gchar* target);
 static Block20Data* block20_data_ref (Block20Data* _data20_);
 static void block20_data_unref (void * _userdata_);
-static void __lambda256_ (Block20Data* _data20_,
+static void __lambda165_ (Block20Data* _data20_,
                    GObject* obj,
                    GAsyncResult* res);
 VALA_EXTERN GType project_project_get_type (void) G_GNUC_CONST ;
@@ -284,7 +284,7 @@ VALA_EXTERN PaleteRoo* palete_roo_construct (GType object_type,
                                  ProjectProject* project);
 VALA_EXTERN GType palete_roo_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteRoo, g_object_unref)
-static void ___lambda256__gasync_ready_callback (GObject* source_object,
+static void ___lambda165__gasync_ready_callback (GObject* source_object,
                                           GAsyncResult* res,
                                           gpointer self);
 static void g_cclosure_user_marshal_VOID__UINT_UINT (GClosure * closure,
@@ -1792,7 +1792,7 @@ block20_data_unref (void * _userdata_)
 }
 
 static void
-__lambda256_ (Block20Data* _data20_,
+__lambda165_ (Block20Data* _data20_,
               GObject* obj,
               GAsyncResult* res)
 {
@@ -2221,12 +2221,12 @@ __lambda256_ (Block20Data* _data20_,
 }
 
 static void
-___lambda256__gasync_ready_callback (GObject* source_object,
+___lambda165__gasync_ready_callback (GObject* source_object,
                                      GAsyncResult* res,
                                      gpointer self)
 {
 #line 265 "Resources.vala"
-	__lambda256_ (self, source_object, res);
+	__lambda165_ (self, source_object, res);
 #line 265 "Resources.vala"
 	block20_data_unref (self);
 #line 2231 "Resources.vala.c"
@@ -2317,7 +2317,7 @@ resources_fetchResourceFrom (Resources* self,
 #line 265 "Resources.vala"
 	_tmp12_ = message;
 #line 265 "Resources.vala"
-	soup_session_send_and_read_async (_tmp11_, _tmp12_, 0, NULL, ___lambda256__gasync_ready_callback, block20_data_ref (_data20_));
+	soup_session_send_and_read_async (_tmp11_, _tmp12_, 0, NULL, ___lambda165__gasync_ready_callback, block20_data_ref (_data20_));
 #line 253 "Resources.vala"
 	_g_object_unref0 (message);
 #line 253 "Resources.vala"

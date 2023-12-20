@@ -58,10 +58,10 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_StandardErrorDialog, g_object_unref)
 VALA_EXTERN Xcls_StandardErrorDialog* xcls_standarderrordialog_singleton (void);
 VALA_EXTERN Xcls_StandardErrorDialog* xcls_standarderrordialog_new (void);
 VALA_EXTERN Xcls_StandardErrorDialog* xcls_standarderrordialog_construct (GType object_type);
-static void __lambda171_ (Xcls_StandardErrorDialog* self,
+static void __lambda103_ (Xcls_StandardErrorDialog* self,
                    GtkDialog* _self_,
                    gint response_id);
-static void ___lambda171__gtk_dialog_response (GtkDialog* _sender,
+static void ___lambda103__gtk_dialog_response (GtkDialog* _sender,
                                         gint response_id,
                                         gpointer self);
 VALA_EXTERN void xcls_standarderrordialog_show (Xcls_StandardErrorDialog* self,
@@ -119,7 +119,7 @@ xcls_standarderrordialog_singleton (void)
 }
 
 static void
-__lambda171_ (Xcls_StandardErrorDialog* self,
+__lambda103_ (Xcls_StandardErrorDialog* self,
               GtkDialog* _self_,
               gint response_id)
 {
@@ -132,12 +132,12 @@ __lambda171_ (Xcls_StandardErrorDialog* self,
 }
 
 static void
-___lambda171__gtk_dialog_response (GtkDialog* _sender,
+___lambda103__gtk_dialog_response (GtkDialog* _sender,
                                    gint response_id,
                                    gpointer self)
 {
 #line 31 "StandardErrorDialog.vala"
-	__lambda171_ ((Xcls_StandardErrorDialog*) self, _sender, response_id);
+	__lambda103_ ((Xcls_StandardErrorDialog*) self, _sender, response_id);
 #line 142 "StandardErrorDialog.vala.c"
 }
 
@@ -177,7 +177,7 @@ xcls_standarderrordialog_construct (GType object_type)
 #line 31 "StandardErrorDialog.vala"
 	_tmp4_ = self->el;
 #line 31 "StandardErrorDialog.vala"
-	g_signal_connect_object ((GtkDialog*) _tmp4_, "response", (GCallback) ___lambda171__gtk_dialog_response, self, 0);
+	g_signal_connect_object ((GtkDialog*) _tmp4_, "response", (GCallback) ___lambda103__gtk_dialog_response, self, 0);
 #line 19 "StandardErrorDialog.vala"
 	return self;
 #line 184 "StandardErrorDialog.vala.c"
