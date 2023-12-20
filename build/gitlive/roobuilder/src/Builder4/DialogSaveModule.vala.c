@@ -389,7 +389,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogSaveModuleXcls_Button6, g_object_unref)
 VALA_EXTERN DialogSaveModuleXcls_Button6* dialog_save_module_xcls_button6_new (DialogSaveModule* _owner);
 VALA_EXTERN DialogSaveModuleXcls_Button6* dialog_save_module_xcls_button6_construct (GType object_type,
                                                                          DialogSaveModule* _owner);
-static void __lambda226_ (DialogSaveModule* self,
+static void __lambda231_ (DialogSaveModule* self,
                    gint response_id);
 VALA_EXTERN GType xcls_standarderrordialog_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_StandardErrorDialog, g_object_unref)
@@ -414,7 +414,7 @@ VALA_EXTERN JsRenderNode* js_render_node_deepClone (JsRenderNode* self);
 VALA_EXTERN void js_render_js_render_save (JsRenderJsRender* self);
 VALA_EXTERN void project_project_addFile (ProjectProject* self,
                               JsRenderJsRender* pfile);
-static void ___lambda226__gtk_dialog_response (GtkDialog* _sender,
+static void ___lambda231__gtk_dialog_response (GtkDialog* _sender,
                                         gint response_id,
                                         gpointer self);
 VALA_EXTERN void dialog_save_module_showIt (DialogSaveModule* self,
@@ -489,7 +489,7 @@ dialog_save_module_singleton (void)
 }
 
 static void
-__lambda226_ (DialogSaveModule* self,
+__lambda231_ (DialogSaveModule* self,
               gint response_id)
 {
 	gchar* name = NULL;
@@ -818,12 +818,12 @@ __lambda226_ (DialogSaveModule* self,
 }
 
 static void
-___lambda226__gtk_dialog_response (GtkDialog* _sender,
+___lambda231__gtk_dialog_response (GtkDialog* _sender,
                                    gint response_id,
                                    gpointer self)
 {
 #line 45 "DialogSaveModule.vala"
-	__lambda226_ ((DialogSaveModule*) self, response_id);
+	__lambda231_ ((DialogSaveModule*) self, response_id);
 #line 828 "DialogSaveModule.vala.c"
 }
 
@@ -928,7 +928,7 @@ dialog_save_module_construct (GType object_type)
 #line 45 "DialogSaveModule.vala"
 	_tmp18_ = self->el;
 #line 45 "DialogSaveModule.vala"
-	g_signal_connect_object (_tmp18_, "response", (GCallback) ___lambda226__gtk_dialog_response, self, 0);
+	g_signal_connect_object (_tmp18_, "response", (GCallback) ___lambda231__gtk_dialog_response, self, 0);
 #line 23 "DialogSaveModule.vala"
 	_g_object_unref0 (child_2);
 #line 23 "DialogSaveModule.vala"
