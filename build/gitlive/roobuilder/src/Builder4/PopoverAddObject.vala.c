@@ -647,11 +647,11 @@ VALA_EXTERN GType js_render_node_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNode, g_object_unref)
 VALA_EXTERN JsRenderNode* palete_palete_fqnToNode (PaletePalete* self,
                                        const gchar* fqn);
-static gint __lambda98_ (Xcls_PopoverAddObject* self,
+static gint __lambda68_ (Xcls_PopoverAddObject* self,
                   GObject* a,
                   GObject* b);
 VALA_EXTERN gchar* js_render_node_fqn (JsRenderNode* self);
-static gint ___lambda98__gcompare_data_func (gconstpointer a,
+static gint ___lambda68__gcompare_data_func (gconstpointer a,
                                       gconstpointer b,
                                       gpointer self);
 VALA_EXTERN GType xcls_mainwindow_xcls_headerbar_get_type (void) G_GNUC_CONST ;
@@ -728,24 +728,24 @@ VALA_EXTERN GtkWidget* xcls_popoveraddobject_xcls_view_getWidgetAt (Xcls_Popover
                                                         gdouble y);
 static void xcls_popoveraddobject_xcls_view_finalize (GObject * obj);
 static GType xcls_popoveraddobject_xcls_view_get_type_once (void);
-static GdkContentProvider* __lambda92_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
+static GdkContentProvider* __lambda62_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
                                  gdouble x,
                                  gdouble y);
 VALA_EXTERN JsRenderNode* xcls_popoveraddobject_xcls_selmodel_getSelectedNode (Xcls_PopoverAddObjectXcls_selmodel* self);
 VALA_EXTERN gchar* js_render_node_toJsonString (JsRenderNode* self);
-static GdkContentProvider* ___lambda92__gtk_drag_source_prepare (GtkDragSource* _sender,
+static GdkContentProvider* ___lambda62__gtk_drag_source_prepare (GtkDragSource* _sender,
                                                           gdouble x,
                                                           gdouble y,
                                                           gpointer self);
-static void __lambda94_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
+static void __lambda64_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
                   GdkDrag* drag);
-static void ___lambda94__gtk_drag_source_drag_begin (GtkDragSource* _sender,
+static void ___lambda64__gtk_drag_source_drag_begin (GtkDragSource* _sender,
                                               GdkDrag* drag,
                                               gpointer self);
-static void __lambda95_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
+static void __lambda65_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
                   GdkDrag* drag,
                   gboolean delete_data);
-static void ___lambda95__gtk_drag_source_drag_end (GtkDragSource* _sender,
+static void ___lambda65__gtk_drag_source_drag_end (GtkDragSource* _sender,
                                             GdkDrag* drag,
                                             gboolean delete_data,
                                             gpointer self);
@@ -758,9 +758,9 @@ VALA_EXTERN JsRenderNode* xcls_popoveraddobject_xcls_selmodel_getNodeAt (Xcls_Po
                                                              guint row);
 static void xcls_popoveraddobject_xcls_selmodel_finalize (GObject * obj);
 static GType xcls_popoveraddobject_xcls_selmodel_get_type_once (void);
-static GListModel* __lambda93_ (Xcls_PopoverAddObjectXcls_model* self,
+static GListModel* __lambda63_ (Xcls_PopoverAddObjectXcls_model* self,
                          GObject* item);
-static GListModel* ___lambda93__gtk_tree_list_model_create_model_func (GObject* item,
+static GListModel* ___lambda63__gtk_tree_list_model_create_model_func (GObject* item,
                                                                 gpointer self);
 static void xcls_popoveraddobject_xcls_model_finalize (GObject * obj);
 static GType xcls_popoveraddobject_xcls_model_get_type_once (void);
@@ -771,15 +771,15 @@ VALA_EXTERN Xcls_PopoverAddObjectXcls_SignalListItemFactory8* xcls_popoveraddobj
                                                                                                                Xcls_PopoverAddObject* _owner);
 static void xcls_popoveraddobject_xcls_maincol_finalize (GObject * obj);
 static GType xcls_popoveraddobject_xcls_maincol_get_type_once (void);
-static void __lambda96_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
+static void __lambda66_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
                   GObject* listitem);
-static void ___lambda96__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda66__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
-static void __lambda97_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
+static void __lambda67_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
                   GObject* listitem);
 VALA_EXTERN gchar* js_render_node_get_iconFilename (JsRenderNode* self);
-static void ___lambda97__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda67__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                      GObject* object,
                                                      gpointer self);
 static void xcls_popoveraddobject_xcls_signallistitemfactory8_finalize (GObject * obj);
@@ -947,7 +947,7 @@ xcls_popoveraddobject_a_clear (Xcls_PopoverAddObject* self)
 }
 
 static gint
-__lambda98_ (Xcls_PopoverAddObject* self,
+__lambda68_ (Xcls_PopoverAddObject* self,
              GObject* a,
              GObject* b)
 {
@@ -979,12 +979,12 @@ __lambda98_ (Xcls_PopoverAddObject* self,
 }
 
 static gint
-___lambda98__gcompare_data_func (gconstpointer a,
+___lambda68__gcompare_data_func (gconstpointer a,
                                  gconstpointer b,
                                  gpointer self)
 {
 	gint result;
-	result = __lambda98_ ((Xcls_PopoverAddObject*) self, (GObject*) a, (GObject*) b);
+	result = __lambda68_ ((Xcls_PopoverAddObject*) self, (GObject*) a, (GObject*) b);
 #line 75 "PopoverAddObject.vala"
 	return result;
 #line 991 "PopoverAddObject.vala.c"
@@ -1120,7 +1120,7 @@ xcls_popoveraddobject_show (Xcls_PopoverAddObject* self,
 #line 75 "PopoverAddObject.vala"
 	_tmp21_ = m;
 #line 75 "PopoverAddObject.vala"
-	g_list_store_sort (_tmp21_, ___lambda98__gcompare_data_func, self);
+	g_list_store_sort (_tmp21_, ___lambda68__gcompare_data_func, self);
 #line 82 "PopoverAddObject.vala"
 	_tmp22_ = self->mainwindow;
 #line 82 "PopoverAddObject.vala"
@@ -2228,7 +2228,7 @@ xcls_popoveraddobject_xcls_dragsource4_get_instance_private (Xcls_PopoverAddObje
 }
 
 static GdkContentProvider*
-__lambda92_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
+__lambda62_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
              gdouble x,
              gdouble y)
 {
@@ -2347,20 +2347,20 @@ __lambda92_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
 }
 
 static GdkContentProvider*
-___lambda92__gtk_drag_source_prepare (GtkDragSource* _sender,
+___lambda62__gtk_drag_source_prepare (GtkDragSource* _sender,
                                       gdouble x,
                                       gdouble y,
                                       gpointer self)
 {
 	GdkContentProvider* result;
-	result = __lambda92_ ((Xcls_PopoverAddObjectXcls_DragSource4*) self, x, y);
+	result = __lambda62_ ((Xcls_PopoverAddObjectXcls_DragSource4*) self, x, y);
 #line 355 "PopoverAddObject.vala"
 	return result;
 #line 2360 "PopoverAddObject.vala.c"
 }
 
 static void
-__lambda94_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
+__lambda64_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
              GdkDrag* drag)
 {
 	JsRenderNode* data = NULL;
@@ -2458,17 +2458,17 @@ __lambda94_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
 }
 
 static void
-___lambda94__gtk_drag_source_drag_begin (GtkDragSource* _sender,
+___lambda64__gtk_drag_source_drag_begin (GtkDragSource* _sender,
                                          GdkDrag* drag,
                                          gpointer self)
 {
 #line 389 "PopoverAddObject.vala"
-	__lambda94_ ((Xcls_PopoverAddObjectXcls_DragSource4*) self, drag);
+	__lambda64_ ((Xcls_PopoverAddObjectXcls_DragSource4*) self, drag);
 #line 2468 "PopoverAddObject.vala.c"
 }
 
 static void
-__lambda95_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
+__lambda65_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
              GdkDrag* drag,
              gboolean delete_data)
 {
@@ -2481,13 +2481,13 @@ __lambda95_ (Xcls_PopoverAddObjectXcls_DragSource4* self,
 }
 
 static void
-___lambda95__gtk_drag_source_drag_end (GtkDragSource* _sender,
+___lambda65__gtk_drag_source_drag_end (GtkDragSource* _sender,
                                        GdkDrag* drag,
                                        gboolean delete_data,
                                        gpointer self)
 {
 #line 409 "PopoverAddObject.vala"
-	__lambda95_ ((Xcls_PopoverAddObjectXcls_DragSource4*) self, drag, delete_data);
+	__lambda65_ ((Xcls_PopoverAddObjectXcls_DragSource4*) self, drag, delete_data);
 #line 2492 "PopoverAddObject.vala.c"
 }
 
@@ -2523,15 +2523,15 @@ xcls_popoveraddobject_xcls_dragsource4_construct (GType object_type,
 #line 355 "PopoverAddObject.vala"
 	_tmp3_ = self->el;
 #line 355 "PopoverAddObject.vala"
-	g_signal_connect_object (_tmp3_, "prepare", (GCallback) ___lambda92__gtk_drag_source_prepare, self, 0);
+	g_signal_connect_object (_tmp3_, "prepare", (GCallback) ___lambda62__gtk_drag_source_prepare, self, 0);
 #line 389 "PopoverAddObject.vala"
 	_tmp4_ = self->el;
 #line 389 "PopoverAddObject.vala"
-	g_signal_connect_object (_tmp4_, "drag-begin", (GCallback) ___lambda94__gtk_drag_source_drag_begin, self, 0);
+	g_signal_connect_object (_tmp4_, "drag-begin", (GCallback) ___lambda64__gtk_drag_source_drag_begin, self, 0);
 #line 409 "PopoverAddObject.vala"
 	_tmp5_ = self->el;
 #line 409 "PopoverAddObject.vala"
-	g_signal_connect_object (_tmp5_, "drag-end", (GCallback) ___lambda95__gtk_drag_source_drag_end, self, 0);
+	g_signal_connect_object (_tmp5_, "drag-end", (GCallback) ___lambda65__gtk_drag_source_drag_end, self, 0);
 #line 344 "PopoverAddObject.vala"
 	return self;
 #line 2538 "PopoverAddObject.vala.c"
@@ -2831,7 +2831,7 @@ xcls_popoveraddobject_xcls_model_get_instance_private (Xcls_PopoverAddObjectXcls
 }
 
 static GListModel*
-__lambda93_ (Xcls_PopoverAddObjectXcls_model* self,
+__lambda63_ (Xcls_PopoverAddObjectXcls_model* self,
              GObject* item)
 {
 	GListStore* _tmp0_;
@@ -2849,11 +2849,11 @@ __lambda93_ (Xcls_PopoverAddObjectXcls_model* self,
 }
 
 static GListModel*
-___lambda93__gtk_tree_list_model_create_model_func (GObject* item,
+___lambda63__gtk_tree_list_model_create_model_func (GObject* item,
                                                     gpointer self)
 {
 	GListModel* result;
-	result = __lambda93_ ((Xcls_PopoverAddObjectXcls_model*) self, item);
+	result = __lambda63_ ((Xcls_PopoverAddObjectXcls_model*) self, item);
 #line 474 "PopoverAddObject.vala"
 	return result;
 #line 2860 "PopoverAddObject.vala.c"
@@ -2888,7 +2888,7 @@ xcls_popoveraddobject_xcls_model_construct (GType object_type,
 #line 474 "PopoverAddObject.vala"
 	_tmp3_ = g_list_store_new (JS_RENDER_TYPE_NODE);
 #line 474 "PopoverAddObject.vala"
-	_tmp4_ = gtk_tree_list_model_new ((GListModel*) _tmp3_, FALSE, TRUE, ___lambda93__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
+	_tmp4_ = gtk_tree_list_model_new ((GListModel*) _tmp3_, FALSE, TRUE, ___lambda63__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
 #line 474 "PopoverAddObject.vala"
 	_g_object_unref0 (self->el);
 #line 474 "PopoverAddObject.vala"
@@ -3112,7 +3112,7 @@ xcls_popoveraddobject_xcls_signallistitemfactory8_get_instance_private (Xcls_Pop
 }
 
 static void
-__lambda96_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
+__lambda66_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
              GObject* listitem)
 {
 	GtkBox* hbox = NULL;
@@ -3163,17 +3163,17 @@ __lambda96_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
 }
 
 static void
-___lambda96__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda66__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 541 "PopoverAddObject.vala"
-	__lambda96_ ((Xcls_PopoverAddObjectXcls_SignalListItemFactory8*) self, object);
+	__lambda66_ ((Xcls_PopoverAddObjectXcls_SignalListItemFactory8*) self, object);
 #line 3173 "PopoverAddObject.vala.c"
 }
 
 static void
-__lambda97_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
+__lambda67_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
              GObject* listitem)
 {
 	GtkBox* hbox = NULL;
@@ -3275,12 +3275,12 @@ __lambda97_ (Xcls_PopoverAddObjectXcls_SignalListItemFactory8* self,
 }
 
 static void
-___lambda97__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda67__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                 GObject* object,
                                                 gpointer self)
 {
 #line 561 "PopoverAddObject.vala"
-	__lambda97_ ((Xcls_PopoverAddObjectXcls_SignalListItemFactory8*) self, object);
+	__lambda67_ ((Xcls_PopoverAddObjectXcls_SignalListItemFactory8*) self, object);
 #line 3285 "PopoverAddObject.vala.c"
 }
 
@@ -3310,11 +3310,11 @@ xcls_popoveraddobject_xcls_signallistitemfactory8_construct (GType object_type,
 #line 541 "PopoverAddObject.vala"
 	_tmp2_ = self->el;
 #line 541 "PopoverAddObject.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda96__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda66__gtk_signal_list_item_factory_setup, self, 0);
 #line 561 "PopoverAddObject.vala"
 	_tmp3_ = self->el;
 #line 561 "PopoverAddObject.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda97__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda67__gtk_signal_list_item_factory_bind, self, 0);
 #line 531 "PopoverAddObject.vala"
 	return self;
 #line 3321 "PopoverAddObject.vala.c"

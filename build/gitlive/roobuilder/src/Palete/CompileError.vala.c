@@ -125,11 +125,11 @@ VALA_EXTERN PaleteCompileError* palete_compile_error_construct_new_file (GType o
 static Block16Data* block16_data_ref (Block16Data* _data16_);
 static void block16_data_unref (void * _userdata_);
 VALA_EXTERN gchar* js_render_js_render_get_relpath (JsRenderJsRender* self);
-static void __lambda37_ (Block16Data* _data16_,
+static void __lambda86_ (Block16Data* _data16_,
                   JsonObject* obja,
                   const gchar* line,
                   JsonNode* nodea);
-static void ___lambda37__json_object_foreach (JsonObject* object,
+static void ___lambda86__json_object_foreach (JsonObject* object,
                                        const gchar* member_name,
                                        JsonNode* member_node,
                                        gpointer self);
@@ -140,13 +140,13 @@ VALA_EXTERN void palete_compile_error_jsonToListStore (ProjectProject* project,
                                            GListStore* ls);
 static Block17Data* block17_data_ref (Block17Data* _data17_);
 static void block17_data_unref (void * _userdata_);
-static void __lambda38_ (Block17Data* _data17_,
+static void __lambda87_ (Block17Data* _data17_,
                   JsonObject* obj,
                   const gchar* file,
                   JsonNode* node);
 VALA_EXTERN JsRenderJsRender* project_project_getByPath (ProjectProject* self,
                                              const gchar* path);
-static void ___lambda38__json_object_foreach (JsonObject* object,
+static void ___lambda87__json_object_foreach (JsonObject* object,
                                        const gchar* member_name,
                                        JsonNode* member_node,
                                        gpointer self);
@@ -291,7 +291,7 @@ _json_array_ref0 (gpointer self)
 }
 
 static void
-__lambda37_ (Block16Data* _data16_,
+__lambda86_ (Block16Data* _data16_,
              JsonObject* obja,
              const gchar* line,
              JsonNode* nodea)
@@ -422,13 +422,13 @@ __lambda37_ (Block16Data* _data16_,
 }
 
 static void
-___lambda37__json_object_foreach (JsonObject* object,
+___lambda86__json_object_foreach (JsonObject* object,
                                   const gchar* member_name,
                                   JsonNode* member_node,
                                   gpointer self)
 {
 #line 45 "CompileError.vala"
-	__lambda37_ (self, object, member_name, member_node);
+	__lambda86_ (self, object, member_name, member_node);
 #line 433 "CompileError.vala.c"
 }
 
@@ -511,7 +511,7 @@ palete_compile_error_construct_new_file (GType object_type,
 #line 43 "CompileError.vala"
 	self->lines = _tmp12_;
 #line 45 "CompileError.vala"
-	json_object_foreach_member (_data16_->jlines, ___lambda37__json_object_foreach, _data16_);
+	json_object_foreach_member (_data16_->jlines, ___lambda86__json_object_foreach, _data16_);
 #line 37 "CompileError.vala"
 	block16_data_unref (_data16_);
 #line 37 "CompileError.vala"
@@ -560,7 +560,7 @@ block17_data_unref (void * _userdata_)
 }
 
 static void
-__lambda38_ (Block17Data* _data17_,
+__lambda87_ (Block17Data* _data17_,
              JsonObject* obj,
              const gchar* file,
              JsonNode* node)
@@ -609,13 +609,13 @@ __lambda38_ (Block17Data* _data17_,
 }
 
 static void
-___lambda38__json_object_foreach (JsonObject* object,
+___lambda87__json_object_foreach (JsonObject* object,
                                   const gchar* member_name,
                                   JsonNode* member_node,
                                   gpointer self)
 {
 #line 86 "CompileError.vala"
-	__lambda38_ (self, object, member_name, member_node);
+	__lambda87_ (self, object, member_name, member_node);
 #line 620 "CompileError.vala.c"
 }
 
@@ -653,7 +653,7 @@ palete_compile_error_jsonToListStore (ProjectProject* project,
 #line 85 "CompileError.vala"
 	g_list_store_remove_all (_data17_->ls);
 #line 86 "CompileError.vala"
-	json_object_foreach_member (_data17_->tree, ___lambda38__json_object_foreach, _data17_);
+	json_object_foreach_member (_data17_->tree, ___lambda87__json_object_foreach, _data17_);
 #line 83 "CompileError.vala"
 	block17_data_unref (_data17_);
 #line 83 "CompileError.vala"

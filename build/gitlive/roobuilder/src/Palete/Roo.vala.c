@@ -311,11 +311,11 @@ static Block18Data* block18_data_ref (Block18Data* _data18_);
 static void block18_data_unref (void * _userdata_);
 VALA_EXTERN gchar* builder_application_configDirectory (void);
 static JsonNode* _vala_JsonNode_copy (JsonNode* self);
-static void __lambda18_ (Block18Data* _data18_,
+static void __lambda94_ (Block18Data* _data18_,
                   JsonObject* o,
                   const gchar* key,
                   JsonNode* value);
-static void ___lambda18__json_object_foreach (JsonObject* object,
+static void ___lambda94__json_object_foreach (JsonObject* object,
                                        const gchar* member_name,
                                        JsonNode* member_node,
                                        gpointer self);
@@ -806,7 +806,7 @@ __vala_JsonNode_copy0 (gpointer self)
 }
 
 static void
-__lambda18_ (Block18Data* _data18_,
+__lambda94_ (Block18Data* _data18_,
              JsonObject* o,
              const gchar* key,
              JsonNode* value)
@@ -1240,13 +1240,13 @@ __lambda18_ (Block18Data* _data18_,
 }
 
 static void
-___lambda18__json_object_foreach (JsonObject* object,
+___lambda94__json_object_foreach (JsonObject* object,
                                   const gchar* member_name,
                                   JsonNode* member_node,
                                   gpointer self)
 {
 #line 104 "Roo.vala"
-	__lambda18_ (self, object, member_name, member_node);
+	__lambda94_ (self, object, member_name, member_node);
 #line 1251 "Roo.vala.c"
 }
 
@@ -1458,7 +1458,7 @@ palete_roo_real_load (PaletePalete* base)
 #line 104 "Roo.vala"
 	_tmp24_ = clist;
 #line 104 "Roo.vala"
-	json_object_foreach_member (_tmp24_, ___lambda18__json_object_foreach, _data18_);
+	json_object_foreach_member (_tmp24_, ___lambda94__json_object_foreach, _data18_);
 #line 1463 "Roo.vala.c"
 	{
 		GeeIterator* _cls_it = NULL;

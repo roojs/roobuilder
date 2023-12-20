@@ -171,19 +171,19 @@ VALA_EXTERN GeeHashMap* js_render_node_get_props (JsRenderNode* self);
 VALA_EXTERN void js_render_node_to_js_iterChildren (JsRenderNodeToJs* self);
 VALA_EXTERN gchar* js_render_node_to_js_mungeOut (JsRenderNodeToJs* self);
 VALA_EXTERN GeeArrayList* js_render_node_to_js_orderedPropKeys (JsRenderNodeToJs* self);
-static gint __lambda21_ (JsRenderNodeToJs* self,
-                  const gchar* a,
-                  const gchar* b);
-static gint ___lambda21__gcompare_data_func (gconstpointer a,
-                                      gconstpointer b,
-                                      gpointer self);
+static gint __lambda133_ (JsRenderNodeToJs* self,
+                   const gchar* a,
+                   const gchar* b);
+static gint ___lambda133__gcompare_data_func (gconstpointer a,
+                                       gconstpointer b,
+                                       gpointer self);
 VALA_EXTERN GeeArrayList* js_render_node_to_js_orderedListenerKeys (JsRenderNodeToJs* self);
-static gint __lambda22_ (JsRenderNodeToJs* self,
-                  const gchar* a,
-                  const gchar* b);
-static gint ___lambda22__gcompare_data_func (gconstpointer a,
-                                      gconstpointer b,
-                                      gpointer self);
+static gint __lambda134_ (JsRenderNodeToJs* self,
+                   const gchar* a,
+                   const gchar* b);
+static gint ___lambda134__gcompare_data_func (gconstpointer a,
+                                       gconstpointer b,
+                                       gpointer self);
 VALA_EXTERN void js_render_node_setNodeLine (JsRenderNode* self,
                                  gint line,
                                  JsRenderNode* node);
@@ -204,12 +204,12 @@ VALA_EXTERN gboolean js_render_node_hasChildren (JsRenderNode* self);
 VALA_EXTERN GeeArrayList* js_render_node_readItems (JsRenderNode* self);
 VALA_EXTERN gchar* js_render_node_get (JsRenderNode* self,
                            const gchar* key);
-static gint __lambda19_ (JsRenderNodeToJs* self,
-                  const gchar* a,
-                  const gchar* b);
-static gint ___lambda19__gcompare_data_func (gconstpointer a,
-                                      gconstpointer b,
-                                      gpointer self);
+static gint __lambda131_ (JsRenderNodeToJs* self,
+                   const gchar* a,
+                   const gchar* b);
+static gint ___lambda131__gcompare_data_func (gconstpointer a,
+                                       gconstpointer b,
+                                       gpointer self);
 VALA_EXTERN gboolean js_render_node_has (JsRenderNode* self,
                              const gchar* key);
 VALA_EXTERN JsRenderNodeProp* js_render_node_get_prop (JsRenderNode* self,
@@ -232,12 +232,12 @@ VALA_EXTERN gboolean js_render_langclass_isNumber (JsRenderLang_Class* self,
 VALA_EXTERN gboolean js_render_langclass_isBoolean (JsRenderLang_Class* self,
                                         const gchar* str);
 VALA_EXTERN GeeHashMap* js_render_node_get_listeners (JsRenderNode* self);
-static gint __lambda20_ (JsRenderNodeToJs* self,
-                  const gchar* a,
-                  const gchar* b);
-static gint ___lambda20__gcompare_data_func (gconstpointer a,
-                                      gconstpointer b,
-                                      gpointer self);
+static gint __lambda132_ (JsRenderNodeToJs* self,
+                   const gchar* a,
+                   const gchar* b);
+static gint ___lambda132__gcompare_data_func (gconstpointer a,
+                                       gconstpointer b,
+                                       gpointer self);
 VALA_EXTERN void js_render_node_to_js_xIncludeToString (JsRenderNodeToJs* self);
 static void js_render_node_to_js_finalize (GObject * obj);
 static GType js_render_node_to_js_get_type_once (void);
@@ -501,9 +501,9 @@ e)
 
 */
 static gint
-__lambda21_ (JsRenderNodeToJs* self,
-             const gchar* a,
-             const gchar* b)
+__lambda133_ (JsRenderNodeToJs* self,
+              const gchar* a,
+              const gchar* b)
 {
 	gint result;
 #line 140 "NodeToJs.vala"
@@ -514,12 +514,12 @@ __lambda21_ (JsRenderNodeToJs* self,
 }
 
 static gint
-___lambda21__gcompare_data_func (gconstpointer a,
-                                 gconstpointer b,
-                                 gpointer self)
+___lambda133__gcompare_data_func (gconstpointer a,
+                                  gconstpointer b,
+                                  gpointer self)
 {
 	gint result;
-	result = __lambda21_ ((JsRenderNodeToJs*) self, (const gchar*) a, (const gchar*) b);
+	result = __lambda133_ ((JsRenderNodeToJs*) self, (const gchar*) a, (const gchar*) b);
 #line 139 "NodeToJs.vala"
 	return result;
 #line 526 "NodeToJs.vala.c"
@@ -578,7 +578,7 @@ js_render_node_to_js_orderedPropKeys (JsRenderNodeToJs* self)
 #line 139 "NodeToJs.vala"
 	_tmp8_ = ret;
 #line 139 "NodeToJs.vala"
-	gee_list_sort ((GeeList*) _tmp8_, ___lambda21__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp8_, ___lambda133__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 144 "NodeToJs.vala"
 	result = ret;
 #line 144 "NodeToJs.vala"
@@ -589,9 +589,9 @@ js_render_node_to_js_orderedPropKeys (JsRenderNodeToJs* self)
 }
 
 static gint
-__lambda22_ (JsRenderNodeToJs* self,
-             const gchar* a,
-             const gchar* b)
+__lambda134_ (JsRenderNodeToJs* self,
+              const gchar* a,
+              const gchar* b)
 {
 	gint result;
 #line 155 "NodeToJs.vala"
@@ -602,12 +602,12 @@ __lambda22_ (JsRenderNodeToJs* self,
 }
 
 static gint
-___lambda22__gcompare_data_func (gconstpointer a,
-                                 gconstpointer b,
-                                 gpointer self)
+___lambda134__gcompare_data_func (gconstpointer a,
+                                  gconstpointer b,
+                                  gpointer self)
 {
 	gint result;
-	result = __lambda22_ ((JsRenderNodeToJs*) self, (const gchar*) a, (const gchar*) b);
+	result = __lambda134_ ((JsRenderNodeToJs*) self, (const gchar*) a, (const gchar*) b);
 #line 154 "NodeToJs.vala"
 	return result;
 #line 614 "NodeToJs.vala.c"
@@ -666,7 +666,7 @@ js_render_node_to_js_orderedListenerKeys (JsRenderNodeToJs* self)
 #line 154 "NodeToJs.vala"
 	_tmp8_ = ret;
 #line 154 "NodeToJs.vala"
-	gee_list_sort ((GeeList*) _tmp8_, ___lambda22__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp8_, ___lambda134__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 159 "NodeToJs.vala"
 	result = ret;
 #line 159 "NodeToJs.vala"
@@ -2417,9 +2417,9 @@ js_render_node_to_js_checkChildren (JsRenderNodeToJs* self)
 }
 
 static gint
-__lambda19_ (JsRenderNodeToJs* self,
-             const gchar* a,
-             const gchar* b)
+__lambda131_ (JsRenderNodeToJs* self,
+              const gchar* a,
+              const gchar* b)
 {
 	gint result;
 #line 478 "NodeToJs.vala"
@@ -2430,12 +2430,12 @@ __lambda19_ (JsRenderNodeToJs* self,
 }
 
 static gint
-___lambda19__gcompare_data_func (gconstpointer a,
-                                 gconstpointer b,
-                                 gpointer self)
+___lambda131__gcompare_data_func (gconstpointer a,
+                                  gconstpointer b,
+                                  gpointer self)
 {
 	gint result;
-	result = __lambda19_ ((JsRenderNodeToJs*) self, (const gchar*) a, (const gchar*) b);
+	result = __lambda131_ ((JsRenderNodeToJs*) self, (const gchar*) a, (const gchar*) b);
 #line 477 "NodeToJs.vala"
 	return result;
 #line 2442 "NodeToJs.vala.c"
@@ -2908,7 +2908,7 @@ js_render_node_to_js_readProps (JsRenderNodeToJs* self)
 #line 477 "NodeToJs.vala"
 	_tmp15_ = keys;
 #line 477 "NodeToJs.vala"
-	gee_list_sort ((GeeList*) _tmp15_, ___lambda19__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp15_, ___lambda131__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 483 "NodeToJs.vala"
 	_tmp16_ = self->priv->node;
 #line 483 "NodeToJs.vala"
@@ -4017,9 +4017,9 @@ js_render_node_to_js_readProps (JsRenderNodeToJs* self)
 }
 
 static gint
-__lambda20_ (JsRenderNodeToJs* self,
-             const gchar* a,
-             const gchar* b)
+__lambda132_ (JsRenderNodeToJs* self,
+              const gchar* a,
+              const gchar* b)
 {
 	gint result;
 #line 671 "NodeToJs.vala"
@@ -4030,12 +4030,12 @@ __lambda20_ (JsRenderNodeToJs* self,
 }
 
 static gint
-___lambda20__gcompare_data_func (gconstpointer a,
-                                 gconstpointer b,
-                                 gpointer self)
+___lambda132__gcompare_data_func (gconstpointer a,
+                                  gconstpointer b,
+                                  gpointer self)
 {
 	gint result;
-	result = __lambda20_ ((JsRenderNodeToJs*) self, (const gchar*) a, (const gchar*) b);
+	result = __lambda132_ ((JsRenderNodeToJs*) self, (const gchar*) a, (const gchar*) b);
 #line 670 "NodeToJs.vala"
 	return result;
 #line 4042 "NodeToJs.vala.c"
@@ -4136,7 +4136,7 @@ js_render_node_to_js_readListeners (JsRenderNodeToJs* self)
 #line 670 "NodeToJs.vala"
 	_tmp19_ = keys;
 #line 670 "NodeToJs.vala"
-	gee_list_sort ((GeeList*) _tmp19_, ___lambda20__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp19_, ___lambda132__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 4141 "NodeToJs.vala.c"
 	{
 		gint i = 0;

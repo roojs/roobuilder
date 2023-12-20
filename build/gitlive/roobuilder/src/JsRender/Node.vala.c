@@ -245,16 +245,16 @@ VALA_EXTERN void js_render_node_setLine (JsRenderNode* self,
                              const gchar* type,
                              const gchar* prop);
 VALA_EXTERN void js_render_node_sortLines (JsRenderNode* self);
-static gint __lambda7_ (JsRenderNode* self,
+static gint __lambda4_ (JsRenderNode* self,
                  gint a,
                  gint b);
-static gint ___lambda7__gcompare_data_func (gconstpointer a,
+static gint ___lambda4__gcompare_data_func (gconstpointer a,
                                      gconstpointer b,
                                      gpointer self);
-static gint __lambda8_ (JsRenderNode* self,
+static gint __lambda5_ (JsRenderNode* self,
                  gint a,
                  gint b);
-static gint ___lambda8__gcompare_data_func (gconstpointer a,
+static gint ___lambda5__gcompare_data_func (gconstpointer a,
                                      gconstpointer b,
                                      gpointer self);
 VALA_EXTERN JsRenderNode* js_render_node_lineToNode (JsRenderNode* self,
@@ -315,22 +315,22 @@ VALA_EXTERN void js_render_node_loadFromJson (JsRenderNode* self,
                                   gint version);
 static Block15Data* block15_data_ref (Block15Data* _data15_);
 static void block15_data_unref (void * _userdata_);
-static void __lambda10_ (Block15Data* _data15_,
-                  JsonObject* o,
-                  const gchar* key,
-                  JsonNode* value);
-static void ___lambda11_ (Block15Data* _data15_,
-                   JsonArray* are,
-                   guint ix,
-                   JsonNode* el);
-static void ____lambda11__json_array_foreach (JsonArray* array,
-                                       guint index_,
-                                       JsonNode* element_node,
-                                       gpointer self);
-static void ___lambda12_ (JsRenderNode* self,
-                   JsonObject* lio,
-                   const gchar* li_key,
-                   JsonNode* li_value);
+static void __lambda7_ (Block15Data* _data15_,
+                 JsonObject* o,
+                 const gchar* key,
+                 JsonNode* value);
+static void ___lambda8_ (Block15Data* _data15_,
+                  JsonArray* are,
+                  guint ix,
+                  JsonNode* el);
+static void ____lambda8__json_array_foreach (JsonArray* array,
+                                      guint index_,
+                                      JsonNode* element_node,
+                                      gpointer self);
+static void ___lambda9_ (JsRenderNode* self,
+                  JsonObject* lio,
+                  const gchar* li_key,
+                  JsonNode* li_value);
 VALA_EXTERN gchar* js_render_node_jsonNodeAsString (JsRenderNode* self,
                                         JsonNode* node);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_listener (const gchar* name,
@@ -338,10 +338,10 @@ VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_listener (const gchar* nam
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_listener (GType object_type,
                                                           const gchar* name,
                                                           const gchar* val);
-static void ____lambda12__json_object_foreach (JsonObject* object,
-                                        const gchar* member_name,
-                                        JsonNode* member_node,
-                                        gpointer self);
+static void ____lambda9__json_object_foreach (JsonObject* object,
+                                       const gchar* member_name,
+                                       JsonNode* member_node,
+                                       gpointer self);
 VALA_EXTERN gchar* js_render_node_upgradeKey (JsRenderNode* self,
                                   const gchar* key,
                                   const gchar* val);
@@ -350,10 +350,10 @@ VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_from_json (const gchar* ke
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_from_json (GType object_type,
                                                            const gchar* key,
                                                            const gchar* inval);
-static void ___lambda10__json_object_foreach (JsonObject* object,
-                                       const gchar* member_name,
-                                       JsonNode* member_node,
-                                       gpointer self);
+static void ___lambda7__json_object_foreach (JsonObject* object,
+                                      const gchar* member_name,
+                                      JsonNode* member_node,
+                                      gpointer self);
 VALA_EXTERN JsRenderNode* js_render_node_deepClone (JsRenderNode* self);
 VALA_EXTERN JsonObject* js_render_node_toJsonObject (JsRenderNode* self);
 VALA_EXTERN gchar* js_render_node_toJsonString (JsRenderNode* self);
@@ -376,19 +376,19 @@ VALA_EXTERN gboolean js_render_langclass_isNumber (JsRenderLang_Class* self,
 VALA_EXTERN gchar* js_render_node_nodeTip (JsRenderNode* self);
 VALA_EXTERN gchar* js_render_node_nodeTitle (JsRenderNode* self,
                                  gboolean for_tip);
-static gint __lambda13_ (JsRenderNode* self,
+static gint __lambda10_ (JsRenderNode* self,
                   const gchar* a,
                   const gchar* b);
-static gint ___lambda13__gcompare_data_func (gconstpointer a,
+static gint ___lambda10__gcompare_data_func (gconstpointer a,
                                       gconstpointer b,
                                       gpointer self);
 VALA_EXTERN const gchar* js_render_node_prop_get_name (JsRenderNodeProp* self);
 VALA_EXTERN GType js_render_node_prop_type_get_type (void) G_GNUC_CONST ;
 VALA_EXTERN JsRenderNodePropType js_render_node_prop_get_ptype (JsRenderNodeProp* self);
-static gint __lambda14_ (JsRenderNode* self,
+static gint __lambda11_ (JsRenderNode* self,
                   const gchar* a,
                   const gchar* b);
-static gint ___lambda14__gcompare_data_func (gconstpointer a,
+static gint ___lambda11__gcompare_data_func (gconstpointer a,
                                       gconstpointer b,
                                       gpointer self);
 static void _vala_array_add16 (gchar** * array,
@@ -494,11 +494,11 @@ VALA_EXTERN void js_render_node_set_updated_count (JsRenderNode* self,
 VALA_EXTERN gboolean js_render_node_has_prop_key (JsRenderNode* self,
                                       JsRenderNodeProp* prop);
 VALA_EXTERN gchar* js_render_node_prop_to_index_key (JsRenderNodeProp* self);
-static gint __lambda9_ (JsRenderNode* self,
+static gint __lambda6_ (JsRenderNode* self,
                  GObject* a,
                  GObject* b);
 VALA_EXTERN gchar* js_render_node_prop_to_sort_key (JsRenderNodeProp* self);
-static gint ___lambda9__gcompare_data_func (gconstpointer a,
+static gint ___lambda6__gcompare_data_func (gconstpointer a,
                                      gconstpointer b,
                                      gpointer self);
 VALA_EXTERN void js_render_node_set_nodeTitleProp (JsRenderNode* self,
@@ -764,7 +764,7 @@ js_render_node_setLine (JsRenderNode* self,
 }
 
 static gint
-__lambda7_ (JsRenderNode* self,
+__lambda4_ (JsRenderNode* self,
             gint a,
             gint b)
 {
@@ -777,19 +777,19 @@ __lambda7_ (JsRenderNode* self,
 }
 
 static gint
-___lambda7__gcompare_data_func (gconstpointer a,
+___lambda4__gcompare_data_func (gconstpointer a,
                                 gconstpointer b,
                                 gpointer self)
 {
 	gint result;
-	result = __lambda7_ ((JsRenderNode*) self, (gint) ((gintptr) a), (gint) ((gintptr) b));
+	result = __lambda4_ ((JsRenderNode*) self, (gint) ((gintptr) a), (gint) ((gintptr) b));
 #line 176 "Node.vala"
 	return result;
 #line 789 "Node.vala.c"
 }
 
 static gint
-__lambda8_ (JsRenderNode* self,
+__lambda5_ (JsRenderNode* self,
             gint a,
             gint b)
 {
@@ -802,12 +802,12 @@ __lambda8_ (JsRenderNode* self,
 }
 
 static gint
-___lambda8__gcompare_data_func (gconstpointer a,
+___lambda5__gcompare_data_func (gconstpointer a,
                                 gconstpointer b,
                                 gpointer self)
 {
 	gint result;
-	result = __lambda8_ ((JsRenderNode*) self, (gint) ((gintptr) a), (gint) ((gintptr) b));
+	result = __lambda5_ ((JsRenderNode*) self, (gint) ((gintptr) a), (gint) ((gintptr) b));
 #line 179 "Node.vala"
 	return result;
 #line 814 "Node.vala.c"
@@ -821,11 +821,11 @@ js_render_node_sortLines (JsRenderNode* self)
 #line 176 "Node.vala"
 	_tmp0_ = self->lines;
 #line 176 "Node.vala"
-	gee_list_sort ((GeeList*) _tmp0_, ___lambda7__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp0_, ___lambda4__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 179 "Node.vala"
 	_tmp1_ = self->node_lines;
 #line 179 "Node.vala"
-	gee_list_sort ((GeeList*) _tmp1_, ___lambda8__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp1_, ___lambda5__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 830 "Node.vala.c"
 }
 
@@ -2481,10 +2481,10 @@ _json_array_ref0 (gpointer self)
 }
 
 static void
-___lambda11_ (Block15Data* _data15_,
-              JsonArray* are,
-              guint ix,
-              JsonNode* el)
+___lambda8_ (Block15Data* _data15_,
+             JsonArray* are,
+             guint ix,
+             JsonNode* el)
 {
 	JsRenderNode* self;
 	JsRenderNode* node = NULL;
@@ -2523,21 +2523,21 @@ ___lambda11_ (Block15Data* _data15_,
 }
 
 static void
-____lambda11__json_array_foreach (JsonArray* array,
-                                  guint index_,
-                                  JsonNode* element_node,
-                                  gpointer self)
+____lambda8__json_array_foreach (JsonArray* array,
+                                 guint index_,
+                                 JsonNode* element_node,
+                                 gpointer self)
 {
 #line 458 "Node.vala"
-	___lambda11_ (self, array, index_, element_node);
+	___lambda8_ (self, array, index_, element_node);
 #line 2534 "Node.vala.c"
 }
 
 static void
-___lambda12_ (JsRenderNode* self,
-              JsonObject* lio,
-              const gchar* li_key,
-              JsonNode* li_value)
+___lambda9_ (JsRenderNode* self,
+             JsonObject* lio,
+             const gchar* li_key,
+             JsonNode* li_value)
 {
 	gchar* _tmp0_;
 	gchar* _tmp1_;
@@ -2561,21 +2561,21 @@ ___lambda12_ (JsRenderNode* self,
 }
 
 static void
-____lambda12__json_object_foreach (JsonObject* object,
-                                   const gchar* member_name,
-                                   JsonNode* member_node,
-                                   gpointer self)
+____lambda9__json_object_foreach (JsonObject* object,
+                                  const gchar* member_name,
+                                  JsonNode* member_node,
+                                  gpointer self)
 {
 #line 469 "Node.vala"
-	___lambda12_ ((JsRenderNode*) self, object, member_name, member_node);
+	___lambda9_ ((JsRenderNode*) self, object, member_name, member_node);
 #line 2572 "Node.vala.c"
 }
 
 static void
-__lambda10_ (Block15Data* _data15_,
-             JsonObject* o,
-             const gchar* key,
-             JsonNode* value)
+__lambda7_ (Block15Data* _data15_,
+            JsonObject* o,
+            const gchar* key,
+            JsonNode* value)
 {
 	JsRenderNode* self;
 	gchar* rkey = NULL;
@@ -2605,7 +2605,7 @@ __lambda10_ (Block15Data* _data15_,
 #line 458 "Node.vala"
 		_tmp2_ = ar;
 #line 458 "Node.vala"
-		json_array_foreach_element (_tmp2_, ____lambda11__json_array_foreach, _data15_);
+		json_array_foreach_element (_tmp2_, ____lambda8__json_array_foreach, _data15_);
 #line 465 "Node.vala"
 		_json_array_unref0 (ar);
 #line 465 "Node.vala"
@@ -2628,7 +2628,7 @@ __lambda10_ (Block15Data* _data15_,
 #line 469 "Node.vala"
 		_tmp5_ = li;
 #line 469 "Node.vala"
-		json_object_foreach_member (_tmp5_, ____lambda12__json_object_foreach, self);
+		json_object_foreach_member (_tmp5_, ____lambda9__json_object_foreach, self);
 #line 473 "Node.vala"
 		_json_object_unref0 (li);
 #line 473 "Node.vala"
@@ -2680,13 +2680,13 @@ __lambda10_ (Block15Data* _data15_,
 }
 
 static void
-___lambda10__json_object_foreach (JsonObject* object,
-                                  const gchar* member_name,
-                                  JsonNode* member_node,
-                                  gpointer self)
+___lambda7__json_object_foreach (JsonObject* object,
+                                 const gchar* member_name,
+                                 JsonNode* member_node,
+                                 gpointer self)
 {
 #line 454 "Node.vala"
-	__lambda10_ (self, object, member_name, member_node);
+	__lambda7_ (self, object, member_name, member_node);
 #line 2691 "Node.vala.c"
 }
 
@@ -2705,7 +2705,7 @@ js_render_node_loadFromJson (JsRenderNode* self,
 #line 452 "Node.vala"
 	_data15_->version = version;
 #line 454 "Node.vala"
-	json_object_foreach_member (obj, ___lambda10__json_object_foreach, _data15_);
+	json_object_foreach_member (obj, ___lambda7__json_object_foreach, _data15_);
 #line 452 "Node.vala"
 	block15_data_unref (_data15_);
 #line 452 "Node.vala"
@@ -4205,7 +4205,7 @@ js_render_node_jsonObjectsetMember (JsRenderNode* self,
 }
 
 static gint
-__lambda13_ (JsRenderNode* self,
+__lambda10_ (JsRenderNode* self,
              const gchar* a,
              const gchar* b)
 {
@@ -4218,19 +4218,19 @@ __lambda13_ (JsRenderNode* self,
 }
 
 static gint
-___lambda13__gcompare_data_func (gconstpointer a,
+___lambda10__gcompare_data_func (gconstpointer a,
                                  gconstpointer b,
                                  gpointer self)
 {
 	gint result;
-	result = __lambda13_ ((JsRenderNode*) self, (const gchar*) a, (const gchar*) b);
+	result = __lambda10_ ((JsRenderNode*) self, (const gchar*) a, (const gchar*) b);
 #line 690 "Node.vala"
 	return result;
 #line 4230 "Node.vala.c"
 }
 
 static gint
-__lambda14_ (JsRenderNode* self,
+__lambda11_ (JsRenderNode* self,
              const gchar* a,
              const gchar* b)
 {
@@ -4243,12 +4243,12 @@ __lambda14_ (JsRenderNode* self,
 }
 
 static gint
-___lambda14__gcompare_data_func (gconstpointer a,
+___lambda11__gcompare_data_func (gconstpointer a,
                                  gconstpointer b,
                                  gpointer self)
 {
 	gint result;
-	result = __lambda14_ ((JsRenderNode*) self, (const gchar*) a, (const gchar*) b);
+	result = __lambda11_ ((JsRenderNode*) self, (const gchar*) a, (const gchar*) b);
 #line 749 "Node.vala"
 	return result;
 #line 4255 "Node.vala.c"
@@ -4391,7 +4391,7 @@ js_render_node_nodeTip (JsRenderNode* self)
 #line 690 "Node.vala"
 	_tmp20_ = keys;
 #line 690 "Node.vala"
-	gee_list_sort ((GeeList*) _tmp20_, ___lambda13__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp20_, ___lambda10__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 4396 "Node.vala.c"
 	{
 		GeeArrayList* _pk_list = NULL;
@@ -4995,7 +4995,7 @@ js_render_node_nodeTip (JsRenderNode* self)
 #line 749 "Node.vala"
 	_tmp141_ = keys;
 #line 749 "Node.vala"
-	gee_list_sort ((GeeList*) _tmp141_, ___lambda14__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp141_, ___lambda11__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 5000 "Node.vala.c"
 	{
 		GeeArrayList* _pk_list = NULL;
@@ -7155,7 +7155,7 @@ js_render_node_add_prop (JsRenderNode* self,
 }
 
 static gint
-__lambda9_ (JsRenderNode* self,
+__lambda6_ (JsRenderNode* self,
             GObject* a,
             GObject* b)
 {
@@ -7187,12 +7187,12 @@ __lambda9_ (JsRenderNode* self,
 }
 
 static gint
-___lambda9__gcompare_data_func (gconstpointer a,
+___lambda6__gcompare_data_func (gconstpointer a,
                                 gconstpointer b,
                                 gpointer self)
 {
 	gint result;
-	result = __lambda9_ ((JsRenderNode*) self, (GObject*) a, (GObject*) b);
+	result = __lambda6_ ((JsRenderNode*) self, (GObject*) a, (GObject*) b);
 #line 1051 "Node.vala"
 	return result;
 #line 7199 "Node.vala.c"
@@ -7205,7 +7205,7 @@ js_render_node_sortProps (JsRenderNode* self)
 #line 1051 "Node.vala"
 	_tmp0_ = self->propstore;
 #line 1051 "Node.vala"
-	g_list_store_sort (_tmp0_, ___lambda9__gcompare_data_func, self);
+	g_list_store_sort (_tmp0_, ___lambda6__gcompare_data_func, self);
 #line 7210 "Node.vala.c"
 }
 
