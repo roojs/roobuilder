@@ -8,7 +8,7 @@ namespace Project
 		Gtk project;
 
 		public Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
-		public string target_bin;
+ 
 
 		public string execute_args;
 		
