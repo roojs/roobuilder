@@ -841,6 +841,9 @@ static void _vala_array_add80 (gchar** * array,
 static JsonNode* _vala_JsonNode_copy (JsonNode* self);
 static void _vala_JsonNode_free (JsonNode* self);
 VALA_EXTERN const gchar* project_gtk_vala_settings_get_name (ProjectGtkValaSettings* self);
+VALA_EXTERN void project_gtk_writeFile (ProjectGtk* self,
+                            const gchar* name,
+                            const gchar* o);
 static void _vala_array_add81 (gchar** * array,
                         gint* length,
                         gint* size,
@@ -900,7 +903,7 @@ palete_vala_source_construct (GType object_type)
 	self->children = _tmp0_;
 #line 41 "ValaSource.vala"
 	return self;
-#line 904 "ValaSource.vala.c"
+#line 907 "ValaSource.vala.c"
 }
 
 PaleteValaSource*
@@ -908,7 +911,7 @@ palete_vala_source_new (void)
 {
 #line 41 "ValaSource.vala"
 	return palete_vala_source_construct (PALETE_TYPE_VALA_SOURCE);
-#line 912 "ValaSource.vala.c"
+#line 915 "ValaSource.vala.c"
 }
 
 void
@@ -928,19 +931,19 @@ palete_vala_source_dumpCode (PaleteValaSource* self,
 	ls_length1 = _vala_array_length (_tmp0_);
 #line 51 "ValaSource.vala"
 	_ls_size_ = ls_length1;
-#line 932 "ValaSource.vala.c"
+#line 935 "ValaSource.vala.c"
 	{
 		gint i = 0;
 #line 52 "ValaSource.vala"
 		i = 0;
-#line 937 "ValaSource.vala.c"
+#line 940 "ValaSource.vala.c"
 		{
 			gboolean _tmp2_ = FALSE;
 #line 52 "ValaSource.vala"
 			_tmp2_ = TRUE;
 #line 52 "ValaSource.vala"
 			while (TRUE) {
-#line 944 "ValaSource.vala.c"
+#line 947 "ValaSource.vala.c"
 				gchar** _tmp4_;
 				gint _tmp4__length1;
 				gchar** _tmp5_;
@@ -948,13 +951,13 @@ palete_vala_source_dumpCode (PaleteValaSource* self,
 				const gchar* _tmp6_;
 #line 52 "ValaSource.vala"
 				if (!_tmp2_) {
-#line 952 "ValaSource.vala.c"
+#line 955 "ValaSource.vala.c"
 					gint _tmp3_;
 #line 52 "ValaSource.vala"
 					_tmp3_ = i;
 #line 52 "ValaSource.vala"
 					i = _tmp3_ + 1;
-#line 958 "ValaSource.vala.c"
+#line 961 "ValaSource.vala.c"
 				}
 #line 52 "ValaSource.vala"
 				_tmp2_ = FALSE;
@@ -966,7 +969,7 @@ palete_vala_source_dumpCode (PaleteValaSource* self,
 				if (!(i < _tmp4__length1)) {
 #line 52 "ValaSource.vala"
 					break;
-#line 970 "ValaSource.vala.c"
+#line 973 "ValaSource.vala.c"
 				}
 #line 53 "ValaSource.vala"
 				_tmp5_ = ls;
@@ -976,13 +979,13 @@ palete_vala_source_dumpCode (PaleteValaSource* self,
 				_tmp6_ = _tmp5_[i];
 #line 53 "ValaSource.vala"
 				g_print ("%d : %s\n", i + 1, _tmp6_);
-#line 980 "ValaSource.vala.c"
+#line 983 "ValaSource.vala.c"
 			}
 		}
 	}
 #line 49 "ValaSource.vala"
 	ls = (_vala_array_free (ls, ls_length1, (GDestroyNotify) g_free), NULL);
-#line 986 "ValaSource.vala.c"
+#line 989 "ValaSource.vala.c"
 }
 
 static gpointer
@@ -990,7 +993,7 @@ _g_object_ref0 (gpointer self)
 {
 #line 70 "ValaSource.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 994 "ValaSource.vala.c"
+#line 997 "ValaSource.vala.c"
 }
 
 gboolean
@@ -1041,7 +1044,7 @@ palete_vala_source_checkFileWithNodePropChange (PaleteValaSource* self,
 		result = FALSE;
 #line 73 "ValaSource.vala"
 		return result;
-#line 1045 "ValaSource.vala.c"
+#line 1048 "ValaSource.vala.c"
 	}
 #line 79 "ValaSource.vala"
 	_tmp3_ = js_render_node_prop_get_name (prop);
@@ -1051,7 +1054,7 @@ palete_vala_source_checkFileWithNodePropChange (PaleteValaSource* self,
 	if (g_strcmp0 (_tmp4_, "xns") == 0) {
 #line 79 "ValaSource.vala"
 		_tmp2_ = TRUE;
-#line 1055 "ValaSource.vala.c"
+#line 1058 "ValaSource.vala.c"
 	} else {
 		const gchar* _tmp5_;
 		const gchar* _tmp6_;
@@ -1061,7 +1064,7 @@ palete_vala_source_checkFileWithNodePropChange (PaleteValaSource* self,
 		_tmp6_ = _tmp5_;
 #line 79 "ValaSource.vala"
 		_tmp2_ = g_strcmp0 (_tmp6_, "xtype") == 0;
-#line 1065 "ValaSource.vala.c"
+#line 1068 "ValaSource.vala.c"
 	}
 #line 79 "ValaSource.vala"
 	if (_tmp2_) {
@@ -1069,7 +1072,7 @@ palete_vala_source_checkFileWithNodePropChange (PaleteValaSource* self,
 		result = FALSE;
 #line 80 "ValaSource.vala"
 		return result;
-#line 1073 "ValaSource.vala.c"
+#line 1076 "ValaSource.vala.c"
 	}
 #line 84 "ValaSource.vala"
 	_tmp7_ = js_render_node_prop_get_val (prop);
@@ -1117,7 +1120,7 @@ palete_vala_source_checkFileWithNodePropChange (PaleteValaSource* self,
 	_tmp19__length1 = bits_length1;
 #line 96 "ValaSource.vala"
 	if (_tmp19__length1 > 0) {
-#line 1121 "ValaSource.vala.c"
+#line 1124 "ValaSource.vala.c"
 		gchar** _tmp20_;
 		gint _tmp20__length1;
 		const gchar* _tmp21_;
@@ -1141,7 +1144,7 @@ palete_vala_source_checkFileWithNodePropChange (PaleteValaSource* self,
 		offset = _vala_array_length (_tmp22_) + 1;
 #line 97 "ValaSource.vala"
 		_tmp24_ = (_vala_array_free (_tmp24_, _tmp24__length1, (GDestroyNotify) g_free), NULL);
-#line 1145 "ValaSource.vala.c"
+#line 1148 "ValaSource.vala.c"
 	}
 #line 100 "ValaSource.vala"
 	self->line_offset = offset;
@@ -1157,7 +1160,7 @@ palete_vala_source_checkFileWithNodePropChange (PaleteValaSource* self,
 	_g_free0 (old);
 #line 104 "ValaSource.vala"
 	return result;
-#line 1161 "ValaSource.vala.c"
+#line 1164 "ValaSource.vala.c"
 }
 
 static void
@@ -1172,13 +1175,13 @@ _vala_array_add46 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 151 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1176 "ValaSource.vala.c"
+#line 1179 "ValaSource.vala.c"
 	}
 #line 151 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 151 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1182 "ValaSource.vala.c"
+#line 1185 "ValaSource.vala.c"
 }
 
 static void
@@ -1193,13 +1196,13 @@ _vala_array_add47 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 152 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1197 "ValaSource.vala.c"
+#line 1200 "ValaSource.vala.c"
 	}
 #line 152 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 152 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1203 "ValaSource.vala.c"
+#line 1206 "ValaSource.vala.c"
 }
 
 static void
@@ -1214,13 +1217,13 @@ _vala_array_add48 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 153 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1218 "ValaSource.vala.c"
+#line 1221 "ValaSource.vala.c"
 	}
 #line 153 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 153 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1224 "ValaSource.vala.c"
+#line 1227 "ValaSource.vala.c"
 }
 
 static void
@@ -1235,13 +1238,13 @@ _vala_array_add49 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 154 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1239 "ValaSource.vala.c"
+#line 1242 "ValaSource.vala.c"
 	}
 #line 154 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 154 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1245 "ValaSource.vala.c"
+#line 1248 "ValaSource.vala.c"
 }
 
 static void
@@ -1256,13 +1259,13 @@ _vala_array_add50 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 155 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1260 "ValaSource.vala.c"
+#line 1263 "ValaSource.vala.c"
 	}
 #line 155 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 155 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1266 "ValaSource.vala.c"
+#line 1269 "ValaSource.vala.c"
 }
 
 static void
@@ -1277,13 +1280,13 @@ _vala_array_add51 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 156 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1281 "ValaSource.vala.c"
+#line 1284 "ValaSource.vala.c"
 	}
 #line 156 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 156 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1287 "ValaSource.vala.c"
+#line 1290 "ValaSource.vala.c"
 }
 
 static void
@@ -1298,13 +1301,13 @@ _vala_array_add52 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 157 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1302 "ValaSource.vala.c"
+#line 1305 "ValaSource.vala.c"
 	}
 #line 157 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 157 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1308 "ValaSource.vala.c"
+#line 1311 "ValaSource.vala.c"
 }
 
 static void
@@ -1319,13 +1322,13 @@ _vala_array_add53 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 158 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1323 "ValaSource.vala.c"
+#line 1326 "ValaSource.vala.c"
 	}
 #line 158 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 158 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1329 "ValaSource.vala.c"
+#line 1332 "ValaSource.vala.c"
 }
 
 static void
@@ -1340,13 +1343,13 @@ _vala_array_add54 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 159 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1344 "ValaSource.vala.c"
+#line 1347 "ValaSource.vala.c"
 	}
 #line 159 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 159 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1350 "ValaSource.vala.c"
+#line 1353 "ValaSource.vala.c"
 }
 
 static void
@@ -1361,13 +1364,13 @@ _vala_array_add55 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 160 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 1365 "ValaSource.vala.c"
+#line 1368 "ValaSource.vala.c"
 	}
 #line 160 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 160 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 1371 "ValaSource.vala.c"
+#line 1374 "ValaSource.vala.c"
 }
 
 static void
@@ -1379,7 +1382,7 @@ _palete_vala_source_spawnResult_spawn_complete (Spawn* _sender,
 {
 #line 169 "ValaSource.vala"
 	palete_vala_source_spawnResult ((PaleteValaSource*) self, res, str, stderr);
-#line 1383 "ValaSource.vala.c"
+#line 1386 "ValaSource.vala.c"
 }
 
 static gboolean
@@ -1434,7 +1437,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		result = FALSE;
 #line 119 "ValaSource.vala"
 		return result;
-#line 1438 "ValaSource.vala.c"
+#line 1441 "ValaSource.vala.c"
 	}
 	{
 		GFile* _tmp1_ = NULL;
@@ -1452,7 +1455,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_tmp1_ = _tmp3_;
 #line 125 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1456 "ValaSource.vala.c"
+#line 1459 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
 #line 125 "ValaSource.vala"
@@ -1469,7 +1472,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		g_object_ref ((GObject*) _tmp5_);
 #line 124 "ValaSource.vala"
 		_g_object_unref0 (_tmp1_);
-#line 1473 "ValaSource.vala.c"
+#line 1476 "ValaSource.vala.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
@@ -1486,12 +1489,12 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_g_object_unref0 (tmpfile);
 #line 129 "ValaSource.vala"
 		return result;
-#line 1490 "ValaSource.vala.c"
+#line 1493 "ValaSource.vala.c"
 	}
 	__finally0:
 #line 124 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1495 "ValaSource.vala.c"
+#line 1498 "ValaSource.vala.c"
 		gboolean _tmp6_ = FALSE;
 #line 124 "ValaSource.vala"
 		_g_object_unref0 (iostream);
@@ -1503,7 +1506,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 124 "ValaSource.vala"
 		return _tmp6_;
-#line 1507 "ValaSource.vala.c"
+#line 1510 "ValaSource.vala.c"
 	}
 #line 132 "ValaSource.vala"
 	_tmp7_ = iostream;
@@ -1521,7 +1524,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 	_tmp12_ = g_data_output_stream_new (_tmp11_);
 #line 133 "ValaSource.vala"
 	dostream = _tmp12_;
-#line 1525 "ValaSource.vala.c"
+#line 1528 "ValaSource.vala.c"
 	{
 		GDataOutputStream* _tmp13_;
 #line 135 "ValaSource.vala"
@@ -1530,7 +1533,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		g_data_output_stream_put_string (_tmp13_, contents, NULL, &_inner_error0_);
 #line 135 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1534 "ValaSource.vala.c"
+#line 1537 "ValaSource.vala.c"
 			goto __catch1_g_error;
 		}
 	}
@@ -1553,12 +1556,12 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_g_object_unref0 (tmpfile);
 #line 138 "ValaSource.vala"
 		return result;
-#line 1557 "ValaSource.vala.c"
+#line 1560 "ValaSource.vala.c"
 	}
 	__finally1:
 #line 134 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1562 "ValaSource.vala.c"
+#line 1565 "ValaSource.vala.c"
 		gboolean _tmp14_ = FALSE;
 #line 134 "ValaSource.vala"
 		_g_object_unref0 (dostream);
@@ -1574,13 +1577,13 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 134 "ValaSource.vala"
 		return _tmp14_;
-#line 1578 "ValaSource.vala.c"
+#line 1581 "ValaSource.vala.c"
 	}
 #line 140 "ValaSource.vala"
 	_tmp15_ = g_strdup ("");
 #line 140 "ValaSource.vala"
 	valafn = _tmp15_;
-#line 1584 "ValaSource.vala.c"
+#line 1587 "ValaSource.vala.c"
 	{
 		GRegex* regex = NULL;
 		GRegex* _tmp16_;
@@ -1600,11 +1603,11 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		regex = _tmp16_;
 #line 142 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1604 "ValaSource.vala.c"
+#line 1607 "ValaSource.vala.c"
 			gboolean _tmp17_ = FALSE;
 #line 142 "ValaSource.vala"
 			if (_inner_error0_->domain == G_REGEX_ERROR) {
-#line 1608 "ValaSource.vala.c"
+#line 1611 "ValaSource.vala.c"
 				goto __catch2_g_regex_error;
 			}
 #line 142 "ValaSource.vala"
@@ -1623,7 +1626,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 			g_clear_error (&_inner_error0_);
 #line 142 "ValaSource.vala"
 			return _tmp17_;
-#line 1627 "ValaSource.vala.c"
+#line 1630 "ValaSource.vala.c"
 		}
 #line 144 "ValaSource.vala"
 		_tmp19_ = regex;
@@ -1645,13 +1648,13 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_tmp18_ = _tmp26_;
 #line 144 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1649 "ValaSource.vala.c"
+#line 1652 "ValaSource.vala.c"
 			gboolean _tmp27_ = FALSE;
 #line 144 "ValaSource.vala"
 			_g_regex_unref0 (regex);
 #line 144 "ValaSource.vala"
 			if (_inner_error0_->domain == G_REGEX_ERROR) {
-#line 1655 "ValaSource.vala.c"
+#line 1658 "ValaSource.vala.c"
 				goto __catch2_g_regex_error;
 			}
 #line 144 "ValaSource.vala"
@@ -1670,7 +1673,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 			g_clear_error (&_inner_error0_);
 #line 144 "ValaSource.vala"
 			return _tmp27_;
-#line 1674 "ValaSource.vala.c"
+#line 1677 "ValaSource.vala.c"
 		}
 #line 144 "ValaSource.vala"
 		_tmp28_ = _tmp18_;
@@ -1684,7 +1687,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_g_free0 (_tmp18_);
 #line 141 "ValaSource.vala"
 		_g_regex_unref0 (regex);
-#line 1688 "ValaSource.vala.c"
+#line 1691 "ValaSource.vala.c"
 	}
 	goto __finally2;
 	__catch2_g_regex_error:
@@ -1705,12 +1708,12 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_g_object_unref0 (tmpfile);
 #line 147 "ValaSource.vala"
 		return result;
-#line 1709 "ValaSource.vala.c"
+#line 1712 "ValaSource.vala.c"
 	}
 	__finally2:
 #line 141 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1714 "ValaSource.vala.c"
+#line 1717 "ValaSource.vala.c"
 		gboolean _tmp29_ = FALSE;
 #line 141 "ValaSource.vala"
 		_g_free0 (valafn);
@@ -1728,7 +1731,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 141 "ValaSource.vala"
 		return _tmp29_;
-#line 1732 "ValaSource.vala.c"
+#line 1735 "ValaSource.vala.c"
 	}
 #line 150 "ValaSource.vala"
 	_tmp30_ = g_new0 (gchar*, 0 + 1);
@@ -1802,7 +1805,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 	_g_free0 (self->tmpfile_path);
 #line 162 "ValaSource.vala"
 	self->tmpfile_path = _tmp50_;
-#line 1806 "ValaSource.vala.c"
+#line 1809 "ValaSource.vala.c"
 	{
 		Spawn* _tmp51_ = NULL;
 		gchar** _tmp52_;
@@ -1819,7 +1822,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_tmp51_ = _tmp53_;
 #line 164 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1823 "ValaSource.vala.c"
+#line 1826 "ValaSource.vala.c"
 			goto __catch3_g_error;
 		}
 #line 164 "ValaSource.vala"
@@ -1832,7 +1835,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		self->priv->compiler = _tmp54_;
 #line 163 "ValaSource.vala"
 		_g_object_unref0 (_tmp51_);
-#line 1836 "ValaSource.vala.c"
+#line 1839 "ValaSource.vala.c"
 	}
 	goto __finally3;
 	__catch3_g_error:
@@ -1868,12 +1871,12 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_g_object_unref0 (tmpfile);
 #line 167 "ValaSource.vala"
 		return result;
-#line 1872 "ValaSource.vala.c"
+#line 1875 "ValaSource.vala.c"
 	}
 	__finally3:
 #line 163 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1877 "ValaSource.vala.c"
+#line 1880 "ValaSource.vala.c"
 		gboolean _tmp57_ = FALSE;
 #line 163 "ValaSource.vala"
 		args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
@@ -1893,7 +1896,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 163 "ValaSource.vala"
 		return _tmp57_;
-#line 1897 "ValaSource.vala.c"
+#line 1900 "ValaSource.vala.c"
 	}
 #line 169 "ValaSource.vala"
 	_tmp58_ = self->priv->compiler;
@@ -1901,7 +1904,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 	g_signal_connect_object (_tmp58_, "complete", (GCallback) _palete_vala_source_spawnResult_spawn_complete, self, 0);
 #line 170 "ValaSource.vala"
 	palete_vala_source_spinner (self, TRUE);
-#line 1905 "ValaSource.vala.c"
+#line 1908 "ValaSource.vala.c"
 	{
 		Spawn* _tmp59_;
 #line 172 "ValaSource.vala"
@@ -1910,7 +1913,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		spawn_run (_tmp59_, &_inner_error0_);
 #line 172 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1914 "ValaSource.vala.c"
+#line 1917 "ValaSource.vala.c"
 			goto __catch4_g_error;
 		}
 	}
@@ -1956,12 +1959,12 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		_g_object_unref0 (tmpfile);
 #line 178 "ValaSource.vala"
 		return result;
-#line 1960 "ValaSource.vala.c"
+#line 1963 "ValaSource.vala.c"
 	}
 	__finally4:
 #line 171 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 1965 "ValaSource.vala.c"
+#line 1968 "ValaSource.vala.c"
 		gboolean _tmp62_ = FALSE;
 #line 171 "ValaSource.vala"
 		args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
@@ -1981,7 +1984,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 171 "ValaSource.vala"
 		return _tmp62_;
-#line 1985 "ValaSource.vala.c"
+#line 1988 "ValaSource.vala.c"
 	}
 #line 181 "ValaSource.vala"
 	result = TRUE;
@@ -1999,7 +2002,7 @@ palete_vala_source_checkStringSpawn (PaleteValaSource* self,
 	_g_object_unref0 (tmpfile);
 #line 181 "ValaSource.vala"
 	return result;
-#line 2003 "ValaSource.vala.c"
+#line 2006 "ValaSource.vala.c"
 }
 
 void
@@ -2030,7 +2033,7 @@ palete_vala_source_spinner (PaleteValaSource* self,
 		_win_index = -1;
 #line 187 "ValaSource.vala"
 		while (TRUE) {
-#line 2034 "ValaSource.vala.c"
+#line 2037 "ValaSource.vala.c"
 			gint _tmp4_;
 			gint _tmp5_;
 			Xcls_MainWindow* win = NULL;
@@ -2046,7 +2049,7 @@ palete_vala_source_spinner (PaleteValaSource* self,
 			if (!(_tmp4_ < _tmp5_)) {
 #line 187 "ValaSource.vala"
 				break;
-#line 2050 "ValaSource.vala.c"
+#line 2053 "ValaSource.vala.c"
 			}
 #line 187 "ValaSource.vala"
 			_tmp6_ = _win_list;
@@ -2056,7 +2059,7 @@ palete_vala_source_spinner (PaleteValaSource* self,
 			win = (Xcls_MainWindow*) _tmp7_;
 #line 188 "ValaSource.vala"
 			if (state) {
-#line 2060 "ValaSource.vala.c"
+#line 2063 "ValaSource.vala.c"
 				Xcls_MainWindow* _tmp8_;
 				Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp9_;
 #line 189 "ValaSource.vala"
@@ -2065,7 +2068,7 @@ palete_vala_source_spinner (PaleteValaSource* self,
 				_tmp9_ = _tmp8_->statusbar_compile_spinner;
 #line 189 "ValaSource.vala"
 				xcls_mainwindow_xcls_statusbar_compile_spinner_start (_tmp9_);
-#line 2069 "ValaSource.vala.c"
+#line 2072 "ValaSource.vala.c"
 			} else {
 				Xcls_MainWindow* _tmp10_;
 				Xcls_MainWindowXcls_statusbar_compile_spinner* _tmp11_;
@@ -2075,11 +2078,11 @@ palete_vala_source_spinner (PaleteValaSource* self,
 				_tmp11_ = _tmp10_->statusbar_compile_spinner;
 #line 191 "ValaSource.vala"
 				xcls_mainwindow_xcls_statusbar_compile_spinner_stop (_tmp11_);
-#line 2079 "ValaSource.vala.c"
+#line 2082 "ValaSource.vala.c"
 			}
 #line 187 "ValaSource.vala"
 			_g_object_unref0 (win);
-#line 2083 "ValaSource.vala.c"
+#line 2086 "ValaSource.vala.c"
 		}
 	}
 }
@@ -2096,13 +2099,13 @@ _vala_array_add56 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 209 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2100 "ValaSource.vala.c"
+#line 2103 "ValaSource.vala.c"
 	}
 #line 209 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 209 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2106 "ValaSource.vala.c"
+#line 2109 "ValaSource.vala.c"
 }
 
 static void
@@ -2117,13 +2120,13 @@ _vala_array_add57 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 210 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2121 "ValaSource.vala.c"
+#line 2124 "ValaSource.vala.c"
 	}
 #line 210 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 210 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2127 "ValaSource.vala.c"
+#line 2130 "ValaSource.vala.c"
 }
 
 static void
@@ -2138,13 +2141,13 @@ _vala_array_add58 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 211 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2142 "ValaSource.vala.c"
+#line 2145 "ValaSource.vala.c"
 	}
 #line 211 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 211 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2148 "ValaSource.vala.c"
+#line 2151 "ValaSource.vala.c"
 }
 
 static void
@@ -2159,13 +2162,13 @@ _vala_array_add59 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 212 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2163 "ValaSource.vala.c"
+#line 2166 "ValaSource.vala.c"
 	}
 #line 212 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 212 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2169 "ValaSource.vala.c"
+#line 2172 "ValaSource.vala.c"
 }
 
 static void
@@ -2180,13 +2183,13 @@ _vala_array_add60 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 213 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2184 "ValaSource.vala.c"
+#line 2187 "ValaSource.vala.c"
 	}
 #line 213 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 213 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2190 "ValaSource.vala.c"
+#line 2193 "ValaSource.vala.c"
 }
 
 static void
@@ -2201,13 +2204,13 @@ _vala_array_add61 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 215 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2205 "ValaSource.vala.c"
+#line 2208 "ValaSource.vala.c"
 	}
 #line 215 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 215 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2211 "ValaSource.vala.c"
+#line 2214 "ValaSource.vala.c"
 }
 
 static void
@@ -2222,13 +2225,13 @@ _vala_array_add62 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 217 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2226 "ValaSource.vala.c"
+#line 2229 "ValaSource.vala.c"
 	}
 #line 217 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 217 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2232 "ValaSource.vala.c"
+#line 2235 "ValaSource.vala.c"
 }
 
 gboolean
@@ -2267,7 +2270,7 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 		result = FALSE;
 #line 201 "ValaSource.vala"
 		return result;
-#line 2271 "ValaSource.vala.c"
+#line 2274 "ValaSource.vala.c"
 	}
 #line 204 "ValaSource.vala"
 	_tmp1_ = _g_object_ref0 (file);
@@ -2329,7 +2332,7 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 	_tmp17_ = _tmp16_;
 #line 214 "ValaSource.vala"
 	if (_tmp17_ > 0) {
-#line 2333 "ValaSource.vala.c"
+#line 2336 "ValaSource.vala.c"
 		JsRenderJsRender* _tmp18_;
 		const gchar* _tmp19_;
 		gchar* _tmp20_;
@@ -2341,7 +2344,7 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 		_tmp20_ = g_strdup (_tmp19_);
 #line 215 "ValaSource.vala"
 		_vala_array_add61 (&args, &args_length1, &_args_size_, _tmp20_);
-#line 2345 "ValaSource.vala.c"
+#line 2348 "ValaSource.vala.c"
 	} else {
 		ProjectGtk* _tmp21_;
 		gchar* _tmp22_;
@@ -2351,7 +2354,7 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 		_tmp22_ = project_gtk_firstBuildModule (_tmp21_);
 #line 217 "ValaSource.vala"
 		_vala_array_add62 (&args, &args_length1, &_args_size_, _tmp22_);
-#line 2355 "ValaSource.vala.c"
+#line 2358 "ValaSource.vala.c"
 	}
 	{
 		Spawn* _tmp23_ = NULL;
@@ -2371,7 +2374,7 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 		_tmp23_ = _tmp25_;
 #line 224 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 2375 "ValaSource.vala.c"
+#line 2378 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
 #line 224 "ValaSource.vala"
@@ -2396,12 +2399,12 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
 #line 227 "ValaSource.vala"
 			_g_object_unref0 (_tmp23_);
-#line 2400 "ValaSource.vala.c"
+#line 2403 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
 #line 223 "ValaSource.vala"
 		_g_object_unref0 (_tmp23_);
-#line 2405 "ValaSource.vala.c"
+#line 2408 "ValaSource.vala.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
@@ -2435,12 +2438,12 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 		_g_object_unref0 (pr);
 #line 234 "ValaSource.vala"
 		return result;
-#line 2439 "ValaSource.vala.c"
+#line 2442 "ValaSource.vala.c"
 	}
 	__finally0:
 #line 223 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 2444 "ValaSource.vala.c"
+#line 2447 "ValaSource.vala.c"
 		gboolean _tmp31_ = FALSE;
 #line 223 "ValaSource.vala"
 		args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
@@ -2452,7 +2455,7 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 223 "ValaSource.vala"
 		return _tmp31_;
-#line 2456 "ValaSource.vala.c"
+#line 2459 "ValaSource.vala.c"
 	}
 #line 236 "ValaSource.vala"
 	result = TRUE;
@@ -2462,7 +2465,7 @@ palete_vala_source_checkFileSpawn (PaleteValaSource* self,
 	_g_object_unref0 (pr);
 #line 236 "ValaSource.vala"
 	return result;
-#line 2466 "ValaSource.vala.c"
+#line 2469 "ValaSource.vala.c"
 }
 
 static void
@@ -2477,13 +2480,13 @@ _vala_array_add63 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 262 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2481 "ValaSource.vala.c"
+#line 2484 "ValaSource.vala.c"
 	}
 #line 262 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 262 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2487 "ValaSource.vala.c"
+#line 2490 "ValaSource.vala.c"
 }
 
 static void
@@ -2498,13 +2501,13 @@ _vala_array_add64 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 263 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2502 "ValaSource.vala.c"
+#line 2505 "ValaSource.vala.c"
 	}
 #line 263 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 263 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2508 "ValaSource.vala.c"
+#line 2511 "ValaSource.vala.c"
 }
 
 static void
@@ -2519,13 +2522,13 @@ _vala_array_add65 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 264 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2523 "ValaSource.vala.c"
+#line 2526 "ValaSource.vala.c"
 	}
 #line 264 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 264 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2529 "ValaSource.vala.c"
+#line 2532 "ValaSource.vala.c"
 }
 
 static void
@@ -2540,13 +2543,13 @@ _vala_array_add66 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 266 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2544 "ValaSource.vala.c"
+#line 2547 "ValaSource.vala.c"
 	}
 #line 266 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 266 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2550 "ValaSource.vala.c"
+#line 2553 "ValaSource.vala.c"
 }
 
 static void
@@ -2561,13 +2564,13 @@ _vala_array_add67 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 267 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2565 "ValaSource.vala.c"
+#line 2568 "ValaSource.vala.c"
 	}
 #line 267 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 267 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2571 "ValaSource.vala.c"
+#line 2574 "ValaSource.vala.c"
 }
 
 static void
@@ -2582,13 +2585,13 @@ _vala_array_add68 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 268 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2586 "ValaSource.vala.c"
+#line 2589 "ValaSource.vala.c"
 	}
 #line 268 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 268 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2592 "ValaSource.vala.c"
+#line 2595 "ValaSource.vala.c"
 }
 
 static void
@@ -2603,13 +2606,13 @@ _vala_array_add69 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 270 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2607 "ValaSource.vala.c"
+#line 2610 "ValaSource.vala.c"
 	}
 #line 270 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 270 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2613 "ValaSource.vala.c"
+#line 2616 "ValaSource.vala.c"
 }
 
 static void
@@ -2624,13 +2627,13 @@ _vala_array_add70 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 272 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2628 "ValaSource.vala.c"
+#line 2631 "ValaSource.vala.c"
 	}
 #line 272 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 272 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2634 "ValaSource.vala.c"
+#line 2637 "ValaSource.vala.c"
 }
 
 static void
@@ -2640,7 +2643,7 @@ _palete_vala_source_compile_output_line_spawn_output_line (Spawn* _sender,
 {
 #line 282 "ValaSource.vala"
 	palete_vala_source_compile_output_line ((PaleteValaSource*) self, str);
-#line 2644 "ValaSource.vala.c"
+#line 2647 "ValaSource.vala.c"
 }
 
 static void
@@ -2652,7 +2655,7 @@ _palete_vala_source_runResult_spawn_complete (Spawn* _sender,
 {
 #line 283 "ValaSource.vala"
 	palete_vala_source_runResult ((PaleteValaSource*) self, res, str, stderr);
-#line 2656 "ValaSource.vala.c"
+#line 2659 "ValaSource.vala.c"
 }
 
 void
@@ -2690,7 +2693,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 	if (_tmp0_ != NULL) {
 #line 248 "ValaSource.vala"
 		return;
-#line 2694 "ValaSource.vala.c"
+#line 2697 "ValaSource.vala.c"
 	}
 #line 250 "ValaSource.vala"
 	_tmp1_ = file->project;
@@ -2698,7 +2701,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 	if (!PROJECT_IS_GTK (_tmp1_)) {
 #line 251 "ValaSource.vala"
 		return;
-#line 2702 "ValaSource.vala.c"
+#line 2705 "ValaSource.vala.c"
 	}
 #line 253 "ValaSource.vala"
 	_tmp2_ = file->project;
@@ -2764,7 +2767,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 	_tmp19_ = _tmp18_;
 #line 269 "ValaSource.vala"
 	if (_tmp19_ > 0) {
-#line 2768 "ValaSource.vala.c"
+#line 2771 "ValaSource.vala.c"
 		JsRenderJsRender* _tmp20_;
 		const gchar* _tmp21_;
 		gchar* _tmp22_;
@@ -2776,7 +2779,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 		_tmp22_ = g_strdup (_tmp21_);
 #line 270 "ValaSource.vala"
 		_vala_array_add69 (&args, &args_length1, &_args_size_, _tmp22_);
-#line 2780 "ValaSource.vala.c"
+#line 2783 "ValaSource.vala.c"
 	} else {
 		ProjectGtk* _tmp23_;
 		gchar* _tmp24_;
@@ -2786,7 +2789,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 		_tmp24_ = project_gtk_firstBuildModule (_tmp23_);
 #line 272 "ValaSource.vala"
 		_vala_array_add70 (&args, &args_length1, &_args_size_, _tmp24_);
-#line 2790 "ValaSource.vala.c"
+#line 2793 "ValaSource.vala.c"
 	}
 	{
 		Spawn* _tmp25_ = NULL;
@@ -2812,7 +2815,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 		_tmp25_ = _tmp28_;
 #line 281 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 2816 "ValaSource.vala.c"
+#line 2819 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
 #line 281 "ValaSource.vala"
@@ -2841,7 +2844,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
 #line 285 "ValaSource.vala"
 			_g_object_unref0 (_tmp25_);
-#line 2845 "ValaSource.vala.c"
+#line 2848 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
 #line 286 "ValaSource.vala"
@@ -2852,7 +2855,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 		gee_abstract_collection_add ((GeeAbstractCollection*) _tmp33_, _tmp34_);
 #line 280 "ValaSource.vala"
 		_g_object_unref0 (_tmp25_);
-#line 2856 "ValaSource.vala.c"
+#line 2859 "ValaSource.vala.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
@@ -2878,7 +2881,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 		self->priv->compiler = NULL;
 #line 280 "ValaSource.vala"
 		_g_error_free0 (e);
-#line 2882 "ValaSource.vala.c"
+#line 2885 "ValaSource.vala.c"
 	}
 	__finally0:
 #line 280 "ValaSource.vala"
@@ -2893,7 +2896,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 280 "ValaSource.vala"
 		return;
-#line 2897 "ValaSource.vala.c"
+#line 2900 "ValaSource.vala.c"
 	}
 #line 294 "ValaSource.vala"
 	args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
@@ -2901,7 +2904,7 @@ palete_vala_source_spawnExecute (PaleteValaSource* self,
 	_g_object_unref0 (pr);
 #line 294 "ValaSource.vala"
 	return;
-#line 2905 "ValaSource.vala.c"
+#line 2908 "ValaSource.vala.c"
 }
 
 void
@@ -2910,7 +2913,7 @@ palete_vala_source_compile_output_line (PaleteValaSource* self,
 {
 #line 299 "ValaSource.vala"
 	g_signal_emit (self, palete_vala_source_signals[PALETE_VALA_SOURCE_COMPILE_OUTPUT_SIGNAL], 0, str);
-#line 2914 "ValaSource.vala.c"
+#line 2917 "ValaSource.vala.c"
 }
 
 /**
@@ -2928,13 +2931,13 @@ _vala_array_add71 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 371 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2932 "ValaSource.vala.c"
+#line 2935 "ValaSource.vala.c"
 	}
 #line 371 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 371 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2938 "ValaSource.vala.c"
+#line 2941 "ValaSource.vala.c"
 }
 
 static void
@@ -2949,13 +2952,13 @@ _vala_array_add72 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 372 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2953 "ValaSource.vala.c"
+#line 2956 "ValaSource.vala.c"
 	}
 #line 372 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 372 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2959 "ValaSource.vala.c"
+#line 2962 "ValaSource.vala.c"
 }
 
 static void
@@ -2970,13 +2973,13 @@ _vala_array_add73 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 373 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2974 "ValaSource.vala.c"
+#line 2977 "ValaSource.vala.c"
 	}
 #line 373 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 373 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 2980 "ValaSource.vala.c"
+#line 2983 "ValaSource.vala.c"
 }
 
 static void
@@ -2991,13 +2994,13 @@ _vala_array_add74 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 374 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 2995 "ValaSource.vala.c"
+#line 2998 "ValaSource.vala.c"
 	}
 #line 374 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 374 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 3001 "ValaSource.vala.c"
+#line 3004 "ValaSource.vala.c"
 }
 
 static void
@@ -3012,13 +3015,13 @@ _vala_array_add75 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 375 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 3016 "ValaSource.vala.c"
+#line 3019 "ValaSource.vala.c"
 	}
 #line 375 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 375 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 3022 "ValaSource.vala.c"
+#line 3025 "ValaSource.vala.c"
 }
 
 static void
@@ -3033,13 +3036,13 @@ _vala_array_add76 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 377 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 3037 "ValaSource.vala.c"
+#line 3040 "ValaSource.vala.c"
 	}
 #line 377 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 377 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 3043 "ValaSource.vala.c"
+#line 3046 "ValaSource.vala.c"
 }
 
 static void
@@ -3054,13 +3057,13 @@ _vala_array_add77 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 378 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 3058 "ValaSource.vala.c"
+#line 3061 "ValaSource.vala.c"
 	}
 #line 378 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 378 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 3064 "ValaSource.vala.c"
+#line 3067 "ValaSource.vala.c"
 }
 
 static void
@@ -3075,13 +3078,13 @@ _vala_array_add78 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 379 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 3079 "ValaSource.vala.c"
+#line 3082 "ValaSource.vala.c"
 	}
 #line 379 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 379 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 3085 "ValaSource.vala.c"
+#line 3088 "ValaSource.vala.c"
 }
 
 static void
@@ -3096,13 +3099,13 @@ _vala_array_add79 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 380 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 3100 "ValaSource.vala.c"
+#line 3103 "ValaSource.vala.c"
 	}
 #line 380 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 380 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 3106 "ValaSource.vala.c"
+#line 3109 "ValaSource.vala.c"
 }
 
 static void
@@ -3117,13 +3120,13 @@ _vala_array_add80 (gchar** * array,
 		*size = (*size) ? (2 * (*size)) : 4;
 #line 381 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 3121 "ValaSource.vala.c"
+#line 3124 "ValaSource.vala.c"
 	}
 #line 381 "ValaSource.vala"
 	(*array)[(*length)++] = value;
 #line 381 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 3127 "ValaSource.vala.c"
+#line 3130 "ValaSource.vala.c"
 }
 
 gboolean
@@ -3196,7 +3199,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		result = FALSE;
 #line 311 "ValaSource.vala"
 		return result;
-#line 3200 "ValaSource.vala.c"
+#line 3203 "ValaSource.vala.c"
 	}
 #line 313 "ValaSource.vala"
 	_tmp1_ = _g_object_ref0 (file);
@@ -3240,7 +3243,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_g_object_unref0 (pr);
 #line 321 "ValaSource.vala"
 		return result;
-#line 3244 "ValaSource.vala.c"
+#line 3247 "ValaSource.vala.c"
 	}
 #line 323 "ValaSource.vala"
 	foundit = FALSE;
@@ -3260,20 +3263,20 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_g_object_unref0 (pr);
 #line 326 "ValaSource.vala"
 		return result;
-#line 3264 "ValaSource.vala.c"
+#line 3267 "ValaSource.vala.c"
 	}
 	{
 		gint i = 0;
 #line 328 "ValaSource.vala"
 		i = 0;
-#line 3270 "ValaSource.vala.c"
+#line 3273 "ValaSource.vala.c"
 		{
 			gboolean _tmp13_ = FALSE;
 #line 328 "ValaSource.vala"
 			_tmp13_ = TRUE;
 #line 328 "ValaSource.vala"
 			while (TRUE) {
-#line 3277 "ValaSource.vala.c"
+#line 3280 "ValaSource.vala.c"
 				ProjectGtkValaSettings* _tmp15_;
 				GeeArrayList* _tmp16_;
 				gint _tmp17_;
@@ -3293,13 +3296,13 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 				const gchar* _tmp30_;
 #line 328 "ValaSource.vala"
 				if (!_tmp13_) {
-#line 3297 "ValaSource.vala.c"
+#line 3300 "ValaSource.vala.c"
 					gint _tmp14_;
 #line 328 "ValaSource.vala"
 					_tmp14_ = i;
 #line 328 "ValaSource.vala"
 					i = _tmp14_ + 1;
-#line 3303 "ValaSource.vala.c"
+#line 3306 "ValaSource.vala.c"
 				}
 #line 328 "ValaSource.vala"
 				_tmp13_ = FALSE;
@@ -3315,7 +3318,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 				if (!(i < _tmp18_)) {
 #line 328 "ValaSource.vala"
 					break;
-#line 3319 "ValaSource.vala.c"
+#line 3322 "ValaSource.vala.c"
 				}
 #line 329 "ValaSource.vala"
 				_tmp19_ = pr;
@@ -3355,11 +3358,11 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 					_g_free0 (path);
 #line 332 "ValaSource.vala"
 					break;
-#line 3359 "ValaSource.vala.c"
+#line 3362 "ValaSource.vala.c"
 				}
 #line 328 "ValaSource.vala"
 				_g_free0 (path);
-#line 3363 "ValaSource.vala.c"
+#line 3366 "ValaSource.vala.c"
 			}
 		}
 	}
@@ -3379,7 +3382,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_g_object_unref0 (pr);
 #line 340 "ValaSource.vala"
 		return result;
-#line 3383 "ValaSource.vala.c"
+#line 3386 "ValaSource.vala.c"
 	}
 	{
 		GFile* _tmp31_ = NULL;
@@ -3397,7 +3400,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_tmp31_ = _tmp33_;
 #line 348 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 3401 "ValaSource.vala.c"
+#line 3404 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
 #line 348 "ValaSource.vala"
@@ -3414,7 +3417,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		g_object_ref ((GObject*) _tmp35_);
 #line 347 "ValaSource.vala"
 		_g_object_unref0 (_tmp31_);
-#line 3418 "ValaSource.vala.c"
+#line 3421 "ValaSource.vala.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
@@ -3448,12 +3451,12 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_g_object_unref0 (pr);
 #line 352 "ValaSource.vala"
 		return result;
-#line 3452 "ValaSource.vala.c"
+#line 3455 "ValaSource.vala.c"
 	}
 	__finally0:
 #line 347 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 3457 "ValaSource.vala.c"
+#line 3460 "ValaSource.vala.c"
 		gboolean _tmp38_ = FALSE;
 #line 347 "ValaSource.vala"
 		_g_object_unref0 (tmpfile);
@@ -3471,7 +3474,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 347 "ValaSource.vala"
 		return _tmp38_;
-#line 3475 "ValaSource.vala.c"
+#line 3478 "ValaSource.vala.c"
 	}
 #line 354 "ValaSource.vala"
 	_tmp39_ = iostream;
@@ -3489,7 +3492,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 	_tmp44_ = g_data_output_stream_new (_tmp43_);
 #line 355 "ValaSource.vala"
 	dostream = _tmp44_;
-#line 3493 "ValaSource.vala.c"
+#line 3496 "ValaSource.vala.c"
 	{
 		GDataOutputStream* _tmp45_;
 #line 357 "ValaSource.vala"
@@ -3498,7 +3501,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		g_data_output_stream_put_string (_tmp45_, contents, NULL, &_inner_error0_);
 #line 357 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 3502 "ValaSource.vala.c"
+#line 3505 "ValaSource.vala.c"
 			goto __catch1_g_error;
 		}
 	}
@@ -3538,12 +3541,12 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_g_object_unref0 (pr);
 #line 360 "ValaSource.vala"
 		return result;
-#line 3542 "ValaSource.vala.c"
+#line 3545 "ValaSource.vala.c"
 	}
 	__finally1:
 #line 356 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 3547 "ValaSource.vala.c"
+#line 3550 "ValaSource.vala.c"
 		gboolean _tmp48_ = FALSE;
 #line 356 "ValaSource.vala"
 		_g_object_unref0 (dostream);
@@ -3565,7 +3568,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 356 "ValaSource.vala"
 		return _tmp48_;
-#line 3569 "ValaSource.vala.c"
+#line 3572 "ValaSource.vala.c"
 	}
 #line 362 "ValaSource.vala"
 	_tmp49_ = pr;
@@ -3601,7 +3604,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_g_object_unref0 (pr);
 #line 364 "ValaSource.vala"
 		return result;
-#line 3605 "ValaSource.vala.c"
+#line 3608 "ValaSource.vala.c"
 	}
 #line 368 "ValaSource.vala"
 	self->line_offset = 0;
@@ -3673,7 +3676,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 	_g_free0 (self->tmpfile_path);
 #line 383 "ValaSource.vala"
 	self->tmpfile_path = _tmp72_;
-#line 3677 "ValaSource.vala.c"
+#line 3680 "ValaSource.vala.c"
 	{
 		Spawn* _tmp73_ = NULL;
 		gchar** _tmp74_;
@@ -3692,7 +3695,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_tmp73_ = _tmp75_;
 #line 387 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 3696 "ValaSource.vala.c"
+#line 3699 "ValaSource.vala.c"
 			goto __catch2_g_error;
 		}
 #line 387 "ValaSource.vala"
@@ -3717,12 +3720,12 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
 #line 390 "ValaSource.vala"
 			_g_object_unref0 (_tmp73_);
-#line 3721 "ValaSource.vala.c"
+#line 3724 "ValaSource.vala.c"
 			goto __catch2_g_error;
 		}
 #line 386 "ValaSource.vala"
 		_g_object_unref0 (_tmp73_);
-#line 3726 "ValaSource.vala.c"
+#line 3729 "ValaSource.vala.c"
 	}
 	goto __finally2;
 	__catch2_g_error:
@@ -3759,12 +3762,12 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		_g_object_unref0 (pr);
 #line 397 "ValaSource.vala"
 		return result;
-#line 3763 "ValaSource.vala.c"
+#line 3766 "ValaSource.vala.c"
 	}
 	__finally2:
 #line 386 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 3768 "ValaSource.vala.c"
+#line 3771 "ValaSource.vala.c"
 		gboolean _tmp79_ = FALSE;
 #line 386 "ValaSource.vala"
 		args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
@@ -3790,7 +3793,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 386 "ValaSource.vala"
 		return _tmp79_;
-#line 3794 "ValaSource.vala.c"
+#line 3797 "ValaSource.vala.c"
 	}
 #line 399 "ValaSource.vala"
 	result = TRUE;
@@ -3814,7 +3817,7 @@ palete_vala_source_checkPlainFileSpawn (PaleteValaSource* self,
 	_g_object_unref0 (pr);
 #line 399 "ValaSource.vala"
 	return result;
-#line 3818 "ValaSource.vala.c"
+#line 3821 "ValaSource.vala.c"
 }
 
 void
@@ -3829,7 +3832,7 @@ palete_vala_source_deleteTemp (PaleteValaSource* self)
 	if (g_strcmp0 (_tmp0_, "") == 0) {
 #line 406 "ValaSource.vala"
 		return;
-#line 3833 "ValaSource.vala.c"
+#line 3836 "ValaSource.vala.c"
 	}
 #line 408 "ValaSource.vala"
 	_tmp1_ = self->tmpfile_path;
@@ -3841,7 +3844,7 @@ palete_vala_source_deleteTemp (PaleteValaSource* self)
 	_g_free0 (self->tmpfile_path);
 #line 409 "ValaSource.vala"
 	self->tmpfile_path = _tmp2_;
-#line 3845 "ValaSource.vala.c"
+#line 3848 "ValaSource.vala.c"
 }
 
 static JsonNode*
@@ -3849,7 +3852,7 @@ _vala_JsonNode_copy (JsonNode* self)
 {
 #line 422 "ValaSource.vala"
 	return g_boxed_copy (json_node_get_type (), self);
-#line 3853 "ValaSource.vala.c"
+#line 3856 "ValaSource.vala.c"
 }
 
 static gpointer
@@ -3857,7 +3860,7 @@ __vala_JsonNode_copy0 (gpointer self)
 {
 #line 422 "ValaSource.vala"
 	return self ? _vala_JsonNode_copy (self) : NULL;
-#line 3861 "ValaSource.vala.c"
+#line 3864 "ValaSource.vala.c"
 }
 
 static gpointer
@@ -3865,7 +3868,7 @@ _json_object_ref0 (gpointer self)
 {
 #line 435 "ValaSource.vala"
 	return self ? json_object_ref (self) : NULL;
-#line 3869 "ValaSource.vala.c"
+#line 3872 "ValaSource.vala.c"
 }
 
 static void
@@ -3873,7 +3876,7 @@ _vala_JsonNode_free (JsonNode* self)
 {
 #line 417 "ValaSource.vala"
 	g_boxed_free (json_node_get_type (), self);
-#line 3877 "ValaSource.vala.c"
+#line 3880 "ValaSource.vala.c"
 }
 
 void
@@ -3906,7 +3909,7 @@ palete_vala_source_spawnResult (PaleteValaSource* self,
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
 #line 421 "ValaSource.vala"
 			_g_object_unref0 (pa);
-#line 3910 "ValaSource.vala.c"
+#line 3913 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
 #line 422 "ValaSource.vala"
@@ -3919,7 +3922,7 @@ palete_vala_source_spawnResult (PaleteValaSource* self,
 		_tmp3_ = node;
 #line 424 "ValaSource.vala"
 		if (json_node_get_node_type (_tmp3_) != JSON_NODE_OBJECT) {
-#line 3923 "ValaSource.vala.c"
+#line 3926 "ValaSource.vala.c"
 			JsonObject* ret = NULL;
 			JsonObject* _tmp4_;
 			JsonObject* _tmp5_;
@@ -3961,7 +3964,7 @@ palete_vala_source_spawnResult (PaleteValaSource* self,
 			self->priv->compiler = NULL;
 #line 424 "ValaSource.vala"
 			_json_object_unref0 (ret);
-#line 3965 "ValaSource.vala.c"
+#line 3968 "ValaSource.vala.c"
 		}
 #line 435 "ValaSource.vala"
 		_tmp12_ = node;
@@ -3985,7 +3988,7 @@ palete_vala_source_spawnResult (PaleteValaSource* self,
 		__vala_JsonNode_free0 (node);
 #line 417 "ValaSource.vala"
 		_g_object_unref0 (pa);
-#line 3989 "ValaSource.vala.c"
+#line 3992 "ValaSource.vala.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
@@ -4026,7 +4029,7 @@ palete_vala_source_spawnResult (PaleteValaSource* self,
 		_json_object_unref0 (ret);
 #line 417 "ValaSource.vala"
 		_g_error_free0 (e);
-#line 4030 "ValaSource.vala.c"
+#line 4033 "ValaSource.vala.c"
 	}
 	__finally0:
 #line 417 "ValaSource.vala"
@@ -4037,7 +4040,7 @@ palete_vala_source_spawnResult (PaleteValaSource* self,
 		g_clear_error (&_inner_error0_);
 #line 417 "ValaSource.vala"
 		return;
-#line 4041 "ValaSource.vala.c"
+#line 4044 "ValaSource.vala.c"
 	}
 #line 447 "ValaSource.vala"
 	_g_object_unref0 (self->priv->compiler);
@@ -4047,7 +4050,7 @@ palete_vala_source_spawnResult (PaleteValaSource* self,
 	palete_vala_source_deleteTemp (self);
 #line 449 "ValaSource.vala"
 	palete_vala_source_spinner (self, FALSE);
-#line 4051 "ValaSource.vala.c"
+#line 4054 "ValaSource.vala.c"
 }
 
 static void
@@ -4056,19 +4059,19 @@ _vala_array_add81 (gchar** * array,
                    gint* size,
                    gchar* value)
 {
-#line 497 "ValaSource.vala"
+#line 501 "ValaSource.vala"
 	if ((*length) == (*size)) {
-#line 497 "ValaSource.vala"
+#line 501 "ValaSource.vala"
 		*size = (*size) ? (2 * (*size)) : 4;
-#line 497 "ValaSource.vala"
+#line 501 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 4066 "ValaSource.vala.c"
+#line 4069 "ValaSource.vala.c"
 	}
-#line 497 "ValaSource.vala"
+#line 501 "ValaSource.vala"
 	(*array)[(*length)++] = value;
-#line 497 "ValaSource.vala"
+#line 501 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 4072 "ValaSource.vala.c"
+#line 4075 "ValaSource.vala.c"
 }
 
 static void
@@ -4077,19 +4080,19 @@ _vala_array_add82 (gchar** * array,
                    gint* size,
                    gchar* value)
 {
-#line 503 "ValaSource.vala"
+#line 507 "ValaSource.vala"
 	if ((*length) == (*size)) {
-#line 503 "ValaSource.vala"
+#line 507 "ValaSource.vala"
 		*size = (*size) ? (2 * (*size)) : 4;
-#line 503 "ValaSource.vala"
+#line 507 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 4087 "ValaSource.vala.c"
+#line 4090 "ValaSource.vala.c"
 	}
-#line 503 "ValaSource.vala"
+#line 507 "ValaSource.vala"
 	(*array)[(*length)++] = value;
-#line 503 "ValaSource.vala"
+#line 507 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 4093 "ValaSource.vala.c"
+#line 4096 "ValaSource.vala.c"
 }
 
 static void
@@ -4098,19 +4101,19 @@ _vala_array_add83 (gchar** * array,
                    gint* size,
                    gchar* value)
 {
-#line 505 "ValaSource.vala"
+#line 509 "ValaSource.vala"
 	if ((*length) == (*size)) {
-#line 505 "ValaSource.vala"
+#line 509 "ValaSource.vala"
 		*size = (*size) ? (2 * (*size)) : 4;
-#line 505 "ValaSource.vala"
+#line 509 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 4108 "ValaSource.vala.c"
+#line 4111 "ValaSource.vala.c"
 	}
-#line 505 "ValaSource.vala"
+#line 509 "ValaSource.vala"
 	(*array)[(*length)++] = value;
-#line 505 "ValaSource.vala"
+#line 509 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 4114 "ValaSource.vala.c"
+#line 4117 "ValaSource.vala.c"
 }
 
 static void
@@ -4119,19 +4122,19 @@ _vala_array_add84 (gchar** * array,
                    gint* size,
                    gchar* value)
 {
-#line 508 "ValaSource.vala"
+#line 512 "ValaSource.vala"
 	if ((*length) == (*size)) {
-#line 508 "ValaSource.vala"
+#line 512 "ValaSource.vala"
 		*size = (*size) ? (2 * (*size)) : 4;
-#line 508 "ValaSource.vala"
+#line 512 "ValaSource.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
-#line 4129 "ValaSource.vala.c"
+#line 4132 "ValaSource.vala.c"
 	}
-#line 508 "ValaSource.vala"
+#line 512 "ValaSource.vala"
 	(*array)[(*length)++] = value;
-#line 508 "ValaSource.vala"
+#line 512 "ValaSource.vala"
 	(*array)[*length] = NULL;
-#line 4135 "ValaSource.vala.c"
+#line 4138 "ValaSource.vala.c"
 }
 
 void
@@ -4169,18 +4172,24 @@ palete_vala_source_runResult (PaleteValaSource* self,
 	gchar* _tmp27_;
 	gchar* _tmp28_;
 	const gchar* _tmp29_;
-	gchar** args = NULL;
-	gchar** _tmp31_;
-	gchar** _tmp32_;
-	gint args_length1;
-	gint _args_size_;
+	gchar* gdb_cfg = NULL;
+	ProjectGtk* _tmp31_;
+	const gchar* _tmp32_;
 	gchar* _tmp33_;
 	const gchar* _tmp34_;
-	gchar* _tmp35_;
-	ProjectGtkValaSettings* _tmp36_;
-	const gchar* _tmp37_;
-	gint _tmp38_;
-	gint _tmp39_;
+	gchar** args = NULL;
+	gchar** _tmp36_;
+	gchar** _tmp37_;
+	gint args_length1;
+	gint _args_size_;
+	const gchar* _tmp38_;
+	gchar* _tmp39_;
+	const gchar* _tmp40_;
+	gchar* _tmp41_;
+	ProjectGtkValaSettings* _tmp42_;
+	const gchar* _tmp43_;
+	gint _tmp44_;
+	gint _tmp45_;
 	GError* _inner_error0_ = NULL;
 #line 459 "ValaSource.vala"
 	_g_object_unref0 (self->priv->compiler);
@@ -4210,7 +4219,7 @@ palete_vala_source_runResult (PaleteValaSource* self,
 	_tmp7_ = _tmp6_;
 #line 474 "ValaSource.vala"
 	if (_tmp7_ > 0) {
-#line 4214 "ValaSource.vala.c"
+#line 4223 "ValaSource.vala.c"
 		JsRenderJsRender* _tmp8_;
 		const gchar* _tmp9_;
 		gchar* _tmp10_;
@@ -4224,7 +4233,7 @@ palete_vala_source_runResult (PaleteValaSource* self,
 		_g_free0 (mod);
 #line 475 "ValaSource.vala"
 		mod = _tmp10_;
-#line 4228 "ValaSource.vala.c"
+#line 4237 "ValaSource.vala.c"
 	} else {
 		ProjectGtk* _tmp11_;
 		gchar* _tmp12_;
@@ -4236,7 +4245,7 @@ palete_vala_source_runResult (PaleteValaSource* self,
 		_g_free0 (mod);
 #line 477 "ValaSource.vala"
 		mod = _tmp12_;
-#line 4240 "ValaSource.vala.c"
+#line 4249 "ValaSource.vala.c"
 	}
 #line 479 "ValaSource.vala"
 	_tmp13_ = mod;
@@ -4254,7 +4263,7 @@ palete_vala_source_runResult (PaleteValaSource* self,
 		_g_free0 (mod);
 #line 481 "ValaSource.vala"
 		return;
-#line 4258 "ValaSource.vala.c"
+#line 4267 "ValaSource.vala.c"
 	}
 #line 483 "ValaSource.vala"
 	_tmp16_ = pr;
@@ -4292,7 +4301,7 @@ palete_vala_source_runResult (PaleteValaSource* self,
 	_tmp29_ = exe;
 #line 488 "ValaSource.vala"
 	if (!g_file_test (_tmp29_, G_FILE_TEST_EXISTS)) {
-#line 4296 "ValaSource.vala.c"
+#line 4305 "ValaSource.vala.c"
 		const gchar* _tmp30_;
 #line 489 "ValaSource.vala"
 		_tmp30_ = exe;
@@ -4308,220 +4317,248 @@ palete_vala_source_runResult (PaleteValaSource* self,
 		_g_free0 (mod);
 #line 490 "ValaSource.vala"
 		return;
-#line 4312 "ValaSource.vala.c"
+#line 4321 "ValaSource.vala.c"
 	}
-#line 495 "ValaSource.vala"
-	_tmp32_ = _tmp31_ = g_strsplit ("/usr/bin/gnome-terminal -- /usr/bin/gdb", " ", 0);
-#line 495 "ValaSource.vala"
-	args = _tmp32_;
-#line 495 "ValaSource.vala"
-	args_length1 = _vala_array_length (_tmp31_);
-#line 495 "ValaSource.vala"
+#line 492 "ValaSource.vala"
+	_tmp31_ = pr;
+#line 492 "ValaSource.vala"
+	_tmp32_ = ((ProjectProject*) _tmp31_)->path;
+#line 492 "ValaSource.vala"
+	_tmp33_ = g_strconcat (_tmp32_, "/build/.gdb-script", NULL);
+#line 492 "ValaSource.vala"
+	gdb_cfg = _tmp33_;
+#line 493 "ValaSource.vala"
+	_tmp34_ = gdb_cfg;
+#line 493 "ValaSource.vala"
+	if (!g_file_test (_tmp34_, G_FILE_TEST_EXISTS)) {
+#line 4335 "ValaSource.vala.c"
+		ProjectGtk* _tmp35_;
+#line 494 "ValaSource.vala"
+		_tmp35_ = pr;
+#line 494 "ValaSource.vala"
+		project_gtk_writeFile (_tmp35_, "build/.gdb-script", "set debuginfod enabled off\nr");
+#line 4341 "ValaSource.vala.c"
+	}
+#line 499 "ValaSource.vala"
+	_tmp37_ = _tmp36_ = g_strsplit ("/usr/bin/gnome-terminal -- /usr/bin/gdb -x ", " ", 0);
+#line 499 "ValaSource.vala"
+	args = _tmp37_;
+#line 499 "ValaSource.vala"
+	args_length1 = _vala_array_length (_tmp36_);
+#line 499 "ValaSource.vala"
 	_args_size_ = args_length1;
-#line 497 "ValaSource.vala"
-	_tmp33_ = g_strdup ("-ex=r");
-#line 497 "ValaSource.vala"
-	_vala_array_add81 (&args, &args_length1, &_args_size_, _tmp33_);
-#line 503 "ValaSource.vala"
-	_tmp34_ = exe;
-#line 503 "ValaSource.vala"
-	_tmp35_ = g_strdup (_tmp34_);
-#line 503 "ValaSource.vala"
-	_vala_array_add82 (&args, &args_length1, &_args_size_, _tmp35_);
-#line 504 "ValaSource.vala"
-	_tmp36_ = cg;
-#line 504 "ValaSource.vala"
-	_tmp37_ = _tmp36_->execute_args;
-#line 504 "ValaSource.vala"
-	_tmp38_ = strlen (_tmp37_);
-#line 504 "ValaSource.vala"
-	_tmp39_ = _tmp38_;
-#line 504 "ValaSource.vala"
-	if (_tmp39_ > 0) {
-#line 4342 "ValaSource.vala.c"
-		gchar* _tmp40_;
+#line 501 "ValaSource.vala"
+	_tmp38_ = gdb_cfg;
+#line 501 "ValaSource.vala"
+	_tmp39_ = g_strdup (_tmp38_);
+#line 501 "ValaSource.vala"
+	_vala_array_add81 (&args, &args_length1, &_args_size_, _tmp39_);
+#line 507 "ValaSource.vala"
+	_tmp40_ = exe;
+#line 507 "ValaSource.vala"
+	_tmp41_ = g_strdup (_tmp40_);
+#line 507 "ValaSource.vala"
+	_vala_array_add82 (&args, &args_length1, &_args_size_, _tmp41_);
+#line 508 "ValaSource.vala"
+	_tmp42_ = cg;
+#line 508 "ValaSource.vala"
+	_tmp43_ = _tmp42_->execute_args;
+#line 508 "ValaSource.vala"
+	_tmp44_ = strlen (_tmp43_);
+#line 508 "ValaSource.vala"
+	_tmp45_ = _tmp44_;
+#line 508 "ValaSource.vala"
+	if (_tmp45_ > 0) {
+#line 4373 "ValaSource.vala.c"
+		gchar* _tmp46_;
 		gchar** aa = NULL;
-		ProjectGtkValaSettings* _tmp41_;
-		const gchar* _tmp42_;
-		gchar** _tmp43_;
-		gchar** _tmp44_;
+		ProjectGtkValaSettings* _tmp47_;
+		const gchar* _tmp48_;
+		gchar** _tmp49_;
+		gchar** _tmp50_;
 		gint aa_length1;
 		gint _aa_size_;
-#line 505 "ValaSource.vala"
-		_tmp40_ = g_strdup ("--args");
-#line 505 "ValaSource.vala"
-		_vala_array_add83 (&args, &args_length1, &_args_size_, _tmp40_);
-#line 506 "ValaSource.vala"
-		_tmp41_ = cg;
-#line 506 "ValaSource.vala"
-		_tmp42_ = _tmp41_->execute_args;
-#line 506 "ValaSource.vala"
-		_tmp44_ = _tmp43_ = g_strsplit (_tmp42_, " ", 0);
-#line 506 "ValaSource.vala"
-		aa = _tmp44_;
-#line 506 "ValaSource.vala"
-		aa_length1 = _vala_array_length (_tmp43_);
-#line 506 "ValaSource.vala"
+#line 509 "ValaSource.vala"
+		_tmp46_ = g_strdup ("--args");
+#line 509 "ValaSource.vala"
+		_vala_array_add83 (&args, &args_length1, &_args_size_, _tmp46_);
+#line 510 "ValaSource.vala"
+		_tmp47_ = cg;
+#line 510 "ValaSource.vala"
+		_tmp48_ = _tmp47_->execute_args;
+#line 510 "ValaSource.vala"
+		_tmp50_ = _tmp49_ = g_strsplit (_tmp48_, " ", 0);
+#line 510 "ValaSource.vala"
+		aa = _tmp50_;
+#line 510 "ValaSource.vala"
+		aa_length1 = _vala_array_length (_tmp49_);
+#line 510 "ValaSource.vala"
 		_aa_size_ = aa_length1;
-#line 4367 "ValaSource.vala.c"
+#line 4398 "ValaSource.vala.c"
 		{
 			gint i = 0;
-#line 507 "ValaSource.vala"
+#line 511 "ValaSource.vala"
 			i = 0;
-#line 4372 "ValaSource.vala.c"
+#line 4403 "ValaSource.vala.c"
 			{
-				gboolean _tmp45_ = FALSE;
-#line 507 "ValaSource.vala"
-				_tmp45_ = TRUE;
-#line 507 "ValaSource.vala"
+				gboolean _tmp51_ = FALSE;
+#line 511 "ValaSource.vala"
+				_tmp51_ = TRUE;
+#line 511 "ValaSource.vala"
 				while (TRUE) {
-#line 4379 "ValaSource.vala.c"
-					gchar** _tmp47_;
-					gint _tmp47__length1;
-					gchar** _tmp48_;
-					gint _tmp48__length1;
-					const gchar* _tmp49_;
-					gchar* _tmp50_;
-#line 507 "ValaSource.vala"
-					if (!_tmp45_) {
-#line 4388 "ValaSource.vala.c"
-						gint _tmp46_;
-#line 507 "ValaSource.vala"
-						_tmp46_ = i;
-#line 507 "ValaSource.vala"
-						i = _tmp46_ + 1;
-#line 4394 "ValaSource.vala.c"
+#line 4410 "ValaSource.vala.c"
+					gchar** _tmp53_;
+					gint _tmp53__length1;
+					gchar** _tmp54_;
+					gint _tmp54__length1;
+					const gchar* _tmp55_;
+					gchar* _tmp56_;
+#line 511 "ValaSource.vala"
+					if (!_tmp51_) {
+#line 4419 "ValaSource.vala.c"
+						gint _tmp52_;
+#line 511 "ValaSource.vala"
+						_tmp52_ = i;
+#line 511 "ValaSource.vala"
+						i = _tmp52_ + 1;
+#line 4425 "ValaSource.vala.c"
 					}
-#line 507 "ValaSource.vala"
-					_tmp45_ = FALSE;
-#line 507 "ValaSource.vala"
-					_tmp47_ = aa;
-#line 507 "ValaSource.vala"
-					_tmp47__length1 = aa_length1;
-#line 507 "ValaSource.vala"
-					if (!(i < _tmp47__length1)) {
-#line 507 "ValaSource.vala"
+#line 511 "ValaSource.vala"
+					_tmp51_ = FALSE;
+#line 511 "ValaSource.vala"
+					_tmp53_ = aa;
+#line 511 "ValaSource.vala"
+					_tmp53__length1 = aa_length1;
+#line 511 "ValaSource.vala"
+					if (!(i < _tmp53__length1)) {
+#line 511 "ValaSource.vala"
 						break;
-#line 4406 "ValaSource.vala.c"
+#line 4437 "ValaSource.vala.c"
 					}
-#line 508 "ValaSource.vala"
-					_tmp48_ = aa;
-#line 508 "ValaSource.vala"
-					_tmp48__length1 = aa_length1;
-#line 508 "ValaSource.vala"
-					_tmp49_ = _tmp48_[i];
-#line 508 "ValaSource.vala"
-					_tmp50_ = g_strdup (_tmp49_);
-#line 508 "ValaSource.vala"
-					_vala_array_add84 (&args, &args_length1, &_args_size_, _tmp50_);
-#line 4418 "ValaSource.vala.c"
+#line 512 "ValaSource.vala"
+					_tmp54_ = aa;
+#line 512 "ValaSource.vala"
+					_tmp54__length1 = aa_length1;
+#line 512 "ValaSource.vala"
+					_tmp55_ = _tmp54_[i];
+#line 512 "ValaSource.vala"
+					_tmp56_ = g_strdup (_tmp55_);
+#line 512 "ValaSource.vala"
+					_vala_array_add84 (&args, &args_length1, &_args_size_, _tmp56_);
+#line 4449 "ValaSource.vala.c"
 				}
 			}
 		}
-#line 504 "ValaSource.vala"
+#line 508 "ValaSource.vala"
 		aa = (_vala_array_free (aa, aa_length1, (GDestroyNotify) g_free), NULL);
-#line 4424 "ValaSource.vala.c"
+#line 4455 "ValaSource.vala.c"
 	}
-#line 512 "ValaSource.vala"
+#line 516 "ValaSource.vala"
 	g_print ("OUT: %s\n\n----\nERR:%s\n", output, stderr);
-#line 4428 "ValaSource.vala.c"
+#line 4459 "ValaSource.vala.c"
 	{
 		Spawn* exec = NULL;
-		const gchar* _tmp51_;
-		gchar** _tmp52_;
-		gint _tmp52__length1;
-		Spawn* _tmp53_;
-		Spawn* _tmp54_;
-		Spawn* _tmp55_;
-#line 519 "ValaSource.vala"
-		_tmp51_ = g_get_home_dir ();
-#line 519 "ValaSource.vala"
-		_tmp52_ = args;
-#line 519 "ValaSource.vala"
-		_tmp52__length1 = args_length1;
-#line 519 "ValaSource.vala"
-		_tmp53_ = spawn_new (_tmp51_, _tmp52_, _tmp52__length1, &_inner_error0_);
-#line 519 "ValaSource.vala"
-		exec = _tmp53_;
-#line 519 "ValaSource.vala"
+		const gchar* _tmp57_;
+		gchar** _tmp58_;
+		gint _tmp58__length1;
+		Spawn* _tmp59_;
+		Spawn* _tmp60_;
+		Spawn* _tmp61_;
+#line 523 "ValaSource.vala"
+		_tmp57_ = g_get_home_dir ();
+#line 523 "ValaSource.vala"
+		_tmp58_ = args;
+#line 523 "ValaSource.vala"
+		_tmp58__length1 = args_length1;
+#line 523 "ValaSource.vala"
+		_tmp59_ = spawn_new (_tmp57_, _tmp58_, _tmp58__length1, &_inner_error0_);
+#line 523 "ValaSource.vala"
+		exec = _tmp59_;
+#line 523 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 4449 "ValaSource.vala.c"
+#line 4480 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
-#line 520 "ValaSource.vala"
-		_tmp54_ = exec;
-#line 520 "ValaSource.vala"
-		_tmp54_->detach = TRUE;
-#line 521 "ValaSource.vala"
-		_tmp55_ = exec;
-#line 521 "ValaSource.vala"
-		spawn_run (_tmp55_, &_inner_error0_);
-#line 521 "ValaSource.vala"
+#line 524 "ValaSource.vala"
+		_tmp60_ = exec;
+#line 524 "ValaSource.vala"
+		_tmp60_->detach = TRUE;
+#line 525 "ValaSource.vala"
+		_tmp61_ = exec;
+#line 525 "ValaSource.vala"
+		spawn_run (_tmp61_, &_inner_error0_);
+#line 525 "ValaSource.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 521 "ValaSource.vala"
+#line 525 "ValaSource.vala"
 			_g_object_unref0 (exec);
-#line 4464 "ValaSource.vala.c"
+#line 4495 "ValaSource.vala.c"
 			goto __catch0_g_error;
 		}
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		_g_object_unref0 (exec);
-#line 4469 "ValaSource.vala.c"
+#line 4500 "ValaSource.vala.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
 	{
 		GError* e = NULL;
-		GError* _tmp56_;
-		const gchar* _tmp57_;
-#line 517 "ValaSource.vala"
+		GError* _tmp62_;
+		const gchar* _tmp63_;
+#line 521 "ValaSource.vala"
 		e = _inner_error0_;
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		_inner_error0_ = NULL;
-#line 523 "ValaSource.vala"
-		_tmp56_ = e;
-#line 523 "ValaSource.vala"
-		_tmp57_ = _tmp56_->message;
-#line 523 "ValaSource.vala"
-		g_debug ("ValaSource.vala:523: Failed to spawn: %s", _tmp57_);
-#line 524 "ValaSource.vala"
+#line 527 "ValaSource.vala"
+		_tmp62_ = e;
+#line 527 "ValaSource.vala"
+		_tmp63_ = _tmp62_->message;
+#line 527 "ValaSource.vala"
+		g_debug ("ValaSource.vala:527: Failed to spawn: %s", _tmp63_);
+#line 528 "ValaSource.vala"
 		_g_error_free0 (e);
-#line 524 "ValaSource.vala"
+#line 528 "ValaSource.vala"
 		args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
-#line 524 "ValaSource.vala"
+#line 528 "ValaSource.vala"
+		_g_free0 (gdb_cfg);
+#line 528 "ValaSource.vala"
 		_g_free0 (exe);
-#line 524 "ValaSource.vala"
+#line 528 "ValaSource.vala"
 		_g_object_unref0 (cg);
-#line 524 "ValaSource.vala"
+#line 528 "ValaSource.vala"
 		_g_object_unref0 (pr);
-#line 524 "ValaSource.vala"
+#line 528 "ValaSource.vala"
 		_g_free0 (mod);
-#line 524 "ValaSource.vala"
+#line 528 "ValaSource.vala"
 		return;
-#line 4501 "ValaSource.vala.c"
+#line 4534 "ValaSource.vala.c"
 	}
 	__finally0:
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 	if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
+		_g_free0 (gdb_cfg);
+#line 521 "ValaSource.vala"
 		_g_free0 (exe);
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		_g_object_unref0 (cg);
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		_g_object_unref0 (pr);
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		_g_free0 (mod);
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error0_->message, g_quark_to_string (_inner_error0_->domain), _inner_error0_->code);
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		g_clear_error (&_inner_error0_);
-#line 517 "ValaSource.vala"
+#line 521 "ValaSource.vala"
 		return;
-#line 4522 "ValaSource.vala.c"
+#line 4557 "ValaSource.vala.c"
 	}
 #line 457 "ValaSource.vala"
 	args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
+#line 457 "ValaSource.vala"
+	_g_free0 (gdb_cfg);
 #line 457 "ValaSource.vala"
 	_g_free0 (exe);
 #line 457 "ValaSource.vala"
@@ -4530,7 +4567,7 @@ palete_vala_source_runResult (PaleteValaSource* self,
 	_g_object_unref0 (pr);
 #line 457 "ValaSource.vala"
 	_g_free0 (mod);
-#line 4534 "ValaSource.vala.c"
+#line 4571 "ValaSource.vala.c"
 }
 
 static void
@@ -4547,7 +4584,7 @@ palete_vala_source_class_init (PaleteValaSourceClass * klass,
 	palete_vala_source_signals[PALETE_VALA_SOURCE_COMPILED_SIGNAL] = g_signal_new ("compiled", PALETE_TYPE_VALA_SOURCE, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__BOXED, G_TYPE_NONE, 1, json_object_get_type ());
 #line 27 "ValaSource.vala"
 	palete_vala_source_signals[PALETE_VALA_SOURCE_COMPILE_OUTPUT_SIGNAL] = g_signal_new ("compile-output", PALETE_TYPE_VALA_SOURCE, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__STRING, G_TYPE_NONE, 1, G_TYPE_STRING);
-#line 4551 "ValaSource.vala.c"
+#line 4588 "ValaSource.vala.c"
 }
 
 static void
@@ -4563,7 +4600,7 @@ palete_vala_source_instance_init (PaleteValaSource * self,
 	_tmp0_ = g_strdup ("");
 #line 39 "ValaSource.vala"
 	self->tmpfile_path = _tmp0_;
-#line 4567 "ValaSource.vala.c"
+#line 4604 "ValaSource.vala.c"
 }
 
 static void
@@ -4582,7 +4619,7 @@ palete_vala_source_finalize (GObject * obj)
 	_g_object_unref0 (self->priv->compiler);
 #line 27 "ValaSource.vala"
 	G_OBJECT_CLASS (palete_vala_source_parent_class)->finalize (obj);
-#line 4586 "ValaSource.vala.c"
+#line 4623 "ValaSource.vala.c"
 }
 
 static GType

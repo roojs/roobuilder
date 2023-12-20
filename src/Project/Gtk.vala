@@ -276,7 +276,7 @@ namespace Project
 			}
 			this.writeFile(name, o);
 		}
-		void writeFile(string name, string o) 
+		public void writeFile(string name, string o) 
 		{
 			var f = GLib.File.new_for_path(this.path + "/" + name);
 			var data_out = new GLib.DataOutputStream( f.replace(null, false, GLib.FileCreateFlags.NONE, null) );
