@@ -19,8 +19,6 @@ public class Xcls_PopoverFileDetails : Object
     public Xcls_filetype filetype;
     public Xcls_filetype_model filetype_model;
     public Xcls_name name;
-    public Xcls_file_namespace_lbl file_namespace_lbl;
-    public Xcls_file_namespace file_namespace;
     public Xcls_title_lbl title_lbl;
     public Xcls_title title;
     public Xcls_region_lbl region_lbl;
@@ -68,7 +66,7 @@ public class Xcls_PopoverFileDetails : Object
         var child_1 = new Xcls_Box2( _this );
         child_1.ref();
         this.el.set_child ( child_1.el  );
-        var child_2 = new Xcls_HeaderBar31( _this );
+        var child_2 = new Xcls_HeaderBar29( _this );
         this.el.titlebar = child_2.el;
 
         //listeners
@@ -244,42 +242,38 @@ public class Xcls_PopoverFileDetails : Object
             this.el.attach( child_5.el, 0, 2, 1, 1 );
             var child_6 = new Xcls_name( _this );
             this.el.attach( child_6.el, 1, 2, 1, 1 );
-            var child_7 = new Xcls_file_namespace_lbl( _this );
+            var child_7 = new Xcls_title_lbl( _this );
             this.el.attach( child_7.el, 0, 3, 1, 1 );
-            var child_8 = new Xcls_file_namespace( _this );
-            this.el.attach( child_8.el, 1, 3, 1, 1 );
-            var child_9 = new Xcls_title_lbl( _this );
+            var child_8 = new Xcls_title( _this );
+            this.el.attach ( child_8.el , 1,2,1,1 );
+            var child_9 = new Xcls_region_lbl( _this );
             this.el.attach( child_9.el, 0, 4, 1, 1 );
-            var child_10 = new Xcls_title( _this );
-            this.el.attach ( child_10.el , 1,2,1,1 );
-            var child_11 = new Xcls_region_lbl( _this );
+            var child_10 = new Xcls_region( _this );
+            this.el.attach( child_10.el, 1, 4, 1, 1 );
+            var child_11 = new Xcls_parent_lbl( _this );
             this.el.attach( child_11.el, 0, 5, 1, 1 );
-            var child_12 = new Xcls_region( _this );
+            var child_12 = new Xcls_parent( _this );
             this.el.attach( child_12.el, 1, 5, 1, 1 );
-            var child_13 = new Xcls_parent_lbl( _this );
+            var child_13 = new Xcls_permname_lbl( _this );
             this.el.attach( child_13.el, 0, 6, 1, 1 );
-            var child_14 = new Xcls_parent( _this );
+            var child_14 = new Xcls_permname( _this );
             this.el.attach( child_14.el, 1, 6, 1, 1 );
-            var child_15 = new Xcls_permname_lbl( _this );
+            var child_15 = new Xcls_modOrder_lbl( _this );
             this.el.attach( child_15.el, 0, 7, 1, 1 );
-            var child_16 = new Xcls_permname( _this );
+            var child_16 = new Xcls_modOrder( _this );
             this.el.attach( child_16.el, 1, 7, 1, 1 );
-            var child_17 = new Xcls_modOrder_lbl( _this );
+            var child_17 = new Xcls_build_module_lbl( _this );
             this.el.attach( child_17.el, 0, 8, 1, 1 );
-            var child_18 = new Xcls_modOrder( _this );
+            var child_18 = new Xcls_build_module( _this );
             this.el.attach( child_18.el, 1, 8, 1, 1 );
-            var child_19 = new Xcls_build_module_lbl( _this );
+            var child_19 = new Xcls_path_lbl( _this );
             this.el.attach( child_19.el, 0, 9, 1, 1 );
-            var child_20 = new Xcls_build_module( _this );
+            var child_20 = new Xcls_path( _this );
             this.el.attach( child_20.el, 1, 9, 1, 1 );
-            var child_21 = new Xcls_path_lbl( _this );
+            var child_21 = new Xcls_gen_lbl( _this );
             this.el.attach( child_21.el, 0, 10, 1, 1 );
-            var child_22 = new Xcls_path( _this );
+            var child_22 = new Xcls_gen( _this );
             this.el.attach( child_22.el, 1, 10, 1, 1 );
-            var child_23 = new Xcls_gen_lbl( _this );
-            this.el.attach( child_23.el, 0, 11, 1, 1 );
-            var child_24 = new Xcls_gen( _this );
-            this.el.attach( child_24.el, 1, 11, 1, 1 );
         }
 
         // user defined functions
@@ -622,56 +616,6 @@ public class Xcls_PopoverFileDetails : Object
         {
             _this = _owner;
             _this.name = this;
-            this.el = new Gtk.Entry();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.hexpand = true;
-            this.el.visible = true;
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_file_namespace_lbl : Object
-    {
-        public Gtk.Label el;
-        private Xcls_PopoverFileDetails  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_file_namespace_lbl(Xcls_PopoverFileDetails _owner )
-        {
-            _this = _owner;
-            _this.file_namespace_lbl = this;
-            this.el = new Gtk.Label( "Vala Namespace" );
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.justify = Gtk.Justification.RIGHT;
-            this.el.xalign = 0.900000f;
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_file_namespace : Object
-    {
-        public Gtk.Entry el;
-        private Xcls_PopoverFileDetails  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_file_namespace(Xcls_PopoverFileDetails _owner )
-        {
-            _this = _owner;
-            _this.file_namespace = this;
             this.el = new Gtk.Entry();
 
             // my vars (dec)
@@ -1169,7 +1113,7 @@ public class Xcls_PopoverFileDetails : Object
 
 
 
-    public class Xcls_HeaderBar31 : Object
+    public class Xcls_HeaderBar29 : Object
     {
         public Gtk.HeaderBar el;
         private Xcls_PopoverFileDetails  _this;
@@ -1178,7 +1122,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_HeaderBar31(Xcls_PopoverFileDetails _owner )
+        public Xcls_HeaderBar29(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.HeaderBar();
@@ -1187,7 +1131,7 @@ public class Xcls_PopoverFileDetails : Object
 
             // set gobject values
             this.el.show_title_buttons = false;
-            var child_1 = new Xcls_Button32( _this );
+            var child_1 = new Xcls_Button30( _this );
             child_1.ref();
             this.el.pack_start ( child_1.el  );
             var child_2 = new Xcls_save_btn( _this );
@@ -1196,7 +1140,7 @@ public class Xcls_PopoverFileDetails : Object
 
         // user defined functions
     }
-    public class Xcls_Button32 : Object
+    public class Xcls_Button30 : Object
     {
         public Gtk.Button el;
         private Xcls_PopoverFileDetails  _this;
@@ -1205,7 +1149,7 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Button32(Xcls_PopoverFileDetails _owner )
+        public Xcls_Button30(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
