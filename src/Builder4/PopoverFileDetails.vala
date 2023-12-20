@@ -13,6 +13,7 @@ public class Xcls_PopoverFileDetails : Object
         return _PopoverFileDetails;
     }
     public Xcls_grid grid;
+    public Xcls_dir_dropdown_lbl dir_dropdown_lbl;
     public Xcls_dir_dropdown dir_dropdown;
     public Xcls_dir_model dir_model;
     public Xcls_filetype_lbl filetype_lbl;
@@ -228,8 +229,7 @@ public class Xcls_PopoverFileDetails : Object
             this.el.hexpand = true;
             this.el.column_spacing = 4;
             this.el.row_spacing = 2;
-            var child_1 = new Xcls_Label4( _this );
-            child_1.ref();
+            var child_1 = new Xcls_dir_dropdown_lbl( _this );
             this.el.attach( child_1.el, 0, 0, 1, 1 );
             var child_2 = new Xcls_dir_dropdown( _this );
             this.el.attach( child_2.el, 1, 0, 1, 1 );
@@ -295,7 +295,7 @@ public class Xcls_PopoverFileDetails : Object
         
         }
     }
-    public class Xcls_Label4 : Object
+    public class Xcls_dir_dropdown_lbl : Object
     {
         public Gtk.Label el;
         private Xcls_PopoverFileDetails  _this;
@@ -304,9 +304,10 @@ public class Xcls_PopoverFileDetails : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Label4(Xcls_PopoverFileDetails _owner )
+        public Xcls_dir_dropdown_lbl(Xcls_PopoverFileDetails _owner )
         {
             _this = _owner;
+            _this.dir_dropdown_lbl = this;
             this.el = new Gtk.Label( "Create File in this Directory" );
 
             // my vars (dec)

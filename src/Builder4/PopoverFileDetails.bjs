@@ -39,6 +39,7 @@
          "$ justify" : "Gtk.Justification.RIGHT",
          "$ visible" : true,
          "$ xns" : "Gtk",
+         "id" : "dir_dropdown_lbl",
          "label" : "Create File in this Directory",
          "x_options" : 4,
          "xalign" : 0.90000000000000002,
