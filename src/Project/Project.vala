@@ -759,10 +759,10 @@ namespace Project {
 						subs.add(dir  + "/" + fn);
 						continue;
 					}
-					if (Regex.match_simple("\\.(o|cache|gif|jpg|png|gif|out|stamp)$", fn)) { // object..
+					if (Regex.match_simple("\\.(o|cache|gif|jpg|png|gif|out|stamp|~)$", fn)) { // object..
 						continue;
 					}
-					if (Regex.match_simple("^(config1.builder|a.out|)$", fn)) { // object..
+					if (Regex.match_simple("^(config1.builder|a.out|stamp-h1|depcomp|config.log|config.status)$", fn)) { // object..
 						continue;
 					}
 					
