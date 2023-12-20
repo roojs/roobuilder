@@ -294,7 +294,7 @@ namespace Project
 				"	Gtk.init ();",
 		 		"	GLib.Log.set_always_fatal(LogLevelFlags.LEVEL_ERROR ); ",
 				"	app.activate.connect(() => {",
-				"		var w = new UI.Window();",   // ?? main window as UI window?
+				"		var w = new ui.Window();",   // ?? main window as UI window?
 				"		w.el.application  = app;",
 				"		w.ref();",
 				"	 	w.show();",
