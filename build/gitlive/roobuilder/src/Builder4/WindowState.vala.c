@@ -2854,13 +2854,13 @@ VALA_EXTERN GType xcls_windowlefttree_xcls_maincol_get_type (void) G_GNUC_CONST 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowLeftTreeXcls_maincol, g_object_unref)
 VALA_EXTERN GType xcls_windowlefttree_xcls_lefttreemenu_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowLeftTreeXcls_LeftTreeMenu, g_object_unref)
-static gboolean __lambda236_ (WindowState* self);
+static gboolean __lambda241_ (WindowState* self);
 VALA_EXTERN gboolean window_state_leftTreeBeforeChange (WindowState* self);
-static gboolean ___lambda236__xcls_windowlefttree_before_node_change (Xcls_WindowLeftTree* _sender,
+static gboolean ___lambda241__xcls_windowlefttree_before_node_change (Xcls_WindowLeftTree* _sender,
                                                                gpointer self);
 VALA_EXTERN GType js_render_node_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNode, g_object_unref)
-static void __lambda237_ (WindowState* self,
+static void __lambda242_ (WindowState* self,
                    JsRenderNode* sel);
 VALA_EXTERN GType xcls_windowrooview_xcls_notebook_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowRooViewXcls_notebook, g_object_unref)
@@ -2934,23 +2934,23 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_GtkViewXcls_multiline, g_object_unref)
 VALA_EXTERN void xcls_gtkview_xcls_sourceview_nodeSelected (Xcls_GtkViewXcls_sourceview* self,
                                                 JsRenderNode* sel,
                                                 gboolean scroll);
-static void ___lambda237__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
+static void ___lambda242__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
                                                       JsRenderNode* node,
                                                       gpointer self);
-static void __lambda238_ (WindowState* self,
+static void __lambda243_ (WindowState* self,
                    JsRenderNode* sel);
 VALA_EXTERN void window_state_leftTreeNodeSelected (WindowState* self,
                                         JsRenderNode* sel);
-static void ___lambda238__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
+static void ___lambda243__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
                                                       JsRenderNode* node,
                                                       gpointer self);
-static void __lambda239_ (WindowState* self);
+static void __lambda244_ (WindowState* self);
 VALA_EXTERN void js_render_js_render_save (JsRenderJsRender* self);
 VALA_EXTERN JsRenderJsRender* xcls_windowlefttree_getActiveFile (Xcls_WindowLeftTree* self);
 VALA_EXTERN void xcls_windowrooview_requestRedraw (Xcls_WindowRooView* self);
 VALA_EXTERN void xcls_gtkview_loadFile (Xcls_GtkView* self,
                             JsRenderJsRender* file);
-static void ___lambda239__xcls_windowlefttree_changed (Xcls_WindowLeftTree* _sender,
+static void ___lambda244__xcls_windowlefttree_changed (Xcls_WindowLeftTree* _sender,
                                                 gpointer self);
 VALA_EXTERN gboolean editor_saveContents (Editor* self);
 VALA_EXTERN void window_state_switchState (WindowState* self,
@@ -2982,7 +2982,7 @@ VALA_EXTERN Xcls_LeftProps* xcls_leftprops_new (void);
 VALA_EXTERN Xcls_LeftProps* xcls_leftprops_construct (GType object_type);
 VALA_EXTERN GType js_render_node_prop_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNodeProp, g_object_unref)
-static void __lambda240_ (WindowState* self,
+static void __lambda245_ (WindowState* self,
                    JsRenderJsRender* file,
                    JsRenderNode* node,
                    JsRenderNodeProp* prop);
@@ -2990,15 +2990,15 @@ VALA_EXTERN void editor_show (Editor* self,
                   JsRenderJsRender* file,
                   JsRenderNode* node,
                   JsRenderNodeProp* prop);
-static void ___lambda240__xcls_leftprops_show_editor (Xcls_LeftProps* _sender,
+static void ___lambda245__xcls_leftprops_show_editor (Xcls_LeftProps* _sender,
                                                JsRenderJsRender* file,
                                                JsRenderNode* node,
                                                JsRenderNodeProp* prop,
                                                gpointer self);
-static gboolean __lambda241_ (WindowState* self);
-static gboolean ___lambda241__xcls_leftprops_stop_editor (Xcls_LeftProps* _sender,
+static gboolean __lambda246_ (WindowState* self);
+static gboolean ___lambda246__xcls_leftprops_stop_editor (Xcls_LeftProps* _sender,
                                                    gpointer self);
-static void __lambda242_ (WindowState* self);
+static void __lambda247_ (WindowState* self);
 VALA_EXTERN GType palete_palete_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaletePalete, g_object_unref)
 VALA_EXTERN GType palete_gir_object_get_type (void) G_GNUC_CONST ;
@@ -3007,7 +3007,7 @@ VALA_EXTERN GType palete_gir_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteGir, g_object_unref)
 VALA_EXTERN gboolean palete_vala_source_checkFileSpawn (PaleteValaSource* self,
                                             JsRenderJsRender* file);
-static void ___lambda242__xcls_leftprops_changed (Xcls_LeftProps* _sender,
+static void ___lambda247__xcls_leftprops_changed (Xcls_LeftProps* _sender,
                                            gpointer self);
 VALA_EXTERN Xcls_RooProjectSettings* xcls_rooprojectsettings_new (void);
 VALA_EXTERN Xcls_RooProjectSettings* xcls_rooprojectsettings_construct (GType object_type);
@@ -3091,13 +3091,13 @@ VALA_EXTERN GType project_gtk_vala_settings_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ProjectGtkValaSettings, g_object_unref)
 VALA_EXTERN GType project_gtk_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ProjectGtk, g_object_unref)
-static void __lambda243_ (WindowState* self,
+static void __lambda248_ (WindowState* self,
                    const gchar* btn);
 VALA_EXTERN void xcls_rooprojectsettings_save (Xcls_RooProjectSettings* self);
 VALA_EXTERN void project_project_save (ProjectProject* self);
 VALA_EXTERN void xcls_windowrooview_xcls_view_renderJS (Xcls_WindowRooViewXcls_view* self,
                                             gboolean force);
-static void ___lambda243__xcls_rooprojectsettings_button_pressed (Xcls_RooProjectSettings* _sender,
+static void ___lambda248__xcls_rooprojectsettings_button_pressed (Xcls_RooProjectSettings* _sender,
                                                            const gchar* btn,
                                                            gpointer self);
 VALA_EXTERN void window_state_projectPopoverShow (WindowState* self,
@@ -3164,8 +3164,8 @@ VALA_EXTERN GType editor_xcls_regex_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorXcls_regex, g_object_unref)
 VALA_EXTERN GType editor_xcls_multiline_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorXcls_multiline, g_object_unref)
-static void __lambda244_ (WindowState* self);
-static void ___lambda244__editor_save (Editor* _sender,
+static void __lambda249_ (WindowState* self);
+static void ___lambda249__editor_save (Editor* _sender,
                                 gpointer self);
 VALA_EXTERN void window_state_showPopoverFiles (WindowState* self,
                                     GtkWidget* btn,
@@ -3228,14 +3228,14 @@ VALA_EXTERN GType xcls_popoverfiledetails_xcls_gen_get_type (void) G_GNUC_CONST 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_PopoverFileDetailsXcls_gen, g_object_unref)
 VALA_EXTERN GType xcls_popoverfiledetails_xcls_save_btn_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_PopoverFileDetailsXcls_save_btn, g_object_unref)
-static void __lambda245_ (WindowState* self,
+static void __lambda250_ (WindowState* self,
                    ProjectProject* project,
                    JsRenderJsRender* file);
 VALA_EXTERN void window_state_fileViewOpen (WindowState* self,
                                 JsRenderJsRender* file,
                                 gboolean new_window,
                                 gint line);
-static void ___lambda245__xcls_popoverfiledetails_success (Xcls_PopoverFileDetails* _sender,
+static void ___lambda250__xcls_popoverfiledetails_success (Xcls_PopoverFileDetails* _sender,
                                                     ProjectProject* pr,
                                                     JsRenderJsRender* file,
                                                     gpointer self);
@@ -3529,7 +3529,7 @@ window_state_new (Xcls_MainWindow* win)
 }
 
 static gboolean
-__lambda236_ (WindowState* self)
+__lambda241_ (WindowState* self)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_view* _tmp1_;
@@ -3557,18 +3557,18 @@ __lambda236_ (WindowState* self)
 }
 
 static gboolean
-___lambda236__xcls_windowlefttree_before_node_change (Xcls_WindowLeftTree* _sender,
+___lambda241__xcls_windowlefttree_before_node_change (Xcls_WindowLeftTree* _sender,
                                                       gpointer self)
 {
 	gboolean result;
-	result = __lambda236_ ((WindowState*) self);
+	result = __lambda241_ ((WindowState*) self);
 #line 123 "WindowState.vala"
 	return result;
 #line 3568 "WindowState.vala.c"
 }
 
 static void
-__lambda237_ (WindowState* self,
+__lambda242_ (WindowState* self,
               JsRenderNode* sel)
 {
 	JsRenderJsRender* _tmp0_;
@@ -3603,17 +3603,17 @@ __lambda237_ (WindowState* self,
 }
 
 static void
-___lambda237__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
+___lambda242__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
                                                  JsRenderNode* node,
                                                  gpointer self)
 {
 #line 132 "WindowState.vala"
-	__lambda237_ ((WindowState*) self, node);
+	__lambda242_ ((WindowState*) self, node);
 #line 3613 "WindowState.vala.c"
 }
 
 static void
-__lambda238_ (WindowState* self,
+__lambda243_ (WindowState* self,
               JsRenderNode* sel)
 {
 #line 144 "WindowState.vala"
@@ -3622,17 +3622,17 @@ __lambda238_ (WindowState* self,
 }
 
 static void
-___lambda238__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
+___lambda243__xcls_windowlefttree_node_selected (Xcls_WindowLeftTree* _sender,
                                                  JsRenderNode* node,
                                                  gpointer self)
 {
 #line 143 "WindowState.vala"
-	__lambda238_ ((WindowState*) self, node);
+	__lambda243_ ((WindowState*) self, node);
 #line 3632 "WindowState.vala.c"
 }
 
 static void
-__lambda239_ (WindowState* self)
+__lambda244_ (WindowState* self)
 {
 	JsRenderJsRender* _tmp0_;
 	Xcls_WindowLeftTree* _tmp1_;
@@ -3689,11 +3689,11 @@ __lambda239_ (WindowState* self)
 }
 
 static void
-___lambda239__xcls_windowlefttree_changed (Xcls_WindowLeftTree* _sender,
+___lambda244__xcls_windowlefttree_changed (Xcls_WindowLeftTree* _sender,
                                            gpointer self)
 {
 #line 147 "WindowState.vala"
-	__lambda239_ ((WindowState*) self);
+	__lambda244_ ((WindowState*) self);
 #line 3698 "WindowState.vala.c"
 }
 
@@ -3777,19 +3777,19 @@ window_state_leftTreeInit (WindowState* self)
 #line 123 "WindowState.vala"
 	_tmp18_ = self->left_tree;
 #line 123 "WindowState.vala"
-	g_signal_connect_object (_tmp18_, "before-node-change", (GCallback) ___lambda236__xcls_windowlefttree_before_node_change, self, 0);
+	g_signal_connect_object (_tmp18_, "before-node-change", (GCallback) ___lambda241__xcls_windowlefttree_before_node_change, self, 0);
 #line 132 "WindowState.vala"
 	_tmp19_ = self->left_tree;
 #line 132 "WindowState.vala"
-	g_signal_connect_object (_tmp19_, "node-selected", (GCallback) ___lambda237__xcls_windowlefttree_node_selected, self, 0);
+	g_signal_connect_object (_tmp19_, "node-selected", (GCallback) ___lambda242__xcls_windowlefttree_node_selected, self, 0);
 #line 143 "WindowState.vala"
 	_tmp20_ = self->left_tree;
 #line 143 "WindowState.vala"
-	g_signal_connect_object (_tmp20_, "node-selected", (GCallback) ___lambda238__xcls_windowlefttree_node_selected, self, 0);
+	g_signal_connect_object (_tmp20_, "node-selected", (GCallback) ___lambda243__xcls_windowlefttree_node_selected, self, 0);
 #line 147 "WindowState.vala"
 	_tmp21_ = self->left_tree;
 #line 147 "WindowState.vala"
-	g_signal_connect_object (_tmp21_, "changed", (GCallback) ___lambda239__xcls_windowlefttree_changed, self, 0);
+	g_signal_connect_object (_tmp21_, "changed", (GCallback) ___lambda244__xcls_windowlefttree_changed, self, 0);
 #line 3794 "WindowState.vala.c"
 }
 
@@ -4197,7 +4197,7 @@ pane.set_position(
 });
 */
 static void
-__lambda240_ (WindowState* self,
+__lambda245_ (WindowState* self,
               JsRenderJsRender* file,
               JsRenderNode* node,
               JsRenderNodeProp* prop)
@@ -4213,19 +4213,19 @@ __lambda240_ (WindowState* self,
 }
 
 static void
-___lambda240__xcls_leftprops_show_editor (Xcls_LeftProps* _sender,
+___lambda245__xcls_leftprops_show_editor (Xcls_LeftProps* _sender,
                                           JsRenderJsRender* file,
                                           JsRenderNode* node,
                                           JsRenderNodeProp* prop,
                                           gpointer self)
 {
 #line 330 "WindowState.vala"
-	__lambda240_ ((WindowState*) self, file, node, prop);
+	__lambda245_ ((WindowState*) self, file, node, prop);
 #line 4225 "WindowState.vala.c"
 }
 
 static gboolean
-__lambda241_ (WindowState* self)
+__lambda246_ (WindowState* self)
 {
 	gboolean ret = FALSE;
 	Editor* _tmp0_;
@@ -4252,18 +4252,18 @@ __lambda241_ (WindowState* self)
 }
 
 static gboolean
-___lambda241__xcls_leftprops_stop_editor (Xcls_LeftProps* _sender,
+___lambda246__xcls_leftprops_stop_editor (Xcls_LeftProps* _sender,
                                           gpointer self)
 {
 	gboolean result;
-	result = __lambda241_ ((WindowState*) self);
+	result = __lambda246_ ((WindowState*) self);
 #line 345 "WindowState.vala"
 	return result;
 #line 4263 "WindowState.vala.c"
 }
 
 static void
-__lambda242_ (WindowState* self)
+__lambda247_ (WindowState* self)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	JsRenderJsRender* _tmp1_;
@@ -4340,11 +4340,11 @@ __lambda242_ (WindowState* self)
 }
 
 static void
-___lambda242__xcls_leftprops_changed (Xcls_LeftProps* _sender,
+___lambda247__xcls_leftprops_changed (Xcls_LeftProps* _sender,
                                       gpointer self)
 {
 #line 355 "WindowState.vala"
-	__lambda242_ ((WindowState*) self);
+	__lambda247_ ((WindowState*) self);
 #line 4349 "WindowState.vala.c"
 }
 
@@ -4407,20 +4407,20 @@ window_state_propsListInit (WindowState* self)
 #line 330 "WindowState.vala"
 	_tmp12_ = self->left_props;
 #line 330 "WindowState.vala"
-	g_signal_connect_object (_tmp12_, "show-editor", (GCallback) ___lambda240__xcls_leftprops_show_editor, self, 0);
+	g_signal_connect_object (_tmp12_, "show-editor", (GCallback) ___lambda245__xcls_leftprops_show_editor, self, 0);
 #line 345 "WindowState.vala"
 	_tmp13_ = self->left_props;
 #line 345 "WindowState.vala"
-	g_signal_connect_object (_tmp13_, "stop-editor", (GCallback) ___lambda241__xcls_leftprops_stop_editor, self, 0);
+	g_signal_connect_object (_tmp13_, "stop-editor", (GCallback) ___lambda246__xcls_leftprops_stop_editor, self, 0);
 #line 355 "WindowState.vala"
 	_tmp14_ = self->left_props;
 #line 355 "WindowState.vala"
-	g_signal_connect_object (_tmp14_, "changed", (GCallback) ___lambda242__xcls_leftprops_changed, self, 0);
+	g_signal_connect_object (_tmp14_, "changed", (GCallback) ___lambda247__xcls_leftprops_changed, self, 0);
 #line 4420 "WindowState.vala.c"
 }
 
 static void
-__lambda243_ (WindowState* self,
+__lambda248_ (WindowState* self,
               const gchar* btn)
 {
 	gboolean _tmp0_ = FALSE;
@@ -4619,12 +4619,12 @@ __lambda243_ (WindowState* self,
 }
 
 static void
-___lambda243__xcls_rooprojectsettings_button_pressed (Xcls_RooProjectSettings* _sender,
+___lambda248__xcls_rooprojectsettings_button_pressed (Xcls_RooProjectSettings* _sender,
                                                       const gchar* btn,
                                                       gpointer self)
 {
 #line 389 "WindowState.vala"
-	__lambda243_ ((WindowState*) self, btn);
+	__lambda248_ ((WindowState*) self, btn);
 #line 4629 "WindowState.vala.c"
 }
 
@@ -4702,7 +4702,7 @@ window_state_projectEditInit (WindowState* self)
 #line 389 "WindowState.vala"
 	_tmp17_ = self->roo_projectsettings_pop;
 #line 389 "WindowState.vala"
-	g_signal_connect_object (_tmp17_, "button-pressed", (GCallback) ___lambda243__xcls_rooprojectsettings_button_pressed, self, 0);
+	g_signal_connect_object (_tmp17_, "button-pressed", (GCallback) ___lambda248__xcls_rooprojectsettings_button_pressed, self, 0);
 #line 4707 "WindowState.vala.c"
 }
 
@@ -4836,7 +4836,7 @@ window_state_listenerHide (WindowState* self)
 }
 
 static void
-__lambda244_ (WindowState* self)
+__lambda249_ (WindowState* self)
 {
 	JsRenderJsRender* _tmp0_;
 	Xcls_WindowLeftTree* _tmp1_;
@@ -4913,11 +4913,11 @@ __lambda244_ (WindowState* self)
 }
 
 static void
-___lambda244__editor_save (Editor* _sender,
+___lambda249__editor_save (Editor* _sender,
                            gpointer self)
 {
 #line 510 "WindowState.vala"
-	__lambda244_ ((WindowState*) self);
+	__lambda249_ ((WindowState*) self);
 #line 4922 "WindowState.vala.c"
 }
 
@@ -4976,7 +4976,7 @@ window_state_codeEditInit (WindowState* self)
 #line 510 "WindowState.vala"
 	_tmp12_ = self->code_editor_tab;
 #line 510 "WindowState.vala"
-	g_signal_connect_object (_tmp12_, "save", (GCallback) ___lambda244__editor_save, self, 0);
+	g_signal_connect_object (_tmp12_, "save", (GCallback) ___lambda249__editor_save, self, 0);
 #line 4981 "WindowState.vala.c"
 }
 
@@ -4995,7 +4995,7 @@ window_state_showPopoverFiles (WindowState* self,
 }
 
 static void
-__lambda245_ (WindowState* self,
+__lambda250_ (WindowState* self,
               ProjectProject* project,
               JsRenderJsRender* file)
 {
@@ -5016,13 +5016,13 @@ __lambda245_ (WindowState* self,
 }
 
 static void
-___lambda245__xcls_popoverfiledetails_success (Xcls_PopoverFileDetails* _sender,
+___lambda250__xcls_popoverfiledetails_success (Xcls_PopoverFileDetails* _sender,
                                                ProjectProject* pr,
                                                JsRenderJsRender* file,
                                                gpointer self)
 {
 #line 586 "WindowState.vala"
-	__lambda245_ ((WindowState*) self, pr, file);
+	__lambda250_ ((WindowState*) self, pr, file);
 #line 5027 "WindowState.vala.c"
 }
 
@@ -5073,7 +5073,7 @@ window_state_fileDetailsInit (WindowState* self)
 #line 586 "WindowState.vala"
 	_tmp10_ = self->file_details;
 #line 586 "WindowState.vala"
-	g_signal_connect_object (_tmp10_, "success", (GCallback) ___lambda245__xcls_popoverfiledetails_success, self, 0);
+	g_signal_connect_object (_tmp10_, "success", (GCallback) ___lambda250__xcls_popoverfiledetails_success, self, 0);
 #line 5078 "WindowState.vala.c"
 }
 

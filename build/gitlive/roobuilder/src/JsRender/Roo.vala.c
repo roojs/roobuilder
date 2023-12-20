@@ -377,11 +377,11 @@ VALA_EXTERN gboolean js_render_node_has (JsRenderNode* self,
 VALA_EXTERN gchar* js_render_roo_transStringsToJs (JsRenderRoo* self);
 VALA_EXTERN gchar* js_render_node_quoteString (JsRenderNode* self,
                                    const gchar* str);
-static void _vala_array_add14 (gchar** * array,
+static void _vala_array_add53 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add15 (gchar** * array,
+static void _vala_array_add54 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -2483,7 +2483,7 @@ js_render_roo_real_findTransStrings (JsRenderJsRender* base,
 }
 
 static void
-_vala_array_add14 (gchar** * array,
+_vala_array_add53 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -2931,7 +2931,7 @@ string_replace (const gchar* self,
 }
 
 static void
-_vala_array_add15 (gchar** * array,
+_vala_array_add54 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -3107,7 +3107,7 @@ js_render_roo_transStringsToJs (JsRenderRoo* self)
 #line 361 "Roo.vala"
 		_tmp29_ = g_strconcat (_tmp22_, _tmp28_, NULL);
 #line 361 "Roo.vala"
-		_vala_array_add14 (&kvs, &kvs_length1, &_kvs_size_, _tmp29_);
+		_vala_array_add53 (&kvs, &kvs_length1, &_kvs_size_, _tmp29_);
 #line 361 "Roo.vala"
 		_g_free0 (_tmp28_);
 #line 361 "Roo.vala"
@@ -3268,7 +3268,7 @@ js_render_roo_transStringsToJs (JsRenderRoo* self)
 #line 376 "Roo.vala"
 		_tmp69_ = g_strconcat (_tmp67_, _tmp68_, NULL);
 #line 376 "Roo.vala"
-		_vala_array_add15 (&ns, &ns_length1, &_ns_size_, _tmp69_);
+		_vala_array_add54 (&ns, &ns_length1, &_ns_size_, _tmp69_);
 #line 376 "Roo.vala"
 		_g_free0 (_tmp67_);
 #line 376 "Roo.vala"

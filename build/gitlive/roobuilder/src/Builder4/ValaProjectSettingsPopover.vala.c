@@ -2193,11 +2193,11 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (ValaProjectSettingsPopoverXcls_Box5, g_object_unr
 VALA_EXTERN ValaProjectSettingsPopoverXcls_Box5* vala_project_settings_popover_xcls_box5_new (ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_Box5* vala_project_settings_popover_xcls_box5_construct (GType object_type,
                                                                                         ValaProjectSettingsPopover* _owner);
-static gboolean __lambda141_ (ValaProjectSettingsPopover* self);
-static gboolean ___lambda141__gtk_window_close_request (GtkWindow* _sender,
+static gboolean __lambda206_ (ValaProjectSettingsPopover* self);
+static gboolean ___lambda206__gtk_window_close_request (GtkWindow* _sender,
                                                  gpointer self);
-static void __lambda142_ (ValaProjectSettingsPopover* self);
-static void ___lambda142__gtk_widget_hide (GtkWidget* _sender,
+static void __lambda207_ (ValaProjectSettingsPopover* self);
+static void ___lambda207__gtk_widget_hide (GtkWidget* _sender,
                                     gpointer self);
 VALA_EXTERN void vala_project_settings_popover_show (ValaProjectSettingsPopover* self,
                                          GtkWindow* pwin,
@@ -2210,8 +2210,8 @@ VALA_EXTERN GType palete_gir_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteGir, g_object_unref)
 VALA_EXTERN void project_gtk_loadVapiIntoStore (ProjectGtk* self,
                                     GListStore* ls);
-static gboolean __lambda143_ (ValaProjectSettingsPopover* self);
-static gboolean ___lambda143__gsource_func (gpointer self);
+static gboolean __lambda208_ (ValaProjectSettingsPopover* self);
+static gboolean ___lambda208__gsource_func (gpointer self);
 VALA_EXTERN void project_gtk_loadTargetsIntoStore (ProjectGtk* self,
                                        GListStore* ls);
 VALA_EXTERN void vala_project_settings_popover_xcls_target_sel_selectTarget (ValaProjectSettingsPopoverXcls_target_sel* self,
@@ -2284,8 +2284,8 @@ static void vala_project_settings_popover_xcls_box9_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_box9_get_type_once (void);
 static void vala_project_settings_popover_xcls_label10_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_label10_get_type_once (void);
-static void __lambda118_ (ValaProjectSettingsPopoverXcls_compile_flags* self);
-static void ___lambda118__gtk_editable_changed (GtkEditable* _sender,
+static void __lambda183_ (ValaProjectSettingsPopoverXcls_compile_flags* self);
+static void ___lambda183__gtk_editable_changed (GtkEditable* _sender,
                                          gpointer self);
 static void vala_project_settings_popover_xcls_compile_flags_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_compile_flags_get_type_once (void);
@@ -2369,14 +2369,14 @@ VALA_EXTERN ValaProjectSettingsPopoverXcls_SignalListItemFactory23* vala_project
                                                                                                                               ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_columnviewcolumn22_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_columnviewcolumn22_get_type_once (void);
-static void __lambda119_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
+static void __lambda184_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
                    GObject* item);
-static void ___lambda119__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda184__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda120_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
+static void __lambda185_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
                    GObject* listitem);
-static void ___lambda120__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda185__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void vala_project_settings_popover_xcls_signallistitemfactory23_finalize (GObject * obj);
@@ -2388,28 +2388,28 @@ VALA_EXTERN ValaProjectSettingsPopoverXcls_SignalListItemFactory25* vala_project
                                                                                                                               ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_columnviewcolumn24_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_columnviewcolumn24_get_type_once (void);
-static void __lambda121_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
+static void __lambda186_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
                    GObject* listitem);
 static Block8Data* block8_data_ref (Block8Data* _data8_);
 static void block8_data_unref (void * _userdata_);
-static void __lambda122_ (Block8Data* _data8_);
+static void __lambda187_ (Block8Data* _data8_);
 VALA_EXTERN void project_vapi_selection_set_selected (ProjectVapiSelection* self,
                                           gboolean value);
-static void ___lambda122__gtk_check_button_toggled (GtkCheckButton* _sender,
+static void ___lambda187__gtk_check_button_toggled (GtkCheckButton* _sender,
                                              gpointer self);
-static void ___lambda121__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda186__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda123_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
+static void __lambda188_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
                    GObject* listitem);
 VALA_EXTERN gboolean project_vapi_selection_get_selected (ProjectVapiSelection* self);
-static void ___lambda123__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda188__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void vala_project_settings_popover_xcls_signallistitemfactory25_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_signallistitemfactory25_get_type_once (void);
-static void __lambda124_ (ValaProjectSettingsPopoverXcls_vapi_search* self);
-static void ___lambda124__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+static void __lambda189_ (ValaProjectSettingsPopoverXcls_vapi_search* self);
+static void ___lambda189__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
                                                     gpointer self);
 static void vala_project_settings_popover_xcls_vapi_search_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_vapi_search_get_type_once (void);
@@ -2476,17 +2476,17 @@ VALA_EXTERN GtkTreeListModel* vala_project_settings_popover_xcls_treelistmodel_u
                                                                                 GListStore* m);
 VALA_EXTERN GType js_render_js_render_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderJsRender, g_object_unref)
-static GListModel* __lambda125_ (ValaProjectSettingsPopoverXcls_treelistmodel* self,
+static GListModel* __lambda190_ (ValaProjectSettingsPopoverXcls_treelistmodel* self,
                           GObject* item);
 VALA_EXTERN GType js_render_node_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNode, g_object_unref)
-static GListModel* ___lambda125__gtk_tree_list_model_create_model_func (GObject* item,
+static GListModel* ___lambda190__gtk_tree_list_model_create_model_func (GObject* item,
                                                                  gpointer self);
 static void vala_project_settings_popover_xcls_treelistmodel_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_treelistmodel_get_type_once (void);
-static gboolean __lambda126_ (ValaProjectSettingsPopoverXcls_CustomFilter35* self,
+static gboolean __lambda191_ (ValaProjectSettingsPopoverXcls_CustomFilter35* self,
                        GObject* item);
-static gboolean ___lambda126__gtk_custom_filter_func (GObject* item,
+static gboolean ___lambda191__gtk_custom_filter_func (GObject* item,
                                                gpointer self);
 static void vala_project_settings_popover_xcls_customfilter35_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_customfilter35_get_type_once (void);
@@ -2497,15 +2497,15 @@ VALA_EXTERN ValaProjectSettingsPopoverXcls_SignalListItemFactory37* vala_project
                                                                                                                               ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_name_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_name_get_type_once (void);
-static void __lambda127_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
+static void __lambda192_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
                    GObject* listitem);
-static void ___lambda127__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda192__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda128_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
+static void __lambda193_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
                    GObject* listitem);
 VALA_EXTERN const gchar* js_render_js_render_get_name (JsRenderJsRender* self);
-static void ___lambda128__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda193__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void vala_project_settings_popover_xcls_signallistitemfactory37_finalize (GObject * obj);
@@ -2517,21 +2517,21 @@ VALA_EXTERN ValaProjectSettingsPopoverXcls_SignalListItemFactory39* vala_project
                                                                                                                               ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_columnviewcolumn38_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_columnviewcolumn38_get_type_once (void);
-static void __lambda129_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
+static void __lambda194_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
                    GObject* listitem);
 static Block9Data* block9_data_ref (Block9Data* _data9_);
 static void block9_data_unref (void * _userdata_);
-static void __lambda130_ (Block9Data* _data9_);
+static void __lambda195_ (Block9Data* _data9_);
 VALA_EXTERN void js_render_js_render_set_compile_group_selected (JsRenderJsRender* self,
                                                      gboolean value);
-static void ___lambda130__gtk_check_button_toggled (GtkCheckButton* _sender,
+static void ___lambda195__gtk_check_button_toggled (GtkCheckButton* _sender,
                                              gpointer self);
-static void ___lambda129__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda194__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda131_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
+static void __lambda196_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
                    GObject* listitem);
-static void ___lambda131__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda196__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void vala_project_settings_popover_xcls_signallistitemfactory39_finalize (GObject * obj);
@@ -2563,19 +2563,19 @@ VALA_EXTERN ValaProjectSettingsPopoverXcls_Button43* vala_project_settings_popov
                                                                                                 ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_box41_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_box41_get_type_once (void);
-static void __lambda132_ (ValaProjectSettingsPopoverXcls_Button42* self);
+static void __lambda197_ (ValaProjectSettingsPopoverXcls_Button42* self);
 VALA_EXTERN ProjectGtkValaSettings* project_gtk_vala_settings_new (ProjectGtk* project,
                                                        const gchar* name);
 VALA_EXTERN ProjectGtkValaSettings* project_gtk_vala_settings_construct (GType object_type,
                                                              ProjectGtk* project,
                                                              const gchar* name);
 VALA_EXTERN const gchar* project_gtk_vala_settings_get_name (ProjectGtkValaSettings* self);
-static void ___lambda132__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda197__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void vala_project_settings_popover_xcls_button42_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_button42_get_type_once (void);
-static void __lambda136_ (ValaProjectSettingsPopoverXcls_Button43* self);
-static void ___lambda136__gtk_button_clicked (GtkButton* _sender,
+static void __lambda201_ (ValaProjectSettingsPopoverXcls_Button43* self);
+static void ___lambda201__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void vala_project_settings_popover_xcls_button43_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_button43_get_type_once (void);
@@ -2599,10 +2599,10 @@ static GType vala_project_settings_popover_xcls_columnview45_get_type_once (void
 VALA_EXTERN ValaProjectSettingsPopoverXcls_target_model* vala_project_settings_popover_xcls_target_model_new (ValaProjectSettingsPopover* _owner);
 VALA_EXTERN ValaProjectSettingsPopoverXcls_target_model* vala_project_settings_popover_xcls_target_model_construct (GType object_type,
                                                                                                         ValaProjectSettingsPopover* _owner);
-static void __lambda133_ (ValaProjectSettingsPopoverXcls_target_sel* self,
+static void __lambda198_ (ValaProjectSettingsPopoverXcls_target_sel* self,
                    guint position,
                    guint n_items);
-static void ___lambda133__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
+static void ___lambda198__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
                                                           guint position,
                                                           guint n_items,
                                                           gpointer self);
@@ -2618,14 +2618,14 @@ VALA_EXTERN ValaProjectSettingsPopoverXcls_SignalListItemFactory49* vala_project
                                                                                                                               ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_columnviewcolumn48_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_columnviewcolumn48_get_type_once (void);
-static void __lambda137_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
+static void __lambda202_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
                    GObject* item);
-static void ___lambda137__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda202__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda138_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
+static void __lambda203_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
                    GObject* listitem);
-static void ___lambda138__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda203__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void vala_project_settings_popover_xcls_signallistitemfactory49_finalize (GObject * obj);
@@ -2650,17 +2650,17 @@ static void vala_project_settings_popover_xcls_set_vboxb_finalize (GObject * obj
 static GType vala_project_settings_popover_xcls_set_vboxb_get_type_once (void);
 static void vala_project_settings_popover_xcls_label51_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_label51_get_type_once (void);
-static void __lambda134_ (ValaProjectSettingsPopoverXcls_build_name* self);
+static void __lambda199_ (ValaProjectSettingsPopoverXcls_build_name* self);
 VALA_EXTERN void project_gtk_vala_settings_set_name (ProjectGtkValaSettings* self,
                                          const gchar* value);
-static void ___lambda134__gtk_editable_changed (GtkEditable* _sender,
+static void ___lambda199__gtk_editable_changed (GtkEditable* _sender,
                                          gpointer self);
 static void vala_project_settings_popover_xcls_build_name_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_build_name_get_type_once (void);
 static void vala_project_settings_popover_xcls_label53_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_label53_get_type_once (void);
-static void __lambda135_ (ValaProjectSettingsPopoverXcls_build_execute_args* self);
-static void ___lambda135__gtk_editable_changed (GtkEditable* _sender,
+static void __lambda200_ (ValaProjectSettingsPopoverXcls_build_execute_args* self);
+static void ___lambda200__gtk_editable_changed (GtkEditable* _sender,
                                          gpointer self);
 static void vala_project_settings_popover_xcls_build_execute_args_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_build_execute_args_get_type_once (void);
@@ -2679,15 +2679,15 @@ VALA_EXTERN ValaProjectSettingsPopoverXcls_save_btn* vala_project_settings_popov
                                                                                                 ValaProjectSettingsPopover* _owner);
 static void vala_project_settings_popover_xcls_box55_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_box55_get_type_once (void);
-static void __lambda140_ (ValaProjectSettingsPopoverXcls_Button56* self);
-static void ___lambda140__gtk_button_clicked (GtkButton* _sender,
+static void __lambda205_ (ValaProjectSettingsPopoverXcls_Button56* self);
+static void ___lambda205__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void vala_project_settings_popover_xcls_button56_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_button56_get_type_once (void);
 static void vala_project_settings_popover_xcls_label57_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_label57_get_type_once (void);
-static void __lambda139_ (ValaProjectSettingsPopoverXcls_save_btn* self);
-static void ___lambda139__gtk_button_clicked (GtkButton* _sender,
+static void __lambda204_ (ValaProjectSettingsPopoverXcls_save_btn* self);
+static void ___lambda204__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void vala_project_settings_popover_xcls_save_btn_finalize (GObject * obj);
 static GType vala_project_settings_popover_xcls_save_btn_get_type_once (void);
@@ -2749,7 +2749,7 @@ vala_project_settings_popover_singleton (void)
 }
 
 static gboolean
-__lambda141_ (ValaProjectSettingsPopover* self)
+__lambda206_ (ValaProjectSettingsPopover* self)
 {
 	gboolean result;
 #line 69 "ValaProjectSettingsPopover.vala"
@@ -2768,18 +2768,18 @@ __lambda141_ (ValaProjectSettingsPopover* self)
 }
 
 static gboolean
-___lambda141__gtk_window_close_request (GtkWindow* _sender,
+___lambda206__gtk_window_close_request (GtkWindow* _sender,
                                         gpointer self)
 {
 	gboolean result;
-	result = __lambda141_ ((ValaProjectSettingsPopover*) self);
+	result = __lambda206_ ((ValaProjectSettingsPopover*) self);
 #line 68 "ValaProjectSettingsPopover.vala"
 	return result;
 #line 2779 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda142_ (ValaProjectSettingsPopover* self)
+__lambda207_ (ValaProjectSettingsPopover* self)
 {
 #line 75 "ValaProjectSettingsPopover.vala"
 	if (!self->done) {
@@ -2797,11 +2797,11 @@ __lambda142_ (ValaProjectSettingsPopover* self)
 }
 
 static void
-___lambda142__gtk_widget_hide (GtkWidget* _sender,
+___lambda207__gtk_widget_hide (GtkWidget* _sender,
                                gpointer self)
 {
 #line 74 "ValaProjectSettingsPopover.vala"
-	__lambda142_ ((ValaProjectSettingsPopover*) self);
+	__lambda207_ ((ValaProjectSettingsPopover*) self);
 #line 2806 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -2893,11 +2893,11 @@ vala_project_settings_popover_construct (GType object_type)
 #line 68 "ValaProjectSettingsPopover.vala"
 	_tmp11_ = self->el;
 #line 68 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp11_, "close-request", (GCallback) ___lambda141__gtk_window_close_request, self, 0);
+	g_signal_connect_object (_tmp11_, "close-request", (GCallback) ___lambda206__gtk_window_close_request, self, 0);
 #line 74 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = self->el;
 #line 74 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object ((GtkWidget*) _tmp12_, "hide", (GCallback) ___lambda142__gtk_widget_hide, self, 0);
+	g_signal_connect_object ((GtkWidget*) _tmp12_, "hide", (GCallback) ___lambda207__gtk_widget_hide, self, 0);
 #line 45 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_2);
 #line 45 "ValaProjectSettingsPopover.vala"
@@ -2957,7 +2957,7 @@ string_get_data (const gchar* self,
 }
 
 static gboolean
-__lambda143_ (ValaProjectSettingsPopover* self)
+__lambda208_ (ValaProjectSettingsPopover* self)
 {
 	ValaProjectSettingsPopoverXcls_vapi_scroll* _tmp0_;
 	GtkScrolledWindow* _tmp1_;
@@ -2982,10 +2982,10 @@ __lambda143_ (ValaProjectSettingsPopover* self)
 }
 
 static gboolean
-___lambda143__gsource_func (gpointer self)
+___lambda208__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda143_ ((ValaProjectSettingsPopover*) self);
+	result = __lambda208_ ((ValaProjectSettingsPopover*) self);
 #line 94 "ValaProjectSettingsPopover.vala"
 	return result;
 #line 2992 "ValaProjectSettingsPopover.vala.c"
@@ -3057,7 +3057,7 @@ vala_project_settings_popover_show (ValaProjectSettingsPopover* self,
 #line 93 "ValaProjectSettingsPopover.vala"
 	project_gtk_loadVapiIntoStore (project, _tmp11_);
 #line 94 "ValaProjectSettingsPopover.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda143__gsource_func, g_object_ref (self), g_object_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda208__gsource_func, g_object_ref (self), g_object_unref);
 #line 101 "ValaProjectSettingsPopover.vala"
 	_tmp12_ = self->target_model;
 #line 101 "ValaProjectSettingsPopover.vala"
@@ -4336,7 +4336,7 @@ vala_project_settings_popover_xcls_compile_flags_get_instance_private (ValaProje
 }
 
 static void
-__lambda118_ (ValaProjectSettingsPopoverXcls_compile_flags* self)
+__lambda183_ (ValaProjectSettingsPopoverXcls_compile_flags* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ProjectGtk* _tmp1_;
@@ -4378,11 +4378,11 @@ __lambda118_ (ValaProjectSettingsPopoverXcls_compile_flags* self)
 }
 
 static void
-___lambda118__gtk_editable_changed (GtkEditable* _sender,
+___lambda183__gtk_editable_changed (GtkEditable* _sender,
                                     gpointer self)
 {
 #line 375 "ValaProjectSettingsPopover.vala"
-	__lambda118_ ((ValaProjectSettingsPopoverXcls_compile_flags*) self);
+	__lambda183_ ((ValaProjectSettingsPopoverXcls_compile_flags*) self);
 #line 4387 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -4428,7 +4428,7 @@ vala_project_settings_popover_xcls_compile_flags_construct (GType object_type,
 #line 375 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
 #line 375 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object ((GtkEditable*) _tmp5_, "changed", (GCallback) ___lambda118__gtk_editable_changed, self, 0);
+	g_signal_connect_object ((GtkEditable*) _tmp5_, "changed", (GCallback) ___lambda183__gtk_editable_changed, self, 0);
 #line 363 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 4435 "ValaProjectSettingsPopover.vala.c"
@@ -5897,7 +5897,7 @@ vala_project_settings_popover_xcls_signallistitemfactory23_get_instance_private 
 }
 
 static void
-__lambda119_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
+__lambda184_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
               GObject* item)
 {
 	GtkListItem* gi = NULL;
@@ -5926,17 +5926,17 @@ __lambda119_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
 }
 
 static void
-___lambda119__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda184__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 678 "ValaProjectSettingsPopover.vala"
-	__lambda119_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory23*) self, object);
+	__lambda184_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory23*) self, object);
 #line 5936 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda120_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
+__lambda185_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
               GObject* listitem)
 {
 	GtkBox* lbl = NULL;
@@ -5967,12 +5967,12 @@ __lambda120_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory23* self,
 }
 
 static void
-___lambda120__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda185__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 689 "ValaProjectSettingsPopover.vala"
-	__lambda120_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory23*) self, object);
+	__lambda185_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory23*) self, object);
 #line 5977 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -6002,11 +6002,11 @@ vala_project_settings_popover_xcls_signallistitemfactory23_construct (GType obje
 #line 678 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
 #line 678 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda119__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda184__gtk_signal_list_item_factory_setup, self, 0);
 #line 689 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
 #line 689 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda120__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda185__gtk_signal_list_item_factory_bind, self, 0);
 #line 668 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 6013 "ValaProjectSettingsPopover.vala.c"
@@ -6237,7 +6237,7 @@ block8_data_unref (void * _userdata_)
 }
 
 static void
-__lambda122_ (Block8Data* _data8_)
+__lambda187_ (Block8Data* _data8_)
 {
 	ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self;
 	ProjectVapiSelection* jr = NULL;
@@ -6265,16 +6265,16 @@ __lambda122_ (Block8Data* _data8_)
 }
 
 static void
-___lambda122__gtk_check_button_toggled (GtkCheckButton* _sender,
+___lambda187__gtk_check_button_toggled (GtkCheckButton* _sender,
                                         gpointer self)
 {
 #line 755 "ValaProjectSettingsPopover.vala"
-	__lambda122_ (self);
+	__lambda187_ (self);
 #line 6274 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda121_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
+__lambda186_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
               GObject* listitem)
 {
 	Block8Data* _data8_;
@@ -6301,7 +6301,7 @@ __lambda121_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
 #line 753 "ValaProjectSettingsPopover.vala"
 	gtk_list_item_set_child (G_TYPE_CHECK_INSTANCE_CAST (_data8_->listitem, gtk_list_item_get_type (), GtkListItem), (GtkWidget*) _data8_->btn);
 #line 755 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_data (_data8_->btn, "toggled", (GCallback) ___lambda122__gtk_check_button_toggled, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
+	g_signal_connect_data (_data8_->btn, "toggled", (GCallback) ___lambda187__gtk_check_button_toggled, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
 #line 749 "ValaProjectSettingsPopover.vala"
 	block8_data_unref (_data8_);
 #line 749 "ValaProjectSettingsPopover.vala"
@@ -6310,17 +6310,17 @@ __lambda121_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
 }
 
 static void
-___lambda121__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda186__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 749 "ValaProjectSettingsPopover.vala"
-	__lambda121_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory25*) self, object);
+	__lambda186_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory25*) self, object);
 #line 6320 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda123_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
+__lambda188_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
               GObject* listitem)
 {
 	GtkCheckButton* btn = NULL;
@@ -6364,12 +6364,12 @@ __lambda123_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory25* self,
 }
 
 static void
-___lambda123__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda188__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 761 "ValaProjectSettingsPopover.vala"
-	__lambda123_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory25*) self, object);
+	__lambda188_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory25*) self, object);
 #line 6374 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -6399,11 +6399,11 @@ vala_project_settings_popover_xcls_signallistitemfactory25_construct (GType obje
 #line 749 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
 #line 749 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda121__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda186__gtk_signal_list_item_factory_setup, self, 0);
 #line 761 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
 #line 761 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda123__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda188__gtk_signal_list_item_factory_bind, self, 0);
 #line 739 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 6410 "ValaProjectSettingsPopover.vala.c"
@@ -6483,7 +6483,7 @@ vala_project_settings_popover_xcls_vapi_search_get_instance_private (ValaProject
 }
 
 static void
-__lambda124_ (ValaProjectSettingsPopoverXcls_vapi_search* self)
+__lambda189_ (ValaProjectSettingsPopoverXcls_vapi_search* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ValaProjectSettingsPopoverXcls_vapi_filter* _tmp1_;
@@ -6506,11 +6506,11 @@ __lambda124_ (ValaProjectSettingsPopoverXcls_vapi_search* self)
 }
 
 static void
-___lambda124__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+___lambda189__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
                                                gpointer self)
 {
 #line 810 "ValaProjectSettingsPopover.vala"
-	__lambda124_ ((ValaProjectSettingsPopoverXcls_vapi_search*) self);
+	__lambda189_ ((ValaProjectSettingsPopoverXcls_vapi_search*) self);
 #line 6515 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -6561,7 +6561,7 @@ vala_project_settings_popover_xcls_vapi_search_construct (GType object_type,
 #line 810 "ValaProjectSettingsPopover.vala"
 	_tmp6_ = self->el;
 #line 810 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp6_, "search-changed", (GCallback) ___lambda124__gtk_search_entry_search_changed, self, 0);
+	g_signal_connect_object (_tmp6_, "search-changed", (GCallback) ___lambda189__gtk_search_entry_search_changed, self, 0);
 #line 797 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 6568 "ValaProjectSettingsPopover.vala.c"
@@ -7680,7 +7680,7 @@ vala_project_settings_popover_xcls_treelistmodel_new (ValaProjectSettingsPopover
 }
 
 static GListModel*
-__lambda125_ (ValaProjectSettingsPopoverXcls_treelistmodel* self,
+__lambda190_ (ValaProjectSettingsPopoverXcls_treelistmodel* self,
               GObject* item)
 {
 	GListStore* _tmp0_;
@@ -7698,11 +7698,11 @@ __lambda125_ (ValaProjectSettingsPopoverXcls_treelistmodel* self,
 }
 
 static GListModel*
-___lambda125__gtk_tree_list_model_create_model_func (GObject* item,
+___lambda190__gtk_tree_list_model_create_model_func (GObject* item,
                                                      gpointer self)
 {
 	GListModel* result;
-	result = __lambda125_ ((ValaProjectSettingsPopoverXcls_treelistmodel*) self, item);
+	result = __lambda190_ ((ValaProjectSettingsPopoverXcls_treelistmodel*) self, item);
 #line 1028 "ValaProjectSettingsPopover.vala"
 	return result;
 #line 7709 "ValaProjectSettingsPopover.vala.c"
@@ -7746,7 +7746,7 @@ vala_project_settings_popover_xcls_treelistmodel_updateModel (ValaProjectSetting
 #line 1028 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = _g_object_ref0 ((GListModel*) _tmp0_);
 #line 1028 "ValaProjectSettingsPopover.vala"
-	_tmp4_ = gtk_tree_list_model_new (_tmp3_, FALSE, TRUE, ___lambda125__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
+	_tmp4_ = gtk_tree_list_model_new (_tmp3_, FALSE, TRUE, ___lambda190__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
 #line 1028 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
 #line 1028 "ValaProjectSettingsPopover.vala"
@@ -7840,7 +7840,7 @@ vala_project_settings_popover_xcls_customfilter35_get_instance_private (ValaProj
 }
 
 static gboolean
-__lambda126_ (ValaProjectSettingsPopoverXcls_CustomFilter35* self,
+__lambda191_ (ValaProjectSettingsPopoverXcls_CustomFilter35* self,
               GObject* item)
 {
 	GObject* tr = NULL;
@@ -8048,11 +8048,11 @@ __lambda126_ (ValaProjectSettingsPopoverXcls_CustomFilter35* self,
 }
 
 static gboolean
-___lambda126__gtk_custom_filter_func (GObject* item,
+___lambda191__gtk_custom_filter_func (GObject* item,
                                       gpointer self)
 {
 	gboolean result;
-	result = __lambda126_ ((ValaProjectSettingsPopoverXcls_CustomFilter35*) self, item);
+	result = __lambda191_ ((ValaProjectSettingsPopoverXcls_CustomFilter35*) self, item);
 #line 1057 "ValaProjectSettingsPopover.vala"
 	return result;
 #line 8059 "ValaProjectSettingsPopover.vala.c"
@@ -8074,7 +8074,7 @@ vala_project_settings_popover_xcls_customfilter35_construct (GType object_type,
 #line 1056 "ValaProjectSettingsPopover.vala"
 	self->priv->_this = _tmp0_;
 #line 1057 "ValaProjectSettingsPopover.vala"
-	_tmp1_ = gtk_custom_filter_new (___lambda126__gtk_custom_filter_func, g_object_ref (self), g_object_unref);
+	_tmp1_ = gtk_custom_filter_new (___lambda191__gtk_custom_filter_func, g_object_ref (self), g_object_unref);
 #line 1057 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (self->el);
 #line 1057 "ValaProjectSettingsPopover.vala"
@@ -8321,7 +8321,7 @@ vala_project_settings_popover_xcls_signallistitemfactory37_get_instance_private 
 }
 
 static void
-__lambda127_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
+__lambda192_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
               GObject* listitem)
 {
 	GtkTreeExpander* expand = NULL;
@@ -8364,17 +8364,17 @@ __lambda127_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
 }
 
 static void
-___lambda127__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda192__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 1149 "ValaProjectSettingsPopover.vala"
-	__lambda127_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory37*) self, object);
+	__lambda192_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory37*) self, object);
 #line 8374 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda128_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
+__lambda193_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
               GObject* listitem)
 {
 	GtkTreeExpander* expand = NULL;
@@ -8519,12 +8519,12 @@ __lambda128_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory37* self,
 }
 
 static void
-___lambda128__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda193__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 1168 "ValaProjectSettingsPopover.vala"
-	__lambda128_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory37*) self, object);
+	__lambda193_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory37*) self, object);
 #line 8529 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -8554,11 +8554,11 @@ vala_project_settings_popover_xcls_signallistitemfactory37_construct (GType obje
 #line 1149 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
 #line 1149 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda127__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda192__gtk_signal_list_item_factory_setup, self, 0);
 #line 1168 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
 #line 1168 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda128__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda193__gtk_signal_list_item_factory_bind, self, 0);
 #line 1139 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 8565 "ValaProjectSettingsPopover.vala.c"
@@ -8789,7 +8789,7 @@ block9_data_unref (void * _userdata_)
 }
 
 static void
-__lambda130_ (Block9Data* _data9_)
+__lambda195_ (Block9Data* _data9_)
 {
 	ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self;
 	GtkTreeListRow* lr = NULL;
@@ -8825,16 +8825,16 @@ __lambda130_ (Block9Data* _data9_)
 }
 
 static void
-___lambda130__gtk_check_button_toggled (GtkCheckButton* _sender,
+___lambda195__gtk_check_button_toggled (GtkCheckButton* _sender,
                                         gpointer self)
 {
 #line 1253 "ValaProjectSettingsPopover.vala"
-	__lambda130_ (self);
+	__lambda195_ (self);
 #line 8834 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda129_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
+__lambda194_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
               GObject* listitem)
 {
 	Block9Data* _data9_;
@@ -8861,7 +8861,7 @@ __lambda129_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
 #line 1251 "ValaProjectSettingsPopover.vala"
 	gtk_list_item_set_child (G_TYPE_CHECK_INSTANCE_CAST (_data9_->listitem, gtk_list_item_get_type (), GtkListItem), (GtkWidget*) _data9_->btn);
 #line 1253 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_data (_data9_->btn, "toggled", (GCallback) ___lambda130__gtk_check_button_toggled, block9_data_ref (_data9_), (GClosureNotify) block9_data_unref, 0);
+	g_signal_connect_data (_data9_->btn, "toggled", (GCallback) ___lambda195__gtk_check_button_toggled, block9_data_ref (_data9_), (GClosureNotify) block9_data_unref, 0);
 #line 1247 "ValaProjectSettingsPopover.vala"
 	block9_data_unref (_data9_);
 #line 1247 "ValaProjectSettingsPopover.vala"
@@ -8870,17 +8870,17 @@ __lambda129_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
 }
 
 static void
-___lambda129__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda194__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 1247 "ValaProjectSettingsPopover.vala"
-	__lambda129_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory39*) self, object);
+	__lambda194_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory39*) self, object);
 #line 8880 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda131_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
+__lambda196_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
               GObject* listitem)
 {
 	GtkCheckButton* btn = NULL;
@@ -8919,12 +8919,12 @@ __lambda131_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory39* self,
 }
 
 static void
-___lambda131__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda196__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 1262 "ValaProjectSettingsPopover.vala"
-	__lambda131_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory39*) self, object);
+	__lambda196_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory39*) self, object);
 #line 8929 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -8954,11 +8954,11 @@ vala_project_settings_popover_xcls_signallistitemfactory39_construct (GType obje
 #line 1247 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
 #line 1247 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda129__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda194__gtk_signal_list_item_factory_setup, self, 0);
 #line 1262 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
 #line 1262 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda131__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda196__gtk_signal_list_item_factory_bind, self, 0);
 #line 1237 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 8965 "ValaProjectSettingsPopover.vala.c"
@@ -9348,7 +9348,7 @@ vala_project_settings_popover_xcls_button42_get_instance_private (ValaProjectSet
 }
 
 static void
-__lambda132_ (ValaProjectSettingsPopoverXcls_Button42* self)
+__lambda197_ (ValaProjectSettingsPopoverXcls_Button42* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ProjectGtk* _tmp1_;
@@ -9539,11 +9539,11 @@ __lambda132_ (ValaProjectSettingsPopoverXcls_Button42* self)
 }
 
 static void
-___lambda132__gtk_button_clicked (GtkButton* _sender,
+___lambda197__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1370 "ValaProjectSettingsPopover.vala"
-	__lambda132_ ((ValaProjectSettingsPopoverXcls_Button42*) self);
+	__lambda197_ ((ValaProjectSettingsPopoverXcls_Button42*) self);
 #line 9548 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -9584,7 +9584,7 @@ vala_project_settings_popover_xcls_button42_construct (GType object_type,
 #line 1370 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
 #line 1370 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda132__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda197__gtk_button_clicked, self, 0);
 #line 1358 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 9591 "ValaProjectSettingsPopover.vala.c"
@@ -9664,7 +9664,7 @@ vala_project_settings_popover_xcls_button43_get_instance_private (ValaProjectSet
 }
 
 static void
-__lambda136_ (ValaProjectSettingsPopoverXcls_Button43* self)
+__lambda201_ (ValaProjectSettingsPopoverXcls_Button43* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ValaProjectSettingsPopoverXcls_target_sel* _tmp1_;
@@ -9777,11 +9777,11 @@ __lambda136_ (ValaProjectSettingsPopoverXcls_Button43* self)
 }
 
 static void
-___lambda136__gtk_button_clicked (GtkButton* _sender,
+___lambda201__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1417 "ValaProjectSettingsPopover.vala"
-	__lambda136_ ((ValaProjectSettingsPopoverXcls_Button43*) self);
+	__lambda201_ ((ValaProjectSettingsPopoverXcls_Button43*) self);
 #line 9786 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -9822,7 +9822,7 @@ vala_project_settings_popover_xcls_button43_construct (GType object_type,
 #line 1417 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
 #line 1417 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda136__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda201__gtk_button_clicked, self, 0);
 #line 1405 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 9829 "ValaProjectSettingsPopover.vala.c"
@@ -10175,7 +10175,7 @@ vala_project_settings_popover_xcls_target_sel_get_instance_private (ValaProjectS
 }
 
 static void
-__lambda133_ (ValaProjectSettingsPopoverXcls_target_sel* self,
+__lambda198_ (ValaProjectSettingsPopoverXcls_target_sel* self,
               guint position,
               guint n_items)
 {
@@ -10233,13 +10233,13 @@ __lambda133_ (ValaProjectSettingsPopoverXcls_target_sel* self,
 }
 
 static void
-___lambda133__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
+___lambda198__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
                                                      guint position,
                                                      guint n_items,
                                                      gpointer self)
 {
 #line 1518 "ValaProjectSettingsPopover.vala"
-	__lambda133_ ((ValaProjectSettingsPopoverXcls_target_sel*) self, position, n_items);
+	__lambda198_ ((ValaProjectSettingsPopoverXcls_target_sel*) self, position, n_items);
 #line 10244 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -10293,7 +10293,7 @@ vala_project_settings_popover_xcls_target_sel_construct (GType object_type,
 #line 1518 "ValaProjectSettingsPopover.vala"
 	_tmp8_ = self->el;
 #line 1518 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object ((GtkSelectionModel*) _tmp8_, "selection-changed", (GCallback) ___lambda133__gtk_selection_model_selection_changed, self, 0);
+	g_signal_connect_object ((GtkSelectionModel*) _tmp8_, "selection-changed", (GCallback) ___lambda198__gtk_selection_model_selection_changed, self, 0);
 #line 1506 "ValaProjectSettingsPopover.vala"
 	_g_object_unref0 (child_1);
 #line 1506 "ValaProjectSettingsPopover.vala"
@@ -10802,7 +10802,7 @@ vala_project_settings_popover_xcls_signallistitemfactory49_get_instance_private 
 }
 
 static void
-__lambda137_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
+__lambda202_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
               GObject* item)
 {
 	GtkListItem* gi = NULL;
@@ -10831,17 +10831,17 @@ __lambda137_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
 }
 
 static void
-___lambda137__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda202__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 1641 "ValaProjectSettingsPopover.vala"
-	__lambda137_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) self, object);
+	__lambda202_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) self, object);
 #line 10841 "ValaProjectSettingsPopover.vala.c"
 }
 
 static void
-__lambda138_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
+__lambda203_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
               GObject* listitem)
 {
 	GtkBox* lbl = NULL;
@@ -10872,12 +10872,12 @@ __lambda138_ (ValaProjectSettingsPopoverXcls_SignalListItemFactory49* self,
 }
 
 static void
-___lambda138__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda203__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 1652 "ValaProjectSettingsPopover.vala"
-	__lambda138_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) self, object);
+	__lambda203_ ((ValaProjectSettingsPopoverXcls_SignalListItemFactory49*) self, object);
 #line 10882 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -10907,11 +10907,11 @@ vala_project_settings_popover_xcls_signallistitemfactory49_construct (GType obje
 #line 1641 "ValaProjectSettingsPopover.vala"
 	_tmp2_ = self->el;
 #line 1641 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda137__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda202__gtk_signal_list_item_factory_setup, self, 0);
 #line 1652 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
 #line 1652 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda138__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda203__gtk_signal_list_item_factory_bind, self, 0);
 #line 1631 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 10918 "ValaProjectSettingsPopover.vala.c"
@@ -11283,7 +11283,7 @@ vala_project_settings_popover_xcls_build_name_get_instance_private (ValaProjectS
 }
 
 static void
-__lambda134_ (ValaProjectSettingsPopoverXcls_build_name* self)
+__lambda199_ (ValaProjectSettingsPopoverXcls_build_name* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ProjectGtkValaSettings* _tmp1_;
@@ -11404,11 +11404,11 @@ __lambda134_ (ValaProjectSettingsPopoverXcls_build_name* self)
 }
 
 static void
-___lambda134__gtk_editable_changed (GtkEditable* _sender,
+___lambda199__gtk_editable_changed (GtkEditable* _sender,
                                     gpointer self)
 {
 #line 1746 "ValaProjectSettingsPopover.vala"
-	__lambda134_ ((ValaProjectSettingsPopoverXcls_build_name*) self);
+	__lambda199_ ((ValaProjectSettingsPopoverXcls_build_name*) self);
 #line 11413 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -11449,7 +11449,7 @@ vala_project_settings_popover_xcls_build_name_construct (GType object_type,
 #line 1746 "ValaProjectSettingsPopover.vala"
 	_tmp4_ = self->el;
 #line 1746 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object ((GtkEditable*) _tmp4_, "changed", (GCallback) ___lambda134__gtk_editable_changed, self, 0);
+	g_signal_connect_object ((GtkEditable*) _tmp4_, "changed", (GCallback) ___lambda199__gtk_editable_changed, self, 0);
 #line 1735 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 11456 "ValaProjectSettingsPopover.vala.c"
@@ -11630,7 +11630,7 @@ vala_project_settings_popover_xcls_build_execute_args_get_instance_private (Vala
 }
 
 static void
-__lambda135_ (ValaProjectSettingsPopoverXcls_build_execute_args* self)
+__lambda200_ (ValaProjectSettingsPopoverXcls_build_execute_args* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ProjectGtkValaSettings* _tmp1_;
@@ -11676,11 +11676,11 @@ __lambda135_ (ValaProjectSettingsPopoverXcls_build_execute_args* self)
 }
 
 static void
-___lambda135__gtk_editable_changed (GtkEditable* _sender,
+___lambda200__gtk_editable_changed (GtkEditable* _sender,
                                     gpointer self)
 {
 #line 1807 "ValaProjectSettingsPopover.vala"
-	__lambda135_ ((ValaProjectSettingsPopoverXcls_build_execute_args*) self);
+	__lambda200_ ((ValaProjectSettingsPopoverXcls_build_execute_args*) self);
 #line 11685 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -11726,7 +11726,7 @@ vala_project_settings_popover_xcls_build_execute_args_construct (GType object_ty
 #line 1807 "ValaProjectSettingsPopover.vala"
 	_tmp5_ = self->el;
 #line 1807 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object ((GtkEditable*) _tmp5_, "changed", (GCallback) ___lambda135__gtk_editable_changed, self, 0);
+	g_signal_connect_object ((GtkEditable*) _tmp5_, "changed", (GCallback) ___lambda200__gtk_editable_changed, self, 0);
 #line 1795 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 11733 "ValaProjectSettingsPopover.vala.c"
@@ -11993,7 +11993,7 @@ vala_project_settings_popover_xcls_button56_get_instance_private (ValaProjectSet
 }
 
 static void
-__lambda140_ (ValaProjectSettingsPopoverXcls_Button56* self)
+__lambda205_ (ValaProjectSettingsPopoverXcls_Button56* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ValaProjectSettingsPopover* _tmp1_;
@@ -12012,11 +12012,11 @@ __lambda140_ (ValaProjectSettingsPopoverXcls_Button56* self)
 }
 
 static void
-___lambda140__gtk_button_clicked (GtkButton* _sender,
+___lambda205__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1877 "ValaProjectSettingsPopover.vala"
-	__lambda140_ ((ValaProjectSettingsPopoverXcls_Button56*) self);
+	__lambda205_ ((ValaProjectSettingsPopoverXcls_Button56*) self);
 #line 12021 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -12052,7 +12052,7 @@ vala_project_settings_popover_xcls_button56_construct (GType object_type,
 #line 1877 "ValaProjectSettingsPopover.vala"
 	_tmp3_ = self->el;
 #line 1877 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda140__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda205__gtk_button_clicked, self, 0);
 #line 1866 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 12059 "ValaProjectSettingsPopover.vala.c"
@@ -12238,7 +12238,7 @@ vala_project_settings_popover_xcls_save_btn_get_instance_private (ValaProjectSet
 }
 
 static void
-__lambda139_ (ValaProjectSettingsPopoverXcls_save_btn* self)
+__lambda204_ (ValaProjectSettingsPopoverXcls_save_btn* self)
 {
 	ValaProjectSettingsPopover* _tmp0_;
 	ProjectGtk* _tmp1_;
@@ -12265,11 +12265,11 @@ __lambda139_ (ValaProjectSettingsPopoverXcls_save_btn* self)
 }
 
 static void
-___lambda139__gtk_button_clicked (GtkButton* _sender,
+___lambda204__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1932 "ValaProjectSettingsPopover.vala"
-	__lambda139_ ((ValaProjectSettingsPopoverXcls_save_btn*) self);
+	__lambda204_ ((ValaProjectSettingsPopoverXcls_save_btn*) self);
 #line 12274 "ValaProjectSettingsPopover.vala.c"
 }
 
@@ -12336,7 +12336,7 @@ vala_project_settings_popover_xcls_save_btn_construct (GType object_type,
 #line 1932 "ValaProjectSettingsPopover.vala"
 	_tmp9_ = self->el;
 #line 1932 "ValaProjectSettingsPopover.vala"
-	g_signal_connect_object (_tmp9_, "clicked", (GCallback) ___lambda139__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp9_, "clicked", (GCallback) ___lambda204__gtk_button_clicked, self, 0);
 #line 1919 "ValaProjectSettingsPopover.vala"
 	return self;
 #line 12343 "ValaProjectSettingsPopover.vala.c"

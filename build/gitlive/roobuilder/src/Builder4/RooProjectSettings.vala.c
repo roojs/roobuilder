@@ -1626,8 +1626,8 @@ VALA_EXTERN Xcls_RooProjectSettingsXcls_base_template_cellrenderer* xcls_rooproj
 VALA_EXTERN Xcls_RooProjectSettingsXcls_base_template_model* xcls_rooprojectsettings_xcls_base_template_model_new (Xcls_RooProjectSettings* _owner);
 VALA_EXTERN Xcls_RooProjectSettingsXcls_base_template_model* xcls_rooprojectsettings_xcls_base_template_model_construct (GType object_type,
                                                                                                              Xcls_RooProjectSettings* _owner);
-static void __lambda109_ (Xcls_RooProjectSettingsXcls_base_template* self);
-static void ___lambda109__gtk_combo_box_changed (GtkComboBox* _sender,
+static void __lambda174_ (Xcls_RooProjectSettingsXcls_base_template* self);
+static void ___lambda174__gtk_combo_box_changed (GtkComboBox* _sender,
                                           gpointer self);
 static void xcls_rooprojectsettings_xcls_base_template_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_base_template_get_type_once (void);
@@ -1667,11 +1667,11 @@ VALA_EXTERN Xcls_RooProjectSettingsXcls_EventControllerKey23* xcls_rooprojectset
                                                                                                                Xcls_RooProjectSettings* _owner);
 static void xcls_rooprojectsettings_xcls_view_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_view_get_type_once (void);
-static void __lambda110_ (Xcls_RooProjectSettingsXcls_EventControllerKey23* self,
+static void __lambda175_ (Xcls_RooProjectSettingsXcls_EventControllerKey23* self,
                    guint keyval,
                    guint keycode,
                    GdkModifierType state);
-static void ___lambda110__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
+static void ___lambda175__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
                                                           guint keyval,
                                                           guint keycode,
                                                           GdkModifierType state,
@@ -1729,11 +1729,11 @@ VALA_EXTERN Xcls_RooProjectSettingsXcls_EventControllerKey27* xcls_rooprojectset
                                                                                                                Xcls_RooProjectSettings* _owner);
 static void xcls_rooprojectsettings_xcls_database_dbtype_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_database_dbtype_get_type_once (void);
-static gboolean __lambda111_ (Xcls_RooProjectSettingsXcls_EventControllerKey27* self,
+static gboolean __lambda176_ (Xcls_RooProjectSettingsXcls_EventControllerKey27* self,
                        guint keyval,
                        guint keycode,
                        GdkModifierType state);
-static gboolean ___lambda111__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+static gboolean ___lambda176__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                              guint keyval,
                                                              guint keycode,
                                                              GdkModifierType state,
@@ -1749,11 +1749,11 @@ VALA_EXTERN Xcls_RooProjectSettingsXcls_EventControllerKey30* xcls_rooprojectset
                                                                                                                Xcls_RooProjectSettings* _owner);
 static void xcls_rooprojectsettings_xcls_database_dbname_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_database_dbname_get_type_once (void);
-static gboolean __lambda112_ (Xcls_RooProjectSettingsXcls_EventControllerKey30* self,
+static gboolean __lambda177_ (Xcls_RooProjectSettingsXcls_EventControllerKey30* self,
                        guint keyval,
                        guint keycode,
                        GdkModifierType state);
-static gboolean ___lambda112__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+static gboolean ___lambda177__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                              guint keyval,
                                                              guint keycode,
                                                              GdkModifierType state,
@@ -1769,11 +1769,11 @@ VALA_EXTERN Xcls_RooProjectSettingsXcls_EventControllerKey33* xcls_rooprojectset
                                                                                                                Xcls_RooProjectSettings* _owner);
 static void xcls_rooprojectsettings_xcls_database_dbusername_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_database_dbusername_get_type_once (void);
-static gboolean __lambda113_ (Xcls_RooProjectSettingsXcls_EventControllerKey33* self,
+static gboolean __lambda178_ (Xcls_RooProjectSettingsXcls_EventControllerKey33* self,
                        guint keyval,
                        guint keycode,
                        GdkModifierType state);
-static gboolean ___lambda113__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+static gboolean ___lambda178__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                              guint keyval,
                                                              guint keycode,
                                                              GdkModifierType state,
@@ -1784,8 +1784,8 @@ static void xcls_rooprojectsettings_xcls_label34_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_label34_get_type_once (void);
 static void xcls_rooprojectsettings_xcls_database_dbpassword_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_database_dbpassword_get_type_once (void);
-static void __lambda114_ (Xcls_RooProjectSettingsXcls_Button36* self);
-static void ___lambda114__gtk_button_clicked (GtkButton* _sender,
+static void __lambda179_ (Xcls_RooProjectSettingsXcls_Button36* self);
+static void ___lambda179__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_rooprojectsettings_xcls_button36_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_button36_get_type_once (void);
@@ -1808,18 +1808,18 @@ VALA_EXTERN Xcls_RooProjectSettingsXcls_Button41* xcls_rooprojectsettings_xcls_b
                                                                                        Xcls_RooProjectSettings* _owner);
 static void xcls_rooprojectsettings_xcls_box38_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_box38_get_type_once (void);
-static void __lambda115_ (Xcls_RooProjectSettingsXcls_Button39* self);
-static void ___lambda115__gtk_button_clicked (GtkButton* _sender,
+static void __lambda180_ (Xcls_RooProjectSettingsXcls_Button39* self);
+static void ___lambda180__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_rooprojectsettings_xcls_button39_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_button39_get_type_once (void);
-static void __lambda116_ (Xcls_RooProjectSettingsXcls_Button40* self);
-static void ___lambda116__gtk_button_clicked (GtkButton* _sender,
+static void __lambda181_ (Xcls_RooProjectSettingsXcls_Button40* self);
+static void ___lambda181__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_rooprojectsettings_xcls_button40_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_button40_get_type_once (void);
-static void __lambda117_ (Xcls_RooProjectSettingsXcls_Button41* self);
-static void ___lambda117__gtk_button_clicked (GtkButton* _sender,
+static void __lambda182_ (Xcls_RooProjectSettingsXcls_Button41* self);
+static void ___lambda182__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_rooprojectsettings_xcls_button41_finalize (GObject * obj);
 static GType xcls_rooprojectsettings_xcls_button41_get_type_once (void);
@@ -3834,7 +3834,7 @@ xcls_rooprojectsettings_xcls_base_template_get_instance_private (Xcls_RooProject
 }
 
 static void
-__lambda109_ (Xcls_RooProjectSettingsXcls_base_template* self)
+__lambda174_ (Xcls_RooProjectSettingsXcls_base_template* self)
 {
 	GtkTreeIter iter = {0};
 	GtkComboBox* _tmp0_;
@@ -3909,11 +3909,11 @@ __lambda109_ (Xcls_RooProjectSettingsXcls_base_template* self)
 }
 
 static void
-___lambda109__gtk_combo_box_changed (GtkComboBox* _sender,
+___lambda174__gtk_combo_box_changed (GtkComboBox* _sender,
                                      gpointer self)
 {
 #line 436 "RooProjectSettings.vala"
-	__lambda109_ ((Xcls_RooProjectSettingsXcls_base_template*) self);
+	__lambda174_ ((Xcls_RooProjectSettingsXcls_base_template*) self);
 #line 3918 "RooProjectSettings.vala.c"
 }
 
@@ -4008,7 +4008,7 @@ xcls_rooprojectsettings_xcls_base_template_construct (GType object_type,
 #line 436 "RooProjectSettings.vala"
 	_tmp16_ = self->el;
 #line 436 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp16_, "changed", (GCallback) ___lambda109__gtk_combo_box_changed, self, 0);
+	g_signal_connect_object (_tmp16_, "changed", (GCallback) ___lambda174__gtk_combo_box_changed, self, 0);
 #line 414 "RooProjectSettings.vala"
 	_g_object_unref0 (child_1);
 #line 414 "RooProjectSettings.vala"
@@ -5985,7 +5985,7 @@ xcls_rooprojectsettings_xcls_eventcontrollerkey23_get_instance_private (Xcls_Roo
 }
 
 static void
-__lambda110_ (Xcls_RooProjectSettingsXcls_EventControllerKey23* self,
+__lambda175_ (Xcls_RooProjectSettingsXcls_EventControllerKey23* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -6071,14 +6071,14 @@ __lambda110_ (Xcls_RooProjectSettingsXcls_EventControllerKey23* self,
 }
 
 static void
-___lambda110__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
+___lambda175__gtk_event_controller_key_key_released (GtkEventControllerKey* _sender,
                                                      guint keyval,
                                                      guint keycode,
                                                      GdkModifierType state,
                                                      gpointer self)
 {
 #line 837 "RooProjectSettings.vala"
-	__lambda110_ ((Xcls_RooProjectSettingsXcls_EventControllerKey23*) self, keyval, keycode, state);
+	__lambda175_ ((Xcls_RooProjectSettingsXcls_EventControllerKey23*) self, keyval, keycode, state);
 #line 6083 "RooProjectSettings.vala.c"
 }
 
@@ -6107,7 +6107,7 @@ xcls_rooprojectsettings_xcls_eventcontrollerkey23_construct (GType object_type,
 #line 837 "RooProjectSettings.vala"
 	_tmp2_ = self->el;
 #line 837 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp2_, "key-released", (GCallback) ___lambda110__gtk_event_controller_key_key_released, self, 0);
+	g_signal_connect_object (_tmp2_, "key-released", (GCallback) ___lambda175__gtk_event_controller_key_key_released, self, 0);
 #line 827 "RooProjectSettings.vala"
 	return self;
 #line 6114 "RooProjectSettings.vala.c"
@@ -6744,7 +6744,7 @@ xcls_rooprojectsettings_xcls_eventcontrollerkey27_get_instance_private (Xcls_Roo
 }
 
 static gboolean
-__lambda111_ (Xcls_RooProjectSettingsXcls_EventControllerKey27* self,
+__lambda176_ (Xcls_RooProjectSettingsXcls_EventControllerKey27* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -6778,14 +6778,14 @@ __lambda111_ (Xcls_RooProjectSettingsXcls_EventControllerKey27* self,
 }
 
 static gboolean
-___lambda111__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+___lambda176__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                     guint keyval,
                                                     guint keycode,
                                                     GdkModifierType state,
                                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda111_ ((Xcls_RooProjectSettingsXcls_EventControllerKey27*) self, keyval, keycode, state);
+	result = __lambda176_ ((Xcls_RooProjectSettingsXcls_EventControllerKey27*) self, keyval, keycode, state);
 #line 987 "RooProjectSettings.vala"
 	return result;
 #line 6792 "RooProjectSettings.vala.c"
@@ -6816,7 +6816,7 @@ xcls_rooprojectsettings_xcls_eventcontrollerkey27_construct (GType object_type,
 #line 987 "RooProjectSettings.vala"
 	_tmp2_ = self->el;
 #line 987 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda111__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda176__gtk_event_controller_key_key_pressed, self, 0);
 #line 977 "RooProjectSettings.vala"
 	return self;
 #line 6823 "RooProjectSettings.vala.c"
@@ -7137,7 +7137,7 @@ xcls_rooprojectsettings_xcls_eventcontrollerkey30_get_instance_private (Xcls_Roo
 }
 
 static gboolean
-__lambda112_ (Xcls_RooProjectSettingsXcls_EventControllerKey30* self,
+__lambda177_ (Xcls_RooProjectSettingsXcls_EventControllerKey30* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -7171,14 +7171,14 @@ __lambda112_ (Xcls_RooProjectSettingsXcls_EventControllerKey30* self,
 }
 
 static gboolean
-___lambda112__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+___lambda177__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                     guint keyval,
                                                     guint keycode,
                                                     GdkModifierType state,
                                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda112_ ((Xcls_RooProjectSettingsXcls_EventControllerKey30*) self, keyval, keycode, state);
+	result = __lambda177_ ((Xcls_RooProjectSettingsXcls_EventControllerKey30*) self, keyval, keycode, state);
 #line 1069 "RooProjectSettings.vala"
 	return result;
 #line 7185 "RooProjectSettings.vala.c"
@@ -7209,7 +7209,7 @@ xcls_rooprojectsettings_xcls_eventcontrollerkey30_construct (GType object_type,
 #line 1069 "RooProjectSettings.vala"
 	_tmp2_ = self->el;
 #line 1069 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda112__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda177__gtk_event_controller_key_key_pressed, self, 0);
 #line 1059 "RooProjectSettings.vala"
 	return self;
 #line 7216 "RooProjectSettings.vala.c"
@@ -7530,7 +7530,7 @@ xcls_rooprojectsettings_xcls_eventcontrollerkey33_get_instance_private (Xcls_Roo
 }
 
 static gboolean
-__lambda113_ (Xcls_RooProjectSettingsXcls_EventControllerKey33* self,
+__lambda178_ (Xcls_RooProjectSettingsXcls_EventControllerKey33* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -7564,14 +7564,14 @@ __lambda113_ (Xcls_RooProjectSettingsXcls_EventControllerKey33* self,
 }
 
 static gboolean
-___lambda113__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+___lambda178__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                     guint keyval,
                                                     guint keycode,
                                                     GdkModifierType state,
                                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda113_ ((Xcls_RooProjectSettingsXcls_EventControllerKey33*) self, keyval, keycode, state);
+	result = __lambda178_ ((Xcls_RooProjectSettingsXcls_EventControllerKey33*) self, keyval, keycode, state);
 #line 1152 "RooProjectSettings.vala"
 	return result;
 #line 7578 "RooProjectSettings.vala.c"
@@ -7602,7 +7602,7 @@ xcls_rooprojectsettings_xcls_eventcontrollerkey33_construct (GType object_type,
 #line 1152 "RooProjectSettings.vala"
 	_tmp2_ = self->el;
 #line 1152 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda113__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda178__gtk_event_controller_key_key_pressed, self, 0);
 #line 1142 "RooProjectSettings.vala"
 	return self;
 #line 7609 "RooProjectSettings.vala.c"
@@ -7899,7 +7899,7 @@ xcls_rooprojectsettings_xcls_button36_get_instance_private (Xcls_RooProjectSetti
 }
 
 static void
-__lambda114_ (Xcls_RooProjectSettingsXcls_Button36* self)
+__lambda179_ (Xcls_RooProjectSettingsXcls_Button36* self)
 {
 	Xcls_RooProjectSettings* _tmp0_;
 	Xcls_RooProjectSettingsXcls_database_ERROR* _tmp1_;
@@ -8091,11 +8091,11 @@ __lambda114_ (Xcls_RooProjectSettingsXcls_Button36* self)
 }
 
 static void
-___lambda114__gtk_button_clicked (GtkButton* _sender,
+___lambda179__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1235 "RooProjectSettings.vala"
-	__lambda114_ ((Xcls_RooProjectSettingsXcls_Button36*) self);
+	__lambda179_ ((Xcls_RooProjectSettingsXcls_Button36*) self);
 #line 8100 "RooProjectSettings.vala.c"
 }
 
@@ -8131,7 +8131,7 @@ xcls_rooprojectsettings_xcls_button36_construct (GType object_type,
 #line 1235 "RooProjectSettings.vala"
 	_tmp3_ = self->el;
 #line 1235 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda114__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda179__gtk_button_clicked, self, 0);
 #line 1224 "RooProjectSettings.vala"
 	return self;
 #line 8138 "RooProjectSettings.vala.c"
@@ -8511,7 +8511,7 @@ xcls_rooprojectsettings_xcls_button39_get_instance_private (Xcls_RooProjectSetti
 }
 
 static void
-__lambda115_ (Xcls_RooProjectSettingsXcls_Button39* self)
+__lambda180_ (Xcls_RooProjectSettingsXcls_Button39* self)
 {
 	Xcls_RooProjectSettings* _tmp0_;
 	Xcls_RooProjectSettings* _tmp1_;
@@ -8530,11 +8530,11 @@ __lambda115_ (Xcls_RooProjectSettingsXcls_Button39* self)
 }
 
 static void
-___lambda115__gtk_button_clicked (GtkButton* _sender,
+___lambda180__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1343 "RooProjectSettings.vala"
-	__lambda115_ ((Xcls_RooProjectSettingsXcls_Button39*) self);
+	__lambda180_ ((Xcls_RooProjectSettingsXcls_Button39*) self);
 #line 8539 "RooProjectSettings.vala.c"
 }
 
@@ -8570,7 +8570,7 @@ xcls_rooprojectsettings_xcls_button39_construct (GType object_type,
 #line 1343 "RooProjectSettings.vala"
 	_tmp3_ = self->el;
 #line 1343 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda115__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda180__gtk_button_clicked, self, 0);
 #line 1332 "RooProjectSettings.vala"
 	return self;
 #line 8577 "RooProjectSettings.vala.c"
@@ -8650,7 +8650,7 @@ xcls_rooprojectsettings_xcls_button40_get_instance_private (Xcls_RooProjectSetti
 }
 
 static void
-__lambda116_ (Xcls_RooProjectSettingsXcls_Button40* self)
+__lambda181_ (Xcls_RooProjectSettingsXcls_Button40* self)
 {
 	Xcls_RooProjectSettings* _tmp0_;
 #line 1375 "RooProjectSettings.vala"
@@ -8661,11 +8661,11 @@ __lambda116_ (Xcls_RooProjectSettingsXcls_Button40* self)
 }
 
 static void
-___lambda116__gtk_button_clicked (GtkButton* _sender,
+___lambda181__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1373 "RooProjectSettings.vala"
-	__lambda116_ ((Xcls_RooProjectSettingsXcls_Button40*) self);
+	__lambda181_ ((Xcls_RooProjectSettingsXcls_Button40*) self);
 #line 8670 "RooProjectSettings.vala.c"
 }
 
@@ -8701,7 +8701,7 @@ xcls_rooprojectsettings_xcls_button40_construct (GType object_type,
 #line 1373 "RooProjectSettings.vala"
 	_tmp3_ = self->el;
 #line 1373 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda116__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda181__gtk_button_clicked, self, 0);
 #line 1362 "RooProjectSettings.vala"
 	return self;
 #line 8708 "RooProjectSettings.vala.c"
@@ -8781,7 +8781,7 @@ xcls_rooprojectsettings_xcls_button41_get_instance_private (Xcls_RooProjectSetti
 }
 
 static void
-__lambda117_ (Xcls_RooProjectSettingsXcls_Button41* self)
+__lambda182_ (Xcls_RooProjectSettingsXcls_Button41* self)
 {
 	Xcls_RooProjectSettings* _tmp0_;
 	Xcls_RooProjectSettings* _tmp1_;
@@ -8805,11 +8805,11 @@ __lambda117_ (Xcls_RooProjectSettingsXcls_Button41* self)
 }
 
 static void
-___lambda117__gtk_button_clicked (GtkButton* _sender,
+___lambda182__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1404 "RooProjectSettings.vala"
-	__lambda117_ ((Xcls_RooProjectSettingsXcls_Button41*) self);
+	__lambda182_ ((Xcls_RooProjectSettingsXcls_Button41*) self);
 #line 8814 "RooProjectSettings.vala.c"
 }
 
@@ -8845,7 +8845,7 @@ xcls_rooprojectsettings_xcls_button41_construct (GType object_type,
 #line 1404 "RooProjectSettings.vala"
 	_tmp3_ = self->el;
 #line 1404 "RooProjectSettings.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda117__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda182__gtk_button_clicked, self, 0);
 #line 1393 "RooProjectSettings.vala"
 	return self;
 #line 8852 "RooProjectSettings.vala.c"

@@ -358,7 +358,7 @@ VALA_EXTERN JsRenderPlainFile* js_render_plain_file_construct (GType object_type
 VALA_EXTERN GType js_render_plain_file_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderPlainFile, g_object_unref)
 VALA_EXTERN gchar* js_render_js_render_nickType (JsRenderJsRender* self);
-static void _vala_array_add12 (gchar** * array,
+static void _vala_array_add51 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -992,7 +992,7 @@ js_render_js_render_factory (const gchar* xt,
 }
 
 static void
-_vala_array_add12 (gchar** * array,
+_vala_array_add51 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -1390,7 +1390,7 @@ js_render_js_render_nickType (JsRenderJsRender* self)
 #line 176 "JsRender.vala"
 				_tmp9_ = g_strdup (_tmp8_);
 #line 176 "JsRender.vala"
-				_vala_array_add12 (&ret, &ret_length1, &_ret_size_, _tmp9_);
+				_vala_array_add51 (&ret, &ret_length1, &_ret_size_, _tmp9_);
 #line 1395 "JsRender.vala.c"
 			}
 		}

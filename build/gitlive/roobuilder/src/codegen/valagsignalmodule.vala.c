@@ -1092,35 +1092,35 @@ VALA_EXTERN void vala_ccode_file_add_function (ValaCCodeFile* self,
 static ValaCCodeExpression* vala_gsignal_module_real_get_signal_creation (ValaCCodeBaseModule* base,
                                                                    ValaSignal* sig,
                                                                    ValaObjectTypeSymbol* type);
-static void _vala_array_add4 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
-static void _vala_array_add5 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
-static void _vala_array_add6 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
-static void _vala_array_add7 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
-static void _vala_array_add8 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
-static void _vala_array_add9 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
-static void _vala_array_add10 (gchar** * array,
+static void _vala_array_add43 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add11 (gchar** * array,
+static void _vala_array_add44 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
+static void _vala_array_add45 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
+static void _vala_array_add46 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
+static void _vala_array_add47 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
+static void _vala_array_add48 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
+static void _vala_array_add49 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
+static void _vala_array_add50 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -4596,10 +4596,10 @@ vala_gsignal_module_generate_marshaller (ValaGSignalModule* self,
 }
 
 static void
-_vala_array_add4 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add43 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 361 "valagsignalmodule.vala"
 	if ((*length) == (*size)) {
@@ -4617,10 +4617,10 @@ _vala_array_add4 (gchar** * array,
 }
 
 static void
-_vala_array_add5 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add44 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 363 "valagsignalmodule.vala"
 	if ((*length) == (*size)) {
@@ -4638,10 +4638,10 @@ _vala_array_add5 (gchar** * array,
 }
 
 static void
-_vala_array_add6 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add45 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 365 "valagsignalmodule.vala"
 	if ((*length) == (*size)) {
@@ -4659,10 +4659,10 @@ _vala_array_add6 (gchar** * array,
 }
 
 static void
-_vala_array_add7 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add46 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 368 "valagsignalmodule.vala"
 	if ((*length) == (*size)) {
@@ -4680,10 +4680,10 @@ _vala_array_add7 (gchar** * array,
 }
 
 static void
-_vala_array_add8 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add47 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 372 "valagsignalmodule.vala"
 	if ((*length) == (*size)) {
@@ -4701,10 +4701,10 @@ _vala_array_add8 (gchar** * array,
 }
 
 static void
-_vala_array_add9 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add48 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 376 "valagsignalmodule.vala"
 	if ((*length) == (*size)) {
@@ -4722,7 +4722,7 @@ _vala_array_add9 (gchar** * array,
 }
 
 static void
-_vala_array_add10 (gchar** * array,
+_vala_array_add49 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -4743,7 +4743,7 @@ _vala_array_add10 (gchar** * array,
 }
 
 static void
-_vala_array_add11 (gchar** * array,
+_vala_array_add50 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5253,7 +5253,7 @@ vala_gsignal_module_real_get_signal_creation (ValaCCodeBaseModule* base,
 #line 361 "valagsignalmodule.vala"
 		_tmp26_ = g_strdup ("G_SIGNAL_RUN_FIRST");
 #line 361 "valagsignalmodule.vala"
-		_vala_array_add4 (&flags, &flags_length1, &_flags_size_, _tmp26_);
+		_vala_array_add43 (&flags, &flags_length1, &_flags_size_, _tmp26_);
 #line 5258 "valagsignalmodule.vala.c"
 	} else {
 		const gchar* _tmp27_;
@@ -5266,14 +5266,14 @@ vala_gsignal_module_real_get_signal_creation (ValaCCodeBaseModule* base,
 #line 363 "valagsignalmodule.vala"
 			_tmp28_ = g_strdup ("G_SIGNAL_RUN_CLEANUP");
 #line 363 "valagsignalmodule.vala"
-			_vala_array_add5 (&flags, &flags_length1, &_flags_size_, _tmp28_);
+			_vala_array_add44 (&flags, &flags_length1, &_flags_size_, _tmp28_);
 #line 5271 "valagsignalmodule.vala.c"
 		} else {
 			gchar* _tmp29_;
 #line 365 "valagsignalmodule.vala"
 			_tmp29_ = g_strdup ("G_SIGNAL_RUN_LAST");
 #line 365 "valagsignalmodule.vala"
-			_vala_array_add6 (&flags, &flags_length1, &_flags_size_, _tmp29_);
+			_vala_array_add45 (&flags, &flags_length1, &_flags_size_, _tmp29_);
 #line 5278 "valagsignalmodule.vala.c"
 		}
 	}
@@ -5284,7 +5284,7 @@ vala_gsignal_module_real_get_signal_creation (ValaCCodeBaseModule* base,
 #line 368 "valagsignalmodule.vala"
 		_tmp30_ = g_strdup ("G_SIGNAL_DETAILED");
 #line 368 "valagsignalmodule.vala"
-		_vala_array_add7 (&flags, &flags_length1, &_flags_size_, _tmp30_);
+		_vala_array_add46 (&flags, &flags_length1, &_flags_size_, _tmp30_);
 #line 5289 "valagsignalmodule.vala.c"
 	}
 #line 371 "valagsignalmodule.vala"
@@ -5294,7 +5294,7 @@ vala_gsignal_module_real_get_signal_creation (ValaCCodeBaseModule* base,
 #line 372 "valagsignalmodule.vala"
 		_tmp31_ = g_strdup ("G_SIGNAL_NO_RECURSE");
 #line 372 "valagsignalmodule.vala"
-		_vala_array_add8 (&flags, &flags_length1, &_flags_size_, _tmp31_);
+		_vala_array_add47 (&flags, &flags_length1, &_flags_size_, _tmp31_);
 #line 5299 "valagsignalmodule.vala.c"
 	}
 #line 375 "valagsignalmodule.vala"
@@ -5304,7 +5304,7 @@ vala_gsignal_module_real_get_signal_creation (ValaCCodeBaseModule* base,
 #line 376 "valagsignalmodule.vala"
 		_tmp32_ = g_strdup ("G_SIGNAL_ACTION");
 #line 376 "valagsignalmodule.vala"
-		_vala_array_add9 (&flags, &flags_length1, &_flags_size_, _tmp32_);
+		_vala_array_add48 (&flags, &flags_length1, &_flags_size_, _tmp32_);
 #line 5309 "valagsignalmodule.vala.c"
 	}
 #line 379 "valagsignalmodule.vala"
@@ -5314,7 +5314,7 @@ vala_gsignal_module_real_get_signal_creation (ValaCCodeBaseModule* base,
 #line 380 "valagsignalmodule.vala"
 		_tmp33_ = g_strdup ("G_SIGNAL_NO_HOOKS");
 #line 380 "valagsignalmodule.vala"
-		_vala_array_add10 (&flags, &flags_length1, &_flags_size_, _tmp33_);
+		_vala_array_add49 (&flags, &flags_length1, &_flags_size_, _tmp33_);
 #line 5319 "valagsignalmodule.vala.c"
 	}
 #line 383 "valagsignalmodule.vala"
@@ -5332,7 +5332,7 @@ vala_gsignal_module_real_get_signal_creation (ValaCCodeBaseModule* base,
 #line 384 "valagsignalmodule.vala"
 		_tmp38_ = g_strdup ("G_SIGNAL_DEPRECATED");
 #line 384 "valagsignalmodule.vala"
-		_vala_array_add11 (&flags, &flags_length1, &_flags_size_, _tmp38_);
+		_vala_array_add50 (&flags, &flags_length1, &_flags_size_, _tmp38_);
 #line 5337 "valagsignalmodule.vala.c"
 	}
 #line 387 "valagsignalmodule.vala"

@@ -245,16 +245,16 @@ VALA_EXTERN void js_render_node_setLine (JsRenderNode* self,
                              const gchar* type,
                              const gchar* prop);
 VALA_EXTERN void js_render_node_sortLines (JsRenderNode* self);
-static gint __lambda4_ (JsRenderNode* self,
+static gint __lambda6_ (JsRenderNode* self,
                  gint a,
                  gint b);
-static gint ___lambda4__gcompare_data_func (gconstpointer a,
+static gint ___lambda6__gcompare_data_func (gconstpointer a,
                                      gconstpointer b,
                                      gpointer self);
-static gint __lambda5_ (JsRenderNode* self,
+static gint __lambda7_ (JsRenderNode* self,
                  gint a,
                  gint b);
-static gint ___lambda5__gcompare_data_func (gconstpointer a,
+static gint ___lambda7__gcompare_data_func (gconstpointer a,
                                      gconstpointer b,
                                      gpointer self);
 VALA_EXTERN JsRenderNode* js_render_node_lineToNode (JsRenderNode* self,
@@ -315,22 +315,22 @@ VALA_EXTERN void js_render_node_loadFromJson (JsRenderNode* self,
                                   gint version);
 static Block15Data* block15_data_ref (Block15Data* _data15_);
 static void block15_data_unref (void * _userdata_);
-static void __lambda7_ (Block15Data* _data15_,
+static void __lambda9_ (Block15Data* _data15_,
                  JsonObject* o,
                  const gchar* key,
                  JsonNode* value);
-static void ___lambda8_ (Block15Data* _data15_,
-                  JsonArray* are,
-                  guint ix,
-                  JsonNode* el);
-static void ____lambda8__json_array_foreach (JsonArray* array,
-                                      guint index_,
-                                      JsonNode* element_node,
-                                      gpointer self);
-static void ___lambda9_ (JsRenderNode* self,
-                  JsonObject* lio,
-                  const gchar* li_key,
-                  JsonNode* li_value);
+static void ___lambda10_ (Block15Data* _data15_,
+                   JsonArray* are,
+                   guint ix,
+                   JsonNode* el);
+static void ____lambda10__json_array_foreach (JsonArray* array,
+                                       guint index_,
+                                       JsonNode* element_node,
+                                       gpointer self);
+static void ___lambda11_ (JsRenderNode* self,
+                   JsonObject* lio,
+                   const gchar* li_key,
+                   JsonNode* li_value);
 VALA_EXTERN gchar* js_render_node_jsonNodeAsString (JsRenderNode* self,
                                         JsonNode* node);
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_listener (const gchar* name,
@@ -338,10 +338,10 @@ VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_listener (const gchar* nam
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_listener (GType object_type,
                                                           const gchar* name,
                                                           const gchar* val);
-static void ____lambda9__json_object_foreach (JsonObject* object,
-                                       const gchar* member_name,
-                                       JsonNode* member_node,
-                                       gpointer self);
+static void ____lambda11__json_object_foreach (JsonObject* object,
+                                        const gchar* member_name,
+                                        JsonNode* member_node,
+                                        gpointer self);
 VALA_EXTERN gchar* js_render_node_upgradeKey (JsRenderNode* self,
                                   const gchar* key,
                                   const gchar* val);
@@ -350,7 +350,7 @@ VALA_EXTERN JsRenderNodeProp* js_render_node_prop_new_from_json (const gchar* ke
 VALA_EXTERN JsRenderNodeProp* js_render_node_prop_construct_from_json (GType object_type,
                                                            const gchar* key,
                                                            const gchar* inval);
-static void ___lambda7__json_object_foreach (JsonObject* object,
+static void ___lambda9__json_object_foreach (JsonObject* object,
                                       const gchar* member_name,
                                       JsonNode* member_node,
                                       gpointer self);
@@ -376,98 +376,98 @@ VALA_EXTERN gboolean js_render_langclass_isNumber (JsRenderLang_Class* self,
 VALA_EXTERN gchar* js_render_node_nodeTip (JsRenderNode* self);
 VALA_EXTERN gchar* js_render_node_nodeTitle (JsRenderNode* self,
                                  gboolean for_tip);
-static gint __lambda10_ (JsRenderNode* self,
+static gint __lambda12_ (JsRenderNode* self,
                   const gchar* a,
                   const gchar* b);
-static gint ___lambda10__gcompare_data_func (gconstpointer a,
+static gint ___lambda12__gcompare_data_func (gconstpointer a,
                                       gconstpointer b,
                                       gpointer self);
 VALA_EXTERN const gchar* js_render_node_prop_get_name (JsRenderNodeProp* self);
 VALA_EXTERN GType js_render_node_prop_type_get_type (void) G_GNUC_CONST ;
 VALA_EXTERN JsRenderNodePropType js_render_node_prop_get_ptype (JsRenderNodeProp* self);
-static gint __lambda11_ (JsRenderNode* self,
+static gint __lambda13_ (JsRenderNode* self,
                   const gchar* a,
                   const gchar* b);
-static gint ___lambda11__gcompare_data_func (gconstpointer a,
+static gint ___lambda13__gcompare_data_func (gconstpointer a,
                                       gconstpointer b,
                                       gpointer self);
-static void _vala_array_add16 (gchar** * array,
+static void _vala_array_add55 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add17 (gchar** * array,
+static void _vala_array_add56 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add18 (gchar** * array,
+static void _vala_array_add57 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add19 (gchar** * array,
+static void _vala_array_add58 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add20 (gchar** * array,
+static void _vala_array_add59 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add21 (gchar** * array,
+static void _vala_array_add60 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add22 (gchar** * array,
+static void _vala_array_add61 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add23 (gchar** * array,
+static void _vala_array_add62 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add24 (gchar** * array,
+static void _vala_array_add63 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add25 (gchar** * array,
+static void _vala_array_add64 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add26 (gchar** * array,
+static void _vala_array_add65 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add27 (gchar** * array,
+static void _vala_array_add66 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add28 (gchar** * array,
+static void _vala_array_add67 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add29 (gchar** * array,
+static void _vala_array_add68 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add30 (gchar** * array,
+static void _vala_array_add69 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add31 (gchar** * array,
+static void _vala_array_add70 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add32 (gchar** * array,
+static void _vala_array_add71 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add33 (gchar** * array,
+static void _vala_array_add72 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add34 (gchar** * array,
+static void _vala_array_add73 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
-static void _vala_array_add35 (gchar** * array,
+static void _vala_array_add74 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -494,11 +494,11 @@ VALA_EXTERN void js_render_node_set_updated_count (JsRenderNode* self,
 VALA_EXTERN gboolean js_render_node_has_prop_key (JsRenderNode* self,
                                       JsRenderNodeProp* prop);
 VALA_EXTERN gchar* js_render_node_prop_to_index_key (JsRenderNodeProp* self);
-static gint __lambda6_ (JsRenderNode* self,
+static gint __lambda8_ (JsRenderNode* self,
                  GObject* a,
                  GObject* b);
 VALA_EXTERN gchar* js_render_node_prop_to_sort_key (JsRenderNodeProp* self);
-static gint ___lambda6__gcompare_data_func (gconstpointer a,
+static gint ___lambda8__gcompare_data_func (gconstpointer a,
                                      gconstpointer b,
                                      gpointer self);
 VALA_EXTERN void js_render_node_set_nodeTitleProp (JsRenderNode* self,
@@ -764,7 +764,7 @@ js_render_node_setLine (JsRenderNode* self,
 }
 
 static gint
-__lambda4_ (JsRenderNode* self,
+__lambda6_ (JsRenderNode* self,
             gint a,
             gint b)
 {
@@ -777,19 +777,19 @@ __lambda4_ (JsRenderNode* self,
 }
 
 static gint
-___lambda4__gcompare_data_func (gconstpointer a,
+___lambda6__gcompare_data_func (gconstpointer a,
                                 gconstpointer b,
                                 gpointer self)
 {
 	gint result;
-	result = __lambda4_ ((JsRenderNode*) self, (gint) ((gintptr) a), (gint) ((gintptr) b));
+	result = __lambda6_ ((JsRenderNode*) self, (gint) ((gintptr) a), (gint) ((gintptr) b));
 #line 176 "Node.vala"
 	return result;
 #line 789 "Node.vala.c"
 }
 
 static gint
-__lambda5_ (JsRenderNode* self,
+__lambda7_ (JsRenderNode* self,
             gint a,
             gint b)
 {
@@ -802,12 +802,12 @@ __lambda5_ (JsRenderNode* self,
 }
 
 static gint
-___lambda5__gcompare_data_func (gconstpointer a,
+___lambda7__gcompare_data_func (gconstpointer a,
                                 gconstpointer b,
                                 gpointer self)
 {
 	gint result;
-	result = __lambda5_ ((JsRenderNode*) self, (gint) ((gintptr) a), (gint) ((gintptr) b));
+	result = __lambda7_ ((JsRenderNode*) self, (gint) ((gintptr) a), (gint) ((gintptr) b));
 #line 179 "Node.vala"
 	return result;
 #line 814 "Node.vala.c"
@@ -821,11 +821,11 @@ js_render_node_sortLines (JsRenderNode* self)
 #line 176 "Node.vala"
 	_tmp0_ = self->lines;
 #line 176 "Node.vala"
-	gee_list_sort ((GeeList*) _tmp0_, ___lambda4__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp0_, ___lambda6__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 179 "Node.vala"
 	_tmp1_ = self->node_lines;
 #line 179 "Node.vala"
-	gee_list_sort ((GeeList*) _tmp1_, ___lambda5__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp1_, ___lambda7__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 830 "Node.vala.c"
 }
 
@@ -2481,10 +2481,10 @@ _json_array_ref0 (gpointer self)
 }
 
 static void
-___lambda8_ (Block15Data* _data15_,
-             JsonArray* are,
-             guint ix,
-             JsonNode* el)
+___lambda10_ (Block15Data* _data15_,
+              JsonArray* are,
+              guint ix,
+              JsonNode* el)
 {
 	JsRenderNode* self;
 	JsRenderNode* node = NULL;
@@ -2523,21 +2523,21 @@ ___lambda8_ (Block15Data* _data15_,
 }
 
 static void
-____lambda8__json_array_foreach (JsonArray* array,
-                                 guint index_,
-                                 JsonNode* element_node,
-                                 gpointer self)
+____lambda10__json_array_foreach (JsonArray* array,
+                                  guint index_,
+                                  JsonNode* element_node,
+                                  gpointer self)
 {
 #line 458 "Node.vala"
-	___lambda8_ (self, array, index_, element_node);
+	___lambda10_ (self, array, index_, element_node);
 #line 2534 "Node.vala.c"
 }
 
 static void
-___lambda9_ (JsRenderNode* self,
-             JsonObject* lio,
-             const gchar* li_key,
-             JsonNode* li_value)
+___lambda11_ (JsRenderNode* self,
+              JsonObject* lio,
+              const gchar* li_key,
+              JsonNode* li_value)
 {
 	gchar* _tmp0_;
 	gchar* _tmp1_;
@@ -2561,18 +2561,18 @@ ___lambda9_ (JsRenderNode* self,
 }
 
 static void
-____lambda9__json_object_foreach (JsonObject* object,
-                                  const gchar* member_name,
-                                  JsonNode* member_node,
-                                  gpointer self)
+____lambda11__json_object_foreach (JsonObject* object,
+                                   const gchar* member_name,
+                                   JsonNode* member_node,
+                                   gpointer self)
 {
 #line 469 "Node.vala"
-	___lambda9_ ((JsRenderNode*) self, object, member_name, member_node);
+	___lambda11_ ((JsRenderNode*) self, object, member_name, member_node);
 #line 2572 "Node.vala.c"
 }
 
 static void
-__lambda7_ (Block15Data* _data15_,
+__lambda9_ (Block15Data* _data15_,
             JsonObject* o,
             const gchar* key,
             JsonNode* value)
@@ -2605,7 +2605,7 @@ __lambda7_ (Block15Data* _data15_,
 #line 458 "Node.vala"
 		_tmp2_ = ar;
 #line 458 "Node.vala"
-		json_array_foreach_element (_tmp2_, ____lambda8__json_array_foreach, _data15_);
+		json_array_foreach_element (_tmp2_, ____lambda10__json_array_foreach, _data15_);
 #line 465 "Node.vala"
 		_json_array_unref0 (ar);
 #line 465 "Node.vala"
@@ -2628,7 +2628,7 @@ __lambda7_ (Block15Data* _data15_,
 #line 469 "Node.vala"
 		_tmp5_ = li;
 #line 469 "Node.vala"
-		json_object_foreach_member (_tmp5_, ____lambda9__json_object_foreach, self);
+		json_object_foreach_member (_tmp5_, ____lambda11__json_object_foreach, self);
 #line 473 "Node.vala"
 		_json_object_unref0 (li);
 #line 473 "Node.vala"
@@ -2680,13 +2680,13 @@ __lambda7_ (Block15Data* _data15_,
 }
 
 static void
-___lambda7__json_object_foreach (JsonObject* object,
+___lambda9__json_object_foreach (JsonObject* object,
                                  const gchar* member_name,
                                  JsonNode* member_node,
                                  gpointer self)
 {
 #line 454 "Node.vala"
-	__lambda7_ (self, object, member_name, member_node);
+	__lambda9_ (self, object, member_name, member_node);
 #line 2691 "Node.vala.c"
 }
 
@@ -2705,7 +2705,7 @@ js_render_node_loadFromJson (JsRenderNode* self,
 #line 452 "Node.vala"
 	_data15_->version = version;
 #line 454 "Node.vala"
-	json_object_foreach_member (obj, ___lambda7__json_object_foreach, _data15_);
+	json_object_foreach_member (obj, ___lambda9__json_object_foreach, _data15_);
 #line 452 "Node.vala"
 	block15_data_unref (_data15_);
 #line 452 "Node.vala"
@@ -4205,7 +4205,7 @@ js_render_node_jsonObjectsetMember (JsRenderNode* self,
 }
 
 static gint
-__lambda10_ (JsRenderNode* self,
+__lambda12_ (JsRenderNode* self,
              const gchar* a,
              const gchar* b)
 {
@@ -4218,19 +4218,19 @@ __lambda10_ (JsRenderNode* self,
 }
 
 static gint
-___lambda10__gcompare_data_func (gconstpointer a,
+___lambda12__gcompare_data_func (gconstpointer a,
                                  gconstpointer b,
                                  gpointer self)
 {
 	gint result;
-	result = __lambda10_ ((JsRenderNode*) self, (const gchar*) a, (const gchar*) b);
+	result = __lambda12_ ((JsRenderNode*) self, (const gchar*) a, (const gchar*) b);
 #line 690 "Node.vala"
 	return result;
 #line 4230 "Node.vala.c"
 }
 
 static gint
-__lambda11_ (JsRenderNode* self,
+__lambda13_ (JsRenderNode* self,
              const gchar* a,
              const gchar* b)
 {
@@ -4243,12 +4243,12 @@ __lambda11_ (JsRenderNode* self,
 }
 
 static gint
-___lambda11__gcompare_data_func (gconstpointer a,
+___lambda13__gcompare_data_func (gconstpointer a,
                                  gconstpointer b,
                                  gpointer self)
 {
 	gint result;
-	result = __lambda11_ ((JsRenderNode*) self, (const gchar*) a, (const gchar*) b);
+	result = __lambda13_ ((JsRenderNode*) self, (const gchar*) a, (const gchar*) b);
 #line 749 "Node.vala"
 	return result;
 #line 4255 "Node.vala.c"
@@ -4391,7 +4391,7 @@ js_render_node_nodeTip (JsRenderNode* self)
 #line 690 "Node.vala"
 	_tmp20_ = keys;
 #line 690 "Node.vala"
-	gee_list_sort ((GeeList*) _tmp20_, ___lambda10__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp20_, ___lambda12__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 4396 "Node.vala.c"
 	{
 		GeeArrayList* _pk_list = NULL;
@@ -4995,7 +4995,7 @@ js_render_node_nodeTip (JsRenderNode* self)
 #line 749 "Node.vala"
 	_tmp141_ = keys;
 #line 749 "Node.vala"
-	gee_list_sort ((GeeList*) _tmp141_, ___lambda11__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp141_, ___lambda13__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 5000 "Node.vala.c"
 	{
 		GeeArrayList* _pk_list = NULL;
@@ -5397,7 +5397,7 @@ js_render_node_nodeTip (JsRenderNode* self)
 }
 
 static void
-_vala_array_add16 (gchar** * array,
+_vala_array_add55 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5418,7 +5418,7 @@ _vala_array_add16 (gchar** * array,
 }
 
 static void
-_vala_array_add17 (gchar** * array,
+_vala_array_add56 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5439,7 +5439,7 @@ _vala_array_add17 (gchar** * array,
 }
 
 static void
-_vala_array_add18 (gchar** * array,
+_vala_array_add57 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5460,7 +5460,7 @@ _vala_array_add18 (gchar** * array,
 }
 
 static void
-_vala_array_add19 (gchar** * array,
+_vala_array_add58 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5481,7 +5481,7 @@ _vala_array_add19 (gchar** * array,
 }
 
 static void
-_vala_array_add20 (gchar** * array,
+_vala_array_add59 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5502,7 +5502,7 @@ _vala_array_add20 (gchar** * array,
 }
 
 static void
-_vala_array_add21 (gchar** * array,
+_vala_array_add60 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5523,7 +5523,7 @@ _vala_array_add21 (gchar** * array,
 }
 
 static void
-_vala_array_add22 (gchar** * array,
+_vala_array_add61 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5544,7 +5544,7 @@ _vala_array_add22 (gchar** * array,
 }
 
 static void
-_vala_array_add23 (gchar** * array,
+_vala_array_add62 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5565,7 +5565,7 @@ _vala_array_add23 (gchar** * array,
 }
 
 static void
-_vala_array_add24 (gchar** * array,
+_vala_array_add63 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5586,7 +5586,7 @@ _vala_array_add24 (gchar** * array,
 }
 
 static void
-_vala_array_add25 (gchar** * array,
+_vala_array_add64 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5607,7 +5607,7 @@ _vala_array_add25 (gchar** * array,
 }
 
 static void
-_vala_array_add26 (gchar** * array,
+_vala_array_add65 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5628,7 +5628,7 @@ _vala_array_add26 (gchar** * array,
 }
 
 static void
-_vala_array_add27 (gchar** * array,
+_vala_array_add66 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5649,7 +5649,7 @@ _vala_array_add27 (gchar** * array,
 }
 
 static void
-_vala_array_add28 (gchar** * array,
+_vala_array_add67 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5670,7 +5670,7 @@ _vala_array_add28 (gchar** * array,
 }
 
 static void
-_vala_array_add29 (gchar** * array,
+_vala_array_add68 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5691,7 +5691,7 @@ _vala_array_add29 (gchar** * array,
 }
 
 static void
-_vala_array_add30 (gchar** * array,
+_vala_array_add69 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5712,7 +5712,7 @@ _vala_array_add30 (gchar** * array,
 }
 
 static void
-_vala_array_add31 (gchar** * array,
+_vala_array_add70 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5733,7 +5733,7 @@ _vala_array_add31 (gchar** * array,
 }
 
 static void
-_vala_array_add32 (gchar** * array,
+_vala_array_add71 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5754,7 +5754,7 @@ _vala_array_add32 (gchar** * array,
 }
 
 static void
-_vala_array_add33 (gchar** * array,
+_vala_array_add72 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5775,7 +5775,7 @@ _vala_array_add33 (gchar** * array,
 }
 
 static void
-_vala_array_add34 (gchar** * array,
+_vala_array_add73 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5796,7 +5796,7 @@ _vala_array_add34 (gchar** * array,
 }
 
 static void
-_vala_array_add35 (gchar** * array,
+_vala_array_add74 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -5870,7 +5870,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 813 "Node.vala"
 		_tmp5_ = g_strconcat (_tmp4_, ":", NULL);
 #line 813 "Node.vala"
-		_vala_array_add16 (&txt, &txt_length1, &_txt_size_, _tmp5_);
+		_vala_array_add55 (&txt, &txt_length1, &_txt_size_, _tmp5_);
 #line 813 "Node.vala"
 		_g_free0 (_tmp4_);
 #line 813 "Node.vala"
@@ -5942,7 +5942,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 818 "Node.vala"
 	_tmp19_ = g_strdup (_tmp10_);
 #line 818 "Node.vala"
-	_vala_array_add17 (&txt, &txt_length1, &_txt_size_, _tmp19_);
+	_vala_array_add56 (&txt, &txt_length1, &_txt_size_, _tmp19_);
 #line 820 "Node.vala"
 	_tmp21_ = fqn;
 #line 820 "Node.vala"
@@ -5985,7 +5985,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 822 "Node.vala"
 		_tmp27_ = g_markup_escape_text (_tmp26_, (gssize) -1);
 #line 822 "Node.vala"
-		_vala_array_add18 (&txt, &txt_length1, &_txt_size_, _tmp27_);
+		_vala_array_add57 (&txt, &txt_length1, &_txt_size_, _tmp27_);
 #line 822 "Node.vala"
 		_g_free0 (_tmp26_);
 #line 822 "Node.vala"
@@ -6017,7 +6017,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 827 "Node.vala"
 		_tmp34_ = g_strconcat (_tmp33_, "]</b>", NULL);
 #line 827 "Node.vala"
-		_vala_array_add19 (&txt, &txt_length1, &_txt_size_, _tmp34_);
+		_vala_array_add58 (&txt, &txt_length1, &_txt_size_, _tmp34_);
 #line 827 "Node.vala"
 		_g_free0 (_tmp33_);
 #line 827 "Node.vala"
@@ -6051,7 +6051,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 828 "Node.vala"
 		_tmp41_ = g_strconcat (_tmp40_, "]", NULL);
 #line 828 "Node.vala"
-		_vala_array_add20 (&txt, &txt_length1, &_txt_size_, _tmp41_);
+		_vala_array_add59 (&txt, &txt_length1, &_txt_size_, _tmp41_);
 #line 828 "Node.vala"
 		_g_free0 (_tmp40_);
 #line 828 "Node.vala"
@@ -6085,7 +6085,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 829 "Node.vala"
 		_tmp48_ = g_strconcat (_tmp47_, "]", NULL);
 #line 829 "Node.vala"
-		_vala_array_add21 (&txt, &txt_length1, &_txt_size_, _tmp48_);
+		_vala_array_add60 (&txt, &txt_length1, &_txt_size_, _tmp48_);
 #line 829 "Node.vala"
 		_g_free0 (_tmp47_);
 #line 829 "Node.vala"
@@ -6119,7 +6119,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 832 "Node.vala"
 		_tmp55_ = g_strconcat (_tmp54_, "</i>", NULL);
 #line 832 "Node.vala"
-		_vala_array_add22 (&txt, &txt_length1, &_txt_size_, _tmp55_);
+		_vala_array_add61 (&txt, &txt_length1, &_txt_size_, _tmp55_);
 #line 832 "Node.vala"
 		_g_free0 (_tmp54_);
 #line 832 "Node.vala"
@@ -6153,7 +6153,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 833 "Node.vala"
 		_tmp62_ = g_strconcat (_tmp61_, "</b>", NULL);
 #line 833 "Node.vala"
-		_vala_array_add23 (&txt, &txt_length1, &_txt_size_, _tmp62_);
+		_vala_array_add62 (&txt, &txt_length1, &_txt_size_, _tmp62_);
 #line 833 "Node.vala"
 		_g_free0 (_tmp61_);
 #line 833 "Node.vala"
@@ -6251,7 +6251,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 837 "Node.vala"
 			_tmp80_ = g_strconcat (_tmp79_, "...</b>", NULL);
 #line 837 "Node.vala"
-			_vala_array_add24 (&txt, &txt_length1, &_txt_size_, _tmp80_);
+			_vala_array_add63 (&txt, &txt_length1, &_txt_size_, _tmp80_);
 #line 837 "Node.vala"
 			_g_free0 (_tmp79_);
 #line 837 "Node.vala"
@@ -6280,7 +6280,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 839 "Node.vala"
 			_tmp87_ = g_strconcat (_tmp86_, "</b>", NULL);
 #line 839 "Node.vala"
-			_vala_array_add25 (&txt, &txt_length1, &_txt_size_, _tmp87_);
+			_vala_array_add64 (&txt, &txt_length1, &_txt_size_, _tmp87_);
 #line 839 "Node.vala"
 			_g_free0 (_tmp86_);
 #line 839 "Node.vala"
@@ -6318,7 +6318,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 842 "Node.vala"
 		_tmp94_ = g_strconcat (_tmp93_, "</b>", NULL);
 #line 842 "Node.vala"
-		_vala_array_add26 (&txt, &txt_length1, &_txt_size_, _tmp94_);
+		_vala_array_add65 (&txt, &txt_length1, &_txt_size_, _tmp94_);
 #line 842 "Node.vala"
 		_g_free0 (_tmp93_);
 #line 842 "Node.vala"
@@ -6352,7 +6352,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 843 "Node.vala"
 		_tmp101_ = g_strconcat (_tmp100_, "</b>", NULL);
 #line 843 "Node.vala"
-		_vala_array_add27 (&txt, &txt_length1, &_txt_size_, _tmp101_);
+		_vala_array_add66 (&txt, &txt_length1, &_txt_size_, _tmp101_);
 #line 843 "Node.vala"
 		_g_free0 (_tmp100_);
 #line 843 "Node.vala"
@@ -6386,7 +6386,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 844 "Node.vala"
 		_tmp108_ = g_strconcat (_tmp107_, "</b>", NULL);
 #line 844 "Node.vala"
-		_vala_array_add28 (&txt, &txt_length1, &_txt_size_, _tmp108_);
+		_vala_array_add67 (&txt, &txt_length1, &_txt_size_, _tmp108_);
 #line 844 "Node.vala"
 		_g_free0 (_tmp107_);
 #line 844 "Node.vala"
@@ -6420,7 +6420,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 845 "Node.vala"
 		_tmp115_ = g_strconcat (_tmp114_, "</b>", NULL);
 #line 845 "Node.vala"
-		_vala_array_add29 (&txt, &txt_length1, &_txt_size_, _tmp115_);
+		_vala_array_add68 (&txt, &txt_length1, &_txt_size_, _tmp115_);
 #line 845 "Node.vala"
 		_g_free0 (_tmp114_);
 #line 845 "Node.vala"
@@ -6454,7 +6454,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 846 "Node.vala"
 		_tmp122_ = g_strconcat (_tmp121_, "</b>", NULL);
 #line 846 "Node.vala"
-		_vala_array_add30 (&txt, &txt_length1, &_txt_size_, _tmp122_);
+		_vala_array_add69 (&txt, &txt_length1, &_txt_size_, _tmp122_);
 #line 846 "Node.vala"
 		_g_free0 (_tmp121_);
 #line 846 "Node.vala"
@@ -6488,7 +6488,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 847 "Node.vala"
 		_tmp129_ = g_strconcat (_tmp128_, ")</i>", NULL);
 #line 847 "Node.vala"
-		_vala_array_add31 (&txt, &txt_length1, &_txt_size_, _tmp129_);
+		_vala_array_add70 (&txt, &txt_length1, &_txt_size_, _tmp129_);
 #line 847 "Node.vala"
 		_g_free0 (_tmp128_);
 #line 847 "Node.vala"
@@ -6522,7 +6522,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 848 "Node.vala"
 		_tmp136_ = g_strconcat (_tmp135_, "]", NULL);
 #line 848 "Node.vala"
-		_vala_array_add32 (&txt, &txt_length1, &_txt_size_, _tmp136_);
+		_vala_array_add71 (&txt, &txt_length1, &_txt_size_, _tmp136_);
 #line 848 "Node.vala"
 		_g_free0 (_tmp135_);
 #line 848 "Node.vala"
@@ -6556,7 +6556,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 850 "Node.vala"
 		_tmp143_ = g_strconcat (_tmp142_, "]</b>", NULL);
 #line 850 "Node.vala"
-		_vala_array_add33 (&txt, &txt_length1, &_txt_size_, _tmp143_);
+		_vala_array_add72 (&txt, &txt_length1, &_txt_size_, _tmp143_);
 #line 850 "Node.vala"
 		_g_free0 (_tmp142_);
 #line 850 "Node.vala"
@@ -6610,7 +6610,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 854 "Node.vala"
 		_tmp152_ = g_strconcat (_tmp151_, "</b>", NULL);
 #line 854 "Node.vala"
-		_vala_array_add34 (&txt, &txt_length1, &_txt_size_, _tmp152_);
+		_vala_array_add73 (&txt, &txt_length1, &_txt_size_, _tmp152_);
 #line 854 "Node.vala"
 		_g_free0 (_tmp151_);
 #line 855 "Node.vala"
@@ -6638,7 +6638,7 @@ js_render_node_nodeTitle (JsRenderNode* self,
 #line 855 "Node.vala"
 			_tmp159_ = g_strconcat (_tmp158_, "]</b>", NULL);
 #line 855 "Node.vala"
-			_vala_array_add35 (&txt, &txt_length1, &_txt_size_, _tmp159_);
+			_vala_array_add74 (&txt, &txt_length1, &_txt_size_, _tmp159_);
 #line 855 "Node.vala"
 			_g_free0 (_tmp158_);
 #line 855 "Node.vala"
@@ -7155,7 +7155,7 @@ js_render_node_add_prop (JsRenderNode* self,
 }
 
 static gint
-__lambda6_ (JsRenderNode* self,
+__lambda8_ (JsRenderNode* self,
             GObject* a,
             GObject* b)
 {
@@ -7187,12 +7187,12 @@ __lambda6_ (JsRenderNode* self,
 }
 
 static gint
-___lambda6__gcompare_data_func (gconstpointer a,
+___lambda8__gcompare_data_func (gconstpointer a,
                                 gconstpointer b,
                                 gpointer self)
 {
 	gint result;
-	result = __lambda6_ ((JsRenderNode*) self, (GObject*) a, (GObject*) b);
+	result = __lambda8_ ((JsRenderNode*) self, (GObject*) a, (GObject*) b);
 #line 1051 "Node.vala"
 	return result;
 #line 7199 "Node.vala.c"
@@ -7205,7 +7205,7 @@ js_render_node_sortProps (JsRenderNode* self)
 #line 1051 "Node.vala"
 	_tmp0_ = self->propstore;
 #line 1051 "Node.vala"
-	g_list_store_sort (_tmp0_, ___lambda6__gcompare_data_func, self);
+	g_list_store_sort (_tmp0_, ___lambda8__gcompare_data_func, self);
 #line 7210 "Node.vala.c"
 }
 

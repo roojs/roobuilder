@@ -117,31 +117,31 @@ static gchar** _vala_array_dup13 (gchar** self,
                            gssize length);
 VALA_EXTERN void spawn_run (Spawn* self,
                 GError** error);
-static void ___lambda13_ (Spawn* self,
+static void ___lambda81_ (Spawn* self,
                    GPid pid,
                    gint status);
-static void ____lambda13__gchild_watch_func (GPid pid,
+static void ____lambda81__gchild_watch_func (GPid pid,
                                       gint wait_status,
                                       gpointer self);
-static void __lambda14_ (Spawn* self,
+static void __lambda82_ (Spawn* self,
                   GPid w_pid,
                   gint _result_);
 static gboolean spawn_read (Spawn* self,
                      GIOChannel* ch);
 static void spawn_tidyup (Spawn* self);
-static void ___lambda14__gchild_watch_func (GPid pid,
+static void ___lambda82__gchild_watch_func (GPid pid,
                                      gint wait_status,
                                      gpointer self);
-static gboolean __lambda15_ (Spawn* self,
+static gboolean __lambda83_ (Spawn* self,
                       GIOChannel* channel,
                       GIOCondition condition);
-static gboolean ___lambda15__gio_func (GIOChannel* source,
+static gboolean ___lambda83__gio_func (GIOChannel* source,
                                 GIOCondition condition,
                                 gpointer self);
-static gboolean __lambda16_ (Spawn* self,
+static gboolean __lambda84_ (Spawn* self,
                       GIOChannel* channel,
                       GIOCondition condition);
-static gboolean ___lambda16__gio_func (GIOChannel* source,
+static gboolean ___lambda84__gio_func (GIOChannel* source,
                                 GIOCondition condition,
                                 gpointer self);
 static gint spawn_write (Spawn* self,
@@ -638,7 +638,7 @@ _vala_g_strjoinv (const gchar* separator,
 }
 
 static void
-___lambda13_ (Spawn* self,
+___lambda81_ (Spawn* self,
               GPid pid,
               gint status)
 {
@@ -648,17 +648,17 @@ ___lambda13_ (Spawn* self,
 }
 
 static void
-____lambda13__gchild_watch_func (GPid pid,
+____lambda81__gchild_watch_func (GPid pid,
                                  gint wait_status,
                                  gpointer self)
 {
 #line 165 "Spawn.vala"
-	___lambda13_ ((Spawn*) self, pid, wait_status);
+	___lambda81_ ((Spawn*) self, pid, wait_status);
 #line 658 "Spawn.vala.c"
 }
 
 static void
-__lambda14_ (Spawn* self,
+__lambda82_ (Spawn* self,
              GPid w_pid,
              gint _result_)
 {
@@ -711,17 +711,17 @@ __lambda14_ (Spawn* self,
 }
 
 static void
-___lambda14__gchild_watch_func (GPid pid,
+___lambda82__gchild_watch_func (GPid pid,
                                 gint wait_status,
                                 gpointer self)
 {
 #line 210 "Spawn.vala"
-	__lambda14_ ((Spawn*) self, pid, wait_status);
+	__lambda82_ ((Spawn*) self, pid, wait_status);
 #line 721 "Spawn.vala.c"
 }
 
 static gboolean
-__lambda15_ (Spawn* self,
+__lambda83_ (Spawn* self,
              GIOChannel* channel,
              GIOCondition condition)
 {
@@ -737,19 +737,19 @@ __lambda15_ (Spawn* self,
 }
 
 static gboolean
-___lambda15__gio_func (GIOChannel* source,
+___lambda83__gio_func (GIOChannel* source,
                        GIOCondition condition,
                        gpointer self)
 {
 	gboolean result;
-	result = __lambda15_ ((Spawn*) self, source, condition);
+	result = __lambda83_ ((Spawn*) self, source, condition);
 #line 240 "Spawn.vala"
 	return result;
 #line 749 "Spawn.vala.c"
 }
 
 static gboolean
-__lambda16_ (Spawn* self,
+__lambda84_ (Spawn* self,
              GIOChannel* channel,
              GIOCondition condition)
 {
@@ -765,12 +765,12 @@ __lambda16_ (Spawn* self,
 }
 
 static gboolean
-___lambda16__gio_func (GIOChannel* source,
+___lambda84__gio_func (GIOChannel* source,
                        GIOCondition condition,
                        gpointer self)
 {
 	gboolean result;
-	result = __lambda16_ ((Spawn*) self, source, condition);
+	result = __lambda84_ ((Spawn*) self, source, condition);
 #line 246 "Spawn.vala"
 	return result;
 #line 777 "Spawn.vala.c"
@@ -900,7 +900,7 @@ spawn_run (Spawn* self,
 			}
 		}
 #line 165 "Spawn.vala"
-		g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, (GPid) self->priv->pid, ____lambda13__gchild_watch_func, g_object_ref (self), g_object_unref);
+		g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, (GPid) self->priv->pid, ____lambda81__gchild_watch_func, g_object_ref (self), g_object_unref);
 #line 171 "Spawn.vala"
 		return;
 #line 907 "Spawn.vala.c"
@@ -1059,15 +1059,15 @@ spawn_run (Spawn* self,
 		}
 	}
 #line 210 "Spawn.vala"
-	g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, (GPid) self->priv->pid, ___lambda14__gchild_watch_func, g_object_ref (self), g_object_unref);
+	g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, (GPid) self->priv->pid, ___lambda82__gchild_watch_func, g_object_ref (self), g_object_unref);
 #line 240 "Spawn.vala"
 	_tmp25_ = self->priv->out_ch;
 #line 240 "Spawn.vala"
-	self->priv->out_src = (gint) g_io_add_watch (_tmp25_, (((G_IO_OUT | G_IO_IN) | G_IO_PRI) | G_IO_HUP) | G_IO_ERR, ___lambda15__gio_func, self);
+	self->priv->out_src = (gint) g_io_add_watch (_tmp25_, (((G_IO_OUT | G_IO_IN) | G_IO_PRI) | G_IO_HUP) | G_IO_ERR, ___lambda83__gio_func, self);
 #line 246 "Spawn.vala"
 	_tmp26_ = self->priv->err_ch;
 #line 246 "Spawn.vala"
-	self->priv->err_src = (gint) g_io_add_watch (_tmp26_, (((G_IO_OUT | G_IO_IN) | G_IO_PRI) | G_IO_HUP) | G_IO_ERR, ___lambda16__gio_func, self);
+	self->priv->err_src = (gint) g_io_add_watch (_tmp26_, (((G_IO_OUT | G_IO_IN) | G_IO_PRI) | G_IO_HUP) | G_IO_ERR, ___lambda84__gio_func, self);
 #line 255 "Spawn.vala"
 	if (self->priv->pid > -1) {
 #line 1074 "Spawn.vala.c"

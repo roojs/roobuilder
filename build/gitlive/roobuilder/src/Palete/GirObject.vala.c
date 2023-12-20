@@ -225,14 +225,14 @@ VALA_EXTERN PaleteGirObject* palete_gir_object_construct (GType object_type,
                                               const gchar* n);
 VALA_EXTERN gchar** palete_gir_object_inheritsToStringArray (PaleteGirObject* self,
                                                  gint* result_length1);
-static void _vala_array_add2 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
-static void _vala_array_add3 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
+static void _vala_array_add41 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
+static void _vala_array_add42 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
 VALA_EXTERN GType project_project_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ProjectProject, g_object_unref)
 VALA_EXTERN void palete_gir_object_overlayParent (PaleteGirObject* self,
@@ -534,10 +534,10 @@ palete_gir_object_new (const gchar* nodetype,
 }
 
 static void
-_vala_array_add2 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add41 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 115 "GirObject.vala"
 	if ((*length) == (*size)) {
@@ -555,10 +555,10 @@ _vala_array_add2 (gchar** * array,
 }
 
 static void
-_vala_array_add3 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add42 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 118 "GirObject.vala"
 	if ((*length) == (*size)) {
@@ -641,7 +641,7 @@ palete_gir_object_inheritsToStringArray (PaleteGirObject* self,
 #line 115 "GirObject.vala"
 				_tmp7_ = gee_abstract_list_get ((GeeAbstractList*) _tmp6_, i);
 #line 115 "GirObject.vala"
-				_vala_array_add2 (&ret, &ret_length1, &_ret_size_, (gchar*) _tmp7_);
+				_vala_array_add41 (&ret, &ret_length1, &_ret_size_, (gchar*) _tmp7_);
 #line 646 "GirObject.vala.c"
 			}
 		}
@@ -692,7 +692,7 @@ palete_gir_object_inheritsToStringArray (PaleteGirObject* self,
 #line 118 "GirObject.vala"
 				_tmp14_ = gee_abstract_list_get ((GeeAbstractList*) _tmp13_, i);
 #line 118 "GirObject.vala"
-				_vala_array_add3 (&ret, &ret_length1, &_ret_size_, (gchar*) _tmp14_);
+				_vala_array_add42 (&ret, &ret_length1, &_ret_size_, (gchar*) _tmp14_);
 #line 697 "GirObject.vala.c"
 			}
 		}

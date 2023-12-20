@@ -656,12 +656,12 @@ VALA_EXTERN GType editor_xcls_regex_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorXcls_regex, g_object_unref)
 VALA_EXTERN GType editor_xcls_multiline_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditorXcls_multiline, g_object_unref)
-static gint __lambda68_ (PaleteCompletionModel* self,
-                  PaleteCompletionProposal* a,
-                  PaleteCompletionProposal* b);
-static gint ___lambda68__gcompare_data_func (gconstpointer a,
-                                      gconstpointer b,
-                                      gpointer self);
+static gint __lambda136_ (PaleteCompletionModel* self,
+                   PaleteCompletionProposal* a,
+                   PaleteCompletionProposal* b);
+static gint ___lambda136__gcompare_data_func (gconstpointer a,
+                                       gconstpointer b,
+                                       gpointer self);
 static GObject* palete_completion_model_real_get_item (GListModel* base,
                                                 guint pos);
 static GType palete_completion_model_real_get_item_type (GListModel* base);
@@ -1464,9 +1464,9 @@ palete_completion_model_get_instance_private (PaleteCompletionModel* self)
 }
 
 static gint
-__lambda68_ (PaleteCompletionModel* self,
-             PaleteCompletionProposal* a,
-             PaleteCompletionProposal* b)
+__lambda136_ (PaleteCompletionModel* self,
+              PaleteCompletionProposal* a,
+              PaleteCompletionProposal* b)
 {
 	const gchar* _tmp0_;
 	const gchar* _tmp1_;
@@ -1483,12 +1483,12 @@ __lambda68_ (PaleteCompletionModel* self,
 }
 
 static gint
-___lambda68__gcompare_data_func (gconstpointer a,
-                                 gconstpointer b,
-                                 gpointer self)
+___lambda136__gcompare_data_func (gconstpointer a,
+                                  gconstpointer b,
+                                  gpointer self)
 {
 	gint result;
-	result = __lambda68_ ((PaleteCompletionModel*) self, (PaleteCompletionProposal*) a, (PaleteCompletionProposal*) b);
+	result = __lambda136_ ((PaleteCompletionModel*) self, (PaleteCompletionProposal*) a, (PaleteCompletionProposal*) b);
 #line 208 "CompletionProvider.vala"
 	return result;
 #line 1495 "CompletionProvider.vala.c"
@@ -1641,7 +1641,7 @@ palete_completion_model_construct (GType object_type,
 #line 208 "CompletionProvider.vala"
 	_tmp31_ = self->priv->items;
 #line 208 "CompletionProvider.vala"
-	gee_list_sort ((GeeList*) _tmp31_, ___lambda68__gcompare_data_func, g_object_ref (self), g_object_unref);
+	gee_list_sort ((GeeList*) _tmp31_, ___lambda136__gcompare_data_func, g_object_ref (self), g_object_unref);
 #line 183 "CompletionProvider.vala"
 	_g_object_unref0 (prov);
 #line 183 "CompletionProvider.vala"

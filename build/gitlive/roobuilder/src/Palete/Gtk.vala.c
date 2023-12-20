@@ -408,7 +408,7 @@ static gboolean palete_gtk_real_typeOptions (PaletePalete* base,
                                       gint* opts_length1);
 VALA_EXTERN PaleteGirObject* palete_gir_factoryFqn (ProjectProject* project,
                                         const gchar* in_fqn);
-static void _vala_array_add42 (gchar** * array,
+static void _vala_array_add81 (gchar** * array,
                         gint* length,
                         gint* size,
                         gchar* value);
@@ -3093,7 +3093,7 @@ palete_gtk_loadPackages (PaleteGtk* self,
 }
 
 static void
-_vala_array_add42 (gchar** * array,
+_vala_array_add81 (gchar** * array,
                    gint* length,
                    gint* size,
                    gchar* value)
@@ -3398,7 +3398,7 @@ palete_gtk_real_typeOptions (PaletePalete* base,
 #line 632 "Gtk.vala"
 		_tmp26_ = g_strconcat (_tmp21_, _tmp25_, NULL);
 #line 632 "Gtk.vala"
-		_vala_array_add42 (&ret, &ret_length1, &_ret_size_, _tmp26_);
+		_vala_array_add81 (&ret, &ret_length1, &_ret_size_, _tmp26_);
 #line 632 "Gtk.vala"
 		_g_object_unref0 (_tmp24_);
 #line 632 "Gtk.vala"

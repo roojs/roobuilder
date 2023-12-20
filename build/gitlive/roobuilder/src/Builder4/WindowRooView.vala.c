@@ -1960,8 +1960,8 @@ VALA_EXTERN void xcls_windowrooview_scroll_to_line (Xcls_WindowRooView* self,
                                         gint line);
 static Block11Data* block11_data_ref (Block11Data* _data11_);
 static void block11_data_unref (void * _userdata_);
-static gboolean __lambda47_ (Block11Data* _data11_);
-static gboolean ___lambda47__gsource_func (gpointer self);
+static gboolean __lambda128_ (Block11Data* _data11_);
+static gboolean ___lambda128__gsource_func (gpointer self);
 VALA_EXTERN Xcls_WindowRooViewXcls_label_preview* xcls_windowrooview_xcls_label_preview_new (Xcls_WindowRooView* _owner);
 VALA_EXTERN Xcls_WindowRooViewXcls_label_preview* xcls_windowrooview_xcls_label_preview_construct (GType object_type,
                                                                                        Xcls_WindowRooView* _owner);
@@ -2015,21 +2015,21 @@ VALA_EXTERN Xcls_WindowRooViewXcls_Button10* xcls_windowrooview_xcls_button10_co
                                                                              Xcls_WindowRooView* _owner);
 static void xcls_windowrooview_xcls_box7_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_box7_get_type_once (void);
-static void __lambda26_ (Xcls_WindowRooViewXcls_Button8* self);
-static void ___lambda26__gtk_button_clicked (GtkButton* _sender,
+static void __lambda91_ (Xcls_WindowRooViewXcls_Button8* self);
+static void ___lambda91__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_windowrooview_xcls_button8_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_button8_get_type_once (void);
-static void __lambda33_ (Xcls_WindowRooViewXcls_AutoRedraw* self,
+static void __lambda98_ (Xcls_WindowRooViewXcls_AutoRedraw* self,
                   GtkCheckButton* state);
-static void ___lambda33__gtk_check_button_toggled (GtkCheckButton* _sender,
+static void ___lambda98__gtk_check_button_toggled (GtkCheckButton* _sender,
                                             gpointer self);
 static void xcls_windowrooview_xcls_autoredraw_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_autoredraw_get_type_once (void);
-static void __lambda34_ (Xcls_WindowRooViewXcls_Button10* self);
+static void __lambda99_ (Xcls_WindowRooViewXcls_Button10* self);
 VALA_EXTERN void fake_server_cache_clear (void);
 VALA_EXTERN void xcls_windowrooview_xcls_view_reInit (Xcls_WindowRooViewXcls_view* self);
-static void ___lambda34__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda99__gtk_button_clicked (GtkButton* _sender,
                                       gpointer self);
 static void xcls_windowrooview_xcls_button10_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_button10_get_type_once (void);
@@ -2038,28 +2038,28 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (FakeServer, g_object_unref)
 VALA_EXTERN FakeServer* fake_server_new (WebKitWebView* wkview);
 VALA_EXTERN FakeServer* fake_server_construct (GType object_type,
                                    WebKitWebView* wkview);
-static gboolean ___lambda27_ (Xcls_WindowRooViewXcls_view* self);
+static gboolean ___lambda92_ (Xcls_WindowRooViewXcls_view* self);
 VALA_EXTERN void xcls_windowrooview_xcls_view_runRefresh (Xcls_WindowRooViewXcls_view* self);
-static gboolean ____lambda27__gsource_func (gpointer self);
-static gboolean __lambda30_ (Xcls_WindowRooViewXcls_view* self,
+static gboolean ____lambda92__gsource_func (gpointer self);
+static gboolean __lambda95_ (Xcls_WindowRooViewXcls_view* self,
                       WebKitScriptDialog* dialog);
 VALA_EXTERN void js_render_js_render_saveHTML (JsRenderJsRender* self,
                                    const gchar* html);
-static gboolean ___lambda30__webkit_web_view_script_dialog (WebKitWebView* _sender,
+static gboolean ___lambda95__webkit_web_view_script_dialog (WebKitWebView* _sender,
                                                      WebKitScriptDialog* dialog,
                                                      gpointer self);
-static void __lambda31_ (Xcls_WindowRooViewXcls_view* self);
+static void __lambda96_ (Xcls_WindowRooViewXcls_view* self);
 VALA_EXTERN void xcls_windowrooview_xcls_view_initInspector (Xcls_WindowRooViewXcls_view* self);
-static void ___lambda31__webkit_web_view_ready_to_show (WebKitWebView* _sender,
+static void ___lambda96__webkit_web_view_ready_to_show (WebKitWebView* _sender,
                                                  gpointer self);
-static void __lambda32_ (Xcls_WindowRooViewXcls_view* self,
+static void __lambda97_ (Xcls_WindowRooViewXcls_view* self,
                   WebKitLoadEvent le);
 VALA_EXTERN void fake_server_cache_remove (const gchar* fname);
-static void ___lambda32__webkit_web_view_load_changed (WebKitWebView* _sender,
+static void ___lambda97__webkit_web_view_load_changed (WebKitWebView* _sender,
                                                 WebKitLoadEvent load_event,
                                                 gpointer self);
-static gboolean __lambda29_ (Xcls_WindowRooViewXcls_view* self);
-static gboolean ___lambda29__webkit_web_inspector_open_window (WebKitWebInspector* _sender,
+static gboolean __lambda94_ (Xcls_WindowRooViewXcls_view* self);
+static gboolean ___lambda94__webkit_web_inspector_open_window (WebKitWebInspector* _sender,
                                                         gpointer self);
 VALA_EXTERN gchar* js_render_js_render_toSourcePreview (JsRenderJsRender* self);
 VALA_EXTERN GType project_roo_get_type (void) G_GNUC_CONST ;
@@ -2111,28 +2111,28 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowRooViewXcls_GestureClick18, g_object_u
 VALA_EXTERN Xcls_WindowRooViewXcls_GestureClick18* xcls_windowrooview_xcls_gestureclick18_new (Xcls_WindowRooView* _owner);
 VALA_EXTERN Xcls_WindowRooViewXcls_GestureClick18* xcls_windowrooview_xcls_gestureclick18_construct (GType object_type,
                                                                                          Xcls_WindowRooView* _owner);
-static gchar* ___lambda43_ (Xcls_WindowRooViewXcls_sourceview* self,
-                     GtkSourceMark* mark);
-static gchar* ____lambda43__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
-                                                                    GtkSourceMark* mark,
-                                                                    gpointer self);
-static gchar* ___lambda44_ (Xcls_WindowRooViewXcls_sourceview* self,
-                     GtkSourceMark* mark);
-static gchar* ____lambda44__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
-                                                                    GtkSourceMark* mark,
-                                                                    gpointer self);
-static gchar* ___lambda45_ (Xcls_WindowRooViewXcls_sourceview* self,
-                     GtkSourceMark* mark);
-static gchar* ____lambda45__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
-                                                                    GtkSourceMark* mark,
-                                                                    gpointer self);
+static gchar* ___lambda124_ (Xcls_WindowRooViewXcls_sourceview* self,
+                      GtkSourceMark* mark);
+static gchar* ____lambda124__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+                                                                     GtkSourceMark* mark,
+                                                                     gpointer self);
+static gchar* ___lambda125_ (Xcls_WindowRooViewXcls_sourceview* self,
+                      GtkSourceMark* mark);
+static gchar* ____lambda125__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+                                                                     GtkSourceMark* mark,
+                                                                     gpointer self);
+static gchar* ___lambda126_ (Xcls_WindowRooViewXcls_sourceview* self,
+                      GtkSourceMark* mark);
+static gchar* ____lambda126__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+                                                                     GtkSourceMark* mark,
+                                                                     gpointer self);
 static Block12Data* block12_data_ref (Block12Data* _data12_);
 static void block12_data_unref (void * _userdata_);
 VALA_EXTERN gchar* js_render_js_render_toSource (JsRenderJsRender* self);
-static gboolean __lambda46_ (Block12Data* _data12_);
+static gboolean __lambda127_ (Block12Data* _data12_);
 VALA_EXTERN void xcls_windowrooview_xcls_sourceview_onCursorChanged (Xcls_WindowRooViewXcls_sourceview* self);
 VALA_EXTERN gboolean xcls_windowrooview_xcls_buffer_checkSyntax (Xcls_WindowRooViewXcls_buffer* self);
-static gboolean ___lambda46__gsource_func (gpointer self);
+static gboolean ___lambda127__gsource_func (gpointer self);
 VALA_EXTERN void xcls_windowrooview_xcls_sourceview_updateGreySelection (Xcls_WindowRooViewXcls_sourceview* self,
                                                              gboolean scroll);
 VALA_EXTERN void xcls_windowrooview_xcls_sourceview_clearGreySelection (Xcls_WindowRooViewXcls_sourceview* self);
@@ -2146,9 +2146,9 @@ VALA_EXTERN void xcls_windowrooview_xcls_sourceview_highlightErrorsJson (Xcls_Wi
 VALA_EXTERN gchar* xcls_windowrooview_xcls_sourceview_toString (Xcls_WindowRooViewXcls_sourceview* self);
 static void xcls_windowrooview_xcls_sourceview_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_sourceview_get_type_once (void);
-static void __lambda35_ (Xcls_WindowRooViewXcls_buffer* self);
-static void ___lambda35__gtk_text_buffer_changed (GtkTextBuffer* _sender,
-                                           gpointer self);
+static void __lambda100_ (Xcls_WindowRooViewXcls_buffer* self);
+static void ___lambda100__gtk_text_buffer_changed (GtkTextBuffer* _sender,
+                                            gpointer self);
 VALA_EXTERN gchar* xcls_windowrooview_xcls_buffer_toString (Xcls_WindowRooViewXcls_buffer* self);
 VALA_EXTERN GType js_render_node_prop_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNodeProp, g_object_unref)
@@ -2162,26 +2162,26 @@ VALA_EXTERN gboolean xcls_windowrooview_xcls_buffer_highlightErrors (Xcls_Window
                                                          GeeHashMap* validate_res);
 static void xcls_windowrooview_xcls_buffer_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_buffer_get_type_once (void);
-static gboolean __lambda36_ (Xcls_WindowRooViewXcls_EventControllerKey17* self,
-                      guint keyval,
-                      guint keycode,
-                      GdkModifierType state);
-static gboolean ___lambda36__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
-                                                            guint keyval,
-                                                            guint keycode,
-                                                            GdkModifierType state,
-                                                            gpointer self);
+static gboolean __lambda117_ (Xcls_WindowRooViewXcls_EventControllerKey17* self,
+                       guint keyval,
+                       guint keycode,
+                       GdkModifierType state);
+static gboolean ___lambda117__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+                                                             guint keyval,
+                                                             guint keycode,
+                                                             GdkModifierType state,
+                                                             gpointer self);
 static void xcls_windowrooview_xcls_eventcontrollerkey17_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_eventcontrollerkey17_get_type_once (void);
-static void __lambda42_ (Xcls_WindowRooViewXcls_GestureClick18* self,
-                  gint n_press,
-                  gdouble x,
-                  gdouble y);
-static void ___lambda42__gtk_gesture_click_released (GtkGestureClick* _sender,
-                                              gint n_press,
-                                              gdouble x,
-                                              gdouble y,
-                                              gpointer self);
+static void __lambda123_ (Xcls_WindowRooViewXcls_GestureClick18* self,
+                   gint n_press,
+                   gdouble x,
+                   gdouble y);
+static void ___lambda123__gtk_gesture_click_released (GtkGestureClick* _sender,
+                                               gint n_press,
+                                               gdouble x,
+                                               gdouble y,
+                                               gpointer self);
 static void xcls_windowrooview_xcls_gestureclick18_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_gestureclick18_get_type_once (void);
 VALA_EXTERN Xcls_WindowRooViewXcls_search_entry* xcls_windowrooview_xcls_search_entry_new (Xcls_WindowRooView* _owner);
@@ -2208,39 +2208,39 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowRooViewXcls_EventControllerKey21, g_ob
 VALA_EXTERN Xcls_WindowRooViewXcls_EventControllerKey21* xcls_windowrooview_xcls_eventcontrollerkey21_new (Xcls_WindowRooView* _owner);
 VALA_EXTERN Xcls_WindowRooViewXcls_EventControllerKey21* xcls_windowrooview_xcls_eventcontrollerkey21_construct (GType object_type,
                                                                                                      Xcls_WindowRooView* _owner);
-static void __lambda38_ (Xcls_WindowRooViewXcls_search_entry* self);
+static void __lambda119_ (Xcls_WindowRooViewXcls_search_entry* self);
 VALA_EXTERN void xcls_windowrooview_xcls_search_results_updateResults (Xcls_WindowRooViewXcls_search_results* self);
-static gboolean __lambda41_ (Xcls_WindowRooViewXcls_search_entry* self);
-static gboolean ___lambda41__gsource_func (gpointer self);
-static void ___lambda38__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
-                                                   gpointer self);
+static gboolean __lambda122_ (Xcls_WindowRooViewXcls_search_entry* self);
+static gboolean ___lambda122__gsource_func (gpointer self);
+static void ___lambda119__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+                                                    gpointer self);
 VALA_EXTERN void xcls_windowrooview_xcls_search_entry_forwardSearch (Xcls_WindowRooViewXcls_search_entry* self,
                                                          gboolean change_focus);
 static void xcls_windowrooview_xcls_search_entry_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_search_entry_get_type_once (void);
-static gboolean __lambda37_ (Xcls_WindowRooViewXcls_EventControllerKey21* self,
-                      guint keyval,
-                      guint keycode,
-                      GdkModifierType state);
-static gboolean ___lambda37__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
-                                                            guint keyval,
-                                                            guint keycode,
-                                                            GdkModifierType state,
-                                                            gpointer self);
+static gboolean __lambda118_ (Xcls_WindowRooViewXcls_EventControllerKey21* self,
+                       guint keyval,
+                       guint keycode,
+                       GdkModifierType state);
+static gboolean ___lambda118__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+                                                             guint keyval,
+                                                             guint keycode,
+                                                             GdkModifierType state,
+                                                             gpointer self);
 static void xcls_windowrooview_xcls_eventcontrollerkey21_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_eventcontrollerkey21_get_type_once (void);
 static void xcls_windowrooview_xcls_search_results_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_search_results_get_type_once (void);
-static void __lambda39_ (Xcls_WindowRooViewXcls_nextBtn* self,
-                  GtkButton* event);
-static void ___lambda39__gtk_button_clicked (GtkButton* _sender,
-                                      gpointer self);
+static void __lambda120_ (Xcls_WindowRooViewXcls_nextBtn* self,
+                   GtkButton* event);
+static void ___lambda120__gtk_button_clicked (GtkButton* _sender,
+                                       gpointer self);
 static void xcls_windowrooview_xcls_nextbtn_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_nextbtn_get_type_once (void);
-static void __lambda40_ (Xcls_WindowRooViewXcls_backBtn* self,
-                  GtkButton* event);
-static void ___lambda40__gtk_button_clicked (GtkButton* _sender,
-                                      gpointer self);
+static void __lambda121_ (Xcls_WindowRooViewXcls_backBtn* self,
+                   GtkButton* event);
+static void ___lambda121__gtk_button_clicked (GtkButton* _sender,
+                                       gpointer self);
 static void xcls_windowrooview_xcls_backbtn_finalize (GObject * obj);
 static GType xcls_windowrooview_xcls_backbtn_get_type_once (void);
 VALA_EXTERN Xcls_WindowRooViewXcls_search_settings* xcls_windowrooview_xcls_search_settings_new (Xcls_WindowRooView* _owner);
@@ -3316,7 +3316,7 @@ block11_data_unref (void * _userdata_)
 }
 
 static gboolean
-__lambda47_ (Block11Data* _data11_)
+__lambda128_ (Block11Data* _data11_)
 {
 	Xcls_WindowRooView* self;
 	Xcls_WindowRooViewXcls_notebook* _tmp0_;
@@ -3380,10 +3380,10 @@ __lambda47_ (Block11Data* _data11_)
 }
 
 static gboolean
-___lambda47__gsource_func (gpointer self)
+___lambda128__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda47_ (self);
+	result = __lambda128_ (self);
 #line 260 "WindowRooView.vala"
 	return result;
 #line 3390 "WindowRooView.vala.c"
@@ -3403,7 +3403,7 @@ xcls_windowrooview_scroll_to_line (Xcls_WindowRooView* self,
 #line 257 "WindowRooView.vala"
 	_data11_->line = line;
 #line 260 "WindowRooView.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 100, ___lambda47__gsource_func, block11_data_ref (_data11_), block11_data_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 100, ___lambda128__gsource_func, block11_data_ref (_data11_), block11_data_unref);
 #line 257 "WindowRooView.vala"
 	block11_data_unref (_data11_);
 #line 257 "WindowRooView.vala"
@@ -4328,7 +4328,7 @@ xcls_windowrooview_xcls_button8_get_instance_private (Xcls_WindowRooViewXcls_But
 }
 
 static void
-__lambda26_ (Xcls_WindowRooViewXcls_Button8* self)
+__lambda91_ (Xcls_WindowRooViewXcls_Button8* self)
 {
 	Xcls_WindowRooView* _tmp0_;
 	Xcls_WindowRooViewXcls_view* _tmp1_;
@@ -4342,11 +4342,11 @@ __lambda26_ (Xcls_WindowRooViewXcls_Button8* self)
 }
 
 static void
-___lambda26__gtk_button_clicked (GtkButton* _sender,
+___lambda91__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 462 "WindowRooView.vala"
-	__lambda26_ ((Xcls_WindowRooViewXcls_Button8*) self);
+	__lambda91_ ((Xcls_WindowRooViewXcls_Button8*) self);
 #line 4351 "WindowRooView.vala.c"
 }
 
@@ -4382,7 +4382,7 @@ xcls_windowrooview_xcls_button8_construct (GType object_type,
 #line 462 "WindowRooView.vala"
 	_tmp3_ = self->el;
 #line 462 "WindowRooView.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda26__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda91__gtk_button_clicked, self, 0);
 #line 451 "WindowRooView.vala"
 	return self;
 #line 4389 "WindowRooView.vala.c"
@@ -4462,7 +4462,7 @@ xcls_windowrooview_xcls_autoredraw_get_instance_private (Xcls_WindowRooViewXcls_
 }
 
 static void
-__lambda33_ (Xcls_WindowRooViewXcls_AutoRedraw* self,
+__lambda98_ (Xcls_WindowRooViewXcls_AutoRedraw* self,
              GtkCheckButton* state)
 {
 	const gchar* _tmp0_ = NULL;
@@ -4494,11 +4494,11 @@ __lambda33_ (Xcls_WindowRooViewXcls_AutoRedraw* self,
 }
 
 static void
-___lambda33__gtk_check_button_toggled (GtkCheckButton* _sender,
+___lambda98__gtk_check_button_toggled (GtkCheckButton* _sender,
                                        gpointer self)
 {
 #line 492 "WindowRooView.vala"
-	__lambda33_ ((Xcls_WindowRooViewXcls_AutoRedraw*) self, _sender);
+	__lambda98_ ((Xcls_WindowRooViewXcls_AutoRedraw*) self, _sender);
 #line 4503 "WindowRooView.vala.c"
 }
 
@@ -4549,7 +4549,7 @@ xcls_windowrooview_xcls_autoredraw_construct (GType object_type,
 #line 492 "WindowRooView.vala"
 	_tmp6_ = self->el;
 #line 492 "WindowRooView.vala"
-	g_signal_connect_object (_tmp6_, "toggled", (GCallback) ___lambda33__gtk_check_button_toggled, self, 0);
+	g_signal_connect_object (_tmp6_, "toggled", (GCallback) ___lambda98__gtk_check_button_toggled, self, 0);
 #line 479 "WindowRooView.vala"
 	return self;
 #line 4556 "WindowRooView.vala.c"
@@ -4629,7 +4629,7 @@ xcls_windowrooview_xcls_button10_get_instance_private (Xcls_WindowRooViewXcls_Bu
 }
 
 static void
-__lambda34_ (Xcls_WindowRooViewXcls_Button10* self)
+__lambda99_ (Xcls_WindowRooViewXcls_Button10* self)
 {
 	Xcls_WindowRooView* _tmp0_;
 	Xcls_WindowRooViewXcls_view* _tmp1_;
@@ -4653,11 +4653,11 @@ __lambda34_ (Xcls_WindowRooViewXcls_Button10* self)
 }
 
 static void
-___lambda34__gtk_button_clicked (GtkButton* _sender,
+___lambda99__gtk_button_clicked (GtkButton* _sender,
                                  gpointer self)
 {
 #line 520 "WindowRooView.vala"
-	__lambda34_ ((Xcls_WindowRooViewXcls_Button10*) self);
+	__lambda99_ ((Xcls_WindowRooViewXcls_Button10*) self);
 #line 4662 "WindowRooView.vala.c"
 }
 
@@ -4693,7 +4693,7 @@ xcls_windowrooview_xcls_button10_construct (GType object_type,
 #line 520 "WindowRooView.vala"
 	_tmp3_ = self->el;
 #line 520 "WindowRooView.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda34__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda99__gtk_button_clicked, self, 0);
 #line 509 "WindowRooView.vala"
 	return self;
 #line 4700 "WindowRooView.vala.c"
@@ -4773,7 +4773,7 @@ xcls_windowrooview_xcls_view_get_instance_private (Xcls_WindowRooViewXcls_view* 
 }
 
 static gboolean
-___lambda27_ (Xcls_WindowRooViewXcls_view* self)
+___lambda92_ (Xcls_WindowRooViewXcls_view* self)
 {
 	WebKitWebView* _tmp0_;
 	gboolean result;
@@ -4797,10 +4797,10 @@ ___lambda27_ (Xcls_WindowRooViewXcls_view* self)
 }
 
 static gboolean
-____lambda27__gsource_func (gpointer self)
+____lambda92__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = ___lambda27_ ((Xcls_WindowRooViewXcls_view*) self);
+	result = ___lambda92_ ((Xcls_WindowRooViewXcls_view*) self);
 #line 611 "WindowRooView.vala"
 	return result;
 #line 4807 "WindowRooView.vala.c"
@@ -4904,7 +4904,7 @@ string_substring (const gchar* self,
 }
 
 static gboolean
-__lambda30_ (Xcls_WindowRooViewXcls_view* self,
+__lambda95_ (Xcls_WindowRooViewXcls_view* self,
              WebKitScriptDialog* dialog)
 {
 	WebKitWebView* _tmp0_;
@@ -5096,19 +5096,19 @@ __lambda30_ (Xcls_WindowRooViewXcls_view* self,
 }
 
 static gboolean
-___lambda30__webkit_web_view_script_dialog (WebKitWebView* _sender,
+___lambda95__webkit_web_view_script_dialog (WebKitWebView* _sender,
                                             WebKitScriptDialog* dialog,
                                             gpointer self)
 {
 	gboolean result;
-	result = __lambda30_ ((Xcls_WindowRooViewXcls_view*) self, dialog);
+	result = __lambda95_ ((Xcls_WindowRooViewXcls_view*) self, dialog);
 #line 624 "WindowRooView.vala"
 	return result;
 #line 5108 "WindowRooView.vala.c"
 }
 
 static void
-__lambda31_ (Xcls_WindowRooViewXcls_view* self)
+__lambda96_ (Xcls_WindowRooViewXcls_view* self)
 {
 #line 654 "WindowRooView.vala"
 	xcls_windowrooview_xcls_view_initInspector (self);
@@ -5116,16 +5116,16 @@ __lambda31_ (Xcls_WindowRooViewXcls_view* self)
 }
 
 static void
-___lambda31__webkit_web_view_ready_to_show (WebKitWebView* _sender,
+___lambda96__webkit_web_view_ready_to_show (WebKitWebView* _sender,
                                             gpointer self)
 {
 #line 653 "WindowRooView.vala"
-	__lambda31_ ((Xcls_WindowRooViewXcls_view*) self);
+	__lambda96_ ((Xcls_WindowRooViewXcls_view*) self);
 #line 5125 "WindowRooView.vala.c"
 }
 
 static void
-__lambda32_ (Xcls_WindowRooViewXcls_view* self,
+__lambda97_ (Xcls_WindowRooViewXcls_view* self,
              WebKitLoadEvent le)
 {
 	const gchar* _tmp0_;
@@ -5165,12 +5165,12 @@ __lambda32_ (Xcls_WindowRooViewXcls_view* self,
 }
 
 static void
-___lambda32__webkit_web_view_load_changed (WebKitWebView* _sender,
+___lambda97__webkit_web_view_load_changed (WebKitWebView* _sender,
                                            WebKitLoadEvent load_event,
                                            gpointer self)
 {
 #line 657 "WindowRooView.vala"
-	__lambda32_ ((Xcls_WindowRooViewXcls_view*) self, load_event);
+	__lambda97_ ((Xcls_WindowRooViewXcls_view*) self, load_event);
 #line 5175 "WindowRooView.vala.c"
 }
 
@@ -5279,7 +5279,7 @@ xcls_windowrooview_xcls_view_construct (GType object_type,
 #line 591 "WindowRooView.vala"
 		webkit_web_view_load_html (_tmp13_, "Render not ready", "http://localhost/app.Builder/");
 #line 611 "WindowRooView.vala"
-		g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ____lambda27__gsource_func, g_object_ref (self), g_object_unref);
+		g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ____lambda92__gsource_func, g_object_ref (self), g_object_unref);
 #line 571 "WindowRooView.vala"
 		_g_object_unref0 (fs);
 #line 571 "WindowRooView.vala"
@@ -5289,15 +5289,15 @@ xcls_windowrooview_xcls_view_construct (GType object_type,
 #line 624 "WindowRooView.vala"
 	_tmp14_ = self->el;
 #line 624 "WindowRooView.vala"
-	g_signal_connect_object (_tmp14_, "script-dialog", (GCallback) ___lambda30__webkit_web_view_script_dialog, self, 0);
+	g_signal_connect_object (_tmp14_, "script-dialog", (GCallback) ___lambda95__webkit_web_view_script_dialog, self, 0);
 #line 653 "WindowRooView.vala"
 	_tmp15_ = self->el;
 #line 653 "WindowRooView.vala"
-	g_signal_connect_object (_tmp15_, "ready-to-show", (GCallback) ___lambda31__webkit_web_view_ready_to_show, self, 0);
+	g_signal_connect_object (_tmp15_, "ready-to-show", (GCallback) ___lambda96__webkit_web_view_ready_to_show, self, 0);
 #line 657 "WindowRooView.vala"
 	_tmp16_ = self->el;
 #line 657 "WindowRooView.vala"
-	g_signal_connect_object (_tmp16_, "load-changed", (GCallback) ___lambda32__webkit_web_view_load_changed, self, 0);
+	g_signal_connect_object (_tmp16_, "load-changed", (GCallback) ___lambda97__webkit_web_view_load_changed, self, 0);
 #line 551 "WindowRooView.vala"
 	return self;
 #line 5304 "WindowRooView.vala.c"
@@ -5312,7 +5312,7 @@ xcls_windowrooview_xcls_view_new (Xcls_WindowRooView* _owner)
 }
 
 static gboolean
-__lambda29_ (Xcls_WindowRooViewXcls_view* self)
+__lambda94_ (Xcls_WindowRooViewXcls_view* self)
 {
 	WebKitWebViewBase* wv = NULL;
 	WebKitWebInspector* _tmp0_;
@@ -5414,11 +5414,11 @@ __lambda29_ (Xcls_WindowRooViewXcls_view* self)
 }
 
 static gboolean
-___lambda29__webkit_web_inspector_open_window (WebKitWebInspector* _sender,
+___lambda94__webkit_web_inspector_open_window (WebKitWebInspector* _sender,
                                                gpointer self)
 {
 	gboolean result;
-	result = __lambda29_ ((Xcls_WindowRooViewXcls_view*) self);
+	result = __lambda94_ ((Xcls_WindowRooViewXcls_view*) self);
 #line 678 "WindowRooView.vala"
 	return result;
 #line 5425 "WindowRooView.vala.c"
@@ -5445,7 +5445,7 @@ xcls_windowrooview_xcls_view_initInspector (Xcls_WindowRooViewXcls_view* self)
 #line 678 "WindowRooView.vala"
 	_tmp3_ = self->inspector;
 #line 678 "WindowRooView.vala"
-	g_signal_connect_object (_tmp3_, "open-window", (GCallback) ___lambda29__webkit_web_inspector_open_window, self, 0);
+	g_signal_connect_object (_tmp3_, "open-window", (GCallback) ___lambda94__webkit_web_inspector_open_window, self, 0);
 #line 702 "WindowRooView.vala"
 	_tmp4_ = self->inspector;
 #line 702 "WindowRooView.vala"
@@ -6714,8 +6714,8 @@ string_get_data (const gchar* self,
 }
 
 static gchar*
-___lambda43_ (Xcls_WindowRooViewXcls_sourceview* self,
-              GtkSourceMark* mark)
+___lambda124_ (Xcls_WindowRooViewXcls_sourceview* self,
+               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
 	const gchar* _tmp1_;
@@ -6735,20 +6735,20 @@ ___lambda43_ (Xcls_WindowRooViewXcls_sourceview* self,
 }
 
 static gchar*
-____lambda43__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
-                                                             GtkSourceMark* mark,
-                                                             gpointer self)
+____lambda124__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+                                                              GtkSourceMark* mark,
+                                                              gpointer self)
 {
 	gchar* result;
-	result = ___lambda43_ ((Xcls_WindowRooViewXcls_sourceview*) self, mark);
+	result = ___lambda124_ ((Xcls_WindowRooViewXcls_sourceview*) self, mark);
 #line 1045 "WindowRooView.vala"
 	return result;
 #line 6747 "WindowRooView.vala.c"
 }
 
 static gchar*
-___lambda44_ (Xcls_WindowRooViewXcls_sourceview* self,
-              GtkSourceMark* mark)
+___lambda125_ (Xcls_WindowRooViewXcls_sourceview* self,
+               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
 	const gchar* _tmp1_;
@@ -6768,20 +6768,20 @@ ___lambda44_ (Xcls_WindowRooViewXcls_sourceview* self,
 }
 
 static gchar*
-____lambda44__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
-                                                             GtkSourceMark* mark,
-                                                             gpointer self)
+____lambda125__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+                                                              GtkSourceMark* mark,
+                                                              gpointer self)
 {
 	gchar* result;
-	result = ___lambda44_ ((Xcls_WindowRooViewXcls_sourceview*) self, mark);
+	result = ___lambda125_ ((Xcls_WindowRooViewXcls_sourceview*) self, mark);
 #line 1057 "WindowRooView.vala"
 	return result;
 #line 6780 "WindowRooView.vala.c"
 }
 
 static gchar*
-___lambda45_ (Xcls_WindowRooViewXcls_sourceview* self,
-              GtkSourceMark* mark)
+___lambda126_ (Xcls_WindowRooViewXcls_sourceview* self,
+               GtkSourceMark* mark)
 {
 	const gchar* _tmp0_;
 	const gchar* _tmp1_;
@@ -6801,12 +6801,12 @@ ___lambda45_ (Xcls_WindowRooViewXcls_sourceview* self,
 }
 
 static gchar*
-____lambda45__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
-                                                             GtkSourceMark* mark,
-                                                             gpointer self)
+____lambda126__gtk_source_mark_attributes_query_tooltip_text (GtkSourceMarkAttributes* _sender,
+                                                              GtkSourceMark* mark,
+                                                              gpointer self)
 {
 	gchar* result;
-	result = ___lambda45_ ((Xcls_WindowRooViewXcls_sourceview*) self, mark);
+	result = ___lambda126_ ((Xcls_WindowRooViewXcls_sourceview*) self, mark);
 #line 1071 "WindowRooView.vala"
 	return result;
 #line 6813 "WindowRooView.vala.c"
@@ -7049,7 +7049,7 @@ xcls_windowrooview_xcls_sourceview_construct (GType object_type,
 #line 1044 "WindowRooView.vala"
 		gtk_source_mark_attributes_set_icon_name (attrs, "process-stop");
 #line 1045 "WindowRooView.vala"
-		g_signal_connect_object (attrs, "query-tooltip-text", (GCallback) ____lambda43__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+		g_signal_connect_object (attrs, "query-tooltip-text", (GCallback) ____lambda124__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 1050 "WindowRooView.vala"
 		_tmp33_ = self->el;
 #line 1050 "WindowRooView.vala"
@@ -7069,7 +7069,7 @@ xcls_windowrooview_xcls_sourceview_construct (GType object_type,
 #line 1056 "WindowRooView.vala"
 		gtk_source_mark_attributes_set_icon_name (wattrs, "process-stop");
 #line 1057 "WindowRooView.vala"
-		g_signal_connect_object (wattrs, "query-tooltip-text", (GCallback) ____lambda44__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+		g_signal_connect_object (wattrs, "query-tooltip-text", (GCallback) ____lambda125__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 1062 "WindowRooView.vala"
 		_tmp36_ = self->el;
 #line 1062 "WindowRooView.vala"
@@ -7089,7 +7089,7 @@ xcls_windowrooview_xcls_sourceview_construct (GType object_type,
 #line 1070 "WindowRooView.vala"
 		gtk_source_mark_attributes_set_icon_name (dattrs, "process-stop");
 #line 1071 "WindowRooView.vala"
-		g_signal_connect_object (dattrs, "query-tooltip-text", (GCallback) ____lambda45__gtk_source_mark_attributes_query_tooltip_text, self, 0);
+		g_signal_connect_object (dattrs, "query-tooltip-text", (GCallback) ____lambda126__gtk_source_mark_attributes_query_tooltip_text, self, 0);
 #line 1076 "WindowRooView.vala"
 		_tmp39_ = self->el;
 #line 1076 "WindowRooView.vala"
@@ -7171,7 +7171,7 @@ block12_data_unref (void * _userdata_)
 }
 
 static gboolean
-__lambda46_ (Block12Data* _data12_)
+__lambda127_ (Block12Data* _data12_)
 {
 	Xcls_WindowRooViewXcls_sourceview* self;
 	GtkTextIter cpos_iter = {0};
@@ -7222,10 +7222,10 @@ __lambda46_ (Block12Data* _data12_)
 }
 
 static gboolean
-___lambda46__gsource_func (gpointer self)
+___lambda127__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda46_ (self);
+	result = __lambda127_ (self);
 #line 1140 "WindowRooView.vala"
 	return result;
 #line 7232 "WindowRooView.vala.c"
@@ -7416,7 +7416,7 @@ xcls_windowrooview_xcls_sourceview_loadFile (Xcls_WindowRooViewXcls_sourceview* 
 #line 1138 "WindowRooView.vala"
 	gtk_source_buffer_remove_source_marks (_tmp36_, &_tmp37_, &_tmp38_, NULL);
 #line 1140 "WindowRooView.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda46__gsource_func, block12_data_ref (_data12_), block12_data_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda127__gsource_func, block12_data_ref (_data12_), block12_data_unref);
 #line 1157 "WindowRooView.vala"
 	self->loading = FALSE;
 #line 1158 "WindowRooView.vala"
@@ -8442,7 +8442,7 @@ xcls_windowrooview_xcls_buffer_get_instance_private (Xcls_WindowRooViewXcls_buff
 }
 
 static void
-__lambda35_ (Xcls_WindowRooViewXcls_buffer* self)
+__lambda100_ (Xcls_WindowRooViewXcls_buffer* self)
 {
 	Xcls_WindowRooView* _tmp0_;
 	Xcls_WindowRooViewXcls_sourceview* _tmp1_;
@@ -8697,11 +8697,11 @@ __lambda35_ (Xcls_WindowRooViewXcls_buffer* self)
 }
 
 static void
-___lambda35__gtk_text_buffer_changed (GtkTextBuffer* _sender,
-                                      gpointer self)
+___lambda100__gtk_text_buffer_changed (GtkTextBuffer* _sender,
+                                       gpointer self)
 {
 #line 1454 "WindowRooView.vala"
-	__lambda35_ ((Xcls_WindowRooViewXcls_buffer*) self);
+	__lambda100_ ((Xcls_WindowRooViewXcls_buffer*) self);
 #line 8706 "WindowRooView.vala.c"
 }
 
@@ -8744,7 +8744,7 @@ xcls_windowrooview_xcls_buffer_construct (GType object_type,
 #line 1454 "WindowRooView.vala"
 	_tmp4_ = self->el;
 #line 1454 "WindowRooView.vala"
-	g_signal_connect_object ((GtkTextBuffer*) _tmp4_, "changed", (GCallback) ___lambda35__gtk_text_buffer_changed, self, 0);
+	g_signal_connect_object ((GtkTextBuffer*) _tmp4_, "changed", (GCallback) ___lambda100__gtk_text_buffer_changed, self, 0);
 #line 1441 "WindowRooView.vala"
 	return self;
 #line 8751 "WindowRooView.vala.c"
@@ -9125,10 +9125,10 @@ xcls_windowrooview_xcls_eventcontrollerkey17_get_instance_private (Xcls_WindowRo
 }
 
 static gboolean
-__lambda36_ (Xcls_WindowRooViewXcls_EventControllerKey17* self,
-             guint keyval,
-             guint keycode,
-             GdkModifierType state)
+__lambda117_ (Xcls_WindowRooViewXcls_EventControllerKey17* self,
+              guint keyval,
+              guint keycode,
+              GdkModifierType state)
 {
 	gboolean _tmp0_ = FALSE;
 	gboolean _tmp2_ = FALSE;
@@ -9199,14 +9199,14 @@ __lambda36_ (Xcls_WindowRooViewXcls_EventControllerKey17* self,
 }
 
 static gboolean
-___lambda36__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
-                                                   guint keyval,
-                                                   guint keycode,
-                                                   GdkModifierType state,
-                                                   gpointer self)
+___lambda117__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+                                                    guint keyval,
+                                                    guint keycode,
+                                                    GdkModifierType state,
+                                                    gpointer self)
 {
 	gboolean result;
-	result = __lambda36_ ((Xcls_WindowRooViewXcls_EventControllerKey17*) self, keyval, keycode, state);
+	result = __lambda117_ ((Xcls_WindowRooViewXcls_EventControllerKey17*) self, keyval, keycode, state);
 #line 1626 "WindowRooView.vala"
 	return result;
 #line 9213 "WindowRooView.vala.c"
@@ -9237,7 +9237,7 @@ xcls_windowrooview_xcls_eventcontrollerkey17_construct (GType object_type,
 #line 1626 "WindowRooView.vala"
 	_tmp2_ = self->el;
 #line 1626 "WindowRooView.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda36__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda117__gtk_event_controller_key_key_pressed, self, 0);
 #line 1616 "WindowRooView.vala"
 	return self;
 #line 9244 "WindowRooView.vala.c"
@@ -9317,10 +9317,10 @@ xcls_windowrooview_xcls_gestureclick18_get_instance_private (Xcls_WindowRooViewX
 }
 
 static void
-__lambda42_ (Xcls_WindowRooViewXcls_GestureClick18* self,
-             gint n_press,
-             gdouble x,
-             gdouble y)
+__lambda123_ (Xcls_WindowRooViewXcls_GestureClick18* self,
+              gint n_press,
+              gdouble x,
+              gdouble y)
 {
 	Xcls_WindowRooView* _tmp0_;
 	Xcls_WindowRooViewXcls_sourceview* _tmp1_;
@@ -9336,14 +9336,14 @@ __lambda42_ (Xcls_WindowRooViewXcls_GestureClick18* self,
 }
 
 static void
-___lambda42__gtk_gesture_click_released (GtkGestureClick* _sender,
-                                         gint n_press,
-                                         gdouble x,
-                                         gdouble y,
-                                         gpointer self)
+___lambda123__gtk_gesture_click_released (GtkGestureClick* _sender,
+                                          gint n_press,
+                                          gdouble x,
+                                          gdouble y,
+                                          gpointer self)
 {
 #line 1673 "WindowRooView.vala"
-	__lambda42_ ((Xcls_WindowRooViewXcls_GestureClick18*) self, n_press, x, y);
+	__lambda123_ ((Xcls_WindowRooViewXcls_GestureClick18*) self, n_press, x, y);
 #line 9348 "WindowRooView.vala.c"
 }
 
@@ -9372,7 +9372,7 @@ xcls_windowrooview_xcls_gestureclick18_construct (GType object_type,
 #line 1673 "WindowRooView.vala"
 	_tmp2_ = self->el;
 #line 1673 "WindowRooView.vala"
-	g_signal_connect_object (_tmp2_, "released", (GCallback) ___lambda42__gtk_gesture_click_released, self, 0);
+	g_signal_connect_object (_tmp2_, "released", (GCallback) ___lambda123__gtk_gesture_click_released, self, 0);
 #line 1663 "WindowRooView.vala"
 	return self;
 #line 9379 "WindowRooView.vala.c"
@@ -9660,7 +9660,7 @@ xcls_windowrooview_xcls_search_entry_get_instance_private (Xcls_WindowRooViewXcl
 }
 
 static gboolean
-__lambda41_ (Xcls_WindowRooViewXcls_search_entry* self)
+__lambda122_ (Xcls_WindowRooViewXcls_search_entry* self)
 {
 	Xcls_WindowRooView* _tmp0_;
 	Xcls_WindowRooViewXcls_search_results* _tmp1_;
@@ -9679,17 +9679,17 @@ __lambda41_ (Xcls_WindowRooViewXcls_search_entry* self)
 }
 
 static gboolean
-___lambda41__gsource_func (gpointer self)
+___lambda122__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda41_ ((Xcls_WindowRooViewXcls_search_entry*) self);
+	result = __lambda122_ ((Xcls_WindowRooViewXcls_search_entry*) self);
 #line 1762 "WindowRooView.vala"
 	return result;
 #line 9689 "WindowRooView.vala.c"
 }
 
 static void
-__lambda38_ (Xcls_WindowRooViewXcls_search_entry* self)
+__lambda119_ (Xcls_WindowRooViewXcls_search_entry* self)
 {
 	Xcls_WindowRooView* _tmp0_;
 	Xcls_WindowRooView* _tmp1_;
@@ -9720,16 +9720,16 @@ __lambda38_ (Xcls_WindowRooViewXcls_search_entry* self)
 #line 1760 "WindowRooView.vala"
 	xcls_windowrooview_xcls_search_results_updateResults (_tmp7_);
 #line 1762 "WindowRooView.vala"
-	g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ___lambda41__gsource_func, g_object_ref (self), g_object_unref);
+	g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, (guint) 1, ___lambda122__gsource_func, g_object_ref (self), g_object_unref);
 #line 9725 "WindowRooView.vala.c"
 }
 
 static void
-___lambda38__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
-                                              gpointer self)
+___lambda119__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+                                               gpointer self)
 {
 #line 1757 "WindowRooView.vala"
-	__lambda38_ ((Xcls_WindowRooViewXcls_search_entry*) self);
+	__lambda119_ ((Xcls_WindowRooViewXcls_search_entry*) self);
 #line 9734 "WindowRooView.vala.c"
 }
 
@@ -9868,7 +9868,7 @@ xcls_windowrooview_xcls_search_entry_construct (GType object_type,
 #line 1757 "WindowRooView.vala"
 	_tmp20_ = self->el;
 #line 1757 "WindowRooView.vala"
-	g_signal_connect_object (_tmp20_, "search-changed", (GCallback) ___lambda38__gtk_search_entry_search_changed, self, 0);
+	g_signal_connect_object (_tmp20_, "search-changed", (GCallback) ___lambda119__gtk_search_entry_search_changed, self, 0);
 #line 1731 "WindowRooView.vala"
 	_g_object_unref0 (child_1);
 #line 1731 "WindowRooView.vala"
@@ -9964,10 +9964,10 @@ xcls_windowrooview_xcls_eventcontrollerkey21_get_instance_private (Xcls_WindowRo
 }
 
 static gboolean
-__lambda37_ (Xcls_WindowRooViewXcls_EventControllerKey21* self,
-             guint keyval,
-             guint keycode,
-             GdkModifierType state)
+__lambda118_ (Xcls_WindowRooViewXcls_EventControllerKey21* self,
+              guint keyval,
+              guint keycode,
+              GdkModifierType state)
 {
 	gboolean _tmp0_ = FALSE;
 	gboolean result;
@@ -10019,14 +10019,14 @@ __lambda37_ (Xcls_WindowRooViewXcls_EventControllerKey21* self,
 }
 
 static gboolean
-___lambda37__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
-                                                   guint keyval,
-                                                   guint keycode,
-                                                   GdkModifierType state,
-                                                   gpointer self)
+___lambda118__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+                                                    guint keyval,
+                                                    guint keycode,
+                                                    GdkModifierType state,
+                                                    gpointer self)
 {
 	gboolean result;
-	result = __lambda37_ ((Xcls_WindowRooViewXcls_EventControllerKey21*) self, keyval, keycode, state);
+	result = __lambda118_ ((Xcls_WindowRooViewXcls_EventControllerKey21*) self, keyval, keycode, state);
 #line 1816 "WindowRooView.vala"
 	return result;
 #line 10033 "WindowRooView.vala.c"
@@ -10057,7 +10057,7 @@ xcls_windowrooview_xcls_eventcontrollerkey21_construct (GType object_type,
 #line 1816 "WindowRooView.vala"
 	_tmp2_ = self->el;
 #line 1816 "WindowRooView.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda37__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda118__gtk_event_controller_key_key_pressed, self, 0);
 #line 1806 "WindowRooView.vala"
 	return self;
 #line 10064 "WindowRooView.vala.c"
@@ -10377,8 +10377,8 @@ xcls_windowrooview_xcls_nextbtn_get_instance_private (Xcls_WindowRooViewXcls_nex
 }
 
 static void
-__lambda39_ (Xcls_WindowRooViewXcls_nextBtn* self,
-             GtkButton* event)
+__lambda120_ (Xcls_WindowRooViewXcls_nextBtn* self,
+              GtkButton* event)
 {
 	Xcls_WindowRooView* _tmp0_;
 #line 1914 "WindowRooView.vala"
@@ -10389,11 +10389,11 @@ __lambda39_ (Xcls_WindowRooViewXcls_nextBtn* self,
 }
 
 static void
-___lambda39__gtk_button_clicked (GtkButton* _sender,
-                                 gpointer self)
+___lambda120__gtk_button_clicked (GtkButton* _sender,
+                                  gpointer self)
 {
 #line 1912 "WindowRooView.vala"
-	__lambda39_ ((Xcls_WindowRooViewXcls_nextBtn*) self, _sender);
+	__lambda120_ ((Xcls_WindowRooViewXcls_nextBtn*) self, _sender);
 #line 10398 "WindowRooView.vala.c"
 }
 
@@ -10446,7 +10446,7 @@ xcls_windowrooview_xcls_nextbtn_construct (GType object_type,
 #line 1912 "WindowRooView.vala"
 	_tmp6_ = self->el;
 #line 1912 "WindowRooView.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda39__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda120__gtk_button_clicked, self, 0);
 #line 1898 "WindowRooView.vala"
 	return self;
 #line 10453 "WindowRooView.vala.c"
@@ -10526,8 +10526,8 @@ xcls_windowrooview_xcls_backbtn_get_instance_private (Xcls_WindowRooViewXcls_bac
 }
 
 static void
-__lambda40_ (Xcls_WindowRooViewXcls_backBtn* self,
-             GtkButton* event)
+__lambda121_ (Xcls_WindowRooViewXcls_backBtn* self,
+              GtkButton* event)
 {
 	Xcls_WindowRooView* _tmp0_;
 #line 1948 "WindowRooView.vala"
@@ -10538,11 +10538,11 @@ __lambda40_ (Xcls_WindowRooViewXcls_backBtn* self,
 }
 
 static void
-___lambda40__gtk_button_clicked (GtkButton* _sender,
-                                 gpointer self)
+___lambda121__gtk_button_clicked (GtkButton* _sender,
+                                  gpointer self)
 {
 #line 1946 "WindowRooView.vala"
-	__lambda40_ ((Xcls_WindowRooViewXcls_backBtn*) self, _sender);
+	__lambda121_ ((Xcls_WindowRooViewXcls_backBtn*) self, _sender);
 #line 10547 "WindowRooView.vala.c"
 }
 
@@ -10595,7 +10595,7 @@ xcls_windowrooview_xcls_backbtn_construct (GType object_type,
 #line 1946 "WindowRooView.vala"
 	_tmp6_ = self->el;
 #line 1946 "WindowRooView.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda40__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda121__gtk_button_clicked, self, 0);
 #line 1932 "WindowRooView.vala"
 	return self;
 #line 10602 "WindowRooView.vala.c"

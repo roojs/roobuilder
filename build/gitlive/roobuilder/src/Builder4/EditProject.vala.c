@@ -892,9 +892,9 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProjectXcls_StringList7, g_object_unref)
 VALA_EXTERN EditProjectXcls_StringList7* edit_project_xcls_stringlist7_new (EditProject* _owner);
 VALA_EXTERN EditProjectXcls_StringList7* edit_project_xcls_stringlist7_construct (GType object_type,
                                                                       EditProject* _owner);
-static void __lambda101_ (EditProjectXcls_type_dd* self);
+static void __lambda166_ (EditProjectXcls_type_dd* self);
 VALA_EXTERN void edit_project_xcls_parent_dd_load (EditProjectXcls_parent_dd* self);
-static void ___lambda101__g_object_notify (GObject* _sender,
+static void ___lambda166__g_object_notify (GObject* _sender,
                                     GParamSpec* pspec,
                                     gpointer self);
 VALA_EXTERN gchar* edit_project_xcls_type_dd_getValue (EditProjectXcls_type_dd* self);
@@ -909,18 +909,18 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProjectXcls_StringList10, g_object_unref)
 VALA_EXTERN EditProjectXcls_StringList10* edit_project_xcls_stringlist10_new (EditProject* _owner);
 VALA_EXTERN EditProjectXcls_StringList10* edit_project_xcls_stringlist10_construct (GType object_type,
                                                                         EditProject* _owner);
-static void __lambda102_ (EditProjectXcls_parent_dd* self);
+static void __lambda167_ (EditProjectXcls_parent_dd* self);
 VALA_EXTERN gchar* edit_project_xcls_parent_dd_getValue (EditProjectXcls_parent_dd* self);
 static Block4Data* block4_data_ref (Block4Data* _data4_);
 static void block4_data_unref (void * _userdata_);
-static void ___lambda103_ (Block4Data* _data4_,
+static void ___lambda168_ (Block4Data* _data4_,
                     GObject* obj,
                     GAsyncResult* res);
-static void ____lambda103__gasync_ready_callback (GObject* source_object,
+static void ____lambda168__gasync_ready_callback (GObject* source_object,
                                            GAsyncResult* res,
                                            gpointer self);
 VALA_EXTERN void edit_project_xcls_folder_dd_load (EditProjectXcls_folder_dd* self);
-static void ___lambda102__g_object_notify (GObject* _sender,
+static void ___lambda167__g_object_notify (GObject* _sender,
                                     GParamSpec* pspec,
                                     gpointer self);
 static void edit_project_xcls_parent_dd_finalize (GObject * obj);
@@ -934,23 +934,23 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProjectXcls_StringList13, g_object_unref)
 VALA_EXTERN EditProjectXcls_StringList13* edit_project_xcls_stringlist13_new (EditProject* _owner);
 VALA_EXTERN EditProjectXcls_StringList13* edit_project_xcls_stringlist13_construct (GType object_type,
                                                                         EditProject* _owner);
-static void __lambda107_ (EditProjectXcls_folder_dd* self);
+static void __lambda172_ (EditProjectXcls_folder_dd* self);
 VALA_EXTERN gchar* edit_project_xcls_folder_dd_getValue (EditProjectXcls_folder_dd* self);
 VALA_EXTERN gchar* project_project_peekProjectType (const gchar* fn);
 VALA_EXTERN void edit_project_xcls_ptype_dd_setValue (EditProjectXcls_ptype_dd* self,
                                           const gchar* val);
-static void ___lambda107__g_object_notify (GObject* _sender,
+static void ___lambda172__g_object_notify (GObject* _sender,
                                     GParamSpec* pspec,
                                     gpointer self);
 VALA_EXTERN ProjectProject* project_project_getProjectByPath (const gchar* path);
-static void _vala_array_add1 (gchar** * array,
-                       gint* length,
-                       gint* size,
-                       gchar* value);
-static gint __lambda108_ (EditProjectXcls_folder_dd* self,
+static void _vala_array_add40 (gchar** * array,
+                        gint* length,
+                        gint* size,
+                        gchar* value);
+static gint __lambda173_ (EditProjectXcls_folder_dd* self,
                    gchar** a,
                    gchar** b);
-static gint ___lambda108___localfunc0_ (gchar** a,
+static gint ___lambda173___localfunc0_ (gchar** a,
                                  gchar** b,
                                  gpointer self);
 static void edit_project_xcls_folder_dd_finalize (GObject * obj);
@@ -969,9 +969,9 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProjectXcls_StringList18, g_object_unref)
 VALA_EXTERN EditProjectXcls_StringList18* edit_project_xcls_stringlist18_new (EditProject* _owner);
 VALA_EXTERN EditProjectXcls_StringList18* edit_project_xcls_stringlist18_construct (GType object_type,
                                                                         EditProject* _owner);
-static void __lambda104_ (EditProjectXcls_ptype_dd* self);
+static void __lambda169_ (EditProjectXcls_ptype_dd* self);
 VALA_EXTERN gchar* edit_project_xcls_ptype_dd_getValue (EditProjectXcls_ptype_dd* self);
-static void ___lambda104__g_object_notify (GObject* _sender,
+static void ___lambda169__g_object_notify (GObject* _sender,
                                     GParamSpec* pspec,
                                     gpointer self);
 static void edit_project_xcls_ptype_dd_finalize (GObject * obj);
@@ -993,14 +993,14 @@ VALA_EXTERN EditProjectXcls_ok_btn* edit_project_xcls_ok_btn_construct (GType ob
                                                             EditProject* _owner);
 static void edit_project_xcls_box19_finalize (GObject * obj);
 static GType edit_project_xcls_box19_get_type_once (void);
-static void __lambda144_ (EditProjectXcls_Button20* self);
-static void ___lambda144__gtk_button_clicked (GtkButton* _sender,
+static void __lambda209_ (EditProjectXcls_Button20* self);
+static void ___lambda209__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void edit_project_xcls_button20_finalize (GObject * obj);
 static GType edit_project_xcls_button20_get_type_once (void);
 static void edit_project_xcls_label21_finalize (GObject * obj);
 static GType edit_project_xcls_label21_get_type_once (void);
-static void __lambda105_ (EditProjectXcls_ok_btn* self);
+static void __lambda170_ (EditProjectXcls_ok_btn* self);
 VALA_EXTERN GType xcls_standarderrordialog_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_StandardErrorDialog, g_object_unref)
 VALA_EXTERN Xcls_StandardErrorDialog* xcls_standarderrordialog_singleton (void);
@@ -1018,7 +1018,7 @@ VALA_EXTERN void project_project_saveProjectList (void);
 VALA_EXTERN void window_state_projectPopoverShow (WindowState* self,
                                       GtkWindow* pwin,
                                       ProjectProject* pr);
-static void ___lambda105__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda170__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void edit_project_xcls_ok_btn_finalize (GObject * obj);
 static GType edit_project_xcls_ok_btn_get_type_once (void);
@@ -2075,7 +2075,7 @@ edit_project_xcls_type_dd_get_instance_private (EditProjectXcls_type_dd* self)
 }
 
 static void
-__lambda101_ (EditProjectXcls_type_dd* self)
+__lambda166_ (EditProjectXcls_type_dd* self)
 {
 	GtkDropDown* _tmp0_;
 	guint _tmp1_;
@@ -2165,12 +2165,12 @@ __lambda101_ (EditProjectXcls_type_dd* self)
 }
 
 static void
-___lambda101__g_object_notify (GObject* _sender,
+___lambda166__g_object_notify (GObject* _sender,
                                GParamSpec* pspec,
                                gpointer self)
 {
 #line 250 "EditProject.vala"
-	__lambda101_ ((EditProjectXcls_type_dd*) self);
+	__lambda166_ ((EditProjectXcls_type_dd*) self);
 #line 2175 "EditProject.vala.c"
 }
 
@@ -2241,7 +2241,7 @@ edit_project_xcls_type_dd_construct (GType object_type,
 #line 250 "EditProject.vala"
 	_tmp10_ = self->el;
 #line 250 "EditProject.vala"
-	g_signal_connect_object ((GObject*) _tmp10_, "notify::selected", (GCallback) ___lambda101__g_object_notify, self, 0);
+	g_signal_connect_object ((GObject*) _tmp10_, "notify::selected", (GCallback) ___lambda166__g_object_notify, self, 0);
 #line 229 "EditProject.vala"
 	_g_object_unref0 (child_1);
 #line 229 "EditProject.vala"
@@ -2633,7 +2633,7 @@ block4_data_unref (void * _userdata_)
 }
 
 static void
-___lambda103_ (Block4Data* _data4_,
+___lambda168_ (Block4Data* _data4_,
                GObject* obj,
                GAsyncResult* res)
 {
@@ -2719,19 +2719,19 @@ ___lambda103_ (Block4Data* _data4_,
 }
 
 static void
-____lambda103__gasync_ready_callback (GObject* source_object,
+____lambda168__gasync_ready_callback (GObject* source_object,
                                       GAsyncResult* res,
                                       gpointer self)
 {
 #line 389 "EditProject.vala"
-	___lambda103_ (self, source_object, res);
+	___lambda168_ (self, source_object, res);
 #line 389 "EditProject.vala"
 	block4_data_unref (self);
 #line 2731 "EditProject.vala.c"
 }
 
 static void
-__lambda102_ (EditProjectXcls_parent_dd* self)
+__lambda167_ (EditProjectXcls_parent_dd* self)
 {
 	GtkDropDown* _tmp0_;
 	guint _tmp1_;
@@ -2846,7 +2846,7 @@ __lambda102_ (EditProjectXcls_parent_dd* self)
 #line 389 "EditProject.vala"
 		_tmp18_ = _tmp17_->el;
 #line 389 "EditProject.vala"
-		gtk_file_dialog_select_folder (_tmp16_, _tmp18_, NULL, ____lambda103__gasync_ready_callback, block4_data_ref (_data4_));
+		gtk_file_dialog_select_folder (_tmp16_, _tmp18_, NULL, ____lambda168__gasync_ready_callback, block4_data_ref (_data4_));
 #line 401 "EditProject.vala"
 		block4_data_unref (_data4_);
 #line 401 "EditProject.vala"
@@ -3081,12 +3081,12 @@ __lambda102_ (EditProjectXcls_parent_dd* self)
 }
 
 static void
-___lambda102__g_object_notify (GObject* _sender,
+___lambda167__g_object_notify (GObject* _sender,
                                GParamSpec* pspec,
                                gpointer self)
 {
 #line 373 "EditProject.vala"
-	__lambda102_ ((EditProjectXcls_parent_dd*) self);
+	__lambda167_ ((EditProjectXcls_parent_dd*) self);
 #line 3091 "EditProject.vala.c"
 }
 
@@ -3149,7 +3149,7 @@ edit_project_xcls_parent_dd_construct (GType object_type,
 #line 373 "EditProject.vala"
 	_tmp9_ = self->el;
 #line 373 "EditProject.vala"
-	g_signal_connect_object ((GObject*) _tmp9_, "notify::selected", (GCallback) ___lambda102__g_object_notify, self, 0);
+	g_signal_connect_object ((GObject*) _tmp9_, "notify::selected", (GCallback) ___lambda167__g_object_notify, self, 0);
 #line 359 "EditProject.vala"
 	_g_object_unref0 (child_1);
 #line 359 "EditProject.vala"
@@ -3681,7 +3681,7 @@ edit_project_xcls_folder_dd_get_instance_private (EditProjectXcls_folder_dd* sel
 }
 
 static void
-__lambda107_ (EditProjectXcls_folder_dd* self)
+__lambda172_ (EditProjectXcls_folder_dd* self)
 {
 	gchar* fn = NULL;
 	gchar* _tmp0_;
@@ -3830,12 +3830,12 @@ __lambda107_ (EditProjectXcls_folder_dd* self)
 }
 
 static void
-___lambda107__g_object_notify (GObject* _sender,
+___lambda172__g_object_notify (GObject* _sender,
                                GParamSpec* pspec,
                                gpointer self)
 {
 #line 541 "EditProject.vala"
-	__lambda107_ ((EditProjectXcls_folder_dd*) self);
+	__lambda172_ ((EditProjectXcls_folder_dd*) self);
 #line 3840 "EditProject.vala.c"
 }
 
@@ -3898,7 +3898,7 @@ edit_project_xcls_folder_dd_construct (GType object_type,
 #line 541 "EditProject.vala"
 	_tmp9_ = self->el;
 #line 541 "EditProject.vala"
-	g_signal_connect_object ((GObject*) _tmp9_, "notify::selected", (GCallback) ___lambda107__g_object_notify, self, 0);
+	g_signal_connect_object ((GObject*) _tmp9_, "notify::selected", (GCallback) ___lambda172__g_object_notify, self, 0);
 #line 527 "EditProject.vala"
 	_g_object_unref0 (child_1);
 #line 527 "EditProject.vala"
@@ -3996,10 +3996,10 @@ string_get (const gchar* self,
 }
 
 static void
-_vala_array_add1 (gchar** * array,
-                  gint* length,
-                  gint* size,
-                  gchar* value)
+_vala_array_add40 (gchar** * array,
+                   gint* length,
+                   gint* size,
+                   gchar* value)
 {
 #line 599 "EditProject.vala"
 	if ((*length) == (*size)) {
@@ -4017,7 +4017,7 @@ _vala_array_add1 (gchar** * array,
 }
 
 static gint
-__lambda108_ (EditProjectXcls_folder_dd* self,
+__lambda173_ (EditProjectXcls_folder_dd* self,
               gchar** a,
               gchar** b)
 {
@@ -4049,12 +4049,12 @@ __lambda108_ (EditProjectXcls_folder_dd* self,
 }
 
 static gint
-___lambda108___localfunc0_ (gchar** a,
+___lambda173___localfunc0_ (gchar** a,
                             gchar** b,
                             gpointer self)
 {
 	gint result;
-	result = __lambda108_ ((EditProjectXcls_folder_dd*) self, a, b);
+	result = __lambda173_ ((EditProjectXcls_folder_dd*) self, a, b);
 #line 604 "EditProject.vala"
 	return result;
 #line 4061 "EditProject.vala.c"
@@ -4327,7 +4327,7 @@ edit_project_xcls_folder_dd_load (EditProjectXcls_folder_dd* self)
 #line 599 "EditProject.vala"
 		_tmp40_ = g_strdup (_tmp39_);
 #line 599 "EditProject.vala"
-		_vala_array_add1 (&strs, &strs_length1, &_strs_size_, _tmp40_);
+		_vala_array_add40 (&strs, &strs_length1, &_strs_size_, _tmp40_);
 #line 578 "EditProject.vala"
 		_g_free0 (fn);
 #line 578 "EditProject.vala"
@@ -4335,7 +4335,7 @@ edit_project_xcls_folder_dd_load (EditProjectXcls_folder_dd* self)
 #line 4336 "EditProject.vala.c"
 	}
 #line 604 "EditProject.vala"
-	cmpfunc = ___lambda108___localfunc0_;
+	cmpfunc = ___lambda173___localfunc0_;
 #line 604 "EditProject.vala"
 	cmpfunc_target = self;
 #line 608 "EditProject.vala"
@@ -4984,7 +4984,7 @@ edit_project_xcls_ptype_dd_get_instance_private (EditProjectXcls_ptype_dd* self)
 }
 
 static void
-__lambda104_ (EditProjectXcls_ptype_dd* self)
+__lambda169_ (EditProjectXcls_ptype_dd* self)
 {
 	EditProject* _tmp0_;
 	EditProjectXcls_ok_btn* _tmp1_;
@@ -5027,12 +5027,12 @@ __lambda104_ (EditProjectXcls_ptype_dd* self)
 }
 
 static void
-___lambda104__g_object_notify (GObject* _sender,
+___lambda169__g_object_notify (GObject* _sender,
                                GParamSpec* pspec,
                                gpointer self)
 {
 #line 741 "EditProject.vala"
-	__lambda104_ ((EditProjectXcls_ptype_dd*) self);
+	__lambda169_ ((EditProjectXcls_ptype_dd*) self);
 #line 5037 "EditProject.vala.c"
 }
 
@@ -5095,7 +5095,7 @@ edit_project_xcls_ptype_dd_construct (GType object_type,
 #line 741 "EditProject.vala"
 	_tmp9_ = self->el;
 #line 741 "EditProject.vala"
-	g_signal_connect_object ((GObject*) _tmp9_, "notify::selected", (GCallback) ___lambda104__g_object_notify, self, 0);
+	g_signal_connect_object ((GObject*) _tmp9_, "notify::selected", (GCallback) ___lambda169__g_object_notify, self, 0);
 #line 727 "EditProject.vala"
 	_g_object_unref0 (child_1);
 #line 727 "EditProject.vala"
@@ -5621,7 +5621,7 @@ edit_project_xcls_button20_get_instance_private (EditProjectXcls_Button20* self)
 }
 
 static void
-__lambda144_ (EditProjectXcls_Button20* self)
+__lambda209_ (EditProjectXcls_Button20* self)
 {
 	EditProject* _tmp0_;
 	GtkWindow* _tmp1_;
@@ -5640,11 +5640,11 @@ __lambda144_ (EditProjectXcls_Button20* self)
 }
 
 static void
-___lambda144__gtk_button_clicked (GtkButton* _sender,
+___lambda209__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 848 "EditProject.vala"
-	__lambda144_ ((EditProjectXcls_Button20*) self);
+	__lambda209_ ((EditProjectXcls_Button20*) self);
 #line 5649 "EditProject.vala.c"
 }
 
@@ -5690,7 +5690,7 @@ edit_project_xcls_button20_construct (GType object_type,
 #line 848 "EditProject.vala"
 	_tmp5_ = self->el;
 #line 848 "EditProject.vala"
-	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda144__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp5_, "clicked", (GCallback) ___lambda209__gtk_button_clicked, self, 0);
 #line 835 "EditProject.vala"
 	return self;
 #line 5697 "EditProject.vala.c"
@@ -5876,7 +5876,7 @@ edit_project_xcls_ok_btn_get_instance_private (EditProjectXcls_ok_btn* self)
 }
 
 static void
-__lambda105_ (EditProjectXcls_ok_btn* self)
+__lambda170_ (EditProjectXcls_ok_btn* self)
 {
 	Xcls_StandardErrorDialog* err_dialog = NULL;
 	Xcls_StandardErrorDialog* _tmp0_;
@@ -6407,11 +6407,11 @@ __lambda105_ (EditProjectXcls_ok_btn* self)
 }
 
 static void
-___lambda105__gtk_button_clicked (GtkButton* _sender,
+___lambda170__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 907 "EditProject.vala"
-	__lambda105_ ((EditProjectXcls_ok_btn*) self);
+	__lambda170_ ((EditProjectXcls_ok_btn*) self);
 #line 6416 "EditProject.vala.c"
 }
 
@@ -6488,7 +6488,7 @@ edit_project_xcls_ok_btn_construct (GType object_type,
 #line 907 "EditProject.vala"
 	_tmp11_ = self->el;
 #line 907 "EditProject.vala"
-	g_signal_connect_object (_tmp11_, "clicked", (GCallback) ___lambda105__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp11_, "clicked", (GCallback) ___lambda170__gtk_button_clicked, self, 0);
 #line 892 "EditProject.vala"
 	return self;
 #line 6495 "EditProject.vala.c"

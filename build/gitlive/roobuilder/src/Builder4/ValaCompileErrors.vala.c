@@ -1115,9 +1115,9 @@ static void xcls_valacompileerrors_xcls_sortmodel_finalize (GObject * obj);
 static GType xcls_valacompileerrors_xcls_sortmodel_get_type_once (void);
 VALA_EXTERN GType palete_compile_error_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (PaleteCompileError, g_object_unref)
-static GListModel* __lambda79_ (Xcls_ValaCompileErrorsXcls_model* self,
+static GListModel* __lambda87_ (Xcls_ValaCompileErrorsXcls_model* self,
                          GObject* item);
-static GListModel* ___lambda79__gtk_tree_list_model_create_model_func (GObject* item,
+static GListModel* ___lambda87__gtk_tree_list_model_create_model_func (GObject* item,
                                                                 gpointer self);
 static void xcls_valacompileerrors_xcls_model_finalize (GObject * obj);
 static GType xcls_valacompileerrors_xcls_model_get_type_once (void);
@@ -1128,22 +1128,22 @@ VALA_EXTERN Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* xcls_valacompile
                                                                                                                    Xcls_ValaCompileErrors* _owner);
 static void xcls_valacompileerrors_xcls_columnviewcolumn10_finalize (GObject * obj);
 static GType xcls_valacompileerrors_xcls_columnviewcolumn10_get_type_once (void);
-static void __lambda80_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
+static void __lambda88_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
                   GObject* listitem);
-static void ___lambda80__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda88__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
-static void __lambda81_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
+static void __lambda89_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
                   GObject* listitem);
 VALA_EXTERN gchar* palete_compile_error_get_line_msg (PaleteCompileError* self);
 VALA_EXTERN GType js_render_node_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNode, g_object_unref)
-static void ___lambda81__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda89__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                      GObject* object,
                                                      gpointer self);
 static void xcls_valacompileerrors_xcls_signallistitemfactory11_finalize (GObject * obj);
 static GType xcls_valacompileerrors_xcls_signallistitemfactory11_get_type_once (void);
-static void __lambda82_ (Xcls_ValaCompileErrorsXcls_GestureClick12* self,
+static void __lambda90_ (Xcls_ValaCompileErrorsXcls_GestureClick12* self,
                   gint n_press,
                   gdouble x,
                   gdouble y);
@@ -1159,7 +1159,7 @@ VALA_EXTERN JsRenderJsRender* js_render_js_render_factory (const gchar* xt,
                                                ProjectProject* project,
                                                const gchar* path,
                                                GError** error);
-static void ___lambda82__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+static void ___lambda90__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                              gint n_press,
                                              gdouble x,
                                              gdouble y,
@@ -2441,7 +2441,7 @@ xcls_valacompileerrors_xcls_model_get_instance_private (Xcls_ValaCompileErrorsXc
 }
 
 static GListModel*
-__lambda79_ (Xcls_ValaCompileErrorsXcls_model* self,
+__lambda87_ (Xcls_ValaCompileErrorsXcls_model* self,
              GObject* item)
 {
 	GListStore* _tmp0_;
@@ -2459,11 +2459,11 @@ __lambda79_ (Xcls_ValaCompileErrorsXcls_model* self,
 }
 
 static GListModel*
-___lambda79__gtk_tree_list_model_create_model_func (GObject* item,
+___lambda87__gtk_tree_list_model_create_model_func (GObject* item,
                                                     gpointer self)
 {
 	GListModel* result;
-	result = __lambda79_ ((Xcls_ValaCompileErrorsXcls_model*) self, item);
+	result = __lambda87_ ((Xcls_ValaCompileErrorsXcls_model*) self, item);
 #line 314 "ValaCompileErrors.vala"
 	return result;
 #line 2470 "ValaCompileErrors.vala.c"
@@ -2498,7 +2498,7 @@ xcls_valacompileerrors_xcls_model_construct (GType object_type,
 #line 314 "ValaCompileErrors.vala"
 	_tmp3_ = g_list_store_new (PALETE_TYPE_COMPILE_ERROR);
 #line 314 "ValaCompileErrors.vala"
-	_tmp4_ = gtk_tree_list_model_new ((GListModel*) _tmp3_, FALSE, FALSE, ___lambda79__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
+	_tmp4_ = gtk_tree_list_model_new ((GListModel*) _tmp3_, FALSE, FALSE, ___lambda87__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
 #line 314 "ValaCompileErrors.vala"
 	_g_object_unref0 (self->el);
 #line 314 "ValaCompileErrors.vala"
@@ -2710,7 +2710,7 @@ xcls_valacompileerrors_xcls_signallistitemfactory11_get_instance_private (Xcls_V
 }
 
 static void
-__lambda80_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
+__lambda88_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
              GObject* listitem)
 {
 	GtkTreeExpander* expand = NULL;
@@ -2753,17 +2753,17 @@ __lambda80_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
 }
 
 static void
-___lambda80__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda88__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 382 "ValaCompileErrors.vala"
-	__lambda80_ ((Xcls_ValaCompileErrorsXcls_SignalListItemFactory11*) self, object);
+	__lambda88_ ((Xcls_ValaCompileErrorsXcls_SignalListItemFactory11*) self, object);
 #line 2763 "ValaCompileErrors.vala.c"
 }
 
 static void
-__lambda81_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
+__lambda89_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
              GObject* listitem)
 {
 	GtkTreeExpander* expand = NULL;
@@ -2917,12 +2917,12 @@ __lambda81_ (Xcls_ValaCompileErrorsXcls_SignalListItemFactory11* self,
 }
 
 static void
-___lambda81__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda89__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                 GObject* object,
                                                 gpointer self)
 {
 #line 401 "ValaCompileErrors.vala"
-	__lambda81_ ((Xcls_ValaCompileErrorsXcls_SignalListItemFactory11*) self, object);
+	__lambda89_ ((Xcls_ValaCompileErrorsXcls_SignalListItemFactory11*) self, object);
 #line 2927 "ValaCompileErrors.vala.c"
 }
 
@@ -2952,11 +2952,11 @@ xcls_valacompileerrors_xcls_signallistitemfactory11_construct (GType object_type
 #line 382 "ValaCompileErrors.vala"
 	_tmp2_ = self->el;
 #line 382 "ValaCompileErrors.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda80__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda88__gtk_signal_list_item_factory_setup, self, 0);
 #line 401 "ValaCompileErrors.vala"
 	_tmp3_ = self->el;
 #line 401 "ValaCompileErrors.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda81__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda89__gtk_signal_list_item_factory_bind, self, 0);
 #line 372 "ValaCompileErrors.vala"
 	return self;
 #line 2963 "ValaCompileErrors.vala.c"
@@ -3036,7 +3036,7 @@ xcls_valacompileerrors_xcls_gestureclick12_get_instance_private (Xcls_ValaCompil
 }
 
 static void
-__lambda82_ (Xcls_ValaCompileErrorsXcls_GestureClick12* self,
+__lambda90_ (Xcls_ValaCompileErrorsXcls_GestureClick12* self,
              gint n_press,
              gdouble x,
              gdouble y)
@@ -3515,14 +3515,14 @@ __lambda82_ (Xcls_ValaCompileErrorsXcls_GestureClick12* self,
 }
 
 static void
-___lambda82__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+___lambda90__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                         gint n_press,
                                         gdouble x,
                                         gdouble y,
                                         gpointer self)
 {
 #line 462 "ValaCompileErrors.vala"
-	__lambda82_ ((Xcls_ValaCompileErrorsXcls_GestureClick12*) self, n_press, x, y);
+	__lambda90_ ((Xcls_ValaCompileErrorsXcls_GestureClick12*) self, n_press, x, y);
 #line 3527 "ValaCompileErrors.vala.c"
 }
 
@@ -3556,7 +3556,7 @@ xcls_valacompileerrors_xcls_gestureclick12_construct (GType object_type,
 #line 462 "ValaCompileErrors.vala"
 	_tmp3_ = self->el;
 #line 462 "ValaCompileErrors.vala"
-	g_signal_connect_object (_tmp3_, "pressed", (GCallback) ___lambda82__gtk_gesture_click_pressed, self, 0);
+	g_signal_connect_object (_tmp3_, "pressed", (GCallback) ___lambda90__gtk_gesture_click_pressed, self, 0);
 #line 451 "ValaCompileErrors.vala"
 	return self;
 #line 3563 "ValaCompileErrors.vala.c"
