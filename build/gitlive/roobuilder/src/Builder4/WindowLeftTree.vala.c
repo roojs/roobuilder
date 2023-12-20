@@ -1489,19 +1489,19 @@ VALA_EXTERN GtkWidget* xcls_windowlefttree_xcls_view_getWidgetAt (Xcls_WindowLef
                                                       gdouble in_y);
 static void xcls_windowlefttree_xcls_view_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_view_get_type_once (void);
-static void __lambda94_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
-                  gint n_press,
-                  gdouble x,
-                  gdouble y);
-static void ___lambda94__gtk_gesture_click_released (GtkGestureClick* _sender,
-                                              gint n_press,
-                                              gdouble x,
-                                              gdouble y,
-                                              gpointer self);
-static void __lambda95_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
-                  gint n_press,
-                  gdouble x,
-                  gdouble y);
+static void __lambda111_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
+                   gint n_press,
+                   gdouble x,
+                   gdouble y);
+static void ___lambda111__gtk_gesture_click_released (GtkGestureClick* _sender,
+                                               gint n_press,
+                                               gdouble x,
+                                               gdouble y,
+                                               gpointer self);
+static void __lambda112_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
+                   gint n_press,
+                   gdouble x,
+                   gdouble y);
 VALA_EXTERN void window_state_showAddObject (WindowState* self,
                                  GtkWidget* btn,
                                  JsRenderNode* on_node);
@@ -1518,59 +1518,59 @@ VALA_EXTERN GeeArrayList* palete_palete_getChildList (PaletePalete* self,
                                           const gchar* in_rval,
                                           gboolean with_prop);
 VALA_EXTERN gboolean window_state_leftTreeBeforeChange (WindowState* self);
-static void ___lambda95__gtk_gesture_click_pressed (GtkGestureClick* _sender,
-                                             gint n_press,
-                                             gdouble x,
-                                             gdouble y,
-                                             gpointer self);
+static void ___lambda112__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+                                              gint n_press,
+                                              gdouble x,
+                                              gdouble y,
+                                              gpointer self);
 static void xcls_windowlefttree_xcls_gestureclick6_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_gestureclick6_get_type_once (void);
-static void __lambda96_ (Xcls_WindowLeftTreeXcls_GestureClick7* self,
-                  gint n_press,
-                  gdouble x,
-                  gdouble y);
+static void __lambda113_ (Xcls_WindowLeftTreeXcls_GestureClick7* self,
+                   gint n_press,
+                   gdouble x,
+                   gdouble y);
 VALA_EXTERN void xcls_windowlefttree_xcls_model_selectNode (Xcls_WindowLeftTreeXcls_model* self,
                                                 JsRenderNode* node);
-static void ___lambda96__gtk_gesture_click_pressed (GtkGestureClick* _sender,
-                                             gint n_press,
-                                             gdouble x,
-                                             gdouble y,
-                                             gpointer self);
+static void ___lambda113__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+                                              gint n_press,
+                                              gdouble x,
+                                              gdouble y,
+                                              gpointer self);
 static void xcls_windowlefttree_xcls_gestureclick7_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_gestureclick7_get_type_once (void);
-static GdkContentProvider* __lambda104_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
+static GdkContentProvider* __lambda121_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
                                   gdouble x,
                                   gdouble y);
 VALA_EXTERN gchar* js_render_node_toJsonString (JsRenderNode* self);
-static GdkContentProvider* ___lambda104__gtk_drag_source_prepare (GtkDragSource* _sender,
+static GdkContentProvider* ___lambda121__gtk_drag_source_prepare (GtkDragSource* _sender,
                                                            gdouble x,
                                                            gdouble y,
                                                            gpointer self);
-static void __lambda105_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
+static void __lambda122_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
                    GdkDrag* drag);
-static void ___lambda105__gtk_drag_source_drag_begin (GtkDragSource* _sender,
+static void ___lambda122__gtk_drag_source_drag_begin (GtkDragSource* _sender,
                                                GdkDrag* drag,
                                                gpointer self);
 static void xcls_windowlefttree_xcls_dragsource8_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_dragsource8_get_type_once (void);
-static gboolean __lambda106_ (Xcls_WindowLeftTreeXcls_EventControllerKey9* self,
+static gboolean __lambda123_ (Xcls_WindowLeftTreeXcls_EventControllerKey9* self,
                        guint keyval,
                        guint keycode,
                        GdkModifierType state);
 VALA_EXTERN void xcls_windowlefttree_xcls_model_deleteSelected (Xcls_WindowLeftTreeXcls_model* self);
-static gboolean ___lambda106__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+static gboolean ___lambda123__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                              guint keyval,
                                                              guint keycode,
                                                              GdkModifierType state,
                                                              gpointer self);
 static void xcls_windowlefttree_xcls_eventcontrollerkey9_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_eventcontrollerkey9_get_type_once (void);
-static gboolean __lambda33_ (Xcls_WindowLeftTreeXcls_drop* self,
+static gboolean __lambda50_ (Xcls_WindowLeftTreeXcls_drop* self,
                       GdkDrop* drop);
-static gboolean ___lambda33__gtk_drop_target_accept (GtkDropTarget* _sender,
+static gboolean ___lambda50__gtk_drop_target_accept (GtkDropTarget* _sender,
                                               GdkDrop* drop,
                                               gpointer self);
-static GdkDragAction __lambda34_ (Xcls_WindowLeftTreeXcls_drop* self,
+static GdkDragAction __lambda51_ (Xcls_WindowLeftTreeXcls_drop* self,
                            gdouble x,
                            gdouble y);
 VALA_EXTERN JsRenderNode* js_render_node_new (void);
@@ -1588,14 +1588,14 @@ static void _vala_array_add88 (gchar** * array,
 VALA_EXTERN void xcls_windowlefttree_xcls_drop_addHighlight (Xcls_WindowLeftTreeXcls_drop* self,
                                                  GtkWidget* w,
                                                  const gchar* hl);
-static GdkDragAction ___lambda34__gtk_drop_target_motion (GtkDropTarget* _sender,
+static GdkDragAction ___lambda51__gtk_drop_target_motion (GtkDropTarget* _sender,
                                                    gdouble x,
                                                    gdouble y,
                                                    gpointer self);
-static void __lambda35_ (Xcls_WindowLeftTreeXcls_drop* self);
-static void ___lambda35__gtk_drop_target_leave (GtkDropTarget* _sender,
+static void __lambda52_ (Xcls_WindowLeftTreeXcls_drop* self);
+static void ___lambda52__gtk_drop_target_leave (GtkDropTarget* _sender,
                                          gpointer self);
-static gboolean __lambda36_ (Xcls_WindowLeftTreeXcls_drop* self,
+static gboolean __lambda53_ (Xcls_WindowLeftTreeXcls_drop* self,
                       GValue* v,
                       gdouble x,
                       gdouble y);
@@ -1607,7 +1607,7 @@ VALA_EXTERN void js_render_node_insertBefore (JsRenderNode* self,
 VALA_EXTERN void js_render_node_insertAfter (JsRenderNode* self,
                                  JsRenderNode* child,
                                  JsRenderNode* after);
-static gboolean ___lambda36__gtk_drop_target_drop (GtkDropTarget* _sender,
+static gboolean ___lambda53__gtk_drop_target_drop (GtkDropTarget* _sender,
                                             GValue* value,
                                             gdouble x,
                                             gdouble y,
@@ -1617,13 +1617,13 @@ static GType xcls_windowlefttree_xcls_drop_get_type_once (void);
 VALA_EXTERN Xcls_WindowLeftTreeXcls_model* xcls_windowlefttree_xcls_model_new (Xcls_WindowLeftTree* _owner);
 VALA_EXTERN Xcls_WindowLeftTreeXcls_model* xcls_windowlefttree_xcls_model_construct (GType object_type,
                                                                          Xcls_WindowLeftTree* _owner);
-static void __lambda93_ (Xcls_WindowLeftTreeXcls_selmodel* self,
-                  guint position,
-                  guint n_items);
-static void ___lambda93__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
-                                                         guint position,
-                                                         guint n_items,
-                                                         gpointer self);
+static void __lambda110_ (Xcls_WindowLeftTreeXcls_selmodel* self,
+                   guint position,
+                   guint n_items);
+static void ___lambda110__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
+                                                          guint position,
+                                                          guint n_items,
+                                                          gpointer self);
 static void xcls_windowlefttree_xcls_selmodel_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_selmodel_get_type_once (void);
 VALA_EXTERN GtkTreeListModel* xcls_windowlefttree_xcls_model_updateModel (Xcls_WindowLeftTreeXcls_model* self,
@@ -1635,9 +1635,9 @@ VALA_EXTERN void window_state_leftTreeNodeSelected (WindowState* self,
 VALA_EXTERN void js_render_js_render_loadItems (JsRenderJsRender* self,
                                     GError** error);
 VALA_EXTERN void js_render_node_remove (JsRenderNode* self);
-static GListModel* __lambda32_ (Xcls_WindowLeftTreeXcls_model* self,
+static GListModel* __lambda49_ (Xcls_WindowLeftTreeXcls_model* self,
                          GObject* item);
-static GListModel* ___lambda32__gtk_tree_list_model_create_model_func (GObject* item,
+static GListModel* ___lambda49__gtk_tree_list_model_create_model_func (GObject* item,
                                                                 gpointer self);
 VALA_EXTERN gint js_render_node_get_oid (JsRenderNode* self);
 static void xcls_windowlefttree_xcls_model_finalize (GObject * obj);
@@ -1649,15 +1649,15 @@ VALA_EXTERN Xcls_WindowLeftTreeXcls_SignalListItemFactory14* xcls_windowlefttree
                                                                                                              Xcls_WindowLeftTree* _owner);
 static void xcls_windowlefttree_xcls_maincol_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_maincol_get_type_once (void);
-static void __lambda107_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
+static void __lambda124_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
                    GObject* listitem);
-static void ___lambda107__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda124__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda108_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
+static void __lambda125_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
                    GObject* listitem);
 VALA_EXTERN gboolean js_render_node_hasChildren (JsRenderNode* self);
-static void ___lambda108__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda125__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void xcls_windowlefttree_xcls_signallistitemfactory14_finalize (GObject * obj);
@@ -1669,14 +1669,14 @@ VALA_EXTERN Xcls_WindowLeftTreeXcls_SignalListItemFactory16* xcls_windowlefttree
                                                                                                              Xcls_WindowLeftTree* _owner);
 static void xcls_windowlefttree_xcls_columnviewcolumn15_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_columnviewcolumn15_get_type_once (void);
-static void __lambda109_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
+static void __lambda126_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
                    GObject* listitem);
-static void ___lambda109__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda126__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda110_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
+static void __lambda127_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
                    GObject* listitem);
-static void ___lambda110__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda127__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void xcls_windowlefttree_xcls_signallistitemfactory16_finalize (GObject * obj);
@@ -1705,12 +1705,12 @@ VALA_EXTERN Xcls_WindowLeftTreeXcls_Button21* xcls_windowlefttree_xcls_button21_
                                                                                Xcls_WindowLeftTree* _owner);
 static void xcls_windowlefttree_xcls_box18_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_box18_get_type_once (void);
-static void __lambda97_ (Xcls_WindowLeftTreeXcls_Button19* self);
-static void ___lambda97__gtk_button_clicked (GtkButton* _sender,
-                                      gpointer self);
+static void __lambda114_ (Xcls_WindowLeftTreeXcls_Button19* self);
+static void ___lambda114__gtk_button_clicked (GtkButton* _sender,
+                                       gpointer self);
 static void xcls_windowlefttree_xcls_button19_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_button19_get_type_once (void);
-static void __lambda98_ (Xcls_WindowLeftTreeXcls_Button20* self);
+static void __lambda115_ (Xcls_WindowLeftTreeXcls_Button20* self);
 VALA_EXTERN GType dialog_save_template_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogSaveTemplate, g_object_unref)
 VALA_EXTERN DialogSaveTemplate* dialog_save_template_singleton (void);
@@ -1718,11 +1718,11 @@ VALA_EXTERN void dialog_save_template_showIt (DialogSaveTemplate* self,
                                   GtkWindow* parent,
                                   PaletePalete* palete,
                                   JsRenderNode* data);
-static void ___lambda98__gtk_button_clicked (GtkButton* _sender,
-                                      gpointer self);
+static void ___lambda115__gtk_button_clicked (GtkButton* _sender,
+                                       gpointer self);
 static void xcls_windowlefttree_xcls_button20_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_button20_get_type_once (void);
-static void __lambda102_ (Xcls_WindowLeftTreeXcls_Button21* self);
+static void __lambda119_ (Xcls_WindowLeftTreeXcls_Button21* self);
 VALA_EXTERN GType dialog_save_module_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogSaveModule, g_object_unref)
 VALA_EXTERN DialogSaveModule* dialog_save_module_singleton (void);
@@ -1730,7 +1730,7 @@ VALA_EXTERN void dialog_save_module_showIt (DialogSaveModule* self,
                                 GtkWindow* parent,
                                 ProjectProject* project,
                                 JsRenderNode* data);
-static void ___lambda102__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda119__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void xcls_windowlefttree_xcls_button21_finalize (GObject * obj);
 static GType xcls_windowlefttree_xcls_button21_get_type_once (void);
@@ -3672,10 +3672,10 @@ xcls_windowlefttree_xcls_gestureclick6_get_instance_private (Xcls_WindowLeftTree
 }
 
 static void
-__lambda94_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
-             gint n_press,
-             gdouble x,
-             gdouble y)
+__lambda111_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
+              gint n_press,
+              gdouble x,
+              gdouble y)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_view* _tmp1_;
@@ -3689,22 +3689,22 @@ __lambda94_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
 }
 
 static void
-___lambda94__gtk_gesture_click_released (GtkGestureClick* _sender,
-                                         gint n_press,
-                                         gdouble x,
-                                         gdouble y,
-                                         gpointer self)
+___lambda111__gtk_gesture_click_released (GtkGestureClick* _sender,
+                                          gint n_press,
+                                          gdouble x,
+                                          gdouble y,
+                                          gpointer self)
 {
 #line 452 "WindowLeftTree.vala"
-	__lambda94_ ((Xcls_WindowLeftTreeXcls_GestureClick6*) self, n_press, x, y);
+	__lambda111_ ((Xcls_WindowLeftTreeXcls_GestureClick6*) self, n_press, x, y);
 #line 3687 "WindowLeftTree.vala.c"
 }
 
 static void
-__lambda95_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
-             gint n_press,
-             gdouble x,
-             gdouble y)
+__lambda112_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
+              gint n_press,
+              gdouble x,
+              gdouble y)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_view* _tmp1_;
@@ -3959,14 +3959,14 @@ __lambda95_ (Xcls_WindowLeftTreeXcls_GestureClick6* self,
 }
 
 static void
-___lambda95__gtk_gesture_click_pressed (GtkGestureClick* _sender,
-                                        gint n_press,
-                                        gdouble x,
-                                        gdouble y,
-                                        gpointer self)
+___lambda112__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+                                         gint n_press,
+                                         gdouble x,
+                                         gdouble y,
+                                         gpointer self)
 {
 #line 458 "WindowLeftTree.vala"
-	__lambda95_ ((Xcls_WindowLeftTreeXcls_GestureClick6*) self, n_press, x, y);
+	__lambda112_ ((Xcls_WindowLeftTreeXcls_GestureClick6*) self, n_press, x, y);
 #line 3957 "WindowLeftTree.vala.c"
 }
 
@@ -3996,11 +3996,11 @@ xcls_windowlefttree_xcls_gestureclick6_construct (GType object_type,
 #line 452 "WindowLeftTree.vala"
 	_tmp2_ = self->el;
 #line 452 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp2_, "released", (GCallback) ___lambda94__gtk_gesture_click_released, self, 0);
+	g_signal_connect_object (_tmp2_, "released", (GCallback) ___lambda111__gtk_gesture_click_released, self, 0);
 #line 458 "WindowLeftTree.vala"
 	_tmp3_ = self->el;
 #line 458 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp3_, "pressed", (GCallback) ___lambda95__gtk_gesture_click_pressed, self, 0);
+	g_signal_connect_object (_tmp3_, "pressed", (GCallback) ___lambda112__gtk_gesture_click_pressed, self, 0);
 #line 442 "WindowLeftTree.vala"
 	return self;
 #line 3993 "WindowLeftTree.vala.c"
@@ -4080,10 +4080,10 @@ xcls_windowlefttree_xcls_gestureclick7_get_instance_private (Xcls_WindowLeftTree
 }
 
 static void
-__lambda96_ (Xcls_WindowLeftTreeXcls_GestureClick7* self,
-             gint n_press,
-             gdouble x,
-             gdouble y)
+__lambda113_ (Xcls_WindowLeftTreeXcls_GestureClick7* self,
+              gint n_press,
+              gdouble x,
+              gdouble y)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_model* _tmp1_;
@@ -4252,14 +4252,14 @@ __lambda96_ (Xcls_WindowLeftTreeXcls_GestureClick7* self,
 }
 
 static void
-___lambda96__gtk_gesture_click_pressed (GtkGestureClick* _sender,
-                                        gint n_press,
-                                        gdouble x,
-                                        gdouble y,
-                                        gpointer self)
+___lambda113__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+                                         gint n_press,
+                                         gdouble x,
+                                         gdouble y,
+                                         gpointer self)
 {
 #line 539 "WindowLeftTree.vala"
-	__lambda96_ ((Xcls_WindowLeftTreeXcls_GestureClick7*) self, n_press, x, y);
+	__lambda113_ ((Xcls_WindowLeftTreeXcls_GestureClick7*) self, n_press, x, y);
 #line 4250 "WindowLeftTree.vala.c"
 }
 
@@ -4293,7 +4293,7 @@ xcls_windowlefttree_xcls_gestureclick7_construct (GType object_type,
 #line 539 "WindowLeftTree.vala"
 	_tmp3_ = self->el;
 #line 539 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp3_, "pressed", (GCallback) ___lambda96__gtk_gesture_click_pressed, self, 0);
+	g_signal_connect_object (_tmp3_, "pressed", (GCallback) ___lambda113__gtk_gesture_click_pressed, self, 0);
 #line 528 "WindowLeftTree.vala"
 	return self;
 #line 4286 "WindowLeftTree.vala.c"
@@ -4373,7 +4373,7 @@ xcls_windowlefttree_xcls_dragsource8_get_instance_private (Xcls_WindowLeftTreeXc
 }
 
 static GdkContentProvider*
-__lambda104_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
+__lambda121_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
               gdouble x,
               gdouble y)
 {
@@ -4492,20 +4492,20 @@ __lambda104_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
 }
 
 static GdkContentProvider*
-___lambda104__gtk_drag_source_prepare (GtkDragSource* _sender,
+___lambda121__gtk_drag_source_prepare (GtkDragSource* _sender,
                                        gdouble x,
                                        gdouble y,
                                        gpointer self)
 {
 	GdkContentProvider* result;
-	result = __lambda104_ ((Xcls_WindowLeftTreeXcls_DragSource8*) self, x, y);
+	result = __lambda121_ ((Xcls_WindowLeftTreeXcls_DragSource8*) self, x, y);
 #line 606 "WindowLeftTree.vala"
 	return result;
 #line 4491 "WindowLeftTree.vala.c"
 }
 
 static void
-__lambda105_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
+__lambda122_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
               GdkDrag* drag)
 {
 	JsRenderNode* data = NULL;
@@ -4603,12 +4603,12 @@ __lambda105_ (Xcls_WindowLeftTreeXcls_DragSource8* self,
 }
 
 static void
-___lambda105__gtk_drag_source_drag_begin (GtkDragSource* _sender,
+___lambda122__gtk_drag_source_drag_begin (GtkDragSource* _sender,
                                           GdkDrag* drag,
                                           gpointer self)
 {
 #line 640 "WindowLeftTree.vala"
-	__lambda105_ ((Xcls_WindowLeftTreeXcls_DragSource8*) self, drag);
+	__lambda122_ ((Xcls_WindowLeftTreeXcls_DragSource8*) self, drag);
 #line 4599 "WindowLeftTree.vala.c"
 }
 
@@ -4643,11 +4643,11 @@ xcls_windowlefttree_xcls_dragsource8_construct (GType object_type,
 #line 606 "WindowLeftTree.vala"
 	_tmp3_ = self->el;
 #line 606 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp3_, "prepare", (GCallback) ___lambda104__gtk_drag_source_prepare, self, 0);
+	g_signal_connect_object (_tmp3_, "prepare", (GCallback) ___lambda121__gtk_drag_source_prepare, self, 0);
 #line 640 "WindowLeftTree.vala"
 	_tmp4_ = self->el;
 #line 640 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp4_, "drag-begin", (GCallback) ___lambda105__gtk_drag_source_drag_begin, self, 0);
+	g_signal_connect_object (_tmp4_, "drag-begin", (GCallback) ___lambda122__gtk_drag_source_drag_begin, self, 0);
 #line 595 "WindowLeftTree.vala"
 	return self;
 #line 4640 "WindowLeftTree.vala.c"
@@ -4727,7 +4727,7 @@ xcls_windowlefttree_xcls_eventcontrollerkey9_get_instance_private (Xcls_WindowLe
 }
 
 static gboolean
-__lambda106_ (Xcls_WindowLeftTreeXcls_EventControllerKey9* self,
+__lambda123_ (Xcls_WindowLeftTreeXcls_EventControllerKey9* self,
               guint keyval,
               guint keycode,
               GdkModifierType state)
@@ -4768,14 +4768,14 @@ __lambda106_ (Xcls_WindowLeftTreeXcls_EventControllerKey9* self,
 }
 
 static gboolean
-___lambda106__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
+___lambda123__gtk_event_controller_key_key_pressed (GtkEventControllerKey* _sender,
                                                     guint keyval,
                                                     guint keycode,
                                                     GdkModifierType state,
                                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda106_ ((Xcls_WindowLeftTreeXcls_EventControllerKey9*) self, keyval, keycode, state);
+	result = __lambda123_ ((Xcls_WindowLeftTreeXcls_EventControllerKey9*) self, keyval, keycode, state);
 #line 684 "WindowLeftTree.vala"
 	return result;
 #line 4768 "WindowLeftTree.vala.c"
@@ -4806,7 +4806,7 @@ xcls_windowlefttree_xcls_eventcontrollerkey9_construct (GType object_type,
 #line 684 "WindowLeftTree.vala"
 	_tmp2_ = self->el;
 #line 684 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda106__gtk_event_controller_key_key_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "key-pressed", (GCallback) ___lambda123__gtk_event_controller_key_key_pressed, self, 0);
 #line 674 "WindowLeftTree.vala"
 	return self;
 #line 4799 "WindowLeftTree.vala.c"
@@ -4886,7 +4886,7 @@ xcls_windowlefttree_xcls_drop_get_instance_private (Xcls_WindowLeftTreeXcls_drop
 }
 
 static gboolean
-__lambda33_ (Xcls_WindowLeftTreeXcls_drop* self,
+__lambda50_ (Xcls_WindowLeftTreeXcls_drop* self,
              GdkDrop* drop)
 {
 	gboolean result;
@@ -4900,12 +4900,12 @@ __lambda33_ (Xcls_WindowLeftTreeXcls_drop* self,
 }
 
 static gboolean
-___lambda33__gtk_drop_target_accept (GtkDropTarget* _sender,
+___lambda50__gtk_drop_target_accept (GtkDropTarget* _sender,
                                      GdkDrop* drop,
                                      gpointer self)
 {
 	gboolean result;
-	result = __lambda33_ ((Xcls_WindowLeftTreeXcls_drop*) self, drop);
+	result = __lambda50_ ((Xcls_WindowLeftTreeXcls_drop*) self, drop);
 #line 728 "WindowLeftTree.vala"
 	return result;
 #line 4898 "WindowLeftTree.vala.c"
@@ -5226,7 +5226,7 @@ _vala_g_strjoinv (const gchar* separator,
 }
 
 static GdkDragAction
-__lambda34_ (Xcls_WindowLeftTreeXcls_drop* self,
+__lambda51_ (Xcls_WindowLeftTreeXcls_drop* self,
              gdouble x,
              gdouble y)
 {
@@ -5814,20 +5814,20 @@ __lambda34_ (Xcls_WindowLeftTreeXcls_drop* self,
 }
 
 static GdkDragAction
-___lambda34__gtk_drop_target_motion (GtkDropTarget* _sender,
+___lambda51__gtk_drop_target_motion (GtkDropTarget* _sender,
                                      gdouble x,
                                      gdouble y,
                                      gpointer self)
 {
 	GdkDragAction result;
-	result = __lambda34_ ((Xcls_WindowLeftTreeXcls_drop*) self, x, y);
+	result = __lambda51_ ((Xcls_WindowLeftTreeXcls_drop*) self, x, y);
 #line 913 "WindowLeftTree.vala"
 	return result;
 #line 5813 "WindowLeftTree.vala.c"
 }
 
 static void
-__lambda35_ (Xcls_WindowLeftTreeXcls_drop* self)
+__lambda52_ (Xcls_WindowLeftTreeXcls_drop* self)
 {
 #line 1007 "WindowLeftTree.vala"
 	xcls_windowlefttree_xcls_drop_addHighlight (self, NULL, "");
@@ -5835,16 +5835,16 @@ __lambda35_ (Xcls_WindowLeftTreeXcls_drop* self)
 }
 
 static void
-___lambda35__gtk_drop_target_leave (GtkDropTarget* _sender,
+___lambda52__gtk_drop_target_leave (GtkDropTarget* _sender,
                                     gpointer self)
 {
 #line 1006 "WindowLeftTree.vala"
-	__lambda35_ ((Xcls_WindowLeftTreeXcls_drop*) self);
+	__lambda52_ ((Xcls_WindowLeftTreeXcls_drop*) self);
 #line 5830 "WindowLeftTree.vala.c"
 }
 
 static gboolean
-__lambda36_ (Xcls_WindowLeftTreeXcls_drop* self,
+__lambda53_ (Xcls_WindowLeftTreeXcls_drop* self,
              GValue* v,
              gdouble x,
              gdouble y)
@@ -6481,14 +6481,14 @@ __lambda36_ (Xcls_WindowLeftTreeXcls_drop* self,
 }
 
 static gboolean
-___lambda36__gtk_drop_target_drop (GtkDropTarget* _sender,
+___lambda53__gtk_drop_target_drop (GtkDropTarget* _sender,
                                    GValue* value,
                                    gdouble x,
                                    gdouble y,
                                    gpointer self)
 {
 	gboolean result;
-	result = __lambda36_ ((Xcls_WindowLeftTreeXcls_drop*) self, value, x, y);
+	result = __lambda53_ ((Xcls_WindowLeftTreeXcls_drop*) self, value, x, y);
 #line 1010 "WindowLeftTree.vala"
 	return result;
 #line 6481 "WindowLeftTree.vala.c"
@@ -6547,19 +6547,19 @@ xcls_windowlefttree_xcls_drop_construct (GType object_type,
 #line 728 "WindowLeftTree.vala"
 	_tmp5_ = self->el;
 #line 728 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp5_, "accept", (GCallback) ___lambda33__gtk_drop_target_accept, self, 0);
+	g_signal_connect_object (_tmp5_, "accept", (GCallback) ___lambda50__gtk_drop_target_accept, self, 0);
 #line 913 "WindowLeftTree.vala"
 	_tmp6_ = self->el;
 #line 913 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp6_, "motion", (GCallback) ___lambda34__gtk_drop_target_motion, self, 0);
+	g_signal_connect_object (_tmp6_, "motion", (GCallback) ___lambda51__gtk_drop_target_motion, self, 0);
 #line 1006 "WindowLeftTree.vala"
 	_tmp7_ = self->el;
 #line 1006 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp7_, "leave", (GCallback) ___lambda35__gtk_drop_target_leave, self, 0);
+	g_signal_connect_object (_tmp7_, "leave", (GCallback) ___lambda52__gtk_drop_target_leave, self, 0);
 #line 1010 "WindowLeftTree.vala"
 	_tmp8_ = self->el;
 #line 1010 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp8_, "drop", (GCallback) ___lambda36__gtk_drop_target_drop, self, 0);
+	g_signal_connect_object (_tmp8_, "drop", (GCallback) ___lambda53__gtk_drop_target_drop, self, 0);
 #line 713 "WindowLeftTree.vala"
 	return self;
 #line 6552 "WindowLeftTree.vala.c"
@@ -6752,9 +6752,9 @@ xcls_windowlefttree_xcls_selmodel_get_instance_private (Xcls_WindowLeftTreeXcls_
 }
 
 static void
-__lambda93_ (Xcls_WindowLeftTreeXcls_selmodel* self,
-             guint position,
-             guint n_items)
+__lambda110_ (Xcls_WindowLeftTreeXcls_selmodel* self,
+              guint position,
+              guint n_items)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_view* _tmp1_;
@@ -6886,13 +6886,13 @@ __lambda93_ (Xcls_WindowLeftTreeXcls_selmodel* self,
 }
 
 static void
-___lambda93__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
-                                                    guint position,
-                                                    guint n_items,
-                                                    gpointer self)
+___lambda110__gtk_selection_model_selection_changed (GtkSelectionModel* _sender,
+                                                     guint position,
+                                                     guint n_items,
+                                                     gpointer self)
 {
 #line 1165 "WindowLeftTree.vala"
-	__lambda93_ ((Xcls_WindowLeftTreeXcls_selmodel*) self, position, n_items);
+	__lambda110_ ((Xcls_WindowLeftTreeXcls_selmodel*) self, position, n_items);
 #line 6880 "WindowLeftTree.vala.c"
 }
 
@@ -6946,7 +6946,7 @@ xcls_windowlefttree_xcls_selmodel_construct (GType object_type,
 #line 1165 "WindowLeftTree.vala"
 	_tmp8_ = self->el;
 #line 1165 "WindowLeftTree.vala"
-	g_signal_connect_object ((GtkSelectionModel*) _tmp8_, "selection-changed", (GCallback) ___lambda93__gtk_selection_model_selection_changed, self, 0);
+	g_signal_connect_object ((GtkSelectionModel*) _tmp8_, "selection-changed", (GCallback) ___lambda110__gtk_selection_model_selection_changed, self, 0);
 #line 1153 "WindowLeftTree.vala"
 	_g_object_unref0 (child_1);
 #line 1153 "WindowLeftTree.vala"
@@ -7378,7 +7378,7 @@ xcls_windowlefttree_xcls_model_deleteSelected (Xcls_WindowLeftTreeXcls_model* se
 }
 
 static GListModel*
-__lambda32_ (Xcls_WindowLeftTreeXcls_model* self,
+__lambda49_ (Xcls_WindowLeftTreeXcls_model* self,
              GObject* item)
 {
 	GListStore* _tmp0_;
@@ -7396,11 +7396,11 @@ __lambda32_ (Xcls_WindowLeftTreeXcls_model* self,
 }
 
 static GListModel*
-___lambda32__gtk_tree_list_model_create_model_func (GObject* item,
+___lambda49__gtk_tree_list_model_create_model_func (GObject* item,
                                                     gpointer self)
 {
 	GListModel* result;
-	result = __lambda32_ ((Xcls_WindowLeftTreeXcls_model*) self, item);
+	result = __lambda49_ ((Xcls_WindowLeftTreeXcls_model*) self, item);
 #line 1392 "WindowLeftTree.vala"
 	return result;
 #line 7390 "WindowLeftTree.vala.c"
@@ -7444,7 +7444,7 @@ xcls_windowlefttree_xcls_model_updateModel (Xcls_WindowLeftTreeXcls_model* self,
 #line 1392 "WindowLeftTree.vala"
 	_tmp3_ = _g_object_ref0 ((GListModel*) _tmp0_);
 #line 1392 "WindowLeftTree.vala"
-	_tmp4_ = gtk_tree_list_model_new (_tmp3_, FALSE, TRUE, ___lambda32__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
+	_tmp4_ = gtk_tree_list_model_new (_tmp3_, FALSE, TRUE, ___lambda49__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
 #line 1392 "WindowLeftTree.vala"
 	_g_object_unref0 (self->el);
 #line 1392 "WindowLeftTree.vala"
@@ -7843,7 +7843,7 @@ xcls_windowlefttree_xcls_signallistitemfactory14_get_instance_private (Xcls_Wind
 }
 
 static void
-__lambda107_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
+__lambda124_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
               GObject* listitem)
 {
 	GtkTreeExpander* expand = NULL;
@@ -7912,17 +7912,17 @@ __lambda107_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
 }
 
 static void
-___lambda107__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda124__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 1477 "WindowLeftTree.vala"
-	__lambda107_ ((Xcls_WindowLeftTreeXcls_SignalListItemFactory14*) self, object);
+	__lambda124_ ((Xcls_WindowLeftTreeXcls_SignalListItemFactory14*) self, object);
 #line 7905 "WindowLeftTree.vala.c"
 }
 
 static void
-__lambda108_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
+__lambda125_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
               GObject* listitem)
 {
 	const gchar* _tmp0_;
@@ -8015,12 +8015,12 @@ __lambda108_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory14* self,
 }
 
 static void
-___lambda108__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda125__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 1501 "WindowLeftTree.vala"
-	__lambda108_ ((Xcls_WindowLeftTreeXcls_SignalListItemFactory14*) self, object);
+	__lambda125_ ((Xcls_WindowLeftTreeXcls_SignalListItemFactory14*) self, object);
 #line 8008 "WindowLeftTree.vala.c"
 }
 
@@ -8050,11 +8050,11 @@ xcls_windowlefttree_xcls_signallistitemfactory14_construct (GType object_type,
 #line 1477 "WindowLeftTree.vala"
 	_tmp2_ = self->el;
 #line 1477 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda107__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda124__gtk_signal_list_item_factory_setup, self, 0);
 #line 1501 "WindowLeftTree.vala"
 	_tmp3_ = self->el;
 #line 1501 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda108__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda125__gtk_signal_list_item_factory_bind, self, 0);
 #line 1467 "WindowLeftTree.vala"
 	return self;
 #line 8044 "WindowLeftTree.vala.c"
@@ -8257,7 +8257,7 @@ xcls_windowlefttree_xcls_signallistitemfactory16_get_instance_private (Xcls_Wind
 }
 
 static void
-__lambda109_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
+__lambda126_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
               GObject* listitem)
 {
 	GtkImage* icon = NULL;
@@ -8276,17 +8276,17 @@ __lambda109_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
 }
 
 static void
-___lambda109__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda126__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 1611 "WindowLeftTree.vala"
-	__lambda109_ ((Xcls_WindowLeftTreeXcls_SignalListItemFactory16*) self, object);
+	__lambda126_ ((Xcls_WindowLeftTreeXcls_SignalListItemFactory16*) self, object);
 #line 8269 "WindowLeftTree.vala.c"
 }
 
 static void
-__lambda110_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
+__lambda127_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
               GObject* listitem)
 {
 	GtkImage* img = NULL;
@@ -8424,12 +8424,12 @@ __lambda110_ (Xcls_WindowLeftTreeXcls_SignalListItemFactory16* self,
 }
 
 static void
-___lambda110__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda127__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 1618 "WindowLeftTree.vala"
-	__lambda110_ ((Xcls_WindowLeftTreeXcls_SignalListItemFactory16*) self, object);
+	__lambda127_ ((Xcls_WindowLeftTreeXcls_SignalListItemFactory16*) self, object);
 #line 8417 "WindowLeftTree.vala.c"
 }
 
@@ -8459,11 +8459,11 @@ xcls_windowlefttree_xcls_signallistitemfactory16_construct (GType object_type,
 #line 1611 "WindowLeftTree.vala"
 	_tmp2_ = self->el;
 #line 1611 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda109__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda126__gtk_signal_list_item_factory_setup, self, 0);
 #line 1618 "WindowLeftTree.vala"
 	_tmp3_ = self->el;
 #line 1618 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda110__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda127__gtk_signal_list_item_factory_bind, self, 0);
 #line 1601 "WindowLeftTree.vala"
 	return self;
 #line 8453 "WindowLeftTree.vala.c"
@@ -8837,7 +8837,7 @@ xcls_windowlefttree_xcls_button19_get_instance_private (Xcls_WindowLeftTreeXcls_
 }
 
 static void
-__lambda97_ (Xcls_WindowLeftTreeXcls_Button19* self)
+__lambda114_ (Xcls_WindowLeftTreeXcls_Button19* self)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_LeftTreeMenu* _tmp1_;
@@ -8864,11 +8864,11 @@ __lambda97_ (Xcls_WindowLeftTreeXcls_Button19* self)
 }
 
 static void
-___lambda97__gtk_button_clicked (GtkButton* _sender,
-                                 gpointer self)
+___lambda114__gtk_button_clicked (GtkButton* _sender,
+                                  gpointer self)
 {
 #line 1720 "WindowLeftTree.vala"
-	__lambda97_ ((Xcls_WindowLeftTreeXcls_Button19*) self);
+	__lambda114_ ((Xcls_WindowLeftTreeXcls_Button19*) self);
 #line 8856 "WindowLeftTree.vala.c"
 }
 
@@ -8904,7 +8904,7 @@ xcls_windowlefttree_xcls_button19_construct (GType object_type,
 #line 1720 "WindowLeftTree.vala"
 	_tmp3_ = self->el;
 #line 1720 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda97__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda114__gtk_button_clicked, self, 0);
 #line 1709 "WindowLeftTree.vala"
 	return self;
 #line 8894 "WindowLeftTree.vala.c"
@@ -8984,7 +8984,7 @@ xcls_windowlefttree_xcls_button20_get_instance_private (Xcls_WindowLeftTreeXcls_
 }
 
 static void
-__lambda98_ (Xcls_WindowLeftTreeXcls_Button20* self)
+__lambda115_ (Xcls_WindowLeftTreeXcls_Button20* self)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_LeftTreeMenu* _tmp1_;
@@ -9051,11 +9051,11 @@ __lambda98_ (Xcls_WindowLeftTreeXcls_Button20* self)
 }
 
 static void
-___lambda98__gtk_button_clicked (GtkButton* _sender,
-                                 gpointer self)
+___lambda115__gtk_button_clicked (GtkButton* _sender,
+                                  gpointer self)
 {
 #line 1752 "WindowLeftTree.vala"
-	__lambda98_ ((Xcls_WindowLeftTreeXcls_Button20*) self);
+	__lambda115_ ((Xcls_WindowLeftTreeXcls_Button20*) self);
 #line 9043 "WindowLeftTree.vala.c"
 }
 
@@ -9091,7 +9091,7 @@ xcls_windowlefttree_xcls_button20_construct (GType object_type,
 #line 1752 "WindowLeftTree.vala"
 	_tmp3_ = self->el;
 #line 1752 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda98__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda115__gtk_button_clicked, self, 0);
 #line 1741 "WindowLeftTree.vala"
 	return self;
 #line 9081 "WindowLeftTree.vala.c"
@@ -9171,7 +9171,7 @@ xcls_windowlefttree_xcls_button21_get_instance_private (Xcls_WindowLeftTreeXcls_
 }
 
 static void
-__lambda102_ (Xcls_WindowLeftTreeXcls_Button21* self)
+__lambda119_ (Xcls_WindowLeftTreeXcls_Button21* self)
 {
 	Xcls_WindowLeftTree* _tmp0_;
 	Xcls_WindowLeftTreeXcls_LeftTreeMenu* _tmp1_;
@@ -9230,11 +9230,11 @@ __lambda102_ (Xcls_WindowLeftTreeXcls_Button21* self)
 }
 
 static void
-___lambda102__gtk_button_clicked (GtkButton* _sender,
+___lambda119__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1787 "WindowLeftTree.vala"
-	__lambda102_ ((Xcls_WindowLeftTreeXcls_Button21*) self);
+	__lambda119_ ((Xcls_WindowLeftTreeXcls_Button21*) self);
 #line 9222 "WindowLeftTree.vala.c"
 }
 
@@ -9270,7 +9270,7 @@ xcls_windowlefttree_xcls_button21_construct (GType object_type,
 #line 1787 "WindowLeftTree.vala"
 	_tmp3_ = self->el;
 #line 1787 "WindowLeftTree.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda102__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda119__gtk_button_clicked, self, 0);
 #line 1776 "WindowLeftTree.vala"
 	return self;
 #line 9260 "WindowLeftTree.vala.c"

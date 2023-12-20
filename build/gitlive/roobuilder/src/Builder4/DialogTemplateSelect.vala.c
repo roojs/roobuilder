@@ -878,12 +878,12 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogTemplateSelectXcls_Button15, g_object_unref
 VALA_EXTERN DialogTemplateSelectXcls_Button15* dialog_template_select_xcls_button15_new (DialogTemplateSelect* _owner);
 VALA_EXTERN DialogTemplateSelectXcls_Button15* dialog_template_select_xcls_button15_construct (GType object_type,
                                                                                    DialogTemplateSelect* _owner);
-static gboolean __lambda255_ (DialogTemplateSelect* self);
-static gboolean ___lambda255__gtk_window_close_request (GtkWindow* _sender,
+static gboolean __lambda245_ (DialogTemplateSelect* self);
+static gboolean ___lambda245__gtk_window_close_request (GtkWindow* _sender,
                                                  gpointer self);
-static void __lambda256_ (DialogTemplateSelect* self,
+static void __lambda246_ (DialogTemplateSelect* self,
                    gint res);
-static void ___lambda256__gtk_dialog_response (GtkDialog* _sender,
+static void ___lambda246__gtk_dialog_response (GtkDialog* _sender,
                                         gint response_id,
                                         gpointer self);
 VALA_EXTERN void dialog_template_select_showIt (DialogTemplateSelect* self,
@@ -1067,7 +1067,7 @@ dialog_template_select_singleton (void)
 }
 
 static gboolean
-__lambda255_ (DialogTemplateSelect* self)
+__lambda245_ (DialogTemplateSelect* self)
 {
 	GtkDialog* _tmp0_;
 	gboolean result;
@@ -1083,18 +1083,18 @@ __lambda255_ (DialogTemplateSelect* self)
 }
 
 static gboolean
-___lambda255__gtk_window_close_request (GtkWindow* _sender,
+___lambda245__gtk_window_close_request (GtkWindow* _sender,
                                         gpointer self)
 {
 	gboolean result;
-	result = __lambda255_ ((DialogTemplateSelect*) self);
+	result = __lambda245_ ((DialogTemplateSelect*) self);
 #line 56 "DialogTemplateSelect.vala"
 	return result;
 #line 1094 "DialogTemplateSelect.vala.c"
 }
 
 static void
-__lambda256_ (DialogTemplateSelect* self,
+__lambda246_ (DialogTemplateSelect* self,
               gint res)
 {
 #line 65 "DialogTemplateSelect.vala"
@@ -1103,12 +1103,12 @@ __lambda256_ (DialogTemplateSelect* self,
 }
 
 static void
-___lambda256__gtk_dialog_response (GtkDialog* _sender,
+___lambda246__gtk_dialog_response (GtkDialog* _sender,
                                    gint response_id,
                                    gpointer self)
 {
 #line 61 "DialogTemplateSelect.vala"
-	__lambda256_ ((DialogTemplateSelect*) self, response_id);
+	__lambda246_ ((DialogTemplateSelect*) self, response_id);
 #line 1113 "DialogTemplateSelect.vala.c"
 }
 
@@ -1238,11 +1238,11 @@ dialog_template_select_construct (GType object_type)
 #line 56 "DialogTemplateSelect.vala"
 	_tmp23_ = self->el;
 #line 56 "DialogTemplateSelect.vala"
-	g_signal_connect_object ((GtkWindow*) _tmp23_, "close-request", (GCallback) ___lambda255__gtk_window_close_request, self, 0);
+	g_signal_connect_object ((GtkWindow*) _tmp23_, "close-request", (GCallback) ___lambda245__gtk_window_close_request, self, 0);
 #line 61 "DialogTemplateSelect.vala"
 	_tmp24_ = self->el;
 #line 61 "DialogTemplateSelect.vala"
-	g_signal_connect_object (_tmp24_, "response", (GCallback) ___lambda256__gtk_dialog_response, self, 0);
+	g_signal_connect_object (_tmp24_, "response", (GCallback) ___lambda246__gtk_dialog_response, self, 0);
 #line 30 "DialogTemplateSelect.vala"
 	_g_object_unref0 (child_3);
 #line 30 "DialogTemplateSelect.vala"

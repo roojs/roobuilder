@@ -273,10 +273,10 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogSaveTemplateXcls_Button6, g_object_unref)
 VALA_EXTERN DialogSaveTemplateXcls_Button6* dialog_save_template_xcls_button6_new (DialogSaveTemplate* _owner);
 VALA_EXTERN DialogSaveTemplateXcls_Button6* dialog_save_template_xcls_button6_construct (GType object_type,
                                                                              DialogSaveTemplate* _owner);
-static gboolean __lambda99_ (DialogSaveTemplate* self);
-static gboolean ___lambda99__gtk_window_close_request (GtkWindow* _sender,
-                                                gpointer self);
-static void __lambda100_ (DialogSaveTemplate* self,
+static gboolean __lambda116_ (DialogSaveTemplate* self);
+static gboolean ___lambda116__gtk_window_close_request (GtkWindow* _sender,
+                                                 gpointer self);
+static void __lambda117_ (DialogSaveTemplate* self,
                    gint response_id);
 VALA_EXTERN GType xcls_standarderrordialog_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_StandardErrorDialog, g_object_unref)
@@ -287,7 +287,7 @@ VALA_EXTERN void xcls_standarderrordialog_show (Xcls_StandardErrorDialog* self,
 VALA_EXTERN void palete_palete_saveTemplate (PaletePalete* self,
                                  const gchar* name,
                                  JsRenderNode* data);
-static void ___lambda100__gtk_dialog_response (GtkDialog* _sender,
+static void ___lambda117__gtk_dialog_response (GtkDialog* _sender,
                                         gint response_id,
                                         gpointer self);
 VALA_EXTERN void dialog_save_template_showIt (DialogSaveTemplate* self,
@@ -362,7 +362,7 @@ dialog_save_template_singleton (void)
 }
 
 static gboolean
-__lambda99_ (DialogSaveTemplate* self)
+__lambda116_ (DialogSaveTemplate* self)
 {
 	GtkDialog* _tmp0_;
 	gboolean result;
@@ -378,18 +378,18 @@ __lambda99_ (DialogSaveTemplate* self)
 }
 
 static gboolean
-___lambda99__gtk_window_close_request (GtkWindow* _sender,
-                                       gpointer self)
+___lambda116__gtk_window_close_request (GtkWindow* _sender,
+                                        gpointer self)
 {
 	gboolean result;
-	result = __lambda99_ ((DialogSaveTemplate*) self);
+	result = __lambda116_ ((DialogSaveTemplate*) self);
 #line 44 "DialogSaveTemplate.vala"
 	return result;
 #line 389 "DialogSaveTemplate.vala.c"
 }
 
 static void
-__lambda100_ (DialogSaveTemplate* self,
+__lambda117_ (DialogSaveTemplate* self,
               gint response_id)
 {
 	gchar* name = NULL;
@@ -506,12 +506,12 @@ __lambda100_ (DialogSaveTemplate* self,
 }
 
 static void
-___lambda100__gtk_dialog_response (GtkDialog* _sender,
+___lambda117__gtk_dialog_response (GtkDialog* _sender,
                                    gint response_id,
                                    gpointer self)
 {
 #line 50 "DialogSaveTemplate.vala"
-	__lambda100_ ((DialogSaveTemplate*) self, response_id);
+	__lambda117_ ((DialogSaveTemplate*) self, response_id);
 #line 516 "DialogSaveTemplate.vala.c"
 }
 
@@ -617,11 +617,11 @@ dialog_save_template_construct (GType object_type)
 #line 44 "DialogSaveTemplate.vala"
 	_tmp18_ = self->el;
 #line 44 "DialogSaveTemplate.vala"
-	g_signal_connect_object ((GtkWindow*) _tmp18_, "close-request", (GCallback) ___lambda99__gtk_window_close_request, self, 0);
+	g_signal_connect_object ((GtkWindow*) _tmp18_, "close-request", (GCallback) ___lambda116__gtk_window_close_request, self, 0);
 #line 50 "DialogSaveTemplate.vala"
 	_tmp19_ = self->el;
 #line 50 "DialogSaveTemplate.vala"
-	g_signal_connect_object (_tmp19_, "response", (GCallback) ___lambda100__gtk_dialog_response, self, 0);
+	g_signal_connect_object (_tmp19_, "response", (GCallback) ___lambda117__gtk_dialog_response, self, 0);
 #line 22 "DialogSaveTemplate.vala"
 	_g_object_unref0 (child_2);
 #line 22 "DialogSaveTemplate.vala"

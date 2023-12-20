@@ -96,10 +96,10 @@ static void js_render_json_gen_dump_object (JsRenderJsonGen* self,
                                      JsonObject* object);
 static Block14Data* block14_data_ref (Block14Data* _data14_);
 static void block14_data_unref (void * _userdata_);
-static void __lambda239_ (Block14Data* _data14_,
-                   const gchar* member_name);
-static void ___lambda239__gfunc (gconstpointer data,
-                          gpointer self);
+static void __lambda17_ (Block14Data* _data14_,
+                  const gchar* member_name);
+static void ___lambda17__gfunc (gconstpointer data,
+                         gpointer self);
 static void js_render_json_gen_finalize (GObject * obj);
 static GType js_render_json_gen_get_type_once (void);
 static inline gpointer _vala_memdup2 (gconstpointer mem,
@@ -584,8 +584,8 @@ block14_data_unref (void * _userdata_)
 }
 
 static void
-__lambda239_ (Block14Data* _data14_,
-              const gchar* member_name)
+__lambda17_ (Block14Data* _data14_,
+             const gchar* member_name)
 {
 	JsRenderJsonGen* self;
 	gint _tmp0_;
@@ -630,11 +630,11 @@ __lambda239_ (Block14Data* _data14_,
 }
 
 static void
-___lambda239__gfunc (gconstpointer data,
-                     gpointer self)
+___lambda17__gfunc (gconstpointer data,
+                    gpointer self)
 {
 #line 163 "JsonGen.vala"
-	__lambda239_ (self, (const gchar*) data);
+	__lambda17_ (self, (const gchar*) data);
 #line 639 "JsonGen.vala.c"
 }
 
@@ -684,7 +684,7 @@ js_render_json_gen_dump_object (JsRenderJsonGen* self,
 #line 163 "JsonGen.vala"
 	_tmp3_ = _data14_->members;
 #line 163 "JsonGen.vala"
-	g_list_foreach (_tmp3_, ___lambda239__gfunc, _data14_);
+	g_list_foreach (_tmp3_, ___lambda17__gfunc, _data14_);
 #line 182 "JsonGen.vala"
 	if (_data14_->pretty) {
 #line 691 "JsonGen.vala.c"

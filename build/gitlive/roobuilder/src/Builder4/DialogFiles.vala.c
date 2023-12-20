@@ -867,7 +867,7 @@ enum  {
 	DIALOG_FILES_XCLS_SIGNALLISTITEMFACTORY29_NUM_PROPERTIES
 };
 static GParamSpec* dialog_files_xcls_signallistitemfactory29_properties[DIALOG_FILES_XCLS_SIGNALLISTITEMFACTORY29_NUM_PROPERTIES];
-typedef struct _Block1Data Block1Data;
+typedef struct _Block3Data Block3Data;
 enum  {
 	DIALOG_FILES_XCLS_TREESCROLL_0_PROPERTY,
 	DIALOG_FILES_XCLS_TREESCROLL_NUM_PROPERTIES
@@ -2047,7 +2047,7 @@ struct _DialogFilesXcls_SignalListItemFactory29Private {
 	DialogFiles* _this;
 };
 
-struct _Block1Data {
+struct _Block3Data {
 	int _ref_count_;
 	DialogFilesXcls_SignalListItemFactory29* self;
 	GtkListItem* gi;
@@ -2620,8 +2620,8 @@ VALA_EXTERN void dialog_files_onProjectSelected (DialogFiles* self,
                                      ProjectProject* project);
 VALA_EXTERN void project_project_load (ProjectProject* self);
 VALA_EXTERN GListStore* project_project_loadFilesIntoStore (ProjectProject* self);
-static gboolean __lambda163_ (DialogFiles* self);
-static gboolean ___lambda163__gsource_func (gpointer self);
+static gboolean __lambda25_ (DialogFiles* self);
+static gboolean ___lambda25__gsource_func (gpointer self);
 VALA_EXTERN GListStore* project_project_loadDirsIntoStore (ProjectProject* self);
 VALA_EXTERN GtkTreeListModel* dialog_files_xcls_treelistmodel_updateModel (DialogFilesXcls_treelistmodel* self,
                                                                GListStore* m);
@@ -2640,8 +2640,8 @@ VALA_EXTERN void dialog_files_show (DialogFiles* self,
 VALA_EXTERN void dialog_files_load (DialogFiles* self);
 VALA_EXTERN void project_project_loadAll (gboolean force);
 VALA_EXTERN GListStore* project_project_loadIntoStore (void);
-static gboolean __lambda224_ (DialogFiles* self);
-static gboolean ___lambda224__gsource_func (gpointer self);
+static gboolean __lambda225_ (DialogFiles* self);
+static gboolean ___lambda225__gsource_func (gpointer self);
 VALA_EXTERN GType dialog_files_xcls_box3_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogFilesXcls_Box3, g_object_unref)
 VALA_EXTERN DialogFilesXcls_Box3* dialog_files_xcls_box3_new (DialogFiles* _owner);
@@ -2686,12 +2686,12 @@ static GType dialog_files_xcls_columnview6_get_type_once (void);
 VALA_EXTERN DialogFilesXcls_projectsort* dialog_files_xcls_projectsort_new (DialogFiles* _owner);
 VALA_EXTERN DialogFilesXcls_projectsort* dialog_files_xcls_projectsort_construct (GType object_type,
                                                                       DialogFiles* _owner);
-static void __lambda160_ (DialogFilesXcls_projectselection* self,
-                   GObject* position,
-                   GParamSpec* n_items);
-static void ___lambda160__g_object_notify (GObject* _sender,
-                                    GParamSpec* pspec,
-                                    gpointer self);
+static void __lambda16_ (DialogFilesXcls_projectselection* self,
+                  GObject* position,
+                  GParamSpec* n_items);
+static void ___lambda16__g_object_notify (GObject* _sender,
+                                   GParamSpec* pspec,
+                                   gpointer self);
 static void dialog_files_xcls_projectselection_finalize (GObject * obj);
 static GType dialog_files_xcls_projectselection_get_type_once (void);
 VALA_EXTERN DialogFilesXcls_projectmodel* dialog_files_xcls_projectmodel_new (DialogFiles* _owner);
@@ -2722,16 +2722,16 @@ VALA_EXTERN DialogFilesXcls_SignalListItemFactory13* dialog_files_xcls_signallis
                                                                                               DialogFiles* _owner);
 static void dialog_files_xcls_columnviewcolumn12_finalize (GObject * obj);
 static GType dialog_files_xcls_columnviewcolumn12_get_type_once (void);
-static void __lambda172_ (DialogFilesXcls_SignalListItemFactory13* self,
+static void __lambda175_ (DialogFilesXcls_SignalListItemFactory13* self,
                    GObject* item);
-static void ___lambda172__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda175__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda173_ (DialogFilesXcls_SignalListItemFactory13* self,
+static void __lambda176_ (DialogFilesXcls_SignalListItemFactory13* self,
                    GObject* listitem);
 VALA_EXTERN GType js_render_js_render_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderJsRender, g_object_unref)
-static void ___lambda173__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda176__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void dialog_files_xcls_signallistitemfactory13_finalize (GObject * obj);
@@ -2761,9 +2761,9 @@ VALA_EXTERN DialogFilesXcls_searchbox* dialog_files_xcls_searchbox_construct (GT
                                                                   DialogFiles* _owner);
 static void dialog_files_xcls_box16_finalize (GObject * obj);
 static GType dialog_files_xcls_box16_get_type_once (void);
-static void __lambda161_ (DialogFilesXcls_searchbox* self);
-static void ___lambda161__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
-                                                    gpointer self);
+static void __lambda23_ (DialogFilesXcls_searchbox* self);
+static void ___lambda23__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+                                                   gpointer self);
 static void dialog_files_xcls_searchbox_finalize (GObject * obj);
 static GType dialog_files_xcls_searchbox_get_type_once (void);
 VALA_EXTERN GType dialog_files_xcls_gridview19_get_type (void) G_GNUC_CONST ;
@@ -2788,10 +2788,10 @@ VALA_EXTERN DialogFilesXcls_GestureClick20* dialog_files_xcls_gestureclick20_con
                                                                             DialogFiles* _owner);
 static void dialog_files_xcls_gridview19_finalize (GObject * obj);
 static GType dialog_files_xcls_gridview19_get_type_once (void);
-static void __lambda167_ (DialogFilesXcls_GestureClick20* self,
-                   gint n_press,
-                   gdouble x,
-                   gdouble y);
+static void __lambda29_ (DialogFilesXcls_GestureClick20* self,
+                  gint n_press,
+                  gdouble x,
+                  gdouble y);
 VALA_EXTERN const gchar* js_render_js_render_get_name (JsRenderJsRender* self);
 VALA_EXTERN GType js_render_node_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (JsRenderNode, g_object_unref)
@@ -2843,11 +2843,11 @@ VALA_EXTERN void window_state_fileViewOpen (WindowState* self,
                                 JsRenderJsRender* file,
                                 gboolean new_window,
                                 gint line);
-static void ___lambda167__gtk_gesture_click_pressed (GtkGestureClick* _sender,
-                                              gint n_press,
-                                              gdouble x,
-                                              gdouble y,
-                                              gpointer self);
+static void ___lambda29__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+                                             gint n_press,
+                                             gdouble x,
+                                             gdouble y,
+                                             gpointer self);
 static void dialog_files_xcls_gestureclick20_finalize (GObject * obj);
 static GType dialog_files_xcls_gestureclick20_get_type_once (void);
 VALA_EXTERN GType dialog_files_xcls_filterlistmodel22_get_type (void) G_GNUC_CONST ;
@@ -2895,30 +2895,30 @@ static void dialog_files_xcls_iconsearch_finalize (GObject * obj);
 static GType dialog_files_xcls_iconsearch_get_type_once (void);
 static void dialog_files_xcls_propertyexpression28_finalize (GObject * obj);
 static GType dialog_files_xcls_propertyexpression28_get_type_once (void);
-static void __lambda164_ (DialogFilesXcls_SignalListItemFactory29* self,
-                   GObject* item);
-static Block1Data* block1_data_ref (Block1Data* _data1_);
-static void block1_data_unref (void * _userdata_);
-static gboolean __lambda165_ (Block1Data* _data1_,
-                       gint x,
-                       gint y,
-                       gboolean keyboard_tooltip,
-                       GtkTooltip* tooltip);
+static void __lambda26_ (DialogFilesXcls_SignalListItemFactory29* self,
+                  GObject* item);
+static Block3Data* block3_data_ref (Block3Data* _data3_);
+static void block3_data_unref (void * _userdata_);
+static gboolean __lambda27_ (Block3Data* _data3_,
+                      gint x,
+                      gint y,
+                      gboolean keyboard_tooltip,
+                      GtkTooltip* tooltip);
 VALA_EXTERN gchar* js_render_js_render_getIconFileName (JsRenderJsRender* self);
-static gboolean ___lambda165__gtk_widget_query_tooltip (GtkWidget* _sender,
-                                                 gint x,
-                                                 gint y,
-                                                 gboolean keyboard_tooltip,
-                                                 GtkTooltip* tooltip,
-                                                 gpointer self);
-static void ___lambda164__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
-                                                       GObject* object,
-                                                       gpointer self);
-static void __lambda166_ (DialogFilesXcls_SignalListItemFactory29* self,
-                   GObject* listitem);
-static void ___lambda166__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static gboolean ___lambda27__gtk_widget_query_tooltip (GtkWidget* _sender,
+                                                gint x,
+                                                gint y,
+                                                gboolean keyboard_tooltip,
+                                                GtkTooltip* tooltip,
+                                                gpointer self);
+static void ___lambda26__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
+static void __lambda28_ (DialogFilesXcls_SignalListItemFactory29* self,
+                  GObject* listitem);
+static void ___lambda28__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+                                                     GObject* object,
+                                                     gpointer self);
 static void dialog_files_xcls_signallistitemfactory29_finalize (GObject * obj);
 static GType dialog_files_xcls_signallistitemfactory29_get_type_once (void);
 VALA_EXTERN DialogFilesXcls_treeview* dialog_files_xcls_treeview_new (DialogFiles* _owner);
@@ -2939,11 +2939,11 @@ VALA_EXTERN DialogFilesXcls_name* dialog_files_xcls_name_construct (GType object
                                                         DialogFiles* _owner);
 static void dialog_files_xcls_treeview_finalize (GObject * obj);
 static GType dialog_files_xcls_treeview_get_type_once (void);
-static void __lambda169_ (DialogFilesXcls_GestureClick32* self,
+static void __lambda172_ (DialogFilesXcls_GestureClick32* self,
                    gint n_press,
                    gdouble x,
                    gdouble y);
-static void ___lambda169__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+static void ___lambda172__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                               gint n_press,
                                               gdouble x,
                                               gdouble y,
@@ -2984,16 +2984,16 @@ static void dialog_files_xcls_stringsorter36_finalize (GObject * obj);
 static GType dialog_files_xcls_stringsorter36_get_type_once (void);
 static void dialog_files_xcls_propertyexpression37_finalize (GObject * obj);
 static GType dialog_files_xcls_propertyexpression37_get_type_once (void);
-static GListModel* __lambda168_ (DialogFilesXcls_treelistmodel* self,
+static GListModel* __lambda171_ (DialogFilesXcls_treelistmodel* self,
                           GObject* item);
-static GListModel* ___lambda168__gtk_tree_list_model_create_model_func (GObject* item,
+static GListModel* ___lambda171__gtk_tree_list_model_create_model_func (GObject* item,
                                                                  gpointer self);
 static void dialog_files_xcls_treelistmodel_finalize (GObject * obj);
 static GType dialog_files_xcls_treelistmodel_get_type_once (void);
-static gboolean __lambda162_ (DialogFilesXcls_treefilter* self,
-                       GObject* item);
-static gboolean ___lambda162__gtk_custom_filter_func (GObject* item,
-                                               gpointer self);
+static gboolean __lambda24_ (DialogFilesXcls_treefilter* self,
+                      GObject* item);
+static gboolean ___lambda24__gtk_custom_filter_func (GObject* item,
+                                              gpointer self);
 static void dialog_files_xcls_treefilter_finalize (GObject * obj);
 static GType dialog_files_xcls_treefilter_get_type_once (void);
 VALA_EXTERN GType dialog_files_xcls_signallistitemfactory41_get_type (void) G_GNUC_CONST ;
@@ -3003,14 +3003,14 @@ VALA_EXTERN DialogFilesXcls_SignalListItemFactory41* dialog_files_xcls_signallis
                                                                                               DialogFiles* _owner);
 static void dialog_files_xcls_name_finalize (GObject * obj);
 static GType dialog_files_xcls_name_get_type_once (void);
-static void __lambda170_ (DialogFilesXcls_SignalListItemFactory41* self,
+static void __lambda173_ (DialogFilesXcls_SignalListItemFactory41* self,
                    GObject* listitem);
-static void ___lambda170__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+static void ___lambda173__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                        GObject* object,
                                                        gpointer self);
-static void __lambda171_ (DialogFilesXcls_SignalListItemFactory41* self,
+static void __lambda174_ (DialogFilesXcls_SignalListItemFactory41* self,
                    GObject* listitem);
-static void ___lambda171__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+static void ___lambda174__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                       GObject* object,
                                                       gpointer self);
 static void dialog_files_xcls_signallistitemfactory41_finalize (GObject * obj);
@@ -3042,7 +3042,7 @@ VALA_EXTERN DialogFilesXcls_Button53* dialog_files_xcls_button53_construct (GTyp
                                                                 DialogFiles* _owner);
 static void dialog_files_xcls_headerbar42_finalize (GObject * obj);
 static GType dialog_files_xcls_headerbar42_get_type_once (void);
-static void __lambda174_ (DialogFilesXcls_Button43* self);
+static void __lambda177_ (DialogFilesXcls_Button43* self);
 VALA_EXTERN GType window_state_state_get_type (void) G_GNUC_CONST ;
 VALA_EXTERN GType xcls_windowlefttree_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (Xcls_WindowLeftTree, g_object_unref)
@@ -3073,7 +3073,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (BuilderApplication, g_object_unref)
 VALA_EXTERN BuilderApplication* builder_application_singleton (gchar** args,
                                                    gint args_length1);
 VALA_EXTERN void builder_application_removeWindow (Xcls_MainWindow* w);
-static void ___lambda174__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda177__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void dialog_files_xcls_button43_finalize (GObject * obj);
 static GType dialog_files_xcls_button43_get_type_once (void);
@@ -3082,7 +3082,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogFilesXcls_Box45, g_object_unref)
 VALA_EXTERN DialogFilesXcls_Box45* dialog_files_xcls_box45_new (DialogFiles* _owner);
 VALA_EXTERN DialogFilesXcls_Box45* dialog_files_xcls_box45_construct (GType object_type,
                                                           DialogFiles* _owner);
-static void __lambda177_ (DialogFilesXcls_Button44* self);
+static void __lambda178_ (DialogFilesXcls_Button44* self);
 VALA_EXTERN GType edit_project_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProject, g_object_unref)
 VALA_EXTERN EditProject* edit_project_singleton (void);
@@ -3108,13 +3108,13 @@ VALA_EXTERN GType edit_project_xcls_ptype_dd_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProjectXcls_ptype_dd, g_object_unref)
 VALA_EXTERN GType edit_project_xcls_ok_btn_get_type (void) G_GNUC_CONST ;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (EditProjectXcls_ok_btn, g_object_unref)
-static void __lambda221_ (DialogFilesXcls_Button44* self,
+static void __lambda222_ (DialogFilesXcls_Button44* self,
                    ProjectProject* pr);
-static void ___lambda221__edit_project_selected (EditProject* _sender,
+static void ___lambda222__edit_project_selected (EditProject* _sender,
                                           ProjectProject* proj,
                                           gpointer self);
 VALA_EXTERN void edit_project_show (EditProject* self);
-static void ___lambda177__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda178__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void dialog_files_xcls_button44_finalize (GObject * obj);
 static GType dialog_files_xcls_button44_get_type_once (void);
@@ -3139,11 +3139,11 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogFilesXcls_Box49, g_object_unref)
 VALA_EXTERN DialogFilesXcls_Box49* dialog_files_xcls_box49_new (DialogFiles* _owner);
 VALA_EXTERN DialogFilesXcls_Box49* dialog_files_xcls_box49_construct (GType object_type,
                                                           DialogFiles* _owner);
-static void __lambda225_ (DialogFilesXcls_Button48* self);
+static void __lambda226_ (DialogFilesXcls_Button48* self);
 VALA_EXTERN void window_state_projectPopoverShow (WindowState* self,
                                       GtkWindow* pwin,
                                       ProjectProject* pr);
-static void ___lambda225__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda226__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void dialog_files_xcls_button48_finalize (GObject * obj);
 static GType dialog_files_xcls_button48_get_type_once (void);
@@ -3163,8 +3163,8 @@ static void dialog_files_xcls_image50_finalize (GObject * obj);
 static GType dialog_files_xcls_image50_get_type_once (void);
 static void dialog_files_xcls_label51_finalize (GObject * obj);
 static GType dialog_files_xcls_label51_get_type_once (void);
-static void __lambda226_ (DialogFilesXcls_Button52* self);
-static void ___lambda226__gtk_button_clicked (GtkButton* _sender,
+static void __lambda227_ (DialogFilesXcls_Button52* self);
+static void ___lambda227__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void dialog_files_xcls_button52_finalize (GObject * obj);
 static GType dialog_files_xcls_button52_get_type_once (void);
@@ -3173,7 +3173,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (DialogFilesXcls_Box54, g_object_unref)
 VALA_EXTERN DialogFilesXcls_Box54* dialog_files_xcls_box54_new (DialogFiles* _owner);
 VALA_EXTERN DialogFilesXcls_Box54* dialog_files_xcls_box54_construct (GType object_type,
                                                           DialogFiles* _owner);
-static void __lambda227_ (DialogFilesXcls_Button53* self);
+static void __lambda228_ (DialogFilesXcls_Button53* self);
 VALA_EXTERN GQuark js_render_error_quark (void);
 VALA_EXTERN JsRenderJsRender* js_render_js_render_factory (const gchar* xt,
                                                ProjectProject* project,
@@ -3183,7 +3183,7 @@ VALA_EXTERN void xcls_popoverfiledetails_show (Xcls_PopoverFileDetails* self,
                                    JsRenderJsRender* c,
                                    GtkWindow* pwin,
                                    gboolean new_window);
-static void ___lambda227__gtk_button_clicked (GtkButton* _sender,
+static void ___lambda228__gtk_button_clicked (GtkButton* _sender,
                                        gpointer self);
 static void dialog_files_xcls_button53_finalize (GObject * obj);
 static GType dialog_files_xcls_button53_get_type_once (void);
@@ -3354,7 +3354,7 @@ dialog_files_new (void)
 }
 
 static gboolean
-__lambda163_ (DialogFiles* self)
+__lambda25_ (DialogFiles* self)
 {
 	DialogFiles* _tmp0_;
 	DialogFilesXcls_searchbox* _tmp1_;
@@ -3432,10 +3432,10 @@ __lambda163_ (DialogFiles* self)
 }
 
 static gboolean
-___lambda163__gsource_func (gpointer self)
+___lambda25__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda163_ ((DialogFiles*) self);
+	result = __lambda25_ ((DialogFiles*) self);
 #line 84 "DialogFiles.vala"
 	return result;
 #line 3442 "DialogFiles.vala.c"
@@ -3528,7 +3528,7 @@ dialog_files_onProjectSelected (DialogFiles* self,
 #line 81 "DialogFiles.vala"
 	_tmp12_->el = _tmp14_;
 #line 84 "DialogFiles.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda163__gsource_func, g_object_ref (self), g_object_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda25__gsource_func, g_object_ref (self), g_object_unref);
 #line 94 "DialogFiles.vala"
 	_tmp15_ = self->selectedProject;
 #line 94 "DialogFiles.vala"
@@ -3717,7 +3717,7 @@ dialog_files_show (DialogFiles* self,
 }
 
 static gboolean
-__lambda224_ (DialogFiles* self)
+__lambda225_ (DialogFiles* self)
 {
 	DialogFiles* _tmp0_;
 	DialogFilesXcls_projectscroll* _tmp1_;
@@ -3745,10 +3745,10 @@ __lambda224_ (DialogFiles* self)
 }
 
 static gboolean
-___lambda224__gsource_func (gpointer self)
+___lambda225__gsource_func (gpointer self)
 {
 	gboolean result;
-	result = __lambda224_ ((DialogFiles*) self);
+	result = __lambda225_ ((DialogFiles*) self);
 #line 146 "DialogFiles.vala"
 	return result;
 #line 3755 "DialogFiles.vala.c"
@@ -3822,7 +3822,7 @@ dialog_files_load (DialogFiles* self)
 #line 144 "DialogFiles.vala"
 	_tmp14_->is_loading = FALSE;
 #line 146 "DialogFiles.vala"
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda224__gsource_func, g_object_ref (self), g_object_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, ___lambda225__gsource_func, g_object_ref (self), g_object_unref);
 #line 130 "DialogFiles.vala"
 	_g_object_unref0 (pm);
 #line 3829 "DialogFiles.vala.c"
@@ -4680,9 +4680,9 @@ dialog_files_xcls_projectselection_get_instance_private (DialogFilesXcls_project
 }
 
 static void
-__lambda160_ (DialogFilesXcls_projectselection* self,
-              GObject* position,
-              GParamSpec* n_items)
+__lambda16_ (DialogFilesXcls_projectselection* self,
+             GObject* position,
+             GParamSpec* n_items)
 {
 	DialogFiles* _tmp0_;
 	ProjectProject* project = NULL;
@@ -4742,12 +4742,12 @@ __lambda160_ (DialogFilesXcls_projectselection* self,
 }
 
 static void
-___lambda160__g_object_notify (GObject* _sender,
-                               GParamSpec* pspec,
-                               gpointer self)
+___lambda16__g_object_notify (GObject* _sender,
+                              GParamSpec* pspec,
+                              gpointer self)
 {
 #line 339 "DialogFiles.vala"
-	__lambda160_ ((DialogFilesXcls_projectselection*) self, _sender, pspec);
+	__lambda16_ ((DialogFilesXcls_projectselection*) self, _sender, pspec);
 #line 4752 "DialogFiles.vala.c"
 }
 
@@ -4801,7 +4801,7 @@ dialog_files_xcls_projectselection_construct (GType object_type,
 #line 339 "DialogFiles.vala"
 	_tmp8_ = self->el;
 #line 339 "DialogFiles.vala"
-	g_signal_connect_object ((GObject*) _tmp8_, "notify::selected", (GCallback) ___lambda160__g_object_notify, self, 0);
+	g_signal_connect_object ((GObject*) _tmp8_, "notify::selected", (GCallback) ___lambda16__g_object_notify, self, 0);
 #line 327 "DialogFiles.vala"
 	_g_object_unref0 (child_1);
 #line 327 "DialogFiles.vala"
@@ -5485,7 +5485,7 @@ dialog_files_xcls_signallistitemfactory13_get_instance_private (DialogFilesXcls_
 }
 
 static void
-__lambda172_ (DialogFilesXcls_SignalListItemFactory13* self,
+__lambda175_ (DialogFilesXcls_SignalListItemFactory13* self,
               GObject* item)
 {
 	GtkListItem* gi = NULL;
@@ -5514,17 +5514,17 @@ __lambda172_ (DialogFilesXcls_SignalListItemFactory13* self,
 }
 
 static void
-___lambda172__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda175__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 495 "DialogFiles.vala"
-	__lambda172_ ((DialogFilesXcls_SignalListItemFactory13*) self, object);
+	__lambda175_ ((DialogFilesXcls_SignalListItemFactory13*) self, object);
 #line 5524 "DialogFiles.vala.c"
 }
 
 static void
-__lambda173_ (DialogFilesXcls_SignalListItemFactory13* self,
+__lambda176_ (DialogFilesXcls_SignalListItemFactory13* self,
               GObject* listitem)
 {
 	GtkBox* lbl = NULL;
@@ -5555,12 +5555,12 @@ __lambda173_ (DialogFilesXcls_SignalListItemFactory13* self,
 }
 
 static void
-___lambda173__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda176__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 506 "DialogFiles.vala"
-	__lambda173_ ((DialogFilesXcls_SignalListItemFactory13*) self, object);
+	__lambda176_ ((DialogFilesXcls_SignalListItemFactory13*) self, object);
 #line 5565 "DialogFiles.vala.c"
 }
 
@@ -5590,11 +5590,11 @@ dialog_files_xcls_signallistitemfactory13_construct (GType object_type,
 #line 495 "DialogFiles.vala"
 	_tmp2_ = self->el;
 #line 495 "DialogFiles.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda172__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda175__gtk_signal_list_item_factory_setup, self, 0);
 #line 506 "DialogFiles.vala"
 	_tmp3_ = self->el;
 #line 506 "DialogFiles.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda173__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda176__gtk_signal_list_item_factory_bind, self, 0);
 #line 485 "DialogFiles.vala"
 	return self;
 #line 5601 "DialogFiles.vala.c"
@@ -6099,7 +6099,7 @@ dialog_files_xcls_searchbox_get_instance_private (DialogFilesXcls_searchbox* sel
 }
 
 static void
-__lambda161_ (DialogFilesXcls_searchbox* self)
+__lambda23_ (DialogFilesXcls_searchbox* self)
 {
 	DialogFiles* _tmp0_;
 	DialogFilesXcls_treefilter* _tmp1_;
@@ -6136,11 +6136,11 @@ __lambda161_ (DialogFilesXcls_searchbox* self)
 }
 
 static void
-___lambda161__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
-                                               gpointer self)
+___lambda23__gtk_search_entry_search_changed (GtkSearchEntry* _sender,
+                                              gpointer self)
 {
 #line 642 "DialogFiles.vala"
-	__lambda161_ ((DialogFilesXcls_searchbox*) self);
+	__lambda23_ ((DialogFilesXcls_searchbox*) self);
 #line 6145 "DialogFiles.vala.c"
 }
 
@@ -6201,7 +6201,7 @@ dialog_files_xcls_searchbox_construct (GType object_type,
 #line 642 "DialogFiles.vala"
 	_tmp8_ = self->el;
 #line 642 "DialogFiles.vala"
-	g_signal_connect_object (_tmp8_, "search-changed", (GCallback) ___lambda161__gtk_search_entry_search_changed, self, 0);
+	g_signal_connect_object (_tmp8_, "search-changed", (GCallback) ___lambda23__gtk_search_entry_search_changed, self, 0);
 #line 615 "DialogFiles.vala"
 	return self;
 #line 6208 "DialogFiles.vala.c"
@@ -6599,10 +6599,10 @@ dialog_files_xcls_gestureclick20_get_instance_private (DialogFilesXcls_GestureCl
 }
 
 static void
-__lambda167_ (DialogFilesXcls_GestureClick20* self,
-              gint n_press,
-              gdouble x,
-              gdouble y)
+__lambda29_ (DialogFilesXcls_GestureClick20* self,
+             gint n_press,
+             gdouble x,
+             gdouble y)
 {
 	JsRenderJsRender* f = NULL;
 	DialogFiles* _tmp0_;
@@ -6691,14 +6691,14 @@ __lambda167_ (DialogFilesXcls_GestureClick20* self,
 }
 
 static void
-___lambda167__gtk_gesture_click_pressed (GtkGestureClick* _sender,
-                                         gint n_press,
-                                         gdouble x,
-                                         gdouble y,
-                                         gpointer self)
+___lambda29__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+                                        gint n_press,
+                                        gdouble x,
+                                        gdouble y,
+                                        gpointer self)
 {
 #line 731 "DialogFiles.vala"
-	__lambda167_ ((DialogFilesXcls_GestureClick20*) self, n_press, x, y);
+	__lambda29_ ((DialogFilesXcls_GestureClick20*) self, n_press, x, y);
 #line 6703 "DialogFiles.vala.c"
 }
 
@@ -6727,7 +6727,7 @@ dialog_files_xcls_gestureclick20_construct (GType object_type,
 #line 731 "DialogFiles.vala"
 	_tmp2_ = self->el;
 #line 731 "DialogFiles.vala"
-	g_signal_connect_object (_tmp2_, "pressed", (GCallback) ___lambda167__gtk_gesture_click_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "pressed", (GCallback) ___lambda29__gtk_gesture_click_pressed, self, 0);
 #line 721 "DialogFiles.vala"
 	return self;
 #line 6734 "DialogFiles.vala.c"
@@ -7775,43 +7775,43 @@ dialog_files_xcls_signallistitemfactory29_get_instance_private (DialogFilesXcls_
 	return G_STRUCT_MEMBER_P (self, DialogFilesXcls_SignalListItemFactory29_private_offset);
 }
 
-static Block1Data*
-block1_data_ref (Block1Data* _data1_)
+static Block3Data*
+block3_data_ref (Block3Data* _data3_)
 {
 #line 969 "DialogFiles.vala"
-	g_atomic_int_inc (&_data1_->_ref_count_);
+	g_atomic_int_inc (&_data3_->_ref_count_);
 #line 969 "DialogFiles.vala"
-	return _data1_;
+	return _data3_;
 #line 7786 "DialogFiles.vala.c"
 }
 
 static void
-block1_data_unref (void * _userdata_)
+block3_data_unref (void * _userdata_)
 {
-	Block1Data* _data1_;
-	_data1_ = (Block1Data*) _userdata_;
+	Block3Data* _data3_;
+	_data3_ = (Block3Data*) _userdata_;
 #line 969 "DialogFiles.vala"
-	if (g_atomic_int_dec_and_test (&_data1_->_ref_count_)) {
+	if (g_atomic_int_dec_and_test (&_data3_->_ref_count_)) {
 #line 7796 "DialogFiles.vala.c"
 		DialogFilesXcls_SignalListItemFactory29* self;
 #line 969 "DialogFiles.vala"
-		self = _data1_->self;
+		self = _data3_->self;
 #line 969 "DialogFiles.vala"
-		_g_object_unref0 (_data1_->gi);
+		_g_object_unref0 (_data3_->gi);
 #line 969 "DialogFiles.vala"
 		_g_object_unref0 (self);
 #line 969 "DialogFiles.vala"
-		g_slice_free (Block1Data, _data1_);
+		g_slice_free (Block3Data, _data3_);
 #line 7806 "DialogFiles.vala.c"
 	}
 }
 
 static gboolean
-__lambda165_ (Block1Data* _data1_,
-              gint x,
-              gint y,
-              gboolean keyboard_tooltip,
-              GtkTooltip* tooltip)
+__lambda27_ (Block3Data* _data3_,
+             gint x,
+             gint y,
+             gboolean keyboard_tooltip,
+             GtkTooltip* tooltip)
 {
 	DialogFilesXcls_SignalListItemFactory29* self;
 	JsRenderJsRender* j = NULL;
@@ -7824,9 +7824,9 @@ __lambda165_ (Block1Data* _data1_,
 	GtkImage* _tmp5_;
 	gboolean result;
 #line 981 "DialogFiles.vala"
-	self = _data1_->self;
+	self = _data3_->self;
 #line 982 "DialogFiles.vala"
-	_tmp0_ = gtk_list_item_get_item (_data1_->gi);
+	_tmp0_ = gtk_list_item_get_item (_data3_->gi);
 #line 982 "DialogFiles.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, JS_RENDER_TYPE_JS_RENDER, JsRenderJsRender));
 #line 982 "DialogFiles.vala"
@@ -7861,25 +7861,25 @@ __lambda165_ (Block1Data* _data1_,
 }
 
 static gboolean
-___lambda165__gtk_widget_query_tooltip (GtkWidget* _sender,
-                                        gint x,
-                                        gint y,
-                                        gboolean keyboard_tooltip,
-                                        GtkTooltip* tooltip,
-                                        gpointer self)
+___lambda27__gtk_widget_query_tooltip (GtkWidget* _sender,
+                                       gint x,
+                                       gint y,
+                                       gboolean keyboard_tooltip,
+                                       GtkTooltip* tooltip,
+                                       gpointer self)
 {
 	gboolean result;
-	result = __lambda165_ (self, x, y, keyboard_tooltip, tooltip);
+	result = __lambda27_ (self, x, y, keyboard_tooltip, tooltip);
 #line 981 "DialogFiles.vala"
 	return result;
 #line 7876 "DialogFiles.vala.c"
 }
 
 static void
-__lambda164_ (DialogFilesXcls_SignalListItemFactory29* self,
-              GObject* item)
+__lambda26_ (DialogFilesXcls_SignalListItemFactory29* self,
+             GObject* item)
 {
-	Block1Data* _data1_;
+	Block3Data* _data3_;
 	GtkListItem* _tmp0_;
 	GtkBox* b = NULL;
 	GtkBox* _tmp1_;
@@ -7888,15 +7888,15 @@ __lambda164_ (DialogFilesXcls_SignalListItemFactory29* self,
 	GtkLabel* t = NULL;
 	GtkLabel* _tmp3_;
 #line 969 "DialogFiles.vala"
-	_data1_ = g_slice_new0 (Block1Data);
+	_data3_ = g_slice_new0 (Block3Data);
 #line 969 "DialogFiles.vala"
-	_data1_->_ref_count_ = 1;
+	_data3_->_ref_count_ = 1;
 #line 969 "DialogFiles.vala"
-	_data1_->self = g_object_ref (self);
+	_data3_->self = g_object_ref (self);
 #line 971 "DialogFiles.vala"
 	_tmp0_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (item, gtk_list_item_get_type (), GtkListItem));
 #line 971 "DialogFiles.vala"
-	_data1_->gi = _tmp0_;
+	_data3_->gi = _tmp0_;
 #line 972 "DialogFiles.vala"
 	_tmp1_ = (GtkBox*) gtk_box_new (GTK_ORIENTATION_VERTICAL, 4);
 #line 972 "DialogFiles.vala"
@@ -7922,11 +7922,11 @@ __lambda164_ (DialogFilesXcls_SignalListItemFactory29* self,
 #line 977 "DialogFiles.vala"
 	gtk_box_append (b, (GtkWidget*) t);
 #line 979 "DialogFiles.vala"
-	gtk_list_item_set_child (_data1_->gi, (GtkWidget*) b);
+	gtk_list_item_set_child (_data3_->gi, (GtkWidget*) b);
 #line 980 "DialogFiles.vala"
 	gtk_widget_set_has_tooltip ((GtkWidget*) b, TRUE);
 #line 981 "DialogFiles.vala"
-	g_signal_connect_data ((GtkWidget*) b, "query-tooltip", (GCallback) ___lambda165__gtk_widget_query_tooltip, block1_data_ref (_data1_), (GClosureNotify) block1_data_unref, 0);
+	g_signal_connect_data ((GtkWidget*) b, "query-tooltip", (GCallback) ___lambda27__gtk_widget_query_tooltip, block3_data_ref (_data3_), (GClosureNotify) block3_data_unref, 0);
 #line 969 "DialogFiles.vala"
 	_g_object_unref0 (t);
 #line 969 "DialogFiles.vala"
@@ -7934,19 +7934,19 @@ __lambda164_ (DialogFilesXcls_SignalListItemFactory29* self,
 #line 969 "DialogFiles.vala"
 	_g_object_unref0 (b);
 #line 969 "DialogFiles.vala"
-	block1_data_unref (_data1_);
+	block3_data_unref (_data3_);
 #line 969 "DialogFiles.vala"
-	_data1_ = NULL;
+	_data3_ = NULL;
 #line 7941 "DialogFiles.vala.c"
 }
 
 static void
-___lambda164__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
-                                                  GObject* object,
-                                                  gpointer self)
+___lambda26__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+                                                 GObject* object,
+                                                 gpointer self)
 {
 #line 969 "DialogFiles.vala"
-	__lambda164_ ((DialogFilesXcls_SignalListItemFactory29*) self, object);
+	__lambda26_ ((DialogFilesXcls_SignalListItemFactory29*) self, object);
 #line 7951 "DialogFiles.vala.c"
 }
 
@@ -8048,8 +8048,8 @@ string_substring (const gchar* self,
 }
 
 static void
-__lambda166_ (DialogFilesXcls_SignalListItemFactory29* self,
-              GObject* listitem)
+__lambda28_ (DialogFilesXcls_SignalListItemFactory29* self,
+             GObject* listitem)
 {
 	GtkBox* box = NULL;
 	GtkWidget* _tmp0_;
@@ -8261,12 +8261,12 @@ __lambda166_ (DialogFilesXcls_SignalListItemFactory29* self,
 }
 
 static void
-___lambda166__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
-                                                 GObject* object,
-                                                 gpointer self)
+___lambda28__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+                                                GObject* object,
+                                                gpointer self)
 {
 #line 992 "DialogFiles.vala"
-	__lambda166_ ((DialogFilesXcls_SignalListItemFactory29*) self, object);
+	__lambda28_ ((DialogFilesXcls_SignalListItemFactory29*) self, object);
 #line 8271 "DialogFiles.vala.c"
 }
 
@@ -8296,11 +8296,11 @@ dialog_files_xcls_signallistitemfactory29_construct (GType object_type,
 #line 969 "DialogFiles.vala"
 	_tmp2_ = self->el;
 #line 969 "DialogFiles.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda164__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda26__gtk_signal_list_item_factory_setup, self, 0);
 #line 992 "DialogFiles.vala"
 	_tmp3_ = self->el;
 #line 992 "DialogFiles.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda166__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda28__gtk_signal_list_item_factory_bind, self, 0);
 #line 959 "DialogFiles.vala"
 	return self;
 #line 8307 "DialogFiles.vala.c"
@@ -8787,7 +8787,7 @@ dialog_files_xcls_gestureclick32_get_instance_private (DialogFilesXcls_GestureCl
 }
 
 static void
-__lambda169_ (DialogFilesXcls_GestureClick32* self,
+__lambda172_ (DialogFilesXcls_GestureClick32* self,
               gint n_press,
               gdouble x,
               gdouble y)
@@ -8914,14 +8914,14 @@ __lambda169_ (DialogFilesXcls_GestureClick32* self,
 }
 
 static void
-___lambda169__gtk_gesture_click_pressed (GtkGestureClick* _sender,
+___lambda172__gtk_gesture_click_pressed (GtkGestureClick* _sender,
                                          gint n_press,
                                          gdouble x,
                                          gdouble y,
                                          gpointer self)
 {
 #line 1127 "DialogFiles.vala"
-	__lambda169_ ((DialogFilesXcls_GestureClick32*) self, n_press, x, y);
+	__lambda172_ ((DialogFilesXcls_GestureClick32*) self, n_press, x, y);
 #line 8926 "DialogFiles.vala.c"
 }
 
@@ -8950,7 +8950,7 @@ dialog_files_xcls_gestureclick32_construct (GType object_type,
 #line 1127 "DialogFiles.vala"
 	_tmp2_ = self->el;
 #line 1127 "DialogFiles.vala"
-	g_signal_connect_object (_tmp2_, "pressed", (GCallback) ___lambda169__gtk_gesture_click_pressed, self, 0);
+	g_signal_connect_object (_tmp2_, "pressed", (GCallback) ___lambda172__gtk_gesture_click_pressed, self, 0);
 #line 1117 "DialogFiles.vala"
 	return self;
 #line 8957 "DialogFiles.vala.c"
@@ -9732,7 +9732,7 @@ dialog_files_xcls_treelistmodel_new (DialogFiles* _owner)
 }
 
 static GListModel*
-__lambda168_ (DialogFilesXcls_treelistmodel* self,
+__lambda171_ (DialogFilesXcls_treelistmodel* self,
               GObject* item)
 {
 	GListStore* _tmp0_;
@@ -9750,11 +9750,11 @@ __lambda168_ (DialogFilesXcls_treelistmodel* self,
 }
 
 static GListModel*
-___lambda168__gtk_tree_list_model_create_model_func (GObject* item,
+___lambda171__gtk_tree_list_model_create_model_func (GObject* item,
                                                      gpointer self)
 {
 	GListModel* result;
-	result = __lambda168_ ((DialogFilesXcls_treelistmodel*) self, item);
+	result = __lambda171_ ((DialogFilesXcls_treelistmodel*) self, item);
 #line 1303 "DialogFiles.vala"
 	return result;
 #line 9761 "DialogFiles.vala.c"
@@ -9798,7 +9798,7 @@ dialog_files_xcls_treelistmodel_updateModel (DialogFilesXcls_treelistmodel* self
 #line 1303 "DialogFiles.vala"
 	_tmp3_ = _g_object_ref0 ((GListModel*) _tmp0_);
 #line 1303 "DialogFiles.vala"
-	_tmp4_ = gtk_tree_list_model_new (_tmp3_, FALSE, TRUE, ___lambda168__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
+	_tmp4_ = gtk_tree_list_model_new (_tmp3_, FALSE, TRUE, ___lambda171__gtk_tree_list_model_create_model_func, g_object_ref (self), g_object_unref);
 #line 1303 "DialogFiles.vala"
 	_g_object_unref0 (self->el);
 #line 1303 "DialogFiles.vala"
@@ -9907,8 +9907,8 @@ string_contains (const gchar* self,
 }
 
 static gboolean
-__lambda162_ (DialogFilesXcls_treefilter* self,
-              GObject* item)
+__lambda24_ (DialogFilesXcls_treefilter* self,
+             GObject* item)
 {
 	GObject* tr = NULL;
 	GObject* _tmp0_;
@@ -10240,11 +10240,11 @@ __lambda162_ (DialogFilesXcls_treefilter* self,
 }
 
 static gboolean
-___lambda162__gtk_custom_filter_func (GObject* item,
-                                      gpointer self)
+___lambda24__gtk_custom_filter_func (GObject* item,
+                                     gpointer self)
 {
 	gboolean result;
-	result = __lambda162_ ((DialogFilesXcls_treefilter*) self, item);
+	result = __lambda24_ ((DialogFilesXcls_treefilter*) self, item);
 #line 1333 "DialogFiles.vala"
 	return result;
 #line 10251 "DialogFiles.vala.c"
@@ -10276,7 +10276,7 @@ dialog_files_xcls_treefilter_construct (GType object_type,
 #line 1332 "DialogFiles.vala"
 	_tmp1_->treefilter = _tmp2_;
 #line 1333 "DialogFiles.vala"
-	_tmp3_ = gtk_custom_filter_new (___lambda162__gtk_custom_filter_func, g_object_ref (self), g_object_unref);
+	_tmp3_ = gtk_custom_filter_new (___lambda24__gtk_custom_filter_func, g_object_ref (self), g_object_unref);
 #line 1333 "DialogFiles.vala"
 	_g_object_unref0 (self->el);
 #line 1333 "DialogFiles.vala"
@@ -10506,7 +10506,7 @@ dialog_files_xcls_signallistitemfactory41_get_instance_private (DialogFilesXcls_
 }
 
 static void
-__lambda170_ (DialogFilesXcls_SignalListItemFactory41* self,
+__lambda173_ (DialogFilesXcls_SignalListItemFactory41* self,
               GObject* listitem)
 {
 	GtkTreeExpander* expand = NULL;
@@ -10549,17 +10549,17 @@ __lambda170_ (DialogFilesXcls_SignalListItemFactory41* self,
 }
 
 static void
-___lambda170__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
+___lambda173__gtk_signal_list_item_factory_setup (GtkSignalListItemFactory* _sender,
                                                   GObject* object,
                                                   gpointer self)
 {
 #line 1436 "DialogFiles.vala"
-	__lambda170_ ((DialogFilesXcls_SignalListItemFactory41*) self, object);
+	__lambda173_ ((DialogFilesXcls_SignalListItemFactory41*) self, object);
 #line 10559 "DialogFiles.vala.c"
 }
 
 static void
-__lambda171_ (DialogFilesXcls_SignalListItemFactory41* self,
+__lambda174_ (DialogFilesXcls_SignalListItemFactory41* self,
               GObject* listitem)
 {
 	GtkTreeExpander* expand = NULL;
@@ -10698,12 +10698,12 @@ __lambda171_ (DialogFilesXcls_SignalListItemFactory41* self,
 }
 
 static void
-___lambda171__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
+___lambda174__gtk_signal_list_item_factory_bind (GtkSignalListItemFactory* _sender,
                                                  GObject* object,
                                                  gpointer self)
 {
 #line 1455 "DialogFiles.vala"
-	__lambda171_ ((DialogFilesXcls_SignalListItemFactory41*) self, object);
+	__lambda174_ ((DialogFilesXcls_SignalListItemFactory41*) self, object);
 #line 10708 "DialogFiles.vala.c"
 }
 
@@ -10733,11 +10733,11 @@ dialog_files_xcls_signallistitemfactory41_construct (GType object_type,
 #line 1436 "DialogFiles.vala"
 	_tmp2_ = self->el;
 #line 1436 "DialogFiles.vala"
-	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda170__gtk_signal_list_item_factory_setup, self, 0);
+	g_signal_connect_object (_tmp2_, "setup", (GCallback) ___lambda173__gtk_signal_list_item_factory_setup, self, 0);
 #line 1455 "DialogFiles.vala"
 	_tmp3_ = self->el;
 #line 1455 "DialogFiles.vala"
-	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda171__gtk_signal_list_item_factory_bind, self, 0);
+	g_signal_connect_object (_tmp3_, "bind", (GCallback) ___lambda174__gtk_signal_list_item_factory_bind, self, 0);
 #line 1426 "DialogFiles.vala"
 	return self;
 #line 10744 "DialogFiles.vala.c"
@@ -11028,7 +11028,7 @@ dialog_files_xcls_button43_get_instance_private (DialogFilesXcls_Button43* self)
 }
 
 static void
-__lambda174_ (DialogFilesXcls_Button43* self)
+__lambda177_ (DialogFilesXcls_Button43* self)
 {
 	gboolean _tmp0_ = FALSE;
 	GeeArrayList* _tmp1_;
@@ -11116,11 +11116,11 @@ __lambda174_ (DialogFilesXcls_Button43* self)
 }
 
 static void
-___lambda174__gtk_button_clicked (GtkButton* _sender,
+___lambda177__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1559 "DialogFiles.vala"
-	__lambda174_ ((DialogFilesXcls_Button43*) self);
+	__lambda177_ ((DialogFilesXcls_Button43*) self);
 #line 11125 "DialogFiles.vala.c"
 }
 
@@ -11156,7 +11156,7 @@ dialog_files_xcls_button43_construct (GType object_type,
 #line 1559 "DialogFiles.vala"
 	_tmp3_ = self->el;
 #line 1559 "DialogFiles.vala"
-	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda174__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp3_, "clicked", (GCallback) ___lambda177__gtk_button_clicked, self, 0);
 #line 1548 "DialogFiles.vala"
 	return self;
 #line 11163 "DialogFiles.vala.c"
@@ -11236,7 +11236,7 @@ dialog_files_xcls_button44_get_instance_private (DialogFilesXcls_Button44* self)
 }
 
 static void
-__lambda221_ (DialogFilesXcls_Button44* self,
+__lambda222_ (DialogFilesXcls_Button44* self,
               ProjectProject* pr)
 {
 	DialogFiles* _tmp0_;
@@ -11251,17 +11251,17 @@ __lambda221_ (DialogFilesXcls_Button44* self,
 }
 
 static void
-___lambda221__edit_project_selected (EditProject* _sender,
+___lambda222__edit_project_selected (EditProject* _sender,
                                      ProjectProject* proj,
                                      gpointer self)
 {
 #line 1614 "DialogFiles.vala"
-	__lambda221_ ((DialogFilesXcls_Button44*) self, proj);
+	__lambda222_ ((DialogFilesXcls_Button44*) self, proj);
 #line 11261 "DialogFiles.vala.c"
 }
 
 static void
-__lambda177_ (DialogFilesXcls_Button44* self)
+__lambda178_ (DialogFilesXcls_Button44* self)
 {
 	EditProject* pe = NULL;
 	EditProject* _tmp0_;
@@ -11317,7 +11317,7 @@ __lambda177_ (DialogFilesXcls_Button44* self)
 #line 1611 "DialogFiles.vala"
 	gtk_window_set_transient_for (_tmp11_, _tmp13_);
 #line 1614 "DialogFiles.vala"
-	g_signal_connect_object (pe, "selected", (GCallback) ___lambda221__edit_project_selected, self, 0);
+	g_signal_connect_object (pe, "selected", (GCallback) ___lambda222__edit_project_selected, self, 0);
 #line 1621 "DialogFiles.vala"
 	edit_project_show (pe);
 #line 1603 "DialogFiles.vala"
@@ -11326,11 +11326,11 @@ __lambda177_ (DialogFilesXcls_Button44* self)
 }
 
 static void
-___lambda177__gtk_button_clicked (GtkButton* _sender,
+___lambda178__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1603 "DialogFiles.vala"
-	__lambda177_ ((DialogFilesXcls_Button44*) self);
+	__lambda178_ ((DialogFilesXcls_Button44*) self);
 #line 11335 "DialogFiles.vala.c"
 }
 
@@ -11378,7 +11378,7 @@ dialog_files_xcls_button44_construct (GType object_type,
 #line 1603 "DialogFiles.vala"
 	_tmp6_ = self->el;
 #line 1603 "DialogFiles.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda177__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda178__gtk_button_clicked, self, 0);
 #line 1591 "DialogFiles.vala"
 	_g_object_unref0 (child_1);
 #line 1591 "DialogFiles.vala"
@@ -11825,7 +11825,7 @@ dialog_files_xcls_button48_get_instance_private (DialogFilesXcls_Button48* self)
 }
 
 static void
-__lambda225_ (DialogFilesXcls_Button48* self)
+__lambda226_ (DialogFilesXcls_Button48* self)
 {
 	DialogFiles* _tmp0_;
 	ProjectProject* _tmp1_;
@@ -11866,11 +11866,11 @@ __lambda225_ (DialogFilesXcls_Button48* self)
 }
 
 static void
-___lambda225__gtk_button_clicked (GtkButton* _sender,
+___lambda226__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1727 "DialogFiles.vala"
-	__lambda225_ ((DialogFilesXcls_Button48*) self);
+	__lambda226_ ((DialogFilesXcls_Button48*) self);
 #line 11875 "DialogFiles.vala.c"
 }
 
@@ -11918,7 +11918,7 @@ dialog_files_xcls_button48_construct (GType object_type,
 #line 1727 "DialogFiles.vala"
 	_tmp6_ = self->el;
 #line 1727 "DialogFiles.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda225__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda226__gtk_button_clicked, self, 0);
 #line 1715 "DialogFiles.vala"
 	_g_object_unref0 (child_1);
 #line 1715 "DialogFiles.vala"
@@ -12355,16 +12355,16 @@ dialog_files_xcls_button52_get_instance_private (DialogFilesXcls_Button52* self)
 }
 
 static void
-__lambda226_ (DialogFilesXcls_Button52* self)
+__lambda227_ (DialogFilesXcls_Button52* self)
 {
 }
 
 static void
-___lambda226__gtk_button_clicked (GtkButton* _sender,
+___lambda227__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1834 "DialogFiles.vala"
-	__lambda226_ ((DialogFilesXcls_Button52*) self);
+	__lambda227_ ((DialogFilesXcls_Button52*) self);
 #line 12369 "DialogFiles.vala.c"
 }
 
@@ -12405,7 +12405,7 @@ dialog_files_xcls_button52_construct (GType object_type,
 #line 1834 "DialogFiles.vala"
 	_tmp4_ = self->el;
 #line 1834 "DialogFiles.vala"
-	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda226__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp4_, "clicked", (GCallback) ___lambda227__gtk_button_clicked, self, 0);
 #line 1822 "DialogFiles.vala"
 	return self;
 #line 12412 "DialogFiles.vala.c"
@@ -12485,7 +12485,7 @@ dialog_files_xcls_button53_get_instance_private (DialogFilesXcls_Button53* self)
 }
 
 static void
-__lambda227_ (DialogFilesXcls_Button53* self)
+__lambda228_ (DialogFilesXcls_Button53* self)
 {
 	DialogFiles* _tmp0_;
 	ProjectProject* _tmp1_;
@@ -12590,11 +12590,11 @@ __lambda227_ (DialogFilesXcls_Button53* self)
 }
 
 static void
-___lambda227__gtk_button_clicked (GtkButton* _sender,
+___lambda228__gtk_button_clicked (GtkButton* _sender,
                                   gpointer self)
 {
 #line 1889 "DialogFiles.vala"
-	__lambda227_ ((DialogFilesXcls_Button53*) self);
+	__lambda228_ ((DialogFilesXcls_Button53*) self);
 #line 12599 "DialogFiles.vala.c"
 }
 
@@ -12642,7 +12642,7 @@ dialog_files_xcls_button53_construct (GType object_type,
 #line 1889 "DialogFiles.vala"
 	_tmp6_ = self->el;
 #line 1889 "DialogFiles.vala"
-	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda227__gtk_button_clicked, self, 0);
+	g_signal_connect_object (_tmp6_, "clicked", (GCallback) ___lambda228__gtk_button_clicked, self, 0);
 #line 1877 "DialogFiles.vala"
 	_g_object_unref0 (child_1);
 #line 1877 "DialogFiles.vala"
