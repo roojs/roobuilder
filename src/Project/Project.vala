@@ -715,6 +715,15 @@ namespace Project {
 			if (subdir == "build") { // cmake!
 				return;
 			}
+			
+			if (subdir == "autom4te.cache") { // automake?
+				return;
+			}
+			if (subdir == "debian") { // debian!?
+				return;
+			}
+
+			
 			var dir = this.path + (subdir.length > 0 ? "/" : "") + subdir;
 			
 			
