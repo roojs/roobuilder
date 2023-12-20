@@ -699,7 +699,7 @@
                   "\t GLib.debug(\"Set name to %s\", cg.name);",
                   "\t ",
                   " \t_this.build_name.el.buffer.set_text(cg.name.data);",
-                  "\t_this.build_pack_target.el.buffer.set_text(   cg.target_bin.data);",
+                  " ",
                   " ",
                   "\t_this.build_execute_args.el.buffer.set_text(  cg.execute_args.data );",
                   "",
@@ -767,7 +767,7 @@
              "items" : [
               {
                "$ xns" : "Gtk",
-               "utf8 label" : "Build Name",
+               "utf8 label" : "Build Name (executable name)",
                "xtype" : "Label"
               },
               {
@@ -787,26 +787,6 @@
                  "\t}",
                  "",
                  "\t_this.selected_target.name = this.el.buffer.text;",
-                 "}"
-                ]
-               },
-               "xtype" : "Entry"
-              },
-              {
-               "$ xns" : "Gtk",
-               "utf8 label" : "target filename",
-               "xtype" : "Label"
-              },
-              {
-               "$ xns" : "Gtk",
-               "id" : "build_pack_target",
-               "listeners" : {
-                "changed" : [
-                 "()  => {",
-                 "     if (_this.selected_target == null) {",
-                 "    \treturn;",
-                 "    }",
-                 "    _this.selected_target.target_bin = this.el.buffer.text;",
                  "}"
                 ]
                },

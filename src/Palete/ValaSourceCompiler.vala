@@ -300,8 +300,8 @@ namespace Palete {
 	    	
 	    	if (this.build_module.length > 0) {
 				var cg =  pr.compilegroups.get(this.build_module);
-				if (this.output.length < 1 && cg.target_bin.length > 0) {
-					this.output = cg.target_bin;
+				if (this.output.length < 1) {
+					this.output = pr.path + "/build/" + cg.name;
 				}
 				
 

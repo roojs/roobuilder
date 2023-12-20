@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# Project.Project project" : "null",
@@ -503,6 +504,11 @@
            "listeners" : {
             "clicked" : [
              "() => {",
+             "    ",
+             "    if (_this.statusbar_compile_spinner.el.spinning) {",
+             "    \treturn;",
+             "\t}",
+             "    ",
              "    if (this.popup == null) {",
              "        this.popup = new Xcls_ValaCompileErrors();",
              "        this.popup.window = _this;",
@@ -545,7 +551,10 @@
            "listeners" : {
             "clicked" : [
              "() => {",
-             "    if (this.popup == null) {",
+             "    if (_this.statusbar_compile_spinner.el.spinning) {",
+             "    \treturn;",
+             "\t}",
+             "\tif (this.popup == null) {",
              "        this.popup = new Xcls_ValaCompileErrors();",
              "        this.popup.window = _this;",
              "    }",
@@ -588,7 +597,10 @@
            "listeners" : {
             "clicked" : [
              "() => {",
-             "    if (this.popup == null) {",
+             "    if (_this.statusbar_compile_spinner.el.spinning) {",
+             "\t\treturn;",
+             "\t}",
+             "\tif (this.popup == null) {",
              "        this.popup = new Xcls_ValaCompileErrors();",
              "        this.popup.window = _this;",
              "    }",
@@ -631,6 +643,9 @@
            "listeners" : {
             "clicked" : [
              "() => {",
+             "    if (_this.statusbar_compile_spinner.el.spinning) {",
+             "    \treturn;",
+             "\t}",
              "\tif (_this.windowstate.file == null) {",
              "\t\treturn;",
              "\t}",
@@ -659,6 +674,12 @@
           "() {",
           "  this.el.show();",
           "  this.el.start();  ",
+          "  ",
+          "\t_this.statusbar_errors.el.sensitive = false;",
+          "\t_this.statusbar_warnings.el.sensitive = false;",
+          "\t_this.statusbar_depricated.el.sensitive = false;",
+          "\t_this.statusbar_run.el.sensitive = false;",
+          "  ",
           "}",
           ""
          ],
@@ -666,6 +687,10 @@
           "() {",
           " this.el.stop();",
           "  this.el.hide();",
+          "  \t_this.statusbar_errors.el.sensitive = true;",
+          "\t_this.statusbar_warnings.el.sensitive = true;",
+          "\t_this.statusbar_depricated.el.sensitive = true;",
+          "\t_this.statusbar_run.el.sensitive = true;",
           "}",
           ""
          ]
@@ -772,10 +797,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "MainWindow",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/MainWindow.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

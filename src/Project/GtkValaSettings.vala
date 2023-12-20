@@ -35,7 +35,7 @@ namespace Project
 				this.execute_args = el.get_string_member("execute_args");
 			} else {
 				this.execute_args = "";
-			 
+		   }
 			// sources and packages.
 			this.sources = this.project.readArray(el.get_array_member("sources")) ;
 
@@ -51,7 +51,7 @@ namespace Project
 			var ret = new Json.Object();
 			ret.set_string_member("name", this.name);
 			ret.set_string_member("execute_args", this.execute_args);
-			ret.set_string_member("target_bin", this.target_bin);
+ 
 			ret.set_array_member("sources", this.writeArray(this.sources));
 			ret.set_array_member("hidden", this.writeArray(this.sources));
 
