@@ -33,9 +33,11 @@ namespace Palete {
 		
 		public JsRender.JsRender file;
   		public int line_offset = 0;
-  		
   		 
 		public Gee.ArrayList<Spawn> children;
+		
+		public string tmpfile_path = "";
+		
  		public ValaSource(   ) 
  		{
 			base();
@@ -157,7 +159,7 @@ namespace Palete {
 			args += "--skip-file";
 			args += valafn;
 			
-			 
+ 			this.tmpfile_path = tmpfile.get_path();
 			try {
 				this.compiler = new Spawn("/tmp", args);
 			} catch (GLib.Error e) {
@@ -172,6 +174,7 @@ namespace Palete {
 			        GLib.debug("Error %s",e.message);
 			        this.spinner(false);
          			this.compiler = null;
+         			this.deleteTemp();
 			        return false;
 
 			}
@@ -377,7 +380,7 @@ namespace Palete {
 			args += "--skip-file";
 			args += file.path;
 			 
-			
+			this.tmpfile_path = tmpfile.get_path();
 			
 			
 			try {
@@ -388,19 +391,29 @@ namespace Palete {
 			} catch (GLib.Error e) {
 		        this.spinner(false);
 			    this.compiler = null;
+			    this.deleteTemp();
+			    	
+			    
 			    return false;
 			}
 			return true;
 			 
 		}
 		
-		
+		public void deleteTemp()
+		{
+			 if (this.tmpfile_path == "") {
+			  	return;
+		  	}
+		  	GLib.FileUtils.unlink(this.tmpfile_path);
+		  	this.tmpfile_path = "";
+		}
 		// update the compiler results into the lists.
 		
 		public void spawnResult(int res, string output, string stderr)
 		{
 			 
-	        this.spinner(false);
+
 			try { 
 				//GLib.debug("GOT output %s", output);
 				
@@ -432,6 +445,8 @@ namespace Palete {
 				this.compiled(ret);
 			}
 			this.compiler = null;
+			this.deleteTemp();
+	        this.spinner(false);			
 			//compiler.unref();
 			//tmpfile.unref();
 			 
@@ -451,7 +466,6 @@ namespace Palete {
 			
 			
 			
-			var exe = "";
 			var mod = "";
 			var pr = (Project.Gtk)(this.file.project);
  			
@@ -467,11 +481,8 @@ namespace Palete {
 				return;
 			}
 			var cg =  pr.compilegroups.get(mod);
-			if (cg.target_bin.length > 0) {
-				exe = cg.target_bin;
-			} else {
-				GLib.debug("missing compilegroup target file");
-			}
+			var exe = pr.path + "/build/" + cg.name;
+			
 			
 			
 			if (!GLib.FileUtils.test(exe, GLib.FileTest.EXISTS)) {
