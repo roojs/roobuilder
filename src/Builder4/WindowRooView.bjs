@@ -210,7 +210,7 @@
              "",
              "    switch(ar[1]) {",
              "        case \"SAVEHTML\":",
-             "\t        print(\"GOT saveHTML %d?\\n\", ar[2].length);",
+             "\t        GLib.debug(\"GOT saveHTML %d\", ar[2].length);",
              "            _this.file.saveHTML(ar[2]);",
              "            return true;",
              "        default:",

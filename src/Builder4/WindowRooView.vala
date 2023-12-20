@@ -642,7 +642,7 @@ public class Xcls_WindowRooView : Object
             
                 switch(ar[1]) {
                     case "SAVEHTML":
-            	        print("GOT saveHTML %d?\n", ar[2].length);
+            	        GLib.debug("GOT saveHTML %d", ar[2].length);
                         _this.file.saveHTML(ar[2]);
                         return true;
                     default:
