@@ -955,7 +955,15 @@ namespace Project {
 			}
 			return ret;
 		}
-		
+		void makeProjectSubdir(string name)
+		{
+			var dir = File.new_for_path(this.path + "/" + name);
+			try {
+				dir.make_directory();	
+			} catch (Error e) {
+				GLib.error("Failed to make directory %s", this.path + "/" + name);
+			} 
+		}
 		/*
 		public void add(string path, string type)
 		{
