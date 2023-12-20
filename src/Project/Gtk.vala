@@ -322,7 +322,7 @@ namespace Project
 		
 		void makeWindow()
 		{
-			this.writeFile("src/ui/Window.bjs", """{
+			this.writeFile("src/ui/ui.Window.bjs", """{
  "build_module" : "",
  "items" : [
   {
@@ -346,9 +346,9 @@ namespace Project
    "xtype" : "Window"
   }
  ],
- "namespace" : "ui",
- "name" : "test",
- "gen_extended" : false""");
+ "name" : "ui.Window",
+ "gen_extended" : false
+""");
 	}
  	
  
