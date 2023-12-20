@@ -19,8 +19,7 @@ namespace Project
 			this.name = name;
 			this.project = project;
  
-			this.target_bin = "";
-
+		 
 			this.sources = new Gee.ArrayList<string>();
 			this.execute_args = "";
 				
@@ -36,8 +35,7 @@ namespace Project
 				this.execute_args = el.get_string_member("execute_args");
 			} else {
 				this.execute_args = "";
-			}
-			this.target_bin = el.get_string_member("target_bin");
+			 
 			// sources and packages.
 			this.sources = this.project.readArray(el.get_array_member("sources")) ;
 
