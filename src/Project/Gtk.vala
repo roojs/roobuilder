@@ -45,6 +45,7 @@ namespace Project
 		public Gee.ArrayList<string> hidden; // list of dirs to be hidden from display...
 		
 		public GtkValaSettings? active_cg = null;
+		public Gee.HashMap<string,GtkValaSettings> compilegroups;
 		
 		
 		public Palete.Gtk gpalete {
@@ -81,7 +82,7 @@ namespace Project
 	  		this.dropList = null;
 		}
 		
-		public Gee.HashMap<string,GtkValaSettings> compilegroups;
+		
 		
 		public override void loadJson(Json.Object obj)  
 		{
@@ -253,7 +254,8 @@ namespace Project
 			this.makeMain();
 		 	this.makeApplication();
 		 	this.makeWindow();
-			 
+			
+			
 			// rescan... not needed as it get's selected after initialization.
 			
 			
