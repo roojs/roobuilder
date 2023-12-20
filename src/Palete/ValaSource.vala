@@ -489,12 +489,16 @@ namespace Palete {
 				print("Missing output file: %s\n",exe);
 				return;
 			}
+			var gdb_cfg= pr.path + "/build/.gdb-script";
+			if (!GLib.FileUtils.test(gdb_cfg, GLib.FileTest.EXISTS)) {
+				pr.writeFile("build/.gdb-script", "set debuginfod enabled off\nr");
+			}
 			
 			
 			
-			string[] args = "/usr/bin/gnome-terminal -- /usr/bin/gdb".split(" ");
+			string[] args = "/usr/bin/gnome-terminal -- /usr/bin/gdb -x ".split(" ");
 		//args+= "-ex=\"set debuginfod enabled off\""; << cant get this to work here.!?
-			args+= "-ex=r";			
+			args+= gdb_cfg;
 
 			
 			// runs gnome-terminal, with gdb .. running the application..
