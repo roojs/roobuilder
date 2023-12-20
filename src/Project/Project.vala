@@ -955,7 +955,7 @@ namespace Project {
 			}
 			return ret;
 		}
-		void makeProjectSubdir(string name)
+		public void makeProjectSubdir(string name)
 		{
 			var dir = File.new_for_path(this.path + "/" + name);
 			try {
