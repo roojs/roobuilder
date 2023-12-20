@@ -255,7 +255,12 @@ namespace Project
 		 	this.makeApplication();
 		 	this.makeWindow();
 			
-			
+
+			var cg =  new GtkValaSettings(this, this.name);
+			this.compilegroups.set(this.name, cg);
+			cg.sources.add("src/Main.vala");
+			cg.sources.add("src/Application.vala");
+			cg.sources.add("src/ui/ui.Window.bjs");
 			// rescan... not needed as it get's selected after initialization.
 			
 			
