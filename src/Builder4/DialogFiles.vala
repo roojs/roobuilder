@@ -802,14 +802,14 @@
                 //listeners
                 this.el.notify["selected"].connect( () => {
                 	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-                		if (_this.treeselmodel.el.selected == INVALID_LIST_POSITION) {
+                		if (_this.treeselmodel.el.selected == Gtk.INVALID_LIST_POSITION) {
                 			_this.btn_delfile.el.hide();
                 		}
                 	
                 		return;
                 	}
                 	_this.btn_delfile.el.show();
-                	_this.treeselmodel.el.selected = INVALID_LIST_POSITION;
+                	_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;
                 
                 
                 });
@@ -1214,13 +1214,13 @@
                 //listeners
                 this.el.notify["selected"].connect( () => {
                 	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-                		if (	_this.iconsel.el.selected == INVALID_LIST_POSITION) {
+                		if (_this.iconsel.el.selected == Gtk.INVALID_LIST_POSITION) {
                 			_this.btn_delfile.el.hide();
                 		}
                 		return;
                 	}
                 	_this.btn_delfile.el.show();
-                	_this.iconsel.el.selected = INVALID_LIST_POSITION;
+                	_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
                 
                 
                 });
