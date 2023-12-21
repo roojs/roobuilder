@@ -126,7 +126,7 @@ public class JsRender.NodeToVala : Object {
 			// use the file name..
 			item.xvala_xcls =  this.file.name;
 			// is id used?
-			item.xvala_id = this.file.name;
+			item.xvala_id = this.file.file_without_namespace;
 
 		}
 		// loop children..
