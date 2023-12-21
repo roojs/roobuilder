@@ -126,7 +126,7 @@ namespace Project {
  
     	}
     	 
-    	public static void removeList(Project p) {
+    	public static void remove(Project p) {
     		projects.remove(p);
     		saveProjectList();
     	
