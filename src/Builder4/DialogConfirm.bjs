@@ -7,7 +7,7 @@
    "$ message_type" : "Gtk.MessageType.QUESTION",
    "$ modal" : true,
    "$ use_markup" : true,
-   "$ xns" : "Adw",
+   "$ xns" : "Gtk",
    "flags" : "Gtk.DialogFlags.MODAL",
    "listeners" : {
     "close_request" : [
@@ -34,7 +34,7 @@
     "    this.el.text =  msg;",
     "    this.el.show();",
     "   ",
-    "  ",
+    "   ",
     "}",
     "  "
    ]

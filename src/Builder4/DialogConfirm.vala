@@ -2,7 +2,7 @@
 
     public class DialogConfirm : Object
     {
-        public Adw.MessageDialog el;
+        public Gtk.MessageDialog el;
         private DialogConfirm  _this;
 
         public static DialogConfirm singleton()
@@ -19,7 +19,7 @@
         public DialogConfirm()
         {
             _this = this;
-            this.el = new Adw.MessageDialog( null, null, null );
+            this.el = new Gtk.MessageDialog( null, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Test" );
 
             // my vars (dec)
 
@@ -27,6 +27,7 @@
             this.el.title = "Please Confirm ";
             this.el.name = "DialogConfirm";
             this.el.modal = true;
+            this.el.use_markup = true;
 
             //listeners
             this.el.close_request.connect( (event) => {
@@ -47,6 +48,6 @@
             this.el.text =  msg;
             this.el.show();
            
-          
+           
         }
     }
