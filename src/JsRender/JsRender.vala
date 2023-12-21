@@ -21,7 +21,7 @@ namespace JsRender {
 		
 		public  string relpath {
 			owned get { 
-				return  this.project.path.length < 1 ? "" : this.path.substring(this.project.path.length+1);
+				return  this.project.path   = this.path ? "" : this.path.substring(this.project.path.length+1);
 			} 
 			private set {}
 		}
