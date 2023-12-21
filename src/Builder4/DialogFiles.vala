@@ -2150,9 +2150,18 @@
 
                 //listeners
                 this.el.clicked.connect( ( ) => {
-                  
-                   
-                   
+                 /* 
+                   if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+                		if (_this.treeselmodel.el.selected == Gtk.INVALID_LIST_POSITION) {
+                			_this.btn_delfile.el.hide();
+                		}
+                	
+                		return;
+                	}
+                	_this.btn_delfile.el.show();
+                	_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;
+                
+                   */
                 
                 });
             }

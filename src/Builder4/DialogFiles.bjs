@@ -1048,9 +1048,18 @@
        "listeners" : {
         "clicked" : [
          "  ( ) => {",
-         "  ",
-         "   ",
-         "   ",
+         " /* ",
+         "   if (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+         "\t\tif (_this.treeselmodel.el.selected == Gtk.INVALID_LIST_POSITION) {",
+         "\t\t\t_this.btn_delfile.el.hide();",
+         "\t\t}",
+         "\t",
+         "\t\treturn;",
+         "\t}",
+         "\t_this.btn_delfile.el.show();",
+         "\t_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
+         "",
+         "   */",
          "",
          "}"
         ]
