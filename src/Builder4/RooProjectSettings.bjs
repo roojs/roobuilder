@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "$ xns" : "Gtk",
@@ -556,6 +557,12 @@
       }
      ],
      "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "titlebar",
+     "* title" : "Window Title",
+     "xtype" : "HeaderBar"
     }
    ],
    "uint border_width" : 0,
@@ -644,10 +651,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "RooProjectSettings",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/RooProjectSettings.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }
