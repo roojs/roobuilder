@@ -580,6 +580,7 @@
       },
       {
        "$ xns" : "Gtk",
+       "* pack" : "pack_end",
        "listeners" : {
         "clicked" : [
          "( ) =>  { ",

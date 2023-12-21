@@ -1430,7 +1430,7 @@ public class Xcls_RooProjectSettings : Object
             this.el.pack_start ( child_1.el  );
             var child_2 = new Xcls_Button44( _this );
             child_2.ref();
-            this.el.append( child_2.el );
+            this.el.pack_end ( child_2.el  );
         }
 
         // user defined functions
