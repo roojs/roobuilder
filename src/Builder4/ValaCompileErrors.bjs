@@ -306,13 +306,20 @@
     "        new_w = w-100;",
     "    }",
     "    this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));",
+    "",
+    "\tvar par = onbtn.get_parent();",
+    "    if (par == null) {",
+    "\t\tGLib.debug(\"parent of that is null - not showing\");",
+    "\t\treturn;",
+    "\t}",
+    "    ",
     "\tthis.el.set_parent(onbtn);",
     "   // this.el.set_relative_to(onbtn);",
     "\tGtk.Allocation rect;",
     "\tonbtn.get_allocation(out rect);",
     "    this.el.set_pointing_to(rect);",
     "",
-    "    this.el.popup();",
+    "    this.el.show();",
     "   ",
     "   \t//if (expand != null) {",
     "    //\t_this.compile_tree.el.expand_row(   store.get_path(expand) , true);",
@@ -324,6 +331,5 @@
    ]
   }
  ],
- "name" : "ValaCompileErrors",
- "namespace" : ""
+ "name" : "ValaCompileErrors"
 }
