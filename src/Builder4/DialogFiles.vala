@@ -1182,6 +1182,10 @@
                 // my vars (dec)
 
                 // set gobject values
+
+                //listeners
+                this.el.notify["selected"].connect( () => {
+                 });
             }
 
             // user defined functions
