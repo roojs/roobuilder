@@ -2199,7 +2199,7 @@
                 	}
                 	
                 	isel = _this.treeselmodel.selectedFile();
-                  	if (isel != null && isel.xtyle != "Dir") {
+                  	if (isel != null && isel.xtype != "Dir") {
                   		Project.deleteFile(isel);
                   		// deletefile will have to do this..
                   		//_this.treelistmodel.remove(isel);

@@ -1103,7 +1103,7 @@
          "\t}",
          "\t",
          "\tisel = _this.treeselmodel.selectedFile();",
-         "  \tif (isel != null && isel.xtyle != \"Dir\") {",
+         "  \tif (isel != null && isel.xtype != \"Dir\") {",
          "  \t\tProject.deleteFile(isel);",
          "  \t\t// deletefile will have to do this..",
          "  \t\t//_this.treelistmodel.remove(isel);",
