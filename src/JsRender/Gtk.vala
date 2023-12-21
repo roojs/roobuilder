@@ -118,9 +118,7 @@ namespace JsRender {
 				this.gen_extended = obj.get_boolean_member("gen_extended");
 			}
 			
-			if (obj.has_member("namespace")) { // should check type really..
-				this.file_namespace = obj.get_string_member("namespace");
-			}
+			 
 			
 			// load items[0] ??? into tree...
 			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
