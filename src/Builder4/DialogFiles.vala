@@ -2195,13 +2195,16 @@
                   		Project.deleteFile(isel);
                   		_this.gridmodel.remove(isel);
                   		return;
+                	
                 	}
+                	
                 	isel = _this.treeselmodel.selectedFile();
                   	if (isel != null && isel.xtyle != "Dir") {
                   		Project.deleteFile(isel);
-                  		_this.treelistmodel.remove(isel);
+                  		//_this.treelistmodel.remove(isel);
                   		return;
                 	}
+                	
                 	
                  /* 
                    if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
