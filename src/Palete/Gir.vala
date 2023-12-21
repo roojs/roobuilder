@@ -150,7 +150,7 @@ namespace Palete {
 				return null;
 			}
 			if (project.gir_cache == null) {
-				project.gir_cache = new Gee.HashMap<string,Gir>();
+				project.gir_cache = new Gee.HashMap<string,GirObject>();
 				 
 			}
 			var cache = project.gir_cache;
