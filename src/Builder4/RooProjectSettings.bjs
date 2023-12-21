@@ -576,6 +576,29 @@
        },
        "string label" : "Cancel",
        "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "listeners" : {
+        "clicked" : [
+         "( ) =>  { ",
+         "",
+         " ",
+         " _this.buttonPressed(\"save\");",
+         " ",
+         "\t// what about .js ?",
+         "   _this.done = true;",
+         "\t_this.el.hide();",
+         "",
+         "// hopefull this will work with bjs files..",
+         "\t",
+         " ",
+         "   ",
+         "}"
+        ]
+       },
+       "string label" : "Save",
+       "xtype" : "Button"
       }
      ],
      "xtype" : "HeaderBar"
