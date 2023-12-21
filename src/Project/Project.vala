@@ -412,15 +412,7 @@ namespace Project {
 		}
 		
 		
-		
-		 public static void  remove(Project project)
-		{
-			// FIXME - remove .roobuilder.jcfg ?
-			projects.remove(project);
-			
-
-		}
-		 
+	 
 
 		public void save()
 		{
