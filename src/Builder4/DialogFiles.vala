@@ -1907,6 +1907,7 @@
                 		);
                 	Project.Project.remove(project);
                   _this.projectmodel.remove(project);
+                	_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
                 	
                   /*
                    var cd = DialogConfirm.singleton();

@@ -941,6 +941,7 @@
          "\t\t);",
          "\tProject.Project.remove(project);",
          "  _this.projectmodel.remove(project);",
+         "\t_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
          "\t",
          "  /*",
          "   var cd = DialogConfirm.singleton();",
