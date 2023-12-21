@@ -12,7 +12,7 @@
    "listeners" : {
     "close_request" : [
      " (event) => {",
-     "    this.el.response(Gtk.ResponseType.CANCEL);",
+     "   // this.el.response(Gtk.ResponseType.CANCEL);",
      "    this.el.hide();",
      "    return true;",
      " ",

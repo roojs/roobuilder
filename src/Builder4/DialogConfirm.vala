@@ -30,7 +30,7 @@
 
             //listeners
             this.el.close_request.connect( (event) => {
-                this.el.response(Gtk.ResponseType.CANCEL);
+               // this.el.response(Gtk.ResponseType.CANCEL);
                 this.el.hide();
                 return true;
              
