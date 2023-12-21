@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "$ buttons" : "Gtk.ButtonsType.YES_NO",
@@ -39,10 +40,5 @@
    ]
   }
  ],
- "modOrder" : "",
- "name" : "DialogConfirm",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogConfirm.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "DialogConfirm"
 }
