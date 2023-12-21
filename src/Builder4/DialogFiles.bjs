@@ -344,6 +344,12 @@
                    "xtype" : "FilterListModel"
                   }
                  ],
+                 "listeners" : {
+                  "notify[\"selected\"]" : [
+                   "() => {",
+                   " }"
+                  ]
+                 },
                  "xtype" : "SingleSelection"
                 },
                 {
