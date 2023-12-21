@@ -20,7 +20,7 @@ src/ccode/*.c
 src/ccode/*.o
 src/codegen/*.c
 src/codegen/*.o
-
+build/
 
 
 Makecache
