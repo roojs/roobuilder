@@ -606,6 +606,36 @@ namespace JsRender {
 			}
 		}
 		
+		public void remove()
+		{
+			this.removeFile(this.path);
+			if (this.path.has_suffix(".bjs") && this.project.xtype == "Roo") {
+				this.removeFile(this.path.substring(0, this.path.length-4) + ".js");
+				return;
+			}
+			if (this.path.has_suffix(".bjs") && this.project.xtype == "Gtk") {
+				this.removeFile(this.path.substring(0, this.path.length-4) + ".vala");
+				this.removeFile(this.path.substring(0, this.path.length-4) + ".c");
+				this.removeFile(this.path.substring(0, this.path.length-4) + ".o");				
+			}
+			if (this.path.has_suffix(".vala") && this.project.xtype == "Gtk") {
+				this.removeFile(this.path.substring(0, this.path.length-5) + ".c");
+				this.removeFile(this.path.substring(0, this.path.length-5) + ".o");				
+			}	
+		
+		
+		}
+		
+		private void removeFile(string path)
+		{
+
+			if (GLib.FileUtils.test(path, GLib.FileTest.EXISTS)) {
+			  	GLib.FileUtils.unlink(path);
+		  	}
+
+		}
+		
+		
 		public abstract void save();
 		public abstract void saveHTML(string html);
 		public abstract string toSource() ;
@@ -621,3 +651,4 @@ namespace JsRender {
 
 }
  
+
