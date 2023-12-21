@@ -101,7 +101,7 @@ public class EditProject : Object
             this.el.show_title_buttons = false;
             var child_1 = new Xcls_Button3( _this );
             child_1.ref();
-            this.el.append( child_1.el );
+            this.el.pack_start ( child_1.el  );
             var child_2 = new Xcls_ok_btn( _this );
             this.el.pack_end ( child_2.el  );
         }
