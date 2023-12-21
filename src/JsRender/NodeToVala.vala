@@ -54,7 +54,11 @@ public class JsRender.NodeToVala : Object {
 		
 		this.node = node;
 		this.depth = depth;
-		this.inpad = string.nfill(depth > 0 ? 4 : 0, ' ');
+		if (file.name.contains(".")) { // namespaced..
+			this.inpad = string.nfill(depth > 0 ? 8 : 4, ' ');
+		} else {
+			this.inpad = string.nfill(depth > 0 ? 8 : 4, ' ');
+		}
 		this.pad = this.inpad + "    ";
 		this.ipad = this.inpad + "        ";
 		this.cls = node.xvala_cls;
