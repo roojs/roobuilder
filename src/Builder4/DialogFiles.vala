@@ -1834,7 +1834,7 @@
                 this.el.clicked.connect( ( ) => {
                   
                   	var project  = (Project.Project) _this.projectsort.el.get_item(
-                  	 			_this.projectsel.el.selected
+                  	 			_this.projectselection.el.selected
                 		);
                 	Project.remove(project);
                 	_this.load();

@@ -861,7 +861,7 @@
          "  ( ) => {",
          "  ",
          "  \tvar project  = (Project.Project) _this.projectsort.el.get_item(",
-         "  \t \t\t\t_this.projectsel.el.selected",
+         "  \t \t\t\t_this.projectselection.el.selected",
          "\t\t);",
          "\tProject.remove(project);",
          "\t_this.load();",
