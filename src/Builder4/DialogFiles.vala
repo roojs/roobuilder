@@ -84,16 +84,14 @@
         	var fm = _this.selectedProject.loadFilesIntoStore();
         	_this.gridsort.el.set_model(fm);
           	 _this.gridmodel.el = fm;
-        
+        	  _this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
+          	  _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;		 
+        	   
           	 
           	 GLib.Timeout.add(500, () => {
         
         	     _this.searchbox.el.grab_focus();
-        		 _this.iconscroll.el.vadjustment.value = 0;
-          	  	  _this.treescroll.el.vadjustment.value = 0;
-          	  	  _this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
-          	  	  _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;		 
-        	     return false;
+        		   return false;
              });
             
             var ds = this.selectedProject.loadDirsIntoStore();
