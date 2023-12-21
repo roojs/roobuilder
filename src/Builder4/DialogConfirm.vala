@@ -47,6 +47,6 @@
             this.el.text =  msg;
             this.el.show();
            
-         
+          
         }
     }
