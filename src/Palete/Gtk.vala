@@ -96,7 +96,7 @@ namespace Palete {
 		{
     		var ns = what.split(".")[0];
     		var gir =  Gir.factory(this.project,ns);
-			return   gir.doc(what);
+			return  ((Gir) gir).doc(what);
 			
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
 		}
