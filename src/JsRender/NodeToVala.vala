@@ -221,7 +221,7 @@ public class JsRender.NodeToVala : Object {
 	 
 	public void namespaceHeader()
 	{
-		if (this.file.file_namespace == "") {
+		if (this.depth > 0 || this.file.file_namespace == "") {
 			return;
 		}
 		this.addLine(this.inpad + "namespace " + this.file.file_namespace);
@@ -230,7 +230,7 @@ public class JsRender.NodeToVala : Object {
 	}
 	public void namespaceFooter()
 	{
-		if (this.file.file_namespace == "") {
+		if (this.depth > 0 || this.file.file_namespace == "") {
 			return;
 		}
 		this.addLine("}");
