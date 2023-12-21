@@ -84,12 +84,12 @@
         	var fm = _this.selectedProject.loadFilesIntoStore();
         	_this.gridsort.el.set_model(fm);
           	 _this.gridmodel.el = fm;
-        	  _this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
-          	  _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;		 
         	   
           	 
           	 GLib.Timeout.add(500, () => {
-        
+         		_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
+          	 	 _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;		 
+        	 
         	     _this.searchbox.el.grab_focus();
         		   return false;
              });
