@@ -306,6 +306,7 @@
                 {
                  "$ xns" : "Gtk",
                  "* prop" : "model",
+                 "bool can_unselect" : true,
                  "id" : "iconsel",
                  "items" : [
                   {
