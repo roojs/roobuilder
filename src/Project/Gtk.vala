@@ -65,7 +65,7 @@ namespace Project
 		   
 	  		this.palete = new Palete.Gtk(this);
 	  		
-	  		this.gir_cache = new Gee.HashMap<string,Palete.Gir>();
+	  		this.gir_cache = new Gee.HashMap<string,Palete.GirObject>();
 			this.xtype = "Gtk";
 	  		//var gid = "project-gtk-%d".printf(gtk_id++);
 	  		//this.id = gid;
