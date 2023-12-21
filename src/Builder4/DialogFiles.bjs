@@ -954,6 +954,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
+       "id" : "btn_addfile",
        "items" : [
         {
          "$ xns" : "Gtk",
