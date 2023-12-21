@@ -565,6 +565,7 @@
      "items" : [
       {
        "$ xns" : "Gtk",
+       "* pack" : "pack_start",
        "listeners" : {
         "clicked" : [
          "() => { ",

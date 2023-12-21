@@ -1427,7 +1427,7 @@ public class Xcls_RooProjectSettings : Object
             this.el.show_title_buttons = false;
             var child_1 = new Xcls_Button43( _this );
             child_1.ref();
-            this.el.append( child_1.el );
+            this.el.pack_start ( child_1.el  );
             var child_2 = new Xcls_Button44( _this );
             child_2.ref();
             this.el.append( child_2.el );
