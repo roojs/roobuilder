@@ -1185,7 +1185,14 @@
 
                 //listeners
                 this.el.notify["selected"].connect( () => {
-                 });
+                	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+                		return;
+                	}
+                	
+                	this.iconsel.el.selected = INVALID_LIST_POSITION;
+                
+                
+                });
             }
 
             // user defined functions
