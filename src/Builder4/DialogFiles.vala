@@ -833,9 +833,9 @@
             	if (this.el.selected = Gtk.INVALID_LIST_POSITION) {
             		return null;
             	}
-            	 
-            
-            	return  (JsRender.JsRender) tr.item;
+            	return  (JsRender.JsRender)_this.iconsel.el.selected_item;
+            	
+             
             }
         }
         public class Xcls_FilterListModel22 : Object
