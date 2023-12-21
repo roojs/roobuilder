@@ -274,6 +274,7 @@
           },
           {
            "$ xns" : "Gtk",
+           "bool vexpand" : true,
            "items" : [
             {
              "$ xns" : "GtkSource",
@@ -491,69 +492,6 @@
         }
        ],
        "xtype" : "Notebook"
-      },
-      {
-       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "$ xns" : "Gtk",
-       "int margin_bottom" : 4,
-       "int margin_end" : 4,
-       "int margin_start" : 4,
-       "int margin_top" : 4,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "listeners" : {
-          "clicked" : [
-           "() => { ",
-           "",
-           "  _this.done = true;",
-           "    _this.el.hide(); ",
-           "}"
-          ]
-         },
-         "string label" : "Cancel",
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "listeners" : {
-          "clicked" : [
-           "( ) =>  { ",
-           "",
-           "   _this.buttonPressed(\"apply\");",
-           " ",
-           "   ",
-           "}"
-          ]
-         },
-         "string label" : "Apply / Keep editing",
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "listeners" : {
-          "clicked" : [
-           "( ) =>  { ",
-           "",
-           " ",
-           " _this.buttonPressed(\"save\");",
-           " ",
-           "\t// what about .js ?",
-           "   _this.done = true;",
-           "\t_this.el.hide();",
-           "",
-           "// hopefull this will work with bjs files..",
-           "\t",
-           " ",
-           "   ",
-           "}"
-          ]
-         },
-         "string label" : "Save",
-         "xtype" : "Button"
-        }
-       ],
-       "xtype" : "Box"
       }
      ],
      "xtype" : "Box"

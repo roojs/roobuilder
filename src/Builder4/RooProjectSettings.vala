@@ -55,7 +55,7 @@ public class Xcls_RooProjectSettings : Object
         var child_1 = new Xcls_Box2( _this );
         child_1.ref();
         this.el.set_child ( child_1.el  );
-        var child_2 = new Xcls_HeaderBar42( _this );
+        var child_2 = new Xcls_HeaderBar38( _this );
         this.el.titlebar = child_2.el;
     }
 
@@ -158,9 +158,6 @@ public class Xcls_RooProjectSettings : Object
             var child_1 = new Xcls_Notebook3( _this );
             child_1.ref();
             this.el.append( child_1.el );
-            var child_2 = new Xcls_Box38( _this );
-            child_2.ref();
-            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -764,6 +761,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.vexpand = true;
             var child_1 = new Xcls_view( _this );
             this.el.set_child ( child_1.el  );
         }
@@ -1271,36 +1269,31 @@ public class Xcls_RooProjectSettings : Object
 
 
 
-    public class Xcls_Box38 : Object
+
+    public class Xcls_HeaderBar38 : Object
     {
-        public Gtk.Box el;
+        public Gtk.HeaderBar el;
         private Xcls_RooProjectSettings  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_Box38(Xcls_RooProjectSettings _owner )
+        public Xcls_HeaderBar38(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
-            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+            this.el = new Gtk.HeaderBar();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.margin_end = 4;
-            this.el.margin_start = 4;
-            this.el.margin_bottom = 4;
-            this.el.margin_top = 4;
+            this.el.show_title_buttons = false;
             var child_1 = new Xcls_Button39( _this );
             child_1.ref();
-            this.el.append( child_1.el );
+            this.el.pack_start ( child_1.el  );
             var child_2 = new Xcls_Button40( _this );
             child_2.ref();
-            this.el.append( child_2.el );
-            var child_3 = new Xcls_Button41( _this );
-            child_3.ref();
-            this.el.append( child_3.el );
+            this.el.pack_end ( child_2.el  );
         }
 
         // user defined functions
@@ -1345,136 +1338,6 @@ public class Xcls_RooProjectSettings : Object
 
         // ctor
         public Xcls_Button40(Xcls_RooProjectSettings _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Apply / Keep editing";
-
-            //listeners
-            this.el.clicked.connect( ( ) =>  { 
-            
-               _this.buttonPressed("apply");
-             
-               
-            });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_Button41 : Object
-    {
-        public Gtk.Button el;
-        private Xcls_RooProjectSettings  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button41(Xcls_RooProjectSettings _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Save";
-
-            //listeners
-            this.el.clicked.connect( ( ) =>  { 
-            
-             
-             _this.buttonPressed("save");
-             
-            	// what about .js ?
-               _this.done = true;
-            	_this.el.hide();
-            
-            // hopefull this will work with bjs files..
-            	
-             
-               
-            });
-        }
-
-        // user defined functions
-    }
-
-
-
-    public class Xcls_HeaderBar42 : Object
-    {
-        public Gtk.HeaderBar el;
-        private Xcls_RooProjectSettings  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_HeaderBar42(Xcls_RooProjectSettings _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.HeaderBar();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.show_title_buttons = false;
-            var child_1 = new Xcls_Button43( _this );
-            child_1.ref();
-            this.el.pack_start ( child_1.el  );
-            var child_2 = new Xcls_Button44( _this );
-            child_2.ref();
-            this.el.pack_end ( child_2.el  );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Button43 : Object
-    {
-        public Gtk.Button el;
-        private Xcls_RooProjectSettings  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button43(Xcls_RooProjectSettings _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Button();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.label = "Cancel";
-
-            //listeners
-            this.el.clicked.connect( () => { 
-            
-              _this.done = true;
-                _this.el.hide(); 
-            });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_Button44 : Object
-    {
-        public Gtk.Button el;
-        private Xcls_RooProjectSettings  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Button44(Xcls_RooProjectSettings _owner )
         {
             _this = _owner;
             this.el = new Gtk.Button();
