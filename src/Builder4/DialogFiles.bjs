@@ -679,7 +679,16 @@
                  " "
                 ]
                },
-               "xtype" : "SingleSelection"
+               "xtype" : "SingleSelection",
+               "| void selectedFile" : [
+                "() {",
+                "",
+                "\t",
+                "\tvar tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;",
+                "",
+                "\treturn  (JsRender.JsRender) tr.item;",
+                "}"
+               ]
               },
               {
                "$ xns" : "Gtk",

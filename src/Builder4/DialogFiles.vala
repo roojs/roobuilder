@@ -1249,6 +1249,13 @@
             }
 
             // user defined functions
+            public void selectedFile () {
+            
+            	
+            	var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+            
+            	return  (JsRender.JsRender) tr.item;
+            }
         }
         public class Xcls_FilterListModel34 : Object
         {
