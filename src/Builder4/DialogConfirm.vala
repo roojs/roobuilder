@@ -44,7 +44,7 @@
              //if (!this.el) { this.init(); } 
              //this.success = success;
              this.el.title = title;
-            this.el.text =  msg;
+            this.el.body =  msg;
             this.el.show();
            
            
