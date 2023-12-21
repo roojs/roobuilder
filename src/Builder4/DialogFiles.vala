@@ -2177,6 +2177,21 @@
 
                 //listeners
                 this.el.clicked.connect( ( ) => {
+                  
+                  
+                  	var isel = _this.iconsel.selectedFile();
+                  	if (isel != null) {
+                  		Project.deleteFile(isel);
+                  		_this.gridmodel.remove(isel);
+                  		return;
+                	}
+                	isel = _this.treeselmodel.selectedFile();
+                  	if (isel != null && isel.xtyle != "Dir") {
+                  		Project.deleteFile(isel);
+                  		_this.treelistmodel.remove(isel);
+                  		return;
+                	}
+                	
                  /* 
                    if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
                 		if (_this.treeselmodel.el.selected == Gtk.INVALID_LIST_POSITION) {
