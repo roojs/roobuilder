@@ -999,7 +999,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
-       "id" : "btn_delproj",
+       "id" : "btn_delfile",
        "items" : [
         {
          "$ xns" : "Gtk",

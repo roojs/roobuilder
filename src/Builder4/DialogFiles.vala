@@ -33,7 +33,7 @@
         public Xcls_btn_projprop btn_projprop;
         public Xcls_btn_delproj btn_delproj;
         public Xcls_btn_addfile btn_addfile;
-        public Xcls_btn_delproj btn_delproj;
+        public Xcls_btn_delfile btn_delfile;
 
             // my vars (def)
         public Xcls_MainWindow win;
@@ -1573,7 +1573,7 @@
                 this.el.pack_start ( child_4.el  );
                 var child_5 = new Xcls_btn_addfile( _this );
                 this.el.pack_start ( child_5.el  );
-                var child_6 = new Xcls_btn_delproj( _this );
+                var child_6 = new Xcls_btn_delfile( _this );
                 this.el.pack_start ( child_6.el  );
             }
 
@@ -2105,7 +2105,7 @@
 
 
 
-        public class Xcls_btn_delproj : Object
+        public class Xcls_btn_delfile : Object
         {
             public Gtk.Button el;
             private DialogFiles  _this;
@@ -2114,10 +2114,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_btn_delproj(DialogFiles _owner )
+            public Xcls_btn_delfile(DialogFiles _owner )
             {
                 _this = _owner;
-                _this.btn_delproj = this;
+                _this.btn_delfile = this;
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
