@@ -424,7 +424,16 @@
             }
 
             // user defined functions
-            public void remove () {
+            public void remove (Project.Project p) {
+            
+            	for (var i =0;i < this.el.n_items; i++ ) {
+            		var pr = (Project.Project) this.elg.get_
+            		if (p.path == this.el.get_item(i).path) {
+            			this.el.remove(i);
+            			return;
+            		}
+            	}
+            
             
             }
         }

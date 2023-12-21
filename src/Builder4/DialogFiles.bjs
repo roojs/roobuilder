@@ -93,7 +93,16 @@
                  "id" : "projectmodel",
                  "xtype" : "ListStore",
                  "| void remove" : [
-                  "() {",
+                  "(Project.Project p) {",
+                  "",
+                  "\tfor (var i =0;i < this.el.n_items; i++ ) {",
+                  "\t\tvar pr = (Project.Project) this.elg.get_",
+                  "\t\tif (p.path == this.el.get_item(i).path) {",
+                  "\t\t\tthis.el.remove(i);",
+                  "\t\t\treturn;",
+                  "\t\t}",
+                  "\t}",
+                  "",
                   "",
                   "}"
                  ]
