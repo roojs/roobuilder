@@ -907,8 +907,16 @@
             }
 
             // user defined functions
-            public void remove () {
+            public void remove (JsRender.JsRender p) {
             
+            	for (var i =0;i < this.el.n_items; i++ ) {
+            		var pr = (JsRender.JsRender) this.el.get_item(i);
+            		if (p.path == pr.path) {
+            			this.el.remove(i);
+            			return;
+            		}
+            	}
+             
             }
         }
 
