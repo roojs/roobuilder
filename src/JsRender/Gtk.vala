@@ -108,7 +108,7 @@ namespace JsRender {
 			var obj = node.get_object ();
 		
 			this.name = obj.get_string_member("name");
-			this.parent = obj.get_string_member("parent");
+ 
 			this.title = obj.get_string_member("title");
 		
 			if (obj.has_member("build_module")) { // should check type really..
