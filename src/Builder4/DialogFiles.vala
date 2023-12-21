@@ -1233,10 +1233,15 @@
                 		return;
                 	}
                 	
-                	_this.this.el.selected
-                	
-                	
-                	_this.btn_delfile.el.show();
+                	var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+                	GLib.debug("SELECTED = %s", tr.item.get_type().name());
+                	var f = (JsRender.JsRender) tr.item;
+                	if (f.xtype == "Dir") {
+                		_this.btn_delfile.el.hide();	
+                	} else {
+                		_this.btn_delfile.el.show();
+                	}
+                
                 	_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;
                 
                 
