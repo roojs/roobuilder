@@ -72,7 +72,7 @@ namespace Project {
 		public Palete.Palete palete;
 		 
 		private bool is_scanned = false; 
-	// public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir
+		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
 		 
 		
 		protected Project (string path) {

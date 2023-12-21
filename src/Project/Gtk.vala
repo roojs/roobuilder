@@ -30,7 +30,7 @@ namespace Project
 		* Gir cache - it's local as we might want clear it if we modify the packages...
 		*
 		*/
-		public Gee.HashMap<string,Palete.GirObject> gir_cache = null;
+		//public Gee.HashMap<string,Palete.GirObject> gir_cache = null; ?? 
 		
 		public bool gir_cache_loaded = false;  /// set this to false to force a relaod of vapi's?
 		
