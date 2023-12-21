@@ -846,6 +846,11 @@
            "$ xns" : "Gtk",
            "string icon_name" : "",
            "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string label" : "Delete Project",
+           "xtype" : "Label"
           }
          ],
          "xtype" : "Box"
