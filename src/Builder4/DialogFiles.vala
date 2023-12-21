@@ -1249,7 +1249,7 @@
             }
 
             // user defined functions
-            public JsRender.JsRender selectedFile () {
+            public JsRender.JsRender? selectedFile () {
             
             	if (this.el.selected = Gtk.INVALID_LIST_POSITION) {
             		return null;

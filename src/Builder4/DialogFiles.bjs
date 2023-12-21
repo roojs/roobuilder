@@ -680,7 +680,7 @@
                 ]
                },
                "xtype" : "SingleSelection",
-               "| JsRender.JsRender selectedFile" : [
+               "| JsRender.JsRender? selectedFile" : [
                 "() {",
                 "",
                 "\tif (this.el.selected = Gtk.INVALID_LIST_POSITION) {",
