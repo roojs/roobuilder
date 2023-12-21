@@ -881,8 +881,17 @@ namespace Project {
 			
 		}
 			
-				
-		
+		// but do not add it to our list.!!!
+		public void makeProjectSubdir(string name)
+		{
+			var dir = File.new_for_path(this.path + "/" + name);
+			try {
+				if (
+				dir.make_directory();	
+			} catch (Error e) {
+				GLib.error("Failed to make directory %s", this.path + "/" + name);
+			} 
+		}
 		
 		public void createDir(string subdir)   // add a single dir, and trigger changed.
 		{
@@ -987,15 +996,7 @@ namespace Project {
 			}
 			return ret;
 		}
-		public void makeProjectSubdir(string name)
-		{
-			var dir = File.new_for_path(this.path + "/" + name);
-			try {
-				dir.make_directory();	
-			} catch (Error e) {
-				GLib.error("Failed to make directory %s", this.path + "/" + name);
-			} 
-		}
+		
 		/*
 		public void add(string path, string type)
 		{
