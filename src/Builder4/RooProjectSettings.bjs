@@ -561,7 +561,23 @@
     {
      "$ xns" : "Gtk",
      "* prop" : "titlebar",
-     "* title" : "Window Title",
+     "bool show_title_buttons" : false,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "listeners" : {
+        "clicked" : [
+         "() => { ",
+         "",
+         "  _this.done = true;",
+         "    _this.el.hide(); ",
+         "}"
+        ]
+       },
+       "string label" : "Cancel",
+       "xtype" : "Button"
+      }
+     ],
      "xtype" : "HeaderBar"
     }
    ],

@@ -1424,9 +1424,43 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.show_title_buttons = false;
+            var child_1 = new Xcls_Button43( _this );
+            child_1.ref();
+            this.el.append( child_1.el );
         }
 
         // user defined functions
     }
+    public class Xcls_Button43 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_RooProjectSettings  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button43(Xcls_RooProjectSettings _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "Cancel";
+
+            //listeners
+            this.el.clicked.connect( () => { 
+            
+              _this.done = true;
+                _this.el.hide(); 
+            });
+        }
+
+        // user defined functions
+    }
+
 
 }
