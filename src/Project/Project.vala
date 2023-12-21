@@ -873,7 +873,7 @@ namespace Project {
 			if (this.files.has_key(file.path)) {
 				this.files.unset(file.path);
 			}
-			sp.childfiles.remove(pfile); // tree
+
 			
 			file.remove();
 			// remove it from 
