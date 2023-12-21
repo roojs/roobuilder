@@ -2192,7 +2192,7 @@
                   
                   	var isel = _this.iconsel.selectedFile();
                   	if (isel != null) {
-                  		Project.deleteFile(isel);
+                  		isel.project.deleteFile(isel);
                   		_this.gridmodel.remove(isel);
                   		return;
                 	
@@ -2200,7 +2200,7 @@
                 	
                 	isel = _this.treeselmodel.selectedFile();
                   	if (isel != null && isel.xtype != "Dir") {
-                  		Project.deleteFile(isel);
+                  		isel.project.deleteFile(isel);
                   		// deletefile will have to do this..
                   		//_this.treelistmodel.remove(isel);
                   		return;
