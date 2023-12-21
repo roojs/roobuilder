@@ -40,6 +40,7 @@
        "$ Gtk.Align halign" : "Gtk.Align.START",
        "$ css_classes" : "{ \"suggested-action\" }",
        "$ xns" : "Gtk",
+       "* pack" : "pack_end",
        "bool hexpand" : false,
        "id" : "ok_btn",
        "label" : "OK",

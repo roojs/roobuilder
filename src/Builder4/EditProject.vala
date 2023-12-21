@@ -103,7 +103,7 @@ public class EditProject : Object
             child_1.ref();
             this.el.append( child_1.el );
             var child_2 = new Xcls_ok_btn( _this );
-            this.el.append( child_2.el );
+            this.el.pack_end ( child_2.el  );
         }
 
         // user defined functions
