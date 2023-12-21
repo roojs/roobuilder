@@ -857,7 +857,7 @@ namespace Project {
 		
 		
 		
-		public void removeFile(JsRender.JsRender file) 
+		public void deleteFile(JsRender.JsRender file) 
 		{
 			if (file.xtype =="Dir") {
 				return;
