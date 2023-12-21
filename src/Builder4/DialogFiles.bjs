@@ -127,7 +127,7 @@
                "\t\t_this.btn_delprop.el.show();",
                "\t\t_this.btn_projprop.el.show();",
                "\t\t_this.btn_addfile.el.show();",
-               "\t\t_this.btn_delfile.el.show();",
+               "\t\t_this.btn_delfile.el.show(); // ??",
                "\t}",
                " ",
                " ",
