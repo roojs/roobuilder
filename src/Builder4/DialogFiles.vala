@@ -1894,7 +1894,7 @@
                   	 			_this.projectselection.el.selected
                 		);
                 	Project.Project.remove(project);
-                	_this.load();
+                 
                 	
                   /*
                    var cd = DialogConfirm.singleton();
