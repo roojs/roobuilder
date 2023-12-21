@@ -889,7 +889,7 @@ namespace Project {
 				return;
 			}
 			try {
-				if (
+				 
 				dir.make_directory();	
 			} catch (Error e) {
 				GLib.error("Failed to make directory %s", this.path + "/" + name);
