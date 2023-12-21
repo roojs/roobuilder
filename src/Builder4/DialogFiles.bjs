@@ -680,11 +680,11 @@
                 ]
                },
                "xtype" : "SingleSelection",
-               "| void selectedFile" : [
+               "| JsRender.JsRender selectedFile" : [
                 "() {",
                 "",
-                "\t",
-                "\tvar tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;",
+                "\tif (this.el.selected = Gtk.",
+                "\tvar tr = (Gtk.TreeListRow) this.el.selected_item;",
                 "",
                 "\treturn  (JsRender.JsRender) tr.item;",
                 "}"

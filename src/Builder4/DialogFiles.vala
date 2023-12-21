@@ -1249,10 +1249,10 @@
             }
 
             // user defined functions
-            public void selectedFile () {
+            public JsRender.JsRender selectedFile () {
             
-            	
-            	var tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;
+            	if (this.el.selected = Gtk.
+            	var tr = (Gtk.TreeListRow) this.el.selected_item;
             
             	return  (JsRender.JsRender) tr.item;
             }
