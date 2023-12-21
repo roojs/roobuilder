@@ -337,7 +337,12 @@
                        "* prop" : "model",
                        "GLib.Type item_type" : "typeof(JsRender.JsRender)",
                        "id" : "gridmodel",
-                       "xtype" : "ListStore"
+                       "xtype" : "ListStore",
+                       "| void remove" : [
+                        "() {",
+                        "",
+                        "}"
+                       ]
                       },
                       {
                        "$ xns" : "Gtk",

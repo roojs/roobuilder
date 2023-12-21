@@ -907,6 +907,9 @@
             }
 
             // user defined functions
+            public void remove () {
+            
+            }
         }
 
         public class Xcls_StringSorter25 : Object
