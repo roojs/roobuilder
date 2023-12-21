@@ -526,6 +526,7 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "model",
+               "bool can_unselect" : true,
                "id" : "treeselmodel",
                "items" : [
                 {
@@ -1066,6 +1067,8 @@
     "     _this.projectscroll.el.vadjustment.value = 0;",
     "     _this.is_loading = false;",
     "     ",
+    "\t_this.btn_delfile.el.hide();",
+    "\t",
     "     GLib.Timeout.add(500, () => {",
     " \t\t_this.projectscroll.el.vadjustment.value = 0;\t\t ",
     "\t     return false;",

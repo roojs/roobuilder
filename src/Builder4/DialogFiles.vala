@@ -148,6 +148,8 @@
              _this.projectscroll.el.vadjustment.value = 0;
              _this.is_loading = false;
              
+        	_this.btn_delfile.el.hide();
+        	
              GLib.Timeout.add(500, () => {
          		_this.projectscroll.el.vadjustment.value = 0;		 
         	     return false;
@@ -1210,6 +1212,7 @@
                 // my vars (dec)
 
                 // set gobject values
+                this.el.can_unselect = true;
 
                 //listeners
                 this.el.notify["selected"].connect( () => {
