@@ -828,6 +828,9 @@
             }
 
             // user defined functions
+            public JsRender.JsRender selectedFile () {
+            
+            }
         }
         public class Xcls_FilterListModel22 : Object
         {

@@ -397,7 +397,12 @@
                    " "
                   ]
                  },
-                 "xtype" : "SingleSelection"
+                 "xtype" : "SingleSelection",
+                 "| JsRender.JsRender selectedFile" : [
+                  "() {",
+                  "",
+                  "}"
+                 ]
                 },
                 {
                  "$ xns" : "Gtk",
