@@ -621,18 +621,6 @@
                       "\treturn el;",
                       "",
                       "}"
-                     ],
-                     "| void remove" : [
-                      "(JsRender.JsRender p) {",
-                      "",
-                      "\tfor (var i =0;i < this.el.n_items; i++ ) {",
-                      "\t\tvar pr = (JsRender.JsRender) this.el.get_item(i);",
-                      "\t\tif (p.path == pr.path) {",
-                      "\t\t\tthis.el.remove(i);",
-                      "\t\t\treturn;",
-                      "\t\t}",
-                      "\t}",
-                      "}"
                      ]
                     }
                    ],
