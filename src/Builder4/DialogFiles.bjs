@@ -841,6 +841,13 @@
          "* prop" : "child",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "",
+           "xtype" : "Image"
+          }
+         ],
          "xtype" : "Box"
         }
        ],

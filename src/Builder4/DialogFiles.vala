@@ -1529,7 +1529,7 @@
                 var child_4 = new Xcls_Button52( _this );
                 child_4.ref();
                 this.el.pack_start ( child_4.el  );
-                var child_5 = new Xcls_Button54( _this );
+                var child_5 = new Xcls_Button55( _this );
                 child_5.ref();
                 this.el.pack_start ( child_5.el  );
             }
@@ -1883,13 +1883,39 @@
                 // my vars (dec)
 
                 // set gobject values
+                var child_1 = new Xcls_Image54( _this );
+                child_1.ref();
+                this.el.append( child_1.el );
+            }
+
+            // user defined functions
+        }
+        public class Xcls_Image54 : Object
+        {
+            public Gtk.Image el;
+            private DialogFiles  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_Image54(DialogFiles _owner )
+            {
+                _this = _owner;
+                this.el = new Gtk.Image();
+
+                // my vars (dec)
+
+                // set gobject values
+                this.el.icon_name = "";
             }
 
             // user defined functions
         }
 
 
-        public class Xcls_Button54 : Object
+
+        public class Xcls_Button55 : Object
         {
             public Gtk.Button el;
             private DialogFiles  _this;
@@ -1898,7 +1924,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Button54(DialogFiles _owner )
+            public Xcls_Button55(DialogFiles _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.Button();
@@ -1906,7 +1932,7 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_Box55( _this );
+                var child_1 = new Xcls_Box56( _this );
                 this.el.child = child_1.el;
 
                 //listeners
@@ -1927,7 +1953,7 @@
 
             // user defined functions
         }
-        public class Xcls_Box55 : Object
+        public class Xcls_Box56 : Object
         {
             public Gtk.Box el;
             private DialogFiles  _this;
@@ -1936,7 +1962,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Box55(DialogFiles _owner )
+            public Xcls_Box56(DialogFiles _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -1944,17 +1970,17 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_Image56( _this );
+                var child_1 = new Xcls_Image57( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_Label57( _this );
+                var child_2 = new Xcls_Label58( _this );
                 child_2.ref();
                 this.el.append( child_2.el );
             }
 
             // user defined functions
         }
-        public class Xcls_Image56 : Object
+        public class Xcls_Image57 : Object
         {
             public Gtk.Image el;
             private DialogFiles  _this;
@@ -1963,7 +1989,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Image56(DialogFiles _owner )
+            public Xcls_Image57(DialogFiles _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.Image();
@@ -1978,7 +2004,7 @@
             // user defined functions
         }
 
-        public class Xcls_Label57 : Object
+        public class Xcls_Label58 : Object
         {
             public Gtk.Label el;
             private DialogFiles  _this;
@@ -1987,7 +2013,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Label57(DialogFiles _owner )
+            public Xcls_Label58(DialogFiles _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.Label( "New File" );
