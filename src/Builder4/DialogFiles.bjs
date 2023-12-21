@@ -91,7 +91,12 @@
                  "* prop" : "model",
                  "GLib.Type item_type" : "typeof(Project.Project)",
                  "id" : "projectmodel",
-                 "xtype" : "ListStore"
+                 "xtype" : "ListStore",
+                 "| void remove" : [
+                  "() {",
+                  "",
+                  "}"
+                 ]
                 },
                 {
                  "$ xns" : "Gtk",
