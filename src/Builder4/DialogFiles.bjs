@@ -864,7 +864,7 @@
          "  \t \t\t\t_this.projectsel.el.selected",
          "\t\t);",
          "\tProject.remove(project);",
-         "\t",
+         "\t_this.load();",
          "\t",
          "  /*",
          "   var cd = DialogConfirm.singleton();",

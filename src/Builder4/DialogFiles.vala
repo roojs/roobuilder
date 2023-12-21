@@ -1837,7 +1837,7 @@
                   	 			_this.projectsel.el.selected
                 		);
                 	Project.remove(project);
-                	
+                	_this.load();
                 	
                   /*
                    var cd = DialogConfirm.singleton();
