@@ -90,7 +90,7 @@ public class Xcls_PopoverFileDetails : Object
          //} 
          
          
-        _this.path.el.set_text(c.relpath);
+    
         _this.name.el.set_text(c.name);
         _this.title.el.set_text(c.title);
         _this.parent.el.set_text(c.parent);    
@@ -111,7 +111,9 @@ public class Xcls_PopoverFileDetails : Object
             _this.dir_dropdown_lbl.el.show();
     	    _this.dir_dropdown.el.show();
     	    
-        }  
+        }   else {
+            _this.path.el.set_text(c.relpath);
+        }
         
         
         if (this.project.xtype == "Gtk") {
