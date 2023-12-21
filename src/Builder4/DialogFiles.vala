@@ -830,7 +830,7 @@
             // user defined functions
             public JsRender.JsRender selectedFile () {
             
-            	if (this.el.selected = Gtk.INVALID_LIST_POSITION) {
+            	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
             		return null;
             	}
             	return  (JsRender.JsRender)_this.iconsel.el.selected_item;
@@ -1271,7 +1271,7 @@
             // user defined functions
             public JsRender.JsRender? selectedFile () {
             
-            	if (this.el.selected = Gtk.INVALID_LIST_POSITION) {
+            	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
             		return null;
             	}
             	var tr = (Gtk.TreeListRow) this.el.selected_item;

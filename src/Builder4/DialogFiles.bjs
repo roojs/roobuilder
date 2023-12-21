@@ -414,7 +414,7 @@
                  "| JsRender.JsRender selectedFile" : [
                   "() {",
                   "",
-                  "\tif (this.el.selected = Gtk.INVALID_LIST_POSITION) {",
+                  "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
                   "\t\treturn null;",
                   "\t}",
                   "\treturn  (JsRender.JsRender)_this.iconsel.el.selected_item;",
@@ -707,7 +707,7 @@
                "| JsRender.JsRender? selectedFile" : [
                 "() {",
                 "",
-                "\tif (this.el.selected = Gtk.INVALID_LIST_POSITION) {",
+                "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
                 "\t\treturn null;",
                 "\t}",
                 "\tvar tr = (Gtk.TreeListRow) this.el.selected_item;",
