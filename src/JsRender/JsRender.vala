@@ -41,7 +41,7 @@ namespace JsRender {
 		}
 		
 		public string file_namespace {
-			public get {
+			public owned get {
 				if (!this.name.contains(".")) {
 					return "";
 				}
