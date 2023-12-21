@@ -83,8 +83,10 @@
         		GLib.debug("parent of that is null - not showing");
         		return;
         	}
-            
-        	this.el.set_parent(onbtn);
+        	// stop crasing?
+            if (this.el.parent == null) {
+        		this.el.set_parent(onbtn);
+        	}
            // this.el.set_relative_to(onbtn);
         	Gtk.Allocation rect;
         	onbtn.get_allocation(out rect);
