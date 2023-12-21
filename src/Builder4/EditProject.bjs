@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# WindowState? windowstate" : "null",
@@ -15,6 +16,119 @@
      "* prop" : "titlebar",
      "* title" : "New Project",
      "bool show_title_buttons" : false,
+     "items" : [
+      {
+       "$ Gtk.Align halign" : "Gtk.Align.END",
+       "$ xns" : "Gtk",
+       "bool hexpand" : false,
+       "label" : "Cancel",
+       "listeners" : {
+        "clicked" : [
+         "( ) => {",
+         "   ",
+         "    _this.el.hide();",
+         "\t_this.canceled();",
+         "    ",
+         "",
+         "}",
+         ""
+        ]
+       },
+       "xtype" : "Button"
+      },
+      {
+       "$ Gtk.Align halign" : "Gtk.Align.START",
+       "$ css_classes" : "{ \"suggested-action\" }",
+       "$ xns" : "Gtk",
+       "bool hexpand" : false,
+       "id" : "ok_btn",
+       "label" : "OK",
+       "listeners" : {
+        "clicked" : [
+         "( ) => {",
+         "   var err_dialog = Xcls_StandardErrorDialog.singleton();",
+         "   ",
+         "   ",
+         "   \tif (_this.ptype_dd.getValue().length < 1) {",
+         "        err_dialog.show(_this.el,\"You have to set Project type\");             ",
+         "        return;",
+         "    }",
+         "   var fn = _this.parent_dd.getValue();",
+         "   var is_existing = false;",
+         "   var is_new_folder = false;",
+         "   switch (_this.type_dd.getValue()) {",
+         "\t   \tcase \"Existing Folder\":",
+         "\t\t   \tif (_this.folder_dd.getValue().length < 1) {",
+         "\t\t\t\terr_dialog.show(_this.el,\"You have to set Folder\");             ",
+         "\t\t\t\treturn;",
+         "\t\t\t}",
+         "\t\t\tfn += \"/\" + _this.folder_dd.getValue();",
+         "\t\t\tis_existing = true;",
+         "\t\t\tbreak;",
+         "\t   \t",
+         "\t   \tcase \"New Folder\":",
+         "\t\t   \tif (_this.name_entry.getValue().length < 1) {",
+         "\t\t\t\terr_dialog.show(_this.el,\"You have enter a Project Name\");             ",
+         "\t\t\t\treturn;",
+         "\t\t\t}",
+         "\t\t\tfn += \"/\" + _this.name_entry.getValue();\t   ",
+         "\t\t\t",
+         "\t\t\tif (FileUtils.test( fn ,FileTest.EXISTS)) {",
+         "\t\t\t\terr_dialog.show(_this.el,\"That folder already exists\");             ",
+         "\t\t\t\treturn;\t\t\t",
+         "\t\t\t}",
+         "\t\t\tvar dir = File.new_for_path(fn);",
+         "\t\t\ttry {",
+         "\t\t\t\tdir.make_directory();\t",
+         "\t\t\t} catch (Error e) {",
+         "\t\t\t\tGLib.error(\"Failed to make directory %s\", fn);",
+         "\t\t\t} ",
+         "\t\t\tis_new_folder = true;",
+         "\t\t\tbreak;",
+         "\t\t\t",
+         "\t   \tdefault:",
+         "\t   \t\treturn;",
+         "   \t\t",
+         "    }",
+         "   ",
+         "   ",
+         "  ",
+         "    ",
+         "    _this.el.hide();",
+         "    ",
+         "    ",
+         "",
+         "  ",
+         "    GLib.debug(\"add %s\\n\" , fn);",
+         "    try {",
+         "\t\tvar project = Project.Project.factory(_this.ptype_dd.getValue(), fn);",
+         "\t\tif (is_new_folder) {\t",
+         "\t\t\tproject.initialize();",
+         "\t\t\t",
+         "\t\t} else {",
+         "\t\t\tproject.load();",
+         "\t\t}",
+         "\t\t",
+         "\t\tproject.save();",
+         "\t\t Project.Project.saveProjectList();",
+         "\t\t_this.selected(project); // this should trigger a load()",
+         "\t\tif (is_new_folder || is_existing) {",
+         "\t    \t _this.windowstate.projectPopoverShow(_this.el, project);",
+         "    \t }",
+         "\t\t",
+         "\t\treturn;",
+         "\t} catch (Error e) {",
+         "\t\tGLib.debug(\"got error? %s\" , e.message);",
+         "\t}",
+         "\t ",
+         "",
+         "}",
+         ""
+        ]
+       },
+       "xtype" : "Button"
+      }
+     ],
      "xtype" : "HeaderBar"
     },
     {
@@ -593,10 +707,6 @@
    ]
   }
  ],
- "modOrder" : "",
  "name" : "EditProject",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/EditProject.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }
