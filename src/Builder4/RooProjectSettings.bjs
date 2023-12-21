@@ -519,6 +519,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_end",
+       "css_classes" : "{ \"suggested-action\" }",
        "listeners" : {
         "clicked" : [
          "( ) =>  { ",

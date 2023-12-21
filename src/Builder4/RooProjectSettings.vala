@@ -1345,6 +1345,7 @@ public class Xcls_RooProjectSettings : Object
             // my vars (dec)
 
             // set gobject values
+            this.el.css_classes = { "suggested-action" };
             this.el.label = "Save";
 
             //listeners
