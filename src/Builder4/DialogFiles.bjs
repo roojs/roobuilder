@@ -793,6 +793,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
+       "id" : "btn_newproj",
        "items" : [
         {
          "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",

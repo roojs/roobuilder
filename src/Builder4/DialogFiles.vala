@@ -29,6 +29,7 @@
         public Xcls_treelistmodel treelistmodel;
         public Xcls_treefilter treefilter;
         public Xcls_name name;
+        public Xcls_btn_newproj btn_newproj;
 
             // my vars (def)
         public Xcls_MainWindow win;
@@ -1560,8 +1561,7 @@
                 var child_1 = new Xcls_Button43( _this );
                 child_1.ref();
                 this.el.pack_end ( child_1.el  );
-                var child_2 = new Xcls_Button44( _this );
-                child_2.ref();
+                var child_2 = new Xcls_btn_newproj( _this );
                 this.el.pack_start ( child_2.el  );
                 var child_3 = new Xcls_Button48( _this );
                 child_3.ref();
@@ -1619,7 +1619,7 @@
             // user defined functions
         }
 
-        public class Xcls_Button44 : Object
+        public class Xcls_btn_newproj : Object
         {
             public Gtk.Button el;
             private DialogFiles  _this;
@@ -1628,9 +1628,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Button44(DialogFiles _owner )
+            public Xcls_btn_newproj(DialogFiles _owner )
             {
                 _this = _owner;
+                _this.btn_newproj = this;
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
