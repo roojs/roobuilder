@@ -848,6 +848,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
+       "id" : "btn_projprop",
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -886,6 +887,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
+       "id" : "btn_delproj",
        "items" : [
         {
          "$ xns" : "Gtk",

@@ -30,6 +30,8 @@
         public Xcls_treefilter treefilter;
         public Xcls_name name;
         public Xcls_btn_newproj btn_newproj;
+        public Xcls_btn_projprop btn_projprop;
+        public Xcls_btn_delproj btn_delproj;
 
             // my vars (def)
         public Xcls_MainWindow win;
@@ -1563,11 +1565,9 @@
                 this.el.pack_end ( child_1.el  );
                 var child_2 = new Xcls_btn_newproj( _this );
                 this.el.pack_start ( child_2.el  );
-                var child_3 = new Xcls_Button48( _this );
-                child_3.ref();
+                var child_3 = new Xcls_btn_projprop( _this );
                 this.el.pack_start ( child_3.el  );
-                var child_4 = new Xcls_Button52( _this );
-                child_4.ref();
+                var child_4 = new Xcls_btn_delproj( _this );
                 this.el.pack_start ( child_4.el  );
                 var child_5 = new Xcls_Button56( _this );
                 child_5.ref();
@@ -1744,7 +1744,7 @@
 
 
 
-        public class Xcls_Button48 : Object
+        public class Xcls_btn_projprop : Object
         {
             public Gtk.Button el;
             private DialogFiles  _this;
@@ -1753,9 +1753,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Button48(DialogFiles _owner )
+            public Xcls_btn_projprop(DialogFiles _owner )
             {
                 _this = _owner;
+                _this.btn_projprop = this;
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
@@ -1851,7 +1852,7 @@
 
 
 
-        public class Xcls_Button52 : Object
+        public class Xcls_btn_delproj : Object
         {
             public Gtk.Button el;
             private DialogFiles  _this;
@@ -1860,9 +1861,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Button52(DialogFiles _owner )
+            public Xcls_btn_delproj(DialogFiles _owner )
             {
                 _this = _owner;
+                _this.btn_delproj = this;
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
