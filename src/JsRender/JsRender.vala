@@ -58,7 +58,7 @@ namespace JsRender {
 		public Project.Project project;
 
 		// GTK Specifc
-		public string file_namespace = "";
+ 
 		public string build_module; // module to build if we compile (or are running tests...)	    
 
 		//Project : false, // link to container project!
@@ -360,7 +360,7 @@ namespace JsRender {
 				ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
 			}
 			if (this.project.xtype == "Gtk") {
-				ret.set_string_member("namespace", this.file_namespace );
+ 
 				ret.set_string_member("build_module", this.build_module  );
 			}
 			ret.set_boolean_member("gen_extended", this.gen_extended);
