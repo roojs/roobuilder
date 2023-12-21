@@ -857,11 +857,24 @@ namespace Project {
 		
 		
 		
-		public void removeFile(JsRender.JsRender file) {
+		public void removeFile(JsRender.JsRender file) 
+		{
 			if (file.xtype =="Dir") {
 				return;
 			}
+			var sp = this.findDir(file.dir);
+			for(var i =0;i < sp.childfiles.n_items; i++) {
+				var jf = (JsRender.JsRender) sp.childfiles.get_item(i);
+				if (jf.path == file.path) {
+					sp.childfiles.remove(i);
+					break;
+				}
+			}
+
+			sp.childfiles.remove(pfile); // tree
+			
 			file.remove();
+			// remove it from 
 			
 			
 		}
