@@ -15,13 +15,13 @@ namespace JsRender {
 		public Gee.ArrayList<string> doubleStringProps;
 		
 		public string id  = "";
-		public string name { get; set; }   // is the JS name of the file.
-		public string fullname;
+		public string name { get; set; default = ""; }   // is the JS name of the file.
+		public string fullname = "";
 		public string path = "";  // is the full path to the file.
 		
 		public  string relpath {
 			owned get { 
-				return  this.path.substring(this.project.path.length+1);
+				return  this.project.path.length < 1 ? "" : this.path.substring(this.project.path.length+1);
 			} 
 			private set {}
 		}
