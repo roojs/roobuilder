@@ -347,7 +347,17 @@
                  "listeners" : {
                   "notify[\"selected\"]" : [
                    "() => {",
-                   " }"
+                   "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                   "\t\treturn;",
+                   "\t}",
+                   "\t",
+                   "\tthis.treeselmodel.el.selected = INVALID_LIST_POSITION;",
+                   "",
+                   "",
+                   "}",
+                   " ",
+                   " ",
+                   " "
                   ]
                  },
                  "xtype" : "SingleSelection"
