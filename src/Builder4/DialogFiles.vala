@@ -1833,8 +1833,12 @@
                 //listeners
                 this.el.clicked.connect( ( ) => {
                   
-                  
-                  
+                  	var project  = (Project.Project) _this.projectsort.el.get_item(
+                  	 			_this.projectsel.el.selected
+                		);
+                	Project.remove(project);
+                	
+                	
                   /*
                    var cd = DialogConfirm.singleton();
                      cd.el.set_transient_for(_this.el);
