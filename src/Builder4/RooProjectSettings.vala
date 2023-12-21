@@ -51,6 +51,7 @@ public class Xcls_RooProjectSettings : Object
         this.autohide = false;
 
         // set gobject values
+        this.el.title = "Edit Project settings";
         this.el.modal = true;
         var child_1 = new Xcls_Box2( _this );
         child_1.ref();

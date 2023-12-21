@@ -545,6 +545,7 @@
      "xtype" : "HeaderBar"
     }
    ],
+   "string title" : "Edit Project settings",
    "uint border_width" : 0,
    "xtype" : "Window",
    "| void save" : [
