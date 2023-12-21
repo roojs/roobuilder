@@ -859,6 +859,9 @@
        "listeners" : {
         "clicked" : [
          "  ( ) => {",
+         "  ",
+         "  ",
+         "  ",
          "  /*",
          "   var cd = DialogConfirm.singleton();",
          "     cd.el.set_transient_for(_this.el);",
@@ -889,8 +892,6 @@
          "}"
         ]
        },
-       "string icon_name" : "user-trash",
-       "string label" : "Delete Project",
        "xtype" : "Button"
       },
       {

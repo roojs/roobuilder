@@ -1827,13 +1827,14 @@
                 // my vars (dec)
 
                 // set gobject values
-                this.el.icon_name = "user-trash";
-                this.el.label = "Delete Project";
                 var child_1 = new Xcls_Box53( _this );
                 this.el.child = child_1.el;
 
                 //listeners
                 this.el.clicked.connect( ( ) => {
+                  
+                  
+                  
                   /*
                    var cd = DialogConfirm.singleton();
                      cd.el.set_transient_for(_this.el);
