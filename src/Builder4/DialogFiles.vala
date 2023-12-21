@@ -338,6 +338,26 @@
                 //listeners
                 this.el.notify["selected"].connect( (position, n_items) => {
                 
+                    
+                  
+                	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+                		_this.btn_delprop.el.hide();
+                		_this.btn_projprop.el.hide();
+                		_this.btn_addfile.el.hide();
+                		_this.btn_delfile.el.hide();
+                		
+                		
+                	} else {
+                		_this.btn_delprop.el.show();
+                		_this.btn_projprop.el.show();
+                		_this.btn_addfile.el.show();
+                		_this.btn_delfile.el.show();
+                	}
+                 
+                 
+                 
+                    
+                    
                     if (_this.is_loading) {
                         return;
                     }
@@ -345,8 +365,7 @@
                 	 var project  = (Project.Project) _this.projectsort.el.get_item(this.el.selected);
                 	 
                 	 GLib.debug("selection changed to %s", project.name);
-                 
-                 
+                  
                     _this.onProjectSelected(project);
                 });
             }
