@@ -405,7 +405,12 @@ namespace Palete {
 			 if (this.tmpfile_path == "") {
 			  	return;
 		  	}
-		  	GLib.FileUtils.unlink(this.tmpfile_path);
+			if (GLib.FileUtils.test(this.tmpfile_path, GLib.FileTest.EXISTS)) {
+			  	GLib.FileUtils.unlink(this.tmpfile_path);
+		  	}
+			if (GLib.FileUtils.test(this.tmpfile_path + ".c", GLib.FileTest.EXISTS)) {
+			  	GLib.FileUtils.unlink(this.tmpfile_path  + ".c");
+		  	}
 		  	this.tmpfile_path = "";
 		}
 		// update the compiler results into the lists.
