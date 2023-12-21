@@ -1836,7 +1836,7 @@
                   	var project  = (Project.Project) _this.projectsort.el.get_item(
                   	 			_this.projectselection.el.selected
                 		);
-                	Project.remove(project);
+                	Project.Project.remove(project);
                 	_this.load();
                 	
                   /*
