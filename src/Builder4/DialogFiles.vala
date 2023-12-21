@@ -1910,7 +1910,7 @@
                 // my vars (dec)
 
                 // set gobject values
-                this.el.icon_name = "";
+                this.el.icon_name = "user-trash";
             }
 
             // user defined functions
