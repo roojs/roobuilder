@@ -885,6 +885,9 @@ namespace Project {
 		public void makeProjectSubdir(string name)
 		{
 			var dir = File.new_for_path(this.path + "/" + name);
+			if (FileUtils.test(this.path + "/" + name, FileTest.EXISTS)) {
+				return;
+			}
 			try {
 				if (
 				dir.make_directory();	
