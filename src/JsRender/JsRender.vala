@@ -608,6 +608,10 @@ namespace JsRender {
 		
 		public void remove()
 		{
+			if (this.xtype == "Dir") {
+				return;
+			}
+			// cleans up build (should really be in children..
 			this.removeFile(this.path);
 			if (this.path.has_suffix(".bjs") && this.project.xtype == "Roo") {
 				this.removeFile(this.path.substring(0, this.path.length-4) + ".js");
