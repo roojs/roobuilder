@@ -1214,10 +1214,13 @@
                 //listeners
                 this.el.notify["selected"].connect( () => {
                 	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
+                		if (	_this.iconsel.el.selected == INVALID_LIST_POSITION) {
+                			_this.btn_delfile.el.hide();
+                		}
                 		return;
                 	}
-                	
-                	this.iconsel.el.selected = INVALID_LIST_POSITION;
+                	_this.btn_delfile.el.show();
+                	_this.iconsel.el.selected = INVALID_LIST_POSITION;
                 
                 
                 });
