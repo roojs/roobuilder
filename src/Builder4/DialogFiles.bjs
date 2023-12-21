@@ -683,7 +683,9 @@
                "| JsRender.JsRender selectedFile" : [
                 "() {",
                 "",
-                "\tif (this.el.selected = Gtk.",
+                "\tif (this.el.selected = Gtk.INVALID_LIST_POSITION) {",
+                "\t\treturn null;",
+                "\t}",
                 "\tvar tr = (Gtk.TreeListRow) this.el.selected_item;",
                 "",
                 "\treturn  (JsRender.JsRender) tr.item;",
