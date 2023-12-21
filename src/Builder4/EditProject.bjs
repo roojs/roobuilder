@@ -576,7 +576,7 @@
     "    //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);",
     "    //});",
     "\t// shouild set path..",
-    "   ",
+    "    ",
     "    this.el.show();",
     "    ",
     "}"

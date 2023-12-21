@@ -63,7 +63,7 @@ public class EditProject : Object
         //    _this.get(k).setValue(typeof(c[k]) == 'undefined' ? '' : c[k]);
         //});
     	// shouild set path..
-       
+        
         this.el.show();
         
     }
