@@ -40,6 +40,28 @@ namespace JsRender {
 			private set {}
 		}
 		
+		public string file_namespace {
+			get {
+				if (!this.name.contains(".")) {
+					return "";
+				}
+				var bits = this.name.split(".");
+				return bits[0];
+			}
+			private set {}
+		}
+		public string file_without_namespace {
+			get {
+				if (!this.name.contains(".")) {
+					return this.name
+				}
+				var bits = this.name.split(".");
+				return this.name.substring(bits[0].length +1);
+			}
+			private set {}
+		}
+		
+		
 		public string parent = "";  // JS parent.
 		public string region = "";  // RooJS - insert region.
         
