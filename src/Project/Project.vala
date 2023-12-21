@@ -850,13 +850,10 @@ namespace Project {
 					gfile.updateCompileGroup("", pfile.build_module);
 					 
 				}
-					
-				
-			} else {
-				var sp = this.findDir(pfile.dir);
-				sp.childfiles.append(pfile);
 			}
-			
+			var sp = this.findDir(pfile.dir);
+			sp.childfiles.append(pfile);	
+				
 
 			this.on_changed();
 		}
