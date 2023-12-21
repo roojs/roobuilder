@@ -802,14 +802,14 @@
                 //listeners
                 this.el.notify["selected"].connect( () => {
                 	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
-                		if (this.treeselmodel.el.selected == INVALID_LIST_POSITION) {
+                		if (_this.treeselmodel.el.selected == INVALID_LIST_POSITION) {
                 			_this.btn_delfile.el.hide();
                 		}
                 	
                 		return;
                 	}
                 	_this.btn_delfile.el.show();
-                	this.treeselmodel.el.selected = INVALID_LIST_POSITION;
+                	_this.treeselmodel.el.selected = INVALID_LIST_POSITION;
                 
                 
                 });
