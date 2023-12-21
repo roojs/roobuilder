@@ -855,6 +855,20 @@ namespace Project {
 			this.on_changed();
 		}
 		
+		
+		
+		public void removeFile(JsRender.JsRender file) {
+			if (file.xtype =="Dir") {
+				return;
+			}
+			file.remove();
+			
+			
+		}
+			
+				
+		
+		
 		public void createDir(string subdir)   // add a single dir, and trigger changed.
 		{
 			if (subdir.strip() == "" || this.subpathsContains(subdir)) {
