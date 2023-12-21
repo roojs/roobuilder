@@ -401,6 +401,12 @@
                  "| JsRender.JsRender selectedFile" : [
                   "() {",
                   "",
+                  "\tif (this.el.selected = Gtk.INVALID_LIST_POSITION) {",
+                  "\t\treturn null;",
+                  "\t}",
+                  "\t ",
+                  "",
+                  "\treturn  (JsRender.JsRender) tr.item;",
                   "}"
                  ]
                 },
