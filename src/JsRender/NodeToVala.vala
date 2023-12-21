@@ -228,7 +228,7 @@ public class JsRender.NodeToVala : Object {
 		if (this.depth > 0 || this.file.file_namespace == "") {
 			return;
 		}
-		this.addLine(this.inpad + "namespace " + this.file.file_namespace);
+		this.addLine("namespace " + this.file.file_namespace);
 		this.addLine("{");
 	
 	}
