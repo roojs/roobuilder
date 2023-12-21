@@ -344,13 +344,13 @@
                 		_this.btn_delprop.el.hide();
                 		_this.btn_projprop.el.hide();
                 		_this.btn_addfile.el.hide();
-                		_this.btn_delfile.el.hide();
+                		//_this.btn_delfile.el.hide();
                 		 
                 	} else {
                 		_this.btn_delprop.el.show();
                 		_this.btn_projprop.el.show();
                 		_this.btn_addfile.el.show();
-                		_this.btn_delfile.el.show(); // ??
+                		//_this.btn_delfile.el.show(); // ??
                 	}
                  
                  
