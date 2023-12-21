@@ -449,7 +449,15 @@ namespace Palete {
 			if (this.filepath == "") { 
 				GLib.debug("calling ccompiler");
 				var ccompiler = new Vala.CCodeCompiler ();
+
+				
+				
 				var cc_command = Environment.get_variable ("CC");
+						
+				// insanely faster...
+				if (!FileUtils.test("/usr/bin/ccache", FileTest.EXISTS)) {
+					cc_command = "/usr/bin/ccache";
+				}   
 				
 				
 				string [] cc_options = { "-lm", "-pg" };
