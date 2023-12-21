@@ -995,6 +995,73 @@
         ]
        },
        "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "id" : "btn_delproj",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "user-trash",
+           "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string label" : "Delete Project",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "  ",
+         "  \tvar project  = (Project.Project) _this.projectsort.el.get_item(",
+         "  \t \t\t\t_this.projectselection.el.selected",
+         "\t\t);",
+         "\tProject.Project.remove(project);",
+         "\t_this.load();",
+         "\t",
+         "  /*",
+         "   var cd = DialogConfirm.singleton();",
+         "     cd.el.set_transient_for(_this.el);",
+         "    cd.el.set_modal(true);",
+         "",
+         "     var project =   _this.windowstate.left_projects.getSelectedProject();",
+         "    if (project == null) {",
+         "        print(\"SKIP - no project\\n\");",
+         "        return;",
+         "    }",
+         "    ",
+         "        ",
+         "     if (Gtk.ResponseType.YES != cd.show(\"Confirm\", ",
+         "        \"Are you sure you want to delete project %s\".printf(project.name))) {",
+         "        return;",
+         "    }",
+         "     ",
+         "",
+         "    // confirm?",
+         "    Project.Project.remove(project);",
+         "    _this.project = null;",
+         "    ",
+         "    _this.windowstate.left_projects.is_loaded =  false;",
+         "    _this.windowstate.left_projects.load();",
+         "    _this.windowstate.clutterfiles.clearFiles();",
+         "*/",
+         "",
+         "}"
+        ]
+       },
+       "xtype" : "Button"
       }
      ],
      "xtype" : "HeaderBar"

@@ -33,6 +33,7 @@
         public Xcls_btn_projprop btn_projprop;
         public Xcls_btn_delproj btn_delproj;
         public Xcls_btn_addfile btn_addfile;
+        public Xcls_btn_delproj btn_delproj;
 
             // my vars (def)
         public Xcls_MainWindow win;
@@ -1572,6 +1573,8 @@
                 this.el.pack_start ( child_4.el  );
                 var child_5 = new Xcls_btn_addfile( _this );
                 this.el.pack_start ( child_5.el  );
+                var child_6 = new Xcls_btn_delproj( _this );
+                this.el.pack_start ( child_6.el  );
             }
 
             // user defined functions
@@ -2091,6 +2094,142 @@
             {
                 _this = _owner;
                 this.el = new Gtk.Label( "New File" );
+
+                // my vars (dec)
+
+                // set gobject values
+            }
+
+            // user defined functions
+        }
+
+
+
+        public class Xcls_btn_delproj : Object
+        {
+            public Gtk.Button el;
+            private DialogFiles  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_btn_delproj(DialogFiles _owner )
+            {
+                _this = _owner;
+                _this.btn_delproj = this;
+                this.el = new Gtk.Button();
+
+                // my vars (dec)
+
+                // set gobject values
+                var child_1 = new Xcls_Box61( _this );
+                this.el.child = child_1.el;
+
+                //listeners
+                this.el.clicked.connect( ( ) => {
+                  
+                  	var project  = (Project.Project) _this.projectsort.el.get_item(
+                  	 			_this.projectselection.el.selected
+                		);
+                	Project.Project.remove(project);
+                	_this.load();
+                	
+                  /*
+                   var cd = DialogConfirm.singleton();
+                     cd.el.set_transient_for(_this.el);
+                    cd.el.set_modal(true);
+                
+                     var project =   _this.windowstate.left_projects.getSelectedProject();
+                    if (project == null) {
+                        print("SKIP - no project\n");
+                        return;
+                    }
+                    
+                        
+                     if (Gtk.ResponseType.YES != cd.show("Confirm", 
+                        "Are you sure you want to delete project %s".printf(project.name))) {
+                        return;
+                    }
+                     
+                
+                    // confirm?
+                    Project.Project.remove(project);
+                    _this.project = null;
+                    
+                    _this.windowstate.left_projects.is_loaded =  false;
+                    _this.windowstate.left_projects.load();
+                    _this.windowstate.clutterfiles.clearFiles();
+                */
+                
+                });
+            }
+
+            // user defined functions
+        }
+        public class Xcls_Box61 : Object
+        {
+            public Gtk.Box el;
+            private DialogFiles  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_Box61(DialogFiles _owner )
+            {
+                _this = _owner;
+                this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+                // my vars (dec)
+
+                // set gobject values
+                var child_1 = new Xcls_Image62( _this );
+                child_1.ref();
+                this.el.append( child_1.el );
+                var child_2 = new Xcls_Label63( _this );
+                child_2.ref();
+                this.el.append( child_2.el );
+            }
+
+            // user defined functions
+        }
+        public class Xcls_Image62 : Object
+        {
+            public Gtk.Image el;
+            private DialogFiles  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_Image62(DialogFiles _owner )
+            {
+                _this = _owner;
+                this.el = new Gtk.Image();
+
+                // my vars (dec)
+
+                // set gobject values
+                this.el.icon_name = "user-trash";
+            }
+
+            // user defined functions
+        }
+
+        public class Xcls_Label63 : Object
+        {
+            public Gtk.Label el;
+            private DialogFiles  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_Label63(DialogFiles _owner )
+            {
+                _this = _owner;
+                this.el = new Gtk.Label( "Delete Project" );
 
                 // my vars (dec)
 
