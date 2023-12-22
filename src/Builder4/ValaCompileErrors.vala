@@ -34,7 +34,6 @@
             // set gobject values
             this.el.width_request = 900;
             this.el.height_request = 800;
-            this.el.hexpand = false;
             this.el.autohide = true;
             this.el.position = Gtk.PositionType.TOP;
             var child_1 = new Xcls_compile_view( _this );
