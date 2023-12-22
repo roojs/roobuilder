@@ -991,7 +991,7 @@
          "\t\t_this.projectselection.el.selected",
          "\t\t);",
          "\t",
-         "\tthis.confirm.el.repsonse.connect((res) => {",
+         "\tthis.confirm.el.response.connect((res) => {",
          "\t\tif (res == Gtk.ResponseType.CANCEL) {",
          "\t\t\treturn;",
          "\t\t}",

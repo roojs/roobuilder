@@ -1950,7 +1950,7 @@
                 		_this.projectselection.el.selected
                 		);
                 	
-                	this.confirm.el.repsonse.connect((res) => {
+                	this.confirm.el.response.connect((res) => {
                 		if (res == Gtk.ResponseType.CANCEL) {
                 			return;
                 		}
