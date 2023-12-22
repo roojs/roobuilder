@@ -42,8 +42,8 @@
         public void show ( Json.Object tree , Gtk.Widget onbtn) {
         
             
-         	this.el.present();
-            this.el.popup();
+         	//this.el.present();
+            //this.el.popup();
             this.notices = tree;
            
              //print("looking for %s\n", id);
@@ -85,19 +85,11 @@
             }
             this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
         
-        	var par = onbtn.get_parent();
-            if (par == null) {
-        		GLib.debug("parent of that is null - not showing");
-        		return;
-        	}
-        	// stop crasing?
-            if (this.el.parent == null) {
-        		this.el.set_parent(onbtn);
-        	}
+        	 
            // this.el.set_relative_to(onbtn);
-        	Gtk.Allocation rect;
-        	onbtn.get_allocation(out rect);
-            this.el.set_pointing_to(rect);
+        	//Gtk.Allocation rect;
+        	//onbtn.get_allocation(out rect);
+            //this.el.set_pointing_to(rect);
         	this.el.present();
             this.el.popup();
            
