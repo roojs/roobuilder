@@ -2163,6 +2163,7 @@
 
 
                 // my vars (def)
+            public string confirm;
 
             // ctor
             public Xcls_btn_delfile(DialogFiles _owner )
