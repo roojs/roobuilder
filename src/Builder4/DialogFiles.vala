@@ -128,11 +128,9 @@
          	this.load();
             this.projectscroll.el.vadjustment.value = 0; // scroll to top?
             
-            if (project != null) {
-        		this.selectProject(project);
-        	} else {
-        		this.onProjectSelected(null);
-        	}
+         
+        	this.selectProject(project);
+        	   
         	 
         	// var win = this.win.el;
             // var  w = win.get_width();
