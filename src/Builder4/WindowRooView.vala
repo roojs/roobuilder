@@ -252,7 +252,8 @@
         	 var t = r.render_texture(n,null);
         	 GLib.debug("write to /tmp/test.png");
         	t.save_to_png("/tmp/test.png");
-        	 
+        	 r.unrealize();
+        	 /*
         	 
             var	screenshot = Gdk.pixbuf_get_from_surface (
             		win.get_surface().create_similar_surface(
@@ -261,7 +262,7 @@
             		0,0,  width,  height);
         	GLib.debug("Write Screnshoot icon");
              this.file.writeIcon(screenshot);
-            
+            */
         
             
              
