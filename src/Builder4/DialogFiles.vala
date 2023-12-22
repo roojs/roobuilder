@@ -1943,7 +1943,7 @@
                   
                   	if (this.confirm == null) {
                   		this.confirm = new DialogConfirm();
-                 
+                   		this.confirm.el.set_transient_for(_this.el);
                 	}
                 	
                 	var project  = (Project.Project) _this.projectsort.el.get_item(
