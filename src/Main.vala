@@ -36,8 +36,7 @@ int main (string[] args) {
 //	w.windowstate.switchState(WindowState.State.FILES);
 	var ret = app.run(args);
 	
-	 
-	
+	  
 	return ret;
      
 }
