@@ -1493,7 +1493,7 @@
     "\t var s = new Gtk.Snapshot();",
     "\t GLib.debug(\"Width %D, Height %d\", (int)_this.view.el.get_width(), ",
     "\t\t (int)_this.view.el.get_height);",
-    "\t p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height);",
+    "\t p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height());",
     "\t var n = s.free_to_node();",
     "\t var r = new  Gsk.CairoRenderer();",
     "\t r.realize(null,null);",
