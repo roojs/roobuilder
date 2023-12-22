@@ -51,7 +51,7 @@
             // loop through parent childnre
               
             
-              
+              this.tree.el.hide();
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
         /*
             var win = this.window.el;
@@ -77,7 +77,7 @@
         	this.el.present();
             this.el.popup();
            
-           
+        
            var ls = Palete.CompileError.jsonToListStore(
             	this.window.windowstate.project,
             	tree
@@ -96,7 +96,7 @@
             _this.model.el = tm;
             _this.sortmodel.el.set_model(tm);
          
-           
+                 this.tree.el.show();   
            
            	//if (expand != null) {
             //	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
