@@ -241,10 +241,10 @@
             var height = win.get_height();
             
         
-        	var r = win.get_renderer();
-        	var texture = r.render_texture(rendernode, null);
-        	texture.save_to_png(...);
-              
+        	 var p = new Gdk.WidgetPaintable(_this.view.el);
+        	 var s = new Gtk.Snapshot();
+        	 p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height);
+        	 
             var	screenshot = Gdk.pixbuf_get_from_surface (
             		win.get_surface().create_similar_surface(
             			Cairo.Content.COLOR, width,height
