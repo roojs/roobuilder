@@ -24,8 +24,7 @@ namespace Project
 			this.execute_args = "";
 				
 		}
-		
-		
+		 
 		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
 
 			this.project = project;
