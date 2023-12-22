@@ -1432,7 +1432,7 @@
                 	BuilderApplication.valasource.spawnExecute(_this.windowstate.file);
                 	
                 	_this.windowstate.compile_results.show(this.el,true);
-                	 
+                	         this.popup.el.set_parent(this.el);
                 });
             }
 
