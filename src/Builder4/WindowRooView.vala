@@ -850,15 +850,16 @@
                 this.renderedData = js;
             
             
-                string js_src = js + "\n" +
-            	"Roo.onReady(function() {\n" +
-            	"if (" + _this.file.name +".show) {\n" +  
-            		_this.file.name +".show({});\n" +
-            		"(function() {  
+                string js_src = js + "
+            Roo.onReady(function() {
+            if (" + _this.file.name +".show) {
+            		" + _this.file.name +".show({});
+            		(function() {  
             			Builder.saveHTML.defer(100, Builder);
-            		}).defer(100);" +
-            	"Roo.XComponent.build();\n" +
-            	"});\n";
+            		}).defer(100);
+            }
+            Roo.XComponent.build();
+            });\n";
             	
                // print("render js: " + js);
                 //if (!this.ready) {
