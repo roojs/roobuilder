@@ -63,7 +63,6 @@
             this.view.renderJS(true);
             this.notebook.el.page = 0;// gtk preview 
             this.sourceview.loadFile();   
-            
         }
         public void highlightNodeAtLine (int ln) {
         
