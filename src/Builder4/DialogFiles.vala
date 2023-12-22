@@ -1921,6 +1921,7 @@
 
 
                 // my vars (def)
+            public bool confirm;
 
             // ctor
             public Xcls_btn_delproj(DialogFiles _owner )
@@ -1930,6 +1931,7 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
+                this.confirm = true;
 
                 // set gobject values
                 var child_1 = new Xcls_Box53( _this );
@@ -1938,40 +1940,27 @@
                 //listeners
                 this.el.clicked.connect( ( ) => {
                   
-                  	var project  = (Project.Project) _this.projectsort.el.get_item(
-                  	 			_this.projectselection.el.selected
-                		);
-                	Project.Project.remove(project);
-                  _this.projectmodel.remove(project);
-                	_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
+                  
+                  	if (this.confirm == null) {
+                  		this.confirm = new DialogConfirm();
+                  		this.confirm.
+                	}
                 	
-                  /*
-                   var cd = DialogConfirm.singleton();
-                     cd.el.set_transient_for(_this.el);
-                    cd.el.set_modal(true);
-                
-                     var project =   _this.windowstate.left_projects.getSelectedProject();
-                    if (project == null) {
-                        print("SKIP - no project\n");
-                        return;
-                    }
-                    
-                        
-                     if (Gtk.ResponseType.YES != cd.show("Confirm", 
-                        "Are you sure you want to delete project %s".printf(project.name))) {
-                        return;
-                    }
-                     
-                
-                    // confirm?
-                    Project.Project.remove(project);
-                    _this.project = null;
-                    
-                    _this.windowstate.left_projects.is_loaded =  false;
-                    _this.windowstate.left_projects.load();
-                    _this.windowstate.clutterfiles.clearFiles();
-                */
-                
+                	var project  = (Project.Project) _this.projectsort.el.get_item(
+                		_this.projectselection.el.selected
+                		);
+                	
+                	this.confirm.el.repsonse((res) {
+                		if (res == Gtk.ResponseType.CANCEL) {
+                			return;
+                		}
+                	  
+                		Project.Project.remove(project);
+                	  _this.projectmodel.remove(project);
+                		_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
+                	
+                	});
+                  	this.confirm.showIt("Confirm Delete Project", "Are you sure you want to delete this project?");
                 });
             }
 
