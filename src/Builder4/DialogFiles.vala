@@ -1943,7 +1943,7 @@
                   
                   	if (this.confirm == null) {
                   		this.confirm = new DialogConfirm();
-                  		this.confirm.
+                 
                 	}
                 	
                 	var project  = (Project.Project) _this.projectsort.el.get_item(

@@ -984,7 +984,7 @@
          "  ",
          "  \tif (this.confirm == null) {",
          "  \t\tthis.confirm = new DialogConfirm();",
-         "  \t\tthis.confirm.",
+         " ",
          "\t}",
          "\t",
          "\tvar project  = (Project.Project) _this.projectsort.el.get_item(",
