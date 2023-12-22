@@ -152,13 +152,13 @@
          	 this.projectmodel.el = pm;
          	 
              _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
-             _this.projectscroll.el.vadjustment.value = 0;
+             this.onProjectSelected(null);
              _this.is_loading = false;
              
         	_this.btn_delfile.el.hide();
         	
              GLib.Timeout.add(500, () => {
-         		_this.projectscroll.el.vadjustment.value = 0;		 
+         		_ 	 
         	     return false;
              });
         }
@@ -1962,6 +1962,7 @@
                 		);
                 	
                 	this.confirm.el.response.connect((res) => {
+                		this.confirm.el.hide();
                 		if (res == Gtk.ResponseType.CANCEL) {
                 			return;
                 		}
@@ -2210,6 +2211,7 @@
                 	
                 	
                 	this.confirm.el.response.connect((res) => {
+                		this.confirm.el.hide();
                 		if (res == Gtk.ResponseType.CANCEL) {
                 			return;
                 		}
