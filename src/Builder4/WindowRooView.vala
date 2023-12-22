@@ -852,7 +852,11 @@
             
                 string js_src = js + "\n" +
             	"Roo.onReady(function() {\n" +
-            	"if (" + _this.file.name +".show) " +  _this.file.name +".show({});\n" +
+            	"if (" + _this.file.name +".show) {\n" +  
+            		_this.file.name +".show({});\n" +
+            		"(function() {  
+            			Builder.saveHTML.defer(100, Builder);
+            		}).defer(100);" +
             	"Roo.XComponent.build();\n" +
             	"});\n";
             	
