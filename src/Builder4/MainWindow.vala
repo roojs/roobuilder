@@ -1240,8 +1240,8 @@
                     if (this.popup == null) {
                         this.popup = new Xcls_ValaCompileErrors();
                         this.popup.window = _this;
-                        this.popup.el.application = _this.el.application;
-                	    this.popover_files.el.set_transient_for( _this.el );
+                        //this.popup.el.application = _this.el.application;
+                	    this.popup.el.set_transient_for( _this.el );
                         
                     }
                     
