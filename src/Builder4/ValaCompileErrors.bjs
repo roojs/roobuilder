@@ -49,6 +49,7 @@
          "* pack" : "set_child",
          "bool hexpand" : true,
          "bool vexpand" : true,
+         "id" : "tree",
          "items" : [
           {
            "$ xns" : "Gtk",

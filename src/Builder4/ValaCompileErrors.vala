@@ -13,6 +13,7 @@
             return _ValaCompileErrors;
         }
         public Xcls_compile_view compile_view;
+        public Xcls_tree tree;
         public Xcls_selmodel selmodel;
         public Xcls_sortmodel sortmodel;
         public Xcls_model model;
@@ -198,8 +199,7 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_ColumnView6( _this );
-                child_1.ref();
+                var child_1 = new Xcls_tree( _this );
                 this.el.set_child ( child_1.el  );
 
                 // init method
@@ -213,7 +213,7 @@
 
             // user defined functions
         }
-        public class Xcls_ColumnView6 : Object
+        public class Xcls_tree : Object
         {
             public Gtk.ColumnView el;
             private Xcls_ValaCompileErrors  _this;
@@ -222,9 +222,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_ColumnView6(Xcls_ValaCompileErrors _owner )
+            public Xcls_tree(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
+                _this.tree = this;
                 var child_1 = new Xcls_selmodel( _this );
                 this.el = new Gtk.ColumnView( child_1.el );
 
