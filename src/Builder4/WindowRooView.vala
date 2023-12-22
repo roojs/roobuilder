@@ -248,7 +248,7 @@
         	 p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height());
         	 var n = s.free_to_node();
         	 var r = new  Gsk.CairoRenderer();
-        	 r.realize(null,null);
+        	 r.realize(null);
         	 var t = t.render_texture(node,null);
         	 GLib.debug("write to /tmp/test.png");
         	texture.save_to_png("/tmp/test.png");
