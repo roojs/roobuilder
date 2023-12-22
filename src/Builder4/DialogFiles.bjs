@@ -1057,6 +1057,7 @@
       {
        "$ xns" : "Gtk",
        "* pack" : "pack_start",
+       "DialogConfirm confirm" : "null",
        "id" : "btn_delfile",
        "items" : [
         {
@@ -1118,7 +1119,6 @@
          "}  "
         ]
        },
-       "string confirm" : "",
        "xtype" : "Button"
       }
      ],

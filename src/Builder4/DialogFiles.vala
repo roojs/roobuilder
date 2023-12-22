@@ -2163,7 +2163,7 @@
 
 
                 // my vars (def)
-            public string confirm;
+            public DialogConfirm confirm;
 
             // ctor
             public Xcls_btn_delfile(DialogFiles _owner )
@@ -2173,6 +2173,7 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
+                this.confirm = null;
 
                 // set gobject values
                 var child_1 = new Xcls_Box61( _this );
