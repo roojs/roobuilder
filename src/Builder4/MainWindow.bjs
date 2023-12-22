@@ -797,6 +797,5 @@
    ]
   }
  ],
- "name" : "MainWindow",
- "namespace" : ""
+ "name" : "MainWindow"
 }
