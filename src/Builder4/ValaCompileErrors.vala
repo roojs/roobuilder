@@ -67,7 +67,7 @@
         	)
          
             _this.model.el = tm;
-            
+            _this.sortmodel.el.set_model(tm);
          
               
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
