@@ -365,10 +365,10 @@
                     if (_this.is_loading) {
                         return;
                     }
-                    
+                	    
                 	 var project  = (Project.Project) _this.projectsort.el.get_item(this.el.selected);
                 	 
-                	 GLib.debug("selection changed to %s", project.name);
+                	 GLib.debug("selection changed to %s", project == null ? "none" : project.name);
                   
                     _this.onProjectSelected(project);
                 });
