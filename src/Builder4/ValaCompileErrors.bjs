@@ -293,7 +293,7 @@
     "\t\t\t return ((Palete.CompileError)item).lines;",
     "\t\t",
     "\t\t}",
-    "\t)",
+    "\t);",
     " ",
     "    _this.model.el = tm;",
     "    _this.sortmodel.el.set_model(tm);",

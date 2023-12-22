@@ -64,7 +64,7 @@
         			 return ((Palete.CompileError)item).lines;
         		
         		}
-        	)
+        	);
          
             _this.model.el = tm;
             _this.sortmodel.el.set_model(tm);
