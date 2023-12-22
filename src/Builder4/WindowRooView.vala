@@ -249,6 +249,7 @@
         	 var r = new  Gsk.CairoRenderer();
         	 r.realize(null,null);
         	 var t = t.render_texture(node,null);
+        	 GLib.debug("write to /tmp/test.png");
         	texture.save_to_png("/tmp/test.png");
         	 
         	 
