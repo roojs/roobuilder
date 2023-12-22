@@ -73,16 +73,18 @@
         	if (this.in_onprojectselected) { 
         		return;
         	}
+        	this.selectedProject = project;
         	
         	if (project == null) {
-        	
+        		_this.filepane.el.hide();
+        		return;
         		
         	}
-        	
+        	_this.filepane.el.show();	
         	this.in_onprojectselected = true;
         	
         	
-        	this.selectedProject = project;
+        
         	project.load();
         	 
         	
