@@ -16,6 +16,7 @@
         public Xcls_projectselection projectselection;
         public Xcls_projectsort projectsort;
         public Xcls_projectmodel projectmodel;
+        public Xcls_filepane filepane;
         public Xcls_searchbox searchbox;
         public Xcls_iconscroll iconscroll;
         public Xcls_iconsel iconsel;
@@ -72,6 +73,12 @@
         	if (this.in_onprojectselected) { 
         		return;
         	}
+        	
+        	if (project == null) {
+        	
+        		
+        	}
+        	
         	this.in_onprojectselected = true;
         	
         	
@@ -236,7 +243,7 @@
                 this.el.position = 200;
                 var child_1 = new Xcls_projectscroll( _this );
                 this.el.start_child = child_1.el;
-                var child_2 = new Xcls_Paned14( _this );
+                var child_2 = new Xcls_filepane( _this );
                 this.el.end_child = child_2.el;
             }
 
@@ -366,7 +373,8 @@
                         return;
                     }
                 	    
-                	 var project  = (Project.Project) _this.projectsort.el.get_item(this.el.selected);
+                	 Project.Project project  = this.el.selected == Gtk.INVALID_LIST_POSITION ? null :
+                		 	(Project.Project) _this.projectsort.el.get_item(this.el.selected);
                 	 
                 	 GLib.debug("selection changed to %s", project == null ? "none" : project.name);
                   
@@ -558,7 +566,7 @@
 
 
 
-        public class Xcls_Paned14 : Object
+        public class Xcls_filepane : Object
         {
             public Gtk.Paned el;
             private DialogFiles  _this;
@@ -567,9 +575,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Paned14(DialogFiles _owner )
+            public Xcls_filepane(DialogFiles _owner )
             {
                 _this = _owner;
+                _this.filepane = this;
                 this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
 
                 // my vars (dec)
