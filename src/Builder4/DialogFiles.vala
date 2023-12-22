@@ -108,10 +108,18 @@
          	this.treescroll.el.vadjustment.value = 0;
         	this.in_onprojectselected = false;	
         }
-        public void selectProject (Project.Project project) {
+        public void selectProject (Project.Project? project) {
             
+        	
+        	
         	uint pos;
         	var sm = this.projectselection.el;
+        	if (project == null) {
+        		sm.selected = Gtk.INVALID_LIST_POSITION;
+        		return;
+        	}
+        
+        	
         	for (var i =0; i < sm.n_items; i++) {
         		var p = (Project.Project) sm.get_item(i);
         		if (p.path == project.path) {
@@ -130,7 +138,7 @@
             
          
         	this.selectProject(project);
-        	   
+        	this.onProjectSelected(project);   //?? twice?
         	 
         	// var win = this.win.el;
             // var  w = win.get_width();
