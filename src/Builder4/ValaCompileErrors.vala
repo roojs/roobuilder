@@ -55,9 +55,19 @@
             	this.window.windowstate.project,
             	tree
         	);
-        
+        	var tm = new Gtk.TreeListModel(
+        		ls, //..... << that's our store..
+        		false, // passthru
+        		false, // autexpand
+        		(item) => {
+        		
+        			 return ((Palete.CompileError)item).lines;
+        		
+        		}
+        	)
          
-            _this.model.el = .set_model(ls);
+            _this.model.el = tm;
+            
          
               
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
