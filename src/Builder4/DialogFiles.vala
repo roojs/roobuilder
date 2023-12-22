@@ -2202,6 +2202,16 @@
                 		if (res == Gtk.ResponseType.CANCEL) {
                 			return;
                 		}
+                		is_icon = true;
+                	  	isel = _this.iconsel.selectedFile();
+                	  	if (isel == null) {
+                		  	is_icon = false;
+                		  	isel = _this.treeselmodel.selectedFile();
+                	  	}
+                	  	if (isel == null) {
+                	  		return; // should nto happen..
+                		}
+                		
                 	  	if (is_icon) {
                 		  	isel.project.deleteFile(isel);
                 	  		_this.gridmodel.remove(isel);
