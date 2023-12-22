@@ -8,7 +8,6 @@
    "$ xns" : "Gtk",
    "* ctor" : "new Gtk.Popover()",
    "Gtk.PositionType position" : "Gtk.PositionType.TOP",
-   "bool active" : false,
    "bool autohide" : true,
    "id" : "ValaCompileErrors",
    "int height_request" : 800,

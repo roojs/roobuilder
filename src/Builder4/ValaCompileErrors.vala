@@ -20,7 +20,6 @@
             // my vars (def)
         public Xcls_MainWindow window;
         public Json.Object notices;
-        public bool active;
 
         // ctor
         public Xcls_ValaCompileErrors()
@@ -29,7 +28,6 @@
             this.el = new Gtk.Popover();
 
             // my vars (dec)
-            this.active = false;
 
             // set gobject values
             this.el.width_request = 900;
