@@ -1954,7 +1954,9 @@
                 		if (res == Gtk.ResponseType.CANCEL) {
                 			return;
                 		}
-                	  
+                	  	var project  = (Project.Project) _this.projectsort.el.get_item(
+                			_this.projectselection.el.selected
+                		);
                 		Project.Project.remove(project);
                 	  _this.projectmodel.remove(project);
                 		_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
