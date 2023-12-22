@@ -80,9 +80,9 @@ namespace Palete {
 		 
 		
 		
-		public static void jsonToListStore(Project.Project project, Json.Object tree, GLib.ListStore ls)
+		public static GLib.ListStore jsonToListStore(Project.Project project, Json.Object tree)
 		{
-			ls.remove_all();
+			var ls = new GLib.ListStore(typeof(CompileError));
 	        tree.foreach_member((obj, file, node) => {
 	        
 	        	var fe = project.getByPath(file);
@@ -96,6 +96,7 @@ namespace Palete {
              
 		    
 		    });
+		    return ls;
           
 		
 		}
