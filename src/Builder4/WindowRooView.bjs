@@ -1497,7 +1497,7 @@
     "\t var n = s.free_to_node();",
     "\t var r = new  Gsk.CairoRenderer();",
     "\t r.realize(null);",
-    "\t var t = t.render_texture(node,null);",
+    "\t var t = r.render_texture(node,null);",
     "\t GLib.debug(\"write to /tmp/test.png\");",
     "\ttexture.save_to_png(\"/tmp/test.png\");",
     "\t ",
