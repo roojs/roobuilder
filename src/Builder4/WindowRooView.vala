@@ -245,6 +245,12 @@
         	 var s = new Gtk.Snapshot();
         	 GLib.debug("Width %D, Height %d",_this.view.el.get_width(), _this.view.el.get_height);
         	 p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height);
+        	 var n = s.free_to_node();
+        	 var r = new  Gsk.CairoRenderer();
+        	 r.realize(null,null);
+        	 var t = t.render_texture(node,null);
+        	texture.save_to_png("/tmp/test.png");
+        	 
         	 
             var	screenshot = Gdk.pixbuf_get_from_surface (
             		win.get_surface().create_similar_surface(
