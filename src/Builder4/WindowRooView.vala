@@ -241,7 +241,7 @@
             var height = win.get_height();
             
         
-        	 var p = new Gdk.WidgetPaintable(_this.view.el);
+        	 var p = new Gtk.WidgetPaintable(_this.view.el);
         	 var s = new Gtk.Snapshot();
         	 GLib.debug("Width %D, Height %d",_this.view.el.get_width(), _this.view.el.get_height);
         	 p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height);
