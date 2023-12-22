@@ -240,10 +240,15 @@
             var width = win.get_width();
             var height = win.get_height();
             
-            
+        
+        	var r = win.get_renderer();
+        	var texture = r.render_texture(rendernode, null);
+        	texture.save_to_png(...);
               
             var	screenshot = Gdk.pixbuf_get_from_surface (
-            		win.get_surface().create_similar_surface(Cairo.Content.COLOR, width,height), 
+            		win.get_surface().create_similar_surface(
+            			Cairo.Content.COLOR, width,height
+        			), 
             		0,0,  width,  height);
         	GLib.debug("Write Screnshoot icon");
              this.file.writeIcon(screenshot);
