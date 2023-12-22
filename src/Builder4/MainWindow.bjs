@@ -651,6 +651,7 @@
             "clicked" : [
              "() => {",
              "    if (_this.statusbar_compile_spinner.el.spinning) {",
+             "\t    _this.windowstate.compile_results.el.show(); // show currently running.",
              "    \treturn;",
              "\t}",
              "\tif (_this.windowstate.file == null) {",
