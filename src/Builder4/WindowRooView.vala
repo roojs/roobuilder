@@ -228,6 +228,7 @@
             if (this.file == null) {
                 return;
             }
+            
         	if (this.notebook.el.page > 0 ) {
                 return;
             }
@@ -244,8 +245,8 @@
             var	screenshot = Gdk.pixbuf_get_from_surface (
             		win.get_surface().create_similar_surface(Cairo.Content.COLOR, width,height), 
             		0,0,  width,  height);
-        
-                 this.file.writeIcon(screenshot);
+        	GLib.debug("Write Screnshoot icon");
+             this.file.writeIcon(screenshot);
             
         
             
