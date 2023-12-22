@@ -49,24 +49,7 @@
              //print("looking for %s\n", id);
             // loop through parent childnre
               
-            var ls = Palete.CompileError.jsonToListStore(
-            	this.window.windowstate.project,
-            	tree
-        	);
-        	var tm = new Gtk.TreeListModel(
-        		ls, //..... << that's our store..
-        		false, // passthru
-        		false, // autexpand
-        		(item) => {
-        		
-        			 return ((Palete.CompileError)item).lines;
-        		
-        		}
-        	);
-         
-            _this.model.el = tm;
-            _this.sortmodel.el.set_model(tm);
-         
+            
               
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
         /*
@@ -92,6 +75,27 @@
             //this.el.set_pointing_to(rect);
         	this.el.present();
             this.el.popup();
+           
+           
+           var ls = Palete.CompileError.jsonToListStore(
+            	this.window.windowstate.project,
+            	tree
+        	);
+        	var tm = new Gtk.TreeListModel(
+        		ls, //..... << that's our store..
+        		false, // passthru
+        		false, // autexpand
+        		(item) => {
+        		
+        			 return ((Palete.CompileError)item).lines;
+        		
+        		}
+        	);
+         
+            _this.model.el = tm;
+            _this.sortmodel.el.set_model(tm);
+         
+           
            
            	//if (expand != null) {
             //	_this.compile_tree.el.expand_row(   store.get_path(expand) , true);
