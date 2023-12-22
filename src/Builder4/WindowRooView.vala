@@ -646,6 +646,7 @@
                         case "SAVEHTML":
                 	        GLib.debug("GOT saveHTML %d", ar[2].length);
                             _this.file.saveHTML(ar[2]);
+                            _this.createThumb();
                             return true;
                         default:
                             return false;
