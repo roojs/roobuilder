@@ -51,9 +51,10 @@
             // loop through parent childnre
               
             
-              this.tree.el.hide();
+              this.tree.el.hide(); //<< very important!!!
+              
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
-        /*
+         
             var win = this.window.el;
             var  w = win.get_width();
             var h = win.get_height();
@@ -68,7 +69,7 @@
                 new_w = w-100;
             }
             this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
-        */
+         
         
            // this.el.set_relative_to(onbtn);
         	//Gtk.Allocation rect;
@@ -124,65 +125,14 @@
                 // set gobject values
                 this.el.homogeneous = false;
                 this.el.hexpand = false;
-                var child_1 = new Xcls_Box3( _this );
-                child_1.ref();
-                this.el.append( child_1.el );
-                var child_2 = new Xcls_ScrolledWindow5( _this );
-                child_2.ref();
-                this.el.append( child_2.el );
-            }
-
-            // user defined functions
-        }
-        public class Xcls_Box3 : Object
-        {
-            public Gtk.Box el;
-            private Xcls_ValaCompileErrors  _this;
-
-
-                // my vars (def)
-
-            // ctor
-            public Xcls_Box3(Xcls_ValaCompileErrors _owner )
-            {
-                _this = _owner;
-                this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
-
-                // my vars (dec)
-
-                // set gobject values
-                var child_1 = new Xcls_Button4( _this );
+                var child_1 = new Xcls_ScrolledWindow3( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
             }
 
             // user defined functions
         }
-        public class Xcls_Button4 : Object
-        {
-            public Gtk.Button el;
-            private Xcls_ValaCompileErrors  _this;
-
-
-                // my vars (def)
-
-            // ctor
-            public Xcls_Button4(Xcls_ValaCompileErrors _owner )
-            {
-                _this = _owner;
-                this.el = new Gtk.Button();
-
-                // my vars (dec)
-
-                // set gobject values
-                this.el.label = "Compile and Run ";
-            }
-
-            // user defined functions
-        }
-
-
-        public class Xcls_ScrolledWindow5 : Object
+        public class Xcls_ScrolledWindow3 : Object
         {
             public Gtk.ScrolledWindow el;
             private Xcls_ValaCompileErrors  _this;
@@ -191,7 +141,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_ScrolledWindow5(Xcls_ValaCompileErrors _owner )
+            public Xcls_ScrolledWindow3(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.ScrolledWindow();
@@ -234,10 +184,10 @@
                 // set gobject values
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_2 = new Xcls_ColumnViewColumn10( _this );
+                var child_2 = new Xcls_ColumnViewColumn8( _this );
                 child_2.ref();
                 this.el.append_column ( child_2.el  );
-                var child_3 = new Xcls_GestureClick12( _this );
+                var child_3 = new Xcls_GestureClick10( _this );
                 child_3.ref();
                 this.el.add_controller(  child_3.el );
             }
@@ -348,7 +298,7 @@
 
 
 
-        public class Xcls_ColumnViewColumn10 : Object
+        public class Xcls_ColumnViewColumn8 : Object
         {
             public Gtk.ColumnViewColumn el;
             private Xcls_ValaCompileErrors  _this;
@@ -357,10 +307,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_ColumnViewColumn10(Xcls_ValaCompileErrors _owner )
+            public Xcls_ColumnViewColumn8(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
-                var child_1 = new Xcls_SignalListItemFactory11( _this );
+                var child_1 = new Xcls_SignalListItemFactory9( _this );
                 child_1.ref();
                 this.el = new Gtk.ColumnViewColumn( "Compile Result", child_1.el );
 
@@ -373,7 +323,7 @@
 
             // user defined functions
         }
-        public class Xcls_SignalListItemFactory11 : Object
+        public class Xcls_SignalListItemFactory9 : Object
         {
             public Gtk.SignalListItemFactory el;
             private Xcls_ValaCompileErrors  _this;
@@ -382,7 +332,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_SignalListItemFactory11(Xcls_ValaCompileErrors _owner )
+            public Xcls_SignalListItemFactory9(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.SignalListItemFactory();
@@ -452,7 +402,7 @@
         }
 
 
-        public class Xcls_GestureClick12 : Object
+        public class Xcls_GestureClick10 : Object
         {
             public Gtk.GestureClick el;
             private Xcls_ValaCompileErrors  _this;
@@ -461,7 +411,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_GestureClick12(Xcls_ValaCompileErrors _owner )
+            public Xcls_GestureClick10(Xcls_ValaCompileErrors _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.GestureClick();

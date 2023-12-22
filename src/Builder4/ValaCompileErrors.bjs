@@ -23,18 +23,6 @@
      "items" : [
       {
        "$ xns" : "Gtk",
-       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "utf8 label" : "Compile and Run ",
-         "xtype" : "Button"
-        }
-       ],
-       "xtype" : "Box"
-      },
-      {
-       "$ xns" : "Gtk",
        "* init" : [
         "{",
         " this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
@@ -281,9 +269,10 @@
     "    // loop through parent childnre",
     "      ",
     "    ",
-    "      this.tree.el.hide();",
+    "      this.tree.el.hide(); //<< very important!!!",
+    "      ",
     "   // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);",
-    "/*",
+    " ",
     "    var win = this.window.el;",
     "    var  w = win.get_width();",
     "    var h = win.get_height();",
@@ -298,7 +287,7 @@
     "        new_w = w-100;",
     "    }",
     "    this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));",
-    "*/",
+    " ",
     "",
     "   // this.el.set_relative_to(onbtn);",
     "\t//Gtk.Allocation rect;",
