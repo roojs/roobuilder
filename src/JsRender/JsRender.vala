@@ -281,10 +281,14 @@ namespace JsRender {
 			this.screenshot368 = null;
 			this.screenshot = null;
 			try {
+				GLib.debug("Wirte %s", this.getIconFileName( ));
 				pixbuf.save(this.getIconFileName( ),"png");
 				this.screenshot = pixbuf;
 			
-			} catch (GLib.Error e) {}
+			} catch (GLib.Error e) {
+				GLib.debug("failed to write pixbuf?");
+			
+			}
 				
 			 
 			
