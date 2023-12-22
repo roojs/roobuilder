@@ -1954,7 +1954,7 @@
                 		if (res == Gtk.ResponseType.CANCEL) {
                 			return;
                 		}
-                	  	var project  = (Project.Project) _this.projectsort.el.get_item(
+                	   project  = (Project.Project) _this.projectsort.el.get_item(
                 			_this.projectselection.el.selected
                 		);
                 		Project.Project.remove(project);

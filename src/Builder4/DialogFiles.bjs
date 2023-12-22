@@ -995,7 +995,7 @@
          "\t\tif (res == Gtk.ResponseType.CANCEL) {",
          "\t\t\treturn;",
          "\t\t}",
-         "\t  \tvar project  = (Project.Project) _this.projectsort.el.get_item(",
+         "\t   project  = (Project.Project) _this.projectsort.el.get_item(",
          "\t\t\t_this.projectselection.el.selected",
          "\t\t);",
          "\t\tProject.Project.remove(project);",
