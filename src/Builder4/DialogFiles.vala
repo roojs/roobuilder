@@ -2178,24 +2178,36 @@
                 //listeners
                 this.el.clicked.connect( ( ) => {
                   
-                  
+                  	if (this.confirm == null) {
+                  		this.confirm = new DialogConfirm();
+                  		this.confirm.el.set_transient_for(_this.el);
+                 
+                	}
+                	var is_icon = true;
                   	var isel = _this.iconsel.selectedFile();
-                  	if (isel != null) {
-                  		isel.project.deleteFile(isel);
-                  		_this.gridmodel.remove(isel);
-                  		return;
-                	
-                	}
-                	
-                	isel = _this.treeselmodel.selectedFile();
-                  	if (isel != null && isel.xtype != "Dir") {
-                  		isel.project.deleteFile(isel);
-                  		// deletefile will have to do this..
-                  		//_this.treelistmodel.remove(isel);
-                  		return;
+                  	if (isel == null) {
+                	  	is_icon = false;
+                	  	isel = _this.treeselmodel.selectedFile();
+                  	}
+                  	if (isel == null) {
+                  		return; // should nto happen..
                 	}
                 	
                 	
+                	this.confirm.el.response.connect((res) => {
+                		if (res == Gtk.ResponseType.CANCEL) {
+                			return;
+                		}
+                	  	if (is_icon) {
+                		  	isel.project.deleteFile(isel);
+                	  		_this.gridmodel.remove(isel);
+                	  		return;
+                  		}
+                  		isel.project.deleteFile(isel);  		
+                	
+                	});
+                	
+                  	
                  
                 
                 });
