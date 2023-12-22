@@ -632,6 +632,9 @@
                      if (msg.length < 4) {
                         return false;
                      }
+                     
+                     GLib.debug("script dialog got %s", msg);
+                     
                      if (msg.substring(0,4) != "IPC:") {
                          return false;
                      }
