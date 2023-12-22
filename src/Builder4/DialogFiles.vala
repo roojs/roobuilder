@@ -158,7 +158,7 @@
         	_this.btn_delfile.el.hide();
         	
              GLib.Timeout.add(500, () => {
-         		 	 
+          
         	     return false;
              });
         }
