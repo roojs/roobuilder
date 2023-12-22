@@ -1233,9 +1233,7 @@
                 //listeners
                 this.el.clicked.connect( () => {
                     
-                    if (_this.statusbar_compile_spinner.el.spinning) {
-                    	return;
-                	}
+                
                     
                     if (this.popup == null) {
                         this.popup = new Xcls_ValaCompileErrors();
@@ -1244,7 +1242,10 @@
                 	  //   this.popup.el.set_transient_for( _this.el );
                        this.popup.el.set_parent(this.el);
                     }
-                    
+                    if (_this.statusbar_compile_spinner.el.spinning) {
+                		this.popup.el.show();    	
+                    	return;
+                	}    
                     this.popup.show(this.notices, this.el);
                     return;
                 });
@@ -1296,16 +1297,17 @@
 
                 //listeners
                 this.el.clicked.connect( () => {
-                    if (_this.statusbar_compile_spinner.el.spinning) {
-                    	return;
-                	}
+                 
                 	if (this.popup == null) {
                         this.popup = new Xcls_ValaCompileErrors();
                         this.popup.window = _this;
                       //    this.popup.el.set_transient_for( _this.el );
                         this.popup.el.set_parent(this.el);
                     }
-                    
+                        if (_this.statusbar_compile_spinner.el.spinning) {
+                		this.popup.el.show();    	
+                    	return;
+                	}    
                     this.popup.show(this.notices, this.el);
                     return;
                 });
@@ -1358,16 +1360,17 @@
 
                 //listeners
                 this.el.clicked.connect( () => {
-                    if (_this.statusbar_compile_spinner.el.spinning) {
-                		return;
-                	}
+                    
                 	if (this.popup == null) {
                         this.popup = new Xcls_ValaCompileErrors();
                         this.popup.window = _this;
                       //  this.popup.el.set_transient_for( _this.el );
                         this.popup.el.set_parent(this.el);
                     }
-                    
+                    if (_this.statusbar_compile_spinner.el.spinning) {
+                		this.popup.el.show();    	
+                    	return;
+                	}    
                     
                     this.popup.show(this.notices, this.el);
                     return;
@@ -1465,19 +1468,12 @@
               this.el.show();
               this.el.start();  
               
-            	_this.statusbar_errors.el.sensitive = false;
-            	_this.statusbar_warnings.el.sensitive = false;
-            	_this.statusbar_depricated.el.sensitive = false;
-            	_this.statusbar_run.el.sensitive = false;
-              
+            	 
             }
             public void stop () {
              this.el.stop();
               this.el.hide();
-              	_this.statusbar_errors.el.sensitive = true;
-            	_this.statusbar_warnings.el.sensitive = true;
-            	_this.statusbar_depricated.el.sensitive = true;
-            	_this.statusbar_run.el.sensitive = true;
+               
             }
         }
 
