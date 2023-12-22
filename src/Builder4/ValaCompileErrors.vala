@@ -69,7 +69,7 @@
          
               
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
-        
+        /*
             var win = this.window.el;
             var  w = win.get_width();
             var h = win.get_height();
@@ -84,8 +84,8 @@
                 new_w = w-100;
             }
             this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
+        */
         
-        	 
            // this.el.set_relative_to(onbtn);
         	//Gtk.Allocation rect;
         	//onbtn.get_allocation(out rect);
