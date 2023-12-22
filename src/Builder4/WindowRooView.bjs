@@ -1491,6 +1491,7 @@
     "",
     "\t var p = new Gdk.WidgetPaintable(_this.view.el);",
     "\t var s = new Gtk.Snapshot();",
+    "\t GLib.debug(\"Width %D, Height %d\",_this.view.el.get_width(), _this.view.el.get_height);",
     "\t p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height);",
     "\t ",
     "    var\tscreenshot = Gdk.pixbuf_get_from_surface (",

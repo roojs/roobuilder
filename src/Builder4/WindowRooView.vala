@@ -243,6 +243,7 @@
         
         	 var p = new Gdk.WidgetPaintable(_this.view.el);
         	 var s = new Gtk.Snapshot();
+        	 GLib.debug("Width %D, Height %d",_this.view.el.get_width(), _this.view.el.get_height);
         	 p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height);
         	 
             var	screenshot = Gdk.pixbuf_get_from_surface (
