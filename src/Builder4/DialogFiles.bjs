@@ -1163,7 +1163,7 @@
     "\t_this.btn_delfile.el.hide();",
     "\t",
     "     GLib.Timeout.add(500, () => {",
-    " \t\t_ \t ",
+    " \t\t \t ",
     "\t     return false;",
     "     });",
     "}",
