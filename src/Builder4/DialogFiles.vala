@@ -1921,7 +1921,7 @@
 
 
                 // my vars (def)
-            public bool confirm;
+            public DialogConfirm confirm;
 
             // ctor
             public Xcls_btn_delproj(DialogFiles _owner )
@@ -1931,7 +1931,7 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
-                this.confirm = true;
+                this.confirm = null;
 
                 // set gobject values
                 var child_1 = new Xcls_Box53( _this );
