@@ -51,14 +51,13 @@
              //print("looking for %s\n", id);
             // loop through parent childnre
               
-            
-            Palete.CompileError.jsonToListStore(
+            var ls = Palete.CompileError.jsonToListStore(
             	this.window.windowstate.project,
-            	tree, 
-            	(GLib.ListStore)_this.model.el.model
+            	tree
         	);
         
-        
+         
+            _this.model.el.set_model(ls);
          
               
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
