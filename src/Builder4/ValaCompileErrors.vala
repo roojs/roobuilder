@@ -57,7 +57,7 @@
         	);
         
          
-            _this.model.el.set_model(ls);
+            _this.model.el = .set_model(ls);
          
               
            // store.set_sort_column_id(0,Gtk.SortType.ASCENDING);
