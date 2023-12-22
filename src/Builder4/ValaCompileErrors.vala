@@ -45,7 +45,8 @@
         public void show ( Json.Object tree , Gtk.Widget onbtn) {
         
             
-         
+         	this.el.present();
+            this.el.popup();
             this.notices = tree;
            
              //print("looking for %s\n", id);
