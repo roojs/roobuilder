@@ -294,7 +294,40 @@ namespace JsRender {
 			
 		
 		}
+		public void widgetToIcon(global::Gtk.Widget widget) {
+			
+			this.screenshot92 = null;
+			this.screenshot368 = null;
+			this.screenshot = null;
+			
+			try {
+			
+
+		    	var filename = this.getIconFileName();
+			 	
+
+				 var p = new global::Gtk.WidgetPaintable(widget);
+				 var s = new global::Gtk.Snapshot();
+				 GLib.debug("Width %d, Height %d", widget.get_width(), widget.get_height()); 
+				 p.snapshot(s, widget.get_width(), widget.get_height());
+				 var n = s.free_to_node();
+				 var r = new  Gsk.CairoRenderer();
+				 r.realize(null);
+				 var t = r.render_texture(n,null);
+				 GLib.debug("write to %s", filename);
+				t.save_to_png(filename);
+				 r.unrealize();
+					 
+			
+			} catch (GLib.Error e) {
+				GLib.debug("failed to write pixbuf?");
+			
+			}
+				
+			 
+			
 		
+		}
 
 		
 		public string getIconFileName( )

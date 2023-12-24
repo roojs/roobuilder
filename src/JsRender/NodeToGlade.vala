@@ -75,14 +75,16 @@ public class JsRender.NodeToGlade : Object {
 	public Xml.Doc* mungeNode()
 	{
 		Xml.Doc* doc;
+		var is_top = false;
 		if (this.parent == null) {
+			is_top = true;
 			doc = new Xml.Doc("1.0");
 
 			var inf = this.create_element("interface");
 			doc->set_root_element(inf);
 			var req = this.create_element("requires");
 			req->set_prop("lib", "gtk+");
-			req->set_prop("version", "3.12");
+			req->set_prop("version", "4.1");
 			inf->add_child(req);
 			this.parent = inf;
 		} else {
@@ -90,22 +92,33 @@ public class JsRender.NodeToGlade : Object {
 		}
 		var cls = this.node.fqn().replace(".", "");
 		
-		Palete.Gir.factoryFqn(this.project, this.node.fqn());
-		
-	 
-		
+		var gdata = Palete.Gir.factoryFqn(this.project, this.node.fqn());
+		if (!gdata.inherits.contains("Gtk.Buildable")) {
+			return doc;
+		}
+ 		if (gdata.inherits.contains("Gtk.Native")&& !is_top) {
+			return doc;
+		}
 		// should really use GXml... 
 		var obj = this.create_element("object");
 		var id = this.node.uid();
-		obj->set_prop("class", cls);
-		obj->set_prop("id", id);
+		var skip_props = false;
+		if (gdata.inherits.contains("Gtk.Native")) {
+			 
+			obj->set_prop("class", "GtkFrame");
+			skip_props = true;
+		} else {
+		
+			obj->set_prop("class", cls);
+		}
+		obj->set_prop("id", "w" + this.node.oid.to_string());
 		this.parent->add_child(obj);
 		// properties..
 		var props = Palete.Gir.factoryFqn(this.project, this.node.fqn()).props;
  
               
 		var pviter = props.map_iterator();
-		while (pviter.next()) {
+		while (!skip_props && pviter.next()) {
 			
 			GLib.debug ("Check: " +cls + "::(" + pviter.get_value().propertyof + ")" + pviter.get_key() + " " );
 			

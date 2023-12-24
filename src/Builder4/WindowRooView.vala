@@ -233,36 +233,7 @@
                 return;
             }
             
-         
-            var filename = this.file.getIconFileName();
-            
-            var  win = this.el.get_root();
-            var width = win.get_width();
-            var height = win.get_height();
-            
-        
-        	 var p = new Gtk.WidgetPaintable(_this.view.el);
-        	 var s = new Gtk.Snapshot();
-        	 GLib.debug("Width %d, Height %d", (int)_this.view.el.get_width(), 
-        		 (int)_this.view.el.get_height);
-        	 p.snapshot(s, _this.view.el.get_width(), _this.view.el.get_height());
-        	 var n = s.free_to_node();
-        	 var r = new  Gsk.CairoRenderer();
-        	 r.realize(null);
-        	 var t = r.render_texture(n,null);
-        	 GLib.debug("write to /tmp/test.png");
-        	t.save_to_png("/tmp/test.png");
-        	 r.unrealize();
-        	 /*
-        	 
-            var	screenshot = Gdk.pixbuf_get_from_surface (
-            		win.get_surface().create_similar_surface(
-            			Cairo.Content.COLOR, width,height
-        			), 
-            		0,0,  width,  height);
-        	GLib.debug("Write Screnshoot icon");
-             this.file.writeIcon(screenshot);
-            */
+         	this.file.widgetToIcon(this.view.el); 
         
             
              
