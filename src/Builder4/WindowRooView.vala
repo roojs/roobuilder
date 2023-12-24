@@ -1108,7 +1108,9 @@
                 		str += (str.length > 0 ? "\n" : "") + m.name;
                 	});
                 	// true if there is a mark..
-                	this.el.tooltip_text = str;
+                	if (str.length > 0 ) {
+                		this.el.tooltip_text = str;
+                	}
                 	return str.length > 0 ? true : false;
                 
                 });

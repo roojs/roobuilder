@@ -560,7 +560,7 @@
                 //listeners
                 this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
                 	
-                	GLib.debug("query tooltip");
+                	//GLib.debug("query tooltip");
                 	Gtk.TextIter iter;
                 	int trailing;
                 	
@@ -571,14 +571,16 @@
                 	var l = iter.get_line();
                 	//GLib.debug("query tooltip line %d", (int) l);
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, null);
-                	//GLib.debug("query tooltip line marks %d", (int) marks.length());
+                	//GLib.debug("query tooltip line %d marks %d", (int)l, (int) marks.length());
                 	var str = "";
                 	marks.@foreach((m) => { 
                 		//GLib.debug("got mark %s", m.name);
                 		str += (str.length > 0 ? "\n" : "") + m.name;
                 	});
                 	// true if there is a mark..
-                	this.el.tooltip_text = str;
+                	if (str.length > 0 ) {
+                		this.el.tooltip_text = str;
+                	}
                 	return str.length > 0 ? true : false;
                 
                 });
