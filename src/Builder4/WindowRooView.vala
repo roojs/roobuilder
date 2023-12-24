@@ -20,6 +20,7 @@
         public Xcls_AutoRedraw AutoRedraw;
         public Xcls_view view;
         public Xcls_inspectorcontainer inspectorcontainer;
+        public Xcls_sourceviewscroll sourceviewscroll;
         public Xcls_sourceview sourceview;
         public Xcls_buffer buffer;
         public Xcls_search_entry search_entry;
@@ -936,8 +937,7 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_ScrolledWindow14( _this );
-                child_1.ref();
+                var child_1 = new Xcls_sourceviewscroll( _this );
                 this.el.append( child_1.el );
                 var child_2 = new Xcls_Box19( _this );
                 child_2.ref();
@@ -946,7 +946,7 @@
 
             // user defined functions
         }
-        public class Xcls_ScrolledWindow14 : Object
+        public class Xcls_sourceviewscroll : Object
         {
             public Gtk.ScrolledWindow el;
             private Xcls_WindowRooView  _this;
@@ -955,9 +955,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_ScrolledWindow14(Xcls_WindowRooView _owner )
+            public Xcls_sourceviewscroll(Xcls_WindowRooView _owner )
             {
                 _this = _owner;
+                _this.sourceviewscroll = this;
                 this.el = new Gtk.ScrolledWindow();
 
                 // my vars (dec)
@@ -1085,6 +1086,32 @@
                     
                     
                 }
+
+                //listeners
+                this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {
+                	
+                	//GLib.debug("query tooltip");
+                	Gtk.TextIter iter;
+                	int trailing;
+                	
+                	var yoff = (int) _this.sourceviewscroll.el.vadjustment.value;
+                	
+                	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
+                	 
+                	var l = iter.get_line();
+                	//GLib.debug("query tooltip line %d", (int) l);
+                	var marks = _this.buffer.el.get_source_marks_at_line(l, null);
+                	//GLib.debug("query tooltip line marks %d", (int) marks.length());
+                	var str = "";
+                	marks.@foreach((m) => { 
+                		//GLib.debug("got mark %s", m.name);
+                		str += (str.length > 0 ? "\n" : "") + m.name;
+                	});
+                	// true if there is a mark..
+                	this.el.tooltip_text = str;
+                	return str.length > 0 ? true : false;
+                
+                });
             }
 
             // user defined functions

@@ -494,6 +494,7 @@
         {
          "$ xns" : "Gtk",
          "bool vexpand" : true,
+         "id" : "sourceviewscroll",
          "items" : [
           {
            "# JsRender.Node? node_selected" : "null",
@@ -803,6 +804,34 @@
              "xtype" : "GestureClick"
             }
            ],
+           "listeners" : {
+            "query_tooltip" : [
+             "(x, y, keyboard_tooltip, tooltip) => {",
+             "\t",
+             "\t//GLib.debug(\"query tooltip\");",
+             "\tGtk.TextIter iter;",
+             "\tint trailing;",
+             "\t",
+             "\tvar yoff = (int) _this.sourceviewscroll.el.vadjustment.value;",
+             "\t",
+             "\tthis.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);",
+             "\t ",
+             "\tvar l = iter.get_line();",
+             "\t//GLib.debug(\"query tooltip line %d\", (int) l);",
+             "\tvar marks = _this.buffer.el.get_source_marks_at_line(l, null);",
+             "\t//GLib.debug(\"query tooltip line marks %d\", (int) marks.length());",
+             "\tvar str = \"\";",
+             "\tmarks.@foreach((m) => { ",
+             "\t\t//GLib.debug(\"got mark %s\", m.name);",
+             "\t\tstr += (str.length > 0 ? \"\\n\" : \"\") + m.name;",
+             "\t});",
+             "\t// true if there is a mark..",
+             "\tthis.el.tooltip_text = str;",
+             "\treturn str.length > 0 ? true : false;",
+             "",
+             "}"
+            ]
+           },
            "string name" : "roo-view",
            "xtype" : "View",
            "| string toString" : [
