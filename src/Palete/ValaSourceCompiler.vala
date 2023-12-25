@@ -313,7 +313,9 @@ namespace Palete {
 						path  = path.splice(path.length -4, path.length, ".vala");
 						GLib.debug("Change source file %s", path);
 					}
-							
+					if (!path.has_suffix(".vala") && path.has_suffix(".c") ) {
+						continue;
+					}
 					if (!FileUtils.test(path, FileTest.EXISTS)) {
 						continue;
 					}       

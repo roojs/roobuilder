@@ -1422,17 +1422,20 @@
 
                 //listeners
                 this.el.clicked.connect( () => {
-                    if (_this.statusbar_compile_spinner.el.spinning) {
+                   
+                   if (_this.windowstate.file == null) {
+                		return;
+                	}
+                   if (_this.statusbar_compile_spinner.el.spinning) {
+                    	_this.windowstate.compile_results.el.set_parent(this.el);
                 	    _this.windowstate.compile_results.el.show(); // show currently running.
                     	return;
                 	}
-                	if (_this.windowstate.file == null) {
-                		return;
-                	}
-                	BuilderApplication.valasource.spawnExecute(_this.windowstate.file);
                 	
+                	BuilderApplication.valasource.spawnExecute(_this.windowstate.file);
+                	_this.windowstate.compile_results.el.set_parent(this.el);
                 	_this.windowstate.compile_results.show(this.el,true);
-                	         this.popup.el.set_parent(this.el);
+                	         
                 });
             }
 

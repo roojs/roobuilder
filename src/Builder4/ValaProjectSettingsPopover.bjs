@@ -953,6 +953,5 @@
    ]
   }
  ],
- "name" : "ValaProjectSettingsPopover",
- "namespace" : ""
+ "name" : "ValaProjectSettingsPopover"
 }

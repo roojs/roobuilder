@@ -222,6 +222,7 @@ namespace Palete {
 			
 			try {
 			    this.compiler = new Spawn("/tmp", args);
+			    this.compiler.output_line.connect(this.compile_output_line);
 			    this.compiler.complete.connect(spawnResult);
 		        this.spinner(true);
 			    this.compiler.run(); 
@@ -385,6 +386,7 @@ namespace Palete {
 			
 			try {
 			    this.compiler = new Spawn("/tmp", args);
+		   	 	this.compiler.output_line.connect(this.compile_output_line);
 			    this.compiler.complete.connect(spawnResult);
 		        this.spinner(true);
 			    this.compiler.run(); 
