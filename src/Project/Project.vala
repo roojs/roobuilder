@@ -249,13 +249,13 @@ namespace Project {
 		}
 		
 		
-		public static GLib.ListStore loadIntoStore()
+		public static void loadIntoStore(GLib.ListStore st)
 		{
-			var st = new GLib.ListStore(typeof(Project));
+			st.remove_all();
 			foreach (var p in projects) {
 				st.append(p);
 			}
-			return st;
+			
 		}
 			
 		

@@ -12,7 +12,9 @@
             }
             return _DialogFiles;
         }
+        public Xcls_mainpane mainpane;
         public Xcls_projectscroll projectscroll;
+        public Xcls_project_list project_list;
         public Xcls_projectselection projectselection;
         public Xcls_projectsort projectsort;
         public Xcls_projectmodel projectmodel;
@@ -68,7 +70,7 @@
         }
 
         // user defined functions
-        public void onProjectSelected (Project.Project project) 
+        public void onProjectSelected (Project.Project? project) 
         {
         	if (this.in_onprojectselected) { 
         		return;
@@ -76,10 +78,15 @@
         	this.selectedProject = project;
         	
         	if (project == null) {
+        		GLib.debug("Hide project files");
+        		_this.mainpane.el.set_end_child(null);
         		_this.filepane.el.hide();
         		return;
         		
         	}
+        	GLib.debug("Show project files");
+        	_this.mainpane.el.set_end_child(_this.filepane.el);
+        	
         	_this.filepane.el.show();	
         	this.in_onprojectselected = true;
         	
@@ -117,6 +124,7 @@
         	var sm = this.projectselection.el;
         	if (project == null) {
         		sm.selected = Gtk.INVALID_LIST_POSITION;
+        		this.onProjectSelected(null);
         		return;
         	}
         
@@ -134,19 +142,30 @@
         public void show (Project.Project? project, bool new_window) {
               
          	this.new_window = new_window;
-         	this.load();
+        
             this.projectscroll.el.vadjustment.value = 0; // scroll to top?
             
-         
-        	this.selectProject(project);
-        	this.onProjectSelected(project);   //?? twice?
-        	 
+          
         	// var win = this.win.el;
             // var  w = win.get_width();
         //     var h = win.get_height();
         //     GLib.debug("SET SIZE %d , %d", w - 100, h - 100);
         	 this.el.set_size_request( 1100, 750); 
         	 this.el.show();
+        	 	this.load();
+        	this.selectProject(project);
+        	this.onProjectSelected(project);   //?? twice?
+        	 
+        	    GLib.Timeout.add(500, () => {
+        	    	if (project == null) {
+            	   		_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
+        				this.onProjectSelected(null); 
+        	
+        			} 
+        	         
+        	     return false;
+             });
+        	 
         }
         public void load () {
              // clear list...
@@ -156,20 +175,19 @@
                  
              
              Project.Project.loadAll();
-             var pm = Project.Project.loadIntoStore();
-             this.projectsort.el.set_model(pm);
-         	 this.projectmodel.el = pm;
-         	 
-             _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
-             this.onProjectSelected(null);
+             _this.project_list.el.set_model(new Gtk.SingleSelection(null));
+             Project.Project.loadIntoStore(this.projectmodel.el);
+        
+        _this.project_list.el.set_model(_this.projectselection.el);
+        
+        	       
+            
+        
              _this.is_loading = false;
              
         	_this.btn_delfile.el.hide();
         	
-             GLib.Timeout.add(500, () => {
           
-        	     return false;
-             });
         }
         public class Xcls_Box2 : Object
         {
@@ -198,8 +216,7 @@
                 var child_1 = new Xcls_Box3( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_Paned4( _this );
-                child_2.ref();
+                var child_2 = new Xcls_mainpane( _this );
                 this.el.append( child_2.el );
             }
 
@@ -228,7 +245,7 @@
             // user defined functions
         }
 
-        public class Xcls_Paned4 : Object
+        public class Xcls_mainpane : Object
         {
             public Gtk.Paned el;
             private DialogFiles  _this;
@@ -239,9 +256,10 @@
             public int spacing;
 
             // ctor
-            public Xcls_Paned4(DialogFiles _owner )
+            public Xcls_mainpane(DialogFiles _owner )
             {
                 _this = _owner;
+                _this.mainpane = this;
                 this.el = new Gtk.Paned( Gtk.Orientation.HORIZONTAL );
 
                 // my vars (dec)
@@ -284,7 +302,7 @@
                 this.el.has_frame = true;
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_1 = new Xcls_ColumnView6( _this );
+                var child_1 = new Xcls_project_list( _this );
                 this.el.child = child_1.el;
 
                 // init method
@@ -294,7 +312,7 @@
 
             // user defined functions
         }
-        public class Xcls_ColumnView6 : Object
+        public class Xcls_project_list : Object
         {
             public Gtk.ColumnView el;
             private DialogFiles  _this;
@@ -304,9 +322,10 @@
             public Gtk.CssProvider css;
 
             // ctor
-            public Xcls_ColumnView6(DialogFiles _owner )
+            public Xcls_project_list(DialogFiles _owner )
             {
                 _this = _owner;
+                _this.project_list = this;
                 var child_1 = new Xcls_projectselection( _this );
                 this.el = new Gtk.ColumnView( child_1.el );
 
@@ -357,6 +376,7 @@
                 // my vars (dec)
 
                 // set gobject values
+                this.el.can_unselect = true;
 
                 //listeners
                 this.el.notify["selected"].connect( (position, n_items) => {

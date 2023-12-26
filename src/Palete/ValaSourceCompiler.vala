@@ -464,7 +464,9 @@ namespace Palete {
 				var cc_command = Environment.get_variable ("CC");
 				
 				string [] cc_options = { "-lm" ,  "-pg"};
-				// insanely faster...
+				// ccache - would be nice, but we use multiple input files - which causes problems.
+				// would have to modify ccompile a bit, to handle this..
+				/*.
 				if (FileUtils.test("/usr/bin/ccache", FileTest.EXISTS)) {
 					GLib.debug("Using ccache");
 					cc_command = "/usr/bin/ccache " + (cc_command == null  ? "cc" : cc_command) ;
@@ -472,7 +474,7 @@ namespace Palete {
 					GLib.debug("Try installing ccache to speed things up");
 
 				}
-				
+				*/
 				 
 				valac += " -X -lm -X -pg";
 				context.verbose_mode = true;
