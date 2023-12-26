@@ -297,6 +297,7 @@ namespace Palete {
 		}
 		public void compile_output_line(   string str )
 		{
+			GLib.debug("%s", str);
 			this.compile_output(str);
 		}
 		/**

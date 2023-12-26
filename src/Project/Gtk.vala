@@ -212,7 +212,7 @@ namespace Project
 		
 		public string[] vapidirs()
 		{
-			return this.pathsMatching("vapi");
+			return this.pathsMatching("vapi", false);
 		}
 		 
 		public override void initialize()

@@ -130,9 +130,12 @@
 				GLib.error("could not read /proc/self/exe");
 			}
 			GLib.debug("SELF = %s", _self);
+			var f =  File.new_for_path(_self);
+			var fi = f.query_info("*",0);
+			
 			
 			Object(
-				application_id: "org.roojs." + GLib.Path.get_basename(_self),
+				application_id: "org.roojs." + GLib.Path.get_basename(_self) + fi.get_creation_date_time().to_unix().to_string(),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();

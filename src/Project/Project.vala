@@ -969,7 +969,7 @@ namespace Project {
 			return null;
 		}
 		
-		public string[] pathsMatching(string name)
+		public string[] pathsMatching(string name, bool full_path)
 		{
 			string[] ret = {};
 			 
@@ -979,7 +979,7 @@ namespace Project {
 				
 				if (Path.get_basename (jdir.path) == name) {
 					GLib.debug("pathsMatching %s\n", jdir.path);
-					ret += jdir.path;
+					ret += full_path ? jdir.path : jdir.relpath;
 				}
 				
 			}
