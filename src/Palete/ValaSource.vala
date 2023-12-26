@@ -26,7 +26,7 @@ namespace Palete {
 
 	public class ValaSource : Object {
  
-		
+		public Json.Object? last_result = null;
 		public signal void compiled(Json.Object res);
 		public signal void compile_output(string str);
  
@@ -418,6 +418,9 @@ namespace Palete {
 		}
 		// update the compiler results into the lists.
 		
+		
+		// what to do when we have finished running..
+		// call this.compiled(result) (handled by windowstate?) 
 		public void spawnResult(int res, string output, string stderr)
 		{
 			 
@@ -442,7 +445,7 @@ namespace Palete {
 				}
 				var ret = node.get_object ();
 				ret.set_int_member("line_offset", this.line_offset);
-				
+				this.last_result = ret;
 				this.compiled(ret);
 				
 				

@@ -143,6 +143,8 @@
         
                 // find the text for the node..
                 this.view.load( prop.val );
+                
+                
                 this.close_btn.el.show();       
             
             } else {
@@ -566,11 +568,25 @@
                 	
                 	var yoff = (int) _this.RightEditor.el.vadjustment.value;
                 	
+                	if (_this.window.statusbar_compile_spinner.el.spinning) {
+                		return false;
+                	}
+                	
                 	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
                 	 
                 	var l = iter.get_line();
+                	if (l < 0) {
+                		return false;
+                	}
                 	//GLib.debug("query tooltip line %d", (int) l);
-                	var marks = _this.buffer.el.get_source_marks_at_line(l, null);
+                	// this crashes?? - not sure why.
+                	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
+                	if (!marks.is_empty()) {
+                		marks = _this.buffer.el.get_source_marks_at_line(l, "WARN");
+                	}
+                	if (!marks.is_empty()) {
+                		marks = _this.buffer.el.get_source_marks_at_line(l, "DEPR");
+                	}
                 	//GLib.debug("query tooltip line %d marks %d", (int)l, (int) marks.length());
                 	var str = "";
                 	marks.@foreach((m) => { 
@@ -781,6 +797,7 @@
                 if (_this.window.windowstate.state != WindowState.State.CODEONLY 
                   
                     ) {
+                    GLib.debug("windowstate != CODEONLY?");
                     return true;
                 } 
                 

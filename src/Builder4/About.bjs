@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : true,
  "items" : [
   {
    "$ authors" : "{ \"Alan Knowles\" }",
@@ -20,10 +21,5 @@
    ]
   }
  ],
- "modOrder" : "",
- "name" : "About",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/About.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "About"
 }

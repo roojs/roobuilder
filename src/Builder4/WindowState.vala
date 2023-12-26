@@ -87,6 +87,7 @@ public class WindowState : Object
 		 
 		BuilderApplication.valasource.compiled.connect(this.showCompileResult); 
 		
+		
 		this.compile_results = new  Xcls_ValaCompileResults(); // the poup dialogs with results in.
 		this.compile_results.window = this.win;
 		BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
@@ -336,7 +337,7 @@ public class WindowState : Object
 				node,
 				prop
 			);
-			
+			this.markBuf();
 			
 			
 		});
@@ -659,6 +660,10 @@ public class WindowState : Object
 			 
 
 		}
+		
+		if (BuilderApplication.valasource.last_result != null) {
+			this.showCompileResult(BuilderApplication.valasource.last_result);
+		}
 		this.gotoLine(line);
 	
 		var ctr= this.win.rooviewbox.el;
@@ -956,6 +961,16 @@ public class WindowState : Object
 			this.last_compile_result = obj;
 			
 			
+		}
+		void markBuf() 
+		{
+			if (this.last_compile_result == null) {
+				return;
+			}
+			var buf = this.code_editor_tab.buffer;
+			buf.highlightErrorsJson("ERR", this.last_compile_result);
+			buf.highlightErrorsJson("WARN", this.last_compile_result);
+			buf.highlightErrorsJson("DEPR", this.last_compile_result);			
 		}
 	
 }

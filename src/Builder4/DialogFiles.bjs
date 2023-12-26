@@ -292,6 +292,7 @@
               {
                "$ xns" : "Gtk",
                "* prop" : "child",
+               "id" : "gridview",
                "items" : [
                 {
                  "$ xns" : "Gtk",
@@ -580,43 +581,32 @@
                  "items" : [
                   {
                    "$ xns" : "Gtk",
-                   "* init" : [
-                    "{",
-                    " //\tthis.el.set_sorter(new Gtk.TreeListRowSorter(_this.treeview.el.sorter));",
-                    "\t ",
-                    "\t",
-                    "}",
-                    ""
-                   ],
                    "* prop" : "model",
                    "bool incremental" : true,
                    "id" : "treelistsort",
                    "items" : [
                     {
                      "$ xns" : "Gtk",
-                     "* ctor" : "this.updateModel(null)",
                      "* prop" : "model",
+                     "Gtk.TreeListModelCreateModelFunc create_func" : [
+                      "(item) => {",
+                      "\t//GLib.debug(\"liststore got %s\", item.get_type().name());",
+                      "\treturn ((JsRender.JsRender)item).childfiles;",
+                      "} "
+                     ],
+                     "bool autoexpand" : true,
+                     "bool passthrough" : false,
                      "id" : "treelistmodel",
-                     "xtype" : "TreeListModel",
-                     "| Gtk.TreeListModel updateModel" : [
-                      "(GLib.ListStore? m ) {",
-                      "",
-                      "\tthis.el =  new Gtk.TreeListModel( ",
-                      "\t\t\tm != null ? m : new GLib.ListStore( typeof(JsRender.JsRender) ), ",
-                      "\t\t\tfalse,",
-                      "\t\t\ttrue, ",
-                      "\t\t\t(item) => {",
-                      "\t\t\t\t//GLib.debug(\"liststore got %s\", item.get_type().name());",
-                      "\t\t\t\treturn ((JsRender.JsRender)item).childfiles;",
-                      "\t\t",
-                      "\t\t\t} ",
-                      "\t\t);",
-                      "\t_this.treelistsort.el.set_model(this.el);",
-                      "\t_this.treelistsort.reload();",
-                      "\treturn el;",
-                      "",
-                      "}"
-                     ]
+                     "items" : [
+                      {
+                       "$ xns" : "GLib",
+                       "* prop" : "root",
+                       "GLib.Type item_type" : "typeof(JsRender.JsRender)",
+                       "id" : "treemodel",
+                       "xtype" : "ListStore"
+                      }
+                     ],
+                     "xtype" : "TreeListModel"
                     },
                     {
                      "$ xns" : "Gtk",
@@ -641,12 +631,7 @@
                      "xtype" : "TreeListRowSorter"
                     }
                    ],
-                   "xtype" : "SortListModel",
-                   "| void reload" : [
-                    "() {",
-                    "\tthis.el.set_sorter(new Gtk.TreeListRowSorter(_this.treeview.el.sorter));",
-                    "}"
-                   ]
+                   "xtype" : "SortListModel"
                   },
                   {
                    "$ xns" : "Gtk",
@@ -1174,8 +1159,8 @@
     "     Project.Project.loadAll();",
     "     _this.project_list.el.set_model(new Gtk.SingleSelection(null));",
     "     Project.Project.loadIntoStore(this.projectmodel.el);",
-    "",
-    "_this.project_list.el.set_model(_this.projectselection.el);",
+    "\t_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "\t_this.project_list.el.set_model(_this.projectselection.el);",
     "",
     "\t       ",
     "    ",
@@ -1215,10 +1200,11 @@
     "\t ",
     "\t",
     "\t_this.searchbox.el.text = \"\";",
-    "\t ",
-    "\tvar fm = _this.selectedProject.loadFilesIntoStore();",
-    "\t_this.gridsort.el.set_model(fm);",
-    "  \t _this.gridmodel.el = fm;",
+    "\t _this.gridview.el.set_model(new Gtk.SingleSelection(null));",
+    "\t _this.selectedProject.loadFilesIntoStore(_this.gridmodel.el);",
+    "\t _this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "  \t \t",
+    "\t _this.gridview.el.set_model(_this.iconsel.el);",
     "\t   ",
     "  \t ",
     "  \t GLib.Timeout.add(500, () => {",
@@ -1228,10 +1214,13 @@
     "\t     _this.searchbox.el.grab_focus();",
     "\t\t   return false;",
     "     });",
+    "\t _this.treeview.el.set_model(new Gtk.SingleSelection(null));",
     "    ",
-    "    var ds = this.selectedProject.loadDirsIntoStore();",
-    "    _this.treelistmodel.updateModel(ds); ",
-    "",
+    "    this.selectedProject.loadDirsIntoStore(_this.treemodel.el);",
+    "    ",
+    "    _this.treeview.el.set_model(_this.treeselmodel.el);",
+    "    ",
+    " \t _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
     " \tthis.treescroll.el.vadjustment.value = 0;",
     "\tthis.in_onprojectselected = false;\t",
     "}",
