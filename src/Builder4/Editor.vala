@@ -585,6 +585,7 @@
                 
                 		return false;
                 	}
+                	/*
                 	if (_this.buffer.marks != null && _this.buffer.marks.has_key(l)) {
                 		GLib.debug("line %d setting tip to %s", l,  _this.buffer.marks.get(l));
                 		tooltip.set_text(_this.buffer.marks.get(l).dup());
@@ -592,9 +593,9 @@
                 	}
                  
                 	return false;
+                	*/
                 	
-                	
-                	 /*
+                	  
                 	// this crashes?? - not sure why.
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
                 	if (marks.is_empty()) {
@@ -612,10 +613,10 @@
                 	});
                 	// true if there is a mark..
                 	if (str.length > 0 ) {
-                		this.el.tooltip_text = str;
+                		tooltip.set_text( str );
                 	}
                 	return str.length > 0 ? true : false;
-                	*/
+                	 
                 });
             }
 
