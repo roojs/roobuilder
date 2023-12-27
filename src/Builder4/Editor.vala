@@ -790,7 +790,7 @@
             	 // we should highlight other types of errors..
             
             	if (!obj.has_member(type)) {
-            		print("Return has no errors\n");
+            		GLib.debug("Return has no errors\n");
             		return true;
             	}
             

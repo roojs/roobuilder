@@ -370,7 +370,7 @@
           "\t // we should highlight other types of errors..",
           "",
           "\tif (!obj.has_member(type)) {",
-          "\t\tprint(\"Return has no errors\\n\");",
+          "\t\tGLib.debug(\"Return has no errors\\n\");",
           "\t\treturn true;",
           "\t}",
           "",
