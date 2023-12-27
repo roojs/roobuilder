@@ -822,7 +822,7 @@
             		return true;
             	} 
             
-            	this.marks = new Gee.HashMap<int,string>();
+            	//this.marks = new Gee.HashMap<int,string>();
             	var err = obj.get_object_member(type);
              
             	if (_this.file == null) {

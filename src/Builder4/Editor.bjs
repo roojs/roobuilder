@@ -384,7 +384,7 @@
           "\t\treturn true;",
           "\t} ",
           "",
-          "\tthis.marks = new Gee.HashMap<int,string>();",
+          "\t//this.marks = new Gee.HashMap<int,string>();",
           "\tvar err = obj.get_object_member(type);",
           " ",
           "\tif (_this.file == null) {",
