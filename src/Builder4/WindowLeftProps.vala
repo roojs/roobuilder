@@ -1659,6 +1659,9 @@
             }
 
             // user defined functions
+            public void startEditing () {
+            
+            }
             public void selectProp (JsRender.NodeProp prop) {
             	for (var i = 0 ; i < this.el.n_items; i++) {
             		var r = (JsRender.NodeProp)this.el.get_item(i);
