@@ -639,6 +639,40 @@ public class JsRender.NodeProp : Object {
 		this.childstore.append(child);
 
 	}
+	
+	/**
+	could use enums.. but basically.
+	0 - > inline text editor
+	1  -> pulldown
+	2  -> full editor
+	*/
+	public int editorType()
+	{
+	
+		var use_textarea = false;
+
+		//------------ things that require the text editor...
+		
+		if (this.ptype == NodePropType.LISTENER) {
+		    use_textarea = true;
+		}
+		if (this.ptype == NodePropType.METHOD) { 
+		    use_textarea = true;
+		}
+		    
+		if ( this.name == "init" && this.ptype == NodePropType.SPECIAL) {
+		    use_textarea = true;
+		}
+		if (this.val.length > 40 || this.val.index_of("\n") > -1) { // long value...
+		    use_textarea = true;
+		}
+		
+	
+	}
+	
+	
+	
+	
 }
 	
 	
