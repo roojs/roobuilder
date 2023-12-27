@@ -1,6 +1,5 @@
 {
  "build_module" : "builder",
- "gen_extended" : false,
  "items" : [
   {
    "# GtkSource.SearchContext searchcontext" : "null",
@@ -542,7 +541,7 @@
          "\tif (l < 0) {",
          "\t\treturn false;",
          "\t}",
-         "\tif (_this.buffer.marks.has_key(l)) {",
+         "\tif (_this.buffer.marks != null && _this.buffer.marks.has_key(l)) {",
          "\t\tthis.el.tooltip_text = _this.buffer.marks.get(l);",
          "\t\treturn true;",
          "\t}",
@@ -1020,5 +1019,10 @@
    ]
   }
  ],
- "name" : "Editor"
+ "modOrder" : "",
+ "name" : "Editor",
+ "parent" : "",
+ "path" : "/home/alan/gitlive/roobuilder/src/Builder4/Editor.bjs",
+ "permname" : "",
+ "title" : ""
 }
