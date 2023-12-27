@@ -568,9 +568,9 @@
                 	
                 	var yoff = (int) _this.RightEditor.el.vadjustment.value;
                 	
-                	if (_this.window.statusbar_compile_spinner.el.spinning) {
-                		return false;
-                	}
+                	//if (_this.window.statusbar_compile_spinner.el.spinning) {
+                	//	return false;
+                	//}
                 	
                 	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
                 	 
@@ -596,7 +596,7 @@
                 	if (!marks.is_empty()) {
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "DEPR");
                 	}
-                	//GLib.debug("query tooltip line %d marks %d", (int)l, (int) marks.length());
+                	 GLib.debug("query tooltip line %d marks %d", (int)l, (int) marks.length());
                 	var str = "";
                 	marks.@foreach((m) => { 
                 		//GLib.debug("got mark %s", m.name);

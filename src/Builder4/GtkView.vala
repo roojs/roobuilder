@@ -683,7 +683,7 @@
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "DEPR");
                 	}
                 	
-                	//GLib.debug("query tooltip line marks %d", (int) marks.length());
+                	 GLib.debug("query tooltip line marks %d", (int) marks.length());
                 	var str = "";
                 	marks.@foreach((m) => { 
                 		//GLib.debug("got mark %s", m.name);
