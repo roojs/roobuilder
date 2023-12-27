@@ -664,8 +664,9 @@
           "}"
          ],
          "| void startEditing" : [
-          "() {",
-          "",
+          "(JsRender.NodeProp prop) {",
+          "\t// should we call select?? - caller does int (from windowstate)",
+          "\t",
           "}"
          ]
         },

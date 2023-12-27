@@ -1659,8 +1659,9 @@
             }
 
             // user defined functions
-            public void startEditing () {
-            
+            public void startEditing (JsRender.NodeProp prop) {
+            	// should we call select?? - caller does int (from windowstate)
+            	
             }
             public void selectProp (JsRender.NodeProp prop) {
             	for (var i = 0 ; i < this.el.n_items; i++) {
