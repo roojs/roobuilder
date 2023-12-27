@@ -667,6 +667,7 @@ public class JsRender.NodeProp : Object {
 		    use_textarea = true;
 		}
 		
+		return use_textarea;
 	
 	}
 	
