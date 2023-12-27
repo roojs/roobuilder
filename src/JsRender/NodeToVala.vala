@@ -65,7 +65,7 @@ public class JsRender.NodeToVala : Object {
 		this.xcls = node.xvala_xcls;
 		if (depth == 0 && this.xcls.contains(".")) {
 			var ar = this.xcls.split(".");
-			this.xcls = ar.[ar.length-1];
+			this.xcls = ar[ar.length-1];
 		}
 		
 		
