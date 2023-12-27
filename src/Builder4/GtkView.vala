@@ -833,12 +833,13 @@
                  // we should highlight other types of errors..
                 
                 if (!obj.has_member(type)) {
-                    print("Return has no errors\n");
+                    GLib.debug("Return has no errors\n");
                     return  ;
                 }
                 var err = obj.get_object_member(type);
                 
                 if (_this.file == null) { 
+            	
                     return; // just in case the file has not loaded yet?
                 }
              
@@ -854,7 +855,7 @@
                     }   
             
                if (!err.has_member(valafn)) {
-                    print("File path has no errors\n");
+                    GLib.debug("File path has no errors\n");
                     return  ;
                 }
                 var lines = err.get_object_member(valafn);
@@ -868,7 +869,7 @@
                          Gtk.TextIter iter;
                 //        print("get inter\n");
                         var eline = int.parse(line) -1  ;
-                        print("GOT ERROR on line %s -- converted to %d\n", line,eline);
+                        GLib.debug("GOT ERROR on line %s -- converted to %d\n", line,eline);
                         
                         
                         if (eline > tlines || eline < 0) {
