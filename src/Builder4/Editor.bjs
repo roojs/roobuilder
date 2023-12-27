@@ -209,6 +209,7 @@
        "indent_width" : 4,
        "items" : [
         {
+         "$ Gee.HashMap<int,string>? marks" : "null",
          "$ xns" : "GtkSource",
          "$ xtype" : "Buffer",
          "* pack" : "set_buffer",
@@ -234,7 +235,6 @@
            ""
           ]
          },
-         "| Gee.HashMap<int,string>? marks" : "null",
          "| bool checkSyntax" : [
           " () {",
           " ",
@@ -386,8 +386,7 @@
           "",
           "\tthis.marks = new Gee.HashMap<int,string>();",
           "\tvar err = obj.get_object_member(type);",
-          "",
-          "",
+          " ",
           "\tif (_this.file == null) {",
           "\t\tGLib.debug(\"file is null?\");",
           "\t\treturn true;",

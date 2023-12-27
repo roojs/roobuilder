@@ -658,6 +658,7 @@
 
                 // my vars (def)
             public int error_line;
+            public Gee.HashMap<int,string>? marks;
             public bool check_queued;
             public bool check_running;
 
@@ -670,6 +671,7 @@
 
                 // my vars (dec)
                 this.error_line = -1;
+                this.marks = null;
                 this.check_queued = false;
                 this.check_running = false;
 
@@ -814,8 +816,7 @@
             
             	this.marks = new Gee.HashMap<int,string>();
             	var err = obj.get_object_member(type);
-            
-            
+             
             	if (_this.file == null) {
             		GLib.debug("file is null?");
             		return true;
@@ -925,7 +926,6 @@
                 //print("TO STRING? " + ret);
                 return ret;
             }
-            public Gee.HashMap<int,string>? marks null
         }
 
         public class Xcls_EventControllerKey11 : Object
