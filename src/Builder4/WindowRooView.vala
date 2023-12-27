@@ -79,7 +79,7 @@
                 return;
             }
             var prop = node.lineToProp(ln+1);
-            print("prop : %s", prop == null ? "???" : prop);
+            print("prop : %s", prop == null ? "???" : prop.name);
                 
                 
             // ---------- this selects the tree's node...
@@ -97,6 +97,7 @@
             // let's try allowing editing on the methods.
             // a little klunky at present..
         	_this.sourceview.prop_selected = "";
+        	/*
             if (prop != null) {
         		//see if we can find it..
         		var kv = prop.split(":");
@@ -111,7 +112,7 @@
         			
         		}
             }
-            
+            */
            // ltree.view.el.set_cursor(new Gtk.TreePath.from_string(tp), null, false); 
            _this.sourceview.nodeSelected(node,false);
             
