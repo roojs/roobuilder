@@ -190,7 +190,11 @@ namespace Palete {
 			    return;
 		    }
 		    var prov  =  this.provider;
-		 
+		 	
+		 	if (prov.windowstate == null) {
+		 		GLib.debug("Warning - provider windowstate not set?");
+		 		return;
+	 		}
 		    // now do our magic..
 		    this.items = prov.windowstate.file.palete().suggestComplete(
 			    prov.windowstate.file,
