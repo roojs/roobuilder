@@ -568,9 +568,11 @@
                 	
                 	var yoff = (int) _this.RightEditor.el.vadjustment.value;
                 	
-                	//if (_this.window.statusbar_compile_spinner.el.spinning) {
-                	//	return false;
-                	//}
+                	// I think this is problematic - if it's compliing  / updating at same time as query.
+                	
+                	if (_this.window.statusbar_compile_spinner.el.spinning) {
+                		return false;
+                	}
                 	
                 	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
                 	 
