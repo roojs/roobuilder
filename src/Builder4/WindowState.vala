@@ -622,9 +622,7 @@ public class WindowState : Object
 					return;
 				}
 				var prop  = node.props.get(pname);
-				this.left_props.selmodel.selectProp(prop);
-				
-				this.left_props.view.editProp(prop);
+ 				 this.left_props.view.editProp(prop);
 				
 				
 				
