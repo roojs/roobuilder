@@ -612,7 +612,7 @@
                 		this.el.tooltip_text = str;
                 	}
                 	return str.length > 0 ? true : false;
-                
+                	*/
                 });
             }
 

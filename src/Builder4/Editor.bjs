@@ -570,7 +570,7 @@
          "\t\tthis.el.tooltip_text = str;",
          "\t}",
          "\treturn str.length > 0 ? true : false;",
-         "",
+         "\t*/",
          "}",
          ""
         ]
