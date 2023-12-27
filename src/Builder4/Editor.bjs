@@ -439,6 +439,7 @@
           "\t\t    if (eline > tlines || eline < 0) {",
           "\t\t        return;",
           "\t\t    }",
+          "\t\t    ",
           "\t\t    this.el.get_iter_at_line( out iter, eline);",
           "\t\t    //print(\"mark line\\n\");",
           "\t\t    var msg  = \"Line: %d\".printf(eline+1);",

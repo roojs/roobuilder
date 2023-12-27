@@ -859,6 +859,7 @@
             		    if (eline > tlines || eline < 0) {
             		        return;
             		    }
+            		    
             		    this.el.get_iter_at_line( out iter, eline);
             		    //print("mark line\n");
             		    var msg  = "Line: %d".printf(eline+1);
