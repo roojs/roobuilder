@@ -925,7 +925,7 @@
                 //print("TO STRING? " + ret);
                 return ret;
             }
-            public Gee.HashMap<int,string>? marks 
+            public Gee.HashMap<int,string>? marks null
         }
 
         public class Xcls_EventControllerKey11 : Object

@@ -234,7 +234,7 @@
            ""
           ]
          },
-         "| Gee.HashMap<int,string>? marks" : "",
+         "| Gee.HashMap<int,string>? marks" : "null",
          "| bool checkSyntax" : [
           " () {",
           " ",
