@@ -147,13 +147,15 @@ namespace Palete {
 			    return false;
 			}   
 			
+			var pr = (Project.Gtk)(file.project);
+			
 			string[] args = {};
 			args += BuilderApplication._self;
 			args += "--skip-linking";
 			args += "--project";
 			args += this.file.project.path;
 			args += "--target";
-			args += this.file.build_module;
+			args +=  pr.firstBuildModuleWith(this.file);
 			args += "--add-file";
 			args +=  tmpfile.get_path();
 			args += "--skip-file";
@@ -211,11 +213,8 @@ namespace Palete {
 			args += "--project";
 			args += this.file.project.path;
 			args += "--target";
-			if (this.file.build_module.length > 0 ) {
-    		    args += this.file.build_module;
-			} else {
-			    args += pr.firstBuildModule();
-			}
+			args += pr.firstBuildModuleWith(this.file);
+			 
 			  
 			 
 			
@@ -267,12 +266,7 @@ namespace Palete {
 			args += "--project";
 			args += this.file.project.path;
 			args += "--target";
-			if (this.file.build_module.length > 0 ) {
-        		args +=  this.file.build_module;
-			} else {
-			    args += pr.firstBuildModule();
-			}
-
+			args += pr.firstBuildModuleWith(this.file); 
 			
 			//args += "--output"; -- set up by the module -- defaults to testrun
 			//args += "/tmp/testrun";
@@ -376,7 +370,7 @@ namespace Palete {
 			args +=  file.project.path;
 			args += "--target";
  
-			args += m;
+			args += pr.firstBuildModuleWith(this.file);
 			args += "--add-file";
 			args +=  tmpfile.get_path();
 			args += "--skip-file";

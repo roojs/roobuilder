@@ -935,6 +935,7 @@ public class JsRender.NodeToVala : Object {
 		if (childcls == null) {
 		  return;
 		}
+		// GTK4
 		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
 		    this.addLine(this.ipad + "this.el.add_controller(  %s.el );".printf(childname) );
@@ -953,13 +954,7 @@ public class JsRender.NodeToVala : Object {
 				this.addLine(this.ipad + "this.el.put( %s.el, %s, %s );".printf(childname,x,y) );
 				return;
 				
-			case "Gtk.Grid":
-				var x = "%d".printf(colpos % cols);
-				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
-				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
-				var h = "1";
-				this.addLine(this.ipad + "this.el.attach( %s.el, %s, %s, %s, %s );".printf(childname ,x,y, w, h) );
-				return;
+			
 
 			case "Gtk.Stack":
 				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
@@ -1015,21 +1010,44 @@ public class JsRender.NodeToVala : Object {
 				this.addLine(this.ipad + "this.el.get_content_area().add( " + childname + ".el );");
 				return;
 
+		
+				
+			case "Gtk.Menu":
+				this.addLine(this.ipad + "this.el.append( "+ childname + ".el );");
+				return;
+	
+	
+	// known working with GTK4 !
+			case "Gtk.HeaderBar": // it could be end... - not sure how to hanle that other than overriding the pack method?
+				this.addLine(this.ipad + "this.el.pack_start( "+ childname + ".el );");
+				return;
+			
+			
 			case "Gtk.Paned":
 				this.pane_number++;
 				switch(this.pane_number) {
 					case 1:
+						this.addLine(this.ipad + "this.el.pack_start( %s.el );".printf(childname));
+						return;
 					case 2:					
-						this.addLine(this.ipad + "this.el.pack%d( %s".printf(this.pane_number,childname) + ".el );");
+						this.addLine(this.ipad + "this.el.pack_end( %s.el );".printf(childname));
 						return;
 					default:
 						// do nothing
 						break;
 				}
 				return;
-				
-			case "Gtk.Menu":
-				this.addLine(this.ipad + "this.el.append( "+ childname + ".el );");
+			
+			case "Gtk.ColumnView":
+				this.addLine(this.ipad + "this.el.append_column( "+ childname + ".el );");
+				return;
+			
+			case "Gtk.Grid":
+				var x = "%d".printf(colpos % cols);
+				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
+				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
+				var h = "1";
+				this.addLine(this.ipad + "this.el.attach( %s.el, %s, %s, %s, %s );".printf(childname ,x,y, w, h) );
 				return;
 			
 			default:
