@@ -63,6 +63,12 @@ public class JsRender.NodeToVala : Object {
 		this.ipad = this.inpad + "        ";
 		this.cls = node.xvala_cls;
 		this.xcls = node.xvala_xcls;
+		if (depth == 0 && this.xcls.contains(".")) {
+			var ar = this.xcls.split(".");
+			this.xcls = ar.[ar.length-1];
+		}
+		
+		
 		this.ret = "";
 		this.cur_line = parent == null ? 0 : parent.cur_line;
 		
