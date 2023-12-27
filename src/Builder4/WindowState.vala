@@ -924,12 +924,7 @@ public class WindowState : Object
 				this.win.statusbar_depricated.setNotices( new Json.Object(),0);
 			}
 
-			//if (this.state == State.CODE || this.state == State.PROJECTCODEONLY) {
-			if ( this.state == State.CODEONLY) {
-				buf.highlightErrorsJson("ERR", obj); 
-				buf.highlightErrorsJson("WARN", obj);
-				buf.highlightErrorsJson("DEPR", obj);
-			}
+			 
 			
 			this.win.statusbar_compilestatus_label.el.hide();
 			this.win.statusbar_run.el.hide();
@@ -962,6 +957,7 @@ public class WindowState : Object
 		   }
 		    
 			this.last_compile_result = obj;
+			markBuf();
  
 			
 		}
@@ -970,10 +966,13 @@ public class WindowState : Object
 			if (this.last_compile_result == null) {
 				return;
 			}
-			var buf = this.code_editor_tab.buffer;
-			buf.highlightErrorsJson("ERR", this.last_compile_result);
-			buf.highlightErrorsJson("WARN", this.last_compile_result);
-			buf.highlightErrorsJson("DEPR", this.last_compile_result);			
+			if ( this.state == State.CODEONLY ||  this.state == State.CODE ) {
+				
+				var buf = this.code_editor_tab.buffer;
+				buf.highlightErrorsJson("ERR", this.last_compile_result);
+				buf.highlightErrorsJson("WARN", this.last_compile_result);
+				buf.highlightErrorsJson("DEPR", this.last_compile_result);			
+			}
 		}
 	
 }
