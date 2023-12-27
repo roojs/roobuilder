@@ -666,7 +666,7 @@
 
                 // my vars (def)
             public int error_line;
-            public Gee.HashMap<int,string>? marks;
+            public Gee.HashMap<int,string>? xmarks;
             public bool check_queued;
             public bool check_running;
 
@@ -679,7 +679,7 @@
 
                 // my vars (dec)
                 this.error_line = -1;
-                this.marks = null;
+                this.xmarks = null;
                 this.check_queued = false;
                 this.check_running = false;
 
@@ -900,7 +900,7 @@
             		msg = "Line: %d".printf(eline+1) +  " " + msg;
             	    this.el.create_source_mark(msg, type, iter);
             	    GLib.debug("set line %d to %m", eline, msg);
-            	    this.marks.set(eline, msg);
+            	   // this.marks.set(eline, msg);
             	} );
             	return false;
             
