@@ -287,9 +287,13 @@
               "\t\"#roo-project-settings-view{ font:  10px monospace;}\"",
               ");",
               " ",
-              "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+              "//this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
               "        ",
-              "        "
+              "       Gtk.StyleContext.add_provider_for_display(",
+              "\t       Gdk.Display.get_default(), ",
+              "\t       this.css,",
+              "\t       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
+              "       );"
              ],
              "* pack" : "set_child",
              "Gtk.CssProvider css" : "",
