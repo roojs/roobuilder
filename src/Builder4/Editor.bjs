@@ -456,7 +456,7 @@
           "\t\t    ",
           "\t\t    ",
           "\t    this.el.create_source_mark(msg, type, iter);",
-          "\t    this.marks.",
+          "\t    this.marks.set(eline, msg);",
           "\t} );",
           "\treturn false;",
           "",

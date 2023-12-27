@@ -884,7 +884,7 @@
             		    
             		    
             	    this.el.create_source_mark(msg, type, iter);
-            	    this.marks.
+            	    this.marks.set(eline, msg);
             	} );
             	return false;
             
