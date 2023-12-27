@@ -613,7 +613,11 @@ public class WindowState : Object
 			if (file.project.xtype == "Gtk" && line> -1 ) {
 				// fixme - show the editing tab.
 				// node and prop?
-				
+				var node = file.lineToNode(line);
+				if (node != null) {
+					this.window_gladeview
+					var prop = lineToProp(line);
+				}
 				
 				
 				this.window_gladeview.scroll_to_line(line);
