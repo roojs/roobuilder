@@ -582,15 +582,15 @@
                 	 
                 	 GLib.debug("query tooltip line %d", (int) l);
                 	if (l < 0) {
-                		this.el.tooltip_text = ".";
+                
                 		return false;
                 	}
                 	if (_this.buffer.marks != null && _this.buffer.marks.has_key(l)) {
                 		GLib.debug("line %d setting tip to %s", l,  _this.buffer.marks.get(l));
-                		this.el.tooltip_text = _this.buffer.marks.get(l).dup();
+                		tooltip.set_text(_this.buffer.marks.get(l).dup());
                 		return true;
                 	}
-                	this.el.tooltip_text = ".";
+                 
                 	return false;
                 	
                 	
