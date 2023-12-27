@@ -575,7 +575,7 @@
          "\tvar str = \"\";",
          "\tmarks.@foreach((m) => { ",
          "\t\t//GLib.debug(\"got mark %s\", m.name);",
-         "\t\tstr += (str.length > 0 ? \"\\n\" : \"\") + m.name;",
+         "\t\tstr += (str.length > 0 ? \"\\n\" : \"\") + m.category + \": \" + m.name;",
          "\t});",
          "\t// true if there is a mark..",
          "\tif (str.length > 0 ) {",

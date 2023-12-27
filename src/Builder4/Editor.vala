@@ -609,7 +609,7 @@
                 	var str = "";
                 	marks.@foreach((m) => { 
                 		//GLib.debug("got mark %s", m.name);
-                		str += (str.length > 0 ? "\n" : "") + m.name;
+                		str += (str.length > 0 ? "\n" : "") + m.category + ": " + m.name;
                 	});
                 	// true if there is a mark..
                 	if (str.length > 0 ) {
