@@ -7,13 +7,13 @@ namespace Palete {
     public class CompletionProvider : Object, GtkSource.CompletionProvider
     {
 		public Editor editor; 
-		public WindowState windowstate;
+		//public WindowState windowstate;
  		public CompletionModel model;
 
 		public CompletionProvider(Editor editor)
 		{
 		    this.editor  = editor;
-		    this.windowstate = null; // not ready until the UI is built.
+		   // this.windowstate = null; // not ready until the UI is built.
 		    
  		}
 
@@ -191,13 +191,13 @@ namespace Palete {
 		    }
 		    var prov  =  this.provider;
 		 	
-		 	if (prov.windowstate == null) {
+		 	if (prov.editor.window.windowstate == null) {
 		 		GLib.debug("Warning - provider windowstate not set?");
 		 		return;
 	 		}
 		    // now do our magic..
-		    this.items = prov.windowstate.file.palete().suggestComplete(
-			    prov.windowstate.file,
+		    this.items = prov.editor.window.windowstate.file.palete().suggestComplete(
+			    prov.editor.window.windowstate.file,
 			    prov.editor.node,
 			    prov.editor.prop,
 			    this.search
