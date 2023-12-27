@@ -625,10 +625,16 @@ public class WindowState : Object
 			this.window_gladeview.scroll_to_line(line);
 			return;
 		} 
-		
+		var node = file.lineToNode(line);
+		if (node != null) {
+			this.left_tree.model.selectNode(node);
+			var prop = node.lineToProp(line);
+			return;
+		} 
+	
 		this.window_rooview.scroll_to_line(line);
 		
-		}
+	
 	
 	}
 	
