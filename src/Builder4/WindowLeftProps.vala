@@ -1940,25 +1940,7 @@
                 	//GLib.debug("prop.val = %s", prop.val);
                 	//GLib.debug("prop.key = %s", prop.to_display_name());
                 	 
-                    var use_textarea = false;
-                
-                    //------------ things that require the text editor...
-                    
-                    if (prop.ptype == JsRender.NodePropType.LISTENER) {
-                        use_textarea = true;
-                    }
-                    if (prop.ptype == JsRender.NodePropType.METHOD) { 
-                        use_textarea = true;
-                    }
-                        
-                    if ( prop.name == "init" && prop.ptype == JsRender.NodePropType.SPECIAL) {
-                        use_textarea = true;
-                    }
-                    if (prop.val.length > 40 || prop.val.index_of("\n") > -1) { // long value...
-                        use_textarea = true;
-                    }
-                    
-                    
+                    var use_textarea =  prop.useTextArea();
                     
                     
                     var pal = _this.file.project.palete;
