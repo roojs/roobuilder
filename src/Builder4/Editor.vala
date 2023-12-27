@@ -578,20 +578,20 @@
                 
                 	
                 	 
-                		 GLib.debug("query tooltip line %d", (int) l);
+                	 GLib.debug("query tooltip line %d", (int) l);
                 	if (l < 0) {
                 		return false;
                 	}
                 	
                 	
                 	
-                	 GLib.debug("query tooltip line %d", (int) l);
+                	 
                 	// this crashes?? - not sure why.
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
-                	if (!marks.is_empty()) {
+                	if (marks.is_empty()) {
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "WARN");
                 	}
-                	if (!marks.is_empty()) {
+                	if (marks.is_empty()) {
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "DEPR");
                 	}
                 	 GLib.debug("query tooltip line %d marks %d", (int)l, (int) marks.length());
