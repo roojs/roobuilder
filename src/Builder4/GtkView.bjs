@@ -17,9 +17,7 @@
     "\t ",
     "\tthis.el.get_style_context().add_provider(this.css,",
     "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
-    "\t ",
-    " ",
-    "        ",
+    "\t  ",
     "        ",
     "}",
     ""
