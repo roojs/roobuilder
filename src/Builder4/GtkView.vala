@@ -319,12 +319,7 @@
              
             
             // should we hold until it's printed...
-            
-              
-        
-            
-            
-        
+             
         
             
              
@@ -688,7 +683,7 @@
                 		str += (str.length > 0 ? "\n" : "") + m.name;
                 	});
                 	// true if there is a mark..
-                	this.el.tooltip_text = str;
+                	tooltip.set_text( str);
                 	return str.length > 0 ? true : false;
                 
                 });
