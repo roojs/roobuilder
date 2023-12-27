@@ -806,7 +806,7 @@
             
             
             	if (_this.file == null) {
-            		Glib.debug("file is null?");
+            		GLib.debug("file is null?");
             		return true;
             
             	}
@@ -827,7 +827,7 @@
             
             	}
             	if (!err.has_member(valafn)) {
-            		Glib.debug("File path has no errors");
+            		GLib.debug("File path has no errors");
             		return  true;
             	}
             
