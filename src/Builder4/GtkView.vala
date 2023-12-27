@@ -59,9 +59,9 @@
             {
             
             	this.css = new Gtk.CssProvider();
-            	try {
+            	 
             		this.css.load_from_data("#gtkview-view-layout { background-color: #ccc; }".data);
-            	} catch (Error e) {}
+            	 
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             	 
@@ -674,7 +674,7 @@
                 	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
                 	 
                 	var l = iter.get_line();
-                	 GLib.debug("query tooltip line %d", (int) l);
+                	// GLib.debug("query tooltip line %d", (int) l);
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
                 	if (marks.is_empty()) {
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "WARN");
@@ -683,7 +683,7 @@
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "DEPR");
                 	}
                 	
-                	 GLib.debug("query tooltip line marks %d", (int) marks.length());
+                	// GLib.debug("query tooltip line marks %d", (int) marks.length());
                 	var str = "";
                 	marks.@foreach((m) => { 
                 		//GLib.debug("got mark %s", m.name);
