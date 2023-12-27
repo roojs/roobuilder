@@ -832,7 +832,7 @@
             	var lines = err.get_object_member(valafn);
             	
             	var offset = 1;
-            	if (obj.has_member("line_offset")) {
+            	if (obj.has_member("line_offset")) { // ?? why??
             		offset = (int)obj.get_int_member("line_offset") + 1;
             	}
             

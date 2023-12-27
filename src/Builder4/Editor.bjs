@@ -412,7 +412,7 @@
           "\tvar lines = err.get_object_member(valafn);",
           "\t",
           "\tvar offset = 1;",
-          "\tif (obj.has_member(\"line_offset\")) {",
+          "\tif (obj.has_member(\"line_offset\")) { // ?? why??",
           "\t\toffset = (int)obj.get_int_member(\"line_offset\") + 1;",
           "\t}",
           "",
