@@ -890,6 +890,7 @@
             		}
             		     
             	    this.el.create_source_mark(msg, type, iter);
+            	    GLib.debug("set line %d to %m", eline, msg);
             	    this.marks.set(eline, msg);
             	} );
             	return false;

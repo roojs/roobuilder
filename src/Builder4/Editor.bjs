@@ -454,6 +454,7 @@
           "\t\t}",
           "\t\t     ",
           "\t    this.el.create_source_mark(msg, type, iter);",
+          "\t    GLib.debug(\"set line %d to %m\", eline, msg);",
           "\t    this.marks.set(eline, msg);",
           "\t} );",
           "\treturn false;",
