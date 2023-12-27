@@ -852,29 +852,29 @@
             
             	lines.foreach_member((obj, line, node) => {
             		
-            		     Gtk.TextIter iter;
-            	//        print("get inter\n");
-            		    var eline = int.parse(line) - offset;
-            		    GLib.debug("GOT ERROR on line %s -- converted to %d  (offset = %d)\n", line,eline, offset);
-            		    
-            		    
-            		    if (eline > tlines || eline < 0) {
-            		        return;
-            		    }
-            		    
-            		    this.el.get_iter_at_line( out iter, eline);
-            		    //print("mark line\n");
-            		    var msg  = "Line: %d".printf(eline+1);
-            		    var ar = lines.get_array_member(line);
-            		    for (var i = 0 ; i < ar.get_length(); i++) {
+            	     Gtk.TextIter iter;
+            //        print("get inter\n");
+            	    var eline = int.parse(line) - offset;
+            	    GLib.debug("GOT ERROR on line %s -- converted to %d  (offset = %d)\n", line,eline, offset);
+            	    
+            	    
+            	    if (eline > tlines || eline < 0) {
+            	        return;
+            	    }
+            	    
+            	    this.el.get_iter_at_line( out iter, eline);
+            	    //print("mark line\n");
+            	    var msg  = "Line: %d".printf(eline+1);
+            	    var ar = lines.get_array_member(line);
+            	    for (var i = 0 ; i < ar.get_length(); i++) {
             			msg += (msg.length > 0) ? "\n" : "";
             			msg += ar.get_string_element(i);
             		}
             		    
             		    
-            		    this.el.create_source_mark(msg, type, iter);
-            		} );
-            		return false;
+            	    this.el.create_source_mark(msg, type, iter);
+            	} );
+            	return false;
             
             
             
