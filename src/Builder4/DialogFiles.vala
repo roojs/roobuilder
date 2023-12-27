@@ -586,7 +586,7 @@
                 });
                 this.el.bind.connect( (listitem) => {
                  
-                	var lbl = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();
+                	var lbl = (Gtk.Label)  ((Gtk.ListItem)listitem).get_child();
                 	   
                 	var item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();
                 
