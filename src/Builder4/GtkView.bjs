@@ -249,6 +249,15 @@
             },
             {
              "$ xns" : "Gtk",
+             "listeners" : {
+              "motion" : [
+               "(x, y) => {",
+               "",
+               "",
+               "}",
+               ""
+              ]
+             },
              "xtype" : "EventControllerMotion"
             }
            ],

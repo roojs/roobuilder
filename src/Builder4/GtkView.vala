@@ -1039,6 +1039,12 @@
                 // my vars (dec)
 
                 // set gobject values
+
+                //listeners
+                this.el.motion.connect( (x, y) => {
+                
+                
+                });
             }
 
             // user defined functions
