@@ -580,7 +580,7 @@
                 
                 	
                 	 
-                	 GLib.debug("query tooltip line %d", (int) l);
+                	// GLib.debug("query tooltip line %d", (int) l);
                 	if (l < 0) {
                 
                 		return false;

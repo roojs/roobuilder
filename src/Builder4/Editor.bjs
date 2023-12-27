@@ -546,7 +546,7 @@
          "",
          "\t",
          "\t ",
-         "\t GLib.debug(\"query tooltip line %d\", (int) l);",
+         "\t// GLib.debug(\"query tooltip line %d\", (int) l);",
          "\tif (l < 0) {",
          "",
          "\t\treturn false;",
