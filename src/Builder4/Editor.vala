@@ -570,9 +570,9 @@
                 	
                 	// I think this is problematic - if it's compliing  / updating at same time as query.
                 	
-                	if (_this.window.statusbar_compile_spinner.el.spinning) {
-                		return false;
-                	}
+                	//if (_this.window.statusbar_compile_spinner.el.spinning) {
+                	//	return false;
+                	//}
                 	
                 	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
                 	 
@@ -580,7 +580,7 @@
                 
                 	
                 	 
-                	// GLib.debug("query tooltip line %d", (int) l);
+                	 GLib.debug("query tooltip line %d", (int) l);
                 	if (l < 0) {
                 		return false;
                 	}
