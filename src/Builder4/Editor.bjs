@@ -234,6 +234,7 @@
            ""
           ]
          },
+         "| Gee.HashMap<int,string>? marks" : "",
          "| bool checkSyntax" : [
           " () {",
           " ",
