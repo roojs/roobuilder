@@ -513,6 +513,10 @@
           {
            "$ xns" : "Gtk",
            "xtype" : "EventControllerMotion"
+          },
+          {
+           "$ xns" : "Gtk",
+           "xtype" : "EventControllerMotion"
           }
          ],
          "xtype" : "ScrolledWindow"
