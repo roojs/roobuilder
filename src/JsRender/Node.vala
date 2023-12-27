@@ -227,42 +227,23 @@ public class JsRender.Node : GLib.Object {
 	}
 	
 	
-	public string lineToProp(int line)
+	public NodeProp? lineToProp(int line)
 	{
-		// assume lineToNode called first...
-		var l = -1;
-		//foreach(int el in this.lines) {
-		//	//print("all lines %d\n", el);
-		//
 		
-		
-		foreach(int el in this.lines) {
-			//print("?match %d\n", el);
-			if (el < line) {
-				
-				l = el;
-				//print("LESS\n");
+		for(var i= 0; i < this.propstore.get_n_items();i++) {
+			var p = this.propstore.get_item(i);
+			if (p.start_line > line) {
 				continue;
 			}
-			if (el == line) {
-				//print("SAME\n");
-				l = el;
-				break;
+			if (line > p.end_line) {
+				continue;
 			}
-			if (l > -1) {
-				//print("RETURNING NODE ON LINE %d", l);
-				return this.line_map.get(l);
-			}
-			return "";
-			
+			return p;
 		}
-		if (l > -1) {
-			//print("RETURNING NODE ON LINE %d", l);
-			return this.line_map.get(l);
-		}
-		return "";
-	
+		return null;
 	}
+		
+		 
 	
 	public bool getPropertyRange(string prop, out int start, out int end)
 	{
