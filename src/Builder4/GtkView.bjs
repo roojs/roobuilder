@@ -509,6 +509,10 @@
             "}",
             ""
            ]
+          },
+          {
+           "$ xns" : "Gtk",
+           "xtype" : "EventControllerMotion"
           }
          ],
          "xtype" : "ScrolledWindow"
