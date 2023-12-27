@@ -375,6 +375,8 @@
           "\t}",
           "",
           "\tif (_this.window.windowstate.state != WindowState.State.CODEONLY ",
+          "\t\t&&",
+          "\t\t_this.window.windowstate.state != WindowState.State.CODE",
           "\t\t) {",
           "\t\tGLib.debug(\"windowstate != CODEONLY?\");",
           "\t\t",

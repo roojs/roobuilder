@@ -795,6 +795,8 @@
             	}
             
             	if (_this.window.windowstate.state != WindowState.State.CODEONLY 
+            		&&
+            		_this.window.windowstate.state != WindowState.State.CODE
             		) {
             		GLib.debug("windowstate != CODEONLY?");
             		
