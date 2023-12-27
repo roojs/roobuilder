@@ -355,6 +355,7 @@ namespace Project
  ],
  "name" : "ui.Window",
  "gen_extended" : false
+}
 """);
 	}
  	
