@@ -785,7 +785,7 @@
             	this.el.get_bounds (out start, out end);
             
             	this.el.remove_source_marks (start, end, type);
-            	Glib.debug("highlight errors");		 
+            	GLib.debug("highlight errors");		 
             
             	 // we should highlight other types of errors..
             

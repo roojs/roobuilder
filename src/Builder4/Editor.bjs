@@ -365,7 +365,7 @@
           "\tthis.el.get_bounds (out start, out end);",
           "",
           "\tthis.el.remove_source_marks (start, end, type);",
-          "\tGlib.debug(\"highlight errors\");\t\t ",
+          "\tGLib.debug(\"highlight errors\");\t\t ",
           "",
           "\t // we should highlight other types of errors..",
           "",
