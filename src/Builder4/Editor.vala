@@ -575,9 +575,18 @@
                 	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
                 	 
                 	var l = iter.get_line();
+                
+                	
+                	if (_this.prop != null) {
+                		l -= _this.prop.start_line;
+                	}
+                	
                 	if (l < 0) {
                 		return false;
                 	}
+                	
+                	
+                	
                 	//GLib.debug("query tooltip line %d", (int) l);
                 	// this crashes?? - not sure why.
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
