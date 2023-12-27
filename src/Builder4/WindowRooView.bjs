@@ -827,7 +827,7 @@
              "\t});",
              "\t// true if there is a mark..",
              "\tif (str.length > 0 ) {",
-             "\t\tthis.el.tooltip_text = str;",
+             "\t\t\ttooltip.set_text( str);",
              "\t}",
              "\treturn str.length > 0 ? true : false;",
              "",

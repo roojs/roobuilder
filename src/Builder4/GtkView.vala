@@ -682,6 +682,7 @@
                 		//GLib.debug("got mark %s", m.name);
                 		str += (str.length > 0 ? "\n" : "") + m.name;
                 	});
+                	
                 	// true if there is a mark..
                 	tooltip.set_text( str);
                 	return str.length > 0 ? true : false;

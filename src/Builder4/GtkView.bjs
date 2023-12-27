@@ -276,6 +276,7 @@
              "\t\t//GLib.debug(\"got mark %s\", m.name);",
              "\t\tstr += (str.length > 0 ? \"\\n\" : \"\") + m.name;",
              "\t});",
+             "\t",
              "\t// true if there is a mark..",
              "\ttooltip.set_text( str);",
              "\treturn str.length > 0 ? true : false;",

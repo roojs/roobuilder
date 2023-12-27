@@ -1109,7 +1109,7 @@
                 	});
                 	// true if there is a mark..
                 	if (str.length > 0 ) {
-                		this.el.tooltip_text = str;
+                			tooltip.set_text( str);
                 	}
                 	return str.length > 0 ? true : false;
                 
