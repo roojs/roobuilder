@@ -785,7 +785,7 @@
             	this.el.get_bounds (out start, out end);
             
             	this.el.remove_source_marks (start, end, type);
-            		 
+            	Glib.debug("highlight errors");		 
             
             	 // we should highlight other types of errors..
             
@@ -797,6 +797,7 @@
             	if (_this.window.windowstate.state != WindowState.State.CODEONLY 
             		) {
             		GLib.debug("windowstate != CODEONLY?");
+            		
             		return true;
             	} 
             
@@ -805,6 +806,7 @@
             
             
             	if (_this.file == null) {
+            		Glib.debug("file is null?");
             		return true;
             
             	}
@@ -825,7 +827,7 @@
             
             	}
             	if (!err.has_member(valafn)) {
-            		print("File path has no errors\n");
+            		Glib.debug("File path has no errors");
             		return  true;
             	}
             
@@ -853,7 +855,7 @@
             		     Gtk.TextIter iter;
             	//        print("get inter\n");
             		    var eline = int.parse(line) - offset;
-            		    print("GOT ERROR on line %s -- converted to %d  (offset = %d)\n", line,eline, offset);
+            		    GLib.debug("GOT ERROR on line %s -- converted to %d  (offset = %d)\n", line,eline, offset);
             		    
             		    
             		    if (eline > tlines || eline < 0) {
