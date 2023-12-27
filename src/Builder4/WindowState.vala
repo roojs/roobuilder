@@ -898,7 +898,7 @@ public class WindowState : Object
 			// stop the spinner...
  			GLib.debug("vala compiled Built Project: %s    Window Project %s",
  				
-     			BuilderApplication.valasource.file == null ? "No file?" : (
+     				BuilderApplication.valasource.file == null ? "No file?" : (
      			
 	     			BuilderApplication.valasource.file.project == null  ? "No Project" : BuilderApplication.valasource.file.project.path
      			),
@@ -919,7 +919,7 @@ public class WindowState : Object
 			var n  = new Json.Node(Json.NodeType.OBJECT);
 			n.init_object(obj);
 			generator.set_root (n);
-			print("result :%s", generator.to_data (null));
+			GLib.debug("result :%s", generator.to_data (null));
 			
 			
 			var buf = this.code_editor_tab.buffer;
