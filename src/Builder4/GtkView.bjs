@@ -872,7 +872,7 @@
    "| void highlightNodeAtLine" : [
     "(int ln) {",
     "",
-    "",
+    "\t// this is done from clicking on the editor..",
     "\t ",
     "\t// highlight node...",
     "\t",

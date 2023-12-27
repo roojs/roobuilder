@@ -140,7 +140,7 @@
         }
         public void highlightNodeAtLine (int ln) {
         
-        
+        	// this is done from clicking on the editor..
         	 
         	// highlight node...
         	
