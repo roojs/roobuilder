@@ -646,7 +646,7 @@ public class JsRender.NodeProp : Object {
 	1  -> pulldown
 	2  -> full editor
 	*/
-	public int useTextArea()
+	public bool useTextArea()
 	{
 	
 		var use_textarea = false;
