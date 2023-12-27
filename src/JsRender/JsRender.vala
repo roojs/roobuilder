@@ -126,7 +126,7 @@ namespace JsRender {
 			this.language = "";
 			this.content_type = "";
 			this.build_module = "";
-			this.loaded = false;
+			//this.loaded = false;
 			//print("JsRender.cto() - reset transStrings\n");
 			this.transStrings = new Gee.HashMap<string,string>();
 			this.namedStrings = new Gee.HashMap<string,string>();
@@ -367,10 +367,10 @@ namespace JsRender {
 		
 		public void saveBJS()
 		{
-		    if (!this.loaded) {
-				GLib.debug("saveBJS - skip - not loaded?");
-        		    return;
-		    }
+		   // if (!this.loaded) {
+			///	GLib.debug("saveBJS - skip - not loaded?");
+        	//	    return;
+		    //}
 		    if (this.xtype == "PlainFile") {
 			    return;
 		    }
