@@ -246,6 +246,10 @@
               ]
              },
              "xtype" : "EventControllerKey"
+            },
+            {
+             "$ xns" : "Gtk",
+             "xtype" : "EventControllerMotion"
             }
            ],
            "listeners" : {
@@ -509,14 +513,6 @@
             "}",
             ""
            ]
-          },
-          {
-           "$ xns" : "Gtk",
-           "xtype" : "EventControllerMotion"
-          },
-          {
-           "$ xns" : "Gtk",
-           "xtype" : "EventControllerMotion"
           }
          ],
          "xtype" : "ScrolledWindow"
