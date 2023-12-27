@@ -797,7 +797,9 @@
 
                 this.css = new Gtk.CssProvider();
                  
-                	this.css.load_from_data("#roo-project-settings-view{ font:  10px monospace;}".data);
+                	this.css.load_from_string(
+                	"#roo-project-settings-view{ font:  10px monospace;}"
+                );
                  
                 this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
             }
