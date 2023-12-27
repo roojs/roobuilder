@@ -587,7 +587,7 @@
                 	
                 	
                 	
-                	//GLib.debug("query tooltip line %d", (int) l);
+                	 GLib.debug("query tooltip line %d", (int) l);
                 	// this crashes?? - not sure why.
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
                 	if (!marks.is_empty()) {

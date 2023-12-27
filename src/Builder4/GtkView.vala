@@ -674,7 +674,7 @@
                 	this.el.get_iter_at_position (out iter, out trailing,  x,  y + yoff);
                 	 
                 	var l = iter.get_line();
-                	//GLib.debug("query tooltip line %d", (int) l);
+                	 GLib.debug("query tooltip line %d", (int) l);
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
                 	if (!marks.is_empty()) {
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "WARN");
