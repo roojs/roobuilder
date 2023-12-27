@@ -99,6 +99,13 @@ public class JsRender.NodeToGlade : Object {
  		if (gdata.inherits.contains("Gtk.Native")&& !is_top) {
 			return doc;
 		}
+		
+		// other problems!!!
+		
+		if (gdata.fqn() == ("Gtk.ListStore")) {
+			return doc;
+		}
+		
 		// should really use GXml... 
 		var obj = this.create_element("object");
 		var id = this.node.uid();
