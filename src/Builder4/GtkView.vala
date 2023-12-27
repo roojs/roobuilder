@@ -152,7 +152,7 @@
                 return;
             }
             var prop = node.lineToProp(ln+1);
-            print("prop : %s", prop == null ? "???" : prop);
+            print("prop : %s", prop == null ? "???" : prop.name);
                 
                 
             // ---------- this selects the tree's node...
