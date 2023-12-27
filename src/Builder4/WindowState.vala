@@ -923,6 +923,7 @@ public class WindowState : Object
 			} else {
 				this.win.statusbar_depricated.setNotices( new Json.Object(),0);
 			}
+
 			//if (this.state == State.CODE || this.state == State.PROJECTCODEONLY) {
 			if ( this.state == State.CODEONLY) {
 				buf.highlightErrorsJson("ERR", obj); 
@@ -946,6 +947,8 @@ public class WindowState : Object
 				if (!has_errors) {
 					this.win.statusbar_run.el.show();
 				}
+				
+
 			
 		   }
 		   
@@ -959,7 +962,7 @@ public class WindowState : Object
 		   }
 		    
 			this.last_compile_result = obj;
-			
+ 
 			
 		}
 		void markBuf() 
