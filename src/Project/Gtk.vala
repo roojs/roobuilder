@@ -162,15 +162,14 @@ namespace Project
 		public string firstBuildModuleWith(JsRender.JsRender file)
 		{
 			foreach(var cg in this.compilegroups.values) {
-			
-			 
-				 if (cg.has_file(file)) {
+			 	 if (cg.has_file(file)) {
 				 	return cg.name;
 			 	 }
 				 
 				 
 			}
-			return "";
+			return this.firstBuildModule();
+			 
 		}
 		
 		public void loadVapiIntoStore(GLib.ListStore ls) 
