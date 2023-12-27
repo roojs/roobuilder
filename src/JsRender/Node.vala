@@ -231,7 +231,7 @@ public class JsRender.Node : GLib.Object {
 	{
 		
 		for(var i= 0; i < this.propstore.get_n_items();i++) {
-			var p = this.propstore.get_item(i);
+			var p = (NodeProp) this.propstore.get_item(i);
 			if (p.start_line > line) {
 				continue;
 			}
