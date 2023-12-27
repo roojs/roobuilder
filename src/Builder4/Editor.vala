@@ -584,10 +584,14 @@
                 	if (l < 0) {
                 		return false;
                 	}
+                	if (_this.buffer.marks.has_key(l)) {
+                		this.el.tooltip_text = _this.buffer.marks.get(l);
+                		return true;
+                	}
+                	return false;
                 	
                 	
-                	
-                	 
+                	 /*
                 	// this crashes?? - not sure why.
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
                 	if (marks.is_empty()) {
@@ -596,6 +600,7 @@
                 	if (marks.is_empty()) {
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "DEPR");
                 	}
+                	
                 	// GLib.debug("query tooltip line %d marks %d", (int)l, (int) marks.length());
                 	var str = "";
                 	marks.@foreach((m) => { 
