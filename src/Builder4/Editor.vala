@@ -879,19 +879,23 @@
             	    if (eline > tlines || eline < 0) {
             	        return;
             	    }
-            	    if (msg == "Success") {
-            	    	return;
-                	}
+            	   
             	    
             	    this.el.get_iter_at_line( out iter, eline);
             	    //print("mark line\n");
-            	    var msg  = "Line: %d".printf(eline+1);
+            	    var msg  = "";
             	    var ar = lines.get_array_member(line);
             	    for (var i = 0 ; i < ar.get_length(); i++) {
+            	    	if (ar.get_string_element(i) == "Success") {
+            	    		continue;
+                		}
             			msg += (msg.length > 0) ? "\n" : "";
             			msg += ar.get_string_element(i);
             		}
-            		     
+            		if (msg == "") {
+            			return;
+            		}
+            		msg = "Line: %d".printf(eline+1) +  " " + msg;
             	    this.el.create_source_mark(msg, type, iter);
             	    GLib.debug("set line %d to %m", eline, msg);
             	    this.marks.set(eline, msg);
