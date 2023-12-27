@@ -881,8 +881,7 @@
             			msg += (msg.length > 0) ? "\n" : "";
             			msg += ar.get_string_element(i);
             		}
-            		    
-            		    
+            		     
             	    this.el.create_source_mark(msg, type, iter);
             	    this.marks.set(eline, msg);
             	} );
