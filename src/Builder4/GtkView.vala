@@ -676,10 +676,10 @@
                 	var l = iter.get_line();
                 	 GLib.debug("query tooltip line %d", (int) l);
                 	var marks = _this.buffer.el.get_source_marks_at_line(l, "ERR");
-                	if (!marks.is_empty()) {
+                	if (marks.is_empty()) {
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "WARN");
                 	}
-                	if (!marks.is_empty()) {
+                	if (marks.is_empty()) {
                 		marks = _this.buffer.el.get_source_marks_at_line(l, "DEPR");
                 	}
                 	
