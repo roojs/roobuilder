@@ -577,9 +577,7 @@
                 	var l = iter.get_line();
                 
                 	
-                	if (_this.prop != null) {
-                		l -= _this.prop.start_line;
-                	}
+                	 
                 		 GLib.debug("query tooltip line %d", (int) l);
                 	if (l < 0) {
                 		return false;
