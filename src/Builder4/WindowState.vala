@@ -624,7 +624,7 @@ public class WindowState : Object
 				var prop  = node.props.get(pname);
 				this.left_props.selmodel.selectProp(prop);
 				
-				this.left_props.selmodel.startEditing(prop);
+				this.left_props.view.editProp(prop);
 				
 				
 				
