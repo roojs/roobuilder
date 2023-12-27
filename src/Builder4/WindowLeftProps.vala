@@ -1863,7 +1863,7 @@
                 	 elbl.add_controller(ef);
                 	 
                 	 
-                	  
+                	  // dropdown??? - stop editing, and highliht node
                 	 var tb = (Gtk.ToggleButton) cb.get_first_child();
                 	 tb.clicked.connect(() => {
                 		 var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();

@@ -859,7 +859,7 @@
              "\t elbl.add_controller(ef);",
              "\t ",
              "\t ",
-             "\t  ",
+             "\t  // dropdown??? - stop editing, and highliht node",
              "\t var tb = (Gtk.ToggleButton) cb.get_first_child();",
              "\t tb.clicked.connect(() => {",
              "\t\t var prop = (JsRender.NodeProp)((Gtk.ListItem)listitem).get_item();",
