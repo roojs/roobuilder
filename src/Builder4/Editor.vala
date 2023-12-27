@@ -812,9 +812,9 @@
             		return true;
             	} 
             
-            
-            	var err = obj.get_object_member(type);
             	this.marks = new Gee.HashMap<int,string>();
+            	var err = obj.get_object_member(type);
+            
             
             	if (_this.file == null) {
             		GLib.debug("file is null?");
