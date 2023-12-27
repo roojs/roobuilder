@@ -814,7 +814,7 @@
             
             
             	var err = obj.get_object_member(type);
-            
+            	this.marks = new Gee.HashMap<int,string>();
             
             	if (_this.file == null) {
             		GLib.debug("file is null?");
@@ -859,7 +859,7 @@
             	
             	}
             	
-            	
+            
             
             	lines.foreach_member((obj, line, node) => {
             		
@@ -884,6 +884,7 @@
             		    
             		    
             	    this.el.create_source_mark(msg, type, iter);
+            	    this.marks.
             	} );
             	return false;
             
