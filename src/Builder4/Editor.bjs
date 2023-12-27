@@ -543,6 +543,7 @@
          "\t\treturn false;",
          "\t}",
          "\tif (_this.buffer.marks != null && _this.buffer.marks.has_key(l)) {",
+         "\t\tGLib.debug(\"setting tip to %s\",  _this.buffer.marks.get(l));",
          "\t\tthis.el.tooltip_text = _this.buffer.marks.get(l).dup();",
          "\t\treturn true;",
          "\t}",

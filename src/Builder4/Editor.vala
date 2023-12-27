@@ -585,6 +585,7 @@
                 		return false;
                 	}
                 	if (_this.buffer.marks != null && _this.buffer.marks.has_key(l)) {
+                		GLib.debug("setting tip to %s",  _this.buffer.marks.get(l));
                 		this.el.tooltip_text = _this.buffer.marks.get(l).dup();
                 		return true;
                 	}
