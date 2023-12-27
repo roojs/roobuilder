@@ -617,14 +617,12 @@ public class WindowState : Object
 			var node = file.lineToNode(line);
 			if (node != null) {
 				this.left_tree.model.selectNode(node);
-				var pname = node.lineToProp(line);
+				var prop = node.lineToProp(line);
 				
-				if (pname == "" || !node.props.has_key(pname)) {
-					GLib.debug("got Prop %s (could nto find key)", pname);
+				if (prop == null) {
+					GLib.debug("could not find prop at line %d", line);
 					return;
 				}
-				var prop  = node.props.get(pname);
-				GLib.debug("got Prop %s (calling edit prop)", pname);
  				 this.left_props.view.editProp(prop);
 				
 				
