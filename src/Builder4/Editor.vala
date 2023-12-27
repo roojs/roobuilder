@@ -839,7 +839,12 @@
             
             	var tlines = this.el.get_line_count () +1;
             	
-            	if (this.prop
+            	if (_this.prop != null) {
+            	
+            		tlines = _this.prop.end_line;
+            		offset = _this.prop.start_line
+            	
+            	}
             	
             	
             
@@ -848,7 +853,7 @@
             		     Gtk.TextIter iter;
             	//        print("get inter\n");
             		    var eline = int.parse(line) - offset;
-            		    print("GOT ERROR on line %s -- converted to %d\n", line,eline);
+            		    print("GOT ERROR on line %s -- converted to %d  (offset = %d)\n", line,eline, offset);
             		    
             		    
             		    if (eline > tlines || eline < 0) {
