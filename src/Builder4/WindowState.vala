@@ -605,26 +605,29 @@ public class WindowState : Object
 		    this.switchState (State.CODEONLY); 
 			 
 			this.code_editor_tab.scroll_to_line(line);
-			 
-		} else {
+			return;
+		}		
+	
+	
+		this.switchState (State.PREVIEW); 
+		 
+		if (file.project.xtype == "Gtk" && line> -1 ) {
+			// fixme - show the editing tab.
+			// node and prop?
+			var node = file.lineToNode(line);
+			if (node != null) {
+				this.left_tree.model.selectNode(node);
+				var prop = node.lineToProp(line);
+				return;
+			} 
+			
+			
+			this.window_gladeview.scroll_to_line(line);
+			return;
+		} 
 		
-			this.switchState (State.PREVIEW); 
-			 
-			if (file.project.xtype == "Gtk" && line> -1 ) {
-				// fixme - show the editing tab.
-				// node and prop?
-				var node = file.lineToNode(line);
-				if (node != null) {
-					this.left_tree.model.selectNode(node);
-					var prop = node.lineToProp(line);
-				}
-				
-				
-				this.window_gladeview.scroll_to_line(line);
-			} else {
-				this.window_rooview.scroll_to_line(line);
-			// fixme - what about Roo?
-			}
+		this.window_rooview.scroll_to_line(line);
+		
 		}
 	
 	}
