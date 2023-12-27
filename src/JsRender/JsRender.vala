@@ -368,12 +368,13 @@ namespace JsRender {
 		public void saveBJS()
 		{
 		    if (!this.loaded) {
+				GLib.debug("saveBJS - skip - not loaded?");
         		    return;
 		    }
 		    if (this.xtype == "PlainFile") {
 			    return;
 		    }
-		   ;
+		   
 		     
 		    
 		    GLib.debug("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
