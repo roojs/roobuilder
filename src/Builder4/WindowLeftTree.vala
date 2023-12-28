@@ -332,7 +332,6 @@
                 	    if (reading_header) {
             				var h = 0;
             			    if (child.get_type().name() == "GtkColumnViewRowWidget") {
-            			    	
             			        h = child.get_height();
             			    }
             				if (child.get_type().name() != "GtkColumnListView") {
@@ -341,14 +340,20 @@
             				}
             				child = child.get_first_child(); 
             				header_height =  h;
-            				
             				reading_header = false;
+            				
             	        }
             	        
             		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
                 		    child = child.get_next_sibling();
                 		    continue;
             		    }
+            		    
+            		    // a tthis point we are supposed to 
+            		    if (y > h) {
+            		    	return -1;
+            	    	}
+            		    
             		    line_no++;
             			var hh = child.get_height();
             			//child.get_allocation(out alloc);
