@@ -171,6 +171,7 @@
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
+			this.dropList(cur_project);
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
 			this.compileBjs(cur_project);
@@ -250,14 +251,35 @@
 			Project.Project cur_project = null;
 			cur_project = Project.Project.getProjectByPath( BuilderApplication.opt_compile_project);
 			
+
+			
 			if (cur_project == null) {
 				GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
 			}
 			cur_project.load();
-				
+
+			
+
 			return cur_project;
 		
 		}
+		
+		void dropList(Project.Project cur_project) {
+
+
+			if (BuilderApplication.opt_drop_list == null) {
+				return
+			}
+			
+			if (BuilderApplication.opt_compile_project == null) {
+				GLib.error("need a project %s, to use --drop-list",BuilderApplication.opt_compile_project);
+			 }
+			 
+			 
+			 
+			
+		}
+		
 		void listFiles(Project.Project? cur_project)
 		{
 			if (!BuilderApplication.opt_list_files) {
