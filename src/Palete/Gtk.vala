@@ -1079,12 +1079,14 @@ namespace Palete {
     		var pr = (Project.Gtk) this.project;
     		foreach(var c in children) {
     			if (!pr.dropList.has_key(c)) {
+
     				pr.dropList.set(c, new Gee.ArrayList<string>());
 				}
 	    		var dl = pr.dropList.get(c);
 	    		if (dl.contains(parent)) {
 	    			continue;
     			}
+    			GLib.debug("%s[] = %s", c, parent);
     			dl.add(parent);
     		}
     	
