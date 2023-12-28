@@ -1027,11 +1027,11 @@ namespace Palete {
         		return ret; 
         	}
         	foreach(var pn in cls.props.values) {
-        	
+        		GLib.debug("Check %s : (%s) %s", cls.fqn(), pn.type , pn.name);
         		if (!pn.is_writable && !pn.ctor_only) {
         			continue;
     			}
-        	
+        		
         		this.addRealClasses(ret, pn.type);
     		}
         	
