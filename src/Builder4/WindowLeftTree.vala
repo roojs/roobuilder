@@ -320,7 +320,7 @@
              		//GLib.debug("offset = %d  y = %d", (int) voff, (int) in_y);
                 	var y = in_y + _this.viewwin.el.vadjustment.value; 
                     var  child = this.el.get_first_child(); 
-                	Gtk.Allocation alloc = { 0, 0, 0, 0 };
+                	//Gtk.Allocation alloc = { 0, 0, 0, 0 };
                 	var line_no = -1; 
                 	var reading_header = true;
                 	var real_y = 0;
@@ -350,8 +350,8 @@
                 		    continue;
             		    }
             		    line_no++;
-            
-            			child.get_allocation(out alloc);
+            			var hh = child.get_height();
+            			//child.get_allocation(out alloc);
             			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
             			//GLib.debug("row %d y= %d %s", line_no, (int) (header_height + alloc.y),
             			
