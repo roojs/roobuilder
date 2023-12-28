@@ -1045,12 +1045,14 @@ namespace Palete {
     	public void buildChildListForDroppingProject()
     	{
 
+			this.load();
 			var pr = (Project.Gtk) this.project;
 			
 			if (pr.dropList != null) {
 				GLib.debug("Drop list alreayd loaded");
 				return;
 			}
+			 
 			pr.dropList = new Gee.HashMap<string,Gee.ArrayList<string>>();
 			foreach(var key in   pr.gir_cache.keys) {
 				var gir = pr.gir_cache.get(key);
