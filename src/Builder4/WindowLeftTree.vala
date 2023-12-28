@@ -424,13 +424,17 @@
             	        }
             		    line_no++;
             
-            			child.get_allocation(out alloc);
+            			if (y < header_height) {
+            		    	return -1;
+            	    	}
+            
+            			var hh = child.get_height();
             			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
             
-            		    if (y > curr_y && y <= header_height + alloc.height + curr_y ) {
+            		    if (y > curr_y && y <= header_height + hh + curr_y ) {
             			    return (Gtk.Widget)child;
             		    }
-            		    curr_y +=  alloc.height ;
+            		    curr_y +=  hh ;
             
             		    if (curr_y > y) {
             		        return null;
