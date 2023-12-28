@@ -265,9 +265,7 @@
             				 
             		    }
             		    
-            		    if (y < header_height) {
-            		    	return null;
-            	    	}
+            		  
                 	    
             		    line_no++;
             			if (line_no == row) {
