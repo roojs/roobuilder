@@ -425,7 +425,7 @@
             		    line_no++;
             
             			if (y < header_height) {
-            		    	return -1;
+            		    	return null;
             	    	}
             
             			var hh = child.get_height();

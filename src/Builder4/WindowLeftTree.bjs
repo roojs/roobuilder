@@ -1254,7 +1254,7 @@
         "\t\t    line_no++;",
         "",
         "\t\t\tif (y < header_height) {",
-        "\t\t    \treturn -1;",
+        "\t\t    \treturn null;",
         "\t    \t}",
         "",
         "\t\t\tvar hh = child.get_height();",
