@@ -334,7 +334,8 @@ namespace Palete {
 #endif
 			c.is_readable = prop.get_accessor != null ?  prop.get_accessor.readable : false;
 			c.is_writable = prop.get_accessor != null ?  prop.get_accessor.writable ||  prop.get_accessor.construction : false;
-		 
+		 	if (prop.name == "child") {
+		 		GLib.debug("prop child : w%s r%s", c.is_writable ? "YES" : "n" , c.is_readable ? "YES" : "n");
 			if (prop.version.deprecated) { 
 				GLib.debug("class %s is deprecated", c.name);
 				c.is_deprecated = true;
