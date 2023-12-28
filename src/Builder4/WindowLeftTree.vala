@@ -301,6 +301,11 @@
             
              }
             public int getRowAt (double x,  double in_y, out string pos) {
+            
+            
+            	var w = this.el.pick(x,y,Gtk.PickFlags.DEFAULT);
+            	GLib.debug("pick got %s", w.get_type().name());
+            
             /*
                 	
             from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
