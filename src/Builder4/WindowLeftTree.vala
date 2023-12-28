@@ -326,20 +326,22 @@
                 	var real_y = 0;
                 	var header_height  = 0;
                 	pos = "over";
-                	
+                	var h = 0;
                 	while (child != null) {
             			//GLib.debug("Got %s", child.get_type().name());
                 	    if (reading_header) {
-            				var h = 0;
-            			    if (child.get_type().name() == "GtkColumnViewRowWidget") {
-            			        h = child.get_height();
-            			    }
+            				
+            
             				if (child.get_type().name() != "GtkColumnListView") {
+            			        h += child.get_height();
             					child = child.get_next_sibling();
             					continue;
             				}
+            				// should be columnlistview
             				child = child.get_first_child(); 
+            			    GLib.debug("header height=%d", h);
             				header_height =  h;
+            				
             				reading_header = false;
             				
             	        }
@@ -349,7 +351,9 @@
                 		    continue;
             		    }
             		    
-            		  
+            		 	if (y < header_height) {
+            		    	return -1;
+            	    	}
             		    
             		    line_no++;
             			var hh = child.get_height();
