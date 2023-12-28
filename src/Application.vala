@@ -268,7 +268,7 @@
 
 
 			if (BuilderApplication.opt_drop_list == null) {
-				return
+				return;
 			}
 			
 			if (BuilderApplication.opt_compile_project == null) {
