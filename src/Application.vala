@@ -279,9 +279,10 @@
 			 }
 			 var p = (Palete.Gtk) cur_project.palete;
 			
-			 GLib.debug("DropList: %s", geeArrayToString(p.getDropList(BuilderApplication.opt_drop_list)));
- 			 GLib.debug("ChildList: %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, false)));
- 			 GLib.debug("ChildList (with props): %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, true))); 			 
+			 print("DropList: %s", geeArrayToString(p.getDropList(BuilderApplication.opt_drop_list)));
+ 			 print("ChildList: %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, false)));
+ 			 print("ChildList (with props): %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, true))); 			 
+ 			  GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 		}
 		string geeArrayToString(Gee.ArrayList<string> ar) 
