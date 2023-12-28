@@ -246,20 +246,24 @@
             
                 	while (child != null) {
             			GLib.debug("Got %s", child.get_type().name());
-                	    if (reading_header) {
-            			 
-            			   
+                	   
+                	   if (reading_header) {
+            				
+            
             				if (child.get_type().name() != "GtkColumnListView") {
+            				    h += child.get_height();
             					child = child.get_next_sibling();
             					continue;
             				}
+            				// should be columnlistview
             				child = child.get_first_child(); 
+            				GLib.debug("header height=%d", h);
+            				header_height =  h;
+            				
             				reading_header = false;
-            	        }
-            		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
-                		    child = child.get_next_sibling();
-                		    continue;
+            				
             		    }
+                	    
             		    line_no++;
             			if (line_no == row) {
             				GLib.debug("Returning widget %s", child.get_type().name());
@@ -406,7 +410,7 @@
                 	var h = 0;
                 	while (child != null) {
             			//GLib.debug("Got %s", child.get_type().name());
-                	        if (reading_header) {
+            	        if (reading_header) {
             				
             
             				if (child.get_type().name() != "GtkColumnListView") {
