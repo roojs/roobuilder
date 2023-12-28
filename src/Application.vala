@@ -281,8 +281,7 @@
 			
 			 GLib.debug("DropList: %s", geeArrayToString(p.getDropList(BuilderApplication.opt_drop_list)));
  			 GLib.debug("ChildList: %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, false)));
- 			 
-			 p.getChildList
+ 			 GLib.debug("ChildList (with props): %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, true))); 			 
 			
 		}
 		string geeArrayToString(Gee.ArrayList<string> ar) 
