@@ -370,10 +370,10 @@
             		    }
              
             
-            		    if (real_y + alloc.height > y) {
+            		    if (real_y + hh > y) {
             		        return -1;
             	        }
-            	        real_y += alloc.height;
+            	        real_y += hh;
             	        child = child.get_next_sibling(); 
                 	}
                     return -1;
