@@ -398,11 +398,12 @@
                 	*/
                 	var y = in_y + _this.viewwin.el.vadjustment.value; 
                     var  child = this.el.get_first_child(); 
-                	Gtk.Allocation alloc = { 0, 0, 0, 0 };
+                	//Gtk.Allocation alloc = { 0, 0, 0, 0 };
                 	var line_no = -1; 
                 	var reading_header = true;
                 	var curr_y = 0;
                 	var header_height  = 0;
+                	var h = 0;
                 	while (child != null) {
             			//GLib.debug("Got %s", child.get_type().name());
                 	        if (reading_header) {
