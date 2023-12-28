@@ -1028,10 +1028,12 @@ namespace Palete {
         	}
         	foreach(var pn in cls.props.values) {
 
-        		if (!pn.is_writable && !pn.ctor_only) {
-	        		GLib.debug("Skip  %s : (%s) %s", cls.fqn(), pn.type , pn.name);
+        		if (!pn.is_writable ) {
+	        		GLib.debug("Skip (not write)  %s : (%s) %s", cls.fqn(), pn.type , pn.name);
         			continue;
     			}
+    			// if (&& !pn.ctor_only << we add these?
+    			// are they really available ?
         		GLib.debug("Add %s : (%s) %s", cls.fqn(), pn.type , pn.name);        		
         		this.addRealClasses(ret, pn.type);
     		}
