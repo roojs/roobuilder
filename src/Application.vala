@@ -274,11 +274,26 @@
 			if (BuilderApplication.opt_compile_project == null) {
 				GLib.error("need a project %s, to use --drop-list",BuilderApplication.opt_compile_project);
 			 }
-			 
-			 
-			 
+			  if (cur_project.xtype != "Gtk") {
+				GLib.error("need a Gtk project %s, to use --drop-list",BuilderApplication.opt_compile_project);
+			 }
+			 var p = (Palete.Gtk) cur_project.palete;
+			
+			 GLib.debug("DropList: %s", geeArrayToString(p.getDropList(BuilderApplication.opt_drop_list)));
+ 			 GLib.debug("ChildList: %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, false)));
+ 			 
+			 p.getChildList
 			
 		}
+		string geeArrayToString(Gee.ArrayList<string> ar) 
+		{
+			var ret = "";
+			foreach(var n in ar) {
+			 	ret +=   n + "\n";
+		 	 }
+		 	 return ret;
+		}
+		
 		
 		void listFiles(Project.Project? cur_project)
 		{
