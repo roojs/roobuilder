@@ -239,7 +239,7 @@
                 		 
                 	}
                 	*/
-            		GLib.debug("Get Widget At Row %d", (int)row);
+            		//GLib.debug("Get Widget At Row %d", (int)row);
                     var  child = this.el.get_first_child(); 
                 	var line_no = -1; 
                 	var reading_header = true;
@@ -268,12 +268,12 @@
                 	    
             		    line_no++;
             			if (line_no == row) {
-            				GLib.debug("Returning widget %s", child.get_type().name());
+            				//GLib.debug("Returning widget %s", child.get_type().name());
             			    return (Gtk.Widget)child;
             		    }
             	        child = child.get_next_sibling(); 
                 	}
-            		GLib.debug("Rturning null");
+            		//GLib.debug("Rturning null");
                     return null;
             
              }
