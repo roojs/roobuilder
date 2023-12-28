@@ -330,19 +330,21 @@
                 	while (child != null) {
             			//GLib.debug("Got %s", child.get_type().name());
                 	    if (reading_header) {
-            			   
+            				var h = 0;
             			    if (child.get_type().name() == "GtkColumnViewRowWidget") {
-            			        child.get_allocation(out alloc);
+            			    	
+            			        h = child.get_height();
             			    }
             				if (child.get_type().name() != "GtkColumnListView") {
             					child = child.get_next_sibling();
             					continue;
             				}
             				child = child.get_first_child(); 
-            				header_height =   alloc.height;
+            				header_height =  h;
             				
             				reading_header = false;
             	        }
+            	        
             		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
                 		    child = child.get_next_sibling();
                 		    continue;
