@@ -303,27 +303,7 @@
             public int getRowAt (double x,  double in_y, out string pos) {
             
             
-            	for (var i =0; i < _this.model.el.get_n_items(); i++) {
-            		var tr = _this.model.el.get_row(i);
-            		var item = tr.get_item();
-            		GLib.debug("item = %s ", item.get_type().name();
-            	}
-            		
-            	/*
-            	var w = this.el.pick(x,in_y,Gtk.PickFlags.DEFAULT);
-            	GLib.debug("pick got %s", w.get_type().name());
-            	var p = w;
-            	while (p != null) {
-            		if (p.get_type() == typeof(Gtk.ColumnViewRowWidget)) {
-            			break;
-            		}
-            		p = p.parent();
-            	}
-            	if (p != null) {
-            		
-            	*/
-            	
-            	
+            	 
             
             /*
                 	
