@@ -281,7 +281,15 @@
 			
 			 print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(BuilderApplication.opt_drop_list)));
  			 print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, false)));
- 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, true))); 			 
+ 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, true))); 	
+ 			 
+ 			 
+ 			 print("\n\nPropsList: %s", this.girArrayToString(p.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.PROP)));
+  			 print("\n\nSignalList: %s", this.girArrayToString(p.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.LISTENER)));
+ 			 
+ 			 // ctor.
+ 			  print("\n\nCtor Values: %s", p.fqnToNode(BuilderApplication.opt_drop_list).toJsonString());
+ 			 
  			  GLib.Process.exit(Posix.EXIT_SUCCESS);
 			
 		}
@@ -293,7 +301,17 @@
 		 	 }
 		 	 return ret;
 		}
+		string girArrayToString(Gee.HashMap<string,Palete.GirObject> map) 
+		{
+			var ret = "";
+			foreach(var gi in map.values) {
+				 ret += "%s %s (%s)\n".printf(gi.type, gi.name, gi.propertyof);
+			
+			}
+			return ret;
 		
+		}
+		 
 		
 		void listFiles(Project.Project? cur_project)
 		{

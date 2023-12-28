@@ -56,7 +56,11 @@ namespace Project {
 		//public string id;
 		//public string fn = ""; // just a md5...
 		public string name  { 
-			set; get; default = "";
+			private set {} 
+			owned get {
+				return GLib.Path.get_basename(path);
+			}
+			 
 		}
 				
 		
@@ -77,7 +81,7 @@ namespace Project {
 		
 		protected Project (string path) {
 			
-			this.name = GLib.Path.get_basename(path); // default..
+			 
 			//this.json_project_data = new Json.Object();
 			
 			this.is_scanned = false;
@@ -442,7 +446,6 @@ namespace Project {
 		{
 			
 			var obj = new Json.Object();
-			obj.set_string_member("name", this.name);
 			obj.set_string_member("xtype", this.xtype);
 						
  		 	
@@ -522,8 +525,7 @@ namespace Project {
 			//this.json_project_data  = obj; // store the original object...
 			
  
-			this.name = obj.get_string_member("name");  // ?? do we need this?
-
+			 
 			this.loadJson(obj);
 			// used to load paths..
 			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();

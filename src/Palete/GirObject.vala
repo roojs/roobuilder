@@ -56,6 +56,7 @@ namespace Palete {
 		public Gee.HashMap<string,GirObject> props;
 		public Gee.HashMap<string,GirObject> consts;
 		public Gee.HashMap<string,GirObject> signals;
+		public Gee.HashMap<string,GirObject> delegates;
 		
 		public Gee.ArrayList<string> optvalues; // used by Roo only..
 		
@@ -97,6 +98,7 @@ namespace Palete {
 			this.props      = new Gee.HashMap<string,GirObject>();
 			this.consts     = new Gee.HashMap<string,GirObject>();
 			this.signals    = new Gee.HashMap<string,GirObject>();
+			this.delegates    = new Gee.HashMap<string,GirObject>();
 			
 			this.optvalues = new Gee.ArrayList<string>();
 			this.can_drop_onto = new Gee.ArrayList<string>();
@@ -360,7 +362,7 @@ namespace Palete {
 			}
 
 			ret = this.ctors.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
@@ -368,21 +370,21 @@ namespace Palete {
 			}
 
 			ret = this.methods.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
 				return ret.fetchByFqn(fqn.substring(bits[0].length+1));
 			}
 			ret = this.props.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
 				return ret.fetchByFqn(fqn.substring(bits[0].length+1));
 			}
 			ret = this.consts.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
@@ -390,12 +392,19 @@ namespace Palete {
 			}
 
 			ret = this.signals.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
 				return ret.fetchByFqn(fqn.substring(bits[0].length+1));
 			}
+			ret = this.delegates.get(bits[0]);			
+       		if (ret != null) {
+       			// delegates are only on namespaces...
+				 return ret;
+				 
+			}
+			
 			if (this.paramset == null) {
 				return null;
 			}

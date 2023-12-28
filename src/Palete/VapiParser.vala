@@ -72,12 +72,14 @@ namespace Palete {
 			foreach(var c in element.get_structs()) {
 				this.add_struct(g, c);
 			}
-			
+			foreach(var c in element.get_delegates()) {
+				this.add_delegate(g, c);
+			}
 			element.accept_children(this); // catch sub namespaces..
 			
 			
 		}
-		 
+		
 		
 		public void add_enum(GirObject parent, Vala.Enum cls)
 		{
@@ -367,6 +369,64 @@ namespace Palete {
 
 			
 		}
+		public void add_delegate(GirObject parent, Vala.Delegate sig)
+		{
+		
+			var c = new GirObject("Delegate",   sig.name);
+			c.gparent = parent;
+			c.ns = parent.ns;
+			c.propertyof = parent.name;
+#if VALA_0_56
+			var dt  = sig.return_type.type_symbol  ;
+#elif VALA_0_36
+			var dt  = sig.return_type.data_type;
+#endif			
+			if (sig.version.deprecated) { 
+				GLib.debug("class %s is deprecated", c.name);
+				c.is_deprecated = true;
+			} 
+			
+			var retval = "";
+			
+			if (dt != null) {
+				//print("creating return type on signal %s\n", sig.name);
+				var cc = new GirObject("Return", "return-value");
+				cc.gparent = c;
+				cc.ns = c.ns;
+				cc.type  =  dt.get_full_name();
+				c.return_value = cc;
+				c.type = dt.get_full_name(); // type is really return type in this scenario.
+				 retval = "\treturn " + cc.type +";";
+			}
+			parent.delegates.set(sig.name,c);
+			
+			var params =  sig.get_parameters() ;
+			if (params.size < 1) {
+			
+				c.sig = "( ) => {\n\n"+ retval + "\n}\n";
+			
+				return;
+			}
+			var cc = new GirObject("Paramset",sig.name); // what's the name on this?
+			cc.gparent = c;
+			cc.ns = c.ns;
+			c.paramset = cc;
+			
+			var args = "";			
+			foreach(var p in params) {
+				this.add_param(cc, p);
+				args += args.length > 0 ? ", " : "";
+				args += p.name;
+			}
+			// add c.sig -> this is the empty 
+			c.sig = "(" + args + ") => {\n\n"+ retval + "\n}\n";
+			
+			
+			 
+		}
+		
+		
+		
 		
 		public void add_signal(GirObject parent, Vala.Signal sig)
 		{

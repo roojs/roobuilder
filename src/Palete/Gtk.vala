@@ -116,6 +116,20 @@ namespace Palete {
 			return gir.classes.get(es[1]);
 		
 		}
+		
+		public  GirObject? getDelegate(string ename) 
+		{
+			var es = ename.split(".");
+			if (es.length < 2) {
+				return null;
+			}
+			var gir = Gir.factory(this.project,es[0]);
+			if (gir == null) {
+				return null;
+			}
+			return gir.delegates.get(es[1]);
+		
+		}
 
 		public  GirObject? getClassOrEnum(string ename)
 		{
@@ -170,7 +184,10 @@ namespace Palete {
 
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
-					return this.filterProps(cls.props);
+					var ret =  this.filterProps(cls.props);
+					// add ctor
+					this.add_props_from_ctors(cls, ret);
+					return ret;
 				case JsRender.NodePropType.LISTENER:
 					return this.filterSignals(cls.signals);
 				case JsRender.NodePropType.METHOD:
@@ -238,6 +255,55 @@ namespace Palete {
 		
 		
 		}
+		
+		private void add_props_from_ctors(GirObject cls, Gee.HashMap<string,GirObject> props)
+		{
+			if (cls.ctors.has_key("new")) {
+				this.add_props_from_ctor(cls.ctors.get("new"), props);			
+			}
+			// does not have new ?? needed?
+			foreach(var ctor in cls.ctors.values) {
+				this.add_props_from_ctor(ctor, props);
+				break;
+			
+			}
+		}
+		
+		private void add_props_from_ctor(GirObject ctor,  Gee.HashMap<string,GirObject> props)
+		{
+			var cname = ctor.gparent.fqn();
+			GLib.debug("Add node from ctor %s:%s", ctor.gparent.fqn(), ctor.name);
+			 
+			if (ctor.paramset == null) {
+				return;
+			}
+			
+			 
+			// assume we are calling this for a reason...
+			// get the first value params.
+			 
+				//gtk box failing
+			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
+			  
+		    foreach (var prop in ctor.paramset.params) {
+			    string[] opts;
+			    
+			    if (props.has_key(prop.name)) { // overlap (we assume it's the same..)
+			    	continue;
+		    	}
+		    	prop.propertyof = cname + "." + ctor.name; // as it's probably not filled in..
+			    
+			    GLib.debug("adding proprty from ctor : %s, %s, %s", cname , prop.name, prop.type);
+
+			     props.set(prop.name, prop);
+		    
+			    
+			     
+		    }
+		}
+		
+		
+		
 				// get rid of depricated from signal list..
 		public Gee.HashMap<string,GirObject>  filterSignals(Gee.HashMap<string,GirObject> props)
 		{
@@ -328,6 +394,9 @@ namespace Palete {
 			
 		}
 		
+		
+		
+		
 		private void add_node_default_from_ctor_all()
     	{
 
@@ -403,15 +472,21 @@ namespace Palete {
 			    if (defs.has_key(prop.name)) {
 			    	continue;
 		    	}
-		    	
+		    	var sub = this.getClass(prop.type);
 			    
-			    GLib.debug("adding proprty from ctor : %s, %s, %s", cname , prop.name, prop.type);
-
-			    var sub = this.getClass(prop.type);
+			   // GLib.debug("adding property from ctor : %s, %s, %s  [%s]", cname , prop.name, prop.type, sub == null ? "-" : sub.nodetype);
+ 
 			    if (sub != null) { // can't add child classes here...
+			    
 				    GLib.debug("skipping ctor argument proprty is an object");
 				    continue;
 			    }
+			    sub = this.getDelegate(prop.type);
+			     if (sub != null) { // can't add child classes here...
+			     	this.node_defaults.get(cname).set(prop.name, new JsRender.NodeProp.raw(prop.name, prop.type, sub.sig));
+			    	continue;
+			    }
+			    
 			    // FIXME!!! - what about functions
 			    
 			    var dval = "";
@@ -492,60 +567,6 @@ namespace Palete {
 			this.child_defaults.get(cls).add( new JsRender.NodeProp.prop(propname, type, val));
 		
 		}
-		/*
-		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
-		{   
-
-			if (parent != null &&  !child.has("* prop")) { // child has a property - no need for child properties
-				 
-				if (this.child_defaults.has_key(parent.fqn())) {
-					foreach(var k in this.child_defaults.get(parent.fqn())) {
-						if (!child.has(k.to_index_key())) { 
-							child.add_prop(k.dupe());
-						}
-					}
-				}
-			}
-			if (this.node_defaults.has_key(child.fqn())) {
-				foreach(var k in this.node_defaults.get(child.fqn())) {
-
-					if (!child.has(k.to_index_key())) { 
-						GLib.debug("Adding Property %s", k.to_tooltip());
-						child.add_prop(k.dupe());
-					}
-				}
-			}
-			
-			// if child is a struct 
-			var childcls = this.getClass(child.fqn());
-			if (childcls != null && childcls.nodetype == "Struct") {
-				// then we need to add all the props.
-				foreach(var prop in childcls.props.values) {
-					child.add_prop(prop.toNodeProp(this));
-					
-					
-				}
-				
-			
-			}
-			// any other combo?
-			switch(parent.fqn()) {
-				case "Gtk.Dialog":
-					if (child.has("* prop") && child.get_prop("* prop").val == "buttons[]") {
-						child.add_prop( new JsRender.NodeProp.special("response_id", "1"));
-					}
-					break;
-					
-			}
-			
-			// not really
-			//this.fillPack(child, parent);
-			
-			
-			
-			
-		}
-		*/
 		 
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
