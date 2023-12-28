@@ -1012,9 +1012,7 @@ public class JsRender.NodeToVala : Object {
 
 		
 				
-			case "Gtk.Menu":
-				this.addLine(this.ipad + "this.el.append( "+ childname + ".el );");
-				return;
+			
 	
 	
 	// known working with GTK4 !
@@ -1022,6 +1020,9 @@ public class JsRender.NodeToVala : Object {
 				this.addLine(this.ipad + "this.el.pack_start( "+ childname + ".el );");
 				return;
 			
+			case "GLib.Menu":
+				this.addLine(this.ipad + "this.el.append_item( "+ childname + ".el );");
+				return;	
 			
 			case "Gtk.Paned":
 				this.pane_number++;

@@ -259,7 +259,8 @@ namespace Palete {
 		private void add_props_from_ctors(GirObject cls, Gee.HashMap<string,GirObject> props)
 		{
 			if (cls.ctors.has_key("new")) {
-				this.add_props_from_ctor(cls.ctors.get("new"), props);			
+				this.add_props_from_ctor(cls.ctors.get("new"), props);	
+				return;
 			}
 			// does not have new ?? needed?
 			foreach(var ctor in cls.ctors.values) {
@@ -426,7 +427,8 @@ namespace Palete {
 		private void add_node_default_from_ctor_classes(GirObject cls)
 		{
 			if (cls.ctors.has_key("new")) {
-				this.add_node_default_from_ctor(cls.ctors.get("new"));			
+				this.add_node_default_from_ctor(cls.ctors.get("new"));
+				return; // and no more.
 			}
 			// does not have new ?? needed?
 			foreach(var ctor in cls.ctors.values) {
@@ -1033,6 +1035,7 @@ namespace Palete {
         	this.add_classes_from_method(cls, "add_tick_callback", ret); // wtf does this do.
         	this.add_classes_from_method(cls, "append", ret);
         	this.add_classes_from_method(cls, "append_column", ret); // columnview column
+        	this.add_classes_from_method(cls, "append_item", ret); // GLib.Menu
         	this.add_classes_from_method(cls, "attach", ret); // grid column        	
         	this.add_classes_from_method(cls, "pack_start", ret); // headerbar (also has pack end?)
         	
