@@ -243,7 +243,7 @@
                     var  child = this.el.get_first_child(); 
                 	var line_no = -1; 
                 	var reading_header = true;
-            
+            		var h = 0;
                 	while (child != null) {
             			GLib.debug("Got %s", child.get_type().name());
                 	   
@@ -263,6 +263,10 @@
             				reading_header = false;
             				
             		    }
+            		    
+            		    if (y < header_height) {
+            		    	return null;
+            	    	}
                 	    
             		    line_no++;
             			if (line_no == row) {
