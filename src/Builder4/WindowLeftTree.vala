@@ -303,7 +303,7 @@
             public int getRowAt (double x,  double in_y, out string pos) {
             
             
-            	var w = this.el.pick(x,y,Gtk.PickFlags.DEFAULT);
+            	var w = this.el.pick(x,in_y,Gtk.PickFlags.DEFAULT);
             	GLib.debug("pick got %s", w.get_type().name());
             
             /*

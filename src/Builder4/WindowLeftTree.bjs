@@ -1306,7 +1306,7 @@
         "(double x,  double in_y, out string pos) {",
         "",
         "",
-        "\tvar w = this.el.pick(x,y,Gtk.PickFlags.DEFAULT);",
+        "\tvar w = this.el.pick(x,in_y,Gtk.PickFlags.DEFAULT);",
         "\tGLib.debug(\"pick got %s\", w.get_type().name());",
         "",
         "/*",
