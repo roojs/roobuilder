@@ -357,15 +357,15 @@
             			
             			//	child.visible ? "VIS" : "hidden");
             
-            		    if (y >  (header_height + real_y) && y <= (header_height +  real_y + alloc.height) ) {
-            		    	if (y > ( header_height + real_y + (alloc.height * 0.8))) {
+            		    if (y >  (header_height + real_y) && y <= (header_height +  real_y + hh) ) {
+            		    	if (y > ( header_height + real_y + (hh * 0.8))) {
             		    		pos = "below";
-            	    		} else if (y > ( header_height + real_y + (alloc.height * 0.2))) {
+            	    		} else if (y > ( header_height + real_y + (hh * 0.2))) {
             	    			pos = "over";
                 			} else {
                 				pos = "above";
             				}
-            		    	//GLib.debug("getRowAt return : %d, %s", line_no, pos);
+            		    	 GLib.debug("getRowAt return : %d, %s", line_no, pos);
             			    return line_no;
             		    }
              
