@@ -894,7 +894,7 @@ namespace Palete {
 		void add_classes_from_method(GirObject cls, string method , Gee.ArrayList<string> ret)
 		{
 			
-			
+			GLib.debug("add_classes_from_method %s, %s", cls.fqn(), method);
 			// does class have this method?
 			if (!cls.methods.has_key(method)) {
 				GLib.debug("skip  %s does not have method %s", cls.fqn(), method);
