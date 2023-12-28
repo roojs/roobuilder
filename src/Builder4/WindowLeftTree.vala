@@ -262,7 +262,7 @@
             				header_height =  h;
             				
             				reading_header = false;
-            				
+            				 
             		    }
             		    
             		    if (y < header_height) {

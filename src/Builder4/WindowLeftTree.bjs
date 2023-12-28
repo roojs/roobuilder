@@ -1203,7 +1203,7 @@
         "\t\t\t\theader_height =  h;",
         "\t\t\t\t",
         "\t\t\t\treading_header = false;",
-        "\t\t\t\t",
+        "\t\t\t\t ",
         "\t\t    }",
         "\t\t    ",
         "\t\t    if (y < header_height) {",
