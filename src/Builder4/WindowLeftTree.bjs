@@ -1328,7 +1328,7 @@
         "    \tvar reading_header = true;",
         "    \tvar real_y = 0;",
         "    \tvar header_height  = 0;",
-        "    \tpos = \"over\";",
+        "    \tpos = \"none\";",
         "    \tvar h = 0;",
         "    \twhile (child != null) {",
         "\t\t\t//GLib.debug(\"Got %s\", child.get_type().name());",

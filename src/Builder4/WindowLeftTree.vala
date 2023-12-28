@@ -325,7 +325,7 @@
                 	var reading_header = true;
                 	var real_y = 0;
                 	var header_height  = 0;
-                	pos = "over";
+                	pos = "none";
                 	var h = 0;
                 	while (child != null) {
             			//GLib.debug("Got %s", child.get_type().name());
