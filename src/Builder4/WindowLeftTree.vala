@@ -244,6 +244,7 @@
                 	var line_no = -1; 
                 	var reading_header = true;
             		var h = 0;
+            		var header_height = 0;
                 	while (child != null) {
             			GLib.debug("Got %s", child.get_type().name());
                 	   

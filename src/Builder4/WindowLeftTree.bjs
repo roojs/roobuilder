@@ -1185,6 +1185,7 @@
         "    \tvar line_no = -1; ",
         "    \tvar reading_header = true;",
         "\t\tvar h = 0;",
+        "\t\tvar header_height = 0;",
         "    \twhile (child != null) {",
         "\t\t\tGLib.debug(\"Got %s\", child.get_type().name());",
         "    \t   ",
