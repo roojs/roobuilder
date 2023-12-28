@@ -349,10 +349,7 @@
                 		    continue;
             		    }
             		    
-            		    // a tthis point we are supposed to 
-            		    if (y > h) {
-            		    	return -1;
-            	    	}
+            		  
             		    
             		    line_no++;
             			var hh = child.get_height();
