@@ -110,7 +110,11 @@ public class Spawn : Object
     /**
      * @property pid {Number} pid of child process (of false if it's not running)
      */
-    int  pid = -1;
+    public int  pid {
+    	get;
+    	private set;
+    	default = -1;
+	}
     /**
      * @property in_ch {GLib.IOChannel} input io channel
      */
@@ -153,35 +157,42 @@ public class Spawn : Object
 
 		 
 		GLib.debug("cd %s; %s" , this.cwd , string.joinv(" ", this.args));
+		var pid = -1;
 		
 		if (this.detach) { 
-			Process.spawn_async_with_pipes (
+			//Process.spawn_async_with_pipes (
+			Process.spawn_async (	
 				this.cwd,
 				this.args,
 				this.env.length > 0 ? this.env : null,
 				SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
 				null,
-				out this.pid);
-				ChildWatch.add (this.pid, (pid, status) => {
-					// Triggered when the child indicated by child_pid exits
-					Process.close_pid (pid);
-					 
-				});
-				
-				return;
+				out pid);
+
+			this.pid = pid;	
+ 	
+			ChildWatch.add (this.pid, (pid, status) => {
+			 	
+				 Process.close_pid (pid);
+				 
+			});
+			
+			return;
 
 		}
+	
+				
 		Process.spawn_async_with_pipes (
 				this.cwd,
 				this.args,
 				this.env.length > 0 ? this.env : null,
 				SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
 				null,
-				out this.pid,
+				out pid,
 				out standard_input,
 				out standard_output,
 				out standard_error);
-
+		this.pid = pid;
 		// stdout:
 		 
 			

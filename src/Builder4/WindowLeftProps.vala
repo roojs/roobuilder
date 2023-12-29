@@ -1228,9 +1228,27 @@
                 {
                  
                   	this.css = new Gtk.CssProvider();
-                	try {
-                		this.css.load_from_data("#leftprops-view { font-size: 12px;}".data);
-                	} catch (Error e) {}
+                	 
+                		this.css.load_from_string("
+                #leftprops-view { font-size: 12px;}
+                	 
+                #leftprops-view  dropdown button { 
+                			min-height: 16px;			 
+                			outline-offset : 0;
+                		}
+                #leftprops-view cell dropdown label  {
+                 		padding-top:0px;
+                		padding-bottom:0px;
+                }
+                #leftprops-view cell   { 
+                 		padding-top:2px;
+                		padding-bottom:2px;
+                		}
+                #leftprops-view cell label,  #leftprops-view cell editablelable {
+                 		padding-top:4px;
+                		padding-bottom:4px;
+                }");
+                 
                 		Gtk.StyleContext.add_provider_for_display(
                 		this.el.get_display(),
                 		this.css,
@@ -1839,7 +1857,7 @@
                 //listeners
                 this.el.setup.connect( (listitem) => {
                 	var hb = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-                	var elbl  = new Gtk.Entry();
+                	var elbl  = new Gtk.EditableLabel("");
                 	elbl.hexpand = true;
                 	hb.append(elbl);
                 	var lbl  = new Gtk.Label("");
@@ -1929,7 +1947,7 @@
                 	
                 	
                 	
-                	var elbl = (Gtk.Entry)bx.get_first_child();
+                	var elbl = (Gtk.EditableLabel)bx.get_first_child();
                 	var lbl = (Gtk.Label) elbl.get_next_sibling();
                 	var cb  = (Gtk.DropDown) lbl.get_next_sibling();
                 	// decide if it's a combo or editable text..

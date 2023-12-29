@@ -38,6 +38,9 @@ namespace Palete {
 		
 		public string tmpfile_path = "";
 		
+		
+		public int terminal_pid = 0;
+		
  		public ValaSource(   ) 
  		{
 			base();
@@ -459,14 +462,39 @@ namespace Palete {
 			
 		}
 		
+		public void killChildren(int pid)
+		{
+			if (pid < 1) {
+				return;
+			}
+			var cn = "/proc/%d/task/%d/children".printf(pid,pid);
+			if (!FileUtils.test(cn, GLib.FileTest.EXISTS)) {
+				GLib.debug("%s doesnt exist - killing %d", cn, pid);
+				Posix.kill(pid, 9);
+				return;
+			}
+			string cpids = "";
+			FileUtils.get_contents(cn, out cpids);
+			
+
+			if (cpids.length > 0) {
+				this.killChildren(int.parse(cpids));
+			}
+			GLib.debug("killing %d", pid);			
+			Posix.kill(pid, 9);
+		}
+		
+		
 		public void runResult(int res, string output, string stderr)
 		{
 			this.compiler = null;
 			
 	        
-			 
+		 	GLib.debug("run result last pid = %d", this.terminal_pid );
 	        this.spinner(false);		
-			
+			this.killChildren(this.terminal_pid);
+  			this.terminal_pid = 0;
+			 
 			
 			
 			
@@ -501,8 +529,9 @@ namespace Palete {
 			
 			
 			
-			string[] args = "/usr/bin/gnome-terminal -- /usr/bin/gdb -x".split(" ");
-		//args+= "-ex=\"set debuginfod enabled off\""; << cant get this to work here.!?
+			 string[] args = "/usr/bin/gnome-terminal --disable-factory --wait -- /usr/bin/gdb -x".split(" ");
+			//string[] args = "/usr/bin/xterm  -e /usr/bin/gdb -x".split(" ");
+		 
 			args+= gdb_cfg;
 
 			
@@ -526,8 +555,27 @@ namespace Palete {
 		    try {
 		    
 		        var exec = new Spawn(GLib.Environment.get_home_dir() , args);
+		        exec.env = GLib.Environ.get();
+		        /*{ 
+		        	"PATH=" + GLib.Environment.get_variable("PATH"),
+		        	"SHELL=" + GLib.Environment.get_variable("SHELL"),
+		        	"DISPLAY=" + GLib.Environment.get_variable("DISPLAY"),
+		        	"TERM=xterm",
+		        	"USER=" + GLib.Environment.get_variable("USER"),
+		        	"DBUS_SESSION_BUS_ADDRESS="+ GLib.Environment.get_variable("DBUS_SESSION_BUS_ADDRESS"),
+		        	"XDG_SESSION_PATH="+ GLib.Environment.get_variable("XDG_SESSION_PATH"),
+					"SESSION_MANAGER="+ GLib.Environment.get_variable("SESSION_MANAGER"),
+					"XDG_SESSION_CLASS="+ GLib.Environment.get_variable("XDG_SESSION_CLASS"),
+					"XDG_SESSION_DESKTOP="+ GLib.Environment.get_variable("XDG_SESSION_DESKTOP"),
+					"XDG_SESSION_TYPE="+ GLib.Environment.get_variable("XDG_SESSION_TYPE")
+		        	};
+		        	*/
 		        exec.detach = true;
 				exec.run(); 
+
+				this.terminal_pid = exec.pid;
+				GLib.debug("Child PID = %d", this.terminal_pid);
+				
 		    } catch(GLib.Error e) {
 				GLib.debug("Failed to spawn: %s", e.message);
 				return;
