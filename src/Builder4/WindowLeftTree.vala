@@ -197,7 +197,7 @@
                  
                   this.css = new Gtk.CssProvider();
                 //	try {
-                		this.css.load_from_data("
+                		this.css.load_from_string("
                 #left-tree-view { font-size: 12px;}	
                 .drag-over  { background-color:#88a3bc; }
                 .drag-below  {   
@@ -210,8 +210,10 @@
                  border-top-style: solid;
                  border-top-color: #88a3bc;
                 }
-                
-                ".data);
+                #left-tree-view indent {
+                -gtk-icon-size : 2px;
+                }
+                ");
                 
                 	Gtk.StyleContext.add_provider_for_display(
                 		this.el.get_display(),
@@ -219,11 +221,7 @@
                 		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
                 	);
                 	
-                	
-                	
-                   
-                   
-                    
+                	  
                 }
             }
 
