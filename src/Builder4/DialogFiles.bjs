@@ -12,6 +12,8 @@
    "bool is_loading" : false,
    "bool modal" : true,
    "bool new_window" : false,
+   "int default_height" : 550,
+   "int default_width" : 1000,
    "items" : [
     {
      "$ homogeneous" : false,
@@ -224,6 +226,7 @@
          "$ xns" : "Gtk",
          "* prop" : "end_child",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "bool visible" : false,
          "id" : "filepane",
          "int position" : 200,
          "items" : [
@@ -234,7 +237,6 @@
            "bool hexpand" : true,
            "bool vexpand" : true,
            "int spacing" : 0,
-           "int width_request" : 600,
            "items" : [
             {
              "$ xns" : "Gtk",
@@ -287,7 +289,6 @@
              "bool hexpand" : true,
              "bool vexpand" : true,
              "id" : "iconscroll",
-             "int width_request" : 600,
              "items" : [
               {
                "$ xns" : "Gtk",
@@ -1260,11 +1261,11 @@
     "    this.projectscroll.el.vadjustment.value = 0; // scroll to top?",
     "    ",
     "  ",
-    "\t// var win = this.win.el;",
-    "    // var  w = win.get_width();",
-    "//     var h = win.get_height();",
-    "//     GLib.debug(\"SET SIZE %d , %d\", w - 100, h - 100);",
-    "\t this.el.set_size_request( 1100, 750); ",
+    "\t  var win = this.win.el;",
+    "      var  w = win.get_width();",
+    "      var h = win.get_height();",
+    " ",
+    "\t",
     "\t this.el.show();",
     "\t \tthis.load();",
     "\tthis.selectProject(project);",
@@ -1276,7 +1277,7 @@
     "\t\t\t\tthis.onProjectSelected(null); ",
     "\t",
     "\t\t\t} ",
-    "\t         ",
+    "\t          this.el.set_size_request( 800 , 750);  // ?? based on default ",
     "\t     return false;",
     "     });",
     "\t ",

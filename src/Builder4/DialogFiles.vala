@@ -64,6 +64,8 @@
             // set gobject values
             this.el.title = "Select Project / File";
             this.el.name = "DialogFiles";
+            this.el.default_height = 550;
+            this.el.default_width = 1000;
             this.el.modal = true;
             var child_1 = new Xcls_Box2( _this );
             this.el.child = child_1.el;
@@ -152,11 +154,11 @@
             this.projectscroll.el.vadjustment.value = 0; // scroll to top?
             
           
-        	// var win = this.win.el;
-            // var  w = win.get_width();
-        //     var h = win.get_height();
-        //     GLib.debug("SET SIZE %d , %d", w - 100, h - 100);
-        	 this.el.set_size_request( 1100, 750); 
+        	  var win = this.win.el;
+              var  w = win.get_width();
+              var h = win.get_height();
+         
+        	
         	 this.el.show();
         	 	this.load();
         	this.selectProject(project);
@@ -168,7 +170,7 @@
         				this.onProjectSelected(null); 
         	
         			} 
-        	         
+        	          this.el.set_size_request( 800 , 750);  // ?? based on default 
         	     return false;
              });
         	 
@@ -623,6 +625,7 @@
 
                 // set gobject values
                 this.el.position = 200;
+                this.el.visible = false;
                 var child_1 = new Xcls_Box15( _this );
                 this.el.end_child = child_1.el;
                 var child_2 = new Xcls_treescroll( _this );
@@ -648,7 +651,6 @@
                 // my vars (dec)
 
                 // set gobject values
-                this.el.width_request = 600;
                 this.el.hexpand = true;
                 this.el.vexpand = true;
                 var child_1 = new Xcls_Box16( _this );
@@ -750,7 +752,6 @@
                 // my vars (dec)
 
                 // set gobject values
-                this.el.width_request = 600;
                 this.el.has_frame = true;
                 this.el.hexpand = true;
                 this.el.vexpand = true;
