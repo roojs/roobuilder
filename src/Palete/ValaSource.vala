@@ -10,7 +10,6 @@
  *  x = new ValaSource();
  *  x.connect.compiled(... do something with results... );
  *  
- * x.
  * 
  */
 
@@ -126,7 +125,7 @@ namespace Palete {
 			}
 			var pr = (Project.Gtk)(file.project);
 			
- 			var tmpfilename = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time() / 1000) ;
+ 			var tmpfilename = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time()) ;
  			try {
  				GLib.FileUtils.set_contents(tmpfilename,contents);
 			} catch (GLib.FileError e) {
@@ -343,7 +342,7 @@ namespace Palete {
 			}
 			// is the file in the module?
 			
- 			var tmpfilename = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time() / 1000) ;
+ 			var tmpfilename = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time()) ;
  			try {
  				GLib.FileUtils.set_contents(tmpfilename,contents);
 			} catch (GLib.FileError e) {
@@ -401,8 +400,15 @@ namespace Palete {
 			if (GLib.FileUtils.test(this.tmpfile_path, GLib.FileTest.EXISTS)) {
 			  	GLib.FileUtils.unlink(this.tmpfile_path);
 		  	}
-			if (GLib.FileUtils.test(this.tmpfile_path + ".c", GLib.FileTest.EXISTS)) {
-			  	GLib.FileUtils.unlink(this.tmpfile_path  + ".c");
+		  	var cf = this.tmpfile_path.substring(0, this.tmpfile_path.length-4) + "c";
+		  	GLib.debug("try remove %s",cf);
+			if (GLib.FileUtils.test(cf, GLib.FileTest.EXISTS)) {
+			  	GLib.FileUtils.unlink(cf);
+		  	}
+		  	var ccf = GLib.Path.get_dirname(cf) + "/build/" + GLib.Path.get_basename(cf);
+		  	GLib.debug("try remove %s",ccf);
+			if (GLib.FileUtils.test(ccf, GLib.FileTest.EXISTS)) {
+			  	GLib.FileUtils.unlink(ccf);
 		  	}
 		  	this.tmpfile_path = "";
 		}

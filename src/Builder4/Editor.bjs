@@ -944,7 +944,6 @@
     "\tthis.buffer.el.get_iter_at_offset(out beg, this.last_search_end -1 );",
     "\t",
     "\tif (!this.searchcontext.backward(beg, out st, out en, out has_wrapped_around)) {",
-    "\t",
     "\t\tthis.last_search_end = 0;",
     "\t} else {",
     "\t\tthis.last_search_end = en.get_offset();",
@@ -954,7 +953,7 @@
     "\t\tthis.buffer.el.place_cursor(st);",
     "\t\tthis.view.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);",
     "\t}",
-    " ",
+    "",
     "}",
     ""
    ],
