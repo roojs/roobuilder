@@ -1577,7 +1577,7 @@
                 	var prop = _this.selmodel.getPropAt(row);
                 	_this.selmodel.selectProp(prop);
                 
-                	var point_at = _this.view.getWidgetAtRow(row);
+                	//var point_at = _this.view.getWidgetAtRow(row);
                 	
                 	    	// need to shift down, as ev.y does not inclucde header apparently..
                      	// or popover might be trying to do a central?

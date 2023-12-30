@@ -287,7 +287,7 @@ namespace Palete {
 			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
 			  
 		    foreach (var prop in ctor.paramset.params) {
-			    string[] opts;
+ 
 			    
 			    if (props.has_key(prop.name)) { // overlap (we assume it's the same..)
 			    	continue;

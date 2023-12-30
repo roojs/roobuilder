@@ -73,6 +73,8 @@ namespace Palete {
 			this.file = file;
  			
  			if (this.compiler != null) {
+ 				//this.compiler.tidyup();
+ 				//this.spawnResult(0,"","");
 				return false;
 			}
 			
@@ -113,33 +115,26 @@ namespace Palete {
 		}
 		Spawn compiler;
 		 
-		private bool checkStringSpawn(
-				 string contents 
-			)
+		private bool checkStringSpawn( string contents  )
 		{
  			
  			if (this.compiler != null) {
+ 				//this.compiler.tidyup();
+ 				//this.spawnResult(-2,"","");
 				return false;
 			}
- 
- 			File tmpfile;
-			FileIOStream iostream;
-			try {
-				tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
-				tmpfile.ref(); // why??
-			} catch(GLib.Error e) {
-				GLib.debug("failed to create temporary file");
+			var pr = (Project.Gtk)(file.project);
+			
+ 			var tmpfilename = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time() / 1000) ;
+ 			try {
+ 				GLib.FileUtils.set_contents(tmpfilename,contents);
+			} catch (GLib.FileError e) {
+				GLib.debug("Error creating temp build file %s : %s", tmpfilename, e.message);
 				return false;
 			}
+			 
 
-			OutputStream ostream = iostream.output_stream;
-			DataOutputStream dostream = new DataOutputStream (ostream);
-			try {
-				dostream.put_string (contents);
-			} catch(GLib.Error e) {
-				GLib.debug("failed to write to temporary file");
-				return false;
-			}
+		 
 			var valafn = "";
 			try {             
 			   var  regex = new Regex("\\.bjs$");
@@ -150,7 +145,7 @@ namespace Palete {
 			    return false;
 			}   
 			
-			var pr = (Project.Gtk)(file.project);
+
 			
 			string[] args = {};
 			args += BuilderApplication._self;
@@ -160,13 +155,13 @@ namespace Palete {
 			args += "--target";
 			args +=  pr.firstBuildModuleWith(this.file);
 			args += "--add-file";
-			args +=  tmpfile.get_path();
+			args +=  tmpfilename;
 			args += "--skip-file";
 			args += valafn;
 			
- 			this.tmpfile_path = tmpfile.get_path();
+ 			this.tmpfile_path = tmpfilename;
 			try {
-				this.compiler = new Spawn("/tmp", args);
+				this.compiler = new Spawn(pr.path + "/build", args);
 			} catch (GLib.Error e) {
 				GLib.debug("Spawn failed: %s", e.message);
 				return false;
@@ -203,6 +198,8 @@ namespace Palete {
 		{
  			// race condition..
  			if (this.compiler != null) { 
+ 				//this.compiler.tidyup();
+ 				//this.spawnResult(-2,"","");
 				return false;
 			}
  			
@@ -223,7 +220,7 @@ namespace Palete {
 			
 			
 			try {
-			    this.compiler = new Spawn("/tmp", args);
+			    this.compiler = new Spawn(pr.path+"/build", args);
 			    this.compiler.output_line.connect(this.compile_output_line);
 			    this.compiler.complete.connect(spawnResult);
 		        this.spinner(true);
@@ -248,6 +245,8 @@ namespace Palete {
 		{
  			// race condition..
  			if (this.compiler != null) { 
+ 				this.compiler.tidyup();
+ 				this.spawnResult(-2,"","");
 				return;
 			}
 			if (!(file.project is Project.Gtk)) {
@@ -340,24 +339,14 @@ namespace Palete {
 			}
 			// is the file in the module?
 			
- 			
- 			FileIOStream iostream;
- 			File tmpfile;
-		 	try {
-			 	tmpfile = File.new_tmp ("test-XXXXXX.vala", out iostream);
-				tmpfile.ref();
-			} catch(GLib.Error e) {
-				GLib.debug("Failed to create tempoary file %s", e.message);
+ 			var tmpfilename = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time() / 1000) ;
+ 			try {
+ 				GLib.FileUtils.set_contents(tmpfilename,contents);
+			} catch (GLib.FileError e) {
+				GLib.debug("Error creating temp build file %s : %s", tmpfilename, e.message);
 				return false;
 			}
-			OutputStream ostream = iostream.output_stream;
-			DataOutputStream dostream = new DataOutputStream (ostream);
-			try {
-				dostream.put_string (contents);
-			} catch(GLib.Error e) {
-				GLib.debug("Failed to write to tempoary file %s", e.message);
-				return false;
-			}
+			 
 			var target = pr.firstBuildModule();
 			if (target.length < 1) {
 				return false;
@@ -375,11 +364,11 @@ namespace Palete {
  
 			args += pr.firstBuildModuleWith(this.file);
 			args += "--add-file";
-			args +=  tmpfile.get_path();
+			args +=  tmpfilename;
 			args += "--skip-file";
 			args += file.path;
 			 
-			this.tmpfile_path = tmpfile.get_path();
+			this.tmpfile_path = tmpfilename;
 			
 			
 			try {
@@ -421,7 +410,16 @@ namespace Palete {
 		public void spawnResult(int res, string output, string stderr)
 		{
 			 
-
+			if (res == -2) {
+				var ret = new Json.Object();
+				ret.set_boolean_member("success", false);
+				ret.set_string_member("message","killed");
+				this.compiled(ret);
+				this.compiler = null;
+				this.deleteTemp();
+			    this.spinner(false);
+			    return;
+			}
 			try { 
 				//GLib.debug("GOT output %s", output);
 				
@@ -474,13 +472,18 @@ namespace Palete {
 				return;
 			}
 			string cpids = "";
-			FileUtils.get_contents(cn, out cpids);
+			try {
+				FileUtils.get_contents(cn, out cpids);
 			
 
-			if (cpids.length > 0) {
-				this.killChildren(int.parse(cpids));
+				if (cpids.length > 0) {
+					this.killChildren(int.parse(cpids));
+				}
+
+			} catch (GLib.FileError e) {
+				// skip
 			}
-			GLib.debug("killing %d", pid);			
+			GLib.debug("killing %d", pid);	
 			Posix.kill(pid, 9);
 		}
 		
@@ -554,7 +557,7 @@ namespace Palete {
 		    
 		    try {
 		    
-		        var exec = new Spawn(GLib.Environment.get_home_dir() , args);
+		        var exec = new Spawn(pr.path , args);
 		        exec.env = GLib.Environ.get();
 		        /*{ 
 		        	"PATH=" + GLib.Environment.get_variable("PATH"),

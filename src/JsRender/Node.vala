@@ -421,7 +421,12 @@ public class JsRender.Node : GLib.Object {
 	public void loadFromJsonString(string str, int ver)
 	{
 		var pa = new Json.Parser();
-		pa.load_from_data(str);
+		try {
+			pa.load_from_data(str);
+		} catch (GLib.Error e) {
+			GLib.debug("Error loading string?");
+			return;
+		}
 		var new_node = pa.get_root();
 		var obj = new_node.get_object ();
 		     
@@ -686,8 +691,8 @@ public class JsRender.Node : GLib.Object {
 				case PROP: 
 				case RAW: // should they be the same?
 				
-					props += "\n\t<b>" + 
-						GLib.Markup.escape_text(i) +"</b> : " + 
+					props += "\n\t" + GLib.Markup.escape_text(prop.rtype) +
+						" <b>" + GLib.Markup.escape_text(i) +"</b> : " + 
 						GLib.Markup.escape_text(val.split("\n")[0]);
 						
 					break;
@@ -695,8 +700,8 @@ public class JsRender.Node : GLib.Object {
 			
 				
 				case METHOD :
-					funcs += "\n\t<b>" + 
-						GLib.Markup.escape_text(i.substring(1)).strip() +"</b> : " + 
+					funcs += "\n\t" + GLib.Markup.escape_text(prop.rtype) +
+						" <b>" + GLib.Markup.escape_text(i) +"</b> : "  +
 						GLib.Markup.escape_text(val.split("\n")[0]);
 					break;
 					

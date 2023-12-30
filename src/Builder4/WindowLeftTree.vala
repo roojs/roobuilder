@@ -130,7 +130,7 @@
                 this.el.hexpand = true;
                 this.el.vexpand = true;
                 var child_1 = new Xcls_view( _this );
-                this.el.set_child ( child_1.el  );
+                this.el.child = child_1.el;
                 var child_2 = new Xcls_LeftTreeMenu( _this );
 
                 // init method
@@ -226,7 +226,7 @@
             }
 
             // user defined functions
-            public Gtk.Widget getWidgetAtRow (uint row) {
+            public Gtk.Widget? getWidgetAtRow (uint row) {
             /*
                 	
             from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
@@ -645,13 +645,15 @@
                 	GLib.Value ov = GLib.Value(typeof(string));
                 	ov.set_string(str);
                  	var cont = new Gdk.ContentProvider.for_value(ov);
-                    
+                    /*
                 	GLib.Value v = GLib.Value(typeof(string));
                 	//var str = drop.read_text( [ "text/plain" ] 0);
                 	 
-                	cont.get_value(ref v);
+                		cont.get_value(ref v);
+                	 
+                	}
                 	GLib.debug("set %s", v.get_string());
-                        
+                      */  
                  	return cont;
                 	 
                 	 
@@ -938,7 +940,13 @@
                     GLib.Value v = GLib.Value(typeof(string));
                    	//var str = drop.read_text( [ "text/plain" ] 0);
                    	var cont = this.el.current_drop.get_drag().content ;
-                  	cont.get_value(ref v);
+                   	try {
+                  		cont.get_value(ref v);
+                	} catch (GLib.Error e) {
+                	    GLib.debug("failed to get drag value");
+                		return Gdk.DragAction.COPY;	 
+                	
+                	}
                 
                 	GLib.debug("got %s", v.get_string());
                 	  

@@ -193,19 +193,7 @@ namespace Project
 			}
 		}
 		
-		public Gee.ArrayList<string> readArray(Json.Array ar) 
-		{
-			var ret = new Gee.ArrayList<string>();
-			for(var i =0; i< ar.get_length(); i++) {
-				var add = ar.get_string_element(i);
-				if (ret.contains(add)) {
-					continue;
-				}
-			
-				ret.add(add);
-			}
-			return ret;
-		}
+		 
 		
 		 
 		
@@ -278,9 +266,13 @@ namespace Project
 		public void writeFile(string name, string o) 
 		{
 			var f = GLib.File.new_for_path(this.path + "/" + name);
-			var data_out = new GLib.DataOutputStream( f.replace(null, false, GLib.FileCreateFlags.NONE, null) );
-			data_out.put_string(o, null);
-			data_out.close(null);
+			try {
+				var data_out = new GLib.DataOutputStream( f.replace(null, false, GLib.FileCreateFlags.NONE, null) );
+				data_out.put_string(o, null);
+				data_out.close(null);
+			} catch (GLib.Error e) {
+				GLib.debug("Error writing file %s", e.message);
+			}
 			
 		} 
 		

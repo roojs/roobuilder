@@ -112,17 +112,15 @@
                if (fc != null) {
                		this.container.el.remove(fc);
            		}
-               
-                try { 
-        	   		var xmlstr = JsRender.NodeToGlade.mungeFile( file);
-        	   		var builder = new Gtk.Builder.from_string (xmlstr, xmlstr.length);
-        	   		var obj = (Gtk.Widget) builder.get_object("w"+ file.tree.oid.to_string());
-        	   		 this.container.el.append(obj);
-        		    obj.show();
+                
+           		var xmlstr = JsRender.NodeToGlade.mungeFile( file);
+           		var builder = new Gtk.Builder.from_string (xmlstr, xmlstr.length);
+           		var obj = (Gtk.Widget) builder.get_object("w"+ file.tree.oid.to_string());
+           		 this.container.el.append(obj);
+        	    obj.show();
                 this.createThumb();
-                } catch (GLib.Error e) {
-                	GLib.debug("Failed to load glade?");
-                	}
+                 
+                	 
                return;/*
         	var x = new JsRender.NodeToGtk((Project.Gtk) file.project, file.tree);
             var obj = x.munge() as Gtk.Widget;
@@ -590,17 +588,15 @@
                    
                    
                    	this.css = new Gtk.CssProvider();
-                	try {
-                		this.css.load_from_data("#gtkview-view { font: 10px monospace ;}".data);
-                	} catch (Error e) {}
+                	 
+                	this.css.load_from_string("#gtkview-view { font: 10px monospace ;}");
+                	 
                 	this.el.get_style_context().add_provider(this.css,
                 		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
                 	 
                 		 
                     this.loading = true;
-                    var buf = this.el.get_buffer();
-                  
-                  
+                    
                   
                   
                     var attrs = new GtkSource.MarkAttributes();
@@ -1083,9 +1079,11 @@
                 // init method
 
                 this.css = new Gtk.CssProvider();
-                	try {
-                		this.css.load_from_data("#gtkview-search-entry { font: 10px monospace ;}".data);
-                	} catch (Error e) {}
+                
+                		this.css.load_from_string("
+                			#gtkview-search-entry { font: 10px monospace ;}"
+                		);
+                
                 	this.el.get_style_context().add_provider(this.css,
                 		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 

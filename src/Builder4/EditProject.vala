@@ -518,15 +518,19 @@
                 		fd.modal = true;
                 		
                 		fd.select_folder.begin(_this.el, null, (obj, res) => {
+                			try {
                 		 	var f = fd.select_folder.end(res);
-                			this.extra_value = f.get_path();
-                			var sl = (Gtk.StringList) this.el.model;	
-                			
-                			sl.remove(sl.get_n_items()-1);
-                			
-                			sl.append(this.extra_value);
-                			sl.append("Select Folder");
-                			this.el.selected = sl.get_n_items()-2;
+                				this.extra_value = f.get_path();
+                				var sl = (Gtk.StringList) this.el.model;	
+                				
+                				sl.remove(sl.get_n_items()-1);
+                				
+                				sl.append(this.extra_value);
+                				sl.append("Select Folder");
+                				this.el.selected = sl.get_n_items()-2;
+                			} catch (GLib.Error e) {
+                				// do nothing?
+                			}
                 			
                 		});
                 		return;
@@ -697,44 +701,52 @@
             public void load () {
             	var p  = _this.parent_dd.getValue();
             	var f = File.new_for_path(p);
-            	var file_enum = f.enumerate_children(
-            		GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
             	var sl = (Gtk.StringList) this.el.model;	
-            
-            	 	while(sl.get_n_items() > 0)  {
+            	while(sl.get_n_items() > 0)  {
             		sl.remove(0);
             	}
             	string[] strs = {};
-            	FileInfo next_file; 
-            	while ((next_file = file_enum.next_file(null)) != null) {
-            		var fn = next_file.get_display_name();
+            	try {
+            		var file_enum = f.enumerate_children(
+            			GLib.FileAttribute.STANDARD_DISPLAY_NAME, 
+            			GLib.FileQueryInfoFlags.NONE, null);
+            	  
+             	
             		
-            		
+            		FileInfo next_file; 
             		 
-            		//print("trying"  + dir + "/" + fn +"\n");
+            		while ((next_file = file_enum.next_file(null)) != null) {
+            			var fn = next_file.get_display_name();
+            			
+            			
+            			 
+            			//print("trying"  + dir + "/" + fn +"\n");
+            			
+            			if (fn[0] == '.') { // skip hidden
+            				continue;
+            			}
+            			
+            			
+            			
+            			
+            			if (!FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
+            				continue;
+            			}
+            			if (null != Project.Project.getProjectByPath(p  + "/" + fn)) {
+            				continue;
+            			}
             		
-            		if (fn[0] == '.') { // skip hidden
-            			continue;
+            			strs +=  fn;
+            			
+            			  
             		}
-            		
-            		
-            		
-            		
-            		if (!FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
-            			continue;
-            		}
-            		if (null != Project.Project.getProjectByPath(p  + "/" + fn)) {
-            			continue;
-            		}
+            	} catch (GLib.Error e) {
+            		// do nothing.. 
+            	}
             	
-            		strs +=  fn;
-            		
-            		
-            		 
-            	}
-            	 int cmpfunc(ref string a, ref string b) {
-            		return Posix.strcmp(a.down(), b.down());
-            	}
+            	int cmpfunc(ref string a, ref string b)  {
+            			return Posix.strcmp(a.down(), b.down());
+            		}
             		 
             	Posix.qsort (
             		strs, 

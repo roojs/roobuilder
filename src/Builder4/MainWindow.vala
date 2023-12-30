@@ -1252,7 +1252,7 @@
             }
 
             // user defined functions
-            public void setNotices (Json.Object nots, int qty) {
+            public void setNotices (Json.Object nots, int qty, int tf) {
                 
                  if (qty < 1 ) {
                 	this.el.hide();
@@ -1263,7 +1263,7 @@
                 }
                 
                 this.el.show();
-                this.el.label = qty.to_string() + " Errors";
+                this.el.label = "%d/%d Errors".printf(tf,qty);
                 this.notices = nots;
             	if (this.popup != null && this.popup.el.visible) {
             		 this.popup.show(this.notices, this.el);
@@ -1314,7 +1314,7 @@
             }
 
             // user defined functions
-            public void setNotices ( Json.Object nots, int qty) {
+            public void setNotices ( Json.Object nots, int qty, int tf) {
                 
                 if (qty < 1 ) {
                 	this.el.hide();
@@ -1324,7 +1324,7 @@
                 	return;
                 }
                 this.el.show();
-                this.el.label = qty.to_string() + " Warnings";
+                this.el.label = "%d/%d Warnings".printf(tf,qty);
                 this.notices = nots;
                 if (this.popup != null && this.popup.el.visible) {
             		 this.popup.show(this.notices, this.el);
@@ -1378,7 +1378,7 @@
             }
 
             // user defined functions
-            public void setNotices (Json.Object nots, int qty) {
+            public void setNotices (Json.Object nots, int qty, int tf) {
                 if (qty < 1) {
                 	this.el.hide();
                 	if (this.popup != null && this.popup.el.visible) {
@@ -1390,7 +1390,7 @@
                 
                 this.el.show();
                 
-                this.el.label = qty.to_string() + " Depricated";
+                this.el.label = "%d/%d Depricated".printf(tf,qty);
                 this.notices = nots;
             	if (this.popup != null && this.popup.el.visible) {
             		 this.popup.show(this.notices, this.el);

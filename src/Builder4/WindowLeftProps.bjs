@@ -584,7 +584,7 @@
            "\tvar prop = _this.selmodel.getPropAt(row);",
            "\t_this.selmodel.selectProp(prop);",
            "",
-           "\tvar point_at = _this.view.getWidgetAtRow(row);",
+           "\t//var point_at = _this.view.getWidgetAtRow(row);",
            "\t",
            "\t    \t// need to shift down, as ev.y does not inclucde header apparently..",
            "     \t// or popover might be trying to do a central?",

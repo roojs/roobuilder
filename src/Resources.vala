@@ -263,9 +263,17 @@ public class Resources : Object
 		session.user_agent = "App Builder ";
 	    var message = new Soup.Message ("GET",  item.src );
         session.send_and_read_async.begin( message, 0,  null, (obj, res) => {
-			var bytes = session.send_and_read_async.end(res);
+        	GLib.Bytes bytes;
+        	 try {
+				bytes = session.send_and_read_async.end(res);
+			  } catch (GLib.Error e) {
+			  	GLib.debug("Failed to fetch stream %s" , e.message);
+			  	this.fetchNext();
+			  	return;
+		  	}
+			  	
 			
-			
+		
 			if (item.target.contains("*")) {
 				// then it's a directory listing in JSON, and we need to add any new items to our list..
 				// it's used to fetch Editors (and maybe other stuff..)
@@ -287,8 +295,6 @@ public class Resources : Object
 					GLib.error("Problem creating directory %s", e.message);
 				}
 			}
-			
-			
 			
 			
 			// set data??? - if it's binary?

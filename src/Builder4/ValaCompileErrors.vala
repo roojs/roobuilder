@@ -253,7 +253,7 @@
             
                var tr = (Gtk.TreeListRow)this.el.get_item(row);
                
-               var a = tr.get_item();;   
+              
               // GLib.debug("get_item (2) = %s", a.get_type().name());
               	
                
@@ -427,7 +427,7 @@
                 	if (n_press < 2) { /// doubleclick?
                 		return;
                 	}
-                	string pos;
+                 
                 	
                 	
                 	// use selection?!

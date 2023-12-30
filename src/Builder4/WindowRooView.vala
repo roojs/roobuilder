@@ -1021,9 +1021,11 @@
                 {
                    
                    this.css = new Gtk.CssProvider();
-                	try {
-                		this.css.load_from_data("#roo-view { font:  10px monospace; }".data);
-                	} catch (Error e) {}
+                	 
+                	this.css.load_from_string(
+                		"#roo-view { font:  10px monospace; }"
+                	);
+                 
                 	this.el.get_style_context().add_provider(this.css,
                 		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
                 	 
@@ -1773,9 +1775,11 @@
                 // init method
 
                 this.css = new Gtk.CssProvider();
-                	try {
-                		this.css.load_from_data("#roo-search-entry { background-color: #ccc; }".data);
-                	} catch (Error e) {}
+                	 
+                	this.css.load_from_string(
+                		"#roo-search-entry { background-color: #ccc; }"
+                	);
+                	 
                 	this.el.get_style_context().add_provider(this.css,
                 		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 

@@ -263,27 +263,7 @@ namespace Project {
 		}
 			
 		
-		
-		// ?? needed??
-/*		public static Project? getProjectByHash(string fn)
-		{
-			foreach (var p in projects.values) {
-				if (p.fn == fn) {
-					return p;
-				}
-			}
-			var iter = projects.map_iterator();
-			while (iter.next()) {
-				if (iter.get_value().fn == fn) {
-					return iter.get_value();
-				}
-				
-			}
-			
-			return null;
-		
-		}
-*/		
+ 
 		
 		static void loadProjectList()
 		{
@@ -301,7 +281,7 @@ namespace Project {
 			var node = pa.get_root();
  			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
 				GLib.error( dirname + "/Projects.list - invalid format?");
-				return;
+				 
 			}
 
 			
@@ -309,7 +289,11 @@ namespace Project {
 			obj.foreach_member((sobj, key, val) => {
 				GLib.debug("read ProjectList %s: %s", key, val.get_string());
 				// facotry adds project!
-				var p = Project.factory(val.get_string(), key );
+				try {
+					Project.factory(val.get_string(), key );
+				} catch (GLib.Error e ) {
+					GLib.debug("error createing project %s", e.message);
+				}
 				 
 			});
 			
@@ -517,9 +501,9 @@ namespace Project {
 			}
 			
 			var obj = node.get_object ();
-			var xtype =  obj.get_string_member("xtype");
 
- 
+
+
 			 
 
 			//this.json_project_data  = obj; // store the original object...
@@ -792,7 +776,8 @@ namespace Project {
 				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
 			} catch (GLib.Error e) {
 				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
-			}
+			} 
+
 			foreach(var fn in other_files) {
 				var dpos = fn.last_index_of(".");
 				var without_ext = fn.substring(0, dpos);
@@ -820,9 +805,13 @@ namespace Project {
 				
 				
 				GLib.debug("Could have added %s/%s", dir, fn);
-			     var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
-				 this.files.set( dir + "/" + fn, el);
-				jsDir.childfiles.append(el);
+				try {
+					 var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
+					 this.files.set( dir + "/" + fn, el);
+					jsDir.childfiles.append(el);
+				} catch (JsRender.Error e) {
+					GLib.warning("Project::scanDirs failed : " + e.message + "\n");
+				}
 			}
 			
 			foreach (var sd in subs) {
@@ -893,7 +882,7 @@ namespace Project {
 			try {
 				 
 				dir.make_directory();	
-			} catch (Error e) {
+			} catch (GLib.Error e) {
 				GLib.error("Failed to make directory %s", this.path + "/" + name);
 			} 
 		}
@@ -906,7 +895,14 @@ namespace Project {
 			var dir= File.new_for_path(this.path + "/" + subdir);
 
 			if (!dir.query_exists()) {
-				dir.make_directory();
+			
+				try {
+					 
+					dir.make_directory();	
+				} catch (GLib.Error e) {
+					GLib.error("Failed to make directory %s", this.path + "/" + name);
+				}
+
 			}
 			this.sub_paths.add(new JsRender.Dir(this,this.path + "/" + subdir));
 			this.on_changed();  // not sure if it's needed - adding a dir doesnt really change much.
@@ -1002,142 +998,7 @@ namespace Project {
 			return ret;
 		}
 		
-		/*
-		public void add(string path, string type)
-		{
-			this.paths.set(path,type);
-			//Seed.print(" type is '" + type + "'");
-			if (type == "dir") {
-
-				var dir = File.new_for_path(path);
-				if (!dir.query_exists()) {
-					dir.make_directory();
-				}					
-			//    console.dump(this.files);
-				this.scanDir(path);			
-			}
-			if (type == "file" ) {
-			
-				this.files.set(path,this.loadFileOnly( path ));
-			}
-			this.on_changed();
-			
-		}
-		
-		
-		
-		
-		public void  scanDirs() // cached version
-		{
-			// -- why cache this - is it that slow?
-			//if (this.is_scanned) {
-			//	return;
-			//}
-			this.scanDirsForce();
-			//console.dump(this.files);
-			
-		}
 		 
-		public void  scanDirsForce()
-		{
-			this.is_scanned = true;	 
-			var iter = this.paths.map_iterator();
-			while (iter.next()) {
-				//print("path: " + iter.get_key() + " : " + iter.get_value() +"\n");
-				if (iter.get_value() != "dir") {
-					continue;
-				}
-				this.scanDir(iter.get_key());
-			}
- 
-			
-		}
-			// list files.
-		public void scanDir(string dir, int dp =0 ) 
-		{
-			//dp = dp || 0;
-			//print("Project.Base: Running scandir on " + dir +"\n");
-			if (dp > 5) { // no more than 5 deep?
-				return;
-			}
-			// this should be done async -- but since we are getting the proto up ...
-			var other_files = new Gee.ArrayList<string>();
-			var bjs_files = new Gee.ArrayList<string>();
-			
-			var subs = new GLib.List<string>();;            
-			var f = File.new_for_path(dir);
-			try {
-				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
-				
-				 
-				FileInfo next_file; 
-				while ((next_file = file_enum.next_file(null)) != null) {
-					var fn = next_file.get_display_name();
-			
-					 
-					//print("trying"  + dir + "/" + fn +"\n");
-					
-					if (fn[0] == '.') { // skip hidden
-						continue;
-					}
-					
-					if (FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
-						subs.append(dir  + "/" + fn);
-						continue;
-					}
-					
-					if (!Regex.match_simple("\\.bjs$", fn)) {
-						other_files.add(fn);
-						//print("no a bjs\n");
-						continue;
-					}
-				 	bjs_files.add(fn.substring(0, fn.length-4));
-				 	
-					var xt = this.xtype;
-					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
-					this.files.set( dir + "/" + fn, el);
-					// parent ?? 
-					
-					 
-				}
-			} catch (Error e) {
-				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
-			} catch (GLib.Error e) {
-				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
-			}
-			foreach(var fn in other_files) {
-				var dpos = fn.last_index_of(".");
-				var without_ext = fn.substring(0, dpos);
-				if (bjs_files.contains(without_ext)) {
-					continue;
-				}
-				GLib.debug("Could have added %s/%s", dir, fn);
-				 
-			}
-			
-			for (var i = 0; i < subs.length(); i++) {
-				 this.scanDir(subs.nth_data(i), dp+1);
-			}
-			
-		}
-		
-		*/
-		
-		// wrapper around the json data...
-		/*
-		public string get_string_member(string key) {
-			
-			if (!this.json_project_data.has_member(key)) {
-				return "";
-			}
-			var  ret = this.json_project_data.get_string_member(key);
-			if (ret == null) {
-				return "";
-			}
-			return ret;
-			
-		}
-		*/
 		 public abstract void initDatabase();
 		 public abstract void initialize(); // for new projects (make dirs?);
 		  

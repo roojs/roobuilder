@@ -242,8 +242,8 @@ namespace Palete
 			
 			//var cd = new JSCore.ClassDefinitionEmpty();
 			//print("TESTING CODE %s\n", code);
-			string errmsg;
-			var testcode = prop == null ? code : "var __aaa___ = " + code;
+			//string errmsg;
+			//var testcode = prop == null ? code : "var __aaa___ = " + code;
 			
 			 
 			/*

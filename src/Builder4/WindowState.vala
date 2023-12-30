@@ -930,24 +930,27 @@ public class WindowState : Object
 				if (obj.get_int_member("ERR-TOTAL")> 0) {
 					has_errors = true;
 				}
-				 this.win.statusbar_errors.setNotices( obj.get_object_member("ERR") , (int) obj.get_int_member("ERR-TOTAL"));
+				 this.win.statusbar_errors.setNotices( obj.get_object_member("ERR") ,
+				 	(int) obj.get_int_member("ERR-TOTAL"), this.totalErrorsInCurrentFile(obj.get_object_member("ERR")));
 			} else {
-				 this.win.statusbar_errors.setNotices( new Json.Object() , 0);
+				 this.win.statusbar_errors.setNotices( new Json.Object() , 0,0 );
 			}    
 			
 			if (obj.has_member("WARN-TOTAL")) {
 
-				 this.win.statusbar_warnings.setNotices(obj.get_object_member("WARN"), (int) obj.get_int_member("WARN-TOTAL"));
+				 this.win.statusbar_warnings.setNotices(obj.get_object_member("WARN"),
+				 	(int) obj.get_int_member("WARN-TOTAL"),this.totalErrorsInCurrentFile(obj.get_object_member("WARN")));
 			} else {
-				 this.win.statusbar_warnings.setNotices( new Json.Object() , 0);
+				 this.win.statusbar_warnings.setNotices( new Json.Object() , 0,0);
 				 
 			}
 			if (obj.has_member("DEPR-TOTAL")) {
 				
-				 this.win.statusbar_depricated.setNotices( obj.get_object_member("DEPR"),  (int) obj.get_int_member("DEPR-TOTAL"));
+				 this.win.statusbar_depricated.setNotices( obj.get_object_member("DEPR"),  
+				 	(int) obj.get_int_member("DEPR-TOTAL"),this.totalErrorsInCurrentFile(obj.get_object_member("DEPR")));
 				 
 			} else {
-				this.win.statusbar_depricated.setNotices( new Json.Object(),0);
+				this.win.statusbar_depricated.setNotices( new Json.Object(),0,0);
 			}
 
 			 
@@ -987,6 +990,14 @@ public class WindowState : Object
  
 			
 		}
+		int totalErrorsInCurrentFile(Json.Object tree) {
+			if (!tree.has_member(this.file.targetName())) {
+				return 0;
+			}
+			return (int) tree.get_object_member(this.file.targetName()).get_size();
+		
+		}
+		
 		void markBuf() 
 		{
 			if (this.last_compile_result == null) {

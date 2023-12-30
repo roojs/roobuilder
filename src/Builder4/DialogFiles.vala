@@ -127,8 +127,7 @@
         public void selectProject (Project.Project? project) {
             
         	
-        	
-        	uint pos;
+        	 
         	var sm = this.projectselection.el;
         	if (project == null) {
         		sm.selected = Gtk.INVALID_LIST_POSITION;
@@ -154,9 +153,9 @@
             this.projectscroll.el.vadjustment.value = 0; // scroll to top?
             
           
-        	  var win = this.win.el;
-              var  w = win.get_width();
-              var h = win.get_height();
+        	  //var win = this.win.el;
+              //var  w = win.get_width();
+              //var h = win.get_height();
          
         	
         	 this.el.show();
@@ -174,7 +173,7 @@
         	     return false;
              });
         	 
-        }
+        }//
         public void load () {
              // clear list...
             
@@ -187,11 +186,8 @@
              Project.Project.loadIntoStore(this.projectmodel.el);
         	_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
         	_this.project_list.el.set_model(_this.projectselection.el);
-        
-        	       
-            
-        
-             _this.is_loading = false;
+        	
+        	_this.is_loading = false;
              
         	_this.btn_delfile.el.hide();
         	
@@ -349,11 +345,11 @@
 
                 {
                  
-                  	this.css = new Gtk.CssProvider();
-                	try {
-                		this.css.load_from_data("#project-list { font-size: 12px;}".data);
-                	} catch (Error e) {}
-                		Gtk.StyleContext.add_provider_for_display(
+                	this.css = new Gtk.CssProvider();
+                 
+                	this.css.load_from_string("#project-list { font-size: 12px;}");
+                
+                	Gtk.StyleContext.add_provider_for_display(
                 		this.el.get_display(),
                 		this.css,
                 		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
@@ -877,12 +873,12 @@
             }
 
             // user defined functions
-            public JsRender.JsRender selectedFile () {
+            public JsRender.JsRender? selectedFile () {
             
             	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
             		return null;
             	}
-            	return  (JsRender.JsRender)_this.iconsel.el.selected_item;
+            	return  (JsRender.JsRender)this.el.get_item(this.el.selected); 
             	
              
             }
@@ -1211,11 +1207,11 @@
 
                 {
                  
-                  	this.css = new Gtk.CssProvider();
-                	try {
-                		this.css.load_from_data("#file-list { font-size: 12px;}".data);
-                	} catch (Error e) {}
-                		Gtk.StyleContext.add_provider_for_display(
+                	this.css = new Gtk.CssProvider();
+                 
+                	this.css.load_from_string("#file-list { font-size: 12px;}");
+                
+                	Gtk.StyleContext.add_provider_for_display(
                 		this.el.get_display(),
                 		this.css,
                 		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
@@ -2267,17 +2263,21 @@
                   		this.confirm.el.set_transient_for(_this.el);
                  
                 	}
+                	GLib.debug("DELETE");
                 	var is_icon = true;
                   	var isel = _this.iconsel.selectedFile();
+                  	 
                   	if (isel == null) {
+                  		GLib.debug("DELETE - no icons selected");
                 	  	is_icon = false;
                 	  	isel = _this.treeselmodel.selectedFile();
                   	}
                   	if (isel == null) {
+                  	  		GLib.debug("DELETE - no tree item selected");
                   		return; // should nto happen..
                 	}
                 	
-                	
+                	GLib.debug("DELETE - calling confirm.");
                 	this.confirm.el.response.connect((res) => {
                 		this.confirm.el.hide();
                 		if (res == Gtk.ResponseType.CANCEL) {
@@ -2301,7 +2301,8 @@
                   		isel.project.deleteFile(isel);  		
                 	
                 	});
-                	
+                	  	this.confirm.showIt("Confirm Delete File",
+                	  		"Are you sure you want to delete this file?");
                   	
                  
                 

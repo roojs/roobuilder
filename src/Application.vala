@@ -136,11 +136,16 @@
 			}
 			GLib.debug("SELF = %s", _self);
 			var f =  File.new_for_path(_self);
-			var fi = f.query_info("*",0);
-			
+			var dt = "0000";
+			try {
+				var fi = f.query_info("*",0);
+				dt = fi.get_creation_date_time().to_unix().to_string();
+			} catch (GLib.Error e) {
+				// skip.
+			}
 			
 			Object(
-				application_id: "org.roojs." + GLib.Path.get_basename(_self) + fi.get_creation_date_time().to_unix().to_string(),
+				application_id: "org.roojs.%s.%s".printf( GLib.Path.get_basename(_self),dt),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();

@@ -446,7 +446,7 @@ namespace Palete {
 				Vala.CodeContext.pop ();
 				this.outputResult();
 				GLib.Process.exit(Posix.EXIT_SUCCESS);
- 				return;
+ 				 
 			}
 			
 			/* --- - only if we are actually doing a full build.- no added benifet for inline complier

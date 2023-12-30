@@ -1,6 +1,6 @@
  
 
-static int rid = 1;
+ 
 
 public class Project.Roo : Project {
 

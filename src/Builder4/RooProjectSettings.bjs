@@ -615,7 +615,7 @@
     "",
     "    _this.base_template_model.loadData();",
     "    ",
-    "     var js = _this.project;",
+    "     //var js = _this.project;",
     "    _this.database_DBTYPE.el.set_text(    _this.project.DBTYPE );",
     "    _this.database_DBNAME.el.set_text(    _this.project.DBNAME );",
     "    _this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );",

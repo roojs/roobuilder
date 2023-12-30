@@ -5,7 +5,7 @@
 
 public class Project.VapiSelection : Object 
 {
-	Project project;
+	//Project project;
 	public string name { get;  set; }
 	public string sortkey {
 		 owned get {
@@ -49,7 +49,7 @@ public class Project.VapiSelection : Object
 	
 	public VapiSelection( Gee.ArrayList<string> vapi_list, string name)
 	{
-		this.project = project;
+		//this.project = project;
 		this.vapi_list = vapi_list;
 		this.name = name;
 	}

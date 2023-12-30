@@ -251,13 +251,13 @@ public class Spawn : Object
         this.out_src = (int) this.out_ch.add_watch (
             IOCondition.OUT | IOCondition.IN  | IOCondition.PRI |  IOCondition.HUP |  IOCondition.ERR  ,
             (channel, condition) => {
-               return this.read(this.out_ch);
+               return this.out_ch == null ? true : this.read(this.out_ch);
             }
         );
         this.err_src = (int) this.err_ch.add_watch (
 	         IOCondition.OUT | IOCondition.IN  | IOCondition.PRI |  IOCondition.HUP |  IOCondition.ERR  ,
             (channel, condition) => {
-               return this.read(this.err_ch);
+               return this.err_ch == null ? true : this.read(this.err_ch);
             }
         );
               
@@ -321,7 +321,7 @@ public class Spawn : Object
     
     
 
-    private void tidyup()
+    public void tidyup() // or kill
     {
         if (this.pid > -1) {
             Process.close_pid(this.pid); // hopefully kills it..
@@ -339,8 +339,8 @@ public class Spawn : Object
         this.err_ch = null;
         this.out_ch = null;
         // rmeove listeners !! important otherwise we kill the CPU
-        //if (this.err_src > -1 ) GLib.source_remove(this.err_src);
-        //if (this.out_src > -1 ) GLib.source_remove(this.out_src);
+        if (this.err_src > -1 ) GLib.Source.remove(this.err_src);
+        if (this.out_src > -1 ) GLib.Source.remove(this.out_src);
         this.err_src = -1;
         this.out_src = -1;
         
