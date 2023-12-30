@@ -133,20 +133,28 @@ public class JsRender.NodeToGlade : Object {
     		if  (!this.node.has(pviter.get_key())) {
 				continue;
 			}
-			var k = pviter.get_key();
-			var val = this.node.get(pviter.get_key()).strip();
-			var prop = this.create_element("property");
-			prop->set_prop("name", k);
-			switch (k) { 
-				case "orientation":
-					var bits = val.split(".");
-					val = bits.length > 2 ? bits[2].down() : "vertical"; // ??
-					break;
+			var k = pviter.get_key();	
+			var prop = props.get(k);
+			var val = this.node.get(pviter.get_key()).strip();	
+			// for Enums - we change it to lowercase, and remove all the previous bits.. hopefully might work.
+			if (prop.type.contains(".") && val.contains(".")) {
+				var typ =  Palete.Gir.factoryFqn(this.project, prop.type);
+				if (typ.nodetype == "Enum") {
+					 var bits = val.split(".");
+					 val = bits[bits.length-1].down();
+				}
 			}
+				
+			
+
+
+			var domprop = this.create_element("property");
+			domprop->set_prop("name", k);
+			 
 			
 			
-			prop->add_child(new Xml.Node.text(val));
-			obj->add_child(prop); 
+			domprop->add_child(new Xml.Node.text(val));
+			obj->add_child(domprop); 
         }
 		// packing???
 /*
@@ -183,125 +191,7 @@ public class JsRender.NodeToGlade : Object {
 
 	}
 	 
-	 /*
-	public string packString()
-	{
-		
-		
-		
-		
-		// pack is part of the parent element..
-		var p = node.parent;
-		string[]  pk= { "add" };
-		var pfqn = "Gtk.Box";
-		if (p != null) {
-			pfqn  = p.fqn();
-			if (this.node.props.get("* pack") == null) {
-				return "";
-			}
-			pk = this.node.get("* pack").split(",");
-		} else {
-			if (this.node.props.get("* pack") != null) {
-				pk = this.node.get("* pack").split(",");
-			}
-			
-		}
-		
-		if (pfqn == null) {
-			return "";
-		}
-		if (pfqn == "Gtk.ScrolledWindow") {
-			return "";
-		}
-		var p_parts =pfqn.split(".");
-
- 
-		var ns = p_parts[0];
-    		var gir =  Palete.Gir.factory(this.project, ns);
-		var cls = gir.classes.get(p_parts[1]);
-		var mdef = cls.methods.get(pk[0]);
-		if (mdef == null) {
-			GLib.debug ("could not find method : %s\n", pk[0]);
-			return "";
-		}
-		/*
-		var generator = new Json.Generator ();
-	        var n = new Json.Node(Json.NodeType.OBJECT);
-		n.set_object(mdef.toJSON());
-		generator.set_root(n);
-		generator.indent = 4;
-		generator.pretty = true;
-		    
-		GLib.debug print(generator.to_data(null));
-		*/
-		/*
-		string[]  pbody  = {};
-		switch(pk[0]) {
-
-			case "pack_start":
-				pbody += @"$pad    <property name=\"pack_type\">start</property>\n";
-				break;
-			
-			case "pack_end":
-				pbody += @"$pad    <property name=\"pack_type\">start</property>\n";
-				break;
-				
-			case "add":
-				//pbody += @"$pad    <property name=\"pack_type\">start</property>\n";
-				 pbody += @"$pad    <property name=\"expand\">True</property>\n";
-				pbody += @"$pad    <property name=\"fill\">True</property>\n";
-				//pbody += @"$pad    <property name=\"position\">1</property>\n";
-				var pack = @"$pad<packing>\n" +
-					string.joinv("", pbody) + 
-						@"$pad</packing>\n";
-				return pack;
-                
-			case "set_model":
-				GLib.debug ("set_model not handled yet..");
-				return "";
-			
-			default:
-				GLib.debug  ("unknown pack type: %s", pk[0]);
-				return "";
-				
-		}
-			
-
-		 
-		for (var i = 2; i < mdef.paramset.params.size; i++) {
-			var poff = i - 1;
-			if (poff > (pk.length-1)) {
-				break;
-			}
-			
-			var key = mdef.paramset.params.get(i).name;
-			var val = pk[poff];
-			pbody += @"$pad    <property name=\"$key\">$val</property>\n";
-		
-		}
-	     
-		if (pbody.length < 1) {
-			/*var generator = new Json.Generator ();
-			var n = new Json.Node(Json.NodeType.OBJECT);
-			n.set_object(mdef.toJSON());
-			generator.set_root(n);
-			generator.indent = 4;
-			generator.pretty = true;
-			    
-			print(generator.to_data(null));
-			*/ 
-			/*
-			GLib.debug ("skip - packing - no arguments (" + pk[0] + ")\n");
-			return "";
-		}
-		
-		var pack = @"$pad<packing>\n" +
-				string.joinv("", pbody) + 
-				@"$pad</packing>\n";
-		return pack;
-
-	}
-	*/
+	 
 
 
 		
