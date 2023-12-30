@@ -485,37 +485,31 @@ namespace Project {
 				return;
 			}
  			GLib.debug("load is_scanned = false");
+ 			
+			if (FileUtils.test(this.path + "/.roobuilder.jcfg", FileTest.EXISTS)) {
+				  
+				var pa = new Json.Parser();
+				try { 
+					pa.load_from_file(this.path + "/.roobuilder.jcfg");
+				} catch (GLib.Error e) {
+					GLib.error("could not load json file %s", e.message);
+				}
+				var node = pa.get_root();
 
-			var pa = new Json.Parser();
-			try { 
-				pa.load_from_file(this.path + "/.roobuilder.jcfg");
-			} catch (GLib.Error e) {
-				GLib.error("could not load json file %s", e.message);
-			}
-			var node = pa.get_root();
-
-			
-			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
-				GLib.debug("SKIP %s/.roobuilder.jcfg  - invalid format?",this.path);
-				return;
-			}
-			
-			var obj = node.get_object ();
-
-
-
-			 
-
-			//this.json_project_data  = obj; // store the original object...
-			
- 
-			 
-			this.loadJson(obj);
+				
+				if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+					GLib.debug("SKIP %s/.roobuilder.jcfg  - invalid format?",this.path);
+					return;
+				}
+				
+				var obj = node.get_object ();
+				 
+				this.loadJson(obj);
+			} 
 			// used to load paths..
 			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
 			this.files = new Gee.HashMap<string,JsRender.JsRender>();
 			this.loadSubDirectories("", 0);
-			
 			 
 			this.initDatabase();
 			this.is_scanned = true; // loaded.. dont need to do it again..

@@ -101,8 +101,8 @@
                 var child_1 = new Xcls_Button3( _this );
                 child_1.ref();
                 this.el.pack_start ( child_1.el  );
-                var child_2 = new Xcls_ok_btn( _this );
-                this.el.pack_end ( child_2.el  );
+                new Xcls_ok_btn( _this );
+                this.el.pack_end ( _this.ok_btn.el  );
             }
 
             // user defined functions
@@ -300,26 +300,26 @@
                 this.el.column_spacing = 4;
                 this.el.row_spacing = 4;
                 this.el.margin_bottom = 20;
-                var child_1 = new Xcls_type_lbl( _this );
-                this.el.attach( child_1.el, 0, 0, 1, 1 );
-                var child_2 = new Xcls_type_dd( _this );
-                this.el.attach( child_2.el, 1, 0, 1, 1 );
-                var child_3 = new Xcls_parent_lbl( _this );
-                this.el.attach( child_3.el, 0, 1, 1, 1 );
-                var child_4 = new Xcls_parent_dd( _this );
-                this.el.attach( child_4.el, 1, 1, 1, 1 );
-                var child_5 = new Xcls_folder_lbl( _this );
-                this.el.attach( child_5.el, 0, 2, 1, 1 );
-                var child_6 = new Xcls_folder_dd( _this );
-                this.el.attach( child_6.el, 1, 2, 1, 1 );
-                var child_7 = new Xcls_name_lbl( _this );
-                this.el.attach( child_7.el, 0, 3, 1, 1 );
-                var child_8 = new Xcls_name_entry( _this );
-                this.el.attach( child_8.el, 1, 3, 1, 1 );
-                var child_9 = new Xcls_ptype_lbl( _this );
-                this.el.attach( child_9.el, 0, 4, 1, 1 );
-                var child_10 = new Xcls_ptype_dd( _this );
-                this.el.attach( child_10.el, 1, 4, 1, 1 );
+                new Xcls_type_lbl( _this );
+                this.el.attach( _this.type_lbl.el, 0, 0, 1, 1 );
+                new Xcls_type_dd( _this );
+                this.el.attach( _this.type_dd.el, 1, 0, 1, 1 );
+                new Xcls_parent_lbl( _this );
+                this.el.attach( _this.parent_lbl.el, 0, 1, 1, 1 );
+                new Xcls_parent_dd( _this );
+                this.el.attach( _this.parent_dd.el, 1, 1, 1, 1 );
+                new Xcls_folder_lbl( _this );
+                this.el.attach( _this.folder_lbl.el, 0, 2, 1, 1 );
+                new Xcls_folder_dd( _this );
+                this.el.attach( _this.folder_dd.el, 1, 2, 1, 1 );
+                new Xcls_name_lbl( _this );
+                this.el.attach( _this.name_lbl.el, 0, 3, 1, 1 );
+                new Xcls_name_entry( _this );
+                this.el.attach( _this.name_entry.el, 1, 3, 1, 1 );
+                new Xcls_ptype_lbl( _this );
+                this.el.attach( _this.ptype_lbl.el, 0, 4, 1, 1 );
+                new Xcls_ptype_dd( _this );
+                this.el.attach( _this.ptype_dd.el, 1, 4, 1, 1 );
             }
 
             // user defined functions
@@ -705,7 +705,9 @@
             	while(sl.get_n_items() > 0)  {
             		sl.remove(0);
             	}
-            	string[] strs = {};
+            	var gstr = new Gee.ArrayList<string>();
+            	
+            	
             	try {
             		var file_enum = f.enumerate_children(
             			GLib.FileAttribute.STANDARD_DISPLAY_NAME, 
@@ -717,18 +719,11 @@
             		 
             		while ((next_file = file_enum.next_file(null)) != null) {
             			var fn = next_file.get_display_name();
-            			
-            			
-            			 
-            			//print("trying"  + dir + "/" + fn +"\n");
-            			
+            		 
             			if (fn[0] == '.') { // skip hidden
             				continue;
             			}
-            			
-            			
-            			
-            			
+            			 
             			if (!FileUtils.test(p  + "/" + fn, GLib.FileTest.IS_DIR)) {
             				continue;
             			}
@@ -736,26 +731,17 @@
             				continue;
             			}
             		
-            			strs +=  fn;
-            			
-            			  
+            			gstr.add(fn);
             		}
             	} catch (GLib.Error e) {
             		// do nothing.. 
             	}
-            	
-            	int cmpfunc(ref string a, ref string b)  {
-            			return Posix.strcmp(a.down(), b.down());
-            		}
-            		 
-            	Posix.qsort (
-            		strs, 
-            		strs.length, 
-            		sizeof(string), 
-            		(Posix.compar_fn_t) cmpfunc
-            	);
-            	for (var i =0 ; i < strs.length; i++) {
-            		sl.append(strs[i]);
+            	gstr.sort((a,b) => {
+            		return Posix.strcmp(a.down(), b.down());
+            	});
+            
+            	foreach(var str in gstr) {
+            		sl.append(str);
             	}
             	 
             }

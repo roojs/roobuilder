@@ -145,7 +145,7 @@
 			}
 			
 			Object(
-				application_id: "org.roojs.%s.%s".printf( GLib.Path.get_basename(_self),dt),
+				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self),dt),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();

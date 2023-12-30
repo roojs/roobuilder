@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# JsRender.NodeProp? prop" : "",
@@ -400,17 +401,25 @@
     "\t\tGLib.debug(\"parent of that is null - not showing\");",
     "\t\treturn;",
     "\t}",
-    "\tthis.el.set_parent(btn);",
-    "\tGtk.Allocation rect;",
-    "\tbtn.get_allocation(out rect);",
-    "    this.el.set_pointing_to(rect);",
+    "\tif (this.el.parent == null) {",
+    "\t\tthis.el.set_parent(btn);",
+    "\t}",
+    "\tvar  r = Gdk.Rectangle() {",
+    "\t\t\tx = btn.get_width(), // align left...",
+    "\t\t\ty = 0,",
+    "\t\t\twidth = 1,",
+    "\t\t\theight = 1",
+    "\t\t};",
+    "\t//Gtk.Allocation rect;",
+    "\t//btn.get_allocation(out rect);",
+    "    this.el.set_pointing_to(r);",
     "    ",
     "",
     "\t ",
     "\tif (y > -1) {",
     "\t\t ",
-    "\t\tvar  r = Gdk.Rectangle() {",
-    "\t\t\tx = btn.get_allocated_width(), // align left...",
+    "\t\t r = Gdk.Rectangle() {",
+    "\t\t\tx = btn.get_width(), // align left...",
     "\t\t\ty = y,",
     "\t\t\twidth = 1,",
     "\t\t\theight = 1",
@@ -452,10 +461,5 @@
    ]
   }
  ],
- "modOrder" : "",
- "name" : "PopoverProperty",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/PopoverProperty.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "PopoverProperty"
 }

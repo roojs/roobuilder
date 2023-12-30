@@ -12,6 +12,7 @@
             }
             return _PopoverAddProp;
         }
+        public Xcls_viewwin viewwin;
         public Xcls_view view;
         public Xcls_selmodel selmodel;
         public Xcls_sortmodel sortmodel;
@@ -41,9 +42,8 @@
             this.el.height_request = 800;
             this.el.hexpand = false;
             this.el.position = Gtk.PositionType.RIGHT;
-            var child_1 = new Xcls_ScrolledWindow2( _this );
-            child_1.ref();
-            this.el.set_child ( child_1.el  );
+            new Xcls_viewwin( _this );
+            this.el.set_child ( _this.viewwin.el  );
         }
 
         // user defined functions
@@ -107,9 +107,9 @@
         	_this.view.el.sort_by_column(null, Gtk.SortType.ASCENDING);
         	_this.view.el.sort_by_column(_this.name.el, Gtk.SortType.ASCENDING);
         
-        	Gtk.Allocation rect;
-        	onbtn.get_allocation(out rect);
-        	this.el.set_pointing_to(rect);
+        	//Gtk.Allocation rect;
+        	//onbtn.get_allocation(out rect);
+        	//this.el.set_pointing_to(rect);
             this.el.show();
            
             //while(Gtk.events_pending()) { 
@@ -127,7 +127,7 @@
         	this.el.hide();
         	this.node = null;
         }
-        public class Xcls_ScrolledWindow2 : Object
+        public class Xcls_viewwin : Object
         {
             public Gtk.ScrolledWindow el;
             private Xcls_PopoverAddProp  _this;
@@ -136,9 +136,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_ScrolledWindow2(Xcls_PopoverAddProp _owner )
+            public Xcls_viewwin(Xcls_PopoverAddProp _owner )
             {
                 _this = _owner;
+                _this.viewwin = this;
                 this.el = new Gtk.ScrolledWindow();
 
                 // my vars (dec)
@@ -146,8 +147,8 @@
                 // set gobject values
                 this.el.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
                 this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
-                var child_1 = new Xcls_view( _this );
-                this.el.set_child ( child_1.el  );
+                new Xcls_view( _this );
+                this.el.set_child ( _this.view.el  );
             }
 
             // user defined functions
@@ -165,8 +166,8 @@
             {
                 _this = _owner;
                 _this.view = this;
-                var child_1 = new Xcls_selmodel( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_selmodel( _this );
+                this.el = new Gtk.ColumnView( _this.selmodel.el );
 
                 // my vars (dec)
 
@@ -180,8 +181,8 @@
                 var child_2 = new Xcls_GestureClick4( _this );
                 child_2.ref();
                 this.el.add_controller(  child_2.el );
-                var child_3 = new Xcls_name( _this );
-                this.el.append_column ( child_3.el  );
+                new Xcls_name( _this );
+                this.el.append_column ( _this.name.el  );
                 var child_4 = new Xcls_ColumnViewColumn13( _this );
                 child_4.ref();
                 this.el.append_column ( child_4.el  );
@@ -191,7 +192,11 @@
             }
 
             // user defined functions
-            public int getRowAt (double x,  double y, out string pos) {
+            public int getRowAt (double x,  double in_y, out string pos) {
+            
+            
+            	 
+            
             /*
                 	
             from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
@@ -202,56 +207,71 @@
                 		 
                 	}
                 	*/
-                	GLib.debug("getRowAt");
+             		 
+             		
+             		//GLib.debug("offset = %d  y = %d", (int) voff, (int) in_y);
+                	var y = in_y + _this.viewwin.el.vadjustment.value; 
                     var  child = this.el.get_first_child(); 
-                	Gtk.Allocation alloc = { 0, 0, 0, 0 };
+                	//Gtk.Allocation alloc = { 0, 0, 0, 0 };
                 	var line_no = -1; 
                 	var reading_header = true;
-                	var curr_y = 0;
+                	var real_y = 0;
                 	var header_height  = 0;
-                	pos = "over";
-                	
+                	pos = "none";
+                	var h = 0;
                 	while (child != null) {
             			//GLib.debug("Got %s", child.get_type().name());
                 	    if (reading_header) {
-            			   
-            			    if (child.get_type().name() == "GtkColumnViewRowWidget") {
-            			        child.get_allocation(out alloc);
-            			    }
+            				
+            
             				if (child.get_type().name() != "GtkColumnListView") {
+            			        h += child.get_height();
             					child = child.get_next_sibling();
             					continue;
             				}
+            				// should be columnlistview
             				child = child.get_first_child(); 
-            				header_height = alloc.y + alloc.height;
-            				curr_y = header_height; 
+            			    GLib.debug("header height=%d", h);
+            				header_height =  h;
+            				
             				reading_header = false;
+            				
             	        }
+            	        
             		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
                 		    child = child.get_next_sibling();
                 		    continue;
             		    }
+            		    
+            		 	if (y < header_height) {
+            		    	return -1;
+            	    	}
+            		    
             		    line_no++;
-            
-            			child.get_allocation(out alloc);
+            			var hh = child.get_height();
+            			//child.get_allocation(out alloc);
             			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
+            			//GLib.debug("row %d y= %d %s", line_no, (int) (header_height + alloc.y),
+            			
+            			//	child.visible ? "VIS" : "hidden");
             
-            		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
-            		    	if (y > (header_height + alloc.y + (alloc.height * 0.8))) {
+            		    if (y >  (header_height + real_y) && y <= (header_height +  real_y + hh) ) {
+            		    	if (y > ( header_height + real_y + (hh * 0.8))) {
             		    		pos = "below";
-            	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {
+            	    		} else if (y > ( header_height + real_y + (hh * 0.2))) {
             	    			pos = "over";
                 			} else {
                 				pos = "above";
             				}
-            		    	GLib.debug("getRowAt return : %d, %s", line_no, pos);
+            		    	 GLib.debug("getRowAt return : %d, %s", line_no, pos);
             			    return line_no;
             		    }
-            		    curr_y = header_height + alloc.height + alloc.y;
+             
             
-            		    if (curr_y > y) {
-            		    //    return -1;
+            		    if (real_y + hh > y) {
+            		        return -1;
             	        }
+            	        real_y += hh;
             	        child = child.get_next_sibling(); 
                 	}
                     return -1;
@@ -354,8 +374,8 @@
             {
                 _this = _owner;
                 _this.selmodel = this;
-                var child_1 = new Xcls_sortmodel( _this );
-                this.el = new Gtk.SingleSelection( child_1.el );
+                new Xcls_sortmodel( _this );
+                this.el = new Gtk.SingleSelection( _this.sortmodel.el );
 
                 // my vars (dec)
 
@@ -388,10 +408,10 @@
             {
                 _this = _owner;
                 _this.sortmodel = this;
-                var child_1 = new Xcls_model( _this );
+                new Xcls_model( _this );
                 var child_2 = new Xcls_TreeListRowSorter8( _this );
                 child_2.ref();
-                this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+                this.el = new Gtk.SortListModel( _this.model.el, child_2.el );
 
                 // my vars (dec)
 

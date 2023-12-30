@@ -119,6 +119,7 @@ namespace Palete {
 		{
  			
  			if (this.compiler != null) {
+ 				this.compiler.isZombie();
  				//this.compiler.tidyup();
  				//this.spawnResult(-2,"","");
 				return false;
@@ -198,6 +199,7 @@ namespace Palete {
 		{
  			// race condition..
  			if (this.compiler != null) { 
+ 				this.compiler.isZombie();
  				//this.compiler.tidyup();
  				//this.spawnResult(-2,"","");
 				return false;
@@ -244,7 +246,8 @@ namespace Palete {
 		public void spawnExecute(JsRender.JsRender file)
 		{
  			// race condition..
- 			if (this.compiler != null) { 
+ 			if (this.compiler != null) {
+ 				this.compiler.isZombie();
  				this.compiler.tidyup();
  				this.spawnResult(-2,"","");
 				return;
@@ -306,6 +309,7 @@ namespace Palete {
 		{
  			// race condition..
  			if (this.compiler != null) { 
+ 				this.compiler.isZombie();
 				return false;
 			}
 			this.file = file;
@@ -415,6 +419,7 @@ namespace Palete {
 				ret.set_boolean_member("success", false);
 				ret.set_string_member("message","killed");
 				this.compiled(ret);
+				this.compiler.isZombie();
 				this.compiler = null;
 				this.deleteTemp();
 			    this.spinner(false);
@@ -450,6 +455,7 @@ namespace Palete {
 				ret.set_string_member("message", e.message);
 				this.compiled(ret);
 			}
+			this.compiler.isZombie();
 			this.compiler = null;
 			this.deleteTemp();
 	        this.spinner(false);			

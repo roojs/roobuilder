@@ -60,7 +60,9 @@
             
             	this.css = new Gtk.CssProvider();
             	 
-            		this.css.load_from_data("#gtkview-view-layout { background-color: #ccc; }".data);
+            	this.css.load_from_string(
+            		"#gtkview-view-layout { background-color: #ccc; }"
+            	);
             	 
             	this.el.get_style_context().add_provider(this.css,
             		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);

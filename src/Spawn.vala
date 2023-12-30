@@ -380,74 +380,102 @@ public class Spawn : Object
      * @arg giochannel to read from.
      * @returns none
      */
-    private bool read(IOChannel ch) 
-    {
-       // string prop = (ch == this.out_ch) ? "output" : "stderr";
-       // print("prop: " + prop);
+	private bool read(IOChannel ch) 
+	{
+	   // string prop = (ch == this.out_ch) ? "output" : "stderr";
+	   // print("prop: " + prop);
 
-        
-        //print(JSON.stringify(ch, null,4));
-        while (true) {
-            string buffer;
-            size_t term_pos;
-            size_t len;
-            IOStatus status;
-            try {
-                status = ch.read_line( out buffer,  out len,  out term_pos );
-            } catch (Error e) {
-                //FIXme
-                break; // ??
-                
-            }
+	    
+	    //print(JSON.stringify(ch, null,4));
+	    while (true) {
+	        string buffer;
+	        size_t term_pos;
+	        size_t len;
+	        IOStatus status;
+	        try {
+	            status = ch.read_line( out buffer,  out len,  out term_pos );
+	        } catch (Error e) {
+	            //FIXme
+	            break; // ??
+	            
+	        }
 
-            // print('status: '  +JSON.stringify(status));
-            // print(JSON.stringify(x));
-             switch(status) {
-                case GLib.IOStatus.NORMAL:
+	        // print('status: '  +JSON.stringify(status));
+	        // print(JSON.stringify(x));
+	         switch(status) {
+	            case GLib.IOStatus.NORMAL:
 		
-                    //write(fn, x.str);
-                    
-                    //if (this.listeners[prop]) {
-                    //    this.listeners[prop].call(this, x.str_return);
-                    //}
-                    if (ch == this.out_ch) {
-                        this.output += buffer;
-                        this.output_line(  buffer);                  
-                        
-                    } else {
-                        this.stderr += buffer;
-                        this.output_line(  buffer); 
-                    }
-                    //_this[prop] += x.str_return;
-                    //if (this.cfg.debug) {
-                        //GLib.debug("%s : %s", prop , buffer);
-                    //}
-                    if (this.is_async) {
-                         
-                        //if ( Gtk.events_pending()) {
-                        //     Gtk.main_iteration();
-                        //}
-                         
-                    }
-                    
-                    //this.ctx.iteration(true);
-                   continue;
-                case GLib.IOStatus.AGAIN:
+	                //write(fn, x.str);
+	                
+	                //if (this.listeners[prop]) {
+	                //    this.listeners[prop].call(this, x.str_return);
+	                //}
+	                if (ch == this.out_ch) {
+	                    this.output += buffer;
+	                    this.output_line(  buffer);                  
+	                    
+	                } else {
+	                    this.stderr += buffer;
+	                    this.output_line(  buffer); 
+	                }
+	                //_this[prop] += x.str_return;
+	                //if (this.cfg.debug) {
+	                    //GLib.debug("%s : %s", prop , buffer);
+	                //}
+	                if (this.is_async) {
+	                     
+	                    //if ( Gtk.events_pending()) {
+	                    //     Gtk.main_iteration();
+	                    //}
+	                     
+	                }
+	                
+	                //this.ctx.iteration(true);
+	               continue;
+	            case GLib.IOStatus.AGAIN:
 					//print("Should be called again.. waiting for more data..");
-		            return true;
-                    //break;
-                case GLib.IOStatus.ERROR:    
-                case GLib.IOStatus.EOF:
-		            return false;
-                    //break;
-                
-            }
-            break;
-        }
-       
-        //print("RETURNING");
-         return false; // allow it to be called again..
-    }
+			        return true;
+	                //break;
+	            case GLib.IOStatus.ERROR:    
+	            case GLib.IOStatus.EOF:
+			        return false;
+	                //break;
+	            
+	        }
+	        break;
+	    }
+	   
+	    //print("RETURNING");
+	     return false; // allow it to be called again..
+	}
+	public bool isZombie()
+	{
+		if (!GLib.FileUtils.test("/proc/%d".printf(this.pid), FileTest.EXISTS)) {
+			return false;
+		}
+		size_t sz;
+		string f;
+		try {
+			if (!GLib.FileUtils.get_contents("/proc/%d/stat".printf(this.pid), out f, out sz)) {
+				return false;
+			}
+		} catch(GLib.Error e) {
+			return false;
+		}
+		var bits = f.split(" ");
+		if (bits.length > 3  && bits[2] == "Z") {
+			GLib.debug("Process pid:%d is a zombie - trying waitpid", this.pid);
+			int status;
+			Posix.waitpid(this.pid, out status, 0);
+			GLib.debug("Process pid:%d is a zombie - done waitpid", this.pid);
+			return true;
+		}
+		return false;
+		
+		
+		
+	
+	}
     
 }
 /*
