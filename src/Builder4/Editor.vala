@@ -250,7 +250,7 @@
                 this.el.append( _this.save_button.el );
                 var child_2 = new Xcls_Label4( _this );
                 child_2.ref();
-                this.el.append ( child_2.el  );
+                this.el.append( child_2.el );
                 var child_3 = new Xcls_Scale5( _this );
                 child_3.ref();
                 this.el.append( child_3.el );
@@ -437,7 +437,7 @@
                 this.el.overlay_scrolling = false;
                 this.el.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
                 new Xcls_view( _this );
-                this.el.set_child ( _this.view.el  );
+                this.el.child = _this.view.el;
             }
 
             // user defined functions
@@ -474,10 +474,10 @@
                 this.el.tab_width = 4;
                 this.el.highlight_current_line = true;
                 new Xcls_buffer( _this );
-                this.el.set_buffer ( _this.buffer.el  );
+                this.el.buffer = _this.buffer.el;
                 var child_2 = new Xcls_EventControllerKey11( _this );
                 child_2.ref();
-                this.el.add_controller ( child_2.el  );
+                this.el.add_controller(  child_2.el );
 
                 // init method
 

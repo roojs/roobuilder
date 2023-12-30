@@ -15,7 +15,6 @@
    "# string activeEditor" : "\"\"",
    "$ homogeneous" : false,
    "$ xns" : "Gtk",
-   "* pack" : "append",
    "@ void save" : "()",
    "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
    "bool hexpand" : true,
@@ -44,7 +43,6 @@
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "append",
        "bool hexpand" : true,
        "xtype" : "Label"
       },
@@ -206,7 +204,7 @@
         "Gtk.SourceDrawSpacesFlags.SPACE",
         "*/"
        ],
-       "* pack" : "set_child",
+       "* prop" : "child",
        "bool has_tooltip" : true,
        "bool hexpand" : true,
        "bool insert_spaces_instead_of_tabs" : true,
@@ -221,7 +219,7 @@
          "$ Gee.HashMap<int,string>? xmarks" : "null",
          "$ xns" : "GtkSource",
          "$ xtype" : "Buffer",
-         "* pack" : "set_buffer",
+         "* prop" : "buffer",
          "bool check_queued" : false,
          "bool check_running" : false,
          "bool enable_undo" : true,
@@ -498,7 +496,6 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add_controller",
          "listeners" : {
           "key_released" : [
            "(keyval, keycode, state) => {",
