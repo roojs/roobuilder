@@ -41,8 +41,8 @@
             var child_1 = new Xcls_ListView2( _this );
             child_1.ref();
             this.el.append( child_1.el );
-            var child_2 = new Xcls_viewwin( _this );
-            this.el.append( child_2.el );
+            new Xcls_viewwin( _this );
+            this.el.append( _this.viewwin.el );
         }
 
         // user defined functions
@@ -129,9 +129,9 @@
                 this.el.has_frame = true;
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_1 = new Xcls_view( _this );
-                this.el.child = child_1.el;
-                var child_2 = new Xcls_LeftTreeMenu( _this );
+                new Xcls_view( _this );
+                this.el.child = _this.view.el;
+                new Xcls_LeftTreeMenu( _this );
 
                 // init method
 
@@ -158,8 +158,8 @@
             {
                 _this = _owner;
                 _this.view = this;
-                var child_1 = new Xcls_selmodel( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_selmodel( _this );
+                this.el = new Gtk.ColumnView( _this.selmodel.el );
 
                 // my vars (dec)
                 this.blockChanges = false;
@@ -183,10 +183,10 @@
                 var child_5 = new Xcls_EventControllerKey9( _this );
                 child_5.ref();
                 this.el.add_controller(  child_5.el );
-                var child_6 = new Xcls_drop( _this );
-                this.el.add_controller(  child_6.el );
-                var child_7 = new Xcls_maincol( _this );
-                this.el.append_column ( child_7.el  );
+                new Xcls_drop( _this );
+                this.el.add_controller(  _this.drop.el );
+                new Xcls_maincol( _this );
+                this.el.append_column ( _this.maincol.el  );
                 var child_8 = new Xcls_ColumnViewColumn15( _this );
                 child_8.ref();
                 this.el.append_column ( child_8.el  );
@@ -1181,8 +1181,8 @@
             {
                 _this = _owner;
                 _this.selmodel = this;
-                var child_1 = new Xcls_model( _this );
-                this.el = new Gtk.SingleSelection( child_1.el );
+                new Xcls_model( _this );
+                this.el = new Gtk.SingleSelection( _this.model.el );
 
                 // my vars (dec)
 

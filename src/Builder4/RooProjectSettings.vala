@@ -76,8 +76,7 @@
             //print (project.fn);
             //project.runhtml = project.runhtml || '';
             _this.view.el.get_buffer().set_text(project.runhtml);
-            
-              
+             
               
             _this.rootURL.el.set_text( _this.project.rootURL );
             
@@ -180,8 +179,8 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_label_global( _this );
-                var child_2 = new Xcls_label_database( _this );
+                new Xcls_label_global( _this );
+                new Xcls_label_database( _this );
                 var child_3 = new Xcls_Box6( _this );
                 child_3.ref();
                 this.el.append_page ( child_3.el , _this.label_global.el );
@@ -256,8 +255,8 @@
 
                 // set gobject values
                 this.el.homogeneous = false;
-                var child_1 = new Xcls_grid( _this );
-                this.el.append( child_1.el );
+                new Xcls_grid( _this );
+                this.el.append( _this.grid.el );
                 var child_2 = new Xcls_Label20( _this );
                 child_2.ref();
                 this.el.append( child_2.el );
@@ -292,23 +291,23 @@
                 var child_1 = new Xcls_Label8( _this );
                 child_1.ref();
                 this.el.attach ( child_1.el , 0,0,1,1 );
-                var child_2 = new Xcls_path( _this );
-                this.el.attach ( child_2.el , 1,0,1,1 );
+                new Xcls_path( _this );
+                this.el.attach ( _this.path.el , 1,0,1,1 );
                 var child_3 = new Xcls_Label10( _this );
                 child_3.ref();
                 this.el.attach ( child_3.el , 0,1,1,1 );
-                var child_4 = new Xcls_base_template( _this );
-                this.el.attach ( child_4.el , 1,1,1,1 );
+                new Xcls_base_template( _this );
+                this.el.attach ( _this.base_template.el , 1,1,1,1 );
                 var child_5 = new Xcls_Label14( _this );
                 child_5.ref();
                 this.el.attach ( child_5.el , 0,2,1,1 );
-                var child_6 = new Xcls_rootURL( _this );
-                this.el.attach ( child_6.el , 1,2,1,1 );
+                new Xcls_rootURL( _this );
+                this.el.attach ( _this.rootURL.el , 1,2,1,1 );
                 var child_7 = new Xcls_Label16( _this );
                 child_7.ref();
                 this.el.attach ( child_7.el , 0,3,1,1 );
-                var child_8 = new Xcls_html_gen( _this );
-                this.el.attach ( child_8.el , 1,3,1,1 );
+                new Xcls_html_gen( _this );
+                this.el.attach ( _this.html_gen.el , 1,3,1,1 );
             }
 
             // user defined functions
@@ -414,10 +413,10 @@
                 this.loading = false;
 
                 // set gobject values
-                var child_1 = new Xcls_base_template_cellrenderer( _this );
-                this.el.pack_start ( child_1.el , true );
-                var child_2 = new Xcls_base_template_model( _this );
-                this.el.set_model ( child_2.el  );
+                new Xcls_base_template_cellrenderer( _this );
+                this.el.pack_start ( _this.base_template_cellrenderer.el , true );
+                new Xcls_base_template_model( _this );
+                this.el.set_model ( _this.base_template_model.el  );
 
                 // init method
 
@@ -629,10 +628,10 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_html_gen_cellrenderer( _this );
-                this.el.pack_start ( child_1.el , true );
-                var child_2 = new Xcls_html_gen_model( _this );
-                this.el.set_model ( child_2.el  );
+                new Xcls_html_gen_cellrenderer( _this );
+                this.el.pack_start ( _this.html_gen_cellrenderer.el , true );
+                new Xcls_html_gen_model( _this );
+                this.el.set_model ( _this.html_gen_model.el  );
 
                 // init method
 
@@ -763,8 +762,8 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_view( _this );
-                this.el.set_child ( child_1.el  );
+                new Xcls_view( _this );
+                this.el.set_child ( _this.view.el  );
             }
 
             // user defined functions
@@ -883,28 +882,28 @@
                 var child_1 = new Xcls_Label25( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_database_DBTYPE( _this );
-                this.el.append( child_2.el );
+                new Xcls_database_DBTYPE( _this );
+                this.el.append( _this.database_DBTYPE.el );
                 var child_3 = new Xcls_Label28( _this );
                 child_3.ref();
                 this.el.append( child_3.el );
-                var child_4 = new Xcls_database_DBNAME( _this );
-                this.el.append( child_4.el );
+                new Xcls_database_DBNAME( _this );
+                this.el.append( _this.database_DBNAME.el );
                 var child_5 = new Xcls_Label31( _this );
                 child_5.ref();
                 this.el.append( child_5.el );
-                var child_6 = new Xcls_database_DBUSERNAME( _this );
-                this.el.append( child_6.el );
+                new Xcls_database_DBUSERNAME( _this );
+                this.el.append( _this.database_DBUSERNAME.el );
                 var child_7 = new Xcls_Label34( _this );
                 child_7.ref();
                 this.el.append( child_7.el );
-                var child_8 = new Xcls_database_DBPASSWORD( _this );
-                this.el.append( child_8.el );
+                new Xcls_database_DBPASSWORD( _this );
+                this.el.append( _this.database_DBPASSWORD.el );
                 var child_9 = new Xcls_Button36( _this );
                 child_9.ref();
                 this.el.append( child_9.el );
-                var child_10 = new Xcls_database_ERROR( _this );
-                this.el.append( child_10.el );
+                new Xcls_database_ERROR( _this );
+                this.el.append( _this.database_ERROR.el );
             }
 
             // user defined functions

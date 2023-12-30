@@ -637,7 +637,7 @@ public class WindowState : Object
 		var node = file.lineToNode(line);
 		if (node != null) {
 			this.left_tree.model.selectNode(node);
-			var prop = node.lineToProp(line);
+			//var prop = node.lineToProp(line);
 			return;
 		} 
 	

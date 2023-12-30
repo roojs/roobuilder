@@ -212,8 +212,8 @@
                 // set gobject values
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_1 = new Xcls_notebook( _this );
-                this.el.append( child_1.el );
+                new Xcls_notebook( _this );
+                this.el.append( _this.notebook.el );
                 var child_2 = new Xcls_Box59( _this );
                 child_2.ref();
                 this.el.append( child_2.el );
@@ -240,8 +240,8 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_label_global( _this );
-                var child_2 = new Xcls_label_targets( _this );
+                new Xcls_label_global( _this );
+                new Xcls_label_targets( _this );
                 var child_3 = new Xcls_Box9( _this );
                 child_3.ref();
                 this.el.append_page ( child_3.el , _this.label_global.el );
@@ -319,12 +319,12 @@
                 var child_1 = new Xcls_Label10( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_compile_flags( _this );
-                this.el.append( child_2.el );
-                var child_3 = new Xcls_vapi_scroll( _this );
-                this.el.append( child_3.el );
-                var child_4 = new Xcls_vapi_search( _this );
-                this.el.append( child_4.el );
+                new Xcls_compile_flags( _this );
+                this.el.append( _this.compile_flags.el );
+                new Xcls_vapi_scroll( _this );
+                this.el.append( _this.vapi_scroll.el );
+                new Xcls_vapi_search( _this );
+                this.el.append( _this.vapi_search.el );
             }
 
             // user defined functions
@@ -481,8 +481,8 @@
                 _this = _owner;
                 var child_1 = new Xcls_SortListModel16( _this );
                 child_1.ref();
-                var child_2 = new Xcls_vapi_filter( _this );
-                this.el = new Gtk.FilterListModel( child_1.el, child_2.el );
+                new Xcls_vapi_filter( _this );
+                this.el = new Gtk.FilterListModel( child_1.el, _this.vapi_filter.el );
 
                 // my vars (dec)
 
@@ -503,10 +503,10 @@
             public Xcls_SortListModel16(ValaProjectSettingsPopover _owner )
             {
                 _this = _owner;
-                var child_1 = new Xcls_vapimodel( _this );
+                new Xcls_vapimodel( _this );
                 var child_2 = new Xcls_StringSorter18( _this );
                 child_2.ref();
-                this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+                this.el = new Gtk.SortListModel( _this.vapimodel.el, child_2.el );
 
                 // my vars (dec)
 
@@ -839,8 +839,8 @@
                 // set gobject values
                 this.el.vexpand = true;
                 this.el.position = 300;
-                var child_1 = new Xcls_set_vbox( _this );
-                this.el.set_end_child ( child_1.el  );
+                new Xcls_set_vbox( _this );
+                this.el.set_end_child ( _this.set_vbox.el  );
                 var child_2 = new Xcls_Box44( _this );
                 this.el.start_child = child_2.el;
             }
@@ -891,8 +891,8 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_treeview( _this );
-                this.el.child = child_1.el;
+                new Xcls_treeview( _this );
+                this.el.child = _this.treeview.el;
             }
 
             // user defined functions
@@ -910,14 +910,14 @@
             {
                 _this = _owner;
                 _this.treeview = this;
-                var child_1 = new Xcls_treeselmodel( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_treeselmodel( _this );
+                this.el = new Gtk.ColumnView( _this.treeselmodel.el );
 
                 // my vars (dec)
 
                 // set gobject values
-                var child_2 = new Xcls_name( _this );
-                this.el.append_column ( child_2.el  );
+                new Xcls_name( _this );
+                this.el.append_column ( _this.name.el  );
                 var child_3 = new Xcls_ColumnViewColumn42( _this );
                 child_3.ref();
                 this.el.append_column ( child_3.el  );
@@ -961,10 +961,10 @@
             public Xcls_FilterListModel32(ValaProjectSettingsPopover _owner )
             {
                 _this = _owner;
-                var child_1 = new Xcls_treelistsort( _this );
+                new Xcls_treelistsort( _this );
                 var child_2 = new Xcls_CustomFilter39( _this );
                 child_2.ref();
-                this.el = new Gtk.FilterListModel( child_1.el, child_2.el );
+                this.el = new Gtk.FilterListModel( _this.treelistsort.el, child_2.el );
 
                 // my vars (dec)
 
@@ -986,10 +986,10 @@
             {
                 _this = _owner;
                 _this.treelistsort = this;
-                var child_1 = new Xcls_treelistmodel( _this );
+                new Xcls_treelistmodel( _this );
                 var child_2 = new Xcls_TreeListRowSorter36( _this );
                 child_2.ref();
-                this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+                this.el = new Gtk.SortListModel( _this.treelistmodel.el, child_2.el );
 
                 // my vars (dec)
 
@@ -1017,8 +1017,8 @@
             {
                 _this = _owner;
                 _this.treelistmodel = this;
-                var child_1 = new Xcls_treemodel( _this );
-                this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
+                new Xcls_treemodel( _this );
+                this.el = new Gtk.TreeListModel( _this.treemodel.el, false, true, (item) => {
 	//GLib.debug("liststore got %s", item.get_type().name());
 	return ((JsRender.JsRender)item).childfiles;
 }  );
@@ -1395,8 +1395,8 @@
                 var child_2 = new Xcls_ScrolledWindow48( _this );
                 child_2.ref();
                 this.el.append( child_2.el );
-                var child_3 = new Xcls_set_vboxb( _this );
-                this.el.append( child_3.el );
+                new Xcls_set_vboxb( _this );
+                this.el.append( _this.set_vboxb.el );
             }
 
             // user defined functions
@@ -1564,8 +1564,8 @@
             public Xcls_ColumnView49(ValaProjectSettingsPopover _owner )
             {
                 _this = _owner;
-                var child_1 = new Xcls_target_sel( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_target_sel( _this );
+                this.el = new Gtk.ColumnView( _this.target_sel.el );
 
                 // my vars (dec)
 
@@ -1590,8 +1590,8 @@
             {
                 _this = _owner;
                 _this.target_sel = this;
-                var child_1 = new Xcls_target_model( _this );
-                this.el = new Gtk.SingleSelection( child_1.el );
+                new Xcls_target_model( _this );
+                this.el = new Gtk.SingleSelection( _this.target_model.el );
 
                 // my vars (dec)
 
@@ -1776,13 +1776,13 @@
                 var child_1 = new Xcls_Label55( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_build_name( _this );
-                this.el.append( child_2.el );
+                new Xcls_build_name( _this );
+                this.el.append( _this.build_name.el );
                 var child_3 = new Xcls_Label57( _this );
                 child_3.ref();
                 this.el.append( child_3.el );
-                var child_4 = new Xcls_build_execute_args( _this );
-                this.el.append( child_4.el );
+                new Xcls_build_execute_args( _this );
+                this.el.append( _this.build_execute_args.el );
             }
 
             // user defined functions
@@ -1934,8 +1934,8 @@
                 var child_2 = new Xcls_Label61( _this );
                 child_2.ref();
                 this.el.append( child_2.el );
-                var child_3 = new Xcls_save_btn( _this );
-                this.el.append( child_3.el );
+                new Xcls_save_btn( _this );
+                this.el.append( _this.save_btn.el );
             }
 
             // user defined functions

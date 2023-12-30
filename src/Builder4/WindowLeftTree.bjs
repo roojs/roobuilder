@@ -28,8 +28,7 @@
      "$ xns" : "Gtk",
      "* init" : [
       " this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-      " ",
-      ""
+      " "
      ],
      "bool has_frame" : true,
      "bool hexpand" : true,

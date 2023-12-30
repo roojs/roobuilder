@@ -80,7 +80,7 @@
         	 
             
             var win = this.mainwindow.el;
-            var  w = win.get_width();
+            //var  w = win.get_width();
             var h = win.get_height();
         
             
@@ -395,15 +395,14 @@
                 	ov.set_string(str);
                  	var cont = new Gdk.ContentProvider.for_value(ov);
                     
-                	GLib.Value v = GLib.Value(typeof(string));
+                	//GLib.Value v = GLib.Value(typeof(string));
                 	//var str = drop.read_text( [ "text/plain" ] 0);
                 	 
-                	cont.get_value(ref v);
-                	GLib.debug("set %s", v.get_string());
+                	//cont.get_value(ref v);
+                	//GLib.debug("set %s", v.get_string());
                         
                  	return cont;
-                	 
-                	 
+                	  
                 });
                 this.el.drag_begin.connect( ( drag )  => {
                 	GLib.debug("SOURCE: drag-begin");
@@ -636,7 +635,7 @@
                 	if (n_press < 2) { /// doubleclick?
                 		return;
                 	}
-                	var pos = "";
+                	//var pos = "";
                 	// find left tree selected node
                 	var addto = _this.mainwindow.windowstate.left_tree.selmodel.getSelectedNode();
                 	//var row = _this.view.getRowAt(x,y, out pos);

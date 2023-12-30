@@ -108,7 +108,7 @@ public class JsRender.NodeToGlade : Object {
 		
 		// should really use GXml... 
 		var obj = this.create_element("object");
-		var id = this.node.uid();
+		//var id = this.node.uid();
 		var skip_props = false;
 		if (gdata.inherits.contains("Gtk.Native")) {
 			 

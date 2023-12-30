@@ -802,8 +802,7 @@
     "\tthis.sourceview.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);",
     "\tvar ln = st.get_line();",
     "\tthis.highlightNodeAtLine(ln);",
-    "\t",
-    " ",
+    "\t ",
     "}",
     ""
    ],

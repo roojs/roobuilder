@@ -51,8 +51,8 @@
             // set gobject values
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_1 = new Xcls_notebook( _this );
-            this.el.append( child_1.el );
+            new Xcls_notebook( _this );
+            this.el.append( _this.notebook.el );
 
             // init method
 
@@ -263,8 +263,7 @@
         	this.sourceview.el.scroll_to_iter(st,  0.1f, true, 0.0f, 0.5f);
         	var ln = st.get_line();
         	this.highlightNodeAtLine(ln);
-        	
-         
+        	 
         }
         public int search (string in_txt) {
         	this.notebook.el.page = 1;
@@ -364,8 +363,8 @@
 
                 // set gobject values
                 this.el.overflow = Gtk.Overflow.VISIBLE;
-                var child_1 = new Xcls_label_preview( _this );
-                var child_2 = new Xcls_label_code( _this );
+                new Xcls_label_preview( _this );
+                new Xcls_label_code( _this );
                 var child_3 = new Xcls_ScrolledWindow5( _this );
                 child_3.ref();
                 this.el.append_page ( child_3.el , _this.label_preview.el );
@@ -439,8 +438,8 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_view_layout( _this );
-                this.el.set_child ( child_1.el  );
+                new Xcls_view_layout( _this );
+                this.el.set_child ( _this.view_layout.el  );
             }
 
             // user defined functions
@@ -464,8 +463,8 @@
 
                 // set gobject values
                 this.el.name = "gtkview-view-layout";
-                var child_1 = new Xcls_container( _this );
-                this.el.put ( child_1.el , 10,10 );
+                new Xcls_container( _this );
+                this.el.put ( _this.container.el , 10,10 );
             }
 
             // user defined functions
@@ -512,8 +511,8 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_sourceviewscroll( _this );
-                this.el.append( child_1.el );
+                new Xcls_sourceviewscroll( _this );
+                this.el.append( _this.sourceviewscroll.el );
                 var child_2 = new Xcls_Box13( _this );
                 child_2.ref();
                 this.el.append( child_2.el );
@@ -540,8 +539,8 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_sourceview( _this );
-                this.el.set_child ( child_1.el  );
+                new Xcls_sourceview( _this );
+                this.el.set_child ( _this.sourceview.el  );
             }
 
             // user defined functions
@@ -576,8 +575,8 @@
                 this.el.editable = false;
                 this.el.show_line_marks = true;
                 this.el.show_line_numbers = true;
-                var child_1 = new Xcls_buffer( _this );
-                this.el.set_buffer ( child_1.el  );
+                new Xcls_buffer( _this );
+                this.el.set_buffer ( _this.buffer.el  );
                 var child_2 = new Xcls_EventControllerKey12( _this );
                 child_2.ref();
                 this.el.add_controller(  child_2.el );
@@ -1034,14 +1033,14 @@
                 // set gobject values
                 this.el.homogeneous = false;
                 this.el.vexpand = false;
-                var child_1 = new Xcls_search_entry( _this );
-                this.el.append( child_1.el );
-                var child_2 = new Xcls_search_results( _this );
-                this.el.append( child_2.el );
-                var child_3 = new Xcls_nextBtn( _this );
-                this.el.append( child_3.el );
-                var child_4 = new Xcls_backBtn( _this );
-                this.el.append( child_4.el );
+                new Xcls_search_entry( _this );
+                this.el.append( _this.search_entry.el );
+                new Xcls_search_results( _this );
+                this.el.append( _this.search_results.el );
+                new Xcls_nextBtn( _this );
+                this.el.append( _this.nextBtn.el );
+                new Xcls_backBtn( _this );
+                this.el.append( _this.backBtn.el );
                 var child_5 = new Xcls_MenuButton19( _this );
                 child_5.ref();
                 this.el.append( child_5.el );
@@ -1311,8 +1310,8 @@
                 // set gobject values
                 this.el.icon_name = "emblem-system";
                 this.el.always_show_arrow = true;
-                var child_1 = new Xcls_search_settings( _this );
-                this.el.popover = child_1.el;
+                new Xcls_search_settings( _this );
+                this.el.popover = _this.search_settings.el;
             }
 
             // user defined functions
@@ -1359,12 +1358,12 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_case_sensitive( _this );
-                this.el.append( child_1.el );
-                var child_2 = new Xcls_regex( _this );
-                this.el.append( child_2.el );
-                var child_3 = new Xcls_multiline( _this );
-                this.el.append( child_3.el );
+                new Xcls_case_sensitive( _this );
+                this.el.append( _this.case_sensitive.el );
+                new Xcls_regex( _this );
+                this.el.append( _this.regex.el );
+                new Xcls_multiline( _this );
+                this.el.append( _this.multiline.el );
             }
 
             // user defined functions

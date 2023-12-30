@@ -611,7 +611,7 @@ public class JsRender.NodeToVala : Object {
 				if (propnode != null) {
 					// assume it's ok..
 					
-					var pname = this.addPropSet(propnode);
+					var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").val : "");
 					args += (pname + ".el") ;
 					if (!propnode.has("id")) {
 						this.addLine(this.ipad + pname +".ref();"); 
@@ -827,7 +827,7 @@ public class JsRender.NodeToVala : Object {
 			// create the element..
 			
 			// this is only needed if it does not have an ID???
-			var childname = this.addPropSet(child) ; 
+			var childname = this.addPropSet(child, child.has("id") ? child.get_prop("id").val : "") ; 
 			
 			if (child.has("* prop")) {
 			 
@@ -868,7 +868,7 @@ public class JsRender.NodeToVala : Object {
 		}
 	}
 	
-	string addPropSet(Node child ) 
+	string addPropSet(Node child, string child_name) 
 	{
 	 
 		
@@ -881,9 +881,14 @@ public class JsRender.NodeToVala : Object {
 				xargs += "," + arg[arg.length -1];
 			}
 		}
+		
 		var childname = "child_" + "%d".printf(this.child_count++);	
-	 		
-		this.addLine(this.ipad + "var " + childname + " = new " + child.xvala_xcls + "( _this " + xargs + ");" );
+		var prefix = "";
+	 	if (child_name == "") {
+	 		prefix = "var " + childname + " = ";
+ 		}
+	 	
+		this.addLine(this.ipad +  prefix + "new " + child.xvala_xcls + "( _this " + xargs + ");" );
 		 
 		// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
 		// remove '+' support as I cant remember what it does!!!
@@ -896,7 +901,7 @@ public class JsRender.NodeToVala : Object {
 		//}
 		
 
-		return childname;	
+		return child_name == "" ? childname : ("_this." + child_name);	
 	}		
 			
 	

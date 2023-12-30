@@ -53,8 +53,8 @@
             // set gobject values
             this.el.hexpand = true;
             this.el.vexpand = true;
-            var child_1 = new Xcls_notebook( _this );
-            this.el.append( child_1.el );
+            new Xcls_notebook( _this );
+            this.el.append( _this.notebook.el );
         }
 
         // user defined functions
@@ -282,10 +282,10 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_label_preview( _this );
-                var child_2 = new Xcls_label_code( _this );
-                var child_3 = new Xcls_paned( _this );
-                this.el.append_page ( child_3.el , _this.label_preview.el );
+                new Xcls_label_preview( _this );
+                new Xcls_label_code( _this );
+                new Xcls_paned( _this );
+                this.el.append_page ( _this.paned.el , _this.label_preview.el );
                 var child_4 = new Xcls_Box13( _this );
                 child_4.ref();
                 this.el.append_page ( child_4.el , _this.label_code.el );
@@ -358,10 +358,10 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_viewbox( _this );
-                this.el.set_start_child ( child_1.el  );
-                var child_2 = new Xcls_inspectorcontainer( _this );
-                this.el.set_end_child ( child_2.el  );
+                new Xcls_viewbox( _this );
+                this.el.set_start_child ( _this.viewbox.el  );
+                new Xcls_inspectorcontainer( _this );
+                this.el.set_end_child ( _this.inspectorcontainer.el  );
             }
 
             // user defined functions
@@ -389,8 +389,8 @@
                 var child_1 = new Xcls_Box7( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_view( _this );
-                this.el.append( child_2.el );
+                new Xcls_view( _this );
+                this.el.append( _this.view.el );
             }
 
             // user defined functions
@@ -418,8 +418,8 @@
                 var child_1 = new Xcls_Button8( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_AutoRedraw( _this );
-                this.el.append( child_2.el );
+                new Xcls_AutoRedraw( _this );
+                this.el.append( _this.AutoRedraw.el );
                 var child_3 = new Xcls_Button10( _this );
                 child_3.ref();
                 this.el.append( child_3.el );
@@ -938,8 +938,8 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_sourceviewscroll( _this );
-                this.el.append( child_1.el );
+                new Xcls_sourceviewscroll( _this );
+                this.el.append( _this.sourceviewscroll.el );
                 var child_2 = new Xcls_Box19( _this );
                 child_2.ref();
                 this.el.append( child_2.el );
@@ -966,8 +966,8 @@
 
                 // set gobject values
                 this.el.vexpand = true;
-                var child_1 = new Xcls_sourceview( _this );
-                this.el.set_child ( child_1.el  );
+                new Xcls_sourceview( _this );
+                this.el.set_child ( _this.sourceview.el  );
             }
 
             // user defined functions
@@ -1007,8 +1007,8 @@
                 this.el.editable = false;
                 this.el.show_line_marks = true;
                 this.el.show_line_numbers = true;
-                var child_1 = new Xcls_buffer( _this );
-                this.el.set_buffer ( child_1.el  );
+                new Xcls_buffer( _this );
+                this.el.set_buffer ( _this.buffer.el  );
                 var child_2 = new Xcls_EventControllerKey17( _this );
                 child_2.ref();
                 this.el.add_controller ( child_2.el  );
@@ -1731,14 +1731,14 @@
                 // set gobject values
                 this.el.homogeneous = false;
                 this.el.vexpand = false;
-                var child_1 = new Xcls_search_entry( _this );
-                this.el.append( child_1.el );
-                var child_2 = new Xcls_search_results( _this );
-                this.el.append( child_2.el );
-                var child_3 = new Xcls_nextBtn( _this );
-                this.el.append( child_3.el );
-                var child_4 = new Xcls_backBtn( _this );
-                this.el.append( child_4.el );
+                new Xcls_search_entry( _this );
+                this.el.append( _this.search_entry.el );
+                new Xcls_search_results( _this );
+                this.el.append( _this.search_results.el );
+                new Xcls_nextBtn( _this );
+                this.el.append( _this.nextBtn.el );
+                new Xcls_backBtn( _this );
+                this.el.append( _this.backBtn.el );
                 var child_5 = new Xcls_MenuButton25( _this );
                 child_5.ref();
                 this.el.append( child_5.el );
@@ -2004,8 +2004,8 @@
 
                 // set gobject values
                 this.el.icon_name = "emblem-system";
-                var child_1 = new Xcls_search_settings( _this );
-                this.el.popover = child_1.el;
+                new Xcls_search_settings( _this );
+                this.el.popover = _this.search_settings.el;
             }
 
             // user defined functions
@@ -2051,12 +2051,12 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_case_sensitive( _this );
-                this.el.append( child_1.el );
-                var child_2 = new Xcls_regex( _this );
-                this.el.append( child_2.el );
-                var child_3 = new Xcls_multiline( _this );
-                this.el.append( child_3.el );
+                new Xcls_case_sensitive( _this );
+                this.el.append( _this.case_sensitive.el );
+                new Xcls_regex( _this );
+                this.el.append( _this.regex.el );
+                new Xcls_multiline( _this );
+                this.el.append( _this.multiline.el );
             }
 
             // user defined functions

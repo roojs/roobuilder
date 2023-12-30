@@ -133,7 +133,6 @@
            "",
            "\t _this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); ",
            "\t _this.windowspopup.el.popup(); ",
-           "",
            "}",
            ""
           ]

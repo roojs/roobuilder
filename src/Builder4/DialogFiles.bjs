@@ -1191,6 +1191,7 @@
     "\t\treturn;",
     "\t\t",
     "\t}",
+    "\t",
     "\tGLib.debug(\"Show project files\");",
     "\t_this.mainpane.el.set_end_child(_this.filepane.el);",
     "\t",

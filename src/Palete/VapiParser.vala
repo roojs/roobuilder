@@ -702,7 +702,7 @@ namespace Palete {
 			context.add_external_package ("gobject-2.0");
 			// user defined ones..
 			
-			var dcg = this.project.compilegroups.get("_default_");
+ 
 			 			
 			var pkgs = this.fillDeps(this.project.packages);
 			

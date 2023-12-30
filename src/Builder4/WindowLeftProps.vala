@@ -51,8 +51,8 @@
             var child_1 = new Xcls_Box2( _this );
             child_1.ref();
             this.el.append( child_1.el );
-            var child_2 = new Xcls_EditProps( _this );
-            this.el.append( child_2.el );
+            new Xcls_EditProps( _this );
+            this.el.append( _this.EditProps.el );
         }
 
         // user defined functions
@@ -420,7 +420,7 @@
                 this.el.icon_name = "list-add";
                 this.el.hexpand = true;
                 this.el.label = "Other";
-                var child_1 = new Xcls_AddPropertyPopup( _this );
+                new Xcls_AddPropertyPopup( _this );
 
                 //listeners
                 this.el.clicked.connect( ( ) => {
@@ -429,9 +429,9 @@
                         
                     var p = _this.AddPropertyPopup;
                     
-                 	Gtk.Allocation rect;
-                	this.el.get_allocation(out rect);
-                 
+                 //	Gtk.Allocation rect;
+                	//this.el.get_allocation(out rect);
+                
                 	 p.el.set_parent(this.el);
                     //p.el.set_pointing_to(rect);
                 	p.el.show();
@@ -1170,8 +1170,8 @@
                 // set gobject values
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_1 = new Xcls_view( _this );
-                this.el.set_child ( child_1.el  );
+                new Xcls_view( _this );
+                this.el.set_child ( _this.view.el  );
 
                 // init method
 
@@ -1198,8 +1198,8 @@
             {
                 _this = _owner;
                 _this.view = this;
-                var child_1 = new Xcls_selmodel( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_selmodel( _this );
+                this.el = new Gtk.ColumnView( _this.selmodel.el );
 
                 // my vars (dec)
                 this.popover = null;
@@ -1210,18 +1210,18 @@
                 this.el.hexpand = true;
                 this.el.vexpand = true;
                 this.el.show_row_separators = true;
-                var child_2 = new Xcls_deletemenu( _this );
+                new Xcls_deletemenu( _this );
                 var child_3 = new Xcls_GestureClick31( _this );
                 child_3.ref();
                 this.el.add_controller(  child_3.el );
                 var child_4 = new Xcls_GestureClick32( _this );
                 child_4.ref();
                 this.el.add_controller(  child_4.el );
-                var child_5 = new Xcls_keycol( _this );
-                this.el.append_column ( child_5.el  );
-                var child_6 = new Xcls_valcol( _this );
-                this.el.append_column ( child_6.el  );
-                var child_7 = new Xcls_ContextMenu( _this );
+                new Xcls_keycol( _this );
+                this.el.append_column ( _this.keycol.el  );
+                new Xcls_valcol( _this );
+                this.el.append_column ( _this.valcol.el  );
+                new Xcls_ContextMenu( _this );
 
                 // init method
 
@@ -1667,8 +1667,8 @@
             {
                 _this = _owner;
                 _this.selmodel = this;
-                var child_1 = new Xcls_model( _this );
-                this.el = new Gtk.SingleSelection( child_1.el );
+                new Xcls_model( _this );
+                this.el = new Gtk.SingleSelection( _this.model.el );
 
                 // my vars (dec)
 
