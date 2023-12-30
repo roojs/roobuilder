@@ -1366,10 +1366,11 @@
             from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
                 	  
                 	*/
-            		Gtk.Allocation alloc = { 0, 0, 0, 0 };
+            		//Gtk.Allocation alloc = { 0, 0, 0, 0 };
                     var  child = this.el.get_first_child(); 
                 	 
                 	var col = 0;
+                	var offx = 0;
                 	while (child != null) {
             			GLib.debug("Got %s", child.get_type().name());
             			
@@ -1377,10 +1378,12 @@
             				child = child.get_first_child();
             				continue;
             			}
-            			child.get_allocation(out alloc);
-            			if (x <  (alloc.width + alloc.x)) {
+            			
+            			//child.get_allocation(out alloc);
+            			if (x <  (child.get_width() + offx)) {
             				return col;
             			}
+            			offx += child.get_width();
             			col++;
             			child = child.get_next_sibling();
             		}
