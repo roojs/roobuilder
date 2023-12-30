@@ -34,8 +34,8 @@
             this.el.width_request = 600;
             this.el.height_request = 400;
             this.el.position = Gtk.PositionType.TOP;
-            var child_1 = new Xcls_compile_view( _this );
-            this.el.set_child ( child_1.el  );
+            new Xcls_compile_view( _this );
+            this.el.set_child ( _this.compile_view.el  );
         }
 
         // user defined functions
@@ -51,11 +51,12 @@
                 new_w = w-100;
             }
             this.el.set_size_request( int.max(100, new_w), int.max(100, h-120));
-         
-        	this.el.set_parent(win);
-            Gtk.Allocation rect;
-        	onbtn.get_allocation(out rect);
-            this.el.set_pointing_to(rect);
+         	if (this.el.parent == null) {
+        		this.el.set_parent(win);
+        	}
+           // Gtk.Allocation rect;
+        	//onbtn.get_allocation(out rect);
+            //this.el.set_pointing_to(rect);
         
             this.el.popup();
            // not sure why..
@@ -132,8 +133,8 @@
                 // set gobject values
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_1 = new Xcls_sourceview( _this );
-                this.el.child = child_1.el;
+                new Xcls_sourceview( _this );
+                this.el.child = _this.sourceview.el;
 
                 // init method
 
@@ -181,9 +182,12 @@
                 		"#compile-results-view { font: 10px monospace ;}"
                 	);
                 	 
-                	this.el.get_style_context().add_provider(this.css,
-                		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-                	  
+                			Gtk.StyleContext.add_provider_for_display(
+                		this.el.get_display(),
+                		this.css,
+                		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                	);
+                		
                 
                 }
             }

@@ -64,9 +64,12 @@
             		"#gtkview-view-layout { background-color: #ccc; }"
             	);
             	 
-            	this.el.get_style_context().add_provider(this.css,
-            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-            	  
+            	Gtk.StyleContext.add_provider_for_display(
+            		this.el.get_display(),
+            		this.css,
+            		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            	);
+            		
                     
             }
         }
@@ -592,9 +595,12 @@
                 	 
                 	this.css.load_from_string("#gtkview-view { font: 10px monospace ;}");
                 	 
-                	this.el.get_style_context().add_provider(this.css,
-                		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-                	 
+                	Gtk.StyleContext.add_provider_for_display(
+                		this.el.get_display(),
+                		this.css,
+                		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                	);
+                		
                 		 
                     this.loading = true;
                     
@@ -1081,12 +1087,15 @@
 
                 this.css = new Gtk.CssProvider();
                 
-                		this.css.load_from_string("
-                			#gtkview-search-entry { font: 10px monospace ;}"
-                		);
+                this.css.load_from_string("
+                	#gtkview-search-entry { font: 10px monospace ;}"
+                );
                 
-                	this.el.get_style_context().add_provider(this.css,
-                		Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+                Gtk.StyleContext.add_provider_for_display(
+                	this.el.get_display(),
+                	this.css,
+                	Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                );
 
                 //listeners
                 this.el.search_changed.connect( () => {

@@ -1392,7 +1392,11 @@
                     return -1;
             
              }
-            public int getRowAt (double x,  double y, out string pos) {
+            public int getRowAt (double x,  double in_y, out string pos) {
+            
+            
+            	 
+            
             /*
                 	
             from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
@@ -1403,56 +1407,71 @@
                 		 
                 	}
                 	*/
-                	GLib.debug("getRowAt");
+             		 
+             		
+             		//GLib.debug("offset = %d  y = %d", (int) voff, (int) in_y);
+                	var y = in_y + _this.EditProps.el.vadjustment.value; 
                     var  child = this.el.get_first_child(); 
-                	Gtk.Allocation alloc = { 0, 0, 0, 0 };
+                	//Gtk.Allocation alloc = { 0, 0, 0, 0 };
                 	var line_no = -1; 
                 	var reading_header = true;
-                	var curr_y = 0;
+                	var real_y = 0;
                 	var header_height  = 0;
-                	pos = "over";
-                	
+                	pos = "none";
+                	var h = 0;
                 	while (child != null) {
             			//GLib.debug("Got %s", child.get_type().name());
                 	    if (reading_header) {
-            			   
-            			    if (child.get_type().name() == "GtkColumnViewRowWidget") {
-            			        child.get_allocation(out alloc);
-            			    }
+            				
+            
             				if (child.get_type().name() != "GtkColumnListView") {
+            			        h += child.get_height();
             					child = child.get_next_sibling();
             					continue;
             				}
+            				// should be columnlistview
             				child = child.get_first_child(); 
-            				header_height = alloc.y + alloc.height;
-            				curr_y = header_height; 
+            			    GLib.debug("header height=%d", h);
+            				header_height =  h;
+            				
             				reading_header = false;
+            				
             	        }
+            	        
             		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
                 		    child = child.get_next_sibling();
                 		    continue;
             		    }
+            		    
+            		 	if (y < header_height) {
+            		    	return -1;
+            	    	}
+            		    
             		    line_no++;
-            
-            			child.get_allocation(out alloc);
+            			var hh = child.get_height();
+            			//child.get_allocation(out alloc);
             			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
+            			//GLib.debug("row %d y= %d %s", line_no, (int) (header_height + alloc.y),
+            			
+            			//	child.visible ? "VIS" : "hidden");
             
-            		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
-            		    	if (y > (header_height + alloc.y + (alloc.height * 0.8))) {
+            		    if (y >  (header_height + real_y) && y <= (header_height +  real_y + hh) ) {
+            		    	if (y > ( header_height + real_y + (hh * 0.8))) {
             		    		pos = "below";
-            	    		} else if (y > (header_height + alloc.y + (alloc.height * 0.2))) {
+            	    		} else if (y > ( header_height + real_y + (hh * 0.2))) {
             	    			pos = "over";
                 			} else {
                 				pos = "above";
             				}
-            		    	GLib.debug("getRowAt return : %d, %s", line_no, pos);
+            		    	 GLib.debug("getRowAt return : %d, %s", line_no, pos);
             			    return line_no;
             		    }
-            		    curr_y = header_height + alloc.height + alloc.y;
+             
             
-            		    if (curr_y > y) {
-            		    //    return -1;
+            		    if (real_y + hh > y) {
+            		        return -1;
             	        }
+            	        real_y += hh;
             	        child = child.get_next_sibling(); 
                 	}
                     return -1;
@@ -1643,11 +1662,11 @@
                 	_this.deletemenu.el.set_parent(_this.main_window.el);
                 	
                 	
-                	Gtk.Allocation rect;
-                	_this.view.el.get_allocation(out rect);
-                 	//_this.deletemenu.el.set_has_arrow(false);
-                	
-                	_this.deletemenu.el.set_offset((int)in_x  -  rect.width , (int)in_y - rect.height);
+                	 
+                	_this.deletemenu.el.set_offset(
+                			(int)in_x  - _this.view.el.get_width() ,
+                			(int)in_y - _this.view.el.get_height()
+                		);
                 	_this.deletemenu.el.set_position(Gtk.PositionType.BOTTOM); 
                     _this.deletemenu.el.popup();
                       

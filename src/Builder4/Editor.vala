@@ -483,87 +483,90 @@
                 // init method
 
                 this.css = new Gtk.CssProvider();
-                 
-                	this.css.load_from_string(
-                		"#editor-view { font:  12px monospace;}"
-                	);
-                	 
-                	this.el.get_style_context().add_provider(	
-                		this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-                	);
-                	 
-                		 
                 
-                	       
-                	this.el.completion.add_provider(new Palete.CompletionProvider(_this));
-                     
-                    
-                	this.el.completion.unblock_interactive();
-                	this.el.completion.select_on_show = true; // select
-                
-                	this.el.completion.remember_info_visibility	 = true;
-                    
-                  
-                    var attrs = new GtkSource.MarkAttributes();
-                    var  pink =   Gdk.RGBA();
-                    pink.parse ( "pink");
-                    attrs.set_background ( pink);
-                    attrs.set_icon_name ( "process-stop");    
-                    attrs.query_tooltip_text.connect(( mark) => {
-                         GLib.debug("tooltip query? %s", mark.name);
-                        return strdup( mark.name);
-                    });
-                     attrs.query_tooltip_markup.connect(( mark) => {
-                         GLib.debug("tooltip query? %s", mark.name);
-                        return strdup( mark.name);
-                    });
-                    this.el.set_mark_attributes ("ERR", attrs, 1);
-                    attrs.ref();
-                     var wattrs = new GtkSource.MarkAttributes();
-                    var  blue =   Gdk.RGBA();
-                    blue.parse ( "#ABF4EB");
-                    wattrs.set_background ( blue);
-                    wattrs.set_icon_name ( "process-stop");    
-                    wattrs.query_tooltip_text.connect(( mark) => {
-                         GLib.debug("tooltip query? %s", mark.name);
-                        return strdup(mark.name);
-                    });
-                    wattrs.query_tooltip_markup.connect(( mark) => {
-                         GLib.debug("tooltip query? %s", mark.name);
-                        return strdup(mark.name);
-                    });
-                    this.el.set_mark_attributes ("WARN", wattrs, 1);
-                    wattrs.ref();
+                this.css.load_from_string(
+                	"#editor-view { font:  12px monospace;}"
+                );
                  
-                    
-                     var dattrs = new GtkSource.MarkAttributes();
-                    var  purple =   Gdk.RGBA();
-                    purple.parse ( "#EEA9FF");
-                    dattrs.set_background ( purple);
-                    dattrs.set_icon_name ( "process-stop");    
-                    dattrs.query_tooltip_text.connect(( mark) => {
-                		GLib.debug("tooltip query? %s", mark.name);
-                        return strdup(mark.name);
-                    });
-                	dattrs.query_tooltip_markup.connect(( mark) => {
-                		GLib.debug("tooltip query? %s", mark.name);
-                        return strdup(mark.name);
-                    });
-                    this.el.set_mark_attributes ("DEPR", dattrs, 1);
-                    dattrs.ref();    
-                  
-                     this.el.get_space_drawer().set_matrix(null);
-                     this.el.get_space_drawer().set_types_for_locations( 
-                		GtkSource.SpaceLocationFlags.ALL,
-                		GtkSource.SpaceTypeFlags.ALL
-                    );
-                    this.el.get_space_drawer().set_enable_matrix(true);
-                    /*
-                    Gtk.SourceDrawSpacesFlags.LEADING + 
+                Gtk.StyleContext.add_provider_for_display(
+                	this.el.get_display(),
+                	this.css,
+                	Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+                );
+                	
+                 
+                	 
+                
+                       
+                this.el.completion.add_provider(new Palete.CompletionProvider(_this));
+                 
+                
+                this.el.completion.unblock_interactive();
+                this.el.completion.select_on_show = true; // select
+                
+                this.el.completion.remember_info_visibility	 = true;
+                
+                
+                var attrs = new GtkSource.MarkAttributes();
+                var  pink =   Gdk.RGBA();
+                pink.parse ( "pink");
+                attrs.set_background ( pink);
+                attrs.set_icon_name ( "process-stop");    
+                attrs.query_tooltip_text.connect(( mark) => {
+                     GLib.debug("tooltip query? %s", mark.name);
+                    return strdup( mark.name);
+                });
+                 attrs.query_tooltip_markup.connect(( mark) => {
+                     GLib.debug("tooltip query? %s", mark.name);
+                    return strdup( mark.name);
+                });
+                this.el.set_mark_attributes ("ERR", attrs, 1);
+                attrs.ref();
+                 var wattrs = new GtkSource.MarkAttributes();
+                var  blue =   Gdk.RGBA();
+                blue.parse ( "#ABF4EB");
+                wattrs.set_background ( blue);
+                wattrs.set_icon_name ( "process-stop");    
+                wattrs.query_tooltip_text.connect(( mark) => {
+                     GLib.debug("tooltip query? %s", mark.name);
+                    return strdup(mark.name);
+                });
+                wattrs.query_tooltip_markup.connect(( mark) => {
+                     GLib.debug("tooltip query? %s", mark.name);
+                    return strdup(mark.name);
+                });
+                this.el.set_mark_attributes ("WARN", wattrs, 1);
+                wattrs.ref();
+                
+                
+                 var dattrs = new GtkSource.MarkAttributes();
+                var  purple =   Gdk.RGBA();
+                purple.parse ( "#EEA9FF");
+                dattrs.set_background ( purple);
+                dattrs.set_icon_name ( "process-stop");    
+                dattrs.query_tooltip_text.connect(( mark) => {
+                	GLib.debug("tooltip query? %s", mark.name);
+                    return strdup(mark.name);
+                });
+                dattrs.query_tooltip_markup.connect(( mark) => {
+                	GLib.debug("tooltip query? %s", mark.name);
+                    return strdup(mark.name);
+                });
+                this.el.set_mark_attributes ("DEPR", dattrs, 1);
+                dattrs.ref();    
+                
+                 this.el.get_space_drawer().set_matrix(null);
+                 this.el.get_space_drawer().set_types_for_locations( 
+                	GtkSource.SpaceLocationFlags.ALL,
+                	GtkSource.SpaceTypeFlags.ALL
+                );
+                this.el.get_space_drawer().set_enable_matrix(true);
+                /*
+                Gtk.SourceDrawSpacesFlags.LEADING + 
                 Gtk.SourceDrawSpacesFlags.TRAILING + 
                 Gtk.SourceDrawSpacesFlags.TAB + 
                 Gtk.SourceDrawSpacesFlags.SPACE
-                    */
+                */
 
                 //listeners
                 this.el.query_tooltip.connect( (x, y, keyboard_tooltip, tooltip) => {

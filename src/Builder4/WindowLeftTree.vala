@@ -281,10 +281,11 @@
             from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
                 	  
                 	*/
-            		Gtk.Allocation alloc = { 0, 0, 0, 0 };
+            		//Gtk.Allocation alloc = { 0, 0, 0, 0 };
                     var  child = this.el.get_first_child(); 
                 	 
                 	var col = 0;
+                	var offx = 0;
                 	while (child != null) {
             			GLib.debug("Got %s", child.get_type().name());
             			
@@ -292,10 +293,12 @@
             				child = child.get_first_child();
             				continue;
             			}
-            			child.get_allocation(out alloc);
-            			if (x <  (alloc.width + alloc.x)) {
+            			
+            			//child.get_allocation(out alloc);
+            			if (x <  (child.get_width() + offx)) {
             				return col;
             			}
+            			offx += child.get_width();
             			col++;
             			child = child.get_next_sibling();
             		}
@@ -586,13 +589,15 @@
                 	_this.LeftTreeMenu.el.set_parent(_this.view.el);
                 	
                 	
-                	Gtk.Allocation rect;
-                	_this.view.el.get_allocation(out rect);
+                	//Gtk.Allocation rect;
+                	//_this.view.el.get_allocation(out rect);
                  	//_this.deletemenu.el.set_has_arrow(false);
                 	_this.LeftTreeMenu.el.set_position(Gtk.PositionType.BOTTOM); 
                 	
                 		
-                	_this.LeftTreeMenu.el.set_offset(  (int)x  , (int)y - (int)rect.height);
+                	_this.LeftTreeMenu.el.set_offset( 
+                			(int)x  ,
+                			(int)y - (int)_this.view.el.get_height());
                 
                     _this.LeftTreeMenu.el.popup();
                       

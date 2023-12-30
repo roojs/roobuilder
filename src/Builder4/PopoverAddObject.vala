@@ -40,8 +40,8 @@
             this.el.height_request = 800;
             this.el.hexpand = false;
             this.el.position = Gtk.PositionType.RIGHT;
-            var child_1 = new Xcls_viewwin( _this );
-            this.el.set_child ( child_1.el  );
+            new Xcls_viewwin( _this );
+            this.el.set_child ( _this.viewwin.el  );
         }
 
         // user defined functions
@@ -93,8 +93,8 @@
               this.el.set_parent(onbtn);
         
             //if (this.el.relative_to == null) {
-            	Gtk.Allocation rect;
-            	onbtn.get_allocation(out rect);
+            	//Gtk.Allocation rect;
+            	//onbtn.get_allocation(out rect);
               //  this.el.set_pointing_to(rect);
             //}
             this.selmodel.el.set_selected(Gtk.INVALID_LIST_POSITION);
@@ -123,8 +123,8 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_view( _this );
-                this.el.set_child ( child_1.el  );
+                new Xcls_view( _this );
+                this.el.set_child ( _this.view.el  );
 
                 // init method
 
@@ -147,8 +147,8 @@
             {
                 _this = _owner;
                 _this.view = this;
-                var child_1 = new Xcls_selmodel( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_selmodel( _this );
+                this.el = new Gtk.ColumnView( _this.selmodel.el );
 
                 // my vars (dec)
 
@@ -158,8 +158,8 @@
                 var child_2 = new Xcls_DragSource4( _this );
                 child_2.ref();
                 this.el.add_controller(  child_2.el );
-                var child_3 = new Xcls_maincol( _this );
-                this.el.append_column ( child_3.el  );
+                new Xcls_maincol( _this );
+                this.el.append_column ( _this.maincol.el  );
                 var child_4 = new Xcls_GestureClick9( _this );
                 child_4.ref();
                 this.el.add_controller(  child_4.el );
@@ -295,7 +295,7 @@
                     return -1;
             
              }
-            public Gtk.Widget? getWidgetAt (double x,  double y) {
+            public Gtk.Widget? getWidgetAt (double x,  double in_y) {
             /*
                 	
             from    	https://discourse.gnome.org/t/gtk4-finding-a-row-data-on-gtkcolumnview/8465
@@ -306,44 +306,48 @@
                 		 
                 	}
                 	*/
+                	var y = in_y + _this.viewwin.el.vadjustment.value; 
                     var  child = this.el.get_first_child(); 
-                	Gtk.Allocation alloc = { 0, 0, 0, 0 };
+                	//Gtk.Allocation alloc = { 0, 0, 0, 0 };
                 	var line_no = -1; 
                 	var reading_header = true;
                 	var curr_y = 0;
                 	var header_height  = 0;
+                	var h = 0;
                 	while (child != null) {
             			//GLib.debug("Got %s", child.get_type().name());
-                	    if (reading_header) {
-            			   
-            		        if (child.get_type().name() == "GtkColumnViewRowWidget") {
-            			        child.get_allocation(out alloc);
-            			    }
+            	        if (reading_header) {
+            				
+            
             				if (child.get_type().name() != "GtkColumnListView") {
+            			        h += child.get_height();
             					child = child.get_next_sibling();
             					continue;
             				}
+            				// should be columnlistview
             				child = child.get_first_child(); 
-            				header_height = alloc.y + alloc.height;
-            				curr_y = header_height; 
+            			    GLib.debug("header height=%d", h);
+            				header_height =  h;
+            				
             				reading_header = false;
+            				
             	        }
-            		    if (child.get_type().name() != "GtkColumnViewRowWidget") {
-                		    child = child.get_next_sibling();
-                		    continue;
-            		    }
             		    line_no++;
             
-            			child.get_allocation(out alloc);
+            			if (y < header_height) {
+            		    	return null;
+            	    	}
+            
+            			var hh = child.get_height();
             			//GLib.debug("got cell xy = %d,%d  w,h= %d,%d", alloc.x, alloc.y, alloc.width, alloc.height);
             
-            		    if (y > curr_y && y <= header_height + alloc.height + alloc.y ) {
+            		    if (y > curr_y && y <= header_height + hh + curr_y ) {
             			    return (Gtk.Widget)child;
             		    }
-            		    curr_y = header_height + alloc.height + alloc.y;
+            		    curr_y +=  hh ;
             
             		    if (curr_y > y) {
-            		    //    return -1;
+            		        return null;
             	        }
             	        child = child.get_next_sibling(); 
                 	}
@@ -446,8 +450,8 @@
             {
                 _this = _owner;
                 _this.selmodel = this;
-                var child_1 = new Xcls_model( _this );
-                this.el = new Gtk.SingleSelection( child_1.el );
+                new Xcls_model( _this );
+                this.el = new Gtk.SingleSelection( _this.model.el );
 
                 // my vars (dec)
 
