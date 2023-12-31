@@ -34,6 +34,7 @@ namespace Palete {
   		public int line_offset = 0;
   		 
 		public Gee.ArrayList<Spawn> children;
+		Spawn compiler;
 		
 		public string tmpfile_path = "";
 		
@@ -112,7 +113,7 @@ namespace Palete {
 			
 			
 		}
-		Spawn compiler;
+		
 		 
 		private bool checkStringSpawn( string contents  )
 		{
