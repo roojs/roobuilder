@@ -13,66 +13,97 @@ namespace Palete {
 	{
  		ValaCompileRequestType requestType;
  		
-		JsRender.JsRender file = null;
+		public JsRender.JsRender file = null;
 		JsRender.Node node = null;
 		JsRender.NodeProp prop = null;
 		string alt_code = "";
 		string tmpfile = "";
 		Spawn? compiler  = null;
 		ValaCompileQueue? queue = null;
+ 
+		
+	
+		public Gee.HashMap<string,GLib.ListStore>? errorByType = null;
+	 	public Gee.HashMap<string,GLib.ListStore>? errorByFile  = null;
+	 		
 	
 		public ValaCompileRequest(
 			ValaCompileRequestType requestType,
-			JsRender.JsRender file = null,
-			JsRender.Node node = null,
-			JsRender.NodeProp prop = null,
+			JsRender.JsRender file ,
+			JsRender.Node? node,
+			JsRender.NodeProp? prop,
 			string alt_code = ""
 			 
 		) {
 			this.requestType = requestType;
-			this.file = file,
+			this.file = file;
 			this.node = node;
 			this.prop = prop;
 			this.alt_code = alt_code;
 		}
+		public bool eq(ValaCompileRequest c) {
+			return 
+				this.requestType == c.requestType &&
+				this.file.path == c.file.path &&
+				this.node.oid == c.node.oid &&
+				this.prop.name == c.prop.name &&
+				this.alt_code == c.alt_code;
+				
+				
 		
-		void generateTempFile() {
+		}
+		public string target()
+		{
+			var pr = (Project.Gtk) this.file.project;
+			return pr.firstBuildModuleWith(this.file);
+		
+		}
+		bool generateTempFile() {
 		
 			var oldcode  = "";
 			var contents = this.alt_code;
 			if (this.requestType == ValaCompileRequestType.PROP_CHANGE) {
-				oldcode  = this.nodeprop.val;
-				this.nodeprop.val = this.alt_code
+				oldcode  = this.prop.val;
+				this.prop.val = this.alt_code;
 				contents = JsRender.NodeToVala.mungeFile(this.file);
-				this.nodeprop.val = oldcode;
+				this.prop.val = oldcode;
 			}
-			 
+			var pr = this.file.project;
 			
 		 	this.tmpfile = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time()) ;
  			try {
- 				GLib.FileUtils.set_contents(tmpfilename,contents);
+ 				GLib.FileUtils.set_contents(this.tmpfile,contents);
 			} catch (GLib.FileError e) {
-				GLib.debug("Error creating temp build file %s : %s", tmpfilename, e.message);
+				GLib.debug("Error creating temp build file %s : %s", tmpfile, e.message);
 				return false;
 			}
+			return true;
 		}
 		
 		public bool run(ValaCompileQueue queue)
 		{
 			this.queue = queue;
-		
+			if ( this.target() == "") {
+				this.onCompileFail();
+				return false;
+			}
 			string[] args = {};
 			args += BuilderApplication._self;
-			if (req.requestType != ValaCompileRequestType.RUN) {
+			if (this.requestType != ValaCompileRequestType.RUN) {
 				args += "--skip-linking";
 			}
 			args += "--project";
 			args += this.file.project.path;
 			args += "--target";
-			args +=  req.target();
+			args +=  this.target();
 			if  (this.requestType == ValaCompileRequestType.PROP_CHANGE || this.requestType == ValaCompileRequestType.FILE_CHANGE) {
+				
+				if (!this.generateTempFile()) {
+					this.onCompileFail();
+					return false;
+				}
 				args += "--add-file";
-				args +=  this.generateTempFile();
+				args +=  this.tmpfile;
 				args += "--skip-file";
 				args += this.file.path; // ?? bjs???
 			}
@@ -100,15 +131,21 @@ namespace Palete {
 			this.deleteTemp();
 		}
 		
+		public void cancel() {
+			Posix.kill(this.compiler.pid, 9);
+			this.compiler = null;
+			this.deleteTemp();
+		}
+		
 		public void deleteTemp()
 		{
-			 if (this.tmpfile_path == "") {
+			 if (this.tmpfile == "") {
 			  	return;
 		  	}
-			if (GLib.FileUtils.test(this.tmpfile_path, GLib.FileTest.EXISTS)) {
-			  	GLib.FileUtils.unlink(this.tmpfile_path);
+			if (GLib.FileUtils.test(this.tmpfile, GLib.FileTest.EXISTS)) {
+			  	GLib.FileUtils.unlink(this.tmpfile);
 		  	}
-		  	var cf = this.tmpfile_path.substring(0, this.tmpfile_path.length-4) + "c";
+		  	var cf = this.tmpfile.substring(0, this.tmpfile.length-4) + "c";
 		  	GLib.debug("try remove %s",cf);
 			if (GLib.FileUtils.test(cf, GLib.FileTest.EXISTS)) {
 			  	GLib.FileUtils.unlink(cf);
@@ -118,7 +155,7 @@ namespace Palete {
 			if (GLib.FileUtils.test(ccf, GLib.FileTest.EXISTS)) {
 			  	GLib.FileUtils.unlink(ccf);
 		  	}
-		  	this.tmpfile_path = "";
+		  	this.tmpfile = "";
 		}
 		public void onCompileComplete(int res, string output, string stderr) 
 		{
@@ -126,7 +163,7 @@ namespace Palete {
 			this.compiler.isZombie();
 			 
 			if (output == "") {
-			 	this.queue.onCompileFailed();
+			 	this.queue.onCompileFail();
 			 	return;
 		 	}
 		 	
@@ -138,21 +175,23 @@ namespace Palete {
 				var node = pa.get_root();
 
 				if (node.get_node_type () != Json.NodeType.OBJECT) {
-					this.queue.onCompileFailed();
+					this.queue.onCompileFail();
 					return;
 				}
 				var ret = node.get_object ();
-				  
-				this.parseResult(ret);
+				this.errorByType = new Gee.HashMap<string,GLib.ListStore>();
+	 			this.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
+				CompileError.parseCompileResults(this,ret);
+				this.queue.onCompileComplete(this);
 				
 				
 				
 			} catch (GLib.Error e) {
-				this.queue.onCompileFailed();
+				this.queue.onCompileFail();
 				return;
 				
 			}
-			if (this.requestType = ValaCompileRequestType.RUN) {
+			if (this.requestType == ValaCompileRequestType.RUN) {
 				this.queue.execResult(this);
 			}
 		}
@@ -162,6 +201,22 @@ namespace Palete {
 			// pass it to UI?
 			
 		}
+		public int totalErrors(string type, JsRender.JsRender? file=null) 
+		{
+			if (file == null) {
+				return (int)this.errorByType.get(type).get_n_items();
+			}
+			var ret =0;
+			var ar = this.errorByType.get(type);
+			for(var i =0 ;i< ar.get_n_items();i++) {
+				var ce = (CompileError) ar.get_item(i);
+				if (ce.file.path == file.path) {
+					ret++;
+				}
+			}
+			return ret;
+		}
+ 	} 
 		
 		
 		

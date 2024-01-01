@@ -95,6 +95,25 @@
         }
 
         // user defined functions
+        public void updateErrors (Palete.ValaCompileRequest req) {
+        
+        	
+        	this.statusbar_errors.setNotices(
+        		req.errorByType.get("ERR"),
+        		req.totalErrors("ERR"),
+        		req.totalErrors("ERR", this.windowstate.file)
+        	);
+        	this.statusbar_errors.setNotices(
+        		req.errorByType.get("WARN"),
+        		req.totalErrors("wARN"),
+        		req.totalErrors("WARN", this.windowstate.file)
+        	);
+        	this.statusbar_errors.setNotices(
+        		req.errorByType.get("DEPR"),
+        		req.totalErrors("DEPR"),
+        		req.totalErrors("DEPR", this.windowstate.file)
+        	);
+        }
         public void initChildren () {
             // this needs putting in a better place..
             this.windowstate = new WindowState(this);
@@ -1213,7 +1232,7 @@
 
                 // my vars (def)
             public Xcls_ValaCompileErrors popup;
-            public Json.Object notices;
+            public GLib.ListStore notices;
 
             // ctor
             public Xcls_statusbar_errors(Xcls_MainWindow _owner )
@@ -1223,7 +1242,7 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
-                this.notices = new Json.Object();
+                this.notices = null;
 
                 // set gobject values
                 this.el.icon_name = "dialog-error";
@@ -1251,7 +1270,7 @@
             }
 
             // user defined functions
-            public void setNotices (Json.Object nots, int qty, int tf) {
+            public void setNotices (GLib.ListStore nots, int qty, int tf) {
                 
                  if (qty < 1 ) {
                 	this.el.hide();
@@ -1278,7 +1297,7 @@
 
                 // my vars (def)
             public Xcls_ValaCompileErrors popup;
-            public Json.Object notices;
+            public GLib.ListStore notices;
 
             // ctor
             public Xcls_statusbar_warnings(Xcls_MainWindow _owner )
@@ -1288,7 +1307,7 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
-                this.notices = new Json.Object();
+                this.notices = null;
 
                 // set gobject values
                 this.el.icon_name = "dialog-warning";
@@ -1313,7 +1332,7 @@
             }
 
             // user defined functions
-            public void setNotices ( Json.Object nots, int qty, int tf) {
+            public void setNotices (GLib.ListStore nots, int qty, int tf) {
                 
                 if (qty < 1 ) {
                 	this.el.hide();
@@ -1324,7 +1343,7 @@
                 }
                 this.el.show();
                 this.el.label = "%d/%d Warnings".printf(tf,qty);
-                this.notices = nots;
+                 this.notices = nots;
                 if (this.popup != null && this.popup.el.visible) {
             		 this.popup.show(this.notices, this.el);
                 }
@@ -1341,7 +1360,7 @@
 
                 // my vars (def)
             public Xcls_ValaCompileErrors popup;
-            public Json.Object notices;
+            public GLib.ListStore notices;
 
             // ctor
             public Xcls_statusbar_depricated(Xcls_MainWindow _owner )
@@ -1351,7 +1370,7 @@
                 this.el = new Gtk.Button();
 
                 // my vars (dec)
-                this.notices = new Json.Object();
+                this.notices = null;
 
                 // set gobject values
                 this.el.icon_name = "dialog-information";
@@ -1377,7 +1396,7 @@
             }
 
             // user defined functions
-            public void setNotices (Json.Object nots, int qty, int tf) {
+            public void setNotices (GLib.ListStore nots, int qty, int tf) {
                 if (qty < 1) {
                 	this.el.hide();
                 	if (this.popup != null && this.popup.el.visible) {

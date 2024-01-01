@@ -7,19 +7,19 @@ namespace Palete {
 	public class ValaCompileQueue : Object 
 	{
 	
-		ValaCompileRequest? next_request = null'
+		ValaCompileRequest? next_request = null;
 		ValaCompileRequest? cur_request = null;
 		ValaCompileRequest? last_request = null;
 		
-		int terminal_pid = 0;
 		 
-		Spawn compiler = null;
+ 
 		
 		int countdown_start = 10;
 		int countdown = -1;
 		int timeout = 0;
-		bool countdown_running = false;
+		uint countdown_running = 0;
 		
+		int terminal_pid = 0;
 		
 		
 		
@@ -29,21 +29,21 @@ namespace Palete {
 			
 		}
 		
-		public void addFile(  ValaCompileRequestType reqtype, JsRender.JsRender file ,alt_code = "") 
+		public void addFile(  ValaCompileRequestType reqtype, JsRender.JsRender file , string alt_code = "") 
 		{
-			this.add(new ValaCompileRequest
+			this.add(new ValaCompileRequest(
 				reqtype,
-				file
+				file,
 				null,
 				null,
 				alt_code
 			));
 		}
-		void add(req)
+		void add(ValaCompileRequest req)
 		{
-			if (this.next_requst.eq(req)) {
+			if (this.next_request.eq(req)) {
 				this.countdown = this.countdown_start;
-				if (!this.countdown_running) {
+				if (this.countdown_running < 1) {
 					this.startCountdown();
 				}
 				return;
@@ -56,25 +56,57 @@ namespace Palete {
 			}
 			this.next_request = req;
 			this.countdown = this.countdown_start;
-			if (!this.countdown_running) {
+			if (this.countdown_running < 1) {
 				this.startCountdown();
 			}
 		
 		}
 	
+		public void startCountdown()
+		{
+			this.countdown_running = GLib.Timeout.add_seconds(1, () => {
+				if (this.next_request == null && this.cur_request == null) {
+					this.countdown_running = 0;
+					return false;
+				}
+				this.countdown--;
+				 // 60 sedonds
+				if (this.cur_request == null) {
+					this.timeout = 0;
+				}
+				if (this.cur_request != null) {
+				
+					this.timeout--;
+					if (this.timeout < 1) {
+						this.cur_request.cancel();
+						this.cur_request = null;
+					}
+				}
+				 
+				if (this.countdown < 1) {
+					this.run();
+					this.countdown_running = 0;
+					return false;
+				}
+				 
+				return true; // keep going.
+			});
+			
+		
+		}
 		public void addProp( ValaCompileRequestType requestType,
-			JsRender.JsRender file = null,
-			JsRender.Node node = null,
-			JsRender.NodeProp in_prop = null,
+			JsRender.JsRender file,
+			JsRender.Node node,
+			JsRender.NodeProp prop,
 			string alt_code = "") 
 		{
 			if (prop.name == "xns" || prop.name == "xtype") {
-				return  false;
+				return ;
 			}
 			  
-			this.add(new ValaCompileRequest
+			this.add(new ValaCompileRequest(
 				requestType,
-				file
+				file,
 				node,
 				prop,
 				alt_code
@@ -86,16 +118,13 @@ namespace Palete {
 		// not called if compiler is running..
 		void run()
 		{
-			this.countdown--;
-			if (this.countdown != 0) {
-				return;
-			}
+			this.timeout = 60;
 			var req = this.next_request;
 			this.next_request = null;
 			this.cur_request = req;
 			 
 			
-			if (!req.run()) {
+			if (!req.run(this)) {
 				GLib.debug("run failed- give up on this one - should we show a problem??");
 				this.onCompileFail();
 				return;
@@ -108,6 +137,16 @@ namespace Palete {
 		{
 			this.cur_request = null;
 			this.showSpinner(false);
+		}
+		
+		public void onCompileComplete(ValaCompileRequest req)
+		{
+			this.cur_request = null;
+			req.file.project.last_request = req; // technically it should update compile group.
+			this.last_request = req;
+			this.showSpinner(false);
+			// update errors
+			
 		}
 		
 		public void onCompilerOutput(   string str )
@@ -156,7 +195,6 @@ namespace Palete {
 		}
 		
 		
-		int terminal_pid = 0 ;
 		public void execResult(ValaCompileRequest req)
 		{
 			  	
@@ -191,7 +229,7 @@ namespace Palete {
 				}
 			}
 
-		    print("OUT: %s\n\n----\nERR:%s\n", output, stderr);
+		  
 		    
 		    // should be home directory...
 		    

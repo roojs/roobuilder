@@ -77,7 +77,7 @@ namespace Project {
 		 
 		private bool is_scanned = false; 
 		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
-		 
+		 public Palete.ValaCompileRequest last_request = null;
 		
 		protected Project (string path) {
 			

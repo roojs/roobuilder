@@ -532,6 +532,8 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			GLib.Process.exit(Posix.EXIT_SUCCESS);		
 		}
 		
+		
+		// move to 'window colletction?
 		public static Gee.ArrayList<Xcls_MainWindow> windows;
 		
 		public static void addWindow(Xcls_MainWindow w)
@@ -548,8 +550,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		
 			BuilderApplication.windows.remove(w);
 			BuilderApplication.updateWindows();
-			BuilderApplication.valasource.compiled.disconnect(w.windowstate.showCompileResult);
-			BuilderApplication.valasource.compile_output.disconnect(w.windowstate.compile_results.addLine);		
+			 	
 			w.el.hide();
 			w.el.close();
 			w.el.destroy();
@@ -582,6 +583,27 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			w.windowstate.fileViewOpen(file, false, line);
 			w.el.present();
 			 
+		
+		}
+		
+		public static void updateCompileResults(Palete.ValaCompileRequest req)
+		{
+			foreach(var ww in BuilderApplication.windows) {
+				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
+					continue;
+				}
+				if (ww.windowstate.project.path != req.file.project.path) {
+					continue;
+				}
+				if (req.errorByType.has_key(ww.windowstate.file.path)) {
+					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.path));
+				}
+				
+				 
+				ww.updateErrors(req);
+				
+				
+			}
 		
 		}
 		

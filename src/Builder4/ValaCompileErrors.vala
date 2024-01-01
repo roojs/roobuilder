@@ -20,7 +20,7 @@
 
             // my vars (def)
         public Xcls_MainWindow window;
-        public Json.Object notices;
+        public GLib.ListStore notices;
 
         // ctor
         public Xcls_ValaCompileErrors()
@@ -35,17 +35,17 @@
             this.el.height_request = 800;
             this.el.autohide = true;
             this.el.position = Gtk.PositionType.TOP;
-            var child_1 = new Xcls_compile_view( _this );
-            this.el.set_child ( child_1.el  );
+            new Xcls_compile_view( _this );
+            this.el.set_child ( _this.compile_view.el  );
         }
 
         // user defined functions
-        public void show ( Json.Object tree , Gtk.Widget onbtn) {
+        public void show ( GLib.ListStore ls , Gtk.Widget onbtn) {
         
             
          	//this.el.present();
             //this.el.popup();
-            this.notices = tree;
+            this.notices = ls;
            
              //print("looking for %s\n", id);
             // loop through parent childnre
@@ -78,11 +78,7 @@
         	this.el.present();
             this.el.popup();
            
-        
-           var ls = Palete.CompileError.jsonToListStore(
-            	this.window.windowstate.project,
-            	tree
-        	);
+         
         	var tm = new Gtk.TreeListModel(
         		ls, //..... << that's our store..
         		false, // passthru
@@ -149,8 +145,8 @@
                 // my vars (dec)
 
                 // set gobject values
-                var child_1 = new Xcls_tree( _this );
-                this.el.set_child ( child_1.el  );
+                new Xcls_tree( _this );
+                this.el.set_child ( _this.tree.el  );
 
                 // init method
 
@@ -176,8 +172,8 @@
             {
                 _this = _owner;
                 _this.tree = this;
-                var child_1 = new Xcls_selmodel( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_selmodel( _this );
+                this.el = new Gtk.ColumnView( _this.selmodel.el );
 
                 // my vars (dec)
 
@@ -207,8 +203,8 @@
             {
                 _this = _owner;
                 _this.selmodel = this;
-                var child_1 = new Xcls_sortmodel( _this );
-                this.el = new Gtk.SingleSelection( child_1.el );
+                new Xcls_sortmodel( _this );
+                this.el = new Gtk.SingleSelection( _this.sortmodel.el );
 
                 // my vars (dec)
 
@@ -240,8 +236,8 @@
             {
                 _this = _owner;
                 _this.sortmodel = this;
-                var child_1 = new Xcls_model( _this );
-                this.el = new Gtk.SortListModel( child_1.el, null );
+                new Xcls_model( _this );
+                this.el = new Gtk.SortListModel( _this.model.el, null );
 
                 // my vars (dec)
 

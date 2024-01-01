@@ -16,7 +16,7 @@ namespace Palete {
 		public GLib.ListStore lines;
 
 		public CompileError? parent = null;
- 
+ 		public string category;
 		public string msg;
 		public  int line { get; set; default = -1; }
 
@@ -27,6 +27,7 @@ namespace Palete {
 			this.line = line;
 			this.msg = msg;
 			this.file = parent.file;
+			this.category = parent.category;
 			 
 		
 		}
@@ -34,7 +35,7 @@ namespace Palete {
 		
 
 
-		public CompileError.new_file(JsRender.JsRender file, Json.Object jlines) 
+		public CompileError.new_file(JsRender.JsRender file, Json.Object jlines, string category) 
 		{
 			this.file = file;
 
@@ -77,9 +78,48 @@ namespace Palete {
 	 	}
 		
 		
+		public static void parseCompileResults (ValaCompileRequest req, Json.Object tree)
+		{
 		 
+			jsonToListStoreProp(req, "WARN", tree);
+			jsonToListStoreProp(req, "ERR", tree);	 
+			jsonToListStoreProp(req, "DEPR", tree);	 
+			
+			 
+		}
 		
+		public static void jsonToListStoreProp(ValaCompileRequest req, string prop, Json.Object tree)
+		{
+			var project = req.file.project;
+			var ls = new GLib.ListStore(typeof(CompileError));
+			if (!tree.has_member(prop)) {
+				req.errorByType.set(prop,ls);
+				return;
+			}
+			var res = tree.get_object_member(prop);
+			res.foreach_member((obj, file, node) => {
+	        
+	        	var fe = project.getByPath(file);
+	        	 
+		        if (fe == null) {
+		        	GLib.debug("Warning Can not find file %s", file);
+		        	return;
+		        }
+		        
+		        var ce = new CompileError.new_file(fe, tree.get_object_member(file), prop);
+        		ls.append(ce);
+        		if (!req.errorByFile.has_key(fe.path)) {
+        			req.errorByFile.set(fe.path,  new GLib.ListStore(typeof(CompileError)));
+    			}
+    			req.errorByFile.get(fe.path).append(ls);
+        		
+              
+		    });
+		    req.errorByType.set(prop,ls);
+		    
+		}
 		
+	// only used by javascript /roo errors..
 		public static GLib.ListStore jsonToListStore(Project.Project project, Json.Object tree)
 		{
 			var ls = new GLib.ListStore(typeof(CompileError));
@@ -91,8 +131,9 @@ namespace Palete {
 		        	GLib.debug("Warning Can not find file %s", file);
 		        	return;
 		        }
-		        var ce = new CompileError.new_file(fe, tree.get_object_member(file));
+		        var ce = new CompileError.new_file(fe, tree.get_object_member(file), "ERR");
         		ls.append(ce);
+        	 
              
 		    
 		    });

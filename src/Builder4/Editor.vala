@@ -212,6 +212,86 @@
            
         
         }
+        public void updateErrorMarks (GLib.ListStore  ar) {
+        	 
+        	 var buf = _this.buffer.el;
+        	Gtk.TextIter start;
+        	Gtk.TextIter end;     
+        	buf.get_bounds (out start, out end);
+        
+        	buf.remove_source_marks (start, end, "ERR");
+        	buf.remove_source_marks (start, end, "WARN");
+        	buf.remove_source_marks (start, end, "DEPR");
+        	GLib.debug("highlight errors");		 
+        
+        	 // we should highlight other types of errors..
+        
+        	if (ar.get_n_items() < 1) {
+        		GLib.debug("Return has no errors\n");
+        		return;
+        	}
+        
+        	if (_this.window.windowstate.state != WindowState.State.CODEONLY 
+        		&&
+        		_this.window.windowstate.state != WindowState.State.CODE
+        		) {
+        		GLib.debug("windowstate != CODEONLY?");
+        		
+        		return;
+        	} 
+        
+        	 
+        	if (_this.file == null) {
+        		GLib.debug("file is null?");
+        		return;
+        
+        	}
+         
+        
+         
+        	
+        	var offset = 1;
+        	 
+        
+        	var tlines = buf.get_line_count () +1;
+        	
+        	if (_this.prop != null) {
+        	
+        		tlines = _this.prop.end_line + 1;
+        		offset = _this.prop.start_line + 1;
+        	
+        	}
+        	 
+        	for (var i = 0; i < ar.get_n_items();i++) {
+        		var err = (Palete.CompileError) ar.get_item(i);
+        		
+        	     Gtk.TextIter iter;
+        //        print("get inter\n");
+        	    var eline = err.line - offset;
+        	    GLib.debug("GOT ERROR on line %d -- converted to %d  (offset = %d)",
+        	    	err.line ,eline, offset);
+        	    
+        	    
+        	    if (eline > tlines || eline < 0) {
+        	        return;
+        	    }
+        	   
+        	    
+        	    buf.get_iter_at_line( out iter, eline);
+        	   
+        	   
+        		var msg = "Line: %d %s : %s".printf(eline+1, err.category, err.msg);
+        	    buf.create_source_mark( msg, err.category, iter);
+        	    GLib.debug("set line %d to %m", eline, msg);
+        	   // this.marks.set(eline, msg);
+        	}
+        	return ;
+        
+        
+        
+         
+        
+        }
         public void scroll_to_line (int line) {
         
         	GLib.Timeout.add(500, () => {

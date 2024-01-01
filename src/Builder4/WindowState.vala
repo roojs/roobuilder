@@ -85,7 +85,7 @@ public class WindowState : Object
 		
 		
 		 
-		BuilderApplication.valasource.compiled.connect(this.showCompileResult); 
+		//BuilderApplication.valasource.compiled.connect(this.showCompileResult); 
 		
 		
 		this.compile_results = new  Xcls_ValaCompileResults(); // the poup dialogs with results in.
@@ -337,7 +337,7 @@ public class WindowState : Object
 				node,
 				prop
 			);
-			this.markBuf();
+			///this.markBuf();
 			
 			
 		});
@@ -687,8 +687,9 @@ public class WindowState : Object
 
 		}
 		
-		if (BuilderApplication.valasource.last_result != null) {
-			this.showCompileResult(BuilderApplication.valasource.last_result);
+		if (this.project.last_request != null) {
+			this.win.updateErrors(this.project.last_request);
+			this.code_editor_tab.updateErrorMarks(this.project.last_request.errorByFile.get(this.file.path));
 		}
 		this.gotoLine(line);
 	
@@ -889,7 +890,7 @@ public class WindowState : Object
 
 	// -- buttons show hide.....
  
-	
+	/*
 	
 	public void showCompileResult(Json.Object obj)
 		{
@@ -1011,6 +1012,7 @@ public class WindowState : Object
 				buf.highlightErrorsJson("DEPR", this.last_compile_result);			
 			}
 		}
+		*/
 	
 }
 

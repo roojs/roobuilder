@@ -303,7 +303,13 @@ namespace Palete
 		 
 			 
 			p.packFile(code, file.path,"");
-			state.showCompileResult(p.result);
+			//state.showCompileResult(p.result);
+			var req = new ValaCompileRequest(
+				ValaCompileRequestType.FILE_CHANGE,
+				file , null,null, "");
+			CompileError.parseCompileResults(req,p.result);
+
+			state.win.updateErrors(req);
 			if (p.hasErrors("")) {
 				return true;
 			}
