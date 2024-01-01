@@ -757,7 +757,6 @@
             public int error_line;
             public Gee.HashMap<int,string>? xmarks;
             public bool check_queued;
-            public bool check_running;
 
             // ctor
             public Xcls_buffer(Editor _owner )
@@ -770,7 +769,6 @@
                 this.error_line = -1;
                 this.xmarks = null;
                 this.check_queued = false;
-                this.check_running = false;
 
                 // set gobject values
                 this.el.enable_undo = true;
@@ -793,24 +791,7 @@
             // user defined functions
             public bool checkSyntax () {
              
-                if (this.check_running) {
-                    print("Check is running\n");
-                    if (this.check_queued) { 
-                        print("Check is already queued");
-                        return true;
-                    }
-                    this.check_queued = true;
-                    print("Adding queued Check ");
-                    GLib.Timeout.add_seconds(1, () => {
-                        this.check_queued = false;
-                        
-                        this.checkSyntax();
-                        return false;
-                    });
                 
-            
-                    return true;
-                }
                 var str = this.toString();
                 
                 // needed???
@@ -830,14 +811,11 @@
                 if (_this.file.xtype == "PlainFile" && _this.file.project.xtype == "Gtk") {
                 
                     // assume it's gtk...
-                       this.check_running = true;
-             
-                     if (!BuilderApplication.valasource.checkPlainFileSpawn(
-            			   _this.file,
-            				str
-            			 )) {
-            				    this.check_running = false;
-            				}
+                       
+             				BuilderApplication.valacompilequeue.addFile( 
+             					Palete.ValaCompileRequestType.FILE_CHANGE, 
+             					_this.file , str) ;
+                      
             	
                     return true;
                 
@@ -848,12 +826,10 @@
                 var p = _this.file.project.palete;
                 
             
-                 
-                this.check_running = true;
-                
+                  
                 
                 if (_this.file.language == "js") {
-                    this.check_running = false;
+            
                     print("calling validate javascript\n"); 
                     Gee.HashMap<int,string> errors;
                     p.javascriptHasErrors(
@@ -871,15 +847,12 @@
                 print("calling validate vala\n");    
                 // clear the buttons.
              
-                
-               if (! BuilderApplication.valasource.checkFileWithNodePropChange(
-                    _this.file,
-                    _this.node,
-                     _this.prop,        
-                        str
-                    )) {
-                    this.check_running = false;
-                } 
+                BuilderApplication.valacompilequeue.addProp( 
+                		Palete.ValaCompileRequestType.PROP_CHANGE,
+            			_this.file,
+            			_this.node,
+            			_this.prop,
+            			str); 
                  
                 
                 

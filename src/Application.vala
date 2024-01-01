@@ -122,7 +122,7 @@
 
 
 
-		public static Palete.ValaSource valasource;
+		public static Palete.ValaCompileQueue valacompilequeue;
 
 	
 		public BuilderApplication (  string[] args)
@@ -149,7 +149,7 @@
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
-			BuilderApplication.valasource = new Palete.ValaSource();
+			BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
 			configDirectory();

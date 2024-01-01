@@ -90,7 +90,7 @@ public class WindowState : Object
 		
 		this.compile_results = new  Xcls_ValaCompileResults(); // the poup dialogs with results in.
 		this.compile_results.window = this.win;
-		BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
+		//BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
 		
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
@@ -362,7 +362,11 @@ public class WindowState : Object
 			//this.left_tree.model.updateSelected();
 			this.file.save();
 			if (this.file.project.xtype=="Gtk") {
-				BuilderApplication.valasource.checkFileSpawn(this.file);
+					BuilderApplication.valacompilequeue.addFile( 
+	 					Palete.ValaCompileRequestType.PROJECT, 
+	 					this.file ) ;
+			
+				//BuilderApplication.valasource.checkFileSpawn(this.file);
 			}
 		});
 	 
@@ -517,7 +521,9 @@ public class WindowState : Object
 				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
 			if (this.file.project.xtype=="Gtk") {
-				BuilderApplication.valasource.checkFileSpawn(this.file);
+				BuilderApplication.valacompilequeue.addFile( 
+	 					Palete.ValaCompileRequestType.PROJECT, 
+	 					this.file ) ;
 			}
 			
 			 // we do not need to call spawn... - as it's already called by the editor?

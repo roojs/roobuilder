@@ -23,7 +23,7 @@ namespace Palete {
 	
 	 
 
-	public class ValaSource : Object {
+	public class ValaSourceOLD : Object {
  
 		public Json.Object? last_result = null;
 		public signal void compiled(Json.Object res);
@@ -41,7 +41,7 @@ namespace Palete {
 		
 		public int terminal_pid = 0;
 		
- 		public ValaSource(   ) 
+ 		public ValaSourceOLD(   ) 
  		{
 			base();
 			 

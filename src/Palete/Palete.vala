@@ -184,7 +184,7 @@ namespace Palete
 
 	   }
 	   */
-
+/*
 	 
 	 	public   void validateVala(
 				WindowState state,
@@ -216,8 +216,7 @@ namespace Palete
 			 
 
 		}
-		 
-	
+		 */
 	
 	
 		public   bool  javascriptHasErrors(
