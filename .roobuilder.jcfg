@@ -149,7 +149,8 @@
                 "src/Spawn.vala",
                 "src/Application.vala",
                 "src/Palete/ValalCompileQueue.vala",
-                "src/Palete/ValaCompileRequest.vala"
+                "src/Palete/ValaCompileRequest.vala",
+                "src/Palete/ValaCompileQueue.vala"
             ],
             "hidden" : [
                 "src/Builder4/About.bjs",
@@ -296,7 +297,8 @@
                 "src/Spawn.vala",
                 "src/Application.vala",
                 "src/Palete/ValalCompileQueue.vala",
-                "src/Palete/ValaCompileRequest.vala"
+                "src/Palete/ValaCompileRequest.vala",
+                "src/Palete/ValaCompileQueue.vala"
             ]
         }
     ],
