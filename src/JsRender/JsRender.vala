@@ -605,7 +605,7 @@ namespace JsRender {
 			
 			}
 		}
-		
+		/*
 		public bool compile_group_hidden {
 			get {
 				var gproj = (Project.Gtk) this.project;
@@ -643,7 +643,7 @@ namespace JsRender {
 			
 			}
 		}
-		
+		*/
 		public void remove()
 		{
 			if (this.xtype == "Dir") {
