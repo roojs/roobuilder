@@ -4,16 +4,16 @@ using Gtk;
 // not sure why - but extending Gtk.SourceCompletionProvider seems to give an error..
 namespace Palete {
 
-    public class CompletionProvider : Object, SourceCompletionProvider
+    public class CompletionProvider : Object, GtkSource.CompletionProvider
     {
-		Editor editor; 
-		WindowState windowstate;
- 		//public List<Gtk.SourceCompletionItem> filtered_proposals;
+		public Editor editor; 
+		//public WindowState windowstate;
+ 		public CompletionModel model;
 
 		public CompletionProvider(Editor editor)
 		{
 		    this.editor  = editor;
-		    this.windowstate = null; // not ready until the UI is built.
+		   // this.windowstate = null; // not ready until the UI is built.
 		    
  		}
 
@@ -22,85 +22,134 @@ namespace Palete {
 		  return  "roojsbuilder";
 		}
 
-		public int get_priority ()
+		public int get_priority (GtkSource.CompletionContext context)
 		{
 		  return 200;
 		}
-
-		public bool match (SourceCompletionContext context)
+		
+		public  void activate (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal)
 		{
-			bool has_matches = false;
-			this.fetchMatches(context, out has_matches);
-			return has_matches;
-		}
+			var  p = (CompletionProposal) proposal;
+			TextMark end_mark = null;
+			TextIter begin, end;
 
-		public List<SourceCompletionItem>? fetchMatches(SourceCompletionContext context, out bool has_matches)
-		{
-		     has_matches = false;
+			if (!context.get_bounds(out begin, out end)) {
+				return;
+			}  
+			var buffer = begin.get_buffer();
+		
+			var  word = p.get_typed_text();
+			var len = -1;
 
-		    if (this.windowstate == null) {
-			    this.windowstate = this.editor.window.windowstate;
-		    }
-		
-		
-		    var buffer = context.completion.view.buffer;
-		    var  mark = buffer.get_insert ();
-		    TextIter end;
+			/* If the insertion cursor is within a word and the trailing characters
+			 * of the word match the suffix of the proposal, then limit how much
+			 * text we insert so that the word is completed properly.
+			 */
+			if (!end.ends_line() &&
+				!end.get_char().isspace() &&
+				!end.ends_word ())
+			{
+				var word_end = end;
 
-		    buffer.get_iter_at_mark (out end, mark);
-		    var endpos = end;
-		
-		    var searchpos = endpos;
-		
-		    searchpos.backward_find_char(is_space, null);
-		    searchpos.forward_char();
-		    var search = endpos.get_text(searchpos);
-		    print("got search %s\n", search);
-		
-		    if (search.length < 2) {
-			    return null;
-		    }
-		 
-		    // now do our magic..
-		    var filtered_proposals = this.windowstate.file.palete().suggestComplete(
-			    this.windowstate.file,
-			    this.editor.node,
-			    this.editor.prop,
-			    search
-		    ); 
-		
-		    print("GOT %d results\n", (int) filtered_proposals.length()); 
-		
-		    if (filtered_proposals.length() < 2) {
-			return null;
-		    }
-		
-		    filtered_proposals.sort((a, b) => {
-			    return ((string)(a.text)).collate((string)(b.text));
-		    });
-		    has_matches = true;
-		    return filtered_proposals;
+				if (word_end.forward_word_end ()) {
+					var text = end.get_slice(word_end);
 
-		}
-	
-		public void populate (SourceCompletionContext context)
-		{
-			bool has_matches = false;
-			var filtered_proposals = this.fetchMatches(context, out has_matches);
-			if (!has_matches) {
-			    context.add_proposals (this, null, true);
-			    return;
+					if (word.has_suffix (text)) {
+						//g_assert (strlen (word) >= strlen (text));
+						len = word.length - text.length;
+						end_mark = buffer.create_mark (null, word_end, false); 
+					}
+				}
 			}
-			// add proposals triggers a critical error in Gtk - try running gtksourceview/tests/test-completion.
-			// see https://bugzilla.gnome.org/show_bug.cgi?id=758646
-			var fe = GLib.Log.set_always_fatal(0); 
-			context.add_proposals (this, filtered_proposals, true);
-			GLib.Log.set_always_fatal(fe);
+
+			buffer.begin_user_action();
+			buffer.delete (ref begin, ref end);
+			buffer.insert ( ref begin, word, len);
+			buffer.end_user_action ();
+
+			if (end_mark != null)
+			{
+				buffer.get_iter_at_mark(out end, end_mark);
+				buffer.select_range(end,  end);
+				buffer.delete_mark(end_mark);
+			}
+		
+
 		}
 
 
+		public  void display (GtkSource.CompletionContext context, GtkSource.CompletionProposal proposal, GtkSource.CompletionCell cell)
+		{
+			var col = cell.get_column();
+			//var p = (CompletionProposal) proposal;
+			switch(col) {
+				case GtkSource.CompletionColumn.TYPED_TEXT:
+					cell.set_icon_name("completion-snippet-symbolic");
+					break;
+				case GtkSource.CompletionColumn.ICON:
+					cell.set_text(cell.text);
+					break;
+				case  GtkSource.CompletionColumn.COMMENT:
+					cell.set_text(cell.text);
+					break;
+				case GtkSource.CompletionColumn.DETAILS:
+					cell.set_text(cell.text);
+					break;
+				default:
+					cell.set_text(cell.text);
+					break;
+			}	
+		}
 
-		public bool activate_proposal (SourceCompletionProposal proposal, TextIter iter)
+		public  async GLib.ListModel populate_async (GtkSource.CompletionContext context, GLib.Cancellable? cancelleble)
+		{
+			
+			this.model = new CompletionModel(this, context, cancelleble); 
+			return this.model;
+			
+		}
+
+		public  void refilter (GtkSource.CompletionContext context, GLib.ListModel in_model)
+		{
+ 
+ 
+			//GtkFilterListModel *filter_model = NULL;
+			//G//tkExpression *expression = NULL;
+			//GtkStringFilter *filter = NULL;
+			//GListModel *replaced_model = NULL;
+			//char *word;
+
+	 		var model = in_model;
+
+			var word = context.get_word();
+			if (model is FilterListModel) { 
+				model = model.get_model ();
+			}
+ 
+
+			if (!this.model.can_filter(word)) {
+				this.model.cancel(); 
+				var replaced_model = new CompletionModel(this, context, this.model.cancellable);
+				context.set_proposals_for_provider(this, replaced_model);
+				
+				context.set_proposals_for_provider(this, replaced_model);
+				return;
+			}
+			 
+			var expression = new PropertyExpression(typeof(CompletionProposal), null, "word");
+			var filter = new StringFilter(expression);
+			filter.set_search( word);
+			var  filter_model = new FilterListModel(in_model, filter); 
+			filter_model.set_incremental(true);
+			context.set_proposals_for_provider(this, filter_model); 
+		 
+
+		
+		}
+
+
+/*
+		public bool activate_proposal (GtkSource.CompletionProposal proposal, TextIter iter)
 		{
 			var istart = iter;
 			istart.backward_find_char(is_space, null);
@@ -114,39 +163,110 @@ namespace Palete {
 		
 			return true;
 		}
-
-		public SourceCompletionActivation get_activation ()
-		{
-			//if(SettingsManager.Get_Setting("complete_auto") == "true"){
-				return SourceCompletionActivation.INTERACTIVE | SourceCompletionActivation.USER_REQUESTED;
-			//} else {
-			//	return Gtk.SourceCompletionActivation.USER_REQUESTED;
-			//}
-		}
-
-		public int get_interactive_delay ()
-		{
-			return -1;
-		}
-/*
-		public bool get_start_iter (SourceCompletionContext context, SourceCompletionProposal proposal, out TextIter iter)
-		{
-			iter = new TextIter();
-			return false;
-		}
-*/
-		public void update_info (SourceCompletionProposal proposal, SourceCompletionInfo info)
-		{
-
-		}
+  
+	 
 
 		private bool is_space(unichar space){
 			return space.isspace() || space.to_string() == "";
 		}
-		
+		*/
 		 
 	}
+ 	public class CompletionModel : Object, GLib.ListModel 
+ 	{
+ 		CompletionProvider provider;
+ 		Gee.ArrayList<CompletionProposal> items;
+ 		string search;
+ 		int minimum_word_size = 2;
+ 		public Cancellable cancellable;
+ 		
+ 		public CompletionModel(CompletionProvider provider, GtkSource.CompletionContext context, Cancellable cancellable)
+ 		{
+ 		 	this.provider = provider;
+			this.cancellable = cancellable;
+ 		 	this.items = new Gee.ArrayList<CompletionProposal>();
+ 			this.search = context.get_word();
+		    if (this.search.length < this.minimum_word_size) {
+			    return;
+		    }
+		    var prov  =  this.provider;
+		 	
+		 	if (prov.editor.window.windowstate == null) {
+		 		GLib.debug("Warning - provider windowstate not set?");
+		 		return;
+	 		}
+		    // now do our magic..
+		    this.items = prov.editor.window.windowstate.file.palete().suggestComplete(
+			    prov.editor.window.windowstate.file,
+			    prov.editor.node,
+			    prov.editor.prop,
+			    this.search
+		    ); 
+		
+		    print("GOT %d results\n", (int) items.size); 
+			// WHY TWICE?
+		    if (this.items.size < this.minimum_word_size) {
+				return;
+		    }
+		
+		    items.sort((a, b) => {
+			    return ((string)(a.text)).collate((string)(b.text));
+		    });
+ 		
+ 		}
+ 		
+ 		 
+ 		
+ 		public GLib.Object? get_item (uint pos)
+ 		{
+ 			return (Object) this.items.get((int) pos);
+ 		}
+		public GLib.Type  get_item_type ()
+		{
+			return typeof(GtkSource.CompletionProposal);
+		}
+		public   uint get_n_items () 
+		{
+			return this.items.size;
+		}
+ 		public bool can_filter (string word) 
+		{
+			if (word == null || word[0] == 0) {
+				return false;
+			}
+ 
+			if (word.length < this.minimum_word_size) {
+				return false;
+			}
 
+			/* If the new word starts with our initial word, then we can simply
+			 * refilter outside this model using a GtkFilterListModel.
+			 */
+			 return word.has_prefix(this.search); 
+		}
+		public void  cancel ()
+		{
+		 	this.cancellable.cancel();
+		}
+
+
+ 		
+ 	}
+	public class CompletionProposal : Object, GtkSource.CompletionProposal 
+ 	{
+ 		
+ 		string label;
+ 		
+ 		public string text;
+ 		string info;
+ 		public CompletionProposal(string label, string text, string info)
+ 		{
+ 			this.text = text;
+ 			this.label = label;
+ 			this.info = info;
+		}
+ 		
+ 	}
 
 } 
 

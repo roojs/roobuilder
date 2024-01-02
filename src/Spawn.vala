@@ -110,7 +110,11 @@ public class Spawn : Object
     /**
      * @property pid {Number} pid of child process (of false if it's not running)
      */
-    int  pid = -1;
+    public int  pid {
+    	get;
+    	private set;
+    	default = -1;
+	}
     /**
      * @property in_ch {GLib.IOChannel} input io channel
      */
@@ -153,35 +157,42 @@ public class Spawn : Object
 
 		 
 		GLib.debug("cd %s; %s" , this.cwd , string.joinv(" ", this.args));
+		var pid = -1;
 		
 		if (this.detach) { 
-			Process.spawn_async_with_pipes (
+			//Process.spawn_async_with_pipes (
+			Process.spawn_async (	
 				this.cwd,
 				this.args,
 				this.env.length > 0 ? this.env : null,
 				SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
 				null,
-				out this.pid);
-				ChildWatch.add (this.pid, (pid, status) => {
-					// Triggered when the child indicated by child_pid exits
-					Process.close_pid (pid);
-					 
-				});
-				
-				return;
+				out pid);
+
+			this.pid = pid;	
+ 	
+			ChildWatch.add (this.pid, (pid, status) => {
+			 	
+				 Process.close_pid (pid);
+				 
+			});
+			
+			return;
 
 		}
+	
+				
 		Process.spawn_async_with_pipes (
 				this.cwd,
 				this.args,
 				this.env.length > 0 ? this.env : null,
 				SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,
 				null,
-				out this.pid,
+				out pid,
 				out standard_input,
 				out standard_output,
 				out standard_error);
-
+		this.pid = pid;
 		// stdout:
 		 
 			
@@ -240,13 +251,13 @@ public class Spawn : Object
         this.out_src = (int) this.out_ch.add_watch (
             IOCondition.OUT | IOCondition.IN  | IOCondition.PRI |  IOCondition.HUP |  IOCondition.ERR  ,
             (channel, condition) => {
-               return this.read(this.out_ch);
+               return this.out_ch == null ? true : this.read(this.out_ch);
             }
         );
         this.err_src = (int) this.err_ch.add_watch (
 	         IOCondition.OUT | IOCondition.IN  | IOCondition.PRI |  IOCondition.HUP |  IOCondition.ERR  ,
             (channel, condition) => {
-               return this.read(this.err_ch);
+               return this.err_ch == null ? true : this.read(this.err_ch);
             }
         );
               
@@ -310,7 +321,7 @@ public class Spawn : Object
     
     
 
-    private void tidyup()
+    public void tidyup() // or kill
     {
         if (this.pid > -1) {
             Process.close_pid(this.pid); // hopefully kills it..
@@ -328,8 +339,8 @@ public class Spawn : Object
         this.err_ch = null;
         this.out_ch = null;
         // rmeove listeners !! important otherwise we kill the CPU
-        //if (this.err_src > -1 ) GLib.source_remove(this.err_src);
-        //if (this.out_src > -1 ) GLib.source_remove(this.out_src);
+        if (this.err_src > -1 ) GLib.Source.remove(this.err_src);
+        if (this.out_src > -1 ) GLib.Source.remove(this.out_src);
         this.err_src = -1;
         this.out_src = -1;
         
@@ -369,74 +380,102 @@ public class Spawn : Object
      * @arg giochannel to read from.
      * @returns none
      */
-    private bool read(IOChannel ch) 
-    {
-       // string prop = (ch == this.out_ch) ? "output" : "stderr";
-       // print("prop: " + prop);
+	private bool read(IOChannel ch) 
+	{
+	   // string prop = (ch == this.out_ch) ? "output" : "stderr";
+	   // print("prop: " + prop);
 
-        
-        //print(JSON.stringify(ch, null,4));
-        while (true) {
-            string buffer;
-            size_t term_pos;
-            size_t len;
-            IOStatus status;
-            try {
-                status = ch.read_line( out buffer,  out len,  out term_pos );
-            } catch (Error e) {
-                //FIXme
-                break; // ??
-                
-            }
+	    
+	    //print(JSON.stringify(ch, null,4));
+	    while (true) {
+	        string buffer;
+	        size_t term_pos;
+	        size_t len;
+	        IOStatus status;
+	        try {
+	            status = ch.read_line( out buffer,  out len,  out term_pos );
+	        } catch (Error e) {
+	            //FIXme
+	            break; // ??
+	            
+	        }
 
-            // print('status: '  +JSON.stringify(status));
-            // print(JSON.stringify(x));
-             switch(status) {
-                case GLib.IOStatus.NORMAL:
+	        // print('status: '  +JSON.stringify(status));
+	        // print(JSON.stringify(x));
+	         switch(status) {
+	            case GLib.IOStatus.NORMAL:
 		
-                    //write(fn, x.str);
-                    
-                    //if (this.listeners[prop]) {
-                    //    this.listeners[prop].call(this, x.str_return);
-                    //}
-                    if (ch == this.out_ch) {
-                        this.output += buffer;
-                        this.output_line(  buffer);                  
-                        
-                    } else {
-                        this.stderr += buffer;
-                        this.output_line(  buffer); 
-                    }
-                    //_this[prop] += x.str_return;
-                    //if (this.cfg.debug) {
-                        //GLib.debug("%s : %s", prop , buffer);
-                    //}
-                    if (this.is_async) {
-                         
-                        //if ( Gtk.events_pending()) {
-                        //     Gtk.main_iteration();
-                        //}
-                         
-                    }
-                    
-                    //this.ctx.iteration(true);
-                   continue;
-                case GLib.IOStatus.AGAIN:
+	                //write(fn, x.str);
+	                
+	                //if (this.listeners[prop]) {
+	                //    this.listeners[prop].call(this, x.str_return);
+	                //}
+	                if (ch == this.out_ch) {
+	                    this.output += buffer;
+	                    this.output_line(  buffer);                  
+	                    
+	                } else {
+	                    this.stderr += buffer;
+	                    this.output_line(  buffer); 
+	                }
+	                //_this[prop] += x.str_return;
+	                //if (this.cfg.debug) {
+	                    //GLib.debug("%s : %s", prop , buffer);
+	                //}
+	                if (this.is_async) {
+	                     
+	                    //if ( Gtk.events_pending()) {
+	                    //     Gtk.main_iteration();
+	                    //}
+	                     
+	                }
+	                
+	                //this.ctx.iteration(true);
+	               continue;
+	            case GLib.IOStatus.AGAIN:
 					//print("Should be called again.. waiting for more data..");
-		            return true;
-                    //break;
-                case GLib.IOStatus.ERROR:    
-                case GLib.IOStatus.EOF:
-		            return false;
-                    //break;
-                
-            }
-            break;
-        }
-       
-        //print("RETURNING");
-         return false; // allow it to be called again..
-    }
+			        return true;
+	                //break;
+	            case GLib.IOStatus.ERROR:    
+	            case GLib.IOStatus.EOF:
+			        return false;
+	                //break;
+	            
+	        }
+	        break;
+	    }
+	   
+	    //print("RETURNING");
+	     return false; // allow it to be called again..
+	}
+	public bool isZombie()
+	{
+		if (!GLib.FileUtils.test("/proc/%d".printf(this.pid), FileTest.EXISTS)) {
+			return false;
+		}
+		size_t sz;
+		string f;
+		try {
+			if (!GLib.FileUtils.get_contents("/proc/%d/stat".printf(this.pid), out f, out sz)) {
+				return false;
+			}
+		} catch(GLib.Error e) {
+			return false;
+		}
+		var bits = f.split(" ");
+		if (bits.length > 3  && bits[2] == "Z") {
+			GLib.debug("Process pid:%d is a zombie - trying waitpid", this.pid);
+			int status;
+			Posix.waitpid(this.pid, out status, 0);
+			GLib.debug("Process pid:%d is a zombie - done waitpid", this.pid);
+			return true;
+		}
+		return false;
+		
+		
+		
+	
+	}
     
 }
 /*

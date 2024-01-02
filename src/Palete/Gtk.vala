@@ -2,6 +2,16 @@ using Gtk;
 
 
 /**
+
+Palete.map
+ -> contains a list of parent and child classes
+ // eg. what can be added to what.
+ 
+// defaults
+
+// node properties??
+  (mostly from 
+
 Known issues with Palete
 
 
@@ -32,19 +42,7 @@ namespace Palete {
 	
 	
 	
-	public class Introspect.El : Object
-	{
-		public enum eltype { 
-			    NS,
-			    CLASS,
-			    METHOD,
-			    PROP
-		}
-                
-            
-		public eltype type;
-	}
-
+	 
 
 	public class Gtk : Palete {
 		
@@ -61,13 +59,7 @@ namespace Palete {
 		    this.package_cache.add_all(
 			    this.loadPackages(Path.get_dirname (context.get_vapi_path("gee-0.8")))
 		    );
-				//this.load();
-		    // various loader methods..
-		      //this.map = [];
-		    //this.load();
-		    //this.proplist = {};
-		    //this.comments = { }; 
-		    // no parent...
+		     
 		   
 		    
 		}
@@ -78,8 +70,11 @@ namespace Palete {
 		// c) build child list for all widgets (based on properties)
 		// d) handle oddities?
 		
+		public bool loaded = false; // set to false to force a reload
+
 		public override void  load () 
 		{
+<<<<<<< HEAD
 			
 			Gir.factory(this.project, "Gtk"); // triggers a load...
 			var pr = (Project.Gtk) this.project;
@@ -321,34 +316,25 @@ namespace Palete {
 			localopts_l.add(parent);
 			
 			if (cls_cn == null) {
+=======
+			if (this.loaded) {
+>>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 				return;
 			}
-			if (!cls_cn.is_abstract) { // and check for interface?
-			
-			 	localopts_r.add(child + ( prop.length > 0 ? ":" + prop : "") );
-			}
-			GLib.debug("Special Parent %s - add %s ", parent , child);			
-			foreach(var impl in cls_cn.implementations) {
-
-				// in theory these can not be abstract?
-				
-				var impcls = this.getClass(impl);
-				if (impcls.is_abstract) {
-					continue;
-				}
-				if (impcls.nodetype == "Interface") {
-					continue;
-				}
-				 GLib.debug("Special Parent %s - add %s ", parent , impl + ( prop.length > 0 ? ":" + prop : ""));				
-				localopts_r.add( impl + ( prop.length > 0 ? ":" + prop : "") );
-			}
-			this.map.add(new Usage(localopts_l, localopts_r));
+			Gir.factory(this.project, "Gtk"); // triggers a load...
 			 
+			this.init_node_defaults();
+			this.add_node_default_from_ctor_all();
+		    this.init_child_defaults();  
+		    
+		    this.loaded = true;
+			 
+			
 		}
 		
-		 
 		
 		
+<<<<<<< HEAD
 		
 		public void build_class_children_from_props(Gee.HashMap<string,GirObject> classes)
 		{
@@ -486,12 +472,15 @@ namespace Palete {
 			   
 		     
 		}
+=======
+	  
+>>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 		
 		public string doc(string what) 
 		{
     		var ns = what.split(".")[0];
     		var gir =  Gir.factory(this.project,ns);
-			return   gir.doc(what);
+			return  ((Gir) gir).doc(what);
 			
 		    //return typeof(this.comments[ns][what]) == 'undefined' ?  '' : this.comments[ns][what];
 		}
@@ -509,6 +498,20 @@ namespace Palete {
 				return null;
 			}
 			return gir.classes.get(es[1]);
+		
+		}
+		
+		public  GirObject? getDelegate(string ename) 
+		{
+			var es = ename.split(".");
+			if (es.length < 2) {
+				return null;
+			}
+			var gir = Gir.factory(this.project,es[0]);
+			if (gir == null) {
+				return null;
+			}
+			return gir.delegates.get(es[1]);
 		
 		}
 
@@ -535,7 +538,7 @@ namespace Palete {
 			//print("Loading for " + ename);
 		    
 
-
+			this.load();
 				// if (typeof(this.proplist[ename]) != 'undefined') {
 		        //print("using cache");
 			//   return this.proplist[ename][type];
@@ -565,7 +568,10 @@ namespace Palete {
 
 			switch  (ptype) {
 				case JsRender.NodePropType.PROP:
-					return this.filterProps(cls.props);
+					var ret =  this.filterProps(cls.props);
+					// add ctor
+					this.add_props_from_ctors(cls, ret);
+					return ret;
 				case JsRender.NodePropType.LISTENER:
 					return this.filterSignals(cls.signals);
 				case JsRender.NodePropType.METHOD:
@@ -593,10 +599,23 @@ namespace Palete {
 			
 			foreach(var k in props.keys) {
 				var val = props.get(k);
-				if (k == "___") {
+//				GLib.debug("FilterProp: %s", k);
+				// properties that dont make any sense to display.
+				if (
+					k == "___" ||
+					k == "parent" ||
+					k == "default_widget" ||
+					k == "root" ||
+					k == "layout_manager" || // ??
+					k == "widget"  // gestures..
+				) {
 					continue;
 				}
+				
 				if (val.is_deprecated) {
+					continue;
+				}
+				if (val.type == "GLib.Object") { /// this is practually everything? ?? shoud we display it as a property?
 					continue;
 				}
 				if (!val.type.contains(".")) {
@@ -606,7 +625,7 @@ namespace Palete {
 				var cls = this.getClassOrEnum(val.type);
 			 	
 			 	// if cls == null - it's probably a struct? I don't think we handle thses
-				if ( cls.nodetype == "Enum") {
+				if ( cls != null ) { // cls.nodetype == "Enum") {
 					// assume it's ok
 					outprops.set(k,val);
  					continue;
@@ -620,6 +639,56 @@ namespace Palete {
 		
 		
 		}
+		
+		private void add_props_from_ctors(GirObject cls, Gee.HashMap<string,GirObject> props)
+		{
+			if (cls.ctors.has_key("new")) {
+				this.add_props_from_ctor(cls.ctors.get("new"), props);	
+				return;
+			}
+			// does not have new ?? needed?
+			foreach(var ctor in cls.ctors.values) {
+				this.add_props_from_ctor(ctor, props);
+				break;
+			
+			}
+		}
+		
+		private void add_props_from_ctor(GirObject ctor,  Gee.HashMap<string,GirObject> props)
+		{
+			var cname = ctor.gparent.fqn();
+			GLib.debug("Add node from ctor %s:%s", ctor.gparent.fqn(), ctor.name);
+			 
+			if (ctor.paramset == null) {
+				return;
+			}
+			
+			 
+			// assume we are calling this for a reason...
+			// get the first value params.
+			 
+				//gtk box failing
+			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
+			  
+		    foreach (var prop in ctor.paramset.params) {
+ 
+			    
+			    if (props.has_key(prop.name)) { // overlap (we assume it's the same..)
+			    	continue;
+		    	}
+		    	prop.propertyof = cname + "." + ctor.name; // as it's probably not filled in..
+			    
+			    GLib.debug("adding proprty from ctor : %s, %s, %s", cname , prop.name, prop.type);
+
+			     props.set(prop.name, prop);
+		    
+			    
+			     
+		    }
+		}
+		
+		
+		
 				// get rid of depricated from signal list..
 		public Gee.HashMap<string,GirObject>  filterSignals(Gee.HashMap<string,GirObject> props)
 		{
@@ -661,54 +730,34 @@ namespace Palete {
 			
 
 		}
-		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> node_defaults;
+		Gee.HashMap<string,Gee.HashMap<string,JsRender.NodeProp>> node_defaults;
 		Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>> child_defaults;
 		
 		public void init_node_defaults()
 		{
-			this.node_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
+			this.node_defaults = new Gee.HashMap<string,Gee.HashMap<string,JsRender.NodeProp>>();
 			
 			// this lot could probably be configured?
 			
 			// does this need to add properties to methods?
 			// these are fake methods.
-			this.add_node_default("Gtk.ListStore", "types", "/*\n fill in an array of { typeof(xxx), typeof(xxx) } \n */\n{\n\tttypeof(string)\n}");
-			this.add_node_default("Gtk.TreeStore", "types", "/*\n fill in an array of { typeof(xxx), typeof(xxx) } \n */\n{\n\tttypeof(string)\n}");
-	 
 			
 			
-			this.add_node_default_from_ctor("Gtk.Box", "new");
 			
-			
-			this.add_node_default("Gtk.AccelLabel", "label", "Label");
-			
-			
-			this.add_node_default_from_ctor("Gtk.AppChooserButton", "new");
-			this.add_node_default_from_ctor("Gtk.AppChooserWidget", "new");
-			
-			this.add_node_default_from_ctor("Gtk.AspectFrame", "new");
-			
-			this.add_node_default("Gtk.Button", "label", "Label");  // these are not necessary
-			this.add_node_default("Gtk.CheckButton", "label", "Label");
-			
+		   
 			this.add_node_default("Gtk.ComboBox", "has_entry", "false");
 			this.add_node_default("Gtk.Expander", "label", "Label"); 
-			this.add_node_default_from_ctor("Gtk.FileChooserButton", "new"); 
-			this.add_node_default_from_ctor("Gtk.FileChooserWidget", "new"); 
+			 
 			this.add_node_default("Gtk.Frame", "label", "Label"); 
 			
-			this.add_node_default("Gtk.Grid", "columns", "2"); // special properties
+			this.add_node_default("Gtk.Grid", "columns", "2"); // special properties (is special as it's not part of the standard?!)
 			//this.add_node_default("Gtk.Grid", "rows", "2");  << this is not really that important..
 		 
 			this.add_node_default("Gtk.HeaderBar", "title", "Window Title");
 			this.add_node_default("Gtk.Label", "label", "Label"); // althought the ctor asks for string.. - we can use label after ctor.
- 			this.add_node_default_from_ctor("Gtk.LinkButton", "with_label");  
- 			this.add_node_default_from_ctor("Gtk.Paned", "new");  
+ 		 
  			this.add_node_default("Gtk.Scale", "orientation");
- 			this.add_node_default_from_ctor("Gtk.ScaleButton", "new");   /// ctor ignore optional array of strings at end?
-			this.add_node_default_from_ctor("Gtk.Scrollbar", "new");
-			this.add_node_default_from_ctor("Gtk.Separator", "new");
-			this.add_node_default_from_ctor("Gtk.SpinButton", "new");
+ 			 
 			this.add_node_default("Gtk.ToggleButton", "label", "Label");  
 			this.add_node_default("Gtk.MenuItem", "label", "Label");
 			this.add_node_default("Gtk.CheckItem", "label", "Label");			
@@ -730,18 +779,71 @@ namespace Palete {
 			
 		}
 		
-		public void add_node_default_from_ctor(string cls, string method )
-		{
-			GLib.debug("Add node from ctor %s:%s", cls, method);
-			if (!this.node_defaults.has_key(cls)) {
-				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
-			}
-			
-			
-			var ar = this.getPropertiesFor(cls, JsRender.NodePropType.CTOR);
+		
+		
+		
+		private void add_node_default_from_ctor_all()
+    	{
+
+			var pr = (Project.Gtk) this.project;
 			
 			 
-			GLib.debug("ctor: %s", ar.get(method).asJSONString());
+			 
+			foreach(var key in   pr.gir_cache.keys) {
+				var gir = pr.gir_cache.get(key);
+			 	GLib.debug("building drop list for package %s", key);
+				this.add_node_default_from_ctor_package(gir.classes);
+			}    	
+		}
+
+		private void add_node_default_from_ctor_package(Gee.HashMap<string,GirObject> classes)
+		{
+			
+
+			
+			foreach(var cls in classes.values) {
+			 	GLib.debug("building drop list for class %s.%s", cls.package, cls.name);
+				this.add_node_default_from_ctor_classes(cls);
+			}
+		 
+		}
+		
+		private void add_node_default_from_ctor_classes(GirObject cls)
+		{
+			if (cls.ctors.has_key("new")) {
+				this.add_node_default_from_ctor(cls.ctors.get("new"));
+				return; // and no more.
+			}
+			// does not have new ?? needed?
+			foreach(var ctor in cls.ctors.values) {
+				this.add_node_default_from_ctor(ctor);
+				break;
+			
+			}
+		}
+		
+		
+		
+		
+		
+		
+		private void add_node_default_from_ctor(GirObject ctor )
+		{
+			var cname = ctor.gparent.fqn();
+			GLib.debug("Add node from ctor %s:%s", ctor.gparent.fqn(), ctor.name);
+			if (!this.node_defaults.has_key(cname)) {
+				this.node_defaults.set(cname, new Gee.HashMap<string,JsRender.NodeProp>());
+			}
+			
+			if (ctor.paramset == null) {
+				return;
+			}
+			
+			var defs=  this.node_defaults.get(cname);
+			
+			
+			 
+			GLib.debug("ctor: %s: %s", cname , ctor.name);
 			 
 			
 			// assume we are calling this for a reason...
@@ -749,6 +851,7 @@ namespace Palete {
 			 
 				//gtk box failing
 			//GLib.debug("No. of parmas %s %d", cls, ctor.params.size);
+<<<<<<< HEAD
 			var m = ar.get(method);
 			if (m != null) {
 			
@@ -780,35 +883,86 @@ namespace Palete {
 			    
 			    
 			    }
+=======
+			  
+		    foreach (var prop in ctor.paramset.params) {
+			    string[] opts;
+			    
+			    if (defs.has_key(prop.name)) {
+			    	continue;
+		    	}
+		    	var sub = this.getClass(prop.type);
+			    
+			   // GLib.debug("adding property from ctor : %s, %s, %s  [%s]", cname , prop.name, prop.type, sub == null ? "-" : sub.nodetype);
+ 
+			    if (sub != null) { // can't add child classes here...
+			    
+				    GLib.debug("skipping ctor argument proprty is an object");
+				    continue;
+			    }
+			    sub = this.getDelegate(prop.type);
+			     if (sub != null) { // can't add child classes here...
+			     	this.node_defaults.get(cname).set(prop.name, new JsRender.NodeProp.raw(prop.name, prop.type, sub.sig));
+			    	continue;
+			    }
+			    
+			    // FIXME!!! - what about functions
+			    
+			    var dval = "";
+			    switch (prop.type) {
+				    case "int":
+					    dval = "0";break;
+				    case "string": 
+					    dval = ""; break;
+				    // anything else?
+				    
+				    default: // enam? or bool?
+					    this.typeOptions(cname, prop.name, prop.type, out opts);
+					    dval = opts.length > 0 ? opts[0] : "";
+					    break;
+			    }
+			    
+			    this.node_defaults.get(cname).set(prop.name, new JsRender.NodeProp.prop( prop.name, prop.type, dval));
+		    
+			    
+			     
+>>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 		    }
 		}
 		
-		public void add_node_default(string cls, string propname, string val = "")
+		private void add_node_default(string cname, string propname, string val = "")
 		{
-			if (!this.node_defaults.has_key(cls)) {
-				this.node_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
+			if (!this.node_defaults.has_key(cname)) {
+				var add = new Gee.HashMap<string, JsRender.NodeProp>();
+				this.node_defaults.set(cname, add);
 			}
-			
-	  		var ar = getPropertiesFor( cls, JsRender.NodePropType.PROP);
+			// this recurses...
+			var cls = this.getClass(cname);
+			if (cls == null) {
+				GLib.debug("invalid class name %s", cname);
+				return;
+			}
+			var ar = cls.props;
 	  		
 	  		// liststore.columns - exists as a property but does not have a type (it's an array of typeofs()....
 			if (ar.has_key(propname) && ar.get(propname).type != "") { // must have  type (otherwise special)
 				//GLib.debug("Class %s has property %s from %s - adding normal property", cls, propname, ar.get(propname).asJSONString());
-				var add = ar.get(propname).toNodeProp(); // our nodes dont have default values.
+				var add = ar.get(propname).toNodeProp(this, cname); // our nodes dont have default values.
 				add.val = val;
-				this.node_defaults.get(cls).add(add);
-			} else {
-				//GLib.debug("Class %s has property %s - adding special property", cls, propname);			
-				this.node_defaults.get(cls).add(
-					new  JsRender.NodeProp.special( propname, val) 
-				);
+				this.node_defaults.get(cname).set(propname, add);
+				return;
+				
+			} 
+			//GLib.debug("Class %s has property %s - adding special property", cls, propname);			
+			this.node_defaults.get(cname).set(propname,
+				new  JsRender.NodeProp.special( propname, val) 
+			);
 
-			}
 			
 
 		
 		}
-		public void init_child_defaults()
+		private void init_child_defaults()
 		{
 			this.child_defaults = new Gee.HashMap<string,Gee.ArrayList<JsRender.NodeProp>>();
 			
@@ -823,7 +977,7 @@ namespace Palete {
 			
 			
 		}
-		public void add_child_default(string cls, string propname, string type, string val)
+		private void add_child_default(string cls, string propname, string type, string val)
 		{
 			if (!this.child_defaults.has_key(cls)) {
 				this.child_defaults.set(cls, new Gee.ArrayList<JsRender.NodeProp>());
@@ -833,6 +987,7 @@ namespace Palete {
 			this.child_defaults.get(cls).add( new JsRender.NodeProp.prop(propname, type, val));
 		
 		}
+<<<<<<< HEAD
 		
 		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
 		{   
@@ -888,6 +1043,8 @@ namespace Palete {
 			
 			
 		}
+=======
+>>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 		 
 		public Gee.ArrayList<string> packages(Project.Gtk gproject)
 		{
@@ -984,14 +1141,14 @@ namespace Palete {
 			 
 		}
 		
-		public override  List<SourceCompletionItem> suggestComplete(
+		public override  Gee.ArrayList<CompletionProposal> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
 				JsRender.NodeProp? xxxprop, // is this even used?
 				string complete_string
 		) { 
 			
-			var ret =  new List<SourceCompletionItem>();
+			var ret =  new Gee.ArrayList<CompletionProposal>();
 			// completion rules??
 			
 			// make sure data is loaded
@@ -1013,12 +1170,8 @@ namespace Palete {
 					var ss = s.slice(1,-1); 
 					if (s[0] == '`' && GLib.Regex.match_simple("^[a-z]+$", ss) &&
 						complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-						var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = ss;
-						sci.text = ss;
-						sci.info = "vala : " + ss;
-						ret.append(sci);
+						var sci = new CompletionProposal(ss,ss, "vala : " + ss);
+						ret.add(sci);
 					}
 				}
 				var miter = ((Project.Gtk)this.project).gir_cache.map_iterator();
@@ -1026,25 +1179,18 @@ namespace Palete {
 					var ss = miter.get_key();
 					
 					if (complete_string != ss && ss.index_of(complete_string,0) == 0 ) {
-					
-							var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = ss;
-						sci.text = ss;
-						sci.info = "vala namespace: " + ss;
-						ret.append(sci);
+						var sci = new  CompletionProposal(ss,ss, "vala namespace: " + ss);
+						ret.add(sci);
+						
 					}
 				}
 				 
 				
 				if (complete_string != "_this" && "_this".index_of(complete_string,0) == 0 ) { // should we ignore exact matches... ???
-					
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label = "_this - the top level element";
-					sci.text = "_this";
-					sci.info = "Reference to the container object instance of this file";
-					ret.append(sci);
+					var sci = new CompletionProposal("_this - the top level element","_this",  
+						"Reference to the container object instance of this file");
+					ret.add(sci);
+					 
 				}
 				// basic types..
 				
@@ -1149,13 +1295,10 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = prevbits + scls;
-						sci.text = prevbits + scls;
-						sci.info = scls;
-						
-						ret.append(sci);
+						var sci = new CompletionProposal(prevbits + scls,prevbits + scls,scls);
+						ret.add(sci);
+					 
+						 
 					}
 					// methods.... 
 					citer = cls.methods.map_iterator();
@@ -1166,12 +1309,10 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-							var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = prevbits + scls  + citer.get_value().sig;
-						sci.text = prevbits + scls;
-						sci.info = scls;
-						ret.append(sci);
+						
+						var sci = new CompletionProposal(prevbits + scls  + citer.get_value().sig,prevbits + scls,scls);
+						ret.add(sci);
+						 
 					}
 					
 					// enums.... 
@@ -1183,13 +1324,9 @@ namespace Palete {
 							continue;
 						}
 						// got a starting match..
-						
-							var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label = prevbits + scls  + citer.get_value().sig;
-						sci.text = prevbits + scls;
-						sci.info = scls;
-						ret.append(sci);
+						var sci = new CompletionProposal(prevbits + scls  + citer.get_value().sig,prevbits + scls,scls);
+						ret.add(sci);
+						 
 					}
 					
 					
@@ -1210,13 +1347,11 @@ namespace Palete {
 					}
 					// got a matching property...
 					// return type?
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")";
-					sci.text = prevbits + cprop.name + "(";
-					sci.info = cprop.doctxt;
-				
-					ret.append(sci);
+					var sci = new CompletionProposal( cprop.name + cprop.sig + " :  ("+ cprop.propertyof + ")",
+							prevbits + cprop.name + "(",cprop.doctxt);
+						ret.add(sci);
+						 
+					  
 				}
 				
 				// get the properties / methods and subclasses.. of cls..
@@ -1229,12 +1364,12 @@ namespace Palete {
 						continue;
 					}
 					// got a matching property...
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")";
-					sci.text = prevbits + cprop.name;
-					sci.info = cprop.doctxt;
-					ret.append(sci);
+					var sci = new CompletionProposal(cprop.name + " : " + cprop.type + " ("+ cprop.propertyof + ")",
+							prevbits + cprop.name,cprop.doctxt);
+						ret.add(sci);
+					
+					
+					 
 				}
 					 
 					
@@ -1254,14 +1389,250 @@ namespace Palete {
 			return ret;
 		}
 		
-		public override string[] getChildList(string in_rval)
-        {
-        	return this.original_getChildList(  in_rval);
-    	}
-		public override string[] getDropList(string rval)
+		
+		void add_classes_from_method(GirObject cls, string method , Gee.ArrayList<string> ret)
 		{
-			return this.default_getDropList(rval);
-		}	
+			
+			//GLib.debug("add_classes_from_method %s, %s", cls.fqn(), method);
+			// does class have this method?
+			if (!cls.methods.has_key(method)) {
+				GLib.debug("skip  %s does not have method %s", cls.fqn(), method);
+				return;
+			}
+			// add all the possible classes to ret based on first arguemnt?
+			var m = cls.methods.get(method);
+			
+			if (m.paramset.params.size < 1) {
+				GLib.debug("%s: %s does not have any params?", cls.fqn(), method);
+				return;
+			}
+				
+			
+			
+			var ty = m.paramset.params.get(0).type;
+		 	GLib.debug("add  %s   method %s arg0 = %s", cls.fqn(), method, ty);
+			this.addRealClasses(ret, ty);
+			// skip dupe // skip depricated
+			// skip not object // skip GLib.Object (base)
+			
+		}
+		
+		void addRealClasses(Gee.ArrayList<string>  ret, string cn, bool allow_root = false)
+		{
+			if (!cn.contains(".")) {
+				return;
+			}
+			
+			var w = this.getClass(cn);
+			if (w == null) {
+				return;
+			}
+			
+			if (w.nodetype != "Class" && w.nodetype != "Interface" ) {
+				return;
+			}
+			if (ret.contains(cn)) {
+				return;
+			}
+			
+			if (!allow_root && w.implements.contains("Gtk.Native")) { // removes popover + window
+				return;
+			}
+			
+			if (!w.is_deprecated &&  !w.is_abstract && w.nodetype == "Class" ) {
+    			ret.add(cn);
+			}
+			
+			
+			
+			
+    		foreach (var str in w.implementations) {
+    			var c = this.getClass(str);
+    			if (c.is_deprecated || c.is_abstract) {
+    				continue;
+				}
+				if (ret.contains(str)) {
+					continue;
+				}
+				if (!allow_root && c.implements.contains("Gtk.Native")) { // removes popover + window
+					continue;
+				}
+				
+				
+				
+				ret.add(str);
+    		}
+		}
+        		
+		
+		/**
+		  this is the real list of objects that appear in the add object pulldown
+		  @param in_rval "*top" || "Gtk.Widget"
+		  
+		*/
+		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_props)
+        {
+        	
+        	GLib.debug("getChildList %s %s", in_rval, with_props ? "(with props)" : "");
+        	
+        	//return this.original_getChildList(  in_rval, with_props);
+        	var pr = (Project.Gtk) this.project;
+        	if (with_props && pr.child_list_cache_props.has_key(in_rval)) {
+        		return pr.child_list_cache_props.get(in_rval);
+    		}
+        	if (!with_props && pr.child_list_cache.has_key(in_rval)) {
+				return pr.child_list_cache.get(in_rval);
+        	}
+        	
+        	// CACHE ?	
+        	var ret = new Gee.ArrayList<string>();
+        	
+        	if (in_rval == "*top") {
+        		// everythign that's not depricated and extends Gtk.Widget
+        		// even a gtk window and about dialog are widgets
+        		this.addRealClasses(ret, "Gtk.Widget", true);
+        		
+        		return ret;
+        		
+        	
+        	
+        	}
+        	var cls = this.getClass(in_rval);
+        	if (cls == null) {
+        		GLib.debug("could not get class for %s", in_rval);
+	    		return ret;
+			}
+        	
+        	// look through methods of in_rval
+        	// set_X << ignore
+        	// probably methods:
+        	this.add_classes_from_method(cls, "add_controller", ret);
+        	this.add_classes_from_method(cls, "add_shortcut", ret);
+        	this.add_classes_from_method(cls, "add_tick_callback", ret); // wtf does this do.
+        	this.add_classes_from_method(cls, "append", ret);
+        	this.add_classes_from_method(cls, "append_column", ret); // columnview column
+        	this.add_classes_from_method(cls, "append_item", ret); // GLib.Menu
+        	this.add_classes_from_method(cls, "attach", ret); // grid column        	
+        	this.add_classes_from_method(cls, "pack_start", ret); // headerbar (also has pack end?)
+        	
+        	  // add_controller 1st arge = ??
+        	  // add_menomic_label ??? << no ???
+        	  // add_shortcut? 
+        	 // add_tick_callback ?
+        	 // append << core one to add stuff..
+        	 
+        	if (!with_props) {
+        		
+	        	pr.child_list_cache.set(in_rval, ret);
+        		return ret; 
+        	}
+        	foreach(var pn in cls.props.values) {
+
+        		if (!pn.is_writable ) {
+	        		GLib.debug("Skip (not write)  %s : (%s) %s", cls.fqn(), pn.type , pn.name);
+        			continue;
+    			}
+    			// if (&& !pn.ctor_only << we add these?
+    			// are they really available ?
+        		GLib.debug("Add %s : (%s) %s", cls.fqn(), pn.type , pn.name);        		
+        		this.addRealClasses(ret, pn.type);
+    		}
+        	
+        	pr.child_list_cache_props.set(in_rval, ret);        	
+        	
+        	return ret;
+        	
+        	
+    	}
+    	
+    	public void buildChildListForDroppingProject()
+    	{
+
+			this.load();
+			var pr = (Project.Gtk) this.project;
+			
+			if (pr.dropList != null) {
+				GLib.debug("Drop list alreayd loaded");
+				return;
+			}
+			 
+			pr.dropList = new Gee.HashMap<string,Gee.ArrayList<string>>();
+			foreach(var key in   pr.gir_cache.keys) {
+				var gir = pr.gir_cache.get(key);
+			 	GLib.debug("building drop list for package %s", key);
+				this.buildChildListForDropping(key, gir.classes);
+			}    	
+		}
+
+		public void buildChildListForDropping(string pkg, Gee.HashMap<string,GirObject> classes)
+		{
+			
+
+			
+			foreach(var cls in classes.keys) {
+			 	GLib.debug("building drop list for class %s.%s", pkg, cls);
+				this.buildDropList(pkg + "." + cls, this.getChildList(pkg + "." + cls, true));
+			}
+			this.buildDropList("*top", this.getChildList("*top", true));
+		}
+		
+		 
+    	
+    	public void buildDropList(string parent, Gee.ArrayList<string> children) 
+    	{
+    		
+    		var pr = (Project.Gtk) this.project;
+    		foreach(var c in children) {
+    			if (!pr.dropList.has_key(c)) {
+
+    				pr.dropList.set(c, new Gee.ArrayList<string>());
+				}
+	    		var dl = pr.dropList.get(c);
+	    		if (dl.contains(parent)) {
+	    			continue;
+    			}
+    			GLib.debug("%s[] = %s", c, parent);
+    			dl.add(parent);
+    		}
+    	
+    	
+    	}
+    	
+		public override Gee.ArrayList<string> getDropList(string rval)
+		{
+			this.buildChildListForDroppingProject();
+			var pr = (Project.Gtk) this.project;
+			if (!pr.dropList.has_key(rval)) {
+			 	GLib.debug("returning empty drop list for  %s", rval);
+				return new Gee.ArrayList<string>();
+			}
+		 	GLib.debug("returning %d items in drop list  %s", pr.dropList.get(rval).size, rval);			
+			return  pr.dropList.get(rval);
+
+			
+		}
+		 
+		 
+		public override JsRender.Node fqnToNode(string fqn) 
+		{
+			this.load();	
+			var ret = new JsRender.Node();
+			ret.setFqn(fqn);
+			if (!this.node_defaults.has_key(fqn)) {
+				return ret;
+			}
+
+			foreach (var nv in this.node_defaults.get(fqn).values) {
+				ret.add_prop(nv.dupe());
+			}
+			return ret;
+			
+			
+			
+		}
+		
+		
+		
     }
 }
  

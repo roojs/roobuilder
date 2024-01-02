@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : true,
  "items" : [
   {
    "$ buttons" : "Gtk.ButtonsType.YES_NO",
@@ -9,12 +10,12 @@
    "$ xns" : "Gtk",
    "flags" : "Gtk.DialogFlags.MODAL",
    "listeners" : {
-    "delete_event" : [
+    "close_request" : [
      " (event) => {",
-     "    this.el.response(Gtk.ResponseType.CANCEL);",
+     "   this.el.response(Gtk.ResponseType.CANCEL);",
      "    this.el.hide();",
      "    return true;",
-     "    ",
+     " ",
      "}",
      ""
     ]
@@ -23,27 +24,21 @@
    "text" : "Test",
    "title" : "Please Confirm ",
    "xtype" : "MessageDialog",
-   "|   int show" : [
+   "| void showIt" : [
+    "  // caller needs to connect to the  response -  to get the result.",
+    "  ",
     "  (string title, string msg) {",
     "     //if (!this.el) { this.init(); } ",
     "     //this.success = success;",
     "     this.el.title = title;",
     "    this.el.text =  msg;",
-    "    this.el.show_all();",
-    "    var ret =   this.el.run();",
-    "    //print(\"ret got %d\", ret);",
-    "    this.el.hide();",
-    "    return ret;",
-    " ",
+    "    this.el.show();",
+    "   ",
+    "   ",
     "}",
     "  "
    ]
   }
  ],
- "modOrder" : "",
- "name" : "DialogConfirm",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogConfirm.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "DialogConfirm"
 }

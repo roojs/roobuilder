@@ -28,11 +28,6 @@ public class Xcls_StandardErrorDialog : Object
         this.el.use_markup = true;
 
         //listeners
-        this.el.delete_event.connect( (self, event)  => {
-            this.el.hide();
-            return true;
-         
-        });
         this.el.response.connect( (self, response_id) => {
            this.el.hide();
         });
@@ -44,6 +39,6 @@ public class Xcls_StandardErrorDialog : Object
         this.el.set_transient_for(win);
         this.el.modal = true;
         this.el.text =  msg;
-        this.el.show_all();
+        this.el.show();
     }
 }

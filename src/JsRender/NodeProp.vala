@@ -68,6 +68,24 @@ public enum JsRender.NodePropType
 		return PROP;
 	
 	}
+	public string to_name()
+	{
+		switch (this) {
+			case RAW: 		return "Raw Property (not quoted or escaped)";
+			case METHOD : 	return "User Defined Method";	
+			case SIGNAL : 	return  "Vala Signal"; // vala signal
+			case USER : 	return  "User Defined Property"; // user defined.
+			case SPECIAL : return  "Special Property (eg. prop / arg / ctor / init)"; // * prop| args | ctor | init
+	 		case LISTENER : return  "Listener / Signal Handler";  // always raw...
+	 		// not used
+	 		case NONE:  return "None??";
+			case CTOR:  return "Constructor?";
+			case PROP:  return "Gtk/Roo Property";
+			default: return "oops";
+		
+		}
+	}
+	
 	
 }
 
@@ -76,14 +94,119 @@ public enum JsRender.NodePropType
 public class JsRender.NodeProp : Object {
 
 
+	private string _name = "";
+	public string name { 
+		get {
+			return this._name;  
+		}
+		set {
+			if (this._name == value) {
+				return;
+			}
+			this._name = value;
 
-	public string name  = "";
-	public NodePropType ptype;  
-	public string rtype = ""; // return or type
-	public string val = "";
+			if (this.parent != null) {
+				// causes props/ listeners array to get updated.
+				this.parent.updated_count++;
+			}
+		}
+	 }  // can not be updated... ?? you have to remove / replace?
+	private NodePropType  _ptype;
+	 
+	public NodePropType  ptype {		
+		get {
+			return this._ptype;  
+		}
+		set {
+			if (this._ptype == value) {
+				return;
+			}
+			this._ptype = value;
+			if (this.parent != null) {
+				// causes props/ listeners array to get updated.
+				this.parent.updated_count++;
+			}
+		}
+	}
+	private string _rtype = "";
+	public string rtype { 
+		get { 
+			return this._rtype; 
+		}
+	 	set { 
+	 		if (this._rtype == value) {
+	 			return;
+ 			}
+	 		this._rtype = value; 
+			if (this.parent != null) {
+				this.parent.updated_count++;
+			}
+			this.to_display_name_prop = "";
+			this.to_tooltip_name_prop = "";
+			this.updated_count++;
+ 		}
+	 } // return or type
+	
+	private string _val = "";
+	public string val { 
+		get {
+			return this._val;
+		}
+		set {
+			if (this._val == value) {
+				return;
+			}
+			this._val = value;
+			
+			if (this.parent != null) {
+				this.parent.updated_count++;
+			}
+			this.val_short = "";
+			this.val_tooltip = "";			
+			this.updated_count++;
+			
+		}
+	}
+
+
+	private int _updated_count = 0;
+	public int updated_count { 
+		get {
+			return this._updated_count; 
+		}
+		set  {
+ 
+ 			// set things that are used to display values.
+ 			this.to_display_name_prop = "";
+			this.to_tooltip_name_prop = "";
+			this. _updated_count = value;
+		}
+ 
+	} // changes to this trigger updates on the tree..
+	
+	public string sort_name {
+		owned get {
+			if (this.add_node == null) {
+				return this.name;
+			}
+			return this.name + " " + this.add_node.fqn();
+		}
+		set {}
+	
+	}
+	
+	
+	public Node? parent; // the parent node.
+
+	
 	public int start_line = 0;
 	public int end_line = 0;
 	
+	// used by display list..
+	public GLib.ListStore  childstore; // WILL BE USED FOR properties with mutliple types 
+	public Node? add_node = null; // used when we list potentional nodes for properties in add list.
+
+	public string propertyof { get;   set; }
 	
 	
 	public NodeProp(string name, NodePropType ptype, string rtype, string val) {
@@ -91,6 +214,19 @@ public class JsRender.NodeProp : Object {
 		this.ptype = ptype;
 		this.rtype = rtype;
 		this.val = val;
+		this.childstore = new GLib.ListStore( typeof(NodeProp));
+	}
+	
+	
+	public bool equals(NodeProp p) 
+	{
+		return this.name == p.name 
+				&& 
+				this.ptype == p.ptype 
+				&& 
+				this.rtype == p.rtype 
+				&& 
+				this.val == p.val;
 	}
 	
 	public NodeProp dupe()
@@ -204,7 +340,47 @@ public class JsRender.NodeProp : Object {
 		return this.name;
 	
 	}
-	// how it appears on the property list. -- 
+	// how it appears on the property list. -
+	
+	
+ 
+ 	public string val_short { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			
+			 if (this._val.index_of("\n") < 0) {
+			 	return this._val;
+		 	 }
+		 	 var vals = this._val.split("\n");
+		 	 return vals[0]  + (vals.length > 1 ? " ..." : "");
+		} 
+	}
+ 
+    public string val_tooltip { 
+    	set {
+			// NOOp ??? should 
+		}
+		owned get {
+			
+			 	return "<tt>" + GLib.Markup.escape_text(this.val) + "</tt>";
+		} 
+    
+    
+    }
+    
+    public string to_display_name_prop { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			 return  this.to_display_name();
+		} 
+	}
+	
+	
+    
 	public string to_display_name()
 	{
 		
@@ -212,7 +388,7 @@ public class JsRender.NodeProp : Object {
 		// before we showed "@" for signals
 		switch(this.ptype) {
 			case NodePropType.PROP:
-				return  this.name;
+				return   GLib.Markup.escape_text(this.name);
 				
 			case NodePropType.RAW:
 				return "<span style=\"italic\">" + GLib.Markup.escape_text(this.name) + "</span>";
@@ -242,6 +418,42 @@ public class JsRender.NodeProp : Object {
 		return this.name;
  	}
  	
+ 	public string to_tooltip_name_prop { 
+		set {
+			// NOOp ??? should 
+		}
+		owned get {
+			 return  this.to_tooltip_name();
+		} 
+	}
+ 	
+	public string to_tooltip_name()
+	{
+		
+		//return (this.rtype.length > 0 ? this.rtype + " " : "") +  this.name;
+		// before we showed "@" for signals
+		switch(this.ptype) {
+			case NodePropType.PROP:
+			case NodePropType.SIGNAL:
+			case NodePropType.RAW:
+			case NodePropType.SPECIAL : 
+			case NodePropType.LISTENER :
+				return GLib.Markup.escape_text(this.name) ;
+				
+			case NodePropType.METHOD :
+			case NodePropType.USER : 			
+				return  GLib.Markup.escape_text(this.rtype)  + " " + GLib.Markup.escape_text( this.name) ;
+			 	
+			
+				
+	 		case NodePropType.NONE: // not used
+			case NodePropType.CTOR:
+				 return "";
+		
+				
+		}
+		return this.name;
+ 	}
  	// used ot sort the dispaly list of properties.
  	public string to_sort_key()
 	{
@@ -422,6 +634,46 @@ public class JsRender.NodeProp : Object {
 	{
 		this(name, NodePropType.SIGNAL, rtype, val);
 	}
+	public void appendChild(NodeProp child)
+	{
+		this.childstore.append(child);
+
+	}
+	
+	/**
+	could use enums.. but basically.
+	0 - > inline text editor
+	1  -> pulldown
+	2  -> full editor
+	*/
+	public bool useTextArea()
+	{
+	
+		var use_textarea = false;
+
+		//------------ things that require the text editor...
+		
+		if (this.ptype == NodePropType.LISTENER) {
+		    use_textarea = true;
+		}
+		if (this.ptype == NodePropType.METHOD) { 
+		    use_textarea = true;
+		}
+		    
+		if ( this.name == "init" && this.ptype == NodePropType.SPECIAL) {
+		    use_textarea = true;
+		}
+		if (this.val.length > 40 || this.val.index_of("\n") > -1) { // long value...
+		    use_textarea = true;
+		}
+		
+		return use_textarea;
+	
+	}
+	
+	
+	
 	
 }
+	
 	

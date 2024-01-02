@@ -17,6 +17,13 @@ namespace JsRender {
 	public  class Gtk : JsRender
 	{
 	   
+	   
+	   public Project.Gtk gproject { 
+		   	get {
+		   		return (Project.Gtk) this.project;
+	   		}
+	   		private set {}
+   		}
 
 	    public Gtk(Project.Project project, string path) {
 	    
@@ -101,13 +108,17 @@ namespace JsRender {
 			var obj = node.get_object ();
 		
 			this.name = obj.get_string_member("name");
-			this.parent = obj.get_string_member("parent");
-			this.title = obj.get_string_member("title");
+ 
 		
 			if (obj.has_member("build_module")) { // should check type really..
 				this.build_module = obj.get_string_member("build_module");
 			}
+		 	if (obj.has_member("gen_extended")) { // should check type really..
+				this.gen_extended = obj.get_boolean_member("gen_extended");
+			}
+			
 			 
+			
 			// load items[0] ??? into tree...
 			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
 			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
@@ -197,6 +208,33 @@ namespace JsRender {
 	        
 	        
 	    }
+	    
+	    
+	    public void updateCompileGroup(string old_target, string new_target) 
+	    {
+	    	if (old_target == new_target) {
+	    		return;
+    		}
+    		if (old_target != "") {
+    			if (this.gproject.compilegroups.has_key(old_target)) {
+    				var cg = this.gproject.compilegroups.get(old_target);
+    				if (cg.sources.contains(this.relpath)) {
+    					cg.sources.remove(this.relpath);
+					}
+				}
+			}
+	   	 if (new_target != "") {
+    			if (this.gproject.compilegroups.has_key(new_target)) {
+    				var cg = this.gproject.compilegroups.get(new_target);
+    				if (!cg.sources.contains(this.relpath)) {
+    					cg.sources.add(this.relpath);
+					}
+				}
+			}
+	    
+	    
+	    }
+	    
 		/*
 	    valaCompileCmd : function()
 	    {
@@ -221,8 +259,6 @@ namespace JsRender {
 	        
 	    },
 	    */
-	    
-   
 	     
 	    public override void  findTransStrings(Node? node )
 		{

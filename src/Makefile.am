@@ -3,11 +3,7 @@
  
 
 
-if HAVE_LIBVALA36
-roobuilder_LIBVALA = --pkg libvala-0.36
-roobuilder_CODEGEN = 
-
-endif
+ 
 
 
 if HAVE_LIBVALA56
@@ -111,21 +107,17 @@ if HAVE_GDA5
 roobuilder_GDA = --pkg libgda-5.0
 endif
 
-if HAVE_GDA4
-roobuilder_GDA = --pkg libgda-4.0
-endif
+ 
 
 
 # webkit
 
 
-if HAVE_WEBKIT4
-roobuilder_WEBKKIT =   --pkg  webkit2gtk-4.0  
+if HAVE_WEBKIT6
+roobuilder_WEBKKIT =   --pkg  webkitgtk-6.0  
 endif
 
-if HAVE_WEBKIT3
-roobuilder_WEBKKIT =   --pkg  webkit2gtk-3.0  
-endif
+
 
 # vte
  
@@ -138,7 +130,7 @@ endif
  
 # - not sure if needed....  
 
-AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFLAGS) $(JAVASCRIPTCOREGTK_CFLAGS) $(VTE_CFLAGS) \
+AM_CPPFLAGS =  $(ROOBUILDER_CFLAGS) $(WEBKIT_CFLAGS) $(GDA_CFLAGS) $(LIBVALA_CFLAGS) $(JAVASCRIPTCOREGTK_CFLAGS)  \
     -Wno-incompatible-pointer-types \
     -Wno-discarded-qualifiers \
     -Wno-deprecated-declarations \
@@ -149,25 +141,23 @@ bin_PROGRAMS = roobuilder
  
 roobuilder_PKGS = --pkg glib-2.0  \
 		--pkg gobject-2.0  \
-		--pkg  gtk+-3.0 \
-		--pkg  gtksourceview-3.0 \
+		--pkg  gtk4 \
+		--pkg  gtksourceview-5 \
 		--pkg  libxml-2.0 \
 		--pkg json-glib-1.0 \
 		--pkg gee-0.8 \
 		--pkg gobject-introspection-1.0 \
-		--pkg libsoup-2.4 \
- 		--pkg javascriptcore \
+		--pkg libsoup-3.0 \
 		--pkg roojspacker-1.4 \
-		--pkg gladeui-2.0 \
 		$(roobuilder_LIBVALA) \
 		$(roobuilder_GDA) \
 		$(roobuilder_WEBKKIT) \
 		$(roobuilder_JAVASCRIPTCOREGTK) \
-		$(roobuilder_VTE) \
 		--pkg posix
 
-
+#
 #		JsRender/Flutter.vala 
+# 		--pkg javascriptcore 
 
 BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/PlainFile.vala \
@@ -175,13 +165,14 @@ BUIDERJSRENDER = JsRender/Gtk.vala \
 		JsRender/JsRender.vala \
 		JsRender/Lang.vala \
 		JsRender/NodeProp.vala \
-		JsRender/NodeToGtk.vala \
 		JsRender/NodeToJs.vala \
 		JsRender/NodeToVala.vala \
 		JsRender/NodeToGlade.vala \
 		JsRender/Node.vala \
-		JsRender/Roo.vala
-
+		JsRender/Roo.vala \
+		JsRender/Dir.vala 
+		
+#		JsRender/NodeToGtk.vala 
 # Palete/Flutter.vala 
 
 BUIDERPALETE =  Palete/Gir.vala \
@@ -189,20 +180,26 @@ BUIDERPALETE =  Palete/Gir.vala \
 		Palete/VapiParser.vala \
 		Palete/Gtk.vala \
 		Palete/RooDatabase.vala \
-		c/jscore_object_call_as_function.c \
-		Palete/Javascript.vala \
 		Palete/Palete.vala \
 		Palete/Roo.vala \
 		Palete/ValaSource.vala \
 		Palete/ValaSourceCompiler.vala \
 		Palete/CompletionProvider.vala \
+		Palete/CompileError.vala \	
+		Palete/ValaCompileRequest.vala \
+		Palete/ValaCompileQueue.vala \
+		Palete/Javascript.vala \
 		$(roobuilder_CODEGEN)
-
+		
+# 		c/jscore_object_call_as_function.c \
 # Project/Flutter.vala 
+# Palete/Javascript.vala 
+		
 
 BUIDERPROJECT = Project/Gtk.vala \
 		Project/Project.vala \
 		Project/Roo.vala \
+		Project/VapiSelection.vala \
 		Project/GtkValaSettings.vala
 
 
@@ -214,7 +211,6 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/DialogTemplateSelect.vala \
 		Builder4/EditProject.vala \
 		Builder4/Editor.vala \
-		Builder4/PopoverFiles.vala \
 		Builder4/RooProjectSettings.vala \
 		Builder4/PopoverAddObject.vala \
 		Builder4/WindowLeftTree.vala \
@@ -226,12 +222,11 @@ BUIDERUI =  	Builder4/About.vala \
 		Builder4/MainWindow.vala \
 		Builder4/WindowState.vala \
 		Builder4/FakeServer.vala \
-		Builder4/DialogPluginWebkit.vala \
-		Builder4/DialogNewComponent.vala \
 		Builder4/PopoverFileDetails.vala \
 		Builder4/ValaCompileErrors.vala \
 		Builder4/ValaCompileResults.vala \
-		Builder4/PopoverProperty.vala
+		Builder4/PopoverProperty.vala \
+		Builder4/DialogFiles.vala
         
 roobuilder_SOURCES =  Application.vala \
 		Main.vala \
@@ -249,7 +244,7 @@ roobuilder_SOURCES =  Application.vala \
  
 roobuilder_VALAFLAGS =--target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roobuilder_PKGS)
 
-roobuilder_LDADD =  $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(VTE_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
+roobuilder_LDADD =  $(ROOBUILDER_LIBS)  $(LIBVALA_LIBS) $(GDA_LIBS) $(WEBKIT_LIBS) $(JAVASCRIPTCOREGTK_LIBS)
 
  
 

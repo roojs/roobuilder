@@ -20,9 +20,7 @@
  * 
 */
 
-
-
-
+ 
 public class JsRender.NodeToVala : Object {
 
 	Node node;
@@ -56,11 +54,21 @@ public class JsRender.NodeToVala : Object {
 		
 		this.node = node;
 		this.depth = depth;
-		this.inpad = string.nfill(depth > 0 ? 4 : 0, ' ');
+		if (file.name.contains(".")) { // namespaced..
+			this.inpad = string.nfill(depth > 0 ? 8 : 4, ' ');
+		} else {
+			this.inpad = string.nfill(depth > 0 ? 8 : 4, ' ');
+		}
 		this.pad = this.inpad + "    ";
 		this.ipad = this.inpad + "        ";
 		this.cls = node.xvala_cls;
 		this.xcls = node.xvala_xcls;
+		if (depth == 0 && this.xcls.contains(".")) {
+			var ar = this.xcls.split(".");
+			this.xcls = ar[ar.length-1];
+		}
+		
+		
 		this.ret = "";
 		this.cur_line = parent == null ? 0 : parent.cur_line;
 		
@@ -126,18 +134,18 @@ public class JsRender.NodeToVala : Object {
 		
 		} else if (!item.props.has_key("id")) { 
 			// use the file name..
-			item.xvala_xcls =  this.file.name;
+			item.xvala_xcls =  this.file.file_without_namespace;
 			// is id used?
-			item.xvala_id = this.file.name;
+			item.xvala_id = this.file.file_without_namespace;
 
 		}
 		// loop children..
 															   
-		if (item.items.size < 1) {
+		if (item.readItems().size < 1) {
 			return;
 		}
-		for(var i =0;i<item.items.size;i++) {
-			this.toValaName(item.items.get(i), depth+1);
+		for(var i =0;i<item.readItems().size;i++) {
+			this.toValaName(item.readItems().get(i), depth+1);
 		}
 					  
 	}
@@ -164,17 +172,18 @@ public class JsRender.NodeToVala : Object {
 		
 
 	}
-	
+	int child_count = 1; // used to number the children.
 	public string munge ( )
 	{
 		//return this.mungeToString(this.node);
-
+		this.child_count = 1;
 		this.ignore("pack");
 		this.ignore("init");
 		this.ignore("xns");
 		this.ignore("xtype");
 		this.ignore("id");
 		
+		this.namespaceHeader();
 		this.globalVars();
 		this.classHeader();
 		this.addSingleton();
@@ -183,7 +192,7 @@ public class JsRender.NodeToVala : Object {
 		this.addPlusProperties();
 		this.addValaCtor();
 		this.addUnderThis();
-		this.addWrappedCtor();
+		this.addWrappedCtor();  // var this.el = new XXXXX()
 
 		this.addInitMyVars();
 		this.addWrappedProperties();
@@ -195,6 +204,7 @@ public class JsRender.NodeToVala : Object {
 		this.addEndCtor();
 		this.addUserMethods();
 		this.iterChildren();
+		this.namespaceFooter();
 		
 		return this.ret;
 		 
@@ -219,7 +229,23 @@ public class JsRender.NodeToVala : Object {
 		this.ret +=   str + "\n";
 	}
 	 
+	public void namespaceHeader()
+	{
+		if (this.depth > 0 || this.file.file_namespace == "") {
+			return;
+		}
+		this.addLine("namespace " + this.file.file_namespace);
+		this.addLine("{");
 	
+	}
+	public void namespaceFooter()
+	{
+		if (this.depth > 0 || this.file.file_namespace == "") {
+			return;
+		}
+		this.addLine("}");
+	
+	}
 	public void globalVars()
 	{
 		if (this.depth > 0) {
@@ -242,7 +268,7 @@ public class JsRender.NodeToVala : Object {
 		
 		this.top.node.setNodeLine(this.cur_line, this.node);
 		
-		this.addLine(inpad + "public class " + this.xcls + " : Object");
+		this.addLine(this.inpad + "public class " + this.xcls + " : Object");
 		this.addLine(this.inpad + "{");
 		
 		 
@@ -380,10 +406,10 @@ public class JsRender.NodeToVala : Object {
 	// if id of child is '+' then it's a property of this..
 	void addPlusProperties()
 	{
-		if (this.node.items.size < 1) {
+		if (this.node.readItems().size < 1) {
 			return;
 		}
-		var iter = this.node.items.list_iterator();
+		var iter = this.node.readItems().list_iterator();
 		while (iter.next()) {
 			var ci = iter.get();
 				
@@ -465,6 +491,7 @@ public class JsRender.NodeToVala : Object {
 		}
 			 
 	}
+	 
 	/**
 	 * Initialize this.el to point to the wrapped element.
 	 * 
@@ -510,6 +537,7 @@ public class JsRender.NodeToVala : Object {
 		var args_str = "";
 		switch(this.node.fqn()) {
 		
+		// FIXME -- these are all GTK3 - can be removed when I get rid of them..
 			case "Gtk.ComboBox":
 				var is_entry = this.node.has("has_entry") && this.node.get_prop("has_entry").val.down() == "true";
 				if (!is_entry) { 
@@ -553,52 +581,76 @@ public class JsRender.NodeToVala : Object {
 		
 		if (default_ctor != null && default_ctor.paramset != null && default_ctor.paramset.params.size > 0) {
 			string[] args  = {};
-			var iter = default_ctor.paramset.params.list_iterator();
-			while (iter.next()) {
-				var n = iter.get().name;
-			    GLib.debug("building CTOR ARGS: %s, %s", n, iter.get().is_varargs ? "VARARGS": "");
+			foreach(var param in default_ctor.paramset.params) {
+				 
+				var n = param.name;
+			    GLib.debug("building CTOR ARGS: %s, %s", n, param.is_varargs ? "VARARGS": "");
 				if (n == "___") { // for some reason our varargs are converted to '___' ...
 					continue;
 				}
 				
-				if (!this.node.has(n)) {  // node does not have a value
+				if (this.node.has(n)) {  // node does not have a value
 					
-					 
-					if (iter.get().type.contains("int")) {
-						args += "0";
-						continue;
-					}
-					if (iter.get().type.contains("float")) {
-						args += "0f";
-						continue;
-					}
-					if (iter.get().type.contains("bool")) {
-						args += "true"; // always default to true?
-						continue;
-					}
-					// any other types???
+					this.ignoreWrapped(n);
+					this.ignore(n);
 					
-					args += "null";
+					var v = this.node.get(n);
+
+					if (param.type == "string") {
+						v = "\"" +  v.escape("") + "\"";
+					}
+					if (v == "TRUE" || v == "FALSE") {
+						v = v.down();
+					}
+
+					
+					args += v;
 					continue;
 				}
-				this.ignoreWrapped(n);
-				this.ignore(n);
-				
-				var v = this.node.get(n);
-
-				if (iter.get().type == "string") {
-					v = "\"" +  v.escape("") + "\"";
+				var propnode = this.node.findProp(n);
+				if (propnode != null) {
+					// assume it's ok..
+					
+					var pname = this.addPropSet(propnode, propnode.has("id") ? propnode.get_prop("id").val : "");
+					args += (pname + ".el") ;
+					if (!propnode.has("id")) {
+						this.addLine(this.ipad + pname +".ref();"); 
+					}
+					
+					
+					
+					this.ignoreWrapped(n);
+					
+					continue;
 				}
-				if (v == "TRUE" || v == "FALSE") {
-					v = v.down();
+					
+					 
+					
+					
+				 
+				if (param.type.contains("int")) {
+					args += "0";
+					continue;
 				}
-
+				if (param.type.contains("float")) {
+					args += "0f";
+					continue;
+				}
+				if (param.type.contains("bool")) {
+					args += "true"; // always default to true?
+					continue;
+				}
+				// any other types???
 				
-				args += v;
+				
+				
+				
+				args += "null";
+				 
+				
 
 			}
 			this.node.setLine(this.cur_line, "p", "* xtype");
-			
 			this.addLine(this.ipad + "this.el = new " + this.node.fqn() + "( "+ string.joinv(", ",args) + " );") ;
 			return;
 			
@@ -750,89 +802,116 @@ public class JsRender.NodeToVala : Object {
 	void addChildren()
 	{
 				//code
-		if (this.node.items.size < 1) {
+		if (this.node.readItems().size < 1) {
 			return;
 		}
 		this.pane_number = 0;
-		var cols = this.node.has("* columns") ? int.parse(this.node.get_prop("* columns").val) : 1;
+		var cols = this.node.has("* columns") ? int.max(1, int.parse(this.node.get_prop("* columns").val)) : 1;
 		var colpos = 0;
 		
-		var iter = this.node.items.list_iterator();
-		var i = -1;
-		while (iter.next()) {
-			i++;
-				
-			var child = iter.get();
+ 
+		 
+		foreach(var child in this.node.readItems()) {
+			
+			
+			 
 
 			if (child.xvala_id[0] == '*') {
 				continue; // skip generation of children?
 			}
-					
-			var xargs = "";
-			if (child.has("* args")) {
-				
-				var ar = child.get_prop("* args").val.split(",");
-				for (var ari = 0 ; ari < ar.length; ari++ ) {
-					var arg = ar[ari].split(" ");
-					xargs += "," + arg[arg.length -1];
-				}
+
+			// probably added in ctor..				
+			if (child.has("* prop") && this.shouldIgnoreWrapped(child.get_prop("* prop").val)) {
+				continue;
 			}
 			// create the element..
-			this.addLine(this.ipad + "var child_" + "%d".printf(i) + " = new " + child.xvala_xcls +
-					"( _this " + xargs + ");" );
 			
 			// this is only needed if it does not have an ID???
-			
+			var childname = this.addPropSet(child, child.has("id") ? child.get_prop("id").val : "") ; 
 			
 			if (child.has("* prop")) {
+			 
+			
 				// fixme special packing!??!?!
 				if (child.get_prop("* prop").val.contains("[]")) {
 					// currently these 'child props
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
 					// columns[] ?
+<<<<<<< HEAD
 					this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+=======
+					 
+					this.packChild(child, childname, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
+>>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 					continue;
 				}
-				// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
-				if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
-					this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
-				} else {
-					//this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
-				} 			
 				
+	
 				
-				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = child_" + "%d".printf(i) + ".el;");
+			  	this.ignoreWrapped(child.get_prop("* prop").val);
+				
+				this.addLine(ipad + "this.el." + child.get_prop("* prop").val + " = " + childname + ".el;");
 				continue;
 			} 
+			 if (!child.has("id")) {
+				this.addLine(this.ipad + childname +".ref();"); 
+			 } 
+			this.packChild(child, childname, cols, colpos);
 			
-			if (child.xvala_id.length < 1 || child.xvala_id[0] != '+') {
-				this.addLine(this.ipad + "child_" + "%d".printf(i) +".ref();"); // we need to reference increase unnamed children...
-			} else {
-				//this.addLine(this.ipad + "// no ref as xvala_id is %s".printf(child.xvala_id));
-			}
-			
-			
-			this.packChild(child, i, cols, colpos);
 			if (child.has("colspan")) {
 				colpos += int.parse(child.get_prop("colspan").val);
 			} else {
 				colpos += 1;
 			}
 					  
-			if (child.xvala_id[0] != '+') {
-			 	continue; // skip generation of children?
-						
-			}
+			
 			// this.{id - without the '+'} = the element...
-			this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " =  child_" + "%d".printf(i) +  ";");
+			 
 				  
 		}
 	}
 	
+	string addPropSet(Node child, string child_name) 
+	{
+	 
+		
+		var xargs = "";
+		if (child.has("* args")) {
+			
+			var ar = child.get_prop("* args").val.split(",");
+			for (var ari = 0 ; ari < ar.length; ari++ ) {
+				var arg = ar[ari].split(" ");
+				xargs += "," + arg[arg.length -1];
+			}
+		}
+		
+		var childname = "child_" + "%d".printf(this.child_count++);	
+		var prefix = "";
+	 	if (child_name == "") {
+	 		prefix = "var " + childname + " = ";
+ 		}
+	 	
+		this.addLine(this.ipad +  prefix + "new " + child.xvala_xcls + "( _this " + xargs + ");" );
+		 
+		// add a ref... (if 'id' is not set... to a '+' ?? what does that mean? - fake ids?
+		// remove '+' support as I cant remember what it does!!!
+		//if (child.xvala_id.length < 1 ) {
+		//	this.addLine(this.ipad + childname +".ref();"); // we need to reference increase unnamed children...
+		//} 			
+	    //if (child.xvala_id[0] == '+') {
+		// 	this.addLine(this.ipad + "this." + child.xvala_id.substring(1) + " = " + childname+  ";");
+					
+		//}
+		
+
+		return child_name == "" ? childname : ("_this." + child_name);	
+	}		
+			
+	
 
 	
-	void packChild(Node child, int i, int cols, int colpos, string propname= "")
+	void packChild(Node child, string childname, int cols, int colpos, string propname= "")
 	{
 		
 		GLib.debug("packChild %s=>%s", this.node.fqn(), child.fqn());
@@ -853,7 +932,7 @@ public class JsRender.NodeToVala : Object {
 			}
 			
 			var pack = packing[0];
-			this.addLine(this.ipad + "this.el." + pack.strip() + " (  child_" + "%d".printf(i) + ".el " +
+			this.addLine(this.ipad + "this.el." + pack.strip() + " ( " + childname + ".el " +
 				   (packing.length > 1 ? 
 						(", " + string.joinv(",", packing).substring(pack.length+1))
 					:
@@ -862,9 +941,19 @@ public class JsRender.NodeToVala : Object {
 			return;  
 		}
 		var childcls =  this.file.project.palete.getClass(child.fqn()); // very trusting..
+<<<<<<< HEAD
 		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
 		    this.addLine(this.ipad + "this.el.add_controller(  child_%d.el );".printf(i) );
+=======
+		if (childcls == null) {
+		  return;
+		}
+		// GTK4
+		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
+		if (is_event) {
+		    this.addLine(this.ipad + "this.el.add_controller(  %s.el );".printf(childname) );
+>>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 		    return;
 		}
 		
@@ -877,91 +966,113 @@ public class JsRender.NodeToVala : Object {
 			case "Gtk.Layout":
 				var x = child.has("x") ?  child.get_prop("x").val  : "0";
 				var y = child.has("y") ?  child.get_prop("y").val  : "0";
-				this.addLine(this.ipad + "this.el.put(  child_%d.el, %s, %s );".printf(i,x,y) );
+				this.addLine(this.ipad + "this.el.put( %s.el, %s, %s );".printf(childname,x,y) );
 				return;
 				
-			case "Gtk.Grid":
-				var x = "%d".printf(colpos % cols);
-				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
-				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
-				var h = "1";
-				this.addLine(this.ipad + "this.el.attach(  child_%d.el, %s, %s, %s, %s );".printf(i,x,y, w, h) );
-				return;
+			
 
 			case "Gtk.Stack":
 				var named = child.has("stack_name") ?  child.get_prop("stack_name").val.escape() : "";
 				var title = child.has("stack_title") ?  child.get_prop("stack_title").val.escape()  : "";
 				if (title.length > 0) {
-					this.addLine(this.ipad + "this.el.add_titled(  child_%d.el, \"%s\", \"%s\" );".printf(i,named,title));	
+					this.addLine(this.ipad + "this.el.add_titled( %s.el, \"%s\", \"%s\" );".printf(childname,named,title));	
 				} else {
-					this.addLine(this.ipad + "this.el.add_named(  child_%d.el, \"%s\" );".printf(i,named));
+					this.addLine(this.ipad + "this.el.add_named( %s.el, \"%s\" );".printf(childname,named));
 				}
 				return;
 				
 			case "Gtk.Notebook": // use label
 				var label = child.has("notebook_label") ?  child.get_prop("notebook_label").val.escape() : "";
-				this.addLine(this.ipad + "this.el.append_page( child_%d.el, new Gtk.Label(\"%s\"));".printf(i, label));	
+				this.addLine(this.ipad + "this.el.append_page( %s.el, new Gtk.Label(\"%s\"));".printf(childname, label));	
 				return;
 				
 			 
 			case "Gtk.TreeView": // adding TreeViewColumns
-				this.addLine(this.ipad + "this.el.append_column(  child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.append_column( " + childname + ".el );");
 				return;
 			
 			case "Gtk.TreeViewColumn": //adding Renderers - I think these are all proprerties of the renderer used...
 				if (child.has("markup_column") && int.parse(child.get_prop("markup_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"markup\", %s );".printf(i, child.get_prop("markup_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute( %s.el, \"markup\", %s );".printf(childname, child.get_prop("markup_column").val));
 				}
 				if (child.has("text_column") && int.parse(child.get_prop("text_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"text\", %s );".printf(i, child.get_prop("text_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"text\", %s );".printf(childname, child.get_prop("text_column").val));
 				}
 				if (child.has("pixbuf_column") && int.parse(child.get_prop("pixbuf_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"pixbuf\", %s );".printf(i, child.get_prop("pixbuf_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"pixbuf\", %s );".printf(childname, child.get_prop("pixbuf_column").val));
 				}
 				if (child.has("pixbuf_column") && int.parse(child.get_prop("active_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"active\", %s );".printf(i, child.get_prop("active_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"active\", %s );".printf(childname, child.get_prop("active_column").val));
 				}
 				if (child.has("background_column") && int.parse(child.get_prop("background_column").val) > -1) {
-					this.addLine(this.ipad + "this.el.add_attribute(  child_%d.el, \"background-rgba\", %s );".printf(i, child.get_prop("background_column").val));
+					this.addLine(this.ipad + "this.el.add_attribute(  %s.el, \"background-rgba\", %s );".printf(childname, child.get_prop("background_column").val));
 				}
-				this.addLine(this.ipad + "this.el.add(  child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.add( " + childname + ".el );");
 				// any more!?
 				return;
 			
 			case "Gtk.Dialog":
 				if (propname == "buttons[]") {
-					var resp_id = i;
+					var resp_id = int.parse(childname.replace("child_", ""));
 					if (child.has("* response_id")) { 
 						resp_id = int.parse(child.get_prop("* response_id").val);
 					}
-					this.addLine(this.ipad + "this.el.add_action_widget( child_%d.el, %d);".printf(i,resp_id) );
+					this.addLine(this.ipad + "this.el.add_action_widget( %s.el, %d);".printf(childname,resp_id) );
 					return;
 				}
 			
 			 	
-				this.addLine(this.ipad + "this.el.get_content_area().add( child_" + "%d".printf(i) + ".el );");
+				this.addLine(this.ipad + "this.el.get_content_area().add( " + childname + ".el );");
 				return;
 
+		
+				
+			
+	
+	
+	// known working with GTK4 !
+			case "Gtk.HeaderBar": // it could be end... - not sure how to hanle that other than overriding the pack method?
+				this.addLine(this.ipad + "this.el.pack_start( "+ childname + ".el );");
+				return;
+			
+			case "GLib.Menu":
+				this.addLine(this.ipad + "this.el.append_item( "+ childname + ".el );");
+				return;	
+			
 			case "Gtk.Paned":
 				this.pane_number++;
 				switch(this.pane_number) {
 					case 1:
+						this.addLine(this.ipad + "this.el.pack_start( %s.el );".printf(childname));
+						return;
 					case 2:					
-						this.addLine(this.ipad + "this.el.pack%d( child_%d".printf(this.pane_number,i) + ".el );");
+						this.addLine(this.ipad + "this.el.pack_end( %s.el );".printf(childname));
 						return;
 					default:
 						// do nothing
 						break;
 				}
 				return;
-				
-			case "Gtk.Menu":
-				this.addLine(this.ipad + "this.el.append(  child_" + "%d".printf(i) + ".el );");
+			
+			case "Gtk.ColumnView":
+				this.addLine(this.ipad + "this.el.append_column( "+ childname + ".el );");
+				return;
+			
+			case "Gtk.Grid":
+				var x = "%d".printf(colpos % cols);
+				var y = "%d".printf(( colpos - (colpos % cols) ) / cols);
+				var w = child.has("colspan") ? child.get_prop("colspan").val : "1";
+				var h = "1";
+				this.addLine(this.ipad + "this.el.attach( %s.el, %s, %s, %s, %s );".printf(childname ,x,y, w, h) );
 				return;
 			
 			default:
 			    // gtk4 uses append!!!! - gtk3 - uses add..
+<<<<<<< HEAD
 				this.addLine(this.ipad + "this.el.append(  child_" + "%d".printf(i) + ".el );");
+=======
+				this.addLine(this.ipad + "this.el.append( "+ childname + ".el );");
+>>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 				return;
 		
 		
@@ -1107,7 +1218,7 @@ public class JsRender.NodeToVala : Object {
 			this.addLine(this.inpad + "}");
 		}
 		
-		var iter = this.node.items.list_iterator();
+		var iter = this.node.readItems().list_iterator();
 		 
 		while (iter.next()) {
 			this.addMultiLine(this.mungeChild(iter.get()));
@@ -1147,5 +1258,3 @@ public class JsRender.NodeToVala : Object {
 	 
 	
 	
-
-

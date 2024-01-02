@@ -1,17 +1,11 @@
 {
  "build_module" : "builder",
+ "gen_extended" : true,
  "items" : [
   {
    "$ authors" : "{ \"Alan Knowles\" }",
-   "$ modal" : true,
    "$ xns" : "Gtk",
-   "listeners" : {
-    "response" : [
-     "(rid) => {",
-     "    this.el.hide();",
-     "}"
-    ]
-   },
+   "bool modal" : true,
    "program_name" : "roobuilder",
    "string copyright" : "LGPL",
    "string license" : "LGPL",
@@ -20,17 +14,12 @@
    "xtype" : "AboutDialog",
    "| void show" : [
     "(Gtk.Window parent) {",
+    "\tthis.el.application = parent.application;",
     "    this.el.set_transient_for(parent);",
-    "    this.el.modal = true;",
     "    this.el.show();",
     "}"
    ]
   }
  ],
- "modOrder" : "",
- "name" : "About",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/About.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "About"
 }

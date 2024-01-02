@@ -15,6 +15,8 @@ public class Xcls_DialogPluginWebkit : Object
     public Xcls_webview webview;
 
         // my vars (def)
+    public signal void complete (string result);
+    public string cls;
     public string tmpjs;
     public string result_json;
 
@@ -34,7 +36,7 @@ public class Xcls_DialogPluginWebkit : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.get_content_area().append (  child_0.el  );
         var child_1 = new Xcls_Button5( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 3 );
@@ -46,15 +48,53 @@ public class Xcls_DialogPluginWebkit : Object
         this.el.add_action_widget (  child_3.el , 1 );
 
         //listeners
-        this.el.delete_event.connect( (self, event) => {
-            this.el.hide();
-            return true; 
-            //test  
-        });
+        this.el.response.connect( (response_id) => {
+        
+         		 
+        		     if (response_id == 1) { // OK...
+        		         var loop = new MainLoop();
+        		         // run toBJS to get the data... (calls back into alert handler)
+        		            _this.result_json = "";
+        		             this.webview.el.run_javascript.begin("Editor." + this.cls + ".panel.toBJS();", null, (obj, res) => {
+        		                 try {
+        		                    this.webview.el.run_javascript.end(res);
+        		                } catch(Error e) {
+        		            
+        		                 }
+        		                 loop.quit();
+        		             });
+        		             loop.run();
+        		             _this.complete(_this.result_json);
+        		             
+        		         
+        		//           print("LOOP END?");
+        		         // try and get the resopse...
+        		        break;
+        		     }
+        		    if (response_id < 1) {
+        		        this.el.hide();
+        		         _this.complete("");
+        		    }
+        		    // keep showing...?
+         		});
     }
 
     // user defined functions
-    public string show (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
+    public bool has_plugin (string cls) {
+    
+         return GLib.FileUtils.test(
+                BuilderApplication.configDirectory() + "/resources/Editors/Editor." + cls + ".js",
+                GLib.FileTest.IS_REGULAR
+          );
+        
+    
+    
+    }
+    public void showIt // for result hook into complete
+     
+     (Gtk.Window ?parent, Project.Project project, string cls, string tbl) {// JsRender.Node node) {
+     
+     	this.cls = cls;
      
         if (parent  != null) {
             this.el.set_transient_for(parent);
@@ -62,11 +102,10 @@ public class Xcls_DialogPluginWebkit : Object
         }
         this.result_json = "";
          var  db = project.roo_database;
-         
-        
-         this.el.show_all();
-         var   ret = "";
-         while (true) {
+          
+         this.el.show();
+          
+     
         
             var runhtml = "<script type=\"text/javascript\">\n" ;
             string builderhtml;
@@ -145,56 +184,10 @@ public class Xcls_DialogPluginWebkit : Object
                 "xhttp://localhost/roobuilder/"
             );
         
-            
-        
-       
-             var response_id = this.el.run();
-            
-             if (response_id == 1) { // OK...
-                 var loop = new MainLoop();
-                 // run toBJS to get the data... (calls back into alert handler)
-                    _this.result_json = "";
-                     this.webview.el.run_javascript.begin("Editor." + cls + ".panel.toBJS();", null, (obj, res) => {
-                         try {
-                            this.webview.el.run_javascript.end(res);
-                        } catch(Error e) {
-                    
-                         }
-                         loop.quit();
-                     });
-                     loop.run();
-                     ret = _this.result_json;
-                     
-                 
-        //           print("LOOP END?");
-                 // try and get the resopse...
-                break;
-             }
-            if (response_id < 1) {
-                this.el.hide();
-                 return "";
-            }
-            // keep showing...?
-            continue;
-        }
-        
-        // now we save it..
-        this.el.hide();
-        
-        return ret;
+           
         
         
         
-    }
-    public bool has_plugin (string cls) {
-    
-         return GLib.FileUtils.test(
-                BuilderApplication.configDirectory() + "/resources/Editors/Editor." + cls + ".js",
-                GLib.FileTest.IS_REGULAR
-          );
-        
-    
-    
     }
     public class Xcls_Box2 : Object
     {
@@ -216,7 +209,7 @@ public class Xcls_DialogPluginWebkit : Object
             this.el.homogeneous = false;
             var child_0 = new Xcls_ScrolledWindow3( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,true,3 );
+            this.el.append (  child_0.el  );
         }
 
         // user defined functions
@@ -233,15 +226,16 @@ public class Xcls_DialogPluginWebkit : Object
         public Xcls_ScrolledWindow3(Xcls_DialogPluginWebkit _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.expand = true;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             var child_0 = new Xcls_webview( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.set_child (  child_0.el  );
 
             // init method
 

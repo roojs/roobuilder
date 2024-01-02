@@ -23,8 +23,10 @@ namespace JsRender {
 
  
         
-        public Roo(Project.Project project, string path) {
+        public Roo(Project.Roo project, string path) 
+        {
             aconstruct( project, path);
+ 
             this.xtype = "Roo";
              this.language = "js";
             
@@ -115,7 +117,9 @@ namespace JsRender {
 			this.permname = this.jsonHasOrEmpty(obj, "permname");
 			this.title = this.jsonHasOrEmpty(obj, "title");
 			this.modOrder = this.jsonHasOrEmpty(obj, "modOrder");
-
+			if (obj.has_member("gen_extended")) { // should check type really..
+				this.gen_extended = obj.get_boolean_member("gen_extended");
+			}
 			var bjs_version_str = this.jsonHasOrEmpty(obj, "bjs-version");
 			bjs_version_str = bjs_version_str == "" ? "1" : bjs_version_str;
 
@@ -191,13 +195,19 @@ namespace JsRender {
 		        
 		}
 
-	 
+	 public Project.Roo roo_project {
+	 	set {}  
+	 	get { 
+	 		return (Project.Roo) this.project;
+ 		}
+	}
+	 		
 
 	 
 	public override void saveHTML ( string html )
 	{
-		GLib.debug ("SAVEHTML %s\n",  this.project.runhtml);		 
-		if (this.project.runhtml == "") {
+		GLib.debug ("SAVEHTML %s\n",  this.roo_project.runhtml);		 
+		if (this.roo_project.runhtml == "") {
 			return;
 		}
 		 
@@ -249,8 +259,9 @@ namespace JsRender {
 			if (node.props.has_key("* xinclude")) {
 				ret.add(node.props.get("* xinclude").val);
 			}
-			for (var i =0; i < node.items.size; i++) {
-				this.findxincludes(node.items.get(i), ret);
+			var items = node.readItems();
+			for (var i =0; i < items.size; i++) {
+				this.findxincludes(items.get(i), ret);
 			}
 			return ret;
 				
@@ -304,7 +315,7 @@ namespace JsRender {
 				var chksum = GLib.Checksum.compute_for_string (ChecksumType.MD5, str.strip());
 				
 				if (this.doubleStringProps.index_of(kname) > -1) {
-					GLib.debug("flag=%s type=%s name=%s : %s\n", prop.ptype.to_string(),ktype,kname,str);
+					//GLib.debug("flag=%s type=%s name=%s : %s\n", prop.ptype.to_string(),ktype,kname,str);
 					this.transStrings.set(str,  chksum);
 					named.set("_" + kname, chksum);
 					continue;
@@ -325,10 +336,10 @@ namespace JsRender {
 				}
 			 }
 
-			
+			var items = node.readItems();
 			// iterate children..
-			for (var i =0; i < node.items.size; i++) {
-				this.findTransStrings(node.items.get(i) );
+			for (var i =0; i < items.size; i++) {
+				this.findTransStrings(items.get(i) );
 			}
 		
 				

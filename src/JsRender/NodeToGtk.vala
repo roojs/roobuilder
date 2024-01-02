@@ -157,11 +157,10 @@ public class JsRender.NodeToGtk : Object {
 
 		// pack paramenters
 
-		
-		if (parent != null && parent.get_type().is_a(typeof(global::Gtk.Container))) {
+		// GTK 4 does not appear to have any way to determine if a element is a container..
+		//if (parent != null && parent.get_type().is_a(typeof(global::Gtk.Container))) {
 			this.packContainerParams();
-		}
-		
+		//}//
 		var cls_gir =Palete.Gir.factoryFqn(this.project, this.node.fqn()); 
 		if (cls_gir == null) {
 			return null;
@@ -386,7 +385,8 @@ public class JsRender.NodeToGtk : Object {
 			print("skip menu pack - parent is not a widget");
 			return;
 		}
-		
+		return;
+		/*
 		var p = (global::Gtk.Menu)this.wrapped_object;
 		((global::Gtk.Widget)parent).button_press_event.connect((s, ev) => { 
 			p.set_screen(Gdk.Screen.get_default());
@@ -394,6 +394,7 @@ public class JsRender.NodeToGtk : Object {
 			p.popup_at_pointer(ev);
 			return true;
 		});
+		*/
 	}
 
 	public void packTreeStore()
@@ -491,9 +492,9 @@ public class JsRender.NodeToGtk : Object {
 					continue;
 				}
 				print ("pack:set_property ( %s , %s / %s)\n", k, pack[i].strip(), val.strdup_contents());
-	
-				((global::Gtk.Container)parent).child_set_property(
-					(global::Gtk.Widget)this.wrapped_object , k, val);
+				
+				//((global::Gtk.Container)parent).child_set_property(
+				//	(global::Gtk.Widget)this.wrapped_object , k, val);
 				 
 			}
 		

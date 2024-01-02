@@ -25,7 +25,7 @@ namespace Palete {
 		Gee.ArrayList<string> top_classes;
 		public static Gee.HashMap<string,GirObject>? classes_cache = null;
 		public static Gee.ArrayList<string>? top_classes_cache = null;
-		
+ 
         public Roo(Project.Project project)
         {
 
@@ -34,7 +34,10 @@ namespace Palete {
             aconstruct(project);
             this.name = "Roo";
 			this.top_classes =  new Gee.ArrayList<string>();
+ 
+			
 			this.load(); // ? initialize the roodata?
+
         }
 
 		Gee.HashMap<string,GirObject> propsFromJSONArray(string type, Json.Array ar, GirObject cls)
@@ -229,6 +232,8 @@ namespace Palete {
 			
 		}
 		
+		 
+		
 		public override Gee.HashMap<string,GirObject> getPropertiesFor(string ename, JsRender.NodePropType ptype)
 		{
 			//print("Loading for " + ename);
@@ -283,6 +288,7 @@ namespace Palete {
 			 
 		}
 		
+		// removes all the properties where the type contains '.' ?? << disabled now..
 		
 		public Gee.HashMap<string,GirObject>  filterProps(Gee.HashMap<string,GirObject> props)
 		{
@@ -302,10 +308,10 @@ namespace Palete {
 				}
 				
 				 
-				if (!val.type.contains(".")) {
+				 //if (!val.type.contains(".")) {
 					outprops.set(k,val);
 					continue;
-				}
+				 //}
 				
 				
 				 
@@ -335,12 +341,7 @@ namespace Palete {
 
 		}
 
-
-		public override void on_child_added(JsRender.Node? parent,JsRender.Node child)
-		{   
-
-			 return;
-		}
+ 
 		/*
 		 *  Pulldown options for type
 		 */
@@ -372,14 +373,14 @@ namespace Palete {
 			 return true;
 			 
 		}
-		public override  List<SourceCompletionItem> suggestComplete(
+		public override  Gee.ArrayList<CompletionProposal> suggestComplete(
 				JsRender.JsRender file,
 				JsRender.Node? node,
 				JsRender.NodeProp? xxprop,
 				string complete_string
 		) { 
 			
-			var ret =  new List<SourceCompletionItem>();
+			var ret =  new Gee.ArrayList<CompletionProposal>();
 			// completion rules??
 			
 			// Roo......
@@ -393,14 +394,10 @@ namespace Palete {
 				for(var i = 0; i <  JsRender.Lang.match_strings.size ; i++) {
 					var str = JsRender.Lang.match_strings.get(i);
 					if (complete_string != str && str.index_of(complete_string,0) == 0 ) { 
-						// should we ignore exact matches... ???
-						var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label =  str;
-						sci.text = str;
-						sci.info = "javascript: " + str;
-						
-						ret.append(sci);
+						// should we ignore exact matches... ???tr,str,
+						var sci = new CompletionProposal(str,str, "javascript: " + str);
+						ret.add(sci);
+						 
 					}
 					
 					
@@ -408,22 +405,16 @@ namespace Palete {
 				if (complete_string != "Roo" && "Roo".index_of(complete_string,0) == 0 ) { 
 					// should we ignore exact matches... ???
 				
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  "Roo - A Roo class";
-					sci.text = "Roo";
-					sci.info = "Roo Library";
-						
-					ret.append(sci);
+					var sci = new CompletionProposal("Roo - A Roo class","Roo", "Roo Library");
+					ret.add(sci);
+				 
 				}
 				if (complete_string != "_this" && "_this".index_of(complete_string,0) == 0 ) { 
 					// should we ignore exact matches... ???
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  "_this - Reference to the global pointer to the files main class instance";
-					sci.text = "_this";
-					sci.info = "Reference to the global pointer to the files main class instance";
-					ret.append(sci);
+					var sci = new CompletionProposal("_this - Reference to the global pointer to the files main class instance",
+						"_this", "Reference to the global pointer to the files main class instance");
+					ret.add(sci);
+					 
 				}
 				return ret;
 			}
@@ -518,12 +509,8 @@ namespace Palete {
 						}
 						
 						// got a starting match..
-						var sci = SourceCompletionItem.new2();
-						//string label, string text, Pixbuf? icon, string? info)
-						sci.label =  scls;
-						sci.text = scls;
-						sci.info = scls;
-						ret.append(sci);
+						var sci = new CompletionProposal(scls,scls,scls);
+						ret.add(sci);
 					}
 					return ret;
 				}
@@ -540,12 +527,12 @@ namespace Palete {
 					}
 					// got a matching property...
 					// return type?
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  prop.name + prop.sig + " :  ("+ prop.propertyof + ")";
-					sci.text = prevbits + prop.name + "(";
-					sci.info = prop.doctxt;
-					ret.append(sci);
+					
+					
+					var sci = new CompletionProposal(prop.name + prop.sig + " :  ("+ prop.propertyof + ")",
+						prevbits + prop.name + "(",prop.doctxt);
+					ret.add(sci);
+					 
 				}
 				
 				// get the properties / methods and subclasses.. of cls..
@@ -557,13 +544,11 @@ namespace Palete {
 					if (parts[i].length > 0 && prop.name.index_of(parts[i],0) != 0) {
 						continue;
 					}
-					// got a matching property...
-					var sci = SourceCompletionItem.new2();
-					//string label, string text, Pixbuf? icon, string? info)
-					sci.label =  prop.name + " : " + prop.type + " ("+ prop.propertyof + ")";
-					sci.text = prevbits + prop.name;
-					sci.info = prop.doctxt;
-					ret.append(sci);
+					// got a matching property..
+					var sci = new CompletionProposal(prop.name + prop.type + " :  ("+ prop.propertyof + ")",
+						prevbits + prop.name + "(",prop.doctxt);
+					ret.add(sci);
+				
 				}
 					 
 					
@@ -582,14 +567,16 @@ namespace Palete {
 			
 			return ret;
 		}
-		public override string[] getChildList(string in_rval)
+		
+		
+		public override Gee.ArrayList<string> getChildList(string in_rval, bool with_prop)
         {
         	if (this.top_classes.size < 1) {
         		this.load();
         	}
-        	
-        	
-        	string[] ret = {};
+        	 
+        	 
+        	 
         	var ar = this.top_classes;
         	if (in_rval != "*top") {
         		if (this.classes.has_key(in_rval)) {
@@ -600,20 +587,35 @@ namespace Palete {
     			}
         	}
         	
-        	foreach(var str in ar) {
-        		ret += str;
-    		} 
-        	GLib.debug("getChildList for %s returns %s", in_rval, string.joinv(", ", ret));
-        	return ret;	
+         	if (!with_prop) {
+         		var ret = new Gee.ArrayList<string>();
+         		foreach(var v in ar) {
+         			if (v.contains(":")) {
+         				continue;
+     				}
+     				ret.add(v);
+         		}
+         		return ret;
+         	}
+    		 
+        	GLib.debug("getChildList for %s returns %d items",  in_rval, ar.size);
+        	return ar;	
         	
         	//return this.original_getChildList(  in_rval);
     	}
-		public override string[] getDropList(string rval)
+    	
+
+    	
+		public override Gee.ArrayList<string> getDropList(string rval)
 		{
+			
+			if (this.dropCache.has_key(rval)) {
+				return this.dropCache.get(rval);
+			}
 			// we might be dragging  Roo.bootstrap.layout.Region:center
 			// in which case we need to lookup Roo.bootstrap.layout.Region
 			// and see if it's has can_drop_onto
-			string[] ret = {};
+			var  ret = new Gee.ArrayList<string>();
 			var cls = this.classes.get(rval);
 			// cls can be null.
 			if (cls == null && rval.contains(":")) {
@@ -627,15 +629,33 @@ namespace Palete {
 			
 			foreach(var str in cls.can_drop_onto) {
 
-				ret += str;
+				ret.add(str);
 			}
-			GLib.debug("getDropList for %s return[] %s", rval, string.joinv(", ", ret));
+			//GLib.debug("getDropList for %s return[] %s", rval, string.joinv(", ", ret));
+			this.dropCache.set(rval,ret);
 			return ret;
 				
 			
 			
 			//return this.default_getDropList(rval);
 		}	
+		public override JsRender.Node fqnToNode(string fqn) 
+		{
+			var ret = new JsRender.Node();
+			ret.setFqn(fqn);
+			// any default requred proerties?
+			
+			return ret;
+			
+			
+			
+		}
+		
     }
+    
+    
+		
+		
+    
 }
  

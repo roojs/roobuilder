@@ -56,6 +56,7 @@ namespace Palete {
 		public Gee.HashMap<string,GirObject> props;
 		public Gee.HashMap<string,GirObject> consts;
 		public Gee.HashMap<string,GirObject> signals;
+		public Gee.HashMap<string,GirObject> delegates;
 		
 		public Gee.ArrayList<string> optvalues; // used by Roo only..
 		
@@ -97,6 +98,7 @@ namespace Palete {
 			this.props      = new Gee.HashMap<string,GirObject>();
 			this.consts     = new Gee.HashMap<string,GirObject>();
 			this.signals    = new Gee.HashMap<string,GirObject>();
+			this.delegates    = new Gee.HashMap<string,GirObject>();
 			
 			this.optvalues = new Gee.ArrayList<string>();
 			this.can_drop_onto = new Gee.ArrayList<string>();
@@ -191,7 +193,7 @@ namespace Palete {
 		public string fqn() {
 			// not sure if fqn really is correct here...
 			// 
-			return this.nodetype == "Class" || this.nodetype=="Interface"
+			return this.nodetype.down() == "class" || this.nodetype.down() =="interface"
 					? this.name : (this.ns + this.name);
 		}
 		
@@ -360,7 +362,7 @@ namespace Palete {
 			}
 
 			ret = this.ctors.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
@@ -368,21 +370,21 @@ namespace Palete {
 			}
 
 			ret = this.methods.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
 				return ret.fetchByFqn(fqn.substring(bits[0].length+1));
 			}
 			ret = this.props.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
 				return ret.fetchByFqn(fqn.substring(bits[0].length+1));
 			}
 			ret = this.consts.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
@@ -390,12 +392,19 @@ namespace Palete {
 			}
 
 			ret = this.signals.get(bits[0]);			
-	       		if (ret != null) {
+       		if (ret != null) {
 				if (bits.length < 2) {
 					return ret;
 				}
 				return ret.fetchByFqn(fqn.substring(bits[0].length+1));
 			}
+			ret = this.delegates.get(bits[0]);			
+       		if (ret != null) {
+       			// delegates are only on namespaces...
+				 return ret;
+				 
+			}
+			
 			if (this.paramset == null) {
 				return null;
 			}
@@ -435,40 +444,148 @@ namespace Palete {
 		}
 		
 		
-		public JsRender.NodeProp toNodeProp()
+		public JsRender.NodeProp toNodeProp( Palete pal, string par_xtype)
 		{
 			
 			if (this.nodetype.down() == "signal") { // gtk is Signal, roo is signal??
 				// when we add properties, they are actually listeners attached to signals
-				var r =new JsRender.NodeProp.listener(this.name, this.sig);  
-				r.rtype = this.type;
+				// was a listener overrident?? why?
+				var r = new JsRender.NodeProp.listener(this.name,   this.sig);  
+				r.propertyof = this.propertyof;
+				if (this.name == "notify" && pal.name == "Gtk") {
+					this.nodePropAddNotify(r, par_xtype, pal);
+				}
+				
 				return r;
 			}
 			
 			// does not handle Enums... - no need to handle anything else.
 			var def = this.type.contains(".") ?  "" :  Gir.guessDefaultValueForType(this.type);
-			if (this.type.contains(".") ) {
-				return  new JsRender.NodeProp.raw(this.name, this.type, def);
+			if (this.type.contains(".") || this.type.contains("|") || this.type.contains("/")) {
+				var ret = new JsRender.NodeProp.prop(this.name, this.type, def);  ///< was raw..?
+				ret.propertyof = this.propertyof;
+				this.nodePropAddChildren(ret, this.type, pal);
+				if (ret.childstore.n_items == 1) {
+					var np = (JsRender.NodeProp) ret.childstore.get_item(0);
+					ret.add_node = np.add_node;
+					ret.childstore.remove_all();
+				}
+				
+				
+				return ret;
 			}
 			if (this.type.down() == "function"  ) {
-				return  new JsRender.NodeProp.raw(this.name, this.type, "function()\n{\n\n}");
+				var  r =   new JsRender.NodeProp.raw(this.name, this.type, "function()\n{\n\n}");
+				r.propertyof = this.propertyof;
+				return  r;			
 			}
 			if (this.type.down() == "array"  ) {
-				return  new JsRender.NodeProp.raw(this.name, this.type, "[\n\n]");
+				var  r = new JsRender.NodeProp.raw(this.name, this.type, "[\n\n]");
+				r.propertyof = this.propertyof;
+				return  r;			
 			}
 			if (this.type.down() == "object"  ) {
-				return  new JsRender.NodeProp.raw(this.name, this.type, "{\n\n}");
+				var  r =  new JsRender.NodeProp.raw(this.name, this.type, "{\n\n}");
+				r.propertyof = this.propertyof;
+				return  r;			
 			}
-			return  new JsRender.NodeProp.prop(this.name, this.type, def); // signature?
+			// plain property.. no children..
+			var r = new JsRender.NodeProp.prop(this.name, this.type, def); // signature?
+			r.propertyof = this.propertyof;
+			return  r;
+		
+		}
+		public void nodePropAddChildren(JsRender.NodeProp par, string str,  Palete pal)
+		{
+			
+			
+			if (str.contains("|")) {
+				var ar = str.split("|");
+				for(var i = 0; i < ar.length; i++) {
+					this.nodePropAddChildren(par, ar[i], pal);
+				}
+				return;
+			}
+			if (str.contains("/")) {
+				var ar = str.split("/");
+				for(var i = 0; i < ar.length; i++) {
+					this.nodePropAddChildren(par, ar[i], pal);
+				}
+				return;
+			}
+			var cls = pal.getClass(str);
+			// it's an object..
+			// if node does not have any children and the object type only has 1 type.. then we dont add anything...
+			// note all classes are expected to have '.' seperators
+			if (cls == null || !str.contains(".")) {
+				GLib.debug("nodepropaddchildren: check class %s - not found in classes", str);
+				par.childstore.append( new JsRender.NodeProp.prop(this.name, str,  Gir.guessDefaultValueForType(str)));
+				return;
+			}
+			GLib.debug("nodepropaddchildren: check class %s - type = %s", str, cls.nodetype);
+			if (cls.nodetype.down() == "enum") {			
+				var add = new JsRender.NodeProp.raw(this.name, str, "");
+				par.childstore.append( add);
+				return ;
+			}
+			
+			 
+			if (cls.nodetype.down() == "class") {
+				var add = new JsRender.NodeProp.raw(this.name, str, "");
+				// no propertyof ?
+				
+				
+				add.add_node = pal.fqnToNode(str);
+				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
+				par.childstore.append( add);
+			}
+
+
+			
+			if (cls.implementations.size < 1) {
+				GLib.debug("nodepropaddchildren: check class %s - no implementations", str);
+				return;
+			}
+			
+			GLib.debug("nodepropaddchildren: check class %s", str);			
+			
+			foreach (var cname in cls.implementations) {
+
+				
+				var subcls = pal.getClass(cname);
+				
+				GLib.debug("nodepropaddchildren: check class %s add %s type %s", str, cname, subcls == null ? "NO?" :subcls.nodetype );
+				if (subcls.nodetype.down() != "class") {
+
+					continue;
+				}
+			 
+				var add = new JsRender.NodeProp.raw(this.name, cname, "");
+				// no propertyof ?
+				add.add_node = pal.fqnToNode(cname);
+				add.add_node.add_prop(new JsRender.NodeProp.special("prop", this.name));
+				par.childstore.append( add);
+ 
+			
+			}
+			
+			
+			
+			
+		}
+		public void  nodePropAddNotify(JsRender.NodeProp par, string par_xtype, Palete pal)
+		{
+			var els = pal.getPropertiesFor( par_xtype, JsRender.NodePropType.PROP);
+			foreach(var elname in els.keys) {
+				 var add = new JsRender.NodeProp.listener("notify[\"" + elname  +"\"]" ,  "() => {\n }");  
+				add.propertyof = par.propertyof;
+				par.childstore.append( add);
+			}
 		
 		}
 		
-		/*
-		//public string fqtype() {
-		//	return Gir.fqtypeLookup(this.type, this.ns);
-			
-			/* return Gir.fqtypeLookup(this.type, this.ns); */
-		//}
+		
+		 
 	}
 	    
 }

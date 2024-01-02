@@ -2,66 +2,58 @@ namespace Project
 {
 // an object describing a build config (or generic ...)
 	public class GtkValaSettings : Object {
-		public string name;
-		public GtkValaSettings? parent;
+		public string name { get; set; }
+ 
 		
-		public string compile_flags; // generic to all.
-		public Gee.ArrayList<string> packages; // list of packages?? some might be genericly named?
+		Gtk project;
+
 		public Gee.ArrayList<string> sources; // list of files+dirs (relative to project)
-		public string target_bin;
+ 
 
 		public string execute_args;
 		
+		public bool loading_ui = true;
 		
-		public GtkValaSettings(string name) 
+		public GtkValaSettings(Gtk project, string name) 
 		{
 			this.name = name;
-			this.compile_flags = "";
-			this.target_bin = "";
-			this.packages = new Gee.ArrayList<string>();
+			this.project = project;
+ 
+		 
 			this.sources = new Gee.ArrayList<string>();
 			this.execute_args = "";
 				
 		}
-		
-		
-		public GtkValaSettings.from_json(Json.Object el) {
+		 
+		public GtkValaSettings.from_json(Gtk project, Json.Object el) {
 
-			
+			this.project = project;
 			this.name = el.get_string_member("name");
-			this.compile_flags = el.get_string_member("compile_flags");
+ 
 			if ( el.has_member("execute_args")) {
 				this.execute_args = el.get_string_member("execute_args");
 			} else {
 				this.execute_args = "";
-			}
-			this.target_bin = el.get_string_member("target_bin");
+		   }
 			// sources and packages.
-			this.sources = this.readArray(el.get_array_member("sources"));
-			this.packages = this.readArray(el.get_array_member("packages"));
+			this.sources = this.project.readArray(el.get_array_member("sources")) ;
+
 
 		}
 		
 		// why not array of strings?
 		
-		public Gee.ArrayList<string> readArray(Json.Array ar) 
-		{
-			var ret = new Gee.ArrayList<string>();
-			for(var i =0; i< ar.get_length(); i++) {
-				ret.add(ar.get_string_element(i));
-			}
-			return ret;
-		}
+		
 		
 		public Json.Object toJson()
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", this.name);
-			ret.set_string_member("compile_flags", this.compile_flags);
 			ret.set_string_member("execute_args", this.execute_args);
-			ret.set_string_member("target_bin", this.target_bin);
+ 
 			ret.set_array_member("sources", this.writeArray(this.sources));
-			ret.set_array_member("packages", this.writeArray(this.packages));
+			ret.set_array_member("hidden", this.writeArray(this.sources));
+
 			return ret;
 		}
 		public Json.Array writeArray(Gee.ArrayList<string> ar) {
@@ -77,7 +69,7 @@ namespace Project
 			GLib.debug("Checking %s has file %s", this.name, file.path);
 			var pr = (Gtk) file.project;
 			for(var i = 0; i < this.sources.size;i++) {
-				var path = pr.resolve_path( pr.resolve_path_combine_path( pr.firstPath(), this.sources.get(i)));
+				var path = pr.path + "/" +  this.sources.get(i);
 				GLib.debug("check %s", path);
 				
 				if (path == file.path) {

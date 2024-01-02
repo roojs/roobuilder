@@ -60,8 +60,9 @@
 		const OptionEntry[] options = {
 		
 			
-			{ "project", 0, 0, OptionArg.STRING, ref opt_compile_project, "Compile a project", null },
+			{ "project", 0, 0, OptionArg.STRING, ref opt_compile_project, "select a project", null },
 			{ "target", 0, 0, OptionArg.STRING, ref opt_compile_target, "Target to build", null },
+			{ "skip-linking", 0, 0, OptionArg.NONE, ref opt_skip_linking, "Do not link the files and make a binary - used to do syntax checking", null },
 			{ "skip-file", 0, 0, OptionArg.STRING, ref opt_compile_skip ,"For test compiles do not add this (usually used in conjunction with add-file ", null },
 			{ "add-file", 0, 0, OptionArg.STRING, ref opt_compile_add, "Add this file to compile list", null },
 			{ "output", 0, 0, OptionArg.STRING, ref opt_compile_output, "output binary file path", null },
@@ -77,6 +78,9 @@
             { "bjs-target", 0, 0, OptionArg.STRING, ref opt_bjs_compile_target, "convert bjs file to tareet  : vala / js", null },
             { "test", 0, 0, OptionArg.STRING, ref opt_test, "run a test use 'help' to list the available tests", null },
             
+            { "drop-list", 0, 0, OptionArg.STRING, ref opt_drop_list, "show droplist / children for a Gtk type (eg. Gtk.Widget)", null },
+            
+            
 			{ null }
 		};
 		public static string opt_compile_project;
@@ -85,9 +89,12 @@
 		public static string opt_compile_add;
 		public static string opt_compile_output;
         public static string opt_bjs_compile;
-
         public static string opt_bjs_compile_target;
-        public static string opt_test;        
+        public static string opt_test;  
+        public static string opt_drop_list;
+        
+        
+        public static bool opt_skip_linking = false;
 		public static bool opt_debug = false;
 		public static bool opt_list_projects = false;
 		public static bool opt_list_files = false;
@@ -102,7 +109,7 @@
 		    ROOTWIN
 		}
 
-
+/*
 		public const Gtk.TargetEntry[] targetList = {
 		    { "INTEGER",    0, Target.INT32 },
 		    { "STRING",     0, Target.STRING },
@@ -110,11 +117,12 @@
 		    { "text/plain", 0, Target.STRING },
 		    { "application/x-rootwindow-drop", 0, Target.ROOTWIN }
 		};
+		*/
 		public AppSettings settings = null;
 
 
 
-		public static Palete.ValaSource valasource;
+		public static Palete.ValaCompileQueue valacompilequeue;
 
 	
 		public BuilderApplication (  string[] args)
@@ -127,13 +135,21 @@
 				GLib.error("could not read /proc/self/exe");
 			}
 			GLib.debug("SELF = %s", _self);
+			var f =  File.new_for_path(_self);
+			var dt = "0000";
+			try {
+				var fi = f.query_info("*",0);
+				dt = fi.get_creation_date_time().to_unix().to_string();
+			} catch (GLib.Error e) {
+				// skip.
+			}
 			
 			Object(
-			       application_id: "org.roojs.app-builder",
+				application_id: "org.roojs.%s.ver%s".printf( GLib.Path.get_basename(_self),dt),
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 			BuilderApplication.windows = new	Gee.ArrayList<Xcls_MainWindow>();
-			BuilderApplication.valasource = new Palete.ValaSource();
+			BuilderApplication.valacompilequeue = new Palete.ValaCompileQueue();
 			
 			
 			configDirectory();
@@ -160,6 +176,7 @@
 	        Project.Project.loadAll();
 			this.listProjects();
 			var cur_project = this.compileProject();
+			this.dropList(cur_project);
 			this.listFiles(cur_project);
 			this.testBjs(cur_project);
 			this.compileBjs(cur_project);
@@ -169,9 +186,9 @@
 
 
 		
-		public static BuilderApplication  singleton(  string[] args)
+		public static BuilderApplication  singleton(  string[]? args)
 		{
-			if (application==null) {
+			if (application==null && args != null) {
 				application = new BuilderApplication(  args);
  
 			
@@ -213,9 +230,9 @@
 		
 			if (BuilderApplication.opt_debug  || BuilderApplication.opt_compile_project == null) {
 				GLib.Log.set_handler(null, 
-					GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING, 
+					GLib.LogLevelFlags.LEVEL_DEBUG | GLib.LogLevelFlags.LEVEL_WARNING | GLib.LogLevelFlags.LEVEL_CRITICAL, 
 					(dom, lvl, msg) => {
-					print("%s: %s\n", dom, msg);
+					print("%s: %s\n", (new DateTime.now_local()).format("%H:%M:%S.%f"), msg);
 				});
 			}
 			
@@ -237,16 +254,70 @@
 			 	return null;
 			 }
 			Project.Project cur_project = null;
-			cur_project = Project.Project.getProjectByHash( BuilderApplication.opt_compile_project);
+			cur_project = Project.Project.getProjectByPath( BuilderApplication.opt_compile_project);
+			
+
 			
 			if (cur_project == null) {
 				GLib.error("invalid project %s, use --list-projects to show project ids",BuilderApplication.opt_compile_project);
 			}
-			cur_project.scanDirs();
-				
+			cur_project.load();
+
+			
+
 			return cur_project;
 		
 		}
+		
+		void dropList(Project.Project? cur_project) {
+
+
+			if (cur_project== null || BuilderApplication.opt_drop_list == null) {
+				return;
+			}
+			
+			if (BuilderApplication.opt_compile_project == null) {
+				GLib.error("need a project %s, to use --drop-list",BuilderApplication.opt_compile_project);
+			 }
+			  if (cur_project.xtype != "Gtk") {
+				GLib.error("need a Gtk project %s, to use --drop-list",BuilderApplication.opt_compile_project);
+			 }
+			 var p = (Palete.Gtk) cur_project.palete;
+			
+			 print("\n\nDropList:\n%s", geeArrayToString(p.getDropList(BuilderApplication.opt_drop_list)));
+ 			 print("\n\nChildList:\n%s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, false)));
+ 			 print("\n\nChildList \n(with props): %s", geeArrayToString(p.getChildList(BuilderApplication.opt_drop_list, true))); 	
+ 			 
+ 			 
+ 			 print("\n\nPropsList: %s", this.girArrayToString(p.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.PROP)));
+  			 print("\n\nSignalList: %s", this.girArrayToString(p.getPropertiesFor( BuilderApplication.opt_drop_list, JsRender.NodePropType.LISTENER)));
+ 			 
+ 			 // ctor.
+ 			  print("\n\nCtor Values: %s", p.fqnToNode(BuilderApplication.opt_drop_list).toJsonString());
+ 			 
+ 			  GLib.Process.exit(Posix.EXIT_SUCCESS);
+			
+		}
+		string geeArrayToString(Gee.ArrayList<string> ar) 
+		{
+			var ret = "";
+			foreach(var n in ar) {
+			 	ret +=   n + "\n";
+		 	 }
+		 	 return ret;
+		}
+		string girArrayToString(Gee.HashMap<string,Palete.GirObject> map) 
+		{
+			var ret = "";
+			foreach(var gi in map.values) {
+				 ret += "%s %s (%s)\n".printf(gi.type, gi.name, gi.propertyof);
+			
+			}
+			return ret;
+		
+		}
+		 
+		
 		void listFiles(Project.Project? cur_project)
 		{
 			if (!BuilderApplication.opt_list_files) {
@@ -388,7 +459,7 @@
 				var prop = node == null ? null : node.lineToProp(i+1);
 				print("%d: %s   :  %s\n", 
 					i+1, 
-					node == null ? "......"  : (prop == null ? "????????" : prop),
+					node == null ? "......"  : (prop == null ? "????????" : prop.name),
 					str_ar[i]
 				);
 			}
@@ -461,6 +532,8 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 			GLib.Process.exit(Posix.EXIT_SUCCESS);		
 		}
 		
+		
+		// move to 'window colletction?
 		public static Gee.ArrayList<Xcls_MainWindow> windows;
 		
 		public static void addWindow(Xcls_MainWindow w)
@@ -477,8 +550,10 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		
 			BuilderApplication.windows.remove(w);
 			BuilderApplication.updateWindows();
-			BuilderApplication.valasource.compiled.disconnect(w.windowstate.showCompileResult);
-			BuilderApplication.valasource.compile_output.disconnect(w.windowstate.compile_results.addLine);			
+			 	
+			w.el.hide();
+			w.el.close();
+			w.el.destroy();
 			
 			
 		}
@@ -504,10 +579,40 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		    var w = new Xcls_MainWindow();
 			w.ref();
 			BuilderApplication.addWindow(w);
-			w.el.show_all();
 			w.initChildren();
-			w.windowstate. fileViewOpen(file, false, line);
+			w.windowstate.fileViewOpen(file, false, line);
+			w.el.present();
 			 
+		
+		}
+		
+		public static void updateCompileResults( )
+		{
+			foreach(var ww in BuilderApplication.windows) {
+				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
+					continue;
+				}
+				if (ww.windowstate.project.last_request == null) {
+					ww.updateErrors(null);					
+					return;
+				}
+				var req = ww.windowstate.project.last_request;
+				GLib.debug("checking errors editor for %s", ww.windowstate.file.targetName());
+				
+				if (req.errorByFile.has_key(ww.windowstate.file.targetName())) {
+					GLib.debug("calling update Error margs for  %s", ww.windowstate.file.targetName());		
+					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.targetName()));
+				} else {
+					ww.windowstate.code_editor_tab.updateErrorMarks(null);
+				 
+					GLib.debug("no errors in errrobyfile for  %s", ww.windowstate.file.targetName());		
+				}
+				
+				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
+				ww.updateErrors(req);
+				
+				
+			}
 		
 		}
 		

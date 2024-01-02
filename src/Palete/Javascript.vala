@@ -1,4 +1,4 @@
-
+/*
 extern JSCore.Value jscore_object_call_as_function(
 	JSCore.Context ctx,
 	JSCore.Object object, 
@@ -7,8 +7,8 @@ extern JSCore.Value jscore_object_call_as_function(
 	out JSCore.Value exception
 	);
 	
-
- 
+*/
+  
 
 namespace Palete {
 
@@ -22,7 +22,7 @@ namespace Palete {
 	
 	public class Javascript {
 
-
+/*
 		public static JSCore.Object class_constructor(
 				JSCore.Context ctx, 
 				JSCore.Object constructor,  
@@ -63,7 +63,7 @@ namespace Palete {
 
 		
 		public JSCore.GlobalContext js_global_context =  null;
-
+*/
 		public static Javascript singleton()
 		{
 			if (instance == null) {
@@ -73,57 +73,100 @@ namespace Palete {
 		}
 		public Javascript()
 		{
-			var goc = new JSCore.Class(  class_definition ); 
-			this.js_global_context = new JSCore.GlobalContext(goc);
+			//var goc = new JSCore.Class(  class_definition ); 
+			//this.js_global_context = new JSCore.GlobalContext(goc);
 			
 
 		}
-		public int validate(string code, out string res)
+		public Json.Object validate(string code, string fn)
 		{
-			JSCore.Value ex;
-			unowned   JSCore.GlobalContext ctx = this.js_global_context;
-			this.js_global_context.check_script_syntax(
-	                           new JSCore.String.with_utf8_c_string(code),
-	                           null,
-	                           0,
-	                           out ex
-           		);
-			res = ""; 
-			if (ex.is_null(ctx)) {
-				return -1;
+ 
+			JSC.Exception? ex;
+			var  ctx = new JSC.Context();
+			
+			//GLib.debug("Check syntax %s", code);
+			
+			ctx.check_syntax(code, code.length, JSC.CheckSyntaxMode.SCRIPT, "", 1 ,out ex);
+		 
+			if (ex == null) {
+				return this.compressionErrors(code, fn);
+			
+				 
 			}
-
-	 		
-			var exo = ex.to_object(ctx, null);
-			//unowned JSCore.PropertyNameArray property_names = exo.copy_property_names (ctx);
-
-			
-			
-			 
-			var js_string = new JSCore.String.with_utf8_c_string("line");
-			var line = exo.get_property(ctx, js_string, null).to_number(ctx,null);
+ 
+			//GLib.debug("got error %d %s", (int)ex.get_line_number() , ex.get_message() );
+ 
+			var ar  = new Json.Array();
+			ar.add_string_element(ex.get_message());
 			
 			
 
-			// see if we can convert exception string
-			char *c_string = new char[1024];
-			var err_string = ex.to_string_copy (ctx, null);
-			err_string.get_utf8_c_string (c_string, 1023);
-			res = (string)c_string;
-			//print ("Error on line %d\n%s\n", (int)line, res); 
+			var line_to_err =  new Json.Object();
+
+			line_to_err.set_array_member(ex.get_line_number().to_string(), ar);
+			var file_to_line =   new Json.Object();
+			file_to_line.set_object_member(fn, line_to_err);
+			var ret =  new Json.Object();
+			ret.set_object_member("ERR", file_to_line);
 			
-			var rline = (int) line;
-			
-			return rline > 0 ? rline -1 : 0;
-		
+			/*
+			var g = new Json.Generator ();
+
+			g.pretty = true;
+			g.indent = 2;
+			var n = new Json.Node(Json.NodeType.OBJECT);
+			n.set_object(ret);
+			g.set_root (n);
+
+			GLib.debug("got %s", g.to_data (null));
+			*/
+			return ret;
 			
 		}
+		
+		
+		public Json.Object   compressionErrors(string code , string fn)
+		{
+			// this uses the roojspacker code to try and compress the code.
+			// it should highlight errors before we actually push live the code.
+			
+			// standard error format:  file %s, line %s, Error 
+			 
+			
+			var cfg = new JSDOC.PackerRun();
+			cfg.opt_keep_whitespace = false;
+			cfg.opt_skip_scope = false;
+			cfg.opt_dump_tokens = false;			
+			cfg.opt_clean_cache = false;
+			
+
+		 	var p = new JSDOC.Packer(cfg);
+			 
+		  
+			p.packFile(code, fn,"");
+			//state.showCompileResult(p.result);
+			/*
+			var g = new Json.Generator ();
+
+			g.pretty = true;
+			g.indent = 2;
+			var n = new Json.Node(Json.NodeType.OBJECT);
+			n.set_object(p.result);
+			g.set_root (n);
+
+			GLib.debug("got %s", g.to_data (null));
+			*/
+ 			return p.result;
+			 
+		}
+		
 		/**
 		 * extension API concept..
 		 * javascript file.. loaded into jscore, 
 		 * then a method is called, with a string argument (json encoded)
 		 * 
 		 */
+		 /*
 		public string executeFile(string fname, string call_method, string js_data)
 				throws JavascriptError
 		{
@@ -176,7 +219,8 @@ namespace Palete {
 			if (!oval.is_function(ctx)) {
 				throw new JavascriptError.MISSING_METHOD ("Plugin: not a method  %s", call_method);
 			}
-			
+			throw new JavascriptError.MISSING_METHOD ("Plugin: not supported anymore");
+			return "";
 		 
 			 var res = jscore_object_call_as_function(
 				ctx, oval, othis, js_data, out exd
@@ -199,9 +243,9 @@ namespace Palete {
 			 return (string) buf;
 			
 		}
+		*/
 		 
-		
-
+		 
 	}
 	
 	

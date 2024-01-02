@@ -15,8 +15,8 @@ public class DialogSaveTemplate : Object
     public Xcls_name name;
 
         // my vars (def)
-    public Palete.Palete palete;
     public JsRender.Node data;
+    public Palete.Palete palete;
 
     // ctor
     public DialogSaveTemplate()
@@ -32,7 +32,7 @@ public class DialogSaveTemplate : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.get_content_area().append (  child_0.el  );
         var child_1 = new Xcls_Button5( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 0 );
@@ -41,53 +41,55 @@ public class DialogSaveTemplate : Object
         this.el.add_action_widget (  child_2.el , 1 );
 
         //listeners
-        this.el.delete_event.connect( (self, event) => {
-           this.el.response(Gtk.ResponseType.CANCEL);
+        this.el.close_request.connect( ( ) => {
+        
+        	 this.el.response(Gtk.ResponseType.CANCEL);
             return true;
          
+        });
+        this.el.response.connect( (response_id) => {
+        	 
+             if (response_id < 1) {
+        	    this.el.hide();
+        	     return;
+        	}
+        	
+        	var name = _this.name.el.get_text();
+        	if (name.length < 1) {
+        	    Xcls_StandardErrorDialog.singleton().show(
+        	         _this.el,
+        	        "You must give the template a name. "
+        	    );
+        	    return;
+        	}
+        	if (!Regex.match_simple ("^[A-Za-z][A-Za-z0-9. ]+$", name) )
+        	{
+        	    Xcls_StandardErrorDialog.singleton().show(
+        	         _this.el,
+        	        "Template Name must contain only letters dots"
+        	    );
+        	    return;
+        	}
+        	
+            this.palete.saveTemplate(name, data);
+            
+            // now we save it..
+            this.el.hide();
+                
+        
         });
     }
 
     // user defined functions
-    public    void show (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {
+    public void showIt (Gtk.Window parent, Palete.Palete palete, JsRender.Node data) {
      
-        
+        	this.palete = palete;
             this.el.set_transient_for(parent);
             this.el.modal = true;
             
               this.name.el.set_text("");
-            this.el.show_all();
-             var   name = "";
-            while (true) {
-                var response_id = this.el.run();
-                if (response_id < 1) {
-                    this.el.hide();
-                     return;
-                }
-                
-                name = _this.name.el.get_text();
-                if (name.length < 1) {
-                    Xcls_StandardErrorDialog.singleton().show(
-                         _this.el,
-                        "You must give the template a name. "
-                    );
-                    continue;
-                }
-                if (!Regex.match_simple ("^[A-Za-z][A-Za-z0-9. ]+$", name) )
-                {
-                    Xcls_StandardErrorDialog.singleton().show(
-                         _this.el,
-                        "Template Name must contain only letters dots"
-                    );
-                    continue;
-                }
-                break;
-            }
-            palete.saveTemplate(name, data);
-            
-            // now we save it..
-            this.el.hide();
-            
+            this.el.show();
+             
              
       
        
@@ -111,10 +113,10 @@ public class DialogSaveTemplate : Object
             // set gobject values
             var child_0 = new Xcls_Label3( _this );
             child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_name( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions

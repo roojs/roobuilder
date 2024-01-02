@@ -20,6 +20,11 @@ public class DialogTemplateSelect : Object
     public Xcls_dbmodel dbmodel;
 
         // my vars (def)
+    public Xcls_MainWindow window;
+    public signal void complete (JsRender.Node? node);
+    public Palete.Palete palete;
+    public Project.Project project;
+    public JsRender.Node node;
 
     // ctor
     public DialogTemplateSelect()
@@ -36,7 +41,7 @@ public class DialogTemplateSelect : Object
         this.el.modal = true;
         var child_0 = new Xcls_Box2( _this );
         child_0.ref();
-        this.el.get_content_area().add (  child_0.el  );
+        this.el.get_content_area().append (  child_0.el  );
         var child_1 = new Xcls_Button13( _this );
         child_1.ref();
         this.el.add_action_widget (  child_1.el , 0 );
@@ -48,93 +53,130 @@ public class DialogTemplateSelect : Object
         this.el.add_action_widget (  child_3.el , 2 );
 
         //listeners
-        this.el.delete_event.connect( (self, event)  =>{
-            this.el.hide();
-            return true;
+        this.el.close_request.connect( ( ) => {
+        
+         this.el.hide();
+            return true;;
+        });
+        this.el.response.connect( (res) => {
+        
+        	//var node = _this.node;
+        	//var project = _this.project;
+        	return;
+           /*
+           
+           if (this.plugin == null) {
+        	   this.plugin = new Xcls_DialogPluginWebkit();
+        	   this.plugin.complete.connect((json_str) => {
+          			print("json_str = %s\n", json_str);
+                    if (json_str.length < 1) {
+        				this.complete(_this.node);
+        				return; 
+                    }
+                    var pa = new Json.Parser();
+                    try {
+        
+        	        	pa.load_from_data(json_str);
+        			} catch(Error e) {
+        			     this.complete(node);
+                		return; // 1 = just add it..
+            		}
+            		var new_node = pa.get_root();
+        		
+        			if (new_node.get_node_type () != Json.NodeType.OBJECT) {
+        				 this.complete(node);
+        						return; 
+        			}
+        			var obj = new_node.get_object ();
+        
+        			var ret = new JsRender.Node();
+        
+        			ret.loadFromJson(obj, 1);
+        	 		this.complete(ret);
+          		});
+          
+           }
+           
+           
+             
+        	
+             this.el.hide();    
+            //var ix = _this.combo.el.get_active();
+            if (res < 1 ) {
+            	this.complete(null);
+                return; // 0 = cancel.
+            }
+            if (res < 2 ) {
+                this.complete(node);
+                return; // 1 = just add it..
+            }
+            
+            
+            // have they selected a table??
+            
+           Gtk.TreeIter iter; 
+            Value vfname;   
+            if (_this.dbcombo.el.get_active_iter (out iter)) {    
+                 this.dbmodel.el.get_value (iter, 0, out vfname);
+                 if (((string)vfname).length > 0 && this.plugin.has_plugin(node.fqn())) {
+                    this.plugin.showIt(this.window.el, project, node.fqn(), (string)vfname);
+                    return;
+                }
+        	    this.complete(node);
+                 return; // 1 = just add it..
+                 
+                
+            }
+        
+            if (!_this.combo.el.get_active_iter (out iter)) {
+        
+                 this.complete(node);
+                return; // 1 = just add it../ nothing selected...
+            }
+           
+            this.model.el.get_value (iter, 0, out vfname);
+            
+             this.complete(this.palete.loadTemplate((string)vfname));
+              return; // 1 = just add it..
+          
+        */
         });
     }
 
     // user defined functions
-    public JsRender.Node? show (Xcls_MainWindow mwindow, Palete.Palete pal, JsRender.Node node, Project.Project project) {
-        
-        this.el.show_all();
-        var opts = pal.listTemplates(node);
-        if (opts.length() < 1) {
-            this.el.hide();
-            return node;
-        }
-        this.el.set_attached_to( mwindow.el);
-        this.el.set_transient_for( mwindow.el);
-        
-        //opts.unshift({ path: '' , name :'Just add Element' });
-         _this.model.loadData(opts);
-         _this.combo.el.set_active(-1);
-         
-         
-         var db =  new Palete.RooDatabase.from_project(project);
-         _this.dbmodel.loadData(db.readTablesGee());
-         
-         var plug = mwindow.windowstate.webkit_plugin;
-         
-         _this.dbcombo.el.set_active(-1);
-         
-         
+    public void showIt (
+     	Xcls_MainWindow mwindow, 
+     	Palete.Palete pal, 
+    	 JsRender.Node node, 
+    	 Project.Project project
+     ) {
+    
+    	this.el.show();
+    
+    	var opts = pal.listTemplates(node);
+    	if (opts.length() < 1) {
+    	this.el.hide();
+    		this.complete(node);
+    		return; 
+    	}
+    	this.el.set_transient_for( mwindow.el);
+    
+    	//opts.unshift({ path: '' , name :'Just add Element' });
+    	_this.model.loadData(opts);
+    	_this.combo.el.set_active(-1);
+    
+    
+    	var db =  new Palete.RooDatabase.from_project((Project.Roo) project);
+    	_this.dbmodel.loadData(db.readTablesGee());
+    
+    
+    	_this.dbcombo.el.set_active(-1);
+    
+    	this.window = mwindow;
+    	this.palete = pal;
+    	this.node = node;
+    	this.project = project;
        
-        var res = this.el.run();
-        this.el.hide();    
-        //var ix = _this.combo.el.get_active();
-        if (res < 1 ) {
-            return null; // 0 = cancel.
-        }
-        if (res < 2 ) {
-            return node; // 1 = just add it..
-        }
-        
-        // have they selected a table??
-        
-       Gtk.TreeIter iter; 
-        Value vfname;   
-        if (_this.dbcombo.el.get_active_iter (out iter)) {    
-             this.dbmodel.el.get_value (iter, 0, out vfname);
-             if (((string)vfname).length > 0 && plug.has_plugin(node.fqn())) {
-                var json_str = plug.show(mwindow.el, project, node.fqn(), (string)vfname);
-                print("json_str = %s\n", json_str);
-                if (json_str.length < 1) {
-    
-                    return node;
-                }
-                var pa = new Json.Parser();
-                try {
-    
-    	        pa.load_from_data(json_str);
-    	    } catch(Error e) {
-    	        return node;
-    	    }
-    	    var new_node = pa.get_root();
-        
-    	    if (new_node.get_node_type () != Json.NodeType.OBJECT) {
-    		    return node;
-    	    }
-    	    var obj = new_node.get_object ();
-    
-    	    var ret = new JsRender.Node();
-    
-    	    ret.loadFromJson(obj, 1);
-    	    return ret;
-             }
-            
-        }
-    
-        if (!_this.combo.el.get_active_iter (out iter)) {
-    
-            return node; // nothing selected...
-        }
-       
-        this.model.el.get_value (iter, 0, out vfname);
-        
-        
-        return pal.loadTemplate((string)vfname);
-    
     }
     public class Xcls_Box2 : Object
     {
@@ -155,10 +197,10 @@ public class DialogTemplateSelect : Object
             // set gobject values
             var child_0 = new Xcls_Box3( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false,0 );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_Box8( _this );
             child_1.ref();
-            this.el.pack_start (  child_1.el , false,false,0 );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions
@@ -180,13 +222,14 @@ public class DialogTemplateSelect : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.margin = 3;
+            this.el.margin_end = 3;
+            this.el.margin_start = 3;
             var child_0 = new Xcls_Label4( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_combo( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions
@@ -281,7 +324,7 @@ public class DialogTemplateSelect : Object
         {
             _this = _owner;
             _this.model = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 
@@ -336,13 +379,14 @@ public class DialogTemplateSelect : Object
             // my vars (dec)
 
             // set gobject values
-            this.el.margin = 3;
+            this.el.margin_end = 3;
+            this.el.margin_start = 3;
             var child_0 = new Xcls_Label9( _this );
             child_0.ref();
-            this.el.pack_start (  child_0.el , false,false );
+            this.el.append (  child_0.el  );
             var child_1 = new Xcls_dbcombo( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append (  child_1.el  );
         }
 
         // user defined functions
@@ -437,7 +481,7 @@ public class DialogTemplateSelect : Object
         {
             _this = _owner;
             _this.dbmodel = this;
-            this.el = new Gtk.ListStore( 2, typeof(string),typeof(string) );
+            this.el = new Gtk.ListStore.newv(  { typeof(string),typeof(string) }  );
 
             // my vars (dec)
 

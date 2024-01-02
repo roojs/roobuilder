@@ -20,6 +20,12 @@
    should really store project data in the directory of the project?
    
    
+   // steps:
+   // List of projects - just an array of paths in .Builder/Projects.json
+   
+   // .roobuilder.jcfg  << hidden file with project details?
+   
+   
    
  
  * 
@@ -35,7 +41,7 @@ namespace Project {
 	}
 
 	// static array of all projects.
-	public Gee.HashMap<string,Project>  projects;
+	private Gee.ArrayList<Project>  projects;
 	
 	
 	
@@ -43,54 +49,52 @@ namespace Project {
 
 	
 	
-	public class Project : Object {
+	public abstract class Project : Object {
 		
 		public signal void on_changed (); 
 	
-		public string id;
-		public string fn = ""; // just a md5...
-		public string name = "";
-		public string runhtml = "";
-		public string base_template = "";
-		public string rootURL = "";
-		public string html_gen = "";
+		//public string id;
+		//public string fn = ""; // just a md5...
+		public string name  { 
+			private set {} 
+			owned get {
+				return GLib.Path.get_basename(path);
+			}
+			 
+		}
+				
 		
-		public Gee.HashMap<string,string> paths;
-		public Gee.HashMap<string,JsRender.JsRender> files ;
+		public string path = "";
+		private Gee.ArrayList<JsRender.JsRender> sub_paths;
+		
+		private Gee.HashMap<string,JsRender.JsRender> files ;  // contains full list of files.
 		//tree : false,
 		public  string xtype;
 		
-		public Json.Object json_project_data;
-		public Palete.RooDatabase roo_database;
+		//public Json.Object json_project_data;
+
 		public Palete.Palete palete;
 		 
-		bool is_scanned; 
-	   
+		private bool is_scanned = false; 
+		public  Gee.HashMap<string,Palete.GirObject> gir_cache = null; // used by Gir ??? is this used by Roo?
+		 public Palete.ValaCompileRequest last_request = null;
 		
-		public Project (string path) {
+		protected Project (string path) {
 			
-			this.name = GLib.Path.get_basename(path); // default..
-			this.json_project_data = new Json.Object();
+			 
+			//this.json_project_data = new Json.Object();
 			
 			this.is_scanned = false;
-			this.paths = new Gee.HashMap<string,string>();
+			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
 			this.files = new Gee.HashMap<string,JsRender.JsRender>();
 			//XObject.extend(this, cfg);
 			//this.files = { }; 
-			if (path.length > 0) {
-				this.paths.set(path, "dir");
-			}
-			// dummy roo database...
-			this.initRooDatabase();
-			
-			
-			
-		}
-		public void  initRooDatabase()
-		{
+			this.path = path;
 			 
-			this.roo_database = new Palete.RooDatabase.from_project(this);
+			
+			
 		}
+		 
 		
 		
 		
@@ -110,68 +114,122 @@ namespace Project {
 				}
 				return;
 			}
-			projects = new  Gee.HashMap<string,Project>();
+			projects = new  Gee.ArrayList<Project>();
 			  
-		   
+		    
+		    if (FileUtils.test(dirname + "/Projects.list", GLib.FileTest.IS_REGULAR)) {
+		    	loadProjectList();
+		    	projects_loaded = true;
+		    	return;
+	    	}
+	    	convertOldProjects(); // this saves..
+	    	foreach(var p in projects) {
+	    		p.save();
+    		}
+	 		projects_loaded = true;
+ 
+    	}
+    	 
+    	public static void remove(Project p) {
+    		projects.remove(p);
+    		saveProjectList();
+    	
+    	}
+    	
+    	public static void saveProjectList()
+    	{
+			var f = new Json.Object();
+			foreach(var p in projects) {
+				f.set_string_member(p.path, p.xtype);
+			}
+			
+			var  generator = new Json.Generator ();
+			var  root = new Json.Node(Json.NodeType.OBJECT);
+			root.init_object(f);
+			generator.set_root (root);
+			generator.pretty = true;
+			generator.indent = 4;
+
+ 			var data = generator.to_data (null);
+			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+    		GLib.debug("Write new Project list\n %s", data);
+    		//Posix.exit(0);
+    		
+    		try {
+				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
+				FileUtils.set_contents(dirname + "/Projects.list", data, data.length);  
+			} catch (GLib.Error e) {
+				GLib.error("failed  to save file %s", e.message);
+			}
+    		
+    	}
+    	
+    	
+    	
+    	public static void convertOldProjects()
+    	{
+    	
+			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+			var  dir = File.new_for_path(dirname);
 			try {
 				var file_enum = dir.enumerate_children(
 								GLib.FileAttribute.STANDARD_DISPLAY_NAME, 
 					GLib.FileQueryInfoFlags.NONE, 
 					null
 				);
-				
 				 
 				FileInfo next_file; 
 				while ((next_file = file_enum.next_file(null)) != null) {
-						var fn = next_file.get_display_name();
+					var fn = next_file.get_display_name();
 					if (!Regex.match_simple("\\.json$", fn)) {
 						continue;
 					}
-					factoryFromFile(dirname + "/" + fn);
+					Project.factoryFromFileOld(dirname + "/" + fn);
 				}       
 			} catch(GLib.Error e) {
 				GLib.warning("oops - something went wrong scanning the projects\n");
 			}
-			
+			GLib.debug("Loaded all old Projects - saving");
+			Project.saveProjectList();
 
 		}
 
 		public static Gee.ArrayList<Project> allProjectsByName()
 		{
-			var ret = new Gee.ArrayList<Project>();
-			var iter = projects.map_iterator();
-				while (iter.next()) {
-					ret.add(iter.get_value());
-				}
-			// fixme -- sort...
-			return ret;
+			
+			return projects;
 		
 		}
 		
-		public static Project? getProject(string name)
+		public static Project? getProjectByName(string name)
 		{
 			
-			var iter = projects.map_iterator();
-			while (iter.next()) {
-				if (iter.get_value().name == name) {
-					return iter.get_value();
+			foreach (var p in projects) {
+				if (p.name == name) {
+					return p;
 				}
-				
 			}
 			
 			return null;
 		
 		}
+		public static Project? getProjectByPath(string path)
+		{
+			
+			foreach (var p in projects) {
+				if (p.path == path) {
+					return p;
+				}
+			}
+			
+			return null;
 		
+		}
 		public static string listAllToString()
 		{
-			var all = new Gee.ArrayList<Project>();
+			var all = projects;
 
-			var fiter = projects.map_iterator();
-			
-			while(fiter.next()) {
-				all.add(fiter.get_value());
-			}
+			 
 			
 			all.sort((fa,fb) => {
 				return ((Project)fa).name.collate(((Project)fb).name);
@@ -181,10 +239,10 @@ namespace Project {
 			var iter = all.list_iterator();
 			var ret = "ID\tName\tDirectory\n";
 			while (iter.next()) {
-				ret += "%s\t%s\t%s\n".printf(
-						iter.get().fn,
+				ret += "%s\t%s\n".printf(
+						 
 						iter.get().name,
-						iter.get().firstPath()
+						iter.get().path
 						);
 			 
 				
@@ -195,24 +253,55 @@ namespace Project {
 		}
 		
 		
-		
-		public static Project? getProjectByHash(string fn)
+		public static void loadIntoStore(GLib.ListStore st)
 		{
-			
-			var iter = projects.map_iterator();
-			while (iter.next()) {
-				if (iter.get_value().fn == fn) {
-					return iter.get_value();
-				}
-				
+			st.remove_all();
+			foreach (var p in projects) {
+				st.append(p);
 			}
 			
-			return null;
+		}
+			
+		
+ 
+		
+		static void loadProjectList()
+		{
+		
+			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+			 
+			projects = new  Gee.ArrayList<Project>();
+			  
+		    var pa = new Json.Parser();
+			try { 
+				pa.load_from_file(dirname + "/Projects.list");  
+			} catch (GLib.Error e) {
+				GLib.error("could not load json file %s", e.message);
+			}
+			var node = pa.get_root();
+ 			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+				GLib.error( dirname + "/Projects.list - invalid format?");
+				 
+			}
+
+			
+			var obj = node.get_object ();
+			obj.foreach_member((sobj, key, val) => {
+				GLib.debug("read ProjectList %s: %s", key, val.get_string());
+				// facotry adds project!
+				try {
+					Project.factory(val.get_string(), key );
+				} catch (GLib.Error e ) {
+					GLib.debug("error createing project %s", e.message);
+				}
+				 
+			});
+			
 		
 		}
 		
 		// load project data from project file.
-		public static void   factoryFromFile(string jsonfile)
+		public static void   factoryFromFileOld(string jsonfile)
 		{
 			 
 			GLib.debug("parse %s", jsonfile);
@@ -244,6 +333,11 @@ namespace Project {
 				}
 					
 			});
+			
+			if (fpath.length < 0 || !FileUtils.test(fpath,FileTest.IS_DIR)) {
+				return;
+			}
+			
 			Project proj;
 			try {
 				proj = factory(xtype, fpath);
@@ -252,42 +346,25 @@ namespace Project {
 				return;
 			}
 
-			proj.json_project_data  = obj; // store the original object...
+			//proj.json_project_data  = obj; // store the original object...
 			
-			proj.fn =  Path.get_basename(jsonfile).split(".")[0];
+			//proj.fn =  Path.get_basename(jsonfile).split(".")[0];
 
+			proj.loadJson(obj);
 			// might not exist?
-
-			if (obj.has_member("runhtml")) {
-					proj.runhtml  = obj.get_string_member("runhtml"); 
-			}
-			// might not exist?
-			if (obj.has_member("base_template")) {
-					proj.base_template  = obj.get_string_member("base_template"); 
-			}
-			// might not exist?
-			if (obj.has_member("rootURL")) {
-					proj.rootURL  = obj.get_string_member("rootURL"); 
-			}
-			
-			if (obj.has_member("html_gen")) {
-					proj.html_gen  = obj.get_string_member("html_gen"); 
-			}
-			
+ 
 			proj.name = obj.get_string_member("name");
 
+			// used to load paths..
+			//proj.initSubDirectories();
+			
 			 
-			paths.foreach_member((sobj, key, val) => {
-				proj.paths.set(key, "dir");
-			});
-			proj.initRooDatabase();
+			//proj.initDatabase();
 			
-			GLib.debug("Add Project %s", proj.id);
+			GLib.debug("Add Project %s", proj.name);
 			
-			projects.set(proj.id,proj);
-			
-			
-			
+			projects.add(proj);
+			 
 			
 		}
 		
@@ -297,20 +374,24 @@ namespace Project {
 
 			// check to see if it's already loaded..
 
-			 
-			var iter = projects.map_iterator();
-			while (iter.next()) {
-				if (iter.get_value().hasPath( path)) {
-					return iter.get_value();
+			 foreach(var p in projects) {
+				  if (p.path == path) {
+					return p;
 				 }
 			}
 
-
+			
 			switch(xtype) {
 				case "Gtk":
-					return new Gtk(path);
+					var ret =  new Gtk(path);
+					projects.add(ret);
+					
+					return ret;
 				case "Roo":
-					return new Roo(path);
+					var ret = new Roo(path);
+					projects.add(ret);
+				 
+					return ret;
 				//case "Flutter":
 				//	return new Flutter(path);
 			}
@@ -319,94 +400,128 @@ namespace Project {
 		}
 		
 		
-		
-		 public static void  remove(Project project)
-		{
-			// delete the file..
-			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
-				 
-			FileUtils.unlink(dirname + "/" + project.fn + ".json");
-			projects.unset(project.id,null);
-			
-
-		}
-		 
+	 
 
 		public void save()
 		{
 				// fixme..
 			
-			if (this.fn.length < 1) {
-				// make the filename..
-				//var t = new DateTime.now_local ();
-				//TimeVal tv;
-				//t.to_timeval(out tv);
-				//var str = "%l:%l".printf(tv.tv_sec,tv.tv_usec);
-				var str = this.firstPath();
-				
-				this.fn = GLib.Checksum.compute_for_string(GLib.ChecksumType.MD5, str, str.length);
-			}
+		 
 
-			var dirname = GLib.Environment.get_home_dir() + "/.Builder";
-			var  s =  this.toJSON(false);
+			
+
+			//var dirname = GLib.Environment.get_home_dir() + "/.Builder";
+			
+			var  s =  this.toJSON();
+			GLib.debug("Save Project %s\n%s", this.name, s);
 			try {
-				FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
+				//FileUtils.set_contents(dirname + "/" + this.fn + ".json", s, s.length);  
+				FileUtils.set_contents(this.path + "/.roobuilder.jcfg", s, s.length);  
 			} catch (GLib.Error e) {
 				GLib.error("failed  to save file %s", e.message);
 			}
 			
 		}
 
+	
 		
-		public string toJSON(bool show_all)
+		
+		public string toJSON( )
 		{
 			
-			
-			this.json_project_data.set_string_member("name", this.name);
-			this.json_project_data.set_string_member("fn", this.fn);
-			this.json_project_data.set_string_member("xtype", this.xtype);
-			this.json_project_data.set_string_member("runhtml", this.runhtml);
-			this.json_project_data.set_string_member("rootURL", this.rootURL);
-			this.json_project_data.set_string_member("base_template", this.base_template);
-			this.json_project_data.set_string_member("rootURL", this.rootURL);
-			this.json_project_data.set_string_member("html_gen", this.html_gen);			
- 
-			var paths = new Json.Object(); 
-
-
-			var iter = this.paths.map_iterator();
-			while (iter.next()) {
-				paths.set_string_member(iter.get_key(), "path");
-			}
-			this.json_project_data.set_object_member("paths", paths);
-
-			
-			if (show_all) {
-				var files = new Json.Array();
-				
-				
-				var fiter = this.files.map_iterator();
-				while (fiter.next()) {
-					files.add_string_element (fiter.get_key());
-				}
-				this.json_project_data.set_array_member("files", files);
-				
-			}
-
+			var obj = new Json.Object();
+			obj.set_string_member("xtype", this.xtype);
+						
+ 		 	
+ 		 	this.saveJson(obj);
 		
 			var  generator = new Json.Generator ();
 			var  root = new Json.Node(Json.NodeType.OBJECT);
-			root.init_object(this.json_project_data);
+			root.init_object(obj);
 			generator.set_root (root);
-			if (show_all) {
+			//if (show_all) {
 				generator.pretty = true;
 				generator.indent = 4;
-			}
+			//}
 
 			return  generator.to_data (null);
 			  
 			  
 		}
+		
+		// used to check what type a project might be..
+		// for 'new'
+		public static string peekProjectType(string fn) 
+		{
+			var pa = new Json.Parser();
+			try { 
+				pa.load_from_file(fn);
+			} catch (GLib.Error e) {
+				GLib.debug("could not load json file %s", e.message);
+				return "";
+				
+			}
+			var node = pa.get_root();
+
+			if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+				GLib.debug("SKIP %s/.roobuilder.jcfg  - invalid format?",fn);
+				return "";
+			}
+			
+			var obj = node.get_object ();
+
+			var xtype =  obj.get_string_member("xtype");
+			return xtype == null ? "" : xtype;
+		
+		}
+		
+		
+		// this will do a full scan - should only be done on viewing project..
+		// not initial load.. - may take time.
+		
+		public   void   load()
+		{
+			if (this.is_scanned) {
+				return;
+			}
+ 			GLib.debug("load is_scanned = false");
+ 			
+			if (FileUtils.test(this.path + "/.roobuilder.jcfg", FileTest.EXISTS)) {
+				  
+				var pa = new Json.Parser();
+				try { 
+					pa.load_from_file(this.path + "/.roobuilder.jcfg");
+				} catch (GLib.Error e) {
+					GLib.error("could not load json file %s", e.message);
+				}
+				var node = pa.get_root();
+
+				
+				if (node == null || node.get_node_type () != Json.NodeType.OBJECT) {
+					GLib.debug("SKIP %s/.roobuilder.jcfg  - invalid format?",this.path);
+					return;
+				}
+				
+				var obj = node.get_object ();
+				 
+				this.loadJson(obj);
+			} 
+			// used to load paths..
+			this.sub_paths = new Gee.ArrayList<JsRender.JsRender>();
+			this.files = new Gee.HashMap<string,JsRender.JsRender>();
+			this.loadSubDirectories("", 0);
+			 
+			this.initDatabase();
+			this.is_scanned = true; // loaded.. dont need to do it again..
+			 GLib.debug("load is_scanned = true");
+			
+		}
+		
+		public abstract void loadJson(Json.Object obj); 
+		public abstract void saveJson(Json.Object obj);
+		
+		/*
+		
 		public string firstPath()
 		{
 			var iter = this.paths.map_iterator();
@@ -440,6 +555,7 @@ namespace Project {
 		  
 			return "";
 		}
+		*/
 
 		public Gee.ArrayList<JsRender.JsRender> sortedFiles()
 		{
@@ -461,7 +577,7 @@ namespace Project {
 	 
 	 	public string listAllFilesToString()
 		{
-			this.scanDirs();
+		 
 			var iter = this.sortedFiles().list_iterator();
 			var ret = "ID\tName\tDirectory\n";
 			while (iter.next()) {
@@ -483,67 +599,60 @@ namespace Project {
 	 
 		public JsRender.JsRender? getByName(string name)
 		{
-			
-			var fiter = files.map_iterator();
-			while(fiter.next()) {
-			 
-				var f = fiter.get_value();
-				
-				
-				GLib.debug ("Project.getByName: %s ?= %s" ,f.name , name);
+			foreach(var f in this.files.values) {
 				if (f.name == name) {
 					return f;
 				}
 			};
 			return null;
 		}
+		// this get's a file using the full path ( replaces vala->bjs if they exist);
+		
 		public JsRender.JsRender? getByPath(string path)
 		{
-			
-			var fiter = files.map_iterator();
-			while(fiter.next()) {
-			 
-				var f = fiter.get_value();
-				
-				
-				//GLib.debug ("Project.getByName: %s ?= %s" ,f.name , name);
-				if (f.path == path) {
+		 
+			// keys are not paths...
+			foreach(var f in this.files.values) {
+				if (f.path == path || f.targetName() == path) {
+					return f;
+				}
+			};
+			return null;			
+		}
+		
+		public JsRender.JsRender? getById(string id)
+		{
+			foreach(var f in this.files.values) {
+				if (f.id == id) {
 					return f;
 				}
 			};
 			return null;
 		}
-		
-		public JsRender.JsRender? getById(string id)
-		{
-			
-			var fiter = files.map_iterator();
-			while(fiter.next()) {
-			 
-				var f = fiter.get_value();
-				
-				
-				//console.log(f.id + '?=' + id);
-				if (f.id == id) {
-					return f;
-				}
-				};
-			return null;
-		}
-
-		public JsRender.JsRender newFile (string name)
+ 
+		// name should include extension.	
+		/*
+		public JsRender.JsRender? newFile (string xtype, string sub_dir, string name)
 		{
 			try {
-				var ret =  JsRender.JsRender.factory(this.xtype, 
+				var fp = this.path + (sub_dir.length > 0  ? "/" : "") + sub_dir;
+				if (this.files.has_key(fp + "/" +  name)) {
+					return null;
+				}
+				 
+				
+				var ret =  JsRender.JsRender.factory(xtype, 
 											 this, 
-											 this.firstPath() + "/" + name + ".bjs");
-				this.addFile(ret);
+											 fp + "/" +  name
+											 );
+				this.files.set(fp + "/" +  name , ret);
 				return ret;
 			} catch (JsRender.Error e) {
 				GLib.error("failed to create file %s", e.message);
 			}
 		}
-		
+		*/
+	 
 		public JsRender.JsRender loadFileOnly (string path)
 		{
 			var xt = this.xtype;
@@ -555,6 +664,7 @@ namespace Project {
 			
 		} 
 		
+		/* 
 		public JsRender.JsRender create(string filename)
 		{
 			var ret = this.loadFileOnly(filename);
@@ -563,69 +673,41 @@ namespace Project {
 			return ret;
 			
 		}
-			
-			 
-		public void addFile(JsRender.JsRender pfile) { // add a single file, and trigger changed.
-		
-		
-			this.files.set(pfile.path, pfile); // duplicate check?
-			this.on_changed();
-		}
-		
-		public void add(string path, string type)
-		{
-			this.paths.set(path,type);
-			//Seed.print(" type is '" + type + "'");
-			if (type == "dir") {
-				this.scanDir(path);
-			//    console.dump(this.files);
-			}
-			if (type == "file" ) {
-			
-				this.files.set(path,this.loadFileOnly( path ));
-			}
-			this.on_changed();
-			
-		}
-		 
-		public void  scanDirs() // cached version
-		{
-			// -- why cache this - is it that slow?
-			//if (this.is_scanned) {
-			//	return;
-			//}
-			this.scanDirsForce();
-			//console.dump(this.files);
-			
-		}
-		 
-		public void  scanDirsForce()
-		{
-			this.is_scanned = true;	 
-			var iter = this.paths.map_iterator();
-			while (iter.next()) {
-				//print("path: " + iter.get_key() + " : " + iter.get_value() +"\n");
-				if (iter.get_value() != "dir") {
-					continue;
-				}
-				this.scanDir(iter.get_key());
-			}
-			//console.dump(this.files);
-			
-		}
-			// list files.
-		public void scanDir(string dir, int dp =0 ) 
+		*/
+		private void loadSubDirectories(string subdir, int dp) 
 		{
 			//dp = dp || 0;
 			//print("Project.Base: Running scandir on " + dir +"\n");
 			if (dp > 5) { // no more than 5 deep?
 				return;
 			}
+			if (subdir == "build") { // cmake!
+				return;
+			}
+			
+			if (subdir == "autom4te.cache") { // automake?
+				return;
+			}
+			if (subdir == "debian") { // debian!?
+				return;
+			}
+
+			
+			var dir = this.path + (subdir.length > 0 ? "/" : "") + subdir;
+			
+			
+			GLib.debug("Project %s Scan Dir: %s", this.name, dir);
+			var jsDir = new JsRender.Dir(this, dir);
+			this.sub_paths.add(jsDir); // might be ''...
+			
+			
 			// this should be done async -- but since we are getting the proto up ...
 			var other_files = new Gee.ArrayList<string>();
 			var bjs_files = new Gee.ArrayList<string>();
+			var vala_files = new Gee.ArrayList<string>();
+			var subs = new Gee.ArrayList<string>();
 			
-			var subs = new GLib.List<string>();;            
+			
 			var f = File.new_for_path(dir);
 			try {
 				var file_enum = f.enumerate_children(GLib.FileAttribute.STANDARD_DISPLAY_NAME, GLib.FileQueryInfoFlags.NONE, null);
@@ -643,10 +725,23 @@ namespace Project {
 					}
 					
 					if (FileUtils.test(dir  + "/" + fn, GLib.FileTest.IS_DIR)) {
-						subs.append(dir  + "/" + fn);
+						subs.add(dir  + "/" + fn);
+						continue;
+					}
+					if (Regex.match_simple("\\.(o|cache|gif|jpg|png|gif|out|stamp|~)$", fn)) { // object..
+						continue;
+					}
+					if (Regex.match_simple("^(config1.builder|a.out|stamp-h1|depcomp|config.log|config.status)$", fn)) { // object..
 						continue;
 					}
 					
+					
+					if (Regex.match_simple("\\.vala$", fn)) {
+						vala_files.add(fn);
+						other_files.add(fn);
+						//print("no a bjs\n");
+						continue;
+					}
 					if (!Regex.match_simple("\\.bjs$", fn)) {
 						other_files.add(fn);
 						//print("no a bjs\n");
@@ -657,6 +752,8 @@ namespace Project {
 					var xt = this.xtype;
 					var el = JsRender.JsRender.factory(xt,this, dir + "/" + fn);
 					this.files.set( dir + "/" + fn, el);
+					jsDir.childfiles.append(el);
+					
 					// parent ?? 
 					
 					 
@@ -665,36 +762,231 @@ namespace Project {
 				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
 			} catch (GLib.Error e) {
 				GLib.warning("Project::scanDirs failed : " + e.message + "\n");
-			}
+			} 
+
 			foreach(var fn in other_files) {
 				var dpos = fn.last_index_of(".");
 				var without_ext = fn.substring(0, dpos);
-				if (bjs_files.contains(without_ext)) {
+				if (bjs_files.contains(without_ext)) {  // will remove vala and c.
 					continue;
 				}
-				GLib.debug("Could have added %s/%s", dir, fn);
-				//var el = JsRender.JsRender.factory("plain",this, dir + "/" + fn);
-				//this.files.set( dir + "/" + fn, el);
+				// c with a vala - skip
+				if (Regex.match_simple("\\.c$", fn) && vala_files.contains(without_ext + ".vala")) {
+					continue;
+				}
+				// Makefile (only allow am files at present.
+				if (without_ext == "Makefile") {
+					if (!Regex.match_simple("\\.am$", fn)) {
+						continue;
+					}
+				}
+				if (without_ext == "configure") {
+					if (!Regex.match_simple("\\.ac$", fn)) {
+						continue;
+					}
+				}
+				
+				
+				
+				
+				
+				//GLib.debug("Could have added %s/%s", dir, fn);
+				try {
+					 var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
+					 this.files.set( dir + "/" + fn, el);
+					jsDir.childfiles.append(el);
+				} catch (JsRender.Error e) {
+					GLib.warning("Project::scanDirs failed : " + e.message + "\n");
+				}
 			}
 			
-			for (var i = 0; i < subs.length(); i++) {
-				 this.scanDir(subs.nth_data(i), dp+1);
+			foreach (var sd in subs) {
+				 this.loadSubDirectories(sd.substring(this.path.length+1), dp+1);
+			}
+			
+		
+		}
+		
+		// calle dfrom new file dialog
+		// add files to dires 
+		// update 
+			
+		 
+		public void addFile(JsRender.JsRender pfile)
+		{ // add a single file, and trigger changed.
+		
+			if (pfile.xtype == "Gtk" || pfile.xtype == "Roo" ) {
+				this.files.set(pfile.path, pfile); // duplicate check
+				
+				if (pfile.xtype == "Gtk" && pfile.build_module != "") {
+				
+					var gfile = (JsRender.Gtk) pfile;
+					gfile.updateCompileGroup("", pfile.build_module);
+					 
+				}
+			}
+			var sp = this.findDir(pfile.dir);
+			sp.childfiles.append(pfile);	
+				
+
+			this.on_changed();
+		}
+		
+		
+		
+		public void deleteFile(JsRender.JsRender file) 
+		{
+			if (file.xtype =="Dir") {
+				return;
+			}
+			var sp = this.findDir(file.dir);
+			for(var i =0;i < sp.childfiles.n_items; i++) {
+				var jf = (JsRender.JsRender) sp.childfiles.get_item(i);
+				if (jf.path == file.path) {
+					sp.childfiles.remove(i);
+					break;
+				}
+			}
+			if (this.files.has_key(file.path)) {
+				this.files.unset(file.path);
+			}
+
+			
+			file.remove();
+			// remove it from 
+			
+			
+		}
+			
+		// but do not add it to our list.!!!
+		public void makeProjectSubdir(string name)
+		{
+			var dir = File.new_for_path(this.path + "/" + name);
+			if (FileUtils.test(this.path + "/" + name, FileTest.EXISTS)) {
+				return;
+			}
+			try {
+				 
+				dir.make_directory();	
+			} catch (GLib.Error e) {
+				GLib.error("Failed to make directory %s", this.path + "/" + name);
+			} 
+		}
+		
+		public void createDir(string subdir)   // add a single dir, and trigger changed.
+		{
+			if (subdir.strip() == "" || this.subpathsContains(subdir)) {
+				return;
+			}
+			var dir= File.new_for_path(this.path + "/" + subdir);
+
+			if (!dir.query_exists()) {
+			
+				try {
+					 
+					dir.make_directory();	
+				} catch (GLib.Error e) {
+					GLib.error("Failed to make directory %s", this.path + "/" + name);
+				}
+
+			}
+			this.sub_paths.add(new JsRender.Dir(this,this.path + "/" + subdir));
+			this.on_changed();  // not sure if it's needed - adding a dir doesnt really change much.
+		}
+		
+		// this store is used in the icon view ?? do we need to store and update it?
+		public void loadFilesIntoStore(GLib.ListStore ls) 
+		{
+			ls.remove_all();
+			//GLib.debug("Load files (into grid) %s", this.name);			
+			foreach(var f in this.files.values) {
+			//	GLib.debug("Add file %s", f.name);
+				if (f.xtype == "PlainFile") {
+					continue;
+				}
+				ls.append(f);
 			}
 			
 		}
-		// wrapper around the javascript data...
-		public string get_string_member(string key) {
-			
-			if (!this.json_project_data.has_member(key)) {
-				return "";
+		public void loadDirsIntoStore(GLib.ListStore  ls) 
+		{
+			ls.remove_all();
+			foreach(var f in this.sub_paths) {
+				//GLib.debug("Add %s", f.name);
+				ls.append(f);
 			}
-			var  ret = this.json_project_data.get_string_member(key);
-			if (ret == null) {
-				return "";
+			 ;
+		}
+		
+		public bool subpathsContains(string subpath) 
+		{
+			foreach(var sp in this.sub_paths) {
+
+				if (sp.path == this.path + "/" + subpath) {
+					return true;
+				}
+			}
+			return false;
+			
+		}
+		public void loadDirsToStringList( global::Gtk.StringList sl) 
+		{
+			 
+			while (sl.get_n_items() > 0) {
+				sl.remove(0);
+			}
+			
+			foreach(var sp in this.sub_paths) {
+				 
+				sl.append( sp.path == this.path ? "/" : sp.path.substring(this.path.length));
+			}
+		
+		}
+		
+		public JsRender.Dir? findDir(string path) {
+			
+			foreach(var jdir in this.sub_paths) { 
+				if (path == jdir.path) {
+					return (JsRender.Dir)jdir;
+				}
+			}
+			return null;
+		}
+		
+		public string[] pathsMatching(string name, bool full_path)
+		{
+			string[] ret = {};
+			 
+			foreach(var jdir in this.sub_paths) { 
+				
+
+				
+				if (Path.get_basename (jdir.path) == name) {
+					GLib.debug("pathsMatching %s\n", jdir.path);
+					ret += full_path ? jdir.path : jdir.relpath;
+				}
+				
 			}
 			return ret;
 			
 		}
+		public Gee.ArrayList<string> readArray(Json.Array ar) 
+		{
+			var ret = new Gee.ArrayList<string>();
+			for(var i =0; i< ar.get_length(); i++) {
+				var add = ar.get_string_element(i);
+				if (ret.contains(add)) {
+					continue;
+				}
+			
+				ret.add(add);
+			}
+			return ret;
+		}
+		
+		 
+		 public abstract void initDatabase();
+		 public abstract void initialize(); // for new projects (make dirs?);
 		  
 	}
 }

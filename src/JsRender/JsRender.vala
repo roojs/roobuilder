@@ -14,15 +14,59 @@ namespace JsRender {
 		 */
 		public Gee.ArrayList<string> doubleStringProps;
 		
-		public string id;
-		public string name;   // is the JS name of the file.
-		public string fullname;
-		public string path;  // is the full path to the file.
-		public string parent;  // JS parent.
-		public string region;  // RooJS - insert region.
+		public string id  = "";
+		public string name { get; set; default = ""; }   // is the JS name of the file.
+		public string fullname = "";
+		public string path = "";  // is the full path to the file.
+		
+		public  string relpath {
+			owned get { 
+				return  this.project.path  == this.path ? "" : this.path.substring(this.project.path.length+1);
+			} 
+			private set {}
+		}
+		public  string reldir {
+			owned get { 
+				return  this.project.path == this.dir ? "" : this. dir.substring(this.project.path.length+1);
+			} 
+			private set {}
+		}
+		
+		public  string  dir {
+			owned get { 
+				return GLib.Path.get_dirname(this.path);
+				 
+			} 
+			private set {}
+		}
+		
+		public string file_namespace {
+			public owned get {
+				if (!this.name.contains(".")) {
+					return "";
+				}
+				var bits = this.name.split(".");
+				return bits[0];
+			}
+			private set {}
+		}
+		public string file_without_namespace {
+			public  owned get {
+				if (!this.name.contains(".")) {
+					return this.name;
+				}
+				var bits = this.name.split(".");
+				return this.name.substring(bits[0].length +1);
+			}
+			private set {}
+		}
+		
+		
+		public string parent = "";  // JS parent.
+		public string region = "";  // RooJS - insert region.
         
-		public string title;  // a title.. ?? nickname.. ??? -
-		public string build_module; // module to build if we compile (or are running tests...)
+		public string title = "";  // a title.. ?? nickname.. ??? -
+
 		
 
 		public string permname;
@@ -31,13 +75,19 @@ namespace JsRender {
 		public string modOrder;
 		public string xtype;
 		public uint64 webkit_page_id; // set by webkit view - used to extract extension/etc..
-		    
+		public bool gen_extended  = false; // nodetovala??
+
 		public Project.Project project;
+
+		// GTK Specifc
+ 
+		public string build_module; // module to build if we compile (or are running tests...)	    
+
 		//Project : false, // link to container project!
 		
 		public Node tree; // the tree of nodes.
 		
-		public GLib.List<JsRender> cn; // child files.. (used by project ... should move code here..)
+		//public GLib.List<JsRender> cn; // child files.. (used by project ... should move code here..)
 
 		public bool hasParent; 
 		
@@ -55,7 +105,7 @@ namespace JsRender {
 		 * 
 		 */
 		//public Xcls_Editor editor;
-		
+		public GLib.ListStore childfiles; // used by directories..
 		
 		
 		//abstract JsRender(Project.Project project, string path); 
@@ -63,12 +113,12 @@ namespace JsRender {
 		public void aconstruct(Project.Project project, string path)
 		{
 		    
-			this.cn = new GLib.List<JsRender>();
+			//this.cn = new GLib.List<JsRender>();
 			this.path = path;
 			this.project = project;
 			this.hasParent = false;
 			this.parent = "";
-			this.tree = null;
+			this.tree = null; 
 			this.title = "";
 			this.region = "";
 			this.permname = "";
@@ -76,7 +126,7 @@ namespace JsRender {
 			this.language = "";
 			this.content_type = "";
 			this.build_module = "";
-			this.loaded = false;
+			//this.loaded = false;
 			//print("JsRender.cto() - reset transStrings\n");
 			this.transStrings = new Gee.HashMap<string,string>();
 			this.namedStrings = new Gee.HashMap<string,string>();
@@ -85,7 +135,7 @@ namespace JsRender {
 			var ar = this.path.split("/");
 			// name is in theory filename without .bjs (or .js eventually...)
 			try {
-				Regex regex = new Regex ("\\.(bjs|js)$");
+				Regex regex = new Regex ("\\.(bjs)$");
 
 				this.name = ar.length > 0 ? regex.replace(ar[ar.length-1],ar[ar.length-1].length, 0 , "") : "";
 			} catch (GLib.Error e) {
@@ -94,6 +144,7 @@ namespace JsRender {
 			this.fullname = (this.parent.length > 0 ? (this.parent + ".") : "" ) + this.name;
 
 			this.doubleStringProps = new Gee.ArrayList<string>();
+			this.childfiles = new GLib.ListStore(typeof(JsRender));
 
 		}
 		
@@ -125,8 +176,9 @@ namespace JsRender {
 			switch (xt) {
 				case "Gtk":
 	    				return new Gtk(project, path);
+	    				
 				case "Roo":
-		    			return new Roo(project, path);
+		    			return new Roo((Project.Roo) project, path);
 //		    	case "Flutter":
 //		    			return new Flutter(project, path);
 				case "PlainFile":
@@ -135,7 +187,7 @@ namespace JsRender {
 			throw new Error.INVALID_FORMAT("JsRender Factory called with xtype=%s", xt);
 			//return null;    
 		}
-
+		
 	
 	
 		public string nickType()
@@ -229,16 +281,53 @@ namespace JsRender {
 			this.screenshot368 = null;
 			this.screenshot = null;
 			try {
+				GLib.debug("Wirte %s", this.getIconFileName( ));
 				pixbuf.save(this.getIconFileName( ),"png");
 				this.screenshot = pixbuf;
 			
-			} catch (GLib.Error e) {}
+			} catch (GLib.Error e) {
+				GLib.debug("failed to write pixbuf?");
+			
+			}
 				
 			 
 			
 		
 		}
+		public void widgetToIcon(global::Gtk.Widget widget) {
+			
+			this.screenshot92 = null;
+			this.screenshot368 = null;
+			this.screenshot = null;
+			
+			try {
+			
+
+		    	var filename = this.getIconFileName();
+			 	
+
+				 var p = new global::Gtk.WidgetPaintable(widget);
+				 var s = new global::Gtk.Snapshot();
+				 GLib.debug("Width %d, Height %d", widget.get_width(), widget.get_height()); 
+				 p.snapshot(s, widget.get_width(), widget.get_height());
+				 var n = s.free_to_node();
+				 var r = new  Gsk.CairoRenderer();
+				 r.realize(null);
+				 var t = r.render_texture(n,null);
+				 GLib.debug("write to %s", filename);
+				t.save_to_png(filename);
+				 r.unrealize();
+					 
+			
+			} catch (GLib.Error e) {
+				GLib.debug("failed to write pixbuf?");
+			
+			}
+				
+			 
+			
 		
+		}
 
 		
 		public string getIconFileName( )
@@ -278,13 +367,14 @@ namespace JsRender {
 		
 		public void saveBJS()
 		{
-		    if (!this.loaded) {
-        		    return;
-		    }
+		   // if (!this.loaded) {
+			///	GLib.debug("saveBJS - skip - not loaded?");
+        	//	    return;
+		    //}
 		    if (this.xtype == "PlainFile") {
 			    return;
 		    }
-		   ;
+		   
 		     
 		    
 		    GLib.debug("WRITE :%s\n " , this.path);// + "\n" + JSON.stringify(write));
@@ -298,7 +388,7 @@ namespace JsRender {
 		 
 		 
 
-		public abstract void loadItems() throws GLib.Error;
+
 		 
 		 
 		 
@@ -320,15 +410,20 @@ namespace JsRender {
 			
 			//ret.set_string_member("id", this.id); // not relivant..
 			ret.set_string_member("name", this.name);
-			ret.set_string_member("parent", this.parent == null ? "" : this.parent);
-			ret.set_string_member("title", this.title == null ? "" : this.title);
-			ret.set_string_member("path", this.path);
-			//ret.set_string_member("items", this.items);
-			ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
-			ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
-			if (this.project.xtype == "Gtk") {
-				ret.set_string_member("build_module", this.build_module  == null ? "" : this.build_module);
+			
+			if (this.project.xtype == "Roo") {
+				ret.set_string_member("parent", this.parent == null ? "" : this.parent);
+				ret.set_string_member("title", this.title == null ? "" : this.title);
+				//ret.set_string_member("path", this.path);
+				//ret.set_string_member("items", this.items);
+				ret.set_string_member("permname", this.permname  == null ? "" : this.permname);
+				ret.set_string_member("modOrder", this.modOrder  == null ? "" : this.modOrder);
 			}
+			if (this.project.xtype == "Gtk") {
+ 
+				ret.set_string_member("build_module", this.build_module  );
+			}
+			ret.set_boolean_member("gen_extended", this.gen_extended);
 			
 			if (this.transStrings.size > 0) {
 				var tr =  new Json.Object();
@@ -364,6 +459,9 @@ namespace JsRender {
 
 		public string getTitle ()
 		{
+		    if (this.title == null) { // not sure why this happens..
+		    	return "";
+	    	}
 		    if (this.title.length > 0) {
 		        return this.title;
 		    }
@@ -433,6 +531,152 @@ namespace JsRender {
 			
 		}
 		
+		public GLib.ListStore toListStore()
+		{
+			var ret = new GLib.ListStore(typeof(Node));
+			ret.append(this.tree);
+			return ret;
+		}
+		 
+		
+		// used to handle list of files in project editor (really Gtk only)
+		public bool compile_group_selected {
+			get {
+				var gproj = (Project.Gtk) this.project;
+				
+				if (gproj.active_cg == null) {
+					return false;
+				}
+				if (this.xtype == "Dir") {
+					// show ticked if all ticked..
+					var ticked = true;
+					for(var i = 0; i < this.childfiles.n_items; i++ ) {
+						var f = (JsRender) this.childfiles.get_item(i);
+						if (!f.compile_group_selected) {
+							ticked = false;
+							break;
+						}
+					}
+					return ticked;
+				
+				
+				}
+				if (gproj.active_cg.sources == null) {
+					GLib.debug("compile_group_selected - sources is null? ");
+					return false;
+				}
+
+				return gproj.active_cg.sources.contains(this.relpath);
+				
+			}
+			set {
+				
+				var gproj = (Project.Gtk) this.project;
+				
+				if (gproj.active_cg == null) {
+					return;
+				}
+				if (gproj.active_cg.loading_ui) {
+					return;
+				}
+				
+				if (this.xtype == "Dir") {
+					for(var i = 0; i < this.childfiles.n_items; i++ ) {
+						var f = (JsRender) this.childfiles.get_item(i);
+						f.compile_group_selected = value;
+ 
+					}
+					return;
+				 
+				}
+				
+				
+				
+				if (value == false) {
+					GLib.debug("REMOVE %s", this.relpath);
+					
+					gproj.active_cg.sources.remove(this.relpath);
+					return;
+				}
+				if (!gproj.active_cg.sources.contains(this.relpath)) { 
+					GLib.debug("ADD %s", this.relpath);
+					gproj.active_cg.sources.add(this.relpath);
+				}
+			
+			}
+		}
+		/*
+		public bool compile_group_hidden {
+			get {
+				var gproj = (Project.Gtk) this.project;
+				
+				
+				return gproj.hidden.contains(this.relpath);
+				
+			}
+			set {
+				
+				var gproj = (Project.Gtk) this.project;
+				
+				if (gproj.active_cg == null) {
+					return;
+				}
+				if (gproj.active_cg.loading_ui) {
+					return;
+				} 
+				if (value == false) {
+					GLib.debug("REMOVE %s", this.relpath);
+					
+					gproj.hidden.remove(this.relpath);
+					return;
+				}
+				if (!gproj.hidden.contains(this.relpath)) { 
+					gproj.hidden.add(this.relpath);
+					// hiding a project will auto clear it.
+					for(var i = 0; i < this.childfiles.n_items; i++ ) {
+						var f = (JsRender) this.childfiles.get_item(i);
+						f.compile_group_selected = false;
+					}
+					return;
+					
+				}
+			
+			}
+		}
+		*/
+		public void remove()
+		{
+			if (this.xtype == "Dir") {
+				return;
+			}
+			// cleans up build (should really be in children..
+			this.removeFile(this.path);
+			if (this.path.has_suffix(".bjs") && this.project.xtype == "Roo") {
+				this.removeFile(this.path.substring(0, this.path.length-4) + ".js");
+				return;
+			}
+			if (this.path.has_suffix(".bjs") && this.project.xtype == "Gtk") {
+				this.removeFile(this.path.substring(0, this.path.length-4) + ".vala");
+				this.removeFile(this.path.substring(0, this.path.length-4) + ".c");
+				this.removeFile(this.path.substring(0, this.path.length-4) + ".o");				
+			}
+			if (this.path.has_suffix(".vala") && this.project.xtype == "Gtk") {
+				this.removeFile(this.path.substring(0, this.path.length-5) + ".c");
+				this.removeFile(this.path.substring(0, this.path.length-5) + ".o");				
+			}	
+		
+		
+		}
+		
+		private void removeFile(string path)
+		{
+
+			if (GLib.FileUtils.test(path, GLib.FileTest.EXISTS)) {
+			  	GLib.FileUtils.unlink(path);
+		  	}
+
+		}
+		
 		
 		public abstract void save();
 		public abstract void saveHTML(string html);
@@ -444,7 +688,9 @@ namespace JsRender {
 		public abstract void  findTransStrings(Node? node );
 		public abstract string toGlade();
 		public abstract string targetName();
+		public abstract void loadItems() throws GLib.Error;
 	} 
 
 }
  
+

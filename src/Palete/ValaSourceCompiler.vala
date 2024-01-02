@@ -12,7 +12,8 @@ namespace Palete {
 	 
 	public class ValaSourceReport  : Vala.Report {
 
-		public string filepath;
+		private Project.Project project;
+		public string filepath = "";
 		
 		public string tmpname;
 		
@@ -22,6 +23,9 @@ namespace Palete {
 		//public Gee.HashMap<int,string> line_errors;
 		
 		public void  compile_notice(string type, string filename, int line, string message) {
+			 
+ 
+			 GLib.debug("%s %s %d %s", type, filename, line, message);
 			 
 			 if (!this.result.has_member(type+"-TOTAL")) {
 				 this.result.set_int_member(type+"-TOTAL", 1);
@@ -50,9 +54,10 @@ namespace Palete {
 		
 		
 	 
-		public ValaSourceReport(string filepath, string tmpname)
+		public ValaSourceReport(string filepath, string tmpname, Project.Project project)
 		{
 			base();
+			this.project = project;
 			this.filepath = filepath;
 			this.tmpname = tmpname;
 			this.result = new Json.Object();
@@ -153,7 +158,8 @@ namespace Palete {
 			}
 			
 			Project.Project.loadAll();
-			var proj = Project.Project.getProjectByHash(BuilderApplication.opt_compile_project);
+			var proj = Project.Project.getProjectByPath(BuilderApplication.opt_compile_project);
+			proj.load();
 			
 			if (proj == null) {
 				jerr("could not load test project %s".printf( BuilderApplication.opt_compile_project));
@@ -191,7 +197,7 @@ namespace Palete {
 		ValaSourceReport report;
  		Project.Gtk project;
 		public string build_module;
-		public string filepath;
+		public string filepath = "";
 		public string original_filepath;
 		public int line_offset = 0;
 		public string output;
@@ -258,6 +264,7 @@ namespace Palete {
 			context.report.enable_warnings = true;
 			context.metadata_directories = { };
 			context.gir_directories = {};
+			context.save_temps = true; // keep c sources = is it faster?
 			//context.thread = true;
 			valac += " --thread ";
 			
@@ -265,13 +272,14 @@ namespace Palete {
 			context.debug = true;
 			valac += " -g ";
 			
-			this.report = new ValaSourceReport(this.original_filepath, this.filepath);
+			this.report = new ValaSourceReport(this.original_filepath, this.filepath, this.project);
 			context.report = this.report;
 			
-			valac += " -b  " + GLib.Environment.get_home_dir() + " ";
-			context.basedir = GLib.Environment.get_home_dir(); //Posix.realpath (".");
+			valac += " -b  " + this.project.path; //."GLib.Environment.get_home_dir() + " ";
+			context.basedir = this.project.path; // GLib.Environment.get_home_dir(); //Posix.realpath (".");
 		
-			context.directory = null; //??? causes target to end up in the right place at present..
+			this.project.makeProjectSubdir("build");
+			context.directory = this.project.path + "/build"; //null; //??? causes target to end up in the right place at present..
 		
 
 			// add default packages:
@@ -298,31 +306,39 @@ namespace Palete {
 	    	
 	    	if (this.build_module.length > 0) {
 				var cg =  pr.compilegroups.get(this.build_module);
-				if (this.output.length < 1 && cg.target_bin.length > 0) {
-					this.output = cg.target_bin;
+				if (this.output.length < 1) {
+					this.output =  cg.name;
 				}
 				
 
 				for (var i = 0; i < cg.sources.size; i++) {
-					var path = pr.resolve_path(
-							pr.resolve_path_combine_path(pr.firstPath(),cg.sources.get(i)));
-							
-					if (!FileUtils.test(path, FileTest.EXISTS)) {
+					var path = cg.sources.get(i);
+					GLib.debug("Try add source file %s", path);
+					// flip bjs to vala
+					if (path.has_suffix(".bjs")) {
+						path  = path.splice(path.length -4, path.length, ".vala");
+						GLib.debug("Change source file %s", path);
+					}
+					if (!path.has_suffix(".vala") && path.has_suffix(".c") ) {
+						continue;
+					}
+					if (!FileUtils.test(pr.path + "/" + path, FileTest.EXISTS)) {
 						continue;
 					}       
 	                // skip thie original
-					if (path == this.original_filepath) {
+					if (pr.path + "/" + path == this.original_filepath) {
+						GLib.debug("Add orig source file %s", path);
 						valac += " " + path;
 						continue;
 					}
-					if (FileUtils.test(path, FileTest.IS_DIR)) {
+					if (FileUtils.test(pr.path + "/" + path, FileTest.IS_DIR)) {
 						continue;
 					}
-					//print("Add source file %s\n", path);
+					GLib.debug("Add source file %s", path);
 					
-					valac += " " + path;
+					valac += " " + pr.path + "/" + path;
 					
-					if (Regex.match_simple("\\.c$", path)) {
+					if ( path.has_suffix(".c")) {
 						context.add_c_source_file(path);
 						continue;
 					}
@@ -331,7 +347,7 @@ namespace Palete {
 					var xsf = new Vala.SourceFile (
 						context,
 						Vala.SourceFileType.SOURCE, 
-						path
+						pr.path + "/" +  path
 					);
 					xsf.add_using_directive (ns_ref);
 					context.add_source_file(xsf);
@@ -345,23 +361,23 @@ namespace Palete {
 			context.add_external_package ("gobject-2.0");
 			// user defined ones..
 			
-	    	var dcg = pr.compilegroups.get("_default_");
-	    	for (var i = 0; i < dcg.packages.size; i++) {
+
+	    	for (var i = 0; i < pr.packages.size; i++) {
 	    		
-	    		var pkg = dcg.packages.get(i);
+	    		var pkg = pr.packages.get(i);
 	    		// do not add libvala versions except the one that matches the one we are compiled against..
 	    		if (Regex.match_simple("^libvala", pkg) && pkg != ("libvala-0." + ver.to_string())) {
-    	    		GLib.debug("Skip libvala Package: %s" , dcg.packages.get(i));
+    	    		GLib.debug("Skip libvala Package: %s" , pkg);
 	    			continue;
     			}
-    			GLib.debug("Add Package: %s" , dcg.packages.get(i));
-				valac += " --pkg " + dcg.packages.get(i);
-				if (!this.has_vapi(context.vapi_directories, dcg.packages.get(i))) {
-					GLib.debug("Skip vapi '%s' - does not exist", dcg.packages.get(i));
+    			GLib.debug("Add Package: %s" ,pkg);
+				valac += " --pkg " + pr.packages.get(i);
+				if (!this.has_vapi(context.vapi_directories, pkg)) {
+					GLib.debug("Skip vapi '%s' - does not exist", pkg);
 					continue;
 				}
 				
-				context.add_external_package (dcg.packages.get(i));
+				context.add_external_package(pkg);
 			}
 	    	
 			 //Vala.Config.PACKAGE_SUFFIX.substring (1)
@@ -417,26 +433,51 @@ namespace Palete {
 			}
 			
 // none of this works on vala-40 as the API is not publicly visible
- 
+ 			
 
- 
+ 			GLib.debug("calling emit");
 			context.codegen = new Vala.GDBusServerModule ();
 			 
 			
 			context.codegen.emit (context);
 			
+			if (BuilderApplication.opt_skip_linking) {
+				GLib.debug("skip linking is set = outputing result");
+				Vala.CodeContext.pop ();
+				this.outputResult();
+				GLib.Process.exit(Posix.EXIT_SUCCESS);
+ 				 
+			}
 			
 			/* --- - only if we are actually doing a full build.- no added benifet for inline complier
 			on my laptop a 5s upto here.. then 40+s doing this.. - no additional warnings really (although if we are using 'C' code it maight be usefull
 			*/
+			
+			GLib.debug("this.filepath = %s" , this.filepath);
+			
 			if (this.filepath == "") { 
+				GLib.debug("calling ccompiler");
 				var ccompiler = new Vala.CCodeCompiler ();
+
+				
+				
 				var cc_command = Environment.get_variable ("CC");
 				
-				
-				string [] cc_options = { "-lm", "-pg" };
-				valac += " -X -lm -X -pg";
+				string [] cc_options = { "-lm" ,  "-pg"};
+				// ccache - would be nice, but we use multiple input files - which causes problems.
+				// would have to modify ccompile a bit, to handle this..
+				/*.
+				if (FileUtils.test("/usr/bin/ccache", FileTest.EXISTS)) {
+					GLib.debug("Using ccache");
+					cc_command = "/usr/bin/ccache " + (cc_command == null  ? "cc" : cc_command) ;
+				} else {
+					GLib.debug("Try installing ccache to speed things up");
 
+				}
+				*/
+				 
+				valac += " -X -lm -X -pg";
+				context.verbose_mode = true;
 	#if VALA_0_56
 				ccompiler.compile (context, cc_command, cc_options);			
 	#elif VALA_0_36
@@ -446,9 +487,12 @@ namespace Palete {
 				
 	#endif
 			}
-			if (this.filepath != "") {
-				GLib.FileUtils.unlink(this.filepath);
-			}
+			
+			
+			
+			//if (this.filepath != "") {
+			//	GLib.FileUtils.unlink(this.filepath);
+			//}
 			//print("%s\n", valac);
 			Vala.CodeContext.pop ();
  	

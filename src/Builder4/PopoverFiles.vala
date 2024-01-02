@@ -2,7 +2,7 @@ static Xcls_PopoverFiles  _PopoverFiles;
 
 public class Xcls_PopoverFiles : Object
 {
-    public Gtk.Popover el;
+    public Gtk.Window el;
     private Xcls_PopoverFiles  _this;
 
     public static Xcls_PopoverFiles singleton()
@@ -28,9 +28,10 @@ public class Xcls_PopoverFiles : Object
     public Xcls_MainWindow win;
     public string lastfilter;
     public bool in_onprojectselected;
-    public Project.Project selectedProject;
     public bool is_loading;
     public bool new_window;
+    public Project.Project selectedProject;
+    public Gtk.PositionType position;
     public Gdk.Pixbuf missing_thumb_pixbuf;
     public Gee.HashMap<string,Gdk.Pixbuf> image_cache;
     public bool active;
@@ -40,26 +41,27 @@ public class Xcls_PopoverFiles : Object
     public Xcls_PopoverFiles()
     {
         _this = this;
-        this.el = new Gtk.Popover( null );
+        this.el = new Gtk.Window();
 
         // my vars (dec)
         this.lastfilter = "";
         this.in_onprojectselected = false;
         this.is_loading = false;
         this.new_window = false;
+        this.position = Gtk.PositionType.TOP;
         this.image_cache = null;
         this.active = false;
         this.is_loaded = false;
 
         // set gobject values
         this.el.width_request = 900;
+        this.el.title = "Select Project /File";
         this.el.height_request = 800;
         this.el.hexpand = false;
         this.el.modal = true;
-        this.el.position = Gtk.PositionType.TOP;
-        var child_0 = new Xcls_Box2( _this );
-        child_0.ref();
-        this.el.add (  child_0.el  );
+        var child_1 = new Xcls_Box2( _this );
+        child_1.ref();
+        this.el.set_child ( child_1.el  );
 
         //listeners
         this.el.hide.connect( ( ) => {
@@ -68,9 +70,9 @@ public class Xcls_PopoverFiles : Object
         	//if (project != null) {
         //		this.selectProject(project);
         //	}
-         	if (_this.win.windowstate.project == null) {
-         		this.el.show();
-        	}
+         	//if (_this.win.windowstate.project == null) {
+         	//	this.el.show();
+        	//}
         });
     }
 
@@ -139,22 +141,26 @@ public class Xcls_PopoverFiles : Object
     	    print("tried to select %s, could not find it", project.name);
         }
     }
-    public void show (Gtk.Widget on_el, Project.Project? project, bool new_window) {
+    public void show (Gtk.Widget? on_el, Project.Project? project, bool new_window) {
     	//this.editor.show( file, node, ptype, key);
     	
     	this.new_window = new_window;
     		// save...
     	this.load();
-    	this.el.show_all(); // show first - so we can hide stuff later.	
+    	if (on_el != null) {
+    		this.el.set_parent(on_el);
+    	}
+    	 // show first - so we can hide stuff later.	
     	if (project != null) {
     	
     		this.selectProject(project);
     	}
     	
     	
-        int w,h;
-        this.win.el.get_size(out w, out h);
-        
+      //   var win = this.win.el;
+      //  var  w = win.get_width();
+      //  var h = win.get_height();
+    
         // left tree = 250, editor area = 500?
         
         // min 450?
@@ -164,14 +170,17 @@ public class Xcls_PopoverFiles : Object
     	
     	// width = should be max = w-ww , or 600 at best..?
     	 
-        this.el.set_size_request( w, h); // same as parent...
+        //this.el.set_size_request( w - 100, h - 100); // same as parent...
     
     
-    	this.el.set_modal(true);
-    	this.el.set_relative_to(on_el);
-    
-    	 
-    
+    	//this.el.set_autohide(true); // can hide
+    	//Gtk.Allocation rect;
+    	//on_el.get_allocation(out rect);
+       // this.el.set_pointing_to(rect);
+        //this.el.set_offset(200,0);
+        //this.el.set_position(Gtk.PositionType.BOTTOM);
+    	this.el.show();
+    	  
     }
     public void load () {
          // clear list...
@@ -316,11 +325,15 @@ public class Xcls_PopoverFiles : Object
         
         
           try {
-    	        if (_this.missing_thumb_pixbuf == null) {
-    	            var icon_theme = Gtk.IconTheme.get_default ();
-    	            _this.missing_thumb_pixbuf = icon_theme.load_icon ("package-x-generic", 92, 0);
-    	            _this.missing_thumb_pixbuf.ref();
-    	        }
+            if (_this.missing_thumb_pixbuf == null) {
+            
+            	var icon_theme = Gtk.IconTheme.get_for_display(this.el.get_display());
+            	 var icon = icon_theme.lookup_icon ("package-x-generic", null,  92,1, 
+    					 Gtk.TextDirection.NONE, 0);
+    		 	_this.missing_thumb_pixbuf = (new Gdk.Pixbuf.from_file (icon.file.get_path())).scale_simple(
+    		 		92, 92 	, Gdk.InterpType.NEAREST) ;
+                _this.missing_thumb_pixbuf.ref();
+            }
     	        
     
     	    } catch (Error e) {
@@ -376,7 +389,8 @@ public class Xcls_PopoverFiles : Object
     }
     public void setMainWindow (Xcls_MainWindow win) {
     	this.win = win;
-    	 
+    	this.el.set_transient_for(win.el);
+    	this.el.application = BuilderApplication.singleton({});
     }
     public class Xcls_Box2 : Object
     {
@@ -395,12 +409,14 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Box3( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-            var child_1 = new Xcls_Box10( _this );
+            this.el.hexpand = true;
+            this.el.vexpand = true;
+            var child_1 = new Xcls_Box3( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Box12( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
         }
 
         // user defined functions
@@ -422,68 +438,67 @@ public class Xcls_PopoverFiles : Object
             // my vars (dec)
 
             // set gobject values
-            var child_0 = new Xcls_Toolbar4( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-        }
-
-        // user defined functions
-    }
-    public class Xcls_Toolbar4 : Object
-    {
-        public Gtk.Toolbar el;
-        private Xcls_PopoverFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_Toolbar4(Xcls_PopoverFiles _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.Toolbar();
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.toolbar_style = Gtk.ToolbarStyle.BOTH;
-            var child_0 = new Xcls_ToolButton5( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-            var child_1 = new Xcls_ToolButton6( _this );
+            this.el.hexpand = true;
+            var child_1 = new Xcls_Box4( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
-            var child_2 = new Xcls_ToolButton7( _this );
-            child_2.ref();
-            this.el.add (  child_2.el  );
-            var child_3 = new Xcls_ToolButton8( _this );
-            child_3.ref();
-            this.el.add (  child_3.el  );
-            var child_4 = new Xcls_ToolButton9( _this );
-            child_4.ref();
-            this.el.add (  child_4.el  );
+            this.el.append( child_1.el );
         }
 
         // user defined functions
     }
-    public class Xcls_ToolButton5 : Object
+    public class Xcls_Box4 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Box el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton5(Xcls_PopoverFiles _owner )
+        public Xcls_Box4(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton( null, "New Project" );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
 
             // my vars (dec)
 
             // set gobject values
-            this.el.icon_name = "folder-new";
+            var child_1 = new Xcls_Button5( _this );
+            child_1.ref();
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Button9( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_Button10( _this );
+            child_3.ref();
+            this.el.append( child_3.el );
+            var child_4 = new Xcls_Button11( _this );
+            child_4.ref();
+            this.el.append( child_4.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Button5 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button5(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.label = "New Project";
+            var child_1 = new Xcls_Box6( _this );
+            this.el.child = child_1.el;
 
             //listeners
             this.el.clicked.connect( ( ) => {
@@ -491,46 +506,128 @@ public class Xcls_PopoverFiles : Object
                 // create a new file in project..
                 //Xcls_DialogNewComponent.singleton().show(
                var  pe =      EditProject.singleton();
-                //pe.el.set_transient_for(_this.el);
-                pe.el.set_modal(true);   
+               pe.el.application = _this.win.el.application;
+                pe.el.set_transient_for( _this.win.el );
+             
+               _this.el.hide();
                
-                var p  = pe.show();
+                pe.selected.connect((pr) => {
+                 	
+            	     _this.is_loaded = false;
+            	     _this.show(null, pr, _this.new_window);
             
-                if (p == null) {
-                    return;
-                }
+                });
                 
-                /*
-                _this.win.windowstate.left_projects.is_loaded = false;    
-                _this.win.windowstate.left_projects.load();
-                _this.win.windowstate.left_projects.selectProject(p);
-                */
-                return  ;    
+                pe.canceled.connect((pr) => {
+                 	
+             
+            	     _this.show(null, null, _this.new_window);
+            
+                });
+                
+                pe.showIt();
+               
             
             });
         }
 
         // user defined functions
     }
-
-    public class Xcls_ToolButton6 : Object
+    public class Xcls_Box6 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Box el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton6(Xcls_PopoverFiles _owner )
+        public Xcls_Box6(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton( null, "Project Properties" );
+            this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_1 = new Xcls_Image7( _this );
+            child_1.ref();
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Label8( _this );
+            child_2.ref();
+            this.el.append( child_2.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Image7 : Object
+    {
+        public Gtk.Image el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Image7(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Image();
+
+            // my vars (dec)
+
+            // set gobject values
+            this.el.icon_name = "folder-new";
+            this.el.margin_end = 4;
+            this.el.icon_size = Gtk.IconSize.NORMAL;
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_Label8 : Object
+    {
+        public Gtk.Label el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Label8(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Label( "New Project" );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+
+    public class Xcls_Button9 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_PopoverFiles  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button9(Xcls_PopoverFiles _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.icon_name = "emblem-system";
+            this.el.label = "Project Properties";
 
             //listeners
             this.el.clicked.connect( ( ) => {
@@ -545,24 +642,25 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_ToolButton7 : Object
+    public class Xcls_Button10 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Button el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton7(Xcls_PopoverFiles _owner )
+        public Xcls_Button10(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton( null, "Delete Project" );
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.icon_name = "user-trash";
+            this.el.label = "Delete Project";
 
             //listeners
             this.el.clicked.connect( ( ) => {
@@ -599,62 +697,25 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_ToolButton8 : Object
+    public class Xcls_Button11 : Object
     {
-        public Gtk.ToolButton el;
+        public Gtk.Button el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
 
         // ctor
-        public Xcls_ToolButton8(Xcls_PopoverFiles _owner )
+        public Xcls_Button11(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ToolButton( null, "New File" );
+            this.el = new Gtk.Button();
 
             // my vars (dec)
 
             // set gobject values
             this.el.icon_name = "document-new";
-
-            //listeners
-            this.el.clicked.connect( () => {
-                // create a new file in project..
-                print("add file selected\n");
-                
-                if (_this.selectedProject == null) {
-                	return;
-                }
-                try {
-                	var f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, "");
-                 	_this.win.windowstate.file_details.show( f, this.el, _this.new_window );
-                 } catch (JsRender.Error e) {}
-            
-            });
-        }
-
-        // user defined functions
-    }
-
-    public class Xcls_ToolButton9 : Object
-    {
-        public Gtk.ToolButton el;
-        private Xcls_PopoverFiles  _this;
-
-
-            // my vars (def)
-
-        // ctor
-        public Xcls_ToolButton9(Xcls_PopoverFiles _owner )
-        {
-            _this = _owner;
-            this.el = new Gtk.ToolButton( null, "New File" );
-
-            // my vars (dec)
-
-            // set gobject values
-            this.el.icon_name = "document-new";
+            this.el.label = "New File";
 
             //listeners
             this.el.clicked.connect( () => {
@@ -677,7 +738,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_Box10 : Object
+    public class Xcls_Box12 : Object
     {
         public Gtk.Box el;
         private Xcls_PopoverFiles  _this;
@@ -686,7 +747,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box10(Xcls_PopoverFiles _owner )
+        public Xcls_Box12(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -695,42 +756,45 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.homogeneous = false;
-            var child_0 = new Xcls_ScrolledWindow11( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
-            var child_1 = new Xcls_Box16( _this );
+            this.el.hexpand = true;
+            this.el.vexpand = true;
+            var child_1 = new Xcls_ScrolledWindow13( _this );
             child_1.ref();
-            this.el.add(  child_1.el );
-            var child_2 = new Xcls_file_container( _this );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_Box18( _this );
             child_2.ref();
-            this.el.add (  child_2.el  );
+            this.el.append( child_2.el );
+            var child_3 = new Xcls_file_container( _this );
+            this.el.append( child_3.el );
         }
 
         // user defined functions
     }
-    public class Xcls_ScrolledWindow11 : Object
+    public class Xcls_ScrolledWindow13 : Object
     {
         public Gtk.ScrolledWindow el;
         private Xcls_PopoverFiles  _this;
 
 
             // my vars (def)
+        public bool expand;
 
         // ctor
-        public Xcls_ScrolledWindow11(Xcls_PopoverFiles _owner )
+        public Xcls_ScrolledWindow13(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
+            this.expand = true;
 
             // set gobject values
             this.el.width_request = 150;
-            this.el.expand = true;
-            this.el.shadow_type = Gtk.ShadowType.IN;
-            var child_0 = new Xcls_view( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.has_frame = true;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
+            var child_1 = new Xcls_view( _this );
+            this.el.set_child ( child_1.el  );
 
             // init method
 
@@ -759,20 +823,21 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.name = "popover-files-view";
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
-            var child_0 = new Xcls_model( _this );
-            child_0.ref();
-            this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn14( _this );
-            child_1.ref();
-            this.el.append_column (  child_1.el  );
+            var child_1 = new Xcls_model( _this );
+            this.el.set_model ( child_1.el  );
+            var child_2 = new Xcls_TreeViewColumn16( _this );
+            child_2.ref();
+            this.el.append_column ( child_2.el  );
 
             // init method
 
             this.css = new Gtk.CssProvider();
             try {
-            	this.css.load_from_data("#popover-files-view { font-size: 10px;}");
+            	this.css.load_from_data("#popover-files-view { font-size: 10px;}".data);
             } catch (Error e) {}
             this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
                     
@@ -848,7 +913,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn14 : Object
+    public class Xcls_TreeViewColumn16 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -857,7 +922,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn14(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn16(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -866,9 +931,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.title = "Projects";
-            var child_0 = new Xcls_namecol( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
+            var child_1 = new Xcls_namecol( _this );
+            this.el.pack_start ( child_1.el , true );
 
             // init method
 
@@ -903,7 +967,7 @@ public class Xcls_PopoverFiles : Object
 
 
 
-    public class Xcls_Box16 : Object
+    public class Xcls_Box18 : Object
     {
         public Gtk.Box el;
         private Xcls_PopoverFiles  _this;
@@ -912,7 +976,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box16(Xcls_PopoverFiles _owner )
+        public Xcls_Box18(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.VERTICAL, 0 );
@@ -921,18 +985,18 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.width_request = 600;
-            this.el.expand = true;
-            var child_0 = new Xcls_Box17( _this );
-            child_0.ref();
-            this.el.add(  child_0.el );
-            var child_1 = new Xcls_iconscroll( _this );
+            this.el.hexpand = true;
+            this.el.vexpand = true;
+            var child_1 = new Xcls_Box19( _this );
             child_1.ref();
-            this.el.add (  child_1.el  );
+            this.el.append( child_1.el );
+            var child_2 = new Xcls_iconscroll( _this );
+            this.el.append( child_2.el );
         }
 
         // user defined functions
     }
-    public class Xcls_Box17 : Object
+    public class Xcls_Box19 : Object
     {
         public Gtk.Box el;
         private Xcls_PopoverFiles  _this;
@@ -941,7 +1005,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_Box17(Xcls_PopoverFiles _owner )
+        public Xcls_Box19(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.Box( Gtk.Orientation.HORIZONTAL, 0 );
@@ -950,9 +1014,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.hexpand = true;
-            var child_0 = new Xcls_iconsearch( _this );
-            child_0.ref();
-            this.el.add(  child_0.el );
+            var child_1 = new Xcls_iconsearch( _this );
+            this.el.append( child_1.el );
         }
 
         // user defined functions
@@ -984,7 +1047,7 @@ public class Xcls_PopoverFiles : Object
 
             this.css = new Gtk.CssProvider();
             try {
-            	this.css.load_from_data("#popover-files-iconsearch { font: monospace 10px;}");
+            	this.css.load_from_data("#popover-files-iconsearch { font:  10px monospace;}".data);
             } catch (Error e) {}
             this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
@@ -1016,17 +1079,17 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.iconscroll = this;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
             // set gobject values
             this.el.width_request = 600;
-            this.el.expand = true;
-            this.el.shadow_type = Gtk.ShadowType.IN;
-            var child_0 = new Xcls_iconview( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
+            this.el.has_frame = true;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
+            var child_1 = new Xcls_iconview( _this );
+            this.el.set_child ( child_1.el  );
 
             // init method
 
@@ -1054,12 +1117,13 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.markup_column = 1;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             this.el.pixbuf_column = 3;
             this.el.has_tooltip = true;
             this.el.item_width = 100;
-            var child_0 = new Xcls_iconmodel( _this );
-            child_0.ref();
-            this.el.model = child_0.el;
+            var child_1 = new Xcls_iconmodel( _this );
+            this.el.model = child_1.el;
 
             // init method
 
@@ -1110,7 +1174,9 @@ public class Xcls_PopoverFiles : Object
             	GLib.Value val;
             	_this.iconmodel.el.get_value(iter, 4, out val);
             	
-            	tooltip.set_icon((Gdk.Pixbuf) val.get_object());
+            	tooltip.set_icon(  Gdk.Texture.for_pixbuf(
+            		(Gdk.Pixbuf) val.get_object()
+            	));
             	 _this.iconview.el.set_tooltip_item(tooltip, path);
             	return true;
             });
@@ -1157,18 +1223,18 @@ public class Xcls_PopoverFiles : Object
         {
             _this = _owner;
             _this.file_container = this;
-            this.el = new Gtk.ScrolledWindow( null, null );
+            this.el = new Gtk.ScrolledWindow();
 
             // my vars (dec)
 
             // set gobject values
-            this.el.width_request = 100;
-            this.el.expand = true;
-            this.el.shadow_type = Gtk.ShadowType.IN;
+            this.el.width_request = 200;
+            this.el.has_frame = true;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             this.el.visible = false;
-            var child_0 = new Xcls_fileview( _this );
-            child_0.ref();
-            this.el.add (  child_0.el  );
+            var child_1 = new Xcls_fileview( _this );
+            this.el.set_child ( child_1.el  );
 
             // init method
 
@@ -1198,21 +1264,21 @@ public class Xcls_PopoverFiles : Object
             // set gobject values
             this.el.name = "popover-files-fileview";
             this.el.activate_on_single_click = false;
-            this.el.expand = true;
+            this.el.hexpand = true;
+            this.el.vexpand = true;
             this.el.enable_tree_lines = true;
             this.el.headers_visible = true;
-            var child_0 = new Xcls_filemodel( _this );
-            child_0.ref();
-            this.el.set_model (  child_0.el  );
-            var child_1 = new Xcls_TreeViewColumn25( _this );
-            child_1.ref();
-            this.el.append_column (  child_1.el  );
+            var child_1 = new Xcls_filemodel( _this );
+            this.el.set_model ( child_1.el  );
+            var child_2 = new Xcls_TreeViewColumn27( _this );
+            child_2.ref();
+            this.el.append_column ( child_2.el  );
 
             // init method
 
             this.css = new Gtk.CssProvider();
             try {
-            	this.css.load_from_data("#popover-files-fileview { font-size: 12px;}");
+            	this.css.load_from_data("#popover-files-fileview { font-size: 12px;}".data);
             } catch (Error e) {}
             this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
                     
@@ -1312,7 +1378,7 @@ public class Xcls_PopoverFiles : Object
         // user defined functions
     }
 
-    public class Xcls_TreeViewColumn25 : Object
+    public class Xcls_TreeViewColumn27 : Object
     {
         public Gtk.TreeViewColumn el;
         private Xcls_PopoverFiles  _this;
@@ -1321,7 +1387,7 @@ public class Xcls_PopoverFiles : Object
             // my vars (def)
 
         // ctor
-        public Xcls_TreeViewColumn25(Xcls_PopoverFiles _owner )
+        public Xcls_TreeViewColumn27(Xcls_PopoverFiles _owner )
         {
             _this = _owner;
             this.el = new Gtk.TreeViewColumn();
@@ -1330,9 +1396,8 @@ public class Xcls_PopoverFiles : Object
 
             // set gobject values
             this.el.title = "File";
-            var child_0 = new Xcls_filenamecol( _this );
-            child_0.ref();
-            this.el.pack_start (  child_0.el , true );
+            var child_1 = new Xcls_filenamecol( _this );
+            this.el.pack_start ( child_1.el , true );
 
             // init method
 

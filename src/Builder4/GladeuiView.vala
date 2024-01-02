@@ -21,8 +21,8 @@ public class Xcls_GladeuiView : Object
         // my vars (def)
     public Gtk.Widget lastObj;
     public Xcls_MainWindow main_window;
-    public Gtk.SourceSearchContext searchcontext;
     public int last_search_end;
+    public Gtk.SourceSearchContext searchcontext;
     public int width;
     public JsRender.JsRender file;
     public int height;
@@ -43,9 +43,18 @@ public class Xcls_GladeuiView : Object
         // set gobject values
         this.el.hexpand = true;
         this.el.vexpand = true;
-        var child_0 = new Xcls_notebook( _this );
+        var child_0 = new Xcls_Button2( _this );
         child_0.ref();
-        this.el.pack_start (  child_0.el , true,true,0 );
+        this.el.append(  child_0.el );
+        var child_1 = new Xcls_GestureClick5( _this );
+        child_1.ref();
+        this.el.add_controller (  child_1.el  );
+        var child_2 = new Xcls_ColumnView6( _this );
+        child_2.ref();
+        this.el.append(  child_2.el );
+        var child_3 = new Xcls_notebook( _this );
+        child_3.ref();
+        this.el.pack_start (  child_3.el , true,true,0 );
 
         //listeners
         this.el.size_allocate.connect( (aloc) => {
@@ -177,17 +186,7 @@ public class Xcls_GladeuiView : Object
             
         }
     
-       
-        return;
         
-        
-         
-         
-        
-        // should we hold until it's printed...
-        
-          
-    
         
         
     
@@ -216,6 +215,203 @@ public class Xcls_GladeuiView : Object
     
        
     }
+    public class Xcls_Button2 : Object
+    {
+        public Gtk.Button el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Button2(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Button();
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_Box3( _this );
+            child_0.ref();
+            this.el.child = child_0.el;
+            var child_1 = new Xcls_GestureClick4( _this );
+            child_1.ref();
+            this.el.add_controller(  child_1.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_Box3 : Object
+    {
+        public Gtk.Box el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_Box3(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.Box( null, 0 );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_GestureClick4 : Object
+    {
+        public Gtk.GestureClick el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_GestureClick4(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.GestureClick();
+
+            // my vars (dec)
+
+            // set gobject values
+
+            //listeners
+            this.el.pressed.connect( (n_press, x, y) => {
+            
+            
+            });
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_GestureClick5 : Object
+    {
+        public Gtk.GestureClick el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_GestureClick5(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.GestureClick();
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+    public class Xcls_ColumnView6 : Object
+    {
+        public Gtk.ColumnView el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ColumnView6(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ColumnView( null );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_SingleSelection7( _this );
+            child_0.ref();
+            this.el.model = child_0.el;
+            var child_1 = new Xcls_ColumnViewColumn9( _this );
+            child_1.ref();
+            this.el.append(  child_1.el );
+        }
+
+        // user defined functions
+    }
+    public class Xcls_SingleSelection7 : Object
+    {
+        public Gtk.SingleSelection el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_SingleSelection7(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.SingleSelection( null );
+
+            // my vars (dec)
+
+            // set gobject values
+            var child_0 = new Xcls_TreeListModel8( _this );
+            child_0.ref();
+            this.el.model = child_0.el;
+        }
+
+        // user defined functions
+    }
+    public class Xcls_TreeListModel8 : Object
+    {
+        public Gtk.TreeListModel el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_TreeListModel8(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.TreeListModel( null, true, true, () => { } );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
+    public class Xcls_ColumnViewColumn9 : Object
+    {
+        public Gtk.ColumnViewColumn el;
+        private Xcls_GladeuiView  _this;
+
+
+            // my vars (def)
+
+        // ctor
+        public Xcls_ColumnViewColumn9(Xcls_GladeuiView _owner )
+        {
+            _this = _owner;
+            this.el = new Gtk.ColumnViewColumn( "", null );
+
+            // my vars (dec)
+
+            // set gobject values
+        }
+
+        // user defined functions
+    }
+
+
     public class Xcls_notebook : Object
     {
         public Gtk.Notebook el;
@@ -300,6 +496,7 @@ public class Xcls_GladeuiView : Object
 
 
             // my vars (def)
+        public JsRender.JsRender file;
 
         // ctor
         public Xcls_designview(Xcls_GladeuiView _owner )
@@ -309,6 +506,7 @@ public class Xcls_GladeuiView : Object
             this.el = _this.main_window == null ? null : new Glade.DesignView(_this.main_window.gladeproject);
 
             // my vars (dec)
+            this.file = null;
 
             // init method
 
@@ -349,7 +547,10 @@ public class Xcls_GladeuiView : Object
 
             // my vars (def)
         public bool loading;
+        public gboolean show_line_numbers;
         public bool allow_node_scroll;
+        public gboolean show_line_marks;
+        public gboolean editable;
 
         // ctor
         public Xcls_sourceview(Xcls_GladeuiView _owner )
@@ -360,12 +561,10 @@ public class Xcls_GladeuiView : Object
 
             // my vars (dec)
             this.loading = true;
+            this.show_line_numbers = true;
             this.allow_node_scroll = true;
-
-            // set gobject values
-            this.el.editable = false;
-            this.el.show_line_marks = true;
-            this.el.show_line_numbers = true;
+            this.show_line_marks = true;
+            this.editable = false;
 
             // init method
 

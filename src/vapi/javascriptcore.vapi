@@ -23,7 +23,7 @@
  * http://live.gnome.org/Seed for more information.
  */
 
-[CCode (lower_case_cprefix = "js_", cheader_filename = "JavaScriptCore/JavaScript.h")]
+[CCode (lower_case_cprefix = "js_", cheader_filename = "jsc/jsc.h")]
 namespace JSCore {
   [Compact]
   [CCode (cname = "void", free_function = "JSContextGroupRelease")]

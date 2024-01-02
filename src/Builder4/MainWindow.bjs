@@ -1,16 +1,20 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# Project.Project project" : "null",
    "# WindowState windowstate" : "",
-   "# string title" : "\"Roo Application Builder\"",
    "$ type" : "Gtk.WindowType.TOPLEVEL",
    "$ xns" : "Gtk",
+   "* ctor" : "new Gtk.ApplicationWindow(BuilderApplication.singleton({}))",
    "* init" : [
     " ",
     " ",
     "     this.el.set_icon_name(\"roobuilder\");",
+    "     ",
+    "   ",
+    "     ",
     " "
    ],
    "border_width" : 0,
@@ -19,6 +23,7 @@
    "id" : "MainWindow",
    "items" : [
     {
+     "$ string title" : "\"Application Builder\"",
      "$ xns" : "Gtk",
      "* pack" : "set_titlebar",
      "bool show_close_button" : true,
@@ -30,70 +35,116 @@
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "items" : [
         {
-         "# Gee.ArrayList<Gtk.MenuItem> mitems" : "",
+         "# Gee.ArrayList<Gtk.Widget> mitems" : "",
          "$ Gtk.Align halign" : "Gtk.Align.START",
-         "$ Gtk.ArrowType direction" : "Gtk.ArrowType.DOWN",
          "$ xns" : "Gtk",
          "* init" : [
           "{",
-          "\tthis.mitems = new Gee.ArrayList<Gtk.MenuItem>();",
-          "\t",
+          "\tthis.mitems = new Gee.ArrayList<Gtk.Button>();",
           "}",
           ""
          ],
-         "bool always_show_image" : true,
-         "bool use_popover" : false,
          "id" : "windowbtn",
          "int margin_end" : 4,
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "window-new",
-           "xtype" : "Image"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* init" : [
-            " ",
-            "  this.el.show_all();",
-            " "
-           ],
-           "* prop" : "popup",
+           "* pack" : false,
+           "id" : "windowspopup",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "append",
-             "listeners" : {
-              "activate" : [
-               "( ) => {",
-               "",
-               "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
-               "}",
-               ""
-              ]
-             },
-             "string label" : "New Window",
-             "xtype" : "MenuItem"
+             "* pack" : "set_child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "id" : "popover_menu",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* pack" : "append",
+               "items" : [
+                {
+                 "$ Gtk.ShortcutScope scope" : "Gtk.ShortcutScope.GLOBAL",
+                 "$ xns" : "Gtk",
+                 "* init" : [
+                  "{",
+                  "\tthis.el.add_shortcut(",
+                  "\t\tnew Gtk.Shortcut(",
+                  "\t\t\tnew Gtk.KeyvalTrigger(Gdk.Key.N,Gdk.ModifierType.CONTROL_MASK),",
+                  "\t\t\tnew Gtk.SignalAction(\"clicked\")",
+                  "\t\t)",
+                  "\t);",
+                  "}",
+                  ""
+                 ],
+                 "xtype" : "ShortcutController"
+                }
+               ],
+               "listeners" : {
+                "clicked" : [
+                 "( ) => {",
+                 "\t_this.windowspopup.el.hide();",
+                 "\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
+                 "}",
+                 ""
+                ]
+               },
+               "string label" : "New Window",
+               "xtype" : "Button"
+              },
+              {
+               "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+               "$ xns" : "Gtk",
+               "* pack" : "append",
+               "xtype" : "Separator"
+              }
+             ],
+             "xtype" : "Box"
+            }
+           ],
+           "xtype" : "Popover"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "child",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "int margin_start" : 4,
+             "string icon_name" : "window-new",
+             "xtype" : "Image"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "append",
-             "xtype" : "SeparatorMenuItem"
+             "string label" : "Windows (Add/List)",
+             "xtype" : "Label"
             }
            ],
-           "xtype" : "Menu"
+           "xtype" : "Box"
           }
          ],
-         "string label" : "Windows",
-         "xtype" : "MenuButton",
+         "listeners" : {
+          "clicked" : [
+           "( ) => {",
+           "\tthis.updateMenu();",
+           "",
+           "\t _this.windowspopup.el.set_parent(this.el);",
+           "",
+           "\t _this.windowspopup.el.set_position(Gtk.PositionType.BOTTOM); ",
+           "\t _this.windowspopup.el.popup(); ",
+           "}",
+           ""
+          ]
+         },
+         "xtype" : "Button",
          "| void updateMenu" : [
           "() {",
           "\t foreach(var m in  this.mitems) {",
-          "\t \t this.el.popup.remove(m);",
+          "\t \t _this.popover_menu.el.remove(m);",
           "\t }",
           "\t this.mitems.clear();",
-          "\t ",
+          "\t",
           "\t BuilderApplication.windows.sort((a,b) => {",
           "\t \tif (a.windowstate == null ||",
           " \t\t\t a.windowstate.file == null || ",
@@ -111,8 +162,8 @@
           "\t \tif (ap != bp) {",
           "\t \t\treturn ap.collate(bp);",
           "\t \t}",
-          "\t \tvar af = a.windowstate.file.getTitle();",
-          "\t \tvar bf = b.windowstate.file.getTitle();\t \t",
+          "\t \tvar af =  a.windowstate.file == null ? \"\" : a.windowstate.file.getTitle();",
+          "\t \tvar bf = b.windowstate.file == null ? \"\" : b.windowstate.file.getTitle();\t \t",
           "\t\treturn af.collate(bf);",
           "\t ",
           "\t });",
@@ -133,8 +184,8 @@
           "\t \t\tcontinue;",
           " \t\t}",
           " \t\tif (w.windowstate.file.project.name != p || p != \"\") {",
-          " \t\t\tvar ms = new Gtk.SeparatorMenuItem();",
-          " \t\t\tthis.el.popup.append(ms);",
+          " \t\t\tvar ms = new Gtk.Separator(Gtk.Orientation.HORIZONTAL);",
+          " \t\t\t_this.popover_menu.el.append(ms);",
           "\t\t \tms.show();",
           "\t\t \tthis.mitems.add(ms);",
           " \t\t}",
@@ -146,100 +197,102 @@
           " \t\t",
           " \t\t",
           " \t\t",
-          "\t \tvar m = new Gtk.MenuItem.with_label(",
-          "\t\t \tw.windowstate.file.project.name + \" : \" + w.windowstate.file.getTitle()",
+          "\t \tvar m = new Gtk.Button.with_label(",
+          "\t\t \tw.windowstate.file.project.name + \" : \" + w.windowstate.file.relpath",
           "\t \t);",
+          "\t \tm.halign = Gtk.Align.START;",
+          "\t \t",
           "\t \t",
           "\t \t//w.windowstate.file.path);",
-          "\t \tm.activate.connect(() => {",
+          "\t \tm.clicked.connect(() => {",
+          "\t\t \t_this.windowspopup.el.hide();",
           "\t \t\t BuilderApplication.windows.get(wid).el.present();",
           "\t \t});",
-          "\t \tthis.el.popup.append(m);",
-          "\t \tm.show();",
+          "\t \t_this.popover_menu.el.append(m);",
+          "\t \t//m.show();",
           "\t \tthis.mitems.add(m);",
           "\t }",
           "}"
          ]
         },
         {
-         "$ tooltop_text" : "\"Open File\"",
          "$ xns" : "Gtk",
-         "* pack" : "add",
+         "* pack" : "append",
          "bool always_show_image" : true,
          "id" : "open_projects_btn",
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "system-file-manager",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
            "  \t_this.windowstate.showPopoverFiles(this.el, _this.project, false);",
-           "",
            "}"
           ]
          },
+         "string icon_name" : "system-file-manager",
          "string label" : "Files / Projects",
+         "tooltop_text" : "\"Open File\"",
          "xtype" : "Button"
         }
        ],
        "xtype" : "Box"
       }
      ],
-     "string title" : "Application Builder",
      "xtype" : "HeaderBar"
     },
     {
-     "$ homogeneous" : false,
      "$ xns" : "Gtk",
-     "* pack" : "add",
+     "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "bool homogeneous" : false,
+     "bool vexpand" : true,
      "id" : "vbox",
      "items" : [
       {
        "# int lastWidth" : 0,
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,true,true,0",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "bool hexpand" : true,
+       "bool vexpand" : true,
        "id" : "mainpane",
        "items" : [
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
+         "* prop" : "start_child",
          "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "id" : "leftpane",
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,true,true,0",
            "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
            "id" : "editpane",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "add1",
+             "* prop" : "start_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "bool hexpand" : true,
+             "bool vexpand" : true,
              "id" : "tree",
              "xtype" : "Box"
             },
             {
              "$ xns" : "Gtk",
-             "* pack" : "add2",
+             "* prop" : "end_child",
              "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "bool hexpand" : true,
+             "bool vexpand" : true,
              "id" : "props",
              "xtype" : "Box"
             }
            ],
            "listeners" : {
             "accept_position" : [
-             "() => {",
-             "\tGLib.debug(\"Accept postion\");",
+             "( ) => {",
+             "\t_this.windowstate.left_tree.onresize();",
              "\treturn true;",
-             "}"
+             "}",
+             ""
             ],
             "move_handle" : [
              "(scroll) => {",
@@ -255,21 +308,23 @@
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add2",
+         "* prop" : "end_child",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "bool hexpand" : true,
            "bool vexpand" : true,
            "id" : "rooviewbox",
            "xtype" : "Box"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "bool hexpand" : true,
            "bool vexpand" : true,
            "id" : "codeeditviewbox",
            "xtype" : "Box"
@@ -278,54 +333,46 @@
          "xtype" : "Box"
         }
        ],
+       "listeners" : {
+        "accept_position" : [
+         "( ) => {",
+         "\t_this.windowstate.left_tree.onresize();",
+         "\treturn true;",
+         "}",
+         ""
+        ]
+       },
        "position" : 400,
        "xtype" : "Paned"
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_end,false,true,0",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
        "bool homogeneous" : false,
+       "bool vexpand" : false,
        "items" : [
         {
          "$ tooltip_text" : "\"Project Details\"",
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "bool always_show_image" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "emblem-system",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
            "     ",
-           "     _this.windowstate.projectPopoverShow(this.el, _this.project);",
+           "     _this.windowstate.projectPopoverShow(_this.el, null);",
            "   ",
            "  ",
            "}"
           ]
          },
+         "string icon_name" : "emblem-system",
          "string label" : "Edit Project Settings",
          "xtype" : "Button"
         },
         {
          "$ tooltip_text" : "\"File Details\"",
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "bool always_show_image" : true,
-         "items" : [
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "document-properties",
-           "xtype" : "Image"
-          }
-         ],
          "listeners" : {
           "clicked" : [
            "  ( ) => {",
@@ -335,7 +382,7 @@
            "        return  ;",
            "    }",
            "     _this.windowstate.file_details.show(",
-           "        _this.windowstate.file, this.el, false",
+           "        _this.windowstate.file, _this.el, false",
            "    );",
            "     ",
            "    return  ;    ",
@@ -344,67 +391,70 @@
            "}"
           ]
          },
+         "string icon_name" : "document-properties",
          "string label" : "Edit File Properties",
          "xtype" : "Button"
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "bool always_show_image" : true,
          "items" : [
           {
            "$ xns" : "Gtk",
+           "* ctor" : "new Gtk.PopoverMenu.from_model(null)",
            "* init" : [
             "{",
-            "    this.el.show_all();",
+            "   // this.el.show();",
             "}",
             ""
            ],
-           "* pack" : "set_popup",
+           "* prop" : "popover",
            "id" : "topbarmenu",
            "items" : [
             {
              "$ xns" : "Gtk",
-             "* pack" : "append",
-             "listeners" : {
-              "activate" : [
-               " ( ) => {",
-               "         Resources.singleton().fetchStart();",
-               "}"
-              ]
-             },
-             "string label" : "Download updated Resources",
-             "xtype" : "MenuItem"
-            },
-            {
-             "$ xns" : "Gtk",
-             "* pack" : "append",
-             "listeners" : {
-              "activate" : [
-               "() => {",
-               "    About.singleton().el.show();",
-               "    }"
-              ]
-             },
-             "string label" : "About the Builder",
-             "xtype" : "MenuItem"
+             "* pack" : "set_child",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "listeners" : {
+                "activate" : [
+                 " ( ) => {",
+                 "         Resources.singleton().fetchStart();",
+                 "}"
+                ]
+               },
+               "string label" : "Download updated Resources",
+               "xtype" : "Button"
+              },
+              {
+               "$ xns" : "Gtk",
+               "listeners" : {
+                "clicked" : [
+                 "() => {",
+                 "    About.singleton().el.show();",
+                 "    }"
+                ]
+               },
+               "string label" : "About the Builder",
+               "xtype" : "Button"
+              }
+             ],
+             "xtype" : "Box"
             }
            ],
-           "xtype" : "Menu"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "set_image",
-           "utf8 icon_name" : "dialog-information",
-           "xtype" : "Image"
+           "xtype" : "PopoverMenu"
           }
          ],
+         "string icon_name" : "dialog-information",
          "string label" : "About",
          "xtype" : "MenuButton"
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "pack_start,true,true,0",
+         "bool hexpand" : true,
          "string label" : "   ",
          "xtype" : "Label"
         },
@@ -428,232 +478,219 @@
           "}",
           ""
          ],
-         "* pack" : "pack_start,true,true,0",
          "bool show_text" : true,
          "id" : "statusbar",
          "ulong handler_id" : "-1",
          "xtype" : "ProgressBar"
         },
         {
+         "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "id" : "statusbar_compilestatus_label",
+           "int margin_end" : 4,
+           "int margin_start" : 4,
            "string label" : "Compile Status:",
-           "xtype" : "MenuItem"
+           "xtype" : "Label"
           },
           {
-           "# Json.Object notices" : "new Json.Object() ",
+           "# GLib.ListStore notices" : "null",
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_errors",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 2,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "utf8 icon_name" : "dialog-error",
-               "xtype" : "Image"
-              },
-              {
-               "$ xns" : "Gtk",
-               "id" : "statusbar_errors_label",
-               "string label" : "Errors",
-               "xtype" : "Label"
-              }
-             ],
-             "xtype" : "Box"
-            }
-           ],
            "listeners" : {
-            "button_press_event" : [
+            "clicked" : [
              "() => {",
+             "    ",
+             "",
+             "    ",
              "    if (this.popup == null) {",
              "        this.popup = new Xcls_ValaCompileErrors();",
              "        this.popup.window = _this;",
+             "        //this.popup.el.application = _this.el.application;",
+             "\t  //   this.popup.el.set_transient_for( _this.el );",
+             "       this.popup.el.set_parent(this.el);",
              "    }",
-             "   ",
-             "    ",
+             "    if (_this.statusbar_compile_spinner.el.spinning) {",
+             "\t\tthis.popup.el.show();    \t",
+             "    \treturn;",
+             "\t}    ",
              "    this.popup.show(this.notices, this.el);",
-             "    return true;",
+             "    return;",
              "}"
             ]
            },
-           "xtype" : "MenuItem",
+           "string icon_name" : "dialog-error",
+           "string label" : "0 Errors",
+           "xtype" : "Button",
            "| void setNotices" : [
-            "(Json.Object nots, int qty) {",
-            "    this.el.show_all();",
-            "    _this.statusbar_errors_label.el.label = qty.to_string() + \" Errors\";",
+            "(GLib.ListStore nots, int qty, int tf) {",
+            "    ",
+            "     if (qty < 1 ) {",
+            "    \tthis.el.hide();",
+            "    \tif (this.popup != null && this.popup.el.visible) {",
+            "    \t\tthis.popup.el.hide();",
+            "\t\t}",
+            "    \treturn;",
+            "    }",
+            "    ",
+            "    this.el.show();",
+            "    this.el.label = \"%d/%d Errors\".printf(tf,qty);",
             "    this.notices = nots;",
-            "",
+            "\tif (this.popup != null && this.popup.el.visible) {",
+            "\t\t this.popup.show(this.notices, this.el);",
+            "    }",
             "}",
             ""
            ]
           },
           {
-           "# Json.Object notices" : "new Json.Object()",
+           "# GLib.ListStore notices" : "null",
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_warnings",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 2,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "utf8 icon_name" : "dialog-warning",
-               "xtype" : "Image"
-              },
-              {
-               "$ xns" : "Gtk",
-               "id" : "statusbar_warnings_label",
-               "string label" : "Errors",
-               "xtype" : "Label"
-              }
-             ],
-             "xtype" : "Box"
-            }
-           ],
            "listeners" : {
-            "button_press_event" : [
+            "clicked" : [
              "() => {",
-             "    if (this.popup == null) {",
+             " ",
+             "\tif (this.popup == null) {",
              "        this.popup = new Xcls_ValaCompileErrors();",
              "        this.popup.window = _this;",
+             "      //    this.popup.el.set_transient_for( _this.el );",
+             "        this.popup.el.set_parent(this.el);",
              "    }",
-             "    ",
+             "        if (_this.statusbar_compile_spinner.el.spinning) {",
+             "\t\tthis.popup.el.show();    \t",
+             "    \treturn;",
+             "\t}    ",
              "    this.popup.show(this.notices, this.el);",
-             "    return true;",
+             "    return;",
              "}"
             ]
            },
-           "xtype" : "MenuItem",
+           "string icon_name" : "dialog-warning",
+           "string label" : "0 Warnings",
+           "xtype" : "Button",
            "| void setNotices" : [
-            "(Json.Object nots, int qty) {",
-            "    this.el.show_all();",
-            "    _this.statusbar_warnings_label.el.label = qty.to_string() + \" Warnings\";",
-            "    this.notices = nots;",
+            "(GLib.ListStore nots, int qty, int tf) {",
+            "    ",
+            "    if (qty < 1 ) {",
+            "    \tthis.el.hide();",
+            "    \tif (this.popup != null && this.popup.el.visible) {",
+            "    \t\tthis.popup.el.hide();",
+            "\t\t}",
+            "    \treturn;",
+            "    }",
+            "    this.el.show();",
+            "    this.el.label = \"%d/%d Warnings\".printf(tf,qty);",
+            "     this.notices = nots;",
+            "    if (this.popup != null && this.popup.el.visible) {",
+            "\t\t this.popup.show(this.notices, this.el);",
+            "    }",
+            "    ",
             "",
             "}",
             ""
            ]
           },
           {
-           "# Json.Object notices" : "new Json.Object()",
+           "# GLib.ListStore notices" : "null",
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_depricated",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 2,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "utf8 icon_name" : "dialog-information",
-               "xtype" : "Image"
-              },
-              {
-               "$ xns" : "Gtk",
-               "id" : "statusbar_depricated_label",
-               "string label" : "Errors",
-               "xtype" : "Label"
-              }
-             ],
-             "xtype" : "Box"
-            }
-           ],
            "listeners" : {
-            "button_press_event" : [
+            "clicked" : [
              "() => {",
-             "    if (this.popup == null) {",
+             "    ",
+             "\tif (this.popup == null) {",
              "        this.popup = new Xcls_ValaCompileErrors();",
              "        this.popup.window = _this;",
+             "      //  this.popup.el.set_transient_for( _this.el );",
+             "        this.popup.el.set_parent(this.el);",
              "    }",
-             "    ",
+             "    if (_this.statusbar_compile_spinner.el.spinning) {",
+             "\t\tthis.popup.el.show();    \t",
+             "    \treturn;",
+             "\t}    ",
              "    ",
              "    this.popup.show(this.notices, this.el);",
-             "    return true;",
+             "    return;",
              "}"
             ]
            },
-           "xtype" : "MenuItem",
+           "string icon_name" : "dialog-information",
+           "string label" : "0 Depricated",
+           "xtype" : "Button",
            "| void setNotices" : [
-            "(Json.Object nots, int qty) {",
-            "    this.el.show_all();",
-            "    _this.statusbar_depricated_label.el.label = qty.to_string() + \" Depricated\";",
+            "(GLib.ListStore nots, int qty, int tf) {",
+            "    if (qty < 1) {",
+            "    \tthis.el.hide();",
+            "    \tif (this.popup != null && this.popup.el.visible) {",
+            "\t\t\t this.popup.el.hide();",
+            "\t\t}",
+            " ",
+            "    \treturn;",
+            "\t}",
+            "    ",
+            "    this.el.show();",
+            "    ",
+            "    this.el.label = \"%d/%d Depricated\".printf(tf,qty);",
             "    this.notices = nots;",
-            "",
+            "\tif (this.popup != null && this.popup.el.visible) {",
+            "\t\t this.popup.show(this.notices, this.el);",
+            "    }",
             "}",
             ""
            ]
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "Xcls_ValaCompileErrors popup" : "",
            "id" : "statusbar_run",
-           "items" : [
-            {
-             "$ xns" : "Gtk",
-             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-             "int spacing" : 2,
-             "items" : [
-              {
-               "$ xns" : "Gtk",
-               "utf8 icon_name" : "media-playback-start",
-               "xtype" : "Image"
-              },
-              {
-               "$ xns" : "Gtk",
-               "string label" : "Run",
-               "xtype" : "Label"
-              }
-             ],
-             "xtype" : "Box"
-            }
-           ],
            "listeners" : {
-            "button_press_event" : [
+            "clicked" : [
              "() => {",
-             "\tif (_this.windowstate.file == null) {",
-             "\t\treturn true;",
+             "   ",
+             "   if (_this.windowstate.file == null) {",
+             "\t\treturn;",
              "\t}",
-             "\tBuilderApplication.valasource.spawnExecute(_this.windowstate.file);",
-             "\t",
+             "   if (_this.statusbar_compile_spinner.el.spinning) {",
+             "    \t_this.windowstate.compile_results.el.set_parent(this.el);",
+             "\t    _this.windowstate.compile_results.el.show(); // show currently running.",
+             "    \treturn;",
+             "\t}",
+             "\tBuilderApplication.valacompilequeue.addFile( ",
+             "\t \t\t\t\t\tPalete.ValaCompileRequestType.RUN, ",
+             "\t \t\t\t\t\t_this.windowstate.file, \"\", true ) ;",
+             "",
+             "\t_this.windowstate.compile_results.el.set_parent(this.el);",
              "\t_this.windowstate.compile_results.show(this.el,true);",
-             "\t",
-             "\treturn true;",
+             "\t         ",
              "}"
             ]
            },
-           "xtype" : "MenuItem"
+           "string icon_name" : "media-playback-start",
+           "string label" : "Run",
+           "xtype" : "Button"
           }
          ],
-         "xtype" : "MenuBar"
+         "xtype" : "Box"
         },
         {
          "$ xns" : "Gtk",
-         "* pack" : "add",
          "id" : "statusbar_compile_spinner",
+         "int margin_end" : 4,
+         "int margin_start" : 4,
          "string tooltip_text" : "Compiling",
          "xtype" : "Spinner",
          "| void start" : [
           "() {",
           "  this.el.show();",
           "  this.el.start();  ",
+          "  ",
+          "\t ",
           "}",
           ""
          ],
@@ -661,6 +698,7 @@
           "() {",
           " this.el.stop();",
           "  this.el.hide();",
+          "   ",
           "}",
           ""
          ]
@@ -673,12 +711,14 @@
     }
    ],
    "listeners" : {
-    "delete_event" : [
-     "(   event) => {",
-     "    return false;",
-     "} "
+    "close_request" : [
+     "( ) => {",
+     "",
+     "\treturn false;",
+     "}",
+     ""
     ],
-    "destroy" : [
+    "hide" : [
      "() =>  {",
      " ",
      " ",
@@ -688,46 +728,31 @@
      " ",
      " if (BuilderApplication.windows.size  < 1) {",
      "",
-     "     Gtk.main_quit();",
+     "    BuilderApplication.singleton(  null ).quit();",
      " }",
      "}"
-    ],
-    "key_release_event" : [
-     " (event) => {",
-     "    ",
-     "    ",
-     "\t",
-     "\tif (event.keyval == Gdk.Key.n && (event.state & Gdk.ModifierType.CONTROL_MASK ) > 0 ) {",
-     "\t\tprint(\"SAVE: ctrl-n  pressed\");",
-     "\t\t_this.windowstate.showPopoverFiles(_this.windowbtn.el, _this.project, true);",
-     "\t\treturn false;",
-     "\t}",
-     "\t",
-     "   // print(event.key.keyval)",
-     "    ",
-     "    return false;",
-     "",
-     "} ",
-     "",
-     ""
     ],
     "show" : [
      "  ( ) => {",
      "    // hide the file editing..",
      "   ",
      "    //this.hideViewEditing();",
-     "    _this.statusbar.el.hide();",
-     "     _this.statusbar_errors.el.hide();",
-     "    _this.statusbar_warnings.el.hide();",
-     "    _this.statusbar_depricated.el.hide();",
+     "    // this is updated by windowstate - we try and fill it in..",
+     "     _this.statusbar.el.hide();",
+     "     //_this.statusbar_errors.el.hide();",
+     "    //_this.statusbar_warnings.el.hide();",
+     "    //_this.statusbar_depricated.el.hide();",
      "    _this.statusbar_compile_spinner.el.hide();",
      "  ",
      "    Resources.singleton().checkResources();",
+     "    ",
+     "  ",
      "",
      "}"
     ]
    },
-   "xtype" : "Window",
+   "string title" : "Roo Application Builder",
+   "xtype" : "ApplicationWindow",
    "| void initChildren" : [
     " () {",
     "    // this needs putting in a better place..",
@@ -749,7 +774,7 @@
     "    var w = new Xcls_MainWindow();",
     "    w.ref();",
     "\tBuilderApplication.addWindow(w);",
-    "    w.el.show_all();",
+    "    w.el.show();",
     "    w.initChildren();",
     "    w.windowstate.showPopoverFiles(w.open_projects_btn.el, _this.project, false);",
     "     ",
@@ -757,24 +782,58 @@
     ""
    ],
    "| void setTitle" : [
-    " (string str) {",
-    "    this.headerbar.el.set_title(this.title + \" - \" + str);",
-    "} ",
-    ""
+    " () {",
+    "    if (_this.windowstate.project == null || ",
+    "\t    _this.windowstate.file == null",
+    "    ) {",
+    "    \tthis.el.set_title(\"Select File\");",
+    "    \treturn;",
+    "\t}",
+    "    _this.el.set_title(",
+    "    \t_this.windowstate.project.name + ",
+    "    \t\" - \" +",
+    "\t\t_this.windowstate.file.relpath);",
+    "} "
    ],
    "| void show" : [
     "() {",
     "   ",
-    "    this.el.show_all();",
+    "    this.el.show();",
+    "    if (this.windowstate.file  == null) {",
+    "    \tthis.windowstate.showPopoverFiles(this.open_projects_btn.el, null, false);",
+    "    }",
+    "}"
+   ],
+   "| void updateErrors" : [
+    "(Palete.ValaCompileRequest? req) {",
     "",
+    "\tif (req == null) {",
+    " ",
+    "\t    _this.statusbar_errors.el.hide();",
+    "\t\t_this.statusbar_warnings.el.hide();",
+    "\t\t_this.statusbar_depricated.el.hide();",
+    "\t\treturn;",
+    "\t}",
+    "\t",
+    "\t",
+    "\tthis.statusbar_errors.setNotices(",
+    "\t\treq.errorByType.get(\"ERR\"),",
+    "\t\treq.totalErrors(\"ERR\"),",
+    "\t\treq.totalErrors(\"ERR\", this.windowstate.file)",
+    "\t);",
+    "\tthis.statusbar_warnings.setNotices(",
+    "\t\treq.errorByType.get(\"WARN\"),",
+    "\t\treq.totalErrors(\"WARN\"),",
+    "\t\treq.totalErrors(\"WARN\", this.windowstate.file)",
+    "\t);",
+    "\tthis.statusbar_depricated.setNotices(",
+    "\t\treq.errorByType.get(\"DEPR\"),",
+    "\t\treq.totalErrors(\"DEPR\"),",
+    "\t\treq.totalErrors(\"DEPR\", this.windowstate.file)",
+    "\t);",
     "}"
    ]
   }
  ],
- "modOrder" : "",
- "name" : "MainWindow",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/MainWindow.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "MainWindow"
 }

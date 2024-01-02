@@ -1,4 +1,4 @@
-#include <JavaScriptCore/JavaScript.h>
+#include <jsc/jsc.h>
 #include <glib.h>
 #include <glib-object.h>
 /**

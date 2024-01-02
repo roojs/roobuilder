@@ -78,9 +78,14 @@ namespace JsRender {
 				case Json.NodeType.VALUE:
 				  size_t sl;
 				  this.generator.set_root(node);
+<<<<<<< HEAD
 				   var str = this.generator.to_data(out sl);
                   buffer.append( str );
  
+=======
+				  var str = this.generator.to_data(out sl);
+		  		  buffer.append( str );
+>>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 				  break;
 
 				case Json.NodeType.ARRAY:

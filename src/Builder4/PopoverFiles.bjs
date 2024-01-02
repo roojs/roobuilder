@@ -1,5 +1,6 @@
 {
  "build_module" : "",
+ "gen_extended" : false,
  "items" : [
   {
    "# Gdk.Pixbuf missing_thumb_pixbuf" : "",
@@ -21,22 +22,44 @@
    "items" : [
     {
      "$ xns" : "Gtk",
-     "* pack" : "add",
+     "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "bool hexpand" : true,
+     "bool vexpand" : true,
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "bool hexpand" : true,
        "items" : [
         {
+         "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
          "$ xns" : "Gtk",
-         "* pack" : "add",
-         "Gtk.ToolbarStyle toolbar_style" : "Gtk.ToolbarStyle.BOTH",
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
+           "items" : [
+            {
+             "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "$ xns" : "Gtk",
+             "* prop" : "child",
+             "items" : [
+              {
+               "$ Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
+               "$ xns" : "Gtk",
+               "int margin_end" : 4,
+               "string icon_name" : "folder-new",
+               "xtype" : "Image"
+              },
+              {
+               "$ xns" : "Gtk",
+               "string label" : "New Project",
+               "xtype" : "Label"
+              }
+             ],
+             "xtype" : "Box"
+            }
+           ],
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -44,32 +67,36 @@
              "    // create a new file in project..",
              "    //Xcls_DialogNewComponent.singleton().show(",
              "   var  pe =      EditProject.singleton();",
-             "    //pe.el.set_transient_for(_this.el);",
-             "    pe.el.set_modal(true);   ",
+             "   pe.el.application = _this.win.el.application;",
+             "    pe.el.set_transient_for( _this.win.el );",
+             " ",
+             "   _this.el.hide();",
              "   ",
-             "    var p  = pe.show();",
+             "    pe.selected.connect((pr) => {",
+             "     \t",
+             "\t     _this.is_loaded = false;",
+             "\t     _this.show(null, pr, _this.new_window);",
              "",
-             "    if (p == null) {",
-             "        return;",
-             "    }",
+             "    });",
              "    ",
-             "    /*",
-             "    _this.win.windowstate.left_projects.is_loaded = false;    ",
-             "    _this.win.windowstate.left_projects.load();",
-             "    _this.win.windowstate.left_projects.selectProject(p);",
-             "    */",
-             "    return  ;    ",
+             "    pe.canceled.connect((pr) => {",
+             "     \t",
+             " ",
+             "\t     _this.show(null, null, _this.new_window);",
+             "",
+             "    });",
+             "    ",
+             "    pe.showIt();",
+             "   ",
              "",
              "}"
             ]
            },
-           "string icon_name" : "folder-new",
            "string label" : "New Project",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -83,11 +110,10 @@
            },
            "string icon_name" : "emblem-system",
            "string label" : "Project Properties",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              "  ( ) => {",
@@ -123,11 +149,10 @@
            },
            "string icon_name" : "user-trash",
            "string label" : "Delete Project",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "add",
            "listeners" : {
             "clicked" : [
              " () => {",
@@ -147,53 +172,31 @@
            },
            "string icon_name" : "document-new",
            "string label" : "New File",
-           "xtype" : "ToolButton"
-          },
-          {
-           "$ xns" : "Gtk",
-           "* pack" : "add",
-           "listeners" : {
-            "clicked" : [
-             " () => {",
-             "    // create a new file in project..",
-             "    print(\"add file selected\\n\");",
-             "    ",
-             "    if (_this.selectedProject == null) {",
-             "    \treturn;",
-             "    }",
-             "    try {",
-             "    \tvar f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, \"\");",
-             "     \t_this.win.windowstate.file_details.show( f, this.el, _this.new_window );",
-             "     } catch (JsRender.Error e) {}",
-             "",
-             "}"
-            ]
-           },
-           "string icon_name" : "document-new",
-           "string label" : "New File",
-           "xtype" : "ToolButton"
+           "xtype" : "Button"
           }
          ],
-         "xtype" : "Toolbar"
+         "xtype" : "Box"
         }
        ],
        "xtype" : "Box"
       },
       {
        "$ xns" : "Gtk",
-       "* pack" : "add",
        "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "bool hexpand" : true,
        "bool homogeneous" : false,
+       "bool vexpand" : true,
        "items" : [
         {
-         "$ shadow_type" : "Gtk.ShadowType.IN",
          "$ xns" : "Gtk",
          "* init" : [
           "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
           " "
          ],
-         "* pack" : "add",
          "bool expand" : true,
+         "bool has_frame" : true,
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "int width_request" : 150,
          "items" : [
           {
@@ -205,7 +208,7 @@
             "        ",
             "this.css = new Gtk.CssProvider();",
             "try {",
-            "\tthis.css.load_from_data(\"#popover-files-view { font-size: 10px;}\");",
+            "\tthis.css.load_from_data(\"#popover-files-view { font-size: 10px;}\".data);",
             "} catch (Error e) {}",
             "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
             "        ",
@@ -220,8 +223,10 @@
             "   ",
             " "
            ],
-           "* pack" : "add",
+           "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
+           "bool hexpand" : true,
+           "bool vexpand" : true,
            "id" : "view",
            "items" : [
             {
@@ -303,7 +308,8 @@
         {
          "$ xns" : "Gtk",
          "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
-         "bool expand" : true,
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "int spacing" : 0,
          "int width_request" : 600,
          "items" : [
@@ -320,7 +326,7 @@
               "",
               "this.css = new Gtk.CssProvider();",
               "try {",
-              "\tthis.css.load_from_data(\"#popover-files-iconsearch { font: monospace 10px;}\");",
+              "\tthis.css.load_from_data(\"#popover-files-iconsearch { font:  10px monospace;}\".data);",
               "} catch (Error e) {}",
               "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
               "        ",
@@ -356,9 +362,9 @@
             "  this.el.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);",
             "  "
            ],
-           "* pack" : "add",
-           "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
-           "bool expand" : true,
+           "bool has_frame" : true,
+           "bool hexpand" : true,
+           "bool vexpand" : true,
            "id" : "iconscroll",
            "int width_request" : 600,
            "items" : [
@@ -370,8 +376,10 @@
               "}",
               ""
              ],
-             "* pack" : "add",
+             "* pack" : "set_child",
              "bool has_tooltip" : true,
+             "bool hexpand" : true,
+             "bool vexpand" : true,
              "id" : "iconview",
              "int item_width" : 100,
              "int markup_column" : 1,
@@ -432,7 +440,9 @@
                "\tGLib.Value val;",
                "\t_this.iconmodel.el.get_value(iter, 4, out val);",
                "\t",
-               "\ttooltip.set_icon((Gdk.Pixbuf) val.get_object());",
+               "\ttooltip.set_icon(  Gdk.Texture.for_pixbuf(",
+               "\t\t(Gdk.Pixbuf) val.get_object()",
+               "\t));",
                "\t _this.iconview.el.set_tooltip_item(tooltip, path);",
                "\treturn true;",
                "}",
@@ -450,12 +460,12 @@
         {
          "$ xns" : "Gtk",
          "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
-         "* pack" : "add",
-         "Gtk.ShadowType shadow_type" : "Gtk.ShadowType.IN",
-         "bool expand" : true,
+         "bool has_frame" : true,
+         "bool hexpand" : true,
+         "bool vexpand" : true,
          "bool visible" : false,
          "id" : "file_container",
-         "int width_request" : 100,
+         "int width_request" : 200,
          "items" : [
           {
            "$ enable_tree_lines" : true,
@@ -465,7 +475,7 @@
             "",
             "this.css = new Gtk.CssProvider();",
             "try {",
-            "\tthis.css.load_from_data(\"#popover-files-fileview { font-size: 12px;}\");",
+            "\tthis.css.load_from_data(\"#popover-files-fileview { font-size: 12px;}\".data);",
             "} catch (Error e) {}",
             "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
             "        ",
@@ -481,10 +491,11 @@
             "",
             ""
            ],
-           "* pack" : "add",
+           "* pack" : "set_child",
            "Gtk.CssProvider css" : "",
            "bool activate_on_single_click" : false,
-           "bool expand" : true,
+           "bool hexpand" : true,
+           "bool vexpand" : true,
            "id" : "fileview",
            "items" : [
             {
@@ -603,14 +614,15 @@
      "\t//if (project != null) {",
      "//\t\tthis.selectProject(project);",
      "//\t}",
-     " \tif (_this.win.windowstate.project == null) {",
-     " \t\tthis.el.show();",
-     "\t}",
+     " \t//if (_this.win.windowstate.project == null) {",
+     " \t//\tthis.el.show();",
+     "\t//}",
      "}"
     ]
    },
    "string lastfilter" : "\"\"",
-   "xtype" : "Popover",
+   "string title" : "Select Project /File",
+   "xtype" : "Window",
    "| void load" : [
     "() {",
     "     // clear list...",
@@ -667,11 +679,15 @@
     "    ",
     "    ",
     "      try {",
-    "\t        if (_this.missing_thumb_pixbuf == null) {",
-    "\t            var icon_theme = Gtk.IconTheme.get_default ();",
-    "\t            _this.missing_thumb_pixbuf = icon_theme.load_icon (\"package-x-generic\", 92, 0);",
-    "\t            _this.missing_thumb_pixbuf.ref();",
-    "\t        }",
+    "        if (_this.missing_thumb_pixbuf == null) {",
+    "        ",
+    "        \tvar icon_theme = Gtk.IconTheme.get_for_display(this.el.get_display());",
+    "        \t var icon = icon_theme.lookup_icon (\"package-x-generic\", null,  92,1, ",
+    "\t\t\t\t\t Gtk.TextDirection.NONE, 0);",
+    "\t\t \t_this.missing_thumb_pixbuf = (new Gdk.Pixbuf.from_file (icon.file.get_path())).scale_simple(",
+    "\t\t \t\t92, 92 \t, Gdk.InterpType.NEAREST) ;",
+    "            _this.missing_thumb_pixbuf.ref();",
+    "        }",
     "\t        ",
     "",
     "\t    } catch (Error e) {",
@@ -892,27 +908,32 @@
    "| void setMainWindow" : [
     "(Xcls_MainWindow win) {",
     "\tthis.win = win;",
-    "\t ",
+    "\tthis.el.set_transient_for(win.el);",
+    "\tthis.el.application = BuilderApplication.singleton({});",
     "}",
     ""
    ],
    "| void show" : [
-    "(Gtk.Widget on_el, Project.Project? project, bool new_window) {",
+    "(Gtk.Widget? on_el, Project.Project? project, bool new_window) {",
     "\t//this.editor.show( file, node, ptype, key);",
     "\t",
     "\tthis.new_window = new_window;",
     "\t\t// save...",
     "\tthis.load();",
-    "\tthis.el.show_all(); // show first - so we can hide stuff later.\t",
+    "\tif (on_el != null) {",
+    "\t\tthis.el.set_parent(on_el);",
+    "\t}",
+    "\t // show first - so we can hide stuff later.\t",
     "\tif (project != null) {",
     "\t",
     "\t\tthis.selectProject(project);",
     "\t}",
     "\t",
     "\t",
-    "    int w,h;",
-    "    this.win.el.get_size(out w, out h);",
-    "    ",
+    "  //   var win = this.win.el;",
+    "  //  var  w = win.get_width();",
+    "  //  var h = win.get_height();",
+    "",
     "    // left tree = 250, editor area = 500?",
     "    ",
     "    // min 450?",
@@ -922,23 +943,22 @@
     "\t",
     "\t// width = should be max = w-ww , or 600 at best..?",
     "\t ",
-    "    this.el.set_size_request( w, h); // same as parent...",
+    "    //this.el.set_size_request( w - 100, h - 100); // same as parent...",
     "",
     "",
-    "\tthis.el.set_modal(true);",
-    "\tthis.el.set_relative_to(on_el);",
-    "",
-    "\t ",
-    "",
+    "\t//this.el.set_autohide(true); // can hide",
+    "\t//Gtk.Allocation rect;",
+    "\t//on_el.get_allocation(out rect);",
+    "   // this.el.set_pointing_to(rect);",
+    "    //this.el.set_offset(200,0);",
+    "    //this.el.set_position(Gtk.PositionType.BOTTOM);",
+    "\tthis.el.show();",
+    "\t  ",
     "}",
     ""
    ]
   }
  ],
- "modOrder" : "",
  "name" : "PopoverFiles",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/PopoverFiles.bjs",
- "permname" : "",
- "title" : ""
+ "namespace" : ""
 }

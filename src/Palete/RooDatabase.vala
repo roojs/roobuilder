@@ -13,18 +13,18 @@ namespace Palete {
   
     public class RooDatabase : Object 
     {
-        public Project.Project project;
+        public Project.Roo project;
 
 		public string DBTYPE;
 		public string DBNAME;
 		 
         public Gda.Connection cnc;
         
-		public RooDatabase.from_project (Project.Project project)
+		public RooDatabase.from_project (Project.Roo project)
         {
             this.project = project;
-			this.DBTYPE = this.project.get_string_member("DBTYPE");
-			this.DBNAME = this.project.get_string_member("DBNAME");
+			this.DBTYPE = this.project.DBTYPE;
+			this.DBNAME = this.project.DBNAME;
 			if (this.DBTYPE.length < 1) {
 				return;
 			}
@@ -35,8 +35,8 @@ namespace Palete {
 					this.cnc = Gda.Connection.open_from_string (
 					this.DBTYPE,
 					"DB_NAME=" + this.DBNAME, 
-					"USERNAME=" + this.project.get_string_member("DBUSERNAME") + 
-					";PASSWORD=" + this.project.get_string_member("DBPASSWORD"),
+					"USERNAME=" + this.project.DBUSERNAME + 
+					";PASSWORD=" + this.project.DBPASSWORD,
 					Gda.ConnectionOptions.NONE
 				);
 			} catch(GLib.Error e) {

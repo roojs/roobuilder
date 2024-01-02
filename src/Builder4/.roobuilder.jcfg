@@ -1,0 +1,13 @@
+{
+    "name" : "Builder4",
+    "xtype" : "Gtk",
+    "compilegroups" : [],
+    "compile_flags" : "",
+    "packages" : [
+        "gtk4",
+        "javascriptcoregtk-6.0",
+        "gtksourceview-5",
+        "webkitgtk-6.0",
+        "libxml-2.0"
+    ]
+}

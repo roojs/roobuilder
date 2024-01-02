@@ -14,13 +14,13 @@ public class WindowState : Object
 		PREVIEW,
 		CODE,
 		CODEONLY  
-	}  
-
+	}
+ 
 	public State state = State.NONE;
 	public bool children_loaded = false;
  
-	public Project.Project project;
-	public JsRender.JsRender file;
+	public Project.Project? project = null;
+	public JsRender.JsRender? file = null;
 	  
 	public Xcls_WindowLeftTree  left_tree;
 	public Xcls_PopoverAddProp   add_props;
@@ -32,7 +32,7 @@ public class WindowState : Object
 	public Editor					 code_editor_tab; 
 	public Xcls_WindowRooView   window_rooview;
 	public Xcls_GtkView         window_gladeview;
-	public Xcls_PopoverFiles popover_files;
+	public DialogFiles popover_files;
 	
 	//public Xcls_ClutterFiles     clutterfiles;
 	//public Xcls_WindowLeftProjects left_projects; // can not see where this is initialized.. 
@@ -43,7 +43,7 @@ public class WindowState : Object
 	public Xcls_ValaCompileResults compile_results;
 	
 	// dialogs??
-	public Xcls_DialogPluginWebkit webkit_plugin;
+
 	
 	
 	//public Palete.ValaSource valasource; // the spawner that runs the vala compiler.
@@ -79,27 +79,31 @@ public class WindowState : Object
 
  		this.fileDetailsInit();
 
-		this.webkit_plugin = new Xcls_DialogPluginWebkit();
+
 		this.template_select = new DialogTemplateSelect();
 		this.children_loaded = true;
 		
 		
 		 
-		BuilderApplication.valasource.compiled.connect(this.showCompileResult); 
+		//BuilderApplication.valasource.compiled.connect(this.showCompileResult); 
+		
 		
 		this.compile_results = new  Xcls_ValaCompileResults(); // the poup dialogs with results in.
 		this.compile_results.window = this.win;
-		BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
+		//BuilderApplication.valasource.compile_output.connect(this.compile_results.addLine);
 		
 		this.win.statusbar_compilestatus_label.el.hide();
 		this.win.statusbar_run.el.hide();
+  
+		this.popover_files = new DialogFiles();
+		 this.popover_files.win = this.win;
+	    this.popover_files.el.application = this.win.el.application;
+	    this.popover_files.el.set_transient_for( this.win.el );
  
-		
-		this.popover_files = new Xcls_PopoverFiles();
-	 	this.popover_files.setMainWindow(this.win);
+
 	}
 
-
+ 
 	// left tree
 
 	public void leftTreeInit()
@@ -111,11 +115,11 @@ public class WindowState : Object
 	
 		this.win.leftpane.el.remove(this.win.editpane.el);
     	//this.win.tree.el.remove(this.left_tree.el);
-    	this.win.leftpane.el.add(this.left_tree.el);
+    	this.win.leftpane.el.append(this.left_tree.el);
 	    
 	
 		//this.win.tree.el.pack_start(this.left_tree.el,true, true,0);
-		this.left_tree.el.show_all();
+		this.left_tree.el.show();
 		   
 		this.left_tree.before_node_change.connect(() => {
 			// if the node change is caused by the editor (code preview)
@@ -126,7 +130,7 @@ public class WindowState : Object
 
 		});
 		// node selected -- only by clicking?
-		this.left_tree.node_selected.connect((sel, source) => {
+		this.left_tree.node_selected.connect((sel) => {
 			//if (source == "editor") {
 			//	return;
 			//}
@@ -137,8 +141,8 @@ public class WindowState : Object
 			}
 		});
 		
-		this.left_tree.node_selected.connect((sel, source) => {
-			this.leftTreeNodeSelected(sel, source);
+		this.left_tree.node_selected.connect((sel) => {
+			this.leftTreeNodeSelected(sel);
 		});
 	 
 		this.left_tree.changed.connect(() => {
@@ -158,7 +162,7 @@ public class WindowState : Object
 	{
 		// in theory code editor has to hide before tree change occurs.
 		//if (this.state != State.CODE) {
-			this.left_props.finish_editing();
+			//this.left_props.finish_editing();
 			
 			if (this.state == State.CODE) {
 				this.code_editor_tab.saveContents();
@@ -177,7 +181,7 @@ public class WindowState : Object
 	int tree_width = 300;
 	int props_width = 300;
 	
-	public void leftTreeNodeSelected(JsRender.Node? sel, string source)
+	public void leftTreeNodeSelected(JsRender.Node? sel)
 	{
 		
 		// do we really want to flip paletes if differnt nodes are selected
@@ -210,12 +214,12 @@ public class WindowState : Object
 		        
 		    	this.win.leftpane.el.remove(this.win.editpane.el);
 		    	this.win.tree.el.remove(this.left_tree.el);
-		    	this.win.leftpane.el.add(this.left_tree.el);
+		    	this.win.leftpane.el.append(this.left_tree.el);
 	    	}
 		    
 		
 			//GLib.debug("Hide Properties");
-			outerpane.show_all(); // make sure it's visiable..
+			outerpane.show(); // make sure it's visiable..
 			this.left_props.el.hide();
 			GLib.debug("set position: %d", this.tree_width);
  			outerpane.set_position(this.tree_width);
@@ -235,8 +239,8 @@ public class WindowState : Object
 		      
 		// remove this.ldeftree from this.win.leftpane
 		this.win.leftpane.el.remove(this.left_tree.el);
-		this.win.tree.el.add(this.left_tree.el);
-		this.win.leftpane.el.add(this.win.editpane.el);
+		this.win.tree.el.append(this.left_tree.el);
+		this.win.leftpane.el.append(this.win.editpane.el);
 		
 		
 		
@@ -245,8 +249,7 @@ public class WindowState : Object
 		// at start (hidden) - outer  = 400 inner = 399
 		// expanded out -> outer = 686, inner = 399 
 		//this.win.props.el.pack_start(this.left_props.el,true, true,0);
-		this.left_props.el.show_all();
-		//if (!this.left_props.el.visible) {
+		this.left_props.el.show();		//if (!this.left_props.el.visible) {
 		 
   			GLib.debug("outerpos : %d, innerpos : %d", outerpane.get_position(), innerpane.get_position());
   			outerpane.set_position(this.tree_width + this.props_width);
@@ -322,8 +325,8 @@ public class WindowState : Object
 		this.left_props =new Xcls_LeftProps();
 		this.left_props.ref();
 		this.left_props.main_window = this.win;
-		this.win.props.el.pack_start(this.left_props.el,true, true,0);
-		this.left_props.el.show_all();
+		this.win.props.el.append(this.left_props.el);
+		this.left_props.el.show();
 	
 		this.left_props.show_editor.connect( (file, node, prop) => {
 			this.switchState(State.CODE);
@@ -334,7 +337,7 @@ public class WindowState : Object
 				node,
 				prop
 			);
-			
+			///this.markBuf();
 			
 			
 		});
@@ -356,10 +359,14 @@ public class WindowState : Object
 			} else {
 				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
-			this.left_tree.model.updateSelected();
+			//this.left_tree.model.updateSelected();
 			this.file.save();
-			if (this.file.xtype=="Gtk") {
-				BuilderApplication.valasource.checkFileSpawn(this.file);
+			if (this.file.project.xtype=="Gtk") {
+					BuilderApplication.valacompilequeue.addFile( 
+	 					Palete.ValaCompileRequestType.PROJECT, 
+	 					this.file, "", true ) ;
+			
+				//BuilderApplication.valasource.checkFileSpawn(this.file);
 			}
 		});
 	 
@@ -371,11 +378,15 @@ public class WindowState : Object
 	public void projectEditInit()
 	{
 		this.roo_projectsettings_pop  =new Xcls_RooProjectSettings();
-		this.roo_projectsettings_pop.ref();  /// really?
+		this.roo_projectsettings_pop.el.application = this.win.el.application;
+
 	
 		this.vala_projectsettings_pop  =new  ValaProjectSettingsPopover();
-		this.vala_projectsettings_pop.ref();
-		this.vala_projectsettings_pop.window = this.win;
+
+   		this.vala_projectsettings_pop.window = this.win;
+   		this.vala_projectsettings_pop.el.application = this.win.el.application;
+   		
+		//this.vala_projectsettings_pop.el.set_parent(this.win.el); // = this.win;
 	
 		//((Gtk.Container)(this.win.projecteditview.el.get_widget())).add(this.projectsettings.el);
  
@@ -391,7 +402,7 @@ public class WindowState : Object
 			var ep = this.roo_projectsettings_pop.project;
 			foreach(var ww in BuilderApplication.windows) {
 				if (ww.windowstate.file != null && 
-					ww.windowstate.project.fn == ep.fn && 
+					ww.windowstate.project.path == ep.path && 
 					ww.windowstate.file.xtype == "Roo") {
 					 
 				    ww.windowstate.window_rooview.view.renderJS(true);
@@ -410,36 +421,24 @@ public class WindowState : Object
 
 	}
 	
-	public void projectPopoverShow(Gtk.Widget btn, Project.Project? pr) 
+	public void projectPopoverShow(Gtk.Window pwin, Project.Project? pr) 
 	{ 
 		if (pr == null) {
 		    pr = this.project;
 	    }
 	  
-	    /*
-        var active_file = this.left_tree.getActiveFile() ;
-        if (active_file != null) {
-            xtype = active_file.xtype;
-        } else {
-        
-        	return; // no active project
-            // we might be on the file brower..
-            //pr = this.left_projects.getSelectedProject();        
-            //if (pr != null) {
-            //    xtype = pr.xtype;
-            //}
-        } 
-        */
+	    
         if (pr.xtype == "") {
             return;
         }
         if (pr.xtype  == "Roo" ) {
-			this.roo_projectsettings_pop.show(btn,pr);
+			this.roo_projectsettings_pop.show(pwin,(Project.Roo)pr);
 			return;
 		}
 
 		// gtk..
-		this.vala_projectsettings_pop.show(btn,(Project.Gtk)pr);
+		
+		this.vala_projectsettings_pop.show(pwin,(Project.Gtk)pr);
 	
 	}
 	
@@ -475,10 +474,7 @@ public class WindowState : Object
 		//stage.set_background_color(  Clutter.Color.from_string("#000"));
 
 
-		this.add_props.select.connect( (prop) => {
-			 
-			this.left_props.addProp(prop);
-		});
+	 
 
 	}
 	public void propsAddShow()
@@ -509,7 +505,7 @@ public class WindowState : Object
 	{
 		this.code_editor_tab  = new  Editor();
 		//this.code_editor.ref();  /// really?
-		this.win.codeeditviewbox.el.add(this.code_editor_tab.el);
+		this.win.codeeditviewbox.el.append(this.code_editor_tab.el);
 		
 		this.win.codeeditviewbox.el.hide();
 		this.code_editor_tab.window = this.win;
@@ -518,63 +514,29 @@ public class WindowState : Object
 
 		this.code_editor_tab.save.connect( () => {
 			this.file.save();
-			this.left_tree.model.updateSelected();
+			//this.left_tree.model.updateSelected();
 			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
 				   this.window_rooview.requestRedraw();
 			} else {
 				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
 			}
-			 // we do not need to call spawn... - as it's already called by the editor?
-			 
-		});
-		
-	}
-	/*
-	public void codePopoverEditInit()
-	{
-		this.code_editor_popover  = new  Xcls_PopoverEditor();
-		//this.code_editor.ref();  /// really?
-		 
-		this.code_editor_popover.setMainWindow( this.win);
-  
-		this.code_editor_popover.editor.save.connect( () => {
-			this.file.save();
-			this.left_tree.model.updateSelected();
-			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				   this.window_rooview.requestRedraw();
-			} else {
-				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
+			if (this.file.project.xtype=="Gtk") {
+				BuilderApplication.valacompilequeue.addFile( 
+	 					Palete.ValaCompileRequestType.PROJECT, 
+	 					this.file, "", false ) ;
 			}
+			
 			 // we do not need to call spawn... - as it's already called by the editor?
 			 
 		});
 		
 	}
-	*/
-	// ----------- list of projects on left
-	/*
-	public void  projectListInit() 
-	{
-
-		this.left_projects = new Xcls_WindowLeftProjects();
-		 this.left_projects.ref();
-		 this.win.leftpane.el.pack_start(this.left_projects.el,true, true,0);
-		 this.left_projects.el.show_all();
-		 this.left_projects.project_selected.connect((proj) => {
-			this.buttonsShowHide();
-			proj.scanDirs();
-			this.clutterfiles.loadProject(proj);
-		
-		 });
-
-	}
-	*/
-	
+	 
 	
 	// ----------- file view
 	public void showPopoverFiles(Gtk.Widget btn, Project.Project? project, bool new_window)
 	{
-		this.popover_files.show(btn, project, new_window);
+		this.popover_files.show(  project, new_window);
 	
 	}
 	
@@ -584,10 +546,13 @@ public class WindowState : Object
 	{
 		this.file_details = new Xcls_PopoverFileDetails();
 		this.file_details.mainwindow = this.win;
+		this.file_details.el.application = this.win.el.application;
+//		this.file_details.el.set_parent(this.win.el);
 		// force it modal to the main window..
 		
 		this.file_details.success.connect((project,file) =>
 		{
+			this.popover_files.el.hide();
 			this.fileViewOpen(file, this.file_details.new_window,  -1);
 			// if it's comming from the file dialog -> hide it...
 			
@@ -606,19 +571,49 @@ public class WindowState : Object
 		    this.switchState (State.CODEONLY); 
 			 
 			this.code_editor_tab.scroll_to_line(line);
-			 
-		} else {
-		
-			this.switchState (State.PREVIEW); 
-			 
-			if (file.project.xtype == "Gtk" && line> -1 ) {
-				// fixme - show the editing tab.
+			return;
+		}		
+	
+	
+		this.switchState (State.PREVIEW); 
+		 
+		if ( line> -1 ) {
+			// fixme - show the editing tab.
+			// node and prop?
+			var node = file.lineToNode(line);
+			if (node != null) {
+				this.left_tree.model.selectNode(node);
+				var prop = node.lineToProp(line);
+				
+				if (prop == null) {
+					GLib.debug("could not find prop at line %d", line);
+					return;
+				}
+ 				 this.left_props.view.editProp(prop);
+				
+				
+				
+				return;
+			} 
+			
+			if (this.project.xtype == "Gtk") {
 				this.window_gladeview.scroll_to_line(line);
 			} else {
-				this.window_rooview.scroll_to_line(line);
-			// fixme - what about Roo?
+				this.window_rooview.scroll_to_line(line);			
 			}
-		}
+			
+			return;
+		} 
+		var node = file.lineToNode(line);
+		if (node != null) {
+			this.left_tree.model.selectNode(node);
+			//var prop = node.lineToProp(line);
+			return;
+		} 
+	
+		this.window_rooview.scroll_to_line(line);
+		
+	
 	
 	}
 	
@@ -645,6 +640,9 @@ public class WindowState : Object
 		this.file = file;
 		BuilderApplication.updateWindows();
 		
+
+			
+			
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
@@ -661,6 +659,14 @@ public class WindowState : Object
 			 
 
 		}
+		BuilderApplication.updateCompileResults();
+		if (file.project.xtype == "Gtk" && file.project.last_request == null ) {
+				
+			BuilderApplication.valacompilequeue.addFile( 
+				Palete.ValaCompileRequestType.PROJECT, 
+				this.file, "" , true) ;
+			 
+		}
 		this.gotoLine(line);
 	
 		var ctr= this.win.rooviewbox.el;
@@ -668,28 +674,31 @@ public class WindowState : Object
 	
 		if (file.project.xtype == "Roo" ) { 
 		    // removes all the childe elemnts from rooviewbox
-		
-			ctr.foreach( (w) => { ctr.remove(w); });
- 
-			ctr.add(this.window_rooview.el);
+			while( ctr.get_last_child() != null) {
+				ctr.remove(ctr.get_last_child());
+			}
+			
+			ctr.append(this.window_rooview.el);
  
 			if (file.xtype != "PlainFile") {       
  
 				this.window_rooview.loadFile(file);
-				this.window_rooview.el.show_all();
+				this.window_rooview.el.show();
 			}
  
 			
 
 		} else {
-			ctr.foreach( (w) => { ctr.remove(w); });
+			while( ctr.get_last_child() != null) {
+				ctr.remove(ctr.get_last_child());
+			}
 
-			ctr.add(this.window_gladeview.el);
+			ctr.append(this.window_gladeview.el);
  
 			if (file.xtype != "PlainFile") {    
 				
 				this.window_gladeview.loadFile(file);
-				this.window_gladeview.el.show_all();
+				this.window_gladeview.el.show();
 			}
  
 		}
@@ -699,7 +708,7 @@ public class WindowState : Object
 		   this.win.codeeditviewbox.el.hide();
 			//this.win.editpane.el.set_position(this.win.editpane.el.max_position);
 		}
-		this.win.setTitle(file.project.name + " : " + file.name);
+		this.win.setTitle();
 			 
 
 	}
@@ -720,9 +729,9 @@ public class WindowState : Object
 		this.window_rooview  =new Xcls_WindowRooView();
 		this.window_rooview.main_window = this.win;
 		this.window_rooview.ref();
-		this.win.rooviewbox.el.add(this.window_rooview.el);
+		this.win.rooviewbox.el.append(this.window_rooview.el);
 		
-		this.window_rooview.el.show_all();
+		this.window_rooview.el.show();
 		this.win.rooviewbox.el.hide();
 	
 	}
@@ -750,31 +759,36 @@ public class WindowState : Object
 				return;
 		}
 		this.rightpalete.hide(); 
-		
-		this.add_props.el.show_all(); 
+		this.add_props.el.set_parent(btn);
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+	 
 		this.add_props.show(
 			this.win.project.palete, //Palete.factory(this.win.project.xtype), 
 			 sig_or_listen, //this.state == State.LISTENER ? "signals" : "props",
-			ae.fqn(),
+			ae,
 			btn
 			
 		);
 	}
 	
-	public void showAddObject(Gtk.Widget btn)
+	public void showAddObject(Gtk.Widget btn, JsRender.Node? on_node)
 	{
 	 
-		 var n = this.left_tree.getActiveElement();
+		 
 		this.add_props.hide();
-		this.rightpalete.el.show_all();
+		 
+		this.add_props.el.set_position(Gtk.PositionType.RIGHT);
+		
+		//this.rightpalete.el.set_parent(btn);
+ 
 		this.rightpalete.show(
 			this.left_tree.getActiveFile().palete(), 
-			n == null ? "*top" : n.fqn(),
+			on_node == null ? "*top" : on_node.fqn(),
 			btn
 		);
 	}
 	 
-		 
+		  
 	
 	public void switchState(State new_state)
 	{
@@ -832,14 +846,14 @@ public class WindowState : Object
 		   		this.win.editpane.el.show();
 				this.win.rooviewbox.el.hide();
 				this.win.codeeditviewbox.el.show();
-				this.code_editor_tab.el.show_all();
+				this.code_editor_tab.el.show();
 		   		break;
 
 			case State.CODEONLY:
 				this.win.leftpane.el.hide();
 				this.win.codeeditviewbox.el.show();
 				this.win.rooviewbox.el.hide();
-				this.code_editor_tab.el.show_all();
+				this.code_editor_tab.el.show();
 				break;
 
 			case State.NONE:
@@ -849,109 +863,7 @@ public class WindowState : Object
 
 	}
   
-
-	// -- buttons show hide.....
  
-	
-	
-	public void showCompileResult(Json.Object obj)
-		{
-			// vala has finished compiling...
- 
-			// stop the spinner...
- 			GLib.debug("vala compiled Built Project: %s    Window Project %s",
- 				
-     			BuilderApplication.valasource.file == null ? "No file?" : (
-     			
-	     			BuilderApplication.valasource.file.project == null  ? "No Project" : BuilderApplication.valasource.file.project.fn
-     			),
-     			this.project != null ? this.project.fn : "No Project?"
- 			);
- 				
- 			
- 			
- 			if (this.project != null && 
-     			BuilderApplication.valasource.file != null &&   
-     			BuilderApplication.valasource.file.project != null &&    			
- 			    this.project.fn != BuilderApplication.valasource.file.project.fn) {
-				GLib.debug("skip update - not our project");
- 				return;
-			}
-			
-			var generator = new Json.Generator ();
-			var n  = new Json.Node(Json.NodeType.OBJECT);
-			n.init_object(obj);
-			generator.set_root (n);
-			print("result :%s", generator.to_data (null));
-			
-			
-			var buf = this.code_editor_tab.buffer;
-			buf.check_running = false;
-			var has_errors = false;
-			              
-			if (obj.has_member("ERR-TOTAL")) {
-				if (obj.get_int_member("ERR-TOTAL")> 0) {
-					has_errors = true;
-				}
-				 this.win.statusbar_errors.setNotices( obj.get_object_member("ERR") , (int) obj.get_int_member("ERR-TOTAL"));
-			} else {
-				 this.win.statusbar_errors.setNotices( new Json.Object() , 0);
-			}    
-			
-			if (obj.has_member("WARN-TOTAL")) {
-
-				 this.win.statusbar_warnings.setNotices(obj.get_object_member("WARN"), (int) obj.get_int_member("WARN-TOTAL"));
-			} else {
-				 this.win.statusbar_warnings.setNotices( new Json.Object() , 0);
-				 
-			}
-			if (obj.has_member("DEPR-TOTAL")) {
-				
-				 this.win.statusbar_depricated.setNotices( obj.get_object_member("DEPR"),  (int) obj.get_int_member("DEPR-TOTAL"));
-				 
-			} else {
-				this.win.statusbar_depricated.setNotices( new Json.Object(),0);
-			}
-			//if (this.state == State.CODE || this.state == State.PROJECTCODEONLY) {
-			if ( this.state == State.CODEONLY) {
-				buf.highlightErrorsJson("ERR", obj); 
-				buf.highlightErrorsJson("WARN", obj);
-				buf.highlightErrorsJson("DEPR", obj);
-			}
-			
-			this.win.statusbar_compilestatus_label.el.hide();
-			this.win.statusbar_run.el.hide();
-			if (!has_errors) { 
-				this.win.statusbar_compilestatus_label.el.show();
-				this.win.statusbar_run.el.show();
-			}
-			if (this.file.xtype == "Gtk") {
-				// not sure how this is working ok? - as highlighting is happening on the vala files at present..
-				var gbuf =   this.window_gladeview.sourceview;
-				gbuf.highlightErrorsJson("ERR", obj);
-				gbuf.highlightErrorsJson("WARN", obj);
-				gbuf.highlightErrorsJson("DEPR", obj);			
-				
-				if (!has_errors) {
-					this.win.statusbar_run.el.show();
-				}
-			
-		   }
-		   
-		   if (this.file.xtype == "Roo") {
-				// not sure how this is working ok? - as highlighting is happening on the vala files at present..
-				var gbuf =   this.window_rooview.sourceview;
-				gbuf.highlightErrorsJson("ERR", obj);
-				gbuf.highlightErrorsJson("WARN", obj);
-				gbuf.highlightErrorsJson("DEPR", obj);			
-			
-		   }
-		    
-			this.last_compile_result = obj;
-			
-			
-		}
-	
 }
 
 	

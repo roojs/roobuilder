@@ -17,6 +17,61 @@
    "items" : [
     {
      "$ xns" : "Gtk",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "child",
+       "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
+       "listeners" : {
+        "pressed" : [
+         "(n_press, x, y) => {",
+         "",
+         "",
+         "}",
+         ""
+        ]
+       },
+       "xtype" : "GestureClick"
+      }
+     ],
+     "xtype" : "Button"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* pack" : "add_controller",
+     "xtype" : "GestureClick"
+    },
+    {
+     "$ xns" : "Gtk",
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* prop" : "model",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "model",
+         "Gtk.TreeListModelCreateModelFunc create_func" : "() => { }",
+         "bool autoexpand" : true,
+         "bool passthrough" : true,
+         "xtype" : "TreeListModel"
+        }
+       ],
+       "xtype" : "SingleSelection"
+      },
+      {
+       "$ xns" : "Gtk",
+       "string title" : "",
+       "xtype" : "ColumnViewColumn"
+      }
+     ],
+     "xtype" : "ColumnView"
+    },
+    {
+     "$ xns" : "Gtk",
      "* pack" : "pack_start,true,true,0",
      "id" : "notebook",
      "items" : [
@@ -471,17 +526,7 @@
     "        ",
     "    }",
     "",
-    "   ",
-    "    return;",
     "    ",
-    "    ",
-    "     ",
-    "     ",
-    "    ",
-    "    // should we hold until it's printed...",
-    "    ",
-    "      ",
-    "",
     "    ",
     "    ",
     "",

@@ -26,12 +26,12 @@ dnl and it breaks the build...
 PKG_CHECK_MODULES(ROOBUILDER, [ zlib
 		 glib-2.0 >= 2.24.1
 		 gobject-2.0 >= 2.24.1
-		 gtk+-3.0 >= 3.11.3
-		 gtksourceview-3.0
+		 gtk4  >= 3.11.3
+		 gtksourceview-5
 		 json-glib-1.0
 		 gee-0.8
  		 libxml-2.0
-		 libsoup-2.4 
+		 libsoup-3.0 
 		 roojspacker-1.4
 ]) 
 
@@ -83,42 +83,33 @@ AM_CONDITIONAL(HAVE_GDA5, test "$gda_5_0_enabled" = "yes")
 dnl  -- webkit-4.0 
 
 
-PKG_CHECK_MODULES(WEBKIT, [webkit2gtk-4.0],
-				[webkit_4_0_enabled=yes],
-				[webkit_4_0_enabled=no])
+PKG_CHECK_MODULES(WEBKIT, [webkitgtk-6.0],
+				[webkit_6_0_enabled=yes],
+				[webkit_6_0_enabled=no])
 
-if test $webkit_4_0_enabled = yes; then
-		AC_DEFINE(HAVE_WEBKIT4,1,[webkit 4.0 support])
-else
-		PKG_CHECK_MODULES(WEBKIT, [webkit2gtk-3.0],
-				[webkit_3_0_enabled=yes] )
-		AC_DEFINE(HAVE_WEBKIT3,1,[webkit 3.0 support])
+if test $webkit_6_0_enabled = yes; then
+		AC_DEFINE(HAVE_WEBKIT6,1,[webkit 6.0 support])
 	   
 
 fi
-AM_CONDITIONAL(HAVE_WEBKIT3, test "$webkit_3_0_enabled" = "yes")
-AM_CONDITIONAL(HAVE_WEBKIT4, test "$webkit_4_0_enabled" = "yes")
+
+AM_CONDITIONAL(HAVE_WEBKIT6, test "$webkit_6_0_enabled" = "yes")
 
 
 
-dnl  -- javascriptcoregtk-4.0  ** not sure if this is needed....
+dnl  -- javascriptcoregtk-6.0  ** not sure if this is needed....
 
 
-PKG_CHECK_MODULES(JAVASCRIPTCOREGTK, [javascriptcoregtk-4.0],
-				[javascriptcoregtk_4_0_enabled=yes],
-				[javascriptcoregtk_4_0_enabled=no])
+PKG_CHECK_MODULES(JAVASCRIPTCOREGTK, [javascriptcoregtk-6.0],
+				[javascriptcoregtk_6_0_enabled=yes],
+				[javascriptcoregtk_6_0_enabled=no])
 
-if test $javascriptcoregtk_4_0_enabled = yes; then
-		AC_DEFINE(HAVE_JAVASCRIPTCOREGTK4,1,[javascriptcoregtk 4.0 support])
-else
-		PKG_CHECK_MODULES(JAVASCRIPTCOREGTK, [javascriptcoregtk-3.0],
-				[javascriptcoregtk_3_0_enabled=yes] )
-		AC_DEFINE(HAVE_JAVASCRIPTCOREGTK3,1,[javascriptcoregtk 3.0 support])
-	   
+if test $javascriptcoregtk_6_0_enabled = yes; then
+		AC_DEFINE(HAVE_JAVASCRIPTCOREGTK6,1,[javascriptcoregtk 6.0 support])
 
 fi
-AM_CONDITIONAL(HAVE_JAVASCRIPTCOREGTK3, test "$javascriptcoregtk_3_0_enabled" = "yes")
-AM_CONDITIONAL(HAVE_JAVASCRIPTCOREGTK4, test "$javascriptcoregtk_4_0_enabled" = "yes")
+
+AM_CONDITIONAL(HAVE_JAVASCRIPTCOREGTK6, test "$javascriptcoregtk_6_0_enabled" = "yes")
 
 
 

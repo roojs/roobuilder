@@ -1,11 +1,13 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "$ xns" : "Gtk",
    "@ void buttonPressed" : "(string btn)",
    "Gtk.PositionType position" : "Gtk.PositionType.RIGHT",
-   "Project.Project project" : "",
+   "Project.Roo project" : "",
+   "bool autohide" : false,
    "bool done" : false,
    "bool modal" : true,
    "id" : "RooProjectSettings",
@@ -13,13 +15,12 @@
     {
      "$ homogeneous" : false,
      "$ xns" : "Gtk",
-     "* pack" : "add",
+     "* pack" : "set_child",
      "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
      "border_width" : 5,
      "items" : [
       {
        "$ xns" : "Gtk",
-       "* pack" : "pack_start,true,true,0",
        "items" : [
         {
          "$ xns" : "Gtk",
@@ -44,7 +45,6 @@
           {
            "$ homogeneous" : true,
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,4",
            "id" : "grid",
            "int margin_end" : 4,
            "int margin_start" : 4,
@@ -52,7 +52,10 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,0,0,1,1",
-             "gint margin" : 3,
+             "int margin_bottom" : 3,
+             "int margin_end" : 3,
+             "int margin_start" : 3,
+             "int margin_top" : 3,
              "label" : "Filename",
              "xalign" : 0,
              "xtype" : "Label"
@@ -60,8 +63,11 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,1,0,1,1",
-             "gint margin" : 3,
              "id" : "path",
+             "int margin_bottom" : 3,
+             "int margin_end" : 3,
+             "int margin_start" : 3,
+             "int margin_top" : 3,
              "label" : "filename",
              "xalign" : 0,
              "xtype" : "Label"
@@ -69,7 +75,10 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,0,1,1,1",
-             "gint margin" : 3,
+             "int margin_bottom" : 3,
+             "int margin_end" : 3,
+             "int margin_start" : 3,
+             "int margin_top" : 3,
              "label" : "HTML template file",
              "xtype" : "Label"
             },
@@ -173,7 +182,10 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,0,2,1,1",
-             "gint margin" : 3,
+             "int margin_bottom" : 3,
+             "int margin_end" : 3,
+             "int margin_start" : 3,
+             "int margin_top" : 3,
              "label" : "root URL",
              "xtype" : "Label"
             },
@@ -186,7 +198,6 @@
             {
              "$ xns" : "Gtk",
              "* pack" : "attach,0,3,1,1",
-             "gint margin" : 3,
              "label" : "Generate HTML in",
              "xtype" : "Label"
             },
@@ -258,57 +269,71 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "HTML To insert at end of <HEAD>",
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,true,true,0",
+           "bool vexpand" : true,
            "items" : [
             {
-             "$ xns" : "Gtk",
+             "$ xns" : "GtkSource",
              "* init" : [
               " ",
               "    ",
               "this.css = new Gtk.CssProvider();",
-              "try {",
-              "\tthis.css.load_from_data(\"#roo-project-settings-view{ font: monospace 10px;}\");",
-              "} catch (Error e) {}",
-              "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+              " ",
+              "\tthis.css.load_from_string(",
+              "\t\"#roo-project-settings-view{ font:  10px monospace;}\"",
+              ");",
+              " ",
+              "//this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
               "        ",
-              "        "
+              "       Gtk.StyleContext.add_provider_for_display(",
+              "\t       Gdk.Display.get_default(), ",
+              "\t       this.css,",
+              "\t       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
+              "       );"
              ],
-             "* pack" : "add",
+             "* pack" : "set_child",
              "Gtk.CssProvider css" : "",
              "id" : "view",
-             "listeners" : {
-              "key_release_event" : [
-               " ( event) =>{",
-               "    if (event.keyval != 115) {",
-               "        return false;",
-               "         ",
-               "    }",
-               "    if   ( (event.state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {",
-               "        return false;",
-               "    }",
-               "     var buf =    this.el.get_buffer();",
-               "    Gtk.TextIter s;",
-               "    Gtk.TextIter e;",
-               "    buf.get_start_iter(out s);",
-               "    buf.get_end_iter(out e);",
-               "    _this.project.runhtml = buf.get_text(s,e,true);",
-               "    ",
-               "          ",
-               "    _this.buttonPressed(\"save\");",
-               "     ",
-               "    return false;",
-               "         ",
-               "}"
-              ]
-             },
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "listeners" : {
+                "key_released" : [
+                 "(keyval, keycode, state) => {",
+                 "",
+                 "",
+                 "    if (keyval != 115) {",
+                 "        return;",
+                 "         ",
+                 "    }",
+                 "    if   ( (state & Gdk.ModifierType.CONTROL_MASK ) < 1 ) {",
+                 "        return;",
+                 "    }",
+                 "     var buf =    _this.view.el.get_buffer();",
+                 "    Gtk.TextIter s;",
+                 "    Gtk.TextIter e;",
+                 "    buf.get_start_iter(out s);",
+                 "    buf.get_end_iter(out e);",
+                 "    _this.project.runhtml = buf.get_text(s,e,true);",
+                 "    ",
+                 "          ",
+                 "    _this.buttonPressed(\"save\");",
+                 "   ",
+                 "         ",
+                 "",
+                 "}",
+                 ""
+                ]
+               },
+               "xtype" : "EventControllerKey"
+              }
+             ],
              "string name" : "roo-project-settings-view",
-             "xtype" : "SourceView"
+             "xtype" : "View"
             }
            ],
            "xtype" : "ScrolledWindow"
@@ -324,104 +349,113 @@
          "items" : [
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "Type (eg. MySQL or PostgreSQL)",
            "xalign" : 0,
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBTYPE",
-           "listeners" : {
-            "key_press_event" : [
-             "(ev) => {",
-             "",
-             "    if (ev.keyval == Gdk.Key.Tab) {",
-             "        _this.database_DBNAME.el.grab_focus();",
-             "        return true;",
-             "    }",
-             "",
-             "",
-             "    return false;",
-             "}",
-             ""
-            ]
-           },
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "listeners" : {
+              "key_pressed" : [
+               "(keyval, keycode, state) => {",
+               "    if (keyval == Gdk.Key.Tab) {",
+               "        _this.database_DBNAME.el.grab_focus();",
+               "        return true;",
+               "    }",
+               "",
+               "",
+               "\treturn false;",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "EventControllerKey"
+            }
+           ],
            "xtype" : "Entry"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "Name",
            "xalign" : 0,
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBNAME",
-           "listeners" : {
-            "key_press_event" : [
-             "(ev) => {",
-             "",
-             "    if (ev.keyval == Gdk.Key.Tab) {",
-             "        _this.database_DBUSERNAME.el.grab_focus();",
-             "        return true;",
-             "    }",
-             "",
-             "",
-             "    return false;",
-             "}",
-             ""
-            ]
-           },
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "listeners" : {
+              "key_pressed" : [
+               "(keyval, keycode, state) => {",
+               "    if (keyval == Gdk.Key.Tab) {",
+               "        _this.database_DBUSERNAME.el.grab_focus();",
+               "        return true;",
+               "    }",
+               "",
+               "",
+               "\treturn false;",
+               "\t ",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "EventControllerKey"
+            }
+           ],
            "xtype" : "Entry"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "Username",
            "xalign" : 0,
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBUSERNAME",
-           "listeners" : {
-            "key_press_event" : [
-             "(ev) => {",
-             "",
-             "    if (ev.keyval == Gdk.Key.Tab) {",
-             "        _this.database_DBPASSWORD.el.grab_focus();",
-             "        return true;",
-             "    }",
-             "",
-             "",
-             "    return false;",
-             "}",
-             ""
-            ]
-           },
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "listeners" : {
+              "key_pressed" : [
+               "(keyval, keycode, state) => {",
+               "    if (keyval == Gdk.Key.Tab) {",
+               "        _this.database_DBPASSWORD.el.grab_focus();",
+               "        return true;",
+               "    }",
+               "",
+               "",
+               "\treturn false;",
+               "\t ",
+               "",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "EventControllerKey"
+            }
+           ],
            "xtype" : "Entry"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "label" : "Password",
            "xalign" : 0,
            "xtype" : "Label"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "id" : "database_DBPASSWORD",
            "xtype" : "Entry"
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
            "listeners" : {
             "clicked" : [
              "() => {",
@@ -454,8 +488,6 @@
           },
           {
            "$ xns" : "Gtk",
-           "* pack" : "pack_start,false,false,0",
-           "gint margin" : 3,
            "id" : "database_ERROR",
            "label" : " ",
            "xalign" : 0,
@@ -466,79 +498,62 @@
         }
        ],
        "xtype" : "Notebook"
-      },
-      {
-       "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
-       "$ xns" : "Gtk",
-       "int margin_bottom" : 4,
-       "int margin_end" : 4,
-       "int margin_start" : 4,
-       "int margin_top" : 4,
-       "items" : [
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "add",
-         "listeners" : {
-          "clicked" : [
-           "() => { ",
-           "",
-           "  _this.done = true;",
-           "    _this.el.hide(); ",
-           "}"
-          ]
-         },
-         "string label" : "Cancel",
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "add",
-         "listeners" : {
-          "clicked" : [
-           "( ) =>  { ",
-           "",
-           "   _this.buttonPressed(\"apply\");",
-           " ",
-           "   ",
-           "}"
-          ]
-         },
-         "string label" : "Apply / Keep editing",
-         "xtype" : "Button"
-        },
-        {
-         "$ xns" : "Gtk",
-         "* pack" : "add",
-         "listeners" : {
-          "clicked" : [
-           "( ) =>  { ",
-           "",
-           " ",
-           " _this.buttonPressed(\"save\");",
-           " ",
-           "\t// what about .js ?",
-           "   _this.done = true;",
-           "\t_this.el.hide();",
-           "",
-           "// hopefull this will work with bjs files..",
-           "\t",
-           " ",
-           "   ",
-           "}"
-          ]
-         },
-         "string label" : "Save",
-         "xtype" : "Button"
-        }
-       ],
-       "xtype" : "ButtonBox"
       }
      ],
      "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "titlebar",
+     "bool show_title_buttons" : false,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "listeners" : {
+        "clicked" : [
+         "() => { ",
+         "",
+         "  _this.done = true;",
+         "    _this.el.hide(); ",
+         "}"
+        ]
+       },
+       "string label" : "Cancel",
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_end",
+       "css_classes" : "{ \"suggested-action\" }",
+       "listeners" : {
+        "clicked" : [
+         "( ) =>  { ",
+         "",
+         " ",
+         " _this.buttonPressed(\"save\");",
+         " ",
+         "\t// what about .js ?",
+         "   _this.done = true;",
+         "\t_this.el.hide();",
+         "",
+         "// hopefull this will work with bjs files..",
+         "\t",
+         " ",
+         "   ",
+         "}"
+        ]
+       },
+       "string label" : "Save",
+       "xtype" : "Button"
+      }
+     ],
+     "xtype" : "HeaderBar"
     }
    ],
+   "string title" : "Edit Project settings",
    "uint border_width" : 0,
-   "xtype" : "Popover",
+   "xtype" : "Window",
    "| void save" : [
     "() {",
     "   var buf =    _this.view.el.get_buffer();",
@@ -561,38 +576,37 @@
     "    // set by event changed...",
     "    //_this.project.base_template = _this.base_template.el.get_text();    ",
     "    ",
-    "    var js = _this.project.json_project_data;",
-    "    js.set_string_member(\"DBTYPE\", _this.database_DBTYPE.el.get_text());",
-    "   js.set_string_member(\"DBNAME\", _this.database_DBNAME.el.get_text());",
-    "    js.set_string_member(\"DBUSERNAME\", _this.database_DBUSERNAME.el.get_text());",
-    "    js.set_string_member(\"DBPASSWORD\", _this.database_DBPASSWORD.el.get_text());",
+    "    var js = _this.project;",
+    "    js.DBTYPE = _this.database_DBTYPE.el.get_text();",
+    "   js.DBNAME= _this.database_DBNAME.el.get_text();",
+    "    js.DBUSERNAME= _this.database_DBUSERNAME.el.get_text();",
+    "    js.DBPASSWORD= _this.database_DBPASSWORD.el.get_text();",
     "//    _this.project.set_string_member(\"DBHOST\", _this.DBTYPE.el.get_text());    ",
     "    ",
     "    // need to re-init the database ",
-    "    ",
-    "    _this.project.initRooDatabase();",
+    "    \tjs.save();",
+    "    _this.project.initDatabase();",
     "     ",
     "    ",
     "}"
    ],
    "| void show" : [
-    " (Gtk.Widget btn, Project.Project project) {",
+    " (Gtk.Window pwin, Project.Roo project) {",
     "    _this.done = false;",
     "    ",
     "    _this.project = project;",
-    "    _this.path.el.label = project.firstPath();",
+    "    _this.path.el.label = project.path;",
     "    // get the active project.",
-    "     var lm = Gtk.SourceLanguageManager.get_default();",
+    "     var lm = GtkSource.LanguageManager.get_default();",
     "                ",
-    "    ((Gtk.SourceBuffer)(_this.view.el.get_buffer())) .set_language(",
+    "    ((GtkSource.Buffer)(_this.view.el.get_buffer())) .set_language(",
     "        lm.get_language(\"html\")",
     "    );",
     "  ",
     "    //print (project.fn);",
     "    //project.runhtml = project.runhtml || '';",
     "    _this.view.el.get_buffer().set_text(project.runhtml);",
-    "    ",
-    "      ",
+    "     ",
     "      ",
     "    _this.rootURL.el.set_text( _this.project.rootURL );",
     "    ",
@@ -600,21 +614,19 @@
     "",
     "    _this.base_template_model.loadData();",
     "    ",
-    "     var js = _this.project;",
-    "    _this.database_DBTYPE.el.set_text(     js.get_string_member(\"DBTYPE\") );",
-    "    _this.database_DBNAME.el.set_text(    js.get_string_member(\"DBNAME\") );",
-    "    _this.database_DBUSERNAME.el.set_text(    js.get_string_member(\"DBUSERNAME\") );",
-    "    _this.database_DBPASSWORD.el.set_text(    js.get_string_member(\"DBPASSWORD\") );",
+    "     //var js = _this.project;",
+    "    _this.database_DBTYPE.el.set_text(    _this.project.DBTYPE );",
+    "    _this.database_DBNAME.el.set_text(    _this.project.DBNAME );",
+    "    _this.database_DBUSERNAME.el.set_text(  _this.project.DBUSERNAME );",
+    "    _this.database_DBPASSWORD.el.set_text(  _this.project.DBPASSWORD );",
     "    ",
     "    \t//console.log('show all');",
-    "\tthis.el.set_modal(true);",
-    "\tthis.el.set_relative_to(btn);",
     "",
-    "\tthis.el.set_position(Gtk.PositionType.RIGHT);",
-    "",
+    "\t",
+    "    this.el.set_transient_for(pwin);",
     "\t// window + header?",
     "\t print(\"SHOWALL - POPIP\\n\");",
-    "\tthis.el.show_all();",
+    "\tthis.el.show();",
     "\tthis.el.set_size_request(800,600);",
     "\tthis.view.el.grab_focus();",
     "\t",
@@ -625,10 +637,5 @@
    ]
   }
  ],
- "modOrder" : "",
- "name" : "RooProjectSettings",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/RooProjectSettings.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "RooProjectSettings"
 }

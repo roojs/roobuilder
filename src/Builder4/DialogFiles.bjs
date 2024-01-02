@@ -1,0 +1,1294 @@
+{
+ "build_module" : "builder",
+ "gen_extended" : false,
+ "items" : [
+  {
+   "# Xcls_MainWindow win" : "",
+   "$ xns" : "Gtk",
+   "Gdk.Pixbuf missing_thumb_pixbuf" : "",
+   "Gee.HashMap<string,Gdk.Pixbuf> image_cache" : "",
+   "Project.Project selectedProject" : "",
+   "bool in_onprojectselected" : false,
+   "bool is_loading" : false,
+   "bool modal" : true,
+   "bool new_window" : false,
+   "int default_height" : 550,
+   "int default_width" : 1000,
+   "items" : [
+    {
+     "$ homogeneous" : false,
+     "$ xns" : "Gtk",
+     "* prop" : "child",
+     "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+     "bool expand" : true,
+     "int margin_bottom" : 10,
+     "int margin_end" : 10,
+     "int margin_start" : 10,
+     "int margin_top" : 10,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+       "bool hexpand" : true,
+       "int spacing" : 0,
+       "xtype" : "Box"
+      },
+      {
+       "$ xns" : "Gtk",
+       "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+       "bool hexpand" : true,
+       "bool homogeneous" : false,
+       "bool vexpand" : true,
+       "id" : "mainpane",
+       "int position" : 200,
+       "int spacing" : 0,
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* init" : [
+          "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+          " "
+         ],
+         "* prop" : "start_child",
+         "bool expand" : true,
+         "bool has_frame" : true,
+         "bool hexpand" : true,
+         "bool vexpand" : true,
+         "id" : "projectscroll",
+         "int width_request" : 150,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* init" : [
+            "{",
+            " ",
+            "\tthis.css = new Gtk.CssProvider();",
+            " ",
+            "\tthis.css.load_from_string(\"#project-list { font-size: 12px;}\");",
+            "",
+            "\tGtk.StyleContext.add_provider_for_display(",
+            "\t\tthis.el.get_display(),",
+            "\t\tthis.css,",
+            "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
+            "\t);",
+            "\t\t",
+            "   ",
+            "}",
+            ""
+           ],
+           "* prop" : "child",
+           "Gtk.CssProvider css" : "",
+           "id" : "project_list",
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* prop" : "model",
+             "bool can_unselect" : true,
+             "id" : "projectselection",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "bool incremental" : true,
+               "id" : "projectsort",
+               "items" : [
+                {
+                 "$ xns" : "GLib",
+                 "* prop" : "model",
+                 "GLib.Type item_type" : "typeof(Project.Project)",
+                 "id" : "projectmodel",
+                 "xtype" : "ListStore",
+                 "| void remove" : [
+                  "(Project.Project p) {",
+                  "",
+                  "\tfor (var i =0;i < this.el.n_items; i++ ) {",
+                  "\t\tvar pr = (Project.Project) this.el.get_item(i);",
+                  "\t\tif (p.path == pr.path) {",
+                  "\t\t\tthis.el.remove(i);",
+                  "\t\t\treturn;",
+                  "\t\t}",
+                  "\t}",
+                  "",
+                  "",
+                  "}"
+                 ]
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "sorter",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "expression",
+                   "GLib.Type this_type" : "typeof(Project.Project)",
+                   "string property_name" : "name",
+                   "xtype" : "PropertyExpression"
+                  }
+                 ],
+                 "xtype" : "StringSorter"
+                }
+               ],
+               "xtype" : "SortListModel"
+              }
+             ],
+             "listeners" : {
+              "notify[\"selected\"]" : [
+               "(position, n_items) => {",
+               "",
+               "    if (_this.is_loading) {",
+               "    \treturn;",
+               "\t}",
+               "  ",
+               "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+               "\t\t_this.btn_delproj.el.hide();",
+               "\t\t_this.btn_projprop.el.hide();",
+               "\t\t_this.btn_addfile.el.hide();",
+               "\t\t//_this.btn_delfile.el.hide();",
+               "\t\t ",
+               "\t} else {",
+               "\t\t_this.btn_delproj.el.show();",
+               "\t\t_this.btn_projprop.el.show();",
+               "\t\t_this.btn_addfile.el.show();",
+               "\t\t//_this.btn_delfile.el.show(); // ??",
+               "\t}",
+               " ",
+               " ",
+               " ",
+               "    ",
+               "    ",
+               "    if (_this.is_loading) {",
+               "        return;",
+               "    }",
+               "\t    ",
+               "\t Project.Project project  = this.el.selected == Gtk.INVALID_LIST_POSITION ? null :",
+               "\t\t \t(Project.Project) _this.projectsort.el.get_item(this.el.selected);",
+               "\t ",
+               "\t GLib.debug(\"selection changed to %s\", project == null ? \"none\" : project.name);",
+               "  ",
+               "    _this.onProjectSelected(project);",
+               "}",
+               ""
+              ]
+             },
+             "xtype" : "SingleSelection"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* pack" : "append_column",
+             "bool expand" : true,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "factory",
+               "listeners" : {
+                "bind" : [
+                 "(listitem) => {",
+                 " ",
+                 "\tvar lbl = (Gtk.Label)  ((Gtk.ListItem)listitem).get_child();",
+                 "\t   ",
+                 "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
+                 "",
+                 "\titem.bind_property(\"name\",",
+                 "                lbl, \"label\",",
+                 "           GLib.BindingFlags.SYNC_CREATE);",
+                 "",
+                 "\t  ",
+                 "}",
+                 ""
+                ],
+                "setup" : [
+                 "(item) => {",
+                 "\t//var j = (JsRender.JsRender) item;",
+                 "\tvar gi = (Gtk.ListItem)item;",
+                 "\t ",
+                 "\tvar lbl = new Gtk.Label(\"\");",
+                 "\tlbl.halign = Gtk.Align.START;",
+                 "\tgi.set_child(lbl);",
+                 "",
+                 "",
+                 "",
+                 "}",
+                 ""
+                ]
+               },
+               "xtype" : "SignalListItemFactory"
+              }
+             ],
+             "string title" : "Project",
+             "xtype" : "ColumnViewColumn"
+            }
+           ],
+           "string name" : "project-list",
+           "xtype" : "ColumnView"
+          }
+         ],
+         "xtype" : "ScrolledWindow"
+        },
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "end_child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "bool visible" : false,
+         "id" : "filepane",
+         "int position" : 200,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "end_child",
+           "Gtk.Orientation orientation" : "Gtk.Orientation.VERTICAL",
+           "bool hexpand" : true,
+           "bool vexpand" : true,
+           "int spacing" : 0,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+             "bool hexpand" : true,
+             "int spacing" : 0,
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* init" : [
+                " ",
+                "/*",
+                "this.css = new Gtk.CssProvider();",
+                "try {",
+                "\tthis.css.load_from_data(\"#popover-files-iconsearch { font:  10px monospace;}\".data);",
+                "} catch (Error e) {}",
+                "this.el.get_style_context().add_provider(this.css,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);",
+                "        ",
+                "        ",
+                "*/"
+               ],
+               "Gtk.CssProvider css" : "",
+               "bool hexpand" : true,
+               "id" : "searchbox",
+               "listeners" : {
+                "search_changed" : [
+                 "( ) => {",
+                 "",
+                 "\t_this.treefilter.el.changed(Gtk.FilterChange.DIFFERENT);",
+                 "\t_this.iconsearch.el.set_search(this.el.text);",
+                 "}",
+                 ""
+                ]
+               },
+               "string name" : "popover-files-iconsearch",
+               "string placeholder_text" : "type to filter results",
+               "uint search_delay" : 1000,
+               "xtype" : "SearchEntry"
+              }
+             ],
+             "xtype" : "Box"
+            },
+            {
+             "$ xns" : "Gtk",
+             "* init" : [
+              "  this.el.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);",
+              "  "
+             ],
+             "bool has_frame" : true,
+             "bool hexpand" : true,
+             "bool vexpand" : true,
+             "id" : "iconscroll",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "child",
+               "id" : "gridview",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "listeners" : {
+                  "pressed" : [
+                   "(n_press, x, y) => {",
+                   "\tif (n_press == 2) {",
+                   "\t\tGLib.debug(\"double cliced\");",
+                   "\t} else {",
+                   "\t\treturn;",
+                   "\t}",
+                   "\tvar f = (JsRender.JsRender)_this.iconsel.el.selected_item;",
+                   "\t  ",
+                   "\tGLib.debug(\"Click %s\", f.name);",
+                   "\tif (f.xtype == \"Dir\") {",
+                   "\t\treturn;",
+                   "\t}",
+                   "\t",
+                   "\t",
+                   " \t_this.win.windowstate.fileViewOpen(f, _this.new_window);",
+                   "\t_this.el.hide();",
+                   "\t",
+                   "\t",
+                   "\t",
+                   "",
+                   "}",
+                   ""
+                  ]
+                 },
+                 "xtype" : "GestureClick"
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "model",
+                 "bool can_unselect" : true,
+                 "id" : "iconsel",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "model",
+                     "id" : "gridsort",
+                     "items" : [
+                      {
+                       "$ xns" : "GLib",
+                       "* prop" : "model",
+                       "GLib.Type item_type" : "typeof(JsRender.JsRender)",
+                       "id" : "gridmodel",
+                       "xtype" : "ListStore",
+                       "| void remove" : [
+                        "(JsRender.JsRender p) {",
+                        "",
+                        "\tfor (var i =0;i < this.el.n_items; i++ ) {",
+                        "\t\tvar pr = (JsRender.JsRender) this.el.get_item(i);",
+                        "\t\tif (p.path == pr.path) {",
+                        "\t\t\tthis.el.remove(i);",
+                        "\t\t\treturn;",
+                        "\t\t}",
+                        "\t}",
+                        " ",
+                        "}"
+                       ]
+                      },
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "sorter",
+                       "bool ignore_case" : true,
+                       "items" : [
+                        {
+                         "$ xns" : "Gtk",
+                         "* prop" : "expression",
+                         "GLib.Type this_type" : "typeof(JsRender.JsRender)",
+                         "string property_name" : "name",
+                         "xtype" : "PropertyExpression"
+                        }
+                       ],
+                       "xtype" : "StringSorter"
+                      }
+                     ],
+                     "xtype" : "SortListModel"
+                    },
+                    {
+                     "$ Gtk.StringFilterMatchMode match_mode" : "Gtk.StringFilterMatchMode.SUBSTRING",
+                     "$ xns" : "Gtk",
+                     "* prop" : "filter",
+                     "bool ignore_case" : true,
+                     "id" : "iconsearch",
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "expression",
+                       "GLib.Type this_type" : "typeof(JsRender.JsRender)",
+                       "string property_name" : "name",
+                       "xtype" : "PropertyExpression"
+                      }
+                     ],
+                     "xtype" : "StringFilter"
+                    }
+                   ],
+                   "xtype" : "FilterListModel"
+                  }
+                 ],
+                 "listeners" : {
+                  "notify[\"selected\"]" : [
+                   "() => {",
+                   "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                   "\t\tif (_this.treeselmodel.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                   "\t\t\t_this.btn_delfile.el.hide();",
+                   "\t\t}",
+                   "\t",
+                   "\t\treturn;",
+                   "\t}",
+                   "\t_this.btn_delfile.el.show();",
+                   "\t_this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
+                   "",
+                   "",
+                   "}",
+                   " ",
+                   " ",
+                   " "
+                  ]
+                 },
+                 "xtype" : "SingleSelection",
+                 "| JsRender.JsRender? selectedFile" : [
+                  "() {",
+                  "",
+                  "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                  "\t\treturn null;",
+                  "\t}",
+                  "\treturn  (JsRender.JsRender)this.el.get_item(this.el.selected); ",
+                  "\t",
+                  " ",
+                  "}"
+                 ]
+                },
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "factory",
+                 "listeners" : {
+                  "bind" : [
+                   "(listitem) => {",
+                   " ",
+                   "\tvar box = (Gtk.Box)  ((Gtk.ListItem)listitem).get_child();",
+                   "\t   ",
+                   "\tvar img = (Gtk.Image) box.get_first_child();",
+                   "\tvar lbl = (Gtk.Label)img.get_next_sibling();",
+                   "",
+                   "\tvar item = (JsRender.JsRender)  ((Gtk.ListItem)listitem).get_item();",
+                   "\t//GLib.debug(\"set label name to %s\", item.name);",
+                   "\t ",
+                   "\tvar ns = item.name.split(\".\");",
+                   "\tif (ns.length < 2) {",
+                   "\t\tlbl.label = item.name;",
+                   "\t} else {",
+                   "\t\tlbl.label =  ",
+                   "\t\t\titem.name.substring(0, item.name.length - ns[ns.length-1].length)",
+                   "\t\t \t + \"\\n\"+  ns[ns.length-1];",
+                   "\t}",
+                   "",
+                   "/*",
+                   "\titem.bind_property(\"name\",",
+                   "                lbl, \"label\",",
+                   "           GLib.BindingFlags.SYNC_CREATE);",
+                   "",
+                   "\t*/",
+                   "    img.set_from_file(item.getIconFileName());",
+                   "    ",
+                   "\t  ",
+                   "}",
+                   ""
+                  ],
+                  "setup" : [
+                   "(item) => {",
+                   "\t//var j = (JsRender.JsRender) item;",
+                   "\tvar gi = (Gtk.ListItem)item;",
+                   "\tvar b  = new Gtk.Box(Gtk.Orientation.VERTICAL,4);",
+                   "\tvar i = new Gtk.Image();",
+                   "\ti.pixel_size = 96;",
+                   "\tvar t = new Gtk.Label(\"\");",
+                   "\tb.append(i);",
+                   "\tb.append(t);",
+                   "\t",
+                   "\tgi.set_child(b);",
+                   "\tb.has_tooltip = true;",
+                   "\tb.query_tooltip.connect((x, y, keyboard_tooltip, tooltip) => {",
+                   "\t\tvar j = (JsRender.JsRender) gi.get_item();",
+                   "\t\t",
+                   "\t\tvar ti = new Gtk.Image.from_file ( j.getIconFileName());",
+                   "\t\tti.pixel_size = 368;",
+                   "\t\ttooltip.set_custom( ti );",
+                   "\t\treturn true;",
+                   "\t});",
+                   "",
+                   "",
+                   "}",
+                   ""
+                  ]
+                 },
+                 "xtype" : "SignalListItemFactory"
+                }
+               ],
+               "xtype" : "GridView"
+              }
+             ],
+             "xtype" : "ScrolledWindow"
+            }
+           ],
+           "xtype" : "Box"
+          },
+          {
+           "$ xns" : "Gtk",
+           "* init" : "  this.el.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);",
+           "* prop" : "start_child",
+           "bool has_frame" : true,
+           "bool hexpand" : true,
+           "bool vexpand" : true,
+           "bool visible" : true,
+           "id" : "treescroll",
+           "int width_request" : 200,
+           "items" : [
+            {
+             "$ xns" : "Gtk",
+             "* init" : [
+              "{",
+              " ",
+              "\tthis.css = new Gtk.CssProvider();",
+              " ",
+              "\tthis.css.load_from_string(\"#file-list { font-size: 12px;}\");",
+              "",
+              "\tGtk.StyleContext.add_provider_for_display(",
+              "\t\tthis.el.get_display(),",
+              "\t\tthis.css,",
+              "\t\tGtk.STYLE_PROVIDER_PRIORITY_APPLICATION",
+              "\t);",
+              "\t\t ",
+              "}",
+              ""
+             ],
+             "* prop" : "child",
+             "Gtk.CssProvider css" : "",
+             "id" : "treeview",
+             "items" : [
+              {
+               "$ xns" : "Gtk",
+               "listeners" : {
+                "pressed" : [
+                 "(n_press, x, y) => {",
+                 "\tif (n_press == 2) {",
+                 "\t\tGLib.debug(\"double cliced\");",
+                 "\t} else {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\tvar tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;",
+                 "\tGLib.debug(\"SELECTED = %s\", tr.item.get_type().name());",
+                 "\tvar f = (JsRender.JsRender) tr.item;",
+                 "\tGLib.debug(\"Click %s\", f.name);",
+                 "\tif (f.xtype == \"Dir\") {",
+                 "\t\treturn;",
+                 "\t}",
+                 "\t",
+                 "\t",
+                 " \t_this.win.windowstate.fileViewOpen(f, _this.new_window);",
+                 "\t",
+                 "\t_this.el.hide();",
+                 "\t",
+                 "\t",
+                 "",
+                 "}",
+                 ""
+                ]
+               },
+               "xtype" : "GestureClick"
+              },
+              {
+               "$ xns" : "Gtk",
+               "* prop" : "model",
+               "bool can_unselect" : true,
+               "id" : "treeselmodel",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "model",
+                 "items" : [
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "model",
+                   "bool incremental" : true,
+                   "id" : "treelistsort",
+                   "items" : [
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "model",
+                     "Gtk.TreeListModelCreateModelFunc create_func" : [
+                      "(item) => {",
+                      "\t//GLib.debug(\"liststore got %s\", item.get_type().name());",
+                      "\treturn ((JsRender.JsRender)item).childfiles;",
+                      "} "
+                     ],
+                     "bool autoexpand" : true,
+                     "bool passthrough" : false,
+                     "id" : "treelistmodel",
+                     "items" : [
+                      {
+                       "$ xns" : "GLib",
+                       "* prop" : "root",
+                       "GLib.Type item_type" : "typeof(JsRender.JsRender)",
+                       "id" : "treemodel",
+                       "xtype" : "ListStore"
+                      }
+                     ],
+                     "xtype" : "TreeListModel"
+                    },
+                    {
+                     "$ xns" : "Gtk",
+                     "* prop" : "sorter",
+                     "items" : [
+                      {
+                       "$ xns" : "Gtk",
+                       "* prop" : "sorter",
+                       "bool ignore_case" : true,
+                       "items" : [
+                        {
+                         "$ xns" : "Gtk",
+                         "* prop" : "expression",
+                         "GLib.Type this_type" : "typeof(JsRender.JsRender) ",
+                         "string property_name" : "name",
+                         "xtype" : "PropertyExpression"
+                        }
+                       ],
+                       "xtype" : "StringSorter"
+                      }
+                     ],
+                     "xtype" : "TreeListRowSorter"
+                    }
+                   ],
+                   "xtype" : "SortListModel"
+                  },
+                  {
+                   "$ xns" : "Gtk",
+                   "* prop" : "filter",
+                   "Gtk.CustomFilterFunc match_func" : [
+                    "(item) => { ",
+                    "\tvar tr = ((Gtk.TreeListRow)item).get_item();",
+                    "\t//GLib.debug(\"filter %s\", tr.get_type().name());",
+                    "\tvar j =  (JsRender.JsRender) tr;",
+                    "\tif (j.xtype == \"Dir\" && j.childfiles.n_items < 1) {",
+                    "\t\treturn false;",
+                    "\t}",
+                    "\tvar str = _this.searchbox.el.text.down();\t",
+                    "\tif (j.xtype == \"Dir\") {",
+                    "\t",
+                    "\t\tif (str.length < 1) {",
+                    "\t\t\treturn true;",
+                    "\t\t}",
+                    "\t\tfor (var i =0 ; i < j.childfiles.n_items; i++) {",
+                    "\t\t\tvar f = (JsRender.JsRender) j.childfiles.get_item(i);",
+                    "\t\t\tif (f.xtype != \"PlainFile\") {",
+                    "\t\t\t\tcontinue;",
+                    "\t\t\t}",
+                    "\t\t\tif (f.name.down().contains(str)) {",
+                    "\t\t\t\treturn true;",
+                    "\t\t\t}",
+                    "\t\t}",
+                    "\t\treturn false;",
+                    "\t}",
+                    "\tif (j.xtype != \"PlainFile\") {",
+                    "\t\treturn false;",
+                    "\t}",
+                    "",
+                    "\tif (str.length < 1) {",
+                    "\t\treturn true;",
+                    "\t}",
+                    "\tif (j.name.down().contains(str)) {",
+                    "\t\treturn true;",
+                    "\t}",
+                    "\treturn false; ",
+                    "",
+                    "}"
+                   ],
+                   "id" : "treefilter",
+                   "xtype" : "CustomFilter"
+                  }
+                 ],
+                 "xtype" : "FilterListModel"
+                }
+               ],
+               "listeners" : {
+                "notify[\"selected\"]" : [
+                 "() => {",
+                 "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                 "\t\tif (_this.iconsel.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                 "\t\t\t_this.btn_delfile.el.hide();",
+                 "\t\t}",
+                 "\t\treturn;",
+                 "\t}",
+                 "\t",
+                 "\tvar tr = (Gtk.TreeListRow)_this.treeselmodel.el.selected_item;",
+                 "\tGLib.debug(\"SELECTED = %s\", tr.item.get_type().name());",
+                 "\tvar f = (JsRender.JsRender) tr.item;",
+                 "\tif (f.xtype == \"Dir\") {",
+                 "\t\t_this.btn_delfile.el.hide();\t",
+                 "\t} else {",
+                 "\t\t_this.btn_delfile.el.show();",
+                 "\t}",
+                 "",
+                 "\t_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;",
+                 "",
+                 "",
+                 "}",
+                 " ",
+                 " ",
+                 " "
+                ]
+               },
+               "xtype" : "SingleSelection",
+               "| JsRender.JsRender? selectedFile" : [
+                "() {",
+                "",
+                "\tif (this.el.selected == Gtk.INVALID_LIST_POSITION) {",
+                "\t\treturn null;",
+                "\t}",
+                "\tvar tr = (Gtk.TreeListRow) this.el.selected_item;",
+                "",
+                "\treturn  (JsRender.JsRender) tr.item;",
+                "}"
+               ]
+              },
+              {
+               "$ xns" : "Gtk",
+               "* init" : [
+                "{",
+                "\t// this.el.set_sorter(  new Gtk.StringSorter(",
+                "\t// \tnew Gtk.PropertyExpression(typeof(JsRender.NodeProp), null, \"name\")",
+                " //\t));",
+                "\t\t",
+                "}",
+                ""
+               ],
+               "* pack" : "append_column",
+               "bool expand" : true,
+               "bool resizable" : true,
+               "id" : "name",
+               "items" : [
+                {
+                 "$ xns" : "Gtk",
+                 "* prop" : "factory",
+                 "listeners" : {
+                  "bind" : [
+                   "(listitem) => {",
+                   "\t //GLib.debug(\"listitme is is %s\", ((Gtk.ListItem)listitem).get_type().name());",
+                   "\t",
+                   "\t",
+                   "\t",
+                   "\t//var expand = (Gtk.TreeExpander) ((Gtk.ListItem)listitem).get_child();",
+                   "\tvar expand = (Gtk.TreeExpander)  ((Gtk.ListItem)listitem).get_child();",
+                   "\t  ",
+                   " ",
+                   "\tvar lbl = (Gtk.Label) expand.child;",
+                   "\t",
+                   "\t if (lbl.label != \"\") { // do not update",
+                   "\t \treturn;",
+                   " \t}",
+                   "\tvar lr = (Gtk.TreeListRow)((Gtk.ListItem)listitem).get_item();",
+                   "\t//GLib.debug(\"LR = %s\", lr.get_type().name());",
+                   "",
+                   "\t",
+                   "\tvar jr =(JsRender.JsRender) lr.get_item();",
+                   "\t//GLib.debug(\"JR = %s\", jr.get_type().name());\t\t",
+                   "\t",
+                   "\t if (jr == null) {",
+                   "\t\t GLib.debug(\"Problem getting item\"); ",
+                   "\t\t return;",
+                   "\t }",
+                   "\t//GLib.debug(\"change  %s to %s\", lbl.label, np.name);",
+                   "\tlbl.label = jr.name; // for dir's we could hsow the sub path..",
+                   "\tlbl.tooltip_markup = jr.path;",
+                   "\t ",
+                   "    expand.set_hide_expander(  jr.xtype != \"Dir\" );",
+                   " \t expand.set_list_row(lr);",
+                   " ",
+                   " \t ",
+                   " \t// bind image...",
+                   " \t",
+                   "}",
+                   "",
+                   "",
+                   ""
+                  ],
+                  "setup" : [
+                   "(listitem) => {",
+                   "\t",
+                   "\tvar expand = new Gtk.TreeExpander();",
+                   "\t ",
+                   "\texpand.set_indent_for_depth(true);",
+                   "\texpand.set_indent_for_icon(true);",
+                   "\t ",
+                   "\tvar lbl = new Gtk.Label(\"\");",
+                   "\tlbl.use_markup = true;",
+                   "\t",
+                   "\t",
+                   " \tlbl.justify = Gtk.Justification.LEFT;",
+                   " \tlbl.xalign = 0;",
+                   "",
+                   " ",
+                   "\texpand.set_child(lbl);",
+                   "\t((Gtk.ListItem)listitem).set_child(expand);",
+                   "\t((Gtk.ListItem)listitem).activatable = false;",
+                   "}",
+                   ""
+                  ]
+                 },
+                 "xtype" : "SignalListItemFactory"
+                }
+               ],
+               "string title" : "General Files",
+               "xtype" : "ColumnViewColumn"
+              }
+             ],
+             "string name" : "file-list",
+             "xtype" : "ColumnView"
+            }
+           ],
+           "xtype" : "ScrolledWindow"
+          }
+         ],
+         "xtype" : "Paned"
+        }
+       ],
+       "xtype" : "Paned"
+      }
+     ],
+     "xtype" : "Box"
+    },
+    {
+     "$ xns" : "Gtk",
+     "* prop" : "titlebar",
+     "* title" : "Select Project / File",
+     "bool show_title_buttons" : false,
+     "items" : [
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_end",
+       "listeners" : {
+        "clicked" : [
+         "( ) => {",
+         "\tif (BuilderApplication.windows.size < 2 && ",
+         "\t\t_this.win.windowstate.file == null",
+         "\t) { ",
+         "\t\tBuilderApplication.singleton(null).quit();",
+         "\t\treturn;",
+         "\t}",
+         "",
+         "\t_this.el.hide();",
+         "\t",
+         "\t if (_this.win.windowstate.file == null) {\t\t ",
+         "\t\tBuilderApplication.removeWindow(_this.win);",
+         "\t\t ",
+         "\t\t ",
+         "\t\t",
+         "\t}",
+         "",
+         "}",
+         ""
+        ]
+       },
+       "string label" : "Close / Cancel",
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "id" : "btn_newproj",
+       "items" : [
+        {
+         "$ Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "items" : [
+          {
+           "$ Gtk.IconSize icon_size" : "Gtk.IconSize.NORMAL",
+           "$ xns" : "Gtk",
+           "int margin_end" : 4,
+           "string icon_name" : "folder-new",
+           "xtype" : "Image"
+          },
+          {
+           "$ Gtk.Align halign" : "Gtk.Align.START",
+           "$ xns" : "Gtk",
+           "string label" : "New Project",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "  ",
+         "    // create a new file in project..",
+         "    //Xcls_DialogNewComponent.singleton().show(",
+         "   var  pe =      EditProject.singleton();",
+         "   pe.windowstate = _this.win.windowstate;",
+         "   ",
+         "   pe.el.application = _this.win.el.application;",
+         "    pe.el.set_transient_for( _this.el );",
+         " ",
+         "  ",
+         "    pe.selected.connect((pr) => {",
+         "     \t ",
+         "\t     _this.show(  pr, _this.new_window);",
+         "",
+         "    });",
+         "    ",
+         "      ",
+         "    pe.show();",
+         "   ",
+         "",
+         "}"
+        ]
+       },
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "id" : "btn_projprop",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "int margin_end" : 4,
+           "string icon_name" : "emblem-system",
+           "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string label" : "Project Properties",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "  // should disable the button really.",
+         "   if (_this.selectedProject == null) {",
+         "\t   return;",
+         "   }",
+         "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject);",
+         " }"
+        ]
+       },
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "DialogConfirm confirm" : "null",
+       "id" : "btn_delproj",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "user-trash",
+           "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string label" : "Delete Project",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "  ",
+         "  ",
+         "  \tif (this.confirm == null) {",
+         "  \t\tthis.confirm = new DialogConfirm();",
+         "   \t\tthis.confirm.el.set_transient_for(_this.el);",
+         "\t}",
+         "\t",
+         "\tvar project  = (Project.Project) _this.projectsort.el.get_item(",
+         "\t\t_this.projectselection.el.selected",
+         "\t\t);",
+         "\t",
+         "\tthis.confirm.el.response.connect((res) => {",
+         "\t\tthis.confirm.el.hide();",
+         "\t\tif (res == Gtk.ResponseType.CANCEL) {",
+         "\t\t\treturn;",
+         "\t\t}",
+         "\t   project  = (Project.Project) _this.projectsort.el.get_item(",
+         "\t\t\t_this.projectselection.el.selected",
+         "\t\t);",
+         "\t\tProject.Project.remove(project);",
+         "\t  _this.projectmodel.remove(project);",
+         "\t\t_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
+         "\t",
+         "\t});",
+         "  \tthis.confirm.showIt(\"Confirm Delete Project\", \"Are you sure you want to delete this project?\");",
+         "}"
+        ]
+       },
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "id" : "btn_addfile",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "int margin_end" : 4,
+           "string icon_name" : "document-new",
+           "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string label" : "New File",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         " () => {",
+         "    // create a new file in project..",
+         "    print(\"add file selected\\n\");",
+         "    ",
+         "    if (_this.selectedProject == null) {",
+         "    \treturn;",
+         "    }",
+         "    try {",
+         "    \tvar f = JsRender.JsRender.factory(_this.selectedProject.xtype,  _this.selectedProject, \"\");",
+         "     \t_this.win.windowstate.file_details.show( f, _this.el, _this.new_window );",
+         "     } catch (JsRender.Error e) {}",
+         "",
+         "}"
+        ]
+       },
+       "xtype" : "Button"
+      },
+      {
+       "$ xns" : "Gtk",
+       "* pack" : "pack_start",
+       "DialogConfirm confirm" : "null",
+       "id" : "btn_delfile",
+       "items" : [
+        {
+         "$ xns" : "Gtk",
+         "* prop" : "child",
+         "Gtk.Orientation orientation" : "Gtk.Orientation.HORIZONTAL",
+         "int spacing" : 0,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "string icon_name" : "user-trash",
+           "xtype" : "Image"
+          },
+          {
+           "$ xns" : "Gtk",
+           "string label" : "Delete File",
+           "xtype" : "Label"
+          }
+         ],
+         "xtype" : "Box"
+        }
+       ],
+       "listeners" : {
+        "clicked" : [
+         "  ( ) => {",
+         "  ",
+         "  \tif (this.confirm == null) {",
+         "  \t\tthis.confirm = new DialogConfirm();",
+         "  \t\tthis.confirm.el.set_transient_for(_this.el);",
+         " ",
+         "\t}",
+         "\tGLib.debug(\"DELETE\");",
+         "\tvar is_icon = true;",
+         "  \tvar isel = _this.iconsel.selectedFile();",
+         "  \t ",
+         "  \tif (isel == null) {",
+         "  \t\tGLib.debug(\"DELETE - no icons selected\");",
+         "\t  \tis_icon = false;",
+         "\t  \tisel = _this.treeselmodel.selectedFile();",
+         "  \t}",
+         "  \tif (isel == null) {",
+         "  \t  \t\tGLib.debug(\"DELETE - no tree item selected\");",
+         "  \t\treturn; // should nto happen..",
+         "\t}",
+         "\t",
+         "\tGLib.debug(\"DELETE - calling confirm.\");",
+         "\tthis.confirm.el.response.connect((res) => {",
+         "\t\tthis.confirm.el.hide();",
+         "\t\tif (res == Gtk.ResponseType.CANCEL) {",
+         "\t\t\treturn;",
+         "\t\t}",
+         "\t\tis_icon = true;",
+         "\t  \tisel = _this.iconsel.selectedFile();",
+         "\t  \tif (isel == null) {",
+         "\t\t  \tis_icon = false;",
+         "\t\t  \tisel = _this.treeselmodel.selectedFile();",
+         "\t  \t}",
+         "\t  \tif (isel == null) {",
+         "\t  \t\treturn; // should nto happen..",
+         "\t\t}",
+         "\t\t",
+         "\t  \tif (is_icon) {",
+         "\t\t  \tisel.project.deleteFile(isel);",
+         "\t  \t\t_this.gridmodel.remove(isel);",
+         "\t  \t\treturn;",
+         "  \t\t}",
+         "  \t\tisel.project.deleteFile(isel);  \t\t",
+         "\t",
+         "\t});",
+         "\t  \tthis.confirm.showIt(\"Confirm Delete File\",",
+         "\t  \t\t\"Are you sure you want to delete this file?\");",
+         "  \t",
+         " ",
+         "",
+         "}  "
+        ]
+       },
+       "xtype" : "Button"
+      }
+     ],
+     "xtype" : "HeaderBar"
+    }
+   ],
+   "name" : "DialogFiles",
+   "string lastfilter" : "",
+   "title" : "Select Project / File",
+   "xtype" : "Window",
+   "| void load" : [
+    "() {",
+    "     // clear list...",
+    "    ",
+    "      ",
+    "     _this.is_loading = true;",
+    "         ",
+    "     ",
+    "     Project.Project.loadAll();",
+    "     _this.project_list.el.set_model(new Gtk.SingleSelection(null));",
+    "     Project.Project.loadIntoStore(this.projectmodel.el);",
+    "",
+    "\t_this.project_list.el.set_model(_this.projectselection.el);",
+    "\t",
+    "\t_this.is_loading = false;",
+    "    ",
+    "    _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; ",
+    "\t_this.btn_delfile.el.hide();",
+    "\t",
+    "  ",
+    "}",
+    ""
+   ],
+   "| void onProjectSelected" : [
+    "(Project.Project? project) ",
+    "{",
+    "\tif (this.in_onprojectselected) { ",
+    "\t\treturn;",
+    "\t}",
+    "\tthis.selectedProject = project;",
+    "\t",
+    "\tif (project == null) {",
+    "\t\tGLib.debug(\"Hide project files\");",
+    "\t\t_this.mainpane.el.set_end_child(null);",
+    "\t\t_this.filepane.el.hide();",
+    "\t\treturn;",
+    "\t\t",
+    "\t}",
+    "\t",
+    "\tGLib.debug(\"Show project files\");",
+    "\t_this.mainpane.el.set_end_child(_this.filepane.el);",
+    "\t",
+    "\t_this.filepane.el.show();\t",
+    "\tthis.in_onprojectselected = true;",
+    "\t",
+    "\t",
+    "",
+    "\tproject.load();",
+    "\t ",
+    "\t",
+    "\t_this.searchbox.el.text = \"\";",
+    "\t _this.gridview.el.set_model(new Gtk.SingleSelection(null));",
+    "\t _this.selectedProject.loadFilesIntoStore(_this.gridmodel.el);",
+    "\t _this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "  \t \t",
+    "\t _this.gridview.el.set_model(_this.iconsel.el);",
+    "\t   ",
+    "  \t ",
+    "  \t GLib.Timeout.add(500, () => {",
+    " \t\t_this.iconsel.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "  \t \t _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;\t\t ",
+    "\t ",
+    "\t     _this.searchbox.el.grab_focus();",
+    "\t\t   return false;",
+    "     });",
+    "\t _this.treeview.el.set_model(new Gtk.SingleSelection(null));",
+    "    ",
+    "    this.selectedProject.loadDirsIntoStore(_this.treemodel.el);",
+    "    ",
+    "    _this.treeview.el.set_model(_this.treeselmodel.el);",
+    "    ",
+    " \t _this.treeselmodel.el.selected = Gtk.INVALID_LIST_POSITION;",
+    " \tthis.treescroll.el.vadjustment.value = 0;",
+    "\tthis.in_onprojectselected = false;\t",
+    "}",
+    ""
+   ],
+   "| void selectProject" : [
+    "(Project.Project? project) {",
+    "    ",
+    "\t",
+    "\t ",
+    "\tvar sm = this.projectselection.el;",
+    "\tif (project == null) {",
+    "\t\tsm.selected = Gtk.INVALID_LIST_POSITION;",
+    "\t\tthis.onProjectSelected(null);",
+    "\t\treturn;",
+    "\t}",
+    "",
+    "\t",
+    "\tfor (var i =0; i < sm.n_items; i++) {",
+    "\t\tvar p = (Project.Project) sm.get_item(i);",
+    "\t\tif (p.path == project.path) {",
+    "\t\t\tGLib.debug(\"Select Project %s => %d\", project.name, i);",
+    "\t\t\tsm.selected = i;",
+    "\t\t\tbreak;",
+    "\t\t}",
+    "\t} ",
+    "\t",
+    "}",
+    ""
+   ],
+   "| void show" : [
+    "(Project.Project? project, bool new_window) {",
+    "      ",
+    " \tthis.new_window = new_window;",
+    "",
+    "    this.projectscroll.el.vadjustment.value = 0; // scroll to top?",
+    "    ",
+    "  ",
+    "\t  //var win = this.win.el;",
+    "      //var  w = win.get_width();",
+    "      //var h = win.get_height();",
+    " ",
+    "\t",
+    "\t this.el.show();",
+    "\t \tthis.load();",
+    "\tthis.selectProject(project);",
+    "\tthis.onProjectSelected(project);   //?? twice?",
+    "\t ",
+    "\t    GLib.Timeout.add(500, () => {",
+    "\t    \tif (project == null) {",
+    "    \t   \t\t_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;",
+    "\t\t\t\tthis.onProjectSelected(null); ",
+    "\t",
+    "\t\t\t} ",
+    "\t          this.el.set_size_request( 800 , 750);  // ?? based on default ",
+    "\t     return false;",
+    "     });",
+    "\t ",
+    "}//"
+   ]
+  }
+ ],
+ "name" : "DialogFiles"
+}
