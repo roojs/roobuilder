@@ -105,7 +105,7 @@ namespace Palete {
 			var line_to_err =  new Json.Object();
 
 			line_to_err.set_array_member(ex.get_line_number().to_string(), ar);
-			file_to_line =   new Json.Object();
+			var file_to_line =   new Json.Object();
 			file_to_line.set_object_member(fn, line_to_err);
 			var ret =  new Json.Object();
 			ret.set_object_member("ERR", file_to_line);
