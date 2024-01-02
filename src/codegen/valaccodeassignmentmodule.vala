@@ -226,13 +226,8 @@ public class Vala.CCodeAssignmentModule : CCodeMemberAccessModule {
 		store_value (get_parameter_cvalue (param), value, source_reference);
 	}
 
-<<<<<<< HEAD
-	 public override void store_field (Vala.Field field, Vala.TargetValue? instance, Vala.TargetValue value, Vala.SourceReference? source_reference = null, bool initializer = false) 
-	 {
-=======
 	public override void store_field (Vala.Field field, Vala.TargetValue? instance, Vala.TargetValue value, Vala.SourceReference? source_reference = null, bool initializer = false)
 	{
->>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 		var lvalue = get_field_cvalue (field, instance);
 		var type = lvalue.value_type;
 		if (lvalue.actual_value_type != null) {

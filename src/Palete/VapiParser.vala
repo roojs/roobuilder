@@ -33,7 +33,7 @@ namespace Palete {
 			}
 			 
 			
-			GLib.debug("parsing namespace %s\n", element.name);
+			//print("parsing namespace %s\n", element.name);
 			if (element.name == null) {
 				element.accept_children(this); // catch sub namespaces..
 				return;

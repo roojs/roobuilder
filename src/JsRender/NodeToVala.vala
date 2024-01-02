@@ -838,12 +838,8 @@ public class JsRender.NodeToVala : Object {
 					// used for label[]  on Notebook
 					// used for button[]  on Dialog?
 					// columns[] ?
-<<<<<<< HEAD
-					this.packChild(child, i, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
-=======
 					 
 					this.packChild(child, childname, 0, 0, child.get_prop("* prop").val);  /// fixme - this is a bit speciall...
->>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 					continue;
 				}
 				
@@ -941,11 +937,6 @@ public class JsRender.NodeToVala : Object {
 			return;  
 		}
 		var childcls =  this.file.project.palete.getClass(child.fqn()); // very trusting..
-<<<<<<< HEAD
-		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
-		if (is_event) {
-		    this.addLine(this.ipad + "this.el.add_controller(  child_%d.el );".printf(i) );
-=======
 		if (childcls == null) {
 		  return;
 		}
@@ -953,7 +944,6 @@ public class JsRender.NodeToVala : Object {
 		var is_event = childcls.inherits.contains("Gtk.EventController") || childcls.implements.contains("Gtk.EventController");
 		if (is_event) {
 		    this.addLine(this.ipad + "this.el.add_controller(  %s.el );".printf(childname) );
->>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 		    return;
 		}
 		
@@ -1068,11 +1058,7 @@ public class JsRender.NodeToVala : Object {
 			
 			default:
 			    // gtk4 uses append!!!! - gtk3 - uses add..
-<<<<<<< HEAD
-				this.addLine(this.ipad + "this.el.append(  child_" + "%d".printf(i) + ".el );");
-=======
 				this.addLine(this.ipad + "this.el.append( "+ childname + ".el );");
->>>>>>> wip_alan_T7440_handling_gtk4_and_bad_girs
 				return;
 		
 		

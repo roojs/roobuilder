@@ -166,7 +166,7 @@ namespace Palete {
 				
 			}
 			
-			var ret = cache.get(ns.strip());
+			var ret = cache.get(ns);
 			
 			 
 			
