@@ -29,7 +29,7 @@ namespace Palete {
 			
 		}
 		
-		public void addFile(  ValaCompileRequestType reqtype, JsRender.JsRender file , string alt_code = "") 
+		public void addFile(  ValaCompileRequestType reqtype, JsRender.JsRender file , string alt_code, bool force) 
 		{
 			
 			if (file.project.xtype != "Gtk") {
@@ -42,13 +42,13 @@ namespace Palete {
 				null,
 				null,
 				alt_code
-			));
+			), force);
 		}
-		void add(ValaCompileRequest req)
+		void add(ValaCompileRequest req, bool force)
 		{
 			GLib.debug("Add compile request  to queue %s", req.file.path);
 			if (this.next_request != null && this.next_request.eq(req)) {
-				this.countdown = this.last_request == null ? 1 : this.countdown_start;			
+				this.countdown = this.last_request == null || force ? 1 : this.countdown_start;			
  
 				if (this.countdown_running < 1) {
 					this.startCountdown();
@@ -65,7 +65,7 @@ namespace Palete {
 			}
 			this.next_request = req;
 			// quick if no previous
-			this.countdown = this.last_request == null ? 1 : this.countdown_start;
+			this.countdown = this.last_request == null || force ? 1 : this.countdown_start;
 			if (this.countdown_running < 1) {
 				this.startCountdown();
 			}
