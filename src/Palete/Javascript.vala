@@ -91,8 +91,7 @@ namespace Palete {
 			if (ex == null) {
 				return this.compressionErrors(code, fn);
 			
-				GLib.debug("no exception thrown");
-				return new Json.Object();
+				 
 			}
  
 			//GLib.debug("got error %d %s", (int)ex.get_line_number() , ex.get_message() );
