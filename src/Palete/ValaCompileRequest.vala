@@ -215,10 +215,13 @@ namespace Palete {
 		public int totalErrors(string type, JsRender.JsRender? file=null) 
 		{
 			if (file == null) {
-				return (int)this.errorByType.get(type).get_n_items();
+				return this.errorByType.get(type) == null ? 0 : (int)this.errorByType.get(type).get_n_items();
 			}
 			var ret =0;
 			var ar = this.errorByType.get(type);
+			if (ar == null) {
+				return 0;
+			}
 			for(var i =0 ;i< ar.get_n_items();i++) {
 				var ce = (CompileError) ar.get_item(i);
 				if (ce.file.path == file.path) {
