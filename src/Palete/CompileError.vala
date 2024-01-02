@@ -114,7 +114,7 @@ namespace Palete {
         		if (!req.errorByFile.has_key(fe.path)) {
         			req.errorByFile.set(fe.path,  new GLib.ListStore(typeof(CompileError)));
     			}
-    			req.errorByFile.get(fe.path).append(ls);
+    			req.errorByFile.get(fe.path).append(ce);
         		
               
 		    });
