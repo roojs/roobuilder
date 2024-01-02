@@ -51,10 +51,10 @@
             this.el.title = "Roo Application Builder";
             this.el.default_height = 850;
             this.el.default_width = 1200;
-            new Xcls_headerbar( _this );
-            this.el.set_titlebar ( _this.headerbar.el  );
-            new Xcls_vbox( _this );
-            this.el.set_child ( _this.vbox.el  );
+            var child_1 = new Xcls_headerbar( _this );
+            this.el.set_titlebar ( child_1.el  );
+            var child_2 = new Xcls_vbox( _this );
+            this.el.set_child ( child_2.el  );
 
             // init method
 
@@ -103,12 +103,12 @@
         		req.totalErrors("ERR"),
         		req.totalErrors("ERR", this.windowstate.file)
         	);
-        	this.statusbar_errors.setNotices(
+        	this.statusbar_warnings.setNotices(
         		req.errorByType.get("WARN"),
         		req.totalErrors("wARN"),
         		req.totalErrors("WARN", this.windowstate.file)
         	);
-        	this.statusbar_errors.setNotices(
+        	this.statusbar_depricated.setNotices(
         		req.errorByType.get("DEPR"),
         		req.totalErrors("DEPR"),
         		req.totalErrors("DEPR", this.windowstate.file)
@@ -201,10 +201,10 @@
                 // my vars (dec)
 
                 // set gobject values
-                new Xcls_windowbtn( _this );
-                this.el.append( _this.windowbtn.el );
-                new Xcls_open_projects_btn( _this );
-                this.el.append ( _this.open_projects_btn.el  );
+                var child_1 = new Xcls_windowbtn( _this );
+                this.el.append( child_1.el );
+                var child_2 = new Xcls_open_projects_btn( _this );
+                this.el.append ( child_2.el  );
             }
 
             // user defined functions
@@ -230,7 +230,7 @@
                 // set gobject values
                 this.el.margin_end = 4;
                 this.el.halign = Gtk.Align.START;
-                new Xcls_windowspopup( _this );
+                var child_1 = new Xcls_windowspopup( _this );
                 var child_2 = new Xcls_Box10( _this );
                 this.el.child = child_2.el;
 
@@ -345,8 +345,8 @@
                 // my vars (dec)
 
                 // set gobject values
-                new Xcls_popover_menu( _this );
-                this.el.set_child ( _this.popover_menu.el  );
+                var child_1 = new Xcls_popover_menu( _this );
+                this.el.set_child ( child_1.el  );
             }
 
             // user defined functions
@@ -598,8 +598,8 @@
                 // set gobject values
                 this.el.homogeneous = false;
                 this.el.vexpand = true;
-                new Xcls_mainpane( _this );
-                this.el.append( _this.mainpane.el );
+                var child_1 = new Xcls_mainpane( _this );
+                this.el.append( child_1.el );
                 var child_2 = new Xcls_Box23( _this );
                 child_2.ref();
                 this.el.append( child_2.el );
@@ -630,8 +630,8 @@
                 this.el.hexpand = true;
                 this.el.vexpand = true;
                 this.el.position = 400;
-                new Xcls_leftpane( _this );
-                this.el.start_child = _this.leftpane.el;
+                var child_1 = new Xcls_leftpane( _this );
+                this.el.start_child = child_1.el;
                 var child_2 = new Xcls_Box20( _this );
                 this.el.end_child = child_2.el;
 
@@ -664,8 +664,8 @@
                 // set gobject values
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                new Xcls_editpane( _this );
-                this.el.append( _this.editpane.el );
+                var child_1 = new Xcls_editpane( _this );
+                this.el.append( child_1.el );
             }
 
             // user defined functions
@@ -688,10 +688,10 @@
                 // my vars (dec)
 
                 // set gobject values
-                new Xcls_tree( _this );
-                this.el.start_child = _this.tree.el;
-                new Xcls_props( _this );
-                this.el.end_child = _this.props.el;
+                var child_1 = new Xcls_tree( _this );
+                this.el.start_child = child_1.el;
+                var child_2 = new Xcls_props( _this );
+                this.el.end_child = child_2.el;
 
                 //listeners
                 this.el.accept_position.connect( ( ) => {
@@ -777,10 +777,10 @@
                 // set gobject values
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                new Xcls_rooviewbox( _this );
-                this.el.append( _this.rooviewbox.el );
-                new Xcls_codeeditviewbox( _this );
-                this.el.append( _this.codeeditviewbox.el );
+                var child_1 = new Xcls_rooviewbox( _this );
+                this.el.append( child_1.el );
+                var child_2 = new Xcls_codeeditviewbox( _this );
+                this.el.append( child_2.el );
             }
 
             // user defined functions
@@ -868,13 +868,13 @@
                 var child_4 = new Xcls_Label31( _this );
                 child_4.ref();
                 this.el.append( child_4.el );
-                new Xcls_statusbar( _this );
-                this.el.append( _this.statusbar.el );
+                var child_5 = new Xcls_statusbar( _this );
+                this.el.append( child_5.el );
                 var child_6 = new Xcls_Box33( _this );
                 child_6.ref();
                 this.el.append( child_6.el );
-                new Xcls_statusbar_compile_spinner( _this );
-                this.el.append( _this.statusbar_compile_spinner.el );
+                var child_7 = new Xcls_statusbar_compile_spinner( _this );
+                this.el.append( child_7.el );
             }
 
             // user defined functions
@@ -978,8 +978,8 @@
                 // set gobject values
                 this.el.icon_name = "dialog-information";
                 this.el.label = "About";
-                new Xcls_topbarmenu( _this );
-                this.el.popover = _this.topbarmenu.el;
+                var child_1 = new Xcls_topbarmenu( _this );
+                this.el.popover = child_1.el;
             }
 
             // user defined functions
@@ -1185,16 +1185,16 @@
                 // my vars (dec)
 
                 // set gobject values
-                new Xcls_statusbar_compilestatus_label( _this );
-                this.el.append( _this.statusbar_compilestatus_label.el );
-                new Xcls_statusbar_errors( _this );
-                this.el.append( _this.statusbar_errors.el );
-                new Xcls_statusbar_warnings( _this );
-                this.el.append( _this.statusbar_warnings.el );
-                new Xcls_statusbar_depricated( _this );
-                this.el.append( _this.statusbar_depricated.el );
-                new Xcls_statusbar_run( _this );
-                this.el.append( _this.statusbar_run.el );
+                var child_1 = new Xcls_statusbar_compilestatus_label( _this );
+                this.el.append( child_1.el );
+                var child_2 = new Xcls_statusbar_errors( _this );
+                this.el.append( child_2.el );
+                var child_3 = new Xcls_statusbar_warnings( _this );
+                this.el.append( child_3.el );
+                var child_4 = new Xcls_statusbar_depricated( _this );
+                this.el.append( child_4.el );
+                var child_5 = new Xcls_statusbar_run( _this );
+                this.el.append( child_5.el );
             }
 
             // user defined functions
