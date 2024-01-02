@@ -836,7 +836,6 @@
                 		_this.window.windowstate,
                         str, 
                          _this.prop,
-                        _this.file,   // no reference not node?
                         out errors
                     );
                     return true; // this.highlightErrors(errors);    
