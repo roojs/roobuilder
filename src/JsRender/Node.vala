@@ -160,7 +160,9 @@ public class JsRender.Node : GLib.Object {
 		
 	}
 	
-	public void setLine(int line, string type, string prop) {
+	public void setLine(int line, string type, string prop) 
+	{
+		GLib.debug("set prop %s (%s) to line %d", prop, type, line);
 		if (this.line_map.has_key(line)) {
 			if  (this.line_map.get(line) != "e:"  ) {
 				return;
