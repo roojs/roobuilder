@@ -169,6 +169,41 @@ public class JsRender.Node : GLib.Object {
 			this.lines.add(line);
 		}
 		this.line_map.set(line, type + ":" + prop);
+		if (type == "e" || type == "p" ) {
+		
+			if (prop == "" || !this.props.has_key(prop)) {
+				GLib.debug("cant find prop '%s'", prop);
+				return;
+			}
+			
+			var prope = this.props.get(prop);
+			if (prope != null || type =="p") { 
+				prope.start_line = line;
+			}
+			if (prope != null || type =="e") { 
+				prope.end_line = line;
+			}	
+			
+		}
+		if (type == "l" || type =="x") {
+			if (prop == "" || !this.listeners.has_key(prop)) {
+				GLib.debug("cant find listener '%s'", prop);
+				return;
+			}
+			
+			var prope = this.listeners.get(prop);
+			if (prope != null || type =="l") { 
+				prope.start_line = line;
+			}
+			if (prope != null || type =="x") { 
+				prope.end_line = line;
+			}	
+			
+		
+		}
+		
+		
+		
 		//GLib.debug("setLine %d, %s", line, type + ":" + prop);
 	}
 	public void sortLines() {
@@ -232,6 +267,7 @@ public class JsRender.Node : GLib.Object {
 		
 		for(var i= 0; i < this.propstore.get_n_items();i++) {
 			var p = (NodeProp) this.propstore.get_item(i);
+			GLib.debug("prop %s lines %d -> %d", p.name, p.start_line, p.end_line);
 			if (p.start_line > line) {
 				continue;
 			}
