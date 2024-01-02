@@ -109,7 +109,7 @@ namespace Palete {
  
 		        
 		        
-		        var ce = new CompileError.new_file(fe, tree.get_object_member(file), prop);
+		        var ce = new CompileError.new_file(fe, res.get_object_member(file), prop);
         		ls.append(ce);
         		if (!req.errorByFile.has_key(fe.path)) {
         			req.errorByFile.set(fe.path,  new GLib.ListStore(typeof(CompileError)));
