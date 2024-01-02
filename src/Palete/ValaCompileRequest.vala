@@ -262,8 +262,9 @@ namespace Palete {
 			
 			var res = Javascript.singleton().validate(contents);
 			var ret =  new Json.Object();
-			GLib.debug("setting error on %s", this.file.targetName());
-			ret.set_object_member(this.file.targetName(), res);
+			var fl =  new Json.Object();
+			fl.set_object_member(this.file.targetName(), res);
+			ret.set_object_member("ERR", res);
 			
 			CompileError.parseCompileResults(this,ret);
 			this.queue.onCompileComplete(this);
