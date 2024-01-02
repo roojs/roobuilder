@@ -108,7 +108,8 @@ namespace Palete {
 			JsRender.JsRender file,
 			JsRender.Node node,
 			JsRender.NodeProp prop,
-			string alt_code = "") 
+			string alt_code
+) 
 		{
 			if (prop.name == "xns" || prop.name == "xtype") {
 				return ;
@@ -120,7 +121,7 @@ namespace Palete {
 				node,
 				prop,
 				alt_code
-			));
+			), false); // delayed?
 		
 		}
 		
