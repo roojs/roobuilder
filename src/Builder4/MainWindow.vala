@@ -100,7 +100,7 @@
         
         	if (req == null) {
         		_this.statusbar.el.hide();
-        		  _this.statusbar_errors.el.hide();
+        	    _this.statusbar_errors.el.hide();
         		_this.statusbar_warnings.el.hide();
         		_this.statusbar_depricated.el.hide();
         		return;

@@ -809,7 +809,7 @@
     "",
     "\tif (req == null) {",
     "\t\t_this.statusbar.el.hide();",
-    "\t\t  _this.statusbar_errors.el.hide();",
+    "\t    _this.statusbar_errors.el.hide();",
     "\t\t_this.statusbar_warnings.el.hide();",
     "\t\t_this.statusbar_depricated.el.hide();",
     "\t\treturn;",
