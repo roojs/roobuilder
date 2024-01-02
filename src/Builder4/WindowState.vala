@@ -676,7 +676,7 @@ public class WindowState : Object
 		this.file = file;
 		BuilderApplication.updateWindows();
 		
-		if (file.project.type == "Gtk") {
+		if (file.project.xtype == "Gtk") {
 		
 			if ( file.project.last_request != null ) {
 				BuilderApplication.updateCompileResults(file.project.last_request );
