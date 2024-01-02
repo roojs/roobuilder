@@ -8,8 +8,7 @@ extern JSCore.Value jscore_object_call_as_function(
 	);
 	
 */
-  
-
+   
 namespace Palete {
 
 	public errordomain JavascriptError {
