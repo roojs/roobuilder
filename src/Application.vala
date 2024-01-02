@@ -272,7 +272,7 @@
 		void dropList(Project.Project? cur_project) {
 
 
-			if (BuilderApplication.opt_drop_list == null) {
+			if (cur_project== null || BuilderApplication.opt_drop_list == null) {
 				return;
 			}
 			
