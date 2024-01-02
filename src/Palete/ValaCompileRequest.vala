@@ -260,9 +260,10 @@ namespace Palete {
 		 
 			var contents = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
 			
-			var res = Javascript.singleton().validate(contents);
+			var res = Javascript.singleton().validate(contents, this.file.targetName());
 			var ret =  new Json.Object();
 			var fl =  new Json.Object();
+
 			fl.set_object_member(this.file.targetName(), res);
 			ret.set_object_member("ERR", fl);
 			
@@ -273,32 +274,7 @@ namespace Palete {
 		  // see pack file (from palete/palete..palete_palete_javascriptHasCompressionErrors.)
 		  
 		}
-		public void  javascriptHasCompressionErrors( )
-		{
-			// this uses the roojspacker code to try and compress the code.
-			// it should highlight errors before we actually push live the code.
-			
-			// standard error format:  file %s, line %s, Error 
-			var code = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
-			
-			var cfg = new JSDOC.PackerRun();
-			cfg.opt_keep_whitespace = false;
-			cfg.opt_skip_scope = false;
-			cfg.opt_dump_tokens = false;			
-			cfg.opt_clean_cache = false;
-			
-
-		 	var p = new JSDOC.Packer(cfg);
-			 
-		 
-			 
-			p.packFile(code, this.file.path,"");
-			//state.showCompileResult(p.result);
-			 
-			//CompileError.parseCompileResults(req,p.result);
- 
-			 
-		}
+		
  	} 
 		
 		
