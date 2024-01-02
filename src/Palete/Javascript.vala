@@ -8,7 +8,8 @@ extern JSCore.Value jscore_object_call_as_function(
 	);
 	
 */
-   
+  
+
 namespace Palete {
 
 	public errordomain JavascriptError {
@@ -20,7 +21,8 @@ namespace Palete {
 	Javascript instance = null;
 	
 	public class Javascript {
- 
+
+/*
 		public static JSCore.Object class_constructor(
 				JSCore.Context ctx, 
 				JSCore.Object constructor,  
@@ -61,7 +63,7 @@ namespace Palete {
 
 		
 		public JSCore.GlobalContext js_global_context =  null;
-
+*/
 		public static Javascript singleton()
 		{
 			if (instance == null) {
@@ -71,49 +73,33 @@ namespace Palete {
 		}
 		public Javascript()
 		{
-			var goc = new JSCore.Class(  class_definition ); 
-			this.js_global_context = new JSCore.GlobalContext(goc);
+			//var goc = new JSCore.Class(  class_definition ); 
+			//this.js_global_context = new JSCore.GlobalContext(goc);
 			
 
 		}
-		public int validate(string code, out string res)
+		public Json.Object validate(string code)
 		{
-			JSCore.Value ex;
-			unowned   JSCore.GlobalContext ctx = this.js_global_context;
-			this.js_global_context.check_script_syntax(
-	                           new JSCore.String.with_utf8_c_string(code),
-	                           null,
-	                           0,
-	                           out ex
-           		);
-			res = ""; 
-			if (ex.is_null(ctx)) {
-				return -1;
+			var ret = new Json.Object();
+			JSC.Exception? ex;
+			var  ctx = new JSC.Context();
+			
+			GLib.debug("Check syntax %s", code);
+			
+			ctx.check_syntax(code, code.length, JSC.CheckSyntaxMode.SCRIPT, "", 1 ,out ex);
+		 
+			if (ex == null) {
+				GLib.debug("no exception thrown");
+				return ret;
 			}
-
-	 		
-			var exo = ex.to_object(ctx, null);
-			//unowned JSCore.PropertyNameArray property_names = exo.copy_property_names (ctx);
-
-			
-			
-			 
-			var js_string = new JSCore.String.with_utf8_c_string("line");
-			var line = exo.get_property(ctx, js_string, null).to_number(ctx,null);
-			
+ 
+			GLib.debug("got error %d %s",ex.get_line_number() , ex.get_message() );
+ 
 			
 
-			// see if we can convert exception string
-			char *c_string = new char[1024];
-			var err_string = ex.to_string_copy (ctx, null);
-			err_string.get_utf8_c_string (c_string, 1023);
-			res = (string)c_string;
-			//print ("Error on line %d\n%s\n", (int)line, res); 
-			
-			var rline = (int) line;
-			
-			return rline > 0 ? rline -1 : 0;
-		
+			ret.set_object_member("ERR", new Json.Object());
+			ret.get_object_member("ERR").set_string_member(ex.get_line_number().to_string(), ex.get_message());
+			return ret;
 			
 		}
 		/**
@@ -122,6 +108,7 @@ namespace Palete {
 		 * then a method is called, with a string argument (json encoded)
 		 * 
 		 */
+		 /*
 		public string executeFile(string fname, string call_method, string js_data)
 				throws JavascriptError
 		{
@@ -176,7 +163,7 @@ namespace Palete {
 			}
 			throw new JavascriptError.MISSING_METHOD ("Plugin: not supported anymore");
 			return "";
-		 /*
+		 
 			 var res = jscore_object_call_as_function(
 				ctx, oval, othis, js_data, out exd
 				);
@@ -196,11 +183,11 @@ namespace Palete {
 			 
 			 print("ret:%s\n",(string)  buf);
 			 return (string) buf;
-			*/
+			
 		}
+		*/
 		 
-		
-
+		 
 	}
 	
 	
