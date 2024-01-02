@@ -267,7 +267,7 @@
           "           ",
           "\t\tBuilderApplication.valacompilequeue.addFile( ",
           "\t\t\tPalete.ValaCompileRequestType.FILE_CHANGE, ",
-          "\t\t\t_this.file , str) ;",
+          "\t\t\t_this.file , str, false) ;",
           "  ",
           "",
           "        return true;",

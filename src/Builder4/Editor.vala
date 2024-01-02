@@ -814,7 +814,7 @@
                        
             		BuilderApplication.valacompilequeue.addFile( 
             			Palete.ValaCompileRequestType.FILE_CHANGE, 
-            			_this.file , str) ;
+            			_this.file , str, false) ;
               
             
                     return true;
