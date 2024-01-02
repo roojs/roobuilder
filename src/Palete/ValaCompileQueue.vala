@@ -33,6 +33,7 @@ namespace Palete {
 		{
 			
 			if (file.project.xtype != "Gtk") {
+			
 				return;
 			}
 			this.add(new ValaCompileRequest(
@@ -45,6 +46,7 @@ namespace Palete {
 		}
 		void add(ValaCompileRequest req)
 		{
+			GLib.debug("Add compile request  to queue %s", req.file);
 			if (this.next_request.eq(req)) {
 				this.countdown = this.last_request == null ? 1 : this.countdown_start;			
  
