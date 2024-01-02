@@ -89,6 +89,8 @@ namespace Palete {
 			ctx.check_syntax(code, code.length, JSC.CheckSyntaxMode.SCRIPT, "", 1 ,out ex);
 		 
 			if (ex == null) {
+				return this.compressionErrors();
+			
 				GLib.debug("no exception thrown");
 				return ret;
 			}
@@ -101,6 +103,35 @@ namespace Palete {
 			return ret;
 			
 		}
+		
+		
+		public void  hasCompressionErrors(code )
+		{
+			// this uses the roojspacker code to try and compress the code.
+			// it should highlight errors before we actually push live the code.
+			
+			// standard error format:  file %s, line %s, Error 
+			 
+			
+			var cfg = new JSDOC.PackerRun();
+			cfg.opt_keep_whitespace = false;
+			cfg.opt_skip_scope = false;
+			cfg.opt_dump_tokens = false;			
+			cfg.opt_clean_cache = false;
+			
+
+		 	var p = new JSDOC.Packer(cfg);
+			 
+		 
+			 
+			p.packFile(code, this.file.path,"");
+			//state.showCompileResult(p.result);
+			 
+			//CompileError.parseCompileResults(req,p.result);
+ 
+			 
+		}
+		
 		/**
 		 * extension API concept..
 		 * javascript file.. loaded into jscore, 
