@@ -156,7 +156,7 @@ namespace Palete {
 			this.last_request = req;
 			this.showSpinner(false);
 			// update errors
-			BuilderApplication.updateCompileResults(req);
+			BuilderApplication.updateCompileResults();
 		}
 		
 		public void onCompilerOutput(   string str )
