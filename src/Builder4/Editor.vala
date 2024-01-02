@@ -839,7 +839,7 @@
                         _this.file,   // no reference not node?
                         out errors
                     );
-                    return this.highlightErrors(errors);    
+                    return true; // this.highlightErrors(errors);    
                     
                 }
                     
