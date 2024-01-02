@@ -1595,7 +1595,6 @@
             		_this.main_window.windowstate,
                     str, 
                     null, // prop - not relivant.
-                    _this.file, 
                     null
                 );    
                  
