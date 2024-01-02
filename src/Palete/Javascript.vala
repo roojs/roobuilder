@@ -93,7 +93,7 @@ namespace Palete {
 				return ret;
 			}
  
-			GLib.debug("got error %d %s",ex.get_line_number() , ex.get_message() );
+			GLib.debug("got error %d %s", (int)ex.get_line_number() , ex.get_message() );
  
 			
 
