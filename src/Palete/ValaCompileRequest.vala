@@ -183,6 +183,7 @@ namespace Palete {
 	 			this.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
 				
 				var success = ret.get_boolean_member("success");
+				GLib.debug("SUCCES? : %s", success? "ok" : "failed");				
 				if (!success) {
 					GLib.debug("FAILED? : %s", output);
 					this.queue.onCompileFail();
