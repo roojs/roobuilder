@@ -179,10 +179,10 @@ public class JsRender.Node : GLib.Object {
 			}
 			
 			var prope = this.props.get(prop);
-			if (prope != null || type =="p") { 
+			if (prope != null && type =="p") { 
 				prope.start_line = line;
 			}
-			if (prope != null || type =="e") { 
+			if (prope != null && type =="e") { 
 				prope.end_line = line;
 			}	
 			
@@ -194,10 +194,10 @@ public class JsRender.Node : GLib.Object {
 			}
 			
 			var prope = this.listeners.get(prop);
-			if (prope != null || type =="l") { 
+			if (prope != null && type =="l") { 
 				prope.start_line = line;
 			}
-			if (prope != null || type =="x") { 
+			if (prope != null && type =="x") { 
 				prope.end_line = line;
 			}	
 			
