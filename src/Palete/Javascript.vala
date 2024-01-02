@@ -20,8 +20,7 @@ namespace Palete {
 	Javascript instance = null;
 	
 	public class Javascript {
-
-
+ 
 		public static JSCore.Object class_constructor(
 				JSCore.Context ctx, 
 				JSCore.Object constructor,  
