@@ -185,12 +185,7 @@ namespace Palete {
 				this.errorByType.set("WARN",  new GLib.ListStore(typeof(CompileError)));
 				this.errorByType.set("DEPR",  new GLib.ListStore(typeof(CompileError)));				
 				var success = ret.get_boolean_member("success");
-				GLib.debug("SUCCES? : %s", success? "ok" : "failed");				
-				if (!success) {
-					GLib.debug("FAILED? : %s", output);
-					this.queue.onCompileFail();
-					return;
-				}
+			 
 				
 				CompileError.parseCompileResults(this,ret);
 				this.queue.onCompileComplete(this);
