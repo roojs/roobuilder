@@ -675,7 +675,11 @@ public class WindowState : Object
 		this.project = file.project;
 		this.file = file;
 		BuilderApplication.updateWindows();
-		
+		BuilderApplication.valacompilequeue.addFile( 
+			Palete.ValaCompileRequestType.PROJECT, 
+			_this.file) ;
+			
+			
 		if (file.xtype == "PlainFile") {
 			this.win.codeeditviewbox.el.show();
 			this.switchState (State.CODEONLY); 
