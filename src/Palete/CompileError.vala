@@ -106,6 +106,9 @@ namespace Palete {
 		        	return;
 		        }
 		        
+		        var f = tree.get_object_member(file);
+		        
+		        
 		        var ce = new CompileError.new_file(fe, tree.get_object_member(file), prop);
         		ls.append(ce);
         		if (!req.errorByFile.has_key(fe.path)) {
