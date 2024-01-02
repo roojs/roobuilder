@@ -111,7 +111,15 @@ namespace Palete {
 			ret.set_object_member("ERR", file_to_line);
 			
 			
-			
+			var g = new Json.Generator ();
+
+			g.pretty = true;
+			g.indent = 2;
+			var n = new Json.Node(Json.NodeType.OBJECT);
+			n.set_object(ret);
+			g.set_root (n);
+
+			GLib.debug("got %s", g.to_data (null));
 			return ret;
 			
 		}
