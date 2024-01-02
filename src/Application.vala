@@ -598,10 +598,10 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 				}
 				if (req.errorByType.has_key(ww.windowstate.file.path)) {
 	
-					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.path));
+					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.targetName()));
 				}
 				
-				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.path);
+				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());
 				ww.updateErrors(req);
 				
 				
