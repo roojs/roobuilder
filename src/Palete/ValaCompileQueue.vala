@@ -47,7 +47,7 @@ namespace Palete {
 		void add(ValaCompileRequest req)
 		{
 			GLib.debug("Add compile request  to queue %s", req.file.path);
-			if (this.next_request.eq(req)) {
+			if (this.next_request != null this.next_request.eq(req)) {
 				this.countdown = this.last_request == null ? 1 : this.countdown_start;			
  
 				if (this.countdown_running < 1) {
