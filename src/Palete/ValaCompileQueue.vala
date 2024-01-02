@@ -59,7 +59,8 @@ namespace Palete {
 				return;
 			}
 			this.next_request = req;
-			this.countdown = this.countdown_start;
+
+			this.countdown = this.last_request == null ? 1 : this.countdown_start;
 			if (this.countdown_running < 1) {
 				this.startCountdown();
 			}
