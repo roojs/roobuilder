@@ -805,8 +805,16 @@
     "}"
    ],
    "| void updateErrors" : [
-    "(Palete.ValaCompileRequest req) {",
+    "(Palete.ValaCompileRequest? req) {",
     "",
+    "\tif (req == null) {",
+    "\t\t_this.statusbar.el.hide();",
+    "\t\t  _this.statusbar_errors.el.hide();",
+    "\t\t_this.statusbar_warnings.el.hide();",
+    "\t\t_this.statusbar_depricated.el.hide();",
+    "\t\treturn;",
+    "\t}",
+    "\t",
     "\t",
     "\tthis.statusbar_errors.setNotices(",
     "\t\treq.errorByType.get(\"ERR\"),",

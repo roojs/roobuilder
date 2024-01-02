@@ -96,8 +96,16 @@
         }
 
         // user defined functions
-        public void updateErrors (Palete.ValaCompileRequest req) {
+        public void updateErrors (Palete.ValaCompileRequest? req) {
         
+        	if (req == null) {
+        		_this.statusbar.el.hide();
+        		  _this.statusbar_errors.el.hide();
+        		_this.statusbar_warnings.el.hide();
+        		_this.statusbar_depricated.el.hide();
+        		return;
+        	}
+        	
         	
         	this.statusbar_errors.setNotices(
         		req.errorByType.get("ERR"),
