@@ -586,16 +586,17 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		
 		}
 		
-		public static void updateCompileResults(Palete.ValaCompileRequest req)
+		public static void updateCompileResults( )
 		{
 			foreach(var ww in BuilderApplication.windows) {
 				if (ww == null || ww.windowstate == null || ww.windowstate.project ==null) {
 					continue;
 				}
-				if (ww.windowstate.project.path != req.file.project.path) {
-					GLib.debug("skip window with %s - different project", req.file.path);
-					continue;
+				if (ww.windowstate.project.last_request == null) {
+					ww.updateErrors(null);					
+					return;
 				}
+				var req = ww.windowstate.project.last_request;
 				if (req.errorByType.has_key(ww.windowstate.file.path)) {
 	
 					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.targetName()));
