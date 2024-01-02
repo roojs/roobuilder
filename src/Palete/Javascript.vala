@@ -127,7 +127,7 @@ namespace Palete {
 			//state.showCompileResult(p.result);
 			 
 			//CompileError.parseCompileResults(req,p.result);
- 
+ 			return p.result;
 			 
 		}
 		
