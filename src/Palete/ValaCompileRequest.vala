@@ -206,7 +206,8 @@ namespace Palete {
 					return;
 				}
 				var ret = node.get_object ();	
-				this.onCompileCompleteJson(ret);
+				CompileError.parseCompileResults(this,ret);
+				this.queue.onCompileComplete(this);
 				
 			
 				
@@ -222,17 +223,7 @@ namespace Palete {
 				this.queue.execResult(this);
 			}
 		}
-		public void onCompileCompleteJson(Json.Object ret) 
-		{
-			this.errorByType = new Gee.HashMap<string,GLib.ListStore>();
- 			this.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
-			this.errorByType.set("ERR",  new GLib.ListStore(typeof(CompileError)));
-			this.errorByType.set("WARN",  new GLib.ListStore(typeof(CompileError)));
-			this.errorByType.set("DEPR",  new GLib.ListStore(typeof(CompileError)));				
-
-			CompileError.parseCompileResults(this,ret);
-			this.queue.onCompileComplete(this);
-		}
+		 
 		public void onOutput(string line)
 		{
 			// pass it to UI?
@@ -274,8 +265,10 @@ namespace Palete {
 			GLib.debug("setting error on %s", this.file.targetName());
 			ret.set_object_member(this.file.targetName(), res);
 			
-			
-			this.onCompileCompleteJson(ret);
+			CompileError.parseCompileResults(this,ret);
+			this.queue.onCompileComplete(this);
+				
+			 
 		  // see pack file (from palete/palete..palete_palete_javascriptHasCompressionErrors.)
 		  
 		}
