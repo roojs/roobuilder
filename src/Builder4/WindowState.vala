@@ -675,9 +675,18 @@ public class WindowState : Object
 		this.project = file.project;
 		this.file = file;
 		BuilderApplication.updateWindows();
-		BuilderApplication.valacompilequeue.addFile( 
-			Palete.ValaCompileRequestType.PROJECT, 
-			_this.file) ;
+		
+		if (file.project.type == "Gtk") {
+		
+			if ( file.project.last_request != null ) {
+				BuilderApplication.updateCompileResults(file.project.last_request );
+			
+			} else {
+				BuilderApplication.valacompilequeue.addFile( 
+					Palete.ValaCompileRequestType.PROJECT, 
+					_this.file) ;
+			}
+		}
 			
 			
 		if (file.xtype == "PlainFile") {
