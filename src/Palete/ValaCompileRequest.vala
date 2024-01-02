@@ -46,7 +46,7 @@ namespace Palete {
 			if (this.node == null && c.node == null) {
 				neq = true;
 			} else if (this.node == null || c.node == null) {
-				neq = false
+				neq = false;
 			} else {
 				neq = this.node.oid == c.node.oid ;
 			}
@@ -55,7 +55,7 @@ namespace Palete {
 			if (this.prop == null && c.prop == null) {
 				peq = true;
 			} else if (this.prop == null || c.prop == null) {
-				peq = false
+				peq = false;
 			} else {
 				peq = this.prop.name == c.prop.name ;
 			}
