@@ -84,7 +84,7 @@ namespace Palete {
 			JSC.Exception? ex;
 			var  ctx = new JSC.Context();
 			
-			GLib.debug("Check syntax %s", code);
+			//GLib.debug("Check syntax %s", code);
 			
 			ctx.check_syntax(code, code.length, JSC.CheckSyntaxMode.SCRIPT, "", 1 ,out ex);
 		 
@@ -95,7 +95,7 @@ namespace Palete {
 				return new Json.Object();
 			}
  
-			GLib.debug("got error %d %s", (int)ex.get_line_number() , ex.get_message() );
+			//GLib.debug("got error %d %s", (int)ex.get_line_number() , ex.get_message() );
  
 			var ar  = new Json.Array();
 			ar.add_string_element(ex.get_message());
