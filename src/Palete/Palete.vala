@@ -217,8 +217,7 @@ namespace Palete
 
 		}
 		 */
-	
-	
+	 
 		public   bool  javascriptHasErrors(
 					WindowState state,
 		 			string code, 
