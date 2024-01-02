@@ -174,7 +174,7 @@ public class JsRender.Node : GLib.Object {
 		if (type == "e" || type == "p" ) {
 		
 			if (prop == "" || !this.props.has_key(prop)) {
-				GLib.debug("cant find prop '%s'", prop);
+				///GLib.debug("cant find prop '%s'", prop);
 				return;
 			}
 			
@@ -189,7 +189,7 @@ public class JsRender.Node : GLib.Object {
 		}
 		if (type == "l" || type =="x") {
 			if (prop == "" || !this.listeners.has_key(prop)) {
-				GLib.debug("cant find listener '%s'", prop);
+				//GLib.debug("cant find listener '%s'", prop);
 				return;
 			}
 			
