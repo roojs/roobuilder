@@ -269,7 +269,7 @@
 		
 		}
 		
-		void dropList(Project.Project cur_project) {
+		void dropList(Project.Project? cur_project) {
 
 
 			if (BuilderApplication.opt_drop_list == null) {
