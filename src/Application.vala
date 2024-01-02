@@ -597,7 +597,7 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					return;
 				}
 				var req = ww.windowstate.project.last_request;
-				if (req.errorByType.has_key(ww.windowstate.file.path)) {
+				if (req.errorByType.has_key(ww.windowstate.file.targetName())) {
 	
 					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.targetName()));
 				}
