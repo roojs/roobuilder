@@ -179,6 +179,7 @@ public class JsRender.NodeToJs : Object {
 		// output xns / xtype first..
 		if (this.out_props.has_key("xtype")) {
 			var v = this.out_props.get("xtype");
+			 
 			this.node.setLine(this.cur_line, "p","xtype"); 
 			this.addLine(this.pad + "xtype" + " : " + v + suffix, ',');
 		}
@@ -195,9 +196,10 @@ public class JsRender.NodeToJs : Object {
 
 			var v = this.out_props.get(k);
 			this.node.setLine(this.cur_line, "p",k); 
+
 			this.addLine(this.pad + k + " : " + v + suffix, ',');
-			 
-			this.node.setLine(this.cur_line, "e", "");
+
+			this.node.setLine(this.cur_line, "e", k);
 			
 		}
 	 
@@ -212,9 +214,11 @@ public class JsRender.NodeToJs : Object {
 				
 				var k = iter.get();
 				var v = this.out_listeners.get(k);
+
 				this.node.setLine(this.cur_line, "l",k); //listener
 				this.addLine(this.pad + indent_str + k + " : " + v , ',');
-				this.node.setLine(this.cur_line, "e", "");
+
+				this.node.setLine(this.cur_line, "x", k);
 			}
 			
 			this.closeLine();
@@ -226,11 +230,13 @@ public class JsRender.NodeToJs : Object {
 		
 		if (this.out_props.has_key("xns")) {
 			var v = this.out_props.get("xns");
+			 
 			this.node.setLine(this.cur_line, "p","xns"); 
 			this.addLine(this.pad + "xns" + " : " + v + suffix, ',');
 			this.node.setLine(this.cur_line, "p","| xns"); 
 			this.addLine(this.pad + "'|xns' : '" + v + "'", ',');
-			this.node.setLine(this.cur_line, "e", "");
+			this.node.setLine(this.cur_line, "e", "xns");
+			 
 		}
 		
 		this.node.line_end = this.cur_line;
@@ -240,11 +246,13 @@ public class JsRender.NodeToJs : Object {
 		var niter = this.out_nodeprops.map_iterator();
 
 		while(niter.next()) {
-			var addstr = this.mungeChildNew(this.pad + indent_str, niter.get_value());
+
 			//print("add str: %s\n", addstr);
 			this.node.setLine(this.cur_line, "p",niter.get_key());
+		 
+			var addstr = this.mungeChildNew(this.pad + indent_str, niter.get_value());
 			this.addLine(this.pad + niter.get_key() + " : " + addstr, ',');
-			
+			 	
 			this.node.setLine(this.cur_line, "e", "");
 		}			 
 		// prop arrays...
@@ -252,6 +260,7 @@ public class JsRender.NodeToJs : Object {
 		var piter = this.out_props_array.map_iterator();
 
 		while(piter.next()) {
+			 
 			this.node.setLine(this.cur_line, "p",piter.get_key());
 			this.addLine(this.pad + piter.get_key() + " : [", 0);
 			
@@ -262,7 +271,9 @@ public class JsRender.NodeToJs : Object {
 				this.node.setLine(this.cur_line, "e", "");
 			}
 			this.closeLine();
+			
 			this.addLine(this.pad + "]" , ',');			
+		 
 		}	
 		
 		// children..
