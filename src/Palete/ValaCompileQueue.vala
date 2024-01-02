@@ -56,9 +56,11 @@ namespace Palete {
 				return;
 			}
 			if (this.cur_request != null && this.cur_request.eq(req)) { // ingore
+				GLib.debug("Ingore - its' running Add compile request  to queue %s", req.file);			
 				return;
 			}
 			if (this.last_request != null && this.last_request.eq(req)) { // ingore
+				GLib.debug("Ingore - its same as last request %s", req.file);						
 				return;
 			}
 			this.next_request = req;
