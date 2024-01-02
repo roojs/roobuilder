@@ -812,11 +812,11 @@
                 
                     // assume it's gtk...
                        
-             				BuilderApplication.valacompilequeue.addFile( 
-             					Palete.ValaCompileRequestType.FILE_CHANGE, 
-             					_this.file , str) ;
-                      
-            	
+            		BuilderApplication.valacompilequeue.addFile( 
+            			Palete.ValaCompileRequestType.FILE_CHANGE, 
+            			_this.file , str) ;
+              
+            
                     return true;
                 
                 }
