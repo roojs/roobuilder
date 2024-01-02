@@ -202,7 +202,7 @@ namespace Palete {
 				this.errorByType.set("ERR",  new GLib.ListStore(typeof(CompileError)));
 				this.errorByType.set("WARN",  new GLib.ListStore(typeof(CompileError)));
 				this.errorByType.set("DEPR",  new GLib.ListStore(typeof(CompileError)));				
-				var success = ret.get_boolean_member("success");
+ 
 			 
 				
 				CompileError.parseCompileResults(this,ret);
