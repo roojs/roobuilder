@@ -126,12 +126,12 @@ namespace Palete {
 			p.packFile(code, fn,"");
 			//state.showCompileResult(p.result);
 			var g = new Json.Generator ();
-			Json.Node root = builder.get_root ();
+ 
 			g.pretty = true;
 			g.indent = 2;
 			g.set_root (p.result);
 
-			GLib.debug("got %s", generator.to_data (null));
+			GLib.debug("got %s", g.to_data (null));
 			//CompileError.parseCompileResults(req,p.result);
  			return p.result;
 			 
