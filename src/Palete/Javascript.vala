@@ -95,9 +95,9 @@ namespace Palete {
  
 			GLib.debug("got error %d %s", (int)ex.get_line_number() , ex.get_message() );
  
-			
- 
-			ret.set_string_member(ex.get_line_number().to_string(), ex.get_message());
+			var ar  = new Json.Array();
+			ar.add_string(ex.get_message());
+			ret.set_array_member(ex.get_line_number().to_string(), ar);
 			return ret;
 			
 		}
