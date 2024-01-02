@@ -1460,7 +1460,7 @@
                 	}
                 	BuilderApplication.valacompilequeue.addFile( 
                 	 					Palete.ValaCompileRequestType.RUN, 
-                	 					_this.windowstate.file ) ;
+                	 					_this.windowstate.file, "", true ) ;
                 
                 	_this.windowstate.compile_results.el.set_parent(this.el);
                 	_this.windowstate.compile_results.show(this.el,true);
