@@ -676,17 +676,7 @@ public class WindowState : Object
 		this.file = file;
 		BuilderApplication.updateWindows();
 		
-		if (file.project.xtype == "Gtk") {
-		
-			if ( file.project.last_request != null ) {
-				BuilderApplication.updateCompileResults(file.project.last_request );
-			
-			} else {
-				BuilderApplication.valacompilequeue.addFile( 
-					Palete.ValaCompileRequestType.PROJECT, 
-					this.file) ;
-			}
-		}
+
 			
 			
 		if (file.xtype == "PlainFile") {
@@ -705,10 +695,13 @@ public class WindowState : Object
 			 
 
 		}
-		
-		if (this.project.last_request != null) {
-			this.win.updateErrors(this.project.last_request);
-			this.code_editor_tab.updateErrorMarks(this.project.last_request.errorByFile.get(this.file.path));
+		BuilderApplication.updateCompileResults();
+		if (file.project.xtype == "Gtk" && file.project.last_request == null ) {
+				
+			BuilderApplication.valacompilequeue.addFile( 
+					Palete.ValaCompileRequestType.PROJECT, 
+					this.file) ;
+			}
 		}
 		this.gotoLine(line);
 	
