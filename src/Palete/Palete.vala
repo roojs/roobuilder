@@ -226,7 +226,7 @@ namespace Palete
 					out Gee.HashMap<int,string> errors
 		                 ) 
 		{   
-			var file = windowstate.file;
+			var file = state.file;
 			
 			// print("validate code (%s) ptype=%s property=%s\n", file.language, ptype, property);
 			errors = new Gee.HashMap<int,string>();
