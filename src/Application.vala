@@ -597,9 +597,15 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					return;
 				}
 				var req = ww.windowstate.project.last_request;
-				if (req.errorByType.has_key(ww.windowstate.file.targetName())) {
-	
+				GLib.debug("checking errors editor for %s", ww.windowstate.file.targetName());
+				
+				if (req.errorByFile.has_key(ww.windowstate.file.targetName())) {
+					GLib.debug("calling update Error margs for  %s", ww.windowstate.file.targetName());		
 					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.targetName()));
+				} else {
+					ww.windowstate.code_editor_tab.updateErrorMarks(null);
+				 
+					GLib.debug("no errors in errrobyfile for  %s", ww.windowstate.file.targetName());		
 				}
 				
 				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.targetName());

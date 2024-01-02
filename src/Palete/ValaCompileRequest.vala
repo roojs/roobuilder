@@ -233,6 +233,7 @@ namespace Palete {
 		{
 			var ar = this.errorByType.get(type);
 			if (ar == null) {
+				GLib.debug("by type has no eroros %s", type);
 				return 0;
 			}
 			
@@ -243,6 +244,7 @@ namespace Palete {
 				var ce = (CompileError) ar.get_item(i);
 				if (file == null) {
 					ret += (int)ce.lines.get_n_items();
+					GLib.debug("got lines type has no eroros %s", type);
 					continue;
 				}
 				
@@ -260,13 +262,8 @@ namespace Palete {
 		 
 			var contents = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
 			
-			var res = Javascript.singleton().validate(contents, this.file.targetName());
-			var ret =  new Json.Object();
-			var fl =  new Json.Object();
-
-			fl.set_object_member(this.file.targetName(), res);
-			ret.set_object_member("ERR", fl);
-			
+			var ret = Javascript.singleton().validate(contents, this.file.targetName());
+		 
 			CompileError.parseCompileResults(this,ret);
 			this.queue.onCompileComplete(this);
 				

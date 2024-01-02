@@ -98,6 +98,7 @@ namespace Palete {
 			var project = req.file.project;
 			var ls = new GLib.ListStore(typeof(CompileError));
 			if (!tree.has_member(prop)) {
+				GLib.debug("Files with %s : 0", prop);
 				req.errorByType.set(prop,ls);
 				return;
 			}
@@ -130,6 +131,7 @@ namespace Palete {
         		
               
 		    });
+			GLib.debug("Files with %s : %d", prop, (int) ls.get_n_items());
 		    req.errorByType.set(prop,ls);
 		    
 		}

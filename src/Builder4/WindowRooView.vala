@@ -1180,7 +1180,7 @@
             		this.onCursorChanged();
             		
             		
-            		_this.buffer.checkSyntax();
+            		//_this.buffer.checkSyntax();
             		return false;
             	});
             		
@@ -1483,8 +1483,7 @@
 
                 //listeners
                 this.el.changed.connect( () => {
-                 
-                
+                  
                     // check syntax??
                     // ??needed..??
                    // _this.save_button.el.sensitive = true;
@@ -1504,7 +1503,7 @@
                     print("- PREVIEW EDITOR CHANGED--");
                 
                     this.dirty = true;  
-                    this.checkSyntax(); // this calls backs and highlights errors.. in theory...  
+                   // this.checkSyntax(); // this calls backs and highlights errors.. in theory...  
                 
                 
                 
@@ -1558,47 +1557,6 @@
             }
 
             // user defined functions
-            public bool checkSyntax () {
-             
-               
-                var str = this.toString();
-                
-                // needed???
-                if (this.error_line > 0) {
-                     Gtk.TextIter start;
-                     Gtk.TextIter end;     
-                    this.el.get_bounds (out start, out end);
-            
-                    this.el.remove_source_marks (start, end, "WARN");
-                    this.el.remove_source_marks (start, end, "ERR");        
-            
-                }
-                
-                if (str.length < 1) {
-                    print("checkSyntax - empty string?\n");
-                    return false;
-                }
-                
-               if (_this.file == null) {
-                   return false;
-               }
-                var p = _this.file.project.palete;
-                
-             
-                if (_this.file.language != "js") {
-            		return false; // fake syntax error.
-            	}
-            	
-                //Gee.HashMap<int,string> ret_x;
-            
-            	return p.javascriptHasErrors(
-            		_this.main_window.windowstate,
-                    str, 
-                    null, // prop - not relivant.
-                    null
-                );    
-                 
-            }
             public bool highlightErrors ( Gee.HashMap<int,string> validate_res) {
                      
                 this.error_line = validate_res.size;

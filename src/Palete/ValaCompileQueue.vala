@@ -31,18 +31,54 @@ namespace Palete {
 		
 		public void addFile(  ValaCompileRequestType reqtype, JsRender.JsRender file , string alt_code, bool force) 
 		{
-			
-			if (file.project.xtype != "Gtk") {
-			
-				return;
-			}
-			this.add(new ValaCompileRequest(
+			var add = new ValaCompileRequest(
 				reqtype,
 				file,
 				null,
 				null,
 				alt_code
-			), force);
+			);
+ 
+
+			if (file.project.xtype == "Gtk" && file.targetName().has_suffix(".vala")) {
+			
+				
+				this.add(add , force);
+			}
+			if (file.project.xtype == "Roo"  && file.targetName().has_suffix(".js")) {
+				this.next_request = null;
+				this.cur_request = add;
+				add.runJavascript(this); 
+			 }
+		}
+		
+		
+		public void addProp( ValaCompileRequestType requestType,
+			JsRender.JsRender file,
+			JsRender.Node node,
+			JsRender.NodeProp prop,
+			string alt_code
+		) 
+		{
+			if (prop.name == "xns" || prop.name == "xtype") {
+				return ;
+			}
+			var add = new ValaCompileRequest(
+				requestType,
+				file,
+				node,
+				prop,
+				alt_code
+			);	
+		 
+			if (file.project.xtype == "Gtk")  {
+				this.add(add , false); // delayed?
+			}
+			if (file.project.xtype == "Roo" )  {
+				this.next_request = null;
+				this.cur_request = add;
+				add.runJavascript(this); 
+			}	 
 		}
 		void add(ValaCompileRequest req, bool force)
 		{
@@ -87,7 +123,9 @@ namespace Palete {
 				if (this.cur_request != null) {
 				
 					this.timeout--;
+				 GLib.debug("Timeout running %d", this.timeout);
 					if (this.timeout < 1) {
+						 GLib.debug("Timeout canceling %s", this.cur_request.file.path);
 						this.cur_request.cancel();
 						this.cur_request = null;
 					}
@@ -104,32 +142,13 @@ namespace Palete {
 			
 		
 		}
-		public void addProp( ValaCompileRequestType requestType,
-			JsRender.JsRender file,
-			JsRender.Node node,
-			JsRender.NodeProp prop,
-			string alt_code
-) 
-		{
-			if (prop.name == "xns" || prop.name == "xtype") {
-				return ;
-			}
-			  
-			this.add(new ValaCompileRequest(
-				requestType,
-				file,
-				node,
-				prop,
-				alt_code
-			), false); // delayed?
-		
-		}
+	
 		
 		// called on each tick/timeout
 		// not called if compiler is running..
 		void run()
 		{
-			this.timeout = 60;
+			this.timeout = 30;
 			var req = this.next_request;
 			this.next_request = null;
 			this.cur_request = req;

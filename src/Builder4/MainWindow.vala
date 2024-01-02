@@ -114,7 +114,7 @@
         	);
         	this.statusbar_warnings.setNotices(
         		req.errorByType.get("WARN"),
-        		req.totalErrors("wARN"),
+        		req.totalErrors("WARN"),
         		req.totalErrors("WARN", this.windowstate.file)
         	);
         	this.statusbar_depricated.setNotices(

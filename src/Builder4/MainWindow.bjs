@@ -823,7 +823,7 @@
     "\t);",
     "\tthis.statusbar_warnings.setNotices(",
     "\t\treq.errorByType.get(\"WARN\"),",
-    "\t\treq.totalErrors(\"wARN\"),",
+    "\t\treq.totalErrors(\"WARN\"),",
     "\t\treq.totalErrors(\"WARN\", this.windowstate.file)",
     "\t);",
     "\tthis.statusbar_depricated.setNotices(",

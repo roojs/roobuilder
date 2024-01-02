@@ -212,8 +212,10 @@
            
         
         }
-        public void updateErrorMarks (GLib.ListStore  ar) {
-        	 
+        public void updateErrorMarks (GLib.ListStore?  ar) {
+        	
+         
+        	
         	 var buf = _this.buffer.el;
         	Gtk.TextIter start;
         	Gtk.TextIter end;     
@@ -226,7 +228,7 @@
         
         	 // we should highlight other types of errors..
         
-        	if (ar.get_n_items() < 1) {
+        	if (ar == null || ar.get_n_items() < 1) {
         		GLib.debug("Return has no errors\n");
         		return;
         	}
@@ -823,27 +825,12 @@
                if (_this.file == null) {
                    return true;
                }
-                var p = _this.file.project.palete;
+             
                 
             
                   
-                
-                if (_this.file.language == "js") {
-            
-                    print("calling validate javascript\n"); 
-                    Gee.HashMap<int,string> errors;
-                    p.javascriptHasErrors(
-                		_this.window.windowstate,
-                        str, 
-                         _this.prop,
-                        out errors
-                    );
-                    return true; // this.highlightErrors(errors);    
-                    
-                }
-                    
-                    
-                print("calling validate vala\n");    
+                 
+                GLib.debug("calling validate");    
                 // clear the buttons.
              
                 BuilderApplication.valacompilequeue.addProp( 

@@ -531,47 +531,7 @@ public class WindowState : Object
 		});
 		
 	}
-	/*
-	public void codePopoverEditInit()
-	{
-		this.code_editor_popover  = new  Xcls_PopoverEditor();
-		//this.code_editor.ref();  /// really?
-		 
-		this.code_editor_popover.setMainWindow( this.win);
-  
-		this.code_editor_popover.editor.save.connect( () => {
-			this.file.save();
-			this.left_tree.model.updateSelected();
-			if (this.left_tree.getActiveFile().xtype == "Roo" ) {
-				   this.window_rooview.requestRedraw();
-			} else {
-				  this.window_gladeview.loadFile(this.left_tree.getActiveFile());
-			}
-			 // we do not need to call spawn... - as it's already called by the editor?
-			 
-		});
-		
-	}
-	*/
-	// ----------- list of projects on left
-	/*
-	public void  projectListInit() 
-	{
-
-		this.left_projects = new Xcls_WindowLeftProjects();
-		 this.left_projects.ref();
-		 this.win.leftpane.el.pack_start(this.left_projects.el,true, true,0);
-		 this.left_projects.el.show_all();
-		 this.left_projects.project_selected.connect((proj) => {
-			this.buttonsShowHide();
-			proj.scanDirs();
-			this.clutterfiles.loadProject(proj);
-		
-		 });
-
-	}
-	*/
-	
+	 
 	
 	// ----------- file view
 	public void showPopoverFiles(Gtk.Widget btn, Project.Project? project, bool new_window)
@@ -617,7 +577,7 @@ public class WindowState : Object
 	
 		this.switchState (State.PREVIEW); 
 		 
-		if (file.project.xtype == "Gtk" && line> -1 ) {
+		if ( line> -1 ) {
 			// fixme - show the editing tab.
 			// node and prop?
 			var node = file.lineToNode(line);
@@ -636,8 +596,12 @@ public class WindowState : Object
 				return;
 			} 
 			
+			if (this.project.xtype == "Gtk") {
+				this.window_gladeview.scroll_to_line(line);
+			} else {
+				this.window_rooview.scroll_to_line(line);			
+			}
 			
-			this.window_gladeview.scroll_to_line(line);
 			return;
 		} 
 		var node = file.lineToNode(line);
@@ -899,133 +863,7 @@ public class WindowState : Object
 
 	}
   
-
-	// -- buttons show hide.....
  
-	/*
-	
-	public void showCompileResult(Json.Object obj)
-		{
-			// vala has finished compiling...
- 
-			// stop the spinner...
- 			GLib.debug("vala compiled Built Project: %s    Window Project %s",
- 				
-     				BuilderApplication.valasource.file == null ? "No file?" : (
-     			
-	     			BuilderApplication.valasource.file.project == null  ? "No Project" : BuilderApplication.valasource.file.project.path
-     			),
-     			this.project != null ? this.project.path : "No Project?"
- 			);
- 				
- 			
- 			
- 			if (this.project != null && 
-     			BuilderApplication.valasource.file != null &&   
-     			BuilderApplication.valasource.file.project != null &&    			
- 			    this.project.path != BuilderApplication.valasource.file.project.path) {
-				GLib.debug("skip update - not our project");
- 				return;
-			}
-			
-			var generator = new Json.Generator ();
-			var n  = new Json.Node(Json.NodeType.OBJECT);
-			n.init_object(obj);
-			generator.set_root (n);
-			GLib.debug("result :%s", generator.to_data (null));
-			
-			
-			var buf = this.code_editor_tab.buffer;
-			buf.check_running = false;
-			var has_errors = false;
-			              
-			if (obj.has_member("ERR-TOTAL")) {
-				if (obj.get_int_member("ERR-TOTAL")> 0) {
-					has_errors = true;
-				}
-				 this.win.statusbar_errors.setNotices( obj.get_object_member("ERR") ,
-				 	(int) obj.get_int_member("ERR-TOTAL"), this.totalErrorsInCurrentFile(obj.get_object_member("ERR")));
-			} else {
-				 this.win.statusbar_errors.setNotices( new Json.Object() , 0,0 );
-			}    
-			
-			if (obj.has_member("WARN-TOTAL")) {
-
-				 this.win.statusbar_warnings.setNotices(obj.get_object_member("WARN"),
-				 	(int) obj.get_int_member("WARN-TOTAL"),this.totalErrorsInCurrentFile(obj.get_object_member("WARN")));
-			} else {
-				 this.win.statusbar_warnings.setNotices( new Json.Object() , 0,0);
-				 
-			}
-			if (obj.has_member("DEPR-TOTAL")) {
-				
-				 this.win.statusbar_depricated.setNotices( obj.get_object_member("DEPR"),  
-				 	(int) obj.get_int_member("DEPR-TOTAL"),this.totalErrorsInCurrentFile(obj.get_object_member("DEPR")));
-				 
-			} else {
-				this.win.statusbar_depricated.setNotices( new Json.Object(),0,0);
-			}
-
-			 
-			
-			this.win.statusbar_compilestatus_label.el.hide();
-			this.win.statusbar_run.el.hide();
-			if (!has_errors) { 
-				this.win.statusbar_compilestatus_label.el.show();
-				this.win.statusbar_run.el.show();
-			}
-			if (this.file.xtype == "Gtk") {
-				// not sure how this is working ok? - as highlighting is happening on the vala files at present..
-				var gbuf =   this.window_gladeview.sourceview;
-				gbuf.highlightErrorsJson("ERR", obj);
-				gbuf.highlightErrorsJson("WARN", obj);
-				gbuf.highlightErrorsJson("DEPR", obj);			
-				
-				if (!has_errors) {
-					this.win.statusbar_run.el.show();
-				}
-				
-
-			
-		   }
-		   
-		   if (this.file.xtype == "Roo") {
-				// not sure how this is working ok? - as highlighting is happening on the vala files at present..
-				var gbuf =   this.window_rooview.sourceview;
-				gbuf.highlightErrorsJson("ERR", obj);
-				gbuf.highlightErrorsJson("WARN", obj);
-				gbuf.highlightErrorsJson("DEPR", obj);			
-			
-		   }
-		    
-			this.last_compile_result = obj;
-			markBuf();
- 
-			
-		}
-		int totalErrorsInCurrentFile(Json.Object tree) {
-			if (!tree.has_member(this.file.targetName())) {
-				return 0;
-			}
-			return (int) tree.get_object_member(this.file.targetName()).get_size();
-		
-		}
-		
-		void markBuf() 
-		{
-			if (this.last_compile_result == null) {
-				return;
-			}
-			if ( this.state == State.CODEONLY ||  this.state == State.CODE ) {
-				
-				var buf = this.code_editor_tab.buffer;
-				buf.highlightErrorsJson("ERR", this.last_compile_result);
-				buf.highlightErrorsJson("WARN", this.last_compile_result);
-				buf.highlightErrorsJson("DEPR", this.last_compile_result);			
-			}
-		}
-		*/
-	
 }
 
 	
