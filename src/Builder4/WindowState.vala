@@ -523,7 +523,7 @@ public class WindowState : Object
 			if (this.file.project.xtype=="Gtk") {
 				BuilderApplication.valacompilequeue.addFile( 
 	 					Palete.ValaCompileRequestType.PROJECT, 
-	 					this.file ) ;
+	 					this.file, "", false ) ;
 			}
 			
 			 // we do not need to call spawn... - as it's already called by the editor?
