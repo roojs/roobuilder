@@ -31,6 +31,10 @@ namespace Palete {
 		
 		public void addFile(  ValaCompileRequestType reqtype, JsRender.JsRender file , string alt_code = "") 
 		{
+			
+			if (file.project.type != "Gtk") {
+				return;
+			}
 			this.add(new ValaCompileRequest(
 				reqtype,
 				file,
