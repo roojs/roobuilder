@@ -610,8 +610,7 @@ namespace Project {
 		
 		public JsRender.JsRender? getByPath(string path)
 		{
-		
-        	 
+		 
 			// keys are not paths...
 			foreach(var f in this.files.values) {
 				if (f.path == path || f.targetName() == path) {
