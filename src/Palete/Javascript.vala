@@ -78,7 +78,7 @@ namespace Palete {
 			
 
 		}
-		public Json.Object validate(string code)
+		public Json.Object validate(string code, string fn)
 		{
 			var ret = new Json.Object();
 			JSC.Exception? ex;
@@ -89,7 +89,7 @@ namespace Palete {
 			ctx.check_syntax(code, code.length, JSC.CheckSyntaxMode.SCRIPT, "", 1 ,out ex);
 		 
 			if (ex == null) {
-				return this.compressionErrors();
+				return this.compressionErrors(code, fn);
 			
 				GLib.debug("no exception thrown");
 				return ret;
@@ -105,7 +105,7 @@ namespace Palete {
 		}
 		
 		
-		public Json.Object   compressionErrors(string code )
+		public Json.Object   compressionErrors(string code , string fn)
 		{
 			// this uses the roojspacker code to try and compress the code.
 			// it should highlight errors before we actually push live the code.
@@ -123,7 +123,7 @@ namespace Palete {
 		 	var p = new JSDOC.Packer(cfg);
 			 
 		  
-			p.packFile(code, this.file.targetName(),"");
+			p.packFile(code, fn,"");
 			//state.showCompileResult(p.result);
 			 
 			//CompileError.parseCompileResults(req,p.result);
