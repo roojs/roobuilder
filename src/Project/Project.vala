@@ -611,17 +611,10 @@ namespace Project {
 		public JsRender.JsRender? getByPath(string path)
 		{
 		
-        	if (path.has_suffix(".vala")) {	
-        		var nf = path.substring(0, path.length -5) + ".bjs";
-        		GLib.debug("looing for %s, trying %s", path, nf);
-        		var ret = this.getByPath(nf);
-        		if (ret != null) {
-        			return ret;
-    			}
-			}
+        	 
 			// keys are not paths...
 			foreach(var f in this.files.values) {
-				if (f.path == path) {
+				if (f.path == path || f.targetName() == path) {
 					return f;
 				}
 			};
