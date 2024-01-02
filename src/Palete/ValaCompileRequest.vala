@@ -42,11 +42,29 @@ namespace Palete {
 			this.alt_code = alt_code;
 		}
 		public bool eq(ValaCompileRequest c) {
+			var neq = false;
+			if (this.node == null && c.node == null) {
+				neq = true;
+			} else if (this.node == null || c.node == null) {
+				neq = false
+			} else {
+				neq = this.node.oid == c.node.oid ;
+			}
+			
+			var peq = false;			
+			if (this.prop == null && c.prop == null) {
+				peq = true;
+			} else if (this.prop == null || c.prop == null) {
+				peq = false
+			} else {
+				peq = this.prop.name == c.prop.name ;
+			}
+
+			
 			return 
 				this.requestType == c.requestType &&
 				this.file.path == c.file.path &&
-				this.node.oid == c.node.oid &&
-				this.prop.name == c.prop.name &&
+				neq && peq &&
 				this.alt_code == c.alt_code;
 				
 				
