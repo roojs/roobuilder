@@ -110,7 +110,7 @@ namespace Palete {
 			var ret =  new Json.Object();
 			ret.set_object_member("ERR", file_to_line);
 			
-			
+			/*
 			var g = new Json.Generator ();
 
 			g.pretty = true;
@@ -120,6 +120,7 @@ namespace Palete {
 			g.set_root (n);
 
 			GLib.debug("got %s", g.to_data (null));
+			*/
 			return ret;
 			
 		}
@@ -145,6 +146,7 @@ namespace Palete {
 		  
 			p.packFile(code, fn,"");
 			//state.showCompileResult(p.result);
+			/*
 			var g = new Json.Generator ();
 
 			g.pretty = true;
@@ -154,7 +156,7 @@ namespace Palete {
 			g.set_root (n);
 
 			GLib.debug("got %s", g.to_data (null));
-			//CompileError.parseCompileResults(req,p.result);
+			*/
  			return p.result;
 			 
 		}
