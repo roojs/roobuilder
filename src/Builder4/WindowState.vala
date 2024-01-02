@@ -364,7 +364,7 @@ public class WindowState : Object
 			if (this.file.project.xtype=="Gtk") {
 					BuilderApplication.valacompilequeue.addFile( 
 	 					Palete.ValaCompileRequestType.PROJECT, 
-	 					this.file ) ;
+	 					this.file, "", true ) ;
 			
 				//BuilderApplication.valasource.checkFileSpawn(this.file);
 			}
