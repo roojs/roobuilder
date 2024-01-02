@@ -798,7 +798,7 @@ namespace Project {
 				
 				
 				
-				GLib.debug("Could have added %s/%s", dir, fn);
+				//GLib.debug("Could have added %s/%s", dir, fn);
 				try {
 					 var el = JsRender.JsRender.factory("PlainFile",this, dir + "/" + fn);
 					 this.files.set( dir + "/" + fn, el);
