@@ -14,8 +14,8 @@ namespace Palete {
  		ValaCompileRequestType requestType;
  		
 		public JsRender.JsRender? file = null;
-		JsRender.Node node = null;
-		JsRender.NodeProp prop = null;
+		JsRender.Node? node = null;
+		JsRender.NodeProp? prop = null;
 		string alt_code = "";
 		string tmpfile = "";
 		Spawn? compiler  = null;
