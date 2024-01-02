@@ -70,7 +70,7 @@
                
                 //this.hideViewEditing();
                 // this is updated by windowstate - we try and fill it in..
-                //_this.statusbar.el.hide();
+                 _this.statusbar.el.hide();
                  //_this.statusbar_errors.el.hide();
                 //_this.statusbar_warnings.el.hide();
                 //_this.statusbar_depricated.el.hide();
@@ -99,7 +99,7 @@
         public void updateErrors (Palete.ValaCompileRequest? req) {
         
         	if (req == null) {
-        		_this.statusbar.el.hide();
+         
         	    _this.statusbar_errors.el.hide();
         		_this.statusbar_warnings.el.hide();
         		_this.statusbar_depricated.el.hide();
