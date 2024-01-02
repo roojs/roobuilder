@@ -88,6 +88,7 @@
         		return;
         		
         	}
+        	
         	GLib.debug("Show project files");
         	_this.mainpane.el.set_end_child(_this.filepane.el);
         	
@@ -184,11 +185,12 @@
              Project.Project.loadAll();
              _this.project_list.el.set_model(new Gtk.SingleSelection(null));
              Project.Project.loadIntoStore(this.projectmodel.el);
-        	_this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION;
+        
         	_this.project_list.el.set_model(_this.projectselection.el);
         	
         	_this.is_loading = false;
-             
+            
+            _this.projectselection.el.selected = Gtk.INVALID_LIST_POSITION; 
         	_this.btn_delfile.el.hide();
         	
           
@@ -385,7 +387,9 @@
                 //listeners
                 this.el.notify["selected"].connect( (position, n_items) => {
                 
-                    
+                    if (_this.is_loading) {
+                    	return;
+                	}
                   
                 	if (this.el.selected == Gtk.INVALID_LIST_POSITION) {
                 		_this.btn_delproj.el.hide();
