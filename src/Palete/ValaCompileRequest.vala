@@ -123,7 +123,7 @@ namespace Palete {
 				args += "--add-file";
 				args +=  this.tmpfile;
 				args += "--skip-file";
-				args += this.file.path; // ?? bjs???
+				args += this.file.getTargetPath(); // ?? bjs???
 			}
 			var pr = (Project.Gtk)(file.project);
 			try {
