@@ -80,7 +80,7 @@ namespace Palete {
 		}
 		public Json.Object validate(string code, string fn)
 		{
-			var ret = new Json.Object();
+ 
 			JSC.Exception? ex;
 			var  ctx = new JSC.Context();
 			
@@ -92,14 +92,26 @@ namespace Palete {
 				return this.compressionErrors(code, fn);
 			
 				GLib.debug("no exception thrown");
-				return ret;
+				return new Json.Object();
 			}
  
 			GLib.debug("got error %d %s", (int)ex.get_line_number() , ex.get_message() );
  
 			var ar  = new Json.Array();
 			ar.add_string_element(ex.get_message());
-			ret.set_array_member(ex.get_line_number().to_string(), ar);
+			
+			
+
+			var line_to_err =  new Json.Object();
+
+			line_to_err.set_array_member(ex.get_line_number().to_string(), ar);
+			file_to_line =   new Json.Object();
+			file_to_line.set_object_member(fn, line_to_err);
+			var ret =  new Json.Object();
+			ret.set_object_member("ERR", file_to_line);
+			
+			
+			
 			return ret;
 			
 		}
