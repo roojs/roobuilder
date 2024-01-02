@@ -46,7 +46,7 @@ namespace Palete {
 		}
 		void add(ValaCompileRequest req)
 		{
-			GLib.debug("Add compile request  to queue %s", req.file);
+			GLib.debug("Add compile request  to queue %s", req.file.path);
 			if (this.next_request.eq(req)) {
 				this.countdown = this.last_request == null ? 1 : this.countdown_start;			
  
@@ -56,11 +56,11 @@ namespace Palete {
 				return;
 			}
 			if (this.cur_request != null && this.cur_request.eq(req)) { // ingore
-				GLib.debug("Ingore - its' running Add compile request  to queue %s", req.file);			
+				GLib.debug("Ingore - its' running Add compile request  to queue %s", req.file.path);			
 				return;
 			}
 			if (this.last_request != null && this.last_request.eq(req)) { // ingore
-				GLib.debug("Ingore - its same as last request %s", req.file);						
+				GLib.debug("Ingore - its same as last request %s", req.file.path);						
 				return;
 			}
 			this.next_request = req;
