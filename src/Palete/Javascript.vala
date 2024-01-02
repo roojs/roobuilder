@@ -105,7 +105,7 @@ namespace Palete {
 		}
 		
 		
-		public Json.Object   hasCompressionErrors(string code )
+		public Json.Object   compressionErrors(string code )
 		{
 			// this uses the roojspacker code to try and compress the code.
 			// it should highlight errors before we actually push live the code.
