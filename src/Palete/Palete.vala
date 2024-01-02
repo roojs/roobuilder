@@ -223,11 +223,12 @@ namespace Palete
 					WindowState state,
 		 			string code, 
 					JsRender.NodeProp? prop,  // null if you are testing  a whole file.
-					JsRender.JsRender file, 
+					 
 					out Gee.HashMap<int,string> errors
 		                 ) 
 		{   
-
+			var file = windowstate.file;
+			
 			// print("validate code (%s) ptype=%s property=%s\n", file.language, ptype, property);
 			errors = new Gee.HashMap<int,string>();
 		
@@ -306,6 +307,8 @@ namespace Palete
 			var req = new ValaCompileRequest(
 				ValaCompileRequestType.FILE_CHANGE,
 				file , null,null, "");
+			
+			file.project.last_request = req;
 			CompileError.parseCompileResults(req,p.result);
 
 			state.win.updateErrors(req);
