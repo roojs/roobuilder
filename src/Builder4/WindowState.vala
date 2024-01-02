@@ -684,7 +684,7 @@ public class WindowState : Object
 			} else {
 				BuilderApplication.valacompilequeue.addFile( 
 					Palete.ValaCompileRequestType.PROJECT, 
-					_this.file) ;
+					this.file) ;
 			}
 		}
 			
