@@ -700,7 +700,7 @@ public class WindowState : Object
 				
 			BuilderApplication.valacompilequeue.addFile( 
 				Palete.ValaCompileRequestType.PROJECT, 
-				this.file) ;
+				this.file, "" , true) ;
 			 
 		}
 		this.gotoLine(line);
