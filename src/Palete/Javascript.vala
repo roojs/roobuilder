@@ -122,8 +122,7 @@ namespace Palete {
 
 		 	var p = new JSDOC.Packer(cfg);
 			 
-		 
-			 
+		  
 			p.packFile(code, this.file.path,"");
 			//state.showCompileResult(p.result);
 			 
