@@ -264,7 +264,7 @@ namespace Palete {
 			var ret =  new Json.Object();
 			var fl =  new Json.Object();
 			fl.set_object_member(this.file.targetName(), res);
-			ret.set_object_member("ERR", res);
+			ret.set_object_member("ERR", fl);
 			
 			CompileError.parseCompileResults(this,ret);
 			this.queue.onCompileComplete(this);
