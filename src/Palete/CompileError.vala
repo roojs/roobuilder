@@ -38,7 +38,7 @@ namespace Palete {
 		public CompileError.new_file(JsRender.JsRender file, Json.Object jlines, string category) 
 		{
 			this.file = file;
-
+			this.category = category;
 			this.title =  file.relpath + " (" + jlines.get_size().to_string() + ")";
 			
             this.lines = new GLib.ListStore(typeof(CompileError));
@@ -57,8 +57,7 @@ namespace Palete {
     	 
             
             });
-             
-		
+              
 		}
 		
 		public string file_line { // sorting?
@@ -80,8 +79,14 @@ namespace Palete {
 		
 		public static void parseCompileResults (ValaCompileRequest req, Json.Object tree)
 		{
-		 
-			jsonToListStoreProp(req, "WARN", tree);
+			req.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
+			req.errorByType = new Gee.HashMap<string,GLib.ListStore>();
+
+			req.errorByType.set("ERR",  new GLib.ListStore(typeof(CompileError)));
+			req.errorByType.set("WARN",  new GLib.ListStore(typeof(CompileError)));
+			req.errorByType.set("DEPR",  new GLib.ListStore(typeof(CompileError)));				
+ 
+ 			jsonToListStoreProp(req, "WARN", tree);
 			jsonToListStoreProp(req, "ERR", tree);	 
 			jsonToListStoreProp(req, "DEPR", tree);	 
 			
@@ -111,10 +116,17 @@ namespace Palete {
 		        
 		        var ce = new CompileError.new_file(fe, res.get_object_member(file), prop);
         		ls.append(ce);
-        		if (!req.errorByFile.has_key(fe.path)) {
-        			req.errorByFile.set(fe.path,  new GLib.ListStore(typeof(CompileError)));
+        		
+        		if (!req.errorByFile.has_key(fe.targetName())) {
+        			GLib.debug("add file %s to req.errorByFile", fe.targetName());
+        			req.errorByFile.set(fe.targetName(), new GLib.ListStore(typeof(CompileError)));
     			}
-    			req.errorByFile.get(fe.path).append(ce);
+				for(var i = 0; i < ce.lines.get_n_items(); i++) {
+					var lce = (CompileError) ce.lines.get_item(i);
+    				GLib.debug("add error %s to %s", lce.msg, fe.targetName());    			
+	    			req.errorByFile.get(fe.targetName()).append(lce);
+    			}
+	    			
         		
               
 		    });
