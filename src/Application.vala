@@ -593,13 +593,15 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 					continue;
 				}
 				if (ww.windowstate.project.path != req.file.project.path) {
+					GLib.debug("skip window with %s - different project", req.file.path);
 					continue;
 				}
 				if (req.errorByType.has_key(ww.windowstate.file.path)) {
+	
 					ww.windowstate.code_editor_tab.updateErrorMarks(req.errorByFile.get(ww.windowstate.file.path));
 				}
 				
-				 
+				GLib.debug("calling udate Errors of window %s", ww.windowstate.file.path);
 				ww.updateErrors(req);
 				
 				
