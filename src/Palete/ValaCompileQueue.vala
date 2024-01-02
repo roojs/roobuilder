@@ -14,7 +14,7 @@ namespace Palete {
 		 
  
 		
-		int countdown_start = 10;
+		int countdown_start = 5;
 		int countdown = -1;
 		int timeout = 0;
 		uint countdown_running = 0;
