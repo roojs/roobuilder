@@ -1,5 +1,6 @@
 {
  "build_module" : "builder",
+ "gen_extended" : false,
  "items" : [
   {
    "# JsRender.Node data" : "",
@@ -118,19 +119,12 @@
     "    this.name.el.set_text(\"\");",
     "    this.el.show();",
     "",
-    "    ",
-    "    ",
-    "    ",
+    "     ",
     "    ",
     "}",
     ""
    ]
   }
  ],
- "modOrder" : "",
- "name" : "DialogSaveModule",
- "parent" : "",
- "path" : "/home/alan/gitlive/roobuilder/src/Builder4/DialogSaveModule.bjs",
- "permname" : "",
- "title" : ""
+ "name" : "DialogSaveModule"
 }
