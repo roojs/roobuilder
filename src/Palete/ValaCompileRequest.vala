@@ -76,16 +76,25 @@ namespace Palete {
 			return pr.firstBuildModuleWith(this.file);
 		
 		}
-		bool generateTempFile() {
+		
+		string generateTempContents() {
 		
 			var oldcode  = "";
 			var contents = this.alt_code;
 			if (this.requestType == ValaCompileRequestType.PROP_CHANGE) {
 				oldcode  = this.prop.val;
 				this.prop.val = this.alt_code;
-				contents = JsRender.NodeToVala.mungeFile(this.file);
+				contents = this.file.toSourceCode();
 				this.prop.val = oldcode;
 			}
+			return contents;
+		}
+		
+		
+		bool generateTempFile() {
+		 
+			var contents = this.generateTempContents();
+			 
 			var pr = this.file.project;
 			
 		 	this.tmpfile = pr.path + "/build/tmp-%u.vala".printf( (uint) GLib.get_real_time()) ;
@@ -179,7 +188,7 @@ namespace Palete {
 		{
 			this.deleteTemp();
 			this.compiler.isZombie();
-			 
+			GLib.debug("compile got %s", output);
 			if (output == "") {
 			 	this.queue.onCompileFail();
 			 	return;
@@ -196,21 +205,15 @@ namespace Palete {
 					this.queue.onCompileFail();
 					return;
 				}
-				var ret = node.get_object ();
-				this.errorByType = new Gee.HashMap<string,GLib.ListStore>();
-	 			this.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
-				this.errorByType.set("ERR",  new GLib.ListStore(typeof(CompileError)));
-				this.errorByType.set("WARN",  new GLib.ListStore(typeof(CompileError)));
-				this.errorByType.set("DEPR",  new GLib.ListStore(typeof(CompileError)));				
- 
-			 
+				var ret = node.get_object ();	
+				this.onCompileCompleteJson(ret);
 				
-				CompileError.parseCompileResults(this,ret);
-				this.queue.onCompileComplete(this);
+			
 				
 				
 				
 			} catch (GLib.Error e) {
+				GLib.debug("parsing output got error %s", e.message);
 				this.queue.onCompileFail();
 				return;
 				
@@ -219,7 +222,17 @@ namespace Palete {
 				this.queue.execResult(this);
 			}
 		}
-		
+		public void onCompileCompleteJson(Json.Object ret) 
+		{
+			this.errorByType = new Gee.HashMap<string,GLib.ListStore>();
+ 			this.errorByFile = new Gee.HashMap<string,GLib.ListStore>();
+			this.errorByType.set("ERR",  new GLib.ListStore(typeof(CompileError)));
+			this.errorByType.set("WARN",  new GLib.ListStore(typeof(CompileError)));
+			this.errorByType.set("DEPR",  new GLib.ListStore(typeof(CompileError)));				
+
+			CompileError.parseCompileResults(this,ret);
+			this.queue.onCompileComplete(this);
+		}
 		public void onOutput(string line)
 		{
 			// pass it to UI?
@@ -232,18 +245,65 @@ namespace Palete {
 				return 0;
 			}
 			
-			if (file == null) {
-				return  (int)this.errorByType.get(type).get_n_items();
-			}
+			
 			var ret =0;
 			
 			for(var i =0 ;i< ar.get_n_items();i++) {
 				var ce = (CompileError) ar.get_item(i);
+				if (file == null) {
+					ret += (int)ce.lines.get_n_items();
+					continue;
+				}
+				
+				
 				if (ce.file.path == file.path) {
-					ret++;
+					ret += (int)ce.lines.get_n_items();
 				}
 			}
 			return ret;
+		}
+		
+		public void runJavascript(ValaCompileQueue queue)
+		{
+			this.queue = queue;
+		 
+			var contents = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
+			
+			var res = Javascript.singleton().validate(contents);
+			var ret =  new Json.Object();
+			GLib.debug("setting error on %s", this.file.targetName());
+			ret.set_object_member(this.file.targetName(), res);
+			
+			
+			this.onCompileCompleteJson(ret);
+		  // see pack file (from palete/palete..palete_palete_javascriptHasCompressionErrors.)
+		  
+		}
+		public void  javascriptHasCompressionErrors( )
+		{
+			// this uses the roojspacker code to try and compress the code.
+			// it should highlight errors before we actually push live the code.
+			
+			// standard error format:  file %s, line %s, Error 
+			var code = this.alt_code == "" ? this.file.toSourceCode() : this.generateTempContents();
+			
+			var cfg = new JSDOC.PackerRun();
+			cfg.opt_keep_whitespace = false;
+			cfg.opt_skip_scope = false;
+			cfg.opt_dump_tokens = false;			
+			cfg.opt_clean_cache = false;
+			
+
+		 	var p = new JSDOC.Packer(cfg);
+			 
+		 
+			 
+			p.packFile(code, this.file.path,"");
+			//state.showCompileResult(p.result);
+			 
+			//CompileError.parseCompileResults(req,p.result);
+ 
+			 
 		}
  	} 
 		
