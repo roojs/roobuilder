@@ -699,9 +699,9 @@ public class WindowState : Object
 		if (file.project.xtype == "Gtk" && file.project.last_request == null ) {
 				
 			BuilderApplication.valacompilequeue.addFile( 
-					Palete.ValaCompileRequestType.PROJECT, 
-					this.file) ;
-			}
+				Palete.ValaCompileRequestType.PROJECT, 
+				this.file) ;
+			 
 		}
 		this.gotoLine(line);
 	
