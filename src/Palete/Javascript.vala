@@ -89,7 +89,7 @@ namespace Palete {
 			ctx.check_syntax(code, code.length, JSC.CheckSyntaxMode.SCRIPT, "", 1 ,out ex);
 		 
 			if (ex == null) {
-				return this.compressionErrors(code, fn);
+				return new Json.Object(); // this.compressionErrors(code, fn); << to slow on large files?
 			
 				 
 			}
