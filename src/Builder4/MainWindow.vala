@@ -62,8 +62,15 @@
 
             //listeners
             this.el.close_request.connect( ( ) => {
+            	 Resources.singleton().disconnect(_this.statusbar.handler_id);
+            	 
+            	 BuilderApplication.removeWindow(this);
+            	 
+            	 if (BuilderApplication.windows.size  < 1) {
             
-            	return false;
+            		BuilderApplication.singleton(  null ).quit();
+            	 }
+            	return true;
             });
             this.el.show.connect( ( ) => {
                 // hide the file editing..
@@ -84,14 +91,7 @@
             this.el.hide.connect( () =>  {
              
              
-             Resources.singleton().disconnect(_this.statusbar.handler_id);
-             
-             BuilderApplication.removeWindow(this);
-             
-             if (BuilderApplication.windows.size  < 1) {
             
-                BuilderApplication.singleton(  null ).quit();
-             }
             });
         }
 

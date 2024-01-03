@@ -547,13 +547,14 @@ flutter-project  - create a flutter project in /tmp/test-flutter
 		
 		public static void removeWindow(Xcls_MainWindow w)
 		{
-		
+			//GLib.debug("remove window before = %d", BuilderApplication.windows.size);
 			BuilderApplication.windows.remove(w);
 			BuilderApplication.updateWindows();
 			 	
 			w.el.hide();
 			w.el.close();
 			w.el.destroy();
+			//GLib.debug("remove window after = %d", BuilderApplication.windows.size);
 			
 			
 		}

@@ -713,8 +713,15 @@
    "listeners" : {
     "close_request" : [
      "( ) => {",
+     "\t Resources.singleton().disconnect(_this.statusbar.handler_id);",
+     "\t ",
+     "\t BuilderApplication.removeWindow(this);",
+     "\t ",
+     "\t if (BuilderApplication.windows.size  < 1) {",
      "",
-     "\treturn false;",
+     "\t\tBuilderApplication.singleton(  null ).quit();",
+     "\t }",
+     "\treturn true;",
      "}",
      ""
     ],
@@ -722,14 +729,7 @@
      "() =>  {",
      " ",
      " ",
-     " Resources.singleton().disconnect(_this.statusbar.handler_id);",
-     " ",
-     " BuilderApplication.removeWindow(this);",
-     " ",
-     " if (BuilderApplication.windows.size  < 1) {",
      "",
-     "    BuilderApplication.singleton(  null ).quit();",
-     " }",
      "}"
     ],
     "show" : [
