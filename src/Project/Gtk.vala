@@ -71,7 +71,7 @@ namespace Project
 	  		//this.id = gid;
 	  		this.packages = new Gee.ArrayList<string>();
 	  		//this.hidden = new Gee.ArrayList<string>();
-	  		 
+  		 	this.compilegroups = new  Gee.HashMap<string,GtkValaSettings>();
 		
 		}
 		
@@ -222,7 +222,7 @@ namespace Project
 				 
 				// "json-glib-1.0",
 				 
-				"libadwaita-1",
+				//"libadwaita-1",
 				//"libxml-2.0",
 				"posix"
 				 
@@ -249,6 +249,13 @@ namespace Project
 			cg.sources.add("src/%sApplication.vala".printf(this.name));
 			cg.sources.add("src/ui/ui.Window.bjs");
 			// rescan... not needed as it get's selected after initialization.
+			this.load();
+			var fn = this.getByPath(this.path + "/src/ui/ui.Window.bjs");
+			try {
+				fn.loadItems();
+			} catch (GLib.Error e) { } // do nothing?
+			
+			fn.save();
 			
 			
 			
@@ -325,6 +332,7 @@ namespace Project
  "items" : [
   {
    "$ xns" : "Gtk",
+   "| vid show" : "() { this.el.show(); }",
    "items" : [
     {
      "$ xns" : "Gtk",

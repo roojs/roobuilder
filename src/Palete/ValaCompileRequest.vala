@@ -111,7 +111,9 @@ namespace Palete {
 		{
 			this.queue = queue;
 			if ( this.target() == "") {
+				GLib.debug("missing target");
 				this.onCompileFail();
+
 				return false;
 			}
 			string[] args = {};
@@ -126,6 +128,7 @@ namespace Palete {
 			if  (this.requestType == ValaCompileRequestType.PROP_CHANGE || this.requestType == ValaCompileRequestType.FILE_CHANGE) {
 				
 				if (!this.generateTempFile()) {
+					GLib.debug("failed to make temp file");
 					this.onCompileFail();
 					return false;
 				}
@@ -136,9 +139,11 @@ namespace Palete {
 			}
 			var pr = (Project.Gtk)(file.project);
 			try {
+				pr.makeProjectSubdir("build");
 				this.compiler = new Spawn(pr.path + "/build", args);
 			} catch (GLib.Error e) {
 				GLib.debug("Spawn failed: %s", e.message);
+
 				this.onCompileFail();
 				return false;
 			}
@@ -147,6 +152,7 @@ namespace Palete {
 			try {
 				this.compiler.run(); 
 			} catch (GLib.Error e) {
+				GLib.debug("Spawn error %s", e.message);
 				this.onCompileFail();
 				return false;
 			}

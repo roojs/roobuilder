@@ -69,6 +69,20 @@ namespace Palete {
 			//this.line_errors = new Gee.HashMap<int,string> ();
 			//this.notices = new Gee.ArrayList<ValaSourceNotice>();
 		}
+		 
+		
+		public override void note (Vala.SourceReference? source, string message) {
+		    if (source == null) {
+				return;
+				//stderr.printf ("My error: %s\n", message);
+			}
+			
+			if (source.file.filename != this.tmpname) {
+				this.compile_notice("WARN", source.file.filename , source.begin.line, "Notice: " + message);
+				return;
+			}
+			this.compile_notice("WARN", this.filepath, source.begin.line, "Notice: " +  message);
+		}
 		
 		public override void warn (Vala.SourceReference? source, string message) {
 			 

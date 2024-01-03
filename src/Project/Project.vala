@@ -613,6 +613,7 @@ namespace Project {
 		 
 			// keys are not paths...
 			foreach(var f in this.files.values) {
+				GLib.debug("check %s = %s ? %s", path, f.path, f.targetName());
 				if (f.path == path || f.targetName() == path) {
 					return f;
 				}
