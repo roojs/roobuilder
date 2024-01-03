@@ -332,7 +332,7 @@ namespace Project
  "items" : [
   {
    "$ xns" : "Gtk",
-   "| vpid show" : "() { this.el.show(); }",
+   "| void show" : "() { this.el.show(); }",
    "items" : [
     {
      "$ xns" : "Gtk",
