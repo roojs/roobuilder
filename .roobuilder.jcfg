@@ -320,7 +320,6 @@
         "libxml-2.0",
         "posix",
         "roojspacker-1.4",
-        "gtksourceview-5",
-        "javascriptcore"
+        "gtksourceview-5"
     ]
 }

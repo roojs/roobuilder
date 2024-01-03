@@ -52,7 +52,7 @@ namespace Project
 			ret.set_string_member("execute_args", this.execute_args);
  
 			ret.set_array_member("sources", this.writeArray(this.sources));
-			ret.set_array_member("hidden", this.writeArray(this.sources));
+ 
 
 			return ret;
 		}
