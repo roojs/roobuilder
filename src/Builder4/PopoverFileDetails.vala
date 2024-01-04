@@ -282,7 +282,7 @@
             	el.hide();
             
             }
-            public void showAllRows () {
+            public void xshowAllRows () {
             	for (var i = 2; i < 10;i++) {
             		var el = _this.grid.el.get_child_at(0,i);
             		el.show();
