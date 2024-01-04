@@ -477,7 +477,12 @@
             	
             			_this.gen_lbl.el.show();
             			_this.gen.el.show();
-            		    
+            			
+            			if (sel == "bjs" || sel == "vala") {
+            				 _this.project.loadDirsToStringList(this.dir_model.el, "/src");
+            			} else {
+            		        _this.project.loadDirsToStringList(this.dir_model.el, "");
+            	        }
             			break;
             	}
              
