@@ -240,7 +240,7 @@
                 	    	 	_this.el, project,  this.doneObj.call );
                     	 } else {
                     	 	if (_this.doneObj != null) {
-                		    	 _this.doneObj.call(this.project);
+                		    	 _this.doneObj.call(project);
                 	    	 }
                     	 }
                 		

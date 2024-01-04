@@ -120,7 +120,7 @@
          "\t    \t \t_this.el, project,  this.doneObj.call );",
          "    \t } else {",
          "    \t \tif (_this.doneObj != null) {",
-         "\t\t    \t _this.doneObj.call(this.project);",
+         "\t\t    \t _this.doneObj.call(project);",
          "\t    \t }",
          "    \t }",
          "\t\t",
