@@ -136,7 +136,7 @@
             // window + header?
              print("SHOWALL - POPIP\n");
             this.el.show();
-            this.name.el.grab_focus();
+           // this.name.el.grab_focus();
             
             _this.project.loadDirsToStringList(this.dir_model.el, "");
             _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
