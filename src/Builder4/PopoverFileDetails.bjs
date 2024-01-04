@@ -724,7 +724,7 @@
     "        //this.init();",
     "     //} ",
     "     ",
-    "      this.is_new = c.name != \"\";",
+    "      this.is_new = c.name == \"\";",
     "",
     "    _this.name.el.set_text(c.name);",
     "    _this.title.el.set_text(c.title);",
