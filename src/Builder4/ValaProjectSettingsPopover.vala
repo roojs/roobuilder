@@ -2023,10 +2023,10 @@
                 _this.project.save(); 
                  
                 	// what about .js ?
-                   _this.done = true;
-                	_this.el.hide();
-                if (_this.donefunc != null) {
-                	_this.donefunc();
+                _this.done = true;
+                _this.el.hide();
+                if (_this.doneObj != null) {
+                	_this.doneObj.call(_this.project);
                 }
                 // hopefull this will work with bjs files..
                 	
