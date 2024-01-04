@@ -160,7 +160,7 @@
          
         	
         	 this.el.show();
-        	 	this.load();
+         this.load();
         	this.selectProject(project);
         	this.onProjectSelected(project);   //?? twice?
         	 

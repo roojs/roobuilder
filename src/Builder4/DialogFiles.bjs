@@ -1276,7 +1276,7 @@
     " ",
     "\t",
     "\t this.el.show();",
-    "\t \tthis.load();",
+    " this.load();",
     "\tthis.selectProject(project);",
     "\tthis.onProjectSelected(project);   //?? twice?",
     "\t ",
