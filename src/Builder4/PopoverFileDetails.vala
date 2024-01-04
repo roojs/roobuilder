@@ -101,21 +101,7 @@
          
            _this.gen.el.active = c.gen_extended;
            
-        	_this.path_lbl.el.show();
-            _this.path.el.show();
-            _this.dir_dropdown_lbl.el.hide();
-            _this.dir_dropdown.el.hide();
-            if (c.name == "") {
-            	_this.path_lbl.el.hide();
-        	    _this.path.el.hide();
-        	    this.filetype_model.load();
-                _this.dir_dropdown_lbl.el.show();
-        	    _this.dir_dropdown.el.show();
-        	    
-            }   else {
-                _this.path.el.set_text(c.relpath);
-            }
-            
+        
             
             if (this.project.xtype == "Gtk") {
             	var p = (Project.Gtk) this.project;
