@@ -397,8 +397,18 @@
             	
             	_this.gen_lbl.el.hide();
             	_this.gen.el.hide();
-             
+            	
+             	_this.gen_lbl.el.hide();
+            	_this.gen.el.hide();
+            	
             	var sel = this.getValue();
+            	
+            	if (_this.file == null && sel == "" && _this.project.xtype =="Gtk") {
+            		return;
+            	}
+            	
+            	
+            	
             	
             	switch(_this.project.xtype) {
             		case "Roo":
@@ -436,8 +446,7 @@
             				 _this.project.loadDirsToStringList(_this.dir_model.el, "/src");
             				 _this.dir_dropdown.el.selected = Gtk.INVALID_LIST_POSITION;
             		        _this.name_lbl.el.label = "Component Name (Filename with-out extension)";				 
-            		        _this.gen_lbl.el.hide();
-            		        _this.gen.el.hide();
+            		        
             		        if (sel == "bjs") {
             			        _this.gen_lbl.el.show();
             			        _this.gen.el.show();
