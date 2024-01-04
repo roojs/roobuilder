@@ -351,7 +351,7 @@
             // user defined functions
             public string getValue () {
             	
-            	if (_this.file != null) {
+            	if (!_this.is_new) {
             		return _this.file.xtype != "Plainfile" ? "bjs" :  _this.file.file_ext;
             	}
             	

@@ -107,7 +107,7 @@
          "| string getValue" : [
           "() {",
           "\t",
-          "\tif (_this.file != null) {",
+          "\tif (!_this.is_new) {",
           "\t\treturn _this.file.xtype != \"Plainfile\" ? \"bjs\" :  _this.file.file_ext;",
           "\t}",
           "\t",
