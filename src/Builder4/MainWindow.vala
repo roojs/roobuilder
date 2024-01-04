@@ -122,6 +122,13 @@
         		req.totalErrors("DEPR"),
         		req.totalErrors("DEPR", this.windowstate.file)
         	);
+        
+        	_this.statusbar_run.el.hide();
+        
+        	if (req.totalErrors("ERR") < 1) {
+        		_this.statusbar_run.el.show();
+        	}
+        	
         }
         public void initChildren () {
             // this needs putting in a better place..
@@ -914,7 +921,7 @@
                 //listeners
                 this.el.clicked.connect( ( ) => {
                      
-                     _this.windowstate.projectPopoverShow(_this.el, null);
+                     _this.windowstate.projectPopoverShow(_this.el, null, null);
                    
                   
                 });

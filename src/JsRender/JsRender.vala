@@ -61,7 +61,16 @@ namespace JsRender {
 			private set {}
 		}
 		
-		
+		public string file_ext {
+			public owned get {
+				if (!this.path.contains(".")) {
+					return "";
+				}
+				var bits = this.name.split(".");
+				return bits[bits.length-1];
+			}
+			private set {}
+		}
 		public string parent = "";  // JS parent.
 		public string region = "";  // RooJS - insert region.
         

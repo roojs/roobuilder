@@ -25,9 +25,10 @@
         public Xcls_ptype_dd ptype_dd;
 
             // my vars (def)
+        public Project.Callback doneObj;
         public WindowState? windowstate;
         public signal void canceled ();
-        public signal void selected (Project.Project? proj);
+        public Project.Project result;
 
         // ctor
         public EditProject()
@@ -36,7 +37,9 @@
             this.el = new Gtk.Window();
 
             // my vars (dec)
+            this.doneObj = null;
             this.windowstate = null;
+            this.result = null;
 
             // set gobject values
             this.el.title = "New Project";
@@ -51,8 +54,8 @@
         }
 
         // user defined functions
-        public void show () {
-             
+        public void show (Project.Callback doneObj) {
+             this.doneObj= doneObj;
             _this.hideAll(); 
              // hide stuff..
              _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;
@@ -231,9 +234,17 @@
                 		
                 		project.save();
                 		 Project.Project.saveProjectList();
-                		_this.selected(project); // this should trigger a load()
+                 		_this.result = project;
                 		if (is_new_folder || is_existing) {
-                	    	 _this.windowstate.projectPopoverShow(_this.el, project);
+                			   
+                		
+                	    	 _this.windowstate.projectPopoverShow(
+                	    	 	_this.el.transient_for, project,  _this.doneObj 
+                    	 	);
+                    	 } else {
+                    	 	if (_this.doneObj != null) {
+                		    	 _this.doneObj.call(project);
+                	    	 }
                     	 }
                 		
                 		return;
@@ -880,8 +891,11 @@
             // user defined functions
             public string getValue () {
             	var m = (Gtk.StringList) this.el.model;
-            	return this.el.selected == Gtk.INVALID_LIST_POSITION ?
+            	var str = this.el.selected == Gtk.INVALID_LIST_POSITION ?
             			 "" : m.get_string(this.el.selected);
+            			 
+             	var ar = str.split(" ");
+             	return ar[0];
             	
             }
             public void setValue (string val) {
@@ -908,7 +922,11 @@
             public Xcls_StringList20(EditProject _owner )
             {
                 _this = _owner;
-                this.el = new Gtk.StringList( { "Roo", "Gtk" /*, "WrappedGtk", "Flutter" */ } );
+                this.el = new Gtk.StringList( {  
+	"Gtk - A Gtk / Vala Desktop project", 
+	"Roo - A Web  Javascript Project using the Roo Library"
+	/*,  "Flutter" */ 
+} );
 
                 // my vars (dec)
 

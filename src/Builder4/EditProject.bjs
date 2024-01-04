@@ -4,10 +4,11 @@
  "items" : [
   {
    "# WindowState? windowstate" : "null",
+   "$ Project.Callback doneObj" : "null",
    "$ deletable" : true,
    "$ xns" : "Gtk",
    "@ void canceled" : "()",
-   "@ void selected" : "(Project.Project? proj)",
+   "Project.Project result" : "null",
    "bool modal" : true,
    "default_width" : 600,
    "items" : [
@@ -113,9 +114,17 @@
          "\t\t",
          "\t\tproject.save();",
          "\t\t Project.Project.saveProjectList();",
-         "\t\t_this.selected(project); // this should trigger a load()",
+         " \t\t_this.result = project;",
          "\t\tif (is_new_folder || is_existing) {",
-         "\t    \t _this.windowstate.projectPopoverShow(_this.el, project);",
+         "\t\t\t   ",
+         "\t\t",
+         "\t    \t _this.windowstate.projectPopoverShow(",
+         "\t    \t \t_this.el.transient_for, project,  _this.doneObj ",
+         "    \t \t);",
+         "    \t } else {",
+         "    \t \tif (_this.doneObj != null) {",
+         "\t\t    \t _this.doneObj.call(project);",
+         "\t    \t }",
          "    \t }",
          "\t\t",
          "\t\treturn;",
@@ -496,7 +505,13 @@
           {
            "$ xns" : "Gtk",
            "* prop" : "model",
-           "strings" : "{ \"Roo\", \"Gtk\" /*, \"WrappedGtk\", \"Flutter\" */ }",
+           "strings" : [
+            "{  ",
+            "\t\"Gtk - A Gtk / Vala Desktop project\", ",
+            "\t\"Roo - A Web  Javascript Project using the Roo Library\"",
+            "\t/*,  \"Flutter\" */ ",
+            "}"
+           ],
            "xtype" : "StringList"
           }
          ],
@@ -517,8 +532,11 @@
          "| string getValue" : [
           "() {",
           "\tvar m = (Gtk.StringList) this.el.model;",
-          "\treturn this.el.selected == Gtk.INVALID_LIST_POSITION ?",
+          "\tvar str = this.el.selected == Gtk.INVALID_LIST_POSITION ?",
           "\t\t\t \"\" : m.get_string(this.el.selected);",
+          "\t\t\t ",
+          " \tvar ar = str.split(\" \");",
+          " \treturn ar[0];",
           "\t",
           "}"
          ],
@@ -544,7 +562,7 @@
     }
    ],
    "name" : "EditProject",
-   "title" : "New Project",
+   "string title" : "New Project",
    "xtype" : "Window",
    "| void hideAll" : [
     "() {",
@@ -562,8 +580,8 @@
     "}"
    ],
    "| void show" : [
-    "() {",
-    "     ",
+    "(Project.Callback doneObj) {",
+    "     this.doneObj= doneObj;",
     "    _this.hideAll(); ",
     "     // hide stuff..",
     "     _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;",

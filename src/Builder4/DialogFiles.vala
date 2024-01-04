@@ -160,7 +160,7 @@
          
         	
         	 this.el.show();
-        	 	this.load();
+         this.load();
         	this.selectProject(project);
         	this.onProjectSelected(project);   //?? twice?
         	 
@@ -222,8 +222,8 @@
                 var child_1 = new Xcls_Box3( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_mainpane( _this );
-                this.el.append( child_2.el );
+                new Xcls_mainpane( _this );
+                this.el.append( _this.mainpane.el );
             }
 
             // user defined functions
@@ -276,10 +276,10 @@
                 this.el.hexpand = true;
                 this.el.vexpand = true;
                 this.el.position = 200;
-                var child_1 = new Xcls_projectscroll( _this );
-                this.el.start_child = child_1.el;
-                var child_2 = new Xcls_filepane( _this );
-                this.el.end_child = child_2.el;
+                new Xcls_projectscroll( _this );
+                this.el.start_child = _this.projectscroll.el;
+                new Xcls_filepane( _this );
+                this.el.end_child = _this.filepane.el;
             }
 
             // user defined functions
@@ -308,8 +308,8 @@
                 this.el.has_frame = true;
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_1 = new Xcls_project_list( _this );
-                this.el.child = child_1.el;
+                new Xcls_project_list( _this );
+                this.el.child = _this.project_list.el;
 
                 // init method
 
@@ -332,8 +332,8 @@
             {
                 _this = _owner;
                 _this.project_list = this;
-                var child_1 = new Xcls_projectselection( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_projectselection( _this );
+                this.el = new Gtk.ColumnView( _this.projectselection.el );
 
                 // my vars (dec)
 
@@ -376,8 +376,8 @@
             {
                 _this = _owner;
                 _this.projectselection = this;
-                var child_1 = new Xcls_projectsort( _this );
-                this.el = new Gtk.SingleSelection( child_1.el );
+                new Xcls_projectsort( _this );
+                this.el = new Gtk.SingleSelection( _this.projectsort.el );
 
                 // my vars (dec)
 
@@ -436,10 +436,10 @@
             {
                 _this = _owner;
                 _this.projectsort = this;
-                var child_1 = new Xcls_projectmodel( _this );
+                new Xcls_projectmodel( _this );
                 var child_2 = new Xcls_StringSorter10( _this );
                 child_2.ref();
-                this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+                this.el = new Gtk.SortListModel( _this.projectmodel.el, child_2.el );
 
                 // my vars (dec)
 
@@ -628,8 +628,8 @@
                 this.el.visible = false;
                 var child_1 = new Xcls_Box15( _this );
                 this.el.end_child = child_1.el;
-                var child_2 = new Xcls_treescroll( _this );
-                this.el.start_child = child_2.el;
+                new Xcls_treescroll( _this );
+                this.el.start_child = _this.treescroll.el;
             }
 
             // user defined functions
@@ -656,8 +656,8 @@
                 var child_1 = new Xcls_Box16( _this );
                 child_1.ref();
                 this.el.append( child_1.el );
-                var child_2 = new Xcls_iconscroll( _this );
-                this.el.append( child_2.el );
+                new Xcls_iconscroll( _this );
+                this.el.append( _this.iconscroll.el );
             }
 
             // user defined functions
@@ -680,8 +680,8 @@
 
                 // set gobject values
                 this.el.hexpand = true;
-                var child_1 = new Xcls_searchbox( _this );
-                this.el.append( child_1.el );
+                new Xcls_searchbox( _this );
+                this.el.append( _this.searchbox.el );
             }
 
             // user defined functions
@@ -755,8 +755,8 @@
                 this.el.has_frame = true;
                 this.el.hexpand = true;
                 this.el.vexpand = true;
-                var child_1 = new Xcls_gridview( _this );
-                this.el.child = child_1.el;
+                new Xcls_gridview( _this );
+                this.el.child = _this.gridview.el;
 
                 // init method
 
@@ -778,10 +778,10 @@
             {
                 _this = _owner;
                 _this.gridview = this;
-                var child_1 = new Xcls_iconsel( _this );
+                new Xcls_iconsel( _this );
                 var child_2 = new Xcls_SignalListItemFactory29( _this );
                 child_2.ref();
-                this.el = new Gtk.GridView( child_1.el, child_2.el );
+                this.el = new Gtk.GridView( _this.iconsel.el, child_2.el );
 
                 // my vars (dec)
 
@@ -899,9 +899,9 @@
             public Xcls_FilterListModel22(DialogFiles _owner )
             {
                 _this = _owner;
-                var child_1 = new Xcls_gridsort( _this );
-                var child_2 = new Xcls_iconsearch( _this );
-                this.el = new Gtk.FilterListModel( child_1.el, child_2.el );
+                new Xcls_gridsort( _this );
+                new Xcls_iconsearch( _this );
+                this.el = new Gtk.FilterListModel( _this.gridsort.el, _this.iconsearch.el );
 
                 // my vars (dec)
 
@@ -923,10 +923,10 @@
             {
                 _this = _owner;
                 _this.gridsort = this;
-                var child_1 = new Xcls_gridmodel( _this );
+                new Xcls_gridmodel( _this );
                 var child_2 = new Xcls_StringSorter25( _this );
                 child_2.ref();
-                this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+                this.el = new Gtk.SortListModel( _this.gridmodel.el, child_2.el );
 
                 // my vars (dec)
 
@@ -1170,8 +1170,8 @@
                 this.el.hexpand = true;
                 this.el.vexpand = true;
                 this.el.visible = true;
-                var child_1 = new Xcls_treeview( _this );
-                this.el.child = child_1.el;
+                new Xcls_treeview( _this );
+                this.el.child = _this.treeview.el;
 
                 // init method
 
@@ -1194,8 +1194,8 @@
             {
                 _this = _owner;
                 _this.treeview = this;
-                var child_1 = new Xcls_treeselmodel( _this );
-                this.el = new Gtk.ColumnView( child_1.el );
+                new Xcls_treeselmodel( _this );
+                this.el = new Gtk.ColumnView( _this.treeselmodel.el );
 
                 // my vars (dec)
 
@@ -1204,8 +1204,8 @@
                 var child_2 = new Xcls_GestureClick32( _this );
                 child_2.ref();
                 this.el.add_controller(  child_2.el );
-                var child_3 = new Xcls_name( _this );
-                this.el.append_column ( child_3.el  );
+                new Xcls_name( _this );
+                this.el.append_column ( _this.name.el  );
 
                 // init method
 
@@ -1341,9 +1341,9 @@
             public Xcls_FilterListModel34(DialogFiles _owner )
             {
                 _this = _owner;
-                var child_1 = new Xcls_treelistsort( _this );
-                var child_2 = new Xcls_treefilter( _this );
-                this.el = new Gtk.FilterListModel( child_1.el, child_2.el );
+                new Xcls_treelistsort( _this );
+                new Xcls_treefilter( _this );
+                this.el = new Gtk.FilterListModel( _this.treelistsort.el, _this.treefilter.el );
 
                 // my vars (dec)
 
@@ -1365,10 +1365,10 @@
             {
                 _this = _owner;
                 _this.treelistsort = this;
-                var child_1 = new Xcls_treelistmodel( _this );
+                new Xcls_treelistmodel( _this );
                 var child_2 = new Xcls_TreeListRowSorter38( _this );
                 child_2.ref();
-                this.el = new Gtk.SortListModel( child_1.el, child_2.el );
+                this.el = new Gtk.SortListModel( _this.treelistmodel.el, child_2.el );
 
                 // my vars (dec)
 
@@ -1391,8 +1391,8 @@
             {
                 _this = _owner;
                 _this.treelistmodel = this;
-                var child_1 = new Xcls_treemodel( _this );
-                this.el = new Gtk.TreeListModel( child_1.el, false, true, (item) => {
+                new Xcls_treemodel( _this );
+                this.el = new Gtk.TreeListModel( _this.treemodel.el, false, true, (item) => {
 	//GLib.debug("liststore got %s", item.get_type().name());
 	return ((JsRender.JsRender)item).childfiles;
 }  );
@@ -1703,16 +1703,16 @@
                 var child_1 = new Xcls_Button45( _this );
                 child_1.ref();
                 this.el.pack_end ( child_1.el  );
-                var child_2 = new Xcls_btn_newproj( _this );
-                this.el.pack_start ( child_2.el  );
-                var child_3 = new Xcls_btn_projprop( _this );
-                this.el.pack_start ( child_3.el  );
-                var child_4 = new Xcls_btn_delproj( _this );
-                this.el.pack_start ( child_4.el  );
-                var child_5 = new Xcls_btn_addfile( _this );
-                this.el.pack_start ( child_5.el  );
-                var child_6 = new Xcls_btn_delfile( _this );
-                this.el.pack_start ( child_6.el  );
+                new Xcls_btn_newproj( _this );
+                this.el.pack_start ( _this.btn_newproj.el  );
+                new Xcls_btn_projprop( _this );
+                this.el.pack_start ( _this.btn_projprop.el  );
+                new Xcls_btn_delproj( _this );
+                this.el.pack_start ( _this.btn_delproj.el  );
+                new Xcls_btn_addfile( _this );
+                this.el.pack_start ( _this.btn_addfile.el  );
+                new Xcls_btn_delfile( _this );
+                this.el.pack_start ( _this.btn_delfile.el  );
             }
 
             // user defined functions
@@ -1792,21 +1792,23 @@
                    pe.el.application = _this.win.el.application;
                     pe.el.set_transient_for( _this.el );
                  
-                  
-                    pe.selected.connect((pr) => {
-                     	 
-                	     _this.show(  pr, _this.new_window);
-                
-                    });
-                    
+                    var cb = new Project.Callback();
+                    cb.call.connect((pr) => {
+                    	_this.show(  pr , _this.new_window);
+                	});
                       
-                    pe.show();
+                    pe.show( cb);
                    
                 
                 });
             }
 
             // user defined functions
+            public void onCreated () {
+            	var pe =      EditProject.singleton();
+            
+            	_this.show(  pe.result , _this.new_window);
+            }
         }
         public class Xcls_Box47 : Object
         {
@@ -1912,7 +1914,7 @@
                    if (_this.selectedProject == null) {
                 	   return;
                    }
-                	_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject);
+                	_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);
                  });
             }
 

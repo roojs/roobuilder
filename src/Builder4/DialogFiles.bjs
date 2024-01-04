@@ -906,21 +906,25 @@
          "   pe.el.application = _this.win.el.application;",
          "    pe.el.set_transient_for( _this.el );",
          " ",
-         "  ",
-         "    pe.selected.connect((pr) => {",
-         "     \t ",
-         "\t     _this.show(  pr, _this.new_window);",
-         "",
-         "    });",
-         "    ",
+         "    var cb = new Project.Callback();",
+         "    cb.call.connect((pr) => {",
+         "    \t_this.show(  pr , _this.new_window);",
+         "\t});",
          "      ",
-         "    pe.show();",
+         "    pe.show( cb);",
          "   ",
          "",
          "}"
         ]
        },
-       "xtype" : "Button"
+       "xtype" : "Button",
+       "| void onCreated" : [
+        "() {",
+        "\tvar pe =      EditProject.singleton();",
+        "",
+        "\t_this.show(  pe.result , _this.new_window);",
+        "}"
+       ]
       },
       {
        "$ xns" : "Gtk",
@@ -955,7 +959,7 @@
          "   if (_this.selectedProject == null) {",
          "\t   return;",
          "   }",
-         "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject);",
+         "\t_this.win.windowstate.projectPopoverShow(_this.el, _this.selectedProject, null);",
          " }"
         ]
        },
@@ -1272,7 +1276,7 @@
     " ",
     "\t",
     "\t this.el.show();",
-    "\t \tthis.load();",
+    " this.load();",
     "\tthis.selectProject(project);",
     "\tthis.onProjectSelected(project);   //?? twice?",
     "\t ",

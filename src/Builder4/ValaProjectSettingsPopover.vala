@@ -35,8 +35,8 @@
         public Xcls_save_btn save_btn;
 
             // my vars (def)
+        public Project.Callback doneObj;
         public Xcls_MainWindow window;
-        public Gtk.PositionType position;
         public Project.GtkValaSettings? selected_target;
         public uint border_width;
         public bool done;
@@ -50,8 +50,8 @@
             this.el = new Gtk.Window();
 
             // my vars (dec)
+            this.doneObj = null;
             this.window = null;
-            this.position = Gtk.PositionType.RIGHT;
             this.selected_target = null;
             this.border_width = 0;
             this.done = false;
@@ -82,10 +82,10 @@
         }
 
         // user defined functions
-        public void show (Gtk.Window pwin, Project.Gtk project) {
+        public void show (Gtk.Window pwin, Project.Gtk project, Project.Callback doneObj) {
              
             //print("ValaProjectSettings show\n");
-            
+            this.doneObj = doneObj;
             this.project=  project;
         	 
             this.compile_flags.el.buffer.set_text(
@@ -107,7 +107,9 @@
         //	Gtk.Allocation rect;
         	//btn.get_allocation(out rect);
          //   this.el.set_pointing_to(rect);
-        	this.el.set_transient_for(pwin);
+         this.el.application = pwin.application; // ??? make it modal?
+        	 this.el.set_transient_for(pwin);
+        	 
         	// window + header?
         	// print("SHOWALL - POPIP\n");
         	this.el.set_size_request(800,800);
@@ -2021,9 +2023,11 @@
                 _this.project.save(); 
                  
                 	// what about .js ?
-                   _this.done = true;
-                	_this.el.hide();
-                
+                _this.done = true;
+                _this.el.hide();
+                if (_this.doneObj != null) {
+                	_this.doneObj.call(_this.project);
+                }
                 // hopefull this will work with bjs files..
                 	
                  
