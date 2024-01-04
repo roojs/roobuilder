@@ -10,6 +10,7 @@
    "@ void success" : "(Project.Project pr, JsRender.JsRender file)",
    "Xcls_MainWindow mainwindow" : "null",
    "bool done" : false,
+   "bool is_new" : true,
    "bool modal" : true,
    "id" : "PopoverFileDetails",
    "items" : [
@@ -711,7 +712,7 @@
    "uint border_width" : 0,
    "xtype" : "Window",
    "| void show" : [
-    "(JsRender.JsRender? c, Gtk.Window pwin, bool new_window) ",
+    "(JsRender.JsRender  c, Gtk.Window pwin, bool new_window) ",
     "{",
     "    ",
     "    this.project = c.project;",

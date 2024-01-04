@@ -41,6 +41,7 @@
         public Xcls_save_btn save_btn;
 
             // my vars (def)
+        public bool is_new;
         public bool new_window;
         public signal void success (Project.Project pr, JsRender.JsRender file);
         public JsRender.JsRender file;
@@ -56,6 +57,7 @@
             this.el = new Gtk.Window();
 
             // my vars (dec)
+            this.is_new = true;
             this.new_window = true;
             this.file = null;
             this.border_width = 0;
@@ -79,7 +81,7 @@
         }
 
         // user defined functions
-        public void show (JsRender.JsRender? c, Gtk.Window pwin, bool new_window) 
+        public void show (JsRender.JsRender  c, Gtk.Window pwin, bool new_window) 
         {
             
             this.project = c.project;
