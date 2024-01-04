@@ -40,6 +40,8 @@ namespace Project {
 		INVALID_FORMAT
 	}
 
+
+	delegate void ProjectFunc(Project p);
 	// static array of all projects.
 	private Gee.ArrayList<Project>  projects;
 	
