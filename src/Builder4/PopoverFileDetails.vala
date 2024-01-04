@@ -362,9 +362,7 @@
             	return _this.filetype_model.el.get_string(this.el.selected).split(" ")[0];
             }
             public void showhide ()   {
-            	if (_this.file == null) {
-            		return;
-            	}
+            	 
             
             	_this.path_lbl.el.hide();
                 _this.path.el.hide();
