@@ -1114,7 +1114,7 @@
             {
                 _this = _owner;
                 _this.gen_lbl = this;
-                this.el = new Gtk.Label( "Generate as Extended (experimental)" );
+                this.el = new Gtk.Label( "Generate as Extended (no working)" );
 
                 // my vars (dec)
                 this.colspan = 1;
