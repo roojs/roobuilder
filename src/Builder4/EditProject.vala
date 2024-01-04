@@ -25,8 +25,8 @@
         public Xcls_ptype_dd ptype_dd;
 
             // my vars (def)
+        public Project.Callback doneObj;
         public WindowState? windowstate;
-        public GLib.VoidFunc? donefunc;
         public signal void canceled ();
         public Project.Project result;
 
@@ -37,8 +37,8 @@
             this.el = new Gtk.Window();
 
             // my vars (dec)
+            this.doneObj = null;
             this.windowstate = null;
-            this.donefunc = null;
             this.result = null;
 
             // set gobject values
@@ -54,8 +54,8 @@
         }
 
         // user defined functions
-        public void show (GLib.VoidFunc donefunc) {
-             this.donefunc = donefunc;
+        public void show (Project.Callback doneObj) {
+             this.doneObj= doneObj;
             _this.hideAll(); 
              // hide stuff..
              _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;

@@ -4,7 +4,7 @@
  "items" : [
   {
    "# WindowState? windowstate" : "null",
-   "$ GLib.VoidFunc? donefunc" : "null",
+   "$ Project.Callback doneObj" : "null",
    "$ deletable" : true,
    "$ xns" : "Gtk",
    "@ void canceled" : "()",
@@ -574,8 +574,8 @@
     "}"
    ],
    "| void show" : [
-    "(GLib.VoidFunc donefunc) {",
-    "     this.donefunc = donefunc;",
+    "(Project.Callback doneObj) {",
+    "     this.doneObj= doneObj;",
     "    _this.hideAll(); ",
     "     // hide stuff..",
     "     _this.type_dd.el.selected = Gtk.INVALID_LIST_POSITION;",
