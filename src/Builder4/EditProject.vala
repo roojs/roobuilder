@@ -237,7 +237,8 @@
                  		_this.result = project;
                 		if (is_new_folder || is_existing) {
                 	    	 _this.windowstate.projectPopoverShow(
-                	    	 	_this.el, project,  this.doneObj.call );
+                	    	 	_this.el, project,  _this.doneObj 
+                    	 	);
                     	 } else {
                     	 	if (_this.doneObj != null) {
                 		    	 _this.doneObj.call(project);
