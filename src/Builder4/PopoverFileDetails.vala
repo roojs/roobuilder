@@ -152,7 +152,9 @@
                 this.save_btn.el.set_label("Create");
         	    _this.filetype.el.show();
         	    _this.filetype_lbl.el.show();
+        		_this.filetype_model.el.selected = Gtk.INVALID_LIST_POSITION;
         	    _this.filetype.showhide();
+        	    
             }
             
             
