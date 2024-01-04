@@ -116,7 +116,7 @@
          "\t\t Project.Project.saveProjectList();",
          " \t\t_this.result = project;",
          "\t\tif (is_new_folder || is_existing) {",
-         "\t\t\t  _this.el.transient_for.hide();",
+         "\t\t\t   ",
          "\t\t",
          "\t    \t _this.windowstate.projectPopoverShow(",
          "\t    \t \t_this.el.transient_for, project,  _this.doneObj ",
