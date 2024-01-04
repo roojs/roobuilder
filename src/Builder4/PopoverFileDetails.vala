@@ -13,12 +13,14 @@
             return _PopoverFileDetails;
         }
         public Xcls_grid grid;
-        public Xcls_dir_dropdown_lbl dir_dropdown_lbl;
         public Xcls_dir_dropdown dir_dropdown;
         public Xcls_dir_model dir_model;
         public Xcls_filetype_lbl filetype_lbl;
         public Xcls_filetype filetype;
         public Xcls_filetype_model filetype_model;
+        public Xcls_dir_dropdown_lbl dir_dropdown_lbl;
+        public Xcls_dir_dropdown dir_dropdown;
+        public Xcls_dir_model dir_model;
         public Xcls_name name;
         public Xcls_title_lbl title_lbl;
         public Xcls_title title;
@@ -67,7 +69,7 @@
             var child_1 = new Xcls_Box2( _this );
             child_1.ref();
             this.el.set_child ( child_1.el  );
-            var child_2 = new Xcls_HeaderBar29( _this );
+            var child_2 = new Xcls_HeaderBar31( _this );
             this.el.titlebar = child_2.el;
 
             //listeners
@@ -202,8 +204,8 @@
                 this.el.hexpand = true;
                 this.el.margin_bottom = 4;
                 this.el.margin_top = 4;
-                var child_1 = new Xcls_grid( _this );
-                this.el.append ( child_1.el  );
+                new Xcls_grid( _this );
+                this.el.append ( _this.grid.el  );
             }
 
             // user defined functions
@@ -231,51 +233,53 @@
                 this.el.hexpand = true;
                 this.el.column_spacing = 4;
                 this.el.row_spacing = 2;
-                var child_1 = new Xcls_dir_dropdown_lbl( _this );
-                this.el.attach( child_1.el, 0, 0, 1, 1 );
-                var child_2 = new Xcls_dir_dropdown( _this );
-                this.el.attach( child_2.el, 1, 0, 1, 1 );
-                var child_3 = new Xcls_filetype_lbl( _this );
-                this.el.attach( child_3.el, 0, 1, 1, 1 );
-                var child_4 = new Xcls_filetype( _this );
-                this.el.attach( child_4.el, 1, 1, 1, 1 );
-                var child_5 = new Xcls_Label10( _this );
-                child_5.ref();
-                this.el.attach( child_5.el, 0, 2, 1, 1 );
-                var child_6 = new Xcls_name( _this );
+                new Xcls_dir_dropdown( _this );
+                this.el.attach( _this.dir_dropdown.el, 0, 0, 1, 1 );
+                new Xcls_filetype_lbl( _this );
+                this.el.attach( _this.filetype_lbl.el, 1, 0, 1, 1 );
+                new Xcls_filetype( _this );
+                this.el.attach( _this.filetype.el, 0, 1, 1, 1 );
+                new Xcls_dir_dropdown_lbl( _this );
+                this.el.attach( _this.dir_dropdown_lbl.el, 1, 1, 1, 1 );
+                new Xcls_dir_dropdown( _this );
+                this.el.attach( _this.dir_dropdown.el, 0, 2, 1, 1 );
+                var child_6 = new Xcls_Label12( _this );
+                child_6.ref();
                 this.el.attach( child_6.el, 1, 2, 1, 1 );
-                var child_7 = new Xcls_title_lbl( _this );
-                this.el.attach( child_7.el, 0, 3, 1, 1 );
-                var child_8 = new Xcls_title( _this );
-                this.el.attach ( child_8.el , 1,2,1,1 );
-                var child_9 = new Xcls_region_lbl( _this );
-                this.el.attach( child_9.el, 0, 4, 1, 1 );
-                var child_10 = new Xcls_region( _this );
-                this.el.attach( child_10.el, 1, 4, 1, 1 );
-                var child_11 = new Xcls_parent_lbl( _this );
-                this.el.attach( child_11.el, 0, 5, 1, 1 );
-                var child_12 = new Xcls_parent( _this );
-                this.el.attach( child_12.el, 1, 5, 1, 1 );
-                var child_13 = new Xcls_permname_lbl( _this );
-                this.el.attach( child_13.el, 0, 6, 1, 1 );
-                var child_14 = new Xcls_permname( _this );
-                this.el.attach( child_14.el, 1, 6, 1, 1 );
-                var child_15 = new Xcls_modOrder_lbl( _this );
-                this.el.attach( child_15.el, 0, 7, 1, 1 );
-                var child_16 = new Xcls_modOrder( _this );
-                this.el.attach( child_16.el, 1, 7, 1, 1 );
-                var child_17 = new Xcls_build_module_lbl( _this );
-                this.el.attach( child_17.el, 0, 8, 1, 1 );
-                var child_18 = new Xcls_build_module( _this );
-                this.el.attach( child_18.el, 1, 8, 1, 1 );
-                var child_19 = new Xcls_path_lbl( _this );
-                this.el.attach( child_19.el, 0, 9, 1, 1 );
-                var child_20 = new Xcls_path( _this );
-                this.el.attach( child_20.el, 1, 9, 1, 1 );
-                var child_21 = new Xcls_gen_lbl( _this );
-                this.el.attach( child_21.el, 0, 10, 1, 1 );
-                var child_22 = new Xcls_gen( _this );
-                this.el.attach( child_22.el, 1, 10, 1, 1 );
+                new Xcls_name( _this );
+                this.el.attach( _this.name.el, 0, 3, 1, 1 );
+                new Xcls_title_lbl( _this );
+                this.el.attach( _this.title_lbl.el, 1, 3, 1, 1 );
+                new Xcls_title( _this );
+                this.el.attach ( _this.title.el , 1,2,1,1 );
+                new Xcls_region_lbl( _this );
+                this.el.attach( _this.region_lbl.el, 1, 4, 1, 1 );
+                new Xcls_region( _this );
+                this.el.attach( _this.region.el, 0, 5, 1, 1 );
+                new Xcls_parent_lbl( _this );
+                this.el.attach( _this.parent_lbl.el, 1, 5, 1, 1 );
+                new Xcls_parent( _this );
+                this.el.attach( _this.parent.el, 0, 6, 1, 1 );
+                new Xcls_permname_lbl( _this );
+                this.el.attach( _this.permname_lbl.el, 1, 6, 1, 1 );
+                new Xcls_permname( _this );
+                this.el.attach( _this.permname.el, 0, 7, 1, 1 );
+                new Xcls_modOrder_lbl( _this );
+                this.el.attach( _this.modOrder_lbl.el, 1, 7, 1, 1 );
+                new Xcls_modOrder( _this );
+                this.el.attach( _this.modOrder.el, 0, 8, 1, 1 );
+                new Xcls_build_module_lbl( _this );
+                this.el.attach( _this.build_module_lbl.el, 1, 8, 1, 1 );
+                new Xcls_build_module( _this );
+                this.el.attach( _this.build_module.el, 0, 9, 1, 1 );
+                new Xcls_path_lbl( _this );
+                this.el.attach( _this.path_lbl.el, 1, 9, 1, 1 );
+                new Xcls_path( _this );
+                this.el.attach( _this.path.el, 0, 10, 1, 1 );
+                new Xcls_gen_lbl( _this );
+                this.el.attach( _this.gen_lbl.el, 1, 10, 1, 1 );
+                new Xcls_gen( _this );
+                this.el.attach( _this.gen.el, 0, 11, 1, 1 );
             }
 
             // user defined functions
@@ -297,32 +301,6 @@
             
             }
         }
-        public class Xcls_dir_dropdown_lbl : Object
-        {
-            public Gtk.Label el;
-            private Xcls_PopoverFileDetails  _this;
-
-
-                // my vars (def)
-
-            // ctor
-            public Xcls_dir_dropdown_lbl(Xcls_PopoverFileDetails _owner )
-            {
-                _this = _owner;
-                _this.dir_dropdown_lbl = this;
-                this.el = new Gtk.Label( "Create File in this Directory" );
-
-                // my vars (dec)
-
-                // set gobject values
-                this.el.justify = Gtk.Justification.RIGHT;
-                this.el.xalign = 0.900000f;
-                this.el.visible = true;
-            }
-
-            // user defined functions
-        }
-
         public class Xcls_dir_dropdown : Object
         {
             public Gtk.DropDown el;
@@ -337,8 +315,8 @@
             {
                 _this = _owner;
                 _this.dir_dropdown = this;
-                var child_1 = new Xcls_dir_model( _this );
-                this.el = new Gtk.DropDown( child_1.el, null );
+                new Xcls_dir_model( _this );
+                this.el = new Gtk.DropDown( _this.dir_model.el, null );
 
                 // my vars (dec)
                 this.colspan = 1;
@@ -413,8 +391,8 @@
             {
                 _this = _owner;
                 _this.filetype = this;
-                var child_1 = new Xcls_filetype_model( _this );
-                this.el = new Gtk.DropDown( child_1.el, null );
+                new Xcls_filetype_model( _this );
+                this.el = new Gtk.DropDown( _this.filetype_model.el, null );
 
                 // my vars (dec)
 
@@ -579,7 +557,7 @@
         }
 
 
-        public class Xcls_Label10 : Object
+        public class Xcls_dir_dropdown_lbl : Object
         {
             public Gtk.Label el;
             private Xcls_PopoverFileDetails  _this;
@@ -588,7 +566,85 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Label10(Xcls_PopoverFileDetails _owner )
+            public Xcls_dir_dropdown_lbl(Xcls_PopoverFileDetails _owner )
+            {
+                _this = _owner;
+                _this.dir_dropdown_lbl = this;
+                this.el = new Gtk.Label( "Create File in this Directory" );
+
+                // my vars (dec)
+
+                // set gobject values
+                this.el.justify = Gtk.Justification.RIGHT;
+                this.el.xalign = 0.900000f;
+                this.el.visible = true;
+            }
+
+            // user defined functions
+        }
+
+        public class Xcls_dir_dropdown : Object
+        {
+            public Gtk.DropDown el;
+            private Xcls_PopoverFileDetails  _this;
+
+
+                // my vars (def)
+            public int colspan;
+
+            // ctor
+            public Xcls_dir_dropdown(Xcls_PopoverFileDetails _owner )
+            {
+                _this = _owner;
+                _this.dir_dropdown = this;
+                new Xcls_dir_model( _this );
+                this.el = new Gtk.DropDown( _this.dir_model.el, null );
+
+                // my vars (dec)
+                this.colspan = 1;
+
+                // set gobject values
+            }
+
+            // user defined functions
+            public string getValue () {
+            	return _this.dir_model.el.get_string(this.el.selected);
+            }
+        }
+        public class Xcls_dir_model : Object
+        {
+            public Gtk.StringList el;
+            private Xcls_PopoverFileDetails  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_dir_model(Xcls_PopoverFileDetails _owner )
+            {
+                _this = _owner;
+                _this.dir_model = this;
+                this.el = new Gtk.StringList( {} );
+
+                // my vars (dec)
+
+                // set gobject values
+            }
+
+            // user defined functions
+        }
+
+
+        public class Xcls_Label12 : Object
+        {
+            public Gtk.Label el;
+            private Xcls_PopoverFileDetails  _this;
+
+
+                // my vars (def)
+
+            // ctor
+            public Xcls_Label12(Xcls_PopoverFileDetails _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.Label( "Component Name (File name without extension)" );
@@ -920,8 +976,8 @@
             {
                 _this = _owner;
                 _this.build_module = this;
-                var child_1 = new Xcls_build_module_model( _this );
-                this.el = new Gtk.DropDown( child_1.el, null );
+                new Xcls_build_module_model( _this );
+                this.el = new Gtk.DropDown( _this.build_module_model.el, null );
 
                 // my vars (dec)
 
@@ -1113,7 +1169,7 @@
 
 
 
-        public class Xcls_HeaderBar29 : Object
+        public class Xcls_HeaderBar31 : Object
         {
             public Gtk.HeaderBar el;
             private Xcls_PopoverFileDetails  _this;
@@ -1122,7 +1178,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_HeaderBar29(Xcls_PopoverFileDetails _owner )
+            public Xcls_HeaderBar31(Xcls_PopoverFileDetails _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.HeaderBar();
@@ -1131,16 +1187,16 @@
 
                 // set gobject values
                 this.el.show_title_buttons = false;
-                var child_1 = new Xcls_Button30( _this );
+                var child_1 = new Xcls_Button32( _this );
                 child_1.ref();
                 this.el.pack_start ( child_1.el  );
-                var child_2 = new Xcls_save_btn( _this );
-                this.el.pack_end ( child_2.el  );
+                new Xcls_save_btn( _this );
+                this.el.pack_end ( _this.save_btn.el  );
             }
 
             // user defined functions
         }
-        public class Xcls_Button30 : Object
+        public class Xcls_Button32 : Object
         {
             public Gtk.Button el;
             private Xcls_PopoverFileDetails  _this;
@@ -1149,7 +1205,7 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Button30(Xcls_PopoverFileDetails _owner )
+            public Xcls_Button32(Xcls_PopoverFileDetails _owner )
             {
                 _this = _owner;
                 this.el = new Gtk.Button();

@@ -36,16 +36,6 @@
        "int margin_start" : 4,
        "items" : [
         {
-         "$ justify" : "Gtk.Justification.RIGHT",
-         "$ visible" : true,
-         "$ xns" : "Gtk",
-         "id" : "dir_dropdown_lbl",
-         "label" : "Create File in this Directory",
-         "x_options" : 4,
-         "xalign" : 0.90000000000000002,
-         "xtype" : "Label"
-        },
-        {
          "$ xns" : "Gtk",
          "id" : "dir_dropdown",
          "int colspan" : 1,
@@ -229,6 +219,36 @@
           "    ",
           "}",
           ""
+         ]
+        },
+        {
+         "$ justify" : "Gtk.Justification.RIGHT",
+         "$ visible" : true,
+         "$ xns" : "Gtk",
+         "id" : "dir_dropdown_lbl",
+         "label" : "Create File in this Directory",
+         "x_options" : 4,
+         "xalign" : 0.90000000000000002,
+         "xtype" : "Label"
+        },
+        {
+         "$ xns" : "Gtk",
+         "id" : "dir_dropdown",
+         "int colspan" : 1,
+         "items" : [
+          {
+           "$ xns" : "Gtk",
+           "* prop" : "model",
+           "id" : "dir_model",
+           "strings" : "{}",
+           "xtype" : "StringList"
+          }
+         ],
+         "xtype" : "DropDown",
+         "| string getValue" : [
+          "() {",
+          "\treturn _this.dir_model.el.get_string(this.el.selected);",
+          "}"
          ]
         },
         {
