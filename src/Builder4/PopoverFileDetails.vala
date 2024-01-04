@@ -396,9 +396,10 @@
             	
             	var sel = this.getValue();
             
-            
+            	GLib.debug("showhide is new ? %s / sel = '%s'" , _this.is_new ? "YES" :"NO", sel); 
+            	
                 if (_this.is_new) {
-            		if (sel == "" &&  _this.project.xtype =="Gtk") {
+            		if (sel == "" &&  _this.project.xtype == "Gtk") {
             			return;
             		}
             		 
