@@ -930,6 +930,7 @@ namespace Project {
 			return false;
 			
 		}
+		
 		public void loadDirsToStringList( global::Gtk.StringList sl, string prefix) 
 		{
 			 
@@ -938,7 +939,7 @@ namespace Project {
 			}
 			
 			foreach(var sp in this.sub_paths) {
-				 var add = sp.path == this.path ? "/" : sp.path.substring(this.path.length)
+				 var add = sp.path == this.path ? "/" : sp.path.substring(this.path.length);
 				if (prefix.length > 0 && !add.has_prefix(prefix)) {
 					continue;
 				}
