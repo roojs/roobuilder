@@ -394,15 +394,15 @@
             	_this.gen.el.hide();
             	
             	var sel = this.getValue();
-            	
-            	if (_this.file == null && sel == "" && _this.project.xtype =="Gtk") {
-            		return;
-            	}
-             
-                if (c.name == "") {
-                	_this.path_lbl.el.hide();
-            	    _this.path.el.hide();
-            	    this.filetype_model.load();
+            
+            
+                if (_this.is_new) {
+            		if (sel == "" &&  _this.project.xtype =="Gtk") {
+            			return;
+            		}
+            		
+            
+            	  
                     _this.dir_dropdown_lbl.el.show();
             	    _this.dir_dropdown.el.show();
             	    
