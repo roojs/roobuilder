@@ -51,8 +51,8 @@ namespace Project {
 	
 	
 	// used to pass around callbacks with project as a return
-	class Callback : Object {
-		signal void call(Project project);
+	public class Callback : Object {
+		public signal void call(Project project);
 	}
 	
 	public abstract class Project : Object {
