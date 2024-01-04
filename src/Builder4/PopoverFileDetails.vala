@@ -79,7 +79,7 @@
         }
 
         // user defined functions
-        public void show (JsRender.JsRender c, Gtk.Window pwin, bool new_window) 
+        public void show (JsRender.JsRender? c, Gtk.Window pwin, bool new_window) 
         {
             
             this.project = c.project;
@@ -361,7 +361,11 @@
             public void showhide ()   {
             
             
-            	
+            	_this.path_lbl.el.hide();
+                _this.path.el.hide();
+                
+                _this.dir_dropdown_lbl.el.hide();
+                _this.dir_dropdown.el.hide();
             	
             	_this.title_lbl.el.hide();
             	_this.title.el.hide();
@@ -392,7 +396,18 @@
             	if (_this.file == null && sel == "" && _this.project.xtype =="Gtk") {
             		return;
             	}
-            	
+             
+                if (c.name == "") {
+                	_this.path_lbl.el.hide();
+            	    _this.path.el.hide();
+            	    this.filetype_model.load();
+                    _this.dir_dropdown_lbl.el.show();
+            	    _this.dir_dropdown.el.show();
+            	    
+                }   else {
+                    _this.path.el.set_text(c.relpath);
+                }
+                
             	
             	
             	
