@@ -19,6 +19,7 @@
         public Xcls_dir_dropdown_lbl dir_dropdown_lbl;
         public Xcls_dir_dropdown dir_dropdown;
         public Xcls_dir_model dir_model;
+        public Xcls_name_lbl name_lbl;
         public Xcls_name name;
         public Xcls_title_lbl title_lbl;
         public Xcls_title title;
@@ -244,9 +245,8 @@
                 this.el.attach( _this.dir_dropdown_lbl.el, 0, 1, 1, 1 );
                 new Xcls_dir_dropdown( _this );
                 this.el.attach( _this.dir_dropdown.el, 1, 1, 1, 1 );
-                var child_5 = new Xcls_Label10( _this );
-                child_5.ref();
-                this.el.attach( child_5.el, 0, 2, 1, 1 );
+                new Xcls_name_lbl( _this );
+                this.el.attach( _this.name_lbl.el, 0, 2, 1, 1 );
                 new Xcls_name( _this );
                 this.el.attach( _this.name.el, 1, 2, 1, 1 );
                 new Xcls_title_lbl( _this );
@@ -607,7 +607,7 @@
         }
 
 
-        public class Xcls_Label10 : Object
+        public class Xcls_name_lbl : Object
         {
             public Gtk.Label el;
             private Xcls_PopoverFileDetails  _this;
@@ -616,9 +616,10 @@
                 // my vars (def)
 
             // ctor
-            public Xcls_Label10(Xcls_PopoverFileDetails _owner )
+            public Xcls_name_lbl(Xcls_PopoverFileDetails _owner )
             {
                 _this = _owner;
+                _this.name_lbl = this;
                 this.el = new Gtk.Label( "Component Name (File name without extension)" );
 
                 // my vars (dec)
