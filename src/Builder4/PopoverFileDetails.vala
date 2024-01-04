@@ -367,6 +367,10 @@
             	_this.path_lbl.el.hide();
                 _this.path.el.hide();
                 
+                
+                _this.name_lbl.el.hide();
+                _this.name.el.hide();
+                
                 _this.dir_dropdown_lbl.el.hide();
                 _this.dir_dropdown.el.hide();
             	
@@ -406,6 +410,11 @@
             	  
                     _this.dir_dropdown_lbl.el.show();
             	    _this.dir_dropdown.el.show();
+            	    
+                    _this.name_lbl.el.hide();
+                	_this.name.el.hide();
+            
+            	    
             	    
                 }   else {
                     _this.path.el.set_text(_this.file.relpath);
