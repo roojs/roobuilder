@@ -520,8 +520,11 @@
          "| string getValue" : [
           "() {",
           "\tvar m = (Gtk.StringList) this.el.model;",
-          "\treturn this.el.selected == Gtk.INVALID_LIST_POSITION ?",
+          "\tvar str = this.el.selected == Gtk.INVALID_LIST_POSITION ?",
           "\t\t\t \"\" : m.get_string(this.el.selected);",
+          "\t\t\t ",
+          " \tvar ar = str.split(\" \");",
+          " \treturn ar[0];",
           "\t",
           "}"
          ],

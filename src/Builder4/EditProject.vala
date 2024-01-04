@@ -885,8 +885,11 @@
             // user defined functions
             public string getValue () {
             	var m = (Gtk.StringList) this.el.model;
-            	return this.el.selected == Gtk.INVALID_LIST_POSITION ?
+            	var str = this.el.selected == Gtk.INVALID_LIST_POSITION ?
             			 "" : m.get_string(this.el.selected);
+            			 
+             	var ar = str.split(" ");
+             	return ar[0];
             	
             }
             public void setValue (string val) {
